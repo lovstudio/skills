@@ -1,6 +1,22 @@
-# lovstudio/skills
+<p align="center">
+  <img src="docs/images/cover.png" alt="lovstudio/skills Cover" width="100%">
+</p>
 
-[Agent skills](https://agentskills.io) by lovstudio for AI coding assistants (Claude Code, Cursor, Copilot, Gemini CLI, etc.).
+<h1 align="center">lovstudio/skills</h1>
+
+<p align="center">
+  <strong>Agent skills for AI coding assistants — Markdown to PDF/DOCX with 14 themes</strong><br>
+  <sub>Works with Claude Code, Cursor, Copilot, Gemini CLI, and more</sub>
+</p>
+
+<p align="center">
+  <a href="https://agentskills.io">agentskills.io</a> &middot;
+  <a href="https://lovstudio.ai">lovstudio.ai</a> &middot;
+  <a href="#install">Install</a> &middot;
+  <a href="#theme-gallery">Theme Gallery</a>
+</p>
+
+---
 
 ## Install
 
@@ -45,6 +61,10 @@ Both skills share the same set of 14 color themes. Here's how they look:
 |:---:|:---:|
 | ![monokai-warm](docs/previews/monokai-warm.png) | ![dracula-soft](docs/previews/dracula-soft.png) |
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=lovstudio/skills&type=Date)](https://star-history.com/#lovstudio/skills&Date)
+
 ## License
 
-MIT
+MIT &mdash; Made by [lovstudio.ai](https://lovstudio.ai)
