@@ -34,8 +34,8 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 
 | Skill | Description |
 |-------|-------------|
-| [any2pdf](lovstudio-any2pdf/) | Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, 14 themes. |
-| [any2docx](lovstudio-any2docx/) | Markdown → professionally styled DOCX (Word). Same themes as any2pdf, editable output. |
+| [any2pdf](skills/lovstudio-any2pdf/) | Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, 14 themes. |
+| [any2docx](skills/lovstudio-any2docx/) | Markdown → professionally styled DOCX (Word). Same themes as any2pdf, editable output. |
 
 ## Theme Gallery
 

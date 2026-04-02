@@ -40,9 +40,9 @@ trap cleanup INT TERM
 echo "Dev mode ON:"
 
 if [ -n "$1" ]; then
-  link_skill "$SOURCE_ROOT/$1"
+  link_skill "$SOURCE_ROOT/skills/$1"
 else
-  for d in "$SOURCE_ROOT"/lovstudio-*/; do
+  for d in "$SOURCE_ROOT"/skills/lovstudio-*/; do
     [ -f "$d/SKILL.md" ] && link_skill "$d"
   done
 fi

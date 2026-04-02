@@ -5,7 +5,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 PREVIEW_DIR="$REPO_DIR/docs/previews"
-MD2PDF="$REPO_DIR/lovstudio-any2pdf/scripts/md2pdf.py"
+MD2PDF="$REPO_DIR/skills/lovstudio-any2pdf/scripts/md2pdf.py"
 SAMPLE="$PREVIEW_DIR/_sample.md"
 
 THEMES=(
