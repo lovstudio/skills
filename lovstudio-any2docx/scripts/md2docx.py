@@ -133,6 +133,12 @@ THEMES = {
         "border":"#D8D4C8","canvas_sec":"#EEEAE0",
         "body_font":"serif","heading_font":"serif",
     },
+    "invest-report": {
+        "ink":"#1A1A1A","ink_faded":"#666666","accent":"#C00000",
+        "border":"#CCCCCC","canvas_sec":"#F5F5F5",
+        "body_font":"serif","heading_font":"serif",
+        "cjk_font":"STKaiti",
+    },
 }
 
 def _hex_to_rgb(h):
@@ -144,7 +150,7 @@ def load_theme(name):
     if not t:
         print(f"Unknown theme '{name}', falling back to warm-academic", file=sys.stderr)
         t = THEMES["warm-academic"]
-    return {
+    result = {
         "ink": _hex_to_rgb(t["ink"]),
         "ink_faded": _hex_to_rgb(t["ink_faded"]),
         "accent": _hex_to_rgb(t["accent"]),
@@ -153,6 +159,9 @@ def load_theme(name):
         "body_font": SERIF if t["body_font"] == "serif" else SANS,
         "heading_font": SERIF if t["heading_font"] == "serif" else SANS,
     }
+    if "cjk_font" in t:
+        result["cjk_font"] = t["cjk_font"]
+    return result
 
 # ═══════════════════════════════════════════════════════════════════════
 # INLINE MARKDOWN PARSER
@@ -223,6 +232,10 @@ class DocxBuilder:
     def __init__(self, config):
         self.cfg = config
         self.T = config["theme"]
+        # Override global CJK font if theme specifies one (e.g. STKaiti for invest-report)
+        global CJK
+        if "cjk_font" in self.T:
+            CJK = self.T["cjk_font"]
         self.doc = Document()
         self._setup_styles()
 

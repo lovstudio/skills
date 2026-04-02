@@ -71,6 +71,7 @@ Use `AskUserQuestion` with the following template:
  h) GitHub    — 蓝白极简，程序员熟悉的风格
  i) Nord 冰霜 — 蓝灰北欧风，清爽现代
  j) 海洋      — 青绿色调，清新自然
+ k) 投资报告  — 楷体+深红，专业严谨，适合投资/尽调报告
 
 ━━━ 💧 水印 ━━━
  1) 不加
@@ -84,7 +85,7 @@ Use `AskUserQuestion` with the following template:
 
 | Choice | CLI arg |
 |--------|---------|
-| Design style a-j | `--theme` with value from table below |
+| Design style a-k | `--theme` with value from table below |
 | Watermark text | `--watermark "文字"` |
 
 ### Theme Name Mapping
@@ -101,6 +102,7 @@ Use `AskUserQuestion` with the following template:
 | h) GitHub | `github-light` |
 | i) Nord | `nord-frost` |
 | j) 海洋 | `ocean-breeze` |
+| k) 投资报告 | `invest-report` |
 
 ## Architecture
 
