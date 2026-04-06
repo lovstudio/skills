@@ -25,8 +25,10 @@ dev.sh                # Symlinks source skills into ~/.claude/skills/ for live d
 |-------|--------|------|
 | `any2pdf` | `skills/lovstudio-any2pdf/scripts/md2pdf.py` (reportlab) | `pip install reportlab` |
 | `any2docx` | `skills/lovstudio-any2docx/scripts/md2docx.py` (python-docx) | `pip install python-docx` |
+| `fill-form` | `skills/lovstudio-fill-form/scripts/fill_form.py` (python-docx) | `pip install python-docx` |
 
-Both convert Markdown → styled output with CJK/Latin mixed text support, themes, cover pages, TOC, watermarks.
+`any2pdf`/`any2docx` convert Markdown → styled output with CJK/Latin mixed text support, themes, cover pages, TOC, watermarks.
+`fill-form` fills Word form templates (.docx with table-based fields) with user-provided data.
 
 ## Development
 
