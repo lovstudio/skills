@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+- Add README.md for fill-form skill
+- Update root README with fill-form in skills table
+- Require README.md per skill in project conventions (CLAUDE.md)
+
 ## 1.0.0
 
 - **any2pdf**: Markdown → styled PDF with CJK/Latin mixed text, 14 color themes, cover pages, TOC, watermarks
