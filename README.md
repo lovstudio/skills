@@ -37,6 +37,7 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [any2pdf](skills/lovstudio-any2pdf/) | Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, 14 themes. |
 | [any2docx](skills/lovstudio-any2docx/) | Markdown → professionally styled DOCX (Word). Same themes as any2pdf, editable output. |
 | [fill-form](skills/lovstudio-fill-form/) | Fill Word form templates (.docx). Auto-detects table fields, CJK font support. |
+| [skill-creator](skills/lovstudio-skill-creator/) | Scaffold new lovstudio skills with proper structure, SKILL.md + README.md. |
 
 ## Theme Gallery
 
