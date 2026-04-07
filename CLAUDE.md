@@ -28,17 +28,10 @@ dev.sh                # Symlinks source skills into ~/.claude/skills/ for live d
 | `fill-form` | `skills/lovstudio-fill-form/scripts/fill_form.py` (python-docx) | `pip install python-docx` |
 | `any2deck` | `skills/lovstudio-any2deck/` (image-gen + pptxgenjs + pdf-lib) | Node.js, Python 3.8+ |
 | `skill-creator` | `skills/lovstudio-skill-creator/scripts/init_skill.py` | — |
+| `auto-context` | (pure instructions, no script) | — |
 
 `any2pdf`/`any2docx` convert Markdown → styled output with CJK/Latin mixed text support, themes, cover pages, TOC, watermarks.
 `fill-form` fills Word form templates (.docx with table-based fields) with user-provided data.
-
-## Plugins
-
-| Plugin | Location | Mechanism |
-|--------|----------|-----------|
-| `auto-context` | `plugins/auto-context/` | `UserPromptSubmit` hook + skill |
-
-Plugins live in `plugins/<name>/` with `.claude-plugin/plugin.json`, `hooks/`, and optionally `skills/`.
 
 ## Development
 
