@@ -32,6 +32,14 @@ dev.sh                # Symlinks source skills into ~/.claude/skills/ for live d
 `any2pdf`/`any2docx` convert Markdown → styled output with CJK/Latin mixed text support, themes, cover pages, TOC, watermarks.
 `fill-form` fills Word form templates (.docx with table-based fields) with user-provided data.
 
+## Plugins
+
+| Plugin | Location | Mechanism |
+|--------|----------|-----------|
+| `auto-context` | `plugins/auto-context/` | `UserPromptSubmit` hook + skill |
+
+Plugins live in `plugins/<name>/` with `.claude-plugin/plugin.json`, `hooks/`, and optionally `skills/`.
+
 ## Development
 
 ```bash

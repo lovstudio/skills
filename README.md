@@ -40,6 +40,12 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [fill-form](skills/lovstudio-fill-form/) | Fill Word form templates (.docx). Auto-detects table fields, CJK font support. |
 | [skill-creator](skills/lovstudio-skill-creator/) | Scaffold new lovstudio skills with proper structure, SKILL.md + README.md. |
 
+## Plugins
+
+| Plugin | Description |
+|--------|-------------|
+| [auto-context](plugins/auto-context/) | Automatic context hygiene. Detects context pollution and suggests /fork or /btw when needed. |
+
 ## Theme Gallery
 
 Both skills share the same set of 14 color themes. Here's how they look:

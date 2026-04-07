@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/context_sense.py\"",
+        "timeout": 5
+      }
+    ]
+  }
+}
