@@ -29,7 +29,7 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 from reportlab.platypus import (
     BaseDocTemplate, PageTemplate, Frame, Paragraph, Spacer, PageBreak,
-    Table, TableStyle, NextPageTemplate, Flowable
+    Table, TableStyle, NextPageTemplate, Flowable, Image as RLImage
 )
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -866,10 +866,19 @@ class PDFBuilder:
         # Watermark
         wm = self.cfg.get("watermark", "")
         if wm:
-            c.setFont("CJK", 52); c.setFillColor(T["wm_color"])
+            c.setFillColor(T["wm_color"])
             c.translate(self.page_w/2, self.page_h/2); c.rotate(35)
-            for dy in range(-300, 400, 160):
-                for dx in range(-400, 500, 220):
+            # Scale font and grid spacing based on watermark text length
+            wm_len = len(wm)
+            if wm_len <= 5:
+                wm_font_sz, dx_step, dy_step = 52, 220, 160
+            elif wm_len <= 10:
+                wm_font_sz, dx_step, dy_step = 40, 320, 200
+            else:
+                wm_font_sz, dx_step, dy_step = 32, 400, 220
+            c.setFont("CJK", wm_font_sz)
+            for dy in range(-400, 500, dy_step):
+                for dx in range(-500, 600, dx_step):
                     c.drawCentredString(dx, dy, wm)
             c.rotate(-35); c.translate(-self.page_w/2, -self.page_h/2)
 
@@ -1071,7 +1080,7 @@ class PDFBuilder:
                 story.append(PageBreak())
                 cm = ChapterMark(title, level=1); story.append(cm)
                 hdeco = self.L["heading_decoration"]
-                story.append(Spacer(1, self.body_h * 0.30))
+                story.append(Spacer(1, 12*mm))
                 story.append(Paragraph(md_inline(title, ah), ST['chapter']))
                 if hdeco == "rules":
                     story.append(Spacer(1, 5*mm))
@@ -1115,6 +1124,22 @@ class PDFBuilder:
             # Blockquote
             if stripped.startswith('> '):
                 story.append(Paragraph(md_inline(stripped[2:].strip(), ah), ST['body_indent']))
+                i += 1; continue
+
+            # Images: ![alt](path)
+            img_m = re.match(r'^!\[.*?\]\((.+?)\)\s*$', stripped)
+            if img_m:
+                img_path = img_m.group(1)
+                if os.path.isfile(img_path):
+                    from PIL import Image as PILImage
+                    with PILImage.open(img_path) as pimg:
+                        iw, ih = pimg.size
+                    max_w = self.body_w
+                    max_h = self.body_h * 0.55
+                    scale = min(max_w / iw, max_h / ih, 1.0)
+                    story.append(Spacer(1, 3*mm))
+                    story.append(RLImage(img_path, width=iw*scale, height=ih*scale))
+                    story.append(Spacer(1, 3*mm))
                 i += 1; continue
 
             # Paragraph — join consecutive lines; skip space between CJK characters
