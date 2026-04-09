@@ -1,4 +1,4 @@
-# lovstudio:deploy-vercel
+# lovstudio:deploy-to-vercel
 
 One-command frontend deployment to Vercel with automatic custom domain + Cloudflare DNS setup.
 
@@ -7,7 +7,7 @@ Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudi
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill lovstudio:deploy-vercel
+npx skills add lovstudio/skills --skill lovstudio:deploy-to-vercel
 ```
 
 Requires: `vercel` CLI, `curl`, `python3`

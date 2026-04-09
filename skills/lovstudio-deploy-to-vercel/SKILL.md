@@ -1,5 +1,5 @@
 ---
-name: lovstudio:deploy-vercel
+name: lovstudio:deploy-to-vercel
 description: >
   Deploy frontend projects to Vercel with automatic custom domain setup.
   Handles Vite, Next.js, CRA, and static sites. Auto-configures Cloudflare DNS
