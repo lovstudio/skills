@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- **any2pdf**: Fix silent image drops. Relative `![alt](path)` references are now resolved against the input markdown's directory (not cwd), missing images emit a `WARN: image not found` to stderr instead of being silently dropped, and multi-line image refs (caused by pandoc's default `--wrap=auto`) are collapsed during preprocessing. SKILL.md gains an "Input Format" section clarifying markdown-only input and a pandoc `--wrap=none` pipeline tip. Bumps skill version 1.0.0 → 1.0.1.
+
 ## 0.4.0
 
 - **skill-optimizer**: New meta skill — audits an existing skill against repo conventions + official skill-creator best practices, applies fixes, bumps semver version, and prepends a per-skill `CHANGELOG.md` entry. Fully automatic, context-driven (prioritizes issues raised in the current conversation). Ships `lint_skill.py` + `bump_version.py` (stdlib only).

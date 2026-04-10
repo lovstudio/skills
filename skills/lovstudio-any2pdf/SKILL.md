@@ -18,7 +18,7 @@ compatibility: >
   Linux: uses Carlito, Liberation Serif, Droid Sans Fallback, DejaVu Sans Mono.
 metadata:
   author: lovstudio
-  version: "1.0.0"
+  version: "1.0.1"
   tags: markdown pdf cjk reportlab typesetting
 ---
 
@@ -161,6 +161,34 @@ Default reportlab breaks lines only at spaces, causing ugly splits like "Claude\
 
 `drawString()` / `drawCentredString()` with a Latin font can't render 年/月/日 etc.
 **Fix**: Use `_draw_mixed()` for ALL user-content canvas text (dates, stats, disclaimers).
+
+### Images Silently Dropped (Relative Paths)
+
+`![alt](charts/chart_01.png)` in a markdown file used to get skipped without warning
+because the image path was resolved against the current working directory, not the
+markdown's directory. **Fix**: `main()` now passes `input_dir` (the .md's directory)
+into the builder, and the image handler resolves relative paths against it. Missing
+images now also emit a `WARN: image not found: ...` to stderr instead of silently
+dropping.
+
+### Multi-Line Image References (pandoc `--wrap=auto`)
+
+When feeding pandoc's output into md2pdf, pandoc's default `--wrap=auto` (72 cols)
+wraps long `![alt text very long](path.png)` across multiple lines, which defeated
+the single-line image regex. **Fix**: `_preprocess_md()` now collapses multi-line
+image references into one line (outside code fences) before parsing.
+
+**Pipeline tip:** If you're piping HTML → markdown via pandoc, use
+`pandoc --wrap=none input.html -o output.md` to avoid wrap-related parsing issues
+for images and tables alike.
+
+## Input Format
+
+This skill takes **Markdown files only** as input. If you have HTML, DOCX, or
+other formats, convert them to markdown first (e.g. `pandoc --wrap=none`).
+Embedded HTML blocks in markdown are passed through as text — pre-process any
+visual content (charts, complex tables) into plain markdown tables or image
+references before invoking md2pdf.
 
 ## Configuration Reference
 

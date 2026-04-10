@@ -555,6 +555,9 @@ class PDFBuilder:
         self.body_w = self.page_w - self.lm - self.rm
         self.body_h = self.page_h - self.tm - self.bm
         self.accent_hex = config.get("accent_hex", "#CC785C")
+        # Base directory used to resolve relative image paths in the markdown.
+        # Defaults to the directory of the input .md file (set by main()).
+        self.input_dir = config.get("input_dir", "")
         self.ST = self._build_styles()
 
     def _build_styles(self):
@@ -996,7 +999,40 @@ class PDFBuilder:
     # ── Markdown → Story ──
     @staticmethod
     def _preprocess_md(md):
-        """Normalize markdown: split merged headings like '# Part## Chapter'."""
+        """Normalize markdown:
+        1. Collapse multi-line image refs (pandoc's default --wrap=auto breaks
+           `![alt](path)` across lines when alt text is long).
+        2. Split merged headings like '# Part## Chapter'.
+        """
+        # Pass 1: collapse any `![...](...)` that spans multiple lines into one.
+        # Matches a `![` opening whose matching `)` is on a later line, outside code fences.
+        def _collapse_images(text):
+            result = []
+            in_code = False
+            buf = text.split('\n')
+            i = 0
+            while i < len(buf):
+                line = buf[i]
+                if line.strip().startswith('```'):
+                    in_code = not in_code
+                    result.append(line); i += 1; continue
+                if in_code:
+                    result.append(line); i += 1; continue
+                # Find unclosed `![` on this line
+                if '![' in line and line.count('(') > line.count(')'):
+                    merged = line
+                    j = i + 1
+                    while j < len(buf) and merged.count('(') > merged.count(')'):
+                        merged += ' ' + buf[j].strip()
+                        j += 1
+                    result.append(merged)
+                    i = j
+                else:
+                    result.append(line); i += 1
+            return '\n'.join(result)
+
+        md = _collapse_images(md)
+
         lines = md.split('\n')
         out = []
         in_code = False
@@ -1129,17 +1165,26 @@ class PDFBuilder:
             # Images: ![alt](path)
             img_m = re.match(r'^!\[.*?\]\((.+?)\)\s*$', stripped)
             if img_m:
-                img_path = img_m.group(1)
-                if os.path.isfile(img_path):
+                img_path = img_m.group(1).strip()
+                # Resolve relative paths against the input markdown's directory
+                if not os.path.isabs(img_path) and self.input_dir:
+                    resolved = os.path.join(self.input_dir, img_path)
+                else:
+                    resolved = img_path
+                if os.path.isfile(resolved):
                     from PIL import Image as PILImage
-                    with PILImage.open(img_path) as pimg:
+                    with PILImage.open(resolved) as pimg:
                         iw, ih = pimg.size
                     max_w = self.body_w
                     max_h = self.body_h * 0.55
                     scale = min(max_w / iw, max_h / ih, 1.0)
                     story.append(Spacer(1, 3*mm))
-                    story.append(RLImage(img_path, width=iw*scale, height=ih*scale))
+                    story.append(RLImage(resolved, width=iw*scale, height=ih*scale))
                     story.append(Spacer(1, 3*mm))
+                else:
+                    print(f"WARN: image not found: {img_path}"
+                          + (f" (resolved: {resolved})" if resolved != img_path else ""),
+                          file=sys.stderr)
                 i += 1; continue
 
             # Paragraph — join consecutive lines; skip space between CJK characters
@@ -1325,6 +1370,8 @@ def main():
         "disclaimer": args.disclaimer,
         "copyright": args.copyright,
         "code_max_lines": args.code_max_lines,
+        # Resolve relative image paths in the markdown against its directory
+        "input_dir": os.path.dirname(os.path.abspath(args.input)),
     }
 
     builder = PDFBuilder(config)

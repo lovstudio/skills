@@ -1,5 +1,7 @@
 # lovstudio:any2pdf
 
+![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+
 Markdown to professionally typeset PDF with [reportlab](https://docs.reportlab.com/). CJK/Latin mixed text, code blocks, tables, cover pages, TOC, bookmarks, watermarks, and 14 color themes.
 
 Part of [lovstudio/skills](https://github.com/lovstudio/skills) &mdash; by [lovstudio.ai](https://lovstudio.ai)
