@@ -31,6 +31,7 @@ dev.sh                # Symlinks source skills into ~/.claude/skills/ for live d
 | `auto-context` | (pure instructions, no script) | — |
 | `xbti-creator` | (pure instructions, depends on `image-creator`) | `lovstudio:image-creator`, Node.js 18+ |
 | `anti-wechat-ai-check` | `skills/lovstudio-anti-wechat-ai-check/scripts/analyze.py` | — (stdlib only) |
+| `xbti-gallery` | (pure instructions, no script) | `gh` CLI |
 
 `any2pdf`/`any2docx` convert Markdown → styled output with CJK/Latin mixed text support, themes, cover pages, TOC, watermarks.
 `fill-form` fills Word form templates (.docx with table-based fields) with user-provided data.

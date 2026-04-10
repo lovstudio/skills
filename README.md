@@ -46,6 +46,7 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [project-port](skills/lovstudio-project-port/) | Generate stable unique dev port (3000–8999) from project name. |
 | [skill-creator](skills/lovstudio-skill-creator/) | Scaffold new lovstudio skills with proper structure, SKILL.md + README.md. |
 | [xbti-creator](skills/lovstudio-xbti-creator/) | Create custom BTI personality tests (LBTI, FBTI, etc.) with AI-generated content + avatars. |
+| [xbti-gallery](skills/lovstudio-xbti-gallery/) | Browse all community-created BTI personality tests at xbti.lovstudio.ai. |
 
 ## Theme Gallery
 
