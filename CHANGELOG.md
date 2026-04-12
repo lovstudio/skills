@@ -2,7 +2,7 @@
 
 ## 0.5.1
 
-- **README**: Categorize skills table (Document Conversion / Content Creation / Content Processing / Dev Tools), add missing `document-illustrator` skill, scope Theme Gallery to any2pdf & any2docx only, fix top nav link
+- **README**: Reorganize skills into 6 categories (Meta Skills / Document Conversion / Content Processing / Content Creation / xBTI / Dev Tools), add missing `document-illustrator` skill, extract Theme Gallery to `docs/THEME-GALLERY.md` with external links from skill descriptions
 
 ## 0.5.0
 

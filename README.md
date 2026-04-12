@@ -32,31 +32,43 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 
 ## Available Skills
 
+### Meta Skills
+
+| Skill | Description |
+|-------|-------------|
+| [skill-creator](skills/lovstudio-skill-creator/) | Scaffold new lovstudio skills with proper structure, SKILL.md + README.md. |
+| [skill-optimizer](skills/lovstudio-skill-optimizer/) | Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG entry. |
+
 ### Document Conversion
 
 | Skill | Description |
 |-------|-------------|
-| [any2pdf](skills/lovstudio-any2pdf/) | Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, [14 themes](#theme-gallery). |
-| [any2docx](skills/lovstudio-any2docx/) | Markdown → professionally styled DOCX (Word). Same [14 themes](#theme-gallery) as any2pdf, editable output. |
+| [any2pdf](skills/lovstudio-any2pdf/) | Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, [14 themes](docs/THEME-GALLERY.md). |
+| [any2docx](skills/lovstudio-any2docx/) | Markdown → professionally styled DOCX (Word). Same [14 themes](docs/THEME-GALLERY.md) as any2pdf, editable output. |
 | [any2deck](skills/lovstudio-any2deck/) | Content → slide deck images with 16 visual styles, PPTX/PDF export, branding overlay. |
+| [png2svg](skills/lovstudio-png2svg/) | PNG → high-quality SVG conversion with background removal and spline curves. |
+
+### Content Processing
+
+| Skill | Description |
+|-------|-------------|
 | [fill-form](skills/lovstudio-fill-form/) | Fill Word form templates (.docx). Auto-detects table fields, CJK font support. |
+| [document-illustrator](skills/document-illustrator/) | 为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。 |
+| [translation-review](skills/lovstudio-translation-review/) | Chinese-to-English translation review. Compares source & translation across 6 dimensions, outputs prioritized report. |
+| [anti-wechat-ai-check](skills/lovstudio-anti-wechat-ai-check/) | 检测文章 AI 痕迹 + 人性化润色，通过微信 3.27 条款检测。 |
 
 ### Content Creation
 
 | Skill | Description |
 |-------|-------------|
 | [image-creator](skills/lovstudio-image-creator/) | Generate images using Gemini via ZenMux. Supports ASCII art output. |
-| [document-illustrator](skills/document-illustrator/) | 为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。 |
-| [xbti-creator](skills/lovstudio-xbti-creator/) | Create custom BTI personality tests (LBTI, FBTI, etc.) with AI-generated content + avatars. |
-| [translation-review](skills/lovstudio-translation-review/) | Chinese-to-English translation review. Compares source & translation across 6 dimensions, outputs prioritized report. |
-| [xbti-gallery](skills/lovstudio-xbti-gallery/) | Browse all community-created BTI personality tests at xbti.lovstudio.ai. |
 
-### Content Processing
+### xBTI
 
 | Skill | Description |
 |-------|-------------|
-| [anti-wechat-ai-check](skills/lovstudio-anti-wechat-ai-check/) | 检测文章 AI 痕迹 + 人性化润色，通过微信 3.27 条款检测。 |
-| [png2svg](skills/lovstudio-png2svg/) | PNG → high-quality SVG conversion with background removal and spline curves. |
+| [xbti-creator](skills/lovstudio-xbti-creator/) | Create custom BTI personality tests (LBTI, FBTI, etc.) with AI-generated content + avatars. |
+| [xbti-gallery](skills/lovstudio-xbti-gallery/) | Browse all community-created BTI personality tests at xbti.lovstudio.ai. |
 
 ### Dev Tools
 
@@ -65,32 +77,6 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [auto-context](skills/lovstudio-auto-context/) | Context hygiene checker. Suggests /fork or /btw when context is polluted. Best with [lovstudio plugin](https://github.com/lovstudio/claude-code-plugin) for auto-trigger. |
 | [deploy-to-vercel](skills/lovstudio-deploy-to-vercel/) | Deploy frontend to Vercel with auto Cloudflare DNS + custom domain setup. |
 | [project-port](skills/lovstudio-project-port/) | Generate stable unique dev port (3000–8999) from project name. |
-| [skill-creator](skills/lovstudio-skill-creator/) | Scaffold new lovstudio skills with proper structure, SKILL.md + README.md. |
-| [skill-optimizer](skills/lovstudio-skill-optimizer/) | Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG entry. |
-
-## Theme Gallery
-
-`any2pdf` and `any2docx` share the same set of 14 color themes:
-
-### Light Themes
-
-| warm-academic | nord-frost | github-light | solarized-light |
-|:---:|:---:|:---:|:---:|
-| ![warm-academic](docs/previews/warm-academic.png) | ![nord-frost](docs/previews/nord-frost.png) | ![github-light](docs/previews/github-light.png) | ![solarized-light](docs/previews/solarized-light.png) |
-
-| paper-classic | ocean-breeze | tufte | classic-thesis |
-|:---:|:---:|:---:|:---:|
-| ![paper-classic](docs/previews/paper-classic.png) | ![ocean-breeze](docs/previews/ocean-breeze.png) | ![tufte](docs/previews/tufte.png) | ![classic-thesis](docs/previews/classic-thesis.png) |
-
-| ieee-journal | elegant-book | chinese-red | ink-wash |
-|:---:|:---:|:---:|:---:|
-| ![ieee-journal](docs/previews/ieee-journal.png) | ![elegant-book](docs/previews/elegant-book.png) | ![chinese-red](docs/previews/chinese-red.png) | ![ink-wash](docs/previews/ink-wash.png) |
-
-### Dark Themes
-
-| monokai-warm | dracula-soft |
-|:---:|:---:|
-| ![monokai-warm](docs/previews/monokai-warm.png) | ![dracula-soft](docs/previews/dracula-soft.png) |
 
 ## Related
 
