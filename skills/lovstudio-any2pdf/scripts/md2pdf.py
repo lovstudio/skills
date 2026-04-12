@@ -471,9 +471,13 @@ def esc_code(text):
 def md_inline(text, accent_hex="#CC785C"):
     text = esc(text)
     text = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', text)
-    text = re.sub(r'`(.+?)`',
-        rf"<font name='Mono' size='8' color='{accent_hex}'>\1</font>", text)
+    # Replace code spans — neutralize * inside code to avoid italic regex conflict
+    def _code_repl(m):
+        inner = m.group(1).replace('*', '\x00STAR\x00')
+        return f"<font name='Mono' size='8' color='{accent_hex}'>{inner}</font>"
+    text = re.sub(r'`(.+?)`', _code_repl, text)
     text = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'<i>\1</i>', text)
+    text = text.replace('\x00STAR\x00', '*')
     text = re.sub(r'\[(.+?)\]\(.+?\)', r'<u>\1</u>', text)
     return _font_wrap(text)
 
@@ -750,12 +754,16 @@ class PDFBuilder:
         c.saveState(); self._draw_bg(c)
         fp = self.cfg.get("frontispiece", "")
         if fp and os.path.exists(fp):
-            margin = 18*mm
+            image_cover = self.cfg.get("image_cover", False)
+            if image_cover:
+                margin = 0
+            else:
+                margin = 18*mm
             avail_w = self.page_w - 2 * margin
             avail_h = self.page_h - 2 * margin
             try:
                 c.drawImage(fp, margin, margin, width=avail_w, height=avail_h,
-                            preserveAspectRatio=True, anchor='c', mask='auto')
+                            preserveAspectRatio=not image_cover, anchor='c', mask='auto')
             except Exception:
                 pass
         c.restoreState()
@@ -866,12 +874,21 @@ class PDFBuilder:
         # Watermark
         wm = self.cfg.get("watermark", "")
         if wm:
-            c.setFont("CJK", 52); c.setFillColor(T["wm_color"])
-            c.translate(self.page_w/2, self.page_h/2); c.rotate(35)
-            for dy in range(-300, 400, 160):
-                for dx in range(-400, 500, 220):
+            wm_size = self.cfg.get("wm_size", 52)
+            wm_angle = self.cfg.get("wm_angle", 35)
+            wm_sx = self.cfg.get("wm_spacing_x", 220)
+            wm_sy = self.cfg.get("wm_spacing_y", 160)
+            wm_opacity = self.cfg.get("wm_opacity")
+            if wm_opacity is not None:
+                wm_color = Color(T["wm_color"].red, T["wm_color"].green, T["wm_color"].blue, wm_opacity)
+            else:
+                wm_color = T["wm_color"]
+            c.setFont("CJK", wm_size); c.setFillColor(wm_color)
+            c.translate(self.page_w/2, self.page_h/2); c.rotate(wm_angle)
+            for dy in range(-300, 400, int(wm_sy)):
+                for dx in range(-400, 500, int(wm_sx)):
                     c.drawCentredString(dx, dy, wm)
-            c.rotate(-35); c.translate(-self.page_w/2, -self.page_h/2)
+            c.rotate(-wm_angle); c.translate(-self.page_w/2, -self.page_h/2)
 
         # Header (skip if top-band decoration already drew header)
         deco = self.L.get("page_decoration", "none")
@@ -996,9 +1013,14 @@ class PDFBuilder:
                 in_code = not in_code
             if in_code:
                 out.append(line); continue
-            # Split where a non-# char is followed by ## (heading marker)
+            # Skip table rows — they may contain # inside cells
+            if line.strip().startswith('|'):
+                out.append(line); continue
+            # Split where a non-# char is followed by ## or ### (heading marker)
             # e.g. "# 第一部分：背景与概览## 第1章" or "---## 第2章"
-            parts = re.split(r'(?<=[^#\s])\s*(?=#{1,3}\s)', line)
+            # Use #{2,3} instead of #{1,3} to avoid matching lone # in prose
+            # (e.g. "C# language", "Issue #42")
+            parts = re.split(r'(?<=[^#\s])\s*(?=#{2,3}\s)', line)
             if len(parts) > 1:
                 for p in parts:
                     p = p.strip()
@@ -1036,7 +1058,8 @@ class PDFBuilder:
                 else: in_code = True; code_buf = []
                 i += 1; continue
             if in_code: code_buf.append(line); i += 1; continue
-            if stripped in ('---','\\newpage','') or stripped.startswith(('title:','subtitle:','author:','date:')):
+            if stripped in ('---','\\newpage','') or stripped.startswith(('title:','subtitle:','author:','date:')) \
+               or re.match(r'^<a\s[^>]*>\s*</a>$', stripped):
                 i += 1; continue
 
             # H1 — Part heading: full divider page
@@ -1047,7 +1070,8 @@ class PDFBuilder:
                     story.append(PageBreak())
                     cm = ChapterMark(title, level=0); story.append(cm)
                     hdeco = self.L["heading_decoration"]
-                    story.append(Spacer(1, self.body_h * 0.35))
+                    hts = self.cfg.get("heading_top_spacer", 5)
+                    story.append(Spacer(1, hts*mm))
                     if hdeco == "rules":
                         story.append(HRuleCentered(self.body_w, 40*mm, 0.8, self.T["accent"]))
                         story.append(Spacer(1, 8*mm))
@@ -1071,7 +1095,8 @@ class PDFBuilder:
                 story.append(PageBreak())
                 cm = ChapterMark(title, level=1); story.append(cm)
                 hdeco = self.L["heading_decoration"]
-                story.append(Spacer(1, self.body_h * 0.30))
+                hts = self.cfg.get("heading_top_spacer", 5)
+                story.append(Spacer(1, hts*mm))
                 story.append(Paragraph(md_inline(title, ah), ST['chapter']))
                 if hdeco == "rules":
                     story.append(Spacer(1, 5*mm))
@@ -1085,10 +1110,11 @@ class PDFBuilder:
                 toc.append(('chapter', title, cm.key))
                 i += 1; continue
 
-            # H3 = Section
-            if stripped.startswith('### '):
+            # H3+ = Section (also handles ####, #####, etc.)
+            if re.match(r'^#{3,}\s', stripped):
+                title_text = stripped.lstrip('#').strip()
                 story.append(Spacer(1, 3*mm))
-                story.append(Paragraph(md_inline(stripped[4:].strip(), ah), ST['h3']))
+                story.append(Paragraph(md_inline(title_text, ah), ST['h3']))
                 story.append(Spacer(1, 1*mm))
                 i += 1; continue
 
@@ -1122,7 +1148,8 @@ class PDFBuilder:
             while i < len(lines):
                 l = lines[i].strip()
                 if not l or l.startswith('#') or l.startswith('```') or l.startswith('|') or \
-                   l.startswith('- ') or l.startswith('* ') or l.startswith('> ') or re.match(r'^\d+\.\s', l):
+                   l.startswith('- ') or l.startswith('* ') or l.startswith('> ') or re.match(r'^\d+\.\s', l) or \
+                   re.match(r'^<a\s[^>]*>\s*</a>$', l):
                     break
                 plines.append(l); i += 1
             if plines:
@@ -1178,30 +1205,46 @@ class PDFBuilder:
         has_toc = self.cfg.get("toc", True) and toc
 
         # Cover page
+        image_cover = self.cfg.get("image_cover", False)
         if self.cfg.get("cover", True):
-            templates.insert(0, PageTemplate(id='cover', frames=[full_frame], onPage=self._cover_page))
-            story.append(Spacer(1, self.page_h))
-
-            # Determine next page after cover
-            if has_frontis:
-                templates.append(PageTemplate(id='frontis', frames=[full_frame], onPage=self._frontispiece_page))
-                story.append(NextPageTemplate('frontis'))
+            if image_cover and has_frontis:
+                # Image cover mode: frontispiece as page 1, text cover as page 2 (扉页)
+                templates.insert(0, PageTemplate(id='frontis', frames=[full_frame], onPage=self._frontispiece_page))
+                story.append(Spacer(1, self.page_h))
+                templates.append(PageTemplate(id='cover', frames=[full_frame], onPage=self._cover_page))
+                story.append(NextPageTemplate('cover'))
                 story.append(PageBreak())
                 story.append(Spacer(1, self.page_h))
-                # After frontispiece, go to toc or normal
                 if has_toc:
                     templates.append(PageTemplate(id='toc', frames=[body_frame], onPage=self._toc_page))
                     story.append(NextPageTemplate('toc'))
                 else:
                     story.append(NextPageTemplate('normal'))
                 story.append(PageBreak())
-            elif has_toc:
-                templates.append(PageTemplate(id='toc', frames=[body_frame], onPage=self._toc_page))
-                story.append(NextPageTemplate('toc'))
-                story.append(PageBreak())
             else:
-                story.append(NextPageTemplate('normal'))
-                story.append(PageBreak())
+                templates.insert(0, PageTemplate(id='cover', frames=[full_frame], onPage=self._cover_page))
+                story.append(Spacer(1, self.page_h))
+
+                # Determine next page after cover
+                if has_frontis:
+                    templates.append(PageTemplate(id='frontis', frames=[full_frame], onPage=self._frontispiece_page))
+                    story.append(NextPageTemplate('frontis'))
+                    story.append(PageBreak())
+                    story.append(Spacer(1, self.page_h))
+                    # After frontispiece, go to toc or normal
+                    if has_toc:
+                        templates.append(PageTemplate(id='toc', frames=[body_frame], onPage=self._toc_page))
+                        story.append(NextPageTemplate('toc'))
+                    else:
+                        story.append(NextPageTemplate('normal'))
+                    story.append(PageBreak())
+                elif has_toc:
+                    templates.append(PageTemplate(id='toc', frames=[body_frame], onPage=self._toc_page))
+                    story.append(NextPageTemplate('toc'))
+                    story.append(PageBreak())
+                else:
+                    story.append(NextPageTemplate('normal'))
+                    story.append(PageBreak())
         elif has_toc:
             templates.append(PageTemplate(id='toc', frames=[body_frame], onPage=self._toc_page))
             story.append(NextPageTemplate('toc'))
@@ -1262,6 +1305,13 @@ def main():
     parser.add_argument("--disclaimer", default="", help="Back cover disclaimer text")
     parser.add_argument("--copyright", default="", help="Back cover copyright text")
     parser.add_argument("--code-max-lines", default=30, type=int, help="Max lines per code block before truncation")
+    parser.add_argument("--image-cover", default=False, type=lambda x: x.lower() == 'true', help="Use frontispiece image as cover (page 1), text cover becomes page 2")
+    parser.add_argument("--wm-size", default=52, type=float, help="Watermark font size (default 52)")
+    parser.add_argument("--wm-opacity", default=None, type=float, help="Watermark opacity 0.0-1.0 (default from theme)")
+    parser.add_argument("--wm-angle", default=35, type=float, help="Watermark rotation angle in degrees (default 35)")
+    parser.add_argument("--wm-spacing-x", default=220, type=float, help="Watermark horizontal spacing in pt (default 220)")
+    parser.add_argument("--wm-spacing-y", default=160, type=float, help="Watermark vertical spacing in pt (default 160)")
+    parser.add_argument("--heading-top-spacer", default=5, type=float, help="Top spacer before H1/H2 chapter titles in mm (default 5)")
     args = parser.parse_args()
 
     with open(args.input, encoding='utf-8') as f:
@@ -1300,6 +1350,13 @@ def main():
         "disclaimer": args.disclaimer,
         "copyright": args.copyright,
         "code_max_lines": args.code_max_lines,
+        "image_cover": args.image_cover,
+        "wm_size": args.wm_size,
+        "wm_opacity": args.wm_opacity,
+        "wm_angle": args.wm_angle,
+        "wm_spacing_x": args.wm_spacing_x,
+        "wm_spacing_y": args.wm_spacing_y,
+        "heading_top_spacer": args.heading_top_spacer,
     }
 
     builder = PDFBuilder(config)

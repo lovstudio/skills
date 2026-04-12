@@ -82,6 +82,7 @@ concise — like a design assistant, not a config form:
 ━━━ 💧 水印 ━━━
  1) 不加
  2) 自定义文字（如 "DRAFT"、"内部资料"）
+    可选调整：字号(默认52)、透明度(0-1)、角度(默认35°)、间距
 
 ━━━ 📇 封底物料（名片/二维码/品牌） ━━━
  1) 跳过
@@ -100,6 +101,8 @@ concise — like a design assistant, not a config form:
 | Frontispiece local | `--frontispiece <path>` |
 | Frontispiece AI | Generate image first, then `--frontispiece /tmp/frontispiece.png` |
 | Watermark text | `--watermark "文字"` |
+| Watermark style | `--wm-size 30 --wm-opacity 0.1 --wm-angle 45` (all optional) |
+| Image as cover | `--image-cover true` (requires `--frontispiece`) |
 | Back cover image | `--banner <path>` |
 | Back cover text | `--disclaimer "声明"` and/or `--copyright "© 信息"` |
 
@@ -189,6 +192,13 @@ Default reportlab breaks lines only at spaces, causing ugly splits like "Claude\
 | `--disclaimer` | `""` | Back cover disclaimer |
 | `--copyright` | `""` | Back cover copyright |
 | `--code-max-lines` | `30` | Max lines per code block |
+| `--image-cover` | `false` | Use frontispiece as full-bleed cover (page 1), text cover becomes page 2 |
+| `--heading-top-spacer` | `5` | Top spacer before H1/H2 chapter titles in mm |
+| `--wm-size` | `52` | Watermark font size |
+| `--wm-opacity` | theme default | Watermark opacity (0.0–1.0) |
+| `--wm-angle` | `35` | Watermark rotation angle in degrees |
+| `--wm-spacing-x` | `220` | Watermark horizontal spacing in pt |
+| `--wm-spacing-y` | `160` | Watermark vertical spacing in pt |
 
 ## Themes
 
