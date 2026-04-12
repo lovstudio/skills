@@ -47,6 +47,7 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [skill-creator](skills/lovstudio-skill-creator/) | Scaffold new lovstudio skills with proper structure, SKILL.md + README.md. |
 | [skill-optimizer](skills/lovstudio-skill-optimizer/) | Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG entry. |
 | [xbti-creator](skills/lovstudio-xbti-creator/) | Create custom BTI personality tests (LBTI, FBTI, etc.) with AI-generated content + avatars. |
+| [translation-review](skills/lovstudio-translation-review/) | Chinese-to-English translation review. Compares source & translation across 6 dimensions, outputs prioritized report. |
 | [xbti-gallery](skills/lovstudio-xbti-gallery/) | Browse all community-created BTI personality tests at xbti.lovstudio.ai. |
 
 ## Theme Gallery
