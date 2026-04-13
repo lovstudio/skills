@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1] - 2026-04-14
+
+### Fixed
+
+- Fix sandbox entitlements: use temporary-exception.files.absolute-path.read-write instead of files.user-selected.read-write
+- Document sandbox-must-be-on requirement in SKILL.md and known limitations
+- Update xcodegen-template.yml with correct entitlements
+
 ## 0.2.0 — 2026-04-13
 
 - Added Mode B: Finder Sync Extension for blank-space right-click menus (Swift + xcodegen)

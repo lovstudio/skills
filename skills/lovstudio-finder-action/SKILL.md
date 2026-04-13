@@ -14,7 +14,7 @@ compatibility: >
   (`brew install xcodegen`). Ad-hoc signed — works locally, not distributable.
 metadata:
   author: lovstudio
-  version: "0.2.0"
+  version: "0.2.1"
   tags: macos finder context-menu quick-action finder-sync-extension swift
 ---
 
@@ -134,6 +134,8 @@ which xcodegen && which xcodebuild
 - 宿主 App: `LSUIElement: true`（无 Dock 图标）
 - Extension: `NSExtensionPointIdentifier: com.apple.FinderSync`
 - 签名: `CODE_SIGN_IDENTITY: "-"`（ad-hoc）
+- **沙盒必须开启**（`app-sandbox: true`），否则扩展不会被系统加载
+- 文件写入需用 `temporary-exception.files.absolute-path.read-write: [/]`，`files.user-selected.read-write` 无效
 
 ### Step 4: 生成 AppDelegate.swift
 
@@ -184,3 +186,5 @@ pluginkit -m -i BUNDLE_ID.FinderExtension
 - Quick Action 环境没有 `$PATH`，工具路径必须用绝对路径
 - Automator workflow 需在 Automator 中打开保存才能注册
 - Extension 使用 ad-hoc 签名，仅限本机使用
+- Finder Sync Extension **必须启用 App Sandbox**，关闭沙盒会导致扩展无法注册（`pluginkit -m` 无输出）
+- 沙盒内 `files.user-selected.read-write` 仅对用户手动选择的文件有效，程序在任意目录创建文件需用 `temporary-exception.files.absolute-path.read-write`

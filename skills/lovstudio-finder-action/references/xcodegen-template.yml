@@ -59,4 +59,5 @@ targets:
       path: FinderExtension/FinderExtension.entitlements
       properties:
         com.apple.security.app-sandbox: true
-        com.apple.security.files.user-selected.read-write: true
+        com.apple.security.temporary-exception.files.absolute-path.read-write:
+          - /
