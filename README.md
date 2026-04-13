@@ -60,6 +60,12 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [anti-wechat-ai-check](skills/lovstudio-anti-wechat-ai-check/) | 检测文章 AI 痕迹 + 人性化润色，通过微信 3.27 条款检测。 |
 | [thesis-polish](skills/lovstudio-thesis-polish/) | MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。 |
 
+### Business
+
+| Skill | Description |
+|-------|-------------|
+| [proposal](skills/lovstudio-proposal/) | Client requirements → complete business proposal PDF. Auto-generates architecture, budget, timeline, illustrations, and branded PDF. |
+
 ### Content Creation
 
 | Skill | Description |

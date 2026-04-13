@@ -33,6 +33,7 @@ dev.sh                # Symlinks source skills into ~/.claude/skills/ for live d
 | `anti-wechat-ai-check` | `skills/lovstudio-anti-wechat-ai-check/scripts/analyze.py` | — (stdlib only) |
 | `xbti-gallery` | (pure instructions, no script) | `gh` CLI |
 | `skill-optimizer` | `skills/lovstudio-skill-optimizer/scripts/{lint_skill,bump_version}.py` | — (stdlib only) |
+| `proposal` | (pure instructions, no script) | `lovstudio:illustrate`, `lovstudio:any2pdf`, `pandoc` |
 | `translation-review` | (pure instructions, no script) | `pandoc` (for .docx) |
 | `thesis-polish` | (pure instructions, no script) | — |
 | `pdf2png` | `skills/lovstudio-pdf2png/scripts/pdf2png.sh` (CoreGraphics) | `pip install pyobjc-framework-Quartz` (macOS only) |
