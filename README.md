@@ -47,6 +47,8 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [any2docx](skills/lovstudio-any2docx/) | Markdown → professionally styled DOCX (Word). Same [14 themes](docs/THEME-GALLERY.md) as any2pdf, editable output. |
 | [any2deck](skills/lovstudio-any2deck/) | Content → slide deck images with 16 visual styles, PPTX/PDF export, branding overlay. |
 | [png2svg](skills/lovstudio-png2svg/) | PNG → high-quality SVG conversion with background removal and spline curves. |
+| [pdf2png](skills/lovstudio-pdf2png/) | PDF → single vertically concatenated PNG. Uses macOS CoreGraphics, ~20x faster than pdftoppm. |
+| [md2pdf](skills/lovstudio-md2pdf/) | Markdown → PDF via pandoc + xelatex. CJK support, quick & simple. |
 
 ### Content Processing
 
@@ -56,6 +58,7 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [document-illustrator](skills/document-illustrator/) | 为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。 |
 | [translation-review](skills/lovstudio-translation-review/) | Chinese-to-English translation review. Compares source & translation across 6 dimensions, outputs prioritized report. |
 | [anti-wechat-ai-check](skills/lovstudio-anti-wechat-ai-check/) | 检测文章 AI 痕迹 + 人性化润色，通过微信 3.27 条款检测。 |
+| [thesis-polish](skills/lovstudio-thesis-polish/) | MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。 |
 
 ### Content Creation
 
