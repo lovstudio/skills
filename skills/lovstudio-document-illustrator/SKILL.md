@@ -1,5 +1,5 @@
 ---
-name: document-illustrator
+name: lovstudio:document-illustrator
 category: Content Processing
 tagline: "为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。"
 description: >
