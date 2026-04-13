@@ -69,7 +69,12 @@ def generate_table() -> str:
     for cat in skills:
         skills[cat].sort(key=lambda x: x[0].lower())
 
-    lines = []
+    # Stats
+    total_skills = sum(len(v) for v in skills.values())
+    total_categories = len(skills)
+
+    lines = [f"**{total_skills}** skills across **{total_categories}** categories\n"]
+
     for cat in CATEGORY_ORDER:
         entries = skills.pop(cat, [])
         if not entries:

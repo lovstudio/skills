@@ -36,6 +36,8 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 
 <!-- SKILLS:BEGIN -->
 
+**22** skills across **8** categories
+
 ### Meta Skills
 
 | Skill | Description |
@@ -59,7 +61,7 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | Skill | Description |
 |-------|-------------|
 | [anti-wechat-ai-check](skills/lovstudio-anti-wechat-ai-check/) | 检测文章 AI 痕迹 + 人性化润色，通过微信 3.27 条款检测。 |
-| [document-illustrator](skills/document-illustrator/) | 为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。 |
+| [document-illustrator](skills/lovstudio-document-illustrator/) | 为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。 |
 | [fill-form](skills/lovstudio-fill-form/) | Fill Word form templates (.docx). Auto-detects table fields, CJK font support. |
 | [thesis-polish](skills/lovstudio-thesis-polish/) | MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。 |
 | [translation-review](skills/lovstudio-translation-review/) | Chinese-to-English translation review. Compares source & translation across 6 dimensions. |
@@ -88,10 +90,15 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | Skill | Description |
 |-------|-------------|
 | [auto-context](skills/lovstudio-auto-context/) | Context hygiene checker. Suggests /fork or /btw when context is polluted. |
-| [gh-tidy](skills/lovstudio-gh-tidy/) | Interactive GitHub repo triage — clean up issues, PRs, stale branches, and labels in one pass. |
 | [deploy-to-vercel](skills/lovstudio-deploy-to-vercel/) | Deploy frontend to Vercel with auto Cloudflare DNS + custom domain setup. |
 | [finder-action](skills/lovstudio-finder-action/) | Generate Mac Finder right-click menu actions. Quick Action or Finder Sync Extension. |
 | [project-port](skills/lovstudio-project-port/) | Generate stable unique dev port (3000–8999) from project name. |
+
+### Developer Tools
+
+| Skill | Description |
+|-------|-------------|
+| [gh-tidy](skills/lovstudio-gh-tidy/) | Triage & clean up GitHub issues, PRs, branches, and labels in one pass. |
 
 <!-- SKILLS:END -->
 
