@@ -1,0 +1,62 @@
+name: APP_NAME
+options:
+  bundleIdPrefix: com.lovstudio
+  deploymentTarget:
+    macOS: "14.0"
+
+targets:
+  APP_NAME:
+    type: application
+    platform: macOS
+    sources:
+      - APP_NAME
+    info:
+      path: APP_NAME/Info.plist
+      properties:
+        LSUIElement: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: BUNDLE_ID
+        PRODUCT_NAME: APP_NAME
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: 1
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        ENABLE_HARDENED_RUNTIME: true
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+    entitlements:
+      path: APP_NAME/APP_NAME.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+    dependencies:
+      - target: FinderExtension
+        embed: true
+
+  FinderExtension:
+    type: app-extension
+    platform: macOS
+    sources:
+      - FinderExtension
+    info:
+      path: FinderExtension/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.FinderSync
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).FinderSync
+          NSExtensionAttributes: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: BUNDLE_ID.FinderExtension
+        PRODUCT_NAME: FinderExtension
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: 1
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        ENABLE_HARDENED_RUNTIME: true
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks"
+    entitlements:
+      path: FinderExtension/FinderExtension.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.files.user-selected.read-write: true
