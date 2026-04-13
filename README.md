@@ -36,7 +36,10 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 
 <!-- SKILLS:BEGIN -->
 
-**22** skills across **8** categories
+<p align="center">
+  <img src="https://img.shields.io/badge/skills-22-CC785C?style=for-the-badge" alt="22 skills">
+  <img src="https://img.shields.io/badge/categories-8-181818?style=for-the-badge" alt="8 categories">
+</p>
 
 ### Meta Skills
 

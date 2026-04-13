@@ -73,7 +73,12 @@ def generate_table() -> str:
     total_skills = sum(len(v) for v in skills.values())
     total_categories = len(skills)
 
-    lines = [f"**{total_skills}** skills across **{total_categories}** categories\n"]
+    lines = [
+        f'<p align="center">',
+        f'  <img src="https://img.shields.io/badge/skills-{total_skills}-CC785C?style=for-the-badge" alt="{total_skills} skills">',
+        f'  <img src="https://img.shields.io/badge/categories-{total_categories}-181818?style=for-the-badge" alt="{total_categories} categories">',
+        f'</p>\n',
+    ]
 
     for cat in CATEGORY_ORDER:
         entries = skills.pop(cat, [])
