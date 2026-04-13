@@ -1,16 +1,14 @@
 ---
 name: lovstudio:any2pdf
 description: >
-  Convert Markdown documents to professionally typeset PDF files with reportlab.
-  Handles CJK/Latin mixed text, fenced code blocks, tables, blockquotes, cover pages,
-  clickable TOC, PDF bookmarks, watermarks, and page numbers. Supports multiple
-  color themes (Warm Academic, Nord, GitHub Light, Solarized, etc.) and is
-  battle-tested for Chinese technical reports. Use this skill whenever the user
-  wants to turn a .md file into a styled PDF, generate a report PDF from markdown,
-  or create a print-ready document from markdown content — especially if CJK
-  characters, code blocks, or tables are involved. Also trigger when the user
-  mentions "markdown to PDF", "md2pdf", "any2pdf", "md转pdf", "报告生成", or asks for a "typeset" or
-  "professionally formatted" PDF from markdown source.
+  Convert Markdown documents to professionally typeset PDF files. Primary engine:
+  reportlab (cover pages, frontispiece, back cover, bookmarks). Fallback engine:
+  pandoc + XeLaTeX (better table handling, LaTeX-quality typesetting). Handles
+  CJK/Latin mixed text, fenced code blocks, tables, blockquotes, clickable TOC,
+  watermarks, headers/footers, and page numbers. Supports multiple color themes
+  and is battle-tested for Chinese technical reports. Trigger when user mentions
+  "markdown to PDF", "md2pdf", "any2pdf", "md转pdf", "报告生成", "导出pdf",
+  or wants a professionally formatted PDF from markdown.
 license: MIT
 compatibility: >
   Requires Python 3.8+ and reportlab (`pip install reportlab`).
@@ -18,7 +16,7 @@ compatibility: >
   Linux: uses Carlito, Liberation Serif, Droid Sans Fallback, DejaVu Sans Mono.
 metadata:
   author: lovstudio
-  version: "1.0.1"
+  version: "1.1.0"
   tags: markdown pdf cjk reportlab typesetting
 ---
 
@@ -224,6 +222,71 @@ Available: `warm-academic`, `nord-frost`, `github-light`, `solarized-light`,
 `paper-classic`, `ocean-breeze`.
 
 Each theme defines: page background, ink color, accent color, faded text, border, code background, watermark tint.
+
+## Fallback: pandoc + XeLaTeX
+
+When reportlab fails (e.g. wide/complex tables cause infinite loops in table width
+calculation), fall back to pandoc with XeLaTeX. This produces high-quality CJK PDFs
+with proper table handling.
+
+### When to use pandoc fallback
+
+- Document has many wide multi-column tables (reportlab's table layout may hang)
+- Document needs LaTeX-quality typesetting (justified text, hyphenation)
+- reportlab md2pdf.py hangs or crashes on the input
+
+### Basic command
+
+    pandoc input.md -o output.pdf \
+      --pdf-engine=xelatex \
+      -V CJKmainfont="Songti SC" -V mainfont="Palatino" -V monofont="Menlo" \
+      -V geometry:margin=2.5cm -V fontsize=11pt \
+      --toc -V toc-title="目录" -V documentclass=article
+
+### Adding watermark + headers/footers
+
+    pandoc input.md -o output.pdf \
+      --pdf-engine=xelatex \
+      -V CJKmainfont="Songti SC" -V mainfont="Palatino" -V monofont="Menlo" \
+      -V geometry:margin=2.5cm -V fontsize=11pt \
+      -V colorlinks=true -V linkcolor=red -V toccolor=red -V urlcolor=red \
+      --toc -V toc-title="目录" -V documentclass=article \
+      -V header-includes='
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \fancyhead[L]{\small 页眉左侧文字}
+    \fancyhead[R]{\small 页眉右侧文字}
+    \fancyfoot[C]{\thepage}
+    \usepackage{draftwatermark}
+    \SetWatermarkText{水印文字}
+    \SetWatermarkScale{0.5}
+    \SetWatermarkColor[gray]{0.9}
+    '
+
+### Link color by theme
+
+| Theme | `-V linkcolor=` | Notes |
+|-------|-----------------|-------|
+| chinese-red | `red` | 朱红配暖纸 |
+| warm-academic | `brown` | 陶土色调 |
+| classic-thesis | `brown` | LaTeX classicthesis 风格 |
+| ieee-journal | `blue` | 藏蓝严谨 |
+| github-light | `blue` | 极简蓝白 |
+
+### Known limitations (pandoc fallback)
+
+- No cover page (pandoc article class has no built-in cover — use `--include-before-body` with a LaTeX snippet if needed)
+- Frontispiece/back cover not supported (use md2pdf.py for these)
+- `→` `★` `☆` symbols may warn in Palatino — they render via CJK font fallback, safe to ignore
+- ASCII art diagrams render as code blocks (same as md2pdf.py)
+
+### Dependencies (pandoc fallback)
+
+Requires `pandoc` and a TeX distribution with XeLaTeX:
+
+    brew install pandoc
+    brew install --cask mactex-no-gui   # or basictex
 
 ## Dependencies
 
