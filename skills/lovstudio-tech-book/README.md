@@ -1,48 +1,31 @@
 # lovstudio:tech-book
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![License](https://img.shields.io/badge/license-Commercial-red)
 
 Write O'Reilly-style technical books chapter by chapter, with a GitHub repo as the single source of truth. Solves LLM context window limitations through a compressed book summary strategy.
 
 Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
-## Install
-
-```bash
-npx skills add lovstudio/skills --skill lovstudio:tech-book
-```
-
-Requires: `mdbook`, `pandoc`, `basictex`, `gh` CLI
-
-## How It Works
+## What It Does
 
 ```
 ┌─────────────────────────────────────────────────────────┐
 │  Phase 1: Plan                                          │
-│  ┌──────────┐   ┌──────────┐   ┌──────────────────┐    │
-│  │ Collect   │──▶│ Generate │──▶│ Create GitHub     │   │
-│  │ book info │   │ outline  │   │ repo + skeleton   │   │
-│  └──────────┘   └──────────┘   └──────────────────┘    │
+│  Collect book info → Generate outline → Create repo     │
 ├─────────────────────────────────────────────────────────┤
 │  Phase 2: Research (per chapter)                        │
-│  ┌──────────┐   ┌──────────┐   ┌──────────────────┐    │
-│  │ WebSearch│──▶│ context7 │──▶│ refs.md per       │   │
-│  │ arxiv    │   │ lib docs │   │ chapter           │   │
-│  └──────────┘   └──────────┘   └──────────────────┘    │
+│  WebSearch + context7 → refs.md per chapter             │
 ├─────────────────────────────────────────────────────────┤
 │  Phase 3: Write (per chapter, one session each)         │
-│  ┌────────────────────────────────────────────────┐     │
-│  │ Load: OUTLINE + BOOK_SUMMARY + refs + glossary │     │
-│  │ Write: section by section                      │     │
-│  │ Update: BOOK_SUMMARY + glossary                │     │
-│  │ Commit + push                                  │     │
-│  └────────────────────────────────────────────────┘     │
+│  Load OUTLINE + BOOK_SUMMARY + refs + glossary          │
+│  Write section by section → Update summary → Push       │
+├─────────────────────────────────────────────────────────┤
+│  Phase 4: Review                                        │
+│  Consistency · Terms · Cross-references · Polish        │
 ├─────────────────────────────────────────────────────────┤
 │  Phase 5: Build                                         │
-│  ┌──────────┐   ┌──────────┐                            │
-│  │ mdBook   │   │ Pandoc   │                            │
-│  │ → HTML   │   │ → PDF    │                            │
-│  └──────────┘   └──────────┘                            │
+│  mdBook → HTML  |  Pandoc → PDF (CJK-ready)            │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -65,16 +48,26 @@ The key innovation: instead of loading the entire book each session, we maintain
 - **Pandoc PDF** — printable PDF with CJK support (PingFang SC)
 - **Raw Markdown** — readable directly on GitHub
 
-## Usage
+## Get the Full Version
 
-```
-/lovstudio:tech-book                      # Start a new book project
-/lovstudio:tech-book write chapter 3      # Write a specific chapter
-/lovstudio:tech-book research chapter 5   # Research refs for a chapter
-/lovstudio:tech-book review               # Review consistency
-/lovstudio:tech-book build                # Build HTML + PDF
+This is a **commercial skill**. The free preview shows what it does; the full version includes the complete 5-phase workflow with detailed prompts and automation.
+
+### Contact
+
+- **WeChat**: `handcraft-chuaner`
+- **Email**: `mark@lovstudio.ai`
+- **GitHub**: [lovstudio](https://github.com/lovstudio)
+
+After purchase, you'll be added as a collaborator to the private repo containing the full SKILL.md.
+
+## Dependencies
+
+```bash
+cargo install mdbook    # or: brew install mdbook
+brew install pandoc basictex
+brew install gh
 ```
 
 ## License
 
-MIT
+Commercial — All rights reserved. Contact [lovstudio](https://lovstudio.ai) for licensing.
