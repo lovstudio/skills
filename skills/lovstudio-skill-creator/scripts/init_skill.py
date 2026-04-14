@@ -75,6 +75,8 @@ pip install TODO --break-system-packages
 
 README_MD = '''# lovstudio:{name}
 
+![Version](https://img.shields.io/badge/version-1.0.0-CC785C)
+
 TODO: One-line description.
 
 Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
@@ -114,17 +116,25 @@ def main():
 
     name = args.name.removeprefix("lovstudio-").removeprefix("lovstudio:")
 
-    # Find repo root (look for CLAUDE.md or .git)
+    # Find lovstudio-skills repo root
     if args.path:
         base = Path(args.path)
     else:
-        cwd = Path.cwd()
-        repo_root = cwd
-        for parent in [cwd] + list(cwd.parents):
-            if (parent / "CLAUDE.md").exists() or (parent / ".git").exists():
-                repo_root = parent
-                break
-        base = repo_root / "skills"
+        # Prefer the known lovstudio-skills repo; fall back to cwd-based search
+        known = Path.home() / "projects" / "lovstudio-skills"
+        if (known / "skills").is_dir():
+            base = known / "skills"
+        else:
+            cwd = Path.cwd()
+            repo_root = cwd
+            for parent in [cwd] + list(cwd.parents):
+                if (parent / "skills").is_dir() and (parent / "dev.sh").exists():
+                    repo_root = parent
+                    break
+                if (parent / "CLAUDE.md").exists() or (parent / ".git").exists():
+                    repo_root = parent
+                    break
+            base = repo_root / "skills"
 
     skill_dir = base / f"lovstudio-{name}"
 

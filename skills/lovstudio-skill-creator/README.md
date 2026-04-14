@@ -1,5 +1,7 @@
 # lovstudio:skill-creator
 
+![Version](https://img.shields.io/badge/version-1.1.0-CC785C)
+
 Scaffold new skills for the [lovstudio/skills](https://github.com/lovstudio/skills) repo. Fork of the official [skill-creator](https://github.com/anthropics/agent-skills) with lovstudio conventions baked in.
 
 Part of [lovstudio/skills](https://github.com/lovstudio/skills) &mdash; by [lovstudio.ai](https://lovstudio.ai)

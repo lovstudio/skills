@@ -16,7 +16,7 @@ compatibility: >
   Works within the lovstudio/skills repo. Requires Python 3.8+.
 metadata:
   author: lovstudio
-  version: "1.0.0"
+  version: "1.1.0"
   tags: skill-creator scaffold generator lovstudio
 ---
 
@@ -155,6 +155,6 @@ For skills that fill or generate content:
 
 ## What NOT to Include
 
-- CHANGELOG.md, INSTALLATION_GUIDE.md — unnecessary clutter
+- INSTALLATION_GUIDE.md — unnecessary clutter (CHANGELOG.md is auto-managed by skill-optimizer)
 - Test files — scripts are tested by running, not with test frameworks
 - __pycache__, .pyc, .DS_Store — add to .gitignore
