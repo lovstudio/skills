@@ -1,5 +1,7 @@
 # lovstudio:visual-clone
 
+![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+
 Extract design DNA from a reference image and generate a reusable replication prompt.
 
 Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)

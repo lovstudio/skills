@@ -71,6 +71,7 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [fill-web-form](skills/lovstudio-fill-web-form/) | Fill web forms from local knowledge base. Fetch URL → deep-search KB → generate markdown doc. |
 | [thesis-polish](skills/lovstudio-thesis-polish/) | MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。 |
 | [translation-review](skills/lovstudio-translation-review/) | Chinese-to-English translation review. Compares source & translation across 6 dimensions. |
+| [visual-clone](skills/lovstudio-visual-clone/) | Extract design DNA from reference images. Outputs reusable replication prompts across 8 dimensions. |
 
 ### Content Creation
 

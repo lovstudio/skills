@@ -12,7 +12,7 @@ compatibility: >
   No dependencies. Pure AI visual analysis — requires a model with vision capability.
 metadata:
   author: lovstudio
-  version: "1.0.0"
+  version: "1.0.1"
   tags: design, visual-analysis, style-extraction, prompt-generation
 ---
 
