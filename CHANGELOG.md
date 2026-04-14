@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.1
+
+- **tech-book**: New skill — generate complete technical books with mdbook/pandoc, deploy to GitHub Pages
+- **md2pdf**: Removed — functionality fully covered by `any2pdf` (reportlab + pandoc fallback)
+
 ## 0.7.0
 
 - **skill-optimizer**: Add Step 7 — auto commit & push after optimization (no more manual git push)

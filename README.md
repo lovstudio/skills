@@ -57,7 +57,6 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 |-------|-------------|
 | [any2deck](skills/lovstudio-any2deck/) | Content → slide deck images with 16 visual styles, PPTX/PDF export, branding overlay. |
 | [any2pdf](skills/lovstudio-any2pdf/) | Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, [14 themes](docs/THEME-GALLERY.md). |
-| [md2pdf](skills/lovstudio-md2pdf/) | Markdown → PDF via pandoc + xelatex. CJK support, quick & simple. |
 | [pdf2png](skills/lovstudio-pdf2png/) | PDF → single vertically concatenated PNG. Uses macOS CoreGraphics, ~20x faster than pdftoppm. |
 | [png2svg](skills/lovstudio-png2svg/) | PNG → high-quality SVG conversion with background removal and spline curves. |
 
@@ -78,6 +77,7 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | Skill | Description |
 |-------|-------------|
 | [image-creator](skills/lovstudio-image-creator/) | Generate images using Gemini via ZenMux. Supports ASCII art output. |
+| [tech-book](skills/lovstudio-tech-book/) | Write O'Reilly-style technical books chapter by chapter, GitHub repo as single source of truth. |
 
 ### Business
 

@@ -38,8 +38,8 @@ dev.sh                # Symlinks source skills into ~/.claude/skills/ for live d
 | `thesis-polish` | (pure instructions, no script) | — |
 | `visual-clone` | (pure instructions, no script) | — |
 | `gh-tidy` | (pure instructions, no script) | `gh` CLI |
+| `tech-book` | (pure instructions, no script) | `mdbook`, `pandoc`, `basictex`, `gh` CLI |
 | `pdf2png` | `skills/lovstudio-pdf2png/scripts/pdf2png.sh` (CoreGraphics) | `pip install pyobjc-framework-Quartz` (macOS only) |
-| `md2pdf` | `skills/lovstudio-md2pdf/scripts/md2pdf.sh` (pandoc) | `brew install pandoc basictex` (macOS only) |
 
 `any2pdf`/`any2docx` convert Markdown → styled output with CJK/Latin mixed text support, themes, cover pages, TOC, watermarks.
 `fill-form` fills Word form templates (.docx with table-based fields) with user-provided data.
