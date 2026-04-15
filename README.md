@@ -26,6 +26,38 @@
 
 ---
 
+## ⭐ Pro Skills
+
+<table>
+<tr>
+<td>
+
+### Unlock Commercial-Grade Skills
+
+Pro members get access to powerful skills not available in the open-source collection:
+
+| Pro Skill | What it does |
+|-----------|-------------|
+| **write-book** | Write full-length books (tech tutorials, monographs) — compressed summary strategy breaks through LLM context limits |
+| *more coming soon…* | |
+
+**What's included:**
+- 🔓 Full source code access via private repo invite
+- 🚀 All future Pro skills & updates
+- 💬 Priority support & community
+
+<p align="center">
+<a href="https://lovstudio.ai/skills"><strong>Browse Pro Skills →</strong></a>
+&nbsp;&middot;&nbsp;
+<a href="mailto:mark@lovstudio.ai">Email us</a>
+&nbsp;&middot;&nbsp;
+WeChat: <code>nanchuan</code>
+</p>
+
+</td>
+</tr>
+</table>
+
 ## Install
 
 ```bash
@@ -109,38 +141,6 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | [gh-tidy](skills/lovstudio-gh-tidy/) | Triage & clean up GitHub issues, PRs, branches, and labels in one pass. |
 
 <!-- SKILLS:END -->
-
-## ⭐ Pro Skills
-
-<table>
-<tr>
-<td>
-
-### Unlock Commercial-Grade Skills
-
-Pro members get access to powerful skills not available in the open-source collection:
-
-| Pro Skill | What it does |
-|-----------|-------------|
-| **write-book** | Write full-length books (tech tutorials, monographs) — compressed summary strategy breaks through LLM context limits |
-| *more coming soon…* | |
-
-**What's included:**
-- 🔓 Full source code access via private repo invite
-- 🚀 All future Pro skills & updates
-- 💬 Priority support & community
-
-<p align="center">
-<a href="https://lovstudio.ai/skills"><strong>Browse Pro Skills →</strong></a>
-&nbsp;&middot;&nbsp;
-<a href="mailto:mark@lovstudio.ai">Email us</a>
-&nbsp;&middot;&nbsp;
-WeChat: <code>nanchuan</code>
-</p>
-
-</td>
-</tr>
-</table>
 
 ## Related
 
