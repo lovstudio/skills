@@ -1,6 +1,6 @@
 ---
 name: lovstudio:fill-form
-category: Content Processing
+category: Office Automation
 tagline: "Fill Word form templates (.docx). Auto-detects table fields, CJK font support."
 description: >
   Fill in Word document form templates (.docx) with user-provided data.

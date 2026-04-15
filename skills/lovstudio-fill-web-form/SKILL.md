@@ -1,6 +1,6 @@
 ---
 name: lovstudio:fill-web-form
-category: Content Processing
+category: Office Automation
 tagline: "Fill web forms from local knowledge base. Fetch URL → deep-search KB → generate markdown doc."
 description: >
   Fill web forms by fetching form fields from a URL, deep-searching the user's
