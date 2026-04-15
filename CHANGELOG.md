@@ -12,7 +12,6 @@
 
 ## 0.6.0
 
-- **proposal**: New skill — generate complete business proposals from client requirements (architecture, budget, timeline, risk analysis)
 - **thesis-polish**: New skill — MBA thesis polishing to national outstanding thesis standards
 - **finder-action**: New skill — generate Mac Finder right-click menu actions (Quick Action or Finder Sync Extension)
 - **pdf2png**: New skill — PDF → single concatenated PNG via macOS CoreGraphics
