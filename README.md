@@ -77,7 +77,6 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 | Skill | Description |
 |-------|-------------|
 | [image-creator](skills/lovstudio-image-creator/) | Generate images using Gemini via ZenMux. Supports ASCII art output. |
-| [write-book](skills/lovstudio-write-book/) | Write multi-chapter books (technical, tutorial, monograph) — **Commercial** ([contact us](mailto:mark@lovstudio.ai)) |
 
 ### Business
 
