@@ -1,33 +1,44 @@
 ---
 name: lovstudio:review-doc
 description: >
+  Review and annotate documents/contracts — output annotated docx with comments
+  or tracked changes. Core: contract review (risk clauses, rights imbalance,
+  vague wording, missing clauses); also general document review (grammar, logic,
+  formatting).
   批阅文档/合同 — 审阅任意文档并以批注或修订模式输出带标注的 docx。
   核心场景：合同/协议审查（风险条款、权利义务、模糊表述、缺失条款），
   也支持通用文档审阅（语法、逻辑、格式）。
   Trigger when: user asks to "审阅", "批阅", "批注", "review", "审查合同",
-  "review contract", "review agreement", or provides a document for review.
-  Supports .docx input; other formats should be converted to docx first.
+  "review contract", "review agreement", "annotate document", "check contract",
+  "合同审查", "文档批注", or provides a document (.docx) for review.
 license: MIT
 compatibility: >
   Requires Python 3.8+ and python-docx (`pip install python-docx`).
   Cross-platform: macOS, Windows, Linux.
 metadata:
   author: lovstudio
-  version: "0.2.0"
-  tags: review, annotate, contract, legal, document
+  version: "0.3.0"
+  category: business
+  tags: review, annotate, contract, legal, document, business, 商务, 合同
 ---
 
-# review-doc — 批阅文档与合同
+# review-doc — Review & Annotate Documents / 批阅文档与合同
+
+AI-powered document and contract review. Outputs annotated docx with comments
+and/or tracked changes.
 
 审阅文档或合同，AI 进行审查分析，将审查意见以批注（comment）或修订模式
 （track changes）写回文档，输出带批注的 docx。
 
 ## When to Use
 
-- 用户提供文档要求审阅、审查、批注、批阅
-- 合同/协议审查：识别风险条款、权利义务失衡、模糊表述、缺失条款
-- 通用文档审阅：语法、逻辑、格式、内容完整性
-- 当前支持 .docx 格式输入
+- User provides a document for review, annotation, or audit
+  用户提供文档要求审阅、审查、批注、批阅
+- Contract/agreement review: risk clauses, rights imbalance, vague wording, missing clauses
+  合同/协议审查：识别风险条款、权利义务失衡、模糊表述、缺失条款
+- General document review: grammar, logic, formatting, completeness
+  通用文档审阅：语法、逻辑、格式、内容完整性
+- Supports .docx input / 当前支持 .docx 格式输入
 
 ## Workflow
 
@@ -43,30 +54,37 @@ metadata:
 
 **IMPORTANT: Use `AskUserQuestion` BEFORE generating annotations.**
 
-    审阅模式确认 👇
+    Review mode / 审阅模式确认
 
-    ━━━ 📋 审阅类型 ━━━
-    a) 合同/协议审查 — 风险条款、权利义务、模糊表述、缺失条款
-    b) 通用文档审阅 — 语法、逻辑、格式、内容完整性
+    ━━━ Review type / 审阅类型 ━━━
+    a) Contract review — risk clauses, rights, vague wording, missing clauses
+       合同/协议审查 — 风险条款、权利义务、模糊表述、缺失条款
+    b) General document review — grammar, logic, formatting, completeness
+       通用文档审阅 — 语法、逻辑、格式、内容完整性
 
-    ━━━ ✏️ 批注方式 ━━━
-    a) 批注模式（默认） — 在原文旁加 comment，不改原文
-    b) 修订模式 — 用 track changes 直接改原文，对方可逐条接受/拒绝
-    c) 批注 + 修订 — 批注写分析意见，修订写建议改法
+    ━━━ Annotation mode / 批注方式 ━━━
+    a) Comments only (default) — add comments alongside text, no changes
+       批注模式（默认） — 在原文旁加 comment，不改原文
+    b) Track changes — directly modify text, recipient can accept/reject
+       修订模式 — 用 track changes 直接改原文，对方可逐条接受/拒绝
+    c) Comments + track changes — comments for analysis, revisions for suggestions
+       批注 + 修订 — 批注写分析意见，修订写建议改法
 
-    ━━━ 👤 批注者署名 ━━━
-    默认 "手工川"，可自定义
+    ━━━ Author name / 批注者署名 ━━━
+    Default "手工川", customizable
 
 ### Step 3: AI Review
 
+Review the extracted text. For contract review, focus on:
+
 根据提取的文本进行审查。对于合同审查，重点关注：
 
-1. **风险条款** — 单方权利过大、免责条款、不可抗力滥用
-2. **权利义务失衡** — 一方义务过重、对价不充分
-3. **模糊表述** — "合理"、"适当"等无客观标准的词语
-4. **缺失条款** — 争议解决、终止后义务、知识产权归属
-5. **期限与金额** — 过短/过长期限、不合理金额
-6. **法律合规** — 管辖法律、仲裁条款
+1. **Risk clauses / 风险条款** — one-sided rights, disclaimers, force majeure abuse
+2. **Rights imbalance / 权利义务失衡** — disproportionate obligations, inadequate consideration
+3. **Vague wording / 模糊表述** — "reasonable", "appropriate" without objective criteria
+4. **Missing clauses / 缺失条款** — dispute resolution, post-termination obligations, IP ownership
+5. **Terms & amounts / 期限与金额** — unreasonable durations or amounts
+6. **Legal compliance / 法律合规** — governing law, arbitration clauses
 
 生成 annotations JSON，格式：
 
@@ -88,10 +106,11 @@ metadata:
       ]
     }
 
-批注文本格式规范：
-- 以标签开头：`【风险】`、`【建议】`、`【缺失】`、`【模糊】`、`【注意】`
-- 简明扼要，每条批注控制在 1-3 句话
-- 有建议时给出具体修改方向
+Annotation text format / 批注文本格式规范：
+- Lead with tag / 以标签开头：`【风险/Risk】`、`【建议/Suggestion】`、`【缺失/Missing】`、`【模糊/Vague】`、`【注意/Note】`
+- Concise, 1-3 sentences per annotation / 简明扼要，每条批注控制在 1-3 句话
+- Provide concrete revision direction when suggesting changes / 有建议时给出具体修改方向
+- Match the document language — Chinese docs get Chinese annotations, English docs get English, mixed docs get bilingual / 批注语言跟随文档语言
 
 ### Step 4: Apply annotations
 

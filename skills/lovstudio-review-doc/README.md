@@ -1,6 +1,8 @@
 # lovstudio:review-doc
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C) ![Category](https://img.shields.io/badge/category-business-blue)
+
+Review & annotate documents/contracts — output annotated docx with comments or tracked changes.
 
 批阅文档与合同 — 审阅文档并以批注或修订模式输出带标注的 docx。
 

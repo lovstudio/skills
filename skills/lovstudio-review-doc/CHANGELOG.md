@@ -3,6 +3,15 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.3.0] - 2026-04-16
+
+### Added
+
+- i18n: bilingual description, triggers, review labels, and annotation tags (EN/ZH)
+- Add category: business (商务)
+- Expand trigger phrases: annotate document, check contract, 合同审查, 文档批注
+- Annotation language now follows document language
+
 ## [0.2.0] - 2026-04-15
 
 ### Added
