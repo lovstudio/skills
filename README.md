@@ -28,23 +28,14 @@
 
 ## ⭐ Pro Skills
 
-<table>
-<tr>
-<td>
-
-### Unlock Commercial-Grade Skills
-
-Pro members get access to powerful skills not available in the open-source collection:
+> **Unlock Commercial-Grade Skills** — Pro members get access to powerful skills not available in the open-source collection.
 
 | Pro Skill | What it does |
 |-----------|-------------|
 | **write-book** | Write full-length books (tech tutorials, monographs) — compressed summary strategy breaks through LLM context limits |
 | *more coming soon…* | |
 
-**What's included:**
-- 🔓 Full source code access via private repo invite
-- 🚀 All future Pro skills & updates
-- 💬 Priority support & community
+**What's included:** 🔓 Full source code access &nbsp;·&nbsp; 🚀 All future updates &nbsp;·&nbsp; 💬 Priority support & community
 
 <p align="center">
 <a href="https://lovstudio.ai/skills"><strong>Browse Pro Skills →</strong></a>
@@ -54,9 +45,7 @@ Pro members get access to powerful skills not available in the open-source colle
 WeChat: <code>nanchuan</code>
 </p>
 
-</td>
-</tr>
-</table>
+---
 
 ## Install
 
