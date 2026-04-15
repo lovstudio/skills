@@ -1,6 +1,6 @@
 # lovstudio:skill-optimizer
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 
 自动优化 lovstudio skill — 审计规范、应用修复、bump 版本、追加 changelog。
 

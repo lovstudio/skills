@@ -19,7 +19,7 @@ compatibility: >
   Must be run inside the lovstudio-skills repo (auto-detects repo root).
 metadata:
   author: lovstudio
-  version: "0.2.0"
+  version: "0.3.0"
   tags: meta skill-maintenance versioning changelog lint
 ---
 
@@ -133,11 +133,20 @@ remaining lint warnings: <count>  (or "none")
 **Do not** print a trailing summary, self-congratulation, or next-step suggestions.
 The diff speaks for itself.
 
-### Step 7: Commit & push
+### Step 7: Commit, push & sync all locations
 
-After reporting, always commit and push the changes:
+Skills live in three locations that must stay in sync:
+
+```
+source (edit here):  ~/projects/lovstudio-skills/        → lovstudio/skills
+claude reads from:   ~/.claude/skills/*                   → symlinks to source
+distribution repo:   ~/projects/lovstudio-pro-skills/     → lovstudio/pro-skills
+```
+
+**7a. Commit & push to source repo:**
 
 ```bash
+cd ~/projects/lovstudio-skills
 git add skills/lovstudio-<name>/
 git commit -m "fix(<name>): <one-line summary>"
 git push
@@ -145,7 +154,23 @@ git push
 
 - Commit message follows repo convention: `fix|feat|docs(<skill-name>): <summary>`
 - Use `fix` for patch, `feat` for minor, `feat!` for major
-- Push to current branch (typically `main`)
+
+**7b. Sync to pro-skills distribution repo:**
+
+```bash
+cd ~/projects/lovstudio-pro-skills
+git pull skills-upstream main
+git push origin main
+```
+
+This pulls from `lovstudio/skills` (configured as `skills-upstream` remote)
+and pushes to `lovstudio/pro-skills`. Both GitHub repos are now in sync.
+
+`~/.claude/skills/` is already up-to-date via symlinks — no action needed.
+
+**If any step fails**, report the sync state to the user rather than silently
+skipping. A partial sync (source updated but pro-skills stale) is the exact
+problem this step exists to prevent.
 
 ## CLI Reference
 
