@@ -1,11 +1,17 @@
 # lovstudio:tech-book
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 ![License](https://img.shields.io/badge/license-Commercial-red)
 
 Write O'Reilly-style technical books chapter by chapter, with a GitHub repo as the single source of truth. Solves LLM context window limitations through a compressed book summary strategy.
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [lovstudio/skills](https://github.com/MarkShawn2020/lovstudio-skills) — by [lovstudio.ai](https://lovstudio.ai)
+
+## Install
+
+```bash
+npx skills add MarkShawn2020/lovstudio-skills --skill lovstudio:tech-book
+```
 
 ## What It Does
 
