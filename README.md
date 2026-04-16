@@ -30,7 +30,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 
 ## Skills / 技能列表
 
-> **27 skills** — 24 Free + 3 Paid.
+> **28 skills** — 25 Free + 3 Paid.
 
 | | Skill | Description |
 |---|---|---|
@@ -66,6 +66,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 | ![Free](https://img.shields.io/badge/Free-green) | [`auto-context`](https://github.com/lovstudio/auto-context-skill) | Context hygiene checker. Suggests /fork or /btw when context is polluted. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`deploy-to-vercel`](https://github.com/lovstudio/deploy-to-vercel-skill) | Deploy frontend to Vercel with auto Cloudflare DNS + custom domain setup. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`finder-action`](https://github.com/lovstudio/finder-action-skill) | Generate Mac Finder right-click menu actions. Quick Action or Finder Sync Extension. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`gh-access`](https://github.com/lovstudio/gh-access-skill) | Grant / revoke / list collaborator access on private GitHub repos by username or email. Read-only default. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`gh-tidy`](https://github.com/lovstudio/gh-tidy-skill) | Triage & clean up GitHub issues, PRs, branches, and labels in one pass. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`obsidian-reset-cache`](https://github.com/lovstudio/obsidian-reset-cache-skill) | 重置 Obsidian 缓存，解决卡在 Loading cache 的问题。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`project-port`](https://github.com/lovstudio/project-port-skill) | Generate stable unique dev port (3000–8999) from project name. |

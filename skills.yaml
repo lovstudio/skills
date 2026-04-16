@@ -17,6 +17,7 @@ skills:
   - name: any2docx
     repo: lovstudio/any2docx-skill
     paid: false
+    category: "Document Conversion"
     description: "Convert Markdown documents to professionally styled DOCX (Word) files with python-docx."
   - name: any2pdf
     repo: lovstudio/any2pdf-skill
@@ -59,6 +60,11 @@ skills:
     paid: false
     category: "Dev Tools"
     description: "Generate Mac Finder right-click menu actions. Quick Action or Finder Sync Extension."
+  - name: gh-access
+    repo: lovstudio/gh-access-skill
+    paid: false
+    category: "Developer Tools"
+    description: "Grant / revoke / list collaborator access on private GitHub repos by username or email. Read-only by default."
   - name: gh-tidy
     repo: lovstudio/gh-tidy-skill
     paid: false
@@ -93,11 +99,12 @@ skills:
   - name: proposal
     repo: lovstudio/proposal-skill
     paid: true
-    category: "Business"
+    category: "Office Automation"
     description: "Business proposal with architecture, budget & PDF / 完整商业提案"
   - name: review-doc
     repo: lovstudio/review-doc-skill
     paid: false
+    category: "Office Automation"
     description: "Review and annotate documents/contracts — output annotated docx with comments"
   - name: skill-creator
     repo: lovstudio/skill-creator-skill
@@ -112,12 +119,12 @@ skills:
   - name: thesis-polish
     repo: lovstudio/thesis-polish-skill
     paid: false
-    category: "Content Processing"
+    category: "Academic"
     description: "MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。"
   - name: translation-review
     repo: lovstudio/translation-review-skill
     paid: false
-    category: "Content Processing"
+    category: "Academic"
     description: "Chinese-to-English translation review. Compares source & translation across 6 dimensions."
   - name: visual-clone
     repo: lovstudio/visual-clone-skill
