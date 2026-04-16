@@ -7,3 +7,6 @@ node_modules/
 bun.lock
 package-lock.json
 url-to-markdown/
+
+# Deliverables produced by /output should stay out of git
+手工川-*
