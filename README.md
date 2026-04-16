@@ -12,7 +12,7 @@
 
 <p align="center">
   <!-- BADGES:BEGIN -->
-  <img src="https://img.shields.io/badge/skills-23-CC785C?style=flat-square" alt="23 skills">
+  <img src="https://img.shields.io/badge/skills-24-CC785C?style=flat-square" alt="24 skills">
   <img src="https://img.shields.io/badge/categories-8-181818?style=flat-square" alt="8 categories">
   <!-- BADGES:END -->
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT License">
@@ -105,7 +105,7 @@ npx skills add lovstudio/skills --skill lovstudio:any2pdf
 |---|-------|-------------------|
 | ![Free](https://img.shields.io/badge/Free-green) | **[`image-creator`](skills/lovstudio-image-creator/)** | Multi-mechanism image generation (AI / code / prompt) <br> 多机制生图（AI / 代码渲染 / 提示词） |
 | ![Pro](https://img.shields.io/badge/Pro-blueviolet) | **[`event-poster`](https://lovstudio.ai/skills/event-poster)** | Generate event posters via HTML + Playwright <br> 活动海报生成 |
-| ![Pro](https://img.shields.io/badge/Pro-blueviolet) | **[`visual-clone`](https://lovstudio.ai/skills/visual-clone)** | Extract design DNA from reference images <br> 提取设计要素生成复刻指令 |
+| ![Free](https://img.shields.io/badge/Free-green) | **[`visual-clone`](skills/lovstudio-visual-clone/)** | Extract design DNA from reference images <br> 提取设计要素生成复刻指令 |
 
 ### Automation & DevOps / 自动化与运维
 
@@ -170,7 +170,6 @@ Each skill is a self-contained prompt program (`SKILL.md`) that:
 | **[`write-book`](https://lovstudio.ai/skills/write-book)** | Write full-length books — compressed summary strategy breaks through LLM context limits <br> 逐章写书，压缩摘要策略突破 LLM 上下文限制 |
 | **[`proposal`](https://lovstudio.ai/skills/proposal)** | Business proposals with architecture diagrams, budget tables & PDF export <br> 完整商业提案：架构图 + 预算表 + PDF 输出 |
 | **[`event-poster`](https://lovstudio.ai/skills/event-poster)** | Generate event posters via HTML + Playwright rendering <br> 活动海报生成（HTML + Playwright 渲染） |
-| **[`visual-clone`](https://lovstudio.ai/skills/visual-clone)** | Extract design DNA from reference images into reusable prompts <br> 从参考图提取设计要素，生成可复用的复刻指令 |
 | *more coming soon… / 更多即将推出* | |
 
 **What's included / 包含内容：** 🔓 Full source code / 完整源码 &nbsp;·&nbsp; 🚀 All future updates / 持续更新 &nbsp;·&nbsp; 💬 Priority support / 优先支持
