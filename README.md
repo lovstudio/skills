@@ -30,7 +30,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 
 ## Skills / 技能列表
 
-> **29 skills** — 26 Free + 3 Paid.
+> **30 skills** — 27 Free + 3 Paid.
 
 | | Skill | Description |
 |---|---|---|
@@ -66,6 +66,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-optimizer`](https://github.com/lovstudio/skill-optimizer-skill) | Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG entry. |
 | **Dev Tools / 开发工具** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`auto-context`](https://github.com/lovstudio/auto-context-skill) | Context hygiene checker. Suggests /fork or /btw when context is polluted. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`cc-migrate-session`](https://github.com/lovstudio/cc-migrate-session) | Migrate Claude Code session history when a project folder moves. Rewrites `cwd` fields so `claude --resume` keeps working. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`deploy-to-vercel`](https://github.com/lovstudio/deploy-to-vercel-skill) | Deploy frontend to Vercel with auto Cloudflare DNS + custom domain setup. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`finder-action`](https://github.com/lovstudio/finder-action-skill) | Generate Mac Finder right-click menu actions. Quick Action or Finder Sync Extension. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`gh-access`](https://github.com/lovstudio/gh-access-skill) | Grant / revoke / list collaborator access on private GitHub repos by username or email. Read-only default. |

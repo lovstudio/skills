@@ -126,6 +126,12 @@ skills:
     paid: false
     category: "Dev Tools"
     description: "Context hygiene checker. Suggests /fork or /btw when context is polluted."
+  - name: cc-migrate-session
+    repo: lovstudio/cc-migrate-session
+    paid: false
+    category: "Dev Tools"
+    version: "0.1.0"
+    description: "Migrate Claude Code session history when a project folder moves. Rewrites ~/.claude/projects/<slug>/*.jsonl cwd fields so `claude --resume` keeps working."
   - name: deploy-to-vercel
     repo: lovstudio/deploy-to-vercel-skill
     paid: false
