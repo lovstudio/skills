@@ -30,7 +30,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 
 ## Skills / 技能列表
 
-> **30 skills** — 27 Free + 3 Paid.
+> **31 skills** — 27 Free + 4 Paid.
 
 | | Skill | Description |
 |---|---|---|
@@ -46,6 +46,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 | ![Free](https://img.shields.io/badge/Free-green) | [`review-doc`](https://github.com/lovstudio/review-doc-skill) | Review & annotate docs/contracts — output annotated docx with comments or tracked changes. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`thesis-polish`](https://github.com/lovstudio/thesis-polish-skill) | MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`translation-review`](https://github.com/lovstudio/translation-review-skill) | Chinese-to-English translation review across 6 dimensions. |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wxmp-cracker`](https://github.com/lovstudio/wxmp-cracker-skill) | 微信公众号文章抓取。agent-browser 自动取 token+cookie（首次扫码、之后免扫），失效自动重抿。 |
 | **Image & Design / 图像与设计** | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | Generate event posters via HTML + Playwright / 活动海报生成 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`image-creator`](https://github.com/lovstudio/image-creator-skill) | Multi-mechanism image generation: end-to-end AI, code rendering, or prompt engineering. |
