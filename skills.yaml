@@ -119,6 +119,12 @@ skills:
     paid: true
     category: "Content Creation"
     description: "Write multi-chapter books (technical, tutorial, monograph) / 逐章写书，支持多种风格"
+  - name: wxmp-cracker
+    repo: lovstudio/wxmp-cracker-skill
+    paid: true
+    category: "Content Creation"
+    version: "0.1.0"
+    description: "微信公众号文章抓取。agent-browser 自动取 token+cookie（首次扫码，之后免扫），失效自动重抿。"
 
   # ── Dev Tools ──
   - name: auto-context
