@@ -68,6 +68,20 @@ def rsync_mirror(src: Path, dst: Path) -> None:
     subprocess.check_call(cmd)
 
 
+def prune_stale(free_names: set[str]) -> None:
+    """Remove ./skills/<name>/ dirs for skills no longer in the free list.
+
+    Happens when a skill switches to paid: true or is deleted from skills.yaml.
+    Without this, stale mirrors leak into `npx skills` as uncategorized "Other".
+    """
+    if not MIRROR_ROOT.exists():
+        return
+    for child in MIRROR_ROOT.iterdir():
+        if child.is_dir() and child.name not in free_names:
+            print(f"  - {child.name} (stale, pruning)")
+            shutil.rmtree(child)
+
+
 def mirror_one(skill: dict, skip_clone: bool) -> None:
     name = skill["name"]
     repo = skill["repo"]
@@ -97,6 +111,7 @@ def main() -> int:
     skills = load_free_skills()
     print(f"Mirroring {len(skills)} free skills into {MIRROR_ROOT.relative_to(ROOT)}/")
     MIRROR_ROOT.mkdir(exist_ok=True)
+    prune_stale({s["name"] for s in skills})
     for s in skills:
         mirror_one(s, skip_clone)
     return 0
