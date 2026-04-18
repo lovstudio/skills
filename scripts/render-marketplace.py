@@ -49,6 +49,8 @@ def to_plugin_entry(skill: dict) -> dict:
         "skills": ["./"],
         "strict": False,
     }
+    if skill.get("name_zh"):
+        entry["displayName"] = skill["name_zh"]
     if "version" in skill:
         entry["version"] = skill["version"]
     return entry

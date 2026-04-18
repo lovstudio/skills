@@ -31,32 +31,28 @@ PAID_BADGE = "![Paid](https://img.shields.io/badge/Paid-blueviolet)"
 
 # Display category -> (English label, Chinese label)
 CATEGORY_LABELS = {
-    "Document Conversion": ("Document Conversion", "格式转换"),
-    "Content Creation": ("Content Processing", "内容处理"),
-    "Content Processing": ("Content Processing", "内容处理"),
-    "Design": ("Image & Design", "图像与设计"),
-    "Image & Design": ("Image & Design", "图像与设计"),
+    "General": ("General", "通用"),
+    "Business": ("Business", "商务"),
+    "Design": ("Design", "设计"),
     "Academic": ("Academic", "学术"),
-    "xBTI": ("xBTI", "人格测试"),
-    "Finance": ("Finance", "财务"),
-    "Office Automation": ("Office Automation", "办公自动化"),
-    "Authoring": ("Authoring", "创作"),
-    "Meta Skills": ("Meta Skills", "元技能"),
+    "Office Automation": ("Office Automation", "办公"),
+    "Finance": ("Finance", "财税"),
+    "Content Creation": ("Content Creation", "内容创作"),
     "Dev Tools": ("Dev Tools", "开发工具"),
+    "xBTI": ("xBTI", "人格测试"),
 }
 
 # Category display order (by canonical English label).
 CATEGORY_ORDER_EN = [
-    "Document Conversion",
-    "Content Processing",
-    "Image & Design",
+    "General",
+    "Business",
+    "Design",
     "Academic",
-    "xBTI",
-    "Finance",
     "Office Automation",
-    "Authoring",
-    "Meta Skills",
+    "Finance",
+    "Content Creation",
     "Dev Tools",
+    "xBTI",
 ]
 
 
@@ -122,7 +118,11 @@ def render_table(skills: list[dict], lang: str) -> str:
         for s in sorted(grouped[key], key=lambda x: x["name"]):
             badge = PAID_BADGE if s.get("paid") else FREE_BADGE
             link = f"https://github.com/{s['repo']}"
-            rows.append(f"| {badge} | [`{s['name']}`]({link}) | {pick_tagline(s, lang)} |")
+            if lang == "zh" and s.get("name_zh"):
+                name_cell = f"[{s['name_zh']} · `{s['name']}`]({link})"
+            else:
+                name_cell = f"[`{s['name']}`]({link})"
+            rows.append(f"| {badge} | {name_cell} | {pick_tagline(s, lang)} |")
     return "\n".join(rows)
 
 

@@ -16,7 +16,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "技能脚手架"
     },
     {
       "name": "skill-optimizer",
@@ -26,7 +27,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "技能优化器"
     },
     {
       "name": "image-creator",
@@ -37,6 +39,7 @@
         "./"
       ],
       "strict": false,
+      "displayName": "图片生成",
       "version": "0.2.0"
     },
     {
@@ -47,7 +50,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "视觉复刻"
     },
     {
       "name": "thesis-polish",
@@ -57,7 +61,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "论文润色"
     },
     {
       "name": "translation-review",
@@ -67,7 +72,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "译文审阅"
     },
     {
       "name": "fill-form",
@@ -77,7 +83,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "Word 表单填写"
     },
     {
       "name": "fill-web-form",
@@ -87,7 +94,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "网页表单填写"
     },
     {
       "name": "expense-report",
@@ -97,7 +105,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "报销单整理"
     },
     {
       "name": "any2pdf",
@@ -107,7 +116,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "转 PDF"
     },
     {
       "name": "any2docx",
@@ -117,7 +127,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "转 Word"
     },
     {
       "name": "any2deck",
@@ -127,7 +138,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "转幻灯片"
     },
     {
       "name": "pdf2png",
@@ -137,7 +149,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "PDF 转长图"
     },
     {
       "name": "png2svg",
@@ -147,7 +160,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "PNG 转 SVG"
     },
     {
       "name": "anti-wechat-ai-check",
@@ -157,7 +171,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "微信 AI 味降检"
     },
     {
       "name": "document-illustrator",
@@ -167,7 +182,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "文档配图"
     },
     {
       "name": "auto-context",
@@ -177,7 +193,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "上下文体检"
     },
     {
       "name": "cc-migrate-session",
@@ -188,6 +205,7 @@
         "./"
       ],
       "strict": false,
+      "displayName": "会话迁移",
       "version": "0.1.1"
     },
     {
@@ -198,7 +216,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "部署到 Vercel"
     },
     {
       "name": "finder-action",
@@ -208,7 +227,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "访达右键动作"
     },
     {
       "name": "gh-access",
@@ -218,7 +238,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "GitHub 协作者管理"
     },
     {
       "name": "gh-contribute",
@@ -229,6 +250,7 @@
         "./"
       ],
       "strict": false,
+      "displayName": "GitHub 投稿 PR",
       "version": "0.1.0"
     },
     {
@@ -239,7 +261,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "GitHub 仓库整理"
     },
     {
       "name": "obsidian-reset-cache",
@@ -249,7 +272,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "重置 Obsidian 缓存"
     },
     {
       "name": "project-port",
@@ -259,7 +283,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "项目端口分配"
     },
     {
       "name": "xbti-creator",
@@ -269,7 +294,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "xBTI 测试定制"
     },
     {
       "name": "xbti-gallery",
@@ -279,7 +305,8 @@
       "skills": [
         "./"
       ],
-      "strict": false
+      "strict": false,
+      "displayName": "xBTI 画廊"
     }
   ]
 }
