@@ -1,0 +1,54 @@
+# 环境变量和敏感信息
+.env
+.env.local
+.env.*.local
+
+# API 密钥和凭证
+*.key
+*.pem
+credentials.json
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.venv
+
+# IDE 和编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 生成的图片（可选，根据需要调整）
+# images/
+# *.png
+# *.jpg
+# *.jpeg
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+.cache/
+
+# 测试覆盖率
+.coverage
+htmlcov/
+.pytest_cache/
+
+# 打包文件
+dist/
+build/
+*.egg-info/

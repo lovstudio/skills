@@ -4,21 +4,34 @@ Guidance for Claude Code when working in this repo.
 
 ## What This Is
 
-The **central index** for Lovstudio skills. **No skill code lives here** — each skill is its own repo at `github.com/lovstudio/{name}-skill`. Locally, skills are developed under `~/lovstudio/skills/{name}-skill/`.
+The **central index** for Lovstudio skills. The source of truth for each skill is its own repo at `github.com/lovstudio/{name}-skill`. Locally, skills are developed under `~/lovstudio/coding/skills/{name}-skill/`.
+
+This index repo also carries a **read-only mirror** of every free skill under `./skills/<name>/`, auto-synced by CI from the upstream skill repos. The mirror exists so that `npx skills add lovstudio/skills` (vercel-labs/skills CLI) can discover every skill in a single clone — that CLI only resolves local paths in `.claude-plugin/marketplace.json`, not external `github` sources.
 
 ## Repo Layout
 
 ```
 .
-├── README.md                  # Human-readable skill catalog (CI-rendered between SKILLS:START/END markers)
-├── skills.yaml                # Machine-readable manifest — SOURCE OF TRUTH
-├── scripts/render-readme.py   # Regenerates README skill table from skills.yaml
-├── CHANGELOG.md               # Index repo history (not per-skill)
-├── LICENSE                    # MIT (for this index; each skill has its own LICENSE)
-└── .github/workflows/         # render-readme.yml auto-commits README on skills.yaml push + nightly GH desc sync
+├── README.md / README.en.md          # Human-readable catalog (CI-rendered between SKILLS:START/END)
+├── skills.yaml                       # Machine-readable manifest — SOURCE OF TRUTH
+├── skills/<name>/                    # Auto-mirrored free-skill contents (do NOT hand-edit; CI overwrites)
+├── .claude-plugin/marketplace.json   # Claude Code marketplace manifest (auto-rendered)
+├── scripts/sync-skills.py            # Mirrors each free repo into ./skills/<name>/ (shallow clone + rsync)
+├── scripts/render-marketplace.py     # Regenerates marketplace.json from skills.yaml
+├── scripts/render-readme.py          # Regenerates README skill table from skills.yaml
+├── CHANGELOG.md                      # Index repo history (not per-skill)
+├── LICENSE                           # MIT (for this index; each skill has its own LICENSE)
+└── .github/workflows/                # render-readme.yml runs sync → render-marketplace → render-readme
 ```
 
-**Edit `skills.yaml`, not the README table directly.** CI regenerates the table on push and syncs descriptions from each skill's GitHub repo description nightly (`GH_SYNC=1`). You can run `python3 scripts/render-readme.py` locally to preview; add `GH_SYNC=1` to also refresh descriptions.
+**Edit `skills.yaml`, not the README table, not marketplace.json, not files under `skills/`.** CI regenerates all three on push and nightly. You can preview locally with `python3 scripts/sync-skills.py && python3 scripts/render-marketplace.py && python3 scripts/render-readme.py` (add `GH_SYNC=1` to the last one to refresh descriptions from GitHub).
+
+## How users install
+
+- **Via `npx skills`** (vercel-labs CLI, cross-agent): `npx skills add lovstudio/skills` — clones this repo, scans `./skills/**/SKILL.md`, installs into the active project or globally.
+- **Via Claude Code native marketplace**: `/plugin marketplace add lovstudio/skills` then `/plugin install <name>@lovstudio` — reads `.claude-plugin/marketplace.json`, each plugin resolves to `./skills/<name>/`.
+
+Both paths work off the same mirror.
 
 ## skills.yaml Schema
 
@@ -33,6 +46,7 @@ skills:
     description: "Markdown → …"         # Agent-facing trigger copy (English, terse). CI-synced from GitHub repo description.
     tagline_en: "Typeset Markdown …"    # Human-facing English one-liner for README. Hand-maintained.
     tagline_zh: "把 Markdown 排成 …"    # Human-facing Chinese one-liner for README. Hand-maintained.
+    skill_path: "skill/lovstudio-xxx"   # OPTIONAL. Use only when SKILL.md is not at repo root.
 ```
 
 ### Field responsibilities

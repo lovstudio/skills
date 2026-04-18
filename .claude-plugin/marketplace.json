@@ -1,0 +1,295 @@
+{
+  "name": "lovstudio",
+  "owner": {
+    "name": "Lovstudio",
+    "email": "shawninjuly@gmail.com"
+  },
+  "metadata": {
+    "description": "Free Lovstudio skills — one-command install via `npx skills add lovstudio/skills`."
+  },
+  "plugins": [
+    {
+      "name": "skill-creator",
+      "source": "./skills/skill-creator",
+      "description": "Scaffold new lovstudio skills with proper structure, SKILL.md + README.md.",
+      "category": "General",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "skill-optimizer",
+      "source": "./skills/skill-optimizer",
+      "description": "Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG entry.",
+      "category": "General",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "image-creator",
+      "source": "./skills/image-creator",
+      "description": "Multi-mechanism image generation: end-to-end AI, code rendering, or prompt engineering",
+      "category": "General",
+      "skills": [
+        "./"
+      ],
+      "strict": false,
+      "version": "0.2.0"
+    },
+    {
+      "name": "visual-clone",
+      "source": "./skills/visual-clone",
+      "description": "Extract design DNA from reference images / 提取设计要素生成复刻指令",
+      "category": "Design",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "thesis-polish",
+      "source": "./skills/thesis-polish",
+      "description": "MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。",
+      "category": "Academic",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "translation-review",
+      "source": "./skills/translation-review",
+      "description": "Chinese-to-English translation review. Compares source & translation across 6 dimensions.",
+      "category": "Academic",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "fill-form",
+      "source": "./skills/fill-form",
+      "description": "Fill Word form templates (.docx). Auto-detects table fields, CJK font support.",
+      "category": "Office Automation",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "fill-web-form",
+      "source": "./skills/fill-web-form",
+      "description": "Fill web forms from local knowledge base. Fetch URL → deep-search KB → generate markdown doc.",
+      "category": "Office Automation",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "expense-report",
+      "source": "./skills/expense-report",
+      "description": "Invoice images/text → categorized Excel expense report",
+      "category": "Finance",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "review-doc",
+      "source": "./skills/review-doc",
+      "description": "Review and annotate documents/contracts — output annotated docx with comments",
+      "category": "Office Automation",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "any2pdf",
+      "source": "./skills/any2pdf",
+      "description": "Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, 14 themes.",
+      "category": "Document Conversion",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "any2docx",
+      "source": "./skills/any2docx",
+      "description": "Convert Markdown documents to professionally styled DOCX (Word) files with python-docx.",
+      "category": "Document Conversion",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "any2deck",
+      "source": "./skills/any2deck",
+      "description": "Content → slide deck images with 16 visual styles, PPTX/PDF export, branding overlay.",
+      "category": "Document Conversion",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "pdf2png",
+      "source": "./skills/pdf2png",
+      "description": "PDF → single vertically concatenated PNG. Uses macOS CoreGraphics, ~20x faster than pdftoppm.",
+      "category": "Document Conversion",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "png2svg",
+      "source": "./skills/png2svg",
+      "description": "PNG → high-quality SVG conversion with background removal and spline curves.",
+      "category": "Document Conversion",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "anti-wechat-ai-check",
+      "source": "./skills/anti-wechat-ai-check",
+      "description": "检测文章 AI 痕迹 + 人性化润色，通过微信 3.27 条款检测。",
+      "category": "Content Creation",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "document-illustrator",
+      "source": "./skills/document-illustrator",
+      "description": "为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。",
+      "category": "Content Creation",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "auto-context",
+      "source": "./skills/auto-context",
+      "description": "Context hygiene checker. Suggests /fork or /btw when context is polluted.",
+      "category": "Dev Tools",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "cc-migrate-session",
+      "source": "./skills/cc-migrate-session",
+      "description": "Migrate Claude Code sessions when a project folder moves",
+      "category": "Dev Tools",
+      "skills": [
+        "./"
+      ],
+      "strict": false,
+      "version": "0.1.1"
+    },
+    {
+      "name": "deploy-to-vercel",
+      "source": "./skills/deploy-to-vercel",
+      "description": "Deploy frontend to Vercel with auto Cloudflare DNS + custom domain setup.",
+      "category": "Dev Tools",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "finder-action",
+      "source": "./skills/finder-action",
+      "description": "Generate Mac Finder right-click menu actions. Quick Action or Finder Sync Extension.",
+      "category": "Dev Tools",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "gh-access",
+      "source": "./skills/gh-access",
+      "description": "Grant / revoke / list collaborator access on private GitHub repos by username or email. Read-only by default.",
+      "category": "Dev Tools",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "gh-contribute",
+      "source": "./skills/gh-contribute",
+      "description": "Contribute clean, professional PRs to upstream GitHub repos — fork, branch, commit, push, open PR, with smart splitting.",
+      "category": "Dev Tools",
+      "skills": [
+        "./"
+      ],
+      "strict": false,
+      "version": "0.1.0"
+    },
+    {
+      "name": "gh-tidy",
+      "source": "./skills/gh-tidy",
+      "description": "Triage & clean up GitHub issues, PRs, branches, and labels in one pass.",
+      "category": "Dev Tools",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "obsidian-reset-cache",
+      "source": "./skills/obsidian-reset-cache",
+      "description": "重置 Obsidian 缓存，解决卡在 Loading cache 的问题。",
+      "category": "Dev Tools",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "project-port",
+      "source": "./skills/project-port",
+      "description": "Generate stable unique dev port (3000–8999) from project name.",
+      "category": "Dev Tools",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "xbti-creator",
+      "source": "./skills/xbti-creator",
+      "description": "Create custom BTI personality tests (LBTI, FBTI, etc.) with AI-generated content + avatars.",
+      "category": "xBTI",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "xbti-gallery",
+      "source": "./skills/xbti-gallery",
+      "description": "Browse all community-created BTI personality tests at xbti.lovstudio.ai.",
+      "category": "xBTI",
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    }
+  ]
+}

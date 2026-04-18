@@ -1,0 +1,41 @@
+# Changelog
+
+All notable changes to this skill are documented here.
+Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
+
+## [1.2.0] - 2026-04-13
+
+### Added
+
+- Add latex-clean as official theme option (k) using pandoc+XeLaTeX engine
+- New theme: latex-clean — pure LaTeX typography, no cover/decoration, clean academic style
+- Pandoc is now a first-class engine choice, not just a fallback
+
+## [1.1.1] - 2026-04-13
+
+### Fixed
+
+- Expand pandoc theme presets from link-color-only to full parameter sets
+- Add complete pandoc -V flags table for 7 themes (linkcolor, toccolor, urlcolor, watermark)
+- Add chinese-red full working example from 一滕 project
+
+## [1.1.0] - 2026-04-13
+
+### Added
+
+- Add pandoc + XeLaTeX fallback engine for complex documents
+- Document pandoc fallback with watermark, headers/footers, and theme-specific link colors
+- Fallback triggered when reportlab hangs on wide/complex tables
+- Updated skill description to mention dual-engine support
+
+## [1.0.1] - 2026-04-10
+
+### Fixed
+
+- fix silent image drops: resolve relative paths against input md dir
+- resolve relative image paths against the input markdown's directory (not cwd)
+- warn on missing images instead of silently dropping them (stderr)
+- collapse multi-line image refs in _preprocess_md so pandoc --wrap=auto output parses correctly
+- SKILL.md: add Input Format section (markdown-only), document pandoc --wrap=none tip
+- README.md: add version badge
+

@@ -1,0 +1,20 @@
+[
+  {
+    "title": "季度技术复盘报告",
+    "description": "将团队技术复盘的 Markdown 笔记转为 warm-academic 主题 PDF，含封面、目录、水印，直接发给领导。",
+    "testimonial": "以前用 Word 排版一份报告要半天，现在一条命令 30 秒搞定，而且比 Word 好看太多了。",
+    "author": "赵工 · 技术主管"
+  },
+  {
+    "title": "开源项目文档 PDF 化",
+    "description": "把 GitHub 上的 README + 设计文档合并转为 ieee-journal 风格 PDF，用于学术引用和归档。",
+    "testimonial": "CJK 混排终于不用操心了，中英文、代码块、表格全部自动处理，排版效果堪比 LaTeX。",
+    "author": "Mike · 开源作者"
+  },
+  {
+    "title": "客户方案 PDF 交付",
+    "description": "用 chinese-red 主题将商务方案 Markdown 转为正式 PDF，带封面和公司水印，直接交付客户。",
+    "testimonial": "客户拿到 PDF 后以为我们有专门的设计师排版，其实就是一条命令。",
+    "author": "林总 · 咨询公司"
+  }
+]

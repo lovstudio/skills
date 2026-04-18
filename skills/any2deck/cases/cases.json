@@ -1,0 +1,20 @@
+[
+  {
+    "title": "产品发布会演示文稿",
+    "description": "从产品 PRD 文档直接生成 16 页发布会风格 slide deck，sketch-notes 风格，导出 PPTX。",
+    "testimonial": "做 PPT 从来都是最痛苦的环节，any2deck 让我把时间花在内容上，设计全自动。",
+    "author": "小陈 · 产品经理"
+  },
+  {
+    "title": "技术分享会 Slides",
+    "description": "把技术博客文章一键转为 12 张演讲用 slides，minimal 风格，适合技术 meetup 分享。",
+    "testimonial": "写完博客就能出 slides，不用再重新做一套 PPT 了。16 种风格随便换，太省事了。",
+    "author": "Jason · 全栈工程师"
+  },
+  {
+    "title": "培训课件批量生成",
+    "description": "为 8 节培训课程批量生成 slide deck，统一品牌 overlay，导出 PDF 分发给学员。",
+    "testimonial": "8 套课件如果手动做 PPT 至少一周，用 any2deck 一个下午全搞定。",
+    "author": "吴老师 · 企业培训师"
+  }
+]
