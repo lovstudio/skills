@@ -49,6 +49,7 @@ skills:
   description: Generate event posters via HTML + Playwright / 活动海报生成
   tagline_en: Turn an event brief into a polished poster, ready to share.
   tagline_zh: 把活动信息一键变成高质感海报，直接拿去发。
+  encrypted_bundle: true
 - name: visual-clone
   repo: lovstudio/visual-clone-skill
   name_zh: 视觉复刻

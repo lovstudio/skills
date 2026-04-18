@@ -24,9 +24,10 @@
     {
       "name": "design",
       "source": "./",
-      "description": "Design — 1 free skill bundled together.",
+      "description": "Design — 1 free + 1 paid (activation required).",
       "category": "Design",
       "skills": [
+        "./skills/event-poster",
         "./skills/visual-clone"
       ],
       "strict": false
