@@ -208,6 +208,7 @@ skills:
   description: 微信公众号文章抓取
   tagline_en: Archive WeChat Official Account articles into clean, reusable text.
   tagline_zh: 把微信公众号的文章批量归档成可再利用的整洁文本。
+  encrypted_bundle: true
 - name: auto-context
   repo: lovstudio/auto-context-skill
   name_zh: 上下文体检

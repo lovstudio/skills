@@ -83,12 +83,13 @@
     {
       "name": "content-creation",
       "source": "./",
-      "description": "Content Creation — 2 free + 1 paid (activation required).",
+      "description": "Content Creation — 2 free + 2 paid (activation required).",
       "category": "Content Creation",
       "skills": [
         "./skills/anti-wechat-ai-check",
         "./skills/document-illustrator",
-        "./skills/write-professional-book"
+        "./skills/write-professional-book",
+        "./skills/wxmp-cracker"
       ],
       "strict": false
     },

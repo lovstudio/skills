@@ -1,0 +1,28 @@
+{
+  "skill_name": "wxmp-cracker",
+  "skill_version": "0.1.0",
+  "skill_id": 1,
+  "skill_version_id": 6,
+  "format_version": 2,
+  "cipher": "aes-256-gcm",
+  "files": {
+    "SKILL.md": {
+      "iv": "2mjzF5ci25PlZaQr",
+      "tag": "U3HvDx9vks+nCYSjI4lq+Q==",
+      "original_checksum": "69647bc8e260f549ec1858de4030405f3f8afb7e035f7f48a9e05034bd4a532f",
+      "original_size": 7082
+    },
+    "scripts/refresh_token.py": {
+      "iv": "oAO6Pg4T+3sCZ9e+",
+      "tag": "QoZPRIht24h3v0YS1N3z1g==",
+      "original_checksum": "bbf53436fa91694b3993f41657817365e35c424841e8f74c00a468778d20af4a",
+      "original_size": 5485
+    },
+    "scripts/wcx_run.py": {
+      "iv": "g9yw1YBEqHluul+j",
+      "tag": "5DELSURrJZp6OldjLs80Dg==",
+      "original_checksum": "fdbe66276cb3c8e41dd0ff78d1ded7716c86ced9e3f868ee6fef154734da7fb3",
+      "original_size": 3649
+    }
+  }
+}
