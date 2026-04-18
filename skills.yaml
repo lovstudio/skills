@@ -114,6 +114,8 @@ skills:
     comments
   tagline_en: Review a document or contract and return it with inline comments.
   tagline_zh: 审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。
+  encrypted_bundle: true
+  version: 0.1.0
 - name: expense-report
   repo: lovstudio/expense-report-skill
   name_zh: 报销单整理

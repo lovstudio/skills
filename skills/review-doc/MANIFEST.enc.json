@@ -1,0 +1,22 @@
+{
+  "skill_name": "review-doc",
+  "skill_version": "0.1.0",
+  "skill_id": 1,
+  "skill_version_id": 4,
+  "format_version": 2,
+  "cipher": "aes-256-gcm",
+  "files": {
+    "SKILL.md": {
+      "iv": "GwB3TCC/7BEa8RNL",
+      "tag": "qv//HFzmjGCfbv+LLkLY0Q==",
+      "original_checksum": "d653c21cbc95da04f1f29de0b176348474386996cb983d8e53b139c114d83100",
+      "original_size": 7835
+    },
+    "scripts/annotate_docx.py": {
+      "iv": "WBhoEVoh/NDtto5w",
+      "tag": "MLpi+hS1y3zIdUJHPwt+AQ==",
+      "original_checksum": "030553a5c20cc1143bf424b25e78346c60912dbc9e209d0d8525100c6c9d9b38",
+      "original_size": 13929
+    }
+  }
+}

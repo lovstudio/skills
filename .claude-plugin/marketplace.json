@@ -62,10 +62,11 @@
     {
       "name": "business",
       "source": "./",
-      "description": "Business — 0 free + 1 paid (activation required).",
+      "description": "Business — 0 free + 2 paid (activation required).",
       "category": "Business",
       "skills": [
-        "./skills/proposal"
+        "./skills/proposal",
+        "./skills/review-doc"
       ],
       "strict": false
     },
