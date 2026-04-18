@@ -88,13 +88,22 @@ skills:
     description: "Fill web forms from local knowledge base. Fetch URL → deep-search KB → generate markdown doc."
     tagline_en: "Answer online forms using your own knowledge base as the source of truth."
     tagline_zh: "用你本地的知识库来应答网页表单，一轮检索一轮生成，草稿即交付。"
+  # ── Business ──
   - name: proposal
     repo: lovstudio/proposal-skill
     paid: true
-    category: "Office Automation"
+    category: "Business"
     description: "Business proposal with architecture, budget & PDF / 完整商业提案"
     tagline_en: "Turn a project brief into a complete, client-ready business proposal."
     tagline_zh: "把项目简述一键变成可交付的商业提案，方案、报价、排版全配齐。"
+  - name: review-doc
+    repo: lovstudio/review-doc-skill
+    paid: true
+    category: "Business"
+    description: "Review and annotate documents/contracts — output annotated docx with comments"
+    tagline_en: "Review a document or contract and return it with inline comments."
+    tagline_zh: "审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。"
+
   # ── Finance ──
   - name: expense-report
     repo: lovstudio/expense-report-skill
@@ -103,13 +112,6 @@ skills:
     description: "Invoice images/text → categorized Excel expense report"
     tagline_en: "Turn a pile of invoices into a categorized Excel expense report."
     tagline_zh: "发票图片或文字一键整理成分类报销 Excel，业务招待、差旅、办公自动归类。"
-  - name: review-doc
-    repo: lovstudio/review-doc-skill
-    paid: false
-    category: "Office Automation"
-    description: "Review and annotate documents/contracts — output annotated docx with comments"
-    tagline_en: "Review a document or contract and return it with inline comments."
-    tagline_zh: "审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。"
 
   - name: any2pdf
     repo: lovstudio/any2pdf-skill
