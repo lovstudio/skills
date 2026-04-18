@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Render README.md and README.zh-CN.md from skills.yaml.
+"""Render README.md (Simplified Chinese, primary) and README.en.md (English) from skills.yaml.
 
 Replaces the block between <!-- SKILLS:START --> and <!-- SKILLS:END -->
 and updates the count line between <!-- COUNT:START --> and <!-- COUNT:END -->
-in BOTH language README files.
+in BOTH language README files. Chinese is primary because most contributors
+and users of this repo read Chinese first.
 
 Usage:
     python3 scripts/render-readme.py              # render from skills.yaml
@@ -22,8 +23,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 YAML_PATH = ROOT / "skills.yaml"
-README_EN = ROOT / "README.md"
-README_ZH = ROOT / "README.zh-CN.md"
+README_ZH = ROOT / "README.md"          # primary, default view on GitHub
+README_EN = ROOT / "README.en.md"       # secondary, linked from the language switcher
 
 FREE_BADGE = "![Free](https://img.shields.io/badge/Free-green)"
 PAID_BADGE = "![Paid](https://img.shields.io/badge/Paid-blueviolet)"
@@ -160,9 +161,9 @@ def main() -> int:
     if os.environ.get("GH_SYNC") == "1":
         gh_sync(skills)
 
-    render_file(README_EN, skills, "en")
-    if README_ZH.exists():
-        render_file(README_ZH, skills, "zh")
+    render_file(README_ZH, skills, "zh")
+    if README_EN.exists():
+        render_file(README_EN, skills, "en")
     return 0
 
 
