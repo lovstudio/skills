@@ -1,0 +1,58 @@
+name: Render README
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "skills.yaml"
+      - "scripts/render-readme.py"
+      - ".github/workflows/render-readme.yml"
+  schedule:
+    # Nightly: pull fresh descriptions from each skill repo's GitHub description.
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+    inputs:
+      gh_sync:
+        description: "Sync descriptions from GitHub repo metadata"
+        required: false
+        default: "true"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-readme
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Render README
+        env:
+          # push → skip gh_sync (fast, yaml-only); schedule/dispatch → sync from GitHub
+          GH_SYNC: ${{ (github.event_name == 'schedule' || inputs.gh_sync == 'true') && '1' || '' }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/render-readme.py
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet README.md; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "docs: auto-render README from skills.yaml"
+          git push

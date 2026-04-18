@@ -115,7 +115,7 @@ skills:
     category: "Content Creation"
     description: "为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。"
   - name: write-professional-book
-    repo: lovstudio/write-book-skill
+    repo: lovstudio/write-professional-book-skill
     paid: true
     category: "Content Creation"
     description: "Write multi-chapter books (technical, tutorial, monograph) / 逐章写书，支持多种风格"

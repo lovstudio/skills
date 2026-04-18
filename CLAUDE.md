@@ -10,12 +10,15 @@ The **central index** for Lovstudio skills. **No skill code lives here** — eac
 
 ```
 .
-├── README.md          # Human-readable skill catalog
-├── skills.yaml        # Machine-readable manifest (source of truth for `paid` field)
-├── CHANGELOG.md       # Index repo history (not per-skill)
-├── LICENSE            # MIT (for this index; each skill has its own LICENSE)
-└── .github/           # CI workflows (e.g. sync manifest from skill repos)
+├── README.md                  # Human-readable skill catalog (CI-rendered between SKILLS:START/END markers)
+├── skills.yaml                # Machine-readable manifest — SOURCE OF TRUTH
+├── scripts/render-readme.py   # Regenerates README skill table from skills.yaml
+├── CHANGELOG.md               # Index repo history (not per-skill)
+├── LICENSE                    # MIT (for this index; each skill has its own LICENSE)
+└── .github/workflows/         # render-readme.yml auto-commits README on skills.yaml push + nightly GH desc sync
 ```
+
+**Edit `skills.yaml`, not the README table directly.** CI regenerates the table on push and syncs descriptions from each skill's GitHub repo description nightly (`GH_SYNC=1`). You can run `python3 scripts/render-readme.py` locally to preview; add `GH_SYNC=1` to also refresh descriptions.
 
 ## skills.yaml Schema
 
@@ -33,7 +36,7 @@ skills:
 ## Key Conventions
 
 - **`paid` field is only here**, not in individual SKILL.md files. It's business classification, not skill metadata.
-- **24 Free + 3 Paid = 27 skills total**. Paid: `event-poster`, `proposal`, `write-book`.
+- **Current totals live in `skills.yaml`** — the README count line is auto-rendered, so don't hand-edit it. See `scripts/render-readme.py`.
 - **Naming**: GitHub repo = `lovstudio/{name}-skill`; local path = `~/lovstudio/skills/{name}-skill/`. No `lovstudio-` prefix in the name.
 - Skill short name (`any2pdf`) is what users invoke via `lovstudio:any2pdf` in Claude Code.
 
@@ -41,7 +44,7 @@ skills:
 
 1. In `~/lovstudio/skills/`: run the [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) skill to scaffold `{name}-skill/`.
 2. `cd {name}-skill && git init && git add -A && git commit && gh repo create lovstudio/{name}-skill --public --source=. --push`
-3. Open a PR against this repo appending an entry to `skills.yaml` and a row to `README.md`.
+3. Open a PR against this repo appending an entry to `skills.yaml`. **Don't touch the README table** — CI regenerates it from the manifest.
 
 For **paid** skills: pass `--private` to `gh repo create` and set `paid: true`.
 
