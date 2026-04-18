@@ -32,7 +32,7 @@
 ## 技能列表
 
 <!-- COUNT:START -->
-> **31 个技能** — 27 个免费 + 4 个付费。
+> **32 个技能** — 28 个免费 + 4 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -75,6 +75,7 @@
 | ![Free](https://img.shields.io/badge/Free-green) | [`deploy-to-vercel`](https://github.com/lovstudio/deploy-to-vercel-skill) | Deploy frontend to Vercel with auto Cloudflare DNS + custom domain setup. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`finder-action`](https://github.com/lovstudio/finder-action-skill) | Generate Mac Finder right-click menu actions. Quick Action or Finder Sync Extension. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`gh-access`](https://github.com/lovstudio/gh-access-skill) | Grant / revoke / list collaborator access on private GitHub repos by username or email. Read-only by default. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`gh-contribute`](https://github.com/lovstudio/gh-contribute-skill) | Contribute clean, professional PRs to upstream GitHub repos — fork, branch, commit, push, open PR, with smart splitting. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`gh-tidy`](https://github.com/lovstudio/gh-tidy-skill) | Triage & clean up GitHub issues, PRs, branches, and labels in one pass. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`obsidian-reset-cache`](https://github.com/lovstudio/obsidian-reset-cache-skill) | 重置 Obsidian 缓存，解决卡在 Loading cache 的问题。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`project-port`](https://github.com/lovstudio/project-port-skill) | Generate stable unique dev port (3000–8999) from project name. |
