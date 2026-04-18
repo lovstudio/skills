@@ -153,6 +153,12 @@ skills:
     paid: false
     category: "Dev Tools"
     description: "Grant / revoke / list collaborator access on private GitHub repos by username or email. Read-only by default."
+  - name: gh-contribute
+    repo: lovstudio/gh-contribute-skill
+    paid: false
+    category: "Dev Tools"
+    version: "0.1.0"
+    description: "Contribute clean, professional PRs to upstream GitHub repos — fork, branch, commit, push, open PR, with smart splitting."
   - name: gh-tidy
     repo: lovstudio/gh-tidy-skill
     paid: false
