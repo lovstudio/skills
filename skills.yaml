@@ -40,6 +40,16 @@ skills:
     Used to verify encryption + activation works.
   tagline_en: Trivial addition skill — the PoC proving end-to-end paid-skill encryption.
   tagline_zh: 付费加密分发机制的联调测试 skill，输入数字返回求和。
+- name: numeric-verdict
+  repo: lovstudio/numeric-verdict-skill
+  name_zh: 数对判定 (教学 demo)
+  paid: true
+  category: General
+  version: 0.1.0
+  description: Evaluate a pair of numeric inputs against a server-side rule and
+    return a symbolic verdict. Cloud-split teaching demo — real logic on the server.
+  tagline_en: Pairwise numeric verdict — cloud-split demo with symbolic output.
+  tagline_zh: 成对数字判定的 cloud-split 教学 demo — 本地只看到 A/B 符号。
 - name: event-poster
   repo: lovstudio/event-poster-skill
   name_zh: 活动海报
