@@ -40,6 +40,16 @@ skills:
     Used to verify encryption + activation works.
   tagline_en: Trivial addition skill — the PoC proving end-to-end paid-skill encryption.
   tagline_zh: 付费加密分发机制的联调测试 skill，输入数字返回求和。
+- name: threshold-check
+  repo: lovstudio/threshold-check-skill
+  name_zh: 阈值判定 (教学 demo)
+  paid: true
+  category: General
+  version: 0.1.0
+  description: Aggregate numbers and report whether the aggregate is above, below,
+    or equal to a threshold. Cloud-split teaching demo — real logic on the server.
+  tagline_en: Teaching demo of the cloud-split skill pattern — thin client, server-side rule.
+  tagline_zh: Cloud-split 架构教学 demo — 本地只有瘦客户端，真正的判定逻辑跑在云端。
 - name: event-poster
   repo: lovstudio/event-poster-skill
   name_zh: 活动海报
