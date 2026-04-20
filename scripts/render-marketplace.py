@@ -44,7 +44,7 @@ def load_installable_skills() -> list[dict]:
         data = yaml.safe_load(f)
     return [
         s for s in data["skills"]
-        if not s.get("paid") or s.get("encrypted_bundle")
+        if not s.get("test") and (not s.get("paid") or s.get("encrypted_bundle"))
     ]
 
 

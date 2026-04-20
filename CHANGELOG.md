@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.8.1 — 2026-04-21
+
+- **New skill**: `find-logo` (free, Design) — fetch + score brand logos from public sources, archive to `~/.lovstudio/logo-collection/`.
+- **`test` flag**: add `test: true` in `skills.yaml` to hide test/PoC skills from production — excluded from README table, marketplace plugins, and the `./skills/` mirror. Applied to `paid-add` (the encryption-PoC skill).
+- **Published encrypted bundles** (via paid-skill pipeline): `event-poster@0.3.2`, `proposal@0.1.1`, `review-doc@0.1.1`, `wxmp-cracker@0.1.3`, `write-professional-book@0.1.2`, `paid-add@0.1.1`.
+- **Category tidy**: merged `Document Conversion` → `Office Automation`; new `Business` category for `proposal` + `review-doc`.
+- **Docs**: split Agent-facing `description` from human-facing `tagline_en` / `tagline_zh`; 简体中文 is now the default README; embed 手工川 WeChat banner.
+- **Mirror pipeline**: `scripts/sync-skills.py` now protects hand-committed encrypted bundles from prune; marketplace groups skills by category (one plugin per category).
+- **`review-doc`**: rename zh label 文档审阅 → 合同审阅.
+
 ## 0.8.0 — 2026-04-16
 
 **Major refactor: monorepo → central index + 27 independent skill repos.**

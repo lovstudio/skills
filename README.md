@@ -36,7 +36,7 @@
 ## 技能列表
 
 <!-- COUNT:START -->
-> **34 个技能** — 27 个免费 + 7 个付费。
+> **34 个技能** — 28 个免费 + 6 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -45,14 +45,14 @@
 | **通用** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [图片生成 · `image-creator`](https://github.com/lovstudio/image-creator-skill) | 按需选择最合适的出图方式：端到端 AI、代码渲染或提示词精修。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [数对判定 (教学 demo) · `numeric-verdict`](https://github.com/lovstudio/numeric-verdict-skill) | 成对数字判定的 cloud-split 教学 demo — 本地只看到 A/B 符号。 |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [加法 (测试付费) · `paid-add`](https://github.com/lovstudio/paid-add-skill) | 付费加密分发机制的联调测试 skill，输入数字返回求和。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [技能脚手架 · `skill-creator`](https://github.com/lovstudio/skill-creator-skill) | 一条命令生成规范的 Claude Code 技能骨架，结构即对即用。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [技能优化器 · `skill-optimizer`](https://github.com/lovstudio/skill-optimizer-skill) | 一键体检并修复现有技能，自动升版本号并追加 CHANGELOG。 |
 | **商务** | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [商业提案 · `proposal`](https://github.com/lovstudio/proposal-skill) | 把项目简述一键变成可交付的商业提案，方案、报价、排版全配齐。 |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [文档审阅 · `review-doc`](https://github.com/lovstudio/review-doc-skill) | 审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。 |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [合同审阅 · `review-doc`](https://github.com/lovstudio/review-doc-skill) | 审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。 |
 | **设计** | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [活动海报 · `event-poster`](https://github.com/lovstudio/event-poster-skill) | 把活动信息一键变成高质感海报，直接拿去发。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [Logo 收集 · `find-logo`](https://github.com/lovstudio/find-logo-skill) | 按品牌名或网址抓取 logo，自动评分择优（偏好长条形 + 透明底），统一归档到本地，方便网站/PPT/海报罗列。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [视觉复刻 · `visual-clone`](https://github.com/lovstudio/visual-clone-skill) | 从参考图中提取设计要素，生成可复刻同款风格的指令。 |
 | **学术** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [论文润色 · `thesis-polish`](https://github.com/lovstudio/thesis-polish-skill) | MBA 论文全维度润色，对标国优标准，打磨语言、结构、论证与创新四个面。 |

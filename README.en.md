@@ -36,7 +36,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 ## Skills
 
 <!-- COUNT:START -->
-> **34 skills** — 27 Free + 7 Paid.
+> **34 skills** — 28 Free + 6 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -45,7 +45,6 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 | **General** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`image-creator`](https://github.com/lovstudio/image-creator-skill) | Generate images through the right mechanism — AI, code rendering, or prompt tuning. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`numeric-verdict`](https://github.com/lovstudio/numeric-verdict-skill) | Pairwise numeric verdict — cloud-split demo with symbolic output. |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`paid-add`](https://github.com/lovstudio/paid-add-skill) | Trivial addition skill — the PoC proving end-to-end paid-skill encryption. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) | Scaffold a new Claude Code skill with the right structure in seconds. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-optimizer`](https://github.com/lovstudio/skill-optimizer-skill) | Audit an existing skill, auto-fix issues, and bump its version in one pass. |
 | **Business** | | |
@@ -53,6 +52,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`review-doc`](https://github.com/lovstudio/review-doc-skill) | Review a document or contract and return it with inline comments. |
 | **Design** | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | Turn an event brief into a polished poster, ready to share. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`find-logo`](https://github.com/lovstudio/find-logo-skill) | Collect brand logos from public sources — wide and transparent preferred, archived for website/PPT/poster lineups. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`visual-clone`](https://github.com/lovstudio/visual-clone-skill) | Extract the design DNA of a reference image so you can recreate the look. |
 | **Academic** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`thesis-polish`](https://github.com/lovstudio/thesis-polish-skill) | Polish an MBA thesis across language, structure, argument, and originality. |

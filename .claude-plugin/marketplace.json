@@ -11,24 +11,24 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 3 free + 1 paid (activation required).",
+      "description": "General — 3 free skills bundled together.",
       "category": "General",
       "skills": [
         "./skills/skill-creator",
         "./skills/skill-optimizer",
-        "./skills/image-creator",
-        "./skills/paid-add"
+        "./skills/image-creator"
       ],
       "strict": false
     },
     {
       "name": "design",
       "source": "./",
-      "description": "Design — 1 free + 1 paid (activation required).",
+      "description": "Design — 2 free + 1 paid (activation required).",
       "category": "Design",
       "skills": [
         "./skills/event-poster",
-        "./skills/visual-clone"
+        "./skills/visual-clone",
+        "./skills/find-logo"
       ],
       "strict": false
     },

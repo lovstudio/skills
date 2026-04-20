@@ -56,7 +56,7 @@ RSYNC_EXCLUDES = [
 def load_skills() -> list[dict]:
     with YAML_PATH.open() as f:
         data = yaml.safe_load(f)
-    return data["skills"]
+    return [s for s in data["skills"] if not s.get("test")]
 
 
 def free_skills(skills: list[dict]) -> list[dict]:

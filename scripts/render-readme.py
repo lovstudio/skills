@@ -59,7 +59,7 @@ CATEGORY_ORDER_EN = [
 def load_skills() -> list[dict]:
     with YAML_PATH.open() as f:
         data = yaml.safe_load(f)
-    return data["skills"]
+    return [s for s in data["skills"] if not s.get("test")]
 
 
 def gh_sync(skills: list[dict]) -> None:

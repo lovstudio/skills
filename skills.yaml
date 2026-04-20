@@ -70,6 +70,18 @@ skills:
   tagline_en: Extract the design DNA of a reference image so you can recreate the
     look.
   tagline_zh: 从参考图中提取设计要素，生成可复刻同款风格的指令。
+- name: find-logo
+  repo: lovstudio/find-logo-skill
+  name_zh: Logo 收集
+  paid: false
+  category: Design
+  version: 0.1.0
+  description: Fetch a brand/product logo from public sources (Clearbit, og:image,
+    favicon), score candidates (prefer wide-aspect + transparent), and archive into
+    ~/.lovstudio/logo-collection/.
+  tagline_en: Collect brand logos from public sources — wide and transparent preferred,
+    archived for website/PPT/poster lineups.
+  tagline_zh: 按品牌名或网址抓取 logo，自动评分择优（偏好长条形 + 透明底），统一归档到本地，方便网站/PPT/海报罗列。
 - name: thesis-polish
   repo: lovstudio/thesis-polish-skill
   name_zh: 论文润色
