@@ -81,6 +81,7 @@
 | ![Free](https://img.shields.io/badge/Free-green) | [GitHub 仓库整理 · `gh-tidy`](https://github.com/lovstudio/gh-tidy-skill) | 一次过清理 GitHub 上的 issue、PR、分支和标签，让仓库重新整洁。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [重置 Obsidian 缓存 · `obsidian-reset-cache`](https://github.com/lovstudio/obsidian-reset-cache-skill) | Obsidian 卡在 Loading cache 时，一键重置缓存救场。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [项目端口分配 · `project-port`](https://github.com/lovstudio/project-port-skill) | 给每个项目分配一个稳定且唯一的开发端口，彻底告别端口撞车。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [合作伙伴维护 · `maintain-partners`](https://github.com/lovstudio/maintain-partners-skill) | 抓取品牌 logo、统一规格、四语言一键写入合作伙伴板块并体检全部条目。 |
 | **人格测试** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [xBTI 测试定制 · `xbti-creator`](https://github.com/lovstudio/xbti-creator-skill) | 定制属于你自己的 BTI 人格测试（LBTI、FBTI 等），题目、结果、头像全自动生成。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [xBTI 画廊 · `xbti-gallery`](https://github.com/lovstudio/xbti-gallery-skill) | 浏览社区在 xbti.lovstudio.ai 上发布的所有 BTI 人格测试。 |

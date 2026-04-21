@@ -322,6 +322,18 @@ skills:
   description: Generate stable unique dev port (3000–8999) from project name.
   tagline_en: Assign each project a stable, unique dev port so services stop colliding.
   tagline_zh: 给每个项目分配一个稳定且唯一的开发端口，彻底告别端口撞车。
+- name: maintain-partners
+  repo: lovstudio/maintain-partners-skill
+  name_zh: 合作伙伴维护
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: Maintain a website's partners section — scrape brand logos, normalize
+    to a fixed canvas, append entries with i18n taglines across 4 locales, and audit
+    for dead URLs / missing assets.
+  tagline_en: Scrape, normalize, and wire brand logos into the partners section across
+    4 locales in one shot.
+  tagline_zh: 抓取品牌 logo、统一规格、四语言一键写入合作伙伴板块并体检全部条目。
 - name: xbti-creator
   repo: lovstudio/xbti-creator-skill
   name_zh: xBTI 测试定制
