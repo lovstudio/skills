@@ -1,0 +1,16 @@
+{
+  "skill_name": "event-curator",
+  "skill_version": "0.1.0",
+  "skill_id": 0,
+  "skill_version_id": 0,
+  "format_version": 2,
+  "cipher": "aes-256-gcm",
+  "files": {
+    "SKILL.md": {
+      "iv": "+3GZqtb/rw2wJqgX",
+      "tag": "jc55t54ztxKFqKWalQHfRA==",
+      "original_checksum": "9713bca3436599aa0a68ef682a3feba91e164adebc57decf317f04fd5d882a86",
+      "original_size": 12363
+    }
+  }
+}

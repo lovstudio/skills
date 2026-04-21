@@ -219,3 +219,19 @@ skills:
   tagline_en: Archive WeChat Official Account articles into clean, reusable text.
   tagline_zh: 把微信公众号的文章批量归档成可再利用的整洁文本。
   encrypted_bundle: true
+- name: event-curator
+  repo: lovstudio/event-curator-skill
+  name_zh: 活动策展人
+  paid: true
+  category: Content Creation
+  version: 0.1.0
+  description: >
+    Generate a complete professional event plan from guest background material.
+    Takes guest bio / CV / intro copy as input, runs a multi-turn clarification
+    dialog (activity type, audience, duration, tone), and outputs a cohesive
+    plan with title + promo copy, minute-level rundown, tiered host question
+    set, and gift / takeaway suggestions.
+  tagline_en: Turn a guest bio into a ready-to-run event plan — title, rundown,
+    host questions, and gifts.
+  tagline_zh: 从嘉宾履历一键生成可交付的活动策划案 — 主题文案、分钟级 rundown、主持人问题卡、伴手礼。
+  encrypted_bundle: true
