@@ -97,7 +97,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 9 free skills bundled together.",
+      "description": "Dev Tools — 10 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/auto-context",
@@ -108,7 +108,8 @@
         "./skills/gh-contribute",
         "./skills/gh-tidy",
         "./skills/obsidian-reset-cache",
-        "./skills/project-port"
+        "./skills/project-port",
+        "./skills/maintain-partners"
       ],
       "strict": false
     },
