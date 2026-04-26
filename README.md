@@ -60,6 +60,7 @@
 | ![Free](https://img.shields.io/badge/Free-green) | [译文审阅 · `translation-review`](https://github.com/lovstudio/translation-review-skill) | 中译英译文审阅，从六个维度逐条对照原文，找出问题并给出改写建议。 |
 | **办公** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [万物转幻灯 · `any2deck`](https://github.com/lovstudio/any2deck-skill) | 把任意内容变成带设计感的幻灯片，16 种风格可选，导出 PPTX / PDF。 — 相关: `any2pdf`, `any2docx` |
+| ![Free](https://img.shields.io/badge/Free-green) | [HTML 出片 · `html2pptx`](https://github.com/lovstudio/html2pptx-skill) | 用 HTML/CSS 写幻灯片，浏览器实时编辑，一键导出像素级 PPTX。 — 相关: `any2deck`, `any2pdf` |
 | ![Free](https://img.shields.io/badge/Free-green) | [万物转 Word · `any2docx`](https://github.com/lovstudio/any2docx-skill) | 把 Markdown 转成排版规范的 Word 文档，可以直接发给甲方。 — 相关: `any2pdf`, `any2deck` |
 | ![Free](https://img.shields.io/badge/Free-green) | [万物转 PDF · `any2pdf`](https://github.com/lovstudio/any2pdf-skill) | 把 Markdown 排成出版级 PDF，中英混排、代码块、表格全支持，内置 14 套主题。 — 相关: `any2docx`, `any2deck` |
 | ![Free](https://img.shields.io/badge/Free-green) | [表单代笔 · `fill-form`](https://github.com/lovstudio/fill-form-skill) | 自动填写 Word 表单模板，字段识别 + 中英文排版一气呵成。 |
