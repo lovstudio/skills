@@ -124,6 +124,21 @@ skills:
   related:
   - any2pdf
   - any2docx
+- name: html2pptx
+  display_name: HTML → PPTX
+  repo: lovstudio/html2pptx-skill
+  name_zh: HTML 出片
+  paid: false
+  category: Office Automation
+  version: 0.1.0
+  description: Convert HTML to PPTX via Playwright. Each .slide element becomes one
+    1920×1080 retina page; ships a live browser editor with one-click export.
+  tagline_en: Write slides in HTML, export pixel-perfect PPTX — with a live browser
+    editor in the box.
+  tagline_zh: 用 HTML/CSS 写幻灯片，浏览器实时编辑，一键导出像素级 PPTX。
+  related:
+  - any2deck
+  - any2pdf
 - name: pdf2png
   display_name: PDF → Image
   repo: lovstudio/pdf2png-skill
