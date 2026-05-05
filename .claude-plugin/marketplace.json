@@ -11,11 +11,22 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 2 free skills bundled together.",
+      "description": "General — 1 free skill bundled together.",
       "category": "General",
       "skills": [
-        "./skills/image-creator",
-        "./skills/maintain-partners"
+        "./skills/image-creator"
+      ],
+      "strict": false
+    },
+    {
+      "name": "design",
+      "source": "./",
+      "description": "Design — 2 free + 1 paid (activation required).",
+      "category": "Design",
+      "skills": [
+        "./skills/maintain-partners",
+        "./skills/event-poster",
+        "./skills/find-logo"
       ],
       "strict": false
     },
@@ -46,17 +57,6 @@
         "./skills/contract-review-pro",
         "./skills/expense-report",
         "./skills/event-curator"
-      ],
-      "strict": false
-    },
-    {
-      "name": "design",
-      "source": "./",
-      "description": "Design — 1 free + 1 paid (activation required).",
-      "category": "Design",
-      "skills": [
-        "./skills/event-poster",
-        "./skills/find-logo"
       ],
       "strict": false
     },
