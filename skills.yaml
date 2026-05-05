@@ -55,7 +55,7 @@ skills:
   repo: lovstudio/maintain-partners-skill
   name_zh: 合作伙伴维护
   paid: false
-  category: General
+  category: Design
   description: Maintain a website's partners section — scrape brand logos from homepages,
     normalize them, and wire them into the site across multiple locales in one shot.
   tagline_en: Scrape, normalize, and wire brand logos into the partners section across
