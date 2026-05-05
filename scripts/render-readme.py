@@ -131,25 +131,27 @@ def render_table(skills: list[dict], lang: str) -> str:
     ordered_keys = [c for c in CATEGORY_ORDER_EN if c in grouped]
     ordered_keys += [c for c in grouped if c not in CATEGORY_ORDER_EN]
 
-    header = {
-        "en": "| | Skill | Description |",
-        "zh": "| | 技能 | 描述 |",
-    }[lang]
-    rows = [header, "|---|---|---|"]
+    if lang == "zh":
+        rows = ["| | 英文名 | 中文名 | 描述 |", "|---|---|---|---|"]
+    else:
+        rows = ["| | Skill | Description |", "|---|---|---|"]
 
     for key in ordered_keys:
         labels = CATEGORY_LABELS.get(key, (key, key))
         display = labels[0] if lang == "en" else labels[1]
-        rows.append(f"| **{display}** | | |")
+        rows.append(f"| **{display}** | | | |" if lang == "zh" else f"| **{display}** | | |")
         for s in sorted(grouped[key], key=lambda x: x["name"]):
             badge = PAID_BADGE if s.get("paid") else FREE_BADGE
             link = f"https://github.com/{s['repo']}"
-            if lang == "zh" and s.get("name_zh"):
-                name_cell = f"[{s['name_zh']} · `{s['name']}`]({link})"
+            tagline = pick_tagline(s, lang) + render_deps_suffix(s, lang)
+            if lang == "zh":
+                english_cell = f"[`{s['name']}`]({link})"
+                zh_name = (s.get("name_zh") or s.get("display_name") or s["name"]).strip()
+                zh_cell = f"[{zh_name}]({link})"
+                rows.append(f"| {badge} | {english_cell} | {zh_cell} | {tagline} |")
             else:
                 name_cell = f"[`{s['name']}`]({link})"
-            tagline = pick_tagline(s, lang) + render_deps_suffix(s, lang)
-            rows.append(f"| {badge} | {name_cell} | {tagline} |")
+                rows.append(f"| {badge} | {name_cell} | {tagline} |")
     return "\n".join(rows)
 
 
