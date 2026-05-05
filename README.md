@@ -1,7 +1,7 @@
 <h1 align="center">Lovstudio Skills</h1>
 
 <p align="center">
-  <strong>Lovstudio Claude Code AI 编程技能的主索引与安装镜像。</strong><br>
+  <strong>Lovstudio Claude Code AI 编程技能生态的总索引。</strong><br>
   <sub>由 <a href="https://lovstudio.ai">Lovstudio</a> 出品 · <a href="https://agentskills.io">agentskills.io</a></sub>
 </p>
 
@@ -22,9 +22,12 @@
 
 ## 这是什么
 
-本仓库是 Lovstudio 技能生态的**主索引**，同时也是 `npx lovstudio skills add skills`
-使用的安装镜像。常规技能在各自独立仓库 `github.com/lovstudio/{name}-skill` 中维护；
-开发者工具、xBTI 等专题技能通过下方“扩展索引”链接到各自的子索引仓库。
+本仓库是 Lovstudio 技能生态的**总索引**。常规技能集合已拆到
+[`lovstudio/general-skills`](https://github.com/lovstudio/general-skills)；开发者工具、
+xBTI 等专题技能通过下方“扩展索引”链接到各自的子索引仓库。
+
+为了兼容旧安装入口，本仓库暂时仍保留常规技能的清单与安装镜像；新的常规技能更新应进入
+`lovstudio/general-skills`。
 
 本仓库包含：
 
@@ -88,6 +91,7 @@
 
 | 子索引 | 内容 | 安装 |
 |---|---|---|
+| [`lovstudio/general-skills`](https://github.com/lovstudio/general-skills) | 常规 Lovstudio 技能：办公、商务、设计、学术、内容创作等 | `npx lovstudio skills add general-skills -g -y` |
 | [`lovstudio/dev-skills`](https://github.com/lovstudio/dev-skills) | 开发者与技能作者工具：Meta（skill-creator / skill-optimizer）+ Dev Tools（GitHub、Vercel、macOS、Claude Code session、TanStack Query 初始化/重构等） | `npx lovstudio skills add dev-skills -g -y` |
 | [`lovstudio/xbti-skills`](https://github.com/lovstudio/xbti-skills) | xBTI 人格测试定制与画廊（配合 [xbti.lovstudio.ai](https://xbti.lovstudio.ai)） | `npx lovstudio skills add xbti-skills -g -y` |
 
@@ -99,8 +103,8 @@
 # 装单个技能
 npx lovstudio skills add any2pdf -g -y
 
-# 一次装全部
-npx lovstudio skills add skills -g -y
+# 一次安装全部常规技能
+npx lovstudio skills add general-skills -g -y
 
 # 付费技能 — 一行带激活
 npx lovstudio skills add proposal -k lk-<your-license-key> -g -y
@@ -116,13 +120,15 @@ npx lovstudio license activate lk-<your-license-key>
 ## 工作原理
 
 ```
-lovstudio/skills (本仓库)            ← 主索引 + 安装镜像
-├── README.md                        ← 中文版主索引（默认）
+lovstudio/skills (本仓库)            ← Lovstudio 技能生态总索引
+├── README.md                        ← 中文版总索引（默认）
 ├── README.en.md                     ← English index
-├── skills.yaml                      ← 常规技能的机器可读清单
-├── skills/<name>/                   ← 安装器使用的镜像目录
-├── .claude-plugin/marketplace.json  ← Claude Code plugin marketplace 元数据
-└── .github/workflows/               ← CI：同步镜像、渲染 README、同步描述
+└── README / 扩展索引                 ← 指向 general/dev/xBTI 等子索引
+
+lovstudio/general-skills             ← 常规技能索引 + 安装镜像
+├── skills.yaml
+├── skills/<name>/
+└── .claude-plugin/marketplace.json
 
 lovstudio/<name>-skill               ← 常规技能的独立源码仓库
 ├── SKILL.md                         ← 技能定义（frontmatter + 文档）
@@ -138,7 +144,7 @@ lovstudio/dev-skills                 ← 开发者/技能作者工具子索引
 
 ## 贡献
 
-- **新增常规技能**：用 [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) 脚手架生成。然后在 `lovstudio/{name}-skill` 创建仓库，并向本仓库提 PR 将其添加到 `skills.yaml`。
+- **新增常规技能**：用 [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) 脚手架生成。然后在 `lovstudio/{name}-skill` 创建仓库，并向 [`lovstudio/general-skills`](https://github.com/lovstudio/general-skills) 提 PR 将其添加到 `skills.yaml`。
 - **新增开发者/元技能**：优先放到 [`lovstudio/dev-skills`](https://github.com/lovstudio/dev-skills)，在该子索引内维护 `skills.yaml`、README 和镜像。
 - **现有技能**：请在技能自己的仓库中提 issue / PR。
 - **索引修正**（分类、描述、链接）：向本仓库的 `skills.yaml` 提 PR。**不要改动 README 表格**——CI 会自动重新生成。

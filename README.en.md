@@ -1,7 +1,7 @@
 <h1 align="center">Lovstudio Skills</h1>
 
 <p align="center">
-  <strong>Main index and install mirror for Lovstudio AI coding skills for Claude Code.</strong><br>
+  <strong>Top-level index for the Lovstudio AI coding skills ecosystem.</strong><br>
   <sub>By <a href="https://lovstudio.ai">Lovstudio</a> · <a href="https://agentskills.io">agentskills.io</a></sub>
 </p>
 
@@ -22,10 +22,12 @@
 
 ## What Is This
 
-This repo is the **main index** for the Lovstudio skills ecosystem and the install mirror used by
-`npx lovstudio skills add skills`. Regular skills live in their own repos at
-`github.com/lovstudio/{name}-skill`; developer tooling, xBTI, and other themed collections are
-linked below as extension index repos.
+This repo is the **top-level index** for the Lovstudio skills ecosystem. General skills now live in
+[`lovstudio/general-skills`](https://github.com/lovstudio/general-skills); developer tooling, xBTI,
+and other themed collections are linked below as extension index repos.
+
+For backwards compatibility, this repo temporarily keeps the general-skills manifest and install
+mirror. New general-skill updates should go to `lovstudio/general-skills`.
 
 This repo contains:
 
@@ -90,6 +92,7 @@ in the regular skills table above. Install as needed:
 
 | Sub-index | Scope | Install |
 |---|---|---|
+| [`lovstudio/general-skills`](https://github.com/lovstudio/general-skills) | General Lovstudio skills: office automation, business, design, academic, content creation, and more | `npx lovstudio skills add general-skills -g -y` |
 | [`lovstudio/dev-skills`](https://github.com/lovstudio/dev-skills) | Developer & skill-author tools: Meta (skill-creator / skill-optimizer) + Dev Tools (GitHub, Vercel, macOS, Claude Code session, TanStack Query setup/refactors, …) | `npx lovstudio skills add dev-skills -g -y` |
 | [`lovstudio/xbti-skills`](https://github.com/lovstudio/xbti-skills) | Build and browse xBTI personality tests (paired with [xbti.lovstudio.ai](https://xbti.lovstudio.ai)) | `npx lovstudio skills add xbti-skills -g -y` |
 
@@ -101,8 +104,8 @@ Single entry point — `npx lovstudio` covers free and paid skills alike:
 # install one skill
 npx lovstudio skills add any2pdf -g -y
 
-# install everything
-npx lovstudio skills add skills -g -y
+# install all general skills
+npx lovstudio skills add general-skills -g -y
 
 # paid skill — install + activate license in one shot
 npx lovstudio skills add proposal -k lk-<your-license-key> -g -y
@@ -118,13 +121,15 @@ Browse and install via [agentskills.io](https://agentskills.io) for a one-click 
 ## How It Works
 
 ```
-lovstudio/skills (this repo)         ← main index + install mirror
-├── README.md                        ← primary index (简体中文, default)
+lovstudio/skills (this repo)         ← top-level Lovstudio skills ecosystem index
+├── README.md                        ← primary top-level index (简体中文, default)
 ├── README.en.md                     ← English index
-├── skills.yaml                      ← machine-readable manifest for regular skills
-├── skills/<name>/                   ← installer-facing mirrored skill directories
-├── .claude-plugin/marketplace.json  ← Claude Code plugin marketplace metadata
-└── .github/workflows/               ← CI: syncs mirrors, renders READMEs, syncs descriptions
+└── README / extension index links   ← points to general/dev/xBTI sub-indexes
+
+lovstudio/general-skills             ← general skills index + install mirror
+├── skills.yaml
+├── skills/<name>/
+└── .claude-plugin/marketplace.json
 
 lovstudio/<name>-skill               ← regular skill source repo
 ├── SKILL.md                         ← skill definition (frontmatter + docs)
@@ -140,7 +145,7 @@ The **`paid` field** lives in `skills.yaml` (this repo), not in each SKILL.md �
 
 ## Contributing
 
-- **New regular skill**: use [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) to scaffold. Then create a repo at `lovstudio/{name}-skill` and open a PR here adding it to `skills.yaml`.
+- **New regular skill**: use [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) to scaffold. Then create a repo at `lovstudio/{name}-skill` and open a PR against [`lovstudio/general-skills`](https://github.com/lovstudio/general-skills) adding it to `skills.yaml`.
 - **New developer/meta skill**: prefer [`lovstudio/dev-skills`](https://github.com/lovstudio/dev-skills), where that sub-index owns its `skills.yaml`, README, and mirror.
 - **Existing skill**: file issues / PRs in the skill's own repo.
 - **Index fixes** (categorization, descriptions, links): PR against this repo's `skills.yaml`. **Don't touch the README table** — CI regenerates it.
