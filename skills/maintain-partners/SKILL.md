@@ -2,9 +2,10 @@
 name: lovstudio-maintain-partners
 description: >
   Maintain the LovStudio website's partners section AND align partner logo
-  rows on event posters / hero strips: scrape brand logos from homepages,
-  normalize to a 240px-tall content canvas (retina-ready), rasterize SVGs via
-  rsvg-convert before normalizing (so SVG viewBox padding gets cropped),
+  rows on event posters / hero strips: reuse lovstudio-find-logo for brand
+  logo discovery, normalize collected logos to a 240px-tall content canvas
+  (retina-ready), rasterize SVGs via rsvg-convert before normalizing (so SVG
+  viewBox padding gets cropped),
   strip embedded background rects from icon-style SVGs, composite icon +
   wordmark when only an icon is available (using brand fonts), wrap logos
   in a fixed-size grid box (96×30 with subtle border) for stable matrix
@@ -19,12 +20,15 @@ description: >
   "等宽 box", "图标加文字", "compose wordmark".
 license: MIT
 compatibility: >
-  Requires Python 3.8+ with Pillow (`pip install Pillow --break-system-packages`).
-  Optional: playwright + chromium for JS-rendered SPA scraping.
+  Requires the lovstudio-find-logo skill plus Python 3.8+ with Pillow
+  (`pip install Pillow --break-system-packages`). Requires rsvg-convert
+  (`brew install librsvg`) when the selected logo source is SVG.
   Tested on macOS; Linux should work.
+depends_on:
+  - lovstudio-find-logo
 metadata:
   author: lovstudio
-  version: "0.3.0"
+  version: "0.4.0"
   tags: [lovstudio, web, branding, i18n]
 ---
 
@@ -34,6 +38,15 @@ Operates on `/Users/mark/lovstudio/coding/web` (the LovStudio website repo).
 The partners strip lives in `app/(main)/(home)/WorkshopDispatch.tsx` as a
 `PARTNERS: Partner[]` array; logos in `public/partners/<slug>/logo.png`;
 taglines in `src/i18n/messages/{zh-CN,en,ja,th}.json` under `dispatch.partner*Tagline`.
+
+## Skill Dependencies
+
+- `lovstudio-find-logo` is required for all logo discovery. This skill must
+  not scrape homepages itself or keep a separate fallback crawler.
+- Use the `depends_on` frontmatter field to declare skill-level dependencies.
+  This mirrors the `depends_on` field in `lovstudio-general-skills/skills.yaml`;
+  unknown frontmatter keys are expected to be ignored by agents that do not
+  consume dependency metadata.
 
 ## When to Use
 
@@ -58,22 +71,32 @@ taglines in `src/i18n/messages/{zh-CN,en,ja,th}.json` under `dispatch.partner*Ta
 ### Op 1: Add a new partner
 
 1. Ask the user for the brand name + homepage URL via `AskUserQuestion`.
-2. Try to scrape the logo (static first, JS fallback):
+2. Collect the logo with `lovstudio-find-logo`:
    ```bash
-   python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/scrape_logo.py \
-     --url <URL> --download /tmp/<slug>.png
+   python3 ~/.claude/skills/lovstudio-find-logo/scripts/find_logo.py \
+     --name "<显示名>" --url <URL> --slug <slug> --json
    ```
-   If empty, retry with `--js`. If still empty, ask the user for a direct logo URL or local file.
-3. Visually verify with the Read tool before normalizing.
-4. Normalize:
+   Use the archived primary asset under
+   `~/.lovstudio/logo-collection/<slug>/logo.<ext>`. If `find_logo.py` returns
+   no candidates, stop and ask the user for a better official URL / press-kit
+   URL, then rerun `find_logo.py`. Do not call a local scraper from this skill.
+3. Visually verify the archived primary asset before normalizing.
+4. If the primary asset is SVG, rasterize it before normalization:
+   ```bash
+   rsvg-convert -h 240 ~/.lovstudio/logo-collection/<slug>/logo.svg \
+     -o /tmp/<slug>-raw.png
+   ```
+   Use the rasterized `/tmp/<slug>-raw.png` as `--src`. For non-SVG sources,
+   use the archived primary asset directly.
+5. Normalize:
    ```bash
    python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/normalize_logo.py \
-     --src /tmp/<slug>.png \
+     --src <archived-or-rasterized-logo> \
      --dst /Users/mark/lovstudio/coding/web/public/partners/<slug>/logo.png \
      --invert auto
    ```
-5. Read the normalized PNG to confirm it's visible (not white-on-white).
-6. Append to PARTNERS + all 4 locale JSONs:
+6. Read the normalized PNG to confirm it's visible (not white-on-white).
+7. Append to PARTNERS + all 4 locale JSONs:
    ```bash
    python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/add_partner.py \
      --name "<显示名>" --href "<URL>" \
@@ -241,13 +264,6 @@ unstable—different displays / scaling will diverge again.
 | `--height` | `80` | target content height. **Use 240 for retina poster export** (`scale: 2`) — 80 looks soft after 2× downscale. |
 | `--invert` | `auto` | `auto` / `off` / `full` / `selective` (selective preserves colored icons) |
 
-### scrape_logo.py
-| Flag | Default | Notes |
-|---|---|---|
-| `--url` | required | brand homepage |
-| `--js` | off | use Playwright headless Chromium for SPAs |
-| `--download` | off | save first candidate to this path |
-
 ### add_partner.py
 | Flag | Notes |
 |---|---|
@@ -266,7 +282,7 @@ unstable—different displays / scaling will diverge again.
 ## Network proxy
 
 Sandbox child processes don't inherit the system ClashX proxy. Before
-scraping or probing, export:
+fetching logos with `lovstudio-find-logo` or probing partner URLs, export:
 
 ```bash
 export https_proxy=http://127.0.0.1:7890 \
@@ -274,13 +290,12 @@ export https_proxy=http://127.0.0.1:7890 \
        all_proxy=socks5://127.0.0.1:7891
 ```
 
-`scrape_logo.py` and `audit_partners.py` already inject these for `curl` /
-Playwright invocations.
+`audit_partners.py` already injects these for `curl` invocations.
 
 ## Dependencies
 
 ```bash
+git clone https://github.com/lovstudio/find-logo-skill ~/.claude/skills/lovstudio-find-logo
 pip install Pillow --break-system-packages
-# Optional, for JS-rendered SPAs:
-pip install playwright --break-system-packages && playwright install chromium
+brew install librsvg  # for SVG logo sources
 ```

@@ -3,6 +3,18 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.4.0] - 2026-05-06
+
+### Changed
+
+- 声明 `depends_on: [lovstudio-find-logo]`，把 logo 发现统一交给 find-logo skill。
+- Op 1 改为读取 `~/.lovstudio/logo-collection/<slug>/logo.<ext>`，不再维护独立 homepage scraper。
+- README 安装说明补充 `lovstudio-find-logo`，移除 Playwright/SPA scraping fallback。
+
+### Removed
+
+- 删除 `scripts/scrape_logo.py`，避免 maintain-partners 和 find-logo 之间重复维护抓取逻辑。
+
 ## [0.3.0] - 2026-04-27
 
 ### Added
@@ -23,4 +35,3 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 - 深底反白配方：filter: brightness(0) invert(1) opacity(0.88)；已是白色源文件用 .ps-logo-original 跳过反白
 - 明确反模式：禁止用 per-logo magic-number CSS height 调整（不稳定、不可维护）
 - frontmatter description 扩充触发短语：logo 不一样高 / logo 对齐 / logo 大小不一致 / logo 颜色不统一
-
