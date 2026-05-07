@@ -14,7 +14,7 @@ compatibility: >
   Requires pandoc for docx conversion (`brew install pandoc`).
 metadata:
   author: lovstudio
-  version: "1.0.0"
+  version: "1.0.1"
   tags: translation, review, chinese, english, proofreading
 ---
 

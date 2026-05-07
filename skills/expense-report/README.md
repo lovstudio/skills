@@ -1,12 +1,14 @@
 # lovstudio:expense-report
 
+![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
+
 Invoice images / text → categorized Excel expense report.
 
 ## Install
 
 ```bash
 git clone https://github.com/lovstudio/expense-report-skill \
-          ~/.claude/skills/lovstudio-expense-report
+          "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lovstudio-expense-report"
 ```
 
 ## Dependencies

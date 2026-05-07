@@ -14,7 +14,7 @@ compatibility: >
   Pure instructions — no dependencies. Works with any Claude model.
 metadata:
   author: lovstudio
-  version: "1.0.0"
+  version: "1.0.1"
   tags: thesis academic writing MBA polish 论文 润色
 ---
 

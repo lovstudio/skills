@@ -1,5 +1,7 @@
 # lovstudio-any2deck
 
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
+
 Transform content into professional slide deck images. Creates outlines with style instructions, generates individual slide images, and merges into PPTX/PDF. Supports 16 visual styles, CJK/Latin mixed text, dual-logo branding, and partial regeneration.
 
 Fork of [baoyu-slide-deck](https://github.com/nicepkg/baoyu-slide-deck) with Lovstudio enhancements.

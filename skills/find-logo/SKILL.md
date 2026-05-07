@@ -4,7 +4,7 @@ description: >
   Fetch a company/product logo from public sources (Clearbit, og:image,
   favicon) given a brand name or URL, score candidates (wide-aspect +
   transparent preferred), and archive the best + runner-ups to
-  ~/.lovstudio/logo-collection/<slug>/.
+  the configured logo collection directory.
   Trigger when the user says "find logo", "找 logo", "抓 logo",
   "收集 logo", "brand asset", "需要 <brand> 的 logo",
   or wants logos laid out for a website/PPT/poster.
@@ -14,7 +14,7 @@ compatibility: >
   Cross-platform: macOS, Windows, Linux.
 metadata:
   author: lovstudio
-  version: "0.1.0"
+  version: "0.2.0"
   tags: [branding, assets, logo, scraping]
 ---
 
@@ -22,7 +22,7 @@ metadata:
 
 Takes a brand name or URL, probes Clearbit + the site's own og:image /
 `<link rel=icon>` / favicon, scores each candidate, and archives the best
-one plus a couple of alternates into `~/.lovstudio/logo-collection/<slug>/`.
+one plus a couple of alternates into the configured collection directory.
 
 ## When to Use
 
@@ -46,8 +46,7 @@ Use `AskUserQuestion` when:
 ### Step 2: Fetch — one brand per invocation
 
 ```bash
-python3 ~/.claude/skills/lovstudio-find-logo/scripts/find_logo.py \
-  --name "Anthropic" --url https://anthropic.com --json
+python3 scripts/find_logo.py --name "Anthropic" --url https://anthropic.com --json
 ```
 
 For a batch, loop; the script is idempotent per `<slug>/` (re-runs overwrite).
@@ -61,8 +60,8 @@ For a batch, loop; the script is idempotent per `<slug>/` (re-runs overwrite).
 - Exit code `2` / `status: "no-candidates"` → script found nothing.
   Do NOT give up. Use `WebSearch` for `"<brand> logo svg site:*.com"` or the
   brand's press-kit page, then re-invoke with `--url <direct-image-url>` is
-  **not supported** — if you have a direct image URL, `curl -o` it into
-  `~/.lovstudio/logo-collection/<slug>/logo.<ext>` and hand-write `meta.json`
+  **not supported** — if you have a direct image URL, save it into the configured
+  collection directory under `<slug>/logo.<ext>` and hand-write `meta.json`
   using the existing layout as a template.
 
 ### Step 4: Report
@@ -78,7 +77,7 @@ or Wikipedia SVG.
 | `--name` | — | Brand/product name. Used for slug + meta. |
 | `--url` | — | Official URL or bare domain. Overrides the name-based domain guess. |
 | `--slug` | slugified name | Override the directory slug under the archive root. |
-| `--out` | `~/.lovstudio/logo-collection` | Archive root. |
+| `--out` | `LOVSTUDIO_FIND_LOGO_OUTPUT_DIR` or `~/.lovstudio/logo-collection` | Archive root. |
 | `--keep-alts` | `2` | How many runner-up candidates to keep as `alt-N.<ext>`. |
 | `--json` | off | Emit a JSON result to stdout (use this when chaining). |
 
@@ -116,6 +115,11 @@ come out on top, square favicons land as alternates.
 ## Dependencies
 
 Stdlib only (urllib, html.parser, argparse). No `pip install` required.
+
+## User Configuration
+
+Default archive files live under `~/.lovstudio/logo-collection/`. Override this
+per run with `--out`, or set `LOVSTUDIO_FIND_LOGO_OUTPUT_DIR` for the skill.
 
 ## Known Limits
 

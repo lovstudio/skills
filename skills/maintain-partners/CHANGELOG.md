@@ -3,6 +3,56 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.9.1] - 2026-05-07
+
+### Fixed
+
+- make dependency install paths configurable
+- replace fixed runtime skill paths with LOVSTUDIO_SKILLS_INSTALL_DIR
+- use python3 -m pip install Pillow in dependency examples
+
+## [0.9.0] - 2026-05-07
+
+### Added
+
+- require explicit partner website config
+- remove implicit `$HOME/lovstudio/coding/web` fallback in favor of CLI, `LOVSTUDIO_*` env, or shared profile
+- expand `$HOME`-style variables from shared profile paths
+
+## [0.8.0] - 2026-05-07
+
+### Added
+
+- standardize partner env vars on LOVSTUDIO_MAINTAIN_PARTNERS namespace
+- use LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT and LOVSTUDIO_MAINTAIN_PARTNERS_FILE as primary variables
+- keep older PARTNERS_* and LOVSTUDIO_WEB_ROOT aliases for migration only
+
+## [0.7.0] - 2026-05-07
+
+### Added
+
+- move default profile lookup under ~/.lovstudio
+- keep AGENT_SKILL_PROFILE as the portable override
+- keep PARTNERS_SITE_ROOT and PARTNERS_FILE as neutral primary runtime variables
+
+## [0.6.0] - 2026-05-07
+
+### Added
+
+- switch partner config API to neutral env names
+- use PARTNERS_SITE_ROOT and PARTNERS_FILE as primary variables
+- retain LOVSTUDIO_WEB_ROOT and LOVSTUDIO_PARTNERS_FILE as legacy aliases
+
+## [0.5.0] - 2026-05-06
+
+### Added
+
+- add configurable website repo resolution
+- support --repo and shared profile JSON
+- document portable partner-site initialization
+- support configurable partners TSX files, including the current PartnersGrid.tsx location
+- add partner category handling for the LovStudio PartnersGrid schema
+
 ## [0.4.0] - 2026-05-06
 
 ### Changed

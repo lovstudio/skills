@@ -1,5 +1,7 @@
 # lovstudio-fill-form
 
+![Version](https://img.shields.io/badge/version-1.1.2-CC785C)
+
 Fill Word document form templates (.docx) with structured data. Auto-detects table-based form fields (label → value cell pairs), supports CJK/Latin mixed text with proper font switching, merged cells, and paragraph-based forms.
 
 Part of [lovstudio/skills](https://github.com/lovstudio/skills) &mdash; by [lovstudio.ai](https://lovstudio.ai)

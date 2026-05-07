@@ -1,5 +1,7 @@
 # lovstudio-translation-review
 
+![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+
 Systematic Chinese-to-English translation review. Compares source and translation across 6 dimensions, produces a prioritized review report.
 
 Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)

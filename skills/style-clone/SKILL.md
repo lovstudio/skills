@@ -11,7 +11,7 @@ compatibility: >
   No external dependencies. Pure Claude reasoning workflow.
 metadata:
   author: lovstudio
-  version: "0.1.0"
+  version: "0.1.1"
   tags: writing, style, rewrite, 文风, 改写
 ---
 

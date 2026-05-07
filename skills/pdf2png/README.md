@@ -1,5 +1,7 @@
 # lovstudio-pdf2png
 
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
+
 Convert PDF files to a single vertically concatenated PNG image using macOS native CoreGraphics.
 
 Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)

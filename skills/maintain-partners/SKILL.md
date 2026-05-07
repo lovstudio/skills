@@ -23,21 +23,62 @@ compatibility: >
   Requires the lovstudio-find-logo skill plus Python 3.8+ with Pillow
   (`pip install Pillow --break-system-packages`). Requires rsvg-convert
   (`brew install librsvg`) when the selected logo source is SVG.
-  Tested on macOS; Linux should work.
+  Tested on macOS; Linux should work. Website repo paths are configurable via
+  --repo, LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT, or the shared user profile; this skill must not
+  require Mark's personal absolute path. Legacy path aliases remain accepted
+  for existing local setups.
 depends_on:
   - lovstudio-find-logo
 metadata:
   author: lovstudio
-  version: "0.4.0"
+  version: "0.9.1"
   tags: [lovstudio, web, branding, i18n]
 ---
 
 # maintain-partners — LovStudio 合作伙伴板块维护
 
-Operates on `/Users/mark/lovstudio/coding/web` (the LovStudio website repo).
-The partners strip lives in `app/(main)/(home)/WorkshopDispatch.tsx` as a
-`PARTNERS: Partner[]` array; logos in `public/partners/<slug>/logo.png`;
-taglines in `src/i18n/messages/{zh-CN,en,ja,th}.json` under `dispatch.partner*Tagline`.
+Maintains the configured website repo. Resolve the path from `--repo`,
+`LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT`, or the shared user profile. The partners
+strip usually lives in `app/(main)/(home)/PartnersGrid.tsx` as a `PARTNERS:
+Partner[]` array; older sites may still keep it in
+`app/(main)/(home)/WorkshopDispatch.tsx`. Logos live in
+`public/partners/<slug>/logo.png`; taglines in
+`src/i18n/messages/{zh-CN,en,ja,th}.json` under `dispatch.partner*Tagline`.
+
+## User Configuration
+
+Before touching files, resolve:
+
+```bash
+SKILL_ROOT="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}"
+SKILL_DIR="${SKILL_DIR:-$SKILL_ROOT/lovstudio-maintain-partners}"
+WEB_ROOT="${LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT:?Set this or pass --repo}"
+PARTNERS_TSX="${LOVSTUDIO_MAINTAIN_PARTNERS_FILE:-app/(main)/(home)/PartnersGrid.tsx}"
+```
+
+Use this precedence for the website root:
+
+1. Explicit `--repo <path>` on `add_partner.py` / `audit_partners.py`.
+2. `LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT`.
+3. Shared profile JSON at
+   `${LOVSTUDIO_SKILLS_PROFILE:-$HOME/.lovstudio/skills/profile.json}`.
+
+`LOVSTUDIO_WEB_ROOT` and `PARTNERS_SITE_ROOT` are accepted as legacy aliases,
+but should not be the public contract for reusable skills.
+
+Use this precedence for the partners TSX file:
+
+1. Explicit `--partners-file <path>`.
+2. `LOVSTUDIO_MAINTAIN_PARTNERS_FILE`.
+3. Shared profile keys `sites.partners_file`, `lovstudio.partners_file`,
+   `partners.file`, or `workspace.partners_file`.
+4. `app/(main)/(home)/PartnersGrid.tsx`, then legacy
+   `app/(main)/(home)/WorkshopDispatch.tsx`.
+
+`LOVSTUDIO_PARTNERS_FILE` and `PARTNERS_FILE` are accepted as legacy aliases,
+but should not be the public contract for reusable skills.
+
+For details and supported profile keys, read `references/user-config.md`.
 
 ## Skill Dependencies
 
@@ -73,7 +114,7 @@ taglines in `src/i18n/messages/{zh-CN,en,ja,th}.json` under `dispatch.partner*Ta
 1. Ask the user for the brand name + homepage URL via `AskUserQuestion`.
 2. Collect the logo with `lovstudio-find-logo`:
    ```bash
-   python3 ~/.claude/skills/lovstudio-find-logo/scripts/find_logo.py \
+   python3 "$SKILL_ROOT/lovstudio-find-logo/scripts/find_logo.py" \
      --name "<显示名>" --url <URL> --slug <slug> --json
    ```
    Use the archived primary asset under
@@ -90,18 +131,21 @@ taglines in `src/i18n/messages/{zh-CN,en,ja,th}.json` under `dispatch.partner*Ta
    use the archived primary asset directly.
 5. Normalize:
    ```bash
-   python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/normalize_logo.py \
+   python3 "$SKILL_DIR/scripts/normalize_logo.py" \
      --src <archived-or-rasterized-logo> \
-     --dst /Users/mark/lovstudio/coding/web/public/partners/<slug>/logo.png \
+     --dst "$WEB_ROOT/public/partners/<slug>/logo.png" \
      --invert auto
    ```
 6. Read the normalized PNG to confirm it's visible (not white-on-white).
 7. Append to PARTNERS + all 4 locale JSONs:
    ```bash
-   python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/add_partner.py \
+   python3 "$SKILL_DIR/scripts/add_partner.py" \
+     --repo "$WEB_ROOT" \
+     --partners-file "$PARTNERS_TSX" \
      --name "<显示名>" --href "<URL>" \
      --logo "/partners/<slug>/logo.png" \
      --key partner<Slug>Tagline \
+     --category community \
      --zh "..." --en "..." --ja "..." --th "..." \
      [--show-name]
    ```
@@ -109,7 +153,7 @@ taglines in `src/i18n/messages/{zh-CN,en,ja,th}.json` under `dispatch.partner*Ta
 ### Op 2: Normalize an existing logo
 
 ```bash
-python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/normalize_logo.py \
+python3 "$SKILL_DIR/scripts/normalize_logo.py" \
   --src public/partners/<slug>/logo.png \
   --dst public/partners/<slug>/logo.png \
   --invert auto
@@ -119,12 +163,13 @@ Re-read after to verify.
 
 ### Op 3: Replace logo from a user-provided file
 
-User typically provides a path under `~/lovstudio/partners/<品牌>/<file>`.
+Ask for the source file path directly, or read it from the user's configured
+workspace/profile. Do not assume a private partners folder.
 
 ```bash
-python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/normalize_logo.py \
+python3 "$SKILL_DIR/scripts/normalize_logo.py" \
   --src "<user-provided path>" \
-  --dst /Users/mark/lovstudio/coding/web/public/partners/<slug>/logo.png \
+  --dst "$WEB_ROOT/public/partners/<slug>/logo.png" \
   --invert auto
 ```
 
@@ -133,7 +178,9 @@ JPEG inputs auto-strip near-white background to transparent before crop.
 ### Op 4: Audit
 
 ```bash
-python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/audit_partners.py
+python3 "$SKILL_DIR/scripts/audit_partners.py" \
+  --repo "$WEB_ROOT" \
+  --partners-file "$PARTNERS_TSX"
 # add --probe to also HTTP-check every href (slow, requires proxy)
 ```
 
@@ -159,8 +206,8 @@ unstable—different displays / scaling will diverge again.
    if the source is already light-on-transparent (don't double-invert):
    ```bash
    for f in lujiazui juanyi citic-bookstore citic-thinker-lab; do
-     python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/normalize_logo.py \
-       --src ~/lovstudio/partners/<brand>/<file>.png \
+     python3 "$SKILL_DIR/scripts/normalize_logo.py" \
+       --src "<configured-partners-source>/<brand>/<file>.png" \
        --dst <event-assets>/partners/$f.png \
        --height 240 --invert auto
    done
@@ -173,7 +220,7 @@ unstable—different displays / scaling will diverge again.
    an SVG always renders smaller than rasterized PNG siblings:
    ```bash
    rsvg-convert -h 720 brand.svg -o /tmp/brand-raw.png   # 3× of 240
-   python3 ~/.claude/skills/lovstudio-maintain-partners/scripts/normalize_logo.py \
+   python3 "$SKILL_DIR/scripts/normalize_logo.py" \
      --src /tmp/brand-raw.png --dst <event-assets>/partners/brand.png \
      --height 240 --invert off
    ```
@@ -267,16 +314,21 @@ unstable—different displays / scaling will diverge again.
 ### add_partner.py
 | Flag | Notes |
 |---|---|
+| `--repo` | website repo root; defaults to `LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT`, profile JSON, or legacy `LOVSTUDIO_WEB_ROOT` / `PARTNERS_SITE_ROOT` |
+| `--partners-file` | PARTNERS TSX file; defaults to `LOVSTUDIO_MAINTAIN_PARTNERS_FILE`, profile JSON, legacy `LOVSTUDIO_PARTNERS_FILE` / `PARTNERS_FILE`, PartnersGrid.tsx, or WorkshopDispatch.tsx |
 | `--name` | display name (CJK ok) |
 | `--href` | brand URL |
 | `--logo` | path under `/public`, e.g. `/partners/foo/logo.png` |
 | `--key` | i18n key, e.g. `partnerFooTagline` |
+| `--category` | `compute` / `peer` / `invest` / `media` / `community`; default `community` |
 | `--zh / --en / --ja / --th` | tagline strings (all required) |
 | `--show-name` | render name next to icon for narrow logos |
 
 ### audit_partners.py
 | Flag | Notes |
 |---|---|
+| `--repo` | website repo root; defaults to `LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT`, profile JSON, or legacy `LOVSTUDIO_WEB_ROOT` / `PARTNERS_SITE_ROOT` |
+| `--partners-file` | PARTNERS TSX file; defaults to `LOVSTUDIO_MAINTAIN_PARTNERS_FILE`, profile JSON, legacy `LOVSTUDIO_PARTNERS_FILE` / `PARTNERS_FILE`, PartnersGrid.tsx, or WorkshopDispatch.tsx |
 | `--probe` | HTTP-probe every href (slow, needs proxy env vars) |
 
 ## Network proxy
@@ -295,7 +347,8 @@ export https_proxy=http://127.0.0.1:7890 \
 ## Dependencies
 
 ```bash
-git clone https://github.com/lovstudio/find-logo-skill ~/.claude/skills/lovstudio-find-logo
-pip install Pillow --break-system-packages
+git clone https://github.com/lovstudio/find-logo-skill \
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lovstudio-find-logo"
+python3 -m pip install Pillow
 brew install librsvg  # for SVG logo sources
 ```

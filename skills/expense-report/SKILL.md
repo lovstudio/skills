@@ -16,7 +16,7 @@ compatibility: >
   Cross-platform: macOS, Windows, Linux.
 metadata:
   author: lovstudio
-  version: "0.1.0"
+  version: "0.1.3"
   tags: invoice expense report reimbursement excel categorize
 ---
 
@@ -89,7 +89,7 @@ Before generating, show the extracted data as a table:
 | 2 | 2026-04-14 | 滴滴出行 | 打车 | 45.50 | 差旅-交通 | 机场→酒店 |
 ```
 
-Ask: "以上信息是否正确? 需要修改或补充吗?"
+Use `AskUserQuestion` to ask: "以上信息是否正确? 需要修改或补充吗?"
 
 ### Step 4: Generate Excel
 

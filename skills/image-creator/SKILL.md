@@ -8,8 +8,15 @@ description: >
   (2) Code-based rendering — generate HTML/React single-file, render to PNG via Playwright.
   (3) Prompt engineering — generate optimized prompts for external models (nano-banana-pro, etc.).
   Trigger words: image, generate image, 生图, render, poster, 海报, banner, card, 卡片
-allowed-tools: [Bash, Read, Write, Edit]
-version: "0.2.0"
+license: MIT
+compatibility: >
+  Requires Python 3.8+. End-to-end image generation requires ZENMUX_API_KEY
+  plus google-genai and Pillow, which gen_image.py can install into the user
+  Python environment. Code rendering requires Playwright Python.
+metadata:
+  author: lovstudio
+  version: "0.2.1"
+  tags: image-generation design rendering prompt-engineering
 ---
 
 # Image Creator — Multi-Mechanism Framework
@@ -32,7 +39,7 @@ If the user doesn't specify, infer from context:
 ## Mechanism 1: End-to-End (Gemini)
 
 ```bash
-python3 ~/.claude/skills/lovstudio-image-creator/gen_image.py "PROMPT" [-o output.png] [-q low|medium|high] [--ascii]
+python3 gen_image.py "PROMPT" [-o output.png] [-q low|medium|high] [--ascii]
 ```
 
 - Generates image directly via Gemini 3 Pro (through ZenMux)
@@ -92,7 +99,7 @@ Template structure:
 ### Step 2: Render to PNG
 
 ```bash
-python3 ~/.claude/skills/lovstudio-image-creator/scripts/render_to_png.py \
+python3 scripts/render_to_png.py \
   /path/to/poster.html \
   -o output.png \
   -W 1200 -H 630 \

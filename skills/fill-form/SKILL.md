@@ -19,7 +19,7 @@ compatibility: >
   but table structure may be lost — use .docx when possible).
 metadata:
   author: lovstudio
-  version: "1.1.0"
+  version: "1.1.2"
   tags: form fill template docx word table cjk
 ---
 
@@ -115,5 +115,5 @@ python lovstudio-fill-form/scripts/fill_form.py \
 ## Dependencies
 
 ```bash
-pip install python-docx --break-system-packages
+python3 -m pip install python-docx
 ```

@@ -18,7 +18,7 @@ compatibility: >
   Cross-platform: macOS, Windows, Linux.
 metadata:
   author: lovstudio
-  version: "1.0.0"
+  version: "1.0.1"
   tags: wechat ai-detection humanize content-review
 ---
 

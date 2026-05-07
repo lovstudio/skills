@@ -15,7 +15,7 @@ compatibility: >
   Uses native CoreGraphics + AppKit via Python bridge.
 metadata:
   author: lovstudio
-  version: "0.1.0"
+  version: "0.1.2"
   tags: pdf png macos coregraphics finder-action
 ---
 
@@ -35,7 +35,9 @@ directly — no pdftoppm, no ImageMagick, no Ghostscript.
 
 ### Step 1: Identify PDF files
 
-Locate the PDF file(s) the user wants to convert. Confirm the path(s).
+Locate the PDF file(s) the user wants to convert. If multiple PDFs or output
+location choices are ambiguous, use `AskUserQuestion` to confirm the path(s)
+before running conversion.
 
 ### Step 2: Execute
 

@@ -1,5 +1,12 @@
 # Changelog for png2svg
 
+## [1.0.1] - 2026-05-07
+
+### Fixed
+
+- standardize Agent Skills metadata and README
+- expand trigger description and install documentation
+
 ## v1.0.0 - 2024-12-24
 - Initial release
 - 工具链: ImageMagick + vtracer + svgo

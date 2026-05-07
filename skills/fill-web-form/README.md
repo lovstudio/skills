@@ -1,5 +1,7 @@
 # lovstudio-fill-web-form
 
+![Version](https://img.shields.io/badge/version-1.1.2-CC785C)
+
 Fill web forms by deep-searching your local knowledge base. Give it a URL, get back a ready-to-paste markdown document.
 
 Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)

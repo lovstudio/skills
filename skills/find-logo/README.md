@@ -1,6 +1,6 @@
 # lovstudio:find-logo
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 Fetch a brand/product logo from public sources (Clearbit, og:image, favicon),
 score candidates (prefer wide-aspect + transparent), and archive the winner
@@ -14,7 +14,7 @@ Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudi
 ## Install
 
 ```bash
-git clone https://github.com/lovstudio/find-logo-skill ~/.claude/skills/lovstudio-find-logo
+npx lovstudio skills add find-logo -g -y
 ```
 
 Stdlib only — no `pip install` needed.
@@ -23,15 +23,13 @@ Stdlib only — no `pip install` needed.
 
 ```bash
 # by name
-python3 ~/.claude/skills/lovstudio-find-logo/scripts/find_logo.py --name "Anthropic"
+python3 scripts/find_logo.py --name "Anthropic"
 
 # by URL (more reliable for non-.com or ambiguous brands)
-python3 ~/.claude/skills/lovstudio-find-logo/scripts/find_logo.py \
-  --name "xAI" --url https://x.ai
+python3 scripts/find_logo.py --name "xAI" --url https://x.ai
 
 # machine-readable output for chaining
-python3 ~/.claude/skills/lovstudio-find-logo/scripts/find_logo.py \
-  --url https://stripe.com --json
+python3 scripts/find_logo.py --url https://stripe.com --json
 ```
 
 ## Options
@@ -41,7 +39,7 @@ python3 ~/.claude/skills/lovstudio-find-logo/scripts/find_logo.py \
 | `--name` | — | Brand/product name. Used for slug + meta. |
 | `--url` | — | Official URL or bare domain. Overrides the name-based guess. |
 | `--slug` | slugified name | Override the archive directory slug. |
-| `--out` | `~/.lovstudio/logo-collection` | Archive root. |
+| `--out` | `LOVSTUDIO_FIND_LOGO_OUTPUT_DIR` or `~/.lovstudio/logo-collection` | Archive root. |
 | `--keep-alts` | `2` | How many runner-up candidates to keep. |
 | `--json` | off | Emit JSON to stdout. |
 
@@ -81,6 +79,11 @@ so they line up cleanly next to each other.
 
 If all three fail, the script exits `2` with `status: "no-candidates"`. The
 calling agent is expected to fall back to a web search for a press-kit page.
+
+## User Configuration
+
+Archive files default to `~/.lovstudio/logo-collection/`. Override per call with
+`--out`, or set `LOVSTUDIO_FIND_LOGO_OUTPUT_DIR`.
 
 ## License
 

@@ -34,7 +34,10 @@ from pathlib import Path
 from typing import Optional
 
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
-DEFAULT_OUT = Path.home() / ".lovstudio" / "logo-collection"
+DEFAULT_OUT = Path(
+    os.environ.get("LOVSTUDIO_FIND_LOGO_OUTPUT_DIR")
+    or Path.home() / ".lovstudio" / "logo-collection"
+)
 TIMEOUT = 10
 
 

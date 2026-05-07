@@ -24,7 +24,7 @@ Usage:
   python fill_form.py --template form.docx --output filled.docx --data-file data.json
 
 Dependencies:
-  pip install python-docx --break-system-packages
+  python3 -m pip install python-docx
 """
 
 import re, os, sys, json, argparse, shutil, subprocess, tempfile

@@ -1,6 +1,6 @@
 # lovstudio-style-clone
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 输入样本文章 → 提取结构化**文风画像** → 用该文风改写任意内容。
 
@@ -11,7 +11,8 @@ Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudi
 ## Install
 
 ```bash
-git clone https://github.com/lovstudio/style-clone-skill ~/.claude/skills/lovstudio-style-clone
+git clone https://github.com/lovstudio/style-clone-skill \
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lovstudio-style-clone"
 ```
 
 Or via the skills CLI:

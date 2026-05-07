@@ -18,7 +18,7 @@ compatibility: >
   Grep, Glob, Read, Write. Requires internet access for URL fetching.
 metadata:
   author: lovstudio
-  version: "1.1.0"
+  version: "1.1.2"
   tags: form web fill knowledge-base conference speaker application
 ---
 
@@ -83,6 +83,10 @@ For each form field, synthesize the best answer from search results:
 | Radio/select | Pick the best-matching option based on profile |
 | File upload | Mark as "needs manual upload" with specs |
 | Private (phone, email) | Mark as "needs manual input", suggest if found |
+
+If required fields remain unknown after local search, use `AskUserQuestion` to
+collect only those missing values. Do not ask for fields already inferred from
+context.
 
 ### Step 4: Generate output document
 

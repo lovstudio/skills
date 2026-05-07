@@ -2,8 +2,19 @@
 name: lovstudio-png2svg
 category: Document Conversion
 tagline: "PNG → high-quality SVG conversion with background removal and spline curves."
-description: 将 PNG 转换为高质量 SVG（去白底+样条曲线+压缩）
-allowed-tools: [Bash, Read]
+description: >
+  Convert PNG images to high-quality SVG with optional white-background removal,
+  vtracer spline vectorization, and svgo compression. Use when the user asks
+  for "PNG to SVG", "png2svg", "转 SVG", "矢量化", "去白底", logo tracing,
+  or converting raster icons into editable vector assets.
+license: MIT
+compatibility: >
+  Requires ImageMagick `magick`, vtracer, and svgo (`npx svgo` is supported).
+  Works on macOS/Linux where those CLIs are installed.
+metadata:
+  author: lovstudio
+  version: "1.0.1"
+  tags: png svg vectorization imagemagick vtracer
 ---
 
 # PNG to SVG Skill

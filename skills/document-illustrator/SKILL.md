@@ -18,8 +18,9 @@ allowed-tools:
   - AskUserQuestion
 model: claude-opus-4-5-20251101
 metadata:
-  version: 0.2.0
+  version: "0.2.1"
   author: lovstudio
+  tags: document-illustration image-generation markdown
 license: MIT
 compatibility: ">=1.0"
 ---
