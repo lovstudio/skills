@@ -6,6 +6,7 @@ Features:
   - CJK/Latin mixed text with automatic font switching
   - Fenced code blocks with preserved indentation and line breaks
   - Markdown tables with smart proportional column widths
+  - Markdown images, Obsidian callouts, emoji fallback, LaTeX-style formulas
   - Cover page, clickable TOC, PDF bookmarks, page numbers
   - Frontispiece (full-page image after cover) and back cover (banner branding)
   - Configurable color themes
@@ -18,20 +19,24 @@ Usage:
 
 Dependencies:
   pip install reportlab --break-system-packages
+  Optional for rendered formulas: pip install matplotlib --break-system-packages
 """
 
-import re, os, sys, json, argparse
+import re, os, sys, json, argparse, io, tempfile, hashlib, urllib.parse, urllib.request
+from bisect import bisect_right as _bisect_right
 from datetime import date
 from reportlab.lib.pagesizes import A4, LETTER
 from reportlab.lib.units import mm
 from reportlab.lib.colors import Color, HexColor, black, white
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
+from reportlab.lib.utils import ImageReader
 from reportlab.platypus import (
     BaseDocTemplate, PageTemplate, Frame, Paragraph, Spacer, PageBreak,
     Table, TableStyle, NextPageTemplate, Flowable, Image as RLImage
 )
 from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.pdfmetrics import Font
 from reportlab.pdfbase.ttfonts import TTFont
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -55,6 +60,10 @@ _FONT_CANDIDATES = {
     "Sans": [
         "/System/Library/Fonts/Supplemental/Arial.ttf",                          # macOS
         "C:/Windows/Fonts/arial.ttf",                                            # Windows
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",                       # Linux common
+        "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSans.ttf",
         "/usr/share/fonts/truetype/crosextra/Carlito-Regular.ttf",               # Linux Debian
         "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",                   # Linux Noto
         "/usr/share/fonts/noto/NotoSans-Regular.ttf",                            # Linux Fedora
@@ -62,6 +71,10 @@ _FONT_CANDIDATES = {
     "SansBold": [
         "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
         "C:/Windows/Fonts/arialbd.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
         "/usr/share/fonts/truetype/crosextra/Carlito-Bold.ttf",
         "/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf",
         "/usr/share/fonts/noto/NotoSans-Bold.ttf",
@@ -69,12 +82,20 @@ _FONT_CANDIDATES = {
     "SansIt": [
         "/System/Library/Fonts/Supplemental/Arial Italic.ttf",
         "C:/Windows/Fonts/ariali.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSans-Italic.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSansOblique.ttf",
         "/usr/share/fonts/truetype/crosextra/Carlito-Italic.ttf",
         "/usr/share/fonts/truetype/noto/NotoSans-Italic.ttf",
     ],
     "SansBI": [
         "/System/Library/Fonts/Supplemental/Arial Bold Italic.ttf",
         "C:/Windows/Fonts/arialbi.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf",
+        "/usr/share/fonts/truetype/liberation2/LiberationSans-BoldItalic.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSansBoldOblique.ttf",
         "/usr/share/fonts/truetype/crosextra/Carlito-BoldItalic.ttf",
         "/usr/share/fonts/truetype/noto/NotoSans-BoldItalic.ttf",
     ],
@@ -83,6 +104,8 @@ _FONT_CANDIDATES = {
         "C:/Windows/Fonts/times.ttf",                                            # Windows TNR
         "/usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf",     # Linux
         "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
         "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
         "/usr/share/fonts/noto/NotoSerif-Regular.ttf",
     ],
@@ -91,6 +114,8 @@ _FONT_CANDIDATES = {
         "C:/Windows/Fonts/timesbd.ttf",
         "/usr/share/fonts/truetype/liberation2/LiberationSerif-Bold.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSerifBold.ttf",
         "/usr/share/fonts/truetype/noto/NotoSerif-Bold.ttf",
     ],
     "SerifIt": [
@@ -98,29 +123,43 @@ _FONT_CANDIDATES = {
         "C:/Windows/Fonts/timesi.ttf",
         "/usr/share/fonts/truetype/liberation2/LiberationSerif-Italic.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSerifItalic.ttf",
     ],
     "SerifBI": [
         ("/System/Library/Fonts/Palatino.ttc", 3),
         "C:/Windows/Fonts/timesbi.ttf",
         "/usr/share/fonts/truetype/liberation2/LiberationSerif-BoldItalic.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSerifBoldItalic.ttf",
     ],
     "CJK": [
         ("/System/Library/Fonts/Supplemental/Songti.ttc", 0),                   # macOS Songti SC
         "C:/Windows/Fonts/simsun.ttc",                                           # Windows SimSun (宋体)
         "C:/Windows/Fonts/msyh.ttc",                                             # Windows MSYH (微软雅黑)
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+        "/usr/share/fonts/opentype/noto/NotoSansCJKsc-Regular.otf",
         "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc",              # Linux Noto CJK
         "/usr/share/fonts/noto-cjk/NotoSerifCJK-Regular.ttc",                   # Linux Fedora
+        "/usr/share/fonts/truetype/arphic/uming.ttc",
+        "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
+        "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc",
         "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",            # Linux Droid
         "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
+        "/usr/share/fonts/truetype/unifont/unifont.ttf",
         "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",                  # macOS fallback
     ],
     "CJKBold": [
         ("/System/Library/Fonts/Supplemental/Songti.ttc", 1),
         "C:/Windows/Fonts/simsunb.ttf",
         "C:/Windows/Fonts/msyhbd.ttc",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+        "/usr/share/fonts/opentype/noto/NotoSansCJKsc-Bold.otf",
         "/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc",
         "/usr/share/fonts/noto-cjk/NotoSerifCJK-Bold.ttc",
+        "/usr/share/fonts/truetype/arphic/uming.ttc",
+        "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
         "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
     ],
     "Mono": [
@@ -137,27 +176,65 @@ _FONT_CANDIDATES = {
         "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf",
         "/usr/share/fonts/truetype/noto/NotoSansMono-Bold.ttf",
     ],
+    "Emoji": [
+        ("/System/Library/Fonts/Apple Color Emoji.ttc", 0),
+        "C:/Windows/Fonts/seguiemj.ttf",
+        "C:/Windows/Fonts/seguisym.ttf",
+        "/usr/share/fonts/truetype/noto/NotoEmoji-Regular.ttf",
+        "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf",
+        "/usr/share/fonts/truetype/ancient-scripts/Symbola_hint.ttf",
+    ],
+}
+
+_REGISTERED_TTF = set()
+_EMOJI_FONT_REGISTERED = False
+
+_BUILTIN_FONT_FALLBACKS = {
+    "Sans": "Helvetica",
+    "SansBold": "Helvetica-Bold",
+    "SansIt": "Helvetica-Oblique",
+    "SansBI": "Helvetica-BoldOblique",
+    "Serif": "Times-Roman",
+    "SerifBold": "Times-Bold",
+    "SerifIt": "Times-Italic",
+    "SerifBI": "Times-BoldItalic",
+    "Mono": "Courier",
+    "MonoBold": "Courier-Bold",
+    "CJK": "Helvetica",
+    "CJKBold": "Helvetica-Bold",
+    "Emoji": "Helvetica",
 }
 
 def register_fonts():
+    global _EMOJI_FONT_REGISTERED
     missing = []
     for name, candidates in _FONT_CANDIDATES.items():
         spec = _find_font(candidates)
         if spec is None:
             missing.append(name)
-            continue
-        try:
-            if isinstance(spec, tuple):
-                pdfmetrics.registerFont(TTFont(name, spec[0], subfontIndex=spec[1]))
-            else:
-                pdfmetrics.registerFont(TTFont(name, spec))
-        except Exception as e:
-            missing.append(name)
-            print(f"Warning: Font {name} — {e}", file=sys.stderr)
+        else:
+            try:
+                if isinstance(spec, tuple):
+                    pdfmetrics.registerFont(TTFont(name, spec[0], subfontIndex=spec[1]))
+                else:
+                    pdfmetrics.registerFont(TTFont(name, spec))
+                _REGISTERED_TTF.add(name)
+                if name == "Emoji":
+                    _EMOJI_FONT_REGISTERED = True
+                continue
+            except Exception as e:
+                missing.append(name)
+                print(f"Warning: Font {name} — {e}", file=sys.stderr)
+        base = _BUILTIN_FONT_FALLBACKS.get(name)
+        if base:
+            try:
+                pdfmetrics.registerFont(Font(name, base, "WinAnsiEncoding"))
+            except Exception:
+                pass
     if missing:
         print(f"Warning: Missing fonts: {', '.join(missing)}. PDF may have □ characters.", file=sys.stderr)
         if _PLAT == "Linux":
-            print("  Fix: sudo apt install fonts-noto fonts-noto-cjk fonts-dejavu-core", file=sys.stderr)
+            print("  Fix: sudo apt install fonts-dejavu-core fonts-liberation fonts-freefont-ttf fonts-noto fonts-noto-cjk fonts-noto-color-emoji", file=sys.stderr)
         elif _PLAT == "Windows":
             print("  Fix: Install Noto fonts from https://fonts.google.com/noto", file=sys.stderr)
     pdfmetrics.registerFontFamily("Sans", normal="Sans", bold="SansBold",
@@ -375,32 +452,122 @@ def load_theme(name, theme_file=None):
     }
 
 # ═══════════════════════════════════════════════════════════════════════
-# CJK DETECTION + FONT WRAPPING
+# CJK / EMOJI DETECTION + FONT WRAPPING
 # ═══════════════════════════════════════════════════════════════════════
 _CJK_RANGES = [
-    (0x4E00,0x9FFF),(0x3400,0x4DBF),(0xF900,0xFAFF),(0x3000,0x303F),
-    (0xFF00,0xFFEF),(0x2E80,0x2EFF),(0x2F00,0x2FDF),(0xFE30,0xFE4F),
+    (0x2E80,0x2EFF),(0x2F00,0x2FDF),(0x3000,0x303F),(0x3400,0x4DBF),
+    (0x4E00,0x9FFF),(0xF900,0xFAFF),(0xFE30,0xFE4F),(0xFF00,0xFFEF),
     (0x20000,0x2A6DF),(0x2A700,0x2B73F),(0x2B740,0x2B81F),
 ]
+_CJK_STARTS = [lo for lo, hi in _CJK_RANGES]
+_CJK_ENDS = [hi for lo, hi in _CJK_RANGES]
 
 def _is_cjk(ch):
     cp = ord(ch)
-    return any(lo <= cp <= hi for lo, hi in _CJK_RANGES)
+    idx = _bisect_right(_CJK_STARTS, cp) - 1
+    return idx >= 0 and cp <= _CJK_ENDS[idx]
 
-def _font_wrap(text):
-    """Wrap CJK runs in <font name='CJK'> tags for reportlab Paragraph."""
-    out, buf, in_cjk = [], [], False
+_EMOJI_RANGES = [
+    (0x1F000,0x1FAFF),(0x2600,0x27BF),(0x2300,0x23FF),(0x2B00,0x2BFF),
+]
+_EMOJI_TRAILING = set([0x200D, 0x20E3, 0xFE0E, 0xFE0F])
+_TWEMOJI_CACHE = os.path.join(tempfile.gettempdir(), "any2pdf-twemoji")
+_TWEMOJI_MISSES = set()
+
+def _is_emoji_char(ch):
+    cp = ord(ch)
+    return any(lo <= cp <= hi for lo, hi in _EMOJI_RANGES) or 0x1F3FB <= cp <= 0x1F3FF
+
+def _emoji_sequence(text, start):
+    end = start + 1
+    while end < len(text):
+        cp = ord(text[end])
+        if cp in _EMOJI_TRAILING or 0x1F3FB <= cp <= 0x1F3FF:
+            end += 1
+            continue
+        if text[end - 1] == "\u200d" and _is_emoji_char(text[end]):
+            end += 1
+            continue
+        break
+    return text[start:end], end
+
+def _emoji_codepoint(seq):
+    cps = []
+    for ch in seq:
+        cp = ord(ch)
+        if cp in (0xFE0E, 0xFE0F):
+            continue
+        cps.append(f"{cp:x}")
+    return "-".join(cps)
+
+def _esc_attr(text):
+    return esc(str(text)).replace('"', "&quot;")
+
+def _twemoji_path(seq):
+    code = _emoji_codepoint(seq)
+    if not code or code in _TWEMOJI_MISSES:
+        return None
+    os.makedirs(_TWEMOJI_CACHE, exist_ok=True)
+    path = os.path.join(_TWEMOJI_CACHE, f"{code}.png")
+    if os.path.exists(path):
+        return path
+    url = f"https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/{code}.png"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "any2pdf/1.0"})
+        with urllib.request.urlopen(req, timeout=2.0) as resp:
+            data = resp.read()
+        if data:
+            with open(path, "wb") as f:
+                f.write(data)
+            return path
+    except Exception:
+        _TWEMOJI_MISSES.add(code)
+    return None
+
+def _emoji_inline(text, size=10):
+    """Replace supported emoji runs with cached Twemoji image tags."""
+    out, i = [], 0
+    while i < len(text):
+        ch = text[i]
+        if _is_emoji_char(ch):
+            seq, end = _emoji_sequence(text, i)
+            path = _twemoji_path(seq)
+            if path:
+                src = _esc_attr(path)
+                out.append(f'<img src="{src}" width="{size}" height="{size}" valign="-2"/>')
+            elif _EMOJI_FONT_REGISTERED:
+                out.append(f"<font name='Emoji'>{seq}</font>")
+            else:
+                out.append(seq)
+            i = end
+        else:
+            out.append(ch)
+            i += 1
+    return ''.join(out)
+
+def _font_wrap_plain(text):
+    out, buf, role = [], [], None
     for ch in text:
-        c = _is_cjk(ch)
-        if c != in_cjk and buf:
+        if _is_cjk(ch):
+            next_role = "CJK"
+        elif _EMOJI_FONT_REGISTERED and (_is_emoji_char(ch) or (ord(ch) in _EMOJI_TRAILING and role == "Emoji")):
+            next_role = "Emoji"
+        else:
+            next_role = None
+        if next_role != role and buf:
             seg = ''.join(buf)
-            out.append(f"<font name='CJK'>{seg}</font>" if in_cjk else seg)
+            out.append(f"<font name='{role}'>{seg}</font>" if role else seg)
             buf = []
-        buf.append(ch); in_cjk = c
+        buf.append(ch); role = next_role
     if buf:
         seg = ''.join(buf)
-        out.append(f"<font name='CJK'>{seg}</font>" if in_cjk else seg)
+        out.append(f"<font name='{role}'>{seg}</font>" if role else seg)
     return ''.join(out)
+
+def _font_wrap(text):
+    """Wrap CJK and locally available monochrome emoji runs without touching XML tags."""
+    parts = re.split(r'(<[^>]+>)', text)
+    return ''.join(p if p.startswith("<") and p.endswith(">") else _font_wrap_plain(p) for p in parts)
 
 def _draw_mixed(c, x, y, text, size, anchor="left", max_w=0):
     """Draw mixed CJK/Latin text on canvas with font switching.
@@ -476,27 +643,34 @@ def esc(text):
     return text.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
 
 def esc_code(text):
-    """Escape for code blocks: preserve indentation and newlines."""
+    """Escape for code blocks: preserve indentation, alignment, and newlines."""
     out = []
     for line in text.split('\n'):
         e = esc(line)
-        stripped = e.lstrip(' ')
-        indent = len(e) - len(stripped)
-        out.append('&nbsp;' * indent + stripped)
+        out.append(e.replace(' ', '&nbsp;'))
     return '<br/>'.join(out)
 
 def md_inline(text, accent_hex="#CC785C"):
     text = esc(text)
+    code_spans = []
     text = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', text)
     # Replace code spans — neutralize * inside code to avoid italic regex conflict
     def _code_repl(m):
-        inner = m.group(1).replace('*', '\x00STAR\x00')
-        return f"<font name='Mono' size='8' color='{accent_hex}'>{inner}</font>"
+        code_spans.append(f"<font name='Mono' size='8' color='{accent_hex}'>{m.group(1)}</font>")
+        return f"@@ANY2PDF_CODE_{len(code_spans) - 1}@@"
     text = re.sub(r'`(.+?)`', _code_repl, text)
+    text = re.sub(r'\\\((.+?)\\\)',
+        rf"<font name='SerifIt' color='{accent_hex}'>\1</font>", text)
+    text = re.sub(r'(?<!\\)\$(?!\$)(.+?)(?<!\\)\$',
+        rf"<font name='SerifIt' color='{accent_hex}'>\1</font>", text)
     text = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'<i>\1</i>', text)
-    text = text.replace('\x00STAR\x00', '*')
-    text = re.sub(r'\[(.+?)\]\(.+?\)', r'<u>\1</u>', text)
+    text = re.sub(r'(?<!!)\[(.+?)\]\(.+?\)', r'<u>\1</u>', text)
+    text = _emoji_inline(text)
+    for idx, html in enumerate(code_spans):
+        text = text.replace(f"@@ANY2PDF_CODE_{idx}@@", html)
     return _font_wrap(text)
+
+_MD_IMAGE_RE = re.compile(r'!\[([^\]]*)\]\(([^)]+)\)')
 
 # ═══════════════════════════════════════════════════════════════════════
 # CUSTOM FLOWABLES
@@ -640,12 +814,27 @@ class PDFBuilder:
         s['h3'] = ParagraphStyle('H3', fontName="SansBold", fontSize=L["h3_size"],
             leading=L["h3_size"]+5, textColor=T["accent"], alignment=TA_LEFT,
             spaceBefore=10, spaceAfter=4)
+        s['h4'] = ParagraphStyle('H4', fontName="SansBold", fontSize=max(L["h3_size"] - 1, 9),
+            leading=max(L["h3_size"] + 3, 12), textColor=T["ink"], alignment=TA_LEFT,
+            spaceBefore=8, spaceAfter=3)
+        s['h5'] = ParagraphStyle('H5', fontName="SansBold", fontSize=max(L["h3_size"] - 2, 8.5),
+            leading=max(L["h3_size"] + 2, 11), textColor=T["ink_faded"], alignment=TA_LEFT,
+            spaceBefore=6, spaceAfter=2)
         s['body'] = ParagraphStyle('Body', fontName=bf, fontSize=bs, leading=bl,
             textColor=T["ink"], alignment=TA_JUSTIFY, spaceBefore=2, spaceAfter=4,
             wordWrap='CJK')
         s['body_indent'] = ParagraphStyle('BI', parent=s['body'],
             leftIndent=14, rightIndent=14, textColor=T["ink_faded"],
             borderColor=T["accent"], borderWidth=0, borderPadding=4)
+        s['callout_body'] = ParagraphStyle('CalloutBody', fontName=bf,
+            fontSize=bs, leading=bl, textColor=T["ink"], alignment=TA_LEFT,
+            spaceBefore=0, spaceAfter=0, wordWrap='CJK')
+        s['caption'] = ParagraphStyle('Caption', fontName="Sans", fontSize=8.5,
+            leading=11, textColor=T["ink_faded"], alignment=TA_CENTER,
+            spaceBefore=3, spaceAfter=6, wordWrap='CJK')
+        s['math'] = ParagraphStyle('MathFallback', fontName="Mono", fontSize=8.8,
+            leading=12, textColor=T["accent"], alignment=TA_CENTER,
+            spaceBefore=6, spaceAfter=6, wordWrap='CJK')
         s['bullet'] = ParagraphStyle('Bul', fontName=bf, fontSize=bs, leading=bl,
             textColor=T["ink"], alignment=TA_LEFT, spaceBefore=1, spaceAfter=1,
             leftIndent=18, bulletIndent=6, wordWrap='CJK')
@@ -987,10 +1176,10 @@ class PDFBuilder:
             if header_title:
                 c.setFillColor(white)
                 _draw_mixed(c, self.lm, self.page_h - 6*mm, header_title, 7.5)
-            ch = _cur_chapter[0]
-            if ch:
+            doc_title = self.cfg.get("title", "")
+            if doc_title:
                 c.setFillColor(white)
-                _draw_mixed(c, self.page_w - self.rm, self.page_h - 6*mm, ch[:40], 7.5, anchor="right")
+                _draw_mixed(c, self.page_w - self.rm, self.page_h - 6*mm, doc_title[:40], 7.5, anchor="right")
         elif deco == "double-rule":
             # Double horizontal rules at top and bottom (elegant book style)
             c.setStrokeColor(T["accent"]); c.setLineWidth(0.6)
@@ -1052,9 +1241,9 @@ class PDFBuilder:
             header_title = self.cfg.get("header_title", "")
             if header_title:
                 _draw_mixed(c, self.lm, self.page_h - 18*mm, header_title, 8)
-            ch = _cur_chapter[0]
-            if ch:
-                _draw_mixed(c, self.page_w - self.rm, self.page_h - 18*mm, ch[:40], 8, anchor="right")
+            doc_title = self.cfg.get("title", "")
+            if doc_title:
+                _draw_mixed(c, self.page_w - self.rm, self.page_h - 18*mm, doc_title[:40], 8, anchor="right")
         elif hs == "minimal" and deco != "top-band":
             c.setFillColor(T["ink_faded"]); c.setFont("Sans", 8)
             c.drawRightString(self.page_w - self.rm, self.page_h - 16*mm, str(pg))
@@ -1112,6 +1301,214 @@ class PDFBuilder:
         c.drawCentredString(self.page_w/2, self.bm - 16*mm, f"\u2014  {pg}  \u2014")
 
         c.restoreState()
+
+    # ── Rich block helpers ──
+    @staticmethod
+    def _blend_color(fg, bg, amount):
+        return Color(
+            fg.red * amount + bg.red * (1 - amount),
+            fg.green * amount + bg.green * (1 - amount),
+            fg.blue * amount + bg.blue * (1 - amount),
+            1,
+        )
+
+    @staticmethod
+    def _hex_color(c):
+        return f"#{int(c.red*255):02x}{int(c.green*255):02x}{int(c.blue*255):02x}"
+
+    def _clean_image_src(self, raw):
+        src = raw.strip()
+        if src.startswith("<") and ">" in src:
+            return src[1:src.index(">")]
+        quoted_title = re.search(r'\s+["\']', src)
+        if quoted_title:
+            src = src[:quoted_title.start()]
+        return src.strip()
+
+    def _resolve_image_source(self, src):
+        src = self._clean_image_src(src)
+        parsed = urllib.parse.urlparse(src)
+        if parsed.scheme in ("http", "https"):
+            cache_dir = os.path.join(tempfile.gettempdir(), "any2pdf-images")
+            os.makedirs(cache_dir, exist_ok=True)
+            ext = os.path.splitext(parsed.path)[1].lower()
+            if ext not in (".png", ".jpg", ".jpeg", ".gif", ".bmp"):
+                ext = ".img"
+            path = os.path.join(cache_dir, hashlib.sha1(src.encode("utf-8")).hexdigest() + ext)
+            if not os.path.exists(path):
+                req = urllib.request.Request(src, headers={"User-Agent": "any2pdf/1.0"})
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    data = resp.read()
+                with open(path, "wb") as f:
+                    f.write(data)
+            return path
+        if parsed.scheme == "file":
+            return urllib.request.url2pathname(parsed.path)
+        path = os.path.expanduser(urllib.parse.unquote(src))
+        if not os.path.isabs(path) and self.input_dir:
+            path = os.path.join(self.input_dir, path)
+        return path
+
+    def _image_flowables(self, src, alt=""):
+        ST = self.ST
+        clean_src = self._clean_image_src(src)
+        try:
+            path = self._resolve_image_source(clean_src)
+            if not os.path.exists(path):
+                raise FileNotFoundError(path)
+            iw, ih = ImageReader(path).getSize()
+            max_w, max_h = self.body_w, self.body_h * 0.58
+            scale = min(max_w / iw, max_h / ih, 1.0)
+            img = RLImage(path, width=iw * scale, height=ih * scale)
+            img.hAlign = "CENTER"
+            flowables = [Spacer(1, 2*mm), img]
+            if alt:
+                flowables.append(Paragraph(md_inline(alt, self.accent_hex), ST['caption']))
+            flowables.append(Spacer(1, 2*mm))
+            return flowables
+        except Exception as e:
+            label = alt or clean_src
+            print(f"WARN: image not rendered: {label} ({e})", file=sys.stderr)
+            msg = f"[Image omitted: {label} ({e})]"
+            return [Paragraph(md_inline(msg, self.accent_hex), ST['body_indent'])]
+
+    def _append_image_line(self, story, line):
+        pos = 0
+        for m in _MD_IMAGE_RE.finditer(line):
+            before = line[pos:m.start()].strip()
+            if before:
+                story.append(Paragraph(md_inline(before, self.accent_hex), self.ST['body']))
+            story.extend(self._image_flowables(m.group(2), m.group(1).strip()))
+            pos = m.end()
+        after = line[pos:].strip()
+        if after:
+            story.append(Paragraph(md_inline(after, self.accent_hex), self.ST['body']))
+
+    def _math_flowable(self, expr):
+        expr = expr.strip()
+        if not expr:
+            return Spacer(1, 0)
+        image = self._render_math_image(expr)
+        if image:
+            image.hAlign = "CENTER"
+            return image
+        fallback = f"$$ {expr} $$"
+        return Paragraph(_font_wrap(esc_code(fallback)), self.ST['math'])
+
+    def _render_math_image(self, expr):
+        try:
+            import matplotlib
+            matplotlib.use("Agg", force=True)
+            import matplotlib.pyplot as plt
+        except Exception:
+            return None
+        try:
+            fig = plt.figure(figsize=(0.1, 0.1), dpi=200)
+            txt = fig.text(0, 0, f"${expr}$", fontsize=13, color=self._hex_color(self.T["ink"]))
+            fig.canvas.draw()
+            bbox = txt.get_window_extent(renderer=fig.canvas.get_renderer())
+            width = max((bbox.width + 16) / 200, 0.2)
+            height = max((bbox.height + 16) / 200, 0.2)
+            fig.set_size_inches(width, height)
+            txt.set_position((8 / (width * 200), 8 / (height * 200)))
+            buf = io.BytesIO()
+            fig.savefig(buf, format="png", transparent=True, dpi=200, bbox_inches="tight", pad_inches=0.03)
+            plt.close(fig)
+            data = buf.getvalue()
+            iw, ih = ImageReader(io.BytesIO(data)).getSize()
+            natural_w, natural_h = iw * 72 / 200, ih * 72 / 200
+            scale = min(self.body_w * 0.9 / natural_w, 1.0)
+            img = RLImage(io.BytesIO(data), width=natural_w * scale, height=natural_h * scale)
+            img._any2pdf_image_data = data
+            return img
+        except Exception:
+            try:
+                plt.close("all")
+            except Exception:
+                pass
+            return None
+
+    def _consume_math_block(self, lines, i):
+        stripped = lines[i].strip()
+        start, end = ("$$", "$$") if stripped.startswith("$$") else ("\\[", "\\]")
+        body = stripped[len(start):].strip()
+        if body.endswith(end) and len(body) > len(end):
+            return body[:-len(end)].strip(), i + 1
+        parts = [body] if body else []
+        i += 1
+        while i < len(lines):
+            cur = lines[i].strip()
+            if cur.endswith(end):
+                tail = cur[:-len(end)].strip()
+                if tail:
+                    parts.append(tail)
+                i += 1
+                break
+            parts.append(lines[i])
+            i += 1
+        return "\n".join(parts).strip(), i
+
+    def _consume_callout(self, lines, i):
+        m = re.match(r'^>\s*\[!([A-Za-z]+)\][+-]?\s*(.*)$', lines[i].strip())
+        if not m:
+            return None, i
+        kind = m.group(1).upper()
+        title = m.group(2).strip() or kind.title()
+        body, i = [], i + 1
+        while i < len(lines):
+            raw = lines[i].rstrip()
+            stripped = raw.strip()
+            if stripped == ">":
+                body.append("")
+                i += 1
+                continue
+            if stripped.startswith(">"):
+                body.append(re.sub(r'^\s*>\s?', '', raw))
+                i += 1
+                continue
+            break
+        return self._build_callout(kind, title, body), i
+
+    def _build_callout(self, kind, title, body_lines):
+        color_map = {
+            "NOTE": "#0969DA", "INFO": "#0969DA", "TODO": "#0969DA",
+            "TIP": "#1A7F37", "HINT": "#1A7F37", "SUCCESS": "#1A7F37", "CHECK": "#1A7F37", "DONE": "#1A7F37",
+            "IMPORTANT": "#8250DF", "EXAMPLE": "#8250DF",
+            "WARNING": "#9A6700", "CAUTION": "#D1242F", "DANGER": "#D1242F", "ERROR": "#D1242F", "BUG": "#D1242F",
+            "QUESTION": "#57606A", "QUOTE": "#57606A", "CITE": "#57606A",
+            "ABSTRACT": "#57606A", "SUMMARY": "#57606A", "TLDR": "#57606A",
+            "FAILURE": "#D1242F", "FAIL": "#D1242F", "MISSING": "#D1242F",
+        }
+        accent = HexColor(color_map.get(kind, self._hex_color(self.T["accent"])))
+        bg = self._blend_color(accent, self.T["canvas"], 0.10)
+        border = self._blend_color(accent, self.T["canvas"], 0.55)
+        title_html = f"<font name='SansBold' color='{self._hex_color(accent)}'>{md_inline(title, self.accent_hex)}</font>"
+        rendered = [title_html]
+        for line in body_lines:
+            stripped = line.strip()
+            if not stripped:
+                rendered.append("")
+            elif stripped.startswith(("- ", "* ")):
+                rendered.append(f"&#8226;&nbsp;{md_inline(stripped[2:].strip(), self.accent_hex)}")
+            else:
+                num = re.match(r'^(\d+)\.\s+(.+)', stripped)
+                if num:
+                    rendered.append(f"{num.group(1)}.&nbsp;{md_inline(num.group(2), self.accent_hex)}")
+                else:
+                    rendered.append(md_inline(stripped, self.accent_hex))
+        para = Paragraph("<br/>".join(rendered), self.ST['callout_body'])
+        table = Table([[para]], colWidths=[self.body_w])
+        table.setStyle(TableStyle([
+            ('BACKGROUND',(0,0),(-1,-1), bg),
+            ('BOX',(0,0),(-1,-1), 0.4, border),
+            ('LINEBEFORE',(0,0),(0,-1), 3, accent),
+            ('LEFTPADDING',(0,0),(-1,-1),8),
+            ('RIGHTPADDING',(0,0),(-1,-1),8),
+            ('TOPPADDING',(0,0),(-1,-1),6),
+            ('BOTTOMPADDING',(0,0),(-1,-1),6),
+            ('VALIGN',(0,0),(-1,-1),'TOP'),
+        ]))
+        return table
 
     # ── Table parser ──
     def parse_table(self, lines):
@@ -1262,6 +1659,14 @@ class PDFBuilder:
                or re.match(r'^<a\s[^>]*>\s*</a>$', stripped):
                 i += 1; continue
 
+            # Display math: $$ ... $$ or \[ ... \]
+            if stripped.startswith("$$") or stripped.startswith("\\["):
+                expr, i = self._consume_math_block(lines, i)
+                story.append(Spacer(1, 2*mm))
+                story.append(self._math_flowable(expr))
+                story.append(Spacer(1, 2*mm))
+                continue
+
             # H1 — Part heading: full divider page
             if re.match(r'^# (第.+部分|附录)', stripped) or \
                (re.match(r'^# .+', stripped) and not stripped.startswith('## ')):
@@ -1334,12 +1739,16 @@ class PDFBuilder:
                 story.append(Spacer(1, 1*mm))
                 i += 1; continue
 
-            # H4+ = render as bold paragraph (no special layout)
-            if stripped.startswith('#### '):
-                title = stripped.lstrip('#').strip()
-                story.append(Spacer(1, 2*mm))
-                story.append(Paragraph(f"<b>{md_inline(title, ah)}</b>", ST['body']))
-                story.append(Spacer(1, 1*mm))
+            # H4-H6 = compact sub-sections. This also prevents unknown heading loops.
+            hm = re.match(r'^(#{4,6})\s+(.+)', stripped)
+            if hm:
+                style = ST['h4'] if len(hm.group(1)) == 4 else ST['h5']
+                story.append(Paragraph(md_inline(hm.group(2).strip(), ah), style))
+                i += 1; continue
+
+            # Standalone or inline markdown images
+            if _MD_IMAGE_RE.search(stripped):
+                self._append_image_line(story, stripped)
                 i += 1; continue
 
             # Tables
@@ -1362,34 +1771,18 @@ class PDFBuilder:
                 story.append(Paragraph(f"{m.group(1)}.  {md_inline(m.group(2), ah)}", ST['bullet']))
                 i += 1; continue
 
+            # Obsidian callouts: > [!NOTE] Optional title
+            if re.match(r'^>\s*\[![A-Za-z]+\][+-]?', stripped):
+                callout, i = self._consume_callout(lines, i)
+                if callout:
+                    story.append(Spacer(1, 2*mm))
+                    story.append(callout)
+                    story.append(Spacer(1, 2*mm))
+                    continue
+
             # Blockquote
             if stripped.startswith('> '):
                 story.append(Paragraph(md_inline(stripped[2:].strip(), ah), ST['body_indent']))
-                i += 1; continue
-
-            # Images: ![alt](path)
-            img_m = re.match(r'^!\[.*?\]\((.+?)\)\s*$', stripped)
-            if img_m:
-                img_path = img_m.group(1).strip()
-                # Resolve relative paths against the input markdown's directory
-                if not os.path.isabs(img_path) and self.input_dir:
-                    resolved = os.path.join(self.input_dir, img_path)
-                else:
-                    resolved = img_path
-                if os.path.isfile(resolved):
-                    from PIL import Image as PILImage
-                    with PILImage.open(resolved) as pimg:
-                        iw, ih = pimg.size
-                    max_w = self.body_w
-                    max_h = self.body_h * 0.55
-                    scale = min(max_w / iw, max_h / ih, 1.0)
-                    story.append(Spacer(1, 3*mm))
-                    story.append(RLImage(resolved, width=iw*scale, height=ih*scale))
-                    story.append(Spacer(1, 3*mm))
-                else:
-                    print(f"WARN: image not found: {img_path}"
-                          + (f" (resolved: {resolved})" if resolved != img_path else ""),
-                          file=sys.stderr)
                 i += 1; continue
 
             # Paragraph — join consecutive lines; skip space between CJK characters
@@ -1398,6 +1791,7 @@ class PDFBuilder:
                 l = lines[i].strip()
                 if not l or l.startswith('#') or l.startswith('```') or l.startswith('|') or \
                    l.startswith('- ') or l.startswith('* ') or l.startswith('> ') or re.match(r'^\d+\.\s', l) or \
+                   l.startswith("$$") or l.startswith("\\[") or _MD_IMAGE_RE.search(l) or \
                    re.match(r'^<a\s[^>]*>\s*</a>$', l):
                     break
                 plines.append(l); i += 1
@@ -1507,12 +1901,32 @@ class PDFBuilder:
             story.append(NextPageTemplate('normal'))
             story.append(PageBreak())
 
-        # Strip leading PageBreak from body content to avoid blank page
-        while story_content and isinstance(story_content[0], (PageBreak, Spacer)):
-            if isinstance(story_content[0], PageBreak):
+        # If a cover is present, avoid rendering a duplicate H1 divider page.
+        # Keep the zero-height ChapterMark so TOC anchors remain valid.
+        if self.cfg.get("cover", True):
+            while story_content and isinstance(story_content[0], (PageBreak, Spacer)):
                 story_content.pop(0)
-                break
-            story_content.pop(0)
+            if story_content and isinstance(story_content[0], ChapterMark) and story_content[0].level == 0:
+                idx = 1
+                visual_types = (Spacer, HRule, HRuleCentered, ClayDot)
+                while idx < len(story_content):
+                    item = story_content[idx]
+                    if isinstance(item, visual_types):
+                        story_content.pop(idx)
+                        continue
+                    if isinstance(item, Paragraph) and getattr(item.style, "name", "") == "Part":
+                        story_content.pop(idx)
+                        continue
+                    break
+                if idx < len(story_content) - 1 and isinstance(story_content[idx], PageBreak) and \
+                   isinstance(story_content[idx + 1], ChapterMark):
+                    story_content.pop(idx)
+        else:
+            while story_content and isinstance(story_content[0], (PageBreak, Spacer)):
+                if isinstance(story_content[0], PageBreak):
+                    story_content.pop(0)
+                    break
+                story_content.pop(0)
 
         story.extend(story_content)
 
@@ -1532,85 +1946,138 @@ class PDFBuilder:
 # ═══════════════════════════════════════════════════════════════════════
 # CLI
 # ═══════════════════════════════════════════════════════════════════════
+def parse_frontmatter(md_text):
+    """Return (frontmatter, markdown_without_frontmatter). Simple key: value parser."""
+    fm_match = re.match(r'^---\s*\n(.*?)\n---\s*(?:\n|$)', md_text, re.DOTALL)
+    if not fm_match:
+        return {}, md_text
+    frontmatter = {}
+    for line in fm_match.group(1).splitlines():
+        if not line.strip() or line.lstrip().startswith("#") or ":" not in line:
+            continue
+        key, _, value = line.partition(":")
+        value = value.strip()
+        if (value.startswith('"') and value.endswith('"')) or (value.startswith("'") and value.endswith("'")):
+            value = value[1:-1]
+        frontmatter[key.strip()] = value
+    return frontmatter, md_text[fm_match.end():]
+
+def fm_get(frontmatter, *keys, default=""):
+    for key in keys:
+        if key in frontmatter:
+            return frontmatter[key]
+    return default
+
+def parse_bool(value, default=True):
+    if value is None or value == "":
+        return default
+    if isinstance(value, bool):
+        return value
+    return str(value).strip().lower() not in ("0", "false", "no", "off")
+
+def parse_int(value, default):
+    if value is None or value == "":
+        return default
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+def parse_float(value, default):
+    if value is None or value == "":
+        return default
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
 def main():
     parser = argparse.ArgumentParser(description="md2pdf \u2014 Markdown to Professional PDF")
     parser.add_argument("--input", "-i", required=True, help="Input markdown file")
     parser.add_argument("--output", "-o", default="output.pdf", help="Output PDF path")
-    parser.add_argument("--title", default="", help="Cover page title")
-    parser.add_argument("--subtitle", default="", help="Cover page subtitle")
-    parser.add_argument("--author", default="", help="Author name")
-    parser.add_argument("--date", default=str(date.today()), help="Date string")
-    parser.add_argument("--version", default="", help="Version string on cover")
-    parser.add_argument("--watermark", default="", help="Watermark text (empty = none)")
-    parser.add_argument("--theme", default="warm-academic", help="Theme name")
+    parser.add_argument("--title", default=None, help="Cover page title")
+    parser.add_argument("--subtitle", default=None, help="Cover page subtitle")
+    parser.add_argument("--author", default=None, help="Author name")
+    parser.add_argument("--date", default=None, help="Date string")
+    parser.add_argument("--version", default=None, help="Version string on cover")
+    parser.add_argument("--watermark", default=None, help="Watermark text (empty = none)")
+    parser.add_argument("--theme", default=None, help="Theme name")
     parser.add_argument("--theme-file", default=None, help="Custom theme JSON file path")
-    parser.add_argument("--cover", default=True, type=lambda x: x.lower() != 'false', help="Generate cover page")
-    parser.add_argument("--toc", default=True, type=lambda x: x.lower() != 'false', help="Generate TOC")
-    parser.add_argument("--page-size", default="A4", choices=["A4","Letter"], help="Page size")
-    parser.add_argument("--frontispiece", default="", help="Path to full-page image after cover")
+    parser.add_argument("--cover", default=None, type=lambda x: x.lower() != 'false', help="Generate cover page")
+    parser.add_argument("--toc", default=None, type=lambda x: x.lower() != 'false', help="Generate TOC")
+    parser.add_argument("--page-size", default=None, choices=["A4","Letter"], help="Page size")
+    parser.add_argument("--frontispiece", default=None, help="Path to full-page image after cover")
     _default_banner = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "backcover-banner.jpg")
     _default_banner = os.path.normpath(_default_banner) if os.path.exists(_default_banner) else ""
-    parser.add_argument("--banner", default=_default_banner, help="Path to back cover banner image (defaults to bundled 手工川 banner; pass 'none' to disable)")
-    parser.add_argument("--header-title", default="", help="Report title shown in page header (left)")
-    parser.add_argument("--footer-left", default="", help="Brand/author text in footer (left)")
-    parser.add_argument("--stats-line", default="", help="Stats line on cover (e.g. '1,884 files ...')")
-    parser.add_argument("--stats-line2", default="", help="Second stats line on cover")
-    parser.add_argument("--edition-line", default="", help="Edition line at cover bottom")
-    parser.add_argument("--disclaimer", default="", help="Back cover disclaimer text")
-    parser.add_argument("--copyright", default="", help="Back cover copyright text")
-    parser.add_argument("--code-max-lines", default=30, type=int, help="Max lines per code block before truncation")
-    parser.add_argument("--image-cover", default=False, type=lambda x: x.lower() == 'true', help="Use frontispiece image as cover (page 1), text cover becomes page 2")
+    parser.add_argument("--banner", default=None, help="Path to back cover banner image (defaults to bundled 手工川 banner; pass 'none' to disable)")
+    parser.add_argument("--header-title", default=None, help="Report title shown in page header (left)")
+    parser.add_argument("--footer-left", default=None, help="Brand/author text in footer (left)")
+    parser.add_argument("--stats-line", default=None, help="Stats line on cover (e.g. '1,884 files ...')")
+    parser.add_argument("--stats-line2", default=None, help="Second stats line on cover")
+    parser.add_argument("--edition-line", default=None, help="Edition line at cover bottom")
+    parser.add_argument("--disclaimer", default=None, help="Back cover disclaimer text")
+    parser.add_argument("--copyright", default=None, help="Back cover copyright text")
+    parser.add_argument("--code-max-lines", default=None, type=int, help="Max lines per code block before truncation")
+    parser.add_argument("--image-cover", default=None, type=lambda x: x.lower() == 'true', help="Use frontispiece image as cover (page 1), text cover becomes page 2")
     parser.add_argument("--wm-size", default=None, type=float, help="Watermark font size (default: auto-size so text width ≈ half page width)")
-    parser.add_argument("--wm-opacity", default=0.1, type=float, help="Watermark opacity 0.0-1.0 (default 0.1)")
-    parser.add_argument("--wm-angle", default=35, type=float, help="Watermark rotation angle in degrees (default 35)")
-    parser.add_argument("--wm-spacing-x", default=9999, type=float, help="Watermark horizontal spacing in pt (default 9999 = single centered per page)")
-    parser.add_argument("--wm-spacing-y", default=9999, type=float, help="Watermark vertical spacing in pt (default 9999 = single centered per page)")
-    parser.add_argument("--heading-top-spacer", default=5, type=float, help="Top spacer before H1/H2 chapter titles in mm (default 5)")
+    parser.add_argument("--wm-opacity", default=None, type=float, help="Watermark opacity 0.0-1.0 (default 0.1)")
+    parser.add_argument("--wm-angle", default=None, type=float, help="Watermark rotation angle in degrees (default 35)")
+    parser.add_argument("--wm-spacing-x", default=None, type=float, help="Watermark horizontal spacing in pt (default 9999 = single centered per page)")
+    parser.add_argument("--wm-spacing-y", default=None, type=float, help="Watermark vertical spacing in pt (default 9999 = single centered per page)")
+    parser.add_argument("--heading-top-spacer", default=None, type=float, help="Top spacer before H1/H2 chapter titles in mm (default 5)")
     args = parser.parse_args()
 
     with open(args.input, encoding='utf-8') as f:
         md_text = f.read()
 
-    # Extract title from first H1 if not provided
-    title = args.title
+    frontmatter, md_text = parse_frontmatter(md_text)
+
+    # Extract title from CLI, frontmatter, or first H1.
+    title = args.title or fm_get(frontmatter, "title")
     if not title:
         m = re.search(r'^# (.+)$', md_text, re.MULTILINE)
         title = m.group(1).strip() if m else "Document"
 
-    theme = load_theme(args.theme, args.theme_file)
+    theme_name = args.theme or fm_get(frontmatter, "theme", default="warm-academic")
+    theme = load_theme(theme_name, args.theme_file)
     a = theme['accent']
     accent_hex = f"#{int(a.red*255):02x}{int(a.green*255):02x}{int(a.blue*255):02x}" \
         if hasattr(a, 'red') else "#CC785C"
+    author = args.author or fm_get(frontmatter, "author")
+    page_size = args.page_size or fm_get(frontmatter, "page-size", "page_size", default="A4")
+    banner = args.banner if args.banner is not None else fm_get(frontmatter, "banner", default=_default_banner)
+    if str(banner).lower() == "none":
+        banner = ""
 
     config = {
         "title": title,
-        "subtitle": args.subtitle,
-        "author": args.author,
-        "date": args.date,
-        "version": args.version,
-        "watermark": args.watermark,
+        "subtitle": args.subtitle or fm_get(frontmatter, "subtitle"),
+        "author": author,
+        "date": args.date or fm_get(frontmatter, "date", default=str(date.today())),
+        "version": args.version or fm_get(frontmatter, "version"),
+        "watermark": args.watermark or fm_get(frontmatter, "watermark"),
         "theme": theme,
         "accent_hex": accent_hex,
-        "cover": args.cover,
-        "toc": args.toc,
-        "page_size": A4 if args.page_size == "A4" else LETTER,
-        "frontispiece": args.frontispiece,
-        "banner": "" if args.banner.lower() == "none" else args.banner,
-        "header_title": args.header_title,
-        "footer_left": args.footer_left or args.author,
-        "stats_line": args.stats_line,
-        "stats_line2": args.stats_line2,
-        "edition_line": args.edition_line,
-        "disclaimer": args.disclaimer,
-        "copyright": args.copyright,
-        "code_max_lines": args.code_max_lines,
-        "image_cover": args.image_cover,
-        "wm_size": args.wm_size,
-        "wm_opacity": args.wm_opacity,
-        "wm_angle": args.wm_angle,
-        "wm_spacing_x": args.wm_spacing_x,
-        "wm_spacing_y": args.wm_spacing_y,
-        "heading_top_spacer": args.heading_top_spacer,
+        "cover": args.cover if args.cover is not None else parse_bool(fm_get(frontmatter, "cover"), True),
+        "toc": args.toc if args.toc is not None else parse_bool(fm_get(frontmatter, "toc"), True),
+        "page_size": A4 if page_size == "A4" else LETTER,
+        "frontispiece": args.frontispiece or fm_get(frontmatter, "frontispiece"),
+        "banner": banner,
+        "header_title": args.header_title or fm_get(frontmatter, "header-title", "header_title"),
+        "footer_left": args.footer_left or fm_get(frontmatter, "footer-left", "footer_left") or author,
+        "stats_line": args.stats_line or fm_get(frontmatter, "stats-line", "stats_line"),
+        "stats_line2": args.stats_line2 or fm_get(frontmatter, "stats-line2", "stats_line2"),
+        "edition_line": args.edition_line or fm_get(frontmatter, "edition-line", "edition_line"),
+        "disclaimer": args.disclaimer or fm_get(frontmatter, "disclaimer"),
+        "copyright": args.copyright or fm_get(frontmatter, "copyright"),
+        "code_max_lines": args.code_max_lines if args.code_max_lines is not None else parse_int(fm_get(frontmatter, "code-max-lines", "code_max_lines"), 30),
+        "image_cover": args.image_cover if args.image_cover is not None else parse_bool(fm_get(frontmatter, "image-cover", "image_cover"), False),
+        "wm_size": args.wm_size if args.wm_size is not None else parse_float(fm_get(frontmatter, "wm-size", "wm_size"), None),
+        "wm_opacity": args.wm_opacity if args.wm_opacity is not None else parse_float(fm_get(frontmatter, "wm-opacity", "wm_opacity"), 0.1),
+        "wm_angle": args.wm_angle if args.wm_angle is not None else parse_float(fm_get(frontmatter, "wm-angle", "wm_angle"), 35),
+        "wm_spacing_x": args.wm_spacing_x if args.wm_spacing_x is not None else parse_float(fm_get(frontmatter, "wm-spacing-x", "wm_spacing_x"), 9999),
+        "wm_spacing_y": args.wm_spacing_y if args.wm_spacing_y is not None else parse_float(fm_get(frontmatter, "wm-spacing-y", "wm_spacing_y"), 9999),
+        "heading_top_spacer": args.heading_top_spacer if args.heading_top_spacer is not None else parse_float(fm_get(frontmatter, "heading-top-spacer", "heading_top_spacer"), 5),
         # Resolve relative image paths in the markdown against its directory
         "input_dir": os.path.dirname(os.path.abspath(args.input)),
     }

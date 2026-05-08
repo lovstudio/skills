@@ -3,6 +3,23 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [1.3.4] - 2026-05-08
+
+### Added
+
+- Obsidian callout rendering for `> [!NOTE]`, tips, warnings, quotes, and related callout types.
+- Emoji fallback rendering using cached Twemoji images when available, with local emoji-font fallback.
+- LaTeX-style formula handling for inline `$...$` and display `$$...$$` / `\[...\]`; `matplotlib` is optional for rendered formula images.
+- YAML-style frontmatter support for document options such as title, author, theme, watermark, cover, TOC, and watermark settings. Explicit CLI arguments take precedence.
+- Broader Linux font discovery and built-in PDF font fallbacks for lean environments.
+
+### Fixed
+
+- H5/H6 headings are now consumed as compact subsections instead of falling through parser edge cases.
+- Code blocks preserve mid-line alignment by escaping all spaces, not only leading indentation.
+- Cover-page de-duplication no longer drops body content that appears under the first H1.
+- Full/top-band headers use a stable document title instead of page-lagged chapter state.
+
 ## [1.3.2] - 2026-04-20
 
 ### Changed
@@ -70,4 +87,3 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 - collapse multi-line image refs in _preprocess_md so pandoc --wrap=auto output parses correctly
 - SKILL.md: add Input Format section (markdown-only), document pandoc --wrap=none tip
 - README.md: add version badge
-
