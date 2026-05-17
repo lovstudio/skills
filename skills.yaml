@@ -156,6 +156,20 @@ skills:
   tagline_zh: 把项目简述一键变成可交付的商业提案，方案、报价、排版全配齐。
   encrypted_bundle: true
   version: 0.1.2
+- name: solution-architect
+  display_name: Solution Architect
+  repo: lovstudio/solution-architect-skill
+  name_zh: 解决方案架构师
+  paid: false
+  category: Business
+  version: 0.1.0
+  description: Create research-backed product and technical solution plans from a
+    user's requirement. Use for feasibility analysis, technology selection, architecture,
+    implementation roadmap, library/vendor comparison, "解决方案", "技术方案", "产品方案",
+    "选型", or "调研分析".
+  tagline_en: Turn a product or technical requirement into a researched, open-source-first
+    implementation plan.
+  tagline_zh: 把产品或技术需求转成有调研依据、开源优先的可执行解决方案。
 - name: review-doc
   display_name: Contract Review
   repo: lovstudio/review-doc-skill

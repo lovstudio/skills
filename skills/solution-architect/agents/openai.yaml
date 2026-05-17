@@ -1,0 +1,6 @@
+interface:
+  display_name: "Solution Architect"
+  short_description: "需求调研、技术选型与现代开源优先的端到端解决方案设计"
+  icon_small: "./assets/lovstudio-logo.svg"
+  icon_large: "./assets/lovstudio-logo.svg"
+  default_prompt: "Use $solution-architect to turn my product or technical requirement into a researched implementation plan."
