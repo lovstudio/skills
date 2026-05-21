@@ -64,12 +64,13 @@
     {
       "name": "content-creation",
       "source": "./",
-      "description": "Content Creation — 3 free + 2 paid (activation required).",
+      "description": "Content Creation — 4 free + 2 paid (activation required).",
       "category": "Content Creation",
       "skills": [
         "./skills/anti-wechat-ai-check",
         "./skills/document-illustrator",
         "./skills/image-creator",
+        "./skills/deep-research",
         "./skills/write-professional-book",
         "./skills/wxmp-cracker",
         "./skills/style-clone"

@@ -44,7 +44,7 @@ xBTI 等专题技能通过下方“扩展索引”链接到各自的子索引仓
 ## 技能列表
 
 <!-- COUNT:START -->
-> **25 个技能** — 19 个免费 + 6 个付费。
+> **26 个技能** — 20 个免费 + 6 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -77,6 +77,7 @@ xBTI 等专题技能通过下方“扩展索引”链接到各自的子索引仓
 | ![Free](https://img.shields.io/badge/Free-green) | [`png2svg`](https://github.com/lovstudio/png2svg-skill) | [PNG 矢量化](https://github.com/lovstudio/png2svg-skill) | 把 PNG 矢量化为高质量 SVG，自动抠背景、曲线平滑。 |
 | **内容创作** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`anti-wechat-ai-check`](https://github.com/lovstudio/anti-wechat-ai-check-skill) | [文章去 AI 味](https://github.com/lovstudio/anti-wechat-ai-check-skill) | 检测文章的 AI 味并做人性化润色，帮助稳过微信 3.27 条款的机器判定。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`deep-research`](https://github.com/lovstudio/deep-research-skill) | [深度研究](https://github.com/lovstudio/deep-research-skill) | 生成带引用追踪、证据留存和主张校验的深度研究报告，并输出 Markdown/HTML/PDF。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`document-illustrator`](https://github.com/lovstudio/document-illustrator-skill) | [文档配图](https://github.com/lovstudio/document-illustrator-skill) | 给长文原地配图，先规划插入点再并行出图，最后自动插回原文。 — 依赖: `image-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`style-clone`](https://github.com/lovstudio/style-clone-skill) | [文风克隆](https://github.com/lovstudio/style-clone-skill) | 从样本文章中提取文风画像，再把任意内容改写成该文风。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`write-professional-book`](https://github.com/lovstudio/write-professional-book-skill) | [专业写书](https://github.com/lovstudio/write-professional-book-skill) | 从大纲开始，逐章写出一本完整的书，技术、教程、专著多种风格。 |

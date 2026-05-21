@@ -261,6 +261,18 @@ skills:
   tagline_zh: 给长文原地配图，先规划插入点再并行出图，最后自动插回原文。
   depends_on:
   - image-creator
+- name: deep-research
+  display_name: Deep Research
+  repo: lovstudio/deep-research-skill
+  name_zh: 深度研究
+  paid: false
+  category: Content Creation
+  version: "2.3.1"
+  description: Use when the user needs multi-source research with citation tracking,
+    evidence persistence, and structured report generation.
+  tagline_en: Produce citation-tracked research reports with persistent evidence,
+    claim verification, and Markdown/HTML/PDF packaging.
+  tagline_zh: 生成带引用追踪、证据留存和主张校验的深度研究报告，并输出 Markdown/HTML/PDF。
 - name: write-professional-book
   display_name: Book Writer
   repo: lovstudio/write-professional-book-skill
