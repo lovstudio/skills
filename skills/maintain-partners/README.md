@@ -1,4 +1,4 @@
-# lovstudio:maintain-partners
+# lovstudio-maintain-partners
 
 ![Version](https://img.shields.io/badge/version-0.9.1-CC785C)
 

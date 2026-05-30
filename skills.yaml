@@ -211,10 +211,10 @@ skills:
   name_zh: 大师级海报生成
   paid: true
   category: Design
-  version: 0.3.2
-  description: Generate event posters via HTML + Playwright / 活动海报生成
-  tagline_en: Turn an event brief into a polished poster, ready to share.
-  tagline_zh: 把活动信息一键变成高质感海报，直接拿去发。
+  version: 0.4.0
+  description: Generate event and exhibition posters via HTML + Playwright / 活动与展览海报生成
+  tagline_en: Turn an event brief into a polished poster, ready to share or print for exhibitions.
+  tagline_zh: 把活动信息一键变成高质感海报，可直接分享或用于线下展览。
   encrypted_bundle: true
 - name: visual-clone
   display_name: Visual Clone

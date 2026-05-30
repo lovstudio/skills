@@ -50,7 +50,7 @@ python analyze.py --input article.md --format json
 ### In Claude Code
 
 ```
-/lovstudio:anti-wechat-ai-check
+/lovstudio-anti-wechat-ai-check
 
 然后粘贴文章或提供文件路径
 ```

@@ -1,4 +1,4 @@
-# lovstudio:deep-research
+# lovstudio-deep-research
 
 ![Version](https://img.shields.io/badge/version-2.3.1-CC785C)
 
@@ -26,7 +26,7 @@ search config set keys.brave YOUR_KEY  # configure at least one provider
 ## Usage
 
 ```
-/lovstudio:deep-research
+/lovstudio-deep-research
 ```
 
 ```

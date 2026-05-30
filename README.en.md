@@ -60,7 +60,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) are open source (
 | ![Free](https://img.shields.io/badge/Free-green) | [`review-doc`](https://github.com/lovstudio/review-doc-skill) | Review a document or contract and return it with inline comments. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`solution-architect`](https://github.com/lovstudio/solution-architect-skill) | Turn a product or technical requirement into a researched, open-source-first implementation plan. |
 | **Design** | | |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | Turn an event brief into a polished poster, ready to share. |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | Turn an event brief into a polished poster, ready to share or print for exhibitions. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`find-logo`](https://github.com/lovstudio/find-logo-skill) | Collect brand logos from public sources — wide and transparent preferred, archived for website/PPT/poster lineups. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`maintain-partners`](https://github.com/lovstudio/maintain-partners-skill) | Scrape, normalize, and wire brand logos into the partners section across 4 locales in one shot. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`visual-clone`](https://github.com/lovstudio/visual-clone-skill) | Extract the design DNA of a reference image so you can recreate the look. |

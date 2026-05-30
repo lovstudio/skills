@@ -19,10 +19,10 @@ Requires: Image generation skill + Node.js (for PPTX/PDF) + Python 3.8+ (for bra
 ## Quick Start
 
 ```bash
-/lovstudio:any2deck content.md
-/lovstudio:any2deck content.md --style bold-editorial
-/lovstudio:any2deck content.md --audience executives --slides 12
-/lovstudio:any2deck content.md --lang zh
+/lovstudio-any2deck content.md
+/lovstudio-any2deck content.md --style bold-editorial
+/lovstudio-any2deck content.md --audience executives --slides 12
+/lovstudio-any2deck content.md --lang zh
 ```
 
 ## Workflow

@@ -80,7 +80,7 @@ skills:
 - **`paid` field is only here**, not in individual SKILL.md files. It's business classification, not skill metadata.
 - **Current totals live in `skills.yaml`** — the README count line is auto-rendered, so don't hand-edit it. See `scripts/render-readme.py`.
 - **Naming**: GitHub repo = `lovstudio/{name}-skill`; local path = `~/lovstudio/skills/{name}-skill/`. No `lovstudio-` prefix in the name.
-- Skill short name (`any2pdf`) is what users invoke via `lovstudio:any2pdf` in Claude Code.
+- Skill short name (`any2pdf`) is what users invoke via `lovstudio-any2pdf` in Claude Code.
 
 ## Adding a New Skill
 

@@ -1,4 +1,4 @@
-# lovstudio:document-illustrator
+# lovstudio-document-illustrator
 
 ![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 

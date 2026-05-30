@@ -26,13 +26,13 @@ Transform content into professional slide deck images.
 ## Usage
 
 ```bash
-/lovstudio:any2deck path/to/content.md
-/lovstudio:any2deck path/to/content.md --style sketch-notes
-/lovstudio:any2deck path/to/content.md --audience executives
-/lovstudio:any2deck path/to/content.md --lang zh
-/lovstudio:any2deck path/to/content.md --slides 10
-/lovstudio:any2deck path/to/content.md --outline-only
-/lovstudio:any2deck  # Then paste content
+/lovstudio-any2deck path/to/content.md
+/lovstudio-any2deck path/to/content.md --style sketch-notes
+/lovstudio-any2deck path/to/content.md --audience executives
+/lovstudio-any2deck path/to/content.md --lang zh
+/lovstudio-any2deck path/to/content.md --slides 10
+/lovstudio-any2deck path/to/content.md --outline-only
+/lovstudio-any2deck  # Then paste content
 ```
 
 ## Script Directory

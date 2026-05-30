@@ -1,4 +1,4 @@
-# lovstudio:expense-report
+# lovstudio-expense-report
 
 ![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
 
@@ -22,7 +22,7 @@ pip install openpyxl
 Invoke in Claude Code:
 
 ```
-/lovstudio:expense-report
+/lovstudio-expense-report
 ```
 
 Then provide invoice images or text descriptions. The skill will:

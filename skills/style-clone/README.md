@@ -28,7 +28,7 @@ No external dependencies — pure Claude reasoning workflow.
 In Claude Code:
 
 ```
-/lovstudio:style-clone
+/lovstudio-style-clone
 ```
 
 Paste your sample article(s) and target article. Claude will:
