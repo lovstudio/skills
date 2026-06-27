@@ -1,6 +1,6 @@
 # lovstudio-style-clone
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 输入样本文章 → 提取结构化**文风画像** → 用该文风改写任意内容。
 

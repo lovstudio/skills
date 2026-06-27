@@ -11,7 +11,7 @@ compatibility: >
   No external dependencies. Pure Claude reasoning workflow.
 metadata:
   author: lovstudio
-  version: "0.1.1"
+  version: "0.1.2"
   tags: writing, style, rewrite, 文风, 改写
 ---
 
@@ -130,6 +130,8 @@ metadata:
 - 不做 [具体行为]
 ```
 
+输出画像后**默认存档为文件**（见 Step 4），不要只停留在对话里。
+
 ---
 
 ### Step 3: 改写目标文章
@@ -158,13 +160,20 @@ metadata:
 
 ---
 
-### Step 4: 存档（可选）
+### Step 4: 存档（默认执行，不询问）
 
-若用户希望保存文风画像供后续复用，将画像写入：
+**完成 Step 2 后立即默认把文风画像写入文件**，无需征求用户同意。文风画像是可复用资产，存档是默认行为而非可选项。
+
+写入路径：
 
 ```
 ./output/style-profiles/[作者或标签]-style-profile-[YYYY-MM-DD].md
 ```
+
+- 用 `Write` 工具直接创建文件（目录不存在则一并创建）。
+- 文件内容 = Step 2 的完整画像（含 frontmatter 标注样本来源、日期）。
+- 存档后在回复末尾用一行告知用户落盘路径。
+- 仅当用户**显式说"不要存档 / 只在对话里看"**时才跳过本步。
 
 ---
 
