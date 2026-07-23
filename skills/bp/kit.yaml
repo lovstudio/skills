@@ -1,0 +1,50 @@
+name: bp
+display_name: BP Skill Kit
+version: 0.2.0
+entrypoint: lovstudio-bp
+workspace: business-plan
+modules:
+  - id: bp-outline
+    skill: lovstudio-bp-outline
+    path: skills/bp-outline
+    consumes:
+      - project-materials
+    produces:
+      - brief.md
+      - evidence-ledger.md
+      - outline.md
+  - id: bp-deck
+    skill: lovstudio-bp-deck
+    path: skills/bp-deck
+    consumes:
+      - outline.md
+      - evidence-ledger.md
+      - assets
+    produces:
+      - deck-manifest.md
+      - '*.pptx'
+      - '*.pdf'
+      - '*-preview.png'
+  - id: bp-polish
+    skill: lovstudio-bp-polish
+    path: skills/bp-polish
+    consumes:
+      - outline-or-deck
+    produces:
+      - reports/bp-review.md
+      - revised-assets
+pipelines:
+  full:
+    - bp-outline
+    - bp-deck
+    - bp-polish
+  content-only:
+    - bp-outline
+  deck-only:
+    - bp-deck
+  review-only:
+    - bp-polish
+  rewrite-and-render:
+    - bp-polish
+    - bp-deck
+    - bp-polish

@@ -1,0 +1,14 @@
+[
+  {
+    "type": "case",
+    "title": "Yoda 种子轮投资人 BP",
+    "description": "完整演示 bp-outline → bp-deck → bp-polish 的组合：把技术导向的“多智能体编程工作台”重构为投资人可理解的“Agent 时代集成委托环境”，再用真实产品截图、专业图表和定向视觉修正完成 15 页 PPTX/PDF。"
+  },
+  {
+    "type": "article",
+    "title": "Yoda BP：从功能清单到投资叙事的完整复盘",
+    "url": "https://github.com/lovstudio/bp-skill/blob/main/references/case-yoda.md",
+    "source": "LovStudio 案例报告",
+    "cover": "https://raw.githubusercontent.com/lovstudio/bp-skill/main/cases/yoda-bp-cover.png"
+  }
+]
