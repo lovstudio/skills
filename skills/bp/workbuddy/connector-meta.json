@@ -1,0 +1,24 @@
+{
+  "name": "LovStudio BP",
+  "name_zh": "LovStudio 商业计划书",
+  "name_en": "LovStudio BP",
+  "description": "从项目材料生成投资人商业计划书大纲、融资演示文稿，并完成专业审校。",
+  "description_zh": "从项目材料生成投资人商业计划书大纲、融资演示文稿，并完成证据、内容和视觉审校。",
+  "description_en": "Create investor-ready BP outlines, pitch decks, and evidence-based reviews from project materials.",
+  "source": "lovstudio-bp",
+  "type": "skill-only",
+  "version": "0.2.0",
+  "minWorkbuddyVersion": "4.24.0",
+  "examples_zh": [
+    "根据当前项目材料，先写一份种子轮商业计划书大纲",
+    "把已经确认的商业计划书大纲制作成专业融资演示文稿",
+    "逐页审查这份商业计划书，修正证据、文案和视觉问题",
+    "从项目资料开始，完成商业计划书大纲、演示文稿和最终审校"
+  ],
+  "examples_en": [
+    "Create a seed-stage BP outline from the current project materials",
+    "Turn the approved BP outline into a professional investor pitch deck",
+    "Review this BP slide by slide and fix evidence, copy, and visual issues",
+    "Build and polish a complete investor BP from the available project files"
+  ]
+}

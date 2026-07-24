@@ -33,6 +33,18 @@ npx lovstudio skills add bp-deck -g -y
 npx lovstudio skills add bp-polish -g -y
 ```
 
+### WorkBuddy
+
+仓库内置腾讯 WorkBuddy `skill-only Connector` 发行配置，可生成一个运营审核包
+以及四个适合在 WorkBuddy“上传技能”页面逐个导入的 ZIP：
+
+```bash
+python3 scripts/build_workbuddy_connector.py \
+  --output-dir ./lovstudio-bp-workbuddy-v0.2.0
+```
+
+接入说明和审核文案见 [`workbuddy/`](workbuddy/)。
+
 ## 四个入口
 
 | Skill | 最适合的任务 | 交付物 |
