@@ -1,7 +1,5 @@
 ---
 name: lovstudio-bp
-category: Business
-tagline: "A composable BP skill kit: outline, deck, and polish."
 description: >
   Orchestrate a complete investor BP workflow or route to one focused module:
   source-backed outline, PPTX/PDF production, or evidence/content/visual polishing.
@@ -10,19 +8,9 @@ description: >
   Trigger on "做 BP", "完整商业计划书", "融资 PPT 全流程", "BP skill kit",
   "business plan workflow", "pitch deck pipeline", or "continue my BP".
 license: MIT
-compatibility: >
-  Portable Agent Skills format. The full kit bundles bp-outline, bp-deck, and
-  bp-polish in this repository. Python 3.8+ is required for workspace and audit
-  scripts. PPTX/PDF generation requires lovstudio-any2deck. User-specific paths,
-  brand files, and output directories come from flags, environment variables, or
-  the shared LovStudio profile.
-depends_on:
-  - lovstudio-bp-outline
-  - lovstudio-bp-deck
-  - lovstudio-bp-polish
 metadata:
   author: lovstudio
-  version: "0.2.0"
+  version: "0.2.1"
   tags: skill-kit business-plan pitch-deck fundraising outline slides polish audit
 ---
 
@@ -31,6 +19,25 @@ metadata:
 Compose only the stages the user needs. The kit preserves the existing
 `$lovstudio-bp` entrypoint while exposing three focused skills that can be used
 independently.
+
+## Triggers
+
+Activate for requests containing or clearly implying:
+
+- Chinese: “商业计划书”, “BP 大纲”, “融资 PPT”, “路演材料”, “投资人演示文稿”,
+  “BP 审稿”, “BP 润色”, or “从项目材料做完整 BP”;
+- English: “business plan”, “BP outline”, “pitch deck”, “investor deck”,
+  “fundraising deck”, “review my BP”, or “polish this deck”.
+
+Do not activate for a generic company introduction, ordinary product presentation,
+annual report, marketing proposal, or document formatting request unless the user
+also needs an investor-facing business plan.
+
+## Runtime and portability
+
+Use Python 3.8+ for workspace and audit scripts. Resolve presentation generation
+through the active Agent Skills environment; never assume an author's private path.
+Take user-specific output, brand, and asset paths from the request or current project.
 
 ## Kit Map
 
@@ -108,6 +115,16 @@ $KIT_DIR/skills/bp-polish/SKILL.md
 Before executing a selected module, read that module's `SKILL.md` completely and
 follow its references. If a standalone installation is being used, resolve its own
 directory as `SKILL_DIR`.
+
+Verify every selected module before execution:
+
+1. read `kit.yaml` and resolve the declared relative module path inside `KIT_DIR`;
+2. confirm the selected module's `SKILL.md` exists;
+3. if it is missing, stop before producing partial output and report:
+   `BP Skill Kit installation is incomplete: missing <relative path>`;
+4. tell the user to reinstall the self-contained `lovstudio-bp` package or install
+   the requested standalone module. Do not silently redirect to a sibling directory
+   or improvise a replacement workflow.
 
 ### Step 1: Inspect context before asking
 

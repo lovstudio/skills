@@ -2,7 +2,7 @@
 
 ## 提交主题
 
-LovStudio BP Skill Kit v0.2.0（skill-only Connector）审核申请
+LovStudio BP Skill Kit v0.2.1（skill-only Connector）重新审核申请
 
 ## 项目简介
 
@@ -18,11 +18,19 @@ LovStudio BP Skill Kit 是一套免费、开源、可组合的商业计划书 Sk
 - `lovstudio-bp-deck`：将已确认大纲制作成专业融资演示文稿；
 - `lovstudio-bp-polish`：审查和修正已有大纲、PPT、PDF 的证据、内容与视觉问题。
 
+## 0.2.1 审查修复
+
+- `lovstudio-bp.zip` 已改为自包含包，内置三个被编排子模块及其资源；
+- 总控与 `kit.yaml` 统一使用包内 `skills/bp-*` 相对路径；
+- Skill frontmatter、`kit.yaml` 和 Connector 元数据均补充 Git 来源标识；
+- 补充显式触发词、不应触发条件和缺失模块错误提示；
+- 补齐 Yoda 案例图片，并在构建时拒绝 `__pycache__`、`.pyc` 与失效图片引用。
+
 ## 接入信息
 
 - Connector ID：`lovstudio-bp`
 - Connector 类型：`skill-only`
-- 版本：`0.2.0`
+- 版本：`0.2.1`
 - 最低 WorkBuddy 版本：`4.24.0`
 - 认证：不需要
 - 外部服务：不需要

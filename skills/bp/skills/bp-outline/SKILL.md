@@ -1,7 +1,5 @@
 ---
 name: lovstudio-bp-outline
-category: Business
-tagline: "Project evidence → investor narrative and 12–15 slide BP outline."
 description: >
   Turn existing project materials into a source-backed investor BP brief, evidence
   ledger, and 12–15 slide outline. Use before making slides, when the product
@@ -9,11 +7,6 @@ description: >
   or unsupported. Trigger on "写 BP 大纲", "融资叙事", "梳理商业计划书",
   "先不要做 PPT", "BP outline", "investor narrative", or "pitch deck outline".
 license: MIT
-compatibility: >
-  Portable Agent Skills format. Python 3.8+ is required only for workspace
-  initialization. Current market, competitor, and policy claims require access to
-  authoritative sources. Workspace and brand paths come from flags, environment
-  variables, or the shared LovStudio profile.
 metadata:
   author: lovstudio
   version: "0.1.0"

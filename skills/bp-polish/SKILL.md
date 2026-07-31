@@ -1,7 +1,5 @@
 ---
 name: lovstudio-bp-polish
-category: Business
-tagline: "Audit and polish an existing BP without changing the facts."
 description: >
   Review and improve an existing BP outline, PPTX, PDF, or rendered slide set across
   investment logic, evidence, copy, charts, and visual quality. Produces a scored
@@ -9,11 +7,6 @@ description: >
   facts separate from assumptions. Trigger on "润色 BP", "审稿商业计划书", "PPT 不专业",
   "逐页检查", "改图表", "BP review", "polish pitch deck", or "audit investor deck".
 license: MIT
-compatibility: >
-  Portable Agent Skills format. Python 3.8+ is required for deterministic outline
-  auditing. Visual review requires access to rendered slide images or the ability to
-  render PPTX/PDF pages. User-specific paths and brand settings come from flags,
-  environment variables, or the shared LovStudio profile.
 metadata:
   author: lovstudio
   version: "0.1.0"

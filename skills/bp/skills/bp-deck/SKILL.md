@@ -1,7 +1,5 @@
 ---
 name: lovstudio-bp-deck
-category: Business
-tagline: "Approved BP outline → professional PPTX, PDF, and preview."
 description: >
   Turn an approved investor BP outline into a clean, professional slide deck with
   deliberate style selection, real product evidence, charts, branding, PPTX/PDF,
@@ -10,13 +8,6 @@ description: >
   Trigger on "把 BP 大纲做成 PPT", "选择 BP 风格", "生成融资 PPT", "重做第几页",
   "BP deck", "pitch deck design", "render investor slides", or "export BP PDF".
 license: MIT
-compatibility: >
-  Portable Agent Skills format. Requires lovstudio-any2deck and its image/PPTX/PDF
-  runtime. Brand and output paths come from flags, environment variables, or the
-  shared LovStudio profile. The skill can operate on an existing business-plan
-  workspace or a user-supplied outline.
-depends_on:
-  - lovstudio-any2deck
 metadata:
   author: lovstudio
   version: "0.1.0"

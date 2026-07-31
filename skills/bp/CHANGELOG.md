@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 — 2026-07-31
+
+- 将 WorkBuddy `lovstudio-bp.zip` 改为自包含总控包，内置三个子模块。
+- 在 Skill frontmatter、`kit.yaml` 和 Connector 元数据中补充 Git 来源标识。
+- 增加显式触发词、不应触发条件和子模块缺失错误提示。
+- 将 Yoda 案例图片纳入发布包，并阻止 `__pycache__` / `.pyc` 进入产物。
+- 强化发布校验，覆盖模块完整性、来源、描述长度、案例链接与生成文件清洁度。
+
 ## 0.2.0 — 2026-07-23
 
 - 将单体 `lovstudio-bp` 升级为可组合的 BP Skill Kit。
