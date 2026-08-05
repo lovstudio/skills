@@ -61,6 +61,18 @@ skills:
   tagline_en: Scrape, normalize, and wire brand logos into the partners section across
     4 locales in one shot.
   tagline_zh: 一键抓取品牌 logo、标准化处理并接入官网 partners 区块，多语言全覆盖。
+- name: zsh-alias
+  display_name: zsh Alias Installer
+  repo: lovstudio/zsh-alias-skill
+  name_zh: zsh 别名安装器
+  paid: false
+  category: General
+  version: "0.1.0"
+  description: Idempotently add zsh aliases or functions to ~/.zshrc. Supports ASCII
+    names and CJK function names (e.g. 中信书店).
+  tagline_en: One trigger word, one command — add zsh aliases (English or 中文) without
+    duplicating ~/.zshrc.
+  tagline_zh: 一个触发词绑一条命令，把 zsh 别名（英文或中文函数名）幂等写入 ~/.zshrc。
 - name: fill-form
   display_name: Form Filler
   repo: lovstudio/fill-form-skill
