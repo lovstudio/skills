@@ -1,5 +1,5 @@
 ---
-name: lovstudio-thesis-polish
+name: sgc-thesis-polish
 category: Content Processing
 tagline: "MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。"
 description: >

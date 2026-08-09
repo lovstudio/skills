@@ -1,5 +1,5 @@
 ---
-name: lovstudio-any2deck
+name: sgc-any2deck
 category: Document Conversion
 tagline: "Content → slide deck images with 16 visual styles, PPTX/PDF export, branding overlay."
 description: >
@@ -26,13 +26,13 @@ Transform content into professional slide deck images.
 ## Usage
 
 ```bash
-/lovstudio-any2deck path/to/content.md
-/lovstudio-any2deck path/to/content.md --style sketch-notes
-/lovstudio-any2deck path/to/content.md --audience executives
-/lovstudio-any2deck path/to/content.md --lang zh
-/lovstudio-any2deck path/to/content.md --slides 10
-/lovstudio-any2deck path/to/content.md --outline-only
-/lovstudio-any2deck  # Then paste content
+/sgc-any2deck path/to/content.md
+/sgc-any2deck path/to/content.md --style sketch-notes
+/sgc-any2deck path/to/content.md --audience executives
+/sgc-any2deck path/to/content.md --lang zh
+/sgc-any2deck path/to/content.md --slides 10
+/sgc-any2deck path/to/content.md --outline-only
+/sgc-any2deck  # Then paste content
 ```
 
 ## Script Directory
@@ -184,7 +184,7 @@ Technical terms (style names, file paths, code) remain in English.
 For the full step-by-step workflow, use `references/workflow.md`. Keep the main
 flow in this order:
 
-1. Setup & analyze: load `.lovstudio-skills/lovstudio-any2deck/EXTEND.md` when present, save source content, analyze style signals, detect language, choose slide count, and check for existing `slide-deck/{topic-slug}` output before continuing.
+1. Setup & analyze: load `.sgc-skills/sgc-any2deck/EXTEND.md` when present, save source content, analyze style signals, detect language, choose slide count, and check for existing `slide-deck/{topic-slug}` output before continuing.
 2. Confirm: use `AskUserQuestion` for style, audience, slide count, outline review, and prompt review. If custom dimensions are selected, collect texture, mood, typography, and density.
 3. Generate outline: read the selected preset from `references/styles/` or combine dimension docs from `references/dimensions/`, then write `outline.md` using `references/outline-template.md`.
 4. Review outline when requested, then generate per-slide prompts under `prompts/` using `references/base-prompt.md` and `references/layouts.md`.

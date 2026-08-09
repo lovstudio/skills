@@ -1,5 +1,5 @@
 ---
-name: lovstudio-write-professional-book
+name: sgc-write-professional-book
 description: Write multi-chapter books (technical, tutorial, monograph, etc.) end-to-end. Handles outline planning, per-chapter drafting that stays coherent across long manuscripts, chapter review, and final HTML/PDF build. Trigger when user mentions "写书", "写一本书", "出书", "技术书", "book writing", "逐章写作", "O'Reilly", "mdbook", or wants to author a multi-chapter book.
 version: 0.1.4
 ---
@@ -9,7 +9,7 @@ version: 0.1.4
 This skill's real instructions are encrypted. To use it, decrypt them first:
 
 ```bash
-uvx lovstudio-skill-helper decrypt write-professional-book
+uvx sgc-skill-helper decrypt write-professional-book
 ```
 
 **What to do:**
@@ -31,11 +31,11 @@ uvx lovstudio-skill-helper decrypt write-professional-book
 6. Do NOT cache the decrypted output between invocations — always re-decrypt on each use. The decryption is cheap (one HTTP round-trip) and re-running guarantees the user's license is still valid.
 7. If the decrypted SKILL.md references additional files (e.g. `references/workflow.md`, `assets/...`), DO NOT use the `Read` tool on them — those paths only exist on disk as encrypted `.enc` blobs. Instead, decrypt each one on demand by passing its relative path as a second argument:
    ```bash
-   uvx lovstudio-skill-helper decrypt write-professional-book references/workflow.md
+   uvx sgc-skill-helper decrypt write-professional-book references/workflow.md
    ```
-   Requires lovstudio-skill-helper ≥ 0.9.0. Earlier versions only decrypt SKILL.md.
+   Requires sgc-skill-helper ≥ 0.9.0. Earlier versions only decrypt SKILL.md.
 
 The encrypted payload lives in one of:
 - `~/.claude/skills/write-professional-book/`
-- `~/.claude/skills/lovstudio-write-professional-book/`
-You don't need to touch it directly — just call `uvx lovstudio-skill-helper decrypt write-professional-book [<rel_path>]`.
+- `~/.claude/skills/sgc-write-professional-book/`
+You don't need to touch it directly — just call `uvx sgc-skill-helper decrypt write-professional-book [<rel_path>]`.

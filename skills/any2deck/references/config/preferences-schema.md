@@ -1,6 +1,6 @@
 # EXTEND.md Schema
 
-Structure for user preferences in `.lovstudio-skills/lovstudio-any2deck/EXTEND.md`.
+Structure for user preferences in `.sgc-skills/sgc-any2deck/EXTEND.md`.
 
 ## Full Schema
 
@@ -79,7 +79,7 @@ custom_styles:
     description: "Optional description"
 ```
 
-Then use with: `/lovstudio-any2deck content.md --style style-name`
+Then use with: `/sgc-any2deck content.md --style style-name`
 
 ## Minimal Examples
 
@@ -122,8 +122,8 @@ custom_styles:
 
 Priority order (first found wins):
 
-1. `.lovstudio-skills/lovstudio-any2deck/EXTEND.md` (project)
-2. `$HOME/.lovstudio-skills/lovstudio-any2deck/EXTEND.md` (user)
+1. `.sgc-skills/sgc-any2deck/EXTEND.md` (project)
+2. `$HOME/.sgc-skills/sgc-any2deck/EXTEND.md` (user)
 
 ## First-Time Setup
 

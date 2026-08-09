@@ -1,5 +1,5 @@
 ---
-name: lovstudio-find-logo
+name: sgc-find-logo
 description: >
   Fetch a company/product logo from public sources (Clearbit, og:image,
   favicon) given a brand name or URL, score candidates (wide-aspect +

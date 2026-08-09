@@ -69,7 +69,7 @@ function findSlideImages(dir: string): SlideInfo[] {
 
 async function createPdf(slides: SlideInfo[], outputPath: string) {
   const pdfDoc = await PDFDocument.create();
-  pdfDoc.setAuthor("lovstudio-any2deck");
+  pdfDoc.setAuthor("sgc-any2deck");
   pdfDoc.setSubject("Generated Slide Deck");
 
   for (const slide of slides) {

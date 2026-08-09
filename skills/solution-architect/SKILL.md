@@ -1,5 +1,5 @@
 ---
-name: lovstudio-solution-architect
+name: sgc-solution-architect
 version: "0.1.0"
 tagline: "把产品或技术需求转成有调研依据、开源优先的可执行解决方案。"
 description: Create research-backed product and technical solution plans from a user's requirement. Use when the user asks for detailed feasibility analysis, technology selection, architecture, implementation roadmap, library/vendor comparison, "解决方案", "技术方案", "产品方案", "选型", "调研分析", or a Lovstudio.ai / 手工川工作室 branded solution. Prioritize modern popular open-source DIY options over legacy libraries, from-scratch builds, commercial APIs, and commercial products.
@@ -55,7 +55,7 @@ Use this brand by default when the solution needs a vendor, studio, deck, PDF, p
 
 - English name: `Lovstudio.ai`
 - Chinese name: `手工川工作室`
-- Logo asset: `assets/lovstudio-logo.svg`
+- Logo asset: `assets/sgc-logo.svg`
 
 Do not imply a commercial proposal unless the user asks for a client-facing proposal, quotation, or branded deliverable.
 

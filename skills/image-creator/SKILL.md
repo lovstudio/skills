@@ -1,5 +1,5 @@
 ---
-name: lovstudio-image-creator
+name: sgc-image-creator
 category: Image & Design
 tagline: "Multi-mechanism image generation: end-to-end AI, code rendering, or prompt engineering"
 description: >

@@ -1,5 +1,5 @@
 ---
-name: lovstudio-wxmp-cracker
+name: sgc-wxmp-cracker
 description: 微信公众号文章抓取与导出。自动处理 mp.weixin.qq.com 的登录态获取与续期， 支持按公众号搜索、抓取文章列表与正文、按日期窗口导出 Markdown / JSON / CSV。 Trigger when the user wants to crawl a WeChat public account, export recent articles, or 提到 "wcx"、"微信公众号"、"公众号文章"、"mp.weixin"、"抓公众号"、 "crawl wechat official account"、"wxmp"、"最近十天的文章"。
 version: 0.1.6
 dependencies:
@@ -16,7 +16,7 @@ dependencies:
 This skill's real instructions are encrypted. To use it, decrypt them first:
 
 ```bash
-uvx lovstudio-skill-helper decrypt wxmp-cracker
+uvx sgc-skill-helper decrypt wxmp-cracker
 ```
 
 **What to do:**
@@ -38,11 +38,11 @@ uvx lovstudio-skill-helper decrypt wxmp-cracker
 6. Do NOT cache the decrypted output between invocations — always re-decrypt on each use. The decryption is cheap (one HTTP round-trip) and re-running guarantees the user's license is still valid.
 7. If the decrypted SKILL.md references additional files (e.g. `references/workflow.md`, `assets/...`), DO NOT use the `Read` tool on them — those paths only exist on disk as encrypted `.enc` blobs. Instead, decrypt each one on demand by passing its relative path as a second argument:
    ```bash
-   uvx lovstudio-skill-helper decrypt wxmp-cracker references/workflow.md
+   uvx sgc-skill-helper decrypt wxmp-cracker references/workflow.md
    ```
-   Requires lovstudio-skill-helper ≥ 0.9.0. Earlier versions only decrypt SKILL.md.
+   Requires sgc-skill-helper ≥ 0.9.0. Earlier versions only decrypt SKILL.md.
 
 The encrypted payload lives in one of:
 - `~/.claude/skills/wxmp-cracker/`
-- `~/.claude/skills/lovstudio-wxmp-cracker/`
-You don't need to touch it directly — just call `uvx lovstudio-skill-helper decrypt wxmp-cracker [<rel_path>]`.
+- `~/.claude/skills/sgc-wxmp-cracker/`
+You don't need to touch it directly — just call `uvx sgc-skill-helper decrypt wxmp-cracker [<rel_path>]`.

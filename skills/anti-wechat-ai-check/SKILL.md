@@ -1,5 +1,5 @@
 ---
-name: lovstudio-anti-wechat-ai-check
+name: sgc-anti-wechat-ai-check
 category: Content Processing
 tagline: "检测文章 AI 痕迹 + 人性化润色，通过微信 3.27 条款检测。"
 description: >
@@ -47,14 +47,14 @@ Determine the input source:
 ### Step 2: Run analysis
 
 ```bash
-python skills/lovstudio-anti-wechat-ai-check/scripts/analyze.py \
+python skills/sgc-anti-wechat-ai-check/scripts/analyze.py \
   --input <path> --format json
 ```
 
 Or with inline text:
 
 ```bash
-python skills/lovstudio-anti-wechat-ai-check/scripts/analyze.py \
+python skills/sgc-anti-wechat-ai-check/scripts/analyze.py \
   --text "文章内容" --format json
 ```
 

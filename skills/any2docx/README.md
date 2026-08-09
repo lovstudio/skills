@@ -1,4 +1,4 @@
-# lovstudio-any2docx
+# sgc-any2docx
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 

@@ -1,4 +1,4 @@
-# lovstudio-any2deck
+# sgc-any2deck
 
 ![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
@@ -19,10 +19,10 @@ Requires: Image generation skill + Node.js (for PPTX/PDF) + Python 3.8+ (for bra
 ## Quick Start
 
 ```bash
-/lovstudio-any2deck content.md
-/lovstudio-any2deck content.md --style bold-editorial
-/lovstudio-any2deck content.md --audience executives --slides 12
-/lovstudio-any2deck content.md --lang zh
+/sgc-any2deck content.md
+/sgc-any2deck content.md --style bold-editorial
+/sgc-any2deck content.md --audience executives --slides 12
+/sgc-any2deck content.md --lang zh
 ```
 
 ## Workflow

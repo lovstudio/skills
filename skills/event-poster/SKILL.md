@@ -1,5 +1,5 @@
 ---
-name: lovstudio-event-poster
+name: sgc-event-poster
 description: 'Create event posters, exhibition posters, flyers, and promotional graphics from a brief. Outputs print-ready high-resolution PNG. Trigger words: 海报, poster, event poster, 展览海报, 展架, 活动海报, 宣传图, promotional, banner, flyer'
 version: 0.4.0
 ---
@@ -9,7 +9,7 @@ version: 0.4.0
 This skill's real instructions are encrypted. To use it, decrypt them first:
 
 ```bash
-uvx lovstudio-skill-helper decrypt event-poster
+uvx sgc-skill-helper decrypt event-poster
 ```
 
 **What to do:**
@@ -32,5 +32,5 @@ uvx lovstudio-skill-helper decrypt event-poster
 
 The encrypted payload lives in one of:
 - `~/.claude/skills/event-poster/`
-- `~/.claude/skills/lovstudio-event-poster/`
-You don't need to touch it directly — just call `uvx lovstudio-skill-helper decrypt event-poster`.
+- `~/.claude/skills/sgc-event-poster/`
+You don't need to touch it directly — just call `uvx sgc-skill-helper decrypt event-poster`.

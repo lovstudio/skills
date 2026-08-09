@@ -79,7 +79,7 @@ async function createPptx(slides: SlideInfo[], outputPath: string) {
   const pptx = new PptxGenJS();
 
   pptx.layout = "LAYOUT_16x9";
-  pptx.author = "lovstudio-any2deck";
+  pptx.author = "sgc-any2deck";
   pptx.subject = "Generated Slide Deck";
 
   const basePrompt = findBasePrompt();

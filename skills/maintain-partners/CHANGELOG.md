@@ -57,9 +57,9 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ### Changed
 
-- 声明 `depends_on: [lovstudio-find-logo]`，把 logo 发现统一交给 find-logo skill。
+- 声明 `depends_on: [sgc-find-logo]`，把 logo 发现统一交给 find-logo skill。
 - Op 1 改为读取 `~/.lovstudio/logo-collection/<slug>/logo.<ext>`，不再维护独立 homepage scraper。
-- README 安装说明补充 `lovstudio-find-logo`，移除 Playwright/SPA scraping fallback。
+- README 安装说明补充 `sgc-find-logo`，移除 Playwright/SPA scraping fallback。
 
 ### Removed
 

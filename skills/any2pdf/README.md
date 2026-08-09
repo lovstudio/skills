@@ -1,4 +1,4 @@
-# lovstudio-any2pdf
+# sgc-any2pdf
 
 ![Version](https://img.shields.io/badge/version-1.3.4-CC785C)
 

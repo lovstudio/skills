@@ -1,4 +1,4 @@
-# lovstudio-thesis-polish
+# sgc-thesis-polish
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 
@@ -17,7 +17,7 @@ No dependencies — pure AI instructions.
 ## Usage
 
 1. Prepare your MBA thesis in markdown format
-2. Invoke the skill: `/lovstudio-thesis-polish`
+2. Invoke the skill: `/sgc-thesis-polish`
 3. Provide thesis file path or paste text
 4. Review diagnosis report and confirm strategy
 5. Receive polished full text chapter by chapter

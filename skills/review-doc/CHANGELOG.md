@@ -3,6 +3,25 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [1.0.0] - 2026-07-17
+
+### Added
+
+- Add seven-pass expert contract review covering deal structure, obligations, risk allocation, lifecycle, compliance, disputes, evidence, and operability
+- Add risk severity, negotiation priority, replacement wording, fallback positions, signing recommendation, and structured review report
+- Add contract-specific playbooks and a current-law verification baseline for Mainland China
+- Add stable DOCX anchors across body paragraphs, tables, headers, and footers
+- Add preflight validation that rejects ambiguous or format-damaging revisions
+
+### Changed
+
+- Replace the lightweight paragraph scan with professional contract analysis as the default workflow
+- Upgrade the primary DOCX interface to `scripts/contract_docx.py`
+
+### Compatibility
+
+- Keep `scripts/annotate_docx.py` as a compatibility adapter for 0.x paragraph-index JSON
+
 ## [0.3.1] - 2026-04-16
 
 ### Fixed
@@ -30,4 +49,3 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 - 更新触发词：增加「批阅」「审查合同」等中文触发
 - SKILL.md description 重写，突出合同审查核心场景
 - README 增加版本 badge
-

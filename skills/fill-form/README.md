@@ -1,4 +1,4 @@
-# lovstudio-fill-form
+# sgc-fill-form
 
 ![Version](https://img.shields.io/badge/version-1.1.2-CC785C)
 

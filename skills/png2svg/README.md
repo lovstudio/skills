@@ -1,4 +1,4 @@
-# lovstudio-png2svg
+# sgc-png2svg
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

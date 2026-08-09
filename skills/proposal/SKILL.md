@@ -1,5 +1,5 @@
 ---
-name: lovstudio-proposal
+name: sgc-proposal
 description: Generate complete business proposals for client projects. Takes client requirement documents (docx/pdf/md) or verbal descriptions as input, outputs a professionally formatted proposal with technical architecture, budget, timeline, risk analysis, and team introduction. Automatically calls illustrate for images and any2pdf for final PDF delivery. Trigger when user mentions "商务方案", "合作评估", "项目评估", "报价方案", "proposal", "需求评估", "给客户出方案", or wants to generate a client-facing project proposal from requirements.
 version: 0.1.2
 ---
@@ -9,7 +9,7 @@ version: 0.1.2
 This skill's real instructions are encrypted. To use it, decrypt them first:
 
 ```bash
-uvx lovstudio-skill-helper decrypt proposal
+uvx sgc-skill-helper decrypt proposal
 ```
 
 **What to do:**
@@ -32,5 +32,5 @@ uvx lovstudio-skill-helper decrypt proposal
 
 The encrypted payload lives in one of:
 - `~/.claude/skills/proposal/`
-- `~/.claude/skills/lovstudio-proposal/`
-You don't need to touch it directly — just call `uvx lovstudio-skill-helper decrypt proposal`.
+- `~/.claude/skills/sgc-proposal/`
+You don't need to touch it directly — just call `uvx sgc-skill-helper decrypt proposal`.

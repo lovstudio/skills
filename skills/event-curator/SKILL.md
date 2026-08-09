@@ -1,5 +1,5 @@
 ---
-name: lovstudio-event-curator
+name: sgc-event-curator
 description: Generate a complete professional event plan from guest background material. Takes guest bio / CV / intro copy as input, runs a multi-turn clarification dialog (activity type, audience, duration, tone), and outputs a cohesive plan with title + promo copy, minute-level rundown, tiered host question set, and gift / takeaway suggestions. Trigger when user mentions "活动策划", "策划案", "嘉宾对谈", "沙龙策划", "主持人问题", "活动流程", "event planning", "host prep", "salon plan", or pastes a guest bio asking for an event plan.
 version: 0.1.1
 ---
@@ -9,7 +9,7 @@ version: 0.1.1
 This skill's real instructions are encrypted. To use it, decrypt them first:
 
 ```bash
-uvx lovstudio-skill-helper decrypt event-curator
+uvx sgc-skill-helper decrypt event-curator
 ```
 
 **What to do:**
