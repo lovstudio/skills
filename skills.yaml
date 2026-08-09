@@ -145,6 +145,64 @@ skills:
     curves.
   tagline_en: Convert a PNG to a crisp SVG, with background removed and curves smoothed.
   tagline_zh: 把 PNG 矢量化为高质量 SVG，自动抠背景、曲线平滑。
+- name: bp
+  display_name: BP Skill Kit
+  repo: lovstudio/bp-skill
+  name_zh: BP 工具包
+  paid: false
+  featured: true
+  category: Business
+  version: 0.2.0
+  description: Orchestrate a complete investor BP workflow or combine only the
+    modules needed for outline, PPTX/PDF production, and professional polishing.
+  tagline_en: A composable BP skill kit — use outline, deck, and polish alone or
+    run the complete investor workflow.
+  tagline_zh: 可组合的投资人 BP 工具包：大纲、PPT 制作、审稿润色既能单独使用，也能串成完整流程。
+  depends_on:
+  - bp-outline
+  - bp-deck
+  - bp-polish
+- name: bp-outline
+  display_name: BP Outline
+  repo: lovstudio/bp-skill
+  skill_path: skills/bp-outline
+  name_zh: BP 大纲
+  paid: false
+  category: Business
+  version: 0.1.0
+  description: Turn project files, metrics, interviews, and prior materials into a
+    source-backed investor brief, evidence ledger, and 12–15 slide BP outline.
+  tagline_en: Turn project evidence into an investor narrative and a source-backed
+    12–15 slide outline before making PPT.
+  tagline_zh: 先把项目材料变成证据账本和投资人看得懂的 12–15 页大纲，再决定是否制作 PPT。
+- name: bp-deck
+  display_name: BP Deck
+  repo: lovstudio/bp-skill
+  skill_path: skills/bp-deck
+  name_zh: BP 幻灯片
+  paid: false
+  category: Business
+  version: 0.1.0
+  description: Turn an approved investor BP outline into a styled slide deck with
+    professional charts, branding, PPTX/PDF export, and a full-deck preview.
+  tagline_en: Turn an approved BP outline into a professional PPTX, PDF, and full-deck
+    preview with deliberate style selection.
+  tagline_zh: 把已经确认的 BP 大纲做成风格统一、图表专业的 PPTX、PDF 和全稿预览。
+  depends_on:
+  - any2deck
+- name: bp-polish
+  display_name: BP Polish
+  repo: lovstudio/bp-skill
+  skill_path: skills/bp-polish
+  name_zh: BP 审稿润色
+  paid: false
+  category: Business
+  version: 0.1.0
+  description: Audit and improve an existing BP outline, PPTX, PDF, or slide set
+    across investment logic, evidence, copy, charts, and visual quality.
+  tagline_en: Audit and polish an existing BP with a scored report and page-level
+    fixes—without changing the facts.
+  tagline_zh: 给已有 BP 做投资逻辑、证据、文字、图表和视觉体检，输出评分报告与逐页修改，不为好看改事实。
 - name: proposal
   display_name: Proposal Writer
   repo: lovstudio/proposal-skill
