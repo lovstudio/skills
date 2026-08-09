@@ -15,20 +15,20 @@ Connector 提交包。
 ## 提交包内容
 
 ```text
-lovstudio-bp-workbuddy-v0.2.1/
+sgc-bp-workbuddy-v0.2.1/
 ├── connector-meta.json
 ├── icon.svg
 ├── README.md
 ├── SUBMISSION.md
 └── skills/
-    ├── lovstudio-bp/
-    ├── lovstudio-bp-outline/
-    ├── lovstudio-bp-deck/
-    └── lovstudio-bp-polish/
+    ├── sgc-bp/
+    ├── sgc-bp-outline/
+    ├── sgc-bp-deck/
+    └── sgc-bp-polish/
 ```
 
-四个 Skill 可以独立使用，也可以由 `lovstudio-bp` 总控按需组合。
-其中 `lovstudio-bp` 自身已内置 `skills/bp-outline`、`skills/bp-deck` 和
+四个 Skill 可以独立使用，也可以由 `sgc-bp` 总控按需组合。
+其中 `sgc-bp` 自身已内置 `skills/bp-outline`、`skills/bp-deck` 和
 `skills/bp-polish`，单独提交该 ZIP 时不会依赖同级目录中的其他 Skill。
 
 ## 构建
@@ -37,12 +37,12 @@ lovstudio-bp-workbuddy-v0.2.1/
 
 ```bash
 python3 scripts/build_workbuddy_connector.py \
-  --output-dir /path/to/lovstudio-bp-workbuddy-v0.2.1
+  --output-dir /path/to/sgc-bp-workbuddy-v0.2.1
 ```
 
 脚本会同时生成同名 ZIP，并执行结构、元信息、Frontmatter、私有路径和
 PPT 运行时适配检查。它还会生成
-`lovstudio-bp-workbuddy-v0.2.1-individual/`，其中包含四个可在
+`sgc-bp-workbuddy-v0.2.1-individual/`，其中包含四个可在
 WorkBuddy“上传技能”界面逐个导入的 ZIP。
 
 ## 维护

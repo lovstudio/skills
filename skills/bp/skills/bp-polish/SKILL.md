@@ -1,5 +1,5 @@
 ---
-name: lovstudio-bp-polish
+name: sgc-bp-polish
 description: >
   Review and improve an existing BP outline, PPTX, PDF, or rendered slide set across
   investment logic, evidence, copy, charts, and visual quality. Produces a scored
@@ -85,7 +85,7 @@ For every issue record slide, severity, why it matters, and exact revision.
 - Never change a product boundary solely to improve the story.
 
 If a revision needs new evidence, mark an evidence blocker and return it to
-`lovstudio-bp-outline`.
+`sgc-bp-outline`.
 
 ### Step 4: Inspect rendered slides
 

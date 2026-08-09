@@ -1,5 +1,5 @@
 ---
-name: lovstudio-bp
+name: sgc-bp
 description: >
   Orchestrate a complete investor BP workflow or route to one focused module:
   source-backed outline, PPTX/PDF production, or evidence/content/visual polishing.
@@ -17,7 +17,7 @@ metadata:
 # BP Skill Kit
 
 Compose only the stages the user needs. The kit preserves the existing
-`$lovstudio-bp` entrypoint while exposing three focused skills that can be used
+`$sgc-bp` entrypoint while exposing three focused skills that can be used
 independently.
 
 ## Triggers
@@ -43,9 +43,9 @@ Take user-specific output, brand, and asset paths from the request or current pr
 
 | Skill | Input | Output | Use alone when… |
 |---|---|---|---|
-| `lovstudio-bp-outline` | Project files, links, metrics, interviews | `brief.md`, `evidence-ledger.md`, `outline.md` | The user needs to clarify the investment story first |
-| `lovstudio-bp-deck` | Approved outline + evidence + brand assets | PPTX, PDF, preview, deck manifest | The outline already exists and the user wants slides |
-| `lovstudio-bp-polish` | Outline, PPTX/PDF, or rendered slides | Scored report + exact revisions + corrected assets | The user already has a BP and wants it made credible/professional |
+| `sgc-bp-outline` | Project files, links, metrics, interviews | `brief.md`, `evidence-ledger.md`, `outline.md` | The user needs to clarify the investment story first |
+| `sgc-bp-deck` | Approved outline + evidence + brand assets | PPTX, PDF, preview, deck manifest | The outline already exists and the user wants slides |
+| `sgc-bp-polish` | Outline, PPTX/PDF, or rendered slides | Scored report + exact revisions + corrected assets | The user already has a BP and wants it made credible/professional |
 
 Default full pipeline:
 
@@ -122,7 +122,7 @@ Verify every selected module before execution:
 2. confirm the selected module's `SKILL.md` exists;
 3. if it is missing, stop before producing partial output and report:
    `BP Skill Kit installation is incomplete: missing <relative path>`;
-4. tell the user to reinstall the self-contained `lovstudio-bp` package or install
+4. tell the user to reinstall the self-contained `sgc-bp` package or install
    the requested standalone module. Do not silently redirect to a sibling directory
    or improvise a replacement workflow.
 
@@ -197,13 +197,13 @@ pipeline, report:
 ## Composition Examples
 
 ```text
-$lovstudio-bp-outline 根据当前仓库和用户访谈写融资大纲
+$sgc-bp-outline 根据当前仓库和用户访谈写融资大纲
 
-$lovstudio-bp-deck ./business-plan/outline.md --style minimal
+$sgc-bp-deck ./business-plan/outline.md --style minimal
 
-$lovstudio-bp-polish ./business-plan/project-bp.pdf --full
+$sgc-bp-polish ./business-plan/project-bp.pdf --full
 
-$lovstudio-bp 从当前项目材料生成完整种子轮 BP，不要问，按推荐方案
+$sgc-bp 从当前项目材料生成完整种子轮 BP，不要问，按推荐方案
 ```
 
 ## Backward Compatibility

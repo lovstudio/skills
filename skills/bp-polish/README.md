@@ -1,4 +1,4 @@
-# lovstudio-bp-polish
+# sgc-bp-polish
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
@@ -13,9 +13,9 @@ npx lovstudio skills add bp-polish -g -y
 ## 使用
 
 ```text
-$lovstudio-bp-polish ./project-bp.pdf --full
-$lovstudio-bp-polish ./outline.md --content
-$lovstudio-bp-polish 这份 BP 图表不专业，只做视觉审查
+$sgc-bp-polish ./project-bp.pdf --full
+$sgc-bp-polish ./outline.md --content
+$sgc-bp-polish 这份 BP 图表不专业，只做视觉审查
 ```
 
 ## 交付物

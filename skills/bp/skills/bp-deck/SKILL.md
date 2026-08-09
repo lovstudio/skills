@@ -1,5 +1,5 @@
 ---
-name: lovstudio-bp-deck
+name: sgc-bp-deck
 description: >
   Turn an approved investor BP outline into a clean, professional slide deck with
   deliberate style selection, real product evidence, charts, branding, PPTX/PDF,
@@ -37,7 +37,7 @@ Recommended:
 - website/contact destination and QR asset.
 
 If the outline lacks a clear product definition, financing ask, or source-backed core
-numbers, stop and recommend `lovstudio-bp-outline` before rendering.
+numbers, stop and recommend `sgc-bp-outline` before rendering.
 
 ## Output Contract
 
@@ -58,7 +58,7 @@ business-plan/
 ### Step 0: Resolve input and dependency
 
 Resolve this skill directory as `SKILL_DIR` and locate the user's approved outline.
-Resolve `lovstudio-any2deck` through the active Agent Skills environment; do not
+Resolve `sgc-any2deck` through the active Agent Skills environment; do not
 assume an author's private installation path.
 
 Read `references/user-config.md` and `references/charts-and-visuals.md`.
@@ -106,9 +106,9 @@ Record before rendering:
 - expected PPTX/PDF/preview paths;
 - any slide intentionally marked illustrative.
 
-### Step 4: Generate with `lovstudio-any2deck`
+### Step 4: Generate with `sgc-any2deck`
 
-Invoke `lovstudio-any2deck` using the approved outline and chosen style. Preserve the
+Invoke `sgc-any2deck` using the approved outline and chosen style. Preserve the
 BP page order and evidence notes. Use 16:9, body text at least 20 pt, and a single
 dominant visual per page.
 
@@ -142,10 +142,10 @@ Regenerate only affected slides. Record the result in `deck-manifest.md`.
 ### Step 6: Handoff
 
 Return PPTX, PDF, preview, manifest, and any unresolved visual risks. Recommend
-`lovstudio-bp-polish` for an adversarial final review.
+`sgc-bp-polish` for an adversarial final review.
 
 ## Recommended Next Step
 
 ```text
-$lovstudio-bp-polish ./business-plan/project-bp.pdf --full
+$sgc-bp-polish ./business-plan/project-bp.pdf --full
 ```

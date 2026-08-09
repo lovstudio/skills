@@ -13,14 +13,14 @@ LovStudio BP Skill Kit 是一套免费、开源、可组合的商业计划书 Sk
 
 ## 本次提交内容
 
-- `lovstudio-bp`：识别用户意图并编排所需模块；
-- `lovstudio-bp-outline`：从项目材料生成证据账本和 12–15 页 BP 大纲；
-- `lovstudio-bp-deck`：将已确认大纲制作成专业融资演示文稿；
-- `lovstudio-bp-polish`：审查和修正已有大纲、PPT、PDF 的证据、内容与视觉问题。
+- `sgc-bp`：识别用户意图并编排所需模块；
+- `sgc-bp-outline`：从项目材料生成证据账本和 12–15 页 BP 大纲；
+- `sgc-bp-deck`：将已确认大纲制作成专业融资演示文稿；
+- `sgc-bp-polish`：审查和修正已有大纲、PPT、PDF 的证据、内容与视觉问题。
 
 ## 0.2.1 审查修复
 
-- `lovstudio-bp.zip` 已改为自包含包，内置三个被编排子模块及其资源；
+- `sgc-bp.zip` 已改为自包含包，内置三个被编排子模块及其资源；
 - 总控与 `kit.yaml` 统一使用包内 `skills/bp-*` 相对路径；
 - Skill frontmatter、`kit.yaml` 和 Connector 元数据均补充 Git 来源标识；
 - 补充显式触发词、不应触发条件和缺失模块错误提示；
@@ -28,7 +28,7 @@ LovStudio BP Skill Kit 是一套免费、开源、可组合的商业计划书 Sk
 
 ## 接入信息
 
-- Connector ID：`lovstudio-bp`
+- Connector ID：`sgc-bp`
 - Connector 类型：`skill-only`
 - 版本：`0.2.1`
 - 最低 WorkBuddy 版本：`4.24.0`

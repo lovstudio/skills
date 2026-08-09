@@ -1,4 +1,4 @@
-# lovstudio-bp · BP Skill Kit
+# sgc-bp · BP Skill Kit
 
 ![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-173D2A)
@@ -10,7 +10,7 @@
 项目材料 → BP 大纲 → PPTX / PDF → 专业审稿与润色
              ↑            ↑              ↑
          bp-outline    bp-deck       bp-polish
-              └──────── lovstudio-bp 总控 ────────┘
+              └──────── sgc-bp 总控 ────────┘
 ```
 
 不再把“想清楚融资叙事”“制作 PPT”“审稿润色”塞进一次又长又重的执行。用户可以只拿需要的那一段，也可以让总控完成全流程。
@@ -40,10 +40,10 @@ npx lovstudio skills add bp-polish -g -y
 
 ```bash
 python3 scripts/build_workbuddy_connector.py \
-  --output-dir ./lovstudio-bp-workbuddy-v0.2.1
+  --output-dir ./sgc-bp-workbuddy-v0.2.1
 ```
 
-其中 `lovstudio-bp.zip` 是可独立审查和安装的自包含总控包，内部携带三个
+其中 `sgc-bp.zip` 是可独立审查和安装的自包含总控包，内部携带三个
 子模块；另外三个 ZIP 仍可作为独立 Skill 使用。
 
 接入说明和审核文案见 [`workbuddy/`](workbuddy/)。
@@ -52,35 +52,35 @@ python3 scripts/build_workbuddy_connector.py \
 
 | Skill | 最适合的任务 | 交付物 |
 |---|---|---|
-| [`lovstudio-bp`](SKILL.md) | 不确定用哪个，或要完成全流程 | 自动组合所需模块 |
-| [`lovstudio-bp-outline`](skills/bp-outline/SKILL.md) | 从项目资料建立投资叙事 | Brief、证据账本、12–15 页大纲 |
-| [`lovstudio-bp-deck`](skills/bp-deck/SKILL.md) | 把已确认大纲做成专业 PPT | PPTX、PDF、全稿预览、Deck Manifest |
-| [`lovstudio-bp-polish`](skills/bp-polish/SKILL.md) | 审查或升级已有 BP/PPT | 100 分报告、逐页修改、定向重做 |
+| [`sgc-bp`](SKILL.md) | 不确定用哪个，或要完成全流程 | 自动组合所需模块 |
+| [`sgc-bp-outline`](skills/bp-outline/SKILL.md) | 从项目资料建立投资叙事 | Brief、证据账本、12–15 页大纲 |
+| [`sgc-bp-deck`](skills/bp-deck/SKILL.md) | 把已确认大纲做成专业 PPT | PPTX、PDF、全稿预览、Deck Manifest |
+| [`sgc-bp-polish`](skills/bp-polish/SKILL.md) | 审查或升级已有 BP/PPT | 100 分报告、逐页修改、定向重做 |
 
 ## 组合方式
 
 ### 只想先把内容想清楚
 
 ```text
-$lovstudio-bp-outline 根据当前项目材料写一份种子轮 BP 大纲
+$sgc-bp-outline 根据当前项目材料写一份种子轮 BP 大纲
 ```
 
 ### 已有大纲，直接做 PPT
 
 ```text
-$lovstudio-bp-deck ./business-plan/outline.md --style minimal
+$sgc-bp-deck ./business-plan/outline.md --style minimal
 ```
 
 ### 已经有 BP，只想变得更专业
 
 ```text
-$lovstudio-bp-polish ./project-bp.pdf --full
+$sgc-bp-polish ./project-bp.pdf --full
 ```
 
 ### 从材料到最终交付
 
 ```text
-$lovstudio-bp 从当前项目生成完整 BP，不要问我问题，按推荐方案
+$sgc-bp 从当前项目生成完整 BP，不要问我问题，按推荐方案
 ```
 
 总控默认组合：
@@ -132,7 +132,7 @@ Yoda 案例经历了完整组合流程：从项目材料和用户反馈中重建
 ## 兼容性
 
 - Python 3.8+：工作区初始化和确定性审稿。
-- [`lovstudio-any2deck`](https://github.com/lovstudio/any2deck-skill)：PPTX/PDF 生产。
+- [`sgc-any2deck`](https://github.com/lovstudio/any2deck-skill)：PPTX/PDF 生产。
 - 当前市场、竞品、政策和融资事实需要访问权威来源。
 - 不依赖作者私有路径；品牌和输出目录通过参数、环境变量或共享配置传入。
 

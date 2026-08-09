@@ -5,7 +5,7 @@
   "description": "从项目材料生成投资人商业计划书大纲、融资演示文稿，并完成专业审校。",
   "description_zh": "从项目材料生成投资人商业计划书大纲、融资演示文稿，并完成证据、内容和视觉审校。",
   "description_en": "Create investor-ready BP outlines, pitch decks, and evidence-based reviews from project materials.",
-  "source": "lovstudio-bp",
+  "source": "sgc-bp",
   "type": "skill-only",
   "version": "0.2.1",
   "source_type": "git",
