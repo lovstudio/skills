@@ -1,5 +1,5 @@
 ---
-name: sgc-skill-distiller
+name: lov-skill-distiller
 description: >
   Use when 用户要将项目经验、故障复盘和已验证流程蒸馏为可创建的 Agent Skill 蓝图，明确用户结果、触发边界、私有信息边界与验收方式；触发词包括“把经验蒸馏成 skill”与 “distill experience into a skill”。
 license: MIT
@@ -15,9 +15,9 @@ metadata:
   dependencies: []
 ---
 
-# sgc-skill-distiller — 将经验变成可创建的 Skill
+# lov-skill-distiller — 将经验变成可创建的 Skill
 
-这不是泛泛寻找机会，而是把已经发生过的工作蒸馏成稳定、可移植且可验收的能力契约。最终产物是 **Skill 蓝图**：它足以交给 `sgc-skill-creator` 落地，却不泄漏人名、项目代号、私有路径、密钥或聊天背景。
+这不是泛泛寻找机会，而是把已经发生过的工作蒸馏成稳定、可移植且可验收的能力契约。最终产物是 **Skill 蓝图**：它足以交给 `lov-skill-creator` 落地，却不泄漏人名、项目代号、私有路径、密钥或聊天背景。
 
 ## Triggers
 
@@ -29,9 +29,9 @@ metadata:
 
 ### Do not activate when
 
-- 用户已明确要实现某一个 Skill：交给 `sgc-skill-creator`。
-- 用户要优化、修订或升级已有 Skill：交给 `sgc-skill-optimizer`。
-- 用户只要保存一条项目约定到系统提示词或项目说明：交给 `sgc-distill-to-system`。
+- 用户已明确要实现某一个 Skill：交给 `lov-skill-creator`。
+- 用户要优化、修订或升级已有 Skill：交给 `lov-skill-optimizer`。
+- 用户只要保存一条项目约定到系统提示词或项目说明：交给 `lov-distill-to-system`。
 
 ## Workflow (MANDATORY)
 
@@ -90,7 +90,7 @@ Git 历史只是线索。补充用户提供的复盘、验收记录、失败日�
 
 ### Step 5: 交接实现
 
-用户选择“创建”的蓝图后，交给 `sgc-skill-creator`：它负责实现、校验和本地安装。用户要求上架时，再交给 `sgc-skill-publisher`。
+用户选择“创建”的蓝图后，交给 `lov-skill-creator`：它负责实现、校验和本地安装。用户要求上架时，再交给 `lov-skill-publisher`。
 
 ## Dependencies
 

@@ -1,4 +1,4 @@
-# sgc-install-ai
+# lov-install-ai
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
@@ -6,7 +6,7 @@
 
 ## 本地安装
 
-将目录链接到本地 Agent Skills 目录，链接名为 `sgc-install-ai`。首次执行会从当前项目和共享 profile 推断模型偏好；显式项目需求覆盖已保存偏好。
+将目录链接到本地 Agent Skills 目录，链接名为 `lov-install-ai`。首次执行会从当前项目和共享 profile 推断模型偏好；显式项目需求覆盖已保存偏好。
 
 ## 使用
 

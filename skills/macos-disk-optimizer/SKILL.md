@@ -1,5 +1,5 @@
 ---
-name: sgc-macos-disk-optimizer
+name: lov-macos-disk-optimizer
 description: >
   This skill should be used for “帮我清出至少 200GB”、“智能清理 Mac 磁盘”、“处理归档卷”、“避免 Finder 清理弹窗” or “optimize my Mac disk space”; it plans guarded cleanup, migration, and capacity verification.
 license: MIT
@@ -19,7 +19,7 @@ metadata:
   dependencies: []
 ---
 
-# sgc-macos-disk-optimizer — macOS 磁盘空间智能优化
+# lov-macos-disk-optimizer — macOS 磁盘空间智能优化
 
 在保护用户资料、活跃项目与原有路径的前提下，将 Mac 的真实可用空间提升到指定目标。先只读盘点与生成计划，再对明确候选执行可回滚清理或冷存储迁移，最终以系统数据卷的真实字节数验收。
 

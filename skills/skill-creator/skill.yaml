@@ -38,7 +38,7 @@ context:
       required: false
       question: 如果已有品牌语气或审美关键词，请提供它们。
   preferences:
-    namespace: sgc_skill_creator
+    namespace: lov_skill_creator
     fields:
     - path: user.language
       required: false

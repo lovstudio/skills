@@ -15,7 +15,7 @@ context:
       required: false
       question: 如果已有品牌语气或审美关键词，请提供它们。
   preferences:
-    namespace: sgc_gh_tidy
+    namespace: lov_gh_tidy
     fields:
     - path: user.language
       required: false

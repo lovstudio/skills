@@ -1,4 +1,4 @@
-# sgc-macos-disk-optimizer
+# lov-macos-disk-optimizer
 
 ![Version](https://img.shields.io/badge/version-0.2.0-blue)
 
@@ -22,7 +22,7 @@
 export SKILL_SOURCE_DIR="$(pwd)"
 mkdir -p "${SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}"
 ln -s "$SKILL_SOURCE_DIR" \
-  "$SKILLS_INSTALL_DIR/sgc-macos-disk-optimizer"
+  "$SKILLS_INSTALL_DIR/lov-macos-disk-optimizer"
 ```
 
 Creator 已支持通过 `--install-dir` 自动建立同名链接。安装完成后应确认链接解析到当前源码目录。

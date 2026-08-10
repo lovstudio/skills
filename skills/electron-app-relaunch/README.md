@@ -1,4 +1,4 @@
-# sgc-electron-app-relaunch
+# lov-electron-app-relaunch
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
@@ -6,7 +6,7 @@
 
 ## 本地安装
 
-将目录链接到本地 Agent Skills 目录，链接名为 `sgc-electron-app-relaunch`。安装后可直接说“在菜单里加一个重启应用”。
+将目录链接到本地 Agent Skills 目录，链接名为 `lov-electron-app-relaunch`。安装后可直接说“在菜单里加一个重启应用”。
 
 ## 使用
 

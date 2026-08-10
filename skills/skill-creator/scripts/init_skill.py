@@ -430,7 +430,7 @@ context:
         required: false
         question: 如果已有品牌语气或审美关键词，请提供它们。
   preferences:
-    namespace: sgc_{namespace}
+    namespace: lov_{namespace}
     fields:
       - path: user.language
         required: false

@@ -1,5 +1,5 @@
 ---
-name: sgc-electron-delta-updater
+name: lov-electron-delta-updater
 description: >
   为 Electron 桌面应用设计、实现和验证增量自动更新，覆盖 macOS Sparkle、签名、appcast、发布产物与失败拦截。用户提到增量更新、Sparkle、检查更新、appcast、DMG 更新或 delta updater 时使用。
 license: MIT
@@ -63,7 +63,7 @@ metadata:
 - Complete application cleanup before giving control to the native updater.
 - Keep the process alive until asynchronous install handoff is confirmed.
 - Use [references/release-verification.md](references/release-verification.md) to verify the staged update and the installed version after relaunch.
-- For a normal user-invoked app restart without an update, use `sgc-electron-app-relaunch` instead.
+- For a normal user-invoked app restart without an update, use `lov-electron-app-relaunch` instead.
 
 ### Step 4: Validate the deliverable
 

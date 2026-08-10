@@ -15,7 +15,7 @@ context:
       required: false
       question: 如果已有品牌语气或审美关键词，请提供它们。
   preferences:
-    namespace: sgc_anti_wechat_ai_check
+    namespace: lov_anti_wechat_ai_check
     fields:
     - path: user.language
       required: false
