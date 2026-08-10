@@ -12,6 +12,14 @@ Existing platform packaging and release workflows move to
 `sgc-skill-publisher`. Historical sections below describe older layouts and
 remain only for migration audits.
 
+## 2026-08: unified distribution catalog
+
+`lovstudio/skills` is now the sole LovStudio distribution index. The former
+`lovstudio/general-skills` and `lovstudio/dev-skills` manifests and mirrors were
+merged into its `skills.yaml` and `skills/` tree, then archived. New releases
+register only in `lovstudio/skills`; independent `lovstudio/<name>-skill`
+repositories remain the source of truth.
+
 ## 2026-07: v3 source/distribution split
 
 New scaffolds keep portable Agent Skills frontmatter in the canonical source
@@ -39,14 +47,14 @@ The creator no longer exposes `--target`, `--dev-skills`, or a repository
 choice in the interactive flow. Every scaffold is created as the source for
 `lovstudio/<name>-skill`.
 
-General-skills and dev-skills are downstream distribution indexes. Register
-them after the independent repo is released; do not treat either catalog as a
-scaffold destination.
+The distribution index is downstream from the independent repo. Register the
+release in `lovstudio/skills` after the source repository is released; do not
+treat the catalog as a scaffold destination.
 
 ## 2026-07: independent sources with a generated dev-skills aggregate
 
 Every skill now has one source of truth: `lovstudio/<name>-skill`. Free Meta /
-Dev Tools skills may be listed in `lovstudio/dev-skills`, whose checked-in
+Dev Tools skills may be listed in `lovstudio/skills`, whose checked-in
 skill directories are generated from the latest GitHub Releases.
 
 Do not use `--target dev-skills` and do not edit aggregate mirror directories
@@ -72,7 +80,7 @@ The skill directory is:
 `skills.yaml` must include:
 
 ```yaml
-repo: lovstudio/dev-skills
+repo: lovstudio/skills
 skill_path: skills/tanstack-query
 ```
 

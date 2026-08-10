@@ -134,6 +134,30 @@ def harden_npx_commands(root: Path) -> int:
     return modified
 
 
+def rewrite_archived_catalog_refs(root: Path) -> int:
+    """Point mirrored docs at the unified catalog after split indexes are archived."""
+    replacements = (
+        ("https://github.com/lovstudio/general-skills", "https://github.com/lovstudio/skills"),
+        ("https://github.com/lovstudio/dev-skills", "https://github.com/lovstudio/skills"),
+        ("lovstudio/general-skills", "lovstudio/skills"),
+        ("lovstudio/dev-skills", "lovstudio/skills"),
+        ("lovstudio general skills", "lovstudio skills"),
+        ("lovstudio dev skills", "lovstudio skills"),
+    )
+    modified = 0
+    for path in root.rglob("*.md"):
+        if path.name == "CHANGELOG.md" or path.as_posix().endswith("references/migration.md"):
+            continue
+        original = path.read_text()
+        patched = original
+        for old, new in replacements:
+            patched = patched.replace(old, new)
+        if patched != original:
+            path.write_text(patched)
+            modified += 1
+    return modified
+
+
 def prune_stale(installable_names: set[str]) -> None:
     """Remove ./skills/<name>/ dirs for skills no longer installable.
 
@@ -170,7 +194,13 @@ def mirror_one(skill: dict, skip_clone: bool) -> None:
             return
         rsync_mirror(skill_root, dest)
         touched = harden_npx_commands(dest)
-        suffix = f" (hardened {touched} md file{'s' if touched != 1 else ''})" if touched else ""
+        rewritten = rewrite_archived_catalog_refs(dest)
+        changes = []
+        if touched:
+            changes.append(f"hardened {touched} md file{'s' if touched != 1 else ''}")
+        if rewritten:
+            changes.append(f"updated {rewritten} archived-catalog reference{'s' if rewritten != 1 else ''}")
+        suffix = f" ({'; '.join(changes)})" if changes else ""
         print(f"  ✓ {name}{suffix}")
 
 

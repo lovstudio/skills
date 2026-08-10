@@ -4,7 +4,7 @@
 
 Convert PNG images into high-quality SVG files with optional white-background removal, vtracer spline vectorization, and svgo compression.
 
-Part of [lovstudio general skills](https://github.com/lovstudio/general-skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## Install
 
