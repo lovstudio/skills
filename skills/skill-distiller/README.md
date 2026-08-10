@@ -1,4 +1,4 @@
-# lov-skill-distiller
+# sgc-skill-distiller
 
 ![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
 
@@ -8,7 +8,7 @@
 
 ```bash
 ln -s "$(pwd)/skill-distiller-skill" \
-  "$HOME/.codex/skills/lov-skill-distiller"
+  "$HOME/.codex/skills/sgc-skill-distiller"
 ```
 
 ## 使用
@@ -24,7 +24,7 @@ python3 scripts/collect-source-evidence.py /path/to/project \
   --output skill-distillation-evidence.md
 ```
 
-输出的蓝图经确认后，使用 `lov-skill-creator` 实现并本地安装。
+输出的蓝图经确认后，使用 `sgc-skill-creator` 实现并本地安装。
 
 ## 质量门
 

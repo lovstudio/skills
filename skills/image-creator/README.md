@@ -4,12 +4,12 @@
 
 Generate images through the right mechanism: end-to-end AI generation, code-rendered layouts, or optimized prompts for external image models.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher general skills](https://example.com/skills/general-skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add image-creator -g -y
+npx skills add image-creator -g -y
 ```
 
 ## Usage

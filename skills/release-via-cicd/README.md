@@ -4,12 +4,12 @@
 
 > CI/CD 配置 + 一键发布（幂等）
 
-Migrated from `~/.claude/commands/lovstudio/release-via-cicd.md`. Behavior preserved.
+Migrated from `${SKILLS_CONFIG_DIR}/legacy-commands/release-via-cicd.md`. Behavior preserved.
 
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill lov-release-via-cicd -y -g
+npx skills add skill-publisher/skills --skill lov-release-via-cicd -y -g
 ```
 
 ## Invocation

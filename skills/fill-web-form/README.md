@@ -4,12 +4,12 @@
 
 Fill web forms by deep-searching your local knowledge base. Give it a URL, get back a ready-to-paste markdown document.
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add fill-web-form -g -y
+npx skills add fill-web-form -g -y
 ```
 
 No external dependencies — uses Claude's built-in tools only.
@@ -22,7 +22,7 @@ No external dependencies — uses Claude's built-in tools only.
  │  (URL)       │     │  (local files)    │     │  (markdown)      │
  │              │     │                   │     │                  │
  │  ┌────────┐  │     │  profile/         │     │  ## 1. 姓名      │
- │  │ 姓名   │──┼──┬──│  posts/           │──┬──│  手工川          │
+ │  │ 姓名   │──┼──┬──│  posts/           │──┬──│  品牌方          │
  │  │ 简介   │  │  │  │  projects/        │  │  │  ## 2. 简介      │
  │  │ 案例   │  │  │  │  articles/        │  │  │  <合成内容>      │
  │  │ 成效   │  │  │  │  CLAUDE.md        │  │  │  ## 3. 案例      │

@@ -25,11 +25,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 ### Changed
 
 - Watermark defaults: single centered mark per page at 0.1 opacity, auto-sized so text width ≈ half page width (previously a tiled grid at theme-dependent opacity with fixed font size 52). Override with `--wm-size / --wm-opacity / --wm-spacing-x / --wm-spacing-y` as before.
-- Back cover banner defaults to the bundled `assets/backcover-banner.jpg` (手工川 brand banner). Pass `--banner none` to disable, or `--banner <path>` to use your own.
+- Back cover banner defaults to the bundled `assets/backcover-banner.jpg` (品牌方 brand banner). Pass `--banner none` to disable, or `--banner <path>` to use your own.
 
 ### Added
 
-- `assets/backcover-banner.jpg` — bundled 手工川 branding banner so the default works for any user who clones the repo.
+- `assets/backcover-banner.jpg` — bundled 品牌方 branding banner so the default works for any user who clones the repo.
 - `.github/workflows/auto-tag.yml` — on push to `main`, CI auto-bumps the patch version in SKILL.md, tags it, and pushes the tag (which triggers the existing `release.yml`).
 
 ## [1.3.1] - 2026-04-20

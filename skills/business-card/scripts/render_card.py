@@ -9,8 +9,8 @@ standalone in a browser with a click-to-download button.
 
 Usage:
     python3 render_card.py \
-        --name "手工川" --latin "Mark Shawn" \
-        --brand "LOVSTUDIO.AI" --index "Nº 2026" \
+        --name "品牌方" --latin "Mark Shawn" \
+        --brand "SKILL.AI" --index "Nº 2026" \
         --tags "背包客,超级开发者,AI / OPC 布道师" \
         --tagline "在 **Agent 时代**，|寻找**人**的意义" \
         --pursuits "旅行,羽毛球,计算机科学,心理学,哲学" \
@@ -183,7 +183,7 @@ def render_html(args):
 
 
 def render_brand(brand):
-    """Highlight a single dot in a brand like LOVSTUDIO.AI."""
+    """Highlight a single dot in a brand like SKILL.AI."""
     if not brand:
         return ""
     if "." in brand:
@@ -228,7 +228,7 @@ def main():
     ap = argparse.ArgumentParser(description="Generate an editorial business card (2:1).")
     ap.add_argument("--name", required=True, help="display name (CJK ok)")
     ap.add_argument("--latin", default="", help="secondary/romanized name")
-    ap.add_argument("--brand", default="", help="top-left brand text, e.g. LOVSTUDIO.AI")
+    ap.add_argument("--brand", default="", help="top-left brand text, e.g. SKILL.AI")
     ap.add_argument("--index", default="", help="top-right line, e.g. 'STUDIO — Nº 2026'")
     ap.add_argument("--tags", default="", help="comma-separated role tags")
     ap.add_argument("--tagline", default="", help="hero line; **accent**, | splits lines")

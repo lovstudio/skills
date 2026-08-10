@@ -15,7 +15,7 @@ compatibility: >
   Requires Python 3.8+ and openpyxl (`pip install openpyxl`).
   Cross-platform: macOS, Windows, Linux.
 metadata:
-  author: lovstudio
+  author: contributors
   version: "0.1.3"
   tags: invoice expense report reimbursement excel categorize
 ---
@@ -124,7 +124,7 @@ The Excel file contains two sheets:
 1. **发票报销汇总** — Full detail, grouped by category with subtotals
 2. **分类汇总** — Summary table: category, count, subtotal
 
-Style: Lovstudio warm-academic (terracotta headers #CC785C, warm cream accents).
+Style: Skill Publisher warm-academic (terracotta headers #4F46E5, warm cream accents).
 
 ## Edge Cases
 
@@ -132,3 +132,11 @@ Style: Lovstudio warm-academic (terracotta headers #CC785C, warm cream accents).
 - **Foreign currency**: Note the currency; convert to CNY if user provides rate, otherwise keep original with note.
 - **Duplicate invoices**: Flag potential duplicates (same date + vendor + amount) before generating.
 - **No date on invoice**: Use the date the user provides, or mark as "日期不详".
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

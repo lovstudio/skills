@@ -4,7 +4,7 @@ description: >
   Turn any folder of source material — a code repository, a pile of articles, a
   mixed knowledge dump with images — into a professional, polished Fumadocs
   (Next.js) documentation website, then deploy it to
-  https://{product-id}.lovstudio.ai/docs. Works by reading the folder one unit at
+  https://{product-id}.example.com/docs. Works by reading the folder one unit at
   a time and incrementally growing and refining the docs structure and detail, so
   it scales to large folders and handles images as first-class content (copied
   into the site, embedded inline, auto-galleried). Trigger when the user wants to
@@ -17,11 +17,11 @@ compatibility: >
   Image optimization optionally uses Pillow (graceful fallback to verbatim copy).
   Deployment delegates to the lov-deploy-to-vercel skill (Cloudflare DNS
   auto-config needs CLOUDFLARE_API_KEY). The {product-id} subdomain and
-  lovstudio.ai base domain are user-configurable.
+  example.com base domain are user-configurable.
 depends_on:
   - lov-deploy-to-vercel
 metadata:
-  author: lovstudio
+  author: contributors
   version: "0.2.0"
   tags: docs fumadocs documentation nextjs vercel codebase articles knowledge-base images
 ---
@@ -29,7 +29,7 @@ metadata:
 # repo2docs — Folder → Polished Docs Site (incremental)
 
 Turn any folder of source material into a professional Fumadocs documentation
-website and deploy it to `https://{product-id}.lovstudio.ai/docs`.
+website and deploy it to `https://{product-id}.example.com/docs`.
 
 A code repo and a folder of articles are the same thing: **a folder of source
 material**. There is one unified flow, not separate modes. The difference is only
@@ -43,13 +43,13 @@ scales past the context window and produces a coherent, deduplicated result.
 
 ## User Configuration
 
-Defaults are portable. Base domain is `lovstudio.ai`; subdomain is the product id.
+Defaults are portable. Base domain is `example.com`; subdomain is the product id.
 Deploy delegates to `lov-deploy-to-vercel` (reads `CLOUDFLARE_API_KEY`).
 See `references/user-config.md`.
 
 ## When to Use
 
-- "用 fumadocs 给这个项目生成文档站并部署到 xxx.lovstudio.ai/docs"
+- "用 fumadocs 给这个项目生成文档站并部署到 xxx.example.com/docs"
 - "把这个装满文章和图片的文件夹整理成一个文档网站"
 - A code repo, an article collection, or a mixed knowledge folder needs a polished,
   navigable, image-rich docs site
@@ -73,7 +73,7 @@ export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_pr
 **Use `AskUserQuestion` BEFORE doing anything**, unless the user already gave all:
 
 - **Source**: GitHub URL, local folder path, or current directory?
-- **Product id**: the subdomain → `{product-id}.lovstudio.ai`. Propose a slug from
+- **Product id**: the subdomain → `{product-id}.example.com`. Propose a slug from
   the folder/repo name; confirm.
 - **Title**: human-facing name for the docs.
 - **Deploy now?**: deploy to Vercel + bind subdomain immediately, or generate only.
@@ -167,7 +167,7 @@ cd "<docs-out-dir>" && pnpm build    # must succeed — fix MDX/link/image error
 
 Delegate to `lov-deploy-to-vercel` — do NOT reimplement Vercel/DNS here.
 Ensure `package.json` "name" is a valid lowercase slug, then deploy with domain
-`{product-id}.lovstudio.ai`. The site serves at `…/docs` via the basePath. After
+`{product-id}.example.com`. The site serves at `…/docs` via the basePath. After
 deploy, **verify the live URL returns 200** (curl), not just that the alias was set.
 
 ## CLI Reference
@@ -194,7 +194,7 @@ deploy, **verify the live URL returns 200** (curl), not just that the alias was 
 
 | Argument | Default | Description |
 |----------|---------|-------------|
-| `--product-id` | (required) | Slug → `{id}.lovstudio.ai` |
+| `--product-id` | (required) | Slug → `{id}.example.com` |
 | `--out` | (required) | Output dir (separate from source) |
 | `--title` | `=product-id` | Human-facing title |
 | `--pm` | `pnpm` | Package manager |
@@ -207,3 +207,11 @@ deploy, **verify the live URL returns 200** (curl), not just that the alias was 
 - `lov-deploy-to-vercel` skill (Vercel + Cloudflare DNS)
 
 For Fumadocs structure, components, and config, see `references/fumadocs.md`.
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

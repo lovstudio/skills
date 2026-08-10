@@ -13,7 +13,7 @@ description: >
   Chinese and English trigger phrases.
 license: MIT
 metadata:
-  author: lovstudio
+  author: skill-publisher
   version: "0.1.0"
   tags:
     - <tag>
@@ -27,18 +27,10 @@ phrases, explicit non-triggers, ordered workflow, dependencies, and validation.
 
 ## Automatic source shape
 
-No persistent settings:
+Every generated Skill includes the Profile contract:
 
 ```bash
-python3 scripts/init_skill.py <name> --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
-```
-
-Persistent workspace, brand, locale, output, or provider settings:
-
-```bash
-python3 scripts/init_skill.py <name> \
-  --user-config \
-  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
+python3 scripts/init_skill.py <name> --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
 
 Self-contained Skill Kit:
@@ -48,12 +40,13 @@ python3 scripts/init_skill.py <name> \
   --kit \
   --module <module-a> \
   --module <module-b> \
-  --user-config \
-  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
+  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
 
-The agent infers these flags from requirements. They are implementation inputs,
-not questions for the user.
+The generated source always includes `skill.yaml`,
+`references/user-profile.md`, and `scripts/profile_store.py`. The old
+`--user-config` flag remains accepted as a compatibility alias and does not
+change the generated contract.
 
 ## Completion
 
@@ -64,3 +57,17 @@ not questions for the user.
 - Exercise trigger routing and at least one Kit pipeline when applicable.
 
 Remote publication is a separate `lov-skill-publisher` workflow.
+
+## Mandatory Skill group composition record
+
+Every new source includes `references/skill-composition.md`. Before replacing
+its placeholders, inspect related local and installed Skills and record:
+
+1. nearby Skills considered and their actual routing contract;
+2. each upstream/core/downstream atom with the artifact-level handoff;
+3. overlaps that should be reused or extended rather than duplicated; and
+4. the final Single Skill versus self-contained Kit decision.
+
+External sibling Skills are optional handoffs, not hidden runtime dependencies.
+If two or more stages require a hard dependency for the same user-visible
+result, embed them in the new Skill Kit and keep the source self-contained.

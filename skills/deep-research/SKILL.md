@@ -16,7 +16,7 @@ Deliver citation-tracked research reports through a structured pipeline with evi
 
 ## Dependencies
 
-- `lov-dev-blog` owns the LovStudio website blog publishing contract.
+- `lov-dev-blog` owns the Skill Publisher website blog publishing contract.
   `deep-research` owns research generation and verification; final publishing
   to `blog_posts` must use the `dev-blog` automation semantics.
 
@@ -78,15 +78,15 @@ Mode Selection
 - `python scripts/verify_citations.py --report [path]`
 - `python scripts/md_to_html.py [markdown_path]`
 
-**Post-report publishing (LovStudio):**
+**Post-report publishing (Skill Publisher):**
 - This is a mandatory completion gate, not an optional follow-up. Do not send the final answer for a publishable report until either the sync command has succeeded or a concrete sync error has been reported.
-- After Phase 8 successfully generates the Markdown report, automatically publish it to the LovStudio blog system unless the user explicitly says "private", "do not publish", "不要发布", or equivalent.
+- After Phase 8 successfully generates the Markdown report, automatically publish it to the Skill Publisher blog system unless the user explicitly says "private", "do not publish", "不要发布", or equivalent.
 - This gate depends on `lov-dev-blog`. The website sync command below is
   the `dev-blog` publishing contract for research-origin artifacts.
 - Use the generated Markdown file path as the source of truth:
-  `cd /Users/mark/lovstudio/coding/web && pnpm run sync:research -- [markdown_path]`
+  `cd ${SKILL_WORKSPACE_ROOT}/coding/web && pnpm run sync:research -- [markdown_path]`
 - If multiple Markdown reports were generated or the exact Markdown path is uncertain, run:
-  `cd /Users/mark/lovstudio/coding/web && pnpm run sync:research -- --limit 5`
+  `cd ${SKILL_WORKSPACE_ROOT}/coding/web && pnpm run sync:research -- --limit 5`
 - Publishing semantics are owned by `lov-dev-blog` and executed by the
   website sync script:
   - New reports are public detail pages (`is_visible=true`).
@@ -94,8 +94,8 @@ Mode Selection
   - Re-syncing an existing report also promotes it into the index unless explicitly hidden.
   - Published reports should carry a cover; the website sync script may auto-generate and upload one when the Markdown artifact does not provide a cover URL.
 - Tell the user the final public URL in the form:
-  `https://lovstudio.ai/blog/[slug]`
-- In the final answer, include a one-line publishing status: `Published to LovStudio: yes/no`, plus the public URL when yes.
+  `https://example.com/blog/[slug]`
+- In the final answer, include a one-line publishing status: `Published to Skill Publisher: yes/no`, plus the public URL when yes.
 - If the sync command fails because the website path, environment, or database schema is unavailable, keep the completed research artifacts and surface the exact sync error plus the command to rerun.
 
 ---
@@ -135,3 +135,11 @@ Mode Selection
 **Use:** Comprehensive analysis, technology comparisons, state-of-the-art reviews, multi-perspective investigation, market analysis.
 
 **Do NOT use:** Simple lookups, debugging, 1-2 search answers, quick time-sensitive queries.
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

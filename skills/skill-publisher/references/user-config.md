@@ -14,7 +14,7 @@ variables or credential stores.
 ## Shared profile
 
 ```bash
-${LOVSTUDIO_SKILLS_PROFILE:-$HOME/.lovstudio/skills/profile.json}
+${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}
 ```
 
 Recommended shape:
@@ -25,12 +25,12 @@ Recommended shape:
     "github_org": "YOUR_ORG",
     "default_visibility": "private",
     "output_dir": "$HOME/Documents/skill-releases",
-    "lovstudio": {
+    "skill-publisher": {
       "catalog": "$HOME/lovstudio/coding/lovstudio-skills",
       "site_url": "https://example.com/skills"
     },
     "workbuddy": {
-      "profile_dir": "$HOME/.lovstudio/skills/publish/workbuddy"
+      "profile_dir": "$HOME/.skill-publisher/skills/publish/workbuddy"
     }
   }
 }

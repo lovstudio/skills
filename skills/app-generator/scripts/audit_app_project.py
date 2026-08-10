@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit a project against the Lovstudio app baseline."""
+"""Audit a project against the Skill Publisher app baseline."""
 
 from __future__ import annotations
 
@@ -215,7 +215,7 @@ def audit(root: Path, app_type: str = "auto") -> dict:
         "--primary" in read_text(path)
         and ("--background" in read_text(path) or "bg-background" in read_text(path))
         for path in css_files
-    ) or contains_text(local_instruction_files, ["warm academic", "cc785c", "lovstudio"])
+    ) or contains_text(local_instruction_files, ["warm academic", "cc785c", "skill-publisher"])
 
     checks = [
         Check(
@@ -237,14 +237,14 @@ def audit(root: Path, app_type: str = "auto") -> dict:
             "shadcn/ui",
             status(has_shadcn),
             "components.json found" if has_shadcn else "components.json missing",
-            "Initialize shadcn/ui and map tokens to the Lovstudio Warm Academic theme.",
+            "Initialize shadcn/ui and map tokens to the Skill Publisher Configurable Academic theme.",
         ),
         Check(
             "warm-academic",
-            "Lovstudio Warm Academic UI",
+            "Skill Publisher Configurable Academic UI",
             status(has_warm_academic),
-            "theme tokens or Lovstudio references detected" if has_warm_academic else "theme tokens not detected",
-            "Read the Warm Academic design guide from local workspace config and use semantic Tailwind classes.",
+            "theme tokens or Skill Publisher references detected" if has_warm_academic else "theme tokens not detected",
+            "Read the Configurable Academic design guide from local workspace config and use semantic Tailwind classes.",
         ),
         Check(
             "tanstack-query",
@@ -333,7 +333,7 @@ def audit(root: Path, app_type: str = "auto") -> dict:
 
 def render_markdown(report: dict) -> str:
     lines = [
-        "# Lovstudio App Audit",
+        "# Skill Publisher App Audit",
         "",
         f"Root: `{report['root']}`",
         f"App type: `{report['app_type']}` (requested: `{report['requested_app_type']}`)",
@@ -358,7 +358,7 @@ def render_markdown(report: dict) -> str:
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Audit a project against the Lovstudio app baseline.")
+    parser = argparse.ArgumentParser(description="Audit a project against the Skill Publisher app baseline.")
     parser.add_argument("--root", default=".", help="Target app root to inspect.")
     parser.add_argument("--app-type", choices=("auto", "web", "tauri"), default="auto", help="Audit profile to apply.")
     parser.add_argument("--format", choices=("markdown", "json"), default="markdown", help="Output format.")

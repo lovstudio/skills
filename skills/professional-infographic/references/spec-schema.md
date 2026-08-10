@@ -83,16 +83,16 @@ An evidence-ledger item should include:
 ```json
 {
   "schema_version": 1,
-  "name": "LovStudio",
-  "site": "https://lovstudio.ai",
+  "name": "Skill Publisher",
+  "site": "https://example.com",
   "logo": "/absolute/or/profile-relative/logo.svg",
   "primary": "#1F2937",
-  "accent": "#D97757",
+  "accent": "#4F46E5",
   "ink": "#111827",
   "muted": "#64748B",
   "paper": "#F7F4EF",
   "font_family": "Inter, PingFang SC, Microsoft YaHei, sans-serif",
-  "copyright": "本信息图由 LovStudio 的「专业信息图」Skill 生成",
+  "copyright": "本信息图由 Skill Publisher 的「专业信息图」Skill 生成",
   "output_dir": "$HOME/Documents/professional-infographic"
 }
 ```

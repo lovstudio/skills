@@ -1,6 +1,6 @@
 # WorkBuddy Connector 发行说明
 
-本目录用于生成 `LovStudio BP Skill Kit` 的 WorkBuddy `skill-only`
+本目录用于生成 `Skill Publisher BP Skill Kit` 的 WorkBuddy `skill-only`
 Connector 提交包。
 
 ## 接入判断
@@ -9,7 +9,7 @@ Connector 提交包。
 - 不需要 `mcp.json`
 - 不需要 `cli.json`
 - 不需要 OAuth、Token 或其他用户凭证
-- 不调用 LovStudio 私有服务
+- 不调用 Skill Publisher 私有服务
 - Skill 本体按 MIT License 免费开源
 
 ## 提交包内容

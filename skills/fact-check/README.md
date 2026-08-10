@@ -4,12 +4,12 @@
 
 尽调式事实校验 skill：把用户提出的事实命题拆成可验证问题，优先查一手资料，交叉验证证据链，并输出结论、边界和置信度。
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher general skills](https://example.com/skills/general-skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add fact-check -g -y
+npx skills add fact-check -g -y
 ```
 
 ## Dependencies

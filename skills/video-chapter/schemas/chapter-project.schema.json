@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lovstudio.ai/schemas/video-chapter-project-1.0.json",
+  "$id": "https://example.com/schemas/video-chapter-project-1.0.json",
   "title": "Video Chapter Project",
   "type": "object",
   "required": ["schemaVersion", "name", "video", "chapters", "style", "export"],

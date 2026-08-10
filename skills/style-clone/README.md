@@ -6,19 +6,19 @@
 
 Analyze sample articles to extract an 8-dimension writing style profile, then rewrite any target article in that exact style.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-git clone https://github.com/lovstudio/style-clone-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-style-clone"
+git clone https://example.com/skills/style-clone-skill \
+  "${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-style-clone"
 ```
 
 Or via the skills CLI:
 
 ```bash
-npx lovstudio skills add style-clone -g -y
+npx skills add style-clone -g -y
 ```
 
 No external dependencies — pure Claude reasoning workflow.

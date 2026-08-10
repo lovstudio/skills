@@ -6,7 +6,7 @@
 
 它把“磨皮、提亮、去帽、补发型、职业化”拆成尽量少的编辑步骤，并用身份一致性、皮肤质感、发际线和光影完整性做最终质检。
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher general skills](https://example.com/skills/general-skills) — by [example.com](https://example.com)
 
 ## 能做什么
 
@@ -20,14 +20,14 @@ Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudi
 ## 安装
 
 ```bash
-npx lovstudio skills add professional-portrait
+npx skills add professional-portrait
 ```
 
 也可以直接从源码安装：
 
 ```bash
-git clone https://github.com/lovstudio/professional-portrait-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-professional-portrait"
+git clone https://example.com/skills/professional-portrait-skill \
+  "${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-professional-portrait"
 ```
 
 ## 使用

@@ -4,12 +4,12 @@
 
 Enterprise-grade research engine for Claude Code. Produces citation-backed reports with source credibility scoring, multi-provider search, and automated validation.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Installation
 
 ```bash
-npx lovstudio skills add deep-research -g -y
+npx skills add deep-research -g -y
 ```
 
 No additional dependencies required for basic usage.

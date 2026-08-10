@@ -17,7 +17,7 @@ compatibility: >
   No external dependencies. Uses built-in tools: WebFetch, Agent (Explore),
   Grep, Glob, Read, Write. Requires internet access for URL fetching.
 metadata:
-  author: lovstudio
+  author: contributors
   version: "1.1.2"
   tags: form web fill knowledge-base conference speaker application
 ---
@@ -146,7 +146,7 @@ knowledge-base/
   This tree helps the user verify source coverage and spot missing materials.
 
 **Output naming:** Follow user's naming convention. Default:
-`手工川-<form-topic>-<YYYY-MM-DD>-v0.1.md`
+`品牌方-<form-topic>-<YYYY-MM-DD>-v0.1.md`
 
 ### Step 5: Present summary
 
@@ -163,3 +163,11 @@ After writing the file, show:
 3. **Match form tone** — conference apps need professional language, registrations can be brief
 4. **Respect privacy** — never guess phone numbers or passwords, mark for manual input
 5. **Cite sources** — when composing from knowledge base, the content should be accurate to the user's real experience
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

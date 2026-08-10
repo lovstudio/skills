@@ -20,9 +20,9 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
 ASSETS_DIR = SKILL_ROOT / "assets"
-DEFAULT_BRAND = ASSETS_DIR / "lov-brand.json"
-DEFAULT_USER_BRAND = Path("~/.lovstudio/skills/professional-infographic-brand.json")
-DEFAULT_SHARED_PROFILE = Path("~/.lovstudio/skills/profile.json")
+DEFAULT_BRAND = ASSETS_DIR / "brand-profile.template.json"
+DEFAULT_USER_BRAND = Path("${SKILLS_CONFIG_DIR}/professional-infographic-brand.json")
+DEFAULT_SHARED_PROFILE = Path("${SKILLS_CONFIG_DIR}/profile.json")
 
 CANVASES: Dict[str, Tuple[int, int]] = {
     "4:5": (1080, 1350),
@@ -188,7 +188,7 @@ def report_path_value(path: Path, report_path: Optional[Path]) -> str:
 
 
 def shared_profile_path() -> Path:
-    raw = os.environ.get("LOVSTUDIO_SKILLS_PROFILE", str(DEFAULT_SHARED_PROFILE))
+    raw = os.environ.get("SKILL_PROFILE_PATH", str(DEFAULT_SHARED_PROFILE))
     return expand_path(raw)
 
 
@@ -202,8 +202,8 @@ def load_shared_profile() -> Dict[str, Any]:
 def configured_brand_path(explicit: Optional[str]) -> Path:
     candidates: List[Optional[str]] = [
         explicit,
-        os.environ.get("LOVSTUDIO_PROFESSIONAL_INFOGRAPHIC_BRAND_PROFILE"),
-        os.environ.get("LOVSTUDIO_SKILLS_BRAND_PROFILE"),
+        os.environ.get("SKILL_PROFESSIONAL_INFOGRAPHIC_BRAND_PROFILE"),
+        os.environ.get("SKILL_PROFILE_PATH"),
     ]
     for candidate in candidates:
         if candidate:
@@ -292,8 +292,8 @@ def slugify(value: str) -> str:
 
 def resolve_output_root() -> Path:
     for key in (
-        "LOVSTUDIO_PROFESSIONAL_INFOGRAPHIC_OUTPUT_DIR",
-        "LOVSTUDIO_SKILLS_OUTPUT_DIR",
+        "SKILL_PROFESSIONAL_INFOGRAPHIC_OUTPUT_DIR",
+        "SKILL_OUTPUT_DIR",
     ):
         if os.environ.get(key):
             return expand_path(os.environ[key])
@@ -1710,7 +1710,7 @@ def parser() -> argparse.ArgumentParser:
     brand_parser.add_argument("--logo", required=True, help="SVG, PNG, JPEG, or WebP logo.")
     brand_parser.add_argument("--site", default="", help="Brand website.")
     brand_parser.add_argument("--primary", default="#24324A")
-    brand_parser.add_argument("--accent", default="#D97757")
+    brand_parser.add_argument("--accent", default="#4F46E5")
     brand_parser.add_argument("--ink", default="#172033")
     brand_parser.add_argument("--muted", default="#697386")
     brand_parser.add_argument("--paper", default="#F7F4EF")

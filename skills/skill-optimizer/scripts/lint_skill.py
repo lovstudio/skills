@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Audit a lovstudio skill against repo conventions + official skill-creator best practices.
+Audit a skill-publisher skill against repo conventions + official skill-creator best practices.
 
 Usage:
     python lint_skill.py <skill-name>           # e.g. any2pdf or lov-any2pdf
@@ -28,23 +28,24 @@ USER_CONFIG_CUES = (
     "## User Configuration",
     "## 用户配置",
     "user-config.md",
-    "LOVSTUDIO_SKILLS_PROFILE",
-    "LOVSTUDIO_SKILLS_HOME",
-    "LOVSTUDIO_SKILLS_WORKSPACE_ROOT",
-    "LOVSTUDIO_SKILLS_OUTPUT_DIR",
-    "LOVSTUDIO_SKILLS_BRAND_PROFILE",
-    "LOVSTUDIO_SKILLS_DESIGN_GUIDE",
-    "LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT",
-    "LOVSTUDIO_MAINTAIN_PARTNERS_FILE",
+    "SKILL_PROFILE_PATH",
+    "SKILLS_CONFIG_DIR",
+    "SKILL_WORKSPACE_ROOT",
+    "SKILL_OUTPUT_DIR",
+    "SKILL_PROFILE_PATH",
+    "SKILL_DESIGN_GUIDE",
+    "SKILL_MAINTAIN_PARTNERS_SITE_ROOT",
+    "SKILL_MAINTAIN_PARTNERS_FILE",
     # Legacy cues accepted during migration.
     "AGENT_SKILL_PROFILE",
-    "LOVSTUDIO_SKILL_PROFILE",
+    "SKILL_SKILL_PROFILE",
     "PARTNERS_SITE_ROOT",
     "PARTNERS_FILE",
 )
+USER_PATH_PATTERN = r"/" + r"Users" + r"/[^/\s]+(?:/|\b)"
 LOCAL_PATH_PATTERNS = (
-    ("LOCAL_MARK_PATH", re.compile(r"/Users/mark(?:/|\b)"), "/Users/mark"),
-    ("LOCAL_LOVSTUDIO_PATH", re.compile(r"(?<![A-Za-z0-9_])~/?lovstudio(?:/|\b)|\$HOME/lovstudio(?:/|\b)"), "~/lovstudio"),
+    ("LOCAL_USER_PATH", re.compile(USER_PATH_PATTERN), "user home path"),
+    ("LOCAL_SKILL_PATH", re.compile(r"(?<![A-Za-z0-9_])~/?skill-publisher(?:/|\b)|\$HOME/skill-publisher(?:/|\b)"), "~/skill-publisher"),
     ("LOCAL_CLAUDE_PATH", re.compile(r"~/\.claude|/\.claude/skills|\$HOME/\.claude"), "~/.claude"),
     ("LOCAL_AGENTS_PATH", re.compile(r"~/\.agents|/\.agents/skills|\$HOME/\.agents"), "~/.agents"),
     ("CLIENT_PLUGIN_ENV", re.compile(r"CLAUDE_PLUGIN_ROOT"), "CLAUDE_PLUGIN_ROOT"),
@@ -347,7 +348,7 @@ class Linter:
             compatibility = str(fm.get("compatibility", ""))
         author_only = bool(
             re.search(
-                r"author-only|internal only|LovStudio internal|Mark/LovStudio private",
+                r"author-only|internal only|Skill Publisher internal|Mark/Skill Publisher private",
                 compatibility,
                 re.I,
             )
@@ -407,9 +408,9 @@ class Linter:
         has_install = any(
             token in text
             for token in (
-                "npx lovstudio skills add",
                 "npx skills add",
-                "git clone https://github.com/lovstudio",
+                "npx skills add",
+                "git clone https://example.com/skills",
                 "/plugin install",
             )
         )
@@ -524,7 +525,7 @@ def format_text(findings: list[dict], skill_dir: Path) -> str:
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Audit a lovstudio skill")
+    ap = argparse.ArgumentParser(description="Audit a skill-publisher skill")
     ap.add_argument("name", nargs="?", help="Skill name (with or without lov- prefix)")
     ap.add_argument("--path", help="Absolute path to skill directory (overrides name)")
     ap.add_argument("--all", action="store_true", help="Audit every SKILL.md below the detected root")

@@ -4,12 +4,12 @@
 
 Markdown to professionally typeset PDF with [reportlab](https://docs.reportlab.com/). CJK/Latin mixed text, code blocks, tables, images, Obsidian callouts, emoji fallback, formulas, cover pages, TOC, bookmarks, watermarks, and 14 color themes.
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) &mdash; by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) &mdash; by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add any2pdf -g -y
+npx skills add any2pdf -g -y
 ```
 
 Requires: Python 3.8+ and `pip install reportlab`

@@ -29,11 +29,11 @@ You (turn 80):  transcript size crosses threshold
 ## Install
 
 ```bash
-npx lovstudio skills add auto-context -g -y
+npx skills add auto-context -g -y
 ```
 
 Works standalone as a manual skill. Auto-trigger on long transcripts
-requires the [lovstudio plugin](https://github.com/lovstudio/claude-code-plugin)
+requires the [skill-publisher plugin](https://example.com/skills/claude-code-plugin)
 which registers the `UserPromptSubmit` hook.
 
 ## Manual Use
@@ -54,8 +54,8 @@ exact command for you to paste.
 
 ## User Configuration
 
-Set `LOVSTUDIO_AUTO_CONTEXT_AGENT_HOME` or configure
-`${LOVSTUDIO_SKILLS_PROFILE:-$HOME/.lovstudio/skills/profile.json}` with
+Set `SKILL_AUTO_CONTEXT_AGENT_HOME` or configure
+`${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}` with
 `agent.home`, `claude.home`, or `runtime.agent_home`. If none is available, the
 skill asks once before editing global files.
 

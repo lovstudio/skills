@@ -80,7 +80,7 @@ def _split_mixed(text):
 # ═══════════════════════════════════════════════════════════════════════
 THEMES = {
     "warm-academic": {
-        "ink":"#181818","ink_faded":"#87867F","accent":"#CC785C",
+        "ink":"#181818","ink_faded":"#87867F","accent":"#4F46E5",
         "border":"#E8E6DC","canvas_sec":"#F0EEE6",
         "body_font":"serif","heading_font":"serif",
     },

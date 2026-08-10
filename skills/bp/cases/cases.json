@@ -7,8 +7,8 @@
   {
     "type": "article",
     "title": "Yoda BP：从功能清单到投资叙事的完整复盘",
-    "url": "https://github.com/lovstudio/bp-skill/blob/main/references/case-yoda.md",
-    "source": "LovStudio 案例报告",
-    "cover": "https://raw.githubusercontent.com/lovstudio/bp-skill/main/cases/yoda-bp-cover.png"
+    "url": "https://example.com/skills/bp-skill/blob/main/references/case-yoda.md",
+    "source": "Skill Publisher 案例报告",
+    "cover": "https://raw.githubusercontent.com/skill-publisher/bp-skill/main/cases/yoda-bp-cover.png"
   }
 ]

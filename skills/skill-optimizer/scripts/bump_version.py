@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Bump a lovstudio skill's version and append a CHANGELOG entry.
+Bump a skill-publisher skill's version and append a CHANGELOG entry.
 
 Source of truth: README.md version badge. SKILL.md frontmatter metadata.version
 is kept in sync when present.
@@ -26,7 +26,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
-BADGE_COLOR = "CC785C"  # Lovstudio terracotta
+BADGE_COLOR = "CC785C"  # Skill Publisher terracotta
 BADGE_RE = re.compile(
     r"!\[Version\]\(https://img\.shields\.io/badge/version-(\d+\.\d+\.\d+)-[A-Za-z0-9]+\)"
 )
@@ -165,7 +165,7 @@ def update_changelog(
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Bump version and update changelog for a lovstudio skill")
+    ap = argparse.ArgumentParser(description="Bump version and update changelog for a skill-publisher skill")
     ap.add_argument("name", nargs="?", help="Skill name (with or without lov- prefix)")
     ap.add_argument("--path", help="Absolute path to skill directory (overrides name)")
     group = ap.add_mutually_exclusive_group(required=True)

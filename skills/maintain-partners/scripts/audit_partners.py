@@ -60,18 +60,18 @@ def resolve_repo(cli_repo: str | None) -> Path:
             return repo
         sys.exit(f"Website repo not found at --repo: {repo}")
     for env_key in (
-        "LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT",
-        "LOVSTUDIO_WEB_ROOT",
+        "SKILL_MAINTAIN_PARTNERS_SITE_ROOT",
+        "SKILL_WEB_ROOT",
         "PARTNERS_SITE_ROOT",
     ):
         if os.environ.get(env_key):
             candidates.append(os.environ[env_key])
 
     profile = Path(
-        os.environ.get("LOVSTUDIO_SKILLS_PROFILE")
+        os.environ.get("SKILL_PROFILE_PATH")
         or os.environ.get("AGENT_SKILL_PROFILE")
-        or os.environ.get("LOVSTUDIO_SKILL_PROFILE")
-        or str(Path.home() / ".lovstudio/skills/profile.json")
+        or os.environ.get("SKILL_SKILL_PROFILE")
+        or str(Path.home() / ".skill-publisher/skills/profile.json")
     ).expanduser()
     if profile.exists():
         try:
@@ -79,8 +79,8 @@ def resolve_repo(cli_repo: str | None) -> Path:
         except json.JSONDecodeError as exc:
             sys.exit(f"Invalid JSON in {profile}: {exc}")
         for key in (
-            "sites.lovstudio_web",
-            "lovstudio.web_root",
+            "sites.skill-publisher_web",
+            "skill-publisher.web_root",
             "workspace.web_root",
             "workspace.website_root",
         ):
@@ -94,9 +94,9 @@ def resolve_repo(cli_repo: str | None) -> Path:
             return repo
 
     sys.exit(
-        "Website repo not found. Pass --repo, set LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT, or add "
-        "sites.lovstudio_web / lovstudio.web_root / workspace.web_root to "
-        f"{profile}. LOVSTUDIO_WEB_ROOT and PARTNERS_SITE_ROOT are still accepted as legacy aliases."
+        "Website repo not found. Pass --repo, set SKILL_MAINTAIN_PARTNERS_SITE_ROOT, or add "
+        "sites.skill-publisher_web / skill-publisher.web_root / workspace.web_root to "
+        f"{profile}. SKILL_WEB_ROOT and PARTNERS_SITE_ROOT are still accepted as legacy aliases."
     )
 
 
@@ -113,18 +113,18 @@ def resolve_partners_file(repo: Path, cli_partners_file: str | None) -> Path:
 
     candidates: list[str] = []
     for env_key in (
-        "LOVSTUDIO_MAINTAIN_PARTNERS_FILE",
-        "LOVSTUDIO_PARTNERS_FILE",
+        "SKILL_MAINTAIN_PARTNERS_FILE",
+        "SKILL_PARTNERS_FILE",
         "PARTNERS_FILE",
     ):
         if os.environ.get(env_key):
             candidates.append(os.environ[env_key])
 
     profile = Path(
-        os.environ.get("LOVSTUDIO_SKILLS_PROFILE")
+        os.environ.get("SKILL_PROFILE_PATH")
         or os.environ.get("AGENT_SKILL_PROFILE")
-        or os.environ.get("LOVSTUDIO_SKILL_PROFILE")
-        or str(Path.home() / ".lovstudio/skills/profile.json")
+        or os.environ.get("SKILL_SKILL_PROFILE")
+        or str(Path.home() / ".skill-publisher/skills/profile.json")
     ).expanduser()
     if profile.exists():
         try:
@@ -133,7 +133,7 @@ def resolve_partners_file(repo: Path, cli_partners_file: str | None) -> Path:
             sys.exit(f"Invalid JSON in {profile}: {exc}")
         for key in (
             "sites.partners_file",
-            "lovstudio.partners_file",
+            "skill-publisher.partners_file",
             "partners.file",
             "workspace.partners_file",
         ):
@@ -154,9 +154,9 @@ def resolve_partners_file(repo: Path, cli_partners_file: str | None) -> Path:
             return path
 
     sys.exit(
-        "Partners file not found. Pass --partners-file, set LOVSTUDIO_MAINTAIN_PARTNERS_FILE, "
-        "or add sites.partners_file / lovstudio.partners_file to the shared profile. "
-        "LOVSTUDIO_PARTNERS_FILE and PARTNERS_FILE are still accepted as legacy aliases."
+        "Partners file not found. Pass --partners-file, set SKILL_MAINTAIN_PARTNERS_FILE, "
+        "or add sites.partners_file / skill-publisher.partners_file to the shared profile. "
+        "SKILL_PARTNERS_FILE and PARTNERS_FILE are still accepted as legacy aliases."
     )
 
 
@@ -189,12 +189,12 @@ def main():
     ap.add_argument(
         "--repo",
         default=None,
-        help="Website repo root. Defaults to LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT, profile JSON, or legacy LOVSTUDIO_WEB_ROOT/PARTNERS_SITE_ROOT.",
+        help="Website repo root. Defaults to SKILL_MAINTAIN_PARTNERS_SITE_ROOT, profile JSON, or legacy SKILL_WEB_ROOT/PARTNERS_SITE_ROOT.",
     )
     ap.add_argument(
         "--partners-file",
         default=None,
-        help="Partners TSX file. Defaults to LOVSTUDIO_MAINTAIN_PARTNERS_FILE, profile JSON, legacy LOVSTUDIO_PARTNERS_FILE/PARTNERS_FILE, PartnersGrid.tsx, or WorkshopDispatch.tsx.",
+        help="Partners TSX file. Defaults to SKILL_MAINTAIN_PARTNERS_FILE, profile JSON, legacy SKILL_PARTNERS_FILE/PARTNERS_FILE, PartnersGrid.tsx, or WorkshopDispatch.tsx.",
     )
     ap.add_argument("--probe", action="store_true", help="HTTP-probe each href (slow)")
     args = ap.parse_args()

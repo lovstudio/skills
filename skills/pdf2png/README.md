@@ -4,12 +4,12 @@
 
 Convert PDF files to a single vertically concatenated PNG image using macOS native CoreGraphics.
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add pdf2png -g -y
+npx skills add pdf2png -g -y
 ```
 
 Requires: macOS, `pip install pyobjc-framework-Quartz`
@@ -47,7 +47,7 @@ bash pdf2png.sh a.pdf b.pdf c.pdf   # batch mode
 
 ## Also Available As
 
-- **Finder Quick Action**: Right-click any PDF → "PDF to PNG". See [lovstudio/mac-pdf2png](https://github.com/lovstudio/mac-pdf2png).
+- **Finder Quick Action**: Right-click any PDF → "PDF to PNG". See [skill-publisher/mac-pdf2png](https://example.com/skills/mac-pdf2png).
 
 ## License
 

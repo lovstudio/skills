@@ -4,12 +4,12 @@
 
 将 MBA 论文从初稿提升至全国优秀论文水准。涵盖语言润色、结构优化、论证强化、创新点凸显四个维度。
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add thesis-polish -g -y
+npx skills add thesis-polish -g -y
 ```
 
 No dependencies — pure AI instructions.

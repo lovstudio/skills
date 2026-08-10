@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx lovstudio skills add bp-outline -g -y
+npx skills add bp-outline -g -y
 ```
 
 ## 使用

@@ -10,7 +10,7 @@ THEME = {
     "canvas_sec":  "#F0EEE6",  # secondary bg (code blocks, alternating rows)
     "ink":         "#181818",  # primary text
     "ink_faded":   "#87867F",  # secondary text (subtitles, captions)
-    "accent":      "#CC785C",  # primary accent (headings, rules, table headers)
+    "accent":      "#4F46E5",  # primary accent (headings, rules, table headers)
     "accent_light":"#D99A82",  # lighter accent
     "border":      "#E8E6DC",  # borders, horizontal rules
     "code_bg":     "#F0EEE6",  # code block background (usually = canvas_sec)
@@ -25,7 +25,7 @@ Warm ivory canvas with terracotta accents. Inspired by academic papers on aged p
 Best for: Chinese technical reports, research papers, documentation.
 ```python
 {"canvas":"#F9F9F7","canvas_sec":"#F0EEE6","ink":"#181818","ink_faded":"#87867F",
- "accent":"#CC785C","accent_light":"#D99A82","border":"#E8E6DC"}
+ "accent":"#4F46E5","accent_light":"#D99A82","border":"#E8E6DC"}
 ```
 
 ### nord-frost

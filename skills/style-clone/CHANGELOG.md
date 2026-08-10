@@ -13,7 +13,7 @@
 ### Fixed
 
 - make install path configurable
-- replace fixed runtime install directory with LOVSTUDIO_SKILLS_INSTALL_DIR
+- replace fixed runtime install directory with SKILL_SKILLS_INSTALL_DIR
 
 ## 0.1.0
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Trim transparent edges and resize a logo to a fixed canvas height.
 
-Standard for the LovStudio partners strip: 80px tall, width auto, optimized PNG.
+Standard for the Skill Publisher partners strip: 80px tall, width auto, optimized PNG.
 Optionally invert white-on-transparent logos to black so they remain visible
 against the light grayscale strip.
 """

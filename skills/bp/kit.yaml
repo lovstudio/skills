@@ -2,9 +2,12 @@ name: bp
 display_name: BP Skill Kit
 version: 0.2.1
 entrypoint: lov-bp
+runtime: skill-runtime/v1
+profile:
+  manifest: skill.yaml
 workspace: business-plan
 source_type: git
-git_url: https://github.com/lovstudio/bp-skill
+git_url: https://example.com/skills/bp-skill
 modules:
   - id: bp-outline
     skill: lov-bp-outline

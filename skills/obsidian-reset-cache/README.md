@@ -4,12 +4,12 @@
 
 Reset Obsidian cache to fix "Loading cache..." hang issue.
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add obsidian-reset-cache -g -y
+npx skills add obsidian-reset-cache -g -y
 ```
 
 No dependencies required (shell commands only).

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate LovStudio source Skills and WorkBuddy distributions."""
+"""Validate Skill Publisher source Skills and WorkBuddy distributions."""
 
 from __future__ import annotations
 
@@ -398,7 +398,7 @@ def validate_readme_version(
 ) -> None:
     readme = root / "README.md"
     if not readme.is_file():
-        errors.append(f"{readme}: required for LovStudio source repositories")
+        errors.append(f"{readme}: required for Skill Publisher source repositories")
         return
     if root_data is None:
         return

@@ -47,7 +47,7 @@ All notable changes to this project are documented here.
 - Consulting-grade message architecture and evidence-ledger workflow.
 - Visual-grammar selection matrix for argument maps, comparisons, matrices,
   roadmaps, systems, metric stories, landscapes, and feedback loops.
-- Code-first HTML/SVG poster template with LovStudio branding and attribution.
+- Code-first HTML/SVG poster template with Skill Publisher branding and attribution.
 - Portable user brand profiles with CLI, environment, and shared-profile
   resolution.
 - Playwright-based PNG renderer for `4:5`, `16:9`, `1:1`, and `A4`.

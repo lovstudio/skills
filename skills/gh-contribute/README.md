@@ -5,12 +5,12 @@
 Contribute a clean, professional PR to someone else's GitHub repo — fork, branch,
 commit, push, open PR. Auto-splits unrelated changes into separate PRs.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add gh-contribute -g -y
+npx skills add gh-contribute -g -y
 ```
 
 Requires: [`gh` CLI](https://cli.github.com/) (authenticated via `gh auth login`) and `git`.

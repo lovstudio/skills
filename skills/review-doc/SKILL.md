@@ -4,7 +4,7 @@ description: >
   专业合同分析、审阅、批注与红线修订。用于用户要求审查合同、协议、条款、NDA、采购或服务合同、SaaS 或数据协议、劳动或顾问协议、知识产权许可、投融资文件，或要求风险分析、逐条批注、修订模式、谈判建议、审阅报告时；支持 DOCX 原位批注和修订，以及 PDF、图片或纯文本的定位审阅。
 license: MIT
 metadata:
-  author: lovstudio
+  author: contributors
   version: "1.0.0"
   category: business
   tags: contract legal review annotate redline negotiation 合同 审阅 批注 修订
@@ -174,3 +174,11 @@ python3 scripts/contract_docx.py annotate --input 合同.docx --annotations 审�
 - 不协助伪造签名、日期、审批、证据或交易背景。
 - 不因风险提示而擅自替用户接受条款、签署、发送给对方或提交监管机构。
 - 涉及高额、控制权、股权、担保、破产、刑事、制裁、跨境数据或迫近诉讼时，在完成实质审阅后建议专项律师复核。
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

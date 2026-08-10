@@ -17,7 +17,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_PROFILE = Path("~/.lovstudio/skills/profile.json")
+DEFAULT_PROFILE = Path("${SKILLS_CONFIG_DIR}/profile.json")
 PLACEHOLDER = re.compile(r"\b(?:TODO|TBD|FIXME)\b|请替换|占位|Lorem ipsum", re.I)
 PERSON_INFERENCE = re.compile(r"姓名|性格|命理|姻缘|缘分|女生|男生|女孩|男孩")
 FONT_SUFFIXES = {".ttf", ".otf", ".ttc", ".otc"}
@@ -124,7 +124,7 @@ def inspect_data(raw: str) -> Dict[str, Any]:
 
 
 def shared_profile_path() -> Path:
-    return expand_path(os.environ.get("LOVSTUDIO_SKILLS_PROFILE", str(DEFAULT_PROFILE)))
+    return expand_path(os.environ.get("SKILL_PROFILE_PATH", str(DEFAULT_PROFILE)))
 
 
 def load_profile() -> Dict[str, Any]:
@@ -136,8 +136,8 @@ def load_profile() -> Dict[str, Any]:
 
 def configured_output_root() -> Path:
     for raw in (
-        os.environ.get("LOVSTUDIO_HANZI_LENS_OUTPUT_DIR"),
-        os.environ.get("LOVSTUDIO_SKILLS_OUTPUT_DIR"),
+        os.environ.get("SKILL_HANZI_LENS_OUTPUT_DIR"),
+        os.environ.get("SKILL_OUTPUT_DIR"),
     ):
         if raw:
             return expand_path(raw) / "hanzi-lens"
@@ -163,12 +163,12 @@ def resolve_infographic_cli(explicit: Optional[str]) -> Path:
             if configured.is_dir()
             else configured
         )
-    env_dir = os.environ.get("LOVSTUDIO_HANZI_LENS_INFOGRAPHIC_SKILL_DIR")
+    env_dir = os.environ.get("SKILL_HANZI_LENS_INFOGRAPHIC_SKILL_DIR")
     if env_dir:
         candidates.append(
             expand_path(env_dir) / "scripts" / "infographic_cli.py"
         )
-    install_dir = os.environ.get("LOVSTUDIO_SKILLS_INSTALL_DIR")
+    install_dir = os.environ.get("SKILL_SKILLS_INSTALL_DIR")
     if install_dir:
         candidates.append(
             expand_path(install_dir)
@@ -195,7 +195,7 @@ def resolve_infographic_cli(explicit: Optional[str]) -> Path:
     raise CliError(
         "Could not locate lov-professional-infographic. Pass "
         "--infographic-skill-dir or set "
-        "LOVSTUDIO_HANZI_LENS_INFOGRAPHIC_SKILL_DIR.\n"
+        "SKILL_HANZI_LENS_INFOGRAPHIC_SKILL_DIR.\n"
         f"Checked:\n{checked}"
     )
 

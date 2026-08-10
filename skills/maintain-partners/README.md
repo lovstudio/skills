@@ -2,43 +2,43 @@
 
 ![Version](https://img.shields.io/badge/version-0.9.1-CC785C)
 
-Maintain the LovStudio website's "Trusted By" partners section: collect brand
+Maintain the Skill Publisher website's "Trusted By" partners section: collect brand
 logos through `lov-find-logo`, normalize to the 80px canvas, append
 entries with i18n taglines across 4 locales, and audit for dead URLs /
 missing assets.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-SKILLS_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}"
-git clone https://github.com/lovstudio/maintain-partners-skill "$SKILLS_DIR/lov-maintain-partners"
-git clone https://github.com/lovstudio/find-logo-skill "$SKILLS_DIR/lov-find-logo"
+SKILLS_DIR="${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}"
+git clone https://example.com/skills/maintain-partners-skill "$SKILLS_DIR/lov-maintain-partners"
+git clone https://example.com/skills/find-logo-skill "$SKILLS_DIR/lov-find-logo"
 python3 -m pip install Pillow
 brew install librsvg  # for SVG logo sources
 ```
 
 ## Configuration
 
-Set the website repo root with `--repo`, `LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT`, or the shared
-profile at `${LOVSTUDIO_SKILLS_PROFILE:-$HOME/.lovstudio/skills/profile.json}`.
-`LOVSTUDIO_WEB_ROOT` and `PARTNERS_SITE_ROOT` remain accepted as legacy aliases.
+Set the website repo root with `--repo`, `SKILL_MAINTAIN_PARTNERS_SITE_ROOT`, or the shared
+profile at `${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`.
+`SKILL_WEB_ROOT` and `PARTNERS_SITE_ROOT` remain accepted as legacy aliases.
 
-Set the PARTNERS TSX file with `--partners-file`, `LOVSTUDIO_MAINTAIN_PARTNERS_FILE`, or profile
+Set the PARTNERS TSX file with `--partners-file`, `SKILL_MAINTAIN_PARTNERS_FILE`, or profile
 keys. The default checks `app/(main)/(home)/PartnersGrid.tsx` first, then
 legacy `app/(main)/(home)/WorkshopDispatch.tsx`.
-`LOVSTUDIO_PARTNERS_FILE` and `PARTNERS_FILE` remain accepted as legacy aliases.
+`SKILL_PARTNERS_FILE` and `PARTNERS_FILE` remain accepted as legacy aliases.
 
 Supported profile keys:
 
 ```json
 {
   "sites": {
-    "lovstudio_web": "$HOME/projects/my-site",
+    "skill-publisher_web": "$HOME/projects/my-site",
     "partners_file": "app/(main)/(home)/PartnersGrid.tsx"
   },
-  "lovstudio": {
+  "skill-publisher": {
     "web_root": "$HOME/projects/my-site",
     "partners_file": "app/(main)/(home)/PartnersGrid.tsx"
   },
@@ -51,7 +51,7 @@ Supported profile keys:
 
 ## What it does
 
-The LovStudio homepage runs a "Trusted By" strip that renders 30+ partner
+The Skill Publisher homepage runs a "Trusted By" strip that renders 30+ partner
 logos against a `grayscale opacity-60` filter. Maintaining it means three
 recurring tasks:
 
@@ -80,15 +80,15 @@ audit_partners.py   Walk PARTNERS; report missing logos / i18n keys / dead URLs
 
 ```bash
 # Collect a logo through the required find-logo skill
-SKILL_ROOT="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}"
-WEB_ROOT="${LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT:?Set this or pass --repo}"
-PARTNERS_TSX="${LOVSTUDIO_MAINTAIN_PARTNERS_FILE:-app/(main)/(home)/PartnersGrid.tsx}"
+SKILL_ROOT="${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}"
+WEB_ROOT="${SKILL_MAINTAIN_PARTNERS_SITE_ROOT:?Set this or pass --repo}"
+PARTNERS_TSX="${SKILL_MAINTAIN_PARTNERS_FILE:-app/(main)/(home)/PartnersGrid.tsx}"
 
 python3 "$SKILL_ROOT/lov-find-logo/scripts/find_logo.py" \
   --name "Example" --url https://example.com --slug example --json
 
 # Normalize: auto-invert white-on-transparent
-normalize_logo.py --src ~/.lovstudio/logo-collection/example/logo.png \
+normalize_logo.py --src ~/.skill-publisher/logo-collection/example/logo.png \
                   --dst "$WEB_ROOT/public/partners/example/logo.png"
 
 # Add to PARTNERS + i18n

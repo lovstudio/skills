@@ -21,15 +21,15 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ### Fixed
 
-- recognize lovstudio CLI install commands
-- treat npx lovstudio skills add as the canonical README install surface
+- recognize skill-publisher CLI install commands
+- treat npx skills add as the canonical README install surface
 
 ## [0.6.0] - 2026-05-07
 
 ### Added
 
-- recognize LOVSTUDIO_SKILLS config namespace
-- recognize LOVSTUDIO_MAINTAIN_PARTNERS skill-specific config cues
+- recognize SKILL_SKILLS config namespace
+- recognize SKILL_MAINTAIN_PARTNERS skill-specific config cues
 - treat AGENT_SKILL and PARTNERS env names as legacy migration cues
 
 ## [0.5.0] - 2026-05-07
@@ -37,7 +37,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 ### Added
 
 - recognize generic AGENT_SKILL config cues
-- keep LOVSTUDIO_* only as legacy compatibility cues
+- keep SKILL_* only as legacy compatibility cues
 
 ## [0.4.0] - 2026-05-06
 
@@ -46,7 +46,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 - add repo-wide portability audit
 - flag hard-coded local paths and legacy skill names
 - support --all --root scans across skill directories
-- ignore negative examples such as "do not hard-code /Users/mark" when checking required local paths
+- ignore negative examples such as "do not hard-code ${SKILL_USER_ROOT}" when checking required local paths
 
 ## [0.3.0] - 2026-04-16
 
@@ -54,7 +54,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 - Add multi-repo sync in Step 7: source → pro-skills → ~/.claude/skills
 - Document 3-location topology (source, symlink, distribution)
-- Step 7b: auto-sync lovstudio/pro-skills via skills-upstream remote
+- Step 7b: auto-sync skill-publisher/pro-skills via skills-upstream remote
 - Fail-loud on partial sync instead of silent skip
 
 ## [0.2.0] - 2026-04-14

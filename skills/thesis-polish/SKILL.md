@@ -13,7 +13,7 @@ license: MIT
 compatibility: >
   Pure instructions — no dependencies. Works with any Claude model.
 metadata:
-  author: lovstudio
+  author: contributors
   version: "1.0.1"
   tags: thesis academic writing MBA polish 论文 润色
 ---
@@ -102,7 +102,7 @@ metadata:
 将所有润色后的章节合并，输出完整的润色后全文（markdown 格式）。
 
 如果用户需要保存为文件，使用 Write 工具写入，文件名遵循：
-`手工川-mba-thesis-polished-{YYYY-MM-DD}-v0.1.md`
+`品牌方-mba-thesis-polished-{YYYY-MM-DD}-v0.1.md`
 
 ## Important Notes
 
@@ -110,3 +110,11 @@ metadata:
 - **保留原意**：所有修改必须忠实于作者原意，不改变研究结论
 - **标注建议**：如果某处论证薄弱需要作者补充数据/文献，用 `[建议补充: ...]` 标注
 - **分批处理**：论文通常很长，按章节分批润色，避免遗漏
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

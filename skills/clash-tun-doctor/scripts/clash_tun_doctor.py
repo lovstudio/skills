@@ -78,7 +78,7 @@ def api_json(
 
 
 def resolve_data_dir(cli_value: Optional[str]) -> Path:
-    raw = cli_value or os.environ.get("LOVSTUDIO_CLASH_TUN_DOCTOR_DATA_DIR")
+    raw = cli_value or os.environ.get("SKILL_CLASH_TUN_DOCTOR_DATA_DIR")
     if raw:
         return Path(os.path.expandvars(os.path.expanduser(raw))).resolve()
     if sys.platform == "darwin":

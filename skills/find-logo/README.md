@@ -4,17 +4,17 @@
 
 Fetch a brand/product logo from public sources (Clearbit, og:image, favicon),
 score candidates (prefer wide-aspect + transparent), and archive the winner
-plus alternates under `~/.lovstudio/logo-collection/<slug>/`.
+plus alternates under `~/.skill-publisher/logo-collection/<slug>/`.
 
 Useful for building website partner strips, PPT footer rows, poster
 credits — anywhere you need a lineup of logos that look consistent.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add find-logo -g -y
+npx skills add find-logo -g -y
 ```
 
 Stdlib only — no `pip install` needed.
@@ -39,7 +39,7 @@ python3 scripts/find_logo.py --url https://stripe.com --json
 | `--name` | — | Brand/product name. Used for slug + meta. |
 | `--url` | — | Official URL or bare domain. Overrides the name-based guess. |
 | `--slug` | slugified name | Override the archive directory slug. |
-| `--out` | `LOVSTUDIO_FIND_LOGO_OUTPUT_DIR` or `~/.lovstudio/logo-collection` | Archive root. |
+| `--out` | `SKILL_FIND_LOGO_OUTPUT_DIR` or `~/.skill-publisher/logo-collection` | Archive root. |
 | `--keep-alts` | `2` | How many runner-up candidates to keep. |
 | `--json` | off | Emit JSON to stdout. |
 
@@ -48,7 +48,7 @@ At least one of `--name` or `--url` is required.
 ## What gets archived
 
 ```
-~/.lovstudio/logo-collection/<slug>/
+~/.skill-publisher/logo-collection/<slug>/
 ├── logo.<ext>      # highest-scoring candidate
 ├── alt-1.<ext>     # runner-ups (count = --keep-alts)
 ├── alt-2.<ext>
@@ -82,8 +82,8 @@ calling agent is expected to fall back to a web search for a press-kit page.
 
 ## User Configuration
 
-Archive files default to `~/.lovstudio/logo-collection/`. Override per call with
-`--out`, or set `LOVSTUDIO_FIND_LOGO_OUTPUT_DIR`.
+Archive files default to `~/.skill-publisher/logo-collection/`. Override per call with
+`--out`, or set `SKILL_FIND_LOGO_OUTPUT_DIR`.
 
 ## License
 

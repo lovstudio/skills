@@ -1,7 +1,8 @@
 # Channel Adapter Contract
 
 Each publishing channel is an independent adapter. A multi-channel request runs
-selected adapters separately and aggregates evidence only at the end.
+selected adapters separately and aggregates evidence only at the end. When the
+user does not name a channel, the selected adapter set is all supported channels.
 
 ## Required adapter fields
 

@@ -13,9 +13,8 @@ compatibility: >
   build tools. Tauri macOS signing additionally requires Apple Developer ID
   certificate and notarization credentials.
 metadata:
-  author: lovstudio
+  author: contributors
   version: "8.6.0"
-  migrated_from: ~/.claude/commands/lovstudio/release-via-cicd.md
   tags: release cicd github-actions tauri macos-signing notarization changesets
 ---
 
@@ -478,3 +477,11 @@ gh pr merge ... --squash --delete-branch  # ci-auto
 - Shell, Vite, monorepo templates, post-release mirror separation, workflow monitoring, README/Vercel audits, issue automation, and failure recovery: `references/general-release-playbooks.md`
 
 When a referenced template conflicts with this `SKILL.md`, follow the stricter rule: maintain `CHANGELOG.md`, preserve package manager choice, do not print secrets, wait for workflow completion with retry, and verify final release assets before reporting success.
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

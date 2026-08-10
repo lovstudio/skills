@@ -15,11 +15,11 @@ Resolve settings in this order:
 
 | Variable | Meaning |
 |---|---|
-| `LOVSTUDIO_APP_GENERATOR_SKILL_DIR` | Installed skill directory |
-| `LOVSTUDIO_SKILLS_BRAND_PROFILE` | Brand asset directory or profile file |
-| `LOVSTUDIO_SKILLS_DESIGN_GUIDE` | Design guide path |
-| `LOVSTUDIO_SKILLS_PROFILE` | Shared LovStudio skills profile JSON |
+| `SKILL_APP_GENERATOR_SKILL_DIR` | Installed skill directory |
+| `SKILL_PROFILE_PATH` | Brand asset directory or profile file |
+| `SKILL_DESIGN_GUIDE` | Design guide path |
+| `SKILL_PROFILE_PATH` | Shared Skill Publisher skills profile JSON |
 
 The default shared profile is
-`$HOME/.lovstudio/skills/profile.json`. Paths inside it may use `$HOME` and
+`$HOME/.skill-publisher/skills/profile.json`. Paths inside it may use `$HOME` and
 must be expanded at runtime.

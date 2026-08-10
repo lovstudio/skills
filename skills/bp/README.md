@@ -15,22 +15,22 @@
 
 不再把“想清楚融资叙事”“制作 PPT”“审稿润色”塞进一次又长又重的执行。用户可以只拿需要的那一段，也可以让总控完成全流程。
 
-由 [LovStudio](https://lovstudio.ai) 免费开源。
+由 [Skill Publisher](https://example.com) 免费开源。
 
 ## 安装
 
 安装整套 BP Skill Kit：
 
 ```bash
-npx lovstudio skills add bp -g -y
+npx skills add bp -g -y
 ```
 
 只安装一个模块：
 
 ```bash
-npx lovstudio skills add bp-outline -g -y
-npx lovstudio skills add bp-deck -g -y
-npx lovstudio skills add bp-polish -g -y
+npx skills add bp-outline -g -y
+npx skills add bp-deck -g -y
+npx skills add bp-polish -g -y
 ```
 
 ### WorkBuddy
@@ -132,7 +132,7 @@ Yoda 案例经历了完整组合流程：从项目材料和用户反馈中重建
 ## 兼容性
 
 - Python 3.8+：工作区初始化和确定性审稿。
-- [`lov-any2deck`](https://github.com/lovstudio/any2deck-skill)：PPTX/PDF 生产。
+- [`lov-any2deck`](https://example.com/skills/any2deck-skill)：PPTX/PDF 生产。
 - 当前市场、竞品、政策和融资事实需要访问权威来源。
 - 不依赖作者私有路径；品牌和输出目录通过参数、环境变量或共享配置传入。
 

@@ -1,7 +1,7 @@
 ---
 name: lov-maintain-partners
 description: >
-  Maintain the LovStudio website's partners section AND align partner logo
+  Maintain the Skill Publisher website's partners section AND align partner logo
   rows on event posters / hero strips: reuse lov-find-logo for brand
   logo discovery, normalize collected logos to a 240px-tall content canvas
   (retina-ready), rasterize SVGs via rsvg-convert before normalizing (so SVG
@@ -24,21 +24,21 @@ compatibility: >
   (`pip install Pillow --break-system-packages`). Requires rsvg-convert
   (`brew install librsvg`) when the selected logo source is SVG.
   Tested on macOS; Linux should work. Website repo paths are configurable via
-  --repo, LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT, or the shared user profile; this skill must not
+  --repo, SKILL_MAINTAIN_PARTNERS_SITE_ROOT, or the shared user profile; this skill must not
   require Mark's personal absolute path. Legacy path aliases remain accepted
   for existing local setups.
 depends_on:
   - lov-find-logo
 metadata:
-  author: lovstudio
+  author: contributors
   version: "0.9.1"
-  tags: [lovstudio, web, branding, i18n]
+  tags: [skill-publisher, web, branding, i18n]
 ---
 
-# maintain-partners — LovStudio 合作伙伴板块维护
+# maintain-partners — Skill Publisher 合作伙伴板块维护
 
 Maintains the configured website repo. Resolve the path from `--repo`,
-`LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT`, or the shared user profile. The partners
+`SKILL_MAINTAIN_PARTNERS_SITE_ROOT`, or the shared user profile. The partners
 strip usually lives in `app/(main)/(home)/PartnersGrid.tsx` as a `PARTNERS:
 Partner[]` array; older sites may still keep it in
 `app/(main)/(home)/WorkshopDispatch.tsx`. Logos live in
@@ -50,32 +50,32 @@ Partner[]` array; older sites may still keep it in
 Before touching files, resolve:
 
 ```bash
-SKILL_ROOT="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}"
+SKILL_ROOT="${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}"
 SKILL_DIR="${SKILL_DIR:-$SKILL_ROOT/lov-maintain-partners}"
-WEB_ROOT="${LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT:?Set this or pass --repo}"
-PARTNERS_TSX="${LOVSTUDIO_MAINTAIN_PARTNERS_FILE:-app/(main)/(home)/PartnersGrid.tsx}"
+WEB_ROOT="${SKILL_MAINTAIN_PARTNERS_SITE_ROOT:?Set this or pass --repo}"
+PARTNERS_TSX="${SKILL_MAINTAIN_PARTNERS_FILE:-app/(main)/(home)/PartnersGrid.tsx}"
 ```
 
 Use this precedence for the website root:
 
 1. Explicit `--repo <path>` on `add_partner.py` / `audit_partners.py`.
-2. `LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT`.
+2. `SKILL_MAINTAIN_PARTNERS_SITE_ROOT`.
 3. Shared profile JSON at
-   `${LOVSTUDIO_SKILLS_PROFILE:-$HOME/.lovstudio/skills/profile.json}`.
+   `${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`.
 
-`LOVSTUDIO_WEB_ROOT` and `PARTNERS_SITE_ROOT` are accepted as legacy aliases,
+`SKILL_WEB_ROOT` and `PARTNERS_SITE_ROOT` are accepted as legacy aliases,
 but should not be the public contract for reusable skills.
 
 Use this precedence for the partners TSX file:
 
 1. Explicit `--partners-file <path>`.
-2. `LOVSTUDIO_MAINTAIN_PARTNERS_FILE`.
-3. Shared profile keys `sites.partners_file`, `lovstudio.partners_file`,
+2. `SKILL_MAINTAIN_PARTNERS_FILE`.
+3. Shared profile keys `sites.partners_file`, `skill-publisher.partners_file`,
    `partners.file`, or `workspace.partners_file`.
 4. `app/(main)/(home)/PartnersGrid.tsx`, then legacy
    `app/(main)/(home)/WorkshopDispatch.tsx`.
 
-`LOVSTUDIO_PARTNERS_FILE` and `PARTNERS_FILE` are accepted as legacy aliases,
+`SKILL_PARTNERS_FILE` and `PARTNERS_FILE` are accepted as legacy aliases,
 but should not be the public contract for reusable skills.
 
 For details and supported profile keys, read `references/user-config.md`.
@@ -118,13 +118,13 @@ For details and supported profile keys, read `references/user-config.md`.
      --name "<显示名>" --url <URL> --slug <slug> --json
    ```
    Use the archived primary asset under
-   `~/.lovstudio/logo-collection/<slug>/logo.<ext>`. If `find_logo.py` returns
+   `~/.skill-publisher/logo-collection/<slug>/logo.<ext>`. If `find_logo.py` returns
    no candidates, stop and ask the user for a better official URL / press-kit
    URL, then rerun `find_logo.py`. Do not call a local scraper from this skill.
 3. Visually verify the archived primary asset before normalizing.
 4. If the primary asset is SVG, rasterize it before normalization:
    ```bash
-   rsvg-convert -h 240 ~/.lovstudio/logo-collection/<slug>/logo.svg \
+   rsvg-convert -h 240 ~/.skill-publisher/logo-collection/<slug>/logo.svg \
      -o /tmp/<slug>-raw.png
    ```
    Use the rasterized `/tmp/<slug>-raw.png` as `--src`. For non-SVG sources,
@@ -314,8 +314,8 @@ unstable—different displays / scaling will diverge again.
 ### add_partner.py
 | Flag | Notes |
 |---|---|
-| `--repo` | website repo root; defaults to `LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT`, profile JSON, or legacy `LOVSTUDIO_WEB_ROOT` / `PARTNERS_SITE_ROOT` |
-| `--partners-file` | PARTNERS TSX file; defaults to `LOVSTUDIO_MAINTAIN_PARTNERS_FILE`, profile JSON, legacy `LOVSTUDIO_PARTNERS_FILE` / `PARTNERS_FILE`, PartnersGrid.tsx, or WorkshopDispatch.tsx |
+| `--repo` | website repo root; defaults to `SKILL_MAINTAIN_PARTNERS_SITE_ROOT`, profile JSON, or legacy `SKILL_WEB_ROOT` / `PARTNERS_SITE_ROOT` |
+| `--partners-file` | PARTNERS TSX file; defaults to `SKILL_MAINTAIN_PARTNERS_FILE`, profile JSON, legacy `SKILL_PARTNERS_FILE` / `PARTNERS_FILE`, PartnersGrid.tsx, or WorkshopDispatch.tsx |
 | `--name` | display name (CJK ok) |
 | `--href` | brand URL |
 | `--logo` | path under `/public`, e.g. `/partners/foo/logo.png` |
@@ -327,8 +327,8 @@ unstable—different displays / scaling will diverge again.
 ### audit_partners.py
 | Flag | Notes |
 |---|---|
-| `--repo` | website repo root; defaults to `LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT`, profile JSON, or legacy `LOVSTUDIO_WEB_ROOT` / `PARTNERS_SITE_ROOT` |
-| `--partners-file` | PARTNERS TSX file; defaults to `LOVSTUDIO_MAINTAIN_PARTNERS_FILE`, profile JSON, legacy `LOVSTUDIO_PARTNERS_FILE` / `PARTNERS_FILE`, PartnersGrid.tsx, or WorkshopDispatch.tsx |
+| `--repo` | website repo root; defaults to `SKILL_MAINTAIN_PARTNERS_SITE_ROOT`, profile JSON, or legacy `SKILL_WEB_ROOT` / `PARTNERS_SITE_ROOT` |
+| `--partners-file` | PARTNERS TSX file; defaults to `SKILL_MAINTAIN_PARTNERS_FILE`, profile JSON, legacy `SKILL_PARTNERS_FILE` / `PARTNERS_FILE`, PartnersGrid.tsx, or WorkshopDispatch.tsx |
 | `--probe` | HTTP-probe every href (slow, needs proxy env vars) |
 
 ## Network proxy
@@ -347,8 +347,16 @@ export https_proxy=http://127.0.0.1:7890 \
 ## Dependencies
 
 ```bash
-git clone https://github.com/lovstudio/find-logo-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-find-logo"
+git clone https://example.com/skills/find-logo-skill \
+  "${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-find-logo"
 python3 -m pip install Pillow
 brew install librsvg  # for SVG logo sources
 ```
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

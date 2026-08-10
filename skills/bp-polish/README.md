@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx lovstudio skills add bp-polish -g -y
+npx skills add bp-polish -g -y
 ```
 
 ## 使用

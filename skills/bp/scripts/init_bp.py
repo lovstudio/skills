@@ -46,10 +46,10 @@ def nested(data: Dict[str, Any], *keys: str) -> Optional[str]:
 def resolve_output(args: argparse.Namespace, profile: Dict[str, Any]) -> Path:
     if args.output:
         return expand_path(args.output)
-    skill_output = os.environ.get("LOVSTUDIO_BP_OUTPUT_DIR")
+    skill_output = os.environ.get("SKILL_BP_OUTPUT_DIR")
     if skill_output:
         return expand_path(skill_output) / f"{slugify(args.name)}-business-plan"
-    shared_output = os.environ.get("LOVSTUDIO_SKILLS_OUTPUT_DIR")
+    shared_output = os.environ.get("SKILL_OUTPUT_DIR")
     if shared_output:
         return expand_path(shared_output) / f"{slugify(args.name)}-business-plan"
     profile_output = nested(profile, "workspace", "output_dir")
@@ -93,7 +93,7 @@ def parse_args() -> argparse.Namespace:
         help="Financing stage (default: seed)",
     )
     parser.add_argument("--output", help="Exact workspace directory")
-    parser.add_argument("--profile", help="Shared LovStudio skills profile JSON")
+    parser.add_argument("--profile", help="Shared Skill Publisher skills profile JSON")
     parser.add_argument("--brand-profile", help="Brand profile file")
     parser.add_argument("--design-guide", help="Design guide file")
     parser.add_argument("--json", action="store_true", help="Print machine-readable result")
@@ -104,8 +104,8 @@ def main() -> int:
     args = parse_args()
     profile_path = expand_path(
         args.profile
-        or os.environ.get("LOVSTUDIO_SKILLS_PROFILE")
-        or "$HOME/.lovstudio/skills/profile.json"
+        or os.environ.get("SKILL_PROFILE_PATH")
+        or "$HOME/.skill-publisher/skills/profile.json"
     )
     profile = load_profile(profile_path)
     output = resolve_output(args, profile)
@@ -142,10 +142,10 @@ def main() -> int:
         created.append(str(destination))
 
     brand_profile = resolve_optional(
-        args.brand_profile, "LOVSTUDIO_BP_BRAND_PROFILE", profile, "profile"
+        args.brand_profile, "SKILL_BP_BRAND_PROFILE", profile, "profile"
     )
     design_guide = resolve_optional(
-        args.design_guide, "LOVSTUDIO_BP_DESIGN_GUIDE", profile, "design_guide"
+        args.design_guide, "SKILL_BP_DESIGN_GUIDE", profile, "design_guide"
     )
     source_note = output / "source-config.md"
     source_note.write_text(

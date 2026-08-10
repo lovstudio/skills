@@ -4,12 +4,12 @@
 
 Convert PNG images into high-quality SVG files with optional white-background removal, vtracer spline vectorization, and svgo compression.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher general skills](https://example.com/skills/general-skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add png2svg -g -y
+npx skills add png2svg -g -y
 ```
 
 ## Dependencies
