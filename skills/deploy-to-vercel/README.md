@@ -9,7 +9,7 @@ Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudi
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill sgc-deploy-to-vercel
+npx skills add lovstudio/skills --skill sgc-deploy-to-vercel -y -g
 ```
 
 Requires: `vercel` CLI, `curl`, `python3`

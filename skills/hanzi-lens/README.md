@@ -5,7 +5,7 @@
 
 把一个汉字做成有来源、有边界、看得懂也记得住的专业视觉解释。
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [lovstudio general skills](https://github.com/lovstudio/general-skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## 它解决什么问题
 

@@ -4,7 +4,7 @@
 
 Generate images through the right mechanism: end-to-end AI generation, code-rendered layouts, or optimized prompts for external image models.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [lovstudio general skills](https://github.com/lovstudio/general-skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## Install
 

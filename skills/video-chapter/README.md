@@ -5,7 +5,7 @@
 
 从字幕理解章节内容，在 React 剪辑台中调整切点和样式，再生成透明章节条、烧录成片或剪映素材包。
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [lovstudio general skills](https://github.com/lovstudio/general-skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## 完整流程
 

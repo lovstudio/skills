@@ -125,7 +125,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 - Rewrite for per-skill-repo architecture. Each skill is now an independent repo at `lovstudio/{name}-skill` instead of a subdirectory of a monorepo.
 - Default scaffold path: `~/lovstudio/coding/skills/{name}-skill/` (was `skills/sgc-{name}/`).
-- Install hint: `git clone` each skill repo (replaces `npx skills add lovstudio/skills`).
+- Install hint: `git clone` each skill repo (replaces `npx skills add lovstudio/skills --all -g`).
 - `init_skill.py`: accepts `--paid`, auto-creates `.gitignore`, and prints `gh repo create` + symlink + index-registration next-steps instead of monorepo-dev-flow hints.
 
 ### Added

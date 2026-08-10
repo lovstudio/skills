@@ -9,7 +9,7 @@ Migrated from `~/.claude/commands/lovstudio/release-via-cicd.md`. Behavior prese
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill sgc-release-via-cicd
+npx skills add lovstudio/skills --skill sgc-release-via-cicd -y -g
 ```
 
 ## Invocation

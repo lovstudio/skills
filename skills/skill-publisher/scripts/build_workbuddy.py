@@ -29,7 +29,7 @@ except ImportError as exc:
     raise SystemExit(2) from exc
 
 
-RESOURCE_DIRS = ("assets", "cases", "references", "scripts", "skills")
+RESOURCE_DIRS = ("assets", "cases", "prompts", "references", "scripts", "skills")
 RESOURCE_FILES = ("kit.yaml",)
 SKIP_DIRS = {".git", "dist", ".venv", "venv", "node_modules", "__pycache__"}
 SKIP_FILES = {
@@ -127,7 +127,7 @@ def make_module_self_contained(source: Path, target: Path) -> None:
     their own copy of shared references/assets/scripts and local `$SKILL_DIR`
     references.
     """
-    for dirname in ("assets", "cases", "references", "scripts"):
+    for dirname in ("assets", "cases", "prompts", "references", "scripts"):
         candidate = source / dirname
         if candidate.is_dir():
             shutil.copytree(
