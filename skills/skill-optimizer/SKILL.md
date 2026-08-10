@@ -152,12 +152,13 @@ The diff speaks for itself.
 
 ### Step 7: Commit, push & sync all locations
 
-Skills live in an independent source repo plus the unified distribution catalog.
-Keep both published locations in sync:
+Skills may live in a source repo plus one distribution catalog. Keep all
+published locations in sync:
 
 ```
-source repo:          lovstudio/<name>-skill
-unified catalog:      lovstudio/skills
+source repo:          lovstudio/<name>-skill or lovstudio/skills
+general catalog:      lovstudio/skills, for public/paid general skills
+dev-skills catalog:   lovstudio/skills, for bundled meta/dev tools
 ```
 
 **7a. Commit & push to source repo:**
@@ -172,12 +173,12 @@ git push
 - Commit message follows repo convention: `fix|feat|docs(<skill-name>): <summary>`
 - Use `fix` for patch, `feat` for minor, `feat!` for major
 
-**7b. Sync to the unified distribution repo:**
+**7b. Sync to the relevant distribution repo:**
 
-Use the unified catalog's sync scripts, then render and validate metadata:
+Use the catalog repo's own sync scripts, then render and validate metadata:
 
 ```bash
-cd <lovstudio-skills-checkout>
+cd <general-skills-or-dev-skills-checkout>
 python3 scripts/sync-skills.py
 python3 scripts/render-marketplace.py
 python3 scripts/render-readme.py
@@ -188,7 +189,7 @@ git push origin main
 ```
 
 **If any step fails**, report the sync state to the user rather than silently
-skipping. A partial sync (source updated but unified catalog stale) is the exact
+skipping. A partial sync (source updated but pro-skills stale) is the exact
 problem this step exists to prevent.
 
 ## CLI Reference
