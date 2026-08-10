@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>__TITLE__</title>
+<style>
+  /* ---- theme tokens (injected) ---- */
+  __THEME_VARS__
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body,#root{height:100%}
+  body{
+    font-family:"Helvetica Neue","PingFang SC",sans-serif;
+    background:var(--page,#0c0a08);color:var(--ink);overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .viewport{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
+  .scaler{width:1600px;height:800px;transform:scale(var(--scale,1));transform-origin:center}
+
+  .stage{
+    position:relative;width:1600px;height:800px;overflow:hidden;
+    background:var(--bg);color:var(--ink);
+  }
+  .atmos{
+    position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(900px 680px at 78% -8%, var(--glow1), transparent 60%),
+      radial-gradient(700px 700px at 6% 112%, var(--glow2), transparent 55%);
+  }
+  .watermark{
+    position:absolute;right:-90px;bottom:-220px;
+    font-family:"Songti SC",serif;font-weight:900;font-size:760px;line-height:1;
+    color:var(--wm);user-select:none;pointer-events:none;
+  }
+  .sheet{position:absolute;inset:0;z-index:2;padding:62px 86px 60px;display:grid;grid-template-rows:auto 1fr auto}
+
+  .topband{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding-bottom:22px;border-bottom:1px solid var(--hair);
+    font-size:14px;letter-spacing:.34em;text-transform:uppercase;
+  }
+  .topband .brand{color:var(--ink);font-weight:600}
+  .topband .brand .ds{color:var(--terra)}
+  .topband .index{color:var(--muted);letter-spacing:.28em}
+
+  .main{display:grid;grid-template-columns:360px 1fr;gap:84px;align-items:center;position:relative}
+  .main::before{content:"";position:absolute;left:404px;top:8%;bottom:8%;width:1px;
+    background:linear-gradient(180deg,transparent,var(--hair) 18%,var(--hair) 82%,transparent)}
+
+  .portrait{position:relative}
+  .portrait img{display:block;width:360px;height:430px;object-fit:cover;object-position:50% 32%;
+    border-radius:6px;border:1px solid var(--terra-line);
+    box-shadow:0 36px 70px -34px rgba(0,0,0,.8);filter:saturate(1.04) contrast(1.03)}
+  .portrait .mono{
+    width:360px;height:430px;border-radius:6px;border:1px solid var(--terra-line);
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,var(--mono-a),var(--mono-b));
+    font-family:"Songti SC",serif;font-weight:700;font-size:200px;color:var(--terra);
+    box-shadow:0 36px 70px -34px rgba(0,0,0,.8);
+  }
+  .portrait::before,.portrait::after{content:"";position:absolute;width:16px;height:16px;border:1.5px solid var(--terra)}
+  .portrait::before{top:-9px;left:-9px;border-right:0;border-bottom:0}
+  .portrait::after{bottom:-9px;right:-9px;border-left:0;border-top:0}
+  .pcaption{position:absolute;left:0;right:0;bottom:14px;text-align:center;
+    font-size:15px;letter-spacing:.3em;color:var(--ink);text-transform:uppercase;opacity:.85}
+
+  .content{display:flex;flex-direction:column;justify-content:center}
+  .masthead{display:flex;align-items:baseline;gap:26px;flex-wrap:nowrap}
+  .name{font-family:"Songti SC","Source Han Serif SC",serif;font-weight:700;
+    font-size:104px;line-height:.9;letter-spacing:.05em;color:var(--ink);white-space:nowrap}
+  .latin{font-family:"Didot","Bodoni 72",Georgia,serif;font-style:italic;
+    font-size:30px;letter-spacing:.12em;color:var(--terra);white-space:nowrap}
+  .roles{margin-top:30px;display:flex;align-items:center;font-size:18px;
+    letter-spacing:.16em;color:var(--ink-dim);white-space:nowrap}
+  .roles .sep{display:inline-block;width:5px;height:5px;margin:0 18px;background:var(--terra);transform:rotate(45deg);flex:none}
+  .tagline{margin-top:44px;font-family:"Songti SC","Source Han Serif SC",serif;font-weight:600;
+    font-size:60px;line-height:1.3;letter-spacing:.03em;color:var(--ink);white-space:nowrap}
+  .tagline em{font-style:normal;color:var(--terra)}
+
+  .bottomband{display:flex;align-items:center;justify-content:space-between;
+    padding-top:22px;border-top:1px solid var(--hair);
+    font-size:15px;letter-spacing:.2em;color:var(--muted);white-space:nowrap}
+  .pursuits .mid{display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--ink-dim);margin:0 16px;vertical-align:middle}
+  .bases{color:var(--ink-dim);letter-spacing:.14em}
+  .bases .pin{display:inline-block;width:8px;height:8px;background:var(--terra);
+    border-radius:50% 50% 50% 0;transform:rotate(-45deg);margin:0 12px 0 0;vertical-align:middle}
+  .bases .pin.n{margin-left:30px}
+
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .reveal{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0ms)}
+
+  .dl-btn{position:fixed;bottom:30px;right:34px;z-index:50;
+    font-family:"Helvetica Neue","PingFang SC",sans-serif;font-size:16px;letter-spacing:.14em;color:#fff;cursor:pointer;
+    padding:13px 26px;border-radius:2px;border:1px solid rgba(255,255,255,.16);
+    background:linear-gradient(135deg,var(--terra),var(--terra-deep));
+    box-shadow:0 12px 30px -10px var(--terra);transition:transform .15s,box-shadow .15s}
+  .dl-btn:hover{transform:translateY(-2px)}
+  .dl-btn[disabled]{opacity:.6;cursor:default;transform:none}
+</style>
+</head>
+<body>
+ <div id="root">
+  <div class="viewport">
+   <div class="scaler">
+    <div class="stage" id="stage">
+      <div class="atmos"></div>
+      <div class="watermark">__WM__</div>
+      <div class="sheet">
+        <header class="topband reveal" style="--d:0ms">
+          <span class="brand">__BRAND__</span>
+          <span class="index">__INDEX__</span>
+        </header>
+        <main class="main">
+          <div class="portrait reveal" style="--d:120ms">__PORTRAIT__</div>
+          <div class="content">
+            <div class="masthead reveal" style="--d:220ms">
+              <h1 class="name">__NAME__</h1>
+              __LATIN__
+            </div>
+            <p class="roles reveal" style="--d:320ms">__ROLES__</p>
+            <p class="tagline reveal" style="--d:420ms">__TAGLINE__</p>
+          </div>
+        </main>
+        <footer class="bottomband reveal" style="--d:520ms">
+          <span class="pursuits">__PURSUITS__</span>
+          <span class="bases">__BASES__</span>
+        </footer>
+      </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <button class="dl-btn" id="dl">下载为图片 PNG</button>
+ <script src="./modern-screenshot.umd.js"></script>
+ <script>
+  (function(){
+    var root=document.documentElement;
+    function fit(){var s=Math.min((innerWidth-48)/1600,(innerHeight-48)/800,1);root.style.setProperty('--scale',String(s))}
+    fit();addEventListener('resize',fit);
+    var btn=document.getElementById('dl');
+    if(location.hash==='#shoot'){btn.style.display='none';return}
+    btn.addEventListener('click',async function(){
+      if(!window.modernScreenshot){alert('截图库未加载');return}
+      var old=btn.textContent;btn.textContent='生成中…';btn.setAttribute('disabled','');
+      try{
+        var url=await modernScreenshot.domToPng(document.getElementById('stage'),
+          {scale:3,width:1600,height:800,backgroundColor:getComputedStyle(document.getElementById('stage')).backgroundColor});
+        var a=document.createElement('a');a.download='__SLUG__-名片.png';a.href=url;a.click();
+      }catch(e){console.error(e);alert('导出失败：'+e)}
+      finally{btn.textContent=old;btn.removeAttribute('disabled')}
+    });
+  })();
+ </script>
+</body>
+</html>

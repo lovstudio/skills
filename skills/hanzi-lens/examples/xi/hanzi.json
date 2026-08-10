@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "character": "翕",
+  "base_character": "翕",
+  "base_codepoint": "U+7FD5",
+  "codepoints": [
+    "U+7FD5"
+  ],
+  "unicode_name": "CJK UNIFIED IDEOGRAPH-7FD5",
+  "unicode_block": "CJK Unified Ideographs",
+  "unicode_category": "Lo",
+  "east_asian_width": "W",
+  "normalized_nfc": "翕",
+  "normalized_nfkc": "翕",
+  "variation_selectors": [],
+  "runtime_unicode_version": "13.0.0",
+  "is_han": true
+}

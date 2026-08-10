@@ -1,0 +1,64 @@
+{
+  "skill_name": "wechat-article-branding",
+  "skill_version": "0.8.0",
+  "skill_id": 61,
+  "skill_version_id": 35,
+  "format_version": 2,
+  "cipher": "aes-256-gcm",
+  "files": {
+    "SKILL.md": {
+      "iv": "v0N1e45wfdd/4TTy",
+      "tag": "9blY6r6uPyFm5A5vL5nA6w==",
+      "original_checksum": "1fe80ca65167b1d32fbd81c680382e49c1b217f5edbba0ecef1807d3f92946b0",
+      "original_size": 13764
+    },
+    "kit.yaml": {
+      "iv": "8bCmkGOa7wTCXT4V",
+      "tag": "wgOEbd9MhifWJIsuiqTX3w==",
+      "original_checksum": "a7afe479e2b59f531537f2d1cf117123f0186704fc2d6ae8dad5e88413f9cccc",
+      "original_size": 1350
+    },
+    "prompts/cover-hero-editorial-painterly.md": {
+      "iv": "7W8GnInUUErOeQKZ",
+      "tag": "p1/ysqYK4kXUF4xzQK6NIg==",
+      "original_checksum": "756cafd99eec093946c5c7c063bf69b11c36fb73646ee9bf0421037945354622",
+      "original_size": 3337
+    },
+    "references/acceptance.md": {
+      "iv": "xUBhoSWa+M94RztZ",
+      "tag": "JRmxP+cii7VwZ0jxakZw+w==",
+      "original_checksum": "d7f1a68adc49c24d2ee0bc1c385542d0ac5911986a9cbff530573d7456f17a36",
+      "original_size": 2596
+    },
+    "references/brand-profile.md": {
+      "iv": "qfeUQBObhsFzwIYp",
+      "tag": "i9zTWZX6N3UL86+ihip9JQ==",
+      "original_checksum": "a44e41f9ccb5262841a5b369e18f3110b230b11377bb15e2120c409f9f71a1f3",
+      "original_size": 2441
+    },
+    "references/cover-prompt.md": {
+      "iv": "uj8Tue/drQg3CBsG",
+      "tag": "EHtEn3Yy/FjWWeHgpW1BIA==",
+      "original_checksum": "0bda200affead23837d6aa954366c9d9561ee29ccf5a97b912e2fc327af712bf",
+      "original_size": 3422
+    },
+    "references/user-config.md": {
+      "iv": "s8Ag09NwWp6l5pyV",
+      "tag": "DfjSgUvEdEsstFxNiIFk3g==",
+      "original_checksum": "80d94d9c5686fa6dd177f8753b07498ad50526c67cf92527c644a47bfe36f661",
+      "original_size": 1610
+    },
+    "scripts/validate_brand_profile.py": {
+      "iv": "L2U2PSaG1taYsCs9",
+      "tag": "UsLU7vWuC89VhVScqL0GGw==",
+      "original_checksum": "df33f0d2c1dc8c52f60c6361b3ce6d6e1772934b95d46562b3c4dc9675920902",
+      "original_size": 11652
+    },
+    "scripts/validate_skill.py": {
+      "iv": "cuDS2jqub3mCQD0l",
+      "tag": "QOI+Bn+YGTUXTJJucmatNw==",
+      "original_checksum": "b883b629c909e802fda18a3ec489679a991312324c093fa8a4c24d6db1d1cb05",
+      "original_size": 13263
+    }
+  }
+}

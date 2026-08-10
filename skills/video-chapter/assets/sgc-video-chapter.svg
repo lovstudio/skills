@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="LovStudio Video Chapter">
+  <rect width="256" height="256" rx="56" fill="#11151A"/>
+  <path d="M48 76v72c0 18 14 32 32 32V108c0-18-14-32-32-32Z" fill="#EB6637"/>
+  <path d="M88 96v64c0 18 14 32 32 32v-64c0-18-14-32-32-32Z" fill="#EB6637"/>
+  <path d="M128 84v68c18 0 32-14 32-32s-14-32-32-36Z" fill="#EB6637"/>
+  <path d="M44 210h168" stroke="#F5F1E8" stroke-width="10" stroke-linecap="round" opacity=".28"/>
+  <path d="M44 210h106" stroke="#EB6637" stroke-width="10" stroke-linecap="round"/>
+  <path d="m176 194 26 16-26 16Z" fill="#83D8D2"/>
+</svg>
+

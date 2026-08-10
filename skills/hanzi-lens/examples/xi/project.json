@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "character": "翕",
+  "scope": "character-only",
+  "locale": "both",
+  "focus": "读音、字形、字源、古义、经典用例与核心语义动势",
+  "dependency": "sgc-professional-infographic",
+  "research": "research.json",
+  "source": "source.md",
+  "brief": "brief.md",
+  "exhibit_dir": "exhibit"
+}

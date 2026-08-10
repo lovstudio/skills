@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>移动端跨平台技术选型指南：渠道、体验与团队约束对比</title>
+  <style>
+    :root {
+      --brand-primary: #24324A;
+      --brand-accent: #D97757;
+      --ink: #172033;
+      --muted: #566175;
+      --paper: #F7F4EF;
+      --line: color-mix(in srgb, var(--ink) 18%, transparent);
+      --soft-line: color-mix(in srgb, var(--ink) 9%, transparent);
+      --accent-soft: color-mix(in srgb, var(--brand-accent) 10%, var(--paper));
+      --font: Inter, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #d7d7d5;
+      color: var(--ink);
+      font-family: var(--font);
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    .poster {
+      width: 1600px;
+      height: 900px;
+      padding: 32px 54px 26px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 32px minmax(88px, auto) minmax(0, 1fr) 48px 42px;
+      gap: 10px;
+      background: var(--paper);
+      box-shadow: 0 28px 70px rgb(18 28 45 / 16%);
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 8px;
+    }
+
+    .figure-label {
+      margin: 0;
+      color: var(--brand-accent);
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .brand-lockup img {
+      width: 132px;
+      max-height: 26px;
+      object-fit: contain;
+      object-position: right center;
+    }
+
+    .header {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 32%);
+      gap: 42px;
+      align-items: end;
+      padding: 2px 0 10px;
+    }
+
+    .poster__title {
+      margin: 0;
+      max-width: 1040px;
+      font-size: 41px;
+      line-height: 1.12;
+      font-weight: 760;
+      letter-spacing: -.025em;
+      text-wrap: balance;
+    }
+
+    .deck {
+      margin: 0 0 2px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.42;
+      font-weight: 460;
+    }
+
+    .visual {
+      min-height: 0;
+      position: relative;
+      border-top: 1px solid var(--line);
+      padding-top: 13px;
+    }
+
+    .recommendation {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+      padding: 0 16px;
+      color: white;
+      background: var(--brand-primary);
+    }
+
+    .recommendation strong {
+      color: var(--brand-accent);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .recommendation p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.3;
+      font-weight: 650;
+    }
+
+    .footer {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, auto);
+      gap: 28px;
+      align-items: end;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+    }
+
+    .source-note,
+    .generation-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.34;
+    }
+
+    .generation-note {
+      text-align: right;
+    }
+
+    .site {
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+  .matrix-wrap {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 26px minmax(0, 1fr) 42px;
+    gap: 7px;
+  }
+
+  .matrix-legend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .legend-scale {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .legend-swatch {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-right: 4px;
+    vertical-align: -2px;
+    background: var(--brand-primary);
+  }
+
+  .legend-swatch--high { background: var(--brand-accent); }
+
+  .matrix {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 210px 310px 225px 215px 245px minmax(230px, 1fr);
+    grid-template-rows: 40px repeat(5, minmax(0, 1fr));
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .matrix > * {
+    min-width: 0;
+    padding: 8px 12px;
+    border-right: 1px solid var(--soft-line);
+    border-bottom: 1px solid var(--soft-line);
+  }
+
+  .matrix > *:nth-child(6n) { border-right: 0; }
+  .matrix > *:nth-last-child(-n + 6) { border-bottom: 0; }
+
+  .matrix-head {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 720;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .matrix-entity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    font-size: 15px;
+    line-height: 1.18;
+    font-weight: 720;
+  }
+
+  .matrix-entity small {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 520;
+  }
+
+  .matrix-cell {
+    display: grid;
+    align-content: center;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .matrix-cell strong {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--ink);
+    font-size: 13px;
+  }
+
+  .matrix-cell--decision {
+    color: var(--ink);
+    font-weight: 680;
+  }
+
+  .matrix-cell--default {
+    background: var(--accent-soft);
+    box-shadow: inset 5px 0 0 var(--brand-accent);
+  }
+
+  .route-code {
+    display: inline-block;
+    width: fit-content;
+    margin-bottom: 4px;
+    padding: 2px 6px;
+    color: white;
+    background: var(--brand-primary);
+    font-size: 9px;
+    line-height: 1.2;
+    font-weight: 760;
+    letter-spacing: .04em;
+  }
+
+  .route-code--default {
+    color: white;
+    background: var(--brand-accent);
+  }
+
+  .mechanism {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--ink);
+    font-size: 10px;
+    font-weight: 650;
+  }
+
+  .mechanism i {
+    flex: 1;
+    height: 1px;
+    background: var(--muted);
+    position: relative;
+  }
+
+  .mechanism i::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--muted);
+    border-right: 1px solid var(--muted);
+    transform: rotate(45deg);
+  }
+
+  .matrix-readout {
+    display: grid;
+    grid-template-columns: 128px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 0 14px;
+    color: white;
+    background: var(--brand-primary);
+    font-size: 12px;
+  }
+
+  .matrix-readout strong {
+    color: color-mix(in srgb, white 66%, transparent);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .poster[data-title-mode="topic"] .matrix-readout {
+    color: var(--muted);
+    background: transparent;
+    border-top: 1px solid var(--line);
+  }
+
+  .poster[data-title-mode="topic"] .matrix-readout strong {
+    color: var(--brand-accent);
+  }
+
+    .poster[data-aspect="4:5"],
+    .poster[data-aspect="1:1"],
+    .poster[data-aspect="A4"] {
+      grid-template-rows: 38px minmax(150px, auto) minmax(0, 1fr) 62px;
+      padding: 44px 52px 30px;
+      gap: 16px;
+    }
+
+    .poster[data-aspect="4:5"] .header,
+    .poster[data-aspect="1:1"] .header,
+    .poster[data-aspect="A4"] .header {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media print {
+      html,
+      body { background: transparent; }
+      .poster { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <article
+    class="poster"
+    data-aspect="16:9"
+    data-template="comparison-matrix"
+    data-mode="qualitative"
+    data-title-mode="topic"
+  >
+    <div class="topline">
+      <p class="figure-label">Exhibit 01 · 跨端选型决策矩阵</p>
+      <div class="brand-lockup">
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ5NSAxNjMuMyI+CjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGw6I0VCNjYzNzt9Cjwvc3R5bGU+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM4LDApIj4KCTwhLS0gTG9nbyBtYXJrIC0tPgoJPGc+CgkJPHBhdGggY2xhc3M9InN0MCIgZD0iTTAsMzEuNHY1Ni43YzAsMTQuNSwxMS43LDI2LjIsMjYuMiwyNi4yVjU3LjZDMjYuMiw0My4yLDE0LjUsMzEuNCwwLDMxLjR6Ii8+CgkJPHBhdGggY2xhc3M9InN0MCIgZD0iTTMyLjcsNDguOXY1Ni43YzAsMTQuNSwxMS43LDI2LjIsMjYuMiwyNi4yVjc1LjFDNTguOSw2MC42LDQ3LjIsNDguOSwzMi43LDQ4Ljl6Ii8+CgkJPHBhdGggY2xhc3M9InN0MCIgZD0iTTY1LjUsMzkuOXY1Mi40YzE0LjUsMCwyNi4yLTExLjcsMjYuMi0yNi4yQzkxLjYsNTEuNiw3OS45LDM5LjksNjUuNSwzOS45eiIvPgoJPC9nPgoJPCEtLSBUZXh0OiBMb3ZTdHVkaW8gLS0+Cgk8dGV4dCB4PSIxMTYiIHk9IjEwOCIgZm9udC1mYW1pbHk9IidIZWx2ZXRpY2EgTmV1ZScsIEhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNjgiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9IiNFQjY2MzciIGxldHRlci1zcGFjaW5nPSItMC41Ij5Mb3ZTdHVkaW88L3RleHQ+CjwvZz4KPC9zdmc+Cg==" alt="LovStudio Logo">
+      </div>
+    </div>
+
+    <header class="header" data-region="header">
+      <h1 class="poster__title" data-audit="title">移动端跨平台技术选型指南：渠道、体验与团队约束对比</h1>
+      <p class="deck" data-audit="description">
+        同维比较 React Native、Flutter、KMP、uni-app／Taro 与 Capacitor；不做性能跑分。
+      </p>
+    </header>
+
+    <main class="visual" data-region="visual">
+      <section
+    class="matrix-wrap"
+    data-primary-block
+    data-audit-container
+    data-encoding="position color"
+    aria-label="同维比较矩阵"
+  >
+    <div class="matrix-legend" data-annotation>
+      <span data-audit="annotation">先找主导约束，再检查团队资产与主要代价</span>
+      <span class="legend-scale">
+        <span><i class="legend-swatch"></i>特殊约束路线</span>
+        <span><i class="legend-swatch legend-swatch--high"></i>无特殊约束默认</span>
+      </span>
+    </div>
+
+    <div class="matrix">
+      <div class="matrix-head">技术路线</div>
+      <div class="matrix-head" data-dimension>触发约束</div>
+      <div class="matrix-head" data-dimension>体验 / 运行机制</div>
+      <div class="matrix-head" data-dimension>可复用资产</div>
+      <div class="matrix-head" data-dimension>主要代价</div>
+      <div class="matrix-head">决策含义</div>
+
+      <div class="matrix-entity" data-entity>
+        <span class="route-code route-code--default">均衡默认</span>
+        React Native + Expo
+      </div>
+      <div class="matrix-cell" data-data-point data-source-ref="S1"><strong>常规商业 App</strong>创业、AI、社交、工具、内容</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S1"><div class="mechanism"><span>React</span><i></i><span>原生组件</span></div></div>
+      <div class="matrix-cell" data-data-point data-source-ref="S1"><strong>TypeScript / React</strong>成熟生态与交付链路</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S1"><strong>复杂原生 SDK 治理</strong>模块与版本兼容仍需检查</div>
+      <div class="matrix-cell matrix-cell--decision matrix-cell--default" data-decision><strong>无特殊约束 → 首选</strong>效率、生态与原生体验的均衡点</div>
+
+      <div class="matrix-entity" data-entity><span class="route-code">统一视觉</span>Flutter</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S2"><strong>自绘 UI 是主战场</strong>复杂动画、多端视觉一致</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S2"><div class="mechanism"><span>Dart</span><i></i><span>Impeller</span></div></div>
+      <div class="matrix-cell" data-data-point data-source-ref="S2"><strong>统一组件与渲染</strong>跨平台视觉资产</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S2"><strong>Dart + 原生混排</strong>平台控件接入成本</div>
+      <div class="matrix-cell matrix-cell--decision"><strong>高度统一自绘 → 优先</strong>用渲染一致性换技术栈与混排成本</div>
+
+      <div class="matrix-entity" data-entity><span class="route-code">原生纵深</span>Kotlin Multiplatform</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S3"><strong>重原生长期工程</strong>已有 Kotlin / Android 团队</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S3"><div class="mechanism"><span>共享逻辑</span><i></i><span>原生 UI</span></div></div>
+      <div class="matrix-cell" data-data-point data-source-ref="S3"><strong>Kotlin / Gradle</strong>共享逻辑或 Compose UI</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S3"><strong>Apple 集成门槛</strong>跨平台工程能力要求高</div>
+      <div class="matrix-cell matrix-cell--decision"><strong>重原生 / Kotlin → 优先</strong>用团队能力换原生深度与长期质量</div>
+
+      <div class="matrix-entity" data-entity><span class="route-code">中国多端</span>uni-app / Taro</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S4"><strong>小程序是核心渠道</strong>微信、支付宝、抖音等</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S4"><div class="mechanism"><span>前端 DSL</span><i></i><span>多端编译</span></div></div>
+      <div class="matrix-cell" data-data-point data-source-ref="S4"><strong>Vue / React 前端</strong>中国平台发布经验</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S4"><strong>多端差异适配</strong>条件编译与平台边界</div>
+      <div class="matrix-cell matrix-cell--decision"><strong>小程序优先 → 首选</strong>渠道覆盖比移动端原生纵深更重要</div>
+
+      <div class="matrix-entity" data-entity><span class="route-code">Web 复用</span>Capacitor</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S5"><strong>已有 Web 产品</strong>目标是快速移动化</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S5"><div class="mechanism"><span>HTML / CSS / JS</span><i></i><span>原生壳</span></div></div>
+      <div class="matrix-cell" data-data-point data-source-ref="S5"><strong>现有 Web 代码</strong>最大化界面与业务复用</div>
+      <div class="matrix-cell" data-data-point data-source-ref="S5"><strong>重交互需原生补充</strong>容器边界仍然存在</div>
+      <div class="matrix-cell matrix-cell--decision"><strong>Web 资产优先 → 首选</strong>用原生上限换迁移速度与复用率</div>
+    </div>
+
+    <div class="matrix-readout" data-annotation>
+      <strong>Reading order</strong>
+      <span data-audit="annotation">先看触发约束，再核对机制、资产与代价。</span>
+    </div>
+  </section>
+    </main>
+
+    <section
+      class="recommendation"
+      data-region="recommendation"
+      data-audit="recommendation"
+      data-annotation
+      data-decision
+      data-source-ref="S1 S2 S3 S4 S5"
+    >
+      <strong>选型建议</strong>
+      <p>先按四类特殊约束分流；均不命中时，React Native + Expo 是均衡默认。</p>
+    </section>
+
+    <footer class="footer" data-region="footer">
+      <p class="source-note" data-audit="source">
+        来源：S1 React Native / Expo；S2 Flutter；S3 Kotlin Multiplatform；S4 uni-app 官方资料；S5 为源材料中的场景判断。定性比较，截至 2026-07。
+      </p>
+      <p class="generation-note" data-audit="attribution">
+        本信息图由 LovStudio 的「专业信息图」Skill 生成 · <span class="site">https://lovstudio.ai</span>
+      </p>
+    </footer>
+  </article>
+
+  <script>
+    document.fonts.ready.finally(() => {
+      window.__INFOGRAPHIC_READY__ = true;
+    });
+  </script>
+</body>
+</html>

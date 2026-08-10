@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "character": "翕",
+  "base_codepoint": "U+7FD5",
+  "checked_fonts": 1,
+  "matching_faces": [
+    {
+      "font": "Songti SC Black",
+      "file": "Songti.ttc"
+    },
+    {
+      "font": "Songti SC Bold",
+      "file": "Songti.ttc"
+    },
+    {
+      "font": "Songti TC Bold",
+      "file": "Songti.ttc"
+    },
+    {
+      "font": "Songti SC Light",
+      "file": "Songti.ttc"
+    },
+    {
+      "font": "STSong Regular",
+      "file": "Songti.ttc"
+    },
+    {
+      "font": "Songti TC Light",
+      "file": "Songti.ttc"
+    },
+    {
+      "font": "Songti SC Regular",
+      "file": "Songti.ttc"
+    },
+    {
+      "font": "Songti TC Regular",
+      "file": "Songti.ttc"
+    }
+  ],
+  "status": "pass",
+  "portable_paths": true
+}

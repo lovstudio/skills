@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lovstudio.ai/schemas/video-chapter-project-1.0.json",
+  "title": "Video Chapter Project",
+  "type": "object",
+  "required": ["schemaVersion", "name", "video", "chapters", "style", "export"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "name": {"type": "string", "minLength": 1},
+    "video": {
+      "type": "object",
+      "required": ["src", "duration", "width", "height", "fps"],
+      "properties": {
+        "src": {"type": "string"},
+        "duration": {"type": "number", "exclusiveMinimum": 0},
+        "width": {"type": "integer", "minimum": 16},
+        "height": {"type": "integer", "minimum": 16},
+        "fps": {"type": "number", "exclusiveMinimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "chapters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "start", "end", "title", "summary"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "start": {"type": "number", "minimum": 0},
+          "end": {"type": "number", "exclusiveMinimum": 0},
+          "title": {"type": "string", "minLength": 1},
+          "summary": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "style": {
+      "type": "object",
+      "required": [
+        "position", "marginX", "marginBottom", "barHeight", "gap",
+        "labelGap", "fontFamily", "fontFile", "fontSize", "textColor",
+        "activeColor", "inactiveColor", "panelColor", "cornerRadius",
+        "showTitle", "showIndex"
+      ],
+      "properties": {
+        "position": {"enum": ["top", "bottom"]},
+        "marginX": {"type": "number", "minimum": 0},
+        "marginBottom": {"type": "number", "minimum": 0},
+        "barHeight": {"type": "number", "minimum": 2},
+        "gap": {"type": "number", "minimum": 0},
+        "labelGap": {"type": "number", "minimum": 0},
+        "fontFamily": {"type": "string", "minLength": 1},
+        "fontFile": {"type": ["string", "null"]},
+        "fontSize": {"type": "number", "minimum": 8},
+        "textColor": {"$ref": "#/$defs/color"},
+        "activeColor": {"$ref": "#/$defs/color"},
+        "inactiveColor": {"$ref": "#/$defs/color"},
+        "panelColor": {"$ref": "#/$defs/color"},
+        "cornerRadius": {"type": "number", "minimum": 0},
+        "showTitle": {"type": "boolean"},
+        "showIndex": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "export": {
+      "type": "object",
+      "required": ["codec", "crf", "preset", "alphaCodec"],
+      "properties": {
+        "codec": {"const": "h264"},
+        "crf": {"type": "integer", "minimum": 0, "maximum": 51},
+        "preset": {
+          "enum": [
+            "ultrafast", "superfast", "veryfast", "faster", "fast",
+            "medium", "slow", "slower", "veryslow"
+          ]
+        },
+        "alphaCodec": {"const": "prores_4444"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$"
+    }
+  },
+  "additionalProperties": false
+}

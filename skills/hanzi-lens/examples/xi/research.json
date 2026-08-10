@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "character": "翕",
+  "pronunciations": [
+    {
+      "reading": "xī",
+      "region": "Mainland Mandarin",
+      "system": "Hanyu Pinyin",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "reading": "xì",
+      "region": "Taiwan Mandarin",
+      "system": "Hanyu Pinyin",
+      "source_ids": [
+        "S3",
+        "S4"
+      ]
+    }
+  ],
+  "structure": {
+    "radical": "羽",
+    "strokes": 12,
+    "form_analysis": "表面结构上合下羽；《说文》分析为从羽、合声，合承担声旁角色。",
+    "source_ids": [
+      "S1",
+      "S2",
+      "S4"
+    ]
+  },
+  "etymology": {
+    "claim": "《说文》释“起也”；段玉裁注以“鸟将起必敛翼也”说明内收与将起并存。",
+    "source_ids": [
+      "S1",
+      "S2"
+    ],
+    "caveat": "“鸟将起必敛翼也”是清代段玉裁注，不是《说文》原文；翼形弧线是解释性几何隐喻。"
+  },
+  "semantic_model": {
+    "governing_message": "“翕”不是静止的闭合，而是起飞前的敛翼：收束之中，自有聚合与和协。",
+    "relationship": "核心动势“敛翼而起”分解为三组有原典支撑的语义分支",
+    "branches": [
+      {
+        "label": "收束",
+        "claim": "“翕”与“辟”构成静时内收、动时展开的张力。",
+        "source_ids": [
+          "S1",
+          "S2"
+        ]
+      },
+      {
+        "label": "聚合",
+        "claim": "《广韵》并列敛、合、聚、盛，呈现汇拢成势的语义。",
+        "source_ids": [
+          "S2"
+        ]
+      },
+      {
+        "label": "和协",
+        "claim": "经典用例既写关系和好，也写众声合起。",
+        "source_ids": [
+          "S1",
+          "S2"
+        ]
+      }
+    ]
+  },
+  "classical_examples": [
+    {
+      "quote": "夫坤，其静也翕，其动也辟。",
+      "work": "《周易·系辞上》",
+      "gloss": "以“翕 / 辟”构成静与动、内收与展开的对举。",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "quote": "兄弟既翕，和乐且湛。",
+      "work": "《诗经·小雅·常棣》",
+      "gloss": "“翕”用于关系和好、协调一致。",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "quote": "始作，翕如也。",
+      "work": "《论语·八佾》",
+      "gloss": "音乐初起时众声协调合奏。",
+      "source_ids": [
+        "S2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "汉典“翕”条",
+      "url": "https://www.zdic.net/hant/%E7%BF%95",
+      "type": "dictionary aggregation with historical lexicography"
+    },
+    {
+      "id": "S2",
+      "title": "中国哲学书电子化计划“翕”字典与原典索引",
+      "url": "https://ctext.org/dictionary.pl?char=%E7%BF%95&if=gb&remap=gb",
+      "type": "historical dictionary and primary-text corpus"
+    },
+    {
+      "id": "S3",
+      "title": "台湾教育部《国语辞典简编本》“翕”条",
+      "url": "https://dict.concised.moe.edu.tw/dictView.jsp?ID=26496&la=0&powerMode=0",
+      "type": "official dictionary"
+    },
+    {
+      "id": "S4",
+      "title": "CNS11643 全字库“翕”字形资讯",
+      "url": "https://www.cns11643.gov.tw/wordView.jsp?ID=90437",
+      "type": "official character standard database"
+    }
+  ],
+  "interpretation_boundary": "读音、笔画、字书原文和经典引文属于记录事实；段玉裁属于后世注释；“敛翼而起”是有出处的现代综合；海报翼形线条是几何隐喻，不是古文字形复原。",
+  "omissions": [
+    "省略与主线关系较弱的迅疾、炽盛、吸引、变动等扩展义项。",
+    "省略缺少确切早期材料支撑的甲骨金文字形演变。",
+    "省略人物、姓名、性格、命理及吉祥度推断。"
+  ]
+}

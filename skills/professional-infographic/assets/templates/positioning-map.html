@@ -1,0 +1,144 @@
+<style data-template-style>
+  .positioning-layout {
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 24px;
+  }
+
+  .positioning-plot {
+    min-height: 0;
+    position: relative;
+    margin: 8px 10px 34px 54px;
+    border-left: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    background:
+      linear-gradient(var(--soft-line) 1px, transparent 1px) 0 0 / 50% 50%,
+      linear-gradient(90deg, var(--soft-line) 1px, transparent 1px) 0 0 / 50% 50%;
+  }
+
+  .positioning-zone {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    padding: 10px 12px;
+    color: color-mix(in srgb, var(--muted) 78%, transparent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+  }
+
+  .positioning-point {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding-left: 17px;
+    color: var(--ink);
+    font-size: 13px;
+    line-height: 1.15;
+    font-weight: 720;
+    white-space: nowrap;
+  }
+
+  .positioning-point::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+  }
+
+  .positioning-point--decision {
+    padding: 9px 11px 9px 30px;
+    background: var(--accent-soft);
+    outline: 2px solid var(--brand-accent);
+  }
+
+  .positioning-point--decision::before {
+    left: 11px;
+    top: 12px;
+    background: var(--brand-accent);
+  }
+
+  .axis-label {
+    position: absolute;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 620;
+  }
+
+  .axis-label--x-low { left: 0; bottom: -29px; }
+  .axis-label--x-high { right: 0; bottom: -29px; }
+  .axis-label--y-low { left: -50px; bottom: 0; writing-mode: vertical-rl; }
+  .axis-label--y-high { left: -50px; top: 0; writing-mode: vertical-rl; }
+
+  .positioning-readout {
+    display: grid;
+    align-content: start;
+    gap: 15px;
+    padding: 16px 0 0 18px;
+    border-left: 1px solid var(--line);
+  }
+
+  .positioning-readout h2 {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .positioning-readout p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .positioning-readout strong {
+    color: var(--brand-accent);
+  }
+</style>
+
+<template data-template-body>
+  <section
+    class="positioning-layout"
+    data-primary-block
+    data-audit-container
+    data-encoding="position color"
+    aria-label="二维定位图"
+  >
+    <div class="positioning-plot">
+      <div class="positioning-zone" data-zone style="left:0;top:0">区域 A</div>
+      <div class="positioning-zone" data-zone style="right:0;top:0">区域 B</div>
+      <div class="positioning-zone" data-zone style="left:0;bottom:0">区域 C</div>
+      <div class="positioning-zone" data-zone style="right:0;bottom:0">区域 D</div>
+
+      <span class="axis-label axis-label--x-low" data-axis data-axis-end>横轴：低</span>
+      <span class="axis-label axis-label--x-high" data-axis-end>横轴：高</span>
+      <span class="axis-label axis-label--y-low" data-axis data-axis-end>纵轴：低</span>
+      <span class="axis-label axis-label--y-high" data-axis-end>纵轴：高</span>
+
+      <div class="positioning-point" data-data-point data-source-ref="S1" style="left:22%;top:28%">对象 A</div>
+      <div class="positioning-point" data-data-point data-source-ref="S2" style="left:66%;top:24%">对象 B</div>
+      <div class="positioning-point" data-data-point data-source-ref="S3" style="left:37%;top:68%">对象 C</div>
+      <div
+        class="positioning-point positioning-point--decision"
+        data-data-point
+        data-decision
+        data-source-ref="S4"
+        style="left:72%;top:62%"
+      >请替换重点对象</div>
+    </div>
+
+    <aside class="positioning-readout">
+      <h2>如何阅读</h2>
+      <p data-annotation data-audit="annotation">
+        请替换：解释两条轴为何独立，以及每个端点代表什么业务含义。
+      </p>
+      <h2>决策含义</h2>
+      <p data-annotation data-audit="annotation">
+        <strong>请替换：</strong>指出重点区域、取舍与坐标是定量还是定性。
+      </p>
+    </aside>
+  </section>
+</template>

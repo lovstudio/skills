@@ -1,0 +1,123 @@
+<style data-template-style>
+  .roadmap {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 34px repeat(3, minmax(0, 1fr)) 44px;
+    gap: 7px;
+  }
+
+  .roadmap-axis,
+  .roadmap-lane {
+    display: grid;
+    grid-template-columns: 170px repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .roadmap-axis {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 680;
+  }
+
+  .roadmap-axis > span:not(:first-child) {
+    padding: 8px 11px;
+    border-left: 1px solid var(--line);
+  }
+
+  .lane-name {
+    display: grid;
+    align-content: center;
+    padding-right: 16px;
+    border-right: 2px solid var(--ink);
+    font-size: 14px;
+    font-weight: 720;
+  }
+
+  .roadmap-milestone {
+    position: relative;
+    display: grid;
+    align-content: center;
+    padding: 10px 13px 10px 27px;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+    line-height: 1.28;
+    font-weight: 650;
+  }
+
+  .roadmap-milestone::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+  }
+
+  .roadmap-milestone--gate {
+    color: white;
+    background: var(--brand-primary);
+    border-bottom-color: var(--brand-primary);
+  }
+
+  .roadmap-milestone--gate::before { background: var(--brand-accent); }
+
+  .roadmap-readout {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 8px;
+    align-items: center;
+    color: white;
+    background: var(--brand-primary);
+    font-size: 12px;
+  }
+
+  .roadmap-readout strong {
+    padding-left: 16px;
+    color: var(--brand-accent);
+  }
+</style>
+
+<template data-template-body>
+  <section
+    class="roadmap"
+    data-primary-block
+    data-audit-container
+    data-encoding="position order"
+    aria-label="路线图"
+  >
+    <div class="roadmap-axis">
+      <span>工作流</span>
+      <span data-phase data-connector>阶段 1 · 请替换时间</span>
+      <span data-phase data-connector>阶段 2 · 请替换时间</span>
+      <span data-phase data-connector>阶段 3 · 请替换时间</span>
+    </div>
+
+    <div class="roadmap-lane">
+      <strong class="lane-name">能力</strong>
+      <div class="roadmap-milestone" data-milestone data-source-ref="S1">里程碑 A</div>
+      <div class="roadmap-milestone roadmap-milestone--gate" data-milestone data-gate>Gate 1：验证条件</div>
+      <div class="roadmap-milestone" data-milestone data-source-ref="S2">里程碑 C</div>
+    </div>
+
+    <div class="roadmap-lane">
+      <strong class="lane-name">产品</strong>
+      <div class="roadmap-milestone" data-milestone data-source-ref="S2">里程碑 D</div>
+      <div class="roadmap-milestone" data-milestone data-source-ref="S3">里程碑 E</div>
+      <div class="roadmap-milestone roadmap-milestone--gate" data-milestone data-gate>Gate 2：规模化条件</div>
+    </div>
+
+    <div class="roadmap-lane">
+      <strong class="lane-name">治理</strong>
+      <div class="roadmap-milestone" data-milestone data-source-ref="S3">里程碑 G</div>
+      <div class="roadmap-milestone" data-milestone data-source-ref="S4">里程碑 H</div>
+      <div class="roadmap-milestone" data-milestone data-decision data-source-ref="S4">目标状态</div>
+    </div>
+
+    <div class="roadmap-readout" data-annotation data-audit="annotation">
+      <strong>Critical path</strong>
+      <span>请替换：标出决定节奏的依赖与 Gate。</span>
+    </div>
+  </section>
+</template>

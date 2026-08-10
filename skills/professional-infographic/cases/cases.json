@@ -1,0 +1,21 @@
+[
+  {
+    "type": "case",
+    "title": "同一份跨端选型材料，重构成两张咨询 Exhibit",
+    "description": "不再用卡片墙总结文字，而是分别构造成决策矩阵与双轴定位图：决策矩阵采用主题标题与尾部建议，定位图保留结论型行动标题；同维比较、轴端与区域、直接标注、决策规则、来源和限定完整保留。两张 3200×1800 PNG 均通过严格审计、原图与缩略图人工复核。"
+  },
+  {
+    "type": "article",
+    "title": "查看决策矩阵的高清图、可编辑源码与证据台账",
+    "url": "https://github.com/lovstudio/professional-infographic-skill/tree/main/examples/mobile-cross-platform-selection-v2/comparison-matrix",
+    "source": "LovStudio · audited Exhibit",
+    "cover": "https://raw.githubusercontent.com/lovstudio/professional-infographic-skill/main/examples/mobile-cross-platform-selection-v2/comparison-matrix/poster.png"
+  },
+  {
+    "type": "article",
+    "title": "查看双轴定位图的高清图、可编辑源码与证据台账",
+    "url": "https://github.com/lovstudio/professional-infographic-skill/tree/main/examples/mobile-cross-platform-selection-v2/positioning-map",
+    "source": "LovStudio · audited Exhibit",
+    "cover": "https://raw.githubusercontent.com/lovstudio/professional-infographic-skill/main/examples/mobile-cross-platform-selection-v2/positioning-map/poster.png"
+  }
+]

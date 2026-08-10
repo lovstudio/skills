@@ -6,7 +6,7 @@ Guidance for Claude Code when working in this repo.
 
 The **central index** for Lovstudio skills. The source of truth for each skill is its own repo at `github.com/lovstudio/{name}-skill`. Locally, skills are developed under `~/lovstudio/coding/skills/{name}-skill/`.
 
-This index repo also carries a **read-only mirror** of every free skill under `./skills/<name>/`, auto-synced by CI from the upstream skill repos. The mirror exists so that the `npx skills add lovstudio/skills` discovery flow (used internally by the `lovstudio` CLI) can find every skill in a single clone — that flow only resolves local paths in `.claude-plugin/marketplace.json`, not external `github` sources.
+This index repo also carries a **read-only mirror** of every free skill under `./skills/<name>/` and encrypted distribution bundles for paid skills. The mirror exists so that the `npx skills add lovstudio/skills` discovery flow (used internally by the `lovstudio` CLI) can find every skill in a single clone — that flow only resolves local paths in `.claude-plugin/marketplace.json`, not external `github` sources.
 
 ## Repo Layout
 
@@ -14,7 +14,7 @@ This index repo also carries a **read-only mirror** of every free skill under `.
 .
 ├── README.md / README.en.md          # Human-readable catalog (CI-rendered between SKILLS:START/END)
 ├── skills.yaml                       # Machine-readable manifest — SOURCE OF TRUTH
-├── skills/<name>/                    # Auto-mirrored free-skill contents (do NOT hand-edit; CI overwrites)
+├── skills/<name>/                    # Free mirrors or encrypted paid bundles (generated distribution content)
 ├── .claude-plugin/marketplace.json   # Claude Code marketplace manifest (auto-rendered)
 ├── scripts/sync-skills.py            # Mirrors each free repo into ./skills/<name>/ (shallow clone + rsync)
 ├── scripts/render-marketplace.py     # Regenerates marketplace.json from skills.yaml
@@ -24,22 +24,21 @@ This index repo also carries a **read-only mirror** of every free skill under `.
 └── .github/workflows/                # render-readme.yml runs sync → render-marketplace → render-readme
 ```
 
-**Edit `skills.yaml`, not the README table, not marketplace.json, not files under `skills/`.** CI regenerates all three on push and nightly. You can preview locally with `python3 scripts/sync-skills.py && python3 scripts/render-marketplace.py && python3 scripts/render-readme.py` (add `GH_SYNC=1` to the last one to refresh descriptions from GitHub).
+**Edit `skills.yaml`, not the README table or marketplace.json.** Free mirrors and paid bundles under `skills/` are distribution outputs. CI regenerates the catalog and free mirrors on push and nightly. You can preview locally with `python3 scripts/sync-skills.py && python3 scripts/render-marketplace.py && python3 scripts/render-readme.py`.
 
 ## How users install
 
-**Canonical surface — always advertise this form, free and paid alike:**
+**Canonical surface — always advertise this form:**
 
 ```bash
-npx lovstudio skills add <name> -g -y                                # one skill
-npx lovstudio skills add skills -g -y                                # all skills
-npx lovstudio skills add <name> -k lk-<key> -g -y                    # paid: install + activate
-npx lovstudio license activate lk-<key>                              # activate license alone
+npx lovstudio skills add <name>                                      # free: direct install
+npx lovstudio skills add skills                                      # all free skills
+npx lovstudio skills add <paid-name>                                # paid: sign in + Credits redemption
 ```
 
 `npx lovstudio` (the `lovstudio` npm package, lovstudio-cli repo) is a thin wrapper:
-- `lovstudio skills add` shells out to `npx skills add lovstudio/skills -s lovstudio-<name> -y -g [-a <agents>]` (vercel-labs/skills CLI).
-- `lovstudio license activate` shells out to `uvx lovstudio-skill-helper activate <key>` (Python helper).
+- `lovstudio skills add` resolves the unified `lovstudio/skills` catalog, gates paid entries through account sign-in and Credits redemption, then shells out to the underlying Skills installer.
+- Paid bundles remain encrypted on disk; the helper requests a decryption key only after the account entitlement is verified.
 
 Both underlying CLIs still work and remain the actual implementation. **Do not advertise them in user-facing docs** — only `npx lovstudio` should appear in READMEs, SKILL.md, marketplace blurbs, blog posts, agentskills.io listings, etc.
 
@@ -79,7 +78,7 @@ skills:
 
 - **`paid` field is only here**, not in individual SKILL.md files. It's business classification, not skill metadata.
 - **Current totals live in `skills.yaml`** — the README count line is auto-rendered, so don't hand-edit it. See `scripts/render-readme.py`.
-- **Naming**: GitHub repo = `lovstudio/{name}-skill`; local path = `~/lovstudio/skills/{name}-skill/`. No `lovstudio-` prefix in the name.
+- **Naming**: an entry is either a local `skills/<name>/` mirror or an independent GitHub repo `lovstudio/{name}-skill`; no `lovstudio-` prefix in the catalog name.
 - Skill short name (`any2pdf`) is what users invoke via `sgc-any2pdf` in Claude Code.
 
 ## Adding a New Skill

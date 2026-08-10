@@ -1,0 +1,4 @@
+interface:
+  display_name: "富媒体一键导出"
+  short_description: "将一份内容稳定导出为多格式富媒体网页文档与打印交付包"
+  default_prompt: "使用 $sgc-rich-export 将这份内容导出为单文件 HTML、文件夹 HTML、Markdown、DOCX 和 PDF。"

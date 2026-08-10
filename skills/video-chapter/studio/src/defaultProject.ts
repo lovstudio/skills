@@ -1,0 +1,75 @@
+import type {ChapterProject} from './types';
+
+export const defaultProject: ChapterProject = {
+  schemaVersion: '1.0',
+  name: '如何用 AI 做一份 BP',
+  video: {
+    src: '',
+    duration: 1812,
+    width: 1920,
+    height: 1080,
+    fps: 30,
+  },
+  chapters: [
+    {
+      id: 'chapter-1',
+      start: 0,
+      end: 256,
+      title: '一份完全由 AI 制作的 BP',
+      summary: '从最终效果出发，说明本次商业计划书的制作目标。',
+    },
+    {
+      id: 'chapter-2',
+      start: 256,
+      end: 632,
+      title: '挑选并改造一个 BP Skill',
+      summary: '判断现有能力并针对真实需求完成适配。',
+    },
+    {
+      id: 'chapter-3',
+      start: 632,
+      end: 1044,
+      title: '生成大纲并打磨产品定位',
+      summary: '用 AI 组织叙事结构，逐步收紧产品定位。',
+    },
+    {
+      id: 'chapter-4',
+      start: 1044,
+      end: 1360,
+      title: '从粗糙初稿到专业 BP',
+      summary: '持续评审和修改，让初稿达到可展示质量。',
+    },
+    {
+      id: 'chapter-5',
+      start: 1360,
+      end: 1812,
+      title: '把制作沉淀为可复用工作流',
+      summary: '总结过程并固化为下一次可直接调用的方法。',
+    },
+  ],
+  style: {
+    position: 'bottom',
+    marginX: 96,
+    marginBottom: 72,
+    barHeight: 12,
+    gap: 8,
+    labelGap: 18,
+    fontFamily: 'PingFang SC',
+    fontFile: null,
+    fontSize: 34,
+    textColor: '#F5F1E8',
+    activeColor: '#EB6637',
+    inactiveColor: '#FFFFFF38',
+    panelColor: '#101419CC',
+    cornerRadius: 6,
+    showTitle: true,
+    showIndex: true,
+  },
+  export: {
+    codec: 'h264',
+    crf: 18,
+    preset: 'medium',
+    alphaCodec: 'prores_4444',
+  },
+};
+

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "name": "LovStudio",
+  "site": "https://lovstudio.ai",
+  "logo": "sgc-logo.svg",
+  "primary": "#24324A",
+  "accent": "#D97757",
+  "ink": "#172033",
+  "muted": "#566175",
+  "paper": "#F7F4EF",
+  "font_family": "Inter, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif",
+  "copyright": "本信息图由 LovStudio 的「专业信息图」Skill 生成",
+  "output_dir": "$HOME/Documents/professional-infographic"
+}

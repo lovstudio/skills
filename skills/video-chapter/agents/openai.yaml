@@ -1,0 +1,10 @@
+interface:
+  display_name: "Video Chapter Skill Kit"
+  short_description: "字幕分章、React 设计、透明渲染与视频烧录"
+  icon_small: "./assets/sgc-video-chapter.svg"
+  icon_large: "./assets/sgc-video-chapter.svg"
+  brand_color: "#EB6637"
+  default_prompt: "使用 $sgc-video-chapter 根据字幕规划章节，在 React Studio 中调整样式，并导出透明章节条或烧录成片。"
+policy:
+  allow_implicit_invocation: true
+

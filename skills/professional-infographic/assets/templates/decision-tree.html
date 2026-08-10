@@ -1,0 +1,149 @@
+<style data-template-style>
+  .decision-tree {
+    height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 36px 1.25fr 36px 1fr;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 12px 0;
+    align-items: center;
+  }
+
+  .tree-condition,
+  .tree-outcome {
+    min-height: 76px;
+    display: grid;
+    align-content: center;
+    padding: 13px 16px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, white 52%, var(--paper));
+  }
+
+  .tree-condition {
+    grid-column: 3;
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .tree-condition small,
+  .tree-outcome small {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .tree-outcome {
+    color: white;
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+  }
+
+  .tree-outcome--left { grid-column: 1; }
+  .tree-outcome--right { grid-column: 5; }
+  .tree-outcome--default {
+    grid-column: 3 / 6;
+    background: var(--brand-accent);
+    border-color: var(--brand-accent);
+  }
+
+  .tree-connector {
+    height: 1px;
+    background: var(--ink);
+    position: relative;
+  }
+
+  .tree-connector::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    right: -1px;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid var(--ink);
+    border-right: 1px solid var(--ink);
+    transform: rotate(45deg);
+  }
+
+  .tree-connector--left::after {
+    left: -1px;
+    right: auto;
+    transform: rotate(-135deg);
+  }
+
+  .tree-branch-label {
+    position: absolute;
+    top: -18px;
+    color: var(--brand-accent);
+    font-size: 10px;
+    font-weight: 740;
+    letter-spacing: .05em;
+  }
+
+  .tree-note {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    max-width: 330px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+  }
+</style>
+
+<template data-template-body>
+  <section
+    class="decision-tree"
+    data-primary-block
+    data-audit-container
+    data-encoding="connection order"
+    aria-label="决策树"
+  >
+    <div class="tree-outcome tree-outcome--left" data-outcome data-source-ref="S1">
+      结果 A<small>请替换适用条件与边界</small>
+    </div>
+    <div class="tree-connector tree-connector--left" data-connector data-branch>
+      <span class="tree-branch-label">是</span>
+    </div>
+    <div class="tree-condition" data-condition>
+      条件 01：请替换决策问题<small>否 → 继续</small>
+    </div>
+    <div class="tree-connector" data-connector data-branch>
+      <span class="tree-branch-label">否</span>
+    </div>
+    <div class="tree-outcome tree-outcome--right" data-outcome data-source-ref="S2">
+      结果 B<small>请替换适用条件与边界</small>
+    </div>
+
+    <div class="tree-outcome tree-outcome--left" data-outcome data-source-ref="S3" style="grid-row:2">
+      结果 C<small>请替换适用条件与边界</small>
+    </div>
+    <div class="tree-connector tree-connector--left" data-connector data-branch style="grid-row:2"></div>
+    <div class="tree-condition" data-condition style="grid-row:2">
+      条件 02：请替换决策问题<small>否 → 继续</small>
+    </div>
+    <div class="tree-connector" data-connector data-branch style="grid-row:2"></div>
+    <div class="tree-condition" data-condition style="grid-row:2;grid-column:5">
+      条件 03：请替换决策问题<small>否 → 默认路径</small>
+    </div>
+
+    <div
+      class="tree-outcome tree-outcome--default"
+      data-outcome
+      data-decision
+      data-source-ref="S4"
+      style="grid-row:3"
+    >
+      默认决策<small>请替换：无特殊约束时的优先方案及验证条件</small>
+    </div>
+    <div class="tree-connector" data-connector style="grid-row:3;grid-column:2"></div>
+
+    <p class="tree-note" data-annotation data-audit="annotation">
+      请替换：每个分支必须是可验证条件，不能把结论写成含糊口号。
+    </p>
+  </section>
+</template>

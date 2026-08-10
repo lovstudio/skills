@@ -1,0 +1,94 @@
+{
+  "skill_name": "subtitle-freedom",
+  "skill_version": "1.2.8",
+  "skill_id": 67,
+  "skill_version_id": 31,
+  "format_version": 2,
+  "cipher": "aes-256-gcm",
+  "files": {
+    "SKILL.md": {
+      "iv": "Cc69hEC/Yol/Z2Pq",
+      "tag": "BXJPYw7cvBAfNwHUyrcZ5A==",
+      "original_checksum": "7457d77e940fc51053663309404c7eda4728d9e98af1d0635da291a800a1395e",
+      "original_size": 18618
+    },
+    "references/ass-art-text.md": {
+      "iv": "1OcpB4pCFcKB+zGT",
+      "tag": "FxC95kkjfPPdfatfVEMMfQ==",
+      "original_checksum": "969ec5b789e44900455685b41ab5453e726079cf6364fbe1a4ffe905ff53e3be",
+      "original_size": 4519
+    },
+    "references/character-cards.md": {
+      "iv": "dnbIJywvt5WDZRyT",
+      "tag": "7yF5D3GBqMefiM4Aa1/OPQ==",
+      "original_checksum": "c9841dd3c7668dc705c58142e4b2f33b3092939986a699e7432240c33ee8e00b",
+      "original_size": 10880
+    },
+    "references/level-profiles.md": {
+      "iv": "nhPcIqHmbUZ1hrfY",
+      "tag": "rN/Sfh8wrpoQPJQAMrOSSA==",
+      "original_checksum": "d51762c963fa84b1f3c825a5d548c16d7c7b1fb1c1632bf6702110f06390507f",
+      "original_size": 5350
+    },
+    "references/user-profile.md": {
+      "iv": "9caaYYA5WYiROm6u",
+      "tag": "4+KP4QvhyFBIWfDIN+0W6Q==",
+      "original_checksum": "d6ec15ebccc277eb4ab984f68ff8967c638b83983fd1ab9b920ab32d5e2b27a7",
+      "original_size": 1380
+    },
+    "scripts/ass_styled_subtitle.py": {
+      "iv": "gKiCzrRopxMnmEKi",
+      "tag": "yVl97NB9KOEwDWY32698qw==",
+      "original_checksum": "175f36b7744974e596a28aa3e5e2d1238457a3b3ce4d2aa4a1fdaba42ac846f5",
+      "original_size": 52394
+    },
+    "scripts/character_cards.py": {
+      "iv": "TNRGIt9ANcvOZeyB",
+      "tag": "8IjqmonRoq+ZlvAOOkH0uw==",
+      "original_checksum": "2a184e002078705f7178535179943fb627952cec5630bfcbf39a84bd205a9cc6",
+      "original_size": 20094
+    },
+    "scripts/character_evidence.py": {
+      "iv": "aEZndv4lLFadmnrZ",
+      "tag": "h33hlrkqaKEoBBZJFtIqyA==",
+      "original_checksum": "2518ff1b7392cdf0ba6092ed5852395a3c1854ad79d9eef5ee7e933757687b0d",
+      "original_size": 14539
+    },
+    "scripts/profile_store.py": {
+      "iv": "bYCdhfxsMxfal8DF",
+      "tag": "4FfCXs6jetv70EZsAcHqSQ==",
+      "original_checksum": "7c168ddb10ae1c40dd40251b8cb7d4dab990d362e2dfb79bf4eb9267b36a294a",
+      "original_size": 7161
+    },
+    "scripts/raster_pgs_subtitle.py": {
+      "iv": "zzWqfwsWfArjxJzM",
+      "tag": "RpdiXpsN8bQLTC5wCLbUDg==",
+      "original_checksum": "5c7b8908789982e96e5e5c8c12684ca9778728026b52c49770187a5b983b8867",
+      "original_size": 16361
+    },
+    "scripts/subtitle_gloss.py": {
+      "iv": "Gm5bN5SQ5XXjuEZD",
+      "tag": "brP80QoTq5CzE15q7SAtDA==",
+      "original_checksum": "935e413196b555f56cb48dfaa6921d7f1294799d0b84d8748087fd408a633e3c",
+      "original_size": 19034
+    },
+    "scripts/test_profile_floor.py": {
+      "iv": "fX4nQbHL0X8iaoly",
+      "tag": "3cHaXCcObGYRKf4CFPYzrA==",
+      "original_checksum": "25b9d14f4bc988465e42a726091336668a3a5a82d4df29b827cbe2aef24db042",
+      "original_size": 3247
+    },
+    "scripts/test_watermark_layout.py": {
+      "iv": "AD3dXFN/ZRwMWm1u",
+      "tag": "6oVCeNbrWbJ26zY9LWQ9mg==",
+      "original_checksum": "fd4c803baec36913caeac7e9f31c8fb798638fbf4623ed420584842ff443663e",
+      "original_size": 9444
+    },
+    "scripts/validate_skill.py": {
+      "iv": "IeBP/WesZPb4XRZE",
+      "tag": "rwDiBZE4o28jFvDI9kMNtg==",
+      "original_checksum": "0265806eeb9468444ca81b9eeddc1e82f61340728f66934dd1f4d63783d299ca",
+      "original_size": 19059
+    }
+  }
+}

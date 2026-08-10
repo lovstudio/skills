@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render .claude-plugin/marketplace.json from skills.yaml (free skills only).
+"""Render .claude-plugin/marketplace.json from skills.yaml.
 
 Plugins are grouped BY CATEGORY — not one plugin per skill. So `General`
 becomes a plugin whose `skills` array lists every free General skill.
@@ -9,9 +9,9 @@ redundant parent-child tree; one-plugin-per-category collapses that into
 a useful tree of categories.
 
 Tradeoff: Claude Code's native `/plugin install <name>@lovstudio` now
-installs an entire category at a time (e.g. `/plugin install
-dev-tools@lovstudio` pulls all Dev Tools skills). `npx skills add` is our
-primary install path, so this is the right call.
+installs an entire category at a time. `npx lovstudio skills add` is our
+primary install path; paid entries are included only after they have an
+encrypted bundle and still require account entitlement at runtime.
 
 Each skill's SKILL.md lives at ./skills/<skill-name>/. Plugins point at
 those paths via the `skills` array and use strict:false so Claude Code
@@ -95,7 +95,7 @@ def category_to_plugin(
     n_free = sum(1 for s in skills if not s.get("paid"))
     n_paid = sum(1 for s in skills if s.get("paid"))
     if n_paid:
-        desc = f"{category} — {n_free} free + {n_paid} paid (activation required)."
+        desc = f"{category} — {n_free} free + {n_paid} paid (Credits redemption required)."
     else:
         desc = f"{category} — {n_free} free skill{'s' if n_free != 1 else ''} bundled together."
     return {
@@ -117,7 +117,7 @@ def render() -> dict:
         "name": MARKETPLACE_NAME,
         "owner": OWNER,
         "metadata": {
-            "description": "Lovstudio skills — install via `npx lovstudio skills add <name> -g -y` (or `... add skills -g -y` for all).",
+            "description": "Lovstudio skills — install via `npx lovstudio skills add <name>`; `... add skills` installs the free catalog and paid entries are redeemed individually.",
         },
         "plugins": plugins,
     }

@@ -1,0 +1,139 @@
+<style data-template-style>
+  .operating-model {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 54px 1.55fr 54px 1fr;
+    gap: 10px 0;
+    align-items: stretch;
+  }
+
+  .operating-column {
+    display: grid;
+    grid-template-rows: 30px repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .operating-column h2 {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .operating-node {
+    display: grid;
+    align-content: center;
+    padding: 12px 14px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    line-height: 1.25;
+    font-weight: 680;
+  }
+
+  .operating-node--capability {
+    background: color-mix(in srgb, white 58%, var(--paper));
+  }
+
+  .operating-node--outcome {
+    color: white;
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+  }
+
+  .operating-flows {
+    display: grid;
+    grid-template-rows: 30px repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .operating-flow {
+    align-self: center;
+    position: relative;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  .operating-flow::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid var(--ink);
+    border-right: 1px solid var(--ink);
+    transform: rotate(45deg);
+  }
+
+  .operating-note {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+    text-align: right;
+  }
+
+  .operating-note--left {
+    left: 0;
+    right: auto;
+    max-width: 380px;
+    text-align: left;
+  }
+</style>
+
+<template data-template-body>
+  <section
+    class="operating-model"
+    data-primary-block
+    data-audit-container
+    data-encoding="connection containment"
+    aria-label="运营模型"
+  >
+    <div class="operating-column">
+      <h2>Actors / inputs</h2>
+      <div class="operating-node" data-actor data-source-ref="S1">角色 A<small>请替换输入</small></div>
+      <div class="operating-node" data-actor data-source-ref="S2">角色 B<small>请替换输入</small></div>
+      <div class="operating-node" data-actor data-source-ref="S3">角色 C<small>请替换输入</small></div>
+    </div>
+
+    <div class="operating-flows">
+      <span></span>
+      <i class="operating-flow" data-flow data-connector></i>
+      <i class="operating-flow" data-flow data-connector></i>
+      <i class="operating-flow" data-flow data-connector></i>
+    </div>
+
+    <div class="operating-column">
+      <h2>Capabilities</h2>
+      <div class="operating-node operating-node--capability" data-capability>能力 1<small>机制 / 权责</small></div>
+      <div class="operating-node operating-node--capability" data-capability>能力 2<small>机制 / 权责</small></div>
+      <div class="operating-node operating-node--capability" data-capability>能力 3<small>机制 / 权责</small></div>
+    </div>
+
+    <div class="operating-flows">
+      <span></span>
+      <i class="operating-flow" data-flow data-connector></i>
+      <i class="operating-flow" data-flow data-connector></i>
+      <i class="operating-flow" data-flow data-connector></i>
+    </div>
+
+    <div class="operating-column">
+      <h2>Outcomes</h2>
+      <div class="operating-node operating-node--outcome" data-outcome data-decision>结果 1<small>请替换指标</small></div>
+      <div class="operating-node operating-node--outcome" data-outcome>结果 2<small>请替换指标</small></div>
+      <div class="operating-node operating-node--outcome" data-outcome>结果 3<small>请替换指标</small></div>
+    </div>
+
+    <p class="operating-note" data-annotation data-audit="annotation">
+      请替换：标注流向、对象与责任边界；避免全连接。
+    </p>
+    <p class="operating-note operating-note--left" data-annotation>
+      请替换：角色、能力、流与结果必须使用不同视觉语法。
+    </p>
+  </section>
+</template>

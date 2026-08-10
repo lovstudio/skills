@@ -1,0 +1,70 @@
+{
+  "skill_name": "oh-my-landingpage",
+  "skill_version": "0.2.0",
+  "skill_id": 55,
+  "skill_version_id": 33,
+  "format_version": 2,
+  "cipher": "aes-256-gcm",
+  "files": {
+    "SKILL.md": {
+      "iv": "kj5u/imui1Zg/9si",
+      "tag": "5OaELblp2go2LEUbypo7fw==",
+      "original_checksum": "a154ad548d5f879fcfbc7b1eca22e247c9bf5c5a3e4cb67de511796029bfc358",
+      "original_size": 10999
+    },
+    "agents/openai.yaml": {
+      "iv": "bksC2KOIUxSVf0Ky",
+      "tag": "1KEwR+JZmH1wib5LL6gXSA==",
+      "original_checksum": "654bbcb5a56720f7974f563d5e5a96b094e3f8e5d8a743fab9509ae6afc67ab4",
+      "original_size": 336
+    },
+    "kit.yaml": {
+      "iv": "nRT46FLYI11tH8RQ",
+      "tag": "ILh86ew/Hpbz5SlbZbtehg==",
+      "original_checksum": "fde9314e49fb4281bd9c8a2b6264655653370510e88a767c57f00c881ec63641",
+      "original_size": 1302
+    },
+    "references/brand-system.md": {
+      "iv": "745h40sh7/bY4/Hp",
+      "tag": "KYukAU/qcbXslYvrxM9Lww==",
+      "original_checksum": "04c6fb7b627f636e91c4d3b93dc85104e7de0d2b54e5475f12e34b244a76c593",
+      "original_size": 6351
+    },
+    "references/implementation-and-acceptance.md": {
+      "iv": "bRMHo75S9LUt6mYf",
+      "tag": "J3g546g4/IwmGkSk/4WZ2A==",
+      "original_checksum": "be84b05f26abdd7edaea1a0f7ee6021fd20b210f7aac4be0b6a62b2a16d0142a",
+      "original_size": 5685
+    },
+    "references/landing-system.md": {
+      "iv": "W302vrfbgHOs7S/i",
+      "tag": "se0ZsnKzonS0TB/7O3JVrA==",
+      "original_checksum": "f855ac5ce4ca3b428deed80fead2bc7ddbf7dac72124ab9e46730dcaa3b1c261",
+      "original_size": 7564
+    },
+    "references/research.md": {
+      "iv": "D2TQkHewjlCHRvnm",
+      "tag": "ZyIJ9HLyHtzX8GxMeE7DVQ==",
+      "original_checksum": "6a60b648f41a4ce310cd4203245aaa64b4ab28bb9d0942d53371cba656b19962",
+      "original_size": 2835
+    },
+    "references/user-config.md": {
+      "iv": "VFS8ecVCLIGJWcoQ",
+      "tag": "+aF6aqMJ/bLqaYDz2F4SKQ==",
+      "original_checksum": "6d954d16533080534dc89496780ac580d13aac34a0cec2ef86f6f598f2af31c9",
+      "original_size": 2890
+    },
+    "references/visual-and-media.md": {
+      "iv": "5figVeOsVNNve/cM",
+      "tag": "huLYQsIGxUh9Qxxnq7j+BQ==",
+      "original_checksum": "a3da3593cb1022c95d854bfc78224f488497ac7d8f44154b07b144a5ce62d40a",
+      "original_size": 5902
+    },
+    "scripts/validate_skill.py": {
+      "iv": "OfcbOJ4TJDK8IISw",
+      "tag": "Dkx8tJebuzfb0doYxDQAFg==",
+      "original_checksum": "cecdfdf8beb7b3aee4f9964ff500d88b4e033ac9ab2caa6446c942b75ebd146f",
+      "original_size": 15313
+    }
+  }
+}
