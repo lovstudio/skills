@@ -1,4 +1,4 @@
-# sgc-solution-architect
+# lov-solution-architect
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C) ![Free](https://img.shields.io/badge/Free-green) ![Category](https://img.shields.io/badge/category-business-blue)
 
@@ -22,8 +22,8 @@ npx lovstudio skills add solution-architect -g -y
 ## Usage
 
 ```text
-/sgc-solution-architect 我想做一个 AI 合同审阅产品，请给我技术方案
-/sgc-solution-architect 帮我比较一下自建 RAG 和商业知识库 API 的方案
+/lov-solution-architect 我想做一个 AI 合同审阅产品，请给我技术方案
+/lov-solution-architect 帮我比较一下自建 RAG 和商业知识库 API 的方案
 ```
 
 Skill 会先确认真正阻塞的信息；如果没有阻塞，会直接给出假设并继续。输出包含结论摘要、需求理解、模块拆分、推荐架构、技术选型、实施路线、成本估算、风险应对和下一步。

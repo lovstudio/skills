@@ -1,4 +1,4 @@
-# sgc-gh-tidy
+# lov-gh-tidy
 
 ![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
@@ -7,7 +7,7 @@ Interactive GitHub repo triage — clean up issues, PRs, stale branches, and orp
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill sgc-gh-tidy -y -g
+npx skills add lovstudio/skills --skill lov-gh-tidy -y -g
 ```
 
 ## Prerequisites
@@ -18,7 +18,7 @@ npx skills add lovstudio/skills --skill sgc-gh-tidy -y -g
 ## Usage
 
 ```
-/sgc-gh-tidy
+/lov-gh-tidy
 ```
 
 The skill will:

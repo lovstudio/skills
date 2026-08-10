@@ -1,4 +1,4 @@
-# sgc-anti-wechat-ai-check
+# lov-anti-wechat-ai-check
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 
@@ -50,7 +50,7 @@ python analyze.py --input article.md --format json
 ### In Claude Code
 
 ```
-/sgc-anti-wechat-ai-check
+/lov-anti-wechat-ai-check
 
 然后粘贴文章或提供文件路径
 ```

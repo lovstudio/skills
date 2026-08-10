@@ -1,5 +1,5 @@
 ---
-name: sgc-academic-translator
+name: lov-academic-translator
 description: "将英文论文、arXiv、期刊/会议文章及技术 PDF 翻译为中文 PDF 或可发布的中文 Markdown。用户提出“翻译英文 PDF”“翻译论文”“论文超级翻译官”“保留图片、公式和原版式”“原文译文对照”“页数对应”或“PDF 图文排版不要乱”时使用。"
 version: 0.1.0
 ---

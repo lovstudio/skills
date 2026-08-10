@@ -1,4 +1,4 @@
-# sgc-media-fetch
+# lov-media-fetch
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
@@ -12,7 +12,7 @@
 export SKILL_SOURCE_DIR="$(pwd)"
 mkdir -p "${SKILL_SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}"
 ln -s "$SKILL_SOURCE_DIR" \
-  "$SKILL_SKILLS_INSTALL_DIR/sgc-media-fetch"
+  "$SKILL_SKILLS_INSTALL_DIR/lov-media-fetch"
 ```
 
 安装链接必须解析到当前源码目录；打包文件不等于本地安装。
@@ -96,7 +96,7 @@ python3 scripts/qbittorrent_acquire.py \
 ## 字幕分支
 
 默认验收 `zh-Hans` 与 `en`。如果成片只有英文字幕，先匹配同一发行版本的外置
-SRT，再交给 `sgc-subtitle-freedom-skill` 做时间轴、UTF-8 和 SRT 保真处理。该
+SRT，再交给 `lov-subtitle-freedom-skill` 做时间轴、UTF-8 和 SRT 保真处理。该
 Skill 的英文学习提示、人物卡和 ASS 样式均需要明确开启；Media Fetch 不会把它们
 作为简中字幕输出。
 

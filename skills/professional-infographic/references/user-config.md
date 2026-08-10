@@ -23,7 +23,7 @@ Relevant shape:
 ```json
 {
   "workspace": {
-    "output_dir": "$HOME/Documents/sgc-skill-output"
+    "output_dir": "$HOME/Documents/lov-skill-output"
   },
   "brand": {
     "name": "Your Brand",

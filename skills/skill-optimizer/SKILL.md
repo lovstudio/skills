@@ -1,5 +1,5 @@
 ---
-name: sgc-skill-optimizer
+name: lov-skill-optimizer
 category: Meta Skills
 tagline: "Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG entry."
 description: >
@@ -18,7 +18,7 @@ description: >
 license: MIT
 compatibility: >
   Requires Python 3.8+ (stdlib only, no external dependencies).
-  Must be run inside the sgc-skills repo (auto-detects repo root).
+  Must be run inside the lov-skills repo (auto-detects repo root).
 metadata:
   author: lovstudio
   version: "0.6.4"
@@ -50,7 +50,7 @@ name and (b) any optimization notes mentioned in the current conversation.**
 
 From the user's message, extract:
 
-1. **Target skill name** — e.g. `any2pdf`, `sgc-any2pdf`, or `any2pdf-skill`.
+1. **Target skill name** — e.g. `any2pdf`, `lov-any2pdf`, or `any2pdf-skill`.
    Normalize to the bare name (strip prefix). If the user did not name a skill
    explicitly, infer it from recent conversation context (the skill they were
    just working on). If still ambiguous, ask one targeted question.
@@ -62,7 +62,7 @@ From the user's message, extract:
 ### Step 2: Lint
 
 ```bash
-python3 skills/sgc-skill-optimizer/scripts/lint_skill.py <name> --json
+python3 skills/lov-skill-optimizer/scripts/lint_skill.py <name> --json
 ```
 
 Parse the JSON findings. Combine with the context-driven fix list from Step 1.
@@ -112,7 +112,7 @@ Stay in 0.x unless explicitly told otherwise — per repo release conventions.
 ### Step 5: Bump version + write changelog
 
 ```bash
-python3 skills/sgc-skill-optimizer/scripts/bump_version.py <name> \
+python3 skills/lov-skill-optimizer/scripts/bump_version.py <name> \
   --type <patch|minor|major> \
   --message "<one-line summary of the biggest change>" \
   --change "<additional bullet>" \
@@ -127,19 +127,19 @@ This updates:
 ### Step 6: Re-lint & report
 
 ```bash
-python3 skills/sgc-skill-optimizer/scripts/lint_skill.py <name>
+python3 skills/lov-skill-optimizer/scripts/lint_skill.py <name>
 ```
 
 For a repo-wide standardization baseline:
 
 ```bash
-python3 skills/sgc-skill-optimizer/scripts/lint_skill.py --all --root .
+python3 skills/lov-skill-optimizer/scripts/lint_skill.py --all --root .
 ```
 
 Report to the user, in this exact shape and nothing more:
 
 ```
-optimized: sgc-<name>
+optimized: lov-<name>
 version:   <old> → <new>
 fixes:
   - <bullet 1>
@@ -197,7 +197,7 @@ problem this step exists to prevent.
 
 | Argument | Default | Description |
 |----------|---------|-------------|
-| `<name>` | — | Skill name (with or without `sgc-` prefix) |
+| `<name>` | — | Skill name (with or without `lov-` prefix) |
 | `--path` | — | Absolute path to skill dir (overrides name) |
 | `--json` | off | Emit findings as JSON |
 

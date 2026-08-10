@@ -172,14 +172,14 @@ def resolve_infographic_cli(explicit: Optional[str]) -> Path:
     if install_dir:
         candidates.append(
             expand_path(install_dir)
-            / "sgc-professional-infographic"
+            / "lov-professional-infographic"
             / "scripts"
             / "infographic_cli.py"
         )
     candidates.extend(
         [
             SKILL_ROOT.parent
-            / "sgc-professional-infographic"
+            / "lov-professional-infographic"
             / "scripts"
             / "infographic_cli.py",
             SKILL_ROOT.parent
@@ -193,7 +193,7 @@ def resolve_infographic_cli(explicit: Optional[str]) -> Path:
             return path.resolve()
     checked = "\n".join(f"- {path}" for path in candidates)
     raise CliError(
-        "Could not locate sgc-professional-infographic. Pass "
+        "Could not locate lov-professional-infographic. Pass "
         "--infographic-skill-dir or set "
         "LOVSTUDIO_HANZI_LENS_INFOGRAPHIC_SKILL_DIR.\n"
         f"Checked:\n{checked}"
@@ -331,7 +331,7 @@ def command_scaffold(args: argparse.Namespace) -> int:
             "scope": "character-only",
             "locale": args.locale,
             "focus": args.focus,
-            "dependency": "sgc-professional-infographic",
+            "dependency": "lov-professional-infographic",
             "research": "research.json",
             "source": "source.md",
             "brief": "brief.md",

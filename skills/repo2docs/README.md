@@ -1,4 +1,4 @@
-# sgc-repo2docs
+# lov-repo2docs
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
@@ -28,14 +28,14 @@ auto-galleried.
 ## Install
 
 ```bash
-git clone https://github.com/lovstudio/repo2docs-skill "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-repo2docs"
+git clone https://github.com/lovstudio/repo2docs-skill "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-repo2docs"
 ```
 
 Requires:
 - Node.js 18+, `npx`, `git`, Python 3.8+
 - Optional: Pillow (`pip install Pillow`) for image downscale/transcode
 - Vercel CLI (`npm i -g vercel`) for deployment
-- The [`sgc-deploy-to-vercel`](https://github.com/lovstudio/deploy-to-vercel-skill)
+- The [`lov-deploy-to-vercel`](https://github.com/lovstudio/deploy-to-vercel-skill)
   skill (handles Vercel + Cloudflare DNS for the subdomain)
 
 ## Usage
@@ -58,7 +58,7 @@ inventories → scaffolds → copies images → authors incrementally → (optio
 | `scaffold_docs.py` | Run `create-fumadocs-app`, set `basePath: '/docs'`, reset content |
 
 ```bash
-SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?}/sgc-repo2docs"
+SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?}/lov-repo2docs"
 python3 "$SKILL_DIR/scripts/inventory.py"    --src ./my-folder --out manifest.json
 python3 "$SKILL_DIR/scripts/scaffold_docs.py" --product-id widget --out ./widget-docs --title "Widget"
 python3 "$SKILL_DIR/scripts/copy_assets.py"  --src ./my-folder --site ./widget-docs --out assets-map.json

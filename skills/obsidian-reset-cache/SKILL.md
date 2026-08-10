@@ -1,5 +1,5 @@
 ---
-name: sgc-obsidian-reset-cache
+name: lov-obsidian-reset-cache
 category: Dev Tools
 tagline: "重置 Obsidian 缓存，解决卡在 Loading cache 的问题。"
 description: >

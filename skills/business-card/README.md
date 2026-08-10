@@ -2,7 +2,7 @@
   <img src="docs/images/example-dark-terracotta.png" alt="business-card example" width="100%">
 </p>
 
-<h1 align="center">sgc-business-card</h1>
+<h1 align="center">lov-business-card</h1>
 
 <p align="center">
   <strong>把任何人的姓名、头衔与金句，一键变成精美的编辑式名片。</strong><br>
@@ -34,7 +34,7 @@
 ## Install
 
 ```bash
-git clone https://github.com/lovstudio/business-card-skill "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-business-card"
+git clone https://github.com/lovstudio/business-card-skill "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-business-card"
 ```
 
 Requires: Python 3.8+ and Google Chrome / Chromium (for PNG rendering). macOS 用内置 `sips` 裁切，
@@ -43,7 +43,7 @@ Requires: Python 3.8+ and Google Chrome / Chromium (for PNG rendering). macOS �
 ## Usage
 
 ```bash
-SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-business-card"
+SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-business-card"
 python3 "$SKILL_DIR/scripts/render_card.py" \
   --name "手工川" --latin "Mark Shawn" \
   --brand "LOVSTUDIO.AI" --index "STUDIO — Nº 2026" \

@@ -1,6 +1,6 @@
 # Description
 
-`sgc-media-fetch` turns a natural-language movie or series request into a normalized
+`lov-media-fetch` turns a natural-language movie or series request into a normalized
 candidate list, an evidence-backed edition choice, a capacity-checked acquisition,
 and a final local media verification. It combines qBittorrent discovery and first
 probes with an aria2 continuation fallback for slow or unstable swarms.

@@ -1,5 +1,5 @@
 schema: skill-manifest/v1
-id: sgc-macos-disk-optimizer
+id: lov-macos-disk-optimizer
 version: 0.2.0
 runtime: skill-runtime/v1
 context:

@@ -1,4 +1,4 @@
-# sgc-gh-contribute
+# lov-gh-contribute
 
 ![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
@@ -21,7 +21,7 @@ No Python dependencies.
 Invoke from Claude Code in a repo you want to contribute to:
 
 ```
-/sgc-gh-contribute
+/lov-gh-contribute
 ```
 
 Or just describe the intent:

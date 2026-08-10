@@ -1,5 +1,5 @@
 ---
-name: sgc-bp-outline
+name: lov-bp-outline
 description: >
   Turn existing project materials into a source-backed investor BP brief, evidence
   ledger, and 12–15 slide outline. Use before making slides, when the product
@@ -37,7 +37,7 @@ business-plan/
 └── assets/
 ```
 
-The output is ready for `sgc-bp-deck` only when the evidence gate passes.
+The output is ready for `lov-bp-deck` only when the evidence gate passes.
 
 ## Workflow (MANDATORY)
 
@@ -142,5 +142,5 @@ unless the user asked for a complete BP or explicitly continues with `bp-deck`.
 ## Recommended Next Step
 
 ```text
-$sgc-bp-deck ./business-plan/outline.md
+$lov-bp-deck ./business-plan/outline.md
 ```

@@ -3,9 +3,9 @@
 Audit a lovstudio skill against repo conventions + official skill-creator best practices.
 
 Usage:
-    python lint_skill.py <skill-name>           # e.g. any2pdf or sgc-any2pdf
+    python lint_skill.py <skill-name>           # e.g. any2pdf or lov-any2pdf
     python lint_skill.py <skill-name> --json
-    python lint_skill.py --path /abs/path/to/skills/sgc-any2pdf
+    python lint_skill.py --path /abs/path/to/skills/lov-any2pdf
 
 Outputs a list of findings with severity (error/warn/info) and a `fix_hint` field
 to help the orchestrating skill prioritize automatic fixes.
@@ -95,15 +95,15 @@ def resolve_skill_dir(name: str, path: str | None) -> Path:
     if path:
         return Path(path).resolve()
     raw = name
-    name = name.removeprefix("sgc-")
+    name = name.removeprefix("lov-")
     if name.endswith("-skill"):
         name = name[: -len("-skill")]
     root = find_repo_root(Path.cwd())
     candidates = [
         root / f"{name}-skill",
-        root / f"sgc-{name}",
+        root / f"lov-{name}",
         root / name,
-        root / "skills" / f"sgc-{name}",
+        root / "skills" / f"lov-{name}",
         root / "skills" / name,
         root / "skills" / f"{name}-skill",
         root / raw,
@@ -174,9 +174,9 @@ class Linter:
         short = dir_name
         if short.endswith("-skill"):
             short = short[: -len("-skill")]
-        short = short.removeprefix("sgc-")
+        short = short.removeprefix("lov-")
         self.name = short
-        self.expected_standard_name = f"sgc-{short}"
+        self.expected_standard_name = f"lov-{short}"
         self.findings: list[dict] = []
 
     def add(self, severity: str, code: str, message: str, fix_hint: str = "", file: str = ""):
@@ -202,7 +202,7 @@ class Linter:
                 "warn",
                 "DIR_NONSTANDARD",
                 f"Directory '{self.dir.name}' is not in a recognized source/install format",
-                "Use <name>-skill for source repos or sgc-<name> for installed/distributed dirs",
+                "Use <name>-skill for source repos or lov-<name> for installed/distributed dirs",
             )
         for required in ("SKILL.md", "README.md"):
             f = self.dir / required
@@ -418,7 +418,7 @@ class Linter:
                 "warn",
                 "README_NO_INSTALL",
                 "README.md missing install command",
-                "Add an install block using npx skills add or git clone into ${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/sgc-<name>",
+                "Add an install block using npx skills add or git clone into ${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/lov-<name>",
                 file="README.md",
             )
 
@@ -525,7 +525,7 @@ def format_text(findings: list[dict], skill_dir: Path) -> str:
 
 def main():
     ap = argparse.ArgumentParser(description="Audit a lovstudio skill")
-    ap.add_argument("name", nargs="?", help="Skill name (with or without sgc- prefix)")
+    ap.add_argument("name", nargs="?", help="Skill name (with or without lov- prefix)")
     ap.add_argument("--path", help="Absolute path to skill directory (overrides name)")
     ap.add_argument("--all", action="store_true", help="Audit every SKILL.md below the detected root")
     ap.add_argument("--root", help="Root directory for --all (defaults to detected skills root)")

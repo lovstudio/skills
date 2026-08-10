@@ -1,5 +1,5 @@
 ---
-name: sgc-video-chapter-design
+name: lov-video-chapter-design
 description: Refine chapter boundaries, titles, colors, typography, placement, and progress behavior in the bundled React video chapter editor. Use when the user wants to preview, debug, beautify, or customize a video chapter progress bar.
 ---
 

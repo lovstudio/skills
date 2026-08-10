@@ -1,5 +1,5 @@
 ---
-name: sgc-any2docx
+name: lov-any2docx
 description: >
   Convert Markdown documents to professionally styled DOCX (Word) files with python-docx.
   Handles CJK/Latin mixed text, fenced code blocks, tables, blockquotes, cover pages,
@@ -39,7 +39,7 @@ all CJK/Latin edge cases correctly.
 ## Quick Start
 
 ```bash
-python sgc-any2docx/scripts/md2docx.py \
+python lov-any2docx/scripts/md2docx.py \
   --input report.md \
   --output report.docx \
   --title "My Report" \

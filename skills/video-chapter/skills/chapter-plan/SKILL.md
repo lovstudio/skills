@@ -1,5 +1,5 @@
 ---
-name: sgc-video-chapter-plan
+name: lov-video-chapter-plan
 description: Analyze timestamped SRT/VTT subtitles and determine 3–5 natural video chapters with cue-aligned cuts, concrete titles, summaries, and platform-ready timestamps. Use when the user asks to segment a long video from subtitles or decide chapter content.
 ---
 

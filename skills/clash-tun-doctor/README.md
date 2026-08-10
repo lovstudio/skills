@@ -1,4 +1,4 @@
-# sgc-clash-tun-doctor
+# lov-clash-tun-doctor
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
@@ -30,7 +30,7 @@ npx skills add lovstudio/skills --all -g
 
 ```text
 /plugin marketplace add lovstudio/skills
-/plugin install dev-tools@sgc-dev
+/plugin install dev-tools@lov-dev
 ```
 
 依赖：macOS、Clash Verge Rev、Python 3.8+。诊断 CLI 只使用 Python 标准库。
@@ -38,7 +38,7 @@ npx skills add lovstudio/skills --all -g
 ## Usage
 
 ```bash
-SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-clash-tun-doctor"
+SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-clash-tun-doctor"
 
 # 只读诊断
 python3 "$SKILL_DIR/scripts/clash_tun_doctor.py" diagnose --app wechat

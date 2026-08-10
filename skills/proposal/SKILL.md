@@ -1,5 +1,5 @@
 ---
-name: sgc-proposal
+name: lov-proposal
 description: Generate complete business proposals for client projects from requirements.
 version: 0.1.2
 ---

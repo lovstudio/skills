@@ -1,5 +1,5 @@
 ---
-name: sgc-gh-access
+name: lov-gh-access
 category: Developer Tools
 tagline: "Grant / revoke / list collaborator access on private GitHub repos by username or email."
 description: >
@@ -22,7 +22,7 @@ metadata:
   tags: github collaborator access invite private-repo permissions
 ---
 
-# sgc-gh-access
+# lov-gh-access
 
 Grant, revoke, and audit collaborator access on private GitHub repos — by
 username **or** email, with read-only as the safe default.

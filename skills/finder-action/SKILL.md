@@ -1,5 +1,5 @@
 ---
-name: sgc-finder-action
+name: lov-finder-action
 category: Dev Tools
 tagline: "Generate Mac Finder right-click menu actions. Quick Action or Finder Sync Extension."
 description: >

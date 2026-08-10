@@ -1,5 +1,5 @@
 ---
-name: sgc-mobile-adapt
+name: lov-mobile-adapt
 description: >
   Adapt an existing web project for mobile devices: fix overflow, add responsive
   layouts, convert to multi-level page navigation with back support, handle

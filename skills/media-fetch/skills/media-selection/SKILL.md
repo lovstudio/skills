@@ -1,5 +1,5 @@
 ---
-name: sgc-media-selection
+name: lov-media-selection
 description: >
   比较媒体候选的剪辑版本、画质、编码、体积、音轨、字幕、活跃度与证据，自动选出最合适版本；适用于“哪个版本最值得下”、"choose the best compact release"。
 license: MIT

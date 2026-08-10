@@ -1,5 +1,5 @@
 ---
-name: sgc-visual-clone
+name: lov-visual-clone
 description: "Analyze a reference design image and extract visual DNA — layout, style, color palette, texture, typography, copy tone, spacing, etc. — into a structured, reusable replication prompt that can be applied to new scenarios. Trigger when: user provides a reference image and asks to \"extract style\", \"replicate this\", \"clone this design\", \"analyze this visual\", \"generate a replication prompt\", \"提取设计要素\", \"复刻这个风格\", \"分析这张图\", \"视觉克隆\"."
 version: 1.0.1
 ---

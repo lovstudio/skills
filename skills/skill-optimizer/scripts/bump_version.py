@@ -43,9 +43,9 @@ def find_repo_root(start: Path) -> Path:
 def resolve_skill_dir(name: str, path: str | None) -> Path:
     if path:
         return Path(path).resolve()
-    name = name.removeprefix("sgc-")
+    name = name.removeprefix("lov-")
     root = find_repo_root(Path.cwd())
-    return (root / "skills" / f"sgc-{name}").resolve()
+    return (root / "skills" / f"lov-{name}").resolve()
 
 
 def read_current_version(skill_dir: Path) -> str:
@@ -166,7 +166,7 @@ def update_changelog(
 
 def main():
     ap = argparse.ArgumentParser(description="Bump version and update changelog for a lovstudio skill")
-    ap.add_argument("name", nargs="?", help="Skill name (with or without sgc- prefix)")
+    ap.add_argument("name", nargs="?", help="Skill name (with or without lov- prefix)")
     ap.add_argument("--path", help="Absolute path to skill directory (overrides name)")
     group = ap.add_mutually_exclusive_group(required=True)
     group.add_argument("--type", choices=["patch", "minor", "major"], help="Semver bump kind")

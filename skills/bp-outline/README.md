@@ -1,4 +1,4 @@
-# sgc-bp-outline
+# lov-bp-outline
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
@@ -13,8 +13,8 @@ npx lovstudio skills add bp-outline -g -y
 ## 使用
 
 ```text
-$sgc-bp-outline 根据当前仓库和用户访谈写 BP 大纲
-$sgc-bp-outline 重写这份大纲，先不要做 PPT
+$lov-bp-outline 根据当前仓库和用户访谈写 BP 大纲
+$lov-bp-outline 重写这份大纲，先不要做 PPT
 ```
 
 ## 交付物
@@ -24,7 +24,7 @@ $sgc-bp-outline 重写这份大纲，先不要做 PPT
 - `outline.md`
 - 待补证据清单
 
-大纲确认后，可交给 `sgc-bp-deck` 继续制作 PPT。
+大纲确认后，可交给 `lov-bp-deck` 继续制作 PPT。
 
 ## License
 

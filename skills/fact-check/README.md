@@ -1,4 +1,4 @@
-# sgc-fact-check
+# lov-fact-check
 
 ![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
@@ -23,7 +23,7 @@ npx lovstudio skills add fact-check -g -y
 在 Claude Code 中触发：
 
 ```text
-/sgc-fact-check
+/lov-fact-check
 ```
 
 也可以自然语言触发：

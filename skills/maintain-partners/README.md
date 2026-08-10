@@ -1,9 +1,9 @@
-# sgc-maintain-partners
+# lov-maintain-partners
 
 ![Version](https://img.shields.io/badge/version-0.9.1-CC785C)
 
 Maintain the LovStudio website's "Trusted By" partners section: collect brand
-logos through `sgc-find-logo`, normalize to the 80px canvas, append
+logos through `lov-find-logo`, normalize to the 80px canvas, append
 entries with i18n taglines across 4 locales, and audit for dead URLs /
 missing assets.
 
@@ -13,8 +13,8 @@ Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudi
 
 ```bash
 SKILLS_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}"
-git clone https://github.com/lovstudio/maintain-partners-skill "$SKILLS_DIR/sgc-maintain-partners"
-git clone https://github.com/lovstudio/find-logo-skill "$SKILLS_DIR/sgc-find-logo"
+git clone https://github.com/lovstudio/maintain-partners-skill "$SKILLS_DIR/lov-maintain-partners"
+git clone https://github.com/lovstudio/find-logo-skill "$SKILLS_DIR/lov-find-logo"
 python3 -m pip install Pillow
 brew install librsvg  # for SVG logo sources
 ```
@@ -55,7 +55,7 @@ The LovStudio homepage runs a "Trusted By" strip that renders 30+ partner
 logos against a `grayscale opacity-60` filter. Maintaining it means three
 recurring tasks:
 
-1. **Collecting** — invoking `sgc-find-logo` to pull and archive brand logos.
+1. **Collecting** — invoking `lov-find-logo` to pull and archive brand logos.
 2. **Normalizing** — every logo must trim to its content bbox and resize to
    exactly 80px tall so the strip looks even. White-on-transparent logos must
    be inverted so they show on the light background.
@@ -63,7 +63,7 @@ recurring tasks:
    TSX file and adding a `partner*Tagline` key to all 4 locale JSONs
    (zh-CN / en / ja / th).
 
-Logo discovery is delegated to `sgc-find-logo`; this skill does not keep
+Logo discovery is delegated to `lov-find-logo`; this skill does not keep
 its own homepage crawler or fallback scraper.
 
 This skill is three single-file Python CLIs plus an AI workflow that orchestrates them.
@@ -84,7 +84,7 @@ SKILL_ROOT="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}"
 WEB_ROOT="${LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT:?Set this or pass --repo}"
 PARTNERS_TSX="${LOVSTUDIO_MAINTAIN_PARTNERS_FILE:-app/(main)/(home)/PartnersGrid.tsx}"
 
-python3 "$SKILL_ROOT/sgc-find-logo/scripts/find_logo.py" \
+python3 "$SKILL_ROOT/lov-find-logo/scripts/find_logo.py" \
   --name "Example" --url https://example.com --slug example --json
 
 # Normalize: auto-invert white-on-transparent

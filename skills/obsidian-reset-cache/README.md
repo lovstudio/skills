@@ -1,4 +1,4 @@
-# sgc-obsidian-reset-cache
+# lov-obsidian-reset-cache
 
 ![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 

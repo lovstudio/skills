@@ -20,7 +20,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
 ASSETS_DIR = SKILL_ROOT / "assets"
-DEFAULT_BRAND = ASSETS_DIR / "sgc-brand.json"
+DEFAULT_BRAND = ASSETS_DIR / "lov-brand.json"
 DEFAULT_USER_BRAND = Path("~/.lovstudio/skills/professional-infographic-brand.json")
 DEFAULT_SHARED_PROFILE = Path("~/.lovstudio/skills/profile.json")
 

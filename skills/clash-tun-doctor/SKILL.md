@@ -1,5 +1,5 @@
 ---
-name: sgc-clash-tun-doctor
+name: lov-clash-tun-doctor
 description: >
   Diagnose and repair application connectivity failures caused by Clash Verge
   Rev TUN routing, rule precedence, stale runtime state, proxy timeouts, or
@@ -39,7 +39,7 @@ or bypassing organizational network policy.
 Resolve `SKILL_DIR` from the installed skill context. For manual execution:
 
 ```bash
-export SKILL_DIR="/path/to/sgc-clash-tun-doctor"
+export SKILL_DIR="/path/to/lov-clash-tun-doctor"
 ```
 
 The CLI resolves the Clash Verge Rev data directory in this order:

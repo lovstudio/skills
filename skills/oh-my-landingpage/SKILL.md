@@ -1,5 +1,5 @@
 ---
-name: sgc-oh-my-landingpage
+name: lov-oh-my-landingpage
 description: "从品牌内核出发初始化或重构可运行的 Landing Page，统一整体形象、内容叙事、转化文案、UI、媒体、实现与验收；适用于“品牌官网重构”、“首页没有品牌感”、\"build a branded landing page\" 或 \"rebrand this homepage\"。"
 version: 0.2.0
 ---

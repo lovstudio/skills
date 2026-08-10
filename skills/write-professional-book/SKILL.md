@@ -1,5 +1,5 @@
 ---
-name: sgc-write-professional-book
+name: lov-write-professional-book
 description: Write multi-chapter books end-to-end from an outline.
 version: 0.1.4
 ---

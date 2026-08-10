@@ -1,5 +1,5 @@
 ---
-name: sgc-fact-check
+name: lov-fact-check
 description: >
   用真人尽调思路校验用户提出的事实命题：拆解可验证问题、检索一手资料、
   交叉验证证据链，并给出带置信度和不确定边界的结论。

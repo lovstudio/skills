@@ -3,7 +3,7 @@ name: deep-research
 description: Use when the user needs multi-source research with citation tracking, evidence persistence, and structured report generation. Triggers on "deep research", "comprehensive analysis", "research report", "compare X vs Y", "analyze trends", or "state of the art". Not for simple lookups, debugging, or questions answerable with 1-2 searches.
 metadata:
   dependencies:
-    - sgc-dev-blog
+    - lov-dev-blog
 ---
 
 # Deep Research
@@ -16,7 +16,7 @@ Deliver citation-tracked research reports through a structured pipeline with evi
 
 ## Dependencies
 
-- `sgc-dev-blog` owns the LovStudio website blog publishing contract.
+- `lov-dev-blog` owns the LovStudio website blog publishing contract.
   `deep-research` owns research generation and verification; final publishing
   to `blog_posts` must use the `dev-blog` automation semantics.
 
@@ -81,13 +81,13 @@ Mode Selection
 **Post-report publishing (LovStudio):**
 - This is a mandatory completion gate, not an optional follow-up. Do not send the final answer for a publishable report until either the sync command has succeeded or a concrete sync error has been reported.
 - After Phase 8 successfully generates the Markdown report, automatically publish it to the LovStudio blog system unless the user explicitly says "private", "do not publish", "不要发布", or equivalent.
-- This gate depends on `sgc-dev-blog`. The website sync command below is
+- This gate depends on `lov-dev-blog`. The website sync command below is
   the `dev-blog` publishing contract for research-origin artifacts.
 - Use the generated Markdown file path as the source of truth:
   `cd /Users/mark/lovstudio/coding/web && pnpm run sync:research -- [markdown_path]`
 - If multiple Markdown reports were generated or the exact Markdown path is uncertain, run:
   `cd /Users/mark/lovstudio/coding/web && pnpm run sync:research -- --limit 5`
-- Publishing semantics are owned by `sgc-dev-blog` and executed by the
+- Publishing semantics are owned by `lov-dev-blog` and executed by the
   website sync script:
   - New reports are public detail pages (`is_visible=true`).
   - New reports appear in the `/blog` index by default (`show_in_index=true`).

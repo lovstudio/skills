@@ -1,5 +1,5 @@
 ---
-name: sgc-repo2docs
+name: lov-repo2docs
 description: >
   Turn any folder of source material — a code repository, a pile of articles, a
   mixed knowledge dump with images — into a professional, polished Fumadocs
@@ -15,11 +15,11 @@ license: MIT
 compatibility: >
   Portable Agent Skills format. Requires Node.js 18+, npx, git, and Python 3.8+.
   Image optimization optionally uses Pillow (graceful fallback to verbatim copy).
-  Deployment delegates to the sgc-deploy-to-vercel skill (Cloudflare DNS
+  Deployment delegates to the lov-deploy-to-vercel skill (Cloudflare DNS
   auto-config needs CLOUDFLARE_API_KEY). The {product-id} subdomain and
   lovstudio.ai base domain are user-configurable.
 depends_on:
-  - sgc-deploy-to-vercel
+  - lov-deploy-to-vercel
 metadata:
   author: lovstudio
   version: "0.2.0"
@@ -44,7 +44,7 @@ scales past the context window and produces a coherent, deduplicated result.
 ## User Configuration
 
 Defaults are portable. Base domain is `lovstudio.ai`; subdomain is the product id.
-Deploy delegates to `sgc-deploy-to-vercel` (reads `CLOUDFLARE_API_KEY`).
+Deploy delegates to `lov-deploy-to-vercel` (reads `CLOUDFLARE_API_KEY`).
 See `references/user-config.md`.
 
 ## When to Use
@@ -59,7 +59,7 @@ See `references/user-config.md`.
 ### Step 0: Resolve skill root
 
 ```bash
-export SKILL_DIR="${SKILL_DIR:-$(pwd)}"   # or the installed sgc-repo2docs dir
+export SKILL_DIR="${SKILL_DIR:-$(pwd)}"   # or the installed lov-repo2docs dir
 ```
 
 If any network command times out in the sandbox, export the proxy once:
@@ -165,7 +165,7 @@ cd "<docs-out-dir>" && pnpm build    # must succeed — fix MDX/link/image error
 
 ### Step 8: Deploy (if requested)
 
-Delegate to `sgc-deploy-to-vercel` — do NOT reimplement Vercel/DNS here.
+Delegate to `lov-deploy-to-vercel` — do NOT reimplement Vercel/DNS here.
 Ensure `package.json` "name" is a valid lowercase slug, then deploy with domain
 `{product-id}.lovstudio.ai`. The site serves at `…/docs` via the basePath. After
 deploy, **verify the live URL returns 200** (curl), not just that the alias was set.
@@ -204,6 +204,6 @@ deploy, **verify the live URL returns 200** (curl), not just that the alias was 
 - Node.js 18+, `npx`, `git`, Python 3.8+
 - Optional: Pillow (`pip install Pillow`) for image optimization
 - Vercel CLI (`npm i -g vercel`) for deploy
-- `sgc-deploy-to-vercel` skill (Vercel + Cloudflare DNS)
+- `lov-deploy-to-vercel` skill (Vercel + Cloudflare DNS)
 
 For Fumadocs structure, components, and config, see `references/fumadocs.md`.

@@ -1,5 +1,5 @@
 ---
-name: sgc-business-card
+name: lov-business-card
 description: >
   Generate a professional, editorial-style business card (2:1) as a
   high-resolution PNG and a self-contained interactive HTML. Collects the user's

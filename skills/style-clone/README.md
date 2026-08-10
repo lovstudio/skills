@@ -1,4 +1,4 @@
-# sgc-style-clone
+# lov-style-clone
 
 ![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
@@ -12,7 +12,7 @@ Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudi
 
 ```bash
 git clone https://github.com/lovstudio/style-clone-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-style-clone"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-style-clone"
 ```
 
 Or via the skills CLI:
@@ -28,7 +28,7 @@ No external dependencies — pure Claude reasoning workflow.
 In Claude Code:
 
 ```
-/sgc-style-clone
+/lov-style-clone
 ```
 
 Paste your sample article(s) and target article. Claude will:

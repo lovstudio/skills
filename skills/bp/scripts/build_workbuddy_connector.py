@@ -17,7 +17,7 @@ WORKBUDDY_DIR = ROOT / "workbuddy"
 GIT_URL = "https://github.com/lovstudio/bp-skill"
 
 SKILLS = {
-    "sgc-bp": {
+    "lov-bp": {
         "source": ROOT,
         "version": "0.2.1",
         "description": (
@@ -25,7 +25,7 @@ SKILLS = {
             "证据核验与专业审校流程；适用于完整 BP、融资 PPT、已有材料续作和逐页润色。"
         ),
     },
-    "sgc-bp-outline": {
+    "lov-bp-outline": {
         "source": ROOT / "skills" / "bp-outline",
         "version": "0.1.0",
         "description": (
@@ -33,7 +33,7 @@ SKILLS = {
             "适用于首次融资梳理、已有材料重构、市场数据核验和投资人页序设计。"
         ),
     },
-    "sgc-bp-deck": {
+    "lov-bp-deck": {
         "source": ROOT / "skills" / "bp-deck",
         "version": "0.1.0",
         "description": (
@@ -41,7 +41,7 @@ SKILLS = {
             "覆盖视觉风格、图表、品牌素材、可编辑 PPTX、PDF 和全稿预览交付。"
         ),
     },
-    "sgc-bp-polish": {
+    "lov-bp-polish": {
         "source": ROOT / "skills" / "bp-polish",
         "version": "0.1.0",
         "description": (
@@ -52,9 +52,9 @@ SKILLS = {
 }
 
 MODULE_SKILLS = {
-    "bp-outline": "sgc-bp-outline",
-    "bp-deck": "sgc-bp-deck",
-    "bp-polish": "sgc-bp-polish",
+    "bp-outline": "lov-bp-outline",
+    "bp-deck": "lov-bp-deck",
+    "bp-polish": "lov-bp-polish",
 }
 
 ROOT_RESOURCE_FILES = ("kit.yaml",)
@@ -94,24 +94,24 @@ def workbuddy_skill_text(
     name: str, description: str, version: str, source_text: str
 ) -> str:
     _, body = split_frontmatter(source_text)
-    if name == "sgc-bp-deck":
+    if name == "lov-bp-deck":
         body = body.replace(
             "### Step 0: Resolve input and dependency",
             "### Step 0: Resolve input and WorkBuddy capabilities",
         )
         body = body.replace(
-            "Resolve `sgc-any2deck` through the active Agent Skills environment; do not\n"
+            "Resolve `lov-any2deck` through the active Agent Skills environment; do not\n"
             "assume an author's private installation path.",
             "Use WorkBuddy's available presentation and document-generation capabilities. "
             "Do not\nassume an author's private installation path or require a separate "
             "LovStudio Skill.",
         )
         body = body.replace(
-            "### Step 4: Generate with `sgc-any2deck`",
+            "### Step 4: Generate with `lov-any2deck`",
             "### Step 4: Generate with WorkBuddy",
         )
         body = body.replace(
-            "Invoke `sgc-any2deck` using the approved outline and chosen style. Preserve the\n"
+            "Invoke `lov-any2deck` using the approved outline and chosen style. Preserve the\n"
             "BP page order and evidence notes.",
             "Use WorkBuddy's presentation-generation capability with the approved outline and "
             "chosen\nstyle. Preserve the BP page order and evidence notes.",
@@ -160,7 +160,7 @@ def copy_skill(name: str, config: dict[str, object], skills_dir: Path) -> None:
     target_dir = skills_dir / name
     write_skill(name, config, source_dir, target_dir)
 
-    if name == "sgc-bp":
+    if name == "lov-bp":
         for relative in ROOT_RESOURCE_FILES:
             source = ROOT / relative
             target = target_dir / relative
@@ -301,24 +301,24 @@ def validate_package(output_dir: Path) -> None:
     if "/Users/mark" in all_text:
         errors.append("package contains a private absolute path")
     deck_text = (
-        output_dir / "skills" / "sgc-bp-deck" / "SKILL.md"
+        output_dir / "skills" / "lov-bp-deck" / "SKILL.md"
     ).read_text(encoding="utf-8")
-    if "Requires sgc-any2deck" in deck_text or "Invoke `sgc-any2deck`" in deck_text:
+    if "Requires lov-any2deck" in deck_text or "Invoke `lov-any2deck`" in deck_text:
         errors.append("WorkBuddy deck Skill still has a hard any2deck runtime dependency")
     root_text = (
-        output_dir / "skills" / "sgc-bp" / "SKILL.md"
+        output_dir / "skills" / "lov-bp" / "SKILL.md"
     ).read_text(encoding="utf-8")
-    if "$KIT_DIR/../sgc-bp-" in root_text:
+    if "$KIT_DIR/../lov-bp-" in root_text:
         errors.append("WorkBuddy controller points at external sibling Skills")
     if "## Triggers" not in root_text:
         errors.append("WorkBuddy controller is missing an explicit Triggers section")
 
-    controller_dir = output_dir / "skills" / "sgc-bp"
+    controller_dir = output_dir / "skills" / "lov-bp"
     kit_text = (controller_dir / "kit.yaml").read_text(encoding="utf-8")
     if not re.search(r"(?m)^source_type:\s*git\s*$", kit_text):
-        errors.append("sgc-bp/kit.yaml: source_type must be git")
+        errors.append("lov-bp/kit.yaml: source_type must be git")
     if not re.search(rf"(?m)^git_url:\s*{re.escape(GIT_URL)}\s*$", kit_text):
-        errors.append(f"sgc-bp/kit.yaml: git_url must be {GIT_URL}")
+        errors.append(f"lov-bp/kit.yaml: git_url must be {GIT_URL}")
 
     for module_id, module_name in MODULE_SKILLS.items():
         module_skill = controller_dir / "skills" / module_id / "SKILL.md"

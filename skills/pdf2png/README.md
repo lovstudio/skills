@@ -1,4 +1,4 @@
-# sgc-pdf2png
+# lov-pdf2png
 
 ![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 

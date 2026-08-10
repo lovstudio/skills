@@ -64,10 +64,10 @@ curl -fsS -X POST "SITE_URL/api/revalidate" \
 ## Verify the visible result
 
 ```bash
-curl -fsS -o /tmp/sgc-skill-page.html \
+curl -fsS -o /tmp/lov-skill-page.html \
   -w '%{http_code}\n' "SITE_URL/skills/NAME"
 rg -n 'Version|EXPECTED_VERSION|EXPECTED_MARKER' \
-  /tmp/sgc-skill-page.html
+  /tmp/lov-skill-page.html
 ```
 
 Completion requires the unified catalog to list the Skill, the detail page to

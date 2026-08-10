@@ -1,4 +1,4 @@
-# sgc-hanzi-lens
+# lov-hanzi-lens
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-24324A)
@@ -47,7 +47,7 @@ Unicode 与字体覆盖
 - 区分现代字典事实、历史字书、注家解释和当代综合；
 - 为古义、经典引文和视觉标记建立来源映射；
 - 根据语义关系选择驱动树、比较矩阵等 Exhibit 模板；
-- 调用 `sgc-professional-infographic` 生成可编辑 HTML/SVG 与高清 PNG；
+- 调用 `lov-professional-infographic` 生成可编辑 HTML/SVG 与高清 PNG；
 - 同时执行汉字领域审计和专业信息图审计；
 - 在全尺寸与缩略图下完成人工视觉复核。
 
@@ -57,14 +57,14 @@ Unicode 与字体覆盖
 
 ```bash
 git clone https://github.com/lovstudio/professional-infographic-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/sgc-professional-infographic"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-professional-infographic"
 ```
 
 再安装 Hanzi Lens：
 
 ```bash
 git clone https://github.com/lovstudio/hanzi-lens-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/sgc-hanzi-lens"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-hanzi-lens"
 ```
 
 Python 依赖：
@@ -90,7 +90,7 @@ Create a Chinese character infographic for 曌
 也可以直接使用 CLI：
 
 ```bash
-SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/sgc-hanzi-lens"
+SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-hanzi-lens"
 
 python3 "$SKILL_DIR/scripts/hanzi_lens.py" inspect "翕"
 

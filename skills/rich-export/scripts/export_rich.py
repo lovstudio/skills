@@ -281,7 +281,7 @@ def export(args: argparse.Namespace) -> list[Path]:
 
 
 def self_test() -> None:
-    with tempfile.TemporaryDirectory(prefix="sgc-rich-export-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="lov-rich-export-") as temporary:
         root = Path(temporary)
         source = root / "sample.md"
         source.write_text("# 验收样稿\n\n你好，世界。\n\n<video controls src=\"demo.mp4\">演示</video>\n", encoding="utf-8")

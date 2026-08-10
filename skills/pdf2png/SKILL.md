@@ -1,5 +1,5 @@
 ---
-name: sgc-pdf2png
+name: lov-pdf2png
 category: Document Conversion
 tagline: "PDF → single vertically concatenated PNG. Uses macOS CoreGraphics, ~20x faster than pdftoppm."
 description: >
@@ -42,7 +42,7 @@ before running conversion.
 ### Step 2: Execute
 
 ```bash
-bash sgc-pdf2png/scripts/pdf2png.sh /path/to/file.pdf
+bash lov-pdf2png/scripts/pdf2png.sh /path/to/file.pdf
 ```
 
 Output: `/path/to/file.png` (same directory, same name, `.png` extension).
@@ -50,7 +50,7 @@ Output: `/path/to/file.png` (same directory, same name, `.png` extension).
 For multiple files:
 
 ```bash
-bash sgc-pdf2png/scripts/pdf2png.sh file1.pdf file2.pdf file3.pdf
+bash lov-pdf2png/scripts/pdf2png.sh file1.pdf file2.pdf file3.pdf
 ```
 
 ### Step 3: Verify

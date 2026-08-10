@@ -1,5 +1,5 @@
 ---
-name: sgc-media-verification
+name: lov-media-verification
 description: >
   使用 ffprobe 验证已下载视频的可读性、时长、分辨率、编码、音轨、字幕和剧集完整性；适用于“检查下载是否完整”、"verify the downloaded media"，输出结构化验收报告。
 license: MIT
@@ -69,7 +69,7 @@ Record conflicts between filename claims and observed duration.
 If preferred subtitle streams are absent, look for synchronized external subtitles
 matching the exact release or runtime. Store beside the media using player-compatible
 naming and inspect its declared language. Follow `references/subtitle-handoff.md` for
-UTF-8 SRT and timing preservation, then consult `sgc-subtitle-freedom-skill` only for
+UTF-8 SRT and timing preservation, then consult `lov-subtitle-freedom-skill` only for
 the requested subtitle operation. Do not label unsynchronized text as complete.
 
 ### Step 4: Issue the verdict

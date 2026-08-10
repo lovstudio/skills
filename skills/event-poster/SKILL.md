@@ -1,5 +1,5 @@
 ---
-name: sgc-event-poster
+name: lov-event-poster
 description: Create event posters, exhibition posters, flyers, and promotional graphics from a brief.
 version: 0.4.0
 ---

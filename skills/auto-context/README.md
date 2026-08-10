@@ -19,7 +19,7 @@ Three capability layers, routed by action sensitivity:
 You (turn 31):  "从今以后所有输出都要带路径"
                  ↑ AutoContext writes feedback memory automatically
 
-You (turn 45):  "/sgc-auto-context 记到全局"
+You (turn 45):  "/lov-auto-context 记到全局"
                  ↑ Shows diff of proposed global instructions edit, waits for yes
 
 You (turn 80):  transcript size crosses threshold
@@ -39,11 +39,11 @@ which registers the `UserPromptSubmit` hook.
 ## Manual Use
 
 ```
-/sgc-auto-context                              # health report + opportunistic memory write
-/sgc-auto-context 记到全局                      # edit configured global instructions with confirm
-/sgc-auto-context 记到项目                      # edit project CLAUDE.md with confirm
-/sgc-auto-context 记住 X                        # write project memory
-/sgc-auto-context 该分叉了吗                    # evaluate + suggest /fork
+/lov-auto-context                              # health report + opportunistic memory write
+/lov-auto-context 记到全局                      # edit configured global instructions with confirm
+/lov-auto-context 记到项目                      # edit project CLAUDE.md with confirm
+/lov-auto-context 记住 X                        # write project memory
+/lov-auto-context 该分叉了吗                    # evaluate + suggest /fork
 ```
 
 ## What It Cannot Do

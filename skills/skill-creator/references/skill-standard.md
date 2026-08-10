@@ -1,12 +1,12 @@
 # LovStudio Local Skill Source Standard
 
 This standard covers creation, validation, and local installation. Publication
-and channel packaging belong to `sgc-skill-publisher`.
+and channel packaging belong to `lov-skill-publisher`.
 
 ## Naming and source
 
 - Local source directory: `<name>-skill`.
-- Frontmatter and installed directory: `sgc-<name>`.
+- Frontmatter and installed directory: `lov-<name>`.
 - Names use lowercase letters, numbers, and single hyphens.
 - Source top-level fields are `name`, `description`, `license`, `allowed-tools`,
   and `metadata`; version, compatibility, tags, and dependencies live in

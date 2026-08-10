@@ -1,5 +1,5 @@
 ---
-name: sgc-translation-review
+name: lov-translation-review
 category: Content Processing
 tagline: "Chinese-to-English translation review. Compares source & translation across 6 dimensions."
 description: >

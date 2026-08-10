@@ -1,4 +1,4 @@
-# sgc-image-creator
+# lov-image-creator
 
 ![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 

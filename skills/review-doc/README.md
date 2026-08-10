@@ -1,4 +1,4 @@
-# sgc-review-doc
+# lov-review-doc
 
 ![Version](https://img.shields.io/badge/version-1.0.0-CC785C) ![Category](https://img.shields.io/badge/category-business-blue)
 
@@ -23,7 +23,7 @@ python3 -m pip install "python-docx>=1.0" "lxml>=4.9"
 ## 使用
 
 ```text
-$sgc-review-doc 审阅这份合同，站在乙方立场，给出批注、红线修订和谈判底线。
+$lov-review-doc 审阅这份合同，站在乙方立场，给出批注、红线修订和谈判底线。
 ```
 
 默认交付：

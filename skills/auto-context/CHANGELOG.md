@@ -34,4 +34,4 @@
 ## 0.1.0
 
 - Initial release: hook-triggered `<auto-context>` nudge + manual
-  `/sgc-auto-context` health report.
+  `/lov-auto-context` health report.

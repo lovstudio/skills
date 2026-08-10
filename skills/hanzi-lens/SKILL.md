@@ -1,5 +1,5 @@
 ---
-name: sgc-hanzi-lens
+name: lov-hanzi-lens
 description: >
   Explain one Chinese character through verified pronunciation, Unicode and
   glyph structure, historical lexicography, classical usage, semantic
@@ -9,11 +9,11 @@ description: >
 license: MIT
 compatibility: >
   Portable Agent Skills format. Requires Python 3.8+, fontTools for deterministic
-  glyph-coverage checks, and the sgc-professional-infographic dependency.
+  glyph-coverage checks, and the lov-professional-infographic dependency.
   User paths, brand assets, and output settings resolve from CLI flags,
   environment variables, or the shared LovStudio user profile.
 depends_on:
-  - sgc-professional-infographic
+  - lov-professional-infographic
 metadata:
   author: lovstudio
   version: "0.1.0"
@@ -47,7 +47,7 @@ Read these completely before authoring:
 Read `references/user-config.md` when brand or output configuration is
 unresolved.
 
-The dependency `sgc-professional-infographic` is mandatory. Read its
+The dependency `lov-professional-infographic` is mandatory. Read its
 `SKILL.md` and required references before creating or reviewing the Exhibit.
 
 ## Non-negotiable outcome

@@ -1,5 +1,5 @@
 ---
-name: sgc-media-acquisition
+name: lov-media-acquisition
 description: >
   在下载前检查磁盘空间，通过 qBittorrent 并行测试多个候选、选择持续速度更好的来源、观测进度并在停滞时切换；适用于“开始下载，太慢就换源”、"race sources and finish the download"。
 license: MIT

@@ -1,5 +1,5 @@
 ---
-name: sgc-gh-contribute
+name: lov-gh-contribute
 description: >
   Contribute a clean, professional pull request to someone else's GitHub repository:
   fork → clone → branch → commit → push → open PR, with smart splitting into one or

@@ -38,7 +38,7 @@ def scaffold_args(
         template="comparison-matrix",
         mode="qualitative",
         output_dir=str(output_dir),
-        brand_profile=str(ROOT / "assets" / "sgc-brand.json"),
+        brand_profile=str(ROOT / "assets" / "lov-brand.json"),
     )
 
 

@@ -1,5 +1,5 @@
 ---
-name: sgc-media-discovery
+name: lov-media-discovery
 description: >
   识别电影或剧集并从多个独立渠道收集、去重、归一化可下载候选；适用于“帮我找这部片的不同版本”、"search releases for this title"，输出可审计的候选清单。
 license: MIT

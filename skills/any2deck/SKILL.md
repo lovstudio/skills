@@ -1,5 +1,5 @@
 ---
-name: sgc-any2deck
+name: lov-any2deck
 category: Document Conversion
 tagline: "Content → slide deck images with 16 visual styles, PPTX/PDF export, branding overlay."
 description: >
@@ -26,13 +26,13 @@ Transform content into professional slide deck images.
 ## Usage
 
 ```bash
-/sgc-any2deck path/to/content.md
-/sgc-any2deck path/to/content.md --style sketch-notes
-/sgc-any2deck path/to/content.md --audience executives
-/sgc-any2deck path/to/content.md --lang zh
-/sgc-any2deck path/to/content.md --slides 10
-/sgc-any2deck path/to/content.md --outline-only
-/sgc-any2deck  # Then paste content
+/lov-any2deck path/to/content.md
+/lov-any2deck path/to/content.md --style sketch-notes
+/lov-any2deck path/to/content.md --audience executives
+/lov-any2deck path/to/content.md --lang zh
+/lov-any2deck path/to/content.md --slides 10
+/lov-any2deck path/to/content.md --outline-only
+/lov-any2deck  # Then paste content
 ```
 
 ## Script Directory
@@ -184,7 +184,7 @@ Technical terms (style names, file paths, code) remain in English.
 For the full step-by-step workflow, use `references/workflow.md`. Keep the main
 flow in this order:
 
-1. Setup & analyze: load `.sgc-skills/sgc-any2deck/EXTEND.md` when present, save source content, analyze style signals, detect language, choose slide count, and check for existing `slide-deck/{topic-slug}` output before continuing.
+1. Setup & analyze: load `.lov-skills/lov-any2deck/EXTEND.md` when present, save source content, analyze style signals, detect language, choose slide count, and check for existing `slide-deck/{topic-slug}` output before continuing.
 2. Confirm: use `AskUserQuestion` for style, audience, slide count, outline review, and prompt review. If custom dimensions are selected, collect texture, mood, typography, and density.
 3. Generate outline: read the selected preset from `references/styles/` or combine dimension docs from `references/dimensions/`, then write `outline.md` using `references/outline-template.md`.
 4. Review outline when requested, then generate per-slide prompts under `prompts/` using `references/base-prompt.md` and `references/layouts.md`.

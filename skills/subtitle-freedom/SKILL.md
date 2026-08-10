@@ -1,5 +1,5 @@
 ---
-name: sgc-subtitle-freedom
+name: lov-subtitle-freedom
 description: Create learner-friendly English subtitles with level-aware glosses and optional spoiler-safe subtitle sidecars.
 version: 1.2.8
 ---

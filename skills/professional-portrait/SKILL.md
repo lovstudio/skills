@@ -1,5 +1,5 @@
 ---
-name: sgc-professional-portrait
+name: lov-professional-portrait
 category: Design
 tagline: "Turn one photo into a clean, identity-preserving professional portrait."
 description: >

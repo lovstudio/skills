@@ -302,7 +302,7 @@ export default function App() {
     <div className="app-shell">
       <header className="topbar">
         <div className="brand">
-          <img src="/sgc-video-chapter.svg" alt="" />
+          <img src="/lov-video-chapter.svg" alt="" />
           <div>
             <strong>Video Chapter</strong>
             <span>STUDIO / 0.2</span>

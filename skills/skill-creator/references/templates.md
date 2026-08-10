@@ -7,7 +7,7 @@ without remote repositories or platform distribution metadata.
 
 ```yaml
 ---
-name: sgc-<name>
+name: lov-<name>
 description: >
   Use 50-200 characters to explain the outcome, supported inputs, and concrete
   Chinese and English trigger phrases.
@@ -63,4 +63,4 @@ not questions for the user.
 - Verify the local install symlink resolves to the source.
 - Exercise trigger routing and at least one Kit pipeline when applicable.
 
-Remote publication is a separate `sgc-skill-publisher` workflow.
+Remote publication is a separate `lov-skill-publisher` workflow.

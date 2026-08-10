@@ -1,4 +1,4 @@
-# sgc-expense-report
+# lov-expense-report
 
 ![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
 
@@ -8,7 +8,7 @@ Invoice images / text → categorized Excel expense report.
 
 ```bash
 git clone https://github.com/lovstudio/expense-report-skill \
-          "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-expense-report"
+          "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-expense-report"
 ```
 
 ## Dependencies
@@ -22,7 +22,7 @@ pip install openpyxl
 Invoke in Claude Code:
 
 ```
-/sgc-expense-report
+/lov-expense-report
 ```
 
 Then provide invoice images or text descriptions. The skill will:

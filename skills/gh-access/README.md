@@ -1,4 +1,4 @@
-# sgc-gh-access
+# lov-gh-access
 
 ![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
@@ -18,7 +18,7 @@ Or clone directly:
 
 ```bash
 git clone https://github.com/lovstudio/gh-access-skill \
-          "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-gh-access"
+          "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-gh-access"
 ```
 
 ## Prerequisites

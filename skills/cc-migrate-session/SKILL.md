@@ -1,5 +1,5 @@
 ---
-name: sgc-cc-mv
+name: lov-cc-mv
 description: Move a project folder AND migrate all its Claude Code state in one shot — session store, prompt-up-arrow history, running-session records. Supports both directory-level moves AND session-level cherry-picking (by id, regex on first user prompt, or interactive picker). Use whenever the user wants to rename/move a project directory and keep `claude --resume` working, or wants to move a subset of chats from one project to another. 移动/重命名项目目录并迁移所有 CC 历史，或按 session 粒度把某个话题的对话搬到另一个项目。
 when_to_use: |
   Directory-level — move/rename a project folder AND keep CC history working:
@@ -17,7 +17,7 @@ license: MIT
 compatibility: claude-code
 ---
 
-# sgc-cc-mv
+# lov-cc-mv
 
 Two modes in one tool:
 

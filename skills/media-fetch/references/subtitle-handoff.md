@@ -1,7 +1,7 @@
 # Simplified Chinese Subtitle Handoff
 
 Media Fetch owns the exact-release match and the final media report. The companion
-`sgc-subtitle-freedom-skill` is a subtitle operation, not a release identity oracle.
+`lov-subtitle-freedom-skill` is a subtitle operation, not a release identity oracle.
 Use this boundary when the selected media has English subtitles but no `zh-Hans` track.
 
 ## Handoff contract
@@ -14,7 +14,7 @@ Use this boundary when the selected media has English subtitles but no `zh-Hans`
 3. Preserve cue order, timestamps, and UTF-8 encoding. Validate that timestamps are
    monotonic, cues have text, and the subtitle duration is compatible with the media.
 4. The default output is SRT. Learning glosses, character cards, and ASS styling remain
-   opt-in operations from `sgc-subtitle-freedom-skill`; they are not silently generated
+   opt-in operations from `lov-subtitle-freedom-skill`; they are not silently generated
    as a substitute for Simplified Chinese.
 5. Report `subtitle_status` as `embedded`, `external_matched`, `missing`, or
    `generated_pending_review`. Keep it independent of the media's technical verdict.

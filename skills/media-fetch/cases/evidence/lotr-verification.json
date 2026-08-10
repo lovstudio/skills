@@ -31,7 +31,7 @@
   "subtitle_handoff": {
     "status": "missing",
     "next_operation": "match an exact-release Simplified Chinese SRT and preserve cue timing and UTF-8 encoding",
-    "companion_reference": "sgc-subtitle-freedom-skill"
+    "companion_reference": "lov-subtitle-freedom-skill"
   },
   "completion_boundary": "The three local media files were readable and complete; subtitle coverage remains explicitly open."
 }

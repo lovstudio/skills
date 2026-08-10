@@ -87,7 +87,7 @@ dimensions:
   - id: "subtitle-fidelity"
     label: "字幕保真"
     description: "将简中字幕作为独立状态，遵循时间轴、UTF-8、SRT 和原文件不变原则。"
-    evidence: "references/subtitle-handoff.md 与 sgc-subtitle-freedom-skill 的 SRT 保真约定；LOTR 报告明确标出 zh-Hans 缺口。"
+    evidence: "references/subtitle-handoff.md 与 lov-subtitle-freedom-skill 的 SRT 保真约定；LOTR 报告明确标出 zh-Hans 缺口。"
 pricing:
   model: "free"
   currency: "CNY"

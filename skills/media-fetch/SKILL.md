@@ -1,5 +1,5 @@
 ---
-name: sgc-media-fetch
+name: lov-media-fetch
 description: >
   自动检索、比较并下载电影、剧集或其他长视频，结合 qBittorrent 与 aria2 做多源测速、可恢复续传、慢源切换、容量预检、剪辑版核验与字幕验收；适用于“帮我找并下载这部电影”、"find and download the best release"。
 license: MIT
@@ -68,7 +68,7 @@ the completed file.
   state and record every transport switch; do not create a second full payload by
   accident.
 - A missing `zh-Hans` stream is a recoverable subtitle gap, not a reason to mislabel
-  the media. The subtitle branch may consult `sgc-subtitle-freedom-skill` for
+  the media. The subtitle branch may consult `lov-subtitle-freedom-skill` for
   timestamp-preserving UTF-8 SRT handling. Its English-learning gloss and ASS modes
   stay opt-in; plain Chinese subtitle delivery remains a separate, clearly named SRT.
 
@@ -193,7 +193,7 @@ health, transport trace, elapsed time, and any remaining evidence gap. Distingui
 - `$KIT_DIR/references/acquisition-policy.md` — capacity, probing, monitoring, switching, and cleanup rules.
 - `$KIT_DIR/references/user-config.md` — portable defaults and secrets handling.
 - `$KIT_DIR/references/subtitle-handoff.md` — Simplified Chinese SRT matching and the
-  opt-in handoff to `sgc-subtitle-freedom-skill`.
+  opt-in handoff to `lov-subtitle-freedom-skill`.
 
 ## Dependencies
 

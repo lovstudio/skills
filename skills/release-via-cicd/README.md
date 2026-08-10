@@ -1,4 +1,4 @@
-# sgc-release-via-cicd
+# lov-release-via-cicd
 
 ![Version](https://img.shields.io/badge/version-8.6.0-CC785C)
 
@@ -9,13 +9,13 @@ Migrated from `~/.claude/commands/lovstudio/release-via-cicd.md`. Behavior prese
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill sgc-release-via-cicd -y -g
+npx skills add lovstudio/skills --skill lov-release-via-cicd -y -g
 ```
 
 ## Invocation
 
 ```
-/sgc-release-via-cicd [arguments]
+/lov-release-via-cicd [arguments]
 ```
 
 ## Status

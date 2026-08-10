@@ -1,4 +1,4 @@
-# sgc-professional-infographic
+# lov-professional-infographic
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-1F2937)
@@ -74,7 +74,7 @@ Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudi
 
 ```bash
 git clone https://github.com/lovstudio/professional-infographic-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/sgc-professional-infographic"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-professional-infographic"
 ```
 
 渲染 PNG 和执行浏览器审计需要：
@@ -101,7 +101,7 @@ Create a consulting-style visual summary
 也可以直接使用 CLI：
 
 ```bash
-SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/sgc-professional-infographic"
+SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-professional-infographic"
 
 python3 "$SKILL_DIR/scripts/infographic_cli.py" scaffold \
   --title "移动端跨平台技术选型指南：渠道、性能与团队约束对比" \

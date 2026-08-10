@@ -1,5 +1,5 @@
 ---
-name: sgc-expense-report
+name: lov-expense-report
 category: Finance
 tagline: "Invoice images/text → categorized Excel expense report."
 description: >

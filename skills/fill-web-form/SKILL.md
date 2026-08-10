@@ -1,5 +1,5 @@
 ---
-name: sgc-fill-web-form
+name: lov-fill-web-form
 category: Office Automation
 tagline: "Fill web forms from local knowledge base. Fetch URL → deep-search KB → generate markdown doc."
 description: >

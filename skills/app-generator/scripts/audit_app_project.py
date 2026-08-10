@@ -258,7 +258,7 @@ def audit(root: Path, app_type: str = "auto") -> dict:
             "Target-specific app logo and icons",
             status(has_logo and (has_icons or not include_tauri)),
             f"source_logo={has_logo}, tauri_icons={has_icons}, app_type={target_app_type}",
-            "For new apps, run sgc-gen-logo to create assets/logo* and public/logo*, then generate favicons/PWA icons or Tauri icons based on app type.",
+            "For new apps, run lov-gen-logo to create assets/logo* and public/logo*, then generate favicons/PWA icons or Tauri icons based on app type.",
         ),
         Check(
             "lucide",

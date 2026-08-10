@@ -1,5 +1,5 @@
 ---
-name: sgc-install-tanstack-query
+name: lov-install-tanstack-query
 description: >
   Initialize or refactor a frontend project to use TanStack Query as the
   unified server-state layer. Use when the user asks to install TanStack Query,

@@ -1,4 +1,4 @@
-# sgc-skill-optimizer
+# lov-skill-optimizer
 
 ![Version](https://img.shields.io/badge/version-0.6.3-CC785C)
 
@@ -11,7 +11,7 @@ Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudi
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill sgc-skill-optimizer -y -g
+npx skills add lovstudio/skills --skill lov-skill-optimizer -y -g
 ```
 
 Requires: Python 3.8+ (stdlib only, no `pip install`)
@@ -39,10 +39,10 @@ raised in the current conversation, supplemented by a generic lint pass.
 ### In Claude Code
 
 ```
-/sgc-skill-optimizer any2pdf
+/lov-skill-optimizer any2pdf
 
 # or with explicit focus:
-/sgc-skill-optimizer any2pdf — the --theme flag trigger phrase is wrong
+/lov-skill-optimizer any2pdf — the --theme flag trigger phrase is wrong
 ```
 
 Claude will:
@@ -82,11 +82,11 @@ python3 scripts/bump_version.py any2pdf --type patch -m "..." --dry-run
 
 | Check | Severity | What it catches |
 |-------|----------|-----------------|
-| Directory prefix `sgc-` | error | Wrong dir naming |
-| Agent Skills-compatible `name` | error/warn | Invalid names or legacy `sgc-<name>` |
+| Directory prefix `lov-` | error | Wrong dir naming |
+| Agent Skills-compatible `name` | error/warn | Invalid names or legacy `lov-<name>` |
 | `SKILL.md` / `README.md` present | error | Missing core files |
 | Frontmatter required fields | error | Missing `name` / `description` / `license` / `compatibility` / `metadata` |
-| `name` matches directory | error | `sgc-foo` vs `sgc-bar` drift |
+| `name` matches directory | error | `lov-foo` vs `lov-bar` drift |
 | Description has trigger cues | warn | Missing "Use when..." or "trigger when user mentions..." |
 | Description length | warn | < 80 chars likely insufficient |
 | `metadata.version` semver format | warn | Non-`x.y.z` versions |
@@ -115,7 +115,7 @@ Per repo convention: stay in `0.x` unless explicitly authorized.
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `<name>` | — | Skill name (with/without `sgc-` prefix) |
+| `<name>` | — | Skill name (with/without `lov-` prefix) |
 | `--path` | — | Absolute path to skill dir |
 | `--json` | off | Emit JSON |
 | `--all` | off | Audit every `SKILL.md` below the detected root |

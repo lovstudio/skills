@@ -1,4 +1,4 @@
-# sgc-bp-deck
+# lov-bp-deck
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
@@ -10,14 +10,14 @@
 npx lovstudio skills add bp-deck -g -y
 ```
 
-依赖免费的 `sgc-any2deck`。
+依赖免费的 `lov-any2deck`。
 
 ## 使用
 
 ```text
-$sgc-bp-deck ./business-plan/outline.md
-$sgc-bp-deck ./outline.md --style minimal
-$sgc-bp-deck 重做第 6 和第 12 页，保持其他页面不变
+$lov-bp-deck ./business-plan/outline.md
+$lov-bp-deck ./outline.md --style minimal
+$lov-bp-deck 重做第 6 和第 12 页，保持其他页面不变
 ```
 
 ## 交付物

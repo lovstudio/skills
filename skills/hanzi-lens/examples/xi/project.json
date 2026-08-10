@@ -4,7 +4,7 @@
   "scope": "character-only",
   "locale": "both",
   "focus": "读音、字形、字源、古义、经典用例与核心语义动势",
-  "dependency": "sgc-professional-infographic",
+  "dependency": "lov-professional-infographic",
   "research": "research.json",
   "source": "source.md",
   "brief": "brief.md",

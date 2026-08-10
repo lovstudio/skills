@@ -10,7 +10,7 @@
     "width": 1600,
     "height": 900
   },
-  "brand_profile": "../../../assets/sgc-brand.json",
+  "brand_profile": "../../../assets/lov-brand.json",
   "brand_name": "LovStudio",
   "source": "source.md",
   "brief": "brief.md",

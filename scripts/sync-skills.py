@@ -164,7 +164,7 @@ repositories remain the source of truth.
         patched = original
         if path.as_posix().endswith("references/migration.md"):
             anchor = (
-                "`sgc-skill-publisher`. Historical sections below describe older layouts and\n"
+                "`lov-skill-publisher`. Historical sections below describe older layouts and\n"
                 "remain only for migration audits.\n"
             )
             if "## 2026-08: unified distribution catalog" not in patched and anchor in patched:

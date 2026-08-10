@@ -1,5 +1,5 @@
 ---
-name: sgc-fill-form
+name: lov-fill-form
 category: Office Automation
 tagline: "Fill Word form templates (.docx). Auto-detects table fields, CJK font support."
 description: >
@@ -45,7 +45,7 @@ and populates them automatically.
 Discover all fillable fields:
 
 ```bash
-python sgc-fill-form/scripts/fill_form.py --template <path> --scan
+python lov-fill-form/scripts/fill_form.py --template <path> --scan
 ```
 
 ### Step 2: Pre-fill from known context
@@ -74,7 +74,7 @@ by synthesizing from context files, user's known expertise, and the topic/title.
 Write a JSON data file (avoids shell escaping issues with long text), then run:
 
 ```bash
-python sgc-fill-form/scripts/fill_form.py \
+python lov-fill-form/scripts/fill_form.py \
   --template <path> \
   --data-file /tmp/form_data.json
 ```

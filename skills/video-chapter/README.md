@@ -36,7 +36,7 @@ SRT / VTT + 视频
 
 ```bash
 git clone https://github.com/lovstudio/video-chapter-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-video-chapter"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-video-chapter"
 ```
 
 或使用 LovStudio 技能安装器：

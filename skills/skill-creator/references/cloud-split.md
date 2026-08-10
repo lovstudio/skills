@@ -38,7 +38,7 @@ User: /<skill-name> <args>
   ↓
 Claude reads thin SKILL.md
   ↓
-`sgc-skill-helper call <skill> --op <op> --input '<json>'`
+`lov-skill-helper call <skill> --op <op> --input '<json>'`
   ↓ HMAC-signed HTTP POST
 Supabase Edge Function `skill_call`
   ↓ verify license + entitlement + device activation
@@ -278,7 +278,7 @@ supabase functions deploy skill_call --project-ref nouchjcfeoobplxkwasg
 
 ```markdown
 ---
-name: sgc-<name>
+name: lov-<name>
 description: <one line> ... Trigger when user says "...".
 version: 0.1.0
 ---
@@ -294,7 +294,7 @@ Given user input `<describe shape>`:
 1. Parse into JSON, e.g. `{"field1": "...", "field2": 42}`.
 2. Run:
    ```bash
-   sgc-skill-helper call <name> --op primary_op --input '<json>'
+   lov-skill-helper call <name> --op primary_op --input '<json>'
    ```
 3. The CLI prints JSON with shape:
    ```json
@@ -317,7 +317,7 @@ the server. This thin SKILL.md is only the transport layer.
 ### 6. Test end-to-end
 
 ```bash
-sgc-skill-helper call <name> --op primary_op --input '{"field1":"x","field2":42}'
+lov-skill-helper call <name> --op primary_op --input '{"field1":"x","field2":42}'
 ```
 
 Expected: JSON output on stdout. Error on stderr for auth/entitlement issues.
@@ -354,7 +354,7 @@ Minimal end-to-end with **actual protection**. Start here.
 - Thin client: `skills/threshold-check-skill/SKILL.md`
   — transport + symbol→text table, zero rule description
 - CLI command:
-  `sgc-skill-helper call threshold-check --op evaluate --input '{"params": {"values": [2, 6], "threshold": 10}}'`
+  `lov-skill-helper call threshold-check --op evaluate --input '{"params": {"values": [2, 6], "threshold": 10}}'`
 
 Key patterns to copy:
 - Handler returns a single symbolic field, no derived values, no narration

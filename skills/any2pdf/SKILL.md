@@ -1,5 +1,5 @@
 ---
-name: sgc-any2pdf
+name: lov-any2pdf
 category: Document Conversion
 tagline: "Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, [14 themes](docs/THEME-GALLERY.md)."
 description: >

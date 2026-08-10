@@ -1,4 +1,4 @@
-# sgc-mobile-adapt
+# lov-mobile-adapt
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
@@ -22,7 +22,7 @@ Or through Claude Code plugin marketplace:
 
 ```text
 /plugin marketplace add lovstudio/skills
-/plugin install dev-tools@sgc-dev
+/plugin install dev-tools@lov-dev
 ```
 
 Requires: Python 3.8+ (no external dependencies)
@@ -38,7 +38,7 @@ Requires: Python 3.8+ (no external dependencies)
 ## Scanner
 
 ```bash
-python3 ~/.claude/skills/sgc-mobile-adapt/scripts/scan_mobile_issues.py /path/to/project
+python3 ~/.claude/skills/lov-mobile-adapt/scripts/scan_mobile_issues.py /path/to/project
 ```
 
 | Option | Default | Description |

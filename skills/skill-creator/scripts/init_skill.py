@@ -14,7 +14,7 @@ from typing import Optional, Tuple
 
 
 SKILL_MD = """---
-name: sgc-{name}
+name: lov-{name}
 description: >
   TODO：用 50–200 个字符说明这个 Skill 能完成什么、适用于哪些输入或任务，
   并自然包含用户会说出的中文与 English 触发语句。
@@ -58,7 +58,7 @@ TODO：用一到两句话说明用户得到的结果，不要把内部背景或�
 When running scripts manually:
 
 ```bash
-export SKILL_DIR="/path/to/sgc-{name}"
+export SKILL_DIR="/path/to/lov-{name}"
 ```
 
 {user_config_runtime}### Step 1: Understand the requested outcome
@@ -104,7 +104,7 @@ listed there must ship inside this repository.
 
 """
 
-README_MD = """# sgc-{name}
+README_MD = """# lov-{name}
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
@@ -118,7 +118,7 @@ TODO：用一句话说明用户获得的结果。
 export SKILL_SOURCE_DIR="$(pwd)"
 mkdir -p "${{LOVSTUDIO_SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}}"
 ln -s "$SKILL_SOURCE_DIR" \
-  "$LOVSTUDIO_SKILLS_INSTALL_DIR/sgc-{name}"
+  "$LOVSTUDIO_SKILLS_INSTALL_DIR/lov-{name}"
 ```
 
 {configuration_section}## 使用
@@ -157,7 +157,7 @@ ${LOVSTUDIO_SKILLS_PROFILE:-$HOME/.lovstudio/skills/profile.json}
 KIT_YAML = """name: {name}
 display_name: "TODO"
 version: "0.1.0"
-entrypoint: sgc-{name}
+entrypoint: lov-{name}
 modules:
 {module_entries}
 pipelines:
@@ -245,7 +245,7 @@ ${{LOVSTUDIO_SKILLS_PROFILE:-$HOME/.lovstudio/skills/profile.json}}
   },
   "workspace": {
     "root": "$HOME/projects",
-    "output_dir": "$HOME/Documents/sgc-skill-output"
+    "output_dir": "$HOME/Documents/lov-skill-output"
   },
   "brand": {
     "name": "Your Brand",
@@ -333,8 +333,8 @@ def resolve_install_dir(cli_path: str) -> Optional[Path]:
 
 def normalize_name(value: str) -> str:
     name = value
-    if name.startswith("sgc-"):
-        name = name[len("sgc-") :]
+    if name.startswith("lov-"):
+        name = name[len("lov-") :]
     if name.endswith("-skill"):
         name = name[: -len("-skill")]
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
@@ -348,7 +348,7 @@ def write_skill(path: Path, name: str, kit_section: str, user_config: bool) -> N
     path.write_text(
         SKILL_MD.format(
             name=name,
-            title=f"sgc-{name} — TODO",
+            title=f"lov-{name} — TODO",
             kit_section=kit_section,
             user_config_section=USER_CONFIG_SKILL_SECTION if user_config else "",
             user_config_runtime=USER_CONFIG_RUNTIME if user_config else "",
@@ -359,12 +359,12 @@ def write_skill(path: Path, name: str, kit_section: str, user_config: bool) -> N
 
 def render_kit(name: str, modules: list[str]) -> tuple[str, str]:
     module_lines = "\n".join(
-        f"- `$SKILL_DIR/skills/{module}/SKILL.md` — `sgc-{module}`"
+        f"- `$SKILL_DIR/skills/{module}/SKILL.md` — `lov-{module}`"
         for module in modules
     )
     module_entries = "\n".join(
         "  - id: {module}\n"
-        "    skill: sgc-{module}\n"
+        "    skill: lov-{module}\n"
         "    path: skills/{module}".format(module=module)
         for module in modules
     )
@@ -381,7 +381,7 @@ def render_kit(name: str, modules: list[str]) -> tuple[str, str]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("name", help="Short name without sgc- or -skill")
+    parser.add_argument("name", help="Short name without lov- or -skill")
     parser.add_argument("--path", default="", help="Custom local source parent")
     parser.add_argument(
         "--install-dir",
@@ -432,7 +432,7 @@ def main() -> int:
     base = resolve_base(args.path)
     skill_dir = base / f"{name}-skill"
     install_dir = resolve_install_dir(args.install_dir)
-    install_path = install_dir / f"sgc-{name}" if install_dir else None
+    install_path = install_dir / f"lov-{name}" if install_dir else None
 
     if skill_dir.exists() or skill_dir.is_symlink():
         print(f"ERROR: source already exists: {skill_dir}", file=sys.stderr)

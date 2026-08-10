@@ -1,5 +1,5 @@
 ---
-name: sgc-optimize-tauri-backend
+name: lov-optimize-tauri-backend
 description: >
   Optimize Tauri backend architecture and development ergonomics for Tauri 2
   apps, especially Rust restart pain, oversized src-tauri/src/lib.rs files,

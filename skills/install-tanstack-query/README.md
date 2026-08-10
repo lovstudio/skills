@@ -1,4 +1,4 @@
-# sgc-install-tanstack-query
+# lov-install-tanstack-query
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
@@ -23,7 +23,7 @@ Or through Claude Code plugin marketplace:
 
 ```text
 /plugin marketplace add lovstudio/skills
-/plugin install dev-tools@sgc-dev
+/plugin install dev-tools@lov-dev
 ```
 
 ## Usage
@@ -31,13 +31,13 @@ Or through Claude Code plugin marketplace:
 Ask your coding agent:
 
 ```text
-Use sgc-install-tanstack-query to initialize TanStack Query in this app.
+Use lov-install-tanstack-query to initialize TanStack Query in this app.
 ```
 
 or:
 
 ```text
-Use sgc-install-tanstack-query to refactor request state into shared query keys and hooks.
+Use lov-install-tanstack-query to refactor request state into shared query keys and hooks.
 ```
 
 ## What It Does

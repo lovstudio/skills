@@ -1,5 +1,5 @@
 ---
-name: sgc-style-clone
+name: lov-style-clone
 description: >
   Analyzes one or more sample articles to extract a writing style profile (文风画像),
   then rewrites any target article in that exact style.

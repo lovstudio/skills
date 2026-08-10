@@ -35,18 +35,18 @@ Use Bash to check EXTEND.md existence (priority order):
 
 ```bash
 # Check project-level first
-test -f .sgc-skills/sgc-any2deck/EXTEND.md && echo "project"
+test -f .lov-skills/lov-any2deck/EXTEND.md && echo "project"
 
 # Then user-level (cross-platform: $HOME works on macOS/Linux/WSL)
-test -f "$HOME/.sgc-skills/sgc-any2deck/EXTEND.md" && echo "user"
+test -f "$HOME/.lov-skills/lov-any2deck/EXTEND.md" && echo "user"
 ```
 
 ┌──────────────────────────────────────────────────┬───────────────────┐
 │                       Path                       │     Location      │
 ├──────────────────────────────────────────────────┼───────────────────┤
-│ .sgc-skills/sgc-any2deck/EXTEND.md         │ Project directory │
+│ .lov-skills/lov-any2deck/EXTEND.md         │ Project directory │
 ├──────────────────────────────────────────────────┼───────────────────┤
-│ $HOME/.sgc-skills/sgc-any2deck/EXTEND.md   │ User home         │
+│ $HOME/.lov-skills/lov-any2deck/EXTEND.md   │ User home         │
 └──────────────────────────────────────────────────┴───────────────────┘
 
 **When EXTEND.md Found** → Read, parse, **output summary to user**:
@@ -468,7 +468,7 @@ PDF: {topic-slug}.pdf
 Generate outline and prompts without images:
 
 ```bash
-/sgc-any2deck content.md --prompts-only
+/lov-any2deck content.md --prompts-only
 ```
 
 Output: `outline.md` + `prompts/*.md` ready for review/editing.
@@ -478,7 +478,7 @@ Output: `outline.md` + `prompts/*.md` ready for review/editing.
 Generate images from existing prompts (starts at Step 7):
 
 ```bash
-/sgc-any2deck slide-deck/topic-slug/ --images-only
+/lov-any2deck slide-deck/topic-slug/ --images-only
 ```
 
 Prerequisites:
@@ -491,10 +491,10 @@ Regenerate specific slides:
 
 ```bash
 # Single slide
-/sgc-any2deck slide-deck/topic-slug/ --regenerate 3
+/lov-any2deck slide-deck/topic-slug/ --regenerate 3
 
 # Multiple slides
-/sgc-any2deck slide-deck/topic-slug/ --regenerate 2,5,8
+/lov-any2deck slide-deck/topic-slug/ --regenerate 2,5,8
 ```
 
 Flow:
@@ -515,7 +515,7 @@ Flow:
 ### Edit Single Slide
 
 1. **Update prompt file FIRST** in `prompts/NN-slide-{slug}.md`
-2. Run: `/sgc-any2deck <dir> --regenerate N`
+2. Run: `/lov-any2deck <dir> --regenerate N`
 3. Or manually regenerate image + PDF
 
 **IMPORTANT**: When updating slides, ALWAYS update the prompt file (`prompts/NN-slide-{slug}.md`) FIRST before regenerating. This ensures changes are documented and reproducible.

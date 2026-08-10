@@ -1,8 +1,8 @@
 ---
-name: sgc-maintain-partners
+name: lov-maintain-partners
 description: >
   Maintain the LovStudio website's partners section AND align partner logo
-  rows on event posters / hero strips: reuse sgc-find-logo for brand
+  rows on event posters / hero strips: reuse lov-find-logo for brand
   logo discovery, normalize collected logos to a 240px-tall content canvas
   (retina-ready), rasterize SVGs via rsvg-convert before normalizing (so SVG
   viewBox padding gets cropped),
@@ -20,7 +20,7 @@ description: >
   "等宽 box", "图标加文字", "compose wordmark".
 license: MIT
 compatibility: >
-  Requires the sgc-find-logo skill plus Python 3.8+ with Pillow
+  Requires the lov-find-logo skill plus Python 3.8+ with Pillow
   (`pip install Pillow --break-system-packages`). Requires rsvg-convert
   (`brew install librsvg`) when the selected logo source is SVG.
   Tested on macOS; Linux should work. Website repo paths are configurable via
@@ -28,7 +28,7 @@ compatibility: >
   require Mark's personal absolute path. Legacy path aliases remain accepted
   for existing local setups.
 depends_on:
-  - sgc-find-logo
+  - lov-find-logo
 metadata:
   author: lovstudio
   version: "0.9.1"
@@ -51,7 +51,7 @@ Before touching files, resolve:
 
 ```bash
 SKILL_ROOT="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}"
-SKILL_DIR="${SKILL_DIR:-$SKILL_ROOT/sgc-maintain-partners}"
+SKILL_DIR="${SKILL_DIR:-$SKILL_ROOT/lov-maintain-partners}"
 WEB_ROOT="${LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT:?Set this or pass --repo}"
 PARTNERS_TSX="${LOVSTUDIO_MAINTAIN_PARTNERS_FILE:-app/(main)/(home)/PartnersGrid.tsx}"
 ```
@@ -82,10 +82,10 @@ For details and supported profile keys, read `references/user-config.md`.
 
 ## Skill Dependencies
 
-- `sgc-find-logo` is required for all logo discovery. This skill must
+- `lov-find-logo` is required for all logo discovery. This skill must
   not scrape homepages itself or keep a separate fallback crawler.
 - Use the `depends_on` frontmatter field to declare skill-level dependencies.
-  This mirrors the `depends_on` field in `sgc-general-skills/skills.yaml`;
+  This mirrors the `depends_on` field in `lov-general-skills/skills.yaml`;
   unknown frontmatter keys are expected to be ignored by agents that do not
   consume dependency metadata.
 
@@ -112,9 +112,9 @@ For details and supported profile keys, read `references/user-config.md`.
 ### Op 1: Add a new partner
 
 1. Ask the user for the brand name + homepage URL via `AskUserQuestion`.
-2. Collect the logo with `sgc-find-logo`:
+2. Collect the logo with `lov-find-logo`:
    ```bash
-   python3 "$SKILL_ROOT/sgc-find-logo/scripts/find_logo.py" \
+   python3 "$SKILL_ROOT/lov-find-logo/scripts/find_logo.py" \
      --name "<显示名>" --url <URL> --slug <slug> --json
    ```
    Use the archived primary asset under
@@ -334,7 +334,7 @@ unstable—different displays / scaling will diverge again.
 ## Network proxy
 
 Sandbox child processes don't inherit the system ClashX proxy. Before
-fetching logos with `sgc-find-logo` or probing partner URLs, export:
+fetching logos with `lov-find-logo` or probing partner URLs, export:
 
 ```bash
 export https_proxy=http://127.0.0.1:7890 \
@@ -348,7 +348,7 @@ export https_proxy=http://127.0.0.1:7890 \
 
 ```bash
 git clone https://github.com/lovstudio/find-logo-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-find-logo"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-find-logo"
 python3 -m pip install Pillow
 brew install librsvg  # for SVG logo sources
 ```

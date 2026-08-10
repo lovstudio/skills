@@ -1,4 +1,4 @@
-# sgc-professional-portrait
+# lov-professional-portrait
 
 ![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
@@ -27,7 +27,7 @@ npx lovstudio skills add professional-portrait
 
 ```bash
 git clone https://github.com/lovstudio/professional-portrait-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/sgc-professional-portrait"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-professional-portrait"
 ```
 
 ## 使用

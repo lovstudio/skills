@@ -1,5 +1,5 @@
 ---
-name: sgc-png2svg
+name: lov-png2svg
 category: Document Conversion
 tagline: "PNG → high-quality SVG conversion with background removal and spline curves."
 description: >

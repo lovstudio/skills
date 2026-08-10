@@ -327,7 +327,7 @@ def run_preflight(args: argparse.Namespace) -> int:
     mount = mounted_volume(root)
     writable = False
     try:
-        with tempfile.NamedTemporaryFile(prefix=".sgc-disk-check-", dir=str(root)):
+        with tempfile.NamedTemporaryFile(prefix=".lov-disk-check-", dir=str(root)):
             writable = True
     except OSError:
         writable = False
@@ -415,7 +415,7 @@ def unique_child(root: Path, label: str) -> Path:
 
 
 def append_journal(root: Path, event: Dict[str, Any]) -> None:
-    journal = root / ".sgc-disk-optimizer-journal.jsonl"
+    journal = root / ".lov-disk-optimizer-journal.jsonl"
     with journal.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(event, ensure_ascii=False) + "\n")
 

@@ -1,5 +1,5 @@
 ---
-name: sgc-wxmp-cracker
+name: lov-wxmp-cracker
 description: Export WeChat Official Account articles into reusable structured content.
 version: 0.1.6
 ---

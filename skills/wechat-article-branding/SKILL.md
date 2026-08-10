@@ -1,5 +1,5 @@
 ---
-name: sgc-wechat-article-branding-skill
+name: lov-wechat-article-branding-skill
 description: "自动读取微信公众号文章并完成目录、封面、正文首屏、可公开封面 Prompt、结构优化和品牌内容应用；适用于“把当前公众号文章品牌化”“加上封面 Prompt”、\"turn this WeChat article into branded content\"。"
 version: 0.8.0
 ---

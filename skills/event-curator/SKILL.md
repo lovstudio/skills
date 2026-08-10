@@ -1,5 +1,5 @@
 ---
-name: sgc-event-curator
+name: lov-event-curator
 description: Generate a complete professional event plan from guest background material.
 version: 0.1.1
 ---

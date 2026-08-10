@@ -1,5 +1,5 @@
 ---
-name: sgc-app-generator
+name: lov-app-generator
 description: >
   Generate or standardize Lovstudio apps, choosing web-only, PWA, or Tauri
   desktop case-by-case. Covers React/Vite or Next.js web apps plus Tauri +
@@ -13,7 +13,7 @@ compatibility: >
   Requires Python 3.8+ for the project audit helper. Designed for React,
   TypeScript, Vite, Next.js, optional Tauri, shadcn/ui, TanStack Query, GitHub
   Actions, web deploys, and Lovstudio Warm Academic branded apps. New apps must
-  generate a target-specific logo through `sgc-gen-logo`; Tauri apps
+  generate a target-specific logo through `lov-gen-logo`; Tauri apps
   must run the Tauri icon pipeline from that logo.
 metadata:
   author: lovstudio
@@ -162,7 +162,7 @@ Then apply the Lovstudio layers in this order:
    app has server state; avoid unnecessary TanStack Query for purely local
    static tools.
 4. Brand assets: generate a target-specific app logo with
-   `sgc-gen-logo`, publish the chosen version into `assets/` and
+   `lov-gen-logo`, publish the chosen version into `assets/` and
    `public/`, and generate favicons / PWA icons if needed.
 5. Lovinsp: click-to-code integration.
 6. CI/CD and deploy: typecheck, lint/build where available, plus the selected
@@ -190,7 +190,7 @@ Then apply the Lovstudio layers in this order:
 2. Warm Academic UI: shadcn/ui, semantic tokens, typography, and layout.
 3. Server state: TanStack Query provider, query keys, and Tauri invoke wrappers.
 4. Brand assets: generate a target-specific app logo with
-   `sgc-gen-logo`, publish the chosen version into `assets/` and
+   `lov-gen-logo`, publish the chosen version into `assets/` and
    `public/`, prepare a macOS-safe padded icon source, then run the Tauri icon
    pipeline from that generated logo.
 5. Lovinsp: click-to-code integration.
@@ -216,7 +216,7 @@ Do not rebuild the project from scratch. Patch the smallest surface needed:
 
 New apps must not use the canonical Lovstudio logo as the app/product icon.
 After the project identity and README describe the target clearly, invoke the
-`sgc-gen-logo` workflow from the new app root:
+`lov-gen-logo` workflow from the new app root:
 
 1. Generate `assets/logo-drafts/v1-*.png` and `.svg` based on what the app does,
    not a literal reading of its name.
@@ -231,10 +231,10 @@ After the project identity and README describe the target clearly, invoke the
    padding on a 512x512 canvas, or a content bounding box around 80-85% of the
    canvas.
 5. Use that padded generated logo as the source for
-   `sgc-install-tauri-logo` and any favicon/tray-icon generation.
+   `lov-install-tauri-logo` and any favicon/tray-icon generation.
 
 For upgrades, keep an existing product logo unless the user asks to refresh it;
-if the app has no logo, use `sgc-gen-logo` before generating icons.
+if the app has no logo, use `lov-gen-logo` before generating icons.
 
 Resolve canonical assets without assuming a private machine layout:
 
@@ -263,10 +263,10 @@ Rules:
   and no nested cards.
 - First screen should be the real product workflow.
 
-When shadcn/ui is needed, use the existing `sgc-install-shadcn-ui` skill
+When shadcn/ui is needed, use the existing `lov-install-shadcn-ui` skill
 as the detailed reference. When TanStack Query is needed, use
-`sgc-install-tanstack-query`. For Tauri app icons, use
-`sgc-install-tauri-logo`; for new apps, run `sgc-gen-logo` first
+`lov-install-tanstack-query`. For Tauri app icons, use
+`lov-install-tauri-logo`; for new apps, run `lov-gen-logo` first
 and feed the generated logo into the relevant favicon/PWA/Tauri icon pipeline.
 
 ### Step 6: Tauri App Baseline
@@ -280,8 +280,8 @@ Only for Tauri desktop apps, check these areas:
 | Rust commands | typed command boundary, no broad stringly APIs where avoidable |
 | Frontend API | `invoke()` wrapped through query/mutation helpers for server state |
 | Filesystem/native APIs | least permission needed in Tauri capabilities |
-| Icons | generated through Tauri icon pipeline from the target-specific logo produced by `sgc-gen-logo` |
-| Dev server | stable project port, preferably via `sgc-project-port` |
+| Icons | generated through Tauri icon pipeline from the target-specific logo produced by `lov-gen-logo` |
+| Dev server | stable project port, preferably via `lov-project-port` |
 
 ### Step 7: CI/CD, Deploy, and Auto Update
 
@@ -316,7 +316,7 @@ set them:
 ### Step 8: Lovinsp
 
 Integrate lovinsp for frontend development unless the project is not browser/UI
-based. Prefer the existing `sgc-install-lovinsp` workflow and keep it
+based. Prefer the existing `lov-install-lovinsp` workflow and keep it
 idempotent.
 
 For Vite apps, confirm the Vite config imports and registers
@@ -367,7 +367,7 @@ hard-coding personal paths:
 
 | Variable | Default / Usage |
 |---|---|
-| `LOVSTUDIO_APP_GENERATOR_SKILL_DIR` | Installed `sgc-app-generator` skill directory |
+| `LOVSTUDIO_APP_GENERATOR_SKILL_DIR` | Installed `lov-app-generator` skill directory |
 | `LOVSTUDIO_SKILLS_DESIGN_GUIDE` | Warm Academic design guide path |
 | `LOVSTUDIO_SKILLS_BRAND_PROFILE` | Lovstudio brand asset root or profile |
 

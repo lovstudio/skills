@@ -1,13 +1,13 @@
 name: bp
 display_name: BP Skill Kit
 version: 0.2.1
-entrypoint: sgc-bp
+entrypoint: lov-bp
 workspace: business-plan
 source_type: git
 git_url: https://github.com/lovstudio/bp-skill
 modules:
   - id: bp-outline
-    skill: sgc-bp-outline
+    skill: lov-bp-outline
     path: skills/bp-outline
     consumes:
       - project-materials
@@ -16,7 +16,7 @@ modules:
       - evidence-ledger.md
       - outline.md
   - id: bp-deck
-    skill: sgc-bp-deck
+    skill: lov-bp-deck
     path: skills/bp-deck
     consumes:
       - outline.md
@@ -28,7 +28,7 @@ modules:
       - '*.pdf'
       - '*-preview.png'
   - id: bp-polish
-    skill: sgc-bp-polish
+    skill: lov-bp-polish
     path: skills/bp-polish
     consumes:
       - outline-or-deck
