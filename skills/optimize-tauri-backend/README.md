@@ -5,7 +5,7 @@
 Optimize Tauri 2 backend architecture, command surfaces, IPC streams, and Rust
 development ergonomics.
 
-Independent source repository, also distributed through [lovstudio dev-skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Independent source repository, also distributed through [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## Install
 

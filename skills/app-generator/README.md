@@ -7,7 +7,7 @@ desktop case-by-case, with React/Vite or Next.js, shadcn/ui, TanStack Query
 when useful, Lovstudio branding, CI/CD/deploy, optional auto update, and
 lovinsp.
 
-Independent source repository, also distributed through [lovstudio dev-skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Independent source repository, also distributed through [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## Install
 

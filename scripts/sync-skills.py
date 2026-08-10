@@ -126,6 +126,8 @@ def harden_npx_commands(root: Path) -> int:
     non-interactive flags. Returns count of files modified."""
     modified = 0
     for path in root.rglob("*.md"):
+        if path.name == "CHANGELOG.md":
+            continue
         original = path.read_text()
         patched = _NPX_CMD_RE.sub(_rewrite_npx_command, original)
         if patched != original:
@@ -143,15 +145,97 @@ def rewrite_archived_catalog_refs(root: Path) -> int:
         ("lovstudio/dev-skills", "lovstudio/skills"),
         ("lovstudio general skills", "lovstudio skills"),
         ("lovstudio dev skills", "lovstudio skills"),
+        ("lovstudio general-skills", "lovstudio skills"),
+        ("lovstudio dev-skills", "lovstudio skills"),
     )
+    migration_notice = """## 2026-08: unified distribution catalog
+
+`lovstudio/skills` is now the sole LovStudio distribution index. The former
+`lovstudio/general-skills` and `lovstudio/dev-skills` manifests and mirrors were
+merged into its `skills.yaml` and `skills/` tree, then archived. New releases
+register only in `lovstudio/skills`; independent `lovstudio/<name>-skill`
+repositories remain the source of truth.
+"""
     modified = 0
     for path in root.rglob("*.md"):
-        if path.name == "CHANGELOG.md" or path.as_posix().endswith("references/migration.md"):
+        if path.name == "CHANGELOG.md":
             continue
         original = path.read_text()
         patched = original
-        for old, new in replacements:
-            patched = patched.replace(old, new)
+        if path.as_posix().endswith("references/migration.md"):
+            anchor = (
+                "`sgc-skill-publisher`. Historical sections below describe older layouts and\n"
+                "remain only for migration audits.\n"
+            )
+            if "## 2026-08: unified distribution catalog" not in patched and anchor in patched:
+                patched = patched.replace(anchor, f"{anchor}\n{migration_notice}", 1)
+        else:
+            for old, new in replacements:
+                patched = patched.replace(old, new)
+
+        if root.name == "skill-optimizer" and path.name == "SKILL.md":
+            patched = re.sub(
+                r"Skills may live in a source repo plus one distribution catalog\. Keep all\n"
+                r"published locations in sync:\n\n```\n.*?\n```",
+                """Skills live in an independent source repo plus the unified distribution catalog.
+Keep both published locations in sync:
+
+```
+source repo:          lovstudio/<name>-skill
+unified catalog:      lovstudio/skills
+```""",
+                patched,
+                count=1,
+                flags=re.DOTALL,
+            )
+            patched = patched.replace(
+                "**7b. Sync to the relevant distribution repo:**",
+                "**7b. Sync to the unified distribution repo:**",
+            )
+            patched = patched.replace(
+                "Use the catalog repo's own sync scripts, then render and validate metadata:",
+                "Use the unified catalog's sync scripts, then render and validate metadata:",
+            )
+            patched = patched.replace(
+                "cd <general-skills-or-dev-skills-checkout>",
+                "cd <lovstudio-skills-checkout>",
+            )
+            patched = patched.replace(
+                "source updated but pro-skills stale",
+                "source updated but unified catalog stale",
+            )
+
+        if root.name == "skill-publisher" and path.as_posix().endswith("references/lovstudio.md"):
+            patched = patched.replace(
+                "- General or Dev catalog checkout.",
+                "- Unified `lovstudio/skills` catalog checkout.",
+            )
+            patched = patched.replace(
+                "Choose the catalog from Skill category and product policy, not from source\n"
+                "location. Add the repository, version, category, description, and paid status to\n"
+                "the catalog manifest and human README. Merge the catalog change into its `main`\n"
+                "branch before live revalidation.",
+                "Add the repository, version, category, description, and paid status to the\n"
+                "`lovstudio/skills` manifest and human README. Merge the catalog change into its\n"
+                "`main` branch before live revalidation.",
+            )
+            patched = patched.replace(
+                "Replace `CATALOG`, `NAME`, and the site URL with configured values:",
+                "Replace `NAME` and the site URL with configured values. The catalog tag is\n"
+                "always `lovstudio`:",
+            )
+            patched = patched.replace('"skills-index:CATALOG"', '"skills-index:lovstudio"')
+            patched = patched.replace(
+                "Completion requires the intended catalog to list the Skill, the detail page to",
+                "Completion requires the unified catalog to list the Skill, the detail page to",
+            )
+
+        if root.name == "skill-publisher" and path.as_posix().endswith("references/user-config.md"):
+            patched = patched.replace(
+                '      "general_catalog": "$HOME/projects/general-skills",\n'
+                '      "dev_catalog": "$HOME/projects/dev-skills",',
+                '      "catalog": "$HOME/lovstudio/coding/lovstudio-skills",',
+            )
         if patched != original:
             path.write_text(patched)
             modified += 1
@@ -178,7 +262,12 @@ def mirror_one(skill: dict, skip_clone: bool) -> None:
     dest = MIRROR_ROOT / name
 
     if skip_clone and dest.exists():
-        print(f"  skip {name} (SKIP_CLONE=1)")
+        touched = harden_npx_commands(dest)
+        rewritten = rewrite_archived_catalog_refs(dest)
+        if touched or rewritten:
+            print(f"  update {name} (SKIP_CLONE=1)")
+        else:
+            print(f"  skip {name} (SKIP_CLONE=1)")
         return
 
     with tempfile.TemporaryDirectory() as tmp:

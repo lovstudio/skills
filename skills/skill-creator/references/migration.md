@@ -12,6 +12,14 @@ Existing platform packaging and release workflows move to
 `sgc-skill-publisher`. Historical sections below describe older layouts and
 remain only for migration audits.
 
+## 2026-08: unified distribution catalog
+
+`lovstudio/skills` is now the sole LovStudio distribution index. The former
+`lovstudio/general-skills` and `lovstudio/dev-skills` manifests and mirrors were
+merged into its `skills.yaml` and `skills/` tree, then archived. New releases
+register only in `lovstudio/skills`; independent `lovstudio/<name>-skill`
+repositories remain the source of truth.
+
 ## 2026-07: v3 source/distribution split
 
 New scaffolds keep portable Agent Skills frontmatter in the canonical source

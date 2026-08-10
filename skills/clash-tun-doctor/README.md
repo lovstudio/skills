@@ -4,7 +4,7 @@
 
 基于最终运行态、实时连接和日志证据，诊断并修复 Clash Verge Rev TUN 导致的应用联网故障。
 
-Independent source repository, also distributed through [lovstudio dev-skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Independent source repository, also distributed through [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## 适用场景
 

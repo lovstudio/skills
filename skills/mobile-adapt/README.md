@@ -4,7 +4,7 @@
 
 Scan and fix mobile adaptation issues in web projects: viewport, overflow, safe area, responsive layouts, 100vh pitfalls, touch targets, and multi-level page navigation.
 
-Independent source repository, also distributed through [lovstudio dev-skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Independent source repository, also distributed through [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## Install
 
