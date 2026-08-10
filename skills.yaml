@@ -2707,12 +2707,12 @@ skills:
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LuB_1
   display_name: Subtitle Freedom
   repo: lovstudio/subtitle-freedom-skill
-  name_zh: 字幕自由
+  name_zh: 人人字幕
   paid: true
   price_cny: 0.99
   category: General
-  version: 1.2.8
-  updated_at: 2026-08-10T05:30:22Z
+  version: 1.2.11
+  updated_at: 2026-08-10T16:03:24Z
   description: Create learner-friendly English subtitles using the selected profile as a minimum difficulty floor, with higher-level
     glosses, evidence-based ASS art cards, and optional renderer-compatible ASS/PGS sidecars without re-encoding the video.
   tagline_en: Make learner subtitles that keep the selected level and harder expressions, with spoiler-safe ASS cards and
