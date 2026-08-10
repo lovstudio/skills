@@ -69,7 +69,7 @@ presenting an incomplete language package as complete.
 ## 指环王三部曲
 
 Input: `指环王三部曲`, with extended edition, balanced quality, original audio, and
-`zh-Hans` plus English subtitle preferences. Prompt: `$lovstudio-media-fetch 指环王三部曲`.
+`zh-Hans` plus English subtitle preferences. Prompt: `$lov-media-fetch 指环王三部曲`.
 
 Output: the selected Extended Remastered 1080p HEVC release completed through a
 qBittorrent discovery/probe followed by aria2 same-input continuation. Three media

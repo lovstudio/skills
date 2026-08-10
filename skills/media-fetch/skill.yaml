@@ -6,7 +6,7 @@ context:
   profile:
     fields: []
   preferences:
-    namespace: sgc_media_fetch
+    namespace: lov_media_fetch
     fields:
     - path: user.language
       required: false

@@ -12,7 +12,7 @@
       },
       "starting_state": "qBittorrent search plugins returned several candidates; the strongest candidate had a large advertised swarm but a weak sustained first probe."
     },
-    "prompt": "$lovstudio-media-fetch 指环王三部曲",
+    "prompt": "$lov-media-fetch 指环王三部曲",
     "output": {
       "download_status": "complete",
       "release": "The Lord of the Rings Trilogy 2002 EXTENDED REMASTERED 1080p BluRay HEVC x265 5.1 BONE",
