@@ -4,12 +4,12 @@
 
 Fill Word document form templates (.docx) with structured data. Auto-detects table-based form fields (label → value cell pairs), supports CJK/Latin mixed text with proper font switching, merged cells, and paragraph-based forms.
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) &mdash; by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) &mdash; by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add fill-form -g -y
+npx skills add fill-form -g -y
 ```
 
 Requires: Python 3.8+ and `pip install python-docx`

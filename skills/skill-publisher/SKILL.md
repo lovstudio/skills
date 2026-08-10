@@ -2,12 +2,12 @@
 name: lov-skill-publisher
 description: >
   Use when the user asks to publish a validated local Skill to one or more
-  channels, including “发布这个 Skill”、“上架 LovStudio”、"publish this skill"、
+  channels, including “发布这个 Skill”、“上架 Skill Publisher”、"publish this skill"、
   "package for WorkBuddy" 或“提交 SkillPay”。
 license: MIT
 metadata:
-  author: lovstudio
-  version: "0.3.0"
+  author: contributors
+  version: "0.3.1"
   tags:
     - skill-publisher
     - release
@@ -19,15 +19,16 @@ metadata:
 
 # lov-skill-publisher
 
-Publish one validated local Skill source to one or more explicitly selected
-channels. Keep channel metadata and generated packages outside canonical source,
-execute each adapter independently, and report evidence per channel.
+Publish one validated local Skill source to one or more publishing channels. When
+the user does not specify a channel, run every supported adapter by default. Keep
+channel metadata and generated packages outside canonical source, execute each
+adapter independently, and report evidence per channel.
 
 ## Triggers
 
 ### Activate when
 
-- 用户说“发布这个 Skill”“上架 LovStudio”“生成 WorkBuddy 包”或“分发到多个平台”。
+- 用户说“发布这个 Skill”“上架 Skill Publisher”“生成 WorkBuddy 包”或“分发到多个平台”。
 - The user asks to publish, release, distribute, upload, or package an existing Skill.
 
 ### Do not activate when
@@ -38,8 +39,9 @@ execute each adapter independently, and report evidence per channel.
 ## Product boundary
 
 - Input is a local Skill source that already passes source validation.
-- No remote channel is selected by default.
-- Use every channel explicitly named by the user; ask once only when none is named.
+- When no channel is specified, select every supported adapter by default.
+- Explicitly named channels narrow the run; do not ask a channel-selection question
+  when the request omits channel parameters.
 - A request may select multiple channels in one run.
 - Pricing, visibility, protection, licensing, and target accounts are publishing
   inputs. Reuse context when known and ask only for values required by a target.
@@ -47,7 +49,7 @@ execute each adapter independently, and report evidence per channel.
 
 Supported adapters in this version:
 
-- **LovStudio** — source repository, release, catalog, cache refresh, and live page.
+- **Skill Publisher** — source repository, release, catalog, cache refresh, and live page.
 - **WorkBuddy（CodeBuddy 开放平台）** — 生成独立 Skill ZIP，并在控制台上传、解析、填写上架信息和提交审核。
 - **Alipay SkillPay** — validated product ZIP, explicit CNY price, upload, parse,
   submission, and observable review state.
@@ -84,7 +86,8 @@ and whether a remote already exists.
 ### Step 2: Resolve channels and release model
 
 If channels are explicit, proceed without another distribution question. If no
-channel is named, ask one focused question listing configured adapters.
+channel is named, select all supported adapters and proceed without asking the
+user to choose a channel.
 
 For each selected channel, resolve only required fields:
 
@@ -102,9 +105,9 @@ Read `references/channels.md`, then load only the selected channel references.
 Keep independent state for each target so one failure does not masquerade as a
 successful multi-channel release.
 
-### Step 4: Publish LovStudio
+### Step 4: Publish Skill Publisher
 
-Read `references/lovstudio.md` completely. Execute the source repository,
+Read `references/skill-publisher.md` completely. Execute the source repository,
 release, catalog, cache refresh, and live verification workflow. Publication is
 complete only when the expected version and release-specific content are visible
 on the live detail page.
@@ -168,3 +171,11 @@ Validate this publisher Skill with:
 ```bash
 python3 scripts/validate_skill.py . --target source
 ```
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

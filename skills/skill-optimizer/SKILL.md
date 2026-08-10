@@ -3,12 +3,12 @@ name: lov-skill-optimizer
 category: Meta Skills
 tagline: "Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG entry."
 description: >
-  Audit and automatically optimize a lovstudio skill against repo conventions
+  Audit and automatically optimize a skill-publisher skill against repo conventions
   and official Anthropic skill-creator best practices, then bump the semver
   version and append a CHANGELOG entry. Checks SKILL.md frontmatter/trigger
   quality, script CLI hygiene, directory naming, README badge, progressive
   disclosure structure, Agent Skills-compatible naming, and portability issues
-  such as hard-coded personal workspace paths, private LovStudio workspace
+  such as hard-coded personal workspace paths, private Skill Publisher workspace
   assumptions, fixed agent runtime paths, or missing user configuration. Prioritizes issues raised in the
   current conversation (e.g. bugs the user just hit) over a generic sweep. Use
   when the user asks to "optimize", "refine", "audit", or "polish" an existing
@@ -20,12 +20,12 @@ compatibility: >
   Requires Python 3.8+ (stdlib only, no external dependencies).
   Must be run inside the lov-skills repo (auto-detects repo root).
 metadata:
-  author: lovstudio
+  author: contributors
   version: "0.6.4"
   tags: meta skill-maintenance versioning changelog lint
 ---
 
-# skill-optimizer — 自动优化 lovstudio skill 并维护版本与 changelog
+# skill-optimizer — 自动优化 skill-publisher skill 并维护版本与 changelog
 
 Runs a lint → fix → bump → changelog pipeline on an existing skill in this
 repo. Fully automatic — no interactive prompts. Every run produces a concrete
@@ -74,7 +74,7 @@ Prioritize in this order:
 4. Lint `info` findings — apply only if cheap and safe
 
 For standardization work, portability findings are high priority when the skill
-is reusable by other users. Mark/LovStudio private paths should either be
+is reusable by other users. Mark/Skill Publisher private paths should either be
 removed, moved into `references/user-config.md` + env/profile handling, or
 explicitly marked author-only in `compatibility`.
 
@@ -218,3 +218,11 @@ Exit code: `2` if any `error`-severity finding, `0` otherwise.
 ## Dependencies
 
 Python 3.8+ (stdlib only, no `pip install` needed).
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

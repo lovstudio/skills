@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.3.0
+
+- Add mandatory nearby-Skill composition analysis and a generated atomic-handoff record.
+
+## 4.2.0
+
+- Make `user-profile/v1` a default contract for every generated Skill.
+- Add cross-session profile reads and atomic direct-user record persistence.
+- Generate `skill.yaml`, `references/user-profile.md`, and `profile_store.py` for
+  single Skills and embedded Skill Kit modules.
+
+## 4.1.0
+
+- Require a reusable Skill trust bundle: Skill Card, real user case, dimension
+  map, pricing basis, and explicit distribution states.
+- Scaffold machine-readable and human-readable card files plus a case template.
+- Validate Input → Prompt → Output evidence, dimension evidence, pricing basis,
+  and unresolved placeholders before local completion.
+- Expand the standard to cover language units such as words, idioms, slang, and
+  complex expressions when a Skill's domain needs them.
+
 ## 4.0.0
 
 - Make local source creation, validation, and local installation the complete
@@ -8,8 +29,8 @@
   verification to the separate `lov-skill-publisher` capability.
 - Infer user configuration from persistent workspace, brand, identity, output,
   locale, and provider needs instead of asking users to choose a mode.
-- Remove the LovStudio-internal configuration branch; every source is portable
-  and LovStudio is represented through ordinary profile values.
+- Remove the Skill Publisher-internal configuration branch; every source is portable
+  and Skill Publisher is represented through ordinary profile values.
 - Add opt-in `--user-config` and local `--install-dir` scaffold controls.
 
 ## 3.1.0
@@ -35,7 +56,7 @@
 
 ## 2.9.1
 
-- Make synchronization to `lovstudio.ai/skills` a mandatory publication step.
+- Make synchronization to `example.com/skills` a mandatory publication step.
 - Revalidate catalog, detail, cases, and user-facing routes after catalog merge.
 - Require live HTTP, version, and content checks before reporting publication.
 
@@ -43,13 +64,13 @@
 
 - Remove the repository-target question from the interactive creation flow.
 - Remove the obsolete `--target` and `--dev-skills` scaffold arguments.
-- Make `lovstudio/{name}-skill` an unconditional source-repository invariant.
+- Make `skill-publisher/{name}-skill` an unconditional source-repository invariant.
 - Keep general-skills and dev-skills as inferred downstream distribution only.
 
 ## 2.8.0
 
-- Make `lovstudio/{name}-skill` the only supported source-repository model.
-- Treat `lovstudio/dev-skills` as a release-driven generated aggregate mirror.
+- Make `skill-publisher/{name}-skill` the only supported source-repository model.
+- Treat `skill-publisher/dev-skills` as a release-driven generated aggregate mirror.
 - Scaffold CI, MIT license, and changelog files for every new independent skill.
 - Reject the retired `--target dev-skills` mode with migration guidance.
 
@@ -61,39 +82,39 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 ### Added
 
 - make scaffold roots profile driven
-- resolve source roots from LOVSTUDIO_SKILL_CREATOR_* env vars or shared profile before safe fallbacks
+- resolve source roots from SKILL_SKILL_CREATOR_* env vars or shared profile before safe fallbacks
 - remove personal workspace and fixed agent runtime paths from generated templates
 
 ## [2.6.1] - 2026-05-07
 
 ### Fixed
 
-- publish LovStudio skill standard reference
+- publish Skill Publisher skill standard reference
 - add references/skill-standard.md as the canonical standardization document
 
 ## [2.6.0] - 2026-05-07
 
 ### Added
 
-- standardize config env vars on LOVSTUDIO_SKILLS namespace
+- standardize config env vars on SKILL_SKILLS namespace
 - replace AGENT_SKILL_* in generated templates
-- keep defaults under ~/.lovstudio/skills
+- keep defaults under ${SKILLS_CONFIG_DIR}
 
 ## [2.5.0] - 2026-05-07
 
 ### Added
 
-- move default skill profile under ~/.lovstudio
+- move default skill profile under ~/.skill-publisher
 - keep AGENT_SKILL_PROFILE as the portable override
-- default generated brand/design config paths to ~/.lovstudio/skills
+- default generated brand/design config paths to ${SKILLS_CONFIG_DIR}
 
 ## [2.4.0] - 2026-05-07
 
 ### Added
 
 - switch public config contract to AGENT_SKILL profile
-- replace LovStudio-prefixed profile paths in new-skill templates
-- keep LovStudio paths as private authoring examples, not reusable runtime API
+- replace Skill Publisher-prefixed profile paths in new-skill templates
+- keep Skill Publisher paths as private authoring examples, not reusable runtime API
 
 ## [2.3.0] - 2026-05-06
 
@@ -117,32 +138,32 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 - Add `dev-skills` as a first-class repository target for free Meta / Dev Tools skills.
 - `init_skill.py` now supports `--target dev-skills` and `--dev-skills`.
-- Document `repo: lovstudio/dev-skills` + `skill_path: skills/<name>` registration and marketplace plugin updates.
+- Document `repo: skill-publisher/dev-skills` + `skill_path: skills/<name>` registration and marketplace plugin updates.
 
 ## [2.0.0] - 2026-04-18
 
 ### Changed
 
-- Rewrite for per-skill-repo architecture. Each skill is now an independent repo at `lovstudio/{name}-skill` instead of a subdirectory of a monorepo.
-- Default scaffold path: `~/lovstudio/coding/skills/{name}-skill/` (was `skills/lov-{name}/`).
-- Install hint: `git clone` each skill repo (replaces `npx skills add lovstudio/skills`).
+- Rewrite for per-skill-repo architecture. Each skill is now an independent repo at `skill-publisher/{name}-skill` instead of a subdirectory of a monorepo.
+- Default scaffold path: `~/skill-publisher/coding/skills/{name}-skill/` (was `skills/lov-{name}/`).
+- Install hint: `git clone` each skill repo (replaces `npx skills add skill-publisher/skills`).
 - `init_skill.py`: accepts `--paid`, auto-creates `.gitignore`, and prints `gh repo create` + symlink + index-registration next-steps instead of monorepo-dev-flow hints.
 
 ### Added
 
-- Step 5b: PR to `lovstudio/skills` central index (`skills.yaml` + `README.md`).
-- Step 5d: lovstudio.ai ISR cache revalidation via `skills-index` tag.
+- Step 5b: PR to `skill-publisher/skills` central index (`skills.yaml` + `README.md`).
+- Step 5d: example.com ISR cache revalidation via `skills-index` tag.
 - Migration note for legacy skills still in the monorepo structure.
 
 ### Removed
 
-- Step 0 (repo choice): `lovstudio/pro-skills` was archived 2026-04-16. `paid` now lives only in `lov-general-skills/skills.yaml` as catalog metadata, not as a skill property.
+- Step 0 (repo choice): `skill-publisher/pro-skills` was archived 2026-04-16. `paid` now lives only in `lov-general-skills/skills.yaml` as catalog metadata, not as a skill property.
 
 ## [1.2.0] - 2026-04-15
 
 ### Added
 
-- Add Step 0: repo selection (lovstudio/skills vs lovstudio/pro-skills)
+- Add Step 0: repo selection (skill-publisher/skills vs skill-publisher/pro-skills)
 - Step 5c: create PR to chosen target repo instead of push to main
 
 ## [1.1.1] - 2026-04-14

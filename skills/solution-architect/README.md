@@ -4,12 +4,12 @@
 
 把产品或技术需求转成有调研依据、开源优先的可执行解决方案。
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add solution-architect -g -y
+npx skills add solution-architect -g -y
 ```
 
 ## Use Cases
@@ -17,7 +17,7 @@ npx lovstudio skills add solution-architect -g -y
 - 技术方案：架构、模块拆分、部署、运维和风险控制。
 - 产品方案：用户流程、数据模型、功能边界和交付路线。
 - 技术选型：对比开源库、商业 API、商业产品和自研方案。
-- 客户方案：按 Lovstudio.ai / 手工川工作室品牌预设生成解决方案内容。
+- 客户方案：按 Skill Publisher.ai / 品牌工作室品牌预设生成解决方案内容。
 
 ## Usage
 

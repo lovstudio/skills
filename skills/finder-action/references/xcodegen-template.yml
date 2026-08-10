@@ -1,6 +1,6 @@
 name: APP_NAME
 options:
-  bundleIdPrefix: com.lovstudio
+  bundleIdPrefix: com.skill-publisher
   deploymentTarget:
     macOS: "14.0"
 

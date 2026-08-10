@@ -4,14 +4,14 @@
 
 Transform content into professional slide deck images. Creates outlines with style instructions, generates individual slide images, and merges into PPTX/PDF. Supports 16 visual styles, CJK/Latin mixed text, dual-logo branding, and partial regeneration.
 
-Fork of [baoyu-slide-deck](https://github.com/nicepkg/baoyu-slide-deck) with Lovstudio enhancements.
+Fork of [baoyu-slide-deck](https://github.com/nicepkg/baoyu-slide-deck) with Skill Publisher enhancements.
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) &mdash; by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) &mdash; by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add any2deck -g -y
+npx skills add any2deck -g -y
 ```
 
 Requires: Image generation skill + Node.js (for PPTX/PDF) + Python 3.8+ (for branding)

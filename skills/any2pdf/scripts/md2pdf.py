@@ -269,7 +269,7 @@ _DEFAULT_LAYOUT = {
 THEMES = {
     "warm-academic": {
         "canvas":"#F9F9F7","canvas_sec":"#F0EEE6","ink":"#181818","ink_faded":"#87867F",
-        "accent":"#CC785C","accent_light":"#D99A82","border":"#E8E6DC",
+        "accent":"#4F46E5","accent_light":"#D99A82","border":"#E8E6DC",
         "watermark_rgba":(0.82,0.80,0.76,0.12),
         "layout": {
             "body_font":"Serif","body_size":10.5,"body_leading":17,
@@ -650,7 +650,7 @@ def esc_code(text):
         out.append(e.replace(' ', '&nbsp;'))
     return '<br/>'.join(out)
 
-def md_inline(text, accent_hex="#CC785C"):
+def md_inline(text, accent_hex="#4F46E5"):
     text = esc(text)
     code_spans = []
     text = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', text)
@@ -715,7 +715,7 @@ class ClayDot(Flowable):
     def __init__(self, w, clr=None):
         Flowable.__init__(self)
         self.width = w; self.height = 6*mm
-        self._c = clr or HexColor("#CC785C")
+        self._c = clr or HexColor("#4F46E5")
     def draw(self):
         self.canv.setFillColor(self._c)
         cx = self.width / 2
@@ -793,7 +793,7 @@ class PDFBuilder:
         self.lm, self.rm, self.tm, self.bm = lm*mm, rm*mm, tm*mm, bm*mm
         self.body_w = self.page_w - self.lm - self.rm
         self.body_h = self.page_h - self.tm - self.bm
-        self.accent_hex = config.get("accent_hex", "#CC785C")
+        self.accent_hex = config.get("accent_hex", "#4F46E5")
         # Base directory used to resolve relative image paths in the markdown.
         # Defaults to the directory of the input .md file (set by main()).
         self.input_dir = config.get("input_dir", "")
@@ -2009,7 +2009,7 @@ def main():
     parser.add_argument("--frontispiece", default=None, help="Path to full-page image after cover")
     _default_banner = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "backcover-banner.jpg")
     _default_banner = os.path.normpath(_default_banner) if os.path.exists(_default_banner) else ""
-    parser.add_argument("--banner", default=None, help="Path to back cover banner image (defaults to bundled 手工川 banner; pass 'none' to disable)")
+    parser.add_argument("--banner", default=None, help="Path to back cover banner image (defaults to bundled 品牌方 banner; pass 'none' to disable)")
     parser.add_argument("--header-title", default=None, help="Report title shown in page header (left)")
     parser.add_argument("--footer-left", default=None, help="Brand/author text in footer (left)")
     parser.add_argument("--stats-line", default=None, help="Stats line on cover (e.g. '1,884 files ...')")
@@ -2042,7 +2042,7 @@ def main():
     theme = load_theme(theme_name, args.theme_file)
     a = theme['accent']
     accent_hex = f"#{int(a.red*255):02x}{int(a.green*255):02x}{int(a.blue*255):02x}" \
-        if hasattr(a, 'red') else "#CC785C"
+        if hasattr(a, 'red') else "#4F46E5"
     author = args.author or fm_get(frontmatter, "author")
     page_size = args.page_size or fm_get(frontmatter, "page-size", "page_size", default="A4")
     banner = args.banner if args.banner is not None else fm_get(frontmatter, "banner", default=_default_banner)

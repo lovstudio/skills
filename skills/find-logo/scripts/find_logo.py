@@ -16,7 +16,7 @@ Usage:
   find_logo.py --name "Anthropic"
   find_logo.py --name "Anthropic" --url https://anthropic.com
   find_logo.py --url https://anthropic.com
-  find_logo.py --name "OpenAI" --out ~/.lovstudio/logo-collection
+  find_logo.py --name "OpenAI" --out ~/.skill-publisher/logo-collection
 """
 from __future__ import annotations
 
@@ -35,8 +35,8 @@ from typing import Optional
 
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
 DEFAULT_OUT = Path(
-    os.environ.get("LOVSTUDIO_FIND_LOGO_OUTPUT_DIR")
-    or Path.home() / ".lovstudio" / "logo-collection"
+    os.environ.get("SKILL_FIND_LOGO_OUTPUT_DIR")
+    or Path.home() / ".skill-publisher" / "logo-collection"
 )
 TIMEOUT = 10
 

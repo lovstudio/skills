@@ -4,12 +4,12 @@
 
 Markdown to professionally styled DOCX (Word) with [python-docx](https://python-docx.readthedocs.io/). CJK/Latin mixed text, code blocks, tables, **images** (local + remote), cover pages, auto-refresh TOC, watermarks, and 11 color themes. Same theme palette as any2pdf, editable output.
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) &mdash; by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) &mdash; by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add any2docx -g -y
+npx skills add any2docx -g -y
 ```
 
 Requires: Python 3.8+ and `pip install python-docx`

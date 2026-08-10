@@ -1,17 +1,18 @@
 ---
 name: lov-skill-creator
 description: >
-  创建、验证并安装本地 LovStudio Skill 或 Skill Kit；当用户说“创建 skill”、
-  “封装成 skill”、"create a skill" 或 "scaffold skill kit" 时使用。
+  创建、验证并安装本地 Skill Publisher Skill 或 Skill Kit，并为每个新 Skill 固化真实案例、维度地图、定价依据和分发状态；当用户说“创建 skill”、"create a skill" 或 "scaffold skill kit" 时使用。
 license: MIT
 metadata:
-  author: lovstudio
-  version: "4.0.0"
+  author: contributors
+  version: "4.3.0"
   tags:
     - skill-creator
     - scaffold
     - local-install
     - skill-kit
+    - skill-card
+    - user-cases
   compatibility: "Python 3.8+ and PyYAML. Git is optional for local source history."
   dependencies: []
 ---
@@ -19,8 +20,8 @@ metadata:
 # lov-skill-creator
 
 Create every Skill as a portable local source directory named `{name}-skill`,
-validate it, and install it into the user's local agent skills directory as
-`lov-{name}`. Remote repositories, catalogs, marketplace packages,
+bind it to the shared `user-profile/v1` contract, validate it, and install it
+into the user's local agent skills directory as `lov-{name}`. Remote repositories, catalogs, marketplace packages,
 uploads, and live-channel verification belong to `lov-skill-publisher`.
 
 ## Triggers
@@ -49,6 +50,10 @@ uploads, and live-channel verification belong to `lov-skill-publisher`.
     ├── scripts/                 # deterministic local CLIs
     ├── references/              # progressive disclosure
     └── assets/                  # reusable output assets
+    ├── skill-card.yaml          # machine-readable trust/release record
+    ├── skill-card.md            # human-readable Skill Card
+    ├── cases/cases.json         # real Input → Prompt → Output evidence
+    └── pricing-card.yaml        # value, boundary, and review basis
 
 <agent skills directory>/
 └── lov-{name} -> <local source root>/{name}-skill
@@ -62,7 +67,14 @@ Key rules:
   `allowed-tools`, and `metadata`.
 - Required modules live inside a Skill Kit; no external sibling dependencies.
 - User-specific values come from flags, environment, or a portable profile.
-- LovStudio is a possible profile value, never a separate implementation mode.
+- Every generated Skill declares and reads a shared user Profile across sessions;
+  Skill-specific durable records live under `skills.<skill_id>.records`.
+- A direct user statement about a durable preference or brand fact is persisted
+  through the generated `scripts/profile_store.py` entrypoint and reported back.
+- Every new Skill carries a real user case, a dimension map, a pricing basis,
+  and explicit paid/free distribution states. A scaffold is incomplete until
+  those records are filled and validated.
+- Skill Publisher is a possible profile value, never a separate implementation mode.
 - Do not create remotes, releases, catalogs, platform packages, or uploads here.
 
 ## Creation Workflow
@@ -79,6 +91,8 @@ Record these decisions internally:
 2. Two or three realistic examples and Chinese plus English trigger phrases.
 3. Internal context versus content that belongs in the final user-facing result.
 4. Public layer versus protected logic, prompts, keys, rules, or data.
+5. The first real user case: input, minimum prompt/brief, output, and evidence
+   assets. Do not manufacture a case or score to make the card look complete.
 
 Background details, personal names, and competitor observations are context by
 default. Include them in generated products only when they serve the end user.
@@ -99,28 +113,57 @@ Choose automatically and briefly state the result:
 Scripts alone do not justify a Kit. Prefer Single when modularity is marginal.
 For a Kit, list module IDs and named pipeline order before scaffolding.
 
-### Step 3: Infer user initialization — NEVER ASK FOR THE MODE
+### Step 2.5: Analyze the nearby Skill group before creating a new one
 
-Enable a user profile when the Skill needs persistent values across runs:
+Before scaffolding, inspect the local Skill source root and installed Skill
+catalog for related capabilities, using their routing descriptions and actual
+input/output contracts rather than names alone. Record the outcome in
+`references/skill-composition.md` for every generated Skill.
 
-- workspace or project roots;
-- identity, brand, audience, locale, or design guide;
-- default output directories;
-- model, provider, or integration preferences.
+Classify each relevant Skill as one of:
 
-Use no profile when every required input/output is explicit per invocation and
-the current directory is a sound default. If a profile is needed, scaffold the
-first-run initialization flow automatically with this precedence:
+- **upstream atom** — independently produces an approved input for this Skill;
+- **core atom** — this new Skill owns the requested user-visible outcome;
+- **downstream atom** — independently consumes the verified output;
+- **overlap** — owns the same outcome and should be extended or selected instead
+  of duplicated; or
+- **not composed** — adjacent in topic but adds no meaningful handoff.
+
+For each proposed handoff, state the concrete artifact or contract, the
+invocation boundary, and who owns the final acceptance criterion. Do not create
+an external sibling dependency merely because another Skill is related. If
+multiple stages are required for one user-visible outcome, embed them as a
+self-contained Skill Kit; otherwise keep the new Skill standalone and describe
+optional handoffs explicitly. A no-composition conclusion is valid only after
+the nearby group was inspected.
+
+### Step 3: Declare the user Profile contract — always
+
+Every new Skill receives a `skill.yaml` declaration for `user-profile/v1`, even
+when its first invocation has no missing configuration. This is the cross-session
+connection point for:
+
+- user identity, language, timezone, and working defaults;
+- brand name, website, logo, tone, profile, and design guidance;
+- workspace/project roots and output locations;
+- Skill-specific defaults and durable records.
+
+The generated contract reads the shared Profile and writes direct user
+statements into `skills.<skill_id>.records` (or the shared `user` / `brand`
+scope when the value is explicitly global). It uses this precedence:
 
 1. Explicit CLI flags or current request.
 2. Environment variables.
 3. Shared profile JSON.
 4. Safe inferred defaults.
-5. Ask once for only the remaining user-facing values, then persist with the
-   user's knowledge.
+5. Ask once for only the remaining user-facing values.
+
+When the user directly states a value intended for future sessions, run the
+generated `scripts/profile_store.py record ... --confirm` command and report the
+canonical saved path. Inferred values stay in the current request context.
 
 Every generated Skill remains portable. Never introduce an author-only or
-LovStudio-only branch; different users supply different profile values.
+Skill Publisher-only branch; different users supply different profile values.
 
 ### Step 4: Plan contents
 
@@ -128,30 +171,34 @@ LovStudio-only branch; different users supply different profile values.
 - Domain knowledge → `references/`.
 - Reused output files, templates, fonts, or icons → `assets/`.
 - Independently triggerable stages → embedded `skills/` plus `kit.yaml`.
-- Persistent user settings → `references/user-config.md` and initialization
-  instructions; add them only when Step 3 says they are needed.
+- User Profile contract → `skill.yaml`, `references/user-profile.md`, and the
+  standalone `scripts/profile_store.py` reader/writer; this is always generated.
+- Skill trust evidence → `skill-card.yaml`, `skill-card.md`,
+  `cases/cases.json`, and `pricing-card.yaml`.
+- Skill group decision → `references/skill-composition.md`, including nearby
+  Skills inspected, atomic handoffs, overlap decisions, and the final
+  Single-versus-Kit rationale.
 
 Python scripts must be standalone files without package scaffolding. Treat CJK
 text handling as a core requirement for document and content workflows.
 
 ### Step 5: Initialize locally
 
-Single Skill without persistent configuration:
+Single Skill:
 
 ```bash
 python3 "$SKILL_DIR/scripts/init_skill.py" <name> \
-  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
+  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
 
-Skill Kit with inferred user configuration:
+Skill Kit:
 
 ```bash
 python3 "$SKILL_DIR/scripts/init_skill.py" <name> \
   --kit \
   --module <module-a> \
   --module <module-b> \
-  --user-config \
-  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
+  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
 
 Resolve the install directory from an explicit flag, environment variable,
@@ -172,6 +219,10 @@ Write the source as instructions for an agent, not as notes about this chat:
 - Add `## Triggers`, activation examples, and adjacent non-trigger conditions.
 - Keep `SKILL.md` below 500 lines; move detail to relevant references.
 - Put compatibility, version, tags, and dependencies under `metadata`.
+- Keep the NVIDIA-compatible required card fields intact, then add LovStudio's
+  user case, dimension map, pricing basis, and distribution fields.
+- Keep external Skills optional unless they are embedded Kit modules; expose
+  artifact-level handoffs instead of hidden cross-Skill coupling.
 - Use `AskUserQuestion` only for unresolved user-facing product decisions.
 - Never hard-code private paths or personal brand data in reusable source.
 - Fill missing visual/content assets with clearly appropriate generated
@@ -179,7 +230,7 @@ Write the source as instructions for an agent, not as notes about this chat:
   materially affects the result.
 
 Human-facing `README.md` includes a matching version badge, local installation,
-configuration only when applicable, examples, dependencies, and quality gate.
+the Profile contract, examples, dependencies, and quality gate.
 
 ### Step 7: Validate and install
 
@@ -196,6 +247,11 @@ Completion requires:
 4. The local install path resolves to this source directory.
 5. A documented activation phrase works and a non-trigger stays outside scope.
 6. Every Skill Kit module and at least one named pipeline are exercised.
+7. Every new Skill has at least one verified Input → Prompt → Output case,
+   three or more named dimensions with evidence, a pricing basis, and explicit
+   paid/free channel states.
+8. `references/skill-composition.md` records the inspected Skill group, atomic
+   handoffs or overlap decision, and why the result is a Single Skill or Kit.
 
 Stop at the local result unless the user also requests publication. When they
 do, invoke `lov-skill-publisher` with the validated source path and requested
@@ -224,6 +280,16 @@ contracts, and asset catalogs into directly referenced files.
 - `__pycache__`, compiled Python files, `.DS_Store`, or unresolved placeholders.
 - User-specific absolute paths or an internal-only product mode.
 
-For source templates see `references/templates.md`. For configuration rules see
-`references/user-config.md`. Historical migrations remain in
+For source templates see `references/templates.md`. For the Skill Card contract
+see `references/skill-card-standard.md`. For the Profile contract see
+`references/user-profile.md`. Historical migrations remain in
 `references/migration.md`.
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、Skill 专属记录、个人 Preferences、品牌/用户 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存用户与品牌的共享资料，`skills.<skill_id>.records` 保存本 Skill 的持久化记录。
+- 用户直接说出的长期偏好或品牌事实，通过 `scripts/profile_store.py` 原子写回 Profile，并在结果中报告保存路径。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

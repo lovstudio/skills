@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "name": "LovStudio",
-  "site": "https://lovstudio.ai",
-  "logo": "lov-logo.svg",
+  "name": "Example Brand",
+  "site": "https://example.com",
+  "logo": "brand-logo.svg",
   "primary": "#24324A",
-  "accent": "#D97757",
+  "accent": "#4F46E5",
   "ink": "#172033",
   "muted": "#566175",
   "paper": "#F7F4EF",
   "font_family": "Inter, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif",
-  "copyright": "本信息图由 LovStudio 的「专业信息图」Skill 生成",
+  "copyright": "本信息图由 Example Brand 的「专业信息图」Skill 生成",
   "output_dir": "$HOME/Documents/professional-infographic"
 }

@@ -14,7 +14,7 @@ compatibility: >
   macOS only. Requires pyobjc-framework-Quartz (`pip install pyobjc-framework-Quartz`).
   Uses native CoreGraphics + AppKit via Python bridge.
 metadata:
-  author: lovstudio
+  author: contributors
   version: "0.1.2"
   tags: pdf png macos coregraphics finder-action
 ---
@@ -68,7 +68,7 @@ Output is always `<input>.png` in the same directory as the input file.
 ## Finder Quick Action
 
 This skill can also be installed as a macOS Finder Quick Action for right-click
-conversion. See [lovstudio/mac-pdf2png](https://github.com/lovstudio/mac-pdf2png)
+conversion. See [skill-publisher/mac-pdf2png](https://example.com/skills/mac-pdf2png)
 for the Automator workflow.
 
 ## Dependencies
@@ -76,3 +76,11 @@ for the Automator workflow.
 ```bash
 pip install pyobjc-framework-Quartz --break-system-packages
 ```
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

@@ -1,4 +1,4 @@
-# LovStudio Rich Export
+# Skill Publisher Rich Export
 
 ![version](https://img.shields.io/badge/version-0.1.0-CC785C.svg)
 

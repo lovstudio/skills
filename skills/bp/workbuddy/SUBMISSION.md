@@ -2,11 +2,11 @@
 
 ## 提交主题
 
-LovStudio BP Skill Kit v0.2.1（skill-only Connector）重新审核申请
+Skill Publisher BP Skill Kit v0.2.1（skill-only Connector）重新审核申请
 
 ## 项目简介
 
-LovStudio BP Skill Kit 是一套免费、开源、可组合的商业计划书 Skill。
+Skill Publisher BP Skill Kit 是一套免费、开源、可组合的商业计划书 Skill。
 它将融资材料生产拆分为项目证据梳理、投资人叙事、大纲制作、PPT 生成和
 专业审校几个阶段。用户既可以独立使用某一个 Skill，也可以交由总控 Skill
 完成完整流程。
@@ -37,8 +37,8 @@ LovStudio BP Skill Kit 是一套免费、开源、可组合的商业计划书 Sk
 - MCP Server：不需要
 - CLI：不需要
 - License：MIT
-- 项目主页：https://lovstudio.ai/skills/bp
-- 源代码：https://github.com/lovstudio/bp-skill
+- 项目主页：https://example.com/skills/bp
+- 源代码：https://example.com/skills/bp-skill
 
 ## 隐私与安全
 

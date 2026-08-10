@@ -5,7 +5,7 @@
 
 从字幕理解章节内容，在 React 剪辑台中调整切点和样式，再生成透明章节条、烧录成片或剪映素材包。
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher general skills](https://example.com/skills/general-skills) — by [example.com](https://example.com)
 
 ## 完整流程
 
@@ -35,14 +35,14 @@ SRT / VTT + 视频
 ## 安装
 
 ```bash
-git clone https://github.com/lovstudio/video-chapter-skill \
-  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-video-chapter"
+git clone https://example.com/skills/video-chapter-skill \
+  "${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-video-chapter"
 ```
 
-或使用 LovStudio 技能安装器：
+或使用 Skill Publisher 技能安装器：
 
 ```bash
-npx lovstudio skills add video-chapter -g -y
+npx skills add video-chapter -g -y
 ```
 
 基础分析只需要 Python 3.8+。渲染需要：

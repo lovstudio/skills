@@ -22,7 +22,7 @@ surface):
 
 Other templates exist (`waku`, `react-router`, `tanstack-start`, `+static`). We
 default to Next.js because Vercel + basePath is the smoothest path to
-`{id}.lovstudio.ai/docs`.
+`{id}.example.com/docs`.
 
 ## Directory layout (with `--src`)
 
@@ -134,11 +134,11 @@ import { Cards, Card } from 'fumadocs-ui/components/card';
 </Cards>
 ```
 
-## Branding (optional, Lovstudio Warm Academic)
+## Branding (optional, Skill Publisher Configurable Academic)
 
-Fumadocs theming is Tailwind-based. To match Lovstudio, set CSS variables in the
+Fumadocs theming is Tailwind-based. To match Skill Publisher, set CSS variables in the
 global stylesheet:
-- primary / accent → terracotta `#CC785C`
+- primary / accent → terracotta `#4F46E5`
 - background → `#F9F9F7`, foreground → `#181818`
 
 Keep it light-touch; a clean default Fumadocs theme already looks professional.

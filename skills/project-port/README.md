@@ -4,12 +4,12 @@
 
 Generate a stable project-specific development port in the 3000-8999 range, then help wire it into `.env`, package scripts, Vite, or other dev-server config.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher dev skills](https://example.com/skills/dev-skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add project-port -g -y
+npx skills add project-port -g -y
 ```
 
 ## Usage

@@ -12,7 +12,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/version-0.1.0-CC785C" alt="version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
-  <a href="https://lovstudio.ai">lovstudio.ai</a> · part of <a href="https://github.com/lovstudio/skills">general-skills</a>
+  <a href="https://example.com">example.com</a> · part of <a href="https://example.com/skills/general-skills">general-skills</a>
 </p>
 
 ---
@@ -25,7 +25,7 @@
 
 ## 示例
 
-上图为「手工川」的实际名片（`dark-terracotta` 主题 + 头像）。同一套数据，三种主题：
+上图为「品牌方」的实际名片（`dark-terracotta` 主题 + 头像）。同一套数据，三种主题：
 
 | `dark-terracotta`（暖深·陶土，默认） | `midnight`（冷深·钢蓝） | `ivory`（浅·象牙 + monogram 回退） |
 |---|---|---|
@@ -34,7 +34,7 @@
 ## Install
 
 ```bash
-git clone https://github.com/lovstudio/business-card-skill "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-business-card"
+git clone https://example.com/skills/business-card-skill "${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-business-card"
 ```
 
 Requires: Python 3.8+ and Google Chrome / Chromium (for PNG rendering). macOS 用内置 `sips` 裁切，
@@ -43,10 +43,10 @@ Requires: Python 3.8+ and Google Chrome / Chromium (for PNG rendering). macOS �
 ## Usage
 
 ```bash
-SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-business-card"
+SKILL_DIR="${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-business-card"
 python3 "$SKILL_DIR/scripts/render_card.py" \
-  --name "手工川" --latin "Mark Shawn" \
-  --brand "LOVSTUDIO.AI" --index "STUDIO — Nº 2026" \
+  --name "品牌方" --latin "Mark Shawn" \
+  --brand "SKILL.AI" --index "STUDIO — Nº 2026" \
   --tags "背包客,超级开发者,AI / OPC 布道师" \
   --tagline "在 **Agent 时代**，|寻找**人**的意义" \
   --pursuits "旅行,羽毛球,计算机科学,心理学,哲学" \
@@ -86,7 +86,7 @@ python3 "$SKILL_DIR/scripts/render_card.py" \
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=lovstudio/business-card-skill&type=Date)](https://star-history.com/#lovstudio/business-card-skill&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=skill-publisher/business-card-skill&type=Date)](https://star-history.com/#skill-publisher/business-card-skill&Date)
 
 ## License
 

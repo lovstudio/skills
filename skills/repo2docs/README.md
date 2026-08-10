@@ -4,15 +4,15 @@
 
 Turn **any folder of source material** — a code repository, a pile of articles, a
 mixed knowledge dump with images — into a professional **Fumadocs** documentation
-website, and deploy it to `https://{product-id}.lovstudio.ai/docs`.
+website, and deploy it to `https://{product-id}.example.com/docs`.
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher general skills](https://example.com/skills/general-skills) — by [example.com](https://example.com)
 
 ## What it does
 
 ```
  a folder        inventory     scaffold Fumadocs      incremental         deploy
- of source   ──▶  + classify ──▶  (Next.js,       ──▶  authoring loop ──▶  {id}.lovstudio.ai
+ of source   ──▶  + classify ──▶  (Next.js,       ──▶  authoring loop ──▶  {id}.example.com
  (URL|local)      files          basePath=/docs)       (read 1 unit →      /docs
                                   + copy images          place → write →
                                   into public/           refine backward)
@@ -28,21 +28,21 @@ auto-galleried.
 ## Install
 
 ```bash
-git clone https://github.com/lovstudio/repo2docs-skill "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-repo2docs"
+git clone https://example.com/skills/repo2docs-skill "${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-repo2docs"
 ```
 
 Requires:
 - Node.js 18+, `npx`, `git`, Python 3.8+
 - Optional: Pillow (`pip install Pillow`) for image downscale/transcode
 - Vercel CLI (`npm i -g vercel`) for deployment
-- The [`lov-deploy-to-vercel`](https://github.com/lovstudio/deploy-to-vercel-skill)
+- The [`lov-deploy-to-vercel`](https://example.com/skills/deploy-to-vercel-skill)
   skill (handles Vercel + Cloudflare DNS for the subdomain)
 
 ## Usage
 
 Trigger it in any Claude Code session:
 
-> 用 fumadocs 给 github.com/acme/widget 生成文档站，部署到 widget.lovstudio.ai/docs
+> 用 fumadocs 给 github.com/acme/widget 生成文档站，部署到 widget.example.com/docs
 
 > 把 ~/notes/handbook 这个装满文章和图片的文件夹整理成文档站
 
@@ -58,7 +58,7 @@ inventories → scaffolds → copies images → authors incrementally → (optio
 | `scaffold_docs.py` | Run `create-fumadocs-app`, set `basePath: '/docs'`, reset content |
 
 ```bash
-SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?}/lov-repo2docs"
+SKILL_DIR="${SKILL_SKILLS_INSTALL_DIR:?}/lov-repo2docs"
 python3 "$SKILL_DIR/scripts/inventory.py"    --src ./my-folder --out manifest.json
 python3 "$SKILL_DIR/scripts/scaffold_docs.py" --product-id widget --out ./widget-docs --title "Widget"
 python3 "$SKILL_DIR/scripts/copy_assets.py"  --src ./my-folder --site ./widget-docs --out assets-map.json

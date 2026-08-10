@@ -13,7 +13,7 @@ compatibility: >
   Requires Python 3.8+ (stdlib only — no pip deps).
   Cross-platform: macOS, Windows, Linux.
 metadata:
-  author: lovstudio
+  author: contributors
   version: "0.2.0"
   tags: [branding, assets, logo, scraping]
 ---
@@ -77,7 +77,7 @@ or Wikipedia SVG.
 | `--name` | — | Brand/product name. Used for slug + meta. |
 | `--url` | — | Official URL or bare domain. Overrides the name-based domain guess. |
 | `--slug` | slugified name | Override the directory slug under the archive root. |
-| `--out` | `LOVSTUDIO_FIND_LOGO_OUTPUT_DIR` or `~/.lovstudio/logo-collection` | Archive root. |
+| `--out` | `SKILL_FIND_LOGO_OUTPUT_DIR` or `~/.skill-publisher/logo-collection` | Archive root. |
 | `--keep-alts` | `2` | How many runner-up candidates to keep as `alt-N.<ext>`. |
 | `--json` | off | Emit a JSON result to stdout (use this when chaining). |
 
@@ -86,7 +86,7 @@ At least one of `--name` or `--url` is required.
 ## Archive Layout
 
 ```
-~/.lovstudio/logo-collection/
+~/.skill-publisher/logo-collection/
 ├── anthropic/
 │   ├── logo.png            # primary (highest score)
 │   ├── alt-1.png           # runner-ups
@@ -118,8 +118,8 @@ Stdlib only (urllib, html.parser, argparse). No `pip install` required.
 
 ## User Configuration
 
-Default archive files live under `~/.lovstudio/logo-collection/`. Override this
-per run with `--out`, or set `LOVSTUDIO_FIND_LOGO_OUTPUT_DIR` for the skill.
+Default archive files live under `~/.skill-publisher/logo-collection/`. Override this
+per run with `--out`, or set `SKILL_FIND_LOGO_OUTPUT_DIR` for the skill.
 
 ## Known Limits
 
@@ -128,3 +128,11 @@ per run with `--out`, or set `LOVSTUDIO_FIND_LOGO_OUTPUT_DIR` for the skill.
 - No Clearbit API key is used — we hit the unauthenticated endpoint, which
   covers most major brands but not all.
 - `WebSearch` fallback is Claude's responsibility, not the script's.
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

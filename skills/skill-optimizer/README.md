@@ -2,16 +2,16 @@
 
 ![Version](https://img.shields.io/badge/version-0.6.3-CC785C)
 
-自动优化 lovstudio skill — 审计规范、应用修复、bump 版本、追加 changelog。
+自动优化 skill-publisher skill — 审计规范、应用修复、bump 版本、追加 changelog。
 现在会额外检查 Agent Skills 命名兼容性和本地环境耦合，例如
-个人绝对路径、私有 LovStudio workspace 假设、固定 agent runtime 路径，以及缺失的用户初始化层。
+个人绝对路径、私有 Skill Publisher workspace 假设、固定 agent runtime 路径，以及缺失的用户初始化层。
 
-Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher/skills](https://example.com/skills/skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill lov-skill-optimizer -y -g
+npx skills add skill-publisher/skills --skill lov-skill-optimizer -y -g
 ```
 
 Requires: Python 3.8+ (stdlib only, no `pip install`)

@@ -2,14 +2,14 @@
 name: lov-solution-architect
 version: "0.1.0"
 tagline: "把产品或技术需求转成有调研依据、开源优先的可执行解决方案。"
-description: Create research-backed product and technical solution plans from a user's requirement. Use when the user asks for detailed feasibility analysis, technology selection, architecture, implementation roadmap, library/vendor comparison, "解决方案", "技术方案", "产品方案", "选型", "调研分析", or a Lovstudio.ai / 手工川工作室 branded solution. Prioritize modern popular open-source DIY options over legacy libraries, from-scratch builds, commercial APIs, and commercial products.
+description: Create research-backed product and technical solution plans from a user's requirement. Use when the user asks for detailed feasibility analysis, technology selection, architecture, implementation roadmap, library/vendor comparison, "解决方案", "技术方案", "产品方案", "选型", "调研分析", or a Skill Publisher.ai / 品牌工作室 branded solution. Prioritize modern popular open-source DIY options over legacy libraries, from-scratch builds, commercial APIs, and commercial products.
 license: MIT
 compatibility: >
   Works in any agent environment with web browsing available for current
   technology, pricing, licensing, and project-health research. Context7 is
   recommended when framework/library documentation is needed.
 metadata:
-  author: lovstudio
+  author: contributors
   version: "0.1.0"
   category: business
   tags: solution architecture technical-plan product-plan research technology-selection open-source
@@ -49,12 +49,12 @@ When comparing libraries, favor modern projects with better developer experience
 - Prefer official sources for technical details and pricing. Use secondary sources only for reputation signals or ecosystem context.
 - If research cannot be completed because browsing or sources are unavailable, say so explicitly and separate confirmed facts from assumptions.
 
-## Lovstudio Brand Preset
+## Skill Publisher Brand Preset
 
 Use this brand by default when the solution needs a vendor, studio, deck, PDF, proposal, or cover:
 
-- English name: `Lovstudio.ai`
-- Chinese name: `手工川工作室`
+- English name: `Skill Publisher.ai`
+- Chinese name: `品牌工作室`
 - Logo asset: `assets/lov-logo.svg`
 
 Do not imply a commercial proposal unless the user asks for a client-facing proposal, quotation, or branded deliverable.
@@ -74,3 +74,11 @@ Produce a complete solution, not a loose brainstorm. The final answer must inclu
 - Concrete next steps.
 
 Use Mermaid or ASCII diagrams when architecture/data flow would be clearer visually.
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

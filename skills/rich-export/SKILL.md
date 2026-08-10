@@ -3,7 +3,7 @@ name: lov-rich-export
 description: 将一份面向用户的内容稳定导出为单文件 HTML、带 assets 的 HTML 文件夹、Markdown、DOCX 与 PDF，并按格式正确处理图片、音频、视频和嵌入式交互内容。用于“富媒体导出”“一键导出”“导出 html/pdf/docx/md”“离线网页”“交付包”“给产品接导出能力”等需求，以及需要为产品建立可复用内容导出管线时。
 license: MIT
 metadata:
-  author: lovstudio
+  author: contributors
   version: 0.1.0
   tags:
     - export
@@ -78,3 +78,11 @@ python3 "$SKILL_DIR/scripts/export_rich.py" \
 - 现有 `lov-any2pdf`、`lov-any2docx` 仍适合中文长文的专门美术排版；本 Skill 负责多格式同源交付和富媒体降级策略。
 - 不将 SingleFile CLI 作为产品内置依赖：其开源仓库为 AGPL，且它更适合网页存档，不是多格式内容发布管线。
 - HTML 与打印/办公格式并非等价。交互图表、iframe 和媒体播放能力只在 HTML 保真；其他格式应把信息和访问路径交付完整，而不是伪装成可播放内容。
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

@@ -11,14 +11,14 @@ without making the repo public.
 ## Install
 
 ```bash
-npx skills add lovstudio/gh-access-skill --all -g
+npx skills add skill-publisher/gh-access-skill --all -g
 ```
 
 Or clone directly:
 
 ```bash
-git clone https://github.com/lovstudio/gh-access-skill \
-          "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-gh-access"
+git clone https://example.com/skills/gh-access-skill \
+          "${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-gh-access"
 ```
 
 ## Prerequisites
@@ -91,7 +91,7 @@ User: 把 acme/internal-dashboard 开给 client@acme.com，只读
 ### Batch invite mixed list
 
 ```
-User: 给这几个人开 lovstudio/handoff-bundle 的权限:
+User: 给这几个人开 skill-publisher/handoff-bundle 的权限:
       alice
       bob@startup.io
       carol-github
@@ -103,7 +103,7 @@ User: 给这几个人开 lovstudio/handoff-bundle 的权限:
 ### List who has access
 
 ```
-User: 谁现在能访问 lovstudio/handoff-bundle?
+User: 谁现在能访问 skill-publisher/handoff-bundle?
 → Skill shows:
     Active:    alice (pull), carol-github (push)
     Pending:   bob@startup.io (pull, invited 2d ago)
@@ -112,7 +112,7 @@ User: 谁现在能访问 lovstudio/handoff-bundle?
 ### Revoke
 
 ```
-User: 把 alice 从 lovstudio/handoff-bundle 踢出去
+User: 把 alice 从 skill-publisher/handoff-bundle 踢出去
 → Skill confirms, then DELETEs the collaborator.
 ```
 

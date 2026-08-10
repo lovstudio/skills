@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.1] - 2026-08-10
+
+### Changed
+
+- 未指定渠道时默认运行全部支持的发布适配器；显式渠道参数仍可收窄发布范围。
+
 ## [0.3.0] - 2026-08-03
 
 ### Added
@@ -38,7 +44,7 @@
 ## 0.1.0
 
 - Add an independent multi-channel publishing workflow for validated local Skills.
-- Support LovStudio source, release, catalog, revalidation, and live verification.
+- Support Skill Publisher source, release, catalog, revalidation, and live verification.
 - Support external-profile WorkBuddy Connector packaging and import evidence.
 - Keep channel metadata and generated artifacts outside canonical Skill source.
 - Define a provider adapter contract for future official distribution channels.

@@ -2,11 +2,13 @@
 
 ## 2026-08: v4 local creation and separate publishing
 
-`lov-skill-creator` now ends at validated local installation. Remove
+`lov-skill-creator` now ends at validated local installation. Every fresh source
+also carries the `user-profile/v1` cross-session Profile contract. Remove
 `--distribution`, `--paid`, platform directories, marketplace builders, remote
 repository commands, catalog registration, and live-channel verification from
-creation workflows. Use `--user-config` only when inferred persistent settings
-are required and pass `--install-dir` for local discovery.
+creation workflows. The legacy `--user-config` flag remains accepted for
+compatibility, while Profile generation is always on; pass `--install-dir` for
+local discovery.
 
 Existing platform packaging and release workflows move to
 `lov-skill-publisher`. Historical sections below describe older layouts and
@@ -45,7 +47,7 @@ the canonical source frontmatter. The platform builder injects them.
 
 The creator no longer exposes `--target`, `--dev-skills`, or a repository
 choice in the interactive flow. Every scaffold is created as the source for
-`lovstudio/<name>-skill`.
+`skill-publisher/<name>-skill`.
 
 General-skills and dev-skills are downstream distribution indexes. Register
 them after the independent repo is released; do not treat either catalog as a
@@ -53,8 +55,8 @@ scaffold destination.
 
 ## 2026-07: independent sources with a generated dev-skills aggregate
 
-Every skill now has one source of truth: `lovstudio/<name>-skill`. Free Meta /
-Dev Tools skills may be listed in `lovstudio/dev-skills`, whose checked-in
+Every skill now has one source of truth: `skill-publisher/<name>-skill`. Free Meta /
+Dev Tools skills may be listed in `skill-publisher/dev-skills`, whose checked-in
 skill directories are generated from the latest GitHub Releases.
 
 Do not use `--target dev-skills` and do not edit aggregate mirror directories
@@ -74,34 +76,34 @@ python3 ~/.claude/skills/lov-skill-creator/scripts/init_skill.py tanstack-query 
 The skill directory is:
 
 ```text
-~/lovstudio/coding/lov-dev-skills/skills/tanstack-query/
+~/skill-publisher/coding/lov-dev-skills/skills/tanstack-query/
 ```
 
 `skills.yaml` must include:
 
 ```yaml
-repo: lovstudio/dev-skills
+repo: skill-publisher/dev-skills
 skill_path: skills/tanstack-query
 ```
 
 ## 2026-04: independent per-skill repos
 
-The ecosystem was refactored from a monorepo (`lovstudio/skills` containing
-`skills/lov-<name>/`) + mirror (`lovstudio/pro-skills`) into independent
-per-skill repos + central index. The old `lovstudio/pro-skills` was archived.
+The ecosystem was refactored from a monorepo (`skill-publisher/skills` containing
+`skills/lov-<name>/`) + mirror (`skill-publisher/pro-skills`) into independent
+per-skill repos + central index. The old `skill-publisher/pro-skills` was archived.
 
 If working on a legacy skill still in the old structure, migrate it first:
 
 ```bash
 # 1. Extract from monorepo subdirectory
 cp -r ~/projects/lov-skills/skills/lov-<name> \
-      ~/lovstudio/coding/skills/<name>-skill
-cd ~/lovstudio/coding/skills/<name>-skill
+      ~/skill-publisher/coding/skills/<name>-skill
+cd ~/skill-publisher/coding/skills/<name>-skill
 
 # 2. Fresh git history
 rm -rf .git
 git init && git add -A && git commit -m "import: <name> from monorepo"
 
 # 3. Create independent repo
-gh repo create lovstudio/<name>-skill --public --source=. --push
+gh repo create skill-publisher/<name>-skill --public --source=. --push
 ```

@@ -13,7 +13,7 @@ compatibility: >
   No external dependencies. Supports .docx (via pandoc), .md, and .txt input files.
   Requires pandoc for docx conversion (`brew install pandoc`).
 metadata:
-  author: lovstudio
+  author: contributors
   version: "1.0.1"
   tags: translation, review, chinese, english, proofreading
 ---
@@ -109,7 +109,7 @@ Output a structured review report with the following format:
 # 翻译审校报告 / Translation Review Report
 
 **Document**: [title]
-**Reviewer**: 手工川 (AI-assisted)
+**Reviewer**: 品牌方 (AI-assisted)
 **Date**: [YYYY-MM-DD]
 **Domain**: [domain]
 **Document type**: [type]
@@ -165,7 +165,7 @@ Output a structured review report with the following format:
 
 Save the report to the same directory as the input files:
 
-**Filename**: `手工川-translation-review-{YYYY-MM-DD}-v0.1.md`
+**Filename**: `品牌方-translation-review-{YYYY-MM-DD}-v0.1.md`
 
 If a file with this name exists, increment the version.
 
@@ -196,3 +196,11 @@ If a file with this name exists, increment the version.
 - [ ] UI strings: consistent with product localization
 - [ ] Code snippets: untranslated, syntax preserved
 - [ ] API terms: match official documentation
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

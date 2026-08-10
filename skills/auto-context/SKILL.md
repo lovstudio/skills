@@ -14,10 +14,10 @@ description: >
 license: MIT
 compatibility: >
   Claude Code-oriented instruction skill. Agent home must resolve from
-  `LOVSTUDIO_AUTO_CONTEXT_AGENT_HOME`, the shared LovStudio skills profile, or
+  `SKILL_AUTO_CONTEXT_AGENT_HOME`, the shared Skill Publisher skills profile, or
   a one-time user answer; do not assume a fixed runtime directory.
 metadata:
-  author: lovstudio
+  author: contributors
   version: "0.3.1"
   tags: context memory claude-code
 ---
@@ -38,7 +38,7 @@ it can do everything else and will.
 
 ## Auto Mode (via Plugin Hook)
 
-When the lovstudio plugin is enabled, a `UserPromptSubmit` hook monitors
+When the skill-publisher plugin is enabled, a `UserPromptSubmit` hook monitors
 transcript size. Above threshold (40+ entries or 150KB+), it injects a
 lightweight `<auto-context>` reminder.
 
@@ -171,11 +171,19 @@ edits (show final path), and any derived artifacts.
 
 Resolve agent paths in this order:
 
-1. `LOVSTUDIO_AUTO_CONTEXT_AGENT_HOME`.
-2. Shared profile `${LOVSTUDIO_SKILLS_PROFILE:-$HOME/.lovstudio/skills/profile.json}`
+1. `SKILL_AUTO_CONTEXT_AGENT_HOME`.
+2. Shared profile `${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`
    keys: `agent.home`, `claude.home`, or `runtime.agent_home`.
 3. Ask the user once for the agent home directory and use that value for the
    current operation.
 
-For alternate runtimes, set `LOVSTUDIO_AUTO_CONTEXT_AGENT_HOME` explicitly or
+For alternate runtimes, set `SKILL_AUTO_CONTEXT_AGENT_HOME` explicitly or
 add the relevant profile key.
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

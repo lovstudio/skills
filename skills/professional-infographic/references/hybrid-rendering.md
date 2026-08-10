@@ -31,7 +31,7 @@ Example:
 ```text
 Create one editorial vector-style illustration of a bridge connecting two
 abstract capability platforms. Clean geometric forms, restrained institutional
-style, flat lighting, palette #1F2937 #D97757 #F3EEE7. Transparent background.
+style, flat lighting, palette #1F2937 #4F46E5 #F3EEE7. Transparent background.
 No text, letters, numbers, icons with labels, charts, logo, watermark, border,
 gradient glow, or decorative particles.
 ```

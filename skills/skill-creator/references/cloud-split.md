@@ -1,7 +1,7 @@
 # Cloud-Split Skill Pattern
 
 Protection pattern for paid skills whose core IP must not touch the user's disk.
-Core logic lives on Lovstudio's servers; the distributed SKILL.md is a thin
+Core logic lives on Skill Publisher's servers; the distributed SKILL.md is a thin
 client that only orchestrates calls.
 
 ## When to use
@@ -270,7 +270,7 @@ SELECT <license_id>, id, 'dev_test' FROM public.skills WHERE name = '<name>';
 ### 4. Deploy
 
 ```bash
-cd ~/lovstudio/coding/web
+cd ~/skill-publisher/coding/web
 supabase functions deploy skill_call --project-ref nouchjcfeoobplxkwasg
 ```
 

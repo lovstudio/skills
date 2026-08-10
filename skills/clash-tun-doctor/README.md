@@ -4,7 +4,7 @@
 
 基于最终运行态、实时连接和日志证据，诊断并修复 Clash Verge Rev TUN 导致的应用联网故障。
 
-Independent source repository, also distributed through [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Independent source repository, also distributed through [skill-publisher dev-skills](https://example.com/skills/dev-skills) — by [example.com](https://example.com)
 
 ## 适用场景
 
@@ -17,19 +17,19 @@ Independent source repository, also distributed through [lovstudio skills](https
 ## Install
 
 ```bash
-npx skills add lovstudio/clash-tun-doctor-skill --all -g
+npx skills add skill-publisher/clash-tun-doctor-skill --all -g
 ```
 
 The aggregate bundle remains available:
 
 ```bash
-npx skills add lovstudio/skills --all -g
+npx skills add skill-publisher/dev-skills --all -g
 ```
 
 或使用 Claude Code 插件市场：
 
 ```text
-/plugin marketplace add lovstudio/skills
+/plugin marketplace add skill-publisher/dev-skills
 /plugin install dev-tools@lov-dev
 ```
 
@@ -38,7 +38,7 @@ npx skills add lovstudio/skills --all -g
 ## Usage
 
 ```bash
-SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-clash-tun-doctor"
+SKILL_DIR="${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-clash-tun-doctor"
 
 # 只读诊断
 python3 "$SKILL_DIR/scripts/clash_tun_doctor.py" diagnose --app wechat

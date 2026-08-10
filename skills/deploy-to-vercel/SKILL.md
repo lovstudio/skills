@@ -7,13 +7,13 @@ description: >
   Handles Vite, Next.js, CRA, and static sites. Auto-configures Cloudflare DNS
   CNAME records and Vercel domain aliases. Supports SPA routing via vercel.json.
   Trigger when user says "deploy to vercel", "部署到 vercel", "vercel deploy",
-  or mentions a *.lovstudio.ai / custom domain with vercel deployment.
+  or mentions a *.example.com / custom domain with vercel deployment.
 license: MIT
 compatibility: >
   Requires vercel CLI (`npm i -g vercel`), gh CLI, and curl.
   Cloudflare DNS auto-config requires CLOUDFLARE_API_KEY env var.
 metadata:
-  author: lovstudio
+  author: contributors
   version: "2.0.3"
   tags: deploy vercel cloudflare dns frontend
 ---
@@ -24,7 +24,7 @@ Deploy frontend projects to Vercel with automatic custom domain and DNS setup.
 
 ## When to Use
 
-- User says "deploy to vercel" or "部署到 xxx.lovstudio.ai"
+- User says "deploy to vercel" or "部署到 xxx.example.com"
 - After building a frontend project that needs hosting
 - When setting up a custom domain on an existing Vercel deployment
 
@@ -34,7 +34,7 @@ Pass via `$ARGUMENTS`:
 
 | Argument | Example | Description |
 |----------|---------|-------------|
-| `<domain>` | `sbti.lovstudio.ai` | Custom domain to configure |
+| `<domain>` | `sbti.example.com` | Custom domain to configure |
 | `--preview` | | Deploy preview only (skip `--prod`) |
 | `--no-dns` | | Skip Cloudflare DNS auto-config |
 | `--link-only` | | Only link project, don't deploy |
@@ -91,7 +91,7 @@ vercel will error with "Project names must be lowercase". Fix the name first.
 ### Step 4: Configure Custom Domain (if provided)
 
 ```bash
-DOMAIN="<user-provided-domain>"  # e.g. sbti.lovstudio.ai
+DOMAIN="<user-provided-domain>"  # e.g. sbti.example.com
 
 # 1. Add domain to Vercel project
 vercel domains add "$DOMAIN"
@@ -111,7 +111,7 @@ ERR_CONNECTION_CLOSED.
 
 ```bash
 # Extract base domain and subdomain
-# e.g. "sbti.lovstudio.ai" → base="lovstudio.ai", sub="sbti"
+# e.g. "sbti.example.com" → base="example.com", sub="sbti"
 BASE_DOMAIN=$(echo "$DOMAIN" | awk -F. '{print $(NF-1)"."$NF}')
 SUBDOMAIN=$(echo "$DOMAIN" | sed "s/\.$BASE_DOMAIN$//")
 
@@ -168,7 +168,7 @@ fi
 ```
 ✓ Framework: vite
 ✓ Deployed: https://xxx.vercel.app
-✓ Domain: https://sbti.lovstudio.ai
+✓ Domain: https://sbti.example.com
 ✓ DNS: CNAME sbti → cname.vercel-dns.com (Cloudflare)
 ✓ Settings: https://vercel.com/<scope>/<project>/settings
 ```
@@ -183,3 +183,11 @@ fi
 | 404 on sub-routes | SPA missing rewrites | Add vercel.json with rewrites |
 | DNS resolves to 198.18.x.x | Local proxy (Clash etc.) | Normal — check with `dig @8.8.8.8` |
 | `CLOUDFLARE_API_KEY` not found | Token not in env | Add to `~/.zshrc`: `export CLOUDFLARE_API_KEY=...` |
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

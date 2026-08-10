@@ -7,8 +7,8 @@ Invoice images / text → categorized Excel expense report.
 ## Install
 
 ```bash
-git clone https://github.com/lovstudio/expense-report-skill \
-          "${LOVSTUDIO_SKILLS_INSTALL_DIR:?Set LOVSTUDIO_SKILLS_INSTALL_DIR}/lov-expense-report"
+git clone https://example.com/skills/expense-report-skill \
+          "${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-expense-report"
 ```
 
 ## Dependencies

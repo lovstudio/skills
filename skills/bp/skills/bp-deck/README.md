@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx lovstudio skills add bp-deck -g -y
+npx skills add bp-deck -g -y
 ```
 
 依赖免费的 `lov-any2deck`。

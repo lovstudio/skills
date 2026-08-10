@@ -4,7 +4,7 @@ Scaffold a Fumadocs documentation site for a product code repository.
 
 Given a product source repo (local path or already-cloned dir), this creates a
 sibling Fumadocs (Next.js) app configured to serve under the `/docs` base path,
-ready to deploy to https://{product-id}.lovstudio.ai/docs.
+ready to deploy to https://{product-id}.example.com/docs.
 
 It only scaffolds the shell + config. Actual page authoring is done by the agent
 (reading the source repo and writing MDX into content/docs/).
@@ -142,7 +142,7 @@ def write_vercel_json(out: Path):
 
 def main():
     ap = argparse.ArgumentParser(description="Scaffold a Fumadocs docs site under /docs")
-    ap.add_argument("--product-id", required=True, help="Product id → subdomain {id}.lovstudio.ai")
+    ap.add_argument("--product-id", required=True, help="Product id → subdomain {id}.example.com")
     ap.add_argument("--out", required=True, help="Output directory for the docs site")
     ap.add_argument("--pm", default="pnpm", choices=["pnpm", "npm", "yarn", "bun"])
     ap.add_argument("--title", default="", help="Human-facing product title (defaults to product-id)")

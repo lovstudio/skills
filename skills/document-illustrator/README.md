@@ -4,12 +4,12 @@
 
 为文档原地插入 AI 配图：先全局规划插入点，再并行生成图片，最后按锚点异步插回原文。
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [skill-publisher general skills](https://example.com/skills/general-skills) — by [example.com](https://example.com)
 
 ## Install
 
 ```bash
-npx lovstudio skills add document-illustrator -g -y
+npx skills add document-illustrator -g -y
 ```
 
 ## Workflow

@@ -11,11 +11,11 @@ compatibility: >
   Portable Agent Skills format. Requires Python 3.8+, fontTools for deterministic
   glyph-coverage checks, and the lov-professional-infographic dependency.
   User paths, brand assets, and output settings resolve from CLI flags,
-  environment variables, or the shared LovStudio user profile.
+  environment variables, or the shared Skill Publisher user profile.
 depends_on:
   - lov-professional-infographic
 metadata:
-  author: lovstudio
+  author: contributors
   version: "0.1.0"
   tags: hanzi chinese-character etymology lexicography infographic cjk unicode
 ---
@@ -240,20 +240,28 @@ python3 "$SKILL_DIR/scripts/hanzi_lens.py" audit --help
 Resolution order:
 
 1. explicit CLI flags;
-2. `LOVSTUDIO_HANZI_LENS_*` environment variables;
-3. shared `LOVSTUDIO_SKILLS_*` environment variables;
-4. `${LOVSTUDIO_SKILLS_PROFILE:-$HOME/.lovstudio/skills/profile.json}`;
+2. `SKILL_HANZI_LENS_*` environment variables;
+3. shared `SKILL_SKILLS_*` environment variables;
+4. `${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`;
 5. safe defaults under `$HOME/Documents`.
 
 Relevant variables:
 
 | Variable | Meaning |
 |---|---|
-| `LOVSTUDIO_HANZI_LENS_OUTPUT_DIR` | Hanzi Lens output root |
-| `LOVSTUDIO_HANZI_LENS_INFOGRAPHIC_SKILL_DIR` | Dependency skill directory |
-| `LOVSTUDIO_SKILLS_OUTPUT_DIR` | Shared output root |
-| `LOVSTUDIO_SKILLS_INSTALL_DIR` | Shared skill installation directory |
-| `LOVSTUDIO_SKILLS_PROFILE` | Shared profile JSON |
-| `LOVSTUDIO_SKILLS_BRAND_PROFILE` | Shared brand profile |
+| `SKILL_HANZI_LENS_OUTPUT_DIR` | Hanzi Lens output root |
+| `SKILL_HANZI_LENS_INFOGRAPHIC_SKILL_DIR` | Dependency skill directory |
+| `SKILL_OUTPUT_DIR` | Shared output root |
+| `SKILL_SKILLS_INSTALL_DIR` | Shared skill installation directory |
+| `SKILL_PROFILE_PATH` | Shared profile JSON |
+| `SKILL_PROFILE_PATH` | Shared brand profile |
 
 Never hard-code a private workspace or brand path into a reusable project.
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。

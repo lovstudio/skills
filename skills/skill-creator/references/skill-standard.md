@@ -1,4 +1,4 @@
-# LovStudio Local Skill Source Standard
+# Skill Publisher Local Skill Source Standard
 
 This standard covers creation, validation, and local installation. Publication
 and channel packaging belong to `lov-skill-publisher`.
@@ -25,12 +25,14 @@ contracts and participate in named pipelines. Embed every required module under
 `skills/` and declare it in `kit.yaml`. Alternative modes alone do not require a
 Kit.
 
-## User initialization
+## User Profile contract
 
-Infer the need for persistent configuration from the workflow. When required,
-use flags, environment, shared profile, safe defaults, then one focused question.
-All users and brands share the same portable schema; no internal-only branch is
-part of the source standard.
+Every generated Skill declares `user-profile/v1` in `skill.yaml` and reads the
+shared `user`, `brand`, `workspace`, `preferences`, and `skills.<skill_id>`
+scopes on every run. Direct user statements intended for future sessions are
+written atomically to `skills.<skill_id>.records` or the explicit shared
+`user` / `brand` scope. All users and brands share the same portable schema;
+`--user-config` is only a compatibility flag for older invocations.
 
 ## Local completion
 

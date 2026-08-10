@@ -8,7 +8,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 ### Fixed
 
 - make dependency install paths configurable
-- replace fixed runtime skill paths with LOVSTUDIO_SKILLS_INSTALL_DIR
+- replace fixed runtime skill paths with SKILL_SKILLS_INSTALL_DIR
 - use python3 -m pip install Pillow in dependency examples
 
 ## [0.9.0] - 2026-05-07
@@ -16,22 +16,22 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 ### Added
 
 - require explicit partner website config
-- remove implicit `$HOME/lovstudio/coding/web` fallback in favor of CLI, `LOVSTUDIO_*` env, or shared profile
+- remove implicit `$HOME/skill-publisher/coding/web` fallback in favor of CLI, `SKILL_*` env, or shared profile
 - expand `$HOME`-style variables from shared profile paths
 
 ## [0.8.0] - 2026-05-07
 
 ### Added
 
-- standardize partner env vars on LOVSTUDIO_MAINTAIN_PARTNERS namespace
-- use LOVSTUDIO_MAINTAIN_PARTNERS_SITE_ROOT and LOVSTUDIO_MAINTAIN_PARTNERS_FILE as primary variables
-- keep older PARTNERS_* and LOVSTUDIO_WEB_ROOT aliases for migration only
+- standardize partner env vars on SKILL_MAINTAIN_PARTNERS namespace
+- use SKILL_MAINTAIN_PARTNERS_SITE_ROOT and SKILL_MAINTAIN_PARTNERS_FILE as primary variables
+- keep older PARTNERS_* and SKILL_WEB_ROOT aliases for migration only
 
 ## [0.7.0] - 2026-05-07
 
 ### Added
 
-- move default profile lookup under ~/.lovstudio
+- move default profile lookup under ~/.skill-publisher
 - keep AGENT_SKILL_PROFILE as the portable override
 - keep PARTNERS_SITE_ROOT and PARTNERS_FILE as neutral primary runtime variables
 
@@ -41,7 +41,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 - switch partner config API to neutral env names
 - use PARTNERS_SITE_ROOT and PARTNERS_FILE as primary variables
-- retain LOVSTUDIO_WEB_ROOT and LOVSTUDIO_PARTNERS_FILE as legacy aliases
+- retain SKILL_WEB_ROOT and SKILL_PARTNERS_FILE as legacy aliases
 
 ## [0.5.0] - 2026-05-06
 
@@ -51,14 +51,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 - support --repo and shared profile JSON
 - document portable partner-site initialization
 - support configurable partners TSX files, including the current PartnersGrid.tsx location
-- add partner category handling for the LovStudio PartnersGrid schema
+- add partner category handling for the Skill Publisher PartnersGrid schema
 
 ## [0.4.0] - 2026-05-06
 
 ### Changed
 
 - 声明 `depends_on: [lov-find-logo]`，把 logo 发现统一交给 find-logo skill。
-- Op 1 改为读取 `~/.lovstudio/logo-collection/<slug>/logo.<ext>`，不再维护独立 homepage scraper。
+- Op 1 改为读取 `~/.skill-publisher/logo-collection/<slug>/logo.<ext>`，不再维护独立 homepage scraper。
 - README 安装说明补充 `lov-find-logo`，移除 Playwright/SPA scraping fallback。
 
 ### Removed

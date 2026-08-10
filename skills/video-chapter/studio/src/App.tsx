@@ -568,7 +568,7 @@ export default function App() {
           <section className="control-group">
             <div className="control-label">
               <span>色彩</span>
-              <small>LovStudio signal</small>
+              <small>Skill Publisher signal</small>
             </div>
             <label className="color-control">
               <span>
