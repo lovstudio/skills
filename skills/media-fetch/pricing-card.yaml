@@ -1,0 +1,8 @@
+schema: lovstudio/pricing-card/v1
+model: free
+currency: CNY
+list_price_cny: 0
+basis: "以本地长视频任务的完整链路为计价单位：候选归一化、版本判断、容量预检、双后端续传、媒体验收和字幕缺口证据均包含在源码内。"
+boundary: "交付范围是本地 Skill 与验证工具；来源可用性、网络速度、外部字幕、播放器兼容性和远程平台发布不在交付范围内。"
+review_trigger: "新增三类媒体任务、transport backend 主版本变化、ffprobe 输出结构变化或 subtitle companion 约定变化时复评。"
+confidence: case-backed

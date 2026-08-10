@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "query": {
+    "title": "Example Feature",
+    "original_title": "Example Feature",
+    "year": 2026,
+    "media_type": "movie",
+    "requested_editions": ["director-cut", "extended"]
+  },
+  "edition_facts": [
+    {
+      "edition": "director-cut",
+      "duration_minutes": 132,
+      "source_url": "https://example.com/example-feature/director-cut",
+      "confidence": "primary"
+    },
+    {
+      "edition": "theatrical",
+      "duration_minutes": 118,
+      "source_url": "https://example.com/example-feature/theatrical",
+      "confidence": "primary"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "compact-4k",
+      "name": "Example.Feature.2026.Directors.Cut.2160p.HEVC.HDR.CHS.ENG",
+      "uri": "magnet:?xt=urn:btih:1111111111111111111111111111111111111111",
+      "info_hash": "1111111111111111111111111111111111111111",
+      "source": "example-index-a",
+      "source_url": "https://example.com/result/compact-4k",
+      "size_bytes": 12884901888,
+      "seeders": 48,
+      "leechers": 6,
+      "resolution": "2160p",
+      "video_codec": "hevc",
+      "hdr": "hdr10",
+      "edition": "director-cut",
+      "duration_minutes": 132,
+      "audio_languages": ["en", "zh"],
+      "subtitle_languages": ["zh-Hans", "en"],
+      "subtitle_verified": true,
+      "metadata_confidence": "verified",
+      "trusted_source": true
+    },
+    {
+      "id": "large-remux",
+      "name": "Example.Feature.2026.Directors.Cut.2160p.REMUX.HEVC",
+      "uri": "magnet:?xt=urn:btih:2222222222222222222222222222222222222222",
+      "info_hash": "2222222222222222222222222222222222222222",
+      "source": "example-index-b",
+      "source_url": "https://example.com/result/large-remux",
+      "size_bytes": 53687091200,
+      "seeders": 16,
+      "leechers": 2,
+      "resolution": "2160p",
+      "video_codec": "hevc",
+      "edition": "director-cut",
+      "duration_minutes": 132,
+      "audio_languages": ["en"],
+      "subtitle_languages": ["en"],
+      "subtitle_verified": true,
+      "metadata_confidence": "release-record",
+      "trusted_source": true
+    },
+    {
+      "id": "healthy-1080p",
+      "name": "Example.Feature.2026.Theatrical.1080p.HEVC.CHS.ENG",
+      "uri": "magnet:?xt=urn:btih:3333333333333333333333333333333333333333",
+      "info_hash": "3333333333333333333333333333333333333333",
+      "source": "example-index-c",
+      "source_url": "https://example.com/result/healthy-1080p",
+      "size_bytes": 7516192768,
+      "seeders": 92,
+      "leechers": 8,
+      "resolution": "1080p",
+      "video_codec": "hevc",
+      "edition": "theatrical",
+      "duration_minutes": 118,
+      "audio_languages": ["en"],
+      "subtitle_languages": ["zh-Hans", "en"],
+      "subtitle_verified": true,
+      "metadata_confidence": "verified",
+      "trusted_source": true
+    }
+  ]
+}

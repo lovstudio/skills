@@ -7,7 +7,7 @@ skills:
   paid: false
   featured: true
   category: General
-  version: 0.2.0
+  version: 0.2.1
   description: 'Multi-mechanism image generation: end-to-end AI, code rendering, or prompt engineering'
   tagline_en: Generate images through the right mechanism — AI, code rendering, or prompt tuning.
   tagline_zh: 按需选择最合适的出图方式：端到端 AI、代码渲染或提示词精修。
@@ -62,7 +62,7 @@ skills:
   paid: true
   test: true
   category: General
-  version: 0.1.0
+  version: 0.1.1
   description: Evaluate a pair of numeric inputs against a server-side rule and return a symbolic verdict. Cloud-split teaching
     demo — real logic on the server.
   tagline_en: Pairwise numeric verdict — cloud-split demo with symbolic output.
@@ -100,7 +100,7 @@ skills:
   paid: true
   test: true
   category: General
-  version: 0.1.0
+  version: 0.1.1
   description: Evaluate a set of numeric inputs against configurable parameters and return a symbolic verdict. Cloud-split
     teaching demo — real logic on the server.
   tagline_en: Configurable threshold check — cloud-split demo with symbolic output.
@@ -664,7 +664,7 @@ skills:
   description: Review and annotate documents/contracts — output annotated docx with comments
   tagline_en: Review a document or contract and return it with inline comments.
   tagline_zh: 审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。
-  version: 0.1.1
+  version: 1.0.0
   skillpay_product_id: P0806000200854533
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQY
   pricing:
@@ -858,7 +858,7 @@ skills:
   paid: false
   featured: true
   category: Design
-  version: 0.1.0
+  version: 0.2.0
   description: Fetch a brand/product logo from public sources (Clearbit, og:image, favicon), score candidates (prefer wide-aspect
     + transparent), and archive into ~/.lovstudio/logo-collection/.
   tagline_en: Collect brand logos from public sources — wide and transparent preferred, archived for website/PPT/poster lineups.
@@ -1216,7 +1216,7 @@ skills:
   name_zh: 文风克隆
   paid: false
   category: Content Creation
-  version: 0.1.0
+  version: 0.1.1
   description: 'Analyzes sample articles to extract an 8-dimension writing style profile, then rewrites any target article
     in that exact style. Trigger on: "分析文风", "模仿文风", "克隆写作风格", "用XX的风格改写", "style clone", "rewrite in this style".
 
@@ -1728,7 +1728,7 @@ skills:
   name_zh: 移动端适配
   paid: false
   category: Dev Tools
-  version: 0.1.0
+  version: 0.1.1
   description: 'Scan and fix mobile adaptation issues — overflow, safe area, 100vh, responsive layout, multi-level navigation,
     touch targets. Trigger on: "mobile adapt", "移动端适配", "手机适配", "responsive optimization", "fix mobile overflow".
 
@@ -2685,3 +2685,71 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或播放器兼容问题明显增加时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material increase in renderer-compatibility support.
     card_path: pricing-cards/subtitle-freedom.md
+- name: macos-disk-optimizer
+  display_name: macOS Disk Optimizer
+  repo: lovstudio/macos-disk-optimizer-skill
+  name_zh: Mac 磁盘优化
+  paid: false
+  category: General
+  version: 0.2.0
+  description: Guarded macOS disk cleanup with archive migration, rollback-aware staging, direct rollback-item purging, and real-capacity verification.
+  tagline_en: Clean up Mac storage with guarded planning, archive migration, exact rollback-item purging, and real-capacity verification.
+  tagline_zh: 按目标容量整理 Mac 磁盘，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 按目标容量整理 Mac 磁盘，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
+    value_en: Clean up Mac storage with guarded planning, archive migration, exact rollback-item purging, and real-capacity verification.
+    anchor_zh: 一次处理通常可省下 30 分钟至半天的排查、整理和回滚往返。
+    anchor_en: A run typically saves 30 minutes to half a day of storage diagnosis, cleanup, and rollback work.
+    basis_zh: 按一次可验证的磁盘空间改善定价，重点是减少误删风险、排查往返和重复清理。
+    basis_en: Priced around a verifiable improvement in free space, reducing deletion risk, debugging loops, and repeated cleanup.
+    boundary_zh: 默认只处理明确的可重建产物和用户确认的低频资料；照片、消息、邮件、Git 历史及受保护路径不进入自动清理。
+    boundary_en: Handles explicit rebuildable artifacts and user-confirmed cold data; photos, messages, mail, Git history, and protected paths stay out of automatic cleanup.
+    maintenance_zh: 随 macOS、文件系统、归档卷挂载方式和真实使用反馈变化复评。
+    maintenance_en: Review when macOS, filesystem behavior, archive-volume mounting, or real-use feedback change.
+    confidence: entry
+    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
+    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+    card_path: pricing-cards/macos-disk-optimizer.md
+- name: media-fetch
+  display_name: Media Fetch
+  repo: lovstudio/media-fetch-skill
+  name_zh: 媒体抓取
+  paid: false
+  category: General
+  version: 0.2.0
+  description: Find, compare, and download long-form media with edition evidence, capacity preflight, qBittorrent and aria2 failover, and ffprobe verification.
+  tagline_en: Find the right edition, resume through the faster transport, and verify the local media and subtitle status.
+  tagline_zh: 检索并选择合适版本，qBittorrent 与 aria2 续传兜底，最后验收本地媒体与字幕状态。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 检索并选择合适版本，qBittorrent 与 aria2 续传兜底，最后验收本地媒体与字幕状态。
+    value_en: Find the right edition, resume through the faster transport, and verify the local media and subtitle status.
+    anchor_zh: 一次长视频任务通常可省下数十分钟至数小时的版本筛选、容量检查、下载排障和文件验收时间。
+    anchor_en: A long-form media run typically saves tens of minutes to several hours of release selection, storage checks, download recovery, and verification.
+    basis_zh: 按一条可回读的本地媒体交付链路定价，重点是减少错误版本、重复下载、慢源等待和未验收文件。
+    basis_en: Priced around a verifiable local media delivery chain, reducing wrong-edition downloads, duplicate transfers, slow-source waiting, and unverified files.
+    boundary_zh: 覆盖候选检索、版本选择、容量预检、qBittorrent/aria2 编排、媒体验收和字幕状态记录；外部来源、网络可达性与字幕内容本身按实际条件处理。
+    boundary_en: Covers discovery, edition choice, capacity preflight, qBittorrent/aria2 orchestration, media verification, and subtitle-state evidence; external sources, network reachability, and subtitle content follow actual conditions.
+    maintenance_zh: 随 qBittorrent、aria2、FFmpeg、Skill runtime 和字幕格式变化复评。
+    maintenance_en: Review when qBittorrent, aria2, FFmpeg, the Skill runtime, or subtitle formats change.
+    confidence: case-backed
+    review_trigger_zh: 版本变化、连续 10 次真实使用或下载后端与字幕支持成本明显变化时复评。
+    review_trigger_en: Review after a version change, 10 real uses, or a material change in transport or subtitle-support cost.
+    card_path: pricing-cards/media-fetch.md

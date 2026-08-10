@@ -152,13 +152,12 @@ The diff speaks for itself.
 
 ### Step 7: Commit, push & sync all locations
 
-Skills may live in a source repo plus one distribution catalog. Keep all
-published locations in sync:
+Skills live in an independent source repo plus the unified distribution catalog.
+Keep both published locations in sync:
 
 ```
-source repo:          lovstudio/<name>-skill or lovstudio/dev-skills
-general catalog:      lovstudio/general-skills, for public/paid general skills
-dev-skills catalog:   lovstudio/dev-skills, for bundled meta/dev tools
+source repo:          lovstudio/<name>-skill
+unified catalog:      lovstudio/skills
 ```
 
 **7a. Commit & push to source repo:**
@@ -173,12 +172,12 @@ git push
 - Commit message follows repo convention: `fix|feat|docs(<skill-name>): <summary>`
 - Use `fix` for patch, `feat` for minor, `feat!` for major
 
-**7b. Sync to the relevant distribution repo:**
+**7b. Sync to the unified distribution repo:**
 
-Use the catalog repo's own sync scripts, then render and validate metadata:
+Use the unified catalog's sync scripts, then render and validate metadata:
 
 ```bash
-cd <general-skills-or-dev-skills-checkout>
+cd <lovstudio-skills-checkout>
 python3 scripts/sync-skills.py
 python3 scripts/render-marketplace.py
 python3 scripts/render-readme.py

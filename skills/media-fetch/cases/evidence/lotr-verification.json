@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "case": "指环王三部曲",
+  "verification_status": "passed_with_warnings",
+  "files": [
+    {
+      "title": "The Return of the King",
+      "duration_minutes": 263.295,
+      "video": "1920x804 HEVC",
+      "audio": "AAC English 6-channel",
+      "subtitles": ["English SubRip"]
+    },
+    {
+      "title": "The Two Towers",
+      "duration_minutes": 235.536,
+      "video": "1920x804 HEVC",
+      "audio": "AAC English 6-channel",
+      "subtitles": ["English SubRip"]
+    },
+    {
+      "title": "The Fellowship of the Ring",
+      "duration_minutes": 228.307,
+      "video": "1920x804 HEVC",
+      "audio": "AAC English 6-channel",
+      "subtitles": ["English SubRip"]
+    }
+  ],
+  "total_bytes": 13028499982,
+  "errors": [],
+  "warnings": ["preferred zh-Hans subtitle stream was absent"],
+  "subtitle_handoff": {
+    "status": "missing",
+    "next_operation": "match an exact-release Simplified Chinese SRT and preserve cue timing and UTF-8 encoding",
+    "companion_reference": "sgc-subtitle-freedom-skill"
+  },
+  "completion_boundary": "The three local media files were readable and complete; subtitle coverage remains explicitly open."
+}

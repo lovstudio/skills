@@ -4,7 +4,7 @@
 
 Generate a stable project-specific development port in the 3000-8999 range, then help wire it into `.env`, package scripts, Vite, or other dev-server config.
 
-Part of [lovstudio dev skills](https://github.com/lovstudio/dev-skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## Install
 

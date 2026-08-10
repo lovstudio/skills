@@ -6,7 +6,7 @@ Turn **any folder of source material** — a code repository, a pile of articles
 mixed knowledge dump with images — into a professional **Fumadocs** documentation
 website, and deploy it to `https://{product-id}.lovstudio.ai/docs`.
 
-Part of [lovstudio general skills](https://github.com/lovstudio/general-skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## What it does
 

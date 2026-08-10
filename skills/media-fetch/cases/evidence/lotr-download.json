@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "case": "指环王三部曲",
+  "observed_date": "2026-08-08",
+  "selected_release": "The Lord of the Rings Trilogy 2002 EXTENDED REMASTERED 1080p BluRay HEVC x265 5.1 BONE",
+  "info_hash": "AB25E785ABEA95343249A300A516455D14E54144",
+  "payload_bytes": 13028499982,
+  "payload_gib": 12.13,
+  "qbit_first_probe": {
+    "status": "needs_more_sources",
+    "peak_bytes_per_second": 97076,
+    "average_bytes_per_second": 36988,
+    "median_bytes_per_second": 30976,
+    "advertised_seeders": 19,
+    "availability": 18.996,
+    "bytes_received_during_probe": 6232270
+  },
+  "transport_handoff": {
+    "from": "qBittorrent",
+    "to": "aria2",
+    "same_input": true,
+    "continuation_state": ".aria2",
+    "network_features": ["DHT", "LPD", "PeX", "configured trackers", "direct connection mode"],
+    "reason": "The qBittorrent probe remained slow while the same swarm provided better peer discovery to aria2."
+  },
+  "aria2_observation": {
+    "completed_at": "2026-08-09T00:35:07+08:00",
+    "late_stage_speed_range": "4-10 MiB/s",
+    "uploaded_bytes": 10737418240,
+    "share_ratio": 0.9,
+    "status": "complete"
+  },
+  "evidence_boundary": "Advertised seeders and first-probe health are preserved separately from the final completed payload and ffprobe report."
+}

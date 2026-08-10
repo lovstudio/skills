@@ -1,0 +1,24 @@
+{
+  "status": "Stopped",
+  "total": 2,
+  "results": [
+    {
+      "fileName": "Example.Feature.2026.Directors.Cut.2160p.HEVC.CHS.ENG",
+      "fileSize": 12884901888,
+      "fileUrl": "magnet:?xt=urn:btih:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "nbSeeders": 48,
+      "nbLeechers": 6,
+      "siteUrl": "example-index-a",
+      "descrLink": "https://example.com/result/a"
+    },
+    {
+      "fileName": "Example.Feature.2026.1080p.HEVC.CHS.ENG",
+      "fileSize": 7516192768,
+      "fileUrl": "magnet:?xt=urn:btih:BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+      "nbSeeders": 92,
+      "nbLeechers": 8,
+      "siteUrl": "example-index-b",
+      "descrLink": "https://example.com/result/b"
+    }
+  ]
+}

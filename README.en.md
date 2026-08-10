@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **66 skills** — 54 Free + 12 Paid.
+> **68 skills** — 56 Free + 12 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -51,6 +51,8 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`fact-check`](https://github.com/lovstudio/fact-check-skill) | Verify claims like a careful researcher, with primary sources, counterexamples, confidence, and next steps. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`hanzi-lens`](https://github.com/lovstudio/hanzi-lens-skill) | See one Chinese character through evidence — readings, form, history, classical context, meaning, and a professional visual. — requires: `professional-infographic` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`image-creator`](https://github.com/lovstudio/image-creator-skill) | Generate images through the right mechanism — AI, code rendering, or prompt tuning. — related: `professional-infographic`, `professional-portrait` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`macos-disk-optimizer`](https://github.com/lovstudio/macos-disk-optimizer-skill) | Clean up Mac storage with guarded planning, archive migration, exact rollback-item purging, and real-capacity verification. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`media-fetch`](https://github.com/lovstudio/media-fetch-skill) | Find the right edition, resume through the faster transport, and verify the local media and subtitle status. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`subtitle-freedom`](https://github.com/lovstudio/subtitle-freedom-skill) | Make learner subtitles that keep the selected level and harder expressions, with spoiler-safe ASS cards and optional no-burn watermark sidecars. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wdb-cli`](https://github.com/lovstudio/wdb-cli-skill) | Find and analyze the WeChat data you need, from familiar records to newly added database structures. |
 | **Business** | | |

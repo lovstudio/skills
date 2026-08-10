@@ -1,0 +1,33 @@
+[
+  {
+    "title": "指环王三部曲：qBittorrent 慢源切换到 aria2 续传",
+    "description": "用户只给出片名并偏好加长版、原声、合理体积和简中字幕；任务通过候选检索、版本排序、容量预检、qBittorrent 首轮测速、aria2 同输入续传和最终 ffprobe 验收完成。",
+    "input": {
+      "request": "指环王三部曲",
+      "preferences": {
+        "edition": "extended",
+        "quality": "balanced",
+        "audio": "original",
+        "subtitles": ["zh-Hans", "en"]
+      },
+      "starting_state": "qBittorrent search plugins returned several candidates; the strongest candidate had a large advertised swarm but a weak sustained first probe."
+    },
+    "prompt": "$lovstudio-media-fetch 指环王三部曲",
+    "output": {
+      "download_status": "complete",
+      "release": "The Lord of the Rings Trilogy 2002 EXTENDED REMASTERED 1080p BluRay HEVC x265 5.1 BONE",
+      "info_hash": "AB25E785ABEA95343249A300A516455D14E54144",
+      "transport_trace": ["qBittorrent discovery", "qBittorrent first probe", "aria2 resumed same input"],
+      "files": 3,
+      "size_bytes": 13028499982,
+      "verification_status": "passed_with_warnings",
+      "media_observation": "three readable 1920x804 HEVC files with original English AAC 6-channel audio and embedded English SubRip subtitles",
+      "subtitle_status": "missing",
+      "open_item": "zh-Hans was absent from the verified embedded streams; the exact-release subtitle handoff remains a separate follow-up.",
+      "evidence": [
+        "cases/evidence/lotr-download.json",
+        "cases/evidence/lotr-verification.json"
+      ]
+    }
+  }
+]

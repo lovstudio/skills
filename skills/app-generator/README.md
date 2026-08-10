@@ -7,7 +7,7 @@ desktop case-by-case, with React/Vite or Next.js, shadcn/ui, TanStack Query
 when useful, Lovstudio branding, CI/CD/deploy, optional auto update, and
 lovinsp.
 
-Independent source repository, also distributed through [lovstudio dev-skills](https://github.com/lovstudio/dev-skills) — by [lovstudio.ai](https://lovstudio.ai)
+Independent source repository, also distributed through [lovstudio dev-skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## Install
 
@@ -18,13 +18,13 @@ npx skills add lovstudio/app-generator-skill
 The aggregate bundle remains available:
 
 ```bash
-npx skills add lovstudio/dev-skills
+npx skills add lovstudio/skills
 ```
 
 Or through Claude Code plugin marketplace:
 
 ```text
-/plugin marketplace add lovstudio/dev-skills
+/plugin marketplace add lovstudio/skills
 /plugin install dev-tools@sgc-dev
 ```
 

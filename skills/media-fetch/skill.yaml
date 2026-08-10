@@ -1,0 +1,25 @@
+schema: skill-manifest/v1
+id: sgc-media-fetch
+version: 0.2.0
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields: []
+  preferences:
+    namespace: sgc_media_fetch
+    fields:
+    - path: user.language
+      required: false
+      question: 希望使用哪种语言输出？
+    - path: user.timezone
+      required: false
+      question: 需要使用哪个时区处理日期和时间？
+    - path: media_fetch.transport_backends
+      required: false
+      question: 是否保留 qBittorrent 优先、aria2 续传的默认下载后端顺序？
+    - path: media_fetch.preferred_subtitles
+      required: false
+      question: 需要优先验收哪些字幕语言？
+  interaction:
+    ask_missing: true
+    max_questions: 1

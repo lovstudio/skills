@@ -1,0 +1,113 @@
+schema: lovstudio/skill-card/v1
+description: "把片名或 Magnet/Torrent 请求变成经过容量预检、版本核验、可恢复下载和 ffprobe 验收的本地媒体，并把字幕缺口单独呈现。"
+owner:
+  team: "LovStudio / 手工川工作室"
+  contact: "LovStudio local skill maintainers"
+license:
+  name: MIT
+  terms: "可在保留许可与版权声明的前提下使用、修改和分发。"
+  url: "LICENSE"
+use_case:
+  audience: "需要保存长视频、重视剪辑版本、体积、字幕和完整性证据的用户"
+  scenario: "从片名或已有 Magnet/Torrent 识别、选择、下载并验收电影或剧集"
+  tasks:
+    - "独立检索并归一化候选"
+    - "根据剪辑、画质、体积、字幕和实时健康度排序"
+    - "qBittorrent 首轮测速，aria2 同输入续传兜底"
+    - "ffprobe 验收文件、音视频流、时长和字幕"
+deployment:
+  geography: "global"
+  environments:
+    - "macOS 或 Linux 本地 Agent runtime"
+    - "Portable Agent Skills format"
+  state: "source_ready_local_validation"
+requirements:
+  runtime:
+    - "Python 3.9+"
+    - "PyYAML"
+    - "FFmpeg / ffprobe"
+  transport:
+    - "qBittorrent 5.x Web API for integrated search and first probes"
+    - "aria2 1.36+ optional for resumable fallback"
+  credentials: "qBittorrent credentials remain in environment variables or an operating-system credential store; reports contain no secrets."
+  storage: "Destination capacity must cover payload, partial-file overhead, probe budget, continuation metadata, and configured reserve."
+risks:
+  - risk: "搜索结果中的做种数和文件名会随时间漂移，且不等同于稳定下载速度。"
+    mitigation: "保留 advertised 与 observed 两套字段，执行暖机后的持续测速，并记录 backend 与切换事件。"
+  - risk: "导演剪辑、加长版和院线版可能是不同内容，而非单纯画质等级。"
+    mitigation: "使用时长、发行资料和媒体流证据核验剪辑；存在实质差异时保留用户选择。"
+  - risk: "选中的发行文件可能缺少简中字幕。"
+    mitigation: "将 subtitle_status 独立于媒体 verdict，匹配同一发行版本的外置 SRT，并保留时间轴与编码证据。"
+  - risk: "长任务中断后局部文件可能被误认为完成。"
+    mitigation: "将 .aria2 控制文件视为续传状态，完成后再执行完整性、流信息和剩余部分检查。"
+references:
+  - title: "Media Fetch workflow"
+    path: "SKILL.md"
+  - title: "Candidate and decision schema"
+    path: "references/candidate-schema.md"
+  - title: "Acquisition, monitoring, and recovery policy"
+    path: "references/acquisition-policy.md"
+  - title: "Simplified Chinese subtitle handoff"
+    path: "references/subtitle-handoff.md"
+  - title: "Verified user case evidence"
+    path: "cases/evidence/lotr-download.json"
+  - title: "Final media verification evidence"
+    path: "cases/evidence/lotr-verification.json"
+output:
+  types:
+    - "normalized candidate manifest"
+    - "ranked decision JSON"
+    - "acquisition and transport trace JSON"
+    - "verified local media"
+    - "optional exact-release zh-Hans SRT"
+  formats:
+    - "JSON"
+    - "MKV / MP4 / supported container"
+    - "UTF-8 SRT"
+  validation: "Final output requires local file presence, readable video stream, positive duration, expected edition evidence, stream inspection, subtitle status, and no unresolved partial suffix."
+version: "0.2.0"
+ethical_considerations: "尊重适用的版权、来源条款和隐私边界；凭据留在外部安全存储；报告明确区分发现线索、实时证据和最终验收，不把缺失字幕或客户端进度包装成完整结果。"
+dimensions:
+  - id: "edition-identity"
+    label: "剪辑版本识别"
+    description: "先确认作品与剪辑版本，再比较画质和体积。"
+    evidence: "quality-policy.md 的时长容差规则；LOTR 案例的 Extended Remastered 候选与三部片时长回读。"
+  - id: "transport-resilience"
+    label: "下载韧性"
+    description: "以持续实测速度选择后端，并在同一输入上保留可恢复状态。"
+    evidence: "aria2_acquire.py 的 DHT/PeX/LSD/Tracker 配置、.aria2 状态和 LOTR 的 qBittorrent→aria2 传输记录。"
+  - id: "storage-discipline"
+    label: "容量纪律"
+    description: "把成片、局部文件、探测预算和空间保留一起纳入预检。"
+    evidence: "storage_preflight.py 与 acquisition-policy.md 的计算式和终态。"
+  - id: "media-verification"
+    label: "媒体验收"
+    description: "客户端完成信号之后，逐文件检查可读性、时长、编码、音轨和字幕。"
+    evidence: "verify_media.py 的结构化报告；LOTR 案例 3 个文件均可读且无错误。"
+  - id: "subtitle-fidelity"
+    label: "字幕保真"
+    description: "将简中字幕作为独立状态，遵循时间轴、UTF-8、SRT 和原文件不变原则。"
+    evidence: "references/subtitle-handoff.md 与 sgc-subtitle-freedom-skill 的 SRT 保真约定；LOTR 报告明确标出 zh-Hans 缺口。"
+pricing:
+  model: "free"
+  currency: "CNY"
+  list_price_cny: 0
+  basis: "本地 Skill 源码、脚本、结构化案例和验证门禁共同交付；价值来自减少错误版本、重复下载和未验收文件。"
+  boundary: "免费版本覆盖本地检索、选择、qBittorrent/aria2 下载编排、容量预检、媒体验收和字幕状态记录；外部来源、网络可达性、播放器和字幕内容本身不随 Skill 交付。"
+  review_trigger: "当 aria2/qBittorrent API、FFmpeg、Skill runtime 或字幕 companion 的接口发生变化，或新增三类真实媒体任务后复评价格和交付边界。"
+  confidence: "case-backed"
+distribution:
+  paid:
+    - channel: "workbuddy"
+      state: "prepared_not_published"
+      note: "已具备 Skill Card 与案例材料，等待独立发布流程。"
+    - channel: "skillpay"
+      state: "prepared_not_published"
+      note: "定价依据已记录，尚未创建付费商品。"
+  free:
+    - channel: "lovstudio"
+      state: "local_ready"
+      note: "源码、案例和本地校验已准备。"
+    - channel: "github"
+      state: "prepared_not_published"
+      note: "源码结构适合公开仓库，当前未执行远程发布。"

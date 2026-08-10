@@ -12,7 +12,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/version-0.1.0-CC785C" alt="version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
-  <a href="https://lovstudio.ai">lovstudio.ai</a> · part of <a href="https://github.com/lovstudio/general-skills">general-skills</a>
+  <a href="https://lovstudio.ai">lovstudio.ai</a> · part of <a href="https://github.com/lovstudio/skills">general-skills</a>
 </p>
 
 ---

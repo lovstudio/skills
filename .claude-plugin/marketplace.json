@@ -11,7 +11,7 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 3 free + 2 paid (Credits redemption required).",
+      "description": "General — 5 free + 2 paid (Credits redemption required).",
       "category": "General",
       "skills": [
         "./skills/image-creator",
@@ -19,7 +19,9 @@
         "./skills/professional-infographic",
         "./skills/fact-check",
         "./skills/wdb-cli",
-        "./skills/subtitle-freedom"
+        "./skills/subtitle-freedom",
+        "./skills/macos-disk-optimizer",
+        "./skills/media-fetch"
       ],
       "strict": false
     },

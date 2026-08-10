@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.0 — 2026-08-10
+
+- **Unified catalog**: merged `lovstudio/general-skills` and `lovstudio/dev-skills` into this repository's `skills.yaml` and `skills/` distribution tree.
+- **Archived indexes**: new releases and installations use `lovstudio/skills`; the two former catalog repositories are retained as read-only historical archives.
+
 ## 0.8.1 — 2026-04-21
 
 - **New skill**: `find-logo` (free, Design) — fetch + score brand logos from public sources, archive to `~/.lovstudio/logo-collection/`.

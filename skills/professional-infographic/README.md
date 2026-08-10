@@ -5,7 +5,7 @@
 
 把当前上下文、研究结论或文档，转成咨询 Exhibit：先建立可辩护的视觉论证，再生成可编辑 HTML/SVG 与高清 PNG。
 
-Part of [lovstudio general skills](https://github.com/lovstudio/general-skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## 它解决什么问题
 
