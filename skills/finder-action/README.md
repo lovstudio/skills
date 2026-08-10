@@ -9,7 +9,7 @@ Part of [lovstudio/skills](https://github.com/lovstudio/skills) &mdash; by [lovs
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill sgc-finder-action
+npx skills add lovstudio/skills --skill sgc-finder-action -y -g
 ```
 
 Requires: macOS 14+, Xcode (for Mode B), `brew install xcodegen` (for Mode B)

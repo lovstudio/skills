@@ -5,24 +5,24 @@
 Initialize or refactor a frontend project to use TanStack Query as the shared
 server-state layer.
 
-Independent source repository, also distributed through [lovstudio dev-skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Independent source repository, also distributed through [lovstudio dev-skills](https://github.com/lovstudio/dev-skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## Install
 
 ```bash
-npx skills add lovstudio/install-tanstack-query-skill
+npx skills add lovstudio/install-tanstack-query-skill --all -g
 ```
 
 The aggregate bundle remains available:
 
 ```bash
-npx skills add lovstudio/skills
+npx skills add lovstudio/dev-skills --all -g
 ```
 
 Or through Claude Code plugin marketplace:
 
 ```text
-/plugin marketplace add lovstudio/skills
+/plugin marketplace add lovstudio/dev-skills
 /plugin install dev-tools@sgc-dev
 ```
 

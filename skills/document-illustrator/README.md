@@ -4,7 +4,7 @@
 
 为文档原地插入 AI 配图：先全局规划插入点，再并行生成图片，最后按锚点异步插回原文。
 
-Part of [lovstudio skills](https://github.com/lovstudio/skills) — by [lovstudio.ai](https://lovstudio.ai)
+Part of [lovstudio general skills](https://github.com/lovstudio/general-skills) — by [lovstudio.ai](https://lovstudio.ai)
 
 ## Install
 

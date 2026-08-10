@@ -11,7 +11,7 @@ without making the repo public.
 ## Install
 
 ```bash
-npx skills add lovstudio/gh-access-skill
+npx skills add lovstudio/gh-access-skill --all -g
 ```
 
 Or clone directly:

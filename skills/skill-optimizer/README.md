@@ -11,7 +11,7 @@ Part of [lovstudio/skills](https://github.com/lovstudio/skills) — by [lovstudi
 ## Install
 
 ```bash
-npx skills add lovstudio/skills --skill sgc-skill-optimizer
+npx skills add lovstudio/skills --skill sgc-skill-optimizer -y -g
 ```
 
 Requires: Python 3.8+ (stdlib only, no `pip install`)
