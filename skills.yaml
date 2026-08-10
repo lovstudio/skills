@@ -2647,6 +2647,7 @@ skills:
   price_cny: 0.99
   category: General
   version: 1.2.8
+  updated_at: 2026-08-10T05:30:22Z
   description: Create learner-friendly English subtitles using the selected profile as a minimum difficulty floor, with higher-level
     glosses, evidence-based ASS art cards, and optional renderer-compatible ASS/PGS sidecars without re-encoding the video.
   tagline_en: Make learner subtitles that keep the selected level and harder expressions, with spoiler-safe ASS cards and
@@ -2692,6 +2693,7 @@ skills:
   paid: false
   category: General
   version: 0.2.0
+  updated_at: 2026-08-09T13:01:54Z
   description: Guarded macOS disk cleanup with archive migration, rollback-aware staging, direct rollback-item purging, and real-capacity verification.
   tagline_en: Clean up Mac storage with guarded planning, archive migration, exact rollback-item purging, and real-capacity verification.
   tagline_zh: 按目标容量整理 Mac 磁盘，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
@@ -2726,6 +2728,7 @@ skills:
   paid: false
   category: General
   version: 0.2.0
+  updated_at: 2026-08-09T18:03:36Z
   description: Find, compare, and download long-form media with edition evidence, capacity preflight, qBittorrent and aria2 failover, and ffprobe verification.
   tagline_en: Find the right edition, resume through the faster transport, and verify the local media and subtitle status.
   tagline_zh: 检索并选择合适版本，qBittorrent 与 aria2 续传兜底，最后验收本地媒体与字幕状态。
