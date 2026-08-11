@@ -21,7 +21,7 @@ compatibility: >
   DejaVu Sans Mono, and Noto Emoji when available.
 metadata:
   author: contributors
-  version: "1.3.5"
+  version: "1.3.6"
   tags: markdown pdf cjk reportlab typesetting
 ---
 
