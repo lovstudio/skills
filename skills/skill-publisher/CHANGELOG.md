@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.3] - 2026-08-11
+
+### Fixed
+
+- 补齐发布器 compatibility 元数据和 Skills CLI 安装入口
+
+## [0.3.2] - 2026-08-11
+
+### Fixed
+
+- 让 source validator 接受标准 compatibility 元数据
+
 ## [0.3.1] - 2026-08-10
 
 ### Changed

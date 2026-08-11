@@ -1,6 +1,6 @@
 # lov-skill-publisher
 
-![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.3-CC785C)
 
 把已经验证并安装在本地的 Skill 发布到一个或多个独立渠道，同时保持平台元数据和发行产物不污染源代码。
 
@@ -13,6 +13,12 @@ export SKILL_SOURCE_DIR="$(pwd)"
 mkdir -p "${SKILL_SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}"
 ln -s "$SKILL_SOURCE_DIR" \
   "$SKILL_SKILLS_INSTALL_DIR/lov-skill-publisher"
+```
+
+也可以通过 Skills CLI 安装：
+
+```bash
+npx skills add lovstudio/skill-publisher-skill -g -y
 ```
 
 ## 当前适配器

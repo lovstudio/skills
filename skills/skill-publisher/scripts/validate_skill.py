@@ -25,6 +25,7 @@ SOURCE_FRONTMATTER_KEYS = {
     "name",
     "description",
     "license",
+    "compatibility",
     "allowed-tools",
     "metadata",
 }

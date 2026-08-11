@@ -5,9 +5,13 @@ description: >
   channels, including “发布这个 Skill”、“上架 Skill Publisher”、"publish this skill"、
   "package for WorkBuddy" 或“提交 SkillPay”。
 license: MIT
+compatibility: >-
+  Requires Python 3.8+, PyYAML, git and GitHub CLI for the Skill Publisher
+  adapter. Channel credentials stay in environment variables or credential
+  stores; generated metadata and archives stay outside canonical source.
 metadata:
   author: contributors
-  version: "0.3.1"
+  version: "0.3.3"
   tags:
     - skill-publisher
     - release
