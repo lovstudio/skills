@@ -1761,6 +1761,39 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/video-chapter.md
+- name: publish-wechat-channels
+  display_name: WeChat Channels Publisher
+  repo: lovstudio/publish-wechat-channels-skill
+  name_zh: 视频号发布器
+  paid: false
+  category: Video Creation
+  version: 0.0.2
+  description: Publish WeChat Channels videos through the visible assistant web flow with preflight, field readback, and status verification.
+  tagline_en: Publish WeChat Channels videos with preflight, field readback, and status verification.
+  tagline_zh: 通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。
+    value_en: Publish WeChat Channels videos with preflight, field readback, and status verification.
+    anchor_zh: 一次视频号发布通常可省下数十分钟的字段填写、状态确认和重复发布排查时间。
+    anchor_en: A WeChat Channels publish run typically saves tens of minutes of field entry, status checking, and duplicate-publish diagnosis.
+    basis_zh: 按一条可回读的视频发布链路定价，重点是减少漏填字段、重复提交和状态误判。
+    basis_en: Priced around a verifiable video-publishing workflow, reducing missing fields, duplicate submissions, and status misreads.
+    boundary_zh: 需要用户已登录的视频号助手和本地视频；账号权限、平台审核、网络可达性与素材版权按实际条件处理。
+    boundary_en: Requires an already logged-in WeChat Channels Assistant and local video; account access, platform review, network reachability, and media rights follow actual conditions.
+    maintenance_zh: 随视频号页面结构、平台规则、浏览器行为和媒体格式变化复评。
+    maintenance_en: Review when the WeChat Channels UI, platform rules, browser behavior, or media formats change.
+    confidence: entry
+    review_trigger_zh: 版本变化、连续 10 次真实使用或平台页面与审核流程明显变化时复评。
+    review_trigger_en: Review after a version change, 10 real uses, or a material change in the platform UI or review flow.
 - name: mobile-adapt
   updated_at: 2026-05-09T13:03:22.000Z
   skillpay_product_id: P0806000200843454

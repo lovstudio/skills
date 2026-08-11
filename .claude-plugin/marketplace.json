@@ -112,10 +112,11 @@
     {
       "name": "video-creation",
       "source": "./",
-      "description": "Video Creation — 1 free skill bundled together.",
+      "description": "Video Creation — 2 free skills bundled together.",
       "category": "Video Creation",
       "skills": [
-        "./skills/video-chapter"
+        "./skills/video-chapter",
+        "./skills/publish-wechat-channels"
       ],
       "strict": false
     },
