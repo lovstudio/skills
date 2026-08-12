@@ -1,0 +1,109 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "将录屏、演示视频和音频素材整理为可发布成片，保护关键原声，完成 BGM 混音、封面方向、媒体参数检查和交付状态记录。"
+owner:
+  team: "Media Creator Maintainers"
+  contact: "Repository issue tracker"
+license:
+  name: MIT
+  terms: "允许使用、修改和分发；保留版权与许可声明。"
+  url: "LICENSE"
+use_case:
+  audience: "需要把真实操作过程整理为短视频的创作者、产品团队和工作流记录者"
+  scenario: "从长录屏或演示素材中提炼问题、操作证据和最终结果，交付一份可回看的成片。"
+  tasks:
+    - "扫描视频、音频和字幕流并建立媒体清单"
+    - "按真实信息节点设计剪辑结构与封面方向"
+    - "混合原声与 BGM，并完成响度、峰值和解码质检"
+deployment:
+  geography: global
+  environments:
+    - "macOS、Linux 或 Windows 的本地 Agent Skills 环境"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "Python 3.8+"
+    - "FFmpeg 与 FFprobe"
+    - "可选 Pillow、Playwright 或图像生成工具"
+  runtime:
+    - "源视频、音频和封面素材可读"
+    - "独立的交付输出目录"
+risks:
+  - risk: "剪辑误删最终结果或把原声替换成 BGM。"
+    mitigation: "在 EDL 中标记 protected_audio，渲染后回看最终连续播放并运行音频质检。"
+  - risk: "上传等待、弹窗和卡顿占据过多时长，降低信息密度。"
+    mitigation: "只保留必要状态信号，压缩等待段并以真实结果收束。"
+  - risk: "把未验证的速度、成功率或线上状态写进标题和报告。"
+    mitigation: "将渲染、上传、发布和回读分开记录，只引用可回读证据。"
+  - risk: "BGM 盖住人声、点击反馈或最终播放声音。"
+    mitigation: "使用 ducking、淡入淡出和响度门禁，并在成果段让原声优先。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Media workflow"
+    path: "references/media-workflow.md"
+  - title: "Audio mix guidance"
+    path: "references/audio-mix.md"
+output:
+  types:
+    - "publish-ready MP4"
+    - "cover direction or cover asset"
+    - "edit manifest and quality reports"
+  formats:
+    - "H.264/AAC MP4"
+    - "PNG or editable cover brief"
+    - "JSON and Markdown evidence"
+  parameters:
+    - "aspect ratio"
+    - "duration"
+    - "frame rate"
+    - "audio loudness and true peak"
+    - "render, audio, creative, and publish status"
+  validation:
+    - "FFprobe stream and format inspection"
+    - "FFmpeg decode smoke test"
+    - "timeline overlap check"
+    - "loudness and true-peak report"
+    - "manual spot check of protected result segments"
+  description: "输出文件与证据报告共同构成交付物；线上发布状态只有在真实回读后才成立。"
+ethical_considerations: "只处理用户提供或有权使用的素材；保留来源和授权信息，不伪造发布证据，不把个人账号、Cookie 或凭据写进 Skill、EDL 或报告。"
+dimensions:
+  - id: editorial-fit
+    label: "叙事贴合度"
+    description: "是否把真实问题、工作流证据和最终结果组织成易于理解的短视频。"
+    evidence: "真实案例将约 17 分钟录屏收束为 64.9 秒，并把上传弹窗从约 11 秒压缩到 2.4 秒。"
+    score: "evidence-backed"
+  - id: audio-integrity
+    label: "原声与混音完整性"
+    description: "是否保留最终结果的连续原声，并让 BGM 退到氛围层。"
+    evidence: "真实案例报告记录最终高潮段恢复连续播放及原声，BGM 在高潮处降低；综合响度为 -15.6 LUFS-I，True Peak 为 -1.2 dBFS。"
+    score: "evidence-backed"
+  - id: technical-delivery
+    label: "技术交付完整度"
+    description: "是否具备可发布的画幅、编码、音频和解码证据。"
+    evidence: "真实案例输出 1920×1080、30fps、H.264、AAC 48kHz 双声道，并附带 SHA-256 与质检报告。"
+    score: "evidence-backed"
+  - id: status-traceability
+    label: "状态可追溯性"
+    description: "是否把渲染、上传、发布和线上回读拆成独立状态。"
+    evidence: "真实案例记录视频号对象 ID、回读状态 status=1、isPostProcessSuccess=true、isPostHasPosted=true，并最终标记 published。"
+    score: "evidence-backed"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "本地 Skill 通过可复用的媒体清单、FFmpeg 操作规范、原声保护规则和质检脚本降低重复剪辑与返工成本。"
+  boundary: "免费范围包含本地制作指令、探测/时间线/音频质检脚本和交付模板；不包含云端渲染、素材版权、平台账号或发布代操作。"
+  review_trigger: "当新增平台编码要求、云端渲染服务或持续维护成本，重新评估是否拆出付费执行服务。"
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-published
+    - channel: skillpay
+      status: not-published
+  free:
+    - channel: github
+      status: not-published
+    - channel: lovstudio
+      status: local-only

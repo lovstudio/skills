@@ -1,0 +1,43 @@
+{
+  "schema": "lovstudio/media-edit/v1",
+  "source": {
+    "video": "SOURCE_VIDEO",
+    "duration_seconds": 120
+  },
+  "target": {
+    "platform": "video-channel",
+    "aspect_ratio": "16:9",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  "segments": [
+    {
+      "id": "hook",
+      "source_start": 0,
+      "source_end": 5.2,
+      "role": "result-clue",
+      "protected_audio": false
+    },
+    {
+      "id": "problem",
+      "source_start": 18.4,
+      "source_end": 30.1,
+      "role": "problem",
+      "protected_audio": false
+    },
+    {
+      "id": "result-playback",
+      "source_start": 94.3,
+      "source_end": 103.8,
+      "role": "final-evidence",
+      "protected_audio": true,
+      "bgm": "original-only"
+    }
+  ],
+  "audio": {
+    "bgm": "BGM_FILE",
+    "target_lufs_i": -16,
+    "true_peak_ceiling_dbfs": -1
+  }
+}

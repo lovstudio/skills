@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **69 skills** — 57 Free + 12 Paid.
+> **70 skills** — 58 Free + 12 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -120,6 +120,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-distiller`](https://github.com/lovstudio/skill-distiller-skill) | Turn delivery history into a clear, reusable Skill blueprint with boundaries and acceptance checks. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-publisher`](https://github.com/lovstudio/skill-publisher-skill) | Publish a validated Skill across channels while keeping each release state independently verifiable. |
 | **Video Creation** | | |
+| ![Free](https://img.shields.io/badge/Free-green) | [`media-creator`](https://github.com/lovstudio/media-creator-skill) | Turn real screen recordings into publish-ready videos with protected result audio, BGM mix, cover direction, and delivery evidence. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`publish-wechat-channels`](https://github.com/lovstudio/publish-wechat-channels-skill) | Publish WeChat Channels videos with preflight, field readback, and status verification. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-chapter`](https://github.com/lovstudio/video-chapter-skill) | Plan chapters, tune the progress bar in React Studio, then export an overlay, final video, or editor package. |
 | **Meta** | | |

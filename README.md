@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **69 个技能** — 57 个免费 + 12 个付费。
+> **70 个技能** — 58 个免费 + 12 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -119,6 +119,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-distiller`](https://github.com/lovstudio/skill-distiller-skill) | [Skill 经验蒸馏](https://github.com/lovstudio/skill-distiller-skill) | 将项目经验蒸馏为边界清晰、可创建且可验收的 Skill 蓝图。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-publisher`](https://github.com/lovstudio/skill-publisher-skill) | [Skill 发布器](https://github.com/lovstudio/skill-publisher-skill) | 将已验证的 Skill 多渠道发布，并分别保留每个渠道的可核验状态。 |
 | **Video Creation** | | | |
+| ![Free](https://img.shields.io/badge/Free-green) | [`media-creator`](https://github.com/lovstudio/media-creator-skill) | [媒体创作工作流](https://github.com/lovstudio/media-creator-skill) | 把真实录屏整理成可发布成片，保留成果原声，完成 BGM 混音、封面方向和交付质检。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`publish-wechat-channels`](https://github.com/lovstudio/publish-wechat-channels-skill) | [视频号发布器](https://github.com/lovstudio/publish-wechat-channels-skill) | 通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-chapter`](https://github.com/lovstudio/video-chapter-skill) | [视频章节工作台](https://github.com/lovstudio/video-chapter-skill) | 从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。 |
 | **Meta** | | | |

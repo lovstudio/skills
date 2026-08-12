@@ -1,0 +1,41 @@
+[
+  {
+    "type": "case",
+    "title": "我跑通了视频号自动发布工作流：从长录屏到 V4 成片",
+    "description": "真实用户将一段约 17 分钟的工作流录屏整理为视频号成片，重点修复了上传弹窗过长、最终成果段原声被删和 BGM 抢占注意力的问题，并完成线上回读。",
+    "input": {
+      "items": [
+        "ego自动发公众号视频.mp4",
+        "Global Technology Background.mp3",
+        "视频号发布过程中的最终结果播放片段",
+        "原始录屏中的上传弹窗、操作证据和发布回读信息"
+      ],
+      "source_profile": {
+        "duration_seconds": 1065.877,
+        "resolution": "1660x1080",
+        "frame_rate": 60,
+        "audio": "mono AAC"
+      }
+    },
+    "prompt": "把这段录屏剪成 16:9 视频号成片，标题为《我跑通了视频号自动发布工作流》；上传弹窗弱化，保留最终视频连续播放和原声，BGM 只做氛围，成果段让原声成为主角，并给出可回读的质检与发布报告。",
+    "output": {
+      "items": [
+        "我跑通了视频号自动发布工作流-16x9-v4.mp4",
+        "质检与发布报告-v4.md",
+        "1920x1080、30fps、H.264、AAC 48kHz 双声道",
+        "64.9 秒，综合响度 -15.6 LUFS-I，True Peak -1.2 dBFS",
+        "视频号对象 ID 已回读，status=1，isPostProcessSuccess=true，isPostHasPosted=true，最终状态 published"
+      ],
+      "editorial_changes": [
+        "上传弹窗从约 11 秒压缩到 2.4 秒",
+        "恢复最终视频连续播放和原声",
+        "在高潮段降低 BGM，进入成果段后隐藏解释性字幕与顶栏"
+      ],
+      "evidence": {
+        "sha256": "605c6fa9a8a763bf3ea41527f6be45e776d373ddd532bb365b8b2114870714ae",
+        "publication_date": "2026-08-12",
+        "publication_time": "18:52"
+      }
+    }
+  }
+]

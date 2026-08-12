@@ -1,228 +1,240 @@
 ---
 name: lov-skill-optimizer
 category: Meta Skills
-tagline: "Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG entry."
+tagline: "Audit an Agent Skill, apply focused fixes, bump semver, and verify every distribution layer."
 description: >
-  Audit and automatically optimize a skill-publisher skill against repo conventions
-  and official Anthropic skill-creator best practices, then bump the semver
-  version and append a CHANGELOG entry. Checks SKILL.md frontmatter/trigger
-  quality, script CLI hygiene, directory naming, README badge, progressive
-  disclosure structure, Agent Skills-compatible naming, and portability issues
-  such as hard-coded personal workspace paths, private Skill Publisher workspace
-  assumptions, fixed agent runtime paths, or missing user configuration. Prioritizes issues raised in the
-  current conversation (e.g. bugs the user just hit) over a generic sweep. Use
-  when the user asks to "optimize", "refine", "audit", or "polish" an existing
-  skill, or when they say "bump version", "update changelog", or "fix this
-  skill". Also trigger when the user mentions "优化 skill", "skill 审计", "刷一遍 skill",
-  "skill-optimizer", "bump skill version", "update skill changelog".
+  Audit and optimize one or more existing Agent Skills from a canonical source
+  path, then bump semver, update README/SKILL.md/skill.yaml/CHANGELOG.md, and
+  verify installed copies and catalog synchronization. Checks frontmatter,
+  trigger quality, CLI hygiene, naming, portability, version drift, dirty
+  worktrees, and compatibility contracts. Use when the user asks to optimize,
+  refine, audit, polish, or update a Skill, or mentions "优化 skill", "skill
+  审计", "刷一遍 skill", "skill-optimizer", or "update skill changelog".
 license: MIT
 compatibility: >
-  Requires Python 3.8+ (stdlib only, no external dependencies).
-  Must be run inside the lov-skills repo (auto-detects repo root).
+  Requires Python 3.8+ (stdlib only). Git is optional for linting and required
+  for source commit/push verification. Catalog synchronization is discovered
+  from explicit paths, environment variables, or nearby checkouts; unavailable
+  locations are reported rather than assumed.
 metadata:
-  author: contributors
-  version: "0.6.4"
-  tags: meta skill-maintenance versioning changelog lint
+  author: lovstudio
+  version: "0.8.0"
+  tags: meta skill-maintenance versioning changelog lint portability sync
 ---
 
-# skill-optimizer — 自动优化 skill-publisher skill 并维护版本与 changelog
+# skill-optimizer — 自动优化 Agent Skill 并维护版本与分发状态
 
-Runs a lint → fix → bump → changelog pipeline on an existing skill in this
-repo. Fully automatic — no interactive prompts. Every run produces a concrete
-version bump and a new CHANGELOG.md entry so optimization history is traceable.
+This is a non-interactive maintenance workflow. It infers the target and
+prioritizes issues from the current conversation, then supplements them with a
+generic lint pass. When several Skills are named in one request, process them
+in the order named and emit a separate result block for each Skill.
 
-## When to Use
+## Target and source resolution
 
-- User mentioned a concrete problem with an existing skill in this conversation
-  (wrong trigger phrases, stale CLI flags, missing README badge, etc.) and
-  wants it fixed.
-- User asks to "audit", "polish", "refine", "刷一遍" an existing skill.
-- User explicitly asks to bump a skill's version or update its changelog.
-- Proactively after another skill has been modified meaningfully — run this to
-  record the change with a version bump.
-
-## Workflow (MANDATORY, fully automatic)
-
-**Do not ask the user for options. Infer everything from (a) the target skill
-name and (b) any optimization notes mentioned in the current conversation.**
-
-### Step 1: Identify target & context
-
-From the user's message, extract:
-
-1. **Target skill name** — e.g. `any2pdf`, `lov-any2pdf`, or `any2pdf-skill`.
-   Normalize to the bare name (strip prefix). If the user did not name a skill
-   explicitly, infer it from recent conversation context (the skill they were
-   just working on). If still ambiguous, ask one targeted question.
-2. **Context-driven fix list** — scan the current conversation for issues the
-   user raised about this skill: wrong flags, trigger misfires, broken CJK
-   rendering, missing options, confusing README, etc. This list is the
-   **primary driver**. The generic lint only supplements it.
-
-### Step 2: Lint
+Prefer an explicit canonical path whenever the Skill is outside a conventional
+skills repository:
 
 ```bash
-python3 skills/lov-skill-optimizer/scripts/lint_skill.py <name> --json
+python3 scripts/lint_skill.py --path /absolute/path/to/skill --json
+python3 scripts/inspect_layout.py --path /absolute/path/to/skill --json
 ```
 
-Parse the JSON findings. Combine with the context-driven fix list from Step 1.
-Prioritize in this order:
+For a name, accept `foo`, `lov-foo`, or `foo-skill`. Resolution may find a
+source checkout, an installed copy, or a catalog entry. Before editing:
 
-1. Fixes the user explicitly mentioned in conversation (highest priority)
-2. Lint `error` findings
-3. Lint `warn` findings
-4. Lint `info` findings — apply only if cheap and safe
+1. Resolve symlinks and record the actual path.
+2. Identify the Git root, branch, and dirty worktree state.
+3. Treat a source checkout as canonical. If the target is an installed copy,
+   locate a matching source checkout; when no source exists, report that the
+   supplied path itself is canonical instead of silently editing another copy.
+4. Record every discovered installation and catalog path. A copy is `synced`
+   only when its content digest matches the source; a missing location is
+   `not_discovered`, never `complete`. A symlink is `synced` only when it
+   resolves to the canonical source.
 
-For standardization work, portability findings are high priority when the skill
-is reusable by other users. Mark/Skill Publisher private paths should either be
-removed, moved into `references/user-config.md` + env/profile handling, or
-explicitly marked author-only in `compatibility`.
+Do not absorb pre-existing edits into a maintenance commit. If a target file is
+already dirty, review the overlap before editing it and stage only the exact
+files changed by this optimization.
 
-### Step 3: Apply fixes directly
+## Workflow (mandatory)
 
-Edit `SKILL.md`, `README.md`, `scripts/*.py` with the `Edit` tool based on the
-prioritized fix list. Guidelines:
+### Step 1: Extract targets and context
 
-- **SKILL.md frontmatter description**: make sure it covers what + when +
-  concrete trigger phrases (中文 + English). Don't bloat it; keep under ~800 chars.
-- **CLI args in scripts**: if the user hit a bug with a specific flag, fix the
-  root cause — don't paper over it.
-- **Progressive disclosure**: if SKILL.md body > 500 lines, split the largest
-  section to `references/<topic>.md`.
-- **User initialization**: if the skill references personal workspace paths,
-  private brand assets, design guides, or output roots, add a
-  `references/user-config.md` profile/env contract and replace required local
-  paths with CLI flags, environment variables, or profile lookups.
-- **Don't write tests or docs that weren't asked for.** The CHANGELOG entry IS
-  the documentation of the change.
-- **Don't add emojis** unless the original file already uses them consistently.
+Normalize every explicitly named Skill and preserve the user's order. Strip the
+`lov-` prefix only for lookup; keep the public Skill identifier in reports.
+Collect the current-conversation fix list first: broken flags, trigger misses,
+wrong paths, confusing output, missing modules, compatibility requirements, or
+other concrete symptoms.
 
-### Step 4: Decide bump type
+### Step 2: Baseline lint
 
-Choose semver bump based on the fixes applied:
-
-| Bump    | Use when                                                           |
-|---------|--------------------------------------------------------------------|
-| `patch` | bug fix, wording fix, frontmatter tweak, CJK rendering fix         |
-| `minor` | new CLI flag, new option, new reference doc, expanded scope        |
-| `major` | breaking CLI change, removed option, renamed skill                 |
-
-Stay in 0.x unless explicitly told otherwise — per repo release conventions.
-
-### Step 5: Bump version + write changelog
+For each target, run the linter against the resolved canonical path:
 
 ```bash
-python3 skills/lov-skill-optimizer/scripts/bump_version.py <name> \
-  --type <patch|minor|major> \
-  --message "<one-line summary of the biggest change>" \
-  --change "<additional bullet>" \
-  --change "<additional bullet>"
+python3 scripts/lint_skill.py --path /absolute/path/to/skill --json
 ```
 
-This updates:
-- `README.md` version badge (source of truth)
-- `SKILL.md` frontmatter `metadata.version` (kept in sync if present)
-- `CHANGELOG.md` — prepends a new entry with today's date (creates the file if missing)
+Prioritize findings in this order:
 
-### Step 6: Re-lint & report
+1. Fixes explicitly mentioned in the conversation;
+2. `error` findings;
+3. `warn` findings;
+4. cheap, low-risk `info` findings.
+
+The baseline must include version-source drift between README.md, SKILL.md
+frontmatter, and skill.yaml. Portability findings are high priority for a
+reusable Skill: move personal paths to flags, environment variables, or
+`references/user-config.md`, or mark a genuinely author-only dependency in
+`compatibility`.
+
+### Step 3: Apply focused fixes
+
+Edit only the canonical source. Keep the Skill's public trigger surface,
+compatibility aliases, storage contracts, and user-facing semantics explicit.
+Use progressive disclosure when SKILL.md grows beyond roughly 500 lines. Add a
+script or reference file only when it resolves a concrete audit finding or
+conversation issue.
+
+The linter checks:
+
+- Agent Skills-compatible frontmatter and trigger phrases;
+- README version badge and installation command;
+- `metadata.version`, README badge, and `skill.yaml` version consistency;
+- CLI use of argparse and obvious script hygiene;
+- TODO placeholders and oversized instruction bodies;
+- personal paths, fixed runtime paths, and missing user configuration;
+- source/install/catalog layout evidence.
+
+### Step 4: Bump semver and changelog
+
+Use the path-aware version tool so all version surfaces move together:
 
 ```bash
-python3 skills/lov-skill-optimizer/scripts/lint_skill.py <name>
+python3 scripts/bump_version.py \
+  --path /absolute/path/to/skill \
+  --type minor \
+  --message "add guarded project rename workflow" \
+  --change "report source, installation, and catalog synchronization state"
 ```
 
-For a repo-wide standardization baseline:
+Choose `patch` for bug, wording, frontmatter, or lint fixes; `minor` for a new
+flag, reference, module, or expanded workflow; `major` for a breaking CLI or
+removed behavior. Stay in `0.x` unless the user explicitly requests otherwise.
+The tool updates README.md, SKILL.md, skill.yaml, and CHANGELOG.md and refuses
+to duplicate an existing changelog version.
+
+### Step 5: Re-lint and inspect layout
 
 ```bash
-python3 skills/lov-skill-optimizer/scripts/lint_skill.py --all --root .
+python3 scripts/lint_skill.py --path /absolute/path/to/skill --json
+python3 scripts/inspect_layout.py --path /absolute/path/to/skill --json
 ```
 
-Report to the user, in this exact shape and nothing more:
+Do not report `remaining lint warnings: none` unless the final JSON was read.
+Do not report synchronization as complete unless every discovered distribution
+copy and required catalog check has been verified after the source change. Keep
+`distribution_state`, `catalog_state`, and the aggregate `sync_state` separate:
+an installed copy can be `complete` while an undiscovered catalog keeps the
+aggregate state `partial`. A discovered catalog is `complete` only when its
+matching Skill payload digest is `synced`.
 
-```
-optimized: lov-<name>
-version:   <old> → <new>
-fixes:
-  - <bullet 1>
-  - <bullet 2>
-remaining lint warnings: <count>  (or "none")
-```
+### Step 6: Synchronize discovered distributions
 
-**Do not** print a trailing summary, self-congratulation, or next-step suggestions.
-The diff speaks for itself.
+`inspect_layout.py` checks conventional and configured installation roots:
+`AGENT_SKILLS_DIR`, `CLAUDE_SKILLS_DIR`, `CODEX_SKILLS_DIR`, `SKILLS_DIR`,
+plus the host's agent-managed fallback roots. It also checks explicit
+`--install-root` and `--catalog-root` values plus nearby `general-skills` and
+`dev-skills` checkouts. Use an environment variable or explicit flag when the
+installation root is outside the conventional layout.
 
-### Step 7: Commit, push & sync all locations
-
-Skills live in an independent source repo plus the unified distribution catalog.
-Keep both published locations in sync:
-
-```
-source repo:          lovstudio/<name>-skill
-unified catalog:      lovstudio/skills
-```
-
-**7a. Commit & push to source repo:**
+For a non-symlink installation copy, first run a read-only sync plan:
 
 ```bash
-cd <source-checkout>
-git add <changed files>
-git commit -m "fix(<name>): <one-line summary>"
-git push
+python3 scripts/sync_installation.py \
+  --source /absolute/path/to/canonical-skill \
+  --target /absolute/path/to/installed-skill \
+  --json
 ```
 
-- Commit message follows repo convention: `fix|feat|docs(<skill-name>): <summary>`
-- Use `fix` for patch, `feat` for minor, `feat!` for major
-
-**7b. Sync to the unified distribution repo:**
-
-Use the unified catalog's sync scripts, then render and validate metadata:
+After reviewing `missing`, `changed`, and `extra`, apply the exact copy with:
 
 ```bash
-cd <lovstudio-skills-checkout>
+python3 scripts/sync_installation.py \
+  --source /absolute/path/to/canonical-skill \
+  --target /absolute/path/to/installed-skill \
+  --apply --json
+```
+
+Use `--prune` only when removing extra files from the installation copy is
+explicitly part of the task. Symlink installations are verified, not copied.
+For a catalog, use its own scripts only when they are actually present:
+
+```bash
 python3 scripts/sync-skills.py
 python3 scripts/render-marketplace.py
 python3 scripts/render-readme.py
 python3 scripts/validate_deps.py
-git add <manifest and synced skill paths>
-git commit -m "chore: sync <name> skill"
-git push origin main
 ```
 
-**If any step fails**, report the sync state to the user rather than silently
-skipping. A partial sync (source updated but unified catalog stale) is the exact
-problem this step exists to prevent.
+Run only the commands that exist in that catalog checkout. If no catalog is
+discovered, report `not_discovered`; if source and installation are updated but
+the catalog is stale or unavailable, report `partial`. Never invent a catalog
+path or claim a live-site update from a local source commit.
 
-## CLI Reference
+### Step 7: Commit and push exact source changes
 
-### `lint_skill.py`
+Inspect `git diff --check`, then stage the listed changed files explicitly:
 
-| Argument | Default | Description |
-|----------|---------|-------------|
-| `<name>` | — | Skill name (with or without `lov-` prefix) |
-| `--path` | — | Absolute path to skill dir (overrides name) |
-| `--json` | off | Emit findings as JSON |
+```bash
+git add -- SKILL.md README.md CHANGELOG.md skill.yaml scripts references
+git diff --cached --name-only
+git commit -m "fix(<skill-name>): <one-line summary>"
+git push origin HEAD
+```
 
-Exit code: `2` if any `error`-severity finding, `0` otherwise.
+Use `feat` for a minor feature and `feat!` for a breaking change. If the source
+checkout has no remote, commit on its current branch and report `push:
+not_configured`; do not imply that a remote release happened. If a catalog is a
+separate repository, commit and push it independently after its own validation.
 
-### `bump_version.py`
+## Final report contract
 
-| Argument | Default | Description |
-|----------|---------|-------------|
-| `<name>` | — | Skill name |
-| `--path` | — | Absolute path to skill dir (overrides name) |
-| `--type` | — | `patch` \| `minor` \| `major` (mutually exclusive with `--set`) |
-| `--set` | — | Explicit version e.g. `0.2.0` |
-| `--message`, `-m` | required | Primary changelog bullet |
-| `--change`, `-c` | — | Additional bullet (repeatable) |
-| `--dry-run` | off | Show what would change without writing |
+Return one block per optimized target, with no trailing summary:
 
-## Dependencies
+```
+optimized: lov-<name>
+version:   <old> → <new>
+source:    <canonical path> (<clean|dirty>)
+distribution:
+  - <path>: <synced|drifted|not_discovered>
+catalog:
+  - <path>: <synced|partial|not_discovered>
+fixes:
+  - <bullet 1>
+  - <bullet 2>
+remaining lint warnings: <count>  (or "none")
+sync state: <complete|partial|not_discovered>
+```
 
-Python 3.8+ (stdlib only, no `pip install` needed).
+The keys stay stable for machine parsing; the values and fix bullets follow the
+user's language. A failed or skipped push, installation sync, or catalog sync
+must appear in the relevant state rather than being omitted.
 
-## Runtime context (shared)
+## Runtime context
 
-运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+Read this Skill's `skill.yaml` when the host supplies `skill-runtime/v1`.
+Use only fields declared there. Profile data is for public identity facts and
+preferences are for output language/timezone; neither replaces the canonical
+source, installation, or catalog evidence collected by this workflow.
 
-- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
-- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
-- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
+## CLI reference
+
+```bash
+python3 scripts/lint_skill.py --path PATH [--json]
+python3 scripts/lint_skill.py --all --root PATH [--json]
+python3 scripts/bump_version.py --path PATH --type patch|minor|major -m MESSAGE
+python3 scripts/inspect_layout.py --path PATH [--install-root PATH] [--catalog-root PATH] [--json]
+python3 scripts/sync_installation.py --source PATH --target PATH [--apply] [--prune] [--json]
+```
+
+All bundled tools use Python's standard library only.

@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """
-Audit a skill-publisher skill against repo conventions + official skill-creator best practices.
+Audit a LovStudio/Agent Skill against repo conventions and portability rules.
 
 Usage:
     python lint_skill.py <skill-name>           # e.g. any2pdf or lov-any2pdf
     python lint_skill.py <skill-name> --json
     python lint_skill.py --path /abs/path/to/skills/lov-any2pdf
 
-Outputs a list of findings with severity (error/warn/info) and a `fix_hint` field
-to help the orchestrating skill prioritize automatic fixes.
+The linter is deliberately dependency-free and works with a standalone skill
+directory, an installed copy, or a skill nested in a catalog repository.
+Outputs findings with severity (error/warn/info) and a `fix_hint` field.
 """
 
 from __future__ import annotations
@@ -24,6 +25,7 @@ SEVERITIES = ("error", "warn", "info")
 FRONTMATTER_REQUIRED = ["name", "description", "license", "compatibility", "metadata"]
 METADATA_REQUIRED = ["author", "version", "tags"]
 STANDARD_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 USER_CONFIG_CUES = (
     "## User Configuration",
     "## 用户配置",
@@ -36,6 +38,11 @@ USER_CONFIG_CUES = (
     "SKILL_DESIGN_GUIDE",
     "SKILL_MAINTAIN_PARTNERS_SITE_ROOT",
     "SKILL_MAINTAIN_PARTNERS_FILE",
+    "AGENT_SKILLS_DIR",
+    "CLAUDE_SKILLS_DIR",
+    "CODEX_SKILLS_DIR",
+    "SKILLS_DIR",
+    "LOV_SKILL_CATALOG_ROOT",
     # Legacy cues accepted during migration.
     "AGENT_SKILL_PROFILE",
     "SKILL_SKILL_PROFILE",
@@ -117,12 +124,33 @@ def resolve_skill_dir(name: str, path: str | None) -> Path:
 
 def discover_skill_dirs(root: Path) -> list[Path]:
     dirs = []
+    ignored = {".git", ".worktrees", "node_modules", "dist", "build", "target", ".venv", "__pycache__"}
     for skill_md in root.rglob("SKILL.md"):
         parts = set(skill_md.parts)
-        if ".git" in parts or "node_modules" in parts:
+        if parts.intersection(ignored):
             continue
         dirs.append(skill_md.parent)
+    if (root / "SKILL.md").exists():
+        dirs.append(root)
     return sorted(set(dirs))
+
+
+def read_manifest_fields(path: Path) -> dict[str, str]:
+    """Read the small top-level scalar subset needed from skill.yaml.
+
+    A full YAML dependency would make the maintenance skill harder to install.
+    Nested metadata is already represented in SKILL.md, so the manifest audit
+    intentionally checks only top-level id/version values.
+    """
+    if not path.exists():
+        return {}
+    fields: dict[str, str] = {}
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        match = re.match(r"^(id|version):\s*(.+?)\s*$", line)
+        if not match:
+            continue
+        fields[match.group(1)] = match.group(2).strip().strip('"').strip("'")
+    return fields
 
 
 def parse_frontmatter(text: str) -> tuple[dict, str]:
@@ -282,7 +310,7 @@ class Linter:
                         file="SKILL.md",
                     )
             version = meta.get("version", "")
-            if version and not re.match(r"^\d+\.\d+\.\d+$", version):
+            if version and not SEMVER_RE.match(version):
                 self.add(
                     "warn",
                     "FM_VERSION_FORMAT",
@@ -290,6 +318,8 @@ class Linter:
                     "Use semver format like 0.1.0",
                     file="SKILL.md",
                 )
+
+        self.check_version_sources(fm)
 
         # Body checks
         if re.search(r"TODO:\s", body) or "TODO_CN" in body or "TODO_EN" in body:
@@ -325,6 +355,56 @@ class Linter:
                 file="SKILL.md",
             )
 
+    def check_version_sources(self, fm: dict):
+        """Ensure README, SKILL.md and skill.yaml do not advertise different versions."""
+        versions: dict[str, str] = {}
+        readme = self.dir / "README.md"
+        if readme.exists():
+            match = re.search(
+                r"!\[Version\]\(https://img\.shields\.io/badge/version-(\d+\.\d+\.\d+)-[A-Za-z0-9]+\)",
+                readme.read_text(encoding="utf-8", errors="replace"),
+            )
+            if match:
+                versions["README.md"] = match.group(1)
+
+        metadata = fm.get("metadata")
+        if isinstance(metadata, dict) and metadata.get("version"):
+            versions["SKILL.md"] = str(metadata["version"])
+
+        manifest = read_manifest_fields(self.dir / "skill.yaml")
+        if manifest.get("version"):
+            versions["skill.yaml"] = manifest["version"]
+        for source, version in versions.items():
+            if not SEMVER_RE.match(version):
+                self.add(
+                    "warn",
+                    "VERSION_INVALID",
+                    f"{source} advertises non-semver version '{version}'",
+                    "Use semver format x.y.z",
+                    file=source,
+                )
+        unique = set(versions.values())
+        if len(unique) > 1:
+            detail = ", ".join(f"{source}={version}" for source, version in versions.items())
+            self.add(
+                "error",
+                "VERSION_DRIFT",
+                f"version sources are inconsistent: {detail}",
+                "Run bump_version.py with --path so README.md, SKILL.md and skill.yaml are updated together",
+                file="README.md/SKILL.md/skill.yaml",
+            )
+
+        manifest_id = manifest.get("id")
+        skill_name = str(fm.get("name", ""))
+        if manifest_id and skill_name and manifest_id != skill_name:
+            self.add(
+                "warn",
+                "MANIFEST_ID_DRIFT",
+                f"skill.yaml id '{manifest_id}' does not match SKILL.md name '{skill_name}'",
+                "Keep the runtime manifest id and Agent Skills name in sync",
+                file="skill.yaml",
+            )
+
     def check_portability(self):
         files = []
         for rel in ("SKILL.md", "README.md"):
@@ -348,7 +428,7 @@ class Linter:
             compatibility = str(fm.get("compatibility", ""))
         author_only = bool(
             re.search(
-                r"author-only|internal only|Skill Publisher internal|Mark/Skill Publisher private",
+                r"author-only|internal only|LovStudio internal|Mark/LovStudio private",
                 compatibility,
                 re.I,
             )
@@ -408,9 +488,9 @@ class Linter:
         has_install = any(
             token in text
             for token in (
+                "npx lovstudio skills add",
                 "npx skills add",
-                "npx skills add",
-                "git clone https://example.com/skills",
+                "git clone https://github.com/lovstudio",
                 "/plugin install",
             )
         )
@@ -525,7 +605,7 @@ def format_text(findings: list[dict], skill_dir: Path) -> str:
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Audit a skill-publisher skill")
+    ap = argparse.ArgumentParser(description="Audit a LovStudio/Agent Skill")
     ap.add_argument("name", nargs="?", help="Skill name (with or without lov- prefix)")
     ap.add_argument("--path", help="Absolute path to skill directory (overrides name)")
     ap.add_argument("--all", action="store_true", help="Audit every SKILL.md below the detected root")
@@ -540,7 +620,25 @@ def main():
             linter = Linter(skill_dir)
             reports.append({"skill": skill_dir.name, "path": str(skill_dir), "findings": linter.run()})
         if args.json:
-            print(json.dumps({"root": str(root), "reports": reports}, ensure_ascii=False, indent=2))
+            print(
+                json.dumps(
+                    {
+                        "root": str(root),
+                        "reports": reports,
+                        "counts": {
+                            severity: sum(
+                                1
+                                for report in reports
+                                for finding in report["findings"]
+                                if finding["severity"] == severity
+                            )
+                            for severity in SEVERITIES
+                        },
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
         else:
             total = {"error": 0, "warn": 0, "info": 0}
             for report in reports:
@@ -567,9 +665,10 @@ def main():
     findings = linter.run()
 
     if args.json:
+        counts = {severity: sum(1 for f in findings if f["severity"] == severity) for severity in SEVERITIES}
         print(
             json.dumps(
-                {"skill": skill_dir.name, "path": str(skill_dir), "findings": findings},
+                {"skill": skill_dir.name, "path": str(skill_dir), "counts": counts, "findings": findings},
                 ensure_ascii=False,
                 indent=2,
             )

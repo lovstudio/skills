@@ -3,6 +3,30 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.8.0] - 2026-08-12
+
+### Added
+
+- add guarded installation-copy synchronization
+- compare catalog Skill digests instead of reporting discovery alone
+- keep agent installation roots configurable and symlink-aware
+
+## [0.7.1] - 2026-08-12
+
+### Fixed
+
+- separate distribution and catalog synchronization states
+- keep aggregate sync partial when a catalog is not discovered
+
+## [0.7.0] - 2026-08-12
+
+### Added
+
+- add path-aware layout and synchronization auditing
+- keep README, SKILL.md, skill.yaml, and CHANGELOG versions aligned
+- report dirty, drifted, partial, and undiscovered distribution states
+- avoid requiring brand identity for a maintenance-only workflow
+
 ## [0.6.3] - 2026-05-07
 
 ### Fixed
