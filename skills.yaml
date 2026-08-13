@@ -2887,3 +2887,37 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或下载后端与字幕支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in transport or subtitle-support cost.
     card_path: pricing-cards/media-fetch.md
+- name: china-website-filing
+  display_name: China Website Filing
+  repo: lovstudio/china-website-filing-skill
+  name_zh: 中国网站备案
+  paid: false
+  category: General
+  version: 0.1.0
+  updated_at: 2026-08-13T17:21:27Z
+  description: Guide mainland China website filing from readiness and ICP review through post-approval domain cutover, public security filing, compliance display, and evidence-backed monitoring.
+  tagline_en: Move a mainland China website from filing readiness through ICP, domain launch, public security filing, and verified compliance follow-up.
+  tagline_zh: 把中国大陆网站从备案准备推进到 ICP、域名上线、公安联网备案与合规巡检，并保留权威证据链。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 把中国大陆网站从备案准备推进到 ICP、域名上线、公安联网备案与合规巡检，并保留权威证据链。
+    value_en: Move a mainland China website from filing readiness through ICP, domain launch, public security filing, and verified compliance follow-up.
+    anchor_zh: 一次完整流程通常可省下数小时的材料核对、跨平台往返、域名验收和状态跟进时间。
+    anchor_en: A full run typically saves hours of material review, cross-platform navigation, domain verification, and status follow-up.
+    basis_zh: 按一条可暂停、可恢复并能回读权威状态的网站备案交付链路定价，重点减少错序、漏项、误提交和无效巡检。
+    basis_en: Priced around a recoverable, authority-backed website filing chain that reduces sequencing errors, omissions, unsafe submissions, and redundant checks.
+    boundary_zh: 覆盖准备、ICP、备案后域名上线、公安联网备案、安全评估分流和巡检；不保证审核通过，不包含法律意见、云资源或政府费用。
+    boundary_en: Covers readiness, ICP, post-approval domain launch, public security filing, security-assessment routing, and monitoring; approval guarantees, legal advice, cloud resources, and government fees are excluded.
+    maintenance_zh: 随法规、地方口径、接入商流程、政府平台字段和真实使用反馈变化复评。
+    maintenance_en: Review when regulations, local authority practices, provider workflows, government forms, or real-use feedback change.
+    confidence: case-backed
+    review_trigger_zh: 版本变化、覆盖新的地区或接入商、连续 10 次真实使用，或法规与平台流程明显变化时复评。
+    review_trigger_en: Review after a version change, a new region or provider, 10 real uses, or a material regulatory or platform workflow change.

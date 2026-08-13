@@ -1,0 +1,113 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "按权威页面协助完成中国大陆网站的备案准备、ICP、备案后域名切换、公安联网备案与持续巡检，并保留人工提交门和追加式证据台账。"
+owner:
+  team: LovStudio
+  contact: local repository maintainers
+license:
+  name: MIT
+  terms: "可使用、修改和分发；监管结论以主管部门和接入商实时页面为准。"
+  url: "LICENSE"
+use_case:
+  audience: "在中国大陆服务器上线企业或个人网站的站点负责人、开发者和小团队"
+  scenario: "从备案前准备到 ICP 通过、网站上线、公安联网备案及审核巡检的端到端协助"
+  tasks:
+    - "分类首次备案、新增服务、接入、变更或注销场景"
+    - "核验材料、实名、接入资源、短信核验与审核状态"
+    - "在 ICP 通过后完成域名、TLS、备案号展示与线上回读"
+    - "办理公安联网备案并分流安全评估"
+    - "按变化策略维护状态台账和通知"
+deployment:
+  geography: mainland-china
+  environments:
+    - "支持文件和 Python 3.8+ 的本地 Agent 环境"
+    - "实时办理时使用用户已登录的接入商与政府平台浏览器会话"
+requirements:
+  credentials: "台账脚本不需要凭据；实时操作需要用户自己的权威平台会话，验证码和登录信息不得持久化。"
+  dependencies: []
+  runtime:
+    - "Python 3.8+ standard library"
+    - "PyYAML for source validation only"
+    - "browser control for live operations"
+risks:
+  - risk: "法规、地方口径和平台字段会变化。"
+    mitigation: "每次关键操作重新打开政府或接入商权威页面，并记录核验时间。"
+  - risk: "错误勾选业务能力或擅自提交会形成不真实申报。"
+    mitigation: "把业务分类、责任书、安全评估、验证码和最终提交设为明确人工授权门。"
+  - risk: "备案材料包含证件、电话、地址等敏感信息。"
+    mitigation: "最小化展示和留存，源码、Profile、日志与案例不保存秘密或完整证件数据。"
+  - risk: "把中间状态误报为完成会导致提前上线或遗漏后续义务。"
+    mitigation: "分别设置 ICP、上线、公安备案和安全评估完成门，仅接受权威页面与真实站点回读。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Official rules snapshot"
+    path: "references/official-rules.md"
+  - title: "Authority and submission gates"
+    path: "references/authority-gates.md"
+  - title: "Status taxonomy"
+    path: "references/status-taxonomy.md"
+output:
+  types:
+    - "filing readiness report"
+    - "authority status snapshot"
+    - "deployment and compliance acceptance report"
+    - "append-only monitoring ledger"
+  formats:
+    - markdown
+    - json-cli-output
+  parameters:
+    - "subject, service, domain, provider"
+    - "filing scenario and authority URLs"
+    - "status, domain status, action, evidence, timestamp"
+  validation:
+    - "authoritative page and timestamp recorded"
+    - "completion gate appropriate to each stage"
+    - "no secrets or full identity documents in durable output"
+    - "live domain and footer readback for launch completion"
+  description: "可暂停、可恢复且区分事实来源的备案证据链，不把建议或缓存状态写成监管结论。"
+ethical_considerations: "本 Skill 不规避监管、不伪造材料、不代替法律专业意见，也不在缺少用户确认时同意责任书或提交高影响申请。"
+dimensions:
+  - id: correctness
+    label: "权威正确性"
+    description: "状态与完成结论必须来自主管部门、接入商权威页面或真实线上回读。"
+    evidence: "LovStudio 案例区分了 ICP 通过、域名上线和公安待审核，并保留安全评估分支。"
+    score: null
+    status: verified-with-one-real-case
+  - id: safety
+    label: "提交与隐私安全"
+    description: "关键法律声明、验证码和最终提交需要人工授权，敏感信息不得进入源码或案例。"
+    evidence: "案例在用户确认后提交公安备案，案例文件只保留公开主体、域名和备案号。"
+    score: null
+    status: verified-with-one-real-case
+  - id: traceability
+    label: "可追溯性"
+    description: "每次观察都包含时间、权威入口、阶段、状态、动作和证据摘要。"
+    evidence: "filing_record.py 提供 init、append、compare、check，并由单元测试覆盖。"
+    score: null
+    status: locally-tested
+  - id: portability
+    label: "可移植性"
+    description: "流程不硬编码个人路径、单一云厂商或凭据。"
+    evidence: "源校验扫描私人绝对路径；接入商差异通过运行时上下文和权威链接处理。"
+    score: null
+    status: locally-validated
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "本地 Skill 免费，帮助用户减少错序、漏项与重复核验成本。"
+  boundary: "不包含代办保证、云资源费用、政府收费或法律意见。"
+  review_trigger: "法规/平台发生重大变化或增加人工 SLA 服务时复评。"
+  confidence: internal-verified
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-published
+    - channel: skillpay
+      status: not-published
+  free:
+    - channel: github
+      status: not-published
+    - channel: lovstudio
+      status: local-installed

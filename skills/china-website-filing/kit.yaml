@@ -1,0 +1,35 @@
+name: china-website-filing
+display_name: "中国大陆网站备案与上线"
+version: "0.1.0"
+entrypoint: lov-china-website-filing
+modules:
+  - id: filing-readiness
+    skill: lov-filing-readiness
+    path: skills/filing-readiness
+  - id: icp-filing
+    skill: lov-icp-filing
+    path: skills/icp-filing
+  - id: domain-cutover
+    skill: lov-domain-cutover
+    path: skills/domain-cutover
+  - id: public-security-filing
+    skill: lov-public-security-filing
+    path: skills/public-security-filing
+  - id: filing-monitor
+    skill: lov-filing-monitor
+    path: skills/filing-monitor
+pipelines:
+  mainland-website-launch:
+    - filing-readiness
+    - icp-filing
+    - domain-cutover
+    - public-security-filing
+    - filing-monitor
+  icp-only:
+    - filing-readiness
+    - icp-filing
+    - filing-monitor
+  post-icp-launch:
+    - domain-cutover
+    - public-security-filing
+    - filing-monitor

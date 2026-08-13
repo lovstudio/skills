@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把跨接入商、工信部、域名部署和公安平台的多阶段人工流程收敛为可恢复的证据链。"
+basis: "当前版本作为本地可移植 Skill 免费提供；价值来自流程门控、权威状态核验、台账脚本和真实案例验证，而不是代办承诺。"
+boundary: "包含准备、操作指导、已授权的浏览器协助、状态记录和上线验收；不包含政府收费、云资源费用、法律意见、保证通过、代收验证码或未经确认的最终提交。"
+review_trigger: "当法规、备案平台字段、支持的载体类型或分发渠道发生重大变化，或形成可承诺 SLA 的人工服务时复评。"
+confidence: internal-verified
