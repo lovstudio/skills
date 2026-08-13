@@ -1,0 +1,89 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "把一个已知的公开视频或社交媒体内容链接解析为经过容器与大小检查的本地媒体文件，并附带速度、来源和诊断 JSON。"
+owner:
+  team: "LovStudio Skills"
+  contact: "maintainers@lovstudio.com"
+license:
+  name: MIT
+  terms: "Skill glue code is MIT; optional MediaCrawler checkout keeps its separate non-commercial learning license, and platform terms still apply."
+  url: "LICENSE"
+use_case:
+  audience: "需要保存自己或已获授权的社交媒体内容的创作者、研究者和自动化 Agent"
+  scenario: "用户给出一个视频号或 MediaCrawler 支持平台的内容链接，希望少交互地得到本地媒体文件。"
+  tasks:
+    - "识别平台并探测公开元数据"
+    - "复用本机授权或登录态解析媒体地址"
+    - "多连接或可续传下载并验证媒体容器"
+deployment:
+  geography: global
+  environments:
+    - "macOS local agent runtime"
+    - "Portable Python runtime for direct URL and MediaCrawler adapters"
+requirements:
+  credentials: "Video号 requires a user-owned Tencent Yuanbao session; credentials remain in environment or OS credential storage."
+  dependencies:
+    - "curl"
+    - "aria2 optional"
+    - "ffprobe optional"
+    - "Playwright and Chrome optional for Yuanbao authorization"
+    - "Git, uv, Node.js and MediaCrawler optional for supported social platforms"
+  runtime:
+    - "Python 3.9+"
+risks:
+  - risk: "Platform APIs, signed URLs and login sessions can expire or change."
+    mitigation: "Separate resolution from transfer, return stable error codes, and provide a one-command reauthorization path."
+  - risk: "Downloaded content may be copyrighted or access-restricted."
+    mitigation: "Only process content the user may access and save; never bypass DRM, paywalls, private access or geographic controls."
+  - risk: "A public resolver would receive the supplied share URL."
+    mitigation: "Disable public resolvers by default; require explicit opt-in or a user-owned custom endpoint."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Platform matrix"
+    path: "references/platform-matrix.md"
+  - title: "Upstream and licenses"
+    path: "references/upstream-and-licenses.md"
+output:
+  types:
+    - "local media file"
+    - "download and verification report"
+  formats:
+    - "MP4, MOV, M4V, WebM, MKV, JPEG, PNG, GIF or WebP as supplied by the platform"
+    - "JSON"
+  parameters:
+    - "URL, output directory, filename, connection count, resolver policy"
+  validation:
+    - "non-empty file and expected Content-Length when supplied"
+    - "container magic and optional ffprobe stream inspection"
+    - "status, context_id, timing and redacted source URL in JSON"
+  description: "An unchanged source media payload plus a machine-readable record; no implicit transcoding."
+ethical_considerations: "Use at human scale for user-owned or authorized content. Credentials and signed query strings are excluded from profiles, reports and chat output."
+dimensions:
+  - id: correctness
+    label: "下载正确性"
+    description: "成品必须是可识别媒体，而不是 200 响应中的 HTML/JSON 错误页。"
+    evidence: "Offline self-test checks MP4 magic; runtime verifies Content-Length and optionally ffprobe streams."
+    score: 4
+  - id: effectiveness
+    label: "平台可达性"
+    description: "已知链接应走最短路径，并对缺授权、无媒体或上游不支持给出诚实状态。"
+    evidence: "The supplied sph link resolves official title/author metadata and returns authorization_required without fabricating a download."
+    score: 3
+  - id: efficiency
+    label: "下载效率"
+    description: "解析后直接命中 CDN，优先多连接，并保留可续传 partial。"
+    evidence: "Transfer engine selects aria2 with up to 16 connections and falls back to curl --continue-at with retries."
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Local orchestration glue is offered free; users bring platform access and optional upstream tools."
+  boundary: "No hosted resolver SLA, copyrighted media rights, commercial MediaCrawler license, editing, transcription or publishing."
+  review_trigger: "Revisit if a maintained hosted resolver, managed authorization service or commercial upstream license is added."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - local

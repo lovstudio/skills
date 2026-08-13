@@ -11,7 +11,7 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 6 free + 2 paid (Credits redemption required).",
+      "description": "General — 7 free + 2 paid (Credits redemption required).",
       "category": "General",
       "skills": [
         "./skills/image-creator",
@@ -19,6 +19,7 @@
         "./skills/professional-infographic",
         "./skills/fact-check",
         "./skills/wdb-cli",
+        "./skills/media-crawler",
         "./skills/subtitle-freedom",
         "./skills/macos-disk-optimizer",
         "./skills/media-fetch",
@@ -125,7 +126,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 21 free skills bundled together.",
+      "description": "Dev Tools — 22 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/mobile-adapt",
@@ -145,6 +146,7 @@
         "./skills/electron-app-relaunch",
         "./skills/install-ai",
         "./skills/skill-distiller",
+        "./skills/skill-pricing",
         "./skills/skill-publisher",
         "./skills/obsidian-reset-cache",
         "./skills/project-port",

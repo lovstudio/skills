@@ -7,8 +7,9 @@ catalog entry, and verified live detail page.
 
 - Local Skill source path.
 - GitHub organization and desired repository visibility.
-- Free/paid catalog status and existing catalog category.
-- General or Dev catalog checkout.
+- The current `lov-skill-pricing` Pricing Card, including free/paid status,
+  public CNY price or free-entry decision, confidence, and review trigger.
+- Unified `lovstudio/skills` catalog checkout.
 - Expected version and a release-specific visible marker.
 - Revalidation secret resolved from environment without printing it.
 
@@ -32,17 +33,20 @@ remote first, commit only intended changes, then tag from the verified commit.
 
 ## Catalog registration
 
-Choose the catalog from Skill category and product policy, not from source
-location. Add the repository, version, category, description, and paid status to
-the catalog manifest and human README. Merge the catalog change into its `main`
-branch before live revalidation.
+Use the unified `lovstudio/skills` catalog; the former split General and Dev
+catalogs are archived. Choose the entry category from product policy, not source
+location. Transform the current Pricing Card's public fields into the catalog
+manifest; do not independently invent or revise a price in this adapter. Add the
+repository, version, category, description, and paid status, then run the
+catalog's official mirror/render/validation scripts. Merge the catalog change
+into its `main` branch before live revalidation.
 
 For generated aggregate catalogs, update metadata and run their official sync
 and render scripts. Do not hand-edit generated mirror directories.
 
 ## Revalidate
 
-Replace `CATALOG`, `NAME`, and the site URL with configured values:
+Replace `NAME` and the site URL with configured values:
 
 ```bash
 test -n "$SKILL_REVALIDATE_SECRET"
@@ -53,7 +57,8 @@ curl -fsS -X POST "SITE_URL/api/revalidate" \
   -d '{
     "tags":[
       "skills-index",
-      "skills-index:CATALOG",
+      "skills-index:lovstudio",
+      "skills-updates",
       "skill:NAME",
       "skill-cases:NAME"
     ],

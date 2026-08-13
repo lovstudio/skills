@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **71 个技能** — 59 个免费 + 12 个付费。
+> **73 个技能** — 61 个免费 + 12 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -52,6 +52,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`hanzi-lens`](https://github.com/lovstudio/hanzi-lens-skill) | [汉字镜](https://github.com/lovstudio/hanzi-lens-skill) | 用证据看懂一个汉字：读音、字形、字书、经典语境与专业信息图。 — 依赖: `professional-infographic` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`image-creator`](https://github.com/lovstudio/image-creator-skill) | [图像工坊](https://github.com/lovstudio/image-creator-skill) | 按需选择最合适的出图方式：端到端 AI、代码渲染或提示词精修。 — 相关: `professional-infographic`, `professional-portrait` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`macos-disk-optimizer`](https://github.com/lovstudio/macos-disk-optimizer-skill) | [Mac 磁盘优化](https://github.com/lovstudio/macos-disk-optimizer-skill) | 按目标容量整理 Mac 磁盘，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`media-crawler`](https://github.com/lovstudio/media-crawler-skill) | [媒体链接下载](https://github.com/lovstudio/media-crawler-skill) | 将有权保存的视频号等社交媒体链接变成可验证的本地媒体文件与诊断报告。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-fetch`](https://github.com/lovstudio/media-fetch-skill) | [媒体抓取](https://github.com/lovstudio/media-fetch-skill) | 检索并选择合适版本，qBittorrent 与 aria2 续传兜底，最后验收本地媒体与字幕状态。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`subtitle-freedom`](https://github.com/lovstudio/subtitle-freedom-skill) | [人人字幕](https://github.com/lovstudio/subtitle-freedom-skill) | 以用户选定级别为最低难度线生成英语学习字幕，覆盖更高难度表达，并可选生成不剧透人物卡片与不烧录视频的 ASS/PGS 水印外置字幕。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wdb-cli`](https://github.com/lovstudio/wdb-cli-skill) | [微信数据库自由查询](https://github.com/lovstudio/wdb-cli-skill) | 自由查看、检索和分析微信数据库中的各类数据，常用内容与新版本结构都能精准定位。 |
@@ -118,7 +119,8 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`release-via-cicd`](https://github.com/lovstudio/release-via-cicd-skill) | [CI/CD 发布](https://github.com/lovstudio/release-via-cicd-skill) | 配置发布流水线、发布新版本，并验证 Tauri/macOS 签名与 notarization 产物。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`repo2docs`](https://github.com/lovstudio/repo2docs-skill) | [文件夹生成文档站](https://github.com/lovstudio/repo2docs-skill) | 把任意文件夹（代码、文章、图片）增量编纂成精美的 Fumadocs 文档站，并部署到 {id}.lovstudio.ai/docs。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-distiller`](https://github.com/lovstudio/skill-distiller-skill) | [Skill 经验蒸馏](https://github.com/lovstudio/skill-distiller-skill) | 将项目经验蒸馏为边界清晰、可创建且可验收的 Skill 蓝图。 |
-| ![Free](https://img.shields.io/badge/Free-green) | [`skill-publisher`](https://github.com/lovstudio/skill-publisher-skill) | [Skill 发布器](https://github.com/lovstudio/skill-publisher-skill) | 将已验证的 Skill 多渠道发布，并分别保留每个渠道的可核验状态。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`skill-pricing`](https://github.com/lovstudio/skill-pricing-skill) | [Skill 定价](https://github.com/lovstudio/skill-pricing-skill) | 从成本、价值、信心度与渠道适配出发，生成可解释的 Skill Pricing Card。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`skill-publisher`](https://github.com/lovstudio/skill-publisher-skill) | [Skill 发布器](https://github.com/lovstudio/skill-publisher-skill) | 默认自动定价后发布已验证的 Skill，并分别保留各渠道的可核验状态。 — 依赖: `skill-pricing` |
 | **Video Creation** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-creator`](https://github.com/lovstudio/media-creator-skill) | [媒体创作工作流](https://github.com/lovstudio/media-creator-skill) | 把真实录屏整理成可发布成片，保留成果原声，完成 BGM 混音、封面方向和交付质检。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`publish-wechat-channels`](https://github.com/lovstudio/publish-wechat-channels-skill) | [视频号发布器](https://github.com/lovstudio/publish-wechat-channels-skill) | 通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。 |
