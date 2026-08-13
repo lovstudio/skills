@@ -1,0 +1,87 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "为已取得 ICP 并开放的网站准备和提交公安联网备案，核验主体、网站与接入信息，跟进属地审核并独立处理安全评估分支。"
+owner:
+  team: LovStudio
+  contact: local repository maintainers
+license:
+  name: MIT
+  terms: "可使用、修改和分发；实时监管结论以主管部门和接入商页面为准。"
+  url: "../../LICENSE"
+use_case:
+  audience: "已上线中国大陆网站且需履行公安联网备案义务的单位或个人"
+  scenario: "公安联网备案"
+  tasks:
+    - "填写主体、网站、域名与服务器信息"
+    - "在人工确认后提交并跟进属地审核"
+    - "取得公安号后上线平台代码并分流安全评估"
+deployment:
+  geography: mainland-china
+  environments:
+    - "lov-china-website-filing self-contained Skill Kit"
+requirements:
+  credentials: "离线输出不需要凭据；实时页面使用用户自己的已登录会话。"
+  dependencies: []
+  runtime:
+    - "Portable Agent Skills"
+risks:
+  - risk: "平台或地方规则变化导致旧字段和时限失效。"
+    mitigation: "关键动作前重新读取政府或接入商权威页面并记录时间。"
+  - risk: "敏感身份信息被复制到持久输出。"
+    mitigation: "只保存公开标识和脱敏证据，不保存验证码、Cookie 或完整证件数据。"
+references:
+  - title: "Module instructions"
+    path: "SKILL.md"
+  - title: "Composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "公安联网备案"
+  formats:
+    - markdown
+  parameters:
+    - "subject, service, domain, authority evidence"
+  validation:
+    - "authoritative evidence and timestamp"
+    - "stage-specific completion gate"
+  description: "Markdown 申请/审核状态、补充动作、审核单位、公安备案号与页脚验收；安全评估另列状态。"
+ethical_considerations: "不伪造材料、不规避监管、不把推断写成权威结论；关键提交保留用户授权。"
+dimensions:
+  - id: correctness
+    label: "正确性"
+    description: "使用与本阶段匹配的权威来源和完成门。"
+    evidence: "飞脑科技公安联网备案于 2026-08-14 00:54:17 提交，状态待审核，审核单位海淀驻区大队；安全评估未被擅自合并提交。"
+    score: null
+    status: verified-with-one-real-case
+  - id: safety
+    label: "安全性"
+    description: "保护敏感资料并保留人工提交门。"
+    evidence: "模块遵循 Kit 的 authority-gates.md。"
+    score: null
+    status: policy-reviewed
+  - id: traceability
+    label: "可追溯性"
+    description: "输出记录来源、时间、状态和下一动作。"
+    evidence: "真实案例和统一台账字段已记录。"
+    score: null
+    status: locally-validated
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "减少字段错配、主体账号混淆、超期和误启动额外安全评估的风险。"
+  boundary: "不包含代办保证、政府/云费用或法律意见。"
+  review_trigger: "法规、平台或人工服务边界重大变化时复评。"
+  confidence: internal-verified
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-published
+    - channel: skillpay
+      status: not-published
+  free:
+    - channel: github
+      status: not-published
+    - channel: lovstudio
+      status: embedded-local
+

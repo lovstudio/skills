@@ -1,0 +1,11 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "减少重复人工查看和无效提醒，同时保留可审计的状态变化与人工接管点。"
+basis: "作为 lov-china-website-filing 的自包含模块免费提供。"
+boundary: "包含本阶段流程、证据门与输出契约；不包含代办保证、政府/云费用或法律意见。"
+review_trigger: "法规、平台、案例覆盖或人工服务边界重大变化时复评。"
+confidence: internal-verified
+

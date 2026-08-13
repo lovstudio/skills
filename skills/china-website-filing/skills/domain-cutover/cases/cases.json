@@ -1,0 +1,23 @@
+[
+  {
+    "type": "case",
+    "title": "lovstudio.cn 备案后切换上线",
+    "description": "部署已备案站点、绑定根域、配置证书与 DNS、添加 ICP 页脚，并替换旧域名。",
+    "input": {
+      "items": [
+        "域名：lovstudio.cn",
+        "ICP备案号：京ICP备2025108424号-3",
+        "目标：替换旧域名"
+      ]
+    },
+    "prompt": "同意部署并绑定域名，替换旧域名，验证后继续。",
+    "output": {
+      "items": [
+        "lovstudio.cn HTTPS 可访问",
+        "ICP备案号在线展示并链接工信部系统",
+        "旧域名解绑且目标服务拒绝旧 Host"
+      ]
+    }
+  }
+]
+

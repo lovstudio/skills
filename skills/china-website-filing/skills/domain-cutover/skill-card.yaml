@@ -1,0 +1,87 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "在 ICP 通过后安全配置部署、DNS、证书和备案页脚，用真实域名回读验证 HTTPS 与站点内容，并按授权处理旧域名。"
+owner:
+  team: LovStudio
+  contact: local repository maintainers
+license:
+  name: MIT
+  terms: "可使用、修改和分发；实时监管结论以主管部门和接入商页面为准。"
+  url: "../../LICENSE"
+use_case:
+  audience: "已取得 ICP 服务备案号并准备开放中国大陆网站的站点负责人"
+  scenario: "备案后域名上线"
+  tasks:
+    - "绑定备案域名并配置 DNS/TLS"
+    - "添加并核验 ICP 服务备案号"
+    - "按明确授权处理旧域名并保留回读证据"
+deployment:
+  geography: mainland-china
+  environments:
+    - "lov-china-website-filing self-contained Skill Kit"
+requirements:
+  credentials: "离线输出不需要凭据；实时页面使用用户自己的已登录会话。"
+  dependencies: []
+  runtime:
+    - "Portable Agent Skills"
+risks:
+  - risk: "平台或地方规则变化导致旧字段和时限失效。"
+    mitigation: "关键动作前重新读取政府或接入商权威页面并记录时间。"
+  - risk: "敏感身份信息被复制到持久输出。"
+    mitigation: "只保存公开标识和脱敏证据，不保存验证码、Cookie 或完整证件数据。"
+references:
+  - title: "Module instructions"
+    path: "SKILL.md"
+  - title: "Composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "备案后域名上线"
+  formats:
+    - markdown
+  parameters:
+    - "subject, service, domain, authority evidence"
+  validation:
+    - "authoritative evidence and timestamp"
+    - "stage-specific completion gate"
+  description: "Markdown 上线验收报告，包含 DNS、证书、HTTP 页面、备案页脚和旧域名结果。"
+ethical_considerations: "不伪造材料、不规避监管、不把推断写成权威结论；关键提交保留用户授权。"
+dimensions:
+  - id: correctness
+    label: "正确性"
+    description: "使用与本阶段匹配的权威来源和完成门。"
+    evidence: "lovstudio.cn 在 ICP 通过后上线并显示京ICP备2025108424号-3；旧 cs-magic.cn 经授权解绑后返回 INVALID_HOST。"
+    score: null
+    status: verified-with-one-real-case
+  - id: safety
+    label: "安全性"
+    description: "保护敏感资料并保留人工提交门。"
+    evidence: "模块遵循 Kit 的 authority-gates.md。"
+    score: null
+    status: policy-reviewed
+  - id: traceability
+    label: "可追溯性"
+    description: "输出记录来源、时间、状态和下一动作。"
+    evidence: "真实案例和统一台账字段已记录。"
+    score: null
+    status: locally-validated
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "防止未备案提前开放、证书主机名错误、DNS 误切和备案号只在代码中存在却未上线。"
+  boundary: "不包含代办保证、政府/云费用或法律意见。"
+  review_trigger: "法规、平台或人工服务边界重大变化时复评。"
+  confidence: internal-verified
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-published
+    - channel: skillpay
+      status: not-published
+  free:
+    - channel: github
+      status: not-published
+    - channel: lovstudio
+      status: embedded-local
+
