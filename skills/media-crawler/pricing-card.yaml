@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "减少平台识别、重复登录、复制直链、选择下载器和判断伪成功所需的人工时间。"
+basis: "本地编排与验证逻辑免费；用户自备平台访问权、带宽和可选上游运行时。"
+boundary: "包含单条/少量已知链接解析、下载、续传和验证；不包含托管解析服务、商业 MediaCrawler 许可、批量账号抓取、剪辑、转录或发布。"
+review_trigger: "增加托管解析 SLA、团队凭据管理、商业上游授权或持续平台适配成本时复评。"
+confidence: internal

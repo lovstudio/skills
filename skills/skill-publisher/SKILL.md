@@ -1,9 +1,9 @@
 ---
 name: lov-skill-publisher
 description: >
-  Use when the user asks to publish a validated local Skill to one or more
-  channels, including “发布这个 Skill”、“上架 Skill Publisher”、"publish this skill"、
-  "package for WorkBuddy" 或“提交 SkillPay”。
+  Use when the user asks to publish, release, package, or submit a validated
+  Skill. Before every release, run lov-skill-pricing by default and reuse its
+  Pricing Card across the selected channels.
 license: MIT
 compatibility: >-
   Requires Python 3.8+, PyYAML, git and GitHub CLI for the Skill Publisher
@@ -11,14 +11,15 @@ compatibility: >-
   stores; generated metadata and archives stay outside canonical source.
 metadata:
   author: contributors
-  version: "0.3.3"
+  version: "0.4.1"
   tags:
     - skill-publisher
     - release
     - marketplace
     - workbuddy
     - skillpay
-  dependencies: []
+  dependencies:
+    - lov-skill-pricing
 ---
 
 # lov-skill-publisher
@@ -49,6 +50,12 @@ adapter independently, and report evidence per channel.
 - A request may select multiple channels in one run.
 - Pricing, visibility, protection, licensing, and target accounts are publishing
   inputs. Reuse context when known and ask only for values required by a target.
+- Every publish run invokes `lov-skill-pricing` by default to create or refresh one
+  evidence-backed Pricing Card per Skill before channel preparation. An explicit
+  user price is a constraint for that pricing pass, not a reason to skip it.
+- Keep the canonical Pricing Card in publisher profile/output storage. Transform
+  only its public fields into catalogs, packages, or submission forms; do not add
+  channel state or generated cards to canonical Skill source.
 - Channel metadata, credentials, staging files, and archives stay outside source.
 
 Supported adapters in this version:
@@ -87,7 +94,33 @@ Check that source has no platform metadata directory or generated release
 artifacts. Record name, version, description, modules, dependencies, git state,
 and whether a remote already exists.
 
-### Step 2: Resolve channels and release model
+### Step 2: Auto-price the Skill
+
+Use `lov-skill-pricing` for every source, even when the user only says “发布” or
+selects a channel without mentioning price.
+
+1. Pass the validated source, version, delivery unit, real result evidence,
+   maintenance/support conditions, selected channels, and any existing price or
+   `pricing-card.yaml` into the pricing workflow.
+2. Let the pricing workflow use explicit assumptions when cost/value inputs are
+   missing. Ask at most one focused question only when the missing field changes
+   the commercial model; ordinary missing estimates must not block publication.
+3. If the user supplied a public price, currency, free/paid status, or billing
+   model, preserve it as a hard publishing constraint and have the Pricing Card
+   explain any difference from its model recommendation.
+4. Record recommended price, launch price, stable range, billing model, channel,
+   cost floor, value anchor, weighted score, confidence, evidence gaps, and review
+   trigger outside canonical source.
+5. Reuse this one price contract across selected adapters. Skill Publisher maps
+   it into catalog pricing metadata and its public Pricing Card; SkillPay uses the
+   public CNY price; installation-only channels use the free/paid funnel and
+   upgrade path without inventing a separate price.
+
+Do not hand-author an unexplained price inside a channel adapter. If automatic
+pricing cannot run, mark pricing `blocked` with the missing Skill/resource and do
+not submit a paid listing with an inferred number.
+
+### Step 3: Resolve channels and release model
 
 If channels are explicit, proceed without another distribution question. If no
 channel is named, select all supported adapters and proceed without asking the
@@ -103,20 +136,20 @@ For each selected channel, resolve only required fields:
 Do not ask users to choose implementation details such as staging layout,
 validation commands, archive format, or adapter order.
 
-### Step 3: Build a per-channel plan
+### Step 4: Build a per-channel plan
 
 Read `references/channels.md`, then load only the selected channel references.
 Keep independent state for each target so one failure does not masquerade as a
 successful multi-channel release.
 
-### Step 4: Publish Skill Publisher
+### Step 5: Publish Skill Publisher
 
-Read `references/skill-publisher.md` completely. Execute the source repository,
+Read `references/publishing.md` completely. Execute the source repository,
 release, catalog, cache refresh, and live verification workflow. Publication is
 complete only when the expected version and release-specific content are visible
 on the live detail page.
 
-### Step 5: Publish WorkBuddy through CodeBuddy
+### Step 6: Publish WorkBuddy through CodeBuddy
 
 Read `references/workbuddy.md` completely. Keep connector metadata and icon in a
 publisher profile outside source, then run:
@@ -134,23 +167,23 @@ individual ZIP to `https://www.codebuddy.cn/open/console/dashboard`, wait for
 “解析成功”, fill user-facing Chinese/English listing fields, and submit it.
 Record the review state separately from public listing evidence.
 
-### Step 6: Submit Alipay SkillPay
+### Step 7: Submit Alipay SkillPay
 
 Read `references/skillpay.md` completely. Build a clean product ZIP outside the
-canonical source, keep the requested price as the single public CNY price, then
-upload and wait for parsing to finish before submitting. Record the product
-title, package checksum, requested price, submission result, and current review
-state. A parsed archive is only `uploaded`; a success notice after form
+canonical source, keep the current Pricing Card price as the single public CNY
+price, then upload and wait for parsing to finish before submitting. Record the
+product title, package checksum, public price, submission result, and current
+review state. A parsed archive is only `uploaded`; a success notice after form
 submission is `review` until the marketplace marks the product live.
 
-### Step 7: Additional platform adapter
+### Step 8: Additional platform adapter
 
 Use the adapter contract in `references/channels.md`. Research current official
 documentation, implement deterministic preparation/validation scripts when
 useful, and define an observable completion gate. Never reuse another channel's
 metadata or call an upload dialog a completed publication.
 
-### Step 8: Multi-channel report
+### Step 9: Multi-channel report
 
 Report each target separately:
 
@@ -165,6 +198,7 @@ represent different outcomes.
 
 - Python 3.8+
 - PyYAML
+- `lov-skill-pricing` for the default pre-publish Pricing Card
 - `git` and `gh` for GitHub-backed publication
 - Target-specific credentials resolved without printing secrets
 

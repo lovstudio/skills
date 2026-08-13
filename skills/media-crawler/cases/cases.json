@@ -1,0 +1,41 @@
+[
+  {
+    "type": "case",
+    "title": "2.85 MB MP4 direct-download path",
+    "description": "A real public sample MP4 exercised resolver bypass, aria2 transfer, byte-count validation, container magic and ffprobe stream inspection on 2026-08-14.",
+    "input": {
+      "items": [
+        "https://download.samplelib.com/mp4/sample-5s.mp4",
+        "output directory with no existing sample-5s.mp4"
+      ]
+    },
+    "prompt": "Download this media link quickly and verify the result.",
+    "output": {
+      "items": [
+        "sample-5s.mp4 — 2,848,208 bytes",
+        "SHA-256 05bd857af7f70bf51b6aac1144046973bf3325c9101a554bc27dc9607dbbd8f5",
+        "verified ISO-BMFF with H.264 1920x1080 video, AAC audio, duration 5.758549 seconds",
+        "aria2 engine, 4.729 seconds wall time, 4.818 Mbps average in the observed environment"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "WeChat Channels sph link honest authorization boundary",
+    "description": "The user-supplied public sph link was probed through the official preview API on 2026-08-14. Public metadata resolved in under one second, but no video stream was exposed without a user-owned Yuanbao session.",
+    "input": {
+      "items": [
+        "https://weixin.qq.com/sph/AUlZ10EgtS"
+      ]
+    },
+    "prompt": "给定这个视频号链接，快速下载并提供清晰诊断。",
+    "output": {
+      "items": [
+        "status=authorization_required; no false downloaded file was created",
+        "official metadata title 从县城修车工到营收7亿的车企老板。",
+        "official author 程前朋友圈",
+        "copyable next action: python3 scripts/authorize_yuanbao.py --test-url URL"
+      ]
+    }
+  }
+]

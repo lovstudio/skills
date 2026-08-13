@@ -1,0 +1,22 @@
+schema: skill-manifest/v1
+id: lov-skill-pricing
+version: 0.1.0
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields: []
+  preferences:
+    namespace: skill_pricing
+    fields:
+      - path: currency
+        required: false
+        question: "定价默认使用哪种货币？"
+      - path: channel
+        required: false
+        question: "定价默认面向哪个销售渠道？"
+      - path: billing_model
+        required: false
+        question: "默认采用一次性、订阅还是套餐定价？"
+  interaction:
+    ask_missing: true
+    max_questions: 1

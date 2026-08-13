@@ -8,7 +8,9 @@ parsing, form submission, review, and live listing are separate states.
 
 - A canonical Skill source that passes `scripts/validate_skill.py`.
 - Product title and concise user-facing description.
-- Explicit CNY price supplied by the user.
+- Public CNY price from the current `lov-skill-pricing` Pricing Card. When the
+  user supplied an explicit price, the card preserves it as a publishing
+  constraint and explains any difference from its model recommendation.
 - Current version and source locator for release traceability.
 - An authenticated SkillPay merchant session.
 
@@ -27,7 +29,7 @@ upload and record its SHA-256 checksum.
    file chooser.
 3. Wait until the page explicitly reports that Skill parsing has completed.
 4. Review parsed metadata, then fill the public title, description, and exact CNY
-   price from the release manifest.
+   price from the release manifest generated from the current Pricing Card.
 5. Submit the form and wait for the product-success notice.
 6. Re-open the product list and record whether the product is reviewing or live.
 

@@ -14,9 +14,11 @@ Before implementing or executing a new adapter, establish:
    public marketplace listing, or live hosted page.
 4. Required account, credentials, source locator, metadata, icon, examples, and
    commercial fields.
-5. Deterministic preparation and validation commands.
-6. External actions such as repository creation, upload, review, or submission.
-7. Observable completion evidence and rollback path.
+5. The `lov-skill-pricing` Pricing Card that supplies the shared public price,
+   billing model, free/paid funnel, confidence, evidence gaps, and review trigger.
+6. Deterministic preparation and validation commands.
+7. External actions such as repository creation, upload, review, or submission.
+8. Observable completion evidence and rollback path.
 
 ## Adapter directory convention
 
