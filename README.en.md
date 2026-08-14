@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **73 skills** — 61 Free + 12 Paid.
+> **74 skills** — 61 Free + 13 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -79,6 +79,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`visual-clone`](https://github.com/lovstudio/visual-clone-skill) | Extract the design DNA of a reference image so you can recreate the look. |
 | **Academic** | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`academic-translator`](https://github.com/lovstudio/academic-translator-skill) | Translate English papers into Chinese while preserving figures, equations, pages, and navigation. |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`paper-translator`](https://github.com/lovstudio/paper-translator-skill) | Translate academic PDFs into Chinese with matched pages, bilingual layouts, figures, and formulas. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`thesis-polish`](https://github.com/lovstudio/thesis-polish-skill) | Polish an MBA thesis across language, structure, argument, and originality. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`translation-review`](https://github.com/lovstudio/translation-review-skill) | Review a Chinese→English translation against the original across six quality dimensions. |
 | **Office Automation** | | |

@@ -1719,6 +1719,44 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/academic-translator.md
+- name: paper-translator
+  updated_at: 2026-08-14T04:15:01.000Z
+  display_name: Paper Translator
+  repo: lovstudio/paper-translator-skill
+  name_zh: 论文超级翻译官
+  paid: true
+  price_cny: 4.99
+  category: Academic
+  skill_path: ""
+  version: 0.1.1
+  description: Translate English academic PDFs into Simplified Chinese while preserving page correspondence, bilingual layouts,
+    figures, and formulas.
+  tagline_en: Translate academic PDFs into Chinese with matched pages, bilingual layouts, figures, and formulas.
+  tagline_zh: 将英文论文译为中文 PDF，支持同页数、对照页与段落双语，并在保版式路线中保留图表和公式。 — 售价 ¥4.99
+  pricing:
+    model: one_time
+    visibility: public
+    list_price_cny: 4.99
+    launch_price_cny: 4.99
+    price_range_cny:
+    - 4.99
+    - 9.99
+    delivery_unit_zh: 单项 Skill、源码仓库与当前版本使用说明
+    delivery_unit_en: One Skill, its source repository, and current-version usage notes
+    value_zh: 将英文论文译为中文 PDF，支持同页数、逐页对照和段落双语，并提供保图保公式的版式路线。
+    value_en: Translate academic PDFs into Chinese with matched pages, facing pages, paragraph bilingual output, and a layout-preserving route.
+    anchor_zh: 一次处理通常可减少约 1–8 小时逐页对照、重排和返修工作。
+    anchor_en: A run typically saves roughly 1–8 hours of page comparison, reflow, and revision work.
+    basis_zh: 先以 ¥4.99 验证复杂论文成功率与支持成本；达到真实交付门槛后再评估 ¥9.99 稳定档。
+    basis_en: Start at CNY 4.99 to validate complex-paper success and support cost, then review a CNY 9.99 stable tier.
+    boundary_zh: 扫描件需先 OCR；图片内文字、模型 API、第三方工具与复杂人工排版服务另行处理。
+    boundary_en: Scanned PDFs need OCR; image text, model APIs, third-party tools, and complex manual layout work are separate.
+    maintenance_zh: 随 PDF 解析器、pdf2zh、模型接口、字体和真实论文回归样本变化复评。
+    maintenance_en: Review against PDF parsers, pdf2zh, model APIs, fonts, and real-paper regression samples.
+    confidence: medium
+    review_trigger_zh: 完成 10 次真实论文交付、达到 100 次安装、版本变化或支持成本明显变化时复评。
+    review_trigger_en: Review after 10 real paper deliveries, 100 installs, a version change, or a material support-cost change.
+    card_path: pricing-cards/paper-translator.md
 - name: video-chapter
   updated_at: 2026-07-27T03:54:32.000Z
   skillpay_product_id: P0806000200843460
