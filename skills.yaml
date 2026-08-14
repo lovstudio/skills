@@ -1955,9 +1955,10 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/repo2docs.md
 - name: wdb-cli
-  updated_at: 2026-08-14T04:02:51.000Z
+  updated_at: 2026-08-14T04:29:25.000Z
   skillpay_product_id: P0806000201803813
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt_Qi
+  skillpay_review_product_id: P0806000201871143
   display_name: Universal WeChat Key
   repo: lovstudio/wdb-cli-skill
   name_zh: 万能微信秘钥
@@ -1972,7 +1973,7 @@ skills:
   tagline_zh: 一把面向本地微信数据的万能钥匙，精准读取聊天、联系人、朋友圈、结构与稳定记录。
   distribution:
     workbuddy: review
-    skillpay: live
+    skillpay: review
   pricing:
     model: one_time
     visibility: public
