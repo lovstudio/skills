@@ -1,40 +1,40 @@
 {
   "skill_name": "wdb-cli",
-  "skill_version": "0.1.1",
+  "skill_version": "0.1.2",
   "skill_id": 66,
-  "skill_version_id": 37,
+  "skill_version_id": 38,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "Wa7LnlMiMwkQWfPZ",
-      "tag": "mqqBXyz9fRMTgYM4LtVNfQ==",
-      "original_checksum": "b10d7a9c6f530b597d97b4ba6bf9faaed03321294428c43cecb508b8ab0ca0b9",
-      "original_size": 6609
+      "iv": "tcNYRE0HJNG5t9Ep",
+      "tag": "HgI4c/DiEAoSQAv6nMiJJg==",
+      "original_checksum": "88d229310fc857cdad342a7ecfd5db00fcd7b0763dc239fc061e78d1faafad96",
+      "original_size": 7022
     },
     "references/data-contract.md": {
-      "iv": "TPp4f5TE2kuFH9Kn",
-      "tag": "QXtLaepNxNsHQSy15rjmug==",
-      "original_checksum": "12d2e9c143fb6b1c6f46b51544d25f6435dc731c827a6ef11cd43434d6187b69",
+      "iv": "6byoaaaf0iU/Whln",
+      "tag": "jX0zGawBBgbnlu5NUQa1Sw==",
+      "original_checksum": "2f605d9f523536dac4399bd7d2657d985318bbff783c52957f8e8e8f92f7eaa8",
       "original_size": 3511
     },
     "scripts/test_wdb_cli.py": {
-      "iv": "j2VfVkACP/dF4kxf",
-      "tag": "FQL2GHrp+FgWT7UxoMZHmQ==",
-      "original_checksum": "a4ba262463e8592a8c0531b01084979664ef6c3ba0452c9826989105a0e91fc5",
-      "original_size": 8285
+      "iv": "1N3QPcecYUPX9xwi",
+      "tag": "z2GwlHdFqCuAJR9Vs8paIg==",
+      "original_checksum": "b3fbbd1a7772ea18dab34a48a8bec132fcad068bb29f51f8c2332eb25e10fa97",
+      "original_size": 8703
     },
     "scripts/validate_skill.py": {
-      "iv": "iPXNmAVDGAiCkTys",
-      "tag": "/tyCo2FFMQVZrNrJDRC+Fw==",
-      "original_checksum": "beaec492120ce6fd70f8fa4f6419777ce6567e4fa63e238e4109c1fd9058bfa7",
-      "original_size": 11663
+      "iv": "MV7gq5ktToq9F9lH",
+      "tag": "W5bro+xKd8jXJH1m8DGwOA==",
+      "original_checksum": "69d2b900cdf09624fd91392dc3e00ddfd75687add862bf17f29c34e7036024af",
+      "original_size": 11790
     },
     "scripts/wdb_cli.py": {
-      "iv": "tmL2oERIxXU9QTLR",
-      "tag": "6RgK7zIfUH7iUmv3s1Bkkw==",
-      "original_checksum": "958af69f88c04c8028ca74272a61fe11c8207268bbfda74c461498b36a3018ae",
-      "original_size": 70371
+      "iv": "T0ROgvRhkG5g39fR",
+      "tag": "Fvh+GvgD5A4TykSDlai1Xg==",
+      "original_checksum": "547485ec12d35a90130578e50a88672d9b23cf4d6c4fcb1c0a2790e346b94ccd",
+      "original_size": 70359
     }
   }
 }
