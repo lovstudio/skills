@@ -144,14 +144,23 @@ def make_module_self_contained(source: Path, target: Path) -> None:
 
 
 def workbuddy_frontmatter(
-    source_skill: Path, connector: dict[str, Any]
+    source_skill: Path,
+    connector: dict[str, Any],
+    root_source_name: str,
 ) -> tuple[str, str]:
     data, body = split_frontmatter(source_skill)
     metadata = data.get("metadata")
     if not isinstance(metadata, dict):
         raise ValidationFailure(f"{source_skill}: metadata must be a mapping")
+    source_name = compact_text(data.get("name"))
+    raw_name = compact_text(connector.get("raw_name"))
+    package_name = (
+        raw_name
+        if raw_name and source_name == root_source_name
+        else source_name
+    )
     fields: list[tuple[str, str]] = [
-        ("name", compact_text(data.get("name"))),
+        ("name", package_name),
         ("description", compact_text(data.get("description"))),
         ("version", compact_text(metadata.get("version"))),
         ("author", compact_text(metadata.get("author"))),
@@ -168,9 +177,17 @@ def workbuddy_frontmatter(
     return "\n".join(lines), body
 
 
-def transform_skills(target: Path, connector: dict[str, Any]) -> None:
+def transform_skills(
+    target: Path,
+    connector: dict[str, Any],
+    root_source_name: str,
+) -> None:
     for skill_file in sorted(target.rglob("SKILL.md")):
-        frontmatter, body = workbuddy_frontmatter(skill_file, connector)
+        frontmatter, body = workbuddy_frontmatter(
+            skill_file,
+            connector,
+            root_source_name,
+        )
         skill_file.write_text(frontmatter + body, encoding="utf-8")
 
 
@@ -244,7 +261,8 @@ def build(
 
     connector = json.loads(meta_path.read_text(encoding="utf-8"))
     source_data, _ = split_frontmatter(source / "SKILL.md")
-    root_skill_name = compact_text(source_data.get("name"))
+    root_source_name = compact_text(source_data.get("name"))
+    root_skill_name = compact_text(connector.get("raw_name")) or root_source_name
 
     output_dir.mkdir(parents=True)
     shutil.copy2(meta_path, output_dir / "connector-meta.json")
@@ -268,7 +286,7 @@ def build(
             copy_source_resources(module_source, module_target)
             make_module_self_contained(source, module_target)
 
-    transform_skills(skills_target, connector)
+    transform_skills(skills_target, connector, root_source_name)
 
     package_errors: list[str] = []
     validate_workbuddy_package(output_dir, package_errors)

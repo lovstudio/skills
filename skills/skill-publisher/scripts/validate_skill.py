@@ -489,6 +489,9 @@ def validate_connector_meta(path: Path, errors: list[str]) -> dict[str, Any] | N
     source = compact_text(data.get("source"))
     if not NAME_RE.fullmatch(source):
         errors.append(f"{path}: source must be a globally unique kebab-case ID")
+    raw_name = compact_text(data.get("raw_name"))
+    if raw_name and not NAME_RE.fullmatch(raw_name):
+        errors.append(f"{path}: raw_name must be a kebab-case Skill ID")
     if data.get("type") != "skill-only":
         errors.append(f"{path}: type must be 'skill-only'")
     if not SEMVER_RE.fullmatch(compact_text(data.get("version"))):

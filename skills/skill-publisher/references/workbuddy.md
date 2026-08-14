@@ -28,6 +28,11 @@ Platform metadata, icon, staging directory, and archives stay outside source.
 - two to five Chinese and English examples
 - `minWorkbuddyVersion` when a version-gated field is used
 
+For an update to an existing WorkBuddy listing whose historical internal Skill
+ID differs from the canonical source ID, set optional `raw_name` to that exact
+legacy ID. The builder applies it only to the root WorkBuddy package directory
+and frontmatter; canonical source and user-facing display names stay unchanged.
+
 Display names should contain 2–20 characters. Chinese and English descriptions
 should each contain 20–100 characters and describe the user outcome.
 

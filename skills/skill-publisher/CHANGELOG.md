@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0] - 2026-08-14
+
+### Added
+
+- support legacy WorkBuddy raw names
+- allow external raw_name metadata for updates to existing WorkBuddy listings without changing canonical Skill IDs
+
 ## [0.4.1] - 2026-08-14
 
 ### Fixed
