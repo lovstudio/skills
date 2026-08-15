@@ -28,6 +28,16 @@ TEXT_EXTENSIONS = {
     ".yaml",
 }
 
+LEGACY_INSPECTOR_DEPENDENCIES = {
+    "code-inspector-plugin",
+    "@aspect/code-inspector-plugin",
+}
+
+VITE_FRAMEWORK_PLUGIN_PATTERN = re.compile(
+    r"\b(?:react|vue|svelte|solid|preact|qwik|astro)\s*\(",
+    re.IGNORECASE,
+)
+
 
 @dataclass
 class Check:
@@ -114,6 +124,27 @@ def search_text(root: Path, needles: Iterable[str], max_files: int = 300) -> boo
     return False
 
 
+def vite_lovinsp_order(paths: Iterable[Path]) -> tuple[bool, bool]:
+    """Return (lovinsp_call_found, order_valid) for Vite plugin arrays."""
+    found = False
+    for path in paths:
+        if not path.name.startswith("vite.config"):
+            continue
+        text = read_text(path)
+        plugins_match = re.search(r"\bplugins\s*:\s*\[", text)
+        if not plugins_match:
+            continue
+        plugin_section = text[plugins_match.end() :]
+        lovinsp_match = re.search(r"\blovinspPlugin\s*\(", plugin_section)
+        if not lovinsp_match:
+            continue
+        found = True
+        framework_match = VITE_FRAMEWORK_PLUGIN_PATTERN.search(plugin_section)
+        if framework_match and lovinsp_match.start() > framework_match.start():
+            return True, False
+    return found, found
+
+
 def status(ok: bool) -> str:
     return "ok" if ok else "missing"
 
@@ -174,7 +205,22 @@ def audit(root: Path, app_type: str = "auto") -> dict:
     has_lucide = "lucide-react" in deps
     has_lovinsp_dependency = "lovinsp" in deps
     lovinsp_configured = contains_text(build_config_files, ["lovinspplugin", "@lovinsp/", "lovinsp"])
-    has_lovinsp = has_lovinsp_dependency and lovinsp_configured
+    vite_lovinsp_found, vite_lovinsp_order_ok = vite_lovinsp_order(build_config_files)
+    if has_vite:
+        lovinsp_configured = lovinsp_configured and vite_lovinsp_found
+    legacy_lovinsp_dependencies = sorted(LEGACY_INSPECTOR_DEPENDENCIES & set(deps))
+    legacy_lovinsp_config = contains_text(
+        build_config_files,
+        ["codeinspectorplugin", "code-inspector-plugin", "@aspect/code-inspector-plugin"],
+    )
+    legacy_lovinsp_remains = bool(legacy_lovinsp_dependencies or legacy_lovinsp_config)
+    lovinsp_order_ok = vite_lovinsp_order_ok if has_vite else True
+    has_lovinsp = (
+        has_lovinsp_dependency
+        and lovinsp_configured
+        and lovinsp_order_ok
+        and not legacy_lovinsp_remains
+    )
     has_logo = file_exists(root, ["assets/logo.png", "assets/logo.svg", "public/logo.png", "public/logo.svg"])
     has_icons = file_exists(root, ["src-tauri/icons/icon.icns", "src-tauri/icons/icon.ico"])
     has_ci = any(re.search(r"(check|ci|test|build)", p.name, re.I) for p in workflows)
@@ -269,10 +315,16 @@ def audit(root: Path, app_type: str = "auto") -> dict:
         ),
         Check(
             "lovinsp",
-            "Lovinsp click-to-code",
+            "Lovinsp default integration",
             status(has_lovinsp),
-            f"dependency={has_lovinsp_dependency}, configured={lovinsp_configured}",
-            "Install lovinsp and register lovinspPlugin before the framework plugin in the build config.",
+            (
+                f"dependency={has_lovinsp_dependency}, configured={lovinsp_configured}, "
+                f"order_ok={lovinsp_order_ok}, legacy_remains={legacy_lovinsp_remains}"
+            ),
+            (
+                "Run the lov-install-lovinsp skill to install or update Lovinsp, migrate supported "
+                "code-inspector integrations, and register lovinspPlugin before the framework plugin."
+            ),
         ),
         Check(
             "ci",

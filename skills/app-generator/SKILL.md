@@ -1,24 +1,33 @@
 ---
 name: lov-app-generator
 description: >
-  Generate or standardize Skill Publisher apps, choosing web-only, PWA, or Tauri
-  desktop case-by-case. Covers React/Vite or Next.js web apps plus Tauri +
-  React + shadcn/ui + TanStack Query projects with Skill Publisher branding, CI/CD,
-  deploy/release, optional auto update, and lovinsp. Use when the user asks to
-  create a Skill Publisher app, web app, or Tauri app, initialize an app shell, apply
-  Skill Publisher app standards, or mentions "App生成器", "新建 Skill Publisher Web App",
-  "只创建 web", "生成跨端 App", "create Skill Publisher app", or "Skill Publisher app generator".
+  This skill should be used when the user asks for "App生成器", "生成 Web App",
+  "生成 Tauri App", "只创建 web", or to standardize an existing frontend app with
+  branding, CI/CD, and Lovinsp.
 license: MIT
 compatibility: >
   Requires Python 3.8+ for the project audit helper. Designed for React,
   TypeScript, Vite, Next.js, optional Tauri, shadcn/ui, TanStack Query, GitHub
-  Actions, web deploys, and Skill Publisher Configurable Academic branded apps. New apps must
-  generate a target-specific logo through `lov-gen-logo`; Tauri apps
-  must run the Tauri icon pipeline from that logo.
+  Actions, web deploys, and Skill Publisher Configurable Academic branded apps. Every
+  generated or standardized frontend app must run `lov-install-lovinsp`. New apps
+  must generate a target-specific logo through `lov-gen-logo`; Tauri apps must run
+  the Tauri icon pipeline from that logo.
 metadata:
   author: contributors
-  version: "0.3.1"
-  tags: skill-publisher app-generator web vite nextjs tauri react shadcn tanstack-query cicd updater lovinsp
+  version: "0.3.2"
+  tags:
+    - skill-publisher
+    - app-generator
+    - web
+    - vite
+    - nextjs
+    - tauri
+    - react
+    - shadcn
+    - tanstack-query
+    - cicd
+    - updater
+    - lovinsp
 ---
 
 # app-generator — Skill Publisher App 生成器
@@ -30,7 +39,25 @@ desktop distribution are required. Common stacks are React + TypeScript +
 Vite, Next.js, or Tauri + React, with shadcn/ui, Skill Publisher brand assets, Warm
 Academic UI, CI/CD or deploy wiring, and lovinsp click-to-code support.
 
-## When to Use
+## Default Integration Invariant
+
+Run the `lov-install-lovinsp` skill for every app handled by this workflow. Treat
+Lovinsp as a default development capability, not an optional feature selected
+from the brief.
+
+- Invoke `lov-install-lovinsp` after the frontend scaffold and build config exist.
+- Re-run it for existing apps to update Lovinsp or migrate `code-inspector`.
+- Preserve its idempotent behavior; repeated app-generator runs must stay safe.
+- Require the project audit to pass dependency, configuration, migration, and
+  plugin-order checks before completion.
+- Verify the served Vite module contains `lovinsp-component` or `[lovinsp v...]`.
+
+Skip this invariant only when the requested deliverable has no browser-rendered UI
+and therefore falls outside the app-generation paths described below.
+
+## Triggers
+
+### Activate when
 
 - The user asks to generate a new Skill Publisher app, web app, PWA, desktop app, or
   cross-platform app.
@@ -41,6 +68,15 @@ Academic UI, CI/CD or deploy wiring, and lovinsp click-to-code support.
   Academic UI, or lovinsp as part of app setup.
 - The project is a Skill Publisher, Lovpen, Lovcode, Lovmind, Lovshot, Lovsider,
   Lovsigil, or Lovtarot app.
+
+### Do not activate when
+
+- The user asks only for a standalone logo, document, presentation, or static media
+  asset without an application shell.
+- The request is limited to diagnosing an existing app and does not include creating
+  or standardizing its app architecture.
+- The deliverable is a backend-only service, CLI, library, or Skill package with no
+  browser-rendered application UI.
 
 ## Workflow (MANDATORY)
 
@@ -164,7 +200,7 @@ Then apply the Skill Publisher layers in this order:
 4. Brand assets: generate a target-specific app logo with
    `lov-gen-logo`, publish the chosen version into `assets/` and
    `public/`, and generate favicons / PWA icons if needed.
-5. Lovinsp: click-to-code integration.
+5. Lovinsp: invoke `lov-install-lovinsp` and verify click-to-code integration.
 6. CI/CD and deploy: typecheck, lint/build where available, plus the selected
    web deploy target or documented manual deploy path.
 7. Verification: typecheck, build, dev server, and browser screenshot or
@@ -193,7 +229,7 @@ Then apply the Skill Publisher layers in this order:
    `lov-gen-logo`, publish the chosen version into `assets/` and
    `public/`, prepare a macOS-safe padded icon source, then run the Tauri icon
    pipeline from that generated logo.
-5. Lovinsp: click-to-code integration.
+5. Lovinsp: invoke `lov-install-lovinsp` and verify click-to-code integration.
 6. CI/CD: typecheck, lint/build where available, Tauri release workflow.
 7. Auto update: Tauri updater plugin, signing keys/env placeholders, release
    endpoint wiring.
@@ -209,8 +245,10 @@ Do not rebuild the project from scratch. Patch the smallest surface needed:
    conventions unless they conflict with Skill Publisher requirements.
 3. Add missing Skill Publisher layers from the audit; do not add Tauri to a web-only
    app unless the brief requires native desktop capabilities.
-4. Preserve user code and unrelated changes.
-5. Prefer incremental commits/checkpoints when the app is already substantial.
+4. Run `lov-install-lovinsp` to install/update Lovinsp and migrate any supported
+   `code-inspector` integration.
+5. Preserve user code and unrelated changes.
+6. Prefer incremental commits/checkpoints when the app is already substantial.
 
 ### Step 5: Apply Brand and UI Standards
 
@@ -315,9 +353,18 @@ set them:
 
 ### Step 8: Lovinsp
 
-Integrate lovinsp for frontend development unless the project is not browser/UI
-based. Prefer the existing `lov-install-lovinsp` workflow and keep it
-idempotent.
+Invoke the existing `lov-install-lovinsp` workflow for every browser-rendered app.
+Do not replace that workflow with a handwritten dependency-only installation: it
+also performs version checks, idempotent configuration, and `code-inspector`
+migration.
+
+Completion requires all of the following:
+
+- `lovinsp` exists in project dependencies.
+- The supported build configuration registers `lovinspPlugin`.
+- Vite registers `lovinspPlugin({ bundler: "vite" })` before the framework plugin.
+- No supported legacy `code-inspector` dependency or configuration remains.
+- A development-server readback proves the transform is active when practical.
 
 For Vite apps, confirm the Vite config imports and registers
 `lovinspPlugin({ bundler: "vite" })` before the framework plugin, not merely
@@ -396,6 +443,8 @@ Report:
 - App type decision: web-only / PWA / Tauri, and why that fit the brief.
 - Skill Publisher layers added or confirmed: brand, UI, data layer, lovinsp, CI/CD,
   deploy/release, and updater only when applicable.
+- `lov-install-lovinsp` result, including installation/update/migration status and
+  runtime readback evidence.
 - Commands/checks run and their result.
 - Any remaining secrets, signing steps, or manual app-store/release actions.
 

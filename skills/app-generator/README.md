@@ -1,11 +1,12 @@
 # lov-app-generator
 
-![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.2-CC785C)
 
 Generate or standardize Skill Publisher apps, choosing web-only, PWA, or Tauri
 desktop case-by-case, with React/Vite or Next.js, shadcn/ui, TanStack Query
 when useful, Skill Publisher branding, CI/CD/deploy, optional auto update, and
-lovinsp.
+lovinsp. Every generated or standardized frontend app runs the idempotent
+`lov-install-lovinsp` workflow by default.
 
 Independent source repository, also distributed through [skill-publisher dev-skills](https://example.com/skills/dev-skills) — by [example.com](https://example.com)
 
@@ -50,11 +51,13 @@ python3 "${SKILL_APP_GENERATOR_SKILL_DIR:-$HOME/.claude/skills/lov-app-generator
 3. Chooses web-only, PWA, or Tauri desktop from the brief instead of forcing desktop packaging.
 4. Guides new app scaffolding or incremental upgrade.
 5. Applies the Configurable Academic UI system and Skill Publisher brand asset paths.
-6. Coordinates related Skill Publisher skills:
+6. Always invokes `lov-install-lovinsp` for frontend apps, including version
+   updates and migration from supported `code-inspector` integrations.
+7. Coordinates other related Skill Publisher skills:
    `install-shadcn-ui`, `install-tanstack-query`, `install-tauri-logo`,
-   `install-lovinsp`, and `project-port`.
-7. Adds or checks CI/CD, web deploy wiring, and Tauri updater wiring when applicable.
-8. Runs the lightest reliable verification commands available in the project.
+   and `project-port`.
+8. Adds or checks CI/CD, web deploy wiring, and Tauri updater wiring when applicable.
+9. Runs the lightest reliable verification commands available in the project.
 
 ## Options
 
