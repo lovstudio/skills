@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "将提醒请求变成带时区、计划和运行证据的可验证 Yoda 原生自动化。"
+basis: "本地可靠性与可维护性基础能力免费提供。"
+boundary: "包含原生自动化配置、核验、去重和停用；不含第三方托管、消息通道成本或领域事实采集。"
+review_trigger: "引入托管执行、团队审批或付费通知通道时复评。"
+confidence: internal

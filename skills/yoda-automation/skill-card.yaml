@@ -1,0 +1,86 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "将 Yoda 的一次性或周期自动化配置为可核验的计划，并提供时区、cron、下次运行、运行记录和停用证据。"
+owner:
+  team: "LovStudio"
+  contact: "Lovstudio.AI"
+license:
+  name: MIT
+  terms: "可本地使用、修改和分发；执行外部通知或任务操作仍以用户当次请求为准。"
+  url: "LICENSE"
+use_case:
+  audience: "需要在 Yoda 中管理提醒、巡检和重复跟进的个人与小团队。"
+  scenario: "把自然语言的频率和完成门转为 Yoda 原生自动化，并修复过期或无效计划。"
+  tasks:
+    - "创建或修改一条 Yoda 原生自动化"
+    - "验证 cron、时区、下次运行和最新运行记录"
+    - "在完成门满足后停用精确的自动化"
+deployment:
+  geography: global
+  environments:
+    - "具备 Yoda 原生 Automations 的桌面环境"
+requirements:
+  credentials: "无；Yoda 登录与通知权限由宿主环境管理。"
+  dependencies:
+    - "Python 3.8+（只读验证脚本）"
+  runtime:
+    - "Yoda native Automations"
+risks:
+  - risk: "一次性时间戳误写为 cron 会导致没有下次运行。"
+    mitigation: "保存前验证五字段 cron，保存后回读 future next_run_at。"
+  - risk: "原生自动化与外部提醒同时启用，造成重复通知。"
+    mitigation: "修改现有记录优先，并在替换后停用另一条计划。"
+  - risk: "应用退出造成历史运行失败。"
+    mitigation: "保留失败证据，区分历史失败与修复后下一次真实运行。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Schedule contract"
+    path: "references/schedule-contract.md"
+output:
+  types:
+    - "Yoda automation record"
+    - "verification report"
+  formats:
+    - "Yoda UI or host API record"
+    - "JSON verification output"
+  parameters:
+    - "frequency"
+    - "timezone"
+    - "completion gate"
+  validation: "Saved record is active, has valid schedule fields and a future next_run_at; latest run is read back."
+  description: "一条不重复、可停止且可回读的 Yoda 自动化计划。"
+ethical_considerations: "不存储凭据或私人路径；外部消息、支付、上传和高影响动作只在用户明确请求的范围内执行。"
+dimensions:
+  - id: schedule-correctness
+    label: "计划正确性"
+    description: "频率、cron、时区与 next_run_at 一致。"
+    evidence: "验证脚本读取保存后的原生记录，并检查 cron 字段数与未来执行时间。"
+    score: 1.0
+  - id: duplicate-control
+    label: "去重控制"
+    description: "同一用户目的只保留一条活跃提醒。"
+    evidence: "工作流先搜索并编辑既有自动化，替换计划时停用旧计划。"
+    score: 1.0
+  - id: runtime-evidence
+    label: "运行证据"
+    description: "完成报告包含最新运行与失败原因，而非仅凭配置推断。"
+    evidence: "验证脚本读取 automation_runs 最新记录；真实案例记录了应用退出导致的失败。"
+    score: 1.0
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "作为 Yoda 本地使用的可靠性基础能力免费提供。"
+  boundary: "包含原生计划配置、核验和停用；不包含第三方工作流托管、消息通道费用或业务事实采集。"
+  review_trigger: "当增加托管执行、团队审批或商业消息通道时重新评估。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - "local-installed"
+  channels:
+    workbuddy: "not-published"
+    skillpay: "not-published"
+    github: "not-published"
+    lovstudio: "not-published"

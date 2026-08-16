@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **74 skills** — 61 Free + 13 Paid.
+> **75 skills** — 62 Free + 13 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -91,6 +91,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`pdf2png`](https://github.com/lovstudio/pdf2png-skill) | Convert a PDF to a single long PNG — fast enough to feel instant on macOS. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`png2svg`](https://github.com/lovstudio/png2svg-skill) | Convert a PNG to a crisp SVG, with background removed and curves smoothed. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`rich-export`](https://github.com/lovstudio/rich-export-skill) | Export one rich-media source into web, editable document, print, and archive formats. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`yoda-automation`](https://github.com/lovstudio/yoda-automation-skill) | Create reliable Yoda reminders and recurring follow-ups with verified schedules, run evidence, and a precise stop rule. |
 | **Content Creation** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`anti-wechat-ai-check`](https://github.com/lovstudio/anti-wechat-ai-check-skill) | Detect AI fingerprints in an article and rewrite it to read like a human. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`deep-research`](https://github.com/lovstudio/deep-research-skill) | Produce citation-tracked research reports with persistent evidence, claim verification, and Markdown/HTML/PDF packaging. |

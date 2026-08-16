@@ -3028,3 +3028,38 @@ skills:
     confidence: case-backed
     review_trigger_zh: 版本变化、覆盖新的地区或接入商、连续 10 次真实使用，或法规与平台流程明显变化时复评。
     review_trigger_en: Review after a version change, a new region or provider, 10 real uses, or a material regulatory or platform workflow change.
+- name: yoda-automation
+  display_name: Yoda Automation
+  repo: lovstudio/yoda-automation-skill
+  name_zh: Yoda 自动化
+  paid: false
+  category: Office Automation
+  version: 0.1.0
+  updated_at: 2026-08-16T10:26:39Z
+  description: Turn one-off and recurring Yoda tasks into verified native automations with timezone, schedule, run-evidence, deduplication, and completion-stop checks.
+  tagline_en: Create reliable Yoda reminders and recurring follow-ups with verified schedules, run evidence, and a precise stop rule.
+  tagline_zh: 把一次性提醒和周期跟进变成可核验的 Yoda 原生自动化，带时区、运行证据、去重与完成后停用。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 将自然语言频率转换为可验证的 Yoda 原生自动化，减少时区、cron、重复提醒和停用遗漏造成的返工。
+    value_en: Turn natural-language frequency into verifiable Yoda native automation, reducing rework from timezone, cron, duplicate-reminder, and stop-rule mistakes.
+    anchor_zh: 一条经过核验的提醒或巡检计划通常可减少数十分钟到数小时的重复跟进、排查和重新配置。
+    anchor_en: One verified reminder or monitoring plan can remove tens of minutes to hours of repeated follow-up, debugging, and reconfiguration.
+    basis_zh: 作为可验证的本地自动化基础能力免费提供；价值来自减少遗漏、重复通知和无效计划。
+    basis_en: Offered free as a verifiable local automation foundation; value comes from fewer omissions, duplicate notifications, and invalid schedules.
+    boundary_zh: 包含原生计划配置、核验、去重和停用；不包含第三方托管、商业消息通道费用或领域事实采集。
+    boundary_en: Covers native schedule setup, verification, deduplication, and stopping; third-party hosting, commercial message-channel costs, and domain fact collection are excluded.
+    maintenance_zh: 随 Yoda 自动化能力、时区处理和运行记录接口变化复评。
+    maintenance_en: Review when Yoda automation capabilities, timezone handling, or run-record interfaces change.
+    confidence: entry
+    review_trigger_zh: 版本变化、累计 10 次真实使用、支持成本明显变化，或引入托管执行、团队审批、付费消息通道时复评。
+    review_trigger_en: Review after a version change, 10 real uses, a material support-cost change, or adding hosted execution, team approval, or paid messaging.
+    card_path: pricing-cards/yoda-automation.md

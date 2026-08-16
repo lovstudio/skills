@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **74 个技能** — 61 个免费 + 13 个付费。
+> **75 个技能** — 62 个免费 + 13 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -90,6 +90,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`pdf2png`](https://github.com/lovstudio/pdf2png-skill) | [PDF 出长图](https://github.com/lovstudio/pdf2png-skill) | 把 PDF 拼成一张长图 PNG，在 macOS 上快到几乎瞬间出图。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`png2svg`](https://github.com/lovstudio/png2svg-skill) | [PNG 矢量化](https://github.com/lovstudio/png2svg-skill) | 把 PNG 矢量化为高质量 SVG，自动抠背景、曲线平滑。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`rich-export`](https://github.com/lovstudio/rich-export-skill) | [富媒体一键导出](https://github.com/lovstudio/rich-export-skill) | 一份富媒体内容，同时交付网页、可编辑文档、打印版和归档包。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`yoda-automation`](https://github.com/lovstudio/yoda-automation-skill) | [Yoda 自动化](https://github.com/lovstudio/yoda-automation-skill) | 把一次性提醒和周期跟进变成可核验的 Yoda 原生自动化，带时区、运行证据、去重与完成后停用。 |
 | **内容创作** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`anti-wechat-ai-check`](https://github.com/lovstudio/anti-wechat-ai-check-skill) | [文章去 AI 味](https://github.com/lovstudio/anti-wechat-ai-check-skill) | 检测文章的 AI 味并做人性化润色，帮助稳过微信 3.27 条款的机器判定。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`deep-research`](https://github.com/lovstudio/deep-research-skill) | [深度研究](https://github.com/lovstudio/deep-research-skill) | 生成带引用追踪、证据留存和主张校验的深度研究报告，并输出 Markdown/HTML/PDF。 |

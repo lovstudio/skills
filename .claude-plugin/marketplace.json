@@ -47,7 +47,7 @@
     {
       "name": "office-automation",
       "source": "./",
-      "description": "Office Automation — 8 free skills bundled together.",
+      "description": "Office Automation — 9 free skills bundled together.",
       "category": "Office Automation",
       "skills": [
         "./skills/fill-form",
@@ -57,7 +57,8 @@
         "./skills/any2deck",
         "./skills/pdf2png",
         "./skills/png2svg",
-        "./skills/rich-export"
+        "./skills/rich-export",
+        "./skills/yoda-automation"
       ],
       "strict": false
     },
