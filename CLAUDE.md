@@ -92,3 +92,7 @@ For **paid** skills: pass `--private` to `gh repo create` and set `paid: true`.
 ## Historical Context
 
 This repo used to be a monorepo containing all skills under `skills/lovstudio-<name>/`. In 2026-04-16 it was refactored into a pure index + 27 independent skill repos. The old `lovstudio/pro-skills` repo (which mirrored free + added 3 paid skills) was archived at the same time. See the 0.8.0 CHANGELOG entry.
+
+## Cross-session Notes
+
+- `skills.yaml` 里含 `: ` 的 description 必须加引号，否则 CI 的 `yaml.safe_load` 直接 ScannerError（2026-08-18, e32d199）
