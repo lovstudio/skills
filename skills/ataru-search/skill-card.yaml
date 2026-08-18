@@ -1,0 +1,105 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: >
+  从本机 Ataru 记忆索引里召回过去的 AI 会话上下文。先确认索引就绪，再按 turn /
+  run / session / project 粒度检索，返回带稳定标识的排序命中，并支持围绕任一命中
+  读回一段原始转录，输出经过投影与截断以便直接消费。
+owner:
+  team: "Lovstudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "自由使用、修改与再分发，保留版权与许可声明。不含 Ataru 本体的授权。"
+  url: "../LICENSE"
+use_case:
+  audience: "在本机工作、需要用到自己过去 AI 会话记录的 Agent 与开发者"
+  scenario: "当前问题以前遇到过，结论散落在历史会话里，需要找回并引用而不是重新推导"
+  tasks:
+    - "确认索引可检索，未就绪时明确失败而不是返回零结果"
+    - "在四种粒度上召回相关历史，返回可定位的稳定标识"
+    - "围绕某个命中读回一段原始转录"
+deployment:
+  geography: global
+  environments:
+    - "macOS 本机，已安装 Ataru 0.41.3 或更新版本且索引已就绪"
+    - "同一仓库内的本地 dev build（release 或 debug）"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "Python 3.8+（仅标准库）"
+    - "Ataru 0.41.3+"
+    - "已就绪的 Ataru 关键词索引"
+  runtime:
+    - "本机文件系统读权限，用于索引目录与会话历史"
+risks:
+  - risk: "索引未就绪时若返回零结果，调用方会把它当成「历史里没有这件事」并据此下错结论"
+    mitigation: "每次检索前先读索引状态，未就绪报 ATARU_INDEX_NOT_READY、正在构建报 ATARU_INDEX_BUILDING，并指向 lov-ataru-indexing"
+  - risk: "命令行只有关键词检索，同义表述会漏召，被误读为语义检索的失败"
+    mitigation: "响应原样带出 mode、requestedMode、semanticAvailable，指示调用方换词换粒度重试而不是断言不存在"
+  - risk: "原始响应可达数 MB，直接进上下文会挤掉真正要解决的问题"
+    mitigation: "默认只输出投影字段，snippet 截断到 600 字符、正文截断到 2000 字符并标注剩余量，完整响应需显式 --full"
+  - risk: "旧版 Ataru 不认识 index 子命令，会把它当成桌面启动参数并打开窗口，抢走用户前台且永不返回"
+    mitigation: "每个候选二进制在执行任何真实命令前先跑一次 --version，低于 0.41.3 直接拒绝"
+  - risk: "项目 ID 以短横线开头，空格分隔时会被参数解析器当成另一个选项"
+    mitigation: "解析前把已知取值选项改写成等号形式，路径式 ID 可以按直觉传入"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Skill group composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "JSON 召回结果"
+    - "JSON 原文切片"
+  formats:
+    - "stdout 上的单个 JSON 对象，UTF-8，缩进 2"
+  parameters:
+    - "--level：turn、run、session、project"
+    - "--limit：返回命中数"
+    - "--project-id：限定单个项目"
+    - "--around 与 --window：原文切片的锚点与每侧条数"
+    - "--snippet-chars 与 --message-chars：截断阈值"
+    - "--full：输出未投影的完整 CLI 响应"
+  validation:
+    - "检索前索引状态必须为可检索，否则以非零退出码失败"
+    - "锚点在会话内找不到时报 ATARU_MESSAGE_NOT_FOUND，不静默改位置"
+    - "所有截断都在输出里标出剩余字符数"
+  description: "search 返回 query、level、mode、tookMs、total 与命中数组，每个命中含 projectId、sessionId、messageId、lineNumber、role、timestamp、snippet；read 返回会话总消息数、实际返回数与按窗口切出的消息正文。"
+ethical_considerations: >
+  检索对象是用户本机完整的 AI 会话历史，可能包含凭据、私人信息与第三方内容。全程
+  本地执行，不上传任何消息内容。默认截断降低了敏感正文被整段带入上下文的量。引用
+  历史内容时必须给出可回溯的会话标识，不得把历史结论冒充为当前事实。
+dimensions:
+  - id: correctness
+    label: "命中标识可回溯到原文"
+    description: "每个命中携带的 projectId、sessionId、messageId、lineNumber 能直接定位回原始转录"
+    evidence: "用一次 turn 级命中的 messageId 执行 read，成功切出该消息及其前后各一条"
+    score: null
+  - id: honesty
+    label: "不把索引缺失伪装成没有结果"
+    description: "索引未就绪或正在构建时明确失败，并指向负责构建的 Skill"
+    evidence: "检索前的状态校验在 searchAvailable 为假时以 ATARU_INDEX_NOT_READY 退出"
+    score: null
+  - id: transparency
+    label: "如实暴露检索模式的局限"
+    description: "响应原样带出 mode、requestedMode、semanticAvailable，不掩饰命令行只有关键词检索"
+    evidence: "真实运行返回 mode=keyword、semanticAvailable=false 并被原样转述"
+    score: null
+  - id: efficiency
+    label: "输出规模受控"
+    description: "默认投影与截断，把可达数 MB 的原始响应压到可直接进上下文的体量"
+    evidence: "两条命中的投影输出在 2KB 量级，snippet 与正文均带剩余字符数标注"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "作为 Ataru 检索内核的无界面外壳免费分发，不构成独立售卖的能力。"
+  boundary: "包含就绪校验、关键词召回与原文切片；不包含索引构建、语义排序、远程检索。"
+  review_trigger: "命令行支持语义检索并产生真实推理成本，或本体按检索能力收费时重估。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

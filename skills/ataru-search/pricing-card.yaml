@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把「我记得以前解决过这个问题」从一次凭印象的重新摸索，变成一段可引用的原文。"
+basis: "本 Skill 是 Ataru 检索内核的无界面外壳，不产生独立于本体的价值，作为附属工具免费分发。"
+boundary: "包含：索引就绪校验、关键词召回、命中投影、围绕命中的原文切片。不包含：索引构建与修复、语义与 hybrid 排序、跨机器远程检索。"
+review_trigger: "命令行开始支持语义检索并因此产生真实推理成本，或 Ataru 本体按检索能力收费时，重新评估。"
+confidence: internal

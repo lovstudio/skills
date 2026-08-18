@@ -1,0 +1,21 @@
+[
+  {
+    "type": "case",
+    "title": "从本机 84 万条历史消息里定位一次关于索引更新的讨论并读回原文",
+    "description": "验证一次完整召回：先确认索引可用，再按消息粒度检索，然后用命中里的稳定标识把原文上下文读回来。命中同时来自 Claude Code 与 Codex 两种来源的会话，说明跨工具历史是统一可检索的。",
+    "input": {
+      "items": [
+        "本机 2704 个会话、847072 条消息的 Ataru 关键词索引，state=ready",
+        "检索词「索引没有更新」，level=turn，limit=2"
+      ]
+    },
+    "prompt": "我上次是在哪儿讨论过索引没有更新这件事？把那段原文给我看看。",
+    "output": {
+      "items": [
+        "两条命中，分别来自一个 Claude Code 会话与一个 Codex 归档会话，各自带 projectId、sessionId、messageId、lineNumber、role、timestamp 与 600 字符内的 snippet",
+        "响应元信息如实标出 mode=keyword、semanticAvailable=false、tookMs=48139，不掩饰命令行只有关键词检索这一事实",
+        "用第一条命中的 messageId 执行 read --window 1，返回该消息前后共 3 条原文，正文按 message-chars 截断并标注剩余字符数"
+      ]
+    }
+  }
+]

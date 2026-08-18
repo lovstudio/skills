@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把一次手动开桌面端等索引的中断，换成一条幂等命令和一份可判断的状态报告。"
+basis: "本 Skill 不产生独立的用户价值，它只是让 Ataru 的检索能力在无界面环境下可用。定价随 Ataru 本体走，作为附属工具免费分发。"
+boundary: "包含：索引状态判断、幂等增量构建、并发构建等待、语义索引成本估算。不包含：检索与排序、Ataru 本体的安装与升级、语义索引的实际初始化。"
+review_trigger: "Ataru 本体开始按检索能力收费，或语义索引初始化产生真实外部推理成本时，重新评估。"
+confidence: internal

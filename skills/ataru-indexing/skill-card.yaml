@@ -1,0 +1,101 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: >
+  在无界面环境下把本机 Ataru 会话记忆索引带到可检索状态。解析并版本门控本地
+  Ataru 可执行文件，读取索引状态，只在需要时发起增量构建，等待其他进程正在进行
+  的构建，最后交回一份带 actions 与规模数据的 JSON 报告。
+owner:
+  team: "Lovstudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "自由使用、修改与再分发，保留版权与许可声明。不含 Ataru 本体的授权。"
+  url: "../LICENSE"
+use_case:
+  audience: "在本机运行、需要检索历史 AI 会话的 Agent 与脚本"
+  scenario: "检索之前必须确认索引可用；桌面端可能未打开，也可能正在构建"
+  tasks:
+    - "解析一个真正实现了 index CLI 的 Ataru 可执行文件"
+    - "报告索引是否可检索、是否正在构建、进度多少"
+    - "幂等地完成增量构建或按要求完全重建"
+    - "估算可选语义索引的初始化成本"
+deployment:
+  geography: global
+  environments:
+    - "macOS 本机，已安装 Ataru 0.41.3 或更新版本"
+    - "同一仓库内的本地 dev build（release 或 debug）"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "Python 3.8+（仅标准库）"
+    - "Ataru 0.41.3+"
+  runtime:
+    - "本机文件系统读写权限，用于索引目录"
+risks:
+  - risk: "旧版 Ataru 不认识 index 子命令，会把它当成桌面启动参数并打开窗口，抢走用户的前台焦点且永不返回"
+    mitigation: "每个候选二进制在执行任何真实命令前先跑一次 --version，低于 0.41.3 直接拒绝并在错误里列出被拒候选及其版本"
+  - risk: "构建锁只在进程内生效，命令行构建与桌面端构建可能并发，白烧一遍全量 CPU"
+    mitigation: "构建前先读状态，state=building 时改为轮询等待；底层写临时目录再原子替换，最坏情况只浪费算力不损坏索引"
+  - risk: "--force 会丢弃现有索引重扫全部会话，在万级会话机器上是分钟级操作"
+    mitigation: "仅在用户明确要求完全重建时使用，默认走增量，report 里用 full-rebuild 与 catch-up-build 区分"
+  - risk: "任何子命令挂住都会阻塞调用方"
+    mitigation: "所有 CLI 调用都带超时，超时返回 ATARU_CLI_TIMEOUT 与完整命令行"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Skill group composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "JSON 状态报告"
+  formats:
+    - "stdout 上的单个 JSON 对象，UTF-8，缩进 2"
+  parameters:
+    - "--bin：显式指定 Ataru 可执行文件"
+    - "--force：完全重建而非增量"
+    - "--timeout：整体预算秒数，默认 3600"
+    - "--poll：等待其他构建时的轮询间隔秒数"
+    - "--raw：附带原始 CLI 状态"
+  validation:
+    - "state 与 searchAvailable 来自磁盘上的 manifest，不是推测"
+    - "索引不可用时进程退出码为 1，error 字段原样保留"
+    - "无可用二进制时退出码 3，超时退出码 4"
+  description: "一个 JSON 对象，含 state、searchAvailable、needsBuild、isBuilding、progressPercent、规模统计，以及本次执行的 actions 列表。"
+ethical_considerations: >
+  索引内容是用户本机的完整 AI 会话历史，属于高敏感数据。本 Skill 全程本地执行，
+  不上传任何消息内容，不读取消息正文用于报告，输出只含统计量与状态。错误信息里
+  只出现可执行文件路径与版本，不含会话内容。
+dimensions:
+  - id: correctness
+    label: "状态判断与真实磁盘状态一致"
+    description: "报告的 state、searchAvailable、规模统计直接来自索引 manifest，不做推断"
+    evidence: "在 2704 会话、847072 消息的真实语料上，status 报告与桌面端显示一致"
+    score: null
+  - id: safety
+    label: "不抢用户前台，不误删索引"
+    description: "旧版二进制会打开窗口，必须在执行前拦下；完全重建只在显式要求时发生"
+    evidence: "PATH 上 0.40.0 的旧二进制被拒绝并给出版本原因，未产生任何窗口"
+    score: null
+  - id: idempotence
+    label: "重复调用不产生多余构建"
+    description: "ensure 依据状态选择等待、增量或跳过，并在 actions 里说明"
+    evidence: "索引已就绪时 ensure 返回 actions=[already-ready]，未触发构建"
+    score: null
+  - id: efficiency
+    label: "避免并发全量构建"
+    description: "发现其他进程正在构建时轮询等待，而不是并行再跑一遍"
+    evidence: "state=building 时进入 waited-for-running-build 分支，不发起新构建"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "作为 Ataru 本体的附属工具免费分发，本身不构成独立售卖的能力。"
+  boundary: "包含索引状态与构建；不包含检索、排序，以及 Ataru 本体的安装升级。"
+  review_trigger: "Ataru 本体按检索能力收费，或语义索引产生真实外部推理成本时重估。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

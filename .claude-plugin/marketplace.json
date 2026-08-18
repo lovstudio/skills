@@ -127,7 +127,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 22 free skills bundled together.",
+      "description": "Dev Tools — 24 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/mobile-adapt",
@@ -151,7 +151,9 @@
         "./skills/skill-publisher",
         "./skills/obsidian-reset-cache",
         "./skills/project-port",
-        "./skills/clash-tun-doctor"
+        "./skills/clash-tun-doctor",
+        "./skills/ataru-indexing",
+        "./skills/ataru-search"
       ],
       "strict": false
     },

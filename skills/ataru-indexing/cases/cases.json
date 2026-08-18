@@ -1,0 +1,21 @@
+[
+  {
+    "type": "case",
+    "title": "无界面调用方第一次让本地记忆索引变得可检索",
+    "description": "Ataru 的 JSON CLI 原先只有 search 与 session read，README 里写的 ensure_index 这一步实际无法在命令行完成，Agent 必须先让用户手动打开桌面端。补上 index status / index build 后，本 Skill 在一台真实机器上完成了从状态确认到可检索的全过程。",
+    "input": {
+      "items": [
+        "一台本机装有 Ataru 0.41.3 的 macOS 机器",
+        "已有的 Claude Code 与 Codex 会话历史目录，共 2704 个会话、847072 条消息"
+      ]
+    },
+    "prompt": "先确认本地 Ataru 记忆索引能不能检索，需要构建就构建，别抢桌面端正在跑的任务。",
+    "output": {
+      "items": [
+        "resolve-bin 拒绝了 PATH 上 0.40.0 的旧二进制并给出原因，避免了旧版把 index status 当成桌面启动参数打开窗口",
+        "status 报告 state=ready、searchAvailable=true、needsBuild=false、totalSessions=2704、totalMessages=847072、indexSizeBytes 约 6.6GB",
+        "ensure 以 actions=[already-ready] 退出码 0 结束，没有触发任何多余构建"
+      ]
+    }
+  }
+]
