@@ -96,3 +96,5 @@ This repo used to be a monorepo containing all skills under `skills/lovstudio-<n
 ## Cross-session Notes
 
 - `skills.yaml` 里含 `: ` 的 description 必须加引号，否则 CI 的 `yaml.safe_load` 直接 ScannerError（2026-08-18, e32d199）
+- 官网 revalidate 的 secret 环境变量名是 `LOVSTUDIO_REVALIDATE_SECRET`（publisher 文档里的 `SKILL_REVALIDATE_SECRET` 已过时），curl 用 `x-revalidate-secret` header 直接读该变量（2026-08-20, 18bc301）
+- `sync-skills.py` 全量 sync 80+ 免费 skill 会 >120s；本地只新增单个 skill 时，手动 `rsync -a --delete --exclude .git <源目录>/ skills/<name>/` 即可，不必全量跑（2026-08-20, 18bc301）
