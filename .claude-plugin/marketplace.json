@@ -127,7 +127,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 24 free skills bundled together.",
+      "description": "Dev Tools — 25 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/mobile-adapt",
@@ -153,7 +153,8 @@
         "./skills/project-port",
         "./skills/clash-tun-doctor",
         "./skills/ataru-indexing",
-        "./skills/ataru-search"
+        "./skills/ataru-search",
+        "./skills/integrate-lovinsp"
       ],
       "strict": false
     },

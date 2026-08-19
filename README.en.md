@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **77 skills** — 64 Free + 13 Paid.
+> **78 skills** — 65 Free + 13 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -117,6 +117,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`gh-tidy`](https://github.com/lovstudio/gh-tidy-skill) | Triage and clean up GitHub issues, PRs, branches, and labels in a single pass. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`install-ai`](https://github.com/lovstudio/install-ai-skill) | Add an App AI feature with Agent Client, MaaS routing, model intent, and optional UI. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`install-tanstack-query`](https://github.com/lovstudio/install-tanstack-query-skill) | Initialize TanStack Query and migrate request state into shared query keys and hooks. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`integrate-lovinsp`](https://github.com/lovstudio/integrate-lovinsp-skill) | Click a page element in dev and jump straight to its source. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`mobile-adapt`](https://github.com/lovstudio/mobile-adapt-skill) | Scan a web project for mobile issues and fix them — overflow, safe area, viewport units, responsive layouts, and page navigation. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`obsidian-reset-cache`](https://github.com/lovstudio/obsidian-reset-cache-skill) | Reset Obsidian's cache when it gets stuck on "Loading cache". |
 | ![Free](https://img.shields.io/badge/Free-green) | [`optimize-tauri-backend`](https://github.com/lovstudio/optimize-tauri-backend-skill) | Reduce Tauri Rust restart pain by modularizing the backend, shrinking command surfaces, and hardening long IPC streams. |
