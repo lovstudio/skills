@@ -3166,3 +3166,75 @@ skills:
     confidence: entry
     review_trigger_zh: lovinsp 出现破坏性版本变化、支持成本明显上升，或转为按功能收费时复评。
     review_trigger_en: Review when lovinsp has a breaking version change, support cost rises materially, or it starts charging by capability.
+- name: dsh-plugin-creator
+  display_name: DSH Plugin Creator
+  repo: lovstudio/dsh-plugin-creator-skill
+  name_zh: DSH 插件开发
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  updated_at: 2026-08-20T00:00:00Z
+  description: 'Create a @deepseek-ai/dsh-* plugin package end-to-end: pick the extension point or capability seam, scaffold the package, implement the tool/hook/service, and run the repo gates.'
+  tagline_en: Author a DSH plugin end-to-end — pick the extension point, scaffold, implement, and pass the repo gates.
+  tagline_zh: 端到端开发 DSH 插件：选扩展点、搭脚手架、实现并通过仓库门槛。
+  related:
+  - dsh-plugin-publisher
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 在 deepseek-harness 里端到端开发一个 DSH 插件：选定扩展点、脚手架、实现、测试与文档一次走完。
+    value_en: Build a DSH plugin end-to-end in deepseek-harness — extension point, scaffold, implementation, tests, and docs in one pass.
+    anchor_zh: 每个插件从零手写通常要数小时到一天，包含对架构、Cordis 契约与仓库门槛的检索成本。
+    anchor_en: Hand-writing a plugin from scratch typically costs hours to a day, including architecture, Cordis contract, and repo-gate research.
+    basis_zh: 按一次可复用的工程产出定价，重点看省去对扩展机制与包不变量的大量检索和返工。
+    basis_en: Priced around a reusable engineering output, emphasizing the saved research and rework on extension mechanics and package invariants.
+    boundary_zh: 在 deepseek-harness 仓库内工作；跨仓库改造、大规模迁移和云资源另行确认。
+    boundary_en: Works inside the deepseek-harness repo; cross-repo refactors, large migrations, and cloud resources are separate.
+    maintenance_zh: 随 Cordis、dsh 插件契约与仓库门槛变化复评。
+    maintenance_en: Review when Cordis, dsh plugin contracts, or repo gates change.
+    confidence: entry
+    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
+    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+- name: dsh-plugin-publisher
+  display_name: DSH Plugin Publisher
+  repo: lovstudio/dsh-plugin-publisher-skill
+  name_zh: DSH 插件发布
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  updated_at: 2026-08-20T00:00:00Z
+  description: 'Publish a validated DSH plugin package (@deepseek-ai/dsh-* or @lovstudio/dsh-*) to npm, git, or tarball channels and verify it loads in the DeepSeek Harness.'
+  tagline_en: Publish a validated DSH plugin across npm, git, and tarball channels with per-channel load evidence.
+  tagline_zh: 把已验证的 DSH 插件发布到 npm/git/tarball 渠道，并逐一核验可加载。
+  related:
+  - dsh-plugin-creator
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 把已验证的 DSH 插件发布到 npm、git 与 tarball 渠道，并用 dsh 可加载性逐一验收。
+    value_en: Publish a validated DSH plugin to npm, git, and tarball channels, verifying loadability in the harness per channel.
+    anchor_zh: 一次发布往返通常包含版本、构建产物、allowBuilds 与平台状态核对的检索与排错成本。
+    anchor_en: A release round-trip typically involves version, build-artifact, allowBuilds, and platform-state research and debugging.
+    basis_zh: 按一次可验证的分发结果定价，重点看省去发布流程、渠道契约与可加载性核对的返工。
+    basis_en: Priced around a verifiable distribution result, reducing rework on release flow, channel contracts, and loadability checks.
+    boundary_zh: 处理已验证插件的分发与核验；插件本身的新建与修改交给 dsh-plugin-creator。
+    boundary_en: Handles distribution and verification of a validated plugin; authoring or modifying the plugin itself belongs to dsh-plugin-creator.
+    maintenance_zh: 随 dsh CLI、pnpm、npm 与 harness 发布流程变化复评。
+    maintenance_en: Review when the dsh CLI, pnpm, npm, or harness release workflows change.
+    confidence: entry
+    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
+    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
