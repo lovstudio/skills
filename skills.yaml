@@ -3238,3 +3238,38 @@ skills:
     confidence: entry
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+- name: describe-image
+  display_name: Describe Image
+  repo: lovstudio/describe-image-skill
+  name_zh: 图片描述
+  paid: false
+  category: General
+  version: 0.1.0
+  updated_at: 2026-08-20T00:00:00Z
+  description: 'Give text-only models vision: send an image file to a free vision model (GLM-4V-Flash) and relay its description back as text.'
+  tagline_en: Give text-only models sight — describe any image via a free vision model.
+  tagline_zh: 给纯文本模型"看图"：用免费视觉模型把任意图片转成文字描述。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 给纯文本模型补齐看图能力：任意图片转成结构化文字描述（物体/场景/布局/文字转录）。
+    value_en: Give text-only models sight by turning any image into a structured text description.
+    anchor_zh: 单次看图可省约 1–5 分钟的手动 OCR/转录/转述，避免为看图单独订阅视觉模型。
+    anchor_en: Each image read saves roughly 1–5 minutes of manual OCR or transcription, avoiding a vision-model subscription.
+    basis_zh: 按一次可复用的判断或处理结果定价，重点看是否减少查找、判断与重复操作。
+    basis_en: Priced around a reusable decision or processing result, with emphasis on reducing lookup and repeated work.
+    boundary_zh: 需要图片磁盘路径；仅支持图→文，不做图片生成/编辑；免费档视觉模型对细节核对置信度有限。
+    boundary_en: Requires an image file path; image-to-text only, no generation or editing; free-tier vision has limited fidelity for fine detail.
+    maintenance_zh: 随视觉模型能力与使用反馈复评；小版本更新通常沿用原交付范围。
+    maintenance_en: Review against vision-model capability and usage feedback; minor updates usually stay within scope.
+    confidence: entry
+    review_trigger_zh: 版本变化、连续 10 次真实使用或接入付费视觉后端时复评。
+    review_trigger_en: Review after a version change, 10 real uses, or when a paid vision backend is added.
+    card_path: pricing-cards/describe-image.md
