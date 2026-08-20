@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **80 skills** — 67 Free + 13 Paid.
+> **81 skills** — 68 Free + 13 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -49,6 +49,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 |---|---|---|
 | **General** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`china-website-filing`](https://github.com/lovstudio/china-website-filing-skill) | Move a mainland China website from filing readiness through ICP, domain launch, public security filing, and verified compliance follow-up. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`describe-image`](https://github.com/lovstudio/describe-image-skill) | Give text-only models sight — describe any image via a free vision model. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`fact-check`](https://github.com/lovstudio/fact-check-skill) | Verify claims like a careful researcher, with primary sources, counterexamples, confidence, and next steps. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`hanzi-lens`](https://github.com/lovstudio/hanzi-lens-skill) | See one Chinese character through evidence — readings, form, history, classical context, meaning, and a professional visual. — requires: `professional-infographic` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`image-creator`](https://github.com/lovstudio/image-creator-skill) | Generate images through the right mechanism — AI, code rendering, or prompt tuning. — related: `professional-infographic`, `professional-portrait` |

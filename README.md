@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **80 个技能** — 67 个免费 + 13 个付费。
+> **81 个技能** — 68 个免费 + 13 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -48,6 +48,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 |---|---|---|---|
 | **通用** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`china-website-filing`](https://github.com/lovstudio/china-website-filing-skill) | [中国网站备案](https://github.com/lovstudio/china-website-filing-skill) | 把中国大陆网站从备案准备推进到 ICP、域名上线、公安联网备案与合规巡检，并保留权威证据链。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`describe-image`](https://github.com/lovstudio/describe-image-skill) | [图片描述](https://github.com/lovstudio/describe-image-skill) | 给纯文本模型"看图"：用免费视觉模型把任意图片转成文字描述。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`fact-check`](https://github.com/lovstudio/fact-check-skill) | [事实校验](https://github.com/lovstudio/fact-check-skill) | 用尽调思路确认事实：查一手资料、找反例、标证据等级，给出置信度和下一步。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`hanzi-lens`](https://github.com/lovstudio/hanzi-lens-skill) | [汉字镜](https://github.com/lovstudio/hanzi-lens-skill) | 用证据看懂一个汉字：读音、字形、字书、经典语境与专业信息图。 — 依赖: `professional-infographic` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`image-creator`](https://github.com/lovstudio/image-creator-skill) | [图像工坊](https://github.com/lovstudio/image-creator-skill) | 按需选择最合适的出图方式：端到端 AI、代码渲染或提示词精修。 — 相关: `professional-infographic`, `professional-portrait` |
