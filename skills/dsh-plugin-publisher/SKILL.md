@@ -1,0 +1,244 @@
+---
+name: dsh-plugin-publisher
+description: >
+  Publish a validated DSH plugin package (`@deepseek-ai/dsh-*` or `@lovstudio/dsh-*`)
+  to npm, git, or tarball channels and verify it loads in the DeepSeek Harness.
+  Use when the user asks to publish, release, or ship a plugin. 触发：发布插件 / 上架插件 / release dsh 插件。
+license: MIT
+compatibility: >-
+  Requires Node.js >= 20, pnpm >= 10, git, and the `dsh` CLI on PATH (or run
+  the gates through the repo's `pnpm dsh`). Publishing to npm needs npm auth;
+  git/topic operations need the GitHub CLI. Channel metadata stays outside
+  canonical source.
+metadata:
+  author: Lovstudio
+  version: "0.1.0"
+  tags:
+    - dsh-plugin
+    - publisher
+    - release
+    - npm
+    - deepseek-harness
+  dependencies:
+    - dsh-plugin-creator
+---
+
+# dsh-plugin-publisher
+
+Publish one validated DSH plugin package to the DeepSeek Harness distribution
+channels and verify each channel can load it. Input is the finished package
+source produced by `dsh-plugin-creator`; this skill owns everything after the
+commit: validation, repo gates, per-channel release, and load verification.
+
+There is **no official DSH plugin marketplace**. The three supported channels
+are npm, git, and tarball; GitHub's `dsh-plugin` topic is the discovery
+mechanism. Publish the same plugin across as many channels as the user's
+distribution intent needs, keep channel state out of canonical source, and
+report evidence per channel.
+
+## Triggers
+
+### Activate when
+
+- 用户说“发布这个 DSH 插件”“上架插件”“推到 npm”“打个 release”“导出 tarball 给用户装”。
+- The user asks to publish, release, distribute, upload, or package an existing DSH plugin.
+
+### Do not activate when
+
+- 用户要新建、实现或修改插件；交给 `dsh-plugin-creator`。
+- 用户只是要本地验证插件可加载（`dsh --profile demo --dump-config`），并没有发布意图。
+
+## Product boundary
+
+- Input is a local plugin package that already passes `dsh-plugin-creator`'s
+  gates: `package.json` invariants hold, `dsh.bundle.patch` (or
+  `dsh.plugin.json` for the yoda-style registry channel) is present, and no
+  stale build artifacts sit in the tree.
+- When the user does not name a channel, default to npm for `@lovstudio/dsh-*`
+  plugins whose `publishConfig.access` is `public`, and to git for plugins
+  meant to be consumed from source. Do not ask a channel-selection question
+  when the request omits channels.
+- A request may select multiple channels in one run.
+- Version, visibility, and target account are publishing inputs. Reuse the
+  version from the source package; ask only when the user wants a bump that
+  the current manifest does not imply.
+- Keep channel metadata, credentials, staging files, and archives outside
+  canonical source.
+- Do not invent a registry or marketplace that does not exist. If the user
+  asks to "上架 DSH 市场", explain the three real channels and the
+  `dsh-plugin` topic, then proceed on those.
+
+Supported channels in this version:
+
+- **npm** — publish a prebuilt `lib/` (or plain `index.js`) bundle so
+  `dsh plugin add <pkg>` installs ready-to-load code.
+- **git** — push the source repo, tag a release, and ship a `prepare` script
+  so `dsh plugin --profile <name> add github:owner/repo#<sha>` builds on install.
+- **tarball** — `pnpm pack` a self-contained archive for offline / review installs.
+- **community mirror (optional)** — register an out-of-tree plugin under
+  `packages/community/` in the `deepseek-ai/deepseek-harness` repo so it ships
+  with the harness source tree.
+- **discovery topic** — add the `dsh-plugin` GitHub topic (and, for lovstudio
+  plugins, `dsh`, `deepseek-harness`) so the official discovery surface finds it.
+
+For any additional platform, follow `references/publish-dsh.md` and verify its
+current official name, submission contract, public URL, and completion signal
+before implementing an adapter. Never call an upload dialog a completed
+publication.
+
+## Workflow (MANDATORY)
+
+### Step 0: Resolve roots and settings
+
+- Resolve this Skill as `SKILL_DIR`.
+- Resolve the plugin source from an explicit path, current directory, or
+  conversation. Confirm it is a DSH plugin (has `dsh.bundle` or `dsh.plugin.json`).
+- Resolve the DSH harness checkout (for gates and the optional community
+  mirror) from the repo where the plugin was authored, or
+  `$DSH_HARNESS` if set.
+
+### Step 1: Validate canonical source
+
+Check that the source has no generated release artifacts, no platform
+metadata, and no uncommitted surprises. Record: package name, version,
+`dsh.bundle` / `dsh.plugin.json` shape, files field, git state, and whether a
+remote already exists.
+
+Key `package.json` invariants (from the harness `packages/AGENTS.md` /
+`docs/cookbook/adding-a-package.md`): `type: module`; entry points declared;
+`files` exact (no `src`, maps, or stale root declarations); `@deepseek-ai/cordis`
+in peer + dev deps at the same range; every dsh peer dep mirrored into devDeps.
+A `@lovstudio/dsh-*` external plugin additionally sets
+`publishConfig.access: "public"` and `keywords` including `dsh-plugin`.
+
+### Step 2: Run the repo gates
+
+From the harness repo root (or the plugin's own repo when it is standalone):
+
+```sh
+pnpm install
+pnpm run doc-sync
+pnpm run constraints && pnpm run typecheck && pnpm run lint
+pnpm run build && pnpm run hygiene
+```
+
+Then run only the checks the changed surface reaches — do not default to the
+full suite. Any failure blocks publication.
+
+### Step 3: Decide channels and release model
+
+If channels are explicit, proceed. If none are named, select npm (for public
+`@lovstudio/*`) and/or git (for source installs) and proceed without asking.
+
+For each channel, resolve only required fields:
+
+- version to publish (reuse the manifest version unless the user asked for a bump);
+- npm package name, visibility, and dist-tag;
+- git remote, tag name, and whether to pin installs to a commit;
+- community mirror group under `packages/<group>/` (default `community`).
+
+Do not ask users to choose implementation details such as staging layout,
+archive format, or adapter order.
+
+### Step 4: Build a per-channel plan
+
+Read `references/publish-dsh.md`, then execute only the selected channels.
+Keep independent state for each target so one failure does not masquerade as a
+successful multi-channel release.
+
+### Step 5: Publish to npm
+
+Read the npm section of `references/publish-dsh.md`. Ensure the build output is
+in the published `files` (run `prepublishOnly: pnpm build` if the manifest
+declares it). Then:
+
+```sh
+pnpm publish --access public
+git tag v<VERSION>
+git push origin v<VERSION>
+```
+
+Record the published version, dist-tag, and the package page URL. Verify with
+`npm view <pkg>@<version>` that the exact version and expected files are live.
+
+### Step 6: Publish to git
+
+Read the git section of `references/publish-dsh.md`. Ensure a self-contained
+`prepare` script exists (builds entry points from source; no sibling-monorepo
+assumptions). Push the release commit and tag, then verify the git-install
+path on a clean profile:
+
+```sh
+dsh plugin --profile demo add github:<owner>/<repo>#<sha>
+```
+
+If pnpm >= 10 blocks the `prepare` script, record the exact package key the
+allowlist needs (`allowBuilds` in the profile's `pnpm-workspace.yaml`) as a
+follow-up for the user, not as a silent pass.
+
+### Step 7: Ship a tarball
+
+Read the tarball section of `references/publish-dsh.md`. Build a clean archive
+outside canonical source:
+
+```sh
+pnpm pack --out /tmp/<pkg>-<version>.tgz
+dsh plugin --profile demo add /tmp/<pkg>-<version>.tgz
+```
+
+Record the archive path, checksum, file count, and the successful `add`.
+
+### Step 8: Community mirror and discovery topic (optional)
+
+When the plugin should ship with the harness, mirror it under
+`packages/community/` (follow `docs/cookbook/adding-a-package.md`), or run the
+standard `dsh` PR flow for the `deepseek-ai/deepseek-harness` repo. Tag the
+GitHub repo with the `dsh-plugin` topic (and `deepseek-harness`). Record the
+topic set and the PR/release state.
+
+### Step 9: Verify load in the harness
+
+Whatever the channels, the final gate is that the plugin loads:
+
+```sh
+dsh --profile demo --dump-config   # expect a "# == <pkg>" layer
+dsh --profile demo                 # boots without error
+```
+
+A parsed archive or a pushed tag is only `published`; the plugin is `live`
+only when the layer appears and the harness boots.
+
+### Step 10: Multi-channel report
+
+Report each target separately:
+
+| Channel | State | Version/artifact | Evidence | Follow-up |
+|---------|-------|------------------|----------|-----------|
+| TARGET | prepared/published/live | VALUE | URL or local path | ACTION |
+
+Use precise states. `published` and `live` represent different outcomes.
+
+## Dependencies
+
+- Node.js >= 20, pnpm >= 10
+- `dsh` CLI on PATH (or run gates via `pnpm dsh` from the harness source)
+- `git` + GitHub CLI for git/topic/release operations
+- npm credentials for the npm channel
+
+## Local development
+
+Validate this publisher Skill's own source with the harness gates, or inspect
+`references/publish-dsh.md` for the grounded contract behind each step.
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
+
+## References
+
+- `references/publish-dsh.md` — the grounded per-channel SOP with authoritative sources.
+- `dsh-plugin-creator` — the companion skill that produces the validated package this skill publishes.

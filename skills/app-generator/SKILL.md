@@ -9,7 +9,7 @@ compatibility: >
   Requires Python 3.8+ for the project audit helper. Designed for React,
   TypeScript, Vite, Next.js, optional Tauri, shadcn/ui, TanStack Query, GitHub
   Actions, web deploys, and Skill Publisher Configurable Academic branded apps. Every
-  generated or standardized frontend app must run `lov-install-lovinsp`. New apps
+  generated or standardized frontend app must run `lov-integrate-lovinsp`. New apps
   must generate a target-specific logo through `lov-gen-logo`; Tauri apps must run
   the Tauri icon pipeline from that logo.
 metadata:
@@ -41,11 +41,11 @@ Academic UI, CI/CD or deploy wiring, and lovinsp click-to-code support.
 
 ## Default Integration Invariant
 
-Run the `lov-install-lovinsp` skill for every app handled by this workflow. Treat
+Run the `lov-integrate-lovinsp` skill for every app handled by this workflow. Treat
 Lovinsp as a default development capability, not an optional feature selected
 from the brief.
 
-- Invoke `lov-install-lovinsp` after the frontend scaffold and build config exist.
+- Invoke `lov-integrate-lovinsp` after the frontend scaffold and build config exist.
 - Re-run it for existing apps to update Lovinsp or migrate `code-inspector`.
 - Preserve its idempotent behavior; repeated app-generator runs must stay safe.
 - Require the project audit to pass dependency, configuration, migration, and
@@ -200,7 +200,7 @@ Then apply the Skill Publisher layers in this order:
 4. Brand assets: generate a target-specific app logo with
    `lov-gen-logo`, publish the chosen version into `assets/` and
    `public/`, and generate favicons / PWA icons if needed.
-5. Lovinsp: invoke `lov-install-lovinsp` and verify click-to-code integration.
+5. Lovinsp: invoke `lov-integrate-lovinsp` and verify click-to-code integration.
 6. CI/CD and deploy: typecheck, lint/build where available, plus the selected
    web deploy target or documented manual deploy path.
 7. Verification: typecheck, build, dev server, and browser screenshot or
@@ -229,7 +229,7 @@ Then apply the Skill Publisher layers in this order:
    `lov-gen-logo`, publish the chosen version into `assets/` and
    `public/`, prepare a macOS-safe padded icon source, then run the Tauri icon
    pipeline from that generated logo.
-5. Lovinsp: invoke `lov-install-lovinsp` and verify click-to-code integration.
+5. Lovinsp: invoke `lov-integrate-lovinsp` and verify click-to-code integration.
 6. CI/CD: typecheck, lint/build where available, Tauri release workflow.
 7. Auto update: Tauri updater plugin, signing keys/env placeholders, release
    endpoint wiring.
@@ -245,7 +245,7 @@ Do not rebuild the project from scratch. Patch the smallest surface needed:
    conventions unless they conflict with Skill Publisher requirements.
 3. Add missing Skill Publisher layers from the audit; do not add Tauri to a web-only
    app unless the brief requires native desktop capabilities.
-4. Run `lov-install-lovinsp` to install/update Lovinsp and migrate any supported
+4. Run `lov-integrate-lovinsp` to install/update Lovinsp and migrate any supported
    `code-inspector` integration.
 5. Preserve user code and unrelated changes.
 6. Prefer incremental commits/checkpoints when the app is already substantial.
@@ -353,7 +353,7 @@ set them:
 
 ### Step 8: Lovinsp
 
-Invoke the existing `lov-install-lovinsp` workflow for every browser-rendered app.
+Invoke the existing `lov-integrate-lovinsp` workflow for every browser-rendered app.
 Do not replace that workflow with a handwritten dependency-only installation: it
 also performs version checks, idempotent configuration, and `code-inspector`
 migration.
@@ -443,7 +443,7 @@ Report:
 - App type decision: web-only / PWA / Tauri, and why that fit the brief.
 - Skill Publisher layers added or confirmed: brand, UI, data layer, lovinsp, CI/CD,
   deploy/release, and updater only when applicable.
-- `lov-install-lovinsp` result, including installation/update/migration status and
+- `lov-integrate-lovinsp` result, including installation/update/migration status and
   runtime readback evidence.
 - Commands/checks run and their result.
 - Any remaining secrets, signing steps, or manual app-store/release actions.

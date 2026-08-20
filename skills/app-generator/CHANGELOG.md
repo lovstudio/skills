@@ -7,7 +7,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ### Changed
 
-- make `lov-install-lovinsp` a mandatory default step for every frontend app
+- make `lov-integrate-lovinsp` a mandatory default step for every frontend app
 - require idempotent Lovinsp upgrades and supported `code-inspector` migration
 - strengthen the audit to validate Vite plugin ordering and legacy dependency removal
 - add regression tests for correct, misordered, and legacy Lovinsp configurations

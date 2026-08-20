@@ -322,7 +322,7 @@ def audit(root: Path, app_type: str = "auto") -> dict:
                 f"order_ok={lovinsp_order_ok}, legacy_remains={legacy_lovinsp_remains}"
             ),
             (
-                "Run the lov-install-lovinsp skill to install or update Lovinsp, migrate supported "
+                "Run the lov-integrate-lovinsp skill to install or update Lovinsp, migrate supported "
                 "code-inspector integrations, and register lovinspPlugin before the framework plugin."
             ),
         ),
