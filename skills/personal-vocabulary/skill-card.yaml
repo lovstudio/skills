@@ -1,0 +1,85 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 把散落在各语音输入法里的个人词条收敛成一份规范词汇表，并映射回 OpenLess、Typeless 等 App；按 phrase 去重、产出只读同步计划，确认后再写入。
+owner:
+  team: LovStudio / 手工川工作室
+  contact: https://lovstudio.ai
+license:
+  name: MIT
+  terms: 随源码分发；用户只维护自己的词库与凭据，App 词条不做批量逆向。
+  url: "../LICENSE"
+use_case:
+  audience: 同时用多款语音输入法/剪辑工具、希望词库单一来源的个人用户。
+  scenario: 统一维护个人专有名词与术语，跨 App 同步，避免每款工具各维护一份。
+  tasks:
+    - 建立并去重规范词汇表
+    - 把词库导入/导出到 OpenLess、Typeless
+    - 产出跨 App 同步差异与计划
+deployment:
+  geography: global
+  environments:
+    - 本地 agent runtime
+    - 用户本机词库文件与账号凭据
+requirements:
+  credentials: none
+  dependencies: []
+  runtime:
+    - Python 3.9+
+risks:
+  - risk: 目标 App 词库格式未知导致映射错误
+    mitigation: 未知 App 先探测再补映射，未确认前标注并拒绝写入。
+  - risk: 覆盖目标 App 已有词条造成数据丢失
+    mitigation: 默认只执行 add，conflict 与 app_only 需用户明确裁决。
+  - risk: API 凭据泄露
+    mitigation: 凭据只在内存中用于只读请求，不持久化、不打印到日志或聊天。
+references:
+  - title: Primary Skill instructions
+    path: SKILL.md
+output:
+  types:
+    - 规范词汇表 vocabulary.json
+    - 各 App 格式词库文件
+    - 同步差异计划
+  formats:
+    - JSON
+  parameters:
+    - phrase
+    - category
+    - lang
+    - enabled
+    - note
+  validation:
+    - 按 phrase 去重
+    - schema 校验通过
+    - 差异分类 add/skip/conflict/app_only
+  description: 输出一份可读、可复核的词汇表与同步清单。
+ethical_considerations: 仅处理用户自己的词库与账号；不绕过授权、不批量抓取他人词条；凭据不落盘。
+dimensions:
+  - id: correctness
+    label: 去重与字段映射准确
+    description: 按 phrase 精确去重，字段映射符合各 App 真实结构。
+    evidence: 用真实 OpenLess 21 条词库跑 merge/validate/diff，全部正确归类。
+    score: 4
+  - id: effectiveness
+    label: 跨 App 复用
+    description: 单一规范词库驱动 OpenLess、Typeless 双 App 视图。
+    evidence: OpenLess 直接读写；Typeless 经只读 API 拉取；剪映标注待探测。
+    score: 3
+  - id: efficiency
+    label: 一次维护多处生效
+    description: 收敛词条来源，避免每款工具各维护一份。
+    evidence: 一次 merge 后可 render 到任意已适配 App，diff 秒级返回。
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 通用个人生产力工具，复用成本低；随 LovStudio 开放源码免费分发。
+  boundary: 含 canonical 维护与 OpenLess/Typeless 适配；剪映等新 App 适配与批量迁移超出默认范围。
+  review_trigger: 新增目标 App、字段模型变化或词库规模显著增长时复评。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

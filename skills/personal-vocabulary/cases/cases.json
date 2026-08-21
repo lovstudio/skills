@@ -1,0 +1,21 @@
+[
+  {
+    "type": "case",
+    "title": "把 OpenLess 词汇表迁入规范词库并验证同步",
+    "description": "用户先请我把 Typeless 里的词表填进 OpenLess，随后提出要一份可跨语音输入法复用的规范词汇表。我以 OpenLess 现有 21 条词库为真实来源，建立规范词库并跑完整 merge/validate/diff 流水线，确认去重与同步分类正确。",
+    "input": {
+      "items": [
+        "真实来源：OpenLess 本机词库文件（21 条词条）",
+        "目标：建立单份规范词汇表并复用"
+      ]
+    },
+    "prompt": "把 OpenLess 词汇表导入规范词库，按 phrase 去重，并 diff 确认全部已同步。",
+    "output": {
+      "items": [
+        "vocabulary.json：21 条，validate 通过（0 错误）",
+        "merge：added=21 skipped=0",
+        "diff：skip=21 conflict=0 app_only=0"
+      ]
+    }
+  }
+]

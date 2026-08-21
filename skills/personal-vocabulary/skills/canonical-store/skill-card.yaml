@@ -1,0 +1,78 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 维护规范个人词汇表 vocabulary.json 的结构与读写，支持按 phrase 去重合并与导入导出。
+owner:
+  team: LovStudio / 手工川工作室
+  contact: https://lovstudio.ai
+license:
+  name: MIT
+  terms: 随源码分发；只维护用户自己的词库。
+  url: "../../LICENSE"
+use_case:
+  audience: 需要单一份统一词汇表的个人用户。
+  scenario: 建立、去重并导出规范词库。
+  tasks:
+    - 建规范词库
+    - 合并去重外部词条
+    - 导出到 App 格式
+deployment:
+  geography: global
+  environments:
+    - 本地 agent runtime
+requirements:
+  credentials: none
+  dependencies: []
+  runtime:
+    - Python 3.9+
+risks:
+  - risk: 重复词条膨胀词库
+    mitigation: 按 phrase 精确去重，已存在则保留。
+  - risk: 字段映射错误
+    mitigation: 仅做字段映射，不改 canonical。
+references:
+  - title: Primary Skill instructions
+    path: SKILL.md
+output:
+  types:
+    - vocabulary.json
+  formats:
+    - JSON
+  parameters:
+    - phrase
+    - category
+    - lang
+    - enabled
+  validation:
+    - 按 phrase 去重
+    - schema 校验通过
+  description: 一份规范、可去重的词汇表。
+ethical_considerations: 仅处理用户自己的词库，不批量抓取。
+dimensions:
+  - id: correctness
+    label: 去重准确
+    description: 按 phrase 精确去重。
+    evidence: 真实 21 条词库 merge 后 0 重复、validate 0 错误。
+    score: 4
+  - id: effectiveness
+    label: 单一来源
+    description: 一份 canonical 驱动多 App 视图。
+    evidence: merge 后可 render 到任意已适配 App。
+    score: 4
+  - id: efficiency
+    label: 幂等合并
+    description: 重复运行不产生冗余。
+    evidence: merge 已存在词条计 skipped，不重复追加。
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 通用个人生产力工具，随源码免费分发。
+  boundary: 仅规范词库维护与导出；不包含具体 App 读写。
+  review_trigger: 词库规模显著增长或字段模型变化时复评。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

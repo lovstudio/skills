@@ -1,0 +1,14 @@
+[
+  {
+    "type": "case",
+    "title": "从 OpenLess 与 Typeless 读取词条字段映射",
+    "description": "确认 OpenLess 本地 JSON 与 Typeless 只读 API 的字段结构，并映射进规范词库。",
+    "input": {
+      "items": ["OpenLess dictionary.json（phrase/note/enabled/hits/createdAt）", "Typeless /user/dictionary/list（term/lang/category/auto/replace）"]
+    },
+    "prompt": "读取 OpenLess 与 Typeless 词条，映射进规范词库字段。",
+    "output": {
+      "items": ["两套字段结构已确认", "openless 映射内置，Typeless 经只读 API"]
+    }
+  }
+]

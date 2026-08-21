@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 先看差异再同步，避免覆盖或误删用户攒下的词条。
+basis: 通用同步规划工具，随源码免费分发。
+boundary: 含差异计算与计划；App 具体写入依赖 adapter。
+review_trigger: 字段模型变化或同步语义扩展时复评。
+confidence: internal

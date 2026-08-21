@@ -1,0 +1,14 @@
+[
+  {
+    "type": "case",
+    "title": "从 OpenLess 词库建立规范词库并去重",
+    "description": "把现有 OpenLess 词库导入规范词库，按 phrase 去重，确认 schema 校验通过、无重复。",
+    "input": {
+      "items": ["OpenLess 词库文件（21 条词条）"]
+    },
+    "prompt": "把 OpenLess 词库导入规范词库，按 phrase 去重，并校验 schema。",
+    "output": {
+      "items": ["vocabulary.json：21 条", "merge added=21 skipped=0", "validate 0 错误"]
+    }
+  }
+]

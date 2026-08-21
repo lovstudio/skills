@@ -1,0 +1,79 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 定义 OpenLess、Typeless 等语音输入法词汇表的读写映射；本地 JSON 直接读写，API 走用户凭据只读探测。
+owner:
+  team: LovStudio / 手工川工作室
+  contact: https://lovstudio.ai
+license:
+  name: MIT
+  terms: 随源码分发；用户只读写自己的词库，不绕过授权。
+  url: "../../LICENSE"
+use_case:
+  audience: 需要把词库同步进具体语音输入法/剪辑工具的用户。
+  scenario: 读取或写入某款 App 的词汇表。
+  tasks:
+    - 读/写 OpenLess 词库
+    - 读 Typeless 词库
+    - 探测并适配新 App
+deployment:
+  geography: global
+  environments:
+    - 本地 agent runtime
+    - 用户本机词库文件与账号凭据
+requirements:
+  credentials: user
+  dependencies: []
+  runtime:
+    - Python 3.9+
+    - 用户授权访问本机词库或账号凭据
+risks:
+  - risk: App 格式未知导致映射错误
+    mitigation: 先探测再补映射，未确认前标注并拒绝写入。
+  - risk: API 凭据泄露
+    mitigation: 凭据仅内存用于只读请求，不持久化、不打印。
+references:
+  - title: Primary Skill instructions
+    path: SKILL.md
+output:
+  types:
+    - 各 App 格式词库文件
+  formats:
+    - JSON
+  parameters:
+    - phrase
+    - term
+    - category
+    - lang
+  validation:
+    - 字段映射符合 App 真实结构
+  description: 把规范词库转成目标 App 可读的格式。
+ethical_considerations: 仅读写用户自己的词库；不批量逆向，凭据不落盘。
+dimensions:
+  - id: correctness
+    label: 映射准确
+    description: 字段映射符合各 App 真实结构。
+    evidence: OpenLess phrase/note/enabled/hits/createdAt 与 Typeless term/lang/category/auto/replace 已实测。
+    score: 4
+  - id: effectiveness
+    label: 覆盖主流 App
+    description: 已覆盖 OpenLess、Typeless。
+    evidence: OpenLess 本地 JSON 直接读写；Typeless 经只读 API。
+    score: 3
+  - id: efficiency
+    label: 声明式映射
+    description: 映射表式，新增 App 成本低。
+    evidence: render 内置 openless 映射，秒级生成。
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 通用适配层，随源码免费分发。
+  boundary: 含 OpenLess/Typeless 适配；剪映等新 App 适配超出默认范围。
+  review_trigger: 新增目标 App 或字段模型变化时复评。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

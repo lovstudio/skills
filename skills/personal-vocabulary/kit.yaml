@@ -1,0 +1,19 @@
+name: personal-vocabulary
+display_name: 个人词汇表
+version: "0.1.0"
+entrypoint: lov-personal-vocabulary
+modules:
+  - id: canonical-store
+    skill: lov-canonical-store
+    path: skills/canonical-store
+  - id: app-adapters
+    skill: lov-app-adapters
+    path: skills/app-adapters
+  - id: sync-plan
+    skill: lov-sync-plan
+    path: skills/sync-plan
+pipelines:
+  full:
+    - canonical-store
+    - app-adapters
+    - sync-plan

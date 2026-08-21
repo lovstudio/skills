@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **81 个技能** — 68 个免费 + 13 个付费。
+> **82 个技能** — 69 个免费 + 13 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -55,6 +55,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`macos-disk-optimizer`](https://github.com/lovstudio/macos-disk-optimizer-skill) | [Mac 磁盘优化](https://github.com/lovstudio/macos-disk-optimizer-skill) | 按目标容量整理 Mac 磁盘，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-crawler`](https://github.com/lovstudio/media-crawler-skill) | [媒体链接下载](https://github.com/lovstudio/media-crawler-skill) | 将有权保存的视频号等社交媒体链接变成可验证的本地媒体文件与诊断报告。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-fetch`](https://github.com/lovstudio/media-fetch-skill) | [媒体抓取](https://github.com/lovstudio/media-fetch-skill) | 检索并选择合适版本，qBittorrent 与 aria2 续传兜底，最后验收本地媒体与字幕状态。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`personal-vocabulary`](https://github.com/lovstudio/personal-vocabulary-skill) | [personal-vocabulary](https://github.com/lovstudio/personal-vocabulary-skill) | 一份可跨语音输入法复用的个人词汇表。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`subtitle-freedom`](https://github.com/lovstudio/subtitle-freedom-skill) | [人人字幕](https://github.com/lovstudio/subtitle-freedom-skill) | 以用户选定级别为最低难度线生成英语学习字幕，覆盖更高难度表达，并可选生成不剧透人物卡片与不烧录视频的 ASS/PGS 水印外置字幕。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wdb-cli`](https://github.com/lovstudio/wdb-cli-skill) | [万能微信秘钥](https://github.com/lovstudio/wdb-cli-skill) | 一把面向本地微信数据的万能钥匙，精准读取聊天、联系人、朋友圈、结构与稳定记录。 |
 | **商务** | | | |

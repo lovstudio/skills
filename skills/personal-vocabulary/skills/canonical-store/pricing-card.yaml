@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 一份可去重的规范词库，作为所有 App 词表的单一事实来源。
+basis: 通用个人生产力工具，随源码免费分发。
+boundary: 仅规范词库维护与导出；不含具体 App 读写与同步。
+review_trigger: 词库规模显著增长或字段模型变化时复评。
+confidence: internal

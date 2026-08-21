@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 一份词库驱动 OpenLess、Typeless 等多款语音输入法，替代每款工具各维护一份词表。
+basis: 通用个人生产力工具，开发与维护成本低；随 LovStudio 源码开放免费分发。
+boundary: 包含规范词库维护与 OpenLess、Typeless 适配；剪映等新 App 适配、批量迁移与账号级导入超出默认范围。
+review_trigger: 新增目标 App、字段模型变化或词库规模显著增长时复评价格或范围。
+confidence: internal

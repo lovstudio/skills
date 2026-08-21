@@ -1,0 +1,77 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 比较规范词库与各 App 实际词条，产出 add/skip/conflict/app_only 同步计划，确认后再执行，默认不覆盖对方已有词条。
+owner:
+  team: LovStudio / 手工川工作室
+  contact: https://lovstudio.ai
+license:
+  name: MIT
+  terms: 随源码分发；默认只做 add，不删除用户数据。
+  url: "../../LICENSE"
+use_case:
+  audience: 需要把规范词库同步到某款 App 并先审差异的用户。
+  scenario: 比对词库与 App 词条，生成同步计划。
+  tasks:
+    - 计算差异
+    - 分类 add/skip/conflict/app_only
+    - 确认后执行写入
+deployment:
+  geography: global
+  environments:
+    - 本地 agent runtime
+requirements:
+  credentials: none
+  dependencies: []
+  runtime:
+    - Python 3.9+
+risks:
+  - risk: 误判冲突覆盖 App 词条
+    mitigation: 默认只执行 add；conflict 与 app_only 需用户明确裁决。
+  - risk: App 侧字段缺失导致误报
+    mitigation: 仅比较 App 实际携带的字段，缺失视为已同步。
+references:
+  - title: Primary Skill instructions
+    path: SKILL.md
+output:
+  types:
+    - 同步差异计划
+  formats:
+    - JSON / 文本
+  parameters:
+    - add
+    - skip
+    - conflict
+    - app_only
+  validation:
+    - 差异分类正确
+  description: 一份只读、可复核的同步清单。
+ethical_considerations: 默认不覆盖或删除用户已有词条；仅执行用户确认的写入。
+dimensions:
+  - id: correctness
+    label: 差异分类准确
+    description: 按 phrase 归一化匹配，关键字段比对。
+    evidence: 真实 21 条词库 diff 全部正确归为 skip，无误报 conflict。
+    score: 4
+  - id: effectiveness
+    label: 审阅再写
+    description: 先出只读计划，确认后执行。
+    evidence: 默认只执行 add，conflict 与 app_only 需裁决。
+    score: 4
+  - id: efficiency
+    label: 秒级 diff
+    description: 纯文本 diff，无网络。
+    evidence: 21 条词库 diff 即时返回。
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 通用同步规划工具，随源码免费分发。
+  boundary: 含差异计算与计划；App 具体写入依赖 adapter。
+  review_trigger: 字段模型变化或同步语义扩展时复评。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

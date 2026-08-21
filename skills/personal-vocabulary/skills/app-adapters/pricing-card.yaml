@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 让规范词库能进任意语音输入法，免去每款工具手工维护。
+basis: 通用适配层，随源码免费分发。
+boundary: 含 OpenLess/Typeless 适配；剪映等新 App 适配超出默认范围。
+review_trigger: 新增目标 App 或字段模型变化时复评。
+confidence: internal

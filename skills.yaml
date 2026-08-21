@@ -3273,3 +3273,35 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或接入付费视觉后端时复评。
     review_trigger_en: Review after a version change, 10 real uses, or when a paid vision backend is added.
     card_path: pricing-cards/describe-image.md
+- name: personal-vocabulary
+  repo: lovstudio/personal-vocabulary-skill
+  updated_at: 2026-08-21T09:45:00.000Z
+  paid: false
+  category: General
+  version: 0.1.0
+  description: "Maintain a personal dictation vocabulary shared across speech-input apps; dedupe, sync to OpenLess and Typeless."
+  tagline_en: "One personal vocabulary reused across speech-input apps."
+  tagline_zh: "一份可跨语音输入法复用的个人词汇表。"
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 把散落在各语音输入法里的个人词条收敛成一份规范词汇表，并同步到 OpenLess、Typeless。
+    value_en: Consolidate personal dictation terms into one canonical vocabulary and sync it to OpenLess, Typeless, and other apps.
+    anchor_zh: 一次同步通常可省下多款工具各维护一份词表的重复成本。
+    anchor_en: A sync round-trip typically saves maintaining a separate vocabulary in each app.
+    basis_zh: 按一次可复用的词条维护与跨 App 同步结果定价。
+    basis_en: Priced around a reusable vocabulary-maintenance and cross-app sync result.
+    boundary_zh: 包含规范词库维护与 OpenLess、Typeless 适配；剪映等新 App 适配与批量迁移另计。
+    boundary_en: Covers canonical store and OpenLess, Typeless adapters; new apps like CapCut and bulk migration are separate.
+    maintenance_zh: 随各 App 字段模型变化与使用反馈复评；小版本通常沿用原交付范围。
+    maintenance_en: Review against app field-model changes and usage feedback; minor updates keep the original scope.
+    confidence: entry
+    review_trigger_zh: 新增目标 App、字段模型变化或词库规模显著增长时复评。
+    review_trigger_en: Review after a new target app, a field-model change, or material vocabulary growth.

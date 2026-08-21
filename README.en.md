@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **81 skills** — 68 Free + 13 Paid.
+> **82 skills** — 69 Free + 13 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -56,6 +56,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`macos-disk-optimizer`](https://github.com/lovstudio/macos-disk-optimizer-skill) | Clean up Mac storage with guarded planning, archive migration, exact rollback-item purging, and real-capacity verification. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-crawler`](https://github.com/lovstudio/media-crawler-skill) | Turn an authorized social-media link into a verified local media file with resumable downloads and diagnostics. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-fetch`](https://github.com/lovstudio/media-fetch-skill) | Find the right edition, resume through the faster transport, and verify the local media and subtitle status. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`personal-vocabulary`](https://github.com/lovstudio/personal-vocabulary-skill) | One personal vocabulary reused across speech-input apps. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`subtitle-freedom`](https://github.com/lovstudio/subtitle-freedom-skill) | Make learner subtitles that keep the selected level and harder expressions, with spoiler-safe ASS cards and optional no-burn watermark sidecars. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wdb-cli`](https://github.com/lovstudio/wdb-cli-skill) | Unlock precise local WeChat searches across chats, contacts, Moments, schemas, and exact record identities. |
 | **Business** | | |

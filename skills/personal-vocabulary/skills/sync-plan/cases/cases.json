@@ -1,0 +1,14 @@
+[
+  {
+    "type": "case",
+    "title": "比对规范词库与 OpenLess 词条生成同步计划",
+    "description": "用规范词库与 OpenLess 词条做 diff，确认已同步词条正确归为 skip、无冲突误报。",
+    "input": {
+      "items": ["规范词库 vocabulary.json（21 条）", "OpenLess 词库文件（21 条）"]
+    },
+    "prompt": "比对规范词库与 OpenLess 词条，产出同步计划。",
+    "output": {
+      "items": ["skip=21 conflict=0 app_only=0", "add=0"]
+    }
+  }
+]
