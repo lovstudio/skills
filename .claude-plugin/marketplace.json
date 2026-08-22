@@ -130,7 +130,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 27 free skills bundled together.",
+      "description": "Dev Tools — 28 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/mobile-adapt",
@@ -159,7 +159,8 @@
         "./skills/ataru-search",
         "./skills/integrate-lovinsp",
         "./skills/dsh-plugin-creator",
-        "./skills/dsh-plugin-publisher"
+        "./skills/dsh-plugin-publisher",
+        "./skills/npm-publisher"
       ],
       "strict": false
     },

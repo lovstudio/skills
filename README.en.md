@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **83 skills** — 70 Free + 13 Paid.
+> **84 skills** — 71 Free + 13 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -124,6 +124,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`install-tanstack-query`](https://github.com/lovstudio/install-tanstack-query-skill) | Initialize TanStack Query and migrate request state into shared query keys and hooks. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`integrate-lovinsp`](https://github.com/lovstudio/integrate-lovinsp-skill) | Click a page element in dev and jump straight to its source. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`mobile-adapt`](https://github.com/lovstudio/mobile-adapt-skill) | Scan a web project for mobile issues and fix them — overflow, safe area, viewport units, responsive layouts, and page navigation. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`npm-publisher`](https://github.com/lovstudio/lov-npm-publisher-skill) | Publish npm packages without repeated login — OIDC trusted publishing or a local NPM_TOKEN. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`obsidian-reset-cache`](https://github.com/lovstudio/obsidian-reset-cache-skill) | Reset Obsidian's cache when it gets stuck on "Loading cache". |
 | ![Free](https://img.shields.io/badge/Free-green) | [`optimize-tauri-backend`](https://github.com/lovstudio/optimize-tauri-backend-skill) | Reduce Tauri Rust restart pain by modularizing the backend, shrinking command surfaces, and hardening long IPC streams. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`project-port`](https://github.com/lovstudio/project-port-skill) | Assign each project a stable, unique dev port so services stop colliding. |

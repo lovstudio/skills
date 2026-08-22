@@ -1,0 +1,114 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "Audits a new or existing npm package, plans publication through one of two equal auth modes — GitHub Actions OIDC trusted publishing or a local granular NPM_TOKEN (bypass) — handles the one-time bootstrap boundary, and verifies the exact released version from the npm registry."
+owner:
+  team: "LovStudio contributors"
+  contact: "source repository maintainers"
+license:
+  name: MIT
+  terms: "Use and modify under the MIT license; registry accounts, package names, and release authorization remain the user's responsibility."
+  url: "LICENSE"
+use_case:
+  audience: "npm package maintainers who want repeatable releases without a stored long-lived publish token"
+  scenario: "A maintainer needs to distinguish first publication from ongoing releases and wants evidence that the exact version is live, choosing OIDC trusted publishing or a local granular NPM_TOKEN per context."
+  tasks:
+    - "Audit package, repository, registry, and workflow state without credentials"
+    - "Generate or conservatively repair a GitHub Actions trusted-publishing workflow"
+    - "Resolve a local bypass publish command from a granular NPM_TOKEN"
+    - "Guide the one-time new-package bootstrap and exact trusted-publisher binding"
+    - "Gate and verify an immutable npm version after CI or local publication"
+deployment:
+  geography: global
+  environments:
+    - "Local Python planner on macOS, Linux, or Windows"
+    - "GitHub-hosted Actions runner"
+    - "Public npm registry"
+requirements:
+  credentials: "No credential for audit or workflow generation; npm and GitHub identity proof is required only for authorized setup, and a granular NPM_TOKEN is required only for bypass publication. Tokens are never read or stored."
+  dependencies: []
+  runtime:
+    - "Python 3.9 or newer"
+    - "Git, Node.js, and npm"
+    - "PyYAML for Skill source validation only"
+risks:
+  - risk: "A registry outage could be mistaken for a missing package and cause an unsafe bootstrap attempt."
+    mitigation: "The planner reports registry_unknown and blocks publication unless it receives a verified 404 or an explicit deterministic test override."
+  - risk: "An existing release workflow or credential configuration could be overwritten."
+    mitigation: "The writer preserves equivalent OIDC workflows and requires an explicit force flag to replace anything else."
+  - risk: "A successful CI command could be reported before the package is actually available."
+    mitigation: "Completion requires an independent readback of the exact immutable package version from npm."
+  - risk: "Secrets could leak into repository files, logs, or the shared Profile."
+    mitigation: "The Skill never reads or writes credentials and explicitly forbids persistence of tokens, OTPs, cookies, or OIDC assertions."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Current npm publishing contract"
+    path: "references/npm-publishing-contract.md"
+  - title: "Skill group composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "npm publication audit plan"
+    - "GitHub Actions workflow (oidc)"
+    - "local publish command (bypass)"
+    - "release evidence report"
+  formats:
+    - "JSON"
+    - "YAML"
+    - "concise Markdown or chat report"
+  parameters:
+    - "package directory"
+    - "registry URL and optional deterministic registry-state override"
+    - "auth mode (auto, oidc, bypass)"
+    - "workflow path, tag pattern, visibility, write, and force controls"
+  validation:
+    - "Both missing-package and existing-package dry-run branches execute successfully"
+    - "Both oidc and bypass auth modes produce a valid plan"
+    - "Workflow contains id-token write and npm publish with no long-lived npm secret"
+    - "Bypass mode never writes a workflow and never prints the token value"
+    - "Writer is idempotent and preserves an equivalent workflow"
+    - "Skill source validator passes"
+  description: "A staged record from audited or bootstrap-required through verified-live, with auth mode and blockers kept distinct from completed states."
+ethical_considerations: "Use only accounts, namespaces, repositories, and package names the user is authorized to control. Never weaken 2FA, capture credentials, hide provenance gaps, or claim a release is live without registry evidence."
+dimensions:
+  - id: state-correctness
+    label: "State classification correctness"
+    description: "Separates verified missing, existing, exact-version-present, and unknown registry states."
+    evidence: "Deterministic dry runs cover the missing and existing branches; unknown network errors remain blocking rather than becoming a false 404."
+    score: "verified"
+  - id: credential-safety
+    label: "Credential safety"
+    description: "Targets short-lived OIDC publishing and keeps long-lived credentials out of generated files and Profile records."
+    evidence: "Generated workflow inspection asserts id-token write and no NPM_TOKEN, NODE_AUTH_TOKEN, auth token assignment, or npm secret reference."
+    score: "verified"
+  - id: mode-parity
+    label: "Auth-mode parity"
+    description: "Treats OIDC trusted publishing and local granular NPM_TOKEN (bypass) as equal first-class modes with a clear auto-selection rule."
+    evidence: "The planner emits auth.mode with oidc/bypass branches; bypass detects the token presence without reading its value and never writes a workflow."
+    score: "verified"
+  - id: conservative-writing
+    label: "Conservative repository mutation"
+    description: "Avoids replacing unrelated workflows and makes every repository write explicit."
+    evidence: "Dry-run is the default audit path; equivalent workflows are preserved and non-equivalent files require explicit force."
+    score: "verified"
+  - id: release-verifiability
+    label: "Release verifiability"
+    description: "Defines completion at exact npm registry version readback rather than workflow creation or CI acceptance."
+    evidence: "The mandatory workflow names distinct states through verified-live and requires npm view against the public registry."
+    score: "verified"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Free local safety automation lowers supply-chain risk and supports adoption without hosting or credential custody."
+  boundary: "Includes local audit, workflow generation, setup guidance, release gates, and evidence rules; excludes paid CI minutes, npm plans, account recovery, and registry ownership disputes."
+  review_trigger: "Review if hosted services, managed credentials, commercial support, or marketplace distribution are added."
+  confidence: "high"
+distribution:
+  paid:
+    - "workbuddy: not-submitted"
+    - "skillpay: not-submitted"
+  free:
+    - "local: installed-and-verified"
+    - "github: not-published"
+    - "lovstudio: not-published"

@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Avoid repeated npm authentication work, reduce long-lived credential exposure, and prevent false completion reports during package release."
+basis: "Free local automation encourages secure OIDC adoption and safe granular-token publishing, with no hosted runtime, credential custody, or per-release operating cost."
+boundary: "Includes local repository and registry audit, conservative workflow generation, first-publish guidance, release gates, and evidence rules. Excludes npm subscriptions, CI usage fees, account recovery, legal namespace disputes, and managed release operations."
+review_trigger: "Reassess if the Skill adds a hosted control plane, managed secrets, enterprise policy enforcement, paid support, or marketplace distribution."
+confidence: high

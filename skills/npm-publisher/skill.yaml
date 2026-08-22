@@ -1,0 +1,53 @@
+schema: skill-manifest/v1
+id: lov-npm-publisher
+version: "0.2.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-npm-publisher
+    persist:
+      enabled: true
+      namespace: skills.lov-npm-publisher
+      records_path: skills.lov-npm-publisher.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次发布报告需要用户身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出发布报告？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区记录发布证据？
+      - path: workspace.project_root
+        required: false
+        question: 如果当前目录不是目标 npm 包，请提供项目目录。
+      - path: skills.lov-npm-publisher.profile.workflow_file
+        required: false
+        question: 如果不使用默认 publish.yml，请提供工作流文件名。
+  preferences:
+    namespace: lov_npm_publisher
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出发布报告？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区记录发布证据？
+      - path: preferences.release.require_registry_readback
+        required: false
+        question: 是否要求每次 npm 发布后都进行 registry 回读？
+  interaction:
+    ask_missing: true
+    max_questions: 1

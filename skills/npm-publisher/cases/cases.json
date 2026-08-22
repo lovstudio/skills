@@ -1,0 +1,44 @@
+[
+  {
+    "type": "case",
+    "title": "新 npm 包首次发布后切换到免登录 OIDC",
+    "description": "用户先查证程序化发布新 npm 包如何避免反复登录，随后要求把该方法固化为 lov-npm-publisher。关键结果是不能掩盖全新包的一次性身份引导，同时让后续版本不依赖长期 token。",
+    "input": {
+      "items": [
+        "用户请求：npm 发布新包，如何可以不需要再次登录",
+        "后续请求：创建 lov-npm-publisher",
+        "官方边界：Trusted Publisher 只能绑定已经存在的 npm 包"
+      ]
+    },
+    "prompt": "创建并本地安装一个 Skill，自动判断全新包与已有包，生成 GitHub Actions OIDC 发布链，并以 npm registry 精确版本回读作为完成标准。",
+    "output": {
+      "items": [
+        "scripts/publish.py：只读审计、missing 与 exists 状态计划、保守 workflow 写入",
+        "references/npm-publishing-contract.md：截至 2026-08-22 的官方认证边界与复核链接",
+        "缺失包 dry-run 和已有包 dry-run 均返回结构化计划",
+        "生成的 publish.yml 包含 id-token write 与 npm publish，且不包含长期 npm secret",
+        "本地 Skill 源验证和三层安装解析通过"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "本地用 granular NPM_TOKEN 直接发布，与 OIDC 平级",
+    "description": "用户要求 lov-npm-auto-publish 升级为 lov-npm-publisher，并让本地 granular NPM_TOKEN（bypass）成为与 OIDC 平级的一等认证方式，而非过渡手段。关键结果是 auto 模式按 GitHub 仓库有无自动选型，bypass 不写 workflow、不读 token 值。",
+    "input": {
+      "items": [
+        "用户请求：lov-npm-auto-publish 升级为 lov-npm-publisher，兼容 bypass、oidc 等多种方式",
+        "决策：bypass 与 oidc 平级、全量改名、并入 publisher 并弃用 lov-npm-config-oidc 脚手架"
+      ]
+    },
+    "prompt": "扩展脚本与文档，使 oidc 与 bypass 成为对等的认证模式，auto 在解析到 GitHub 仓库时选 oidc、否则选 bypass，并弃用独立的 OIDC 脚手架。",
+    "output": {
+      "items": [
+        "scripts/publish.py：新增 --auth-mode auto/oidc/bypass，bypass 检测 NPM_TOKEN/~/.npmrc 存在但不读值，产出 auth.publish_command",
+        "--write 在 bypass 模式下返回 not-applicable，不生成 workflow",
+        "SKILL.md / README / skill-card / contract / composition 同步为双模式",
+        "cases 与 pricing 记录 bypass 为一等方式"
+      ]
+    }
+  }
+]

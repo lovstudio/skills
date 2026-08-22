@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **83 个技能** — 70 个免费 + 13 个付费。
+> **84 个技能** — 71 个免费 + 13 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -123,6 +123,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`install-tanstack-query`](https://github.com/lovstudio/install-tanstack-query-skill) | [TanStack Query 初始化](https://github.com/lovstudio/install-tanstack-query-skill) | 初始化 TanStack Query，并把分散的请求状态收敛到统一 query keys 和 hooks。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`integrate-lovinsp`](https://github.com/lovstudio/integrate-lovinsp-skill) | [Lovinsp 集成](https://github.com/lovstudio/integrate-lovinsp-skill) | 开发时点击页面元素直达源码。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`mobile-adapt`](https://github.com/lovstudio/mobile-adapt-skill) | [移动端适配](https://github.com/lovstudio/mobile-adapt-skill) | 扫描并修复 Web 项目的移动端适配问题——溢出、安全区、视口单位、响应式布局和多级导航。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`npm-publisher`](https://github.com/lovstudio/lov-npm-publisher-skill) | [npm 发布器](https://github.com/lovstudio/lov-npm-publisher-skill) | 自动发布 npm 包，无需重复登录——OIDC trusted publishing 或本地 NPM_TOKEN。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`obsidian-reset-cache`](https://github.com/lovstudio/obsidian-reset-cache-skill) | [重置 Obsidian 缓存](https://github.com/lovstudio/obsidian-reset-cache-skill) | Obsidian 卡在 Loading cache 时，一键重置缓存救场。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`optimize-tauri-backend`](https://github.com/lovstudio/optimize-tauri-backend-skill) | [Tauri 后端优化](https://github.com/lovstudio/optimize-tauri-backend-skill) | 优化 Tauri 后端结构、命令边界和长 IPC 生命周期，降低 Rust 重启带来的开发摩擦。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`project-port`](https://github.com/lovstudio/project-port-skill) | [项目端口分配](https://github.com/lovstudio/project-port-skill) | 给每个项目分配一个稳定且唯一的开发端口，彻底告别端口撞车。 |
