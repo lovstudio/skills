@@ -1,40 +1,40 @@
 {
   "skill_name": "wdb-cli",
-  "skill_version": "0.1.2",
+  "skill_version": "0.2.0",
   "skill_id": 66,
-  "skill_version_id": 38,
+  "skill_version_id": 39,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "tcNYRE0HJNG5t9Ep",
-      "tag": "HgI4c/DiEAoSQAv6nMiJJg==",
-      "original_checksum": "88d229310fc857cdad342a7ecfd5db00fcd7b0763dc239fc061e78d1faafad96",
-      "original_size": 7022
+      "iv": "TRXEmtQK+eqyoXvc",
+      "tag": "qrLzVRxZlXzyMKi8QevE3A==",
+      "original_checksum": "1334838575072260b9ac304dc3c887fec3c9014195a6339dac87d99f2bdf569f",
+      "original_size": 7864
     },
     "references/data-contract.md": {
-      "iv": "6byoaaaf0iU/Whln",
-      "tag": "jX0zGawBBgbnlu5NUQa1Sw==",
-      "original_checksum": "2f605d9f523536dac4399bd7d2657d985318bbff783c52957f8e8e8f92f7eaa8",
-      "original_size": 3511
+      "iv": "LEnoQ5q8NRzW9IoH",
+      "tag": "MEx44fY2IEgSymtTThnYGw==",
+      "original_checksum": "dfaa2335faccd834825ce019c0c207d512c5eb11e27505408908220189992c45",
+      "original_size": 3790
     },
     "scripts/test_wdb_cli.py": {
-      "iv": "1N3QPcecYUPX9xwi",
-      "tag": "z2GwlHdFqCuAJR9Vs8paIg==",
-      "original_checksum": "b3fbbd1a7772ea18dab34a48a8bec132fcad068bb29f51f8c2332eb25e10fa97",
-      "original_size": 8703
+      "iv": "eqFhRtW5ncfzl97t",
+      "tag": "ohKc7qJzrRsHmjlQJbQkbw==",
+      "original_checksum": "2a5d019c2a8e7cdaf36416b04c9d0494371a3b1c794cfe0e479b1cea3702bac3",
+      "original_size": 10448
     },
     "scripts/validate_skill.py": {
-      "iv": "MV7gq5ktToq9F9lH",
-      "tag": "W5bro+xKd8jXJH1m8DGwOA==",
+      "iv": "UDOOQbWwtkC3j3Jj",
+      "tag": "Gw5tH3teTSQ9FkWL33wy5A==",
       "original_checksum": "69d2b900cdf09624fd91392dc3e00ddfd75687add862bf17f29c34e7036024af",
       "original_size": 11790
     },
     "scripts/wdb_cli.py": {
-      "iv": "T0ROgvRhkG5g39fR",
-      "tag": "Fvh+GvgD5A4TykSDlai1Xg==",
-      "original_checksum": "547485ec12d35a90130578e50a88672d9b23cf4d6c4fcb1c0a2790e346b94ccd",
-      "original_size": 70359
+      "iv": "tYTeTJ9XzcVlEbz8",
+      "tag": "MycST19Lk3OtEp+fSY90kA==",
+      "original_checksum": "c59bf992cdffacb3549b68775f2f1bfee3fba53fb108d2f9c10465fd07055d41",
+      "original_size": 73263
     }
   }
 }
