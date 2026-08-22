@@ -1,0 +1,112 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: >-
+  Verify an image's source text and machine translation, then produce a
+  layout-preserving proofreader-style image that exposes the rejected wording
+  and supplies a complete corrected translation.
+owner:
+  team: "LovStudio Skill contributors"
+  contact: "local source maintainers"
+license:
+  name: MIT
+  terms: "Use, modify, and redistribute under the included MIT License. Users remain responsible for rights to source images."
+  url: "LICENSE"
+use_case:
+  audience: "Editors, localization teams, product communicators, and readers reviewing machine-translated images"
+  scenario: "A screenshot contains source text plus a misleading or awkward automatic translation that should be visibly corrected without redesigning the image."
+  tasks:
+    - "Transcribe and verify each source and translated text block."
+    - "Expose the decisive old error with proofreader strikethroughs and adjacent replacements."
+    - "Render and validate a corrected raster while preserving non-translation pixels and hierarchy."
+deployment:
+  geography: global
+  environments:
+    - "Agent runtime with vision, source access, and reference-image editing"
+requirements:
+  credentials: "none by default"
+  dependencies: []
+  runtime:
+    - "Vision capability for image inspection"
+    - "Reference-image editing capability for bitmap output"
+    - "Primary-source or web access when terminology requires external verification"
+risks:
+  - risk: "A fluent replacement can still be semantically wrong when product terms or idioms lack context."
+    mitigation: "Build a source-backed correction map before rendering and distinguish evidence from inference."
+  - risk: "Generative image editing can redraw faces, English text, metrics, or interface chrome."
+    mitigation: "Lock an immutable image contract, edit only target-language regions, and inspect every invariant after rendering."
+  - risk: "Too much annotation can overwhelm the source layout or imply that every word is wrong."
+    mitigation: "Strike only decisive bad fragments, omit redundant labels by default, and adjust only target-language typography."
+  - risk: "Source screenshots can contain private information or copyrighted material."
+    mitigation: "Keep inputs in the current task, avoid persistence, and require user authority for redistribution."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Errata protocol"
+    path: "references/errata-protocol.md"
+  - title: "Verified banked-reset case"
+    path: "references/verified-case.md"
+  - title: "Composition analysis"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "translation errata image"
+    - "source-backed correction brief"
+  formats:
+    - "PNG or source-compatible raster"
+    - "concise text summary"
+  parameters:
+    - "source image"
+    - "source and target language"
+    - "audience and desired correction visibility"
+  validation:
+    - "corrected translation preserves terminology, scope, time, modality, and tone"
+    - "rejected machine wording remains legible under a visible strikethrough"
+    - "corrected reading is complete when struck-out text is skipped"
+    - "canvas, crop, identity, source text, branding, UI, icons, and metrics do not drift"
+    - "all target-language characters and repeated occurrences match the correction map"
+  description: "A publishable marked-up raster plus the minimum evidence needed to explain the correction."
+ethical_considerations: >-
+  The Skill should clarify language rather than ridicule individual translators.
+  It avoids inventing source meaning, does not persist image contents, preserves
+  attribution, and does not authorize redistribution of material the user does
+  not own or have permission to edit.
+dimensions:
+  - id: semantic_correctness
+    label: "Semantic correctness"
+    description: "Resolves terms, timing, scope, modality, and pragmatic tone from source evidence before rendering."
+    evidence: "The real case distinguished the Codex banked rate-limit reset from a literal bank operation and corrected by, eligibility, and pragmatic wording."
+    score: "verified"
+  - id: error_visibility
+    label: "Machine-error visibility"
+    description: "Readers can still identify the rejected automatic translation without mistaking it for valid copy."
+    evidence: "The real case retained the old bank-reset, arrival-time, and literal instruction fragments under red strikethroughs with adjacent dark-red replacements."
+    score: "verified"
+  - id: layout_fidelity
+    label: "Layout fidelity"
+    description: "Restricts changes to translated regions and preserves the original image's structure and identity."
+    evidence: "The real case preserved the two-tweet hierarchy, quoted card, English copy, interaction rows, and counters; exact pixel-diff automation remains future work."
+    score: "provisional"
+  - id: editorial_restraint
+    label: "Editorial restraint"
+    description: "Uses the smallest visible correction treatment that still communicates the problem."
+    evidence: "User feedback established that strikethrough and replacement color are sufficient, so the default omits a redundant errata heading."
+    score: "verified_by_user_feedback"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "A reusable editorial workflow combines source verification, translation judgment, and high-fidelity visual acceptance without proprietary local logic."
+  boundary: "Includes one source image, correction mapping, marked-up raster guidance, and validation; excludes bulk localization, licensed font procurement, and remote publication."
+  review_trigger: "Revisit if the Skill adds batch OCR, deterministic pixel-diff rendering, managed terminology bases, or paid human review."
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not_planned
+    - channel: skillpay
+      status: not_planned
+  free:
+    - channel: github
+      status: not_published
+    - channel: lovstudio
+      status: local_only

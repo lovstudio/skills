@@ -1,5 +1,44 @@
 version: 1
 skills:
+- name: image-translation-errata
+  display_name: Image Translation Errata
+  repo: lovstudio/image-translation-errata-skill
+  name_zh: 图片翻译勘误
+  paid: false
+  category: General
+  version: 0.1.0
+  updated_at: 2026-08-22T05:49:02Z
+  description: Verify source text and an existing machine translation, then produce a layout-preserving errata image with visible rejected wording and corrected copy.
+  tagline_en: Expose bad machine translation, show the correction, and preserve the original image.
+  tagline_zh: 保留错误机翻的证据，用校样式删改给出正确译文，同时尽量不动原图布局。
+  related:
+  - translation-review
+  - image-creator
+  - fact-check
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 核对图片原文与机翻，保留错误证据并给出可独立通读的正确译文，同时守住原图布局。
+    value_en: Verify source text and machine translation, retain visible error evidence, provide a complete corrected reading, and preserve the source layout.
+    anchor_zh: 一次任务可省下约 30–90 分钟的术语核验、译文推敲、出图返工和视觉检查，并减少公开错误机翻的声誉风险。
+    anchor_en: A suitable task can save roughly 30–90 minutes of terminology verification, rewriting, image iteration, and visual checking while reducing public mistranslation risk.
+    basis_zh: 当前只有一个真实迭代案例，且 Skill 为 MIT instruction-only 源码；官网先作为免费入口积累多语言和多版式证据。
+    basis_en: With one real iteration case and an MIT instruction-only source, the website uses a free entry to build evidence across languages and layouts.
+    boundary_zh: 覆盖单图核验、修正映射、校样式出图约束和视觉验收；不含批量 OCR、人工认证审校、字体授权或远程代发布。
+    boundary_en: Covers single-image verification, correction mapping, proofreader-style rendering constraints, and visual validation; excludes batch OCR, certified human review, font licensing, and managed publication.
+    maintenance_zh: 随图像编辑模型、OCR、术语来源和真实使用反馈复评。
+    maintenance_en: Review against image-editor behavior, OCR capability, terminology sources, and real usage feedback.
+    confidence: case-backed
+    review_trigger_zh: 版本变化、累计 10 次真实使用、支持成本明显变化，或加入批量 OCR、确定性渲染、术语库与人工审校时复评。
+    review_trigger_en: Review after a version change, 10 real uses, material support-cost change, or addition of batch OCR, deterministic rendering, terminology memory, or human review.
+    card_path: pricing-cards/image-translation-errata.md
 - name: image-creator
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Image Studio
@@ -17,6 +56,7 @@ skills:
   related:
   - professional-infographic
   - professional-portrait
+  - image-translation-errata
   pricing:
     model: free_entry
     visibility: public
@@ -1213,6 +1253,8 @@ skills:
   skillpay_product_id: P0806000200844921
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsK
   version: 1.0.1
+  related:
+  - image-translation-errata
   pricing:
     model: free_entry
     visibility: public
@@ -1335,6 +1377,8 @@ skills:
   paid: false
   category: General
   version: 0.1.2
+  related:
+  - image-translation-errata
   description: Verify factual claims through due-diligence style research, primary-source checking, source labels, and confidence-aware
     conclusions.
   tagline_en: Verify claims like a careful researcher, with primary sources, counterexamples, confidence, and next steps.
