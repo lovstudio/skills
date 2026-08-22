@@ -20,6 +20,16 @@ THEME = {
 
 ## Available Themes
 
+### songti-reading
+Warm-white canvas with muted ink blue. Uses Songti SC Regular for Chinese body text,
+Palatino for Latin prose, sans-serif Chinese for headings/emphasis, and Menlo for code.
+The wider leading, wider minimum table columns, continuous headings, and fit-width
+opening view are optimized for long Chinese reports and dense audit tables.
+```python
+{"canvas":"#FDFCF9","canvas_sec":"#F5F6F3","ink":"#232B36","ink_faded":"#66707C",
+ "accent":"#315A78","accent_light":"#7891A6","border":"#E0E4E5"}
+```
+
 ### warm-academic (default)
 Warm ivory canvas with terracotta accents. Inspired by academic papers on aged paper.
 Best for: Chinese technical reports, research papers, documentation.

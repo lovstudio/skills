@@ -1,8 +1,8 @@
 # lov-any2pdf
 
-![Version](https://img.shields.io/badge/version-1.3.4-CC785C)
+![Version](https://img.shields.io/badge/version-1.4.1-CC785C)
 
-Markdown to professionally typeset PDF with [reportlab](https://docs.reportlab.com/). CJK/Latin mixed text, code blocks, tables, images, Obsidian callouts, emoji fallback, formulas, cover pages, TOC, bookmarks, watermarks, and 14 color themes.
+Markdown to professionally typeset PDF with [reportlab](https://docs.reportlab.com/). CJK/Latin mixed text, code blocks, tables, images, Obsidian callouts, emoji fallback, formulas, cover pages, TOC, bookmarks, watermarks, and 16 themes.
 
 Part of [skill-publisher/skills](https://example.com/skills/skills) &mdash; by [example.com](https://example.com)
 
@@ -26,6 +26,15 @@ sudo apt install fonts-dejavu-core fonts-liberation fonts-freefont-ttf fonts-not
 ```bash
 python md2pdf.py --input report.md --output report.pdf --theme warm-academic
 ```
+
+For long Chinese reports and dense tables, use the publication-style reading preset:
+
+```bash
+python md2pdf.py --input report.md --output report.pdf --theme songti-reading
+```
+
+`songti-reading` pairs Songti body text with sans-serif headings/emphasis, Palatino
+Latin prose, Menlo code, roomier leading, symbol fallback, and a fit-width opening view.
 
 You can also keep options in top-of-file frontmatter:
 
@@ -55,21 +64,16 @@ watermark: DRAFT
 
 ## Themes
 
-| warm-academic | nord-frost | github-light | solarized-light |
-|:---:|:---:|:---:|:---:|
-| ![warm-academic](../../docs/previews/warm-academic.png) | ![nord-frost](../../docs/previews/nord-frost.png) | ![github-light](../../docs/previews/github-light.png) | ![solarized-light](../../docs/previews/solarized-light.png) |
+`songti-reading` is the recommended preset when sustained Chinese reading matters
+more than compact page count.
 
-| paper-classic | ocean-breeze | tufte | classic-thesis |
-|:---:|:---:|:---:|:---:|
-| ![paper-classic](../../docs/previews/paper-classic.png) | ![ocean-breeze](../../docs/previews/ocean-breeze.png) | ![tufte](../../docs/previews/tufte.png) | ![classic-thesis](../../docs/previews/classic-thesis.png) |
-
-| ieee-journal | elegant-book | chinese-red | ink-wash |
-|:---:|:---:|:---:|:---:|
-| ![ieee-journal](../../docs/previews/ieee-journal.png) | ![elegant-book](../../docs/previews/elegant-book.png) | ![chinese-red](../../docs/previews/chinese-red.png) | ![ink-wash](../../docs/previews/ink-wash.png) |
-
-| monokai-warm | dracula-soft |
-|:---:|:---:|
-| ![monokai-warm](../../docs/previews/monokai-warm.png) | ![dracula-soft](../../docs/previews/dracula-soft.png) |
+| Reading and print | Technical and modern | Specialized |
+|---|---|---|
+| songti-reading | github-light | consulting-navy |
+| warm-academic | nord-frost | ieee-journal |
+| paper-classic | ocean-breeze | elegant-book |
+| classic-thesis | solarized-light | chinese-red |
+| tufte | monokai-warm / dracula-soft | ink-wash |
 
 ## License
 

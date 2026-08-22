@@ -36,6 +36,7 @@ from reportlab.platypus import (
     Table, TableStyle, NextPageTemplate, Flowable, Image as RLImage
 )
 from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase import pdfdoc
 from reportlab.pdfbase.pdfmetrics import Font
 from reportlab.pdfbase.ttfonts import TTFont
 
@@ -44,6 +45,8 @@ from reportlab.pdfbase.ttfonts import TTFont
 # ═══════════════════════════════════════════════════════════════════════
 import platform as _platform
 _PLAT = _platform.system()  # "Darwin", "Linux", "Windows"
+_SKILL_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_BUNDLED_FONT_DIR = os.path.join(_SKILL_ROOT, "assets", "fonts")
 
 def _find_font(candidates):
     """Return first existing path from candidates list.
@@ -135,7 +138,8 @@ _FONT_CANDIDATES = {
         "/usr/share/fonts/truetype/freefont/FreeSerifBoldItalic.ttf",
     ],
     "CJK": [
-        ("/System/Library/Fonts/Supplemental/Songti.ttc", 0),                   # macOS Songti SC
+        # Songti.ttc index 0 is Songti SC Black; index 6 is the readable Regular face.
+        ("/System/Library/Fonts/Supplemental/Songti.ttc", 6),                   # macOS Songti SC Regular
         "C:/Windows/Fonts/simsun.ttc",                                           # Windows SimSun (宋体)
         "C:/Windows/Fonts/msyh.ttc",                                             # Windows MSYH (微软雅黑)
         "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
@@ -184,7 +188,24 @@ _FONT_CANDIDATES = {
         "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf",
         "/usr/share/fonts/truetype/ancient-scripts/Symbola_hint.ttf",
     ],
+    "Symbols": [
+        "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+        "C:/Windows/Fonts/seguisym.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "/usr/share/fonts/truetype/noto/NotoSansSymbols2-Regular.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSans.ttf",
+    ],
 }
+
+_CJK_SANS_BOLD_CANDIDATES = [
+    os.path.join(_BUNDLED_FONT_DIR, "NotoSansSC-SemiBold.ttf"),
+    ("/System/Library/Fonts/STHeiti Medium.ttc", 1),
+    "C:/Windows/Fonts/msyhbd.ttc",
+    "/usr/share/opentype/noto/NotoSansCJK-Bold.ttc",
+    "/usr/share/opentype/noto/NotoSansCJKsc-Bold.otf",
+    "/usr/share/fonts/noto-cjk/NotoSansCJK-Bold.ttc",
+    "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
+]
 
 _REGISTERED_TTF = set()
 _EMOJI_FONT_REGISTERED = False
@@ -203,12 +224,19 @@ _BUILTIN_FONT_FALLBACKS = {
     "CJK": "Helvetica",
     "CJKBold": "Helvetica-Bold",
     "Emoji": "Helvetica",
+    "Symbols": "Helvetica",
 }
 
-def register_fonts():
+def register_fonts(cjk_bold_style="serif"):
     global _EMOJI_FONT_REGISTERED
     missing = []
-    for name, candidates in _FONT_CANDIDATES.items():
+    candidates_by_role = {name: list(candidates) for name, candidates in _FONT_CANDIDATES.items()}
+    if cjk_bold_style == "sans":
+        candidates_by_role["CJKBold"] = [
+            *list(_CJK_SANS_BOLD_CANDIDATES),
+            *candidates_by_role["CJKBold"],
+        ]
+    for name, candidates in candidates_by_role.items():
         spec = _find_font(candidates)
         if spec is None:
             missing.append(name)
@@ -239,6 +267,8 @@ def register_fonts():
             print("  Fix: Install Noto fonts from https://fonts.google.com/noto", file=sys.stderr)
     pdfmetrics.registerFontFamily("Sans", normal="Sans", bold="SansBold",
                                   italic="SansIt", boldItalic="SansBI")
+    pdfmetrics.registerFontFamily("CJK", normal="CJK", bold="CJKBold",
+                                  italic="CJK", boldItalic="CJKBold")
     pdfmetrics.registerFontFamily("Serif", normal="Serif", bold="SerifBold",
                                   italic="SerifIt", boldItalic="SerifBI")
 
@@ -256,6 +286,9 @@ def register_fonts():
 #   code_style: "bg" (background fill) | "border" (left border only)
 #   cover_style: "centered" | "left-aligned" | "minimal"
 #   page_decoration: "none" | "top-bar" | "left-stripe" | "side-rule" | "corner-marks"
+#   continuous_headings: keep H1/H2 in flow instead of forcing divider pages
+#   cjk_bold_style: "serif" | "sans" for headings and emphasized Chinese
+#   fit_width_on_open: request SinglePage + FitH in supporting PDF viewers
 
 _DEFAULT_LAYOUT = {
     "margins": (25, 22, 28, 25),
@@ -267,6 +300,24 @@ _DEFAULT_LAYOUT = {
 }
 
 THEMES = {
+    "songti-reading": {
+        "canvas":"#FDFCF9","canvas_sec":"#F5F6F3","ink":"#232B36","ink_faded":"#66707C",
+        "accent":"#315A78","accent_light":"#7891A6","border":"#E0E4E5",
+        "watermark_rgba":(0.82,0.85,0.88,0.04),
+        "layout": {
+            "margins":(28, 28, 22, 24),
+            "body_font":"Serif","body_size":11.8,"body_leading":20.0,
+            "h1_size":22,"h2_size":17,"h3_size":14.2,
+            "heading_font":"SansBold","heading_align":"left","heading_decoration":"none",
+            "header_style":"none","code_style":"border","cover_style":"minimal",
+            "page_decoration":"none","continuous_headings":True,
+            "cjk_bold_style":"sans","table_body_font":"Serif",
+            "table_header_size":11.0,"table_body_size":10.8,"table_leading":17.2,
+            "table_min_width":23,"table_padding":5,
+            "code_size":10.0,"code_leading":16.2,
+            "fit_width_on_open":True,
+        }
+    },
     "warm-academic": {
         "canvas":"#F9F9F7","canvas_sec":"#F0EEE6","ink":"#181818","ink_faded":"#87867F",
         "accent":"#4F46E5","accent_light":"#D99A82","border":"#E8E6DC",
@@ -545,11 +596,15 @@ def _emoji_inline(text, size=10):
             i += 1
     return ''.join(out)
 
-def _font_wrap_plain(text):
+_SYMBOL_FONT_CHARS = frozenset("✓✗→")
+
+def _font_wrap_plain(text, cjk_font="CJK"):
     out, buf, role = [], [], None
     for ch in text:
-        if _is_cjk(ch):
-            next_role = "CJK"
+        if ch in _SYMBOL_FONT_CHARS:
+            next_role = "Symbols"
+        elif _is_cjk(ch):
+            next_role = cjk_font
         elif _EMOJI_FONT_REGISTERED and (_is_emoji_char(ch) or (ord(ch) in _EMOJI_TRAILING and role == "Emoji")):
             next_role = "Emoji"
         else:
@@ -564,10 +619,22 @@ def _font_wrap_plain(text):
         out.append(f"<font name='{role}'>{seg}</font>" if role else seg)
     return ''.join(out)
 
-def _font_wrap(text):
-    """Wrap CJK and locally available monochrome emoji runs without touching XML tags."""
+def _font_wrap(text, force_cjk_bold=False):
+    """Wrap CJK, symbols, and emoji without touching ReportLab XML tags."""
     parts = re.split(r'(<[^>]+>)', text)
-    return ''.join(p if p.startswith("<") and p.endswith(">") else _font_wrap_plain(p) for p in parts)
+    out, bold_depth = [], 0
+    for part in parts:
+        if part.startswith("<") and part.endswith(">"):
+            tag = part.lower().replace(" ", "")
+            if tag in ("</b>", "</strong>"):
+                bold_depth = max(0, bold_depth - 1)
+            out.append(part)
+            if tag in ("<b>", "<strong>"):
+                bold_depth += 1
+            continue
+        cjk_font = "CJKBold" if force_cjk_bold or bold_depth else "CJK"
+        out.append(_font_wrap_plain(part, cjk_font))
+    return ''.join(out)
 
 def _draw_mixed(c, x, y, text, size, anchor="left", max_w=0):
     """Draw mixed CJK/Latin text on canvas with font switching.
@@ -650,7 +717,7 @@ def esc_code(text):
         out.append(e.replace(' ', '&nbsp;'))
     return '<br/>'.join(out)
 
-def md_inline(text, accent_hex="#4F46E5"):
+def md_inline(text, accent_hex="#4F46E5", force_cjk_bold=False):
     text = esc(text)
     code_spans = []
     text = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', text)
@@ -668,7 +735,7 @@ def md_inline(text, accent_hex="#4F46E5"):
     text = _emoji_inline(text)
     for idx, html in enumerate(code_spans):
         text = text.replace(f"@@ANY2PDF_CODE_{idx}@@", html)
-    return _font_wrap(text)
+    return _font_wrap(text, force_cjk_bold=force_cjk_bold)
 
 _MD_IMAGE_RE = re.compile(r'!\[([^\]]*)\]\(([^)]+)\)')
 
@@ -804,11 +871,12 @@ class PDFBuilder:
         s = {}
         bf = L["body_font"]  # "Serif" or "Sans"
         bs, bl = L["body_size"], L["body_leading"]
+        heading_font = L.get("heading_font", "Serif")
         h_align = TA_CENTER if L["heading_align"] == "center" else TA_LEFT
-        s['part'] = ParagraphStyle('Part', fontName="Serif", fontSize=L["h1_size"],
+        s['part'] = ParagraphStyle('Part', fontName=heading_font, fontSize=L["h1_size"],
             leading=L["h1_size"]+10, textColor=T["ink"], alignment=h_align,
             spaceBefore=0, spaceAfter=0)
-        s['chapter'] = ParagraphStyle('Ch', fontName="Serif", fontSize=L["h2_size"],
+        s['chapter'] = ParagraphStyle('Ch', fontName=heading_font, fontSize=L["h2_size"],
             leading=L["h2_size"]+8, textColor=T["ink"], alignment=h_align,
             spaceBefore=0, spaceAfter=0)
         s['h3'] = ParagraphStyle('H3', fontName="SansBold", fontSize=L["h3_size"],
@@ -840,13 +908,15 @@ class PDFBuilder:
             leftIndent=18, bulletIndent=6, wordWrap='CJK')
         # Code block: "bg" = background fill, "border" = left accent line (no bg)
         self._code_style_type = L["code_style"]
+        code_size = L.get("code_size", 7.5)
+        code_leading = L.get("code_leading", 10.5)
         if L["code_style"] == "border":
-            s['code'] = ParagraphStyle('Code', fontName="Mono", fontSize=7.5, leading=10.5,
+            s['code'] = ParagraphStyle('Code', fontName="Mono", fontSize=code_size, leading=code_leading,
                 textColor=HexColor("#3D3D3A"), alignment=TA_LEFT, spaceBefore=4, spaceAfter=4,
                 leftIndent=14, rightIndent=8, backColor=None,
                 borderColor=None, borderWidth=0, borderPadding=6)
         else:
-            s['code'] = ParagraphStyle('Code', fontName="Mono", fontSize=7.5, leading=10.5,
+            s['code'] = ParagraphStyle('Code', fontName="Mono", fontSize=code_size, leading=code_leading,
                 textColor=HexColor("#3D3D3A"), alignment=TA_LEFT, spaceBefore=4, spaceAfter=4,
                 leftIndent=8, rightIndent=8, backColor=T["canvas_sec"],
                 borderColor=T["border"], borderWidth=0.5, borderPadding=6)
@@ -854,9 +924,13 @@ class PDFBuilder:
             textColor=T["ink"], leftIndent=0, spaceBefore=6, spaceAfter=2)
         s['toc2'] = ParagraphStyle('T2', fontName="Sans", fontSize=10, leading=16,
             textColor=T["ink_faded"], leftIndent=16, spaceBefore=1, spaceAfter=1)
-        s['th'] = ParagraphStyle('TH', fontName="SansBold", fontSize=8.5, leading=12,
+        table_header_size = L.get("table_header_size", 8.5)
+        table_body_size = L.get("table_body_size", 8)
+        table_leading = L.get("table_leading", 11)
+        table_body_font = L.get("table_body_font", "Sans")
+        s['th'] = ParagraphStyle('TH', fontName="SansBold", fontSize=table_header_size, leading=table_leading,
             textColor=white, alignment=TA_CENTER)
-        s['tc'] = ParagraphStyle('TC', fontName="Sans", fontSize=8, leading=11,
+        s['tc'] = ParagraphStyle('TC', fontName=table_body_font, fontSize=table_body_size, leading=table_leading,
             textColor=T["ink"], alignment=TA_LEFT)
         return s
 
@@ -865,7 +939,18 @@ class PDFBuilder:
         c.setFillColor(self.T["canvas"])
         c.rect(0, 0, self.page_w, self.page_h, fill=1, stroke=0)
 
+    def _configure_viewer(self, c):
+        """Set the initial view requested by a reading-focused theme."""
+        if c.getPageNumber() != 1 or not self.L.get("fit_width_on_open", False):
+            return
+        catalog = c._doc._catalog
+        catalog.setPageLayout("SinglePage")
+        catalog.OpenAction = pdfdoc.PDFArray([
+            c._doc.thisPageRef(), pdfdoc.PDFName("FitH"), pdfdoc.PDFnull,
+        ])
+
     def _cover_page(self, c, doc):
+        self._configure_viewer(c)
         c.saveState(); self._draw_bg(c)
         T = self.T; cx = self.page_w / 2
         cover = self.L["cover_style"]
@@ -1078,6 +1163,7 @@ class PDFBuilder:
 
     def _frontispiece_page(self, c, doc):
         """Full-page image page after cover."""
+        self._configure_viewer(c)
         c.saveState(); self._draw_bg(c)
         fp = self.cfg.get("frontispiece", "")
         if fp and os.path.exists(fp):
@@ -1191,6 +1277,7 @@ class PDFBuilder:
             c.line(self.lm, y_bot + 2*mm, self.page_w - self.rm, y_bot + 2*mm)
 
     def _normal_page(self, c, doc):
+        self._configure_viewer(c)
         self._draw_bg(c); pg = c.getPageNumber()
         c.saveState()
         T = self.T; hs = self.L["header_style"]
@@ -1276,6 +1363,7 @@ class PDFBuilder:
         c.restoreState()
 
     def _toc_page(self, c, doc):
+        self._configure_viewer(c)
         self._draw_bg(c); pg = c.getPageNumber()
         c.saveState()
         T = self.T
@@ -1482,7 +1570,7 @@ class PDFBuilder:
         accent = HexColor(color_map.get(kind, self._hex_color(self.T["accent"])))
         bg = self._blend_color(accent, self.T["canvas"], 0.10)
         border = self._blend_color(accent, self.T["canvas"], 0.55)
-        title_html = f"<font name='SansBold' color='{self._hex_color(accent)}'>{md_inline(title, self.accent_hex)}</font>"
+        title_html = f"<font name='SansBold' color='{self._hex_color(accent)}'>{md_inline(title, self.accent_hex, force_cjk_bold=True)}</font>"
         rendered = [title_html]
         for line in body_lines:
             stripped = line.strip()
@@ -1522,7 +1610,7 @@ class PDFBuilder:
         if not data: return None
         nc = len(header)
         ST = self.ST
-        td = [[Paragraph(md_inline(h, self.accent_hex), ST['th']) for h in header]]
+        td = [[Paragraph(md_inline(h, self.accent_hex, force_cjk_bold=True), ST['th']) for h in header]]
         for r in data:
             while len(r) < nc: r.append("")
             td.append([Paragraph(md_inline(c, self.accent_hex), ST['tc']) for c in r[:nc]])
@@ -1531,7 +1619,7 @@ class PDFBuilder:
         max_lens = [max(m, 2) for m in max_lens]
         total = sum(max_lens)
         cw = [avail * m / total for m in max_lens]
-        min_w = 18*mm
+        min_w = min(self.L.get("table_min_width", 18)*mm, avail / max(nc, 1))
         for ci in range(nc):
             if cw[ci] < min_w:
                 deficit = min_w - cw[ci]; cw[ci] = min_w
@@ -1539,6 +1627,7 @@ class PDFBuilder:
                 for oi in widest:
                     if oi != ci: cw[oi] -= deficit; break
         T = self.T
+        cell_padding = self.L.get("table_padding", 3)
         t = Table(td, colWidths=cw, repeatRows=1)
         t.setStyle(TableStyle([
             ('BACKGROUND',(0,0),(-1,0), T["accent"]),
@@ -1547,7 +1636,7 @@ class PDFBuilder:
             ('GRID',(0,0),(-1,-1), 0.5, T["border"]),
             ('VALIGN',(0,0),(-1,-1),'TOP'),
             ('LEFTPADDING',(0,0),(-1,-1),5),('RIGHTPADDING',(0,0),(-1,-1),5),
-            ('TOPPADDING',(0,0),(-1,-1),3),('BOTTOMPADDING',(0,0),(-1,-1),3),
+            ('TOPPADDING',(0,0),(-1,-1),cell_padding),('BOTTOMPADDING',(0,0),(-1,-1),cell_padding),
         ]))
         return t
 
@@ -1680,6 +1769,13 @@ class PDFBuilder:
                         cm = ChapterMark(title, level=0); story.append(cm)
                         toc.append(('part', title, cm.key))
                         i += 1; continue
+                    if self.L.get("continuous_headings", False):
+                        cm = ChapterMark(title, level=0); story.append(cm)
+                        story.append(Spacer(1, 3*mm))
+                        story.append(Paragraph(md_inline(title, ah, force_cjk_bold=True), ST['part']))
+                        story.append(Spacer(1, 1*mm))
+                        toc.append(('part', title, cm.key))
+                        i += 1; continue
                     story.append(PageBreak())
                     cm = ChapterMark(title, level=0); story.append(cm)
                     hts = self.cfg.get("heading_top_spacer")
@@ -1687,7 +1783,7 @@ class PDFBuilder:
                     if hdeco == "rules":
                         story.append(HRuleCentered(self.body_w, 40*mm, 0.8, self.T["accent"]))
                         story.append(Spacer(1, 8*mm))
-                    story.append(Paragraph(md_inline(title, ah), ST['part']))
+                    story.append(Paragraph(md_inline(title, ah, force_cjk_bold=True), ST['part']))
                     if hdeco == "rules":
                         story.append(Spacer(1, 8*mm))
                         story.append(HRuleCentered(self.body_w, 25*mm, 0.8, self.T["accent"]))
@@ -1716,10 +1812,16 @@ class PDFBuilder:
                     story.append(Spacer(1, 4*mm))
                     toc.append(('chapter', title, cm.key))
                     i += 1; continue
+                if self.L.get("continuous_headings", False):
+                    story.append(Spacer(1, 3*mm))
+                    story.append(Paragraph(md_inline(title, ah, force_cjk_bold=True), ST['chapter']))
+                    story.append(Spacer(1, 1*mm))
+                    toc.append(('chapter', title, cm.key))
+                    i += 1; continue
                 story.append(PageBreak())
                 hts = self.cfg.get("heading_top_spacer")
                 story.append(Spacer(1, hts*mm if hts else 12*mm))
-                story.append(Paragraph(md_inline(title, ah), ST['chapter']))
+                story.append(Paragraph(md_inline(title, ah, force_cjk_bold=True), ST['chapter']))
                 if hdeco == "rules":
                     story.append(Spacer(1, 5*mm))
                     story.append(HRuleCentered(self.body_w, 35*mm, 1.2, self.T["accent"]))
@@ -1735,7 +1837,7 @@ class PDFBuilder:
             # H3 = Section
             if stripped.startswith('### ') and not stripped.startswith('#### '):
                 story.append(Spacer(1, 3*mm))
-                story.append(Paragraph(md_inline(stripped[4:].strip(), ah), ST['h3']))
+                story.append(Paragraph(md_inline(stripped[4:].strip(), ah, force_cjk_bold=True), ST['h3']))
                 story.append(Spacer(1, 1*mm))
                 i += 1; continue
 
@@ -1743,7 +1845,7 @@ class PDFBuilder:
             hm = re.match(r'^(#{4,6})\s+(.+)', stripped)
             if hm:
                 style = ST['h4'] if len(hm.group(1)) == 4 else ST['h5']
-                story.append(Paragraph(md_inline(hm.group(2).strip(), ah), style))
+                story.append(Paragraph(md_inline(hm.group(2).strip(), ah, force_cjk_bold=True), style))
                 i += 1; continue
 
             # Standalone or inline markdown images
@@ -1814,7 +1916,7 @@ class PDFBuilder:
     def build_toc(self, toc):
         ST = self.ST; ah = self.accent_hex; ink = self.T["ink"]
         s = [Spacer(1, 15*mm)]
-        s.append(Paragraph(md_inline("\u76ee    \u5f55", ah), ST['part']))
+        s.append(Paragraph(md_inline("\u76ee    \u5f55", ah, force_cjk_bold=True), ST['part']))
         s.append(HRule(self.body_w * 0.12, 1, self.T["accent"]))
         s.append(Spacer(1, 8*mm))
         ink_hex = f"#{int(ink.red*255):02x}{int(ink.green*255):02x}{int(ink.blue*255):02x}" if hasattr(ink,'red') else "#181818"
@@ -1826,7 +1928,7 @@ class PDFBuilder:
 
     # ── Build PDF ──
     def build(self, md_text, output_path):
-        register_fonts()
+        register_fonts(self.L.get("cjk_bold_style", "serif"))
         print("Parsing markdown...")
         story_content, toc = self.parse_md(md_text)
         print(f"  {len(story_content)} elements, {len(toc)} TOC entries")

@@ -87,7 +87,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | **办公** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`any2deck`](https://github.com/lovstudio/any2deck-skill) | [万物转幻灯](https://github.com/lovstudio/any2deck-skill) | 把任意内容变成带设计感的幻灯片，16 种风格可选，导出 PPTX / PDF。 — 相关: `any2pdf`, `any2docx` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`any2docx`](https://github.com/lovstudio/any2docx-skill) | [万物转 Word](https://github.com/lovstudio/any2docx-skill) | 把 Markdown 转成排版规范的 Word 文档，可以直接发给甲方。 — 相关: `any2pdf`, `any2deck` |
-| ![Free](https://img.shields.io/badge/Free-green) | [`any2pdf`](https://github.com/lovstudio/any2pdf-skill) | [万物转 PDF](https://github.com/lovstudio/any2pdf-skill) | 把 Markdown 排成出版级 PDF，中英混排、代码块、表格全支持，内置 14 套主题。 — 相关: `any2docx`, `any2deck` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`any2pdf`](https://github.com/lovstudio/any2pdf-skill) | [万物转 PDF](https://github.com/lovstudio/any2pdf-skill) | 把 Markdown 排成出版级 PDF，支持中英混排、代码与表格；新增宋黑阅读，共 16 套主题。 — 相关: `any2docx`, `any2deck` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`fill-form`](https://github.com/lovstudio/fill-form-skill) | [表单代笔](https://github.com/lovstudio/fill-form-skill) | 自动填写 Word 表单模板，字段识别 + 中英文排版一气呵成。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`fill-web-form`](https://github.com/lovstudio/fill-web-form-skill) | [网页代笔](https://github.com/lovstudio/fill-web-form-skill) | 用你本地的知识库来应答网页表单，一轮检索一轮生成，草稿即交付。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`pdf2png`](https://github.com/lovstudio/pdf2png-skill) | [PDF 出长图](https://github.com/lovstudio/pdf2png-skill) | 把 PDF 拼成一张长图 PNG，在 macOS 上快到几乎瞬间出图。 |
