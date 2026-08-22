@@ -3349,3 +3349,37 @@ skills:
     confidence: entry
     review_trigger_zh: 新增目标 App、字段模型变化或词库规模显著增长时复评。
     review_trigger_en: Review after a new target app, a field-model change, or material vocabulary growth.
+- name: npm-publisher
+  updated_at: 2026-08-22T07:14:32.000Z
+  display_name: NPM Publisher
+  repo: lovstudio/lov-npm-publisher-skill
+  name_zh: npm 发布器
+  paid: false
+  category: Dev Tools
+  version: 0.2.0
+  description: 'Automate npm package publishing via GitHub Actions OIDC trusted publishing or a local granular NPM_TOKEN, without repeated login'
+  tagline_en: Publish npm packages without repeated login — OIDC trusted publishing or a local NPM_TOKEN.
+  tagline_zh: 自动发布 npm 包，无需重复登录——OIDC trusted publishing 或本地 NPM_TOKEN。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 用 GitHub Actions OIDC 或本地 granular NPM_TOKEN 建立可验证的 npm 自动发布链，无需重复登录或长期 token。
+    value_en: Establish a verifiable npm auto-publish chain via GitHub Actions OIDC or a local granular NPM_TOKEN, without repeated login or a long-lived token.
+    anchor_zh: 一次运行通常可免去重复的 npm 认证、减少长期凭证暴露，并避免发版时误报完成。
+    anchor_en: A run typically saves repeated npm authentication, reduces long-lived credential exposure, and prevents false completion reports during release.
+    basis_zh: 免费本地自动化推动安全的 OIDC 采用与 granular token 发布，无托管运行时、凭证代管或单次发布运营成本。
+    basis_en: Free local automation encourages secure OIDC adoption and safe granular-token publishing, with no hosted runtime, credential custody, or per-release operating cost.
+    boundary_zh: 包含本地仓库与 registry 审计、保守的工作流生成、首次发布引导、发布门禁与证据规则。不含 npm 订阅、CI 用量费、账号找回、法律命名争议与代管发布运营。
+    boundary_en: Includes local repository and registry audit, conservative workflow generation, first-publish guidance, release gates, and evidence rules. Excludes npm subscriptions, CI usage fees, account recovery, legal namespace disputes, and managed release operations.
+    maintenance_zh: 随 npm trusted publishing 行为、弃用日期与使用反馈复评；小版本更新通常沿用原交付范围。
+    maintenance_en: Review against npm trusted-publishing behavior, deprecation dates, and usage feedback; minor updates stay within the original scope.
+    confidence: entry
+    review_trigger_zh: npm 认证行为或弃用日期变化，或 Skill 新增托管控制面、代管密钥、付费支持时复评。
+    review_trigger_en: Review after npm changes authentication behavior or deprecation, or the Skill adds a hosted control plane, managed secrets, or paid support.
