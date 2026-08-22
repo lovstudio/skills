@@ -1955,7 +1955,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/repo2docs.md
 - name: wdb-cli
-  updated_at: 2026-08-14T04:29:25.000Z
+  updated_at: 2026-08-22T05:05:38.000Z
   skillpay_product_id: P0806000201803813
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt_Qi
   skillpay_review_product_id: P0806000201871143
@@ -1967,10 +1967,10 @@ skills:
   price_cny: 19.9
   category: General
   skill_path: ""
-  version: 0.1.2
-  description: Use existing keys or decrypted databases to read, search, and analyze local WeChat data by date, contact, keyword, schema, or exact row identity.
-  tagline_en: Unlock precise local WeChat searches across chats, contacts, Moments, schemas, and exact record identities.
-  tagline_zh: 一把面向本地微信数据的万能钥匙，精准读取聊天、联系人、朋友圈、结构与稳定记录。
+  version: 0.2.0
+  description: Use existing keys or decrypted databases to query local WeChat data with WDB Pro managed-key discovery and exact row identity.
+  tagline_en: Auto-discover WDB Pro managed keys and run precise local WeChat searches across chats, contacts, Moments, schemas, and exact records.
+  tagline_zh: 自动发现 WDB Pro 管理密钥，精准读取聊天、联系人、朋友圈、结构与稳定记录。
   distribution:
     workbuddy: review
     skillpay: review
@@ -1984,8 +1984,8 @@ skills:
     - 49.9
     delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
     delivery_unit_en: One complete Skill with installation and usage notes for the current version
-    value_zh: 使用已有密钥或已解密数据库，按日期、联系人、关键词、朋友圈动态或稳定记录身份精准读取本地微信数据。
-    value_en: Use existing keys or decrypted databases to read local WeChat data by date, contact, keyword, Moment, schema, or exact record identity.
+    value_zh: 自动发现 WDB Pro 管理密钥，或使用已有密钥与已解密数据库，按日期、联系人、关键词、朋友圈动态或稳定记录身份精准读取本地微信数据。
+    value_en: Auto-discover WDB Pro managed keys, or use existing keys and decrypted databases, to query local WeChat data by date, contact, keyword, Moment, schema, or exact record identity.
     anchor_zh: 一次典型检索、核验或整理通常可节省约 1.5 至 4 小时。
     anchor_en: A typical search, verification, or organization task can save roughly 1.5 to 4 hours.
     basis_zh: 模型建议价为 ¥29.9；本次沿用既有 ¥19.9 首发公价，以真实销量和支持成本作为后续复评依据。
@@ -1995,8 +1995,8 @@ skills:
     maintenance_zh: 随微信数据库结构、SQLCipher 环境和真实支持成本变化复评。
     maintenance_en: Review when WeChat schemas, SQLCipher environments, or observed support costs change.
     confidence: medium
-    review_trigger_zh: 累计 10 次真实使用、100 份付费销量、六个月或微信结构大版本变化时复评。
-    review_trigger_en: Review after 10 real uses, 100 paid copies, six months, or a major WeChat schema change.
+    review_trigger_zh: 达到 20 名付费用户、100 次成功数据库工作流、0.3.0、平均支持超过 30 分钟或 2027-02-22 时复评。
+    review_trigger_en: Review at 20 paid users, 100 successful database workflows, version 0.3.0, average support above 30 minutes, or 2027-02-22.
     card_path: pricing-cards/wdb-cli.md
 - name: skill-creator
   updated_at: 2026-04-21T06:47:37.000Z
