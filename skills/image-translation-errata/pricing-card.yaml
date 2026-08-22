@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replace ad hoc machine-translation complaints and fragile image regeneration with one source-backed, layout-aware correction workflow."
+basis: "Free local instruction Skill with no proprietary cloud handler or bundled paid data."
+boundary: "Includes single-image analysis, terminology verification, correction mapping, marked-up raster guidance, and visual validation; excludes bulk jobs, human certification, font licensing, and publication."
+review_trigger: "Review access and price if batch OCR, deterministic renderer, managed terminology memory, or paid human review is added."
+confidence: internal

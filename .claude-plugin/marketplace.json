@@ -11,9 +11,10 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 9 free + 2 paid (Credits redemption required).",
+      "description": "General — 10 free + 2 paid (Credits redemption required).",
       "category": "General",
       "skills": [
+        "./skills/image-translation-errata",
         "./skills/image-creator",
         "./skills/hanzi-lens",
         "./skills/professional-infographic",

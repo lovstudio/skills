@@ -1,0 +1,30 @@
+[
+  {
+    "type": "case",
+    "title": "Codex banked-reset tweet with misleading automatic Chinese translation",
+    "description": "A bilingual X screenshot translated banked reset as 银行重置 and rendered the final sentence as a stiff literal instruction. The user required a corrected image that also made the machine-translation failure visible while preserving the tweet layout.",
+    "input": {
+      "items": [
+        "Attached 1200 by 888 bilingual social-media screenshot with two Tibo tweets and one quoted card",
+        "Source term: banked reset",
+        "Old fragments included 银行重置已到达, 太平洋标准时间下午 8 点到达, and 请自行处理这些信息",
+        "User acceptance goals: communicate the correct translation, expose the bad automatic translation, and preserve the original layout"
+      ]
+    },
+    "prompt": "保留错误机翻的关键措辞并用删除线标出，正确译文紧接其后；基本保持英文、头像、卡片、互动数据与布局不变。删除线已经表明是勘误时，不再额外标注勘误二字。",
+    "output": {
+      "items": [
+        "Verified banked reset as a storable Codex usage or rate-limit reset rather than a bank operation",
+        "Corrected top meaning: 可储备的用量重置已经到账。我再说一遍，可储备的用量重置已经到账。祝大家周末愉快。",
+        "Corrected lower meaning: 可储备的用量重置将在太平洋时间晚上 8 点前到账，面向 ChatGPT Work 和 Codex 的所有付费用户。知道这个消息后该怎么做，就看你们了。",
+        "Proofreader treatment: old decisive fragments remain legible under red strikethroughs, corrected fragments appear in dark red, and no redundant errata label is shown by default",
+        "Immutable contract covers English copy, portraits, names, badges, handles, timestamps, card border, metrics, icons, divider, crop, and hierarchy"
+      ]
+    },
+    "evidence": {
+      "verified_at": "2026-08-22",
+      "method": "Visual transcription, official product-term source check, two reference-image edit iterations, and direct user feedback",
+      "acceptance_note": "The user explicitly rejected clean replacement and a redundant errata heading, establishing visible track changes without a label as the default."
+    }
+  }
+]
