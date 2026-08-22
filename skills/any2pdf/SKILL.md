@@ -1,17 +1,9 @@
 ---
 name: lov-any2pdf
-category: Document Conversion
-tagline: "Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, [14 themes](docs/THEME-GALLERY.md)."
 description: >
-  Convert Markdown documents to professionally typeset PDF files. Primary engine:
-  reportlab (cover pages, frontispiece, back cover, bookmarks). Fallback engine:
-  pandoc + XeLaTeX (better table handling, LaTeX-quality typesetting). Handles
-  CJK/Latin mixed text, fenced code blocks, tables, blockquotes, Obsidian
-  callouts, inline images, emoji fallback, LaTeX-style formulas, clickable TOC,
-  watermarks, headers/footers, and page numbers. Supports multiple color themes
-  and is battle-tested for Chinese technical reports. Trigger when user mentions
-  "markdown to PDF", "md2pdf", "any2pdf", "md转pdf", "报告生成", "导出pdf",
-  or wants a professionally formatted PDF from markdown.
+  Convert Markdown to polished PDF with CJK typography, code, tables, images,
+  covers, TOC, bookmarks, and reading themes. Trigger on md2pdf, Chinese report
+  typesetting, or print-ready PDF requests.
 license: MIT
 compatibility: >
   Requires Python 3.8+ and reportlab (`pip install reportlab`).
@@ -21,8 +13,13 @@ compatibility: >
   DejaVu Sans Mono, and Noto Emoji when available.
 metadata:
   author: contributors
-  version: "1.3.6"
-  tags: markdown pdf cjk reportlab typesetting
+  version: "1.4.1"
+  tags:
+    - markdown
+    - pdf
+    - cjk
+    - reportlab
+    - typesetting
 ---
 
 # any2pdf — Markdown to Professional PDF
@@ -32,7 +29,9 @@ reportlab library. It was developed through extensive iteration on real Chinese
 technical reports and solves several hard problems that naive MD→PDF converters
 get wrong.
 
-## When to Use
+## Triggers
+
+### Activate when
 
 - User wants to convert `.md` → `.pdf`
 - User has a markdown report/document and wants professional typesetting
@@ -40,6 +39,12 @@ get wrong.
 - Document has fenced code blocks, markdown tables, or nested lists
 - Document has local/remote images, Obsidian callouts, emoji, or math formulas
 - User wants a cover page, table of contents, or watermark in their PDF
+
+### Do not activate when
+
+- The user only wants to revise Markdown content and does not need a PDF output.
+- The source is HTML, DOCX, or another format and the user has not authorized a Markdown conversion step.
+- The user needs a slide deck, editable Word document, or image export rather than a PDF.
 
 ## Quick Start
 
@@ -79,6 +84,7 @@ concise — like a design assistant, not a config form:
  j) 海洋      — 青绿色调，清新自然
  k) LaTeX 清爽 — pandoc+XeLaTeX 原生排版，无封面无装饰，干净学术风（需装 pandoc+texlive）
  l) 咨询深蓝  — 深海军蓝色块 + 白底 + 大写左对齐标题，麦肯锡 / BCG / Deloitte 研究报告风格
+ m) 宋黑阅读  — 宋体正文、黑体层级、舒展行距与适宽打开，适合中文长报告和密集表格
 
 ━━━ 🖼 扉页图片（封面之后的全页插图） ━━━
  1) 跳过
@@ -103,7 +109,7 @@ concise — like a design assistant, not a config form:
 
 | Choice | CLI arg |
 |--------|---------|
-| Design style a-k | `--theme` with value from table below (k uses pandoc engine) |
+| Design style a-m | `--theme` with value from table below (k uses pandoc engine) |
 | Frontispiece local | `--frontispiece <path>` |
 | Frontispiece AI | Generate image first, then `--frontispiece /tmp/frontispiece.png` |
 | Watermark text | `--watermark "文字"` |
@@ -128,6 +134,7 @@ concise — like a design assistant, not a config form:
 | j) 海洋 | `ocean-breeze` | — |
 | k) LaTeX 清爽 | `latex-clean` | pandoc+XeLaTeX 原生排版，无封面 |
 | l) 咨询深蓝 | `consulting-navy` | McKinsey / BCG / Deloitte deep-research report |
+| m) 宋黑阅读 | `songti-reading` | 中文出版物常见的宋体正文 + 黑体标题层级 |
 
 ### Handling AI-Generated Frontispiece
 
@@ -142,7 +149,7 @@ Markdown → Preprocess (split merged headings) → Parse (code-fence-aware) →
 ```
 
 Key components:
-1. **Font system**: Palatino (Latin body), Songti SC (CJK body), Menlo (code) on macOS; auto-fallback on Linux
+1. **Font system**: Palatino (Latin body), Songti SC Regular (CJK body), selectable serif/sans CJK emphasis, Menlo (code) on macOS; auto-fallback on Linux/Windows
 2. **CJK wrapper**: `_font_wrap()` wraps CJK character runs in `<font>` tags for automatic font switching
 3. **Mixed text renderer**: `_draw_mixed()` handles CJK/Latin mixed text on canvas (cover, headers, footers)
 4. **Code block handler**: `esc_code()` preserves indentation, mid-line alignment, and line breaks in reportlab Paragraphs
@@ -172,6 +179,18 @@ all spaces → `&nbsp;`, preserving indentation and mid-line alignment before `_
 Default reportlab breaks lines only at spaces, causing ugly splits like "Claude\nCode".
 **Fix**: Set `wordWrap='CJK'` on body/bullet styles to allow breaks at CJK character boundaries.
 
+### Songti Reading Needs a Sans Hierarchy
+
+Using one sans family everywhere gives dense Chinese reports a uniform dark texture,
+while using Songti everywhere weakens headings and table headers. **Fix**: use the
+`songti-reading` theme for Songti SC Regular body text, Palatino Latin prose,
+sans-serif Chinese headings/emphasis, Menlo code, wider leading, and serif table
+bodies. Keep this as an explicit theme rather than silently changing every report.
+
+On macOS, `Songti.ttc` index 0 is Songti SC Black, not Regular. The readable face is
+index 6. Common report symbols such as `✓`, `✗`, and `→` need an explicit symbol-font
+fallback or they may render as `□` even when the surrounding Chinese is correct.
+
 ### Canvas Text with CJK (Cover/Footer)
 
 `drawString()` / `drawCentredString()` with a Latin font can't render 年/月/日 etc.
@@ -179,7 +198,7 @@ Default reportlab breaks lines only at spaces, causing ugly splits like "Claude\
 
 ### Images Silently Dropped (Relative Paths)
 
-`![alt](charts/chart_01.png)` in a markdown file used to get skipped without warning
+An image reference to `charts/chart_01.png` in a markdown file used to get skipped without warning
 because the image path was resolved against the current working directory, not the
 markdown's directory. **Fix**: `main()` now passes `input_dir` (the .md's directory)
 into the builder, and the image handler resolves relative paths against it. Missing
@@ -189,7 +208,7 @@ dropping.
 ### Multi-Line Image References (pandoc `--wrap=auto`)
 
 When feeding pandoc's output into md2pdf, pandoc's default `--wrap=auto` (72 cols)
-wraps long `![alt text very long](path.png)` across multiple lines, which defeated
+wraps long image references to paths such as `path.png` across multiple lines, which defeated
 the single-line image regex. **Fix**: `_preprocess_md()` now collapses multi-line
 image references into one line (outside code fences) before parsing.
 
@@ -245,8 +264,8 @@ arguments take precedence over frontmatter values.
 
 ## Themes
 
-Available: `warm-academic`, `nord-frost`, `github-light`, `solarized-light`,
-`paper-classic`, `ocean-breeze`, `consulting-navy`.
+Available: `songti-reading`, `warm-academic`, `nord-frost`, `github-light`,
+`solarized-light`, `paper-classic`, `ocean-breeze`, `consulting-navy`.
 
 Each theme defines: page background, ink color, accent color, faded text, border, code background, watermark tint.
 

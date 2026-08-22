@@ -291,16 +291,17 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/fill-web-form.md
 - name: any2pdf
-  updated_at: 2026-04-16T03:50:44.000Z
+  updated_at: 2026-08-22T07:02:22.000Z
   display_name: Any → PDF
   repo: lovstudio/any2pdf-skill
+  version: 1.4.1
   name_zh: 万物转 PDF
   paid: false
   featured: true
   category: Office Automation
-  description: Markdown → professionally typeset PDF. CJK/Latin mixed text, code blocks, tables, 14 themes.
-  tagline_en: Typeset Markdown into a publication-quality PDF with 14 built-in themes.
-  tagline_zh: 把 Markdown 排成出版级 PDF，中英混排、代码块、表格全支持，内置 14 套主题。
+  description: Markdown → publication-quality PDF with CJK/Latin typography, code, tables, images, and 16 themes.
+  tagline_en: Typeset Markdown into a publication-quality PDF with 16 themes, including Songti Reading.
+  tagline_zh: 把 Markdown 排成出版级 PDF，支持中英混排、代码与表格；新增宋黑阅读，共 16 套主题。
   related:
   - any2docx
   - any2deck
@@ -316,20 +317,19 @@ skills:
     - 0
     delivery_unit_zh: 公开 Skill 源码与当前版本说明
     delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 把 Markdown 排成出版级 PDF，中英混排、代码块、表格全支持，内置 14 套主题。
-    value_en: Typeset Markdown into a publication-quality PDF with 14 built-in themes.
+    value_zh: 把 Markdown 排成出版级 PDF，支持中英混排、代码与表格；新增宋黑阅读，共 16 套主题。
+    value_en: Typeset Markdown into a publication-quality PDF with 16 themes, including Songti Reading.
     anchor_zh: 一次交付通常可省下 20 分钟至半天的整理、排版和格式返工。
     anchor_en: A run typically saves 20 minutes to half a day of organization, layout, and format rework.
-    basis_zh: 按一次可发送或可归档的文件结果定价，重点是格式稳定和人工返工减少。
-    basis_en: Priced around a file ready to send or archive, with emphasis on stable formatting and less rework.
-    boundary_zh: 默认处理结构清晰的输入；扫描质量、复杂模板、第三方转换器和批量服务成本另行确认。
-    boundary_en: Designed for clearly structured input; scan quality, complex templates, third-party converters, and batch-service
-      costs are separate.
-    maintenance_zh: 随文档格式、字体、渲染器和导出目标变化复评。
-    maintenance_en: Review when document formats, fonts, renderers, or export targets change.
-    confidence: entry
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+    basis_zh: 官网保持免费开源入口，以真实交付样例降低试用门槛；模板定制、批量转换与团队落地另行报价。
+    basis_en: The website remains a free open-source entry; custom templates, batch conversion, and team rollout are separate services.
+    boundary_zh: 默认处理结构清晰的 Markdown；扫描件 OCR、复杂品牌模板、托管批量转换和第三方字体授权不包含在免费交付中。
+    boundary_en: Designed for structured Markdown; OCR, custom brand templates, hosted batch conversion, and third-party font licensing are excluded.
+    maintenance_zh: 随文档格式、系统字体、ReportLab、渲染器和导出目标变化复评。
+    maintenance_en: Review when document formats, system fonts, ReportLab, renderers, or export targets change.
+    confidence: medium
+    review_trigger_zh: 版本变化、10 次可回读真实使用、渠道规则变化或支持成本明显变化时复评。
+    review_trigger_en: Review after a version change, 10 observed real uses, a channel-rule change, or a material support-cost change.
     card_path: pricing-cards/any2pdf.md
 - name: any2docx
   updated_at: 2026-04-16T03:50:44.000Z
