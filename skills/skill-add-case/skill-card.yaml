@@ -82,8 +82,8 @@ dimensions:
   - id: live-truthfulness
     label: "Live-state truthfulness"
     description: "Separates local, pushed, and live-verified states."
-    evidence: "The public verifier compares canonical case SHA-256 and checks the HTTP 200 detail page for the expected marker."
-    score: "source-verified"
+    evidence: "The public verifier matched the canonical case SHA-256 and found the expected marker on the HTTP 200 LovStudio detail page on 2026-08-23."
+    score: "live-verified"
 pricing:
   model: free
   currency: CNY
@@ -97,5 +97,5 @@ distribution:
     - "workbuddy: not planned"
     - "skillpay: not planned"
   free:
-    - "github: pending initial publication"
-    - "lovstudio: pending initial publication"
+    - "github: v0.1.0 published"
+    - "lovstudio: live-verified 2026-08-23"

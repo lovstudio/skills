@@ -67,5 +67,5 @@ truthfulness 四个维度及其证据状态。
 
 ### Distribution
 
-WorkBuddy 与 SkillPay 不计划上架；GitHub 与 LovStudio 初始发布前保持 pending，
-只有公开回读完成后才改为 live。
+WorkBuddy 与 SkillPay 不计划上架。GitHub 已发布 `v0.1.0`；LovStudio 详情页于
+2026-08-23 完成公开案例指纹与页面 marker 双回读，状态为 `live-verified`。

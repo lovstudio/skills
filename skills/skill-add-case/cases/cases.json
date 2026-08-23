@@ -19,14 +19,21 @@
         "一个可本地安装的 lov-skill-add-case 单 Skill",
         "原子写入、隐私检查、重复检测与 SHA-256 证据指纹 CLI",
         "公开 cases.json 与 LovStudio 详情页双回读验证 CLI",
-        "Creator 上游与 Publisher 下游的明确原子交接"
+        "Creator 上游与 Publisher 下游的明确原子交接",
+        "GitHub v0.1.0 Release 与 LovStudio 官网 live-verified 详情页"
       ]
     },
     "evidence": {
-      "acceptance": "user-confirmed",
+      "acceptance": "user-requested",
       "verified_at": "2026-08-23",
-      "method": "Created from the user's direct product request; source validation and live publication are recorded separately in release evidence.",
+      "method": "Created from the user's direct product request; source validation, deterministic success and failure checks, GitHub v0.1.0 Release, catalog CI, public raw JSON, and the LovStudio detail page were verified.",
       "privacy": "The case contains only the public product request and reusable contracts; no transcript body, credential, or private absolute path is included."
+    },
+    "publication": {
+      "status": "live-verified",
+      "source": "https://github.com/lovstudio/skill-add-case-skill",
+      "release": "https://github.com/lovstudio/skill-add-case-skill/releases/tag/v0.1.0",
+      "page": "https://lovstudio.ai/skills/skill-add-case"
     }
   }
 ]
