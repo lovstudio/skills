@@ -1,70 +1,160 @@
 {
   "skill_name": "oh-my-landingpage",
-  "skill_version": "0.2.0",
+  "skill_version": "0.3.1",
   "skill_id": 55,
-  "skill_version_id": 33,
+  "skill_version_id": 43,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
+    ".gitignore": {
+      "iv": "asiS6e/nw0v8hSvT",
+      "tag": "+hXkfmxuMOnbC+Pe0ZoYwQ==",
+      "original_checksum": "0ee39de8cd941bdd57ed5d06c882ab7f5db378a762718ccd4e3fc023751d4df4",
+      "original_size": 84
+    },
+    "CHANGELOG.md": {
+      "iv": "2/IGnwN1QbydwVRn",
+      "tag": "6FqAIMK4eesPztzP+tDcNw==",
+      "original_checksum": "ede86520b026f3922199de075cfd81ee7230c7d636e80a2ec1e728b5f4af6b3b",
+      "original_size": 1559
+    },
+    "LICENSE": {
+      "iv": "AE+IoVOO1kOBfI6n",
+      "tag": "f0PlzIZ5jfVvgDjKYq6UxA==",
+      "original_checksum": "3577ef5e65c0dc01bb54c3059f1e76f99c121cdec08bfc95d18bb7715ec9a64d",
+      "original_size": 1072
+    },
+    "README.md": {
+      "iv": "aPRhW83zRV2s16R6",
+      "tag": "IDBLrKKsMgrcUAHxOCyxDQ==",
+      "original_checksum": "34687c154a58cd3bc051c5169d0dc12a14fa84162111ffe756e8ad4fcc8403cb",
+      "original_size": 3725
+    },
     "SKILL.md": {
-      "iv": "kj5u/imui1Zg/9si",
-      "tag": "5OaELblp2go2LEUbypo7fw==",
-      "original_checksum": "a154ad548d5f879fcfbc7b1eca22e247c9bf5c5a3e4cb67de511796029bfc358",
-      "original_size": 10999
+      "iv": "eRgQ/GKYdAhh9GVS",
+      "tag": "nvV439zlrQCSDfUspNnozg==",
+      "original_checksum": "f0c81f4ce04a4ccb48cc17a8e2e06f66d1d05cfae3e8b2ce92ee9381753a9e5a",
+      "original_size": 13463
     },
     "agents/openai.yaml": {
-      "iv": "bksC2KOIUxSVf0Ky",
-      "tag": "1KEwR+JZmH1wib5LL6gXSA==",
-      "original_checksum": "654bbcb5a56720f7974f563d5e5a96b094e3f8e5d8a743fab9509ae6afc67ab4",
-      "original_size": 336
+      "iv": "KedSSYHuwiEnE5CA",
+      "tag": "sX3XSaTScIZH2r4uhzMPFA==",
+      "original_checksum": "a1b0179358a5a6e8306eb8b0e16597f187fe2ce45f1082a04957c28dad1d41d7",
+      "original_size": 471
     },
     "kit.yaml": {
-      "iv": "nRT46FLYI11tH8RQ",
-      "tag": "ILh86ew/Hpbz5SlbZbtehg==",
-      "original_checksum": "fde9314e49fb4281bd9c8a2b6264655653370510e88a767c57f00c881ec63641",
+      "iv": "TxW7DSWVPpBtxECC",
+      "tag": "wt7GO0B/Q0N11qvuJHL5Vw==",
+      "original_checksum": "bcbcf89fb3ca2901854d41de0212b382563f1663771dd29ed1f95087324eec82",
       "original_size": 1302
     },
     "references/brand-system.md": {
-      "iv": "745h40sh7/bY4/Hp",
-      "tag": "KYukAU/qcbXslYvrxM9Lww==",
-      "original_checksum": "04c6fb7b627f636e91c4d3b93dc85104e7de0d2b54e5475f12e34b244a76c593",
-      "original_size": 6351
+      "iv": "i5/rRj/yEJxOCZ+k",
+      "tag": "r4kdvgXx3k7HGheKymdrsw==",
+      "original_checksum": "1c9a2594a38db5057c5481f5c9a9bfc1458671a123cbc4629b3e4068a996a0b1",
+      "original_size": 7189
     },
     "references/implementation-and-acceptance.md": {
-      "iv": "bRMHo75S9LUt6mYf",
-      "tag": "J3g546g4/IwmGkSk/4WZ2A==",
-      "original_checksum": "be84b05f26abdd7edaea1a0f7ee6021fd20b210f7aac4be0b6a62b2a16d0142a",
-      "original_size": 5685
+      "iv": "Q8XtQtim3UU8308H",
+      "tag": "zkzzP+QZ3fD4ObZOW5sxfg==",
+      "original_checksum": "929c2466decec5021713def53a4d4cad660a9e0af500051f33796e7f57c60b3e",
+      "original_size": 6626
     },
     "references/landing-system.md": {
-      "iv": "W302vrfbgHOs7S/i",
-      "tag": "se0ZsnKzonS0TB/7O3JVrA==",
-      "original_checksum": "f855ac5ce4ca3b428deed80fead2bc7ddbf7dac72124ab9e46730dcaa3b1c261",
-      "original_size": 7564
+      "iv": "pK/8NGt7/MJfVFHr",
+      "tag": "iDisIzMvnNQGgdLe1WAA3g==",
+      "original_checksum": "1a52e9cc97aa2f53e4f66d5b6f3de4fe75093f213f38e86e52b3485375afaadb",
+      "original_size": 8811
     },
     "references/research.md": {
-      "iv": "D2TQkHewjlCHRvnm",
-      "tag": "ZyIJ9HLyHtzX8GxMeE7DVQ==",
+      "iv": "0fG0P27/cZQ3eE+R",
+      "tag": "ORkMQwAgjAeRF0yOexrncQ==",
       "original_checksum": "6a60b648f41a4ce310cd4203245aaa64b4ab28bb9d0942d53371cba656b19962",
       "original_size": 2835
     },
     "references/user-config.md": {
-      "iv": "VFS8ecVCLIGJWcoQ",
-      "tag": "+aF6aqMJ/bLqaYDz2F4SKQ==",
+      "iv": "3ZBHENFTLmHxU2aM",
+      "tag": "WlHzNlAoC5ntmqswje387g==",
       "original_checksum": "6d954d16533080534dc89496780ac580d13aac34a0cec2ef86f6f598f2af31c9",
       "original_size": 2890
     },
     "references/visual-and-media.md": {
-      "iv": "5figVeOsVNNve/cM",
-      "tag": "huLYQsIGxUh9Qxxnq7j+BQ==",
-      "original_checksum": "a3da3593cb1022c95d854bfc78224f488497ac7d8f44154b07b144a5ce62d40a",
-      "original_size": 5902
+      "iv": "pjADICuFkZORFTkM",
+      "tag": "GNjr7/lf+0sm/TYo/SkWYA==",
+      "original_checksum": "8a91f48718422ab8ea307edc7372f46d0d3768ccf702ac9a52e60d0a6185e4b2",
+      "original_size": 8178
     },
     "scripts/validate_skill.py": {
-      "iv": "OfcbOJ4TJDK8IISw",
-      "tag": "Dkx8tJebuzfb0doYxDQAFg==",
-      "original_checksum": "cecdfdf8beb7b3aee4f9964ff500d88b4e033ac9ab2caa6446c942b75ebd146f",
-      "original_size": 15313
+      "iv": "Rhqsj8Pyz8/Rp1Ea",
+      "tag": "1kgISNBJAbQYDdnw3oCIEQ==",
+      "original_checksum": "9527b678131de50ae8b817f3bf74619257d2c038fa36d4b76bda8359d0c94def",
+      "original_size": 15382
+    },
+    "skill.yaml": {
+      "iv": "Zx6FQaHxmX9ZSi95",
+      "tag": "c9wT65cRva2We73LzeLV+g==",
+      "original_checksum": "aea9cc3618c6d0796c8ad77dffec6273f9c78a274880c5dcae1a9497501efd3c",
+      "original_size": 846
+    },
+    "skills/landing-art-direction/SKILL.md": {
+      "iv": "KIIw3A6uO1WofS15",
+      "tag": "ZG4RE1o6GOl0gZ/5ggVKrw==",
+      "original_checksum": "f8cfc1f73ada48981dbdb21ebdbe1ffdf55d657f77383dc20194ad441cb133ed",
+      "original_size": 6700
+    },
+    "skills/landing-art-direction/references/user-config.md": {
+      "iv": "9g9upa/BXMeEsIX8",
+      "tag": "xOCmdHDBHcL4+iJ9X3fI1A==",
+      "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
+      "original_size": 615
+    },
+    "skills/landing-brand/SKILL.md": {
+      "iv": "mvH3FWZcTTynKxEC",
+      "tag": "m0r0r1bnq/UcZEZ1qf51rA==",
+      "original_checksum": "e5c77ec37b8260a3b0a2fb548f813a8590c2fb9e06141090a759bd16fa2e1ee2",
+      "original_size": 7259
+    },
+    "skills/landing-brand/references/user-config.md": {
+      "iv": "FYVsy2BZJXq0PsPO",
+      "tag": "Zw+wW1Q9T6+21uxIDUev9w==",
+      "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
+      "original_size": 615
+    },
+    "skills/landing-builder/SKILL.md": {
+      "iv": "442lDJTKIil3C/Fv",
+      "tag": "xQ8SptPSnxF5ZaA3b3TuIg==",
+      "original_checksum": "c4969e2863517455ca6b60dfb5c87e48a38b7dfe0f65565db0ce248716e90be9",
+      "original_size": 6096
+    },
+    "skills/landing-builder/references/user-config.md": {
+      "iv": "l88wSvGHQjmzbp6u",
+      "tag": "ln5ulCzi3OavpGekRhOs9w==",
+      "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
+      "original_size": 615
+    },
+    "skills/landing-review/SKILL.md": {
+      "iv": "JKdyIVtmEOhyY9nH",
+      "tag": "NoI9Z4W9gKDtVFr0wUWALQ==",
+      "original_checksum": "449b46ad5288dafdafdba1474ca656ede29f7915ee65dd61f54924154139e9e4",
+      "original_size": 6185
+    },
+    "skills/landing-review/references/user-config.md": {
+      "iv": "StFcawN/BWGfs0fI",
+      "tag": "oKd5NRgji6f5ak4gD01xXw==",
+      "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
+      "original_size": 615
+    },
+    "skills/landing-strategy/SKILL.md": {
+      "iv": "18SnpDH+hTlpSjvP",
+      "tag": "vrksYcl4FZFndNnlvxFlCA==",
+      "original_checksum": "3f4d598b735038e5508ac9dd8b5ceb2891026d0f622516461b3aacf0d499f8c2",
+      "original_size": 7028
+    },
+    "skills/landing-strategy/references/user-config.md": {
+      "iv": "KCPR6rAc1DWNfc7I",
+      "tag": "tMDlqm1msVz2jq11V1aj2Q==",
+      "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
+      "original_size": 615
     }
   }
 }

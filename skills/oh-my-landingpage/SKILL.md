@@ -1,12 +1,12 @@
 ---
 name: lov-oh-my-landingpage
-description: "从品牌内核出发初始化或重构可运行的 Landing Page，统一整体形象、内容叙事、转化文案、UI、媒体、实现与验收；适用于“品牌官网重构”、“首页没有品牌感”、\"build a branded landing page\" 或 \"rebrand this homepage\"。"
-version: 0.2.0
+description: "从产品与品牌事实出发，独立推导适合当前产品的定位、叙事与视觉，并完成 Landing Page 实现、响应式和生产回读；适用于创建官网、品牌官网重构、产品价值不清或视觉与产品不匹配。"
+version: 0.3.1
 ---
 
-# oh-my-landingpage（加密 Skill）
+# Oh My Landing Page（加密 Skill）
 
-这是 Lovstudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
+这是 LovStudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 
 安装与兑换：
 

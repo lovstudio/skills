@@ -1537,7 +1537,7 @@ skills:
       cost.
     card_path: pricing-cards/professional-infographic.md
 - name: oh-my-landingpage
-  updated_at: 2026-08-01T09:06:00.000Z
+  updated_at: 2026-08-23T06:51:01.000Z
   skillpay_product_id: P0806000200858608
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqYNF
   display_name: Oh My Landing Page
@@ -1545,43 +1545,47 @@ skills:
   name_zh: 品牌着陆页
   paid: true
   encrypted_bundle: true
-  price_cny: 19.9
+  price_cny: 0.99
   category: Design
   skill_path: ""
-  version: 0.2.0
-  description: Rebuild a landing page from brand strategy through narrative, copy, UI, media, and real conversion paths.
-  tagline_en: Rebuild a landing page as one coherent brand experience, from the promise and story to the interface, media,
-    and conversion path.
-  tagline_zh: 从品牌内核出发，统一重构着陆页的价值主张、内容叙事、文案、界面、媒体与真实转化路径。
+  version: 0.3.1
+  description: Product-specific landing page system from brand truth through narrative, visual direction, implementation, and
+    production review.
+  tagline_en: Turn product truth into a distinctive landing page, with brand, story, visual direction, implementation, and production
+    review working as one system.
+  tagline_zh: 从产品与品牌事实出发，独立推导适合当前产品的叙事与视觉，并完成实现、响应式和生产回读。
   distribution:
     workbuddy: adapted
     skillpay: live
   pricing:
     model: one_time
     visibility: public
-    list_price_cny: 19.9
-    launch_price_cny: 19.9
+    list_price_cny: 0.99
+    launch_price_cny: 0.99
     price_range_cny:
-    - 19.9
-    - 49.9
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the current version
-    value_zh: 从品牌内核出发，统一重构着陆页的价值主张、内容叙事、文案、界面、媒体与真实转化路径。
-    value_en: Rebuild a landing page as one coherent brand experience, from the promise and story to the interface, media,
-      and conversion path.
-    anchor_zh: 一次结果通常可减少 1–6 小时的试稿、排版或资产整理。
-    anchor_en: A result typically removes 1–6 hours of drafting, layout, or asset organization.
-    basis_zh: 按可预览、可导出、可继续编辑的视觉结果定价，价值来自减少反复试稿。
-    basis_en: Priced around a previewable, exportable, and reusable visual result, with value coming from fewer draft iterations.
-    boundary_zh: 结果依赖输入素材、品牌约束和外部模型；复杂定制、素材采购与线下制作另计。
-    boundary_en: Results depend on source assets, brand constraints, and external models; complex customization, asset sourcing,
-      and physical production are separate.
-    maintenance_zh: 随渲染工具、字体、模型和品牌资产变化复评；保持输出结构比追逐单一风格更重要。
-    maintenance_en: Review against rendering tools, fonts, models, and brand assets; output structure matters more than chasing
-      a single style.
+    - 0.99
+    - 0.99
+    delivery_unit_zh: 单项 Skill Kit 完整交付，包含 5 个协作模块、加密安装包与当前版本说明
+    delivery_unit_en: One complete encrypted Skill Kit with five collaborating modules and current-version guidance
+    value_zh: 从产品与品牌事实出发，统一完成定位、叙事、产品适配视觉、实现、响应式和生产回读。
+    value_en: Turn product and brand truth into one coherent landing page across positioning, narrative, product-fit visuals,
+      implementation, responsive behavior, and production review.
+    anchor_zh: 一次完整官网创建或重构，保守可减少 4–16 小时的定位、内容、视觉试稿、实现和返工。
+    anchor_en: A complete landing-page build or rebuild can conservatively remove 4–16 hours of positioning, content, visual
+      exploration, implementation, and rework.
+    basis_zh: 模型建议价为 ¥19.9–49.9；本次 ¥0.99 是用户明确指定的官网付费验证价，不是成本回收价。
+    basis_en: The model-supported range is CNY 19.9–49.9; CNY 0.99 is the user-specified website validation price rather than
+      a cost-recovery price.
+    boundary_zh: 结果依赖真实产品证据、品牌资产、目标仓库和运行时工具；复杂品牌研究、素材采购、定制拍摄与长期代运营另计。
+    boundary_en: Results depend on product evidence, brand assets, the target repository, and runtime tools; extensive brand
+      research, asset sourcing, custom shoots, and ongoing operations are separate.
+    maintenance_zh: 随前端栈、浏览器、媒体工具和品牌资产变化复评；每个产品始终独立推导 style-fit，不继承上一项目风格。
+    maintenance_en: Review as frontend stacks, browsers, media tools, and brand assets change; derive style fit independently
+      for every product instead of inheriting the prior project's look.
     confidence: medium
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+    review_trigger_zh: 首发 30 天、100 次官网付费兑换、版本变化或平均单买家支持超过 30 分钟时复评。
+    review_trigger_en: Review after 30 launch days, 100 paid website redemptions, a version change, or average support exceeding
+      30 minutes per buyer.
     card_path: pricing-cards/oh-my-landingpage.md
 - name: business-card
   updated_at: 2026-06-20T15:36:19.000Z
