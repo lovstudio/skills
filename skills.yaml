@@ -3046,14 +3046,14 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或播放器兼容问题明显增加时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material increase in renderer-compatibility support.
     card_path: pricing-cards/subtitle-freedom.md
-- name: macos-disk-optimizer
-  runtime_name: sgc-macos-disk-optimizer
-  display_name: macOS Disk Optimizer
+- name: clean-mac
+  runtime_name: lov-clean-mac
+  display_name: Clean Mac
   repo: lovstudio/macos-disk-optimizer-skill
-  name_zh: Mac 磁盘优化
+  name_zh: 清理 Mac
   paid: false
   category: General
-  version: 0.2.0
+  version: 0.3.0
   updated_at: 2026-08-09T13:01:54Z
   description: Guarded macOS disk cleanup with archive migration, rollback-aware staging, direct rollback-item purging, and real-capacity verification.
   tagline_en: Clean up Mac storage with guarded planning, archive migration, exact rollback-item purging, and real-capacity verification.
@@ -3081,7 +3081,7 @@ skills:
     confidence: entry
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
-    card_path: pricing-cards/macos-disk-optimizer.md
+    card_path: pricing-cards/clean-mac.md
 - name: media-fetch
   runtime_name: lov-media-fetch
   display_name: Media Fetch

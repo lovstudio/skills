@@ -1,6 +1,6 @@
-# sgc-macos-disk-optimizer
+# lov-clean-mac
 
-![Version](https://img.shields.io/badge/version-0.2.0-blue)
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 
 面向 macOS 的智能磁盘空间优化 Skill：按目标容量盘点、规划、迁移和清理，并以系统真实可用空间完成验收。
 
@@ -16,13 +16,19 @@
 
 ## 本地安装
 
+从公开仓库安装：
+
+```bash
+npx skills add https://github.com/lovstudio/macos-disk-optimizer-skill
+```
+
 在本仓库根目录执行：
 
 ```bash
 export SKILL_SOURCE_DIR="$(pwd)"
 mkdir -p "${SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}"
 ln -s "$SKILL_SOURCE_DIR" \
-  "$SKILLS_INSTALL_DIR/sgc-macos-disk-optimizer"
+  "$SKILLS_INSTALL_DIR/lov-clean-mac"
 ```
 
 Creator 已支持通过 `--install-dir` 自动建立同名链接。安装完成后应确认链接解析到当前源码目录。
