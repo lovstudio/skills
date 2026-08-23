@@ -2953,17 +2953,17 @@ skills:
     card_path: pricing-cards/media-crawler.md
 - name: skill-publisher
   runtime_name: lov-skill-publisher
-  updated_at: 2026-08-13T19:59:03.000Z
+  updated_at: 2026-08-23T16:40:01Z
   skillpay_product_id: P0806000200863857
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqavG
   repo: lovstudio/skill-publisher-skill
   name_zh: Skill 发布器
   paid: false
   category: Dev Tools
-  version: 0.4.1
-  description: Auto-price and publish validated Skills to LovStudio, WorkBuddy, and SkillPay with one Pricing Card and evidence per channel.
-  tagline_en: Price by default, then publish a validated Skill across channels with independently verifiable release states.
-  tagline_zh: 默认自动定价后发布已验证的 Skill，并分别保留各渠道的可核验状态。
+  version: 0.6.0
+  description: Publish or submit a validated Skill, defaulting to the LovStudio official website with automatic pricing and using other channels only when explicitly requested.
+  tagline_en: Auto-price every release, publish to the LovStudio website by default, and expand only to explicitly requested channels.
+  tagline_zh: 每次发布先自动定价，默认上架 LovStudio 官网，仅在明确要求时扩展到其他渠道。
   depends_on:
   - skill-pricing
   pricing:
@@ -2976,8 +2976,8 @@ skills:
     - 0
     delivery_unit_zh: 公开 Skill 源码与当前版本说明
     delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 默认调用 lov-skill-pricing 生成单一 Pricing Card，再将同一价格契约发布到所选渠道并保留证据。
-    value_en: Generate one Pricing Card through lov-skill-pricing, then reuse the same price contract across selected channels with evidence.
+    value_zh: 默认调用 lov-skill-pricing 生成单一 Pricing Card 并发布到 LovStudio 官网；明确选择其他渠道时复用同一价格契约和独立证据。
+    value_en: Generate one Pricing Card through lov-skill-pricing and publish to the LovStudio website by default; reuse the same price contract with independent evidence for explicitly selected channels.
     anchor_zh: 一次处理通常可省下 30 分钟至半天的排错、配置或发布往返。
     anchor_en: A run typically saves 30 minutes to half a day of debugging, setup, or release back-and-forth.
     basis_zh: 按一次可验证的工程状态改善定价，重点是减少排查往返、回滚风险和重复配置。
