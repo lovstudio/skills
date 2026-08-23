@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.6.0] - 2026-08-24
+
+### Changed
+
+- default channel-less publishing requests to the LovStudio official website
+- run all supported adapters only for explicit all-channel or multi-platform requests
+- preserve automatic `lov-skill-pricing` as the mandatory pre-publish step
+- use the current `LOVSTUDIO_REVALIDATE_SECRET` variable in website revalidation guidance
+
 ## [0.5.0] - 2026-08-14
 
 ### Added

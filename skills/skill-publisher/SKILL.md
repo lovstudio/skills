@@ -1,9 +1,9 @@
 ---
 name: lov-skill-publisher
 description: >
-  Use when the user asks to publish, release, package, or submit a validated
-  Skill. Before every release, run lov-skill-pricing by default and reuse its
-  Pricing Card across the selected channels.
+  Publish or submit a validated Skill. Default to the LovStudio official
+  website, run lov-skill-pricing automatically, and use other channels only
+  when explicitly named.
 license: MIT
 compatibility: >-
   Requires Python 3.8+, PyYAML, git and GitHub CLI for the Skill Publisher
@@ -11,7 +11,7 @@ compatibility: >-
   stores; generated metadata and archives stay outside canonical source.
 metadata:
   author: contributors
-  version: "0.5.0"
+  version: "0.6.0"
   tags:
     - skill-publisher
     - release
@@ -24,10 +24,11 @@ metadata:
 
 # lov-skill-publisher
 
-Publish one validated local Skill source to one or more publishing channels. When
-the user does not specify a channel, run every supported adapter by default. Keep
-channel metadata and generated packages outside canonical source, execute each
-adapter independently, and report evidence per channel.
+Publish one validated local Skill source to the LovStudio official website or
+explicitly selected additional channels. When the user does not specify a
+channel, run only the Skill Publisher website adapter. Always auto-price first,
+keep channel metadata and generated packages outside canonical source, and
+report evidence per selected channel.
 
 ## Triggers
 
@@ -44,9 +45,12 @@ adapter independently, and report evidence per channel.
 ## Product boundary
 
 - Input is a local Skill source that already passes source validation.
-- When no channel is specified, select every supported adapter by default.
+- When no channel is specified, select only **Skill Publisher**, the LovStudio
+  official website adapter.
 - Explicitly named channels narrow the run; do not ask a channel-selection question
   when the request omits channel parameters.
+- Run every supported adapter only when the user explicitly says “全部渠道”,
+  “多平台”, “all channels”, or names every intended channel.
 - A request may select multiple channels in one run.
 - Pricing, visibility, protection, licensing, and target accounts are publishing
   inputs. Reuse context when known and ask only for values required by a target.
@@ -123,8 +127,9 @@ not submit a paid listing with an inferred number.
 ### Step 3: Resolve channels and release model
 
 If channels are explicit, proceed without another distribution question. If no
-channel is named, select all supported adapters and proceed without asking the
-user to choose a channel.
+channel is named, select only Skill Publisher and proceed without asking the
+user to choose a channel. Expand to all supported adapters only after an explicit
+all-channel or multi-platform request.
 
 For each selected channel, resolve only required fields:
 

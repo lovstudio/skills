@@ -2,7 +2,9 @@
 
 Each publishing channel is an independent adapter. A multi-channel request runs
 selected adapters separately and aggregates evidence only at the end. When the
-user does not name a channel, the selected adapter set is all supported channels.
+user does not name a channel, select only the Skill Publisher adapter for the
+LovStudio official website. Select all supported channels only after an explicit
+all-channel or multi-platform request.
 
 ## Required adapter fields
 

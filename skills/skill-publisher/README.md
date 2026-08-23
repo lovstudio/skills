@@ -1,6 +1,6 @@
 # lov-skill-publisher
 
-![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.6.0-CC785C)
 
 把已经验证并安装在本地的 Skill 发布到一个或多个独立渠道。发布前默认调用 `lov-skill-pricing` 自动生成或刷新可解释定价，再把同一价格契约适配到各渠道，同时保持平台元数据和发行产物不污染源代码。
 
@@ -33,7 +33,7 @@ npx skills add lovstudio/skill-publisher-skill -g -y
 
 ## 使用示例
 
-- 直接调用 `lov-skill-publisher`：默认发布到全部支持渠道。
+- 直接调用 `lov-skill-publisher`：默认只发布到 LovStudio 官网。
 - 只说“发布”也会先自动定价；用户明确给出的价格、币种和免费/付费状态会作为定价约束保留。
 - “把这个本地 Skill 发布到 Skill Publisher。”
 - “给这个 Skill 生成 WorkBuddy 包。”

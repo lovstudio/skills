@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.2] - 2026-08-23
+
+### Fixed
+
+- classify FFmpeg and FFprobe as runtime requirements, not embedded Skill dependencies
+- unblock self-contained WorkBuddy packaging without weakening runtime compatibility checks
+
 ## [0.8.1] - 2026-08-23
 
 ### Fixed

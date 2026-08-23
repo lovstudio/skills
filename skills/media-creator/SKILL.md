@@ -12,7 +12,7 @@ compatibility: >
   成片同画幅（竖版通常 9:16）的图。
 metadata:
   author: contributors
-  version: "0.8.1"
+  version: "0.8.2"
   card_standard: lovstudio/skill-card/v1
   tags:
     - media-production
@@ -20,12 +20,9 @@ metadata:
     - ffmpeg
     - audio-mix
     - delivery-qc
-    - cover-direction
+    - cover-assets
     - opening-still
   compatibility: "Python 3.8+, FFmpeg/FFprobe, optional Pillow or an image tool for cover assets."
-  dependencies:
-    - ffmpeg
-    - ffprobe
 ---
 
 # lov-media-creator — 从素材到字幕审校母版与可发布成片

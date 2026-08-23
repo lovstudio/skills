@@ -11,7 +11,7 @@ catalog entry, and verified live detail page.
   public CNY price or free-entry decision, confidence, and review trigger.
 - Unified `lovstudio/skills` catalog checkout.
 - Expected version and a release-specific visible marker.
-- Revalidation secret resolved from environment without printing it.
+- Revalidation secret resolved as `LOVSTUDIO_REVALIDATE_SECRET` without printing it.
 
 ## Source repository and release
 
@@ -49,10 +49,10 @@ and render scripts. Do not hand-edit generated mirror directories.
 Replace `NAME` and the site URL with configured values:
 
 ```bash
-test -n "$SKILL_REVALIDATE_SECRET"
+test -n "$LOVSTUDIO_REVALIDATE_SECRET"
 
 curl -fsS -X POST "SITE_URL/api/revalidate" \
-  -H "x-revalidate-secret: $SKILL_REVALIDATE_SECRET" \
+  -H "x-revalidate-secret: $LOVSTUDIO_REVALIDATE_SECRET" \
   -H "content-type: application/json" \
   -d '{
     "tags":[
