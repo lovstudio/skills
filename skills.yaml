@@ -3605,8 +3605,8 @@ skills:
   tagline_en: Turn rough dictation into concise, structured, send-ready text without answering or executing it.
   tagline_zh: 消解口癖、重复和改口，把口述草稿整理成逻辑清楚、排版舒展、可直接发送的正文。
   distribution:
-    workbuddy: prepared
-    skillpay: prepared
+    workbuddy: planned
+    skillpay: planned
   pricing:
     model: one_time
     visibility: public
