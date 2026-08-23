@@ -19,7 +19,14 @@ except ImportError:
     raise SystemExit(2)
 
 
-FRONTMATTER_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
+FRONTMATTER_KEYS = {
+    "name",
+    "description",
+    "license",
+    "compatibility",
+    "allowed-tools",
+    "metadata",
+}
 TEXT_SUFFIXES = {".md", ".json", ".yaml", ".yml", ".txt", ".svg", ".py"}
 JUNK_NAMES = {"__pycache__", ".DS_Store"}
 JUNK_SUFFIXES = {".pyc", ".pyo"}
