@@ -1,6 +1,6 @@
 # sgc-electron-delta-updater
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 为 Electron 应用建立并验证可恢复的增量自动更新流程。
 

@@ -1,6 +1,6 @@
 # lov-bp-outline
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 把项目资料整理成投资人能看懂的产品定义、证据账本和 12–15 页 BP 大纲。
 

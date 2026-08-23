@@ -5,7 +5,7 @@ description: >
 license: MIT
 metadata:
   author: lovstudio
-  version: "0.3.1"
+  version: "0.4.0"
   tags:
     - distillation
     - skill-blueprint
@@ -96,3 +96,13 @@ Git 历史只是线索。补充用户提供的复盘、验收记录、失败日�
 
 - Python 3.8+（仅标准库）
 - Git（可选，用于仓库历史证据）
+
+## 通用反馈闭环
+
+用户在 Skill 驱动任务中提出修改意见时，继续当前产物前必须执行：
+
+1. 先判断意见是 `task-specific`（仅本次）还是 `reusable`（可跨任务复用）。
+2. `task-specific` 只修改当前任务，不改 Skill。
+3. `reusable` 先确定作用域：领域规则先更新对应 canonical Skill；适用于所有 Skill 的规则先更新共享规范。
+4. 完成规则更新、版本、lint 与分发核验后，再把修改应用到当前任务。
+5. `reusable` 修改会使此前的“确认”“继续”“发吧”失效；完成当前产物修改和回读后必须停下，等待用户下一步指示，不自动进入发布、提交或其他外部写入。

@@ -1,6 +1,6 @@
 # lov-media-creator
 
-![Version](https://img.shields.io/badge/version-0.8.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.9.0-CC785C)
 
 把录屏和演示素材整理成两阶段交付：先做内嵌可编辑 SRT 的 MKV 审校母版，再以批准字幕生成归档母版、平台文件和正式封面图片；同时保留关键原声，完成 BGM 混音、编码检查和交付报告。
 

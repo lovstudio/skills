@@ -1,6 +1,6 @@
 # lov-app-generator
 
-![Version](https://img.shields.io/badge/version-0.3.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 
 Generate or standardize Skill Publisher apps, choosing web-only, PWA, or Tauri
 desktop case-by-case, with React/Vite or Next.js, shadcn/ui, TanStack Query

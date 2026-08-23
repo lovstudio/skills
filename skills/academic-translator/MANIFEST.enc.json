@@ -1,40 +1,40 @@
 {
   "skill_name": "academic-translator",
-  "skill_version": "0.1.0",
+  "skill_version": "0.2.0",
   "skill_id": 65,
-  "skill_version_id": 36,
+  "skill_version_id": 65,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "1ard2+JZQFJtddLf",
-      "tag": "j6kfRkt3DgV2MiM8h4y7Ww==",
-      "original_checksum": "9a8ee5e27e5d94e5519bcd85f25c2afeb5b0e00769f507cbd4e1e71d03f442a9",
-      "original_size": 5922
+      "iv": "0SkI1DD9b+/Tu+k8",
+      "tag": "sOQeV5PvYSmNquL5Q6bR8Q==",
+      "original_checksum": "61024372515482605b910843592cd85fa98a303e2e2976234e7c7f24fadca2fb",
+      "original_size": 5402
     },
     "agents/openai.yaml": {
-      "iv": "N1xbJexoxNJ3oaV2",
-      "tag": "AJc+piy727Fk6M/nVrI3Lg==",
-      "original_checksum": "4640c7dcd2d83e6a8c630bdcc0f333f05f6d1f38364eb76f4efa0bfd2fa42228",
-      "original_size": 292
+      "iv": "RYtwMY4ZbhCokn/l",
+      "tag": "LIOcZOdQXFMK4KEkmLuBEA==",
+      "original_checksum": "f4b4e4e980b6c0b588daf73fe2de0a6a685a43a8b1aa6471b997acfc2abcfc9d",
+      "original_size": 298
     },
     "references/output-contract.md": {
-      "iv": "7qddZA/SbiHfttaX",
-      "tag": "gG5ZumAVfv6gXnUToP43hQ==",
+      "iv": "3hn5f5qCnsUFoVy2",
+      "tag": "asLldpm7OQPGOZcXxU1HHA==",
       "original_checksum": "ea211602e3e14a23593f40cec09a0c717e439371b314f31276ba71aa749414c7",
       "original_size": 2412
     },
     "scripts/document_inventory.py": {
-      "iv": "Fh8e+Aw1Z8OoVVo5",
-      "tag": "b3VPwxLq5vqpgvLFyt6fEw==",
+      "iv": "BBBPosOvIkSOOqO0",
+      "tag": "KLn2QBbEqeOg6f5ET28mtw==",
       "original_checksum": "50660ff6c43f5fc617e85e18d40a335b1ac1533b50da5376247878f0c6bf3601",
       "original_size": 4418
     },
     "scripts/translate_paper_pdf.py": {
-      "iv": "S1mOBiIq1bEK41DR",
-      "tag": "Bo3iklZjmZmPHdq71hkwuw==",
-      "original_checksum": "2f42943addae6d5884af9378b65b506150ffbf2159e0bb3f0e3ae55c8d0a9666",
-      "original_size": 23963
+      "iv": "7/hA2y1HQLdUZgvu",
+      "tag": "ZGuLlNwoEEYLiTXjst8zTg==",
+      "original_checksum": "cf99bfcd8188ea351d33d92ecc959e839c6b33a8b94469fcd7ed4b92755d1cf9",
+      "original_size": 23975
     }
   }
 }

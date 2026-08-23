@@ -1,5 +1,7 @@
 # Contract Review Pro / 合同审阅（专业版）
 
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+
 Professional-grade contract review skill. Adds comment-based issue annotations without modifying the original text. Enforces a four-layer review methodology and produces a full review deliverable.
 
 专业级合同审阅 skill。只加批注、不改原文；四层方法论审查，并生成完整的审核交付物。

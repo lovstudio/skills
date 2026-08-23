@@ -1,5 +1,7 @@
 # lov-cc-mv (skill)
 
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
+
 Claude Code skill that moves a project folder and migrates all its CC state in one shot — session store, prompt-up-arrow history, and running-session records — so `claude --resume` keeps working after the move.
 
 Invoked as `/lov-cc-mv` (or auto-triggered on matching phrases). Wraps `@lovstudio/cc-mv` (the npm CLI).

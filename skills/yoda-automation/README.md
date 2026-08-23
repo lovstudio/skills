@@ -1,6 +1,6 @@
 # lov-yoda-automation
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 把 Yoda 内的一次性或周期自动化变成可验证、可停止且不重复通知的计划。
 

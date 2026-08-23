@@ -1,92 +1,92 @@
 {
   "skill_name": "subtitle-freedom",
-  "skill_version": "1.2.8",
+  "skill_version": "1.3.0",
   "skill_id": 67,
-  "skill_version_id": 31,
+  "skill_version_id": 69,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "Cc69hEC/Yol/Z2Pq",
-      "tag": "BXJPYw7cvBAfNwHUyrcZ5A==",
-      "original_checksum": "7457d77e940fc51053663309404c7eda4728d9e98af1d0635da291a800a1395e",
-      "original_size": 18618
+      "iv": "DFd6jc1OBUsJja/H",
+      "tag": "WLjGHBNdaw0xZNa3LtGjOw==",
+      "original_checksum": "c2d238fc6b119cd1396977feca13e76bc445e66e2fe2eb5436ed06fdefc369e8",
+      "original_size": 19690
     },
     "references/ass-art-text.md": {
-      "iv": "1OcpB4pCFcKB+zGT",
-      "tag": "FxC95kkjfPPdfatfVEMMfQ==",
+      "iv": "ee8JYPbsvyUn69RO",
+      "tag": "T/qrzBfC6OjGcWra2fu2GQ==",
       "original_checksum": "969ec5b789e44900455685b41ab5453e726079cf6364fbe1a4ffe905ff53e3be",
       "original_size": 4519
     },
     "references/character-cards.md": {
-      "iv": "dnbIJywvt5WDZRyT",
-      "tag": "7yF5D3GBqMefiM4Aa1/OPQ==",
+      "iv": "YvD8p3DqokgN4hf8",
+      "tag": "9AzAd4WtHS7gKSoyENyttg==",
       "original_checksum": "c9841dd3c7668dc705c58142e4b2f33b3092939986a699e7432240c33ee8e00b",
       "original_size": 10880
     },
     "references/level-profiles.md": {
-      "iv": "nhPcIqHmbUZ1hrfY",
-      "tag": "rN/Sfh8wrpoQPJQAMrOSSA==",
-      "original_checksum": "d51762c963fa84b1f3c825a5d548c16d7c7b1fb1c1632bf6702110f06390507f",
-      "original_size": 5350
+      "iv": "oVX7xDNpMpFlArjs",
+      "tag": "kdNJ89RbgpTgI3iqS1DWOw==",
+      "original_checksum": "30ca5d0af88499ef0bff22d406fc3464750bc7144fea40e7d2ed7cd8a4eadc44",
+      "original_size": 5587
     },
     "references/user-profile.md": {
-      "iv": "9caaYYA5WYiROm6u",
-      "tag": "4+KP4QvhyFBIWfDIN+0W6Q==",
-      "original_checksum": "d6ec15ebccc277eb4ab984f68ff8967c638b83983fd1ab9b920ab32d5e2b27a7",
+      "iv": "iK83E9qmTWlSDKNA",
+      "tag": "r/WlNkKRPXlCzpX1Beqgbg==",
+      "original_checksum": "6562293ab260ff785b4615a901d8ef023d6d2c0e0cd18ec244728085d5617ac0",
       "original_size": 1380
     },
     "scripts/ass_styled_subtitle.py": {
-      "iv": "gKiCzrRopxMnmEKi",
-      "tag": "yVl97NB9KOEwDWY32698qw==",
-      "original_checksum": "175f36b7744974e596a28aa3e5e2d1238457a3b3ce4d2aa4a1fdaba42ac846f5",
+      "iv": "W0j4ZQ6+FMTTD/0M",
+      "tag": "NPqDrzNn+JrXihe5FeggFQ==",
+      "original_checksum": "e1766b004dbb7a517bcae63a412e62a01c3dad0d0da169ee62280d8e6dde4fe8",
       "original_size": 52394
     },
     "scripts/character_cards.py": {
-      "iv": "TNRGIt9ANcvOZeyB",
-      "tag": "8IjqmonRoq+ZlvAOOkH0uw==",
-      "original_checksum": "2a184e002078705f7178535179943fb627952cec5630bfcbf39a84bd205a9cc6",
+      "iv": "1xuI/s/b/IZ3lnmW",
+      "tag": "hkHmwmpeYJpXB18w+vftjQ==",
+      "original_checksum": "240f974c371f349a5ea7f45f8c61f044374aefdd1fd85a178ec60afd0c466710",
       "original_size": 20094
     },
     "scripts/character_evidence.py": {
-      "iv": "aEZndv4lLFadmnrZ",
-      "tag": "h33hlrkqaKEoBBZJFtIqyA==",
-      "original_checksum": "2518ff1b7392cdf0ba6092ed5852395a3c1854ad79d9eef5ee7e933757687b0d",
+      "iv": "ZSAh2zwRYuaPB2e9",
+      "tag": "1rqEtdffQiWF4GcX2U0oNQ==",
+      "original_checksum": "3eaf14b72bd5f558fd39d91f9b0ee5df4a5d1b99da16b501c43dda89784eb355",
       "original_size": 14539
     },
     "scripts/profile_store.py": {
-      "iv": "bYCdhfxsMxfal8DF",
-      "tag": "4FfCXs6jetv70EZsAcHqSQ==",
+      "iv": "X9Z69Ro5M5o+pbFJ",
+      "tag": "1hqB2GYM1Z3MnoUKCeZXaA==",
       "original_checksum": "7c168ddb10ae1c40dd40251b8cb7d4dab990d362e2dfb79bf4eb9267b36a294a",
       "original_size": 7161
     },
     "scripts/raster_pgs_subtitle.py": {
-      "iv": "zzWqfwsWfArjxJzM",
-      "tag": "RpdiXpsN8bQLTC5wCLbUDg==",
+      "iv": "n6pFaqWIiJebKC+Q",
+      "tag": "YYtbuk6jgp2q7IMs0QC1wQ==",
       "original_checksum": "5c7b8908789982e96e5e5c8c12684ca9778728026b52c49770187a5b983b8867",
       "original_size": 16361
     },
     "scripts/subtitle_gloss.py": {
-      "iv": "Gm5bN5SQ5XXjuEZD",
-      "tag": "brP80QoTq5CzE15q7SAtDA==",
-      "original_checksum": "935e413196b555f56cb48dfaa6921d7f1294799d0b84d8748087fd408a633e3c",
-      "original_size": 19034
+      "iv": "y6NWN0qNRFbe/bYa",
+      "tag": "2IAM0H8H7lEQJZel6U8VRg==",
+      "original_checksum": "12d077d39e66831faeca0cc1fed152889f8084ee00a93ce72dc520a4c9643d96",
+      "original_size": 22009
     },
     "scripts/test_profile_floor.py": {
-      "iv": "fX4nQbHL0X8iaoly",
-      "tag": "3cHaXCcObGYRKf4CFPYzrA==",
+      "iv": "jB1Y0znnprQg83ru",
+      "tag": "U8HuKQZKjGvY6V6qKTlnJQ==",
       "original_checksum": "25b9d14f4bc988465e42a726091336668a3a5a82d4df29b827cbe2aef24db042",
       "original_size": 3247
     },
     "scripts/test_watermark_layout.py": {
-      "iv": "AD3dXFN/ZRwMWm1u",
-      "tag": "6oVCeNbrWbJ26zY9LWQ9mg==",
-      "original_checksum": "fd4c803baec36913caeac7e9f31c8fb798638fbf4623ed420584842ff443663e",
+      "iv": "ibI2qH79UhJQTZaD",
+      "tag": "CFdjt81r2H/o63+DNov47w==",
+      "original_checksum": "eb83fe58939d1f26962f52b8423b6abceade1dfa57a70abfcce041659e26abbf",
       "original_size": 9444
     },
     "scripts/validate_skill.py": {
-      "iv": "IeBP/WesZPb4XRZE",
-      "tag": "rwDiBZE4o28jFvDI9kMNtg==",
+      "iv": "BZQN05mAee7ko6Vi",
+      "tag": "EkjmWt74moUMQY7Z9/sF1Q==",
       "original_checksum": "0265806eeb9468444ca81b9eeddc1e82f61340728f66934dd1f4d63783d299ca",
       "original_size": 19059
     }

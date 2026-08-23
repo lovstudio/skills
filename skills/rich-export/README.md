@@ -1,5 +1,7 @@
 # Skill Publisher Rich Export
 
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+
 ![version](https://img.shields.io/badge/version-0.1.0-CC785C.svg)
 
 将一份 Markdown、HTML 或 `rich-export.json` 导出为单文件 HTML、HTML 文件夹、Markdown、DOCX、PDF 与 ZIP 交付包；HTML 保留交互媒体，其余格式提供可读的静态投影与原链接。

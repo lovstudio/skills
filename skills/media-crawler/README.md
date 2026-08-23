@@ -1,6 +1,6 @@
 # lov-media-crawler
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 给一个公开且有权保存的社交媒体链接，得到经过验证的本地媒体文件和 JSON 报告。
 

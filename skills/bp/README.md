@@ -1,6 +1,6 @@
 # lov-bp · BP Skill Kit
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-173D2A)
 ![Free](https://img.shields.io/badge/Free-open--source-5DC98F)
 

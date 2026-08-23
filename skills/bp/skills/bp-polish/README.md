@@ -1,6 +1,6 @@
 # lov-bp-polish
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 审查并润色已有 BP：投资逻辑、证据、文字、图表和视觉一起检查，但绝不为了好看改动事实。
 

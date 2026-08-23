@@ -1,6 +1,6 @@
 # lov-any2pdf
 
-![Version](https://img.shields.io/badge/version-1.4.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.5.0-CC785C)
 
 Markdown to professionally typeset PDF with [reportlab](https://docs.reportlab.com/). CJK/Latin mixed text, code blocks, tables, images, Obsidian callouts, emoji fallback, formulas, cover pages, TOC, bookmarks, watermarks, and 16 themes.
 

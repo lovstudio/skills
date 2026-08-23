@@ -1,6 +1,6 @@
 # lov-review-doc
 
-![Version](https://img.shields.io/badge/version-1.0.0-CC785C) ![Category](https://img.shields.io/badge/category-business-blue)
+![Version](https://img.shields.io/badge/version-1.1.0-CC785C) ![Category](https://img.shields.io/badge/category-business-blue)
 
 合同专家审阅：分析交易结构与法律风险，输出逐条批注、红线修订、替代条款、谈判方案和签署建议。
 

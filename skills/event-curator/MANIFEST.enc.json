@@ -1,16 +1,16 @@
 {
   "skill_name": "event-curator",
-  "skill_version": "0.1.1",
+  "skill_version": "0.2.0",
   "skill_id": 49,
-  "skill_version_id": 28,
+  "skill_version_id": 55,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "iMjtnBzwkA/jt9X9",
-      "tag": "Tz6YX4/F4fo6581+Dx6AHQ==",
-      "original_checksum": "9362b0b0a3d1b48275334f8fb1603d66ab650694b115d3578a0944d75209dc9e",
-      "original_size": 12363
+      "iv": "QfuqbjRYTiSY8LuA",
+      "tag": "M3b8OvLhWH1vTU+1K6rEEw==",
+      "original_checksum": "f2dbe00eec6678f6314bec79e65bc3dfece083749588b130fa9928e070bd24bd",
+      "original_size": 13664
     }
   }
 }

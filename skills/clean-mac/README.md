@@ -1,6 +1,6 @@
 # lov-clean-mac
 
-![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 
 面向 macOS 的智能磁盘空间优化 Skill：按目标容量盘点、规划、迁移和清理，并以系统真实可用空间完成验收。
 

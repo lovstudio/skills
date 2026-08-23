@@ -1,6 +1,6 @@
 # lov-solution-architect
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C) ![Free](https://img.shields.io/badge/Free-green) ![Category](https://img.shields.io/badge/category-business-blue)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C) ![Free](https://img.shields.io/badge/Free-green) ![Category](https://img.shields.io/badge/category-business-blue)
 
 把产品或技术需求转成有调研依据、开源优先的可执行解决方案。
 

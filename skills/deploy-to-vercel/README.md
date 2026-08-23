@@ -1,6 +1,6 @@
 # lov-deploy-to-vercel
 
-![Version](https://img.shields.io/badge/version-2.0.2-CC785C)
+![Version](https://img.shields.io/badge/version-2.1.0-CC785C)
 
 One-command frontend deployment to Vercel with automatic custom domain + Cloudflare DNS setup.
 

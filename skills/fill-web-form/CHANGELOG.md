@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0] - 2026-08-24
+
+### Added
+
+- add the shared feedback-classification and approval-invalidation gate used by every LovStudio Skill
+
 ## [1.1.2] - 2026-05-07
 
 ### Fixed

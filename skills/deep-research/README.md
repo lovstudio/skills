@@ -1,6 +1,6 @@
 # lov-deep-research
 
-![Version](https://img.shields.io/badge/version-2.3.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.4.0-CC785C)
 
 Enterprise-grade research engine for Claude Code. Produces citation-backed reports with source credibility scoring, multi-provider search, and automated validation.
 

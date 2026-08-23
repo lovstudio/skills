@@ -1,6 +1,6 @@
 # lov-obsidian-reset-cache
 
-![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.0-CC785C)
 
 Reset Obsidian cache to fix "Loading cache..." hang issue.
 

@@ -1,6 +1,6 @@
 # lov-skill-optimizer
 
-![Version](https://img.shields.io/badge/version-0.9.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.10.0-CC785C)
 
 自动审计并优化 Agent Skill：按当前对话优先修复问题，统一 README、SKILL.md、
 `skill.yaml` 与 CHANGELOG 版本，然后核对规范源、安装副本和 catalog 的同步状态。

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0 - 2026-08-24
+
+- Add the shared feedback-classification and approval-invalidation gate used by every LovStudio Skill.
+
 ## 0.1.0
 
 - 建立平台、账号、Key、binding 四层本地数据模型。

@@ -1,6 +1,6 @@
 # lov-professional-portrait
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 把一张普通人像修成干净、自然、仍然像本人的职业形象照。
 

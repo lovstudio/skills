@@ -1,6 +1,6 @@
 # lov-npm-publisher
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 
 为新包和已有包建立可验证的 npm 自动发布链，兼容两种平级的认证方式：GitHub
 Actions OIDC（trusted publishing，CI 免长期 token）与本地 granular NPM_TOKEN

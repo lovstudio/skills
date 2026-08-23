@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-personal-vocabulary
-version: "0.1.0"
+version: "0.2.0"
 runtime: skill-runtime/v1
 context:
   profile:

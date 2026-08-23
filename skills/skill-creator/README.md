@@ -1,6 +1,6 @@
 # lov-skill-creator
 
-![Version](https://img.shields.io/badge/version-4.3.0-CC785C)
+![Version](https://img.shields.io/badge/version-4.4.0-CC785C)
 
 ## Skill 群组原子组合
 

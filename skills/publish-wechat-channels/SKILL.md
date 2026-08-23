@@ -10,7 +10,7 @@ compatibility: >-
   private API access.
 metadata:
   author: lovstudio
-  version: "0.0.2"
+  version: "0.1.0"
   tags:
     - wechat
     - channels
@@ -98,3 +98,13 @@ metadata:
 - 上传区可能位于子 frame 或 shadow DOM 中，标准 CSS 选择器找不到关联文件输入时，先重新读取当前 frame tree/DOM（使用可穿透子 frame/shadow root 的只读定位），再对当前上传区的文件控件提交路径；不复用旧的节点 ID、句柄或坐标。
 - 列表若显示“原创审核中”“审核中”“转码中”或其他处理中原文，状态使用 `platform_pending`，即使创建页出现成功提示或已经跳转列表，也不要写成 `published`。只有列表明确显示“已发布/已发表”才使用 `published`。
 - 最终回报目标动作、账号、最后状态、平台状态原文、列表回读证据、警告和未完成项。只有满足状态契约时才使用 `draft_saved`、`scheduled`、`platform_pending`、`published` 或 `publish_failed`。
+
+## 通用反馈闭环
+
+用户在 Skill 驱动任务中提出修改意见时，继续当前产物前必须执行：
+
+1. 先判断意见是 `task-specific`（仅本次）还是 `reusable`（可跨任务复用）。
+2. `task-specific` 只修改当前任务，不改 Skill。
+3. `reusable` 先确定作用域：领域规则先更新对应 canonical Skill；适用于所有 Skill 的规则先更新共享规范。
+4. 完成规则更新、版本、lint 与分发核验后，再把修改应用到当前任务。
+5. `reusable` 修改会使此前的“确认”“继续”“发吧”失效；完成当前产物修改和回读后必须停下，等待用户下一步指示，不自动进入发布、提交或其他外部写入。

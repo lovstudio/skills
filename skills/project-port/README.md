@@ -1,6 +1,6 @@
 # lov-project-port
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 Generate a stable project-specific development port in the 3000-8999 range, then help wire it into `.env`, package scripts, Vite, or other dev-server config.
 

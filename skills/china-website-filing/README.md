@@ -1,6 +1,6 @@
 # lov-china-website-filing
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 中国大陆网站备案与上线 Skill Kit，覆盖 ICP、备案后域名切换、公安联网备案、安全评估分支和状态巡检。
 

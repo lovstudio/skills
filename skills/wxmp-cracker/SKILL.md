@@ -1,7 +1,7 @@
 ---
 name: lov-wxmp-cracker
 description: Export WeChat Official Account articles into reusable structured content.
-version: 0.1.6
+version: 0.4.0
 ---
 
 # wxmp-cracker（加密 Skill）

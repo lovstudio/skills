@@ -1,158 +1,158 @@
 {
   "skill_name": "oh-my-landingpage",
-  "skill_version": "0.3.1",
+  "skill_version": "0.4.0",
   "skill_id": 55,
-  "skill_version_id": 43,
+  "skill_version_id": 59,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     ".gitignore": {
-      "iv": "asiS6e/nw0v8hSvT",
-      "tag": "+hXkfmxuMOnbC+Pe0ZoYwQ==",
+      "iv": "mx1qwgLiA11jWLAx",
+      "tag": "MKffpPOttMYI+twXqPhFWA==",
       "original_checksum": "0ee39de8cd941bdd57ed5d06c882ab7f5db378a762718ccd4e3fc023751d4df4",
       "original_size": 84
     },
     "CHANGELOG.md": {
-      "iv": "2/IGnwN1QbydwVRn",
-      "tag": "6FqAIMK4eesPztzP+tDcNw==",
-      "original_checksum": "ede86520b026f3922199de075cfd81ee7230c7d636e80a2ec1e728b5f4af6b3b",
-      "original_size": 1559
+      "iv": "+oXJgiAg2lXyRpnM",
+      "tag": "nDTO2jkhFfDfFgZRLIPhSQ==",
+      "original_checksum": "c2c4f0e58a3617e5457d4748df2e303f26ff29b0daf2cb837079d922bd5c500d",
+      "original_size": 1698
     },
     "LICENSE": {
-      "iv": "AE+IoVOO1kOBfI6n",
-      "tag": "f0PlzIZ5jfVvgDjKYq6UxA==",
+      "iv": "Wle6nGlUDDhYsTan",
+      "tag": "JbxSHKqcAF18ZqSCXkXstQ==",
       "original_checksum": "3577ef5e65c0dc01bb54c3059f1e76f99c121cdec08bfc95d18bb7715ec9a64d",
       "original_size": 1072
     },
     "README.md": {
-      "iv": "aPRhW83zRV2s16R6",
-      "tag": "IDBLrKKsMgrcUAHxOCyxDQ==",
-      "original_checksum": "34687c154a58cd3bc051c5169d0dc12a14fa84162111ffe756e8ad4fcc8403cb",
+      "iv": "UYv89QyQmcTK4lTl",
+      "tag": "VwTzNFGI9HYcBBS1WChPxA==",
+      "original_checksum": "7d3a1f8096878b0a8bfdb18ed4799dfefb3ed731ca6c29399cdcfd5433050d14",
       "original_size": 3725
     },
     "SKILL.md": {
-      "iv": "eRgQ/GKYdAhh9GVS",
-      "tag": "nvV439zlrQCSDfUspNnozg==",
-      "original_checksum": "f0c81f4ce04a4ccb48cc17a8e2e06f66d1d05cfae3e8b2ce92ee9381753a9e5a",
-      "original_size": 13463
+      "iv": "tbkS/uLr7aIcv/RT",
+      "tag": "qr56hQi15BhpIOQsKeHJkw==",
+      "original_checksum": "41d790cdbd7a2fa80ef0047271b9df163767fc75b83b65fc5ef7f61e97f4e7f7",
+      "original_size": 14185
     },
     "agents/openai.yaml": {
-      "iv": "KedSSYHuwiEnE5CA",
-      "tag": "sX3XSaTScIZH2r4uhzMPFA==",
+      "iv": "y/0KJnGw9RCWCcXs",
+      "tag": "byw9v07w7VChUjeG3cexzA==",
       "original_checksum": "a1b0179358a5a6e8306eb8b0e16597f187fe2ce45f1082a04957c28dad1d41d7",
       "original_size": 471
     },
     "kit.yaml": {
-      "iv": "TxW7DSWVPpBtxECC",
-      "tag": "wt7GO0B/Q0N11qvuJHL5Vw==",
+      "iv": "8VuOI+nJGOprrWNc",
+      "tag": "L83a4lnkrAQPmnVFhwRWow==",
       "original_checksum": "bcbcf89fb3ca2901854d41de0212b382563f1663771dd29ed1f95087324eec82",
       "original_size": 1302
     },
     "references/brand-system.md": {
-      "iv": "i5/rRj/yEJxOCZ+k",
-      "tag": "r4kdvgXx3k7HGheKymdrsw==",
+      "iv": "F9JLH1iAqnjGZiJd",
+      "tag": "t5GDGMRuhTnr9eXOjdP7AQ==",
       "original_checksum": "1c9a2594a38db5057c5481f5c9a9bfc1458671a123cbc4629b3e4068a996a0b1",
       "original_size": 7189
     },
     "references/implementation-and-acceptance.md": {
-      "iv": "Q8XtQtim3UU8308H",
-      "tag": "zkzzP+QZ3fD4ObZOW5sxfg==",
+      "iv": "gZcsIk58GR2b2bIZ",
+      "tag": "4i+0Cr+4TxBvWgZJYUGaFQ==",
       "original_checksum": "929c2466decec5021713def53a4d4cad660a9e0af500051f33796e7f57c60b3e",
       "original_size": 6626
     },
     "references/landing-system.md": {
-      "iv": "pK/8NGt7/MJfVFHr",
-      "tag": "iDisIzMvnNQGgdLe1WAA3g==",
+      "iv": "b4Y4N6PtwHWz58FG",
+      "tag": "Uqbx3Lt2jDsCPwX5InzsZw==",
       "original_checksum": "1a52e9cc97aa2f53e4f66d5b6f3de4fe75093f213f38e86e52b3485375afaadb",
       "original_size": 8811
     },
     "references/research.md": {
-      "iv": "0fG0P27/cZQ3eE+R",
-      "tag": "ORkMQwAgjAeRF0yOexrncQ==",
+      "iv": "2OBVD3kYlm4UExLo",
+      "tag": "rCu/x0RSzTrFPijKxAgJRw==",
       "original_checksum": "6a60b648f41a4ce310cd4203245aaa64b4ab28bb9d0942d53371cba656b19962",
       "original_size": 2835
     },
     "references/user-config.md": {
-      "iv": "3ZBHENFTLmHxU2aM",
-      "tag": "WlHzNlAoC5ntmqswje387g==",
+      "iv": "GTjwDXGkovagAZ5y",
+      "tag": "deQ87+mVPn+BKeDAbIP7bA==",
       "original_checksum": "6d954d16533080534dc89496780ac580d13aac34a0cec2ef86f6f598f2af31c9",
       "original_size": 2890
     },
     "references/visual-and-media.md": {
-      "iv": "pjADICuFkZORFTkM",
-      "tag": "GNjr7/lf+0sm/TYo/SkWYA==",
+      "iv": "mGaPFtmU4UX+D5II",
+      "tag": "fc7fshjIxVR7r8aC49w2OA==",
       "original_checksum": "8a91f48718422ab8ea307edc7372f46d0d3768ccf702ac9a52e60d0a6185e4b2",
       "original_size": 8178
     },
     "scripts/validate_skill.py": {
-      "iv": "Rhqsj8Pyz8/Rp1Ea",
-      "tag": "1kgISNBJAbQYDdnw3oCIEQ==",
+      "iv": "7TNbaRz0GAZTMf7p",
+      "tag": "MCqlui5cBxxjpyCksdfujg==",
       "original_checksum": "9527b678131de50ae8b817f3bf74619257d2c038fa36d4b76bda8359d0c94def",
       "original_size": 15382
     },
     "skill.yaml": {
-      "iv": "Zx6FQaHxmX9ZSi95",
-      "tag": "c9wT65cRva2We73LzeLV+g==",
-      "original_checksum": "aea9cc3618c6d0796c8ad77dffec6273f9c78a274880c5dcae1a9497501efd3c",
-      "original_size": 846
+      "iv": "csXlBIh+JwwZ7/PY",
+      "tag": "8vgDGvGroE6HYoVMBD5wQA==",
+      "original_checksum": "53e2a100896b110ce733b922ae3cdaedcf8b7e074e86d32104a99a860ff0d792",
+      "original_size": 848
     },
     "skills/landing-art-direction/SKILL.md": {
-      "iv": "KIIw3A6uO1WofS15",
-      "tag": "ZG4RE1o6GOl0gZ/5ggVKrw==",
+      "iv": "rio/efNKwOZVqDiL",
+      "tag": "Wpo4M1Ve5Z8aUU0qgspRCg==",
       "original_checksum": "f8cfc1f73ada48981dbdb21ebdbe1ffdf55d657f77383dc20194ad441cb133ed",
       "original_size": 6700
     },
     "skills/landing-art-direction/references/user-config.md": {
-      "iv": "9g9upa/BXMeEsIX8",
-      "tag": "xOCmdHDBHcL4+iJ9X3fI1A==",
+      "iv": "LjcXTQjHvsxEOrHQ",
+      "tag": "dkju0zVh2m4DKYuBpJ77gg==",
       "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
       "original_size": 615
     },
     "skills/landing-brand/SKILL.md": {
-      "iv": "mvH3FWZcTTynKxEC",
-      "tag": "m0r0r1bnq/UcZEZ1qf51rA==",
+      "iv": "h3kIEFxGuFIt2Lv1",
+      "tag": "rQoHnEFj+P29qUOvkqa20Q==",
       "original_checksum": "e5c77ec37b8260a3b0a2fb548f813a8590c2fb9e06141090a759bd16fa2e1ee2",
       "original_size": 7259
     },
     "skills/landing-brand/references/user-config.md": {
-      "iv": "FYVsy2BZJXq0PsPO",
-      "tag": "Zw+wW1Q9T6+21uxIDUev9w==",
+      "iv": "o5zTQRa8AZzAXdjx",
+      "tag": "AKN+yKZVjUoWFJ3D/kc6rw==",
       "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
       "original_size": 615
     },
     "skills/landing-builder/SKILL.md": {
-      "iv": "442lDJTKIil3C/Fv",
-      "tag": "xQ8SptPSnxF5ZaA3b3TuIg==",
+      "iv": "LyqgggNeKGZBsD6G",
+      "tag": "xst+2OoLSAd/G/9Pk2n/zw==",
       "original_checksum": "c4969e2863517455ca6b60dfb5c87e48a38b7dfe0f65565db0ce248716e90be9",
       "original_size": 6096
     },
     "skills/landing-builder/references/user-config.md": {
-      "iv": "l88wSvGHQjmzbp6u",
-      "tag": "ln5ulCzi3OavpGekRhOs9w==",
+      "iv": "R0CKNktDL51EJk7N",
+      "tag": "8X3HRu+wFvumisXoqhmolA==",
       "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
       "original_size": 615
     },
     "skills/landing-review/SKILL.md": {
-      "iv": "JKdyIVtmEOhyY9nH",
-      "tag": "NoI9Z4W9gKDtVFr0wUWALQ==",
+      "iv": "T5q5OnOvqygCPuYS",
+      "tag": "vhl3IFjOgIe6H246qcevqg==",
       "original_checksum": "449b46ad5288dafdafdba1474ca656ede29f7915ee65dd61f54924154139e9e4",
       "original_size": 6185
     },
     "skills/landing-review/references/user-config.md": {
-      "iv": "StFcawN/BWGfs0fI",
-      "tag": "oKd5NRgji6f5ak4gD01xXw==",
+      "iv": "wHn07oQge6Rer0kd",
+      "tag": "Ch357VweaA/DBvCgzKcx2Q==",
       "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
       "original_size": 615
     },
     "skills/landing-strategy/SKILL.md": {
-      "iv": "18SnpDH+hTlpSjvP",
-      "tag": "vrksYcl4FZFndNnlvxFlCA==",
+      "iv": "qbhMwUg/5N6ejpyA",
+      "tag": "eeuDV7J3ILtYsSrgbqX3Rw==",
       "original_checksum": "3f4d598b735038e5508ac9dd8b5ceb2891026d0f622516461b3aacf0d499f8c2",
       "original_size": 7028
     },
     "skills/landing-strategy/references/user-config.md": {
-      "iv": "KCPR6rAc1DWNfc7I",
-      "tag": "tMDlqm1msVz2jq11V1aj2Q==",
+      "iv": "be8IkhQCOhZu/qWA",
+      "tag": "bVr+A+ANgaZA7fBQSLUU0Q==",
       "original_checksum": "c5e049cd362d3852497cb313dfa0dc699c66d4de65717d0ea3d584dcd392d5c1",
       "original_size": 615
     }

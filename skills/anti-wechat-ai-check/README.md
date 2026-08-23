@@ -1,6 +1,6 @@
 # lov-anti-wechat-ai-check
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.0-CC785C)
 
 检测文章 AI 生成痕迹，输出风险评分，并可人性化润色以通过微信公众号 3.27 条款检测。
 

@@ -1,6 +1,6 @@
 # sgc-electron-app-relaunch
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 
 为 Electron 应用建立可验证的完整重启机制。
 

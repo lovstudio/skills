@@ -1,7 +1,7 @@
 ---
 name: lov-proposal
 description: Generate complete business proposals for client projects from requirements.
-version: 0.1.2
+version: 1.1.0
 ---
 
 # proposal（加密 Skill）

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 — 2026-08-24
+
+- Upgrade all 88 production Skills with the shared reusable-feedback classification and approval-invalidation gate.
+- Republish all 14 encrypted paid bundles with database manifest readback and decrypt-roundtrip verification.
+- Regenerate the unified catalog, marketplace, README tables, and versioned CDN packages from current source repositories.
+- Add the missing free-entry pricing card for `solution-architect`.
+
 ## 0.9.0 — 2026-08-10
 
 - **Unified catalog**: merged `lovstudio/general-skills` and `lovstudio/dev-skills` into this repository's `skills.yaml` and `skills/` distribution tree.

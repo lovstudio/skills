@@ -1,16 +1,16 @@
 {
   "skill_name": "proposal",
-  "skill_version": "0.1.2",
+  "skill_version": "1.1.0",
   "skill_id": 11,
-  "skill_version_id": 27,
+  "skill_version_id": 45,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "VtEtZS/ZWJGD9E6z",
-      "tag": "0GLf15hHjjMXR1ZOfwdseA==",
-      "original_checksum": "297a80938eb2fcb0df46dd046fd7f785b916004e5b819ab45263e145d761b7c9",
-      "original_size": 7873
+      "iv": "4083pyvX6NLtVJzw",
+      "tag": "2B5RqZgUt+lxJS3n18d4WA==",
+      "original_checksum": "66a12897f4ef2f33e1b01aed3f1cfee29b940b313607cdcda2db3a51996c3a40",
+      "original_size": 9169
     }
   }
 }

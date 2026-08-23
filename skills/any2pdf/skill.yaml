@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-any2pdf
-version: 1.4.1
+version: "1.5.0"
 runtime: skill-runtime/v1
 context:
   profile:

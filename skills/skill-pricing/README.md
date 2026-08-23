@@ -1,6 +1,6 @@
 # lov-skill-pricing
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 为一个或多个 Agent Skill 生成有依据、可解释、可复评的 Skill Pricing Card，包含建议价、价格带、价值说明、渠道策略和证据缺口。
 

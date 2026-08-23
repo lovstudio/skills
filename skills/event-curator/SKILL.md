@@ -1,7 +1,7 @@
 ---
 name: lov-event-curator
 description: Generate a complete professional event plan from guest background material.
-version: 0.1.1
+version: 0.2.0
 ---
 
 # event-curator（加密 Skill）

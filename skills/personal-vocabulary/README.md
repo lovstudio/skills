@@ -1,6 +1,6 @@
 # lov-personal-vocabulary
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 把散落在各语音输入法里的个人词条收敛成一份规范词汇表，并映射回 OpenLess、Typeless 等 App；按 phrase 去重、产出只读同步计划，确认后再写入。
 

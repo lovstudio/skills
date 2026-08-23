@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0] - 2026-08-24
+
+### Added
+
+- add the shared feedback-classification and approval-invalidation gate used by every LovStudio Skill
+
 ## 0.2.0 — 2026-07-27
 
 - Upgrade the subtitle planner into a composable Video Chapter Skill Kit.

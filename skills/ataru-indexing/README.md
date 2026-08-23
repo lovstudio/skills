@@ -1,6 +1,6 @@
 # lov-ataru-indexing
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 把本机 Ataru 会话记忆索引带到可检索状态，并交回一份能直接判断的 JSON 报告。
 

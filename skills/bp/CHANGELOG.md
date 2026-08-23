@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0] - 2026-08-24
+
+### Added
+
+- add the shared feedback-classification and approval-invalidation gate used by every LovStudio Skill
+
 ## 0.2.1 — 2026-07-31
 
 - 将 WorkBuddy `lov-bp.zip` 改为自包含总控包，内置三个子模块。

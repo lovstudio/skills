@@ -1,6 +1,6 @@
 # lov-document-illustrator
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 
 为文档原地插入 AI 配图：先全局规划插入点，再并行生成图片，最后按锚点异步插回原文。
 

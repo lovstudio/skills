@@ -1,7 +1,9 @@
 ---
 name: lovstudio:professional-infographic
-description: Create evidence-led consulting infographics with editable HTML/SVG, high-resolution PNG, source linkage, and strict QA. Use when the user asks for a professional infographic or Exhibit.
-version: 0.4.2
+description: Create evidence-led consulting infographics with editable HTML/SVG, high-resolution
+  PNG, source linkage, and strict QA. Use when the user asks for a professional infographic
+  or Exhibit.
+version: 0.5.0
 ---
 
 # professional-infographic (encrypted)

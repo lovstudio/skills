@@ -1,7 +1,8 @@
 ---
 name: lov-event-poster
-description: Create event posters, exhibition posters, flyers, and promotional graphics from a brief.
-version: 0.4.0
+description: Create event posters, exhibition posters, flyers, and promotional graphics
+  from a brief.
+version: 0.5.0
 ---
 
 # event-poster（加密 Skill）

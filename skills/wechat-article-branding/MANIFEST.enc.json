@@ -1,64 +1,64 @@
 {
   "skill_name": "wechat-article-branding",
-  "skill_version": "0.8.0",
+  "skill_version": "0.9.0",
   "skill_id": 61,
-  "skill_version_id": 35,
+  "skill_version_id": 63,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "v0N1e45wfdd/4TTy",
-      "tag": "9blY6r6uPyFm5A5vL5nA6w==",
-      "original_checksum": "1fe80ca65167b1d32fbd81c680382e49c1b217f5edbba0ecef1807d3f92946b0",
-      "original_size": 13764
+      "iv": "HHJeWDOM6ZwoPxYw",
+      "tag": "A5LN5JPT792TeaRA3GHxFA==",
+      "original_checksum": "2eb14b4029597c392cf76ec1a6ec935906aaf1f46d456332a84800b63a92c721",
+      "original_size": 12837
     },
     "kit.yaml": {
-      "iv": "8bCmkGOa7wTCXT4V",
-      "tag": "wgOEbd9MhifWJIsuiqTX3w==",
-      "original_checksum": "a7afe479e2b59f531537f2d1cf117123f0186704fc2d6ae8dad5e88413f9cccc",
-      "original_size": 1350
+      "iv": "xCUPqH1RIwMj+dnJ",
+      "tag": "3hmk9npHvvvLY9QqUbB+Rg==",
+      "original_checksum": "f71fa1f495dedef499da0c93d4798b73319d273ec7996da41d85f2660511a004",
+      "original_size": 1245
     },
     "prompts/cover-hero-editorial-painterly.md": {
-      "iv": "7W8GnInUUErOeQKZ",
-      "tag": "p1/ysqYK4kXUF4xzQK6NIg==",
+      "iv": "6G0g/8jJ/n4vjzWv",
+      "tag": "FerVQxx4Z4j7OmkYCIj6mw==",
       "original_checksum": "756cafd99eec093946c5c7c063bf69b11c36fb73646ee9bf0421037945354622",
       "original_size": 3337
     },
     "references/acceptance.md": {
-      "iv": "xUBhoSWa+M94RztZ",
-      "tag": "JRmxP+cii7VwZ0jxakZw+w==",
+      "iv": "oe8jBNmrO4L/CLZq",
+      "tag": "vQxC+kiiL0XSTBn/3sBSAw==",
       "original_checksum": "d7f1a68adc49c24d2ee0bc1c385542d0ac5911986a9cbff530573d7456f17a36",
       "original_size": 2596
     },
     "references/brand-profile.md": {
-      "iv": "qfeUQBObhsFzwIYp",
-      "tag": "i9zTWZX6N3UL86+ihip9JQ==",
-      "original_checksum": "a44e41f9ccb5262841a5b369e18f3110b230b11377bb15e2120c409f9f71a1f3",
-      "original_size": 2441
+      "iv": "mNAD4RvfJcKRL5x4",
+      "tag": "wzrdTYtvtUuKcLoFRoeZlw==",
+      "original_checksum": "6b75f495e7f123ae208e9e6414c86544238888a70780693588616177781c64ba",
+      "original_size": 3848
     },
     "references/cover-prompt.md": {
-      "iv": "uj8Tue/drQg3CBsG",
-      "tag": "EHtEn3Yy/FjWWeHgpW1BIA==",
-      "original_checksum": "0bda200affead23837d6aa954366c9d9561ee29ccf5a97b912e2fc327af712bf",
-      "original_size": 3422
+      "iv": "Mz/Rx2OT0ljatfyA",
+      "tag": "KpT3CfyyHus+zyGDoxdgqw==",
+      "original_checksum": "1385bd8b72af7a01afe4944e7d5348fb0af0f6ef15ced766daa69fdfa79d0e20",
+      "original_size": 3256
     },
     "references/user-config.md": {
-      "iv": "s8Ag09NwWp6l5pyV",
-      "tag": "DfjSgUvEdEsstFxNiIFk3g==",
-      "original_checksum": "80d94d9c5686fa6dd177f8753b07498ad50526c67cf92527c644a47bfe36f661",
-      "original_size": 1610
+      "iv": "71AqG8P2rcnWiCo/",
+      "tag": "3LvBeQScveKFkYnLzDH1TA==",
+      "original_checksum": "15846bea40e2e55f64b2aaeb828148b99ecbac43452d321e1f2219237c470850",
+      "original_size": 2891
     },
     "scripts/validate_brand_profile.py": {
-      "iv": "L2U2PSaG1taYsCs9",
-      "tag": "UsLU7vWuC89VhVScqL0GGw==",
-      "original_checksum": "df33f0d2c1dc8c52f60c6361b3ce6d6e1772934b95d46562b3c4dc9675920902",
-      "original_size": 11652
+      "iv": "35xniLTw+neKoz4O",
+      "tag": "jOEAlXiegXwd5zMVd157Dg==",
+      "original_checksum": "f8708d2b9b15794e1945659241ef55f1c3d4d9070a1c5080ee504245a7f1f026",
+      "original_size": 9459
     },
     "scripts/validate_skill.py": {
-      "iv": "cuDS2jqub3mCQD0l",
-      "tag": "QOI+Bn+YGTUXTJJucmatNw==",
-      "original_checksum": "b883b629c909e802fda18a3ec489679a991312324c093fa8a4c24d6db1d1cb05",
-      "original_size": 13263
+      "iv": "aA76p481Az2zKHOb",
+      "tag": "9B0j8vLHnQxgTaDHSOXHXQ==",
+      "original_checksum": "4b113c209d3cc14a2188b2f9a0245af694e49ac2f1f53d87b4bdb219638ad777",
+      "original_size": 11657
     }
   }
 }

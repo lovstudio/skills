@@ -1,28 +1,28 @@
 {
   "skill_name": "wxmp-cracker",
-  "skill_version": "0.1.6",
+  "skill_version": "0.4.0",
   "skill_id": 22,
-  "skill_version_id": 26,
+  "skill_version_id": 53,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "sE+UCxSbR1Lu74EH",
-      "tag": "CaaHsJMfJNAUa/MtAi0Osw==",
-      "original_checksum": "2b8df824f90850ddf0bb508ee89cae066b932f2326b22b3ef079cafacf2bc1d0",
-      "original_size": 9792
+      "iv": "7EE306Tmmr1zQDny",
+      "tag": "f6Yj6XZlPA+tX5XfEZKlTQ==",
+      "original_checksum": "2b21a4112cb92234f2cb06a4368a9d8aba0a11cab9b28922ffbedcf9abb48135",
+      "original_size": 11153
     },
     "scripts/refresh_token.py": {
-      "iv": "PC7R2GwiHz17uzzP",
-      "tag": "QFR3kXP3MOz9Nr0JXIMH5A==",
-      "original_checksum": "bbf53436fa91694b3993f41657817365e35c424841e8f74c00a468778d20af4a",
-      "original_size": 5485
+      "iv": "bQR38BhegoOU3IMP",
+      "tag": "GEHzACgpOadbX1Vw0GWxBQ==",
+      "original_checksum": "c19757e077635f30f6788a1d47b4904d55712d444cfbfc582a6348ff4470dc20",
+      "original_size": 5497
     },
     "scripts/wcx_run.py": {
-      "iv": "QeT8jyWQIdiAKvUY",
-      "tag": "TRaSUeC2uX1zRgL+CIKmug==",
-      "original_checksum": "3674d032c0d72d6b3fcdcaffe2f81b2b48f6308e39f612e79fb0402690853a84",
-      "original_size": 8705
+      "iv": "W0y9zkWuBKpTxuSK",
+      "tag": "vscgT8eAUftdgtPTA4B8Ew==",
+      "original_checksum": "e0a9f142952572596ce770bed99330b72d1813caf01727fb43fedc5fb7086bc5",
+      "original_size": 8715
     }
   }
 }

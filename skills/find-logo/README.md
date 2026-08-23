@@ -1,6 +1,6 @@
 # lov-find-logo
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 
 Fetch a brand/product logo from public sources (Clearbit, og:image, favicon),
 score candidates (prefer wide-aspect + transparent), and archive the winner

@@ -1,6 +1,6 @@
 # lov-image-translation-errata
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 把含有原文与劣质机翻的截图变成校样式勘误图：旧错误仍可见，正确译文可独立
 通读，原图布局与身份信息尽量不变。

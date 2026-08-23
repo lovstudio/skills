@@ -1,6 +1,6 @@
 # lov-maintain-partners
 
-![Version](https://img.shields.io/badge/version-0.9.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.10.0-CC785C)
 
 Maintain the Skill Publisher website's "Trusted By" partners section: collect brand
 logos through `lov-find-logo`, normalize to the 80px canvas, append

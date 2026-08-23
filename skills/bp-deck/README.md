@@ -1,6 +1,6 @@
 # lov-bp-deck
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 把已经确认的 BP 大纲做成专业 PPTX、PDF 和全稿预览。
 

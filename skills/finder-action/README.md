@@ -1,6 +1,6 @@
 # lov-finder-action
 
-![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 
 Generate Mac Finder right-click menu actions. Automator Quick Actions for file/folder menus, Finder Sync Extensions (Swift) for blank-space menus. Auto-detects which mode to use.
 

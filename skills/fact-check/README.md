@@ -1,6 +1,6 @@
 # lov-fact-check
 
-![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 尽调式事实校验 skill：把用户提出的事实命题拆成可验证问题，优先查一手资料，交叉验证证据链，并输出结论、边界和置信度。
 

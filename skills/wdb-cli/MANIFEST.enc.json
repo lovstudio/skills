@@ -1,38 +1,38 @@
 {
   "skill_name": "wdb-cli",
-  "skill_version": "0.2.0",
+  "skill_version": "0.3.0",
   "skill_id": 66,
-  "skill_version_id": 39,
+  "skill_version_id": 67,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "TRXEmtQK+eqyoXvc",
-      "tag": "qrLzVRxZlXzyMKi8QevE3A==",
-      "original_checksum": "1334838575072260b9ac304dc3c887fec3c9014195a6339dac87d99f2bdf569f",
-      "original_size": 7864
+      "iv": "kFm58zkJZPflH9d6",
+      "tag": "2iUliaKP63QaD1ogy3E02w==",
+      "original_checksum": "f439a6764ee12228287deb36dac52a6a888c377c2c34c169df1d8da5dd02655f",
+      "original_size": 8586
     },
     "references/data-contract.md": {
-      "iv": "LEnoQ5q8NRzW9IoH",
-      "tag": "MEx44fY2IEgSymtTThnYGw==",
+      "iv": "rPz7stOFAm3hFfFw",
+      "tag": "RfPQVhtxzaHy0ePMLWnpIQ==",
       "original_checksum": "dfaa2335faccd834825ce019c0c207d512c5eb11e27505408908220189992c45",
       "original_size": 3790
     },
     "scripts/test_wdb_cli.py": {
-      "iv": "eqFhRtW5ncfzl97t",
-      "tag": "ohKc7qJzrRsHmjlQJbQkbw==",
+      "iv": "EVOFMUn0+S5/PT2T",
+      "tag": "4njmIQkGBBSC08p5ysba+Q==",
       "original_checksum": "2a5d019c2a8e7cdaf36416b04c9d0494371a3b1c794cfe0e479b1cea3702bac3",
       "original_size": 10448
     },
     "scripts/validate_skill.py": {
-      "iv": "UDOOQbWwtkC3j3Jj",
-      "tag": "Gw5tH3teTSQ9FkWL33wy5A==",
+      "iv": "vQRMnAVrnxQ8rIN9",
+      "tag": "FJQYrI1szmjqTdBkv6JK3w==",
       "original_checksum": "69d2b900cdf09624fd91392dc3e00ddfd75687add862bf17f29c34e7036024af",
       "original_size": 11790
     },
     "scripts/wdb_cli.py": {
-      "iv": "tYTeTJ9XzcVlEbz8",
-      "tag": "MycST19Lk3OtEp+fSY90kA==",
+      "iv": "8UkNN08y9jvn8MPB",
+      "tag": "+jW9sHznw6Ai6yzwfQ8kAA==",
       "original_checksum": "c59bf992cdffacb3549b68775f2f1bfee3fba53fb108d2f9c10465fd07055d41",
       "original_size": 73263
     }

@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-skill-creator
-version: 4.3.0
+version: "4.4.0"
 runtime: skill-runtime/v1
 context:
   profile:

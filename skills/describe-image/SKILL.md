@@ -4,7 +4,7 @@ description: 给纯文本模型"看图"：调用智谱 GLM-4V-Flash（免费）�
 license: MIT
 metadata:
   author: mark
-  version: "0.1.0"
+  version: "0.2.0"
   tags:
     - vision
     - image
@@ -52,3 +52,13 @@ python3 ~/.claude/skills/lov-describe-image/scripts/describe_image.py "<图片�
 
 - 环境变量 `ZHIPU_API_KEY`（智谱 key，格式 `id.secret`，注册地址：https://bigmodel.cn/apikey/platform）。
 - macOS 自带 `sips`（大图降采样）与 `python3`。
+
+## 通用反馈闭环
+
+用户在 Skill 驱动任务中提出修改意见时，继续当前产物前必须执行：
+
+1. 先判断意见是 `task-specific`（仅本次）还是 `reusable`（可跨任务复用）。
+2. `task-specific` 只修改当前任务，不改 Skill。
+3. `reusable` 先确定作用域：领域规则先更新对应 canonical Skill；适用于所有 Skill 的规则先更新共享规范。
+4. 完成规则更新、版本、lint 与分发核验后，再把修改应用到当前任务。
+5. `reusable` 修改会使此前的“确认”“继续”“发吧”失效；完成当前产物修改和回读后必须停下，等待用户下一步指示，不自动进入发布、提交或其他外部写入。

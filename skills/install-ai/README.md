@@ -1,6 +1,6 @@
 # sgc-install-ai
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 为 App 快速加入可上线的 AI 功能，并在本地 Agent Client、MaaS 和混合模式之间选择合适通道。
 

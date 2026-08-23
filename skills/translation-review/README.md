@@ -1,6 +1,6 @@
 # lov-translation-review
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.0-CC785C)
 
 Systematic Chinese-to-English translation review. Compares source and translation across 6 dimensions, produces a prioritized review report.
 

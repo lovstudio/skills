@@ -1,6 +1,6 @@
 # lov-describe-image
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 给纯文本模型"看图"：把图片发送给视觉模型（智谱 GLM-4V-Flash，免费），返回文字描述，让本身不具备视觉能力的模型（如 `deepseek-v4-flash`）能间接"看到"图片内容。
 

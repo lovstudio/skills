@@ -1,6 +1,10 @@
 ---
 name: lov-video-chapter
 description: Turn SRT/VTT subtitles and source videos into 3–5 semantic chapters, an editable React chapter-bar project, a transparent ProRes overlay, a burned-in MP4, and editor-ready packages. Use for subtitle chaptering, video segmentation, chapter progress bars, 剪映/CapCut chapter overlays, video chapter rendering, or requests such as “基于字幕进行视频分段”, “生成章节进度条”, “把章节条压进视频”, and “create video chapters from subtitles”.
+metadata:
+  author: lovstudio-contributors
+  version: "0.3.0"
+  tags: video chapters subtitle editing rendering
 ---
 
 # Video Chapter Skill Kit
@@ -129,3 +133,13 @@ Confirm:
 - 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
 - `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
 - 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
+
+## 通用反馈闭环
+
+用户在 Skill 驱动任务中提出修改意见时，继续当前产物前必须执行：
+
+1. 先判断意见是 `task-specific`（仅本次）还是 `reusable`（可跨任务复用）。
+2. `task-specific` 只修改当前任务，不改 Skill。
+3. `reusable` 先确定作用域：领域规则先更新对应 canonical Skill；适用于所有 Skill 的规则先更新共享规范。
+4. 完成规则更新、版本、lint 与分发核验后，再把修改应用到当前任务。
+5. `reusable` 修改会使此前的“确认”“继续”“发吧”失效；完成当前产物修改和回读后必须停下，等待用户下一步指示，不自动进入发布、提交或其他外部写入。

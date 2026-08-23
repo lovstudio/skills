@@ -1,7 +1,7 @@
 ---
 name: lov-typeless-prompt
 description: 把 ASR 转写或带改口的口述草稿整理成简洁、逻辑清楚、层次舒展、可直接发送给 AI 的正文，并删除口癖、重复与被否定的旧版本。
-version: 0.1.0
+version: 0.2.0
 ---
 
 # 手工川工作室 Typeless 复刻版（加密 Skill）

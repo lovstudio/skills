@@ -1,6 +1,6 @@
 # lov-skill-add-case
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 把一次已获用户明确认可的 Skill 结果，整理成脱敏、可验证的案例，安全写入
 目标 Skill，并在目标已公开时同步到 LovStudio 官网后回读验证。

@@ -1,6 +1,6 @@
 # lov-gh-contribute
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 Contribute a clean, professional PR to someone else's GitHub repo — fork, branch,
 commit, push, open PR. Auto-splits unrelated changes into separate PRs.

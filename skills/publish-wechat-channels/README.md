@@ -1,6 +1,6 @@
 # 微信视频号发布
 
-![Version](https://img.shields.io/badge/version-0.0.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
 通过已登录的视频号助手网页预检、上传并发布视频，支持保存草稿、定时发布和发布状态回读。
 

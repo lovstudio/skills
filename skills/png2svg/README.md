@@ -1,6 +1,6 @@
 # lov-png2svg
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.0-CC785C)
 
 Convert PNG images into high-quality SVG files with optional white-background removal, vtracer spline vectorization, and svgo compression.
 

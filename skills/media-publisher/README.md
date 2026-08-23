@@ -1,6 +1,6 @@
 # 视频发布器（微信视频号 / Bilibili）
 
-![Version](https://img.shields.io/badge/version-0.5.3-CC785C)
+![Version](https://img.shields.io/badge/version-0.6.0-CC785C)
 
 通过已登录的创作者后台网页预检、上传并发布本地视频，支持离线文案预检、完整元数据门禁、
 封面安全区验收、**提交前由用户确认终稿**、保存草稿、定时发布和发布状态回读。

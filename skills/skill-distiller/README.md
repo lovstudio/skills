@@ -1,6 +1,6 @@
 # sgc-skill-distiller
 
-![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 
 将已经验证过的项目经验蒸馏成可实现的 Agent Skill 蓝图，而不是停留在复盘或机会清单。
 

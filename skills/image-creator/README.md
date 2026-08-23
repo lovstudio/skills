@@ -1,6 +1,6 @@
 # lov-image-creator
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 
 Generate images through the right mechanism: end-to-end AI generation, code-rendered layouts, or optimized prompts for external image models.
 

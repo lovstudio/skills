@@ -1,5 +1,11 @@
 # Changelog for png2svg
 
+## [1.1.0] - 2026-08-24
+
+### Added
+
+- add the shared feedback-classification and approval-invalidation gate used by every LovStudio Skill
+
 ## [1.0.1] - 2026-05-07
 
 ### Fixed

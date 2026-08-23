@@ -1,105 +1,105 @@
 {
   "skill_name": "typeless-prompt",
-  "skill_version": "0.1.0",
+  "skill_version": "0.2.0",
   "skill_id": 479,
-  "skill_version_id": 44,
+  "skill_version_id": 71,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     ".gitignore": {
-      "iv": "jhbCmttscTxFvuxh",
-      "tag": "2h50tHejtRiUYjdk8Fmsog==",
+      "iv": "z3FIBYVYKb0JdzJe",
+      "tag": "SfCAItD/sq1ng8XDhjY4IQ==",
       "original_checksum": "0ee39de8cd941bdd57ed5d06c882ab7f5db378a762718ccd4e3fc023751d4df4",
       "original_size": 84
     },
     "CHANGELOG.md": {
-      "iv": "oCPsp0tXxsHqxcbG",
-      "tag": "hplw2hIsolOQFvmVuWWDcw==",
-      "original_checksum": "48bd0533243c55e6d255499d1eca901b0cb5e46f612a578b6c82b1d968e55360",
-      "original_size": 359
+      "iv": "kK10btp/+h/ngDrb",
+      "tag": "hKJqNrK9RoDmDSvTDVA+pA==",
+      "original_checksum": "cd6934afd4028606ff7844c145b00591e69787bf373e3fac0f8385dd2e40cbe5",
+      "original_size": 486
     },
     "LICENSE": {
-      "iv": "t6Ck1p9Nxy8UAq/V",
-      "tag": "CS2uT/RrDxRHDFxjVgmU6A==",
+      "iv": "UaccYa/hYI7bCrDA",
+      "tag": "1WlLSd5PFEHNeHgX2DCm3Q==",
       "original_checksum": "3577ef5e65c0dc01bb54c3059f1e76f99c121cdec08bfc95d18bb7715ec9a64d",
       "original_size": 1072
     },
     "README.md": {
-      "iv": "pAfLxKWs4ZAmQLVl",
-      "tag": "QuLo6crHIc4hUEd2lTWKfA==",
-      "original_checksum": "73d761139685eaf1a7c4097c57455bfc3197c40bf01c708578ff756d8979a679",
+      "iv": "qOXojrwyhjkz0ySd",
+      "tag": "GcAG7iFHxesS4m6zIiII2A==",
+      "original_checksum": "1483bca4cee04d224d69ac4043b84f9fc384cd2fd5da22105a6f13d9ebfd583a",
       "original_size": 3265
     },
     "SKILL.md": {
-      "iv": "MzlGb5sLHJi0Me4p",
-      "tag": "Z0hnarwm6G4wOOB19M6Hzw==",
-      "original_checksum": "de178d03ed5f9bad4d4e38a00a4d4d1d2e58f6d751e9f34383545c488a09816f",
-      "original_size": 6936
+      "iv": "RRk7tkdYwRho2uYW",
+      "tag": "DqULt9hJJnBh0KsDRSaMHA==",
+      "original_checksum": "aa8ce047524a1655e590d3af08a44a9a246020872388062542ed3ff2936d435d",
+      "original_size": 7658
     },
     "cases/cases.json": {
-      "iv": "y1QeJfIgJ1twFOSo",
-      "tag": "9ESPMzmE/U9f7DQiwt4wbA==",
+      "iv": "D8kEue/FhTl6FZe6",
+      "tag": "Nv+w57Gv6lMuJjJq2A5l7w==",
       "original_checksum": "69f98625ec5d94a4b372a39b27a565d8601f34bd099f52fd8b2589d673f347ce",
       "original_size": 2223
     },
     "pricing-card.yaml": {
-      "iv": "L7zBPVJIPvRJn5/X",
-      "tag": "jvUXwWpaWVOgo67TA2/QAQ==",
+      "iv": "rRa6y72/oPRr5ra8",
+      "tag": "86JkiFjij9iY5Hgn+QkD2A==",
       "original_checksum": "73b1592cd2d57cd1b6bc80e4f4a8da2736d3ff4c8792fbe451da1067b01b7aad",
       "original_size": 731
     },
     "references/skill-card-standard.md": {
-      "iv": "oZ+dsjWBTjcLyQ9m",
-      "tag": "VWyQmrMB6EN7IMpfw0uplw==",
+      "iv": "tDi5GZ+DV/Yt1B0G",
+      "tag": "Ig9gLua+ZI7t8x0iQ3Y4DQ==",
       "original_checksum": "bf07e7e49921707b89c8e9b562d49669b710839fcba99be1729767a2daba9a26",
       "original_size": 660
     },
     "references/skill-composition.md": {
-      "iv": "VYI1xs0ITs+/bXO7",
-      "tag": "1bvO8aM+uinM1SJtEcuzrw==",
+      "iv": "5Sm++XaoxHB7z0Iy",
+      "tag": "1tojL/cvw1ZjLw7Hp0bEKw==",
       "original_checksum": "99173899fc195da02a031617176cedb29013fa74eaf8a861339d697083d96085",
       "original_size": 2439
     },
     "references/typeless-contract.md": {
-      "iv": "EB0K9BLO+YPBxERm",
-      "tag": "q+m/56kcoEDZa0Rfk+hzsw==",
+      "iv": "2DYTI2m7A0XJ1kDd",
+      "tag": "EqSae3yGAED+exmgLxsaag==",
       "original_checksum": "6af725ad753ad9abe7f55fd1826c5faaae69d9487905280667412d09c5ca00dc",
       "original_size": 3130
     },
     "references/user-profile.md": {
-      "iv": "I0g9UZp1v0wLPOVT",
-      "tag": "VtCrHrA4sOSy8dWGUhpcvA==",
+      "iv": "odgHBCEcNb+q4wae",
+      "tag": "qyHMCmG8B/cX3JiWLoW8YQ==",
       "original_checksum": "763b6558feae12fd90cc59917938b8e9c57a8aa161173e7249da82209362904c",
       "original_size": 2779
     },
     "scripts/profile_store.py": {
-      "iv": "TtJerUhHUekrIbLl",
-      "tag": "MBITFKormB5Z2EW7J6cutw==",
+      "iv": "9lCl5uA5JwEpkESr",
+      "tag": "jPYm9i3AL3QIygptoRGd1Q==",
       "original_checksum": "f1184f9ac4630691b5d8f6af90ed3c4171d1a2bb14769642249e8ea73658fb0e",
       "original_size": 8521
     },
     "scripts/validate_skill.py": {
-      "iv": "h+OsuFRC5QAh97BM",
-      "tag": "i38TJqSjXZyp9MC6iQIa7Q==",
+      "iv": "AyFalQ1LwIRtVtWB",
+      "tag": "QK9apVGJVhk8oicHxVKZrw==",
       "original_checksum": "e0096bb0942da05831d580c41b96d6ca797457cf5b09786d3f1bdfd2753feb6f",
       "original_size": 25181
     },
     "skill-card.md": {
-      "iv": "5rEA9MafZX2zNekT",
-      "tag": "Il4Lo1MKv2mL1gS0N1yxSA==",
+      "iv": "Be4lsSMhKCLeUBZq",
+      "tag": "OGKu97T8h2Bcrt4cRe7VKg==",
       "original_checksum": "9a7f7607ac6552814b41b88e25edd93164b61154aa3852937e85826218510bd9",
       "original_size": 2831
     },
     "skill-card.yaml": {
-      "iv": "jjxUkF7Wm76UNyVf",
-      "tag": "5hcA5WtHd9Oww8Tr6CL03A==",
+      "iv": "h/XmixuoONQs/Pr+",
+      "tag": "XxLux8HrzJXdYKIhO+mnDg==",
       "original_checksum": "2199b45875c56f45004ea1c1ccdf3d5ab467885cf8000a856899b0d9c5356e94",
       "original_size": 5203
     },
     "skill.yaml": {
-      "iv": "swKiAhLp6dX7aZsK",
-      "tag": "lqvdxZ31bNFXv5YYxV/KHQ==",
-      "original_checksum": "5cf9a517c38714097eb7860bd09d7cc918693fcbf1456ee4e650b4982dad47f9",
+      "iv": "CyYC1gqS+0s4ZaMq",
+      "tag": "uqchMUfSUKoHap8K/IN+vw==",
+      "original_checksum": "2e8c300be489c53664aef7e2b953c5389ee5d686a4357524800da6b30fdc191e",
       "original_size": 2131
     }
   }

@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-auto-context
-version: 0.3.1
+version: "0.4.0"
 runtime: skill-runtime/v1
 context:
   profile:

@@ -1,6 +1,6 @@
 # lov-hanzi-lens
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-24324A)
 
 把一个汉字做成有来源、有边界、看得懂也记得住的专业视觉解释。

@@ -1,6 +1,6 @@
 # lov-gh-access
 
-![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 Grant, revoke, and audit collaborator access on **private** GitHub repos — by
 GitHub username **or** email address — with read-only as the safe default.

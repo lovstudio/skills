@@ -1,6 +1,6 @@
 # lov-env-management
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 面向软件开发的本地环境凭据账本：用“平台 → 账号 → Key”管理轮换、有效期与验证状态，安全投影到 zsh 或当前用户会话，并提供不显示秘密的 Dashboard。
 

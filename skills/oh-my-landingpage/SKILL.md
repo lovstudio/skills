@@ -1,7 +1,7 @@
 ---
 name: lov-oh-my-landingpage
-description: "从产品与品牌事实出发，独立推导适合当前产品的定位、叙事与视觉，并完成 Landing Page 实现、响应式和生产回读；适用于创建官网、品牌官网重构、产品价值不清或视觉与产品不匹配。"
-version: 0.3.1
+description: 从产品与品牌事实出发，独立推导适合当前产品的定位、叙事与视觉，并完成 Landing Page 实现、响应式和生产回读；适用于创建官网、品牌官网重构、产品价值不清或视觉与产品不匹配。
+version: 0.4.0
 ---
 
 # Oh My Landing Page（加密 Skill）

@@ -1,16 +1,16 @@
 {
   "skill_name": "visual-clone",
-  "skill_version": "1.0.1",
+  "skill_version": "1.1.0",
   "skill_id": 6,
-  "skill_version_id": 32,
+  "skill_version_id": 49,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     "SKILL.md": {
-      "iv": "Rmz9IdHB6aSMbUc6",
-      "tag": "FN26j6C7ljrzYb500FhBgA==",
-      "original_checksum": "eec041e202147569b1b3da8970922f30d24d2bcf706e335fe0b3fc225857d9e3",
-      "original_size": 6667
+      "iv": "BdOW3AhUM/AzJtlS",
+      "tag": "cod7zEGK472yhS8yFkt9DA==",
+      "original_checksum": "35125d8bf895419297da57095b880132950865190cf9c85cf0066baf101584b3",
+      "original_size": 7389
     }
   }
 }

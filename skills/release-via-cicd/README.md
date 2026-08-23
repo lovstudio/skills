@@ -1,6 +1,6 @@
 # lov-release-via-cicd
 
-![Version](https://img.shields.io/badge/version-8.6.0-CC785C)
+![Version](https://img.shields.io/badge/version-8.7.0-CC785C)
 
 > CI/CD 配置 + 一键发布（幂等）
 

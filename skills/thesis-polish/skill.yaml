@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-thesis-polish
-version: 1.0.1
+version: "1.1.0"
 runtime: skill-runtime/v1
 context:
   profile:

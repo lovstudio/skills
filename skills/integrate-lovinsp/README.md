@@ -1,6 +1,6 @@
 # lov-integrate-lovinsp
 
-![Version](https://img.shields.io/badge/version-1.5.0-CC785C)
+![Version](https://img.shields.io/badge/version-1.6.0-CC785C)
 
 > 幂等集成 lovinsp (click-to-code) 到当前前端项目，支持从 code-inspector 迁移
 

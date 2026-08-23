@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.4.0] - 2026-08-24
+
+### Added
+
+- add the shared feedback-classification and approval-invalidation gate used by every LovStudio Skill
+
 ## 4.3.0
 
 - Add mandatory nearby-Skill composition analysis and a generated atomic-handoff record.

@@ -1,7 +1,8 @@
 ---
 name: lov-wechat-article-operator
-description: "自动读取、编辑、保存并重载验证微信公众号文章；适用于“读取当前公众号文章”“替换封面”“插入这段内容”、\"edit this WeChat article\" 等需要可靠操作现有文章的任务。"
-version: 0.1.0
+description: 自动读取、编辑、保存并重载验证微信公众号文章；适用于“读取当前公众号文章”“替换封面”“插入这段内容”、"edit this WeChat
+  article" 等需要可靠操作现有文章的任务。
+version: 0.2.0
 ---
 
 # wechat-article-operator（加密 Skill）
