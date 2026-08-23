@@ -1,27 +1,25 @@
 ---
-name: lov-clean-mac
+name: sgc-macos-disk-optimizer
 description: >
-  Use when cleaning Mac storage, freeing a target capacity, archiving inactive
-  files, or mentioning legacy `lov-macos-disk-optimizer`; plans guarded cleanup,
-  migration, and capacity verification.
+  This skill should be used for “帮我清出至少 200GB”、“智能清理 Mac 磁盘”、“处理归档卷”、“避免 Finder 清理弹窗” or “optimize my Mac disk space”; it plans guarded cleanup, migration, and capacity verification.
 license: MIT
-compatibility: "macOS; Python 3.8+; rsync; diskutil; direct filesystem access for exact rollback-item purging."
 allowed-tools:
   - Bash
   - Read
   - AskUserQuestion
 metadata:
   author: contributors
-  version: "0.3.0"
+  version: "0.2.0"
   tags:
     - macos
     - disk-cleanup
     - cold-storage
     - storage-optimization
+  compatibility: "macOS; Python 3.8+; rsync; diskutil; direct filesystem access for exact rollback-item purging."
   dependencies: []
 ---
 
-# lov-clean-mac — macOS 磁盘空间智能优化
+# sgc-macos-disk-optimizer — macOS 磁盘空间智能优化
 
 在保护用户资料、活跃项目与原有路径的前提下，将 Mac 的真实可用空间提升到指定目标。先只读盘点与生成计划，再对明确候选执行可回滚清理或冷存储迁移，最终以系统数据卷的真实字节数验收。
 
@@ -56,9 +54,8 @@ metadata:
 
 1. 解析 `TARGET_FREE_GB`，默认按十进制 GB 理解；若用户只说“多留一点”，先读取当前空间并给出带 15 GB 余量的合理目标。
 2. 解析可选 `ARCHIVE_VOLUME`、`PROTECTED_PATHS`、清理策略和是否保持原路径链接。
-3. 关键目标或边界缺失时，使用 `AskUserQuestion` 只询问一个会改变执行计划的聚焦问题。
-4. 把人物、项目背景、目录别名和“为什么暂时不用”等信息视为内部判断线索，默认不写入最终报告。
-5. 任何修改前阅读 [安全与分类](references/safety-and-classification.md)。
+3. 把人物、项目背景、目录别名和“为什么暂时不用”等信息视为内部判断线索，默认不写入最终报告。
+4. 任何修改前阅读 [安全与分类](references/safety-and-classification.md)。
 
 ### Step 1: 建立真实容量基线
 

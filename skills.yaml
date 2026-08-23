@@ -3047,7 +3047,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material increase in renderer-compatibility support.
     card_path: pricing-cards/subtitle-freedom.md
 - name: clean-mac
-  runtime_name: lov-clean-mac
+  runtime_name: sgc-macos-disk-optimizer
   display_name: Clean Mac
   repo: lovstudio/macos-disk-optimizer-skill
   name_zh: 清理 Mac

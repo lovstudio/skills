@@ -1,13 +1,5 @@
 # Changelog
 
-## [0.3.0] - 2026-08-23
-
-### Added
-
-- rename public Skill identifier to lov-clean-mac
-- preserve legacy trigger discovery and existing preference/storage contracts
-- add portable npx installation instructions and frontmatter compatibility validation
-
 ## 0.2.0
 
 - 增加 `list-staged` 与 `purge-staged`，只按显式 `.cleanup` 路径回收本轮回滚项。
