@@ -3,6 +3,13 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.9.0] - 2026-08-24
+
+### Added
+
+- classify task, skill, and global feedback scope
+- store all-Skill feedback policy in the user-level shared instruction layer and invalidate pre-correction approval
+
 ## [0.8.0] - 2026-08-12
 
 ### Added

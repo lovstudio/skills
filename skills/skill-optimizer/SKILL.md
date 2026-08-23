@@ -7,7 +7,7 @@ description: >
   path, then bump semver, update README/SKILL.md/skill.yaml/CHANGELOG.md, and
   verify installed copies and catalog synchronization. Checks frontmatter,
   trigger quality, CLI hygiene, naming, portability, version drift, dirty
-  worktrees, and compatibility contracts. Use when the user asks to optimize,
+  worktrees, shared Skill feedback policy, and compatibility contracts. Use when the user asks to optimize,
   refine, audit, polish, or update a Skill, or mentions "优化 skill", "skill
   审计", "刷一遍 skill", "skill-optimizer", or "update skill changelog".
 license: MIT
@@ -18,7 +18,7 @@ compatibility: >
   locations are reported rather than assumed.
 metadata:
   author: lovstudio
-  version: "0.8.0"
+  version: "0.9.0"
   tags: meta skill-maintenance versioning changelog lint portability sync
 ---
 
@@ -57,6 +57,27 @@ already dirty, review the overlap before editing it and stage only the exact
 files changed by this optimization.
 
 ## Workflow (mandatory)
+
+### Step 0: Classify feedback scope
+
+When the optimization is triggered by a user correction, classify it before choosing targets:
+
+- `task-specific`: applies only to the current artifact or one-off value. Do not edit a Skill.
+- `skill-specific reusable`: applies to future runs of one domain or platform. Optimize the relevant
+  canonical Skill.
+- `global reusable`: changes how every Skill should handle feedback, authorization, sequencing, or
+  handoff. Update the host's active user-level shared instruction artifact once (for example the
+  applicable user-level `AGENTS.md`); do **not** paste the same policy into every domain `SKILL.md`.
+
+If a global policy was previously placed in one domain Skill, move it to the shared layer and remove the
+domain duplicate while preserving any genuinely domain-specific rule learned in the same incident. A
+shared policy file may be outside the Skill repository; report its path and verification state explicitly
+instead of pretending it is part of the Skill package.
+
+Any `reusable` correction invalidates prior terminal approval for the active task. Finish the policy/Skill
+optimization and validation first, then apply the correction to the current artifact, report the new state,
+and stop for the user's next instruction. Do not continue into publishing, submission, or another external
+write using a pre-correction “confirm”, “continue”, or “go ahead”.
 
 ### Step 1: Extract targets and context
 

@@ -1,10 +1,15 @@
 # lov-skill-optimizer
 
-![Version](https://img.shields.io/badge/version-0.8.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.9.0-CC785C)
 
 自动审计并优化 Agent Skill：按当前对话优先修复问题，统一 README、SKILL.md、
 `skill.yaml` 与 CHANGELOG 版本，然后核对规范源、安装副本和 catalog 的同步状态。
 支持独立 Skill 目录、嵌套仓库和已安装副本，不把未发现的位置当成已同步。
+
+用户反馈先分三层：仅当前任务、单个 Skill 可复用、所有 Skill 全局可复用。全局规则只进入
+用户级共享规范（例如生效中的 `AGENTS.md`），不会机械复制到每个 `SKILL.md`；如果之前放错
+了领域 Skill，会迁移到共享层并保留真正的领域规则。任何可复用修改都会使修改前的终稿确认
+失效，完成当前产物更新后停下等待下一步。
 
 ## 安装
 
