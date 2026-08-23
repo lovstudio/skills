@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **85 skills** — 71 Free + 14 Paid.
+> **86 skills** — 72 Free + 14 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -134,7 +134,8 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-pricing`](https://github.com/lovstudio/skill-pricing-skill) | Turn Skill pricing into an explainable decision backed by cost, value, confidence, and channel fit. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-publisher`](https://github.com/lovstudio/skill-publisher-skill) | Price by default, then publish a validated Skill across channels with independently verifiable release states. — requires: `skill-pricing` |
 | **Video Creation** | | |
-| ![Free](https://img.shields.io/badge/Free-green) | [`media-creator`](https://github.com/lovstudio/media-creator-skill) | Turn real screen recordings into publish-ready videos with protected result audio, BGM mix, cover direction, and delivery evidence. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`media-creator`](https://github.com/lovstudio/media-creator-skill) | Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`media-publisher`](https://github.com/lovstudio/media-publisher-skill) | Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`publish-wechat-channels`](https://github.com/lovstudio/publish-wechat-channels-skill) | Publish WeChat Channels videos with preflight, field readback, and status verification. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-chapter`](https://github.com/lovstudio/video-chapter-skill) | Plan chapters, tune the progress bar in React Studio, then export an overlay, final video, or editor package. |
 | **Meta** | | |

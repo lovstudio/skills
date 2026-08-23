@@ -37,5 +37,52 @@
         "publication_time": "18:52"
       }
     }
+  },
+  {
+    "type": "case",
+    "title": "EP.03：先交可编辑字幕的 MKV，再等作者批准",
+    "description": "第三期原本已经导出硬字幕 MP4；作者明确要求第一遍只交可在 Subtitle Edit 中编辑的 MKV，随后又要求校准章节语义，并在每章正文前加入黑幕标题卡。流程重新渲染无旁白硬字幕画面，把 SRT 同时作为默认 SubRip 轨和外置文件交付，并阻断最终封装与发布。",
+    "input": {
+      "items": [
+        "约 13 分钟原始录屏",
+        "已完成的 EDL、音频母带、系列覆盖层和 209 条成片时间轴字幕",
+        "作者偏好：字幕批准前只生成 MKV，不生成平台 MP4"
+      ],
+      "source_profile": {
+        "duration_seconds": 798.144,
+        "resolution": "1660x1080",
+        "frame_rate": 60,
+        "audio": "mono AAC"
+      }
+    },
+    "prompt": "第一遍只生成内嵌 SRT 的 MKV，方便我导入 Subtitle Edit 编辑；字幕确认后再封装最终成片，并根据平台支持决定是否派生 MP4。",
+    "output": {
+      "items": [
+        "review-v0.1.mkv：H.264、AAC 48kHz 双声道、默认中文 SubRip 轨",
+        "review-v0.1.srt：UTF-8，209 条，可修改文字、断句和时间码",
+        "subtitle-review.json：内嵌字幕回抽一致性、流信息与双文件 SHA-256",
+        "六张 1.20 秒黑幕标题卡：背景、录音恢复、现场验证、自定义 Prompt、产品取舍、最终判断",
+        "状态 review-ready / awaiting-review / blocked-on-subtitle-approval"
+      ],
+      "editorial_changes": [
+        "重新渲染无旁白硬字幕画面，避免软硬字幕叠加",
+        "用实际口播与画面证据重命名六幕，并把标题卡吸附到句界/EDL 边界",
+        "标题卡期间暂停人声、延续低声配乐与轻转场声，统一累计后移字幕和全部时间码",
+        "保留片名卡、章节进度条、身份块和关键原声",
+        "把旧硬字幕 MP4 降级为 provisional，不进入发布交接"
+      ],
+      "evidence": {
+        "duration_seconds": 485.871,
+        "frame_count": 29151,
+        "cue_count": 209,
+        "integrated_lufs_i": -16.06,
+        "true_peak_dbfs": -1.8,
+        "chapter_card_count": 6,
+        "chapter_card_duration_seconds": 1.2,
+        "chapter_card_cue_crossings": 0,
+        "review_mkv_sha256": "ec48d5f4513ccfb7bcc7104abe1de00e9f6c630547d7c7c49c4a2aacb9467862",
+        "external_srt_sha256": "7d54fb4ede731eb990ae4e36dd7d002c64fbb8defc60a92d09f0585cda912c02"
+      }
+    }
   }
 ]

@@ -20,7 +20,11 @@ except ImportError:
     raise SystemExit(2)
 
 
-FRONTMATTER_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
+# `compatibility` 放顶层是这一组 Skill 的家族约定，维护工具从顶层读它做可移植性
+# 判定；只写在 metadata 下会被读成空字符串。
+FRONTMATTER_KEYS = {
+    "name", "description", "license", "allowed-tools", "compatibility", "metadata",
+}
 TEXT_SUFFIXES = {".md", ".json", ".yaml", ".yml", ".txt", ".svg", ".py"}
 JUNK_NAMES = {"__pycache__", ".DS_Store"}
 JUNK_SUFFIXES = {".pyc", ".pyo"}

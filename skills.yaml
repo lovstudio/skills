@@ -1894,16 +1894,16 @@ skills:
     card_path: pricing-cards/video-chapter.md
 - name: media-creator
   runtime_name: lov-media-creator
-  updated_at: 2026-08-12T12:21:56.000Z
+  updated_at: 2026-08-23T15:15:00Z
   display_name: Media Creator
   repo: lovstudio/media-creator-skill
   name_zh: 媒体创作工作流
   paid: false
   category: Video Creation
-  version: 0.1.0
-  description: Turn screen recordings, demos, source audio and BGM into publish-ready video with protected result audio, mix/QC gates, cover direction, and delivery evidence.
-  tagline_en: Turn real screen recordings into publish-ready videos with protected result audio, BGM mix, cover direction, and delivery evidence.
-  tagline_zh: 把真实录屏整理成可发布成片，保留成果原声，完成 BGM 混音、封面方向和交付质检。
+  version: 0.8.1
+  description: Turn screen recordings into review-first video deliveries with editable-subtitle MKV, approved platform files, rendered covers for every required slot, protected source audio, and QC evidence.
+  tagline_en: Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence.
+  tagline_zh: 先交可编辑字幕 MKV，再交批准后的平台成片与各槽位真实封面，并保留原声和质检证据。
   pricing:
     model: free_entry
     visibility: public
@@ -1914,18 +1914,56 @@ skills:
     - 0
     delivery_unit_zh: 公开 Skill 源码与当前版本说明
     delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 把真实录屏整理成可发布成片，保留成果原声，完成 BGM 混音、封面方向和交付质检。
-    value_en: Turn real screen recordings into publish-ready videos with protected result audio, BGM mix, cover direction, and delivery evidence.
-    basis_zh: 按一条可回读的视频交付链路定价，重点减少误删原声、等待段过长、编码不兼容和没有发布证据造成的返工。
-    basis_en: Priced around a verifiable video delivery chain that reduces lost result audio, bloated waiting sections, codec issues, and unsupported publish claims.
-    boundary_zh: 覆盖素材扫描、剪辑规划、FFmpeg 渲染、原声与 BGM 混音、封面方向和交付质检；云端渲染、版权素材、账号和代发布按实际条件处理。
-    boundary_en: Covers media inspection, edit planning, FFmpeg rendering, source/BGM mixing, cover direction, and delivery QC; cloud rendering, licensed assets, accounts, and platform operation are separate.
+    value_zh: 先交可编辑字幕 MKV，再交批准后的平台成片与各槽位真实封面，并保留原声和质检证据。
+    value_en: Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence.
+    anchor_zh: 一次长录屏到成片任务保守可省 2–8 小时的剪辑、字幕回灌、封面返工和交付排错。
+    anchor_en: A long-recording workflow can conservatively save 2–8 hours of editing, subtitle rework, cover iteration, and delivery debugging.
+    basis_zh: 能力达到专业工作流水平，但现有 Pricing Card 与 MIT 开源发行明确采用免费入口，先积累更多跨项目证据。
+    basis_en: The workflow reaches a professional level, but its existing Pricing Card and MIT release model explicitly use a free entry while cross-project evidence grows.
+    boundary_zh: 覆盖素材扫描、剪辑规划、字幕审校、FFmpeg 渲染、原声与 BGM 混音、各槽位正式封面和交付质检；云端渲染、版权素材、账号和代发布按实际条件处理。
+    boundary_en: Covers media inspection, edit planning, subtitle review, FFmpeg rendering, source/BGM mixing, rendered covers for every required slot, and delivery QC; cloud rendering, licensed assets, accounts, and platform operation are separate.
     maintenance_zh: 随 FFmpeg、平台编码要求、播放器兼容性和真实使用反馈变化复评。
     maintenance_en: Review when FFmpeg, platform encoding requirements, player compatibility, or real-use feedback changes.
     confidence: case-backed
     review_trigger_zh: 版本变化、连续 10 次真实使用或平台交付规范与支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in platform requirements or support cost.
     card_path: pricing-cards/media-creator.md
+- name: media-publisher
+  runtime_name: lov-media-publisher
+  updated_at: 2026-08-23T15:15:13Z
+  display_name: Media Publisher
+  repo: lovstudio/media-publisher-skill
+  name_zh: 视频发布器
+  paid: false
+  category: Video Creation
+  version: 0.5.3
+  description: Publish videos to WeChat Channels or Bilibili with media preflight, frozen user-edited descriptions, cover gates, final confirmation, and post-submit status readback.
+  tagline_en: Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates.
+  tagline_zh: 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。
+    value_en: Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates.
+    anchor_zh: 一次发布通常可省 20–60 分钟字段填写、封面槽检查、状态确认与重复提交排查，并降低旧草稿覆盖用户终稿的风险。
+    anchor_en: A publish run can typically save 20–60 minutes of field entry, cover-slot checks, status verification, and duplicate-submit diagnosis while reducing final-copy overwrite risk.
+    basis_zh: 由旧免费 Skill 升级且采用 MIT 许可；当前跨平台与长期页面适配证据仍有限，先以免费入口积累稳定性。
+    basis_en: Upgraded from a free MIT Skill; current cross-platform and long-term UI adaptation evidence remains limited, so it stays a free entry while stability evidence grows.
+    boundary_zh: 需要用户已登录的创作者后台和本地视频；账号权限、平台审核、网络可达性、素材版权与最终提交确认按实际条件处理。
+    boundary_en: Requires an already logged-in creator console and local video; account access, platform review, network reachability, media rights, and final submit confirmation follow actual conditions.
+    maintenance_zh: 随视频号与 B 站页面结构、平台规则、浏览器行为和媒体格式变化复评。
+    maintenance_en: Review when WeChat Channels or Bilibili UI, platform rules, browser behavior, or media formats change.
+    confidence: entry
+    review_trigger_zh: 版本变化、累计 10 次跨平台真实发布或平台页面与支持成本明显变化时复评。
+    review_trigger_en: Review after a version change, 10 cross-platform real publishes, or a material change in platform UI or support cost.
+    card_path: pricing-cards/media-publisher.md
 - name: publish-wechat-channels
   runtime_name: lov-publish-wechat-channels
   display_name: WeChat Channels Publisher

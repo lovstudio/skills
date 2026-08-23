@@ -1,6 +1,6 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
-description: "将录屏、演示视频和音频素材整理为可发布成片，保护关键原声，完成 BGM 混音、封面方向、媒体参数检查和交付状态记录。"
+version: "0.8.1"
+description: "将录屏、演示视频和音频素材整理为先审校后发布的成片，第一阶段交付内嵌可编辑 SRT 的 MKV，字幕批准后再生成归档母版与平台文件。"
 owner:
   team: "Media Creator Maintainers"
   contact: "Repository issue tracker"
@@ -13,8 +13,9 @@ use_case:
   scenario: "从长录屏或演示素材中提炼问题、操作证据和最终结果，交付一份可回看的成片。"
   tasks:
     - "扫描视频、音频和字幕流并建立媒体清单"
-    - "按真实信息节点设计剪辑结构与封面方向"
+    - "按真实信息节点设计剪辑结构，并为每个平台槽位生成正式封面图片"
     - "混合原声与 BGM，并完成响度、峰值和解码质检"
+    - "封装可在 Subtitle Edit 中审校的 MKV，并以批准 SRT 生成平台文件"
 deployment:
   geography: global
   environments:
@@ -37,6 +38,12 @@ risks:
     mitigation: "将渲染、上传、发布和回读分开记录，只引用可回读证据。"
   - risk: "BGM 盖住人声、点击反馈或最终播放声音。"
     mitigation: "使用 ducking、淡入淡出和响度门禁，并在成果段让原声优先。"
+  - risk: "把 ASR 初稿字幕烧进第一版，导致校对后只能全片返工，或误把审校版发布。"
+    mitigation: "第一遍只交软字幕 MKV + 外置 SRT；用户批准前阻断最终封装与发布交接。"
+  - risk: "章节标题概括失真，或黑幕标题卡切进一句话并造成音画字幕错位。"
+    mitigation: "用该幕真实内容证据命名，标题卡只落在句界/EDL 边界，并用统一累计偏移重算字幕与全部时间码。"
+  - risk: "只有封面 brief 或生成日志，却把发布交付误报为完成。"
+    mitigation: "每个平台槽位都要求真实 PNG/JPEG，并逐张检查尺寸、安全区、四边条带和实际画面；只有用户批准后才能通过 creative gate。"
 references:
   - title: "Primary Skill instructions"
     path: "SKILL.md"
@@ -46,12 +53,14 @@ references:
     path: "references/audio-mix.md"
 output:
   types:
-    - "publish-ready MP4"
-    - "cover direction or cover asset"
+    - "soft-subtitle review MKV and external SRT"
+    - "approved archival MKV and platform-ready MP4"
+    - "rendered and approved cover image for every required platform slot"
     - "edit manifest and quality reports"
   formats:
+    - "H.264/AAC/SubRip MKV"
     - "H.264/AAC MP4"
-    - "PNG or editable cover brief"
+    - "PNG or JPEG cover images; an optional editable cover brief is planning evidence only"
     - "JSON and Markdown evidence"
   parameters:
     - "aspect ratio"
@@ -59,12 +68,16 @@ output:
     - "frame rate"
     - "audio loudness and true peak"
     - "render, audio, creative, and publish status"
+    - "subtitle approval and delivery-gate status"
+    - "semantic chapter titles and inserted chapter-card timing"
   validation:
     - "FFprobe stream and format inspection"
     - "FFmpeg decode smoke test"
     - "timeline overlap check"
     - "loudness and true-peak report"
     - "manual spot check of protected result segments"
+    - "embedded SubRip extraction and cue-by-cue round-trip validation"
+    - "visual inspection of each rendered cover plus dimensions, safe-zone, and edge-bar checks"
   description: "输出文件与证据报告共同构成交付物；线上发布状态只有在真实回读后才成立。"
 ethical_considerations: "只处理用户提供或有权使用的素材；保留来源和授权信息，不伪造发布证据，不把个人账号、Cookie 或凭据写进 Skill、EDL 或报告。"
 dimensions:

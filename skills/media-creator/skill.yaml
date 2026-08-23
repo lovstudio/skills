@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-media-creator
-version: "0.1.0"
+version: "0.8.1"
 runtime: skill-runtime/v1
 context:
   profile:
@@ -55,6 +55,9 @@ context:
       - path: preferences.media.preserve_result_audio
         required: false
         question: 是否默认保护最终结果段的原声？
+      - path: skills.lov-media-creator.records.subtitle_review_workflow
+        required: false
+        question: 有字幕时是否默认先交内嵌可编辑 SRT 的 MKV，批准后再生成平台文件？
   interaction:
     ask_missing: true
     max_questions: 1

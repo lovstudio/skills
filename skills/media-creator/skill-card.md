@@ -6,7 +6,7 @@ its source.
 
 ## Description
 
-`lov-media-creator` turns screen recordings, demos, source audio and optional BGM into a publish-ready video. It protects the important result audio, keeps waiting UI short, and returns media, audio, creative and publish evidence as separate states.
+`lov-media-creator` turns screen recordings, demos, source audio and optional BGM into a review-first video delivery. It first returns an MKV with an editable SubRip track plus the external SRT; only a user-approved SRT can produce the archival master and platform file. It protects the important result audio, keeps waiting UI short, and returns subtitle, media, audio, creative and publish evidence as separate states.
 
 ## Owner
 
@@ -37,6 +37,8 @@ Global, in a local Agent Skills environment on macOS, Linux or Windows.
 - Waiting UI can dominate the cut. Keep only the state signal needed for comprehension.
 - Unverified speed or publish claims can enter the title or report. Separate rendered, uploaded, published and read-back states.
 - BGM can mask speech or feedback. Use ducking, fades and loudness checks; give the result audio priority.
+- ASR mistakes can be burned into a premature final export. Keep narration subtitles soft in the review MKV and block platform delivery until the user approves the SRT.
+- Generic or misplaced chapter labels can misrepresent the content or cut speech in half. Derive each title from segment evidence, insert chapter cards only at sentence/EDL boundaries, and recompute every downstream timestamp.
 
 ## References
 
@@ -47,11 +49,11 @@ Global, in a local Agent Skills environment on macOS, Linux or Windows.
 
 ## Skill Output
 
-The output is a publish-ready H.264/AAC MP4, a cover direction or asset, an edit manifest, media and audio JSON reports, and a Markdown delivery report. Validation covers streams, dimensions, frame rate, timeline overlap, decodability, loudness, true peak and protected result segments.
+The first output is an H.264/AAC/SubRip review MKV plus an external UTF-8 SRT. After explicit subtitle approval, the output adds an archival MKV, a platform-ready H.264/AAC MP4 or platform CC subtitle, and rendered cover images for every required platform slot. Validation covers subtitle round-trip integrity, streams, dimensions, frame rate, timeline overlap, decodability, loudness, true peak, protected result segments, cover dimensions, safe zones, edge bars, and visual inspection.
 
 ## Skill Version
 
-0.1.0
+0.8.1
 
 ## Ethical Considerations
 

@@ -1,0 +1,47 @@
+schema: skill-manifest/v1
+id: lov-media-publisher
+version: "0.5.3"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-media-publisher
+    persist:
+      enabled: true
+      namespace: skills.lov-media-publisher
+      records_path: skills.lov-media-publisher.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.timezone
+        required: false
+        question: 定时发布要按哪个时区核对页面时间？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 预期发布到哪个账号（逐字核对用）？
+      - path: brand.site
+        required: false
+        question: 如果文案里要带官网地址，请提供它。
+      - path: brand.tone
+        required: false
+        question: 如果已有文案语气或审美关键词，请提供它们。
+  preferences:
+    namespace: lov_media_publisher
+    fields:
+      - path: preferences.default_platform
+        required: false
+        question: 默认发到哪个平台（wechat-channels / bilibili）？
+      - path: user.timezone
+        required: false
+        question: 定时发布要按哪个时区核对页面时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1
