@@ -1489,7 +1489,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/rich-export.md
 - name: professional-infographic
-  updated_at: 2026-08-23T06:28:49Z
+  updated_at: 2026-08-23T06:42:06Z
   skillpay_product_id: P0806000200843450
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQE
   display_name: Professional Infographic
@@ -1500,7 +1500,7 @@ skills:
   price_cny: 0.99
   featured: true
   category: Design
-  version: 0.4.1
+  version: 0.4.2
   description: Create evidence-led professional infographics, including capital journeys, with editable HTML/SVG, high-resolution
     PNG, source linkage, brand attribution, and strict QA.
   tagline_en: Turn dense material or an investment path into one sourced visual argument, from entry and staged exits to the
