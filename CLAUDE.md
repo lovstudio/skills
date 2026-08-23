@@ -17,6 +17,7 @@ This index repo also carries a **read-only mirror** of every free skill under `.
 ├── skills/<name>/                    # Free mirrors or encrypted paid bundles (generated distribution content)
 ├── .claude-plugin/marketplace.json   # Claude Code marketplace manifest (auto-rendered)
 ├── scripts/sync-skills.py            # Mirrors each free repo into ./skills/<name>/ (shallow clone + rsync)
+├── scripts/sync-runtime-names.py      # Syncs runtime_name from mirrored SKILL.md frontmatter
 ├── scripts/render-marketplace.py     # Regenerates marketplace.json from skills.yaml
 ├── scripts/render-readme.py          # Regenerates README skill table from skills.yaml
 ├── CHANGELOG.md                      # Index repo history (not per-skill)
@@ -52,6 +53,7 @@ The native Claude Code marketplace path (`/plugin marketplace add lovstudio/skil
 version: 1
 skills:
   - name: any2pdf                       # skill short name (no prefix)
+    runtime_name: lov-any2pdf           # exact SKILL.md frontmatter name used by installers/runtimes
     repo: lovstudio/any2pdf-skill       # GitHub repo (always lovstudio/{name}-skill)
     paid: false                         # true = private repo + purchase required
     category: "Document Conversion"     # display category
@@ -71,6 +73,9 @@ skills:
 - **`tagline_en` / `tagline_zh`** — shown to humans in README.md / README.zh-CN.md and on
   agentskills.io. Value-oriented ("what the user gets"), NOT implementation details.
   Hand-maintained — CI never overwrites them.
+- **`runtime_name`** — exact `name` from the mirrored `SKILL.md` frontmatter. The
+  catalog slug and runtime identifier are separate contracts; CI synchronizes and
+  validates this field instead of guessing a prefix.
 - **Paid skills**: `tagline_*` must not leak implementation specifics (no library names,
   no auth/token mechanics, no internal endpoints) — they sit in a public index.
 
@@ -78,8 +83,8 @@ skills:
 
 - **`paid` field is only here**, not in individual SKILL.md files. It's business classification, not skill metadata.
 - **Current totals live in `skills.yaml`** — the README count line is auto-rendered, so don't hand-edit it. See `scripts/render-readme.py`.
-- **Naming**: an entry is either a local `skills/<name>/` mirror or an independent GitHub repo `lovstudio/{name}-skill`; no `lovstudio-` prefix in the catalog name.
-- Skill short name (`any2pdf`) is what users invoke via `lov-any2pdf` in Claude Code.
+- **Naming**: an entry is either a local `skills/<name>/` mirror or an independent GitHub repo `lovstudio/{name}-skill`; no runtime prefix belongs in the catalog `name`.
+- Users install with the short catalog name (`any2pdf`); installers and Agents use the explicit `runtime_name` (`lov-any2pdf`).
 
 ## Adding a New Skill
 

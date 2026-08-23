@@ -1,6 +1,7 @@
 version: 1
 skills:
 - name: image-translation-errata
+  runtime_name: lov-image-translation-errata
   display_name: Image Translation Errata
   repo: lovstudio/image-translation-errata-skill
   name_zh: 图片翻译勘误
@@ -40,6 +41,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, material support-cost change, or addition of batch OCR, deterministic rendering, terminology memory, or human review.
     card_path: pricing-cards/image-translation-errata.md
 - name: image-creator
+  runtime_name: lov-image-creator
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Image Studio
   repo: lovstudio/image-creator-skill
@@ -173,6 +175,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/threshold-check.md
 - name: maintain-partners
+  runtime_name: lov-maintain-partners
   updated_at: 2026-04-23T09:03:31.000Z
   display_name: Partners Maintainer
   repo: lovstudio/maintain-partners-skill
@@ -215,6 +218,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/maintain-partners.md
 - name: fill-form
+  runtime_name: lov-fill-form
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Form Filler
   repo: lovstudio/fill-form-skill
@@ -253,6 +257,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/fill-form.md
 - name: fill-web-form
+  runtime_name: lov-fill-web-form
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Web Form Filler
   repo: lovstudio/fill-web-form-skill
@@ -291,6 +296,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/fill-web-form.md
 - name: any2pdf
+  runtime_name: lov-any2pdf
   updated_at: 2026-08-22T07:02:22.000Z
   display_name: Any → PDF
   repo: lovstudio/any2pdf-skill
@@ -332,6 +338,7 @@ skills:
     review_trigger_en: Review after a version change, 10 observed real uses, a channel-rule change, or a material support-cost change.
     card_path: pricing-cards/any2pdf.md
 - name: any2docx
+  runtime_name: lov-any2docx
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Any → Word
   repo: lovstudio/any2docx-skill
@@ -373,6 +380,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/any2docx.md
 - name: any2deck
+  runtime_name: lov-any2deck
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Any → Slides
   repo: lovstudio/any2deck-skill
@@ -415,6 +423,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/any2deck.md
 - name: pdf2png
+  runtime_name: lov-pdf2png
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: PDF → Image
   repo: lovstudio/pdf2png-skill
@@ -453,6 +462,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/pdf2png.md
 - name: png2svg
+  runtime_name: lov-png2svg
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: PNG → SVG
   repo: lovstudio/png2svg-skill
@@ -491,6 +501,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/png2svg.md
 - name: bp
+  runtime_name: lov-bp
   updated_at: 2026-07-23T01:17:05.000Z
   display_name: BP Skill Kit
   repo: lovstudio/bp-skill
@@ -535,6 +546,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/bp.md
 - name: bp-outline
+  runtime_name: lov-bp-outline
   updated_at: 2026-07-23T01:17:05.000Z
   display_name: BP Outline
   repo: lovstudio/bp-skill
@@ -575,6 +587,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/bp-outline.md
 - name: bp-deck
+  runtime_name: lov-bp-deck
   updated_at: 2026-07-23T01:17:05.000Z
   display_name: BP Deck
   repo: lovstudio/bp-skill
@@ -617,6 +630,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/bp-deck.md
 - name: bp-polish
+  runtime_name: lov-bp-polish
   updated_at: 2026-07-23T01:17:05.000Z
   display_name: BP Polish
   repo: lovstudio/bp-skill
@@ -657,6 +671,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/bp-polish.md
 - name: proposal
+  runtime_name: lov-proposal
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Proposal Writer
   repo: lovstudio/proposal-skill
@@ -697,6 +712,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/proposal.md
 - name: solution-architect
+  runtime_name: lov-solution-architect
   updated_at: 2026-05-17T09:28:22.000Z
   display_name: Solution Architect
   repo: lovstudio/solution-architect-skill
@@ -710,6 +726,7 @@ skills:
   tagline_en: Turn a product or technical requirement into a researched, open-source-first implementation plan.
   tagline_zh: 把产品或技术需求转成有调研依据、开源优先的可执行解决方案。
 - name: review-doc
+  runtime_name: lov-review-doc
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Contract Review
   repo: lovstudio/review-doc-skill
@@ -749,6 +766,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/review-doc.md
 - name: contract-review-pro
+  runtime_name: contract-review-pro
   updated_at: 2026-04-22T09:02:29.000Z
   display_name: Contract Review Pro
   repo: lovstudio/contract-review-pro-skill
@@ -791,6 +809,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/contract-review-pro.md
 - name: expense-report
+  runtime_name: lov-expense-report
   updated_at: 2026-04-16T16:28:30.000Z
   display_name: Expense Reporter
   repo: lovstudio/expense-report-skill
@@ -829,6 +848,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/expense-report.md
 - name: event-poster
+  runtime_name: lov-event-poster
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Event Poster
   repo: lovstudio/event-poster-skill
@@ -870,6 +890,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/event-poster.md
 - name: visual-clone
+  runtime_name: lov-visual-clone
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Visual Clone
   repo: lovstudio/visual-clone-skill
@@ -912,6 +933,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/visual-clone.md
 - name: find-logo
+  runtime_name: lov-find-logo
   updated_at: 2026-04-20T21:00:58.000Z
   display_name: Logo Hunter
   repo: lovstudio/find-logo-skill
@@ -953,6 +975,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/find-logo.md
 - name: anti-wechat-ai-check
+  runtime_name: lov-anti-wechat-ai-check
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Humanizer
   repo: lovstudio/anti-wechat-ai-check-skill
@@ -992,6 +1015,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/anti-wechat-ai-check.md
 - name: document-illustrator
+  runtime_name: lov-document-illustrator
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Document Illustrator
   repo: lovstudio/document-illustrator-skill
@@ -1033,6 +1057,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/document-illustrator.md
 - name: deep-research
+  runtime_name: deep-research
   updated_at: 2026-05-21T08:55:07.000Z
   display_name: Deep Research
   repo: lovstudio/deep-research-skill
@@ -1076,6 +1101,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/deep-research.md
 - name: write-professional-book
+  runtime_name: lov-write-professional-book
   updated_at: 2026-04-23T08:10:59.000Z
   display_name: Book Writer
   repo: lovstudio/write-professional-book-skill
@@ -1117,6 +1143,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/write-professional-book.md
 - name: wxmp-cracker
+  runtime_name: lov-wxmp-cracker
   updated_at: 2026-04-25T08:47:58.000Z
   display_name: WeChat Archiver
   repo: lovstudio/wxmp-cracker-skill
@@ -1158,6 +1185,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/wxmp-cracker.md
 - name: event-curator
+  runtime_name: lov-event-curator
   updated_at: 2026-04-21T15:51:56.000Z
   display_name: Event Curator
   repo: lovstudio/event-curator-skill
@@ -1202,6 +1230,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/event-curator.md
 - name: thesis-polish
+  runtime_name: lov-thesis-polish
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Thesis Polish
   repo: lovstudio/thesis-polish-skill
@@ -1241,6 +1270,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/thesis-polish.md
 - name: translation-review
+  runtime_name: lov-translation-review
   updated_at: 2026-04-16T03:50:44.000Z
   display_name: Translation Review
   repo: lovstudio/translation-review-skill
@@ -1282,6 +1312,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/translation-review.md
 - name: style-clone
+  runtime_name: lov-style-clone
   updated_at: 2026-04-28T13:28:45.000Z
   display_name: Style Clone
   repo: lovstudio/style-clone-skill
@@ -1324,6 +1355,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/style-clone.md
 - name: hanzi-lens
+  runtime_name: lov-hanzi-lens
   updated_at: 2026-07-28T13:52:34.000Z
   skillpay_product_id: P0806000200847226
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQo
@@ -1368,6 +1400,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/hanzi-lens.md
 - name: fact-check
+  runtime_name: lov-fact-check
   updated_at: 2026-05-06T16:03:16.000Z
   skillpay_product_id: P0806000200844928
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-s
@@ -1410,6 +1443,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/fact-check.md
 - name: professional-portrait
+  runtime_name: lov-professional-portrait
   updated_at: 2026-07-29T04:48:33.000Z
   skillpay_product_id: P0806000200846060
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQC
@@ -1452,6 +1486,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/professional-portrait.md
 - name: rich-export
+  runtime_name: lov-rich-export
   updated_at: 2026-08-03T16:32:58.000Z
   display_name: Rich Media Export
   repo: lovstudio/rich-export-skill
@@ -1489,6 +1524,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/rich-export.md
 - name: professional-infographic
+  runtime_name: lovstudio:professional-infographic
   updated_at: 2026-08-23T06:42:06Z
   skillpay_product_id: P0806000200843450
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQE
@@ -1537,6 +1573,7 @@ skills:
       cost.
     card_path: pricing-cards/professional-infographic.md
 - name: oh-my-landingpage
+  runtime_name: lov-oh-my-landingpage
   updated_at: 2026-08-23T06:51:01.000Z
   skillpay_product_id: P0806000200858608
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqYNF
@@ -1588,6 +1625,7 @@ skills:
       30 minutes per buyer.
     card_path: pricing-cards/oh-my-landingpage.md
 - name: business-card
+  runtime_name: lov-business-card
   updated_at: 2026-06-20T15:36:19.000Z
   skillpay_product_id: P0806000200847218
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQM
@@ -1629,6 +1667,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/business-card.md
 - name: wechat-article-operator
+  runtime_name: lov-wechat-article-operator
   updated_at: 2026-08-05T04:49:27.000Z
   skillpay_product_id: P0806000200878055
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lqb95
@@ -1679,6 +1718,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/wechat-article-operator.md
 - name: wechat-article-branding
+  runtime_name: lov-wechat-article-branding-skill
   updated_at: 2026-08-05T04:49:27.000Z
   skillpay_product_id: P0806000200883359
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt6XF
@@ -1729,6 +1769,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/wechat-article-branding.md
 - name: academic-translator
+  runtime_name: lov-academic-translator
   updated_at: 2026-08-02T09:46:36.000Z
   skillpay_product_id: P0806000200858607
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqYND
@@ -1809,6 +1850,7 @@ skills:
     review_trigger_en: Review after 10 real paper deliveries, 100 installs, a version change, or a material support-cost change.
     card_path: pricing-cards/paper-translator.md
 - name: video-chapter
+  runtime_name: lov-video-chapter
   updated_at: 2026-07-27T03:54:32.000Z
   skillpay_product_id: P0806000200843460
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsf
@@ -1851,6 +1893,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/video-chapter.md
 - name: media-creator
+  runtime_name: lov-media-creator
   updated_at: 2026-08-12T12:21:56.000Z
   display_name: Media Creator
   repo: lovstudio/media-creator-skill
@@ -1884,6 +1927,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in platform requirements or support cost.
     card_path: pricing-cards/media-creator.md
 - name: publish-wechat-channels
+  runtime_name: lov-publish-wechat-channels
   display_name: WeChat Channels Publisher
   repo: lovstudio/publish-wechat-channels-skill
   name_zh: 视频号发布器
@@ -1917,6 +1961,7 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或平台页面与审核流程明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in the platform UI or review flow.
 - name: mobile-adapt
+  runtime_name: lov-mobile-adapt
   updated_at: 2026-05-09T13:03:22.000Z
   skillpay_product_id: P0806000200843454
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-k
@@ -1961,6 +2006,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/mobile-adapt.md
 - name: repo2docs
+  runtime_name: lov-repo2docs
   updated_at: 2026-06-25T05:12:42.000Z
   skillpay_product_id: P0806000200843456
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsZ
@@ -2006,6 +2052,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/repo2docs.md
 - name: wdb-cli
+  runtime_name: lov-wdb-cli
   updated_at: 2026-08-22T05:05:38.000Z
   skillpay_product_id: P0806000201803813
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt_Qi
@@ -2050,6 +2097,7 @@ skills:
     review_trigger_en: Review at 20 paid users, 100 successful database workflows, version 0.3.0, average support above 30 minutes, or 2027-02-22.
     card_path: pricing-cards/wdb-cli.md
 - name: skill-creator
+  runtime_name: lov-skill-creator
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200846064
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-w
@@ -2088,6 +2136,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-creator.md
 - name: skill-optimizer
+  runtime_name: lov-skill-optimizer
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200846065
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsb
@@ -2126,6 +2175,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-optimizer.md
 - name: auto-context
+  runtime_name: lov-auto-context
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200846061
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP8
@@ -2164,6 +2214,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/auto-context.md
 - name: cc-migrate-session
+  runtime_name: lov-cc-mv
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200847221
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP6
@@ -2203,6 +2254,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/cc-migrate-session.md
 - name: deploy-to-vercel
+  runtime_name: lov-deploy-to-vercel
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200847222
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP2
@@ -2241,6 +2293,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/deploy-to-vercel.md
 - name: finder-action
+  runtime_name: lov-finder-action
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200847223
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP0
@@ -2279,6 +2332,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/finder-action.md
 - name: gh-access
+  runtime_name: lov-gh-access
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200844926
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsh
@@ -2317,6 +2371,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/gh-access.md
 - name: gh-contribute
+  runtime_name: lov-gh-contribute
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200843453
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-m
@@ -2356,6 +2411,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/gh-contribute.md
 - name: gh-tidy
+  runtime_name: lov-gh-tidy
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200846062
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-2
@@ -2394,6 +2450,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/gh-tidy.md
 - name: install-tanstack-query
+  runtime_name: lov-install-tanstack-query
   updated_at: 2026-05-05T17:48:24.000Z
   skillpay_product_id: P0806000200846063
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsV
@@ -2432,6 +2489,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/install-tanstack-query.md
 - name: release-via-cicd
+  runtime_name: lov-release-via-cicd
   updated_at: 2026-05-07T17:58:50.000Z
   skillpay_product_id: P0806000200847225
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-4
@@ -2471,6 +2529,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/release-via-cicd.md
 - name: optimize-tauri-backend
+  runtime_name: lov-optimize-tauri-backend
   updated_at: 2026-05-09T13:01:10.000Z
   skillpay_product_id: P0806000200847224
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsX
@@ -2511,6 +2570,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/optimize-tauri-backend.md
 - name: app-generator
+  runtime_name: lov-app-generator
   updated_at: 2026-05-09T13:01:10.000Z
   skillpay_product_id: P0806000200843451
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP-
@@ -2552,6 +2612,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/app-generator.md
 - name: electron-delta-updater
+  runtime_name: sgc-electron-delta-updater
   updated_at: 2026-08-01T09:37:47.000Z
   skillpay_product_id: P0806000200846070
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsq
@@ -2590,6 +2651,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/electron-delta-updater.md
 - name: electron-app-relaunch
+  runtime_name: sgc-electron-app-relaunch
   updated_at: 2026-08-01T09:37:47.000Z
   skillpay_product_id: P0806000200847229
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqWfZ
@@ -2628,6 +2690,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/electron-app-relaunch.md
 - name: install-ai
+  runtime_name: sgc-install-ai
   updated_at: 2026-08-01T09:37:47.000Z
   skillpay_product_id: P0806000200843464
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqWfb
@@ -2666,6 +2729,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/install-ai.md
 - name: skill-distiller
+  runtime_name: sgc-skill-distiller
   updated_at: 2026-08-03T12:55:05.000Z
   skillpay_product_id: P0806000200866866
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqZJs
@@ -2704,6 +2768,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-distiller.md
 - name: skill-pricing
+  runtime_name: lov-skill-pricing
   updated_at: 2026-08-13T20:01:19.000Z
   repo: lovstudio/skill-pricing-skill
   name_zh: Skill 定价
@@ -2738,6 +2803,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-pricing.md
 - name: media-crawler
+  runtime_name: lov-media-crawler
   updated_at: 2026-08-13T19:46:03.000Z
   repo: lovstudio/media-crawler-skill
   name_zh: 媒体链接下载
@@ -2772,6 +2838,7 @@ skills:
     review_trigger_en: Review after a new platform, a resolution regression, 10 real uses, or a material support-cost change.
     card_path: pricing-cards/media-crawler.md
 - name: skill-publisher
+  runtime_name: lov-skill-publisher
   updated_at: 2026-08-13T19:59:03.000Z
   skillpay_product_id: P0806000200863857
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqavG
@@ -2812,6 +2879,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-publisher.md
 - name: obsidian-reset-cache
+  runtime_name: lov-obsidian-reset-cache
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200843455
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-q
@@ -2850,6 +2918,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/obsidian-reset-cache.md
 - name: project-port
+  runtime_name: lov-project-port
   updated_at: 2026-04-21T06:47:37.000Z
   skillpay_product_id: P0806000200844927
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-o
@@ -2888,6 +2957,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/project-port.md
 - name: clash-tun-doctor
+  runtime_name: lov-clash-tun-doctor
   updated_at: 2026-07-13T03:21:37.000Z
   skillpay_product_id: P0806000200843452
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP4
@@ -2927,6 +2997,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/clash-tun-doctor.md
 - name: subtitle-freedom
+  runtime_name: lov-subtitle-freedom
   skillpay_product_id: P0806000201813011
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LuB_1
   display_name: Subtitle Freedom
@@ -2976,6 +3047,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material increase in renderer-compatibility support.
     card_path: pricing-cards/subtitle-freedom.md
 - name: macos-disk-optimizer
+  runtime_name: sgc-macos-disk-optimizer
   display_name: macOS Disk Optimizer
   repo: lovstudio/macos-disk-optimizer-skill
   name_zh: Mac 磁盘优化
@@ -3011,6 +3083,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/macos-disk-optimizer.md
 - name: media-fetch
+  runtime_name: lov-media-fetch
   display_name: Media Fetch
   repo: lovstudio/media-fetch-skill
   name_zh: 媒体抓取
@@ -3046,6 +3119,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in transport or subtitle-support cost.
     card_path: pricing-cards/media-fetch.md
 - name: china-website-filing
+  runtime_name: lov-china-website-filing
   display_name: China Website Filing
   repo: lovstudio/china-website-filing-skill
   name_zh: 中国网站备案
@@ -3080,6 +3154,7 @@ skills:
     review_trigger_zh: 版本变化、覆盖新的地区或接入商、连续 10 次真实使用，或法规与平台流程明显变化时复评。
     review_trigger_en: Review after a version change, a new region or provider, 10 real uses, or a material regulatory or platform workflow change.
 - name: yoda-automation
+  runtime_name: lov-yoda-automation
   display_name: Yoda Automation
   repo: lovstudio/yoda-automation-skill
   name_zh: Yoda 自动化
@@ -3115,6 +3190,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, a material support-cost change, or adding hosted execution, team approval, or paid messaging.
     card_path: pricing-cards/yoda-automation.md
 - name: ataru-indexing
+  runtime_name: lov-ataru-indexing
   display_name: Ataru Indexing
   repo: lovstudio/ataru-indexing-skill
   name_zh: Ataru 索引
@@ -3149,6 +3225,7 @@ skills:
     review_trigger_zh: Ataru 本体开始按检索能力收费，或语义索引初始化产生真实外部推理成本时复评。
     review_trigger_en: Review if Ataru starts charging for retrieval, or semantic initialization incurs real external inference cost.
 - name: ataru-search
+  runtime_name: lov-ataru-search
   display_name: Ataru Search
   repo: lovstudio/ataru-search-skill
   name_zh: Ataru 检索
@@ -3184,6 +3261,7 @@ skills:
     review_trigger_en: Review when the CLI gains semantic retrieval with real inference cost, or Ataru starts charging for retrieval.
 
 - name: integrate-lovinsp
+  runtime_name: lov-integrate-lovinsp
   display_name: Lovinsp Integration
   repo: lovstudio/integrate-lovinsp-skill
   name_zh: Lovinsp 集成
@@ -3218,6 +3296,7 @@ skills:
     review_trigger_zh: lovinsp 出现破坏性版本变化、支持成本明显上升，或转为按功能收费时复评。
     review_trigger_en: Review when lovinsp has a breaking version change, support cost rises materially, or it starts charging by capability.
 - name: dsh-plugin-creator
+  runtime_name: dsh-plugin-creator
   display_name: DSH Plugin Creator
   repo: lovstudio/dsh-plugin-creator-skill
   name_zh: DSH 插件开发
@@ -3254,6 +3333,7 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
 - name: dsh-plugin-publisher
+  runtime_name: dsh-plugin-publisher
   display_name: DSH Plugin Publisher
   repo: lovstudio/dsh-plugin-publisher-skill
   name_zh: DSH 插件发布
@@ -3290,6 +3370,7 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
 - name: describe-image
+  runtime_name: lov-describe-image
   display_name: Describe Image
   repo: lovstudio/describe-image-skill
   name_zh: 图片描述
@@ -3325,6 +3406,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or when a paid vision backend is added.
     card_path: pricing-cards/describe-image.md
 - name: personal-vocabulary
+  runtime_name: lov-personal-vocabulary
   repo: lovstudio/personal-vocabulary-skill
   updated_at: 2026-08-21T09:45:00.000Z
   paid: false
@@ -3357,6 +3439,7 @@ skills:
     review_trigger_zh: 新增目标 App、字段模型变化或词库规模显著增长时复评。
     review_trigger_en: Review after a new target app, a field-model change, or material vocabulary growth.
 - name: npm-publisher
+  runtime_name: lov-npm-publisher
   updated_at: 2026-08-22T07:14:32.000Z
   display_name: NPM Publisher
   repo: lovstudio/lov-npm-publisher-skill
