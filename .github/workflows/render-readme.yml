@@ -59,6 +59,9 @@ jobs:
           inputs.mirror == 'true'
         run: python3 scripts/sync-skills.py
 
+      - name: Sync runtime Skill names
+        run: python3 scripts/sync-runtime-names.py --write
+
       - name: Render marketplace.json
         run: python3 scripts/render-marketplace.py
 
@@ -70,7 +73,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add -A README.md README.en.md .claude-plugin/marketplace.json skills/
+          git add -A README.md README.en.md .claude-plugin/marketplace.json skills.yaml skills/
           if git diff --cached --quiet; then
             echo "No changes."
             exit 0
