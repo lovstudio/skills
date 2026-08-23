@@ -1,0 +1,32 @@
+[
+  {
+    "id": "create-accepted-case-workflow",
+    "type": "case",
+    "title": "把满意的 Skill 结果沉淀为官网案例",
+    "titleEn": "Turn an accepted Skill result into a website case",
+    "description": "用户提出一个可重复的收尾动作：某个 Skill 的结果获得明确认可后，使用独立 Skill 把真实 Input → Prompt → Output 写入案例，并把公开目标同步到官网。",
+    "descriptionEn": "The user requested a repeatable closeout step that records an explicitly accepted Skill result as truthful evidence and syncs public targets to the official site.",
+    "input": {
+      "items": [
+        "现有 LovStudio Skill Card 与 cases/cases.json 契约",
+        "官网从公开 Skill 仓库读取案例并按 skill-cases 标签缓存的真实链路",
+        "用户明确要求仅在结果不错时收录，并同步官网"
+      ]
+    },
+    "prompt": "创建 skill-add-case：每次调用某个 Skill 后，如果结果不错，就把该 case 增加到使用案例中，并同步到官网。",
+    "output": {
+      "items": [
+        "一个可本地安装的 lov-skill-add-case 单 Skill",
+        "原子写入、隐私检查、重复检测与 SHA-256 证据指纹 CLI",
+        "公开 cases.json 与 LovStudio 详情页双回读验证 CLI",
+        "Creator 上游与 Publisher 下游的明确原子交接"
+      ]
+    },
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-08-23",
+      "method": "Created from the user's direct product request; source validation and live publication are recorded separately in release evidence.",
+      "privacy": "The case contains only the public product request and reusable contracts; no transcript body, credential, or private absolute path is included."
+    }
+  }
+]

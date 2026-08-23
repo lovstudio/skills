@@ -1,0 +1,101 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: >-
+  Convert one explicitly accepted Skill result into a privacy-safe evidence case,
+  update the owning source atomically, and verify public LovStudio synchronization.
+owner:
+  team: "LovStudio Skill contributors"
+  contact: "Source repository maintainers"
+license:
+  name: MIT
+  terms: "Use, modify, and redistribute under the included MIT License."
+  url: "LICENSE"
+use_case:
+  audience: "Skill users, maintainers, and catalog editors"
+  scenario: "A completed Skill result has explicit user approval and should become public, reviewable evidence."
+  tasks:
+    - "Qualify the exact accepted result and redact private data."
+    - "Append one deduplicated case to the owning Skill."
+    - "Verify source publication and the live LovStudio detail page when applicable."
+deployment:
+  geography: global
+  environments:
+    - "Local agent workspace with access to the target Skill source"
+    - "GitHub and LovStudio network access for optional public synchronization"
+requirements:
+  credentials: "None for local use; existing repository and LovStudio revalidation credentials for public sync."
+  dependencies: []
+  runtime:
+    - "Python 3.10 or newer"
+    - "PyYAML for generated source validation"
+risks:
+  - risk: "A merely successful command could be misrepresented as a user-approved case."
+    mitigation: "Require explicit acceptance tied to the exact result before any mutation."
+  - risk: "A public case could leak secrets, private paths, transcript content, or customer data."
+    mitigation: "Fail on high-risk patterns, require a privacy note, inspect the final diff, and publish only approved evidence."
+  - risk: "A push or cache response could be mislabeled as a live website update."
+    mitigation: "Verify both public raw JSON fingerprint and HTTP 200 detail-page marker before reporting live-verified."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Case contract"
+    path: "references/case-contract.md"
+  - title: "Composition analysis"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "validated Skill case record"
+    - "public synchronization evidence"
+  formats:
+    - "JSON"
+    - "plain-text status report"
+  parameters:
+    - "target Skill source"
+    - "accepted case JSON object"
+    - "optional public cases and detail-page URLs"
+  validation:
+    - "explicit user-confirmed evidence"
+    - "atomic append with duplicate ID and fingerprint rejection"
+    - "target Skill source validation"
+    - "public JSON fingerprint and detail-page marker readback"
+  description: "One truthful case plus exact local, pushed, and live-verification states."
+ethical_considerations: >-
+  The workflow minimizes public data, requires user acceptance, rejects obvious
+  credentials and private paths, and does not manufacture testimonials, metrics,
+  artifacts, or publication status.
+dimensions:
+  - id: evidence-integrity
+    label: "Evidence integrity"
+    description: "Ties a real input, minimum prompt, real output, verification method, and explicit acceptance to one case."
+    evidence: "The first case records the direct request and the concrete source and verification helpers created from it."
+    score: "source-verified"
+  - id: privacy
+    label: "Publication privacy"
+    description: "Prevents obvious secrets and private absolute paths from entering public case data."
+    evidence: "The deterministic helper scans canonical case JSON and validates all relative case assets inside the target root."
+    score: "source-verified"
+  - id: mutation-safety
+    label: "Mutation safety"
+    description: "Preserves valid existing cases and rejects duplicates before an atomic replacement."
+    evidence: "Dry-run and write modes share validation, content fingerprints, duplicate gates, and atomic os.replace output."
+    score: "source-verified"
+  - id: live-truthfulness
+    label: "Live-state truthfulness"
+    description: "Separates local, pushed, and live-verified states."
+    evidence: "The public verifier compares canonical case SHA-256 and checks the HTTP 200 detail page for the expected marker."
+    score: "source-verified"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "A small evidence utility improves the credibility of the wider public Skill catalog."
+  boundary: "Includes case maintenance and verification; excludes unauthorized repository or catalog creation."
+  review_trigger: "Revisit if the public case schema or LovStudio synchronization contract changes."
+  confidence: internal
+distribution:
+  paid:
+    - "workbuddy: not planned"
+    - "skillpay: not planned"
+  free:
+    - "github: pending initial publication"
+    - "lovstudio: pending initial publication"

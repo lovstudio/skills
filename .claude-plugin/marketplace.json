@@ -167,10 +167,11 @@
     {
       "name": "meta",
       "source": "./",
-      "description": "Meta — 2 free skills bundled together.",
+      "description": "Meta — 3 free skills bundled together.",
       "category": "Meta",
       "skills": [
         "./skills/skill-creator",
+        "./skills/skill-add-case",
         "./skills/skill-optimizer"
       ],
       "strict": false

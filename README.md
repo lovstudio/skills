@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **84 个技能** — 70 个免费 + 14 个付费。
+> **85 个技能** — 71 个免费 + 14 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -137,6 +137,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`publish-wechat-channels`](https://github.com/lovstudio/publish-wechat-channels-skill) | [视频号发布器](https://github.com/lovstudio/publish-wechat-channels-skill) | 通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-chapter`](https://github.com/lovstudio/video-chapter-skill) | [视频章节工作台](https://github.com/lovstudio/video-chapter-skill) | 从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。 |
 | **Meta** | | | |
+| ![Free](https://img.shields.io/badge/Free-green) | [`skill-add-case`](https://github.com/lovstudio/skill-add-case-skill) | [Skill 案例收录](https://github.com/lovstudio/skill-add-case-skill) | 把明确认可的 Skill 结果沉淀为真实案例，并回读公开源与 LovStudio 详情页。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) | [技能脚手架](https://github.com/lovstudio/skill-creator-skill) | 一条命令生成独立版本仓库，并通过 Release 自动同步到聚合分发仓库。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-optimizer`](https://github.com/lovstudio/skill-optimizer-skill) | [技能优化器](https://github.com/lovstudio/skill-optimizer-skill) | 一键体检并修复现有技能，自动升版本号并追加 CHANGELOG。 |
 <!-- SKILLS:END -->

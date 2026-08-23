@@ -2135,6 +2135,41 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-creator.md
+- name: skill-add-case
+  runtime_name: lov-skill-add-case
+  updated_at: 2026-08-23T14:01:00.000Z
+  repo: lovstudio/skill-add-case-skill
+  name_zh: Skill 案例收录
+  paid: false
+  category: Meta
+  version: 0.1.0
+  description: Turn an explicitly accepted Skill result into a privacy-safe evidence case, update the owning source atomically, and verify the public LovStudio page.
+  tagline_en: Record an accepted Skill result as truthful evidence, then verify its public source and LovStudio detail page.
+  tagline_zh: 把明确认可的 Skill 结果沉淀为真实案例，并回读公开源与 LovStudio 详情页。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、案例写入工具与官网双回读验证工具
+    delivery_unit_en: Public Skill source, case mutation helper, and website readback verifier
+    value_zh: 用明确验收、隐私检查、原子写入、重复检测与公开回读替代临时手改和口头上线结论。
+    value_en: Replace ad-hoc edits and verbal launch claims with acceptance, privacy, atomic mutation, duplicate checks, and public readback.
+    anchor_zh: 单次通常可减少约 15 至 45 分钟的案例整理与核验，并降低泄露私有信息或误报上线的风险。
+    anchor_en: A run can save roughly 15 to 45 minutes of case editing and verification while reducing privacy leaks and false launch claims.
+    basis_zh: 当前作为提高整个公开 Skill 目录证据密度的免费基础能力；开发成本不代表用户售价为零。
+    basis_en: Free catalog infrastructure builds evidence density across public Skills; the zero price does not imply zero development cost.
+    boundary_zh: 只收录与当前输出绑定的明确认可；未授权时不创建公开仓库、目录条目或付费渠道。
+    boundary_en: Requires explicit acceptance tied to the current output and does not create public repositories, listings, or paid channels without authorization.
+    maintenance_zh: 随案例 schema、GitHub 源、目录字段、缓存标签和官网详情页契约变化复评。
+    maintenance_en: Review when the case schema, GitHub source, catalog fields, cache tags, or detail-page contract changes.
+    confidence: medium-low
+    review_trigger_zh: 完成 10 次官网双回读案例、相关契约变化或支持成本显著增加时复评。
+    review_trigger_en: Review after 10 live-verified cases, a related contract change, or a material support-cost increase.
+    card_path: pricing-cards/skill-add-case.md
 - name: skill-optimizer
   runtime_name: lov-skill-optimizer
   updated_at: 2026-04-21T06:47:37.000Z
