@@ -1,0 +1,50 @@
+schema: skill-manifest/v1
+id: lov-env-management
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - workspace
+      - preferences
+      - skills.lov-env-management
+    persist:
+      enabled: true
+      namespace: skills.lov-env-management
+      records_path: skills.lov-env-management.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言展示环境管理结果？
+      - path: user.timezone
+        required: false
+        question: Key 的日期和审计结果需要使用哪个时区？
+      - path: skills.lov-env-management.profile.default_backend
+        required: false
+        question: 是否有固定的秘密存储后端偏好？
+      - path: skills.lov-env-management.profile.warning_days
+        required: false
+        question: Key 到期前多少天开始预警？
+      - path: skills.lov-env-management.profile.shell_rc
+        required: false
+        question: 需要投影到哪个 zsh 启动文件？
+      - path: skills.lov-env-management.profile.dashboard_open
+        required: false
+        question: 启动 Dashboard 时是否默认打开浏览器？
+  preferences:
+    namespace: lov_env_management
+    fields:
+      - path: preferences.env_management.default_backend
+        required: false
+        question: 环境凭据默认使用哪个安全后端？
+      - path: preferences.env_management.warning_days
+        required: false
+        question: Key 到期预警天数是多少？
+  interaction:
+    ask_missing: true
+    max_questions: 1

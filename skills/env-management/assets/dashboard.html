@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENV Ledger</title>
+<style>
+:root {
+  --paper: #efe9db;
+  --paper-2: #e2dbc9;
+  --ink: #20231f;
+  --muted: #6b6d62;
+  --line: #b8b09e;
+  --signal: #df4f2f;
+  --green: #19715f;
+  --yellow: #a26b14;
+  --red: #a6352b;
+  --shadow: rgba(32, 35, 31, .14);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(32,35,31,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32,35,31,.025) 1px, transparent 1px),
+    var(--paper);
+  background-size: 24px 24px;
+  font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+}
+button, input, select { font: inherit; }
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid rgba(223, 79, 47, .35);
+  outline-offset: 2px;
+}
+.shell { min-height: 100vh; padding: 28px clamp(18px, 4vw, 60px) 64px; }
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  border-bottom: 4px solid var(--ink);
+  padding-bottom: 18px;
+}
+.eyebrow, label, .meta, th {
+  font-family: "SFMono-Regular", "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+}
+.eyebrow { color: var(--signal); font-size: 12px; font-weight: 800; }
+h1 {
+  margin: 6px 0 0;
+  font-family: "Iowan Old Style", Baskerville, serif;
+  font-size: clamp(44px, 8vw, 88px);
+  font-weight: 700;
+  line-height: .84;
+  letter-spacing: -.055em;
+}
+.lock-note { max-width: 330px; text-align: right; color: var(--muted); line-height: 1.45; }
+.lock-note strong { display: block; color: var(--ink); }
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--ink);
+}
+.stat { padding: 22px 18px; border-right: 1px solid var(--line); }
+.stat:last-child { border-right: 0; }
+.stat b { display: block; font-family: "Iowan Old Style", Baskerville, serif; font-size: 40px; }
+.stat span { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+.controls {
+  display: grid;
+  grid-template-columns: 1.3fr repeat(3, minmax(150px, .6fr));
+  gap: 12px;
+  padding: 18px 0;
+}
+label { display: grid; gap: 7px; font-size: 10px; font-weight: 800; }
+input, select {
+  min-height: 42px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: rgba(255,255,255,.32);
+  color: var(--ink);
+  padding: 9px 11px;
+}
+.ledger { border: 1px solid var(--ink); box-shadow: 8px 8px 0 var(--shadow); overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 960px; }
+th { text-align: left; font-size: 10px; background: var(--ink); color: var(--paper); padding: 12px; }
+td { padding: 15px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+tr:first-child td { border-top: 0; }
+tr:hover td { background: rgba(255,255,255,.26); }
+.locator { font-family: "SFMono-Regular", monospace; font-size: 12px; font-weight: 700; }
+.meta { margin-top: 6px; color: var(--muted); font-size: 9px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid currentColor;
+  padding: 4px 7px;
+  font-family: "SFMono-Regular", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.badge:before { content: ""; width: 7px; height: 7px; background: currentColor; border-radius: 50%; }
+.good { color: var(--green); }
+.warn { color: var(--yellow); }
+.bad { color: var(--red); }
+.neutral { color: var(--muted); }
+.binding { display: inline-block; border-bottom: 2px solid var(--signal); margin: 0 8px 4px 0; font-size: 11px; }
+.desks { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
+.desk { border-top: 4px solid var(--ink); padding-top: 15px; }
+.desk h2 { font-family: "Iowan Old Style", Baskerville, serif; font-size: 29px; margin: 0 0 4px; }
+.desk p { color: var(--muted); margin: 0 0 16px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.full { grid-column: 1 / -1; }
+button {
+  min-height: 44px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 800;
+}
+button:hover { background: var(--signal); border-color: var(--signal); }
+button:disabled { opacity: .55; cursor: wait; }
+.notice { min-height: 24px; margin-top: 14px; color: var(--green); font-weight: 700; }
+.footer { margin-top: 34px; display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
+@media (max-width: 850px) {
+  .masthead { grid-template-columns: 1fr; gap: 18px; }
+  .lock-note { text-align: left; }
+  .summary { grid-template-columns: 1fr 1fr; }
+  .stat:nth-child(2) { border-right: 0; }
+  .controls { grid-template-columns: 1fr 1fr; }
+  .desks { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .shell { padding-inline: 14px; }
+  .controls, .form-grid { grid-template-columns: 1fr; }
+  .full { grid-column: auto; }
+  .footer { display: block; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .masthead, .summary, .ledger, .desks { animation: rise .45s both; }
+  .summary { animation-delay: .05s; }
+  .ledger { animation-delay: .1s; }
+  .desks { animation-delay: .15s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="masthead">
+    <div><div class="eyebrow">Local credential operations</div><h1>ENV Ledger</h1></div>
+    <div class="lock-note"><strong>Secrets stay off the glass.</strong>Only metadata, validity evidence and bindings enter this page. Add or resolve Keys in the terminal.</div>
+  </header>
+  <section class="summary" aria-label="Summary">
+    <div class="stat"><b id="sum-keys">0</b><span>Keys recorded</span></div>
+    <div class="stat"><b id="sum-bindings">0</b><span>Active bindings</span></div>
+    <div class="stat"><b id="sum-expiring">0</b><span>Expiring soon</span></div>
+    <div class="stat"><b id="sum-invalid">0</b><span>Needs attention</span></div>
+  </section>
+  <section class="controls" aria-label="Ledger filters">
+    <label>Search<input id="search" type="search" placeholder="platform / account / variable"></label>
+    <label>Platform<select id="filter-platform"><option value="">All platforms</option></select></label>
+    <label>Account<select id="filter-account"><option value="">All accounts</option></select></label>
+    <label>Health<select id="filter-health"><option value="">All health</option><option>active</option><option>standby</option><option>expiring</option><option>invalid</option><option>expired</option><option>disabled</option><option>revoked</option></select></label>
+  </section>
+  <section class="ledger" aria-label="Key ledger">
+    <table><thead><tr><th>Locator</th><th>Variable</th><th>Health</th><th>Expiry</th><th>Validation</th><th>Bindings</th></tr></thead><tbody id="rows"></tbody></table>
+  </section>
+  <section class="desks">
+    <form class="desk" id="bind-form">
+      <h2>Binding desk</h2><p>Select the only Key projected to one target variable.</p>
+      <div class="form-grid">
+        <label>Target<select name="target"><option>shell</option><option>system</option></select></label>
+        <label>Variable<input name="env_var" required pattern="[A-Za-z_][A-Za-z0-9_]*"></label>
+        <label class="full">Key locator<select name="locator" required></select></label>
+        <button class="full" type="submit">Switch binding</button>
+      </div>
+    </form>
+    <form class="desk" id="status-form">
+      <h2>Status desk</h2><p>Update non-secret administrative or validation evidence.</p>
+      <div class="form-grid">
+        <label class="full">Key locator<select name="locator" required></select></label>
+        <label>Administrative<select name="status"><option value="">No change</option><option>active</option><option>standby</option><option>disabled</option><option>revoked</option></select></label>
+        <label>Validation<select name="validation"><option value="">No change</option><option>valid</option><option>invalid</option><option>unknown</option><option>error</option></select></label>
+        <button class="full" type="submit">Record status</button>
+      </div>
+    </form>
+  </section>
+  <div id="notice" class="notice" aria-live="polite"></div>
+  <footer class="footer"><span>Loopback only · metadata only · no reveal action</span><span id="revision"></span></footer>
+</main>
+<script>
+"use strict";
+const TOKEN = __TOKEN_JSON__;
+let state = {items: [], summary: {}, platforms: [], accounts: []};
+const byId = function(id) { return document.getElementById(id); };
+const esc = function(value) {
+  return String(value == null ? "" : value).replace(/[&<>"']/g, function(ch) {
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch];
+  });
+};
+const badgeClass = function(health) {
+  if (health === "active") return "good";
+  if (health === "expiring" || health === "standby" || health === "not-yet-valid") return "warn";
+  if (health === "invalid" || health === "expired" || health === "revoked" || health === "disabled") return "bad";
+  return "neutral";
+};
+async function api(path, options) {
+  const init = Object.assign({headers: {"X-Lov-Token": TOKEN}}, options || {});
+  if (init.body) init.headers["Content-Type"] = "application/json";
+  const response = await fetch(path, init);
+  const payload = await response.json();
+  if (!response.ok) throw new Error(payload.message || "Request failed");
+  return payload;
+}
+function fillSelect(select, values, firstLabel) {
+  const current = select.value;
+  select.innerHTML = '<option value="">' + esc(firstLabel) + "</option>" +
+    values.map(function(value) {
+      return '<option value="' + esc(value) + '">' + esc(value) + "</option>";
+    }).join("");
+  select.value = values.includes(current) ? current : "";
+}
+function render() {
+  byId("sum-keys").textContent = state.summary.keys || 0;
+  byId("sum-bindings").textContent = state.summary.bindings || 0;
+  byId("sum-expiring").textContent = state.summary.expiring || 0;
+  byId("sum-invalid").textContent = state.summary.invalid || 0;
+  byId("revision").textContent = "Registry revision " + state.revision;
+  fillSelect(byId("filter-platform"), state.platforms, "All platforms");
+  fillSelect(byId("filter-account"), state.accounts, "All accounts");
+  const query = byId("search").value.toLowerCase();
+  const platform = byId("filter-platform").value;
+  const account = byId("filter-account").value;
+  const health = byId("filter-health").value;
+  const items = state.items.filter(function(item) {
+    const path = item.locator.split("/");
+    const text = (item.locator + " " + item.env_var + " " + item.key_label).toLowerCase();
+    return (!query || text.includes(query)) &&
+      (!platform || path[0] === platform) &&
+      (!account || path.slice(0, 2).join("/") === account) &&
+      (!health || item.health === health);
+  });
+  byId("rows").innerHTML = items.length ? items.map(function(item) {
+    const validation = item.validation || {};
+    const validationText = validation.result +
+      (validation.age_days == null ? " · never" : " · " + validation.age_days + "d");
+    const bindings = item.bindings.length ? item.bindings.map(function(value) {
+      return '<span class="binding">' + esc(value) + "</span>";
+    }).join("") : '<span class="meta">not bound</span>';
+    return "<tr><td><div class=\"locator\">" + esc(item.locator) +
+      "</div><div class=\"meta\">" + esc(item.platform_label) + " / " +
+      esc(item.account_label) + " · " + esc(item.secret_backend) +
+      "</div></td><td><span class=\"locator\">" + esc(item.env_var) +
+      "</span></td><td><span class=\"badge " + badgeClass(item.health) + "\">" +
+      esc(item.health) + "</span></td><td>" +
+      esc(item.expires_at ? item.expires_at.slice(0, 10) : "no expiry") +
+      "</td><td>" + esc(validationText) + "</td><td>" + bindings + "</td></tr>";
+  }).join("") : '<tr><td colspan="6">No records match these filters.</td></tr>';
+  const locatorOptions = state.items.map(function(item) {
+    return '<option value="' + esc(item.locator) + '">' +
+      esc(item.locator + " · " + item.health) + "</option>";
+  }).join("");
+  document.querySelectorAll('select[name="locator"]').forEach(function(select) {
+    const current = select.value;
+    select.innerHTML = locatorOptions;
+    if (Array.from(select.options).some(function(option) {
+      return option.value === current;
+    })) select.value = current;
+  });
+}
+async function refresh() {
+  state = await api("/api/state");
+  render();
+}
+["search", "filter-platform", "filter-account", "filter-health"].forEach(function(id) {
+  byId(id).addEventListener("input", render);
+});
+byId("bind-form").addEventListener("submit", async function(event) {
+  event.preventDefault();
+  const button = event.currentTarget.querySelector("button");
+  button.disabled = true;
+  try {
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    await api("/api/bind", {method: "POST", body: JSON.stringify(data)});
+    byId("notice").textContent = "Binding switched without exposing the Key.";
+    await refresh();
+  } catch (error) {
+    byId("notice").textContent = error.message;
+  } finally {
+    button.disabled = false;
+  }
+});
+byId("status-form").addEventListener("submit", async function(event) {
+  event.preventDefault();
+  const button = event.currentTarget.querySelector("button");
+  button.disabled = true;
+  try {
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    await api("/api/status", {method: "POST", body: JSON.stringify(data)});
+    byId("notice").textContent = "Status evidence recorded.";
+    await refresh();
+  } catch (error) {
+    byId("notice").textContent = error.message;
+  } finally {
+    button.disabled = false;
+  }
+});
+refresh().catch(function(error) {
+  byId("notice").textContent = error.message;
+});
+</script>
+</body>
+</html>

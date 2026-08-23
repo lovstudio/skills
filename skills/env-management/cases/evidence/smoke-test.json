@@ -1,0 +1,35 @@
+{
+  "schema": "lovstudio/skill-case-evidence/v1",
+  "case_id": "multi-account-rotation-local-smoke",
+  "verified_at": "2026-08-23",
+  "environment": {
+    "scope": "isolated temporary directories",
+    "credentials": "three synthetic non-production strings",
+    "real_user_files_touched": false,
+    "real_system_environment_changed": false
+  },
+  "command": "python3 -m unittest discover -s tests -v",
+  "result": {
+    "status": "passed",
+    "tests": 6,
+    "failures": 0,
+    "warnings": 0
+  },
+  "verified_behaviors": [
+    "Two accounts and three Key records coexist under one platform.",
+    "A duplicate Key ID is rejected before secret replacement and the original fingerprint remains unchanged.",
+    "One shell binding rotates from the original Key to the replacement without deleting either record.",
+    "Expired Key binding is rejected by default.",
+    "Guarded local HTTP probe records valid evidence without printing the Key.",
+    "System target is preview-only unless explicit risk acknowledgement and apply flags are present.",
+    "Generated zsh projection is mode 0600, preserves existing rc content, and keeps one idempotent source block.",
+    "A clean zsh process receives the selected variable without test output revealing its value.",
+    "Dashboard state reports an expiring Key while HTML and JSON exclude the synthetic secret and secret reference fields.",
+    "Documented Chinese and English activation phrases and adjacent non-trigger boundaries are present."
+  ],
+  "evidence_files": [
+    "tests/test_env_manager.py",
+    "scripts/env_manager.py",
+    "assets/dashboard.html"
+  ]
+}

@@ -1,5 +1,44 @@
 version: 1
 skills:
+- name: env-management
+  runtime_name: lov-env-management
+  display_name: Environment Ledger
+  repo: lovstudio/env-management-skill
+  name_zh: 环境凭据账本
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  updated_at: 2026-08-23T16:35:05Z
+  description: "Manage multiple platforms, accounts, and rotating API Keys with lifecycle evidence, guarded zsh or user-session projection, audits, and a redacted local Dashboard."
+  tagline_en: Track every account and rotating Key, select one binding per environment target, and keep secrets off the Dashboard.
+  tagline_zh: 用平台、账号与 Key 账本管理轮换和有效期，为每个环境目标只选择一个生效 Key，并保持 Dashboard 全程脱敏。
+  related:
+  - install-ai
+  - clash-tun-doctor
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_cny: 0.0
+    launch_price_cny: 0
+    price_range_cny:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 按“平台 → 账号 → Key”管理轮换、有效期与验证状态，并将唯一选中的 Key 安全投影到 zsh 或当前用户会话。
+    value_en: Manage rotation, expiry, and validation by platform, account, and Key, then safely project one selected Key into zsh or the current user session.
+    anchor_zh: 合格开发者可保守节省约 2–5 小时的配置与轮换时间，并降低账号混用、Key 过期和意外泄露风险。
+    anchor_en: A qualified developer can conservatively save about 2–5 hours of setup and rotation work while reducing account mix-ups, expired Keys, and accidental disclosure.
+    basis_zh: 六维加权得分为 3.59/5，但完整本地源码易复制，当前证据以 7 项合成凭据测试为主；官网先作为免费信任入口。
+    basis_en: The six-dimension weighted score is 3.59/5, but the complete local source is easy to copy and current evidence is mainly seven synthetic-credential tests, so the website starts as a free trust entry.
+    boundary_zh: 包含本地 registry、Keychain/文件 vault/1Password/现有环境变量来源、HTTPS probe、binding、环境投影、审计和脱敏 Dashboard；不含托管团队 vault、自动定时验证、云 Secret 发布或企业合规报表。
+    boundary_en: Includes a local registry, Keychain/file-vault/1Password/existing-environment sources, HTTPS probes, bindings, environment projection, audits, and a redacted Dashboard; excludes hosted team vaults, scheduled validation, cloud-secret publication, and enterprise compliance reports.
+    maintenance_zh: 随操作系统凭据后端、平台验证契约和真实使用反馈复评。
+    maintenance_en: Review against operating-system credential backends, provider validation contracts, and real usage feedback.
+    confidence: case-backed
+    review_trigger_zh: 达到 20 个活跃外部安装和 3 个非合成案例，或加入团队同步、定时验证、企业策略、托管服务或合规报表时复评。
+    review_trigger_en: Review after 20 active external installs and three non-synthetic cases, or when team sync, scheduled validation, enterprise policy, hosted service, or compliance reporting is added.
+    card_path: pricing-cards/env-management.md
 - name: image-translation-errata
   runtime_name: lov-image-translation-errata
   display_name: Image Translation Errata
@@ -2775,6 +2814,8 @@ skills:
   description: Add production-ready AI features with Agent Client, MaaS routing, model intent, and optional UI.
   tagline_en: Add an App AI feature with Agent Client, MaaS routing, model intent, and optional UI.
   tagline_zh: 为 App 初始化可上线的 AI 功能，支持 Agent Client、MaaS、模型偏好和配套 UI。
+  related:
+  - env-management
   pricing:
     model: free_entry
     visibility: public
@@ -3043,6 +3084,8 @@ skills:
     runtime state, proxy timeouts, or unusable IPv6 paths.
   tagline_en: Diagnose Clash TUN failures from runtime evidence, apply reversible fixes, and verify the real application path.
   tagline_zh: 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。
+  related:
+  - env-management
   pricing:
     model: free_entry
     visibility: public

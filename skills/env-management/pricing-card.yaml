@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Reduces credential mix-ups, accidental disclosure, expired-Key failures, and manual account switching in local development."
+basis: "The Skill is free because credential hygiene is foundational developer safety, runs locally, and has no hosted service cost."
+boundary: "Includes local hierarchy, secret-source adapters, lifecycle evidence, guarded HTTPS probe, target binding, zsh and user-session projection, audit, and Dashboard. Excludes hosted team vaults, automatic schedulers, and remote platform Secret deployment."
+review_trigger: "Revisit pricing only if a hosted team control plane, enterprise policy enforcement, managed validation schedules, or retained compliance reports are added."
+confidence: internal

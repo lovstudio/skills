@@ -1,0 +1,22 @@
+[
+  {
+    "type": "case",
+    "title": "Manage multiple accounts and rotating API Keys from one local ledger",
+    "description": "A software developer requested a reusable Skill that can manage common development environment variables, including several accounts on one platform, several Keys per account, per-Key validity maintenance, zsh and system targets, and a Dashboard.",
+    "input": {
+      "items": [
+        "The original request for lov-env-management",
+        "An isolated temporary storage directory",
+        "Three dummy non-production secret strings used only by automated tests"
+      ]
+    },
+    "prompt": "Create lov-env-management for common software-development environment management, especially multiple accounts per platform, multiple Keys per account, validity maintenance, zsh and system environment targets, and a Dashboard.",
+    "output": {
+      "items": [
+        "scripts/env_manager.py with secure storage adapters, lifecycle, binding, projection, audit, and Dashboard",
+        "cases/evidence/smoke-test.json with the local verification result",
+        "A validated local installation named lov-env-management"
+      ]
+    }
+  }
+]

@@ -1,0 +1,107 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "A local developer credential ledger that manages multiple platforms, accounts, and rotating API Keys, then safely selects and projects one Key per environment target without displaying secret values."
+owner:
+  team: "LovStudio Skills contributors"
+  contact: "Source repository maintainers"
+license:
+  name: MIT
+  terms: "The instructions and source are reusable under MIT; users remain responsible for provider terms and credential access policy."
+  url: "LICENSE"
+use_case:
+  audience: "Software developers and operators managing local API credentials"
+  scenario: "Maintain several accounts and rotating Keys for one provider, track validity evidence, and switch the selected zsh or user-session environment variable."
+  tasks:
+    - "Create a redacted platform, account, and Key inventory"
+    - "Track lifecycle dates and validation evidence"
+    - "Bind one Key to one target variable and audit the projection"
+    - "Operate the inventory through a local redacted Dashboard"
+deployment:
+  geography: global
+  environments:
+    - "Local macOS development workstation"
+    - "Local Linux development workstation"
+requirements:
+  credentials: "User-supplied API Keys remain in a selected local secret backend and are never bundled with the Skill."
+  dependencies: []
+  runtime:
+    - "Python 3.9 or newer"
+    - "Optional macOS security CLI or 1Password op CLI"
+risks:
+  - risk: "A persistent shell environment exposes a Key to more processes than an invocation-scoped command."
+    mitigation: "Sync is preview-first, uses a mode-0600 generated file, and documents invocation-scoped injection as the safer default."
+  - risk: "A Key may be selected after expiry, revocation, or failed remote validation."
+    mitigation: "Binding rejects unhealthy records by default and audit reports unhealthy or stale selections."
+  - risk: "The portable file backend stores plaintext secret material at rest."
+    mitigation: "The vault is mode 0600 and the Skill prefers macOS Keychain or an explicit 1Password reference when available."
+  - risk: "A local web page could become a secret disclosure surface."
+    mitigation: "Dashboard responses contain metadata only, bind to loopback, require same-origin tokened writes, and expose no secret input or reveal action."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Security model"
+    path: "references/security-model.md"
+  - title: "Data model"
+    path: "references/data-model.md"
+  - title: "Verified local case"
+    path: "cases/evidence/smoke-test.json"
+output:
+  types:
+    - "Redacted credential registry"
+    - "Target bindings and lifecycle evidence"
+    - "Mode-0600 zsh projection"
+    - "Local metadata-only Dashboard"
+  formats:
+    - "JSON"
+    - "Shell source file"
+    - "Local HTML application"
+  parameters:
+    - "Platform, account, and Key IDs"
+    - "Environment variable and target"
+    - "Lifecycle dates and validation result"
+  validation:
+    - "Unit tests cover multi-account rotation, binding health, redaction, shell projection, and Dashboard state"
+    - "Skill source validator passes"
+    - "Audit checks permissions, bindings, expiry, and stale evidence"
+  description: "The user receives a queryable redacted inventory and explicit environment bindings; secret values remain in the selected backend."
+ethical_considerations: "The Skill minimizes credential disclosure, refuses to manage unrelated personal secrets, and does not bypass provider access controls or remote Secret governance."
+dimensions:
+  - id: hierarchy-integrity
+    label: "Multi-account hierarchy integrity"
+    description: "Distinct platform, account, and Key identities remain attributable across rotation and binding changes."
+    evidence: "The local smoke case creates two accounts and three Keys, then changes one binding without overwriting historical records."
+    score: "verified-6-tests"
+  - id: secret-nondisclosure
+    label: "Secret non-disclosure"
+    description: "User-visible CLI and Dashboard output exclude raw secrets and secret references."
+    evidence: "The redaction test scans JSON inventory and Dashboard state while shell content remains in a separate mode-0600 file."
+    score: "verified-6-tests"
+  - id: lifecycle-safety
+    label: "Lifecycle and selection safety"
+    description: "Expired, revoked, disabled, not-yet-valid, and remotely invalid Keys are excluded from normal binding."
+    evidence: "The health and audit tests exercise expiry warnings and unhealthy binding rejection."
+    score: "verified-6-tests"
+  - id: operational-usability
+    label: "Operational usability"
+    description: "CLI and Dashboard expose the same redacted state and use one atomic binding model."
+    evidence: "The smoke case verifies command output, responsive metadata view, and idempotent zsh source-block generation."
+    score: "verified-6-tests"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Credential hygiene is foundational developer safety; the local implementation uses only standard libraries and has no hosted service cost."
+  boundary: "Includes local metadata, secret backends, lifecycle, guarded probe, shell and user-session projection, audit, and Dashboard; excludes managed cloud vault hosting and provider-specific remote Secret deployment."
+  review_trigger: "Review if hosted team synchronization, enterprise policy enforcement, managed validation schedules, or audit retention is introduced."
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-published
+    - channel: skillpay
+      status: not-published
+  free:
+    - channel: github
+      status: not-published
+    - channel: lovstudio
+      status: not-published
