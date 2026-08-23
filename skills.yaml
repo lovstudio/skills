@@ -3589,3 +3589,44 @@ skills:
     confidence: entry
     review_trigger_zh: npm 认证行为或弃用日期变化，或 Skill 新增托管控制面、代管密钥、付费支持时复评。
     review_trigger_en: Review after npm changes authentication behavior or deprecation, or the Skill adds a hosted control plane, managed secrets, or paid support.
+- name: typeless-prompt
+  runtime_name: lov-typeless-prompt
+  updated_at: 2026-08-23T16:37:04Z
+  display_name: SGC Typeless Clone
+  repo: lovstudio/typeless-prompt-skill
+  name_zh: 手工川工作室 Typeless 复刻版
+  paid: true
+  encrypted_bundle: true
+  price_cny: 0.99
+  category: General
+  version: 0.1.0
+  description: Clean dictated or ASR text into concise, logically structured, send-ready prompts while preserving the final intent and removing filler, repetition, and superseded corrections.
+  tagline_en: Turn rough dictation into concise, structured, send-ready text without answering or executing it.
+  tagline_zh: 消解口癖、重复和改口，把口述草稿整理成逻辑清楚、排版舒展、可直接发送的正文。
+  distribution:
+    workbuddy: prepared
+    skillpay: prepared
+  pricing:
+    model: one_time
+    visibility: public
+    list_price_cny: 0.99
+    launch_price_cny: 0.99
+    price_range_cny:
+    - 0.99
+    - 0.99
+    delivery_unit_zh: 单项 Skill 完整交付，含当前版本指令、参考契约、真实案例和 Profile 工具
+    delivery_unit_en: One complete Skill with current instructions, reference contracts, real cases, and the Profile helper
+    value_zh: 把口述转写中的最终意图消解、信息保留、逻辑重建和清爽排版收敛成一次可复用整理。
+    value_en: Turn rough dictation into reusable, send-ready text through final-intent resolution, information preservation, logical reconstruction, and clean layout.
+    anchor_zh: 每次可减少约 5–15 分钟的删口癖、处理改口、重排层级和 Prompt 返工。
+    anchor_en: Each use may remove roughly 5–15 minutes of filler cleanup, correction resolution, restructuring, and prompt rework.
+    basis_zh: 模型建议稳定价为 ¥4.99–9.99；¥0.99 是用户明确指定的全平台首发验证价，不是成本回收价。
+    basis_en: The model-supported stable range is CNY 4.99–9.99; CNY 0.99 is the user-specified all-channel launch validation price rather than a cost-recovery price.
+    boundary_zh: 包含已有 ASR 文本的清理、改口消解、逻辑重建和排版；不包含音频识别、词库同步、事实研究、任务执行、托管模型、API 额度或商业 SLA。
+    boundary_en: Covers cleanup, correction resolution, logical reconstruction, and layout for existing ASR text; excludes transcription, vocabulary sync, research, task execution, hosted models, API credits, and commercial SLA.
+    maintenance_zh: instruction-only 且无外部 API 强依赖；随模型行为、用户反馈、版本和支持成本变化复评。
+    maintenance_en: Instruction-only with no hard external API dependency; review against model behavior, user feedback, versions, and support cost.
+    confidence: low
+    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化或平均单买家支持超过 15 分钟时复评。
+    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version change, or average support above 15 minutes per buyer.
+    card_path: pricing-cards/typeless-prompt.md

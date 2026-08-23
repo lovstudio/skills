@@ -49,7 +49,7 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 10 free + 2 paid (Credits redemption required).",
+      "description": "General — 10 free + 3 paid (Credits redemption required).",
       "category": "General",
       "skills": [
         "./skills/image-translation-errata",
@@ -64,7 +64,8 @@
         "./skills/media-fetch",
         "./skills/china-website-filing",
         "./skills/describe-image",
-        "./skills/personal-vocabulary"
+        "./skills/personal-vocabulary",
+        "./skills/typeless-prompt"
       ],
       "strict": false
     },
