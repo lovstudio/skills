@@ -1489,36 +1489,38 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/rich-export.md
 - name: professional-infographic
-  updated_at: 2026-07-28T04:04:24.000Z
+  updated_at: 2026-08-23T06:28:49Z
   skillpay_product_id: P0806000200843450
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQE
   display_name: Professional Infographic
   repo: lovstudio/professional-infographic-skill
   name_zh: 专业信息图
-  paid: false
+  paid: true
+  encrypted_bundle: true
+  price_cny: 0.99
   featured: true
   category: Design
-  version: 0.3.0
-  description: Build evidence-led professional infographics with topic-led titles, tail recommendations, executive action-title
-    mode, editable HTML/SVG, and PNG quality gates.
-  tagline_en: Turn dense material into an evidence-led infographic whose topic title, visual proof, tail recommendation, and
-    sources form one clear argument.
-  tagline_zh: 把复杂材料重构为证据驱动的信息图：顶部说明主题与用途，主视觉呈现证据，建议置于尾部；亦支持结论型管理层 Exhibit。
+  version: 0.4.1
+  description: Create evidence-led professional infographics, including capital journeys, with editable HTML/SVG, high-resolution
+    PNG, source linkage, brand attribution, and strict QA.
+  tagline_en: Turn dense material or an investment path into one sourced visual argument, from entry and staged exits to the
+    decision that follows.
+  tagline_zh: 把复杂材料或投资路径重构为一条可回溯的视觉论证，从进入、分阶段退出到最终判断。
   related:
   - image-creator
   pricing:
-    model: free_entry
+    model: one_time
     visibility: public
-    list_price_cny: 0.0
-    launch_price_cny: 0
+    list_price_cny: 0.99
+    launch_price_cny: 0.99
     price_range_cny:
-    - 0
-    - 0
-    delivery_unit_zh: 公开 Skill 源码与当前版本说明
-    delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 把复杂材料重构为证据驱动的信息图：顶部说明主题与用途，主视觉呈现证据，建议置于尾部；亦支持结论型管理层 Exhibit。
-    value_en: Turn dense material into an evidence-led infographic whose topic title, visual proof, tail recommendation, and
-      sources form one clear argument.
+    - 0.99
+    - 0.99
+    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的加密安装包、使用说明与模板
+    delivery_unit_en: One complete Skill with its encrypted bundle, current-version guide, and templates
+    value_zh: 将证据、估值、进入与分阶段退出编成一张可编辑、可导出、可审计的专业信息图。
+    value_en: Turn evidence, valuations, entry, and staged exits into one editable, exportable, and auditable professional
+      infographic.
     anchor_zh: 一次结果通常可减少 1–6 小时的试稿、排版或资产整理。
     anchor_en: A result typically removes 1–6 hours of drafting, layout, or asset organization.
     basis_zh: 按可预览、可导出、可继续编辑的视觉结果定价，价值来自减少反复试稿。
@@ -1529,9 +1531,10 @@ skills:
     maintenance_zh: 随渲染工具、字体、模型和品牌资产变化复评；保持输出结构比追逐单一风格更重要。
     maintenance_en: Review against rendering tools, fonts, models, and brand assets; output structure matters more than chasing
       a single style.
-    confidence: entry
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+    confidence: medium
+    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化或支持成本明显变化时复评。
+    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version change, or a material change in support
+      cost.
     card_path: pricing-cards/professional-infographic.md
 - name: oh-my-landingpage
   updated_at: 2026-08-01T09:06:00.000Z

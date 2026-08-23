@@ -1,0 +1,244 @@
+{
+  "skill_name": "professional-infographic",
+  "skill_version": "0.4.1",
+  "skill_id": 323,
+  "skill_version_id": 41,
+  "format_version": 2,
+  "cipher": "aes-256-gcm",
+  "files": {
+    ".gitignore": {
+      "iv": "s+Cd/NIDppnJw/W3",
+      "tag": "mVaEaLxAu7Bm+BkIxhNtvw==",
+      "original_checksum": "f7a4b128142515905b55367f6c21a3ee084b1f879f5ce4e8fb1597f77eae9872",
+      "original_size": 78
+    },
+    "CHANGELOG.md": {
+      "iv": "Ae57Y8Gkp+JYpUyk",
+      "tag": "Dhg0OfhKZ/TNeXhUCQ53Ng==",
+      "original_checksum": "d27b501133820665456224437a26a314cdc6fb077ae974b1a8af6f656522ae3a",
+      "original_size": 3462
+    },
+    "LICENSE": {
+      "iv": "RaXDbIzWEZozj9+g",
+      "tag": "fWyRdwJG6xratvSYhzi/sg==",
+      "original_checksum": "3577ef5e65c0dc01bb54c3059f1e76f99c121cdec08bfc95d18bb7715ec9a64d",
+      "original_size": 1072
+    },
+    "README.md": {
+      "iv": "jaiNKUW9SfoZ9u98",
+      "tag": "DkCQVQbx/DmxO3wieG06+A==",
+      "original_checksum": "c37eeec0eb90ad8f32602f6a41b5aab73953341543e3fc339b46d7f67592c056",
+      "original_size": 8187
+    },
+    "SKILL.md": {
+      "iv": "+P1mldsF0T1qwI4Q",
+      "tag": "0A6DaxJ3LsNkiJSgK92Y8Q==",
+      "original_checksum": "479d08bd859307f847896a20f4906a31f518283123f8cb567f8dd921608f1a4f",
+      "original_size": 13110
+    },
+    "assets/brand-profile.template.json": {
+      "iv": "aef4b+yCYgTVrOEF",
+      "tag": "cRYhm8QRLVysQpr9LZ4Wcg==",
+      "original_checksum": "bf1679c84910c401ff2d1d693d969367c8d21e749b8395e9812cbf829e28358a",
+      "original_size": 439
+    },
+    "assets/poster-template.html": {
+      "iv": "GHLqJAsdnoCrjBN6",
+      "tag": "CTlxxHHX8IwWVq3/QJsbzA==",
+      "original_checksum": "e7cacc10f48aa7d3c64942ac939bf13daa5467cda96d343a4208d5a4d9021d22",
+      "original_size": 6373
+    },
+    "assets/shougongchuan-logo.png": {
+      "iv": "WiKG2RwEWAqYvYUk",
+      "tag": "VsSTU9Z845V2G5Tgg8X/EQ==",
+      "original_checksum": "de04174a510792bb2a78e63f3cf292ed8077f1b778616bb20297068e1c6e0d8c",
+      "original_size": 38822
+    },
+    "assets/templates/comparison-matrix.html": {
+      "iv": "o4gy+w0w82EFRiGg",
+      "tag": "vfOKhqO4tQOrV+1fv1f1Ig==",
+      "original_checksum": "6c12af88c7816c2ac78804c584200a84960279b38f2b822806f87c3331cc7372",
+      "original_size": 5067
+    },
+    "assets/templates/decision-tree.html": {
+      "iv": "+1raN0lBvjWfqTf6",
+      "tag": "conFHNUxFVz0gpdZz97i7Q==",
+      "original_checksum": "2e09542d96f789af3dcd297a9f9775ccafb75668a22bcd0466ce78aeb5e20512",
+      "original_size": 4058
+    },
+    "assets/templates/driver-tree.html": {
+      "iv": "GSn85pxE3+MvbfG2",
+      "tag": "6m4sgS9GGNrBbVpumhJryw==",
+      "original_checksum": "451c6f3d2734cc88b8619877f85c86b4f20ec2241a82e17bdfb32a87c48a5498",
+      "original_size": 3538
+    },
+    "assets/templates/operating-model.html": {
+      "iv": "0S75Y5syTOtpLqje",
+      "tag": "8LOZHL2vA6jOCgAOwwcNAA==",
+      "original_checksum": "2a1793570c7c6b72dfd927474ba0927ec45bae197b6c7114384c6c297d4e2632",
+      "original_size": 4026
+    },
+    "assets/templates/positioning-map.html": {
+      "iv": "SbV8LpyBLCeP9xWE",
+      "tag": "2jy2+/oInl6qHfPoX7aM+w==",
+      "original_checksum": "bf7fa9f540d4546f755b53c9656615d2583e82e81162a8cd4614af7af584e4d9",
+      "original_size": 4172
+    },
+    "assets/templates/roadmap.html": {
+      "iv": "OQDeOlFah8DLsjgO",
+      "tag": "risQr9auqLeyrjZrrgRGTQ==",
+      "original_checksum": "cc222c28ae8634a4477498666451643738515cdbfbd3ec5550efef7765305e5d",
+      "original_size": 3466
+    },
+    "assets/templates/small-multiples.html": {
+      "iv": "Sn3yYJJKOINKxhVp",
+      "tag": "5v3Qk8ttLMt07VuxqV7zQg==",
+      "original_checksum": "38c93397ff2e90d9b4270fd2e217e74bf3591b5ec971fcc1eb9d14255d8fc05f",
+      "original_size": 3176
+    },
+    "assets/templates/waterfall.html": {
+      "iv": "ZqMgEn6NmA2efPKA",
+      "tag": "NJxpRY5+zo5naOHfoBM1NA==",
+      "original_checksum": "2dc9859066fa48eae9c33635ae1acb0283ad7f522bab36d2948a681236fb0fc9",
+      "original_size": 3844
+    },
+    "cases/cases.json": {
+      "iv": "kcc4VsXJdY2MEaLC",
+      "tag": "p2r1y5ycbWoDCP/Za3/4fA==",
+      "original_checksum": "c34b4262f814767dbf7e342805c2f243b0c9a4fa2160cfdb788f2cb6687c7449",
+      "original_size": 1419
+    },
+    "examples/mobile-cross-platform-selection-v2/comparison-matrix/audit.json": {
+      "iv": "x09mdIXXDWHSVrFY",
+      "tag": "YIAXOd9Mmz0P5eFNvBwOww==",
+      "original_checksum": "1b67d1090b40ede0e68363213d13ba1ddce1862ddf90e12742f1f40b971659d5",
+      "original_size": 1773
+    },
+    "examples/mobile-cross-platform-selection-v2/comparison-matrix/brief.md": {
+      "iv": "4yK//YUDvneteaki",
+      "tag": "hDiYOOVmzxFC/0VQGRuKAQ==",
+      "original_checksum": "0b8da4537376f06603c8a848136161b933fb08db286a107f09f88d5c2ac88615",
+      "original_size": 4717
+    },
+    "examples/mobile-cross-platform-selection-v2/comparison-matrix/poster.html": {
+      "iv": "xyR3OfdP/M/TPzLe",
+      "tag": "BYZBc5Lvhx7mxU7pu1IcRw==",
+      "original_checksum": "44c9effba9af8f45c7a880e2209cf59a0506772ed5474edc019494b003db3320",
+      "original_size": 15907
+    },
+    "examples/mobile-cross-platform-selection-v2/comparison-matrix/poster.png": {
+      "iv": "GvdZYAhl1xM0rWpg",
+      "tag": "Fn/7E+wTjRKIVocXKgb2dQ==",
+      "original_checksum": "a4ddc9c27dfbf81f103991bada0fe22c06605cda4d2161d78592e9e8aa313520",
+      "original_size": 490633
+    },
+    "examples/mobile-cross-platform-selection-v2/comparison-matrix/project.json": {
+      "iv": "n56jWEQ36skTeWRt",
+      "tag": "vuvVzAho90coHGbxqwSnOQ==",
+      "original_checksum": "077ac4c0b423e6dc42418028659d1897b3b9e35ec4935cb84e93fee44e1b44cd",
+      "original_size": 575
+    },
+    "examples/mobile-cross-platform-selection-v2/comparison-matrix/source.md": {
+      "iv": "OWthT/g/+2o69IiP",
+      "tag": "RRegWqnOV7lz3ERZhIF7Eg==",
+      "original_checksum": "cd06bcb4609c1589246d2a1e2cfd95b2023e2039c66e2f8927057a74bc17f453",
+      "original_size": 3152
+    },
+    "examples/mobile-cross-platform-selection-v2/positioning-map/audit.json": {
+      "iv": "6N6CpKpXOXJuYiPZ",
+      "tag": "tu0byaqVSNydlTkEiQpySw==",
+      "original_checksum": "7ce473fec8dde9b0c98a445a24215b19ae3b2dd4bc0e00df056d2745363c7b9d",
+      "original_size": 1777
+    },
+    "examples/mobile-cross-platform-selection-v2/positioning-map/brief.md": {
+      "iv": "Ksw8R5g0uevaIjIN",
+      "tag": "Av4NVkRE7MmD2jz7BJ/PtA==",
+      "original_checksum": "7fbf152073ca51db701eac31aa632052d7bf7e51be3bf135de814ad8ed09d55d",
+      "original_size": 2816
+    },
+    "examples/mobile-cross-platform-selection-v2/positioning-map/poster.html": {
+      "iv": "dpCKSRxDv0i7yA9c",
+      "tag": "oSNsRt8kMz47NK6yEwa5Zg==",
+      "original_checksum": "a561f9e34b825014e79a2314fe42e6f8992c70dfb80050de18f10d294d4d2d84",
+      "original_size": 11847
+    },
+    "examples/mobile-cross-platform-selection-v2/positioning-map/poster.png": {
+      "iv": "vf3bzTuBP5+LEA3F",
+      "tag": "FJNS4RUZPp55cU8Br2v2+Q==",
+      "original_checksum": "e60447d4b702789973dcf2f9d36305b790468e17ee8dffe6516593580b95edaf",
+      "original_size": 306049
+    },
+    "examples/mobile-cross-platform-selection-v2/positioning-map/project.json": {
+      "iv": "gXldcVuKRsWxttmU",
+      "tag": "RdYfkaTU2whcAaTTxMWbYw==",
+      "original_checksum": "951c8c9c7e8de4679ac9d3787192616ecc35a023eb77ece79f4f6ab033dc6c93",
+      "original_size": 497
+    },
+    "examples/mobile-cross-platform-selection-v2/positioning-map/source.md": {
+      "iv": "9rgt9o/G3t3KVdeE",
+      "tag": "Weeqz4pSRLHoC89pUlp9FA==",
+      "original_checksum": "cd06bcb4609c1589246d2a1e2cfd95b2023e2039c66e2f8927057a74bc17f453",
+      "original_size": 3152
+    },
+    "references/capital-journey.md": {
+      "iv": "fB74/pq0emjK4ADQ",
+      "tag": "lBQkaL7zTidwqbuDaCs7MQ==",
+      "original_checksum": "2ac7be970b6ae0e3482ded76b3b76228e6a76bf60c390ee77564b0b506c26ef8",
+      "original_size": 5267
+    },
+    "references/consulting-standard.md": {
+      "iv": "qlXokxQ60JklWPrb",
+      "tag": "Tt6nnLgCMLpkDmQ5G3Fkgw==",
+      "original_checksum": "0b77c53f1a54031100cfb2690cd1d0082e5c1376606a235304826b68762e7293",
+      "original_size": 8563
+    },
+    "references/exhibit-benchmark.md": {
+      "iv": "CeGvka8PNtlBU6hQ",
+      "tag": "Mpj0F0L3Gh0ptYSu/AYFbA==",
+      "original_checksum": "781b147fb8a6a378954706c916de9474a20979714fe6d4cdbb055274c25ccfa5",
+      "original_size": 3925
+    },
+    "references/hybrid-rendering.md": {
+      "iv": "IBU0FI8W4YmWTH75",
+      "tag": "vlKhmY9qLtXoX1i6YA/2rg==",
+      "original_checksum": "39cb862cd9808e90b29a64089ca44c1533acc10024752f255abe114e9da5df67",
+      "original_size": 2105
+    },
+    "references/spec-schema.md": {
+      "iv": "P4ZqlNJhKRMyRd3C",
+      "tag": "JihxHIe13wNqP37KrGVJMg==",
+      "original_checksum": "eed14adf01aa99fb4316b43154fd9fc7e026541be86522392894e061b538e0d3",
+      "original_size": 4377
+    },
+    "references/user-config.md": {
+      "iv": "u5YvrlSrpU2+DOXB",
+      "tag": "cUJXaCl+C7LRhK++ARNKOw==",
+      "original_checksum": "143c3174589fffad3063a94b7ff34ef1951e0ed1b7ba68cd7f996e8093b62e36",
+      "original_size": 2441
+    },
+    "references/visual-grammar.md": {
+      "iv": "1W9QiZtm+5B/VXzc",
+      "tag": "/cNr7M3zh5vXwZskhIQeRA==",
+      "original_checksum": "0d300077fb82d4c1155b3101cff1108e13cbac16150da70388a0d6a1beba2f49",
+      "original_size": 6584
+    },
+    "scripts/infographic_cli.py": {
+      "iv": "Iaz4HFay1E1t9wiG",
+      "tag": "MbQqIcSZ+qzXqKv/1b0kng==",
+      "original_checksum": "b6fadeb60a31e64d3a0a2184470bb3ca33c29417d91b20251874532f89c286e8",
+      "original_size": 67266
+    },
+    "scripts/test_infographic_cli.py": {
+      "iv": "+V8mSzgTD/ybTrMp",
+      "tag": "285Qu0Y7AEMn+5huUET2fA==",
+      "original_checksum": "0e3da4859ceb9323633b1b212a33a4265cf1509cac8ac7269ea5b8722158389c",
+      "original_size": 8483
+    },
+    "skill.yaml": {
+      "iv": "0GvMpFE4POIj4Ugd",
+      "tag": "goqQZ2AzGy8NGelcAWuKDA==",
+      "original_checksum": "d4aa42be2bb81da9eca11374c72263630fc31bdfd2e728698973ac690dc20d9e",
+      "original_size": 861
+    }
+  }
+}
