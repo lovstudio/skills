@@ -1,6 +1,6 @@
 # lov-media-creator
 
-![Version](https://img.shields.io/badge/version-0.9.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.9.1-CC785C)
 
 把录屏和演示素材整理成两阶段交付：先做内嵌可编辑 SRT 的 MKV 审校母版，再以批准字幕生成归档母版、平台文件和正式封面图片；同时保留关键原声，完成 BGM 混音、编码检查和交付报告。
 
@@ -32,6 +32,9 @@ npx skills add "$SKILL_SOURCE_DIR"
 有字幕时，`review` 阶段的画面不烧旁白字幕，只把 SRT 作为 MKV 的默认 SubRip 轨封装；状态是
 `review-ready / awaiting-review`。作者可在 Subtitle Edit 中改文字、断句和时间码。只有明确确认后，
 `approve` 阶段才以 stream copy 替换字幕轨生成归档 MKV，并按平台生成 MP4 或平台 CC 字幕。
+
+审校 MKV/SRT 交给作者后不再覆盖原路径；用户明确说已经改过字幕时，`approve --expect-edits`
+会拒绝与审校基线完全相同的 SRT，并在报告中记录两份字幕的哈希、时间和差异状态。
 
 ```bash
 python3 scripts/subtitle_gate.py review --help

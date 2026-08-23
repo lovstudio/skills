@@ -3,6 +3,14 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.6.1] - 2026-08-24
+
+### Fixed
+
+- require a complete clickable Bilibili chapter timeline when final chapters are already approved
+- source chapter timestamps only from the final rendered timeline and re-read every line before submission
+- preserve user-edited descriptions by allowing only explicit minimal timeline additions
+
 ## [0.6.0] - 2026-08-24
 
 ### Added

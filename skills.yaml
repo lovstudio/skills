@@ -1958,13 +1958,13 @@ skills:
     card_path: pricing-cards/video-chapter.md
 - name: media-creator
   runtime_name: lov-media-creator
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-08-23T17:16:16Z
   display_name: Media Creator
   repo: lovstudio/media-creator-skill
   name_zh: 媒体创作工作流
   paid: false
   category: Video Creation
-  version: "0.9.0"
+  version: "0.9.1"
   description: Turn screen recordings into review-first video deliveries with editable-subtitle MKV, approved platform files, rendered covers for every required slot, protected source audio, and QC evidence.
   tagline_en: Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence.
   tagline_zh: 先交可编辑字幕 MKV，再交批准后的平台成片与各槽位真实封面，并保留原声和质检证据。
@@ -1994,13 +1994,13 @@ skills:
     card_path: pricing-cards/media-creator.md
 - name: media-publisher
   runtime_name: lov-media-publisher
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-08-23T17:16:16Z
   display_name: Media Publisher
   repo: lovstudio/media-publisher-skill
   name_zh: 视频发布器
   paid: false
   category: Video Creation
-  version: "0.6.0"
+  version: "0.6.1"
   description: Publish videos to WeChat Channels or Bilibili with media preflight, frozen user-edited descriptions, cover gates, final confirmation, and post-submit status readback.
   tagline_en: Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates.
   tagline_zh: 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。

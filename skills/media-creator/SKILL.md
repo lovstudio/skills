@@ -12,7 +12,7 @@ compatibility: >
   成片同画幅（竖版通常 9:16）的图。
 metadata:
   author: contributors
-  version: "0.9.0"
+  version: "0.9.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - media-production
@@ -276,6 +276,11 @@ delivery_status: blocked-on-subtitle-approval
 不得生成或交接平台 MP4，不得写 `final`、`approved` 或 `publish-ready`。用户可以在 Subtitle Edit
 中改文字、断句和时间码；保存后的 UTF-8 SRT 是后续唯一权威字幕源。
 
+**作者所有权门禁（强制）**：审校 MKV/SRT 一旦交给作者，就成为不可变的作者输入。自动化不得再向
+同一路径导出字幕，也不得从 transcript、旧 timeline 或 ASR 结果重建并覆盖它；重跑审校包装必须换
+新的 review 版本号。作者校对后如果又插入章标题卡、片头或删改 EDL，必须把作者 SRT 通过显式时间
+映射迁移到新时间轴，输出新的 approved SRT，并报告迁移前后文字是否逐字保留。禁止用重新转写替代迁移。
+
 #### Step 5C: 字幕批准后封装归档母版与平台文件
 
 只有用户明确确认字幕通过后，才运行批准门禁：
@@ -284,9 +289,15 @@ delivery_status: blocked-on-subtitle-approval
 python3 "$SKILL_DIR/scripts/subtitle_gate.py" approve \
   --review DELIVERABLE_DIR/review-v0.1.mkv \
   --srt DELIVERABLE_DIR/subs-approved-v0.2.srt \
+  --expect-edits \
   --output DELIVERABLE_DIR/master-v0.2.mkv \
   --report DELIVERABLE_DIR/subtitle-approved.json
 ```
+
+用户明确说“字幕已经改过”时，`--expect-edits` 是必选项：若批准 SRT 与审校 MKV 内嵌字幕逐条完全
+相同，门禁必须失败，先查 Subtitle Edit 自动备份或作者保存路径，不得把相同文件复制成 `approved`。
+批准报告必须记录 review MKV、approved SRT 的路径、mtime、SHA-256、条数和
+`changed_from_review`；有时间轴迁移时还要附迁移报告。即使作者只改了断句或时间码，也属于有效差异。
 
 脚本验证 UTF-8、时间码、正时长、顺序、无重叠、成片边界和内嵌字幕回抽一致性，并以 stream copy
 替换字幕轨；视频和音频不再有损编码。`master.mkv` 是归档母版，不自动等于平台上传文件。
@@ -298,7 +309,9 @@ python3 "$SKILL_DIR/scripts/subtitle_gate.py" approve \
 - 只需要换容器且视频/音频已是 H.264/AAC 时使用 `-c copy -movflags +faststart`，不要把 MKV 再转码一次；只有烧字幕才重编码视频。
 
 平台“接受 MKV”不等于“保留 MKV 里的字幕轨”。报告必须分别记录容器支持证据、字幕交付方式
-（`embedded` / `platform-cc` / `burned-in`）和验证日期。
+（`embedded` / `platform-cc` / `burned-in`）和验证日期。每个派生平台文件还必须记录
+`subtitle_source_sha256`，并与本次 approved SRT 的 SHA-256 相同；视频号烧录版须从最终文件抽取
+至少三张命中作者修改点的实帧，目视确认修改文字和字幕样式后才可交给发布 Skill。
 
 #### 开场静帧：先判画幅，再渲染
 

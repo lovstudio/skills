@@ -53,7 +53,7 @@ The first output is an H.264/AAC/SubRip review MKV plus an external UTF-8 SRT. A
 
 ## Skill Version
 
-0.8.2
+0.9.1
 
 ## Ethical Considerations
 

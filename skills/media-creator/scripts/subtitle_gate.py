@@ -183,6 +183,31 @@ def comparable(cues: Sequence[Dict[str, Any]]) -> List[Tuple[int, int, str]]:
     ]
 
 
+def extract_embedded_srt(
+    media: Path,
+    ffmpeg: str,
+) -> Tuple[List[Dict[str, Any]], str]:
+    """Extract the author-review baseline for approval comparisons."""
+    with tempfile.TemporaryDirectory(prefix="lov-subtitle-gate-") as tmpdir:
+        extracted = Path(tmpdir) / "embedded.srt"
+        run(
+            [
+                ffmpeg,
+                "-y",
+                "-v",
+                "error",
+                "-i",
+                str(media),
+                "-map",
+                "0:s:0",
+                "-c:s",
+                "srt",
+                str(extracted),
+            ]
+        )
+        return parse_srt(extracted), sha256(extracted)
+
+
 def verify_embedded_srt(
     media: Path,
     expected: Sequence[Dict[str, Any]],
@@ -234,6 +259,11 @@ def build_review(args: argparse.Namespace) -> Dict[str, Any]:
     output = Path(args.output).resolve()
     if output.suffix.lower() != ".mkv":
         raise GateError("review output must use the .mkv extension")
+    if output.exists():
+        raise GateError(
+            "review output already exists and is author-owned: {0}; "
+            "use a new review version instead of overwriting it".format(output)
+        )
     if not video.is_file():
         raise GateError("video master not found: {0}".format(video))
     if audio is not None and not audio.is_file():
@@ -313,7 +343,15 @@ def approve(args: argparse.Namespace) -> Dict[str, Any]:
         raise GateError("review MKV not found: {0}".format(review))
     review_info = probe(review, args.ffprobe)
     review_streams = validate_streams(review_info)
+    review_cues, review_subtitle_sha256 = extract_embedded_srt(review, args.ffmpeg)
     cues = parse_srt(srt, duration_ms(review_info))
+    changed_from_review = comparable(review_cues) != comparable(cues)
+    if args.expect_edits and not changed_from_review:
+        raise GateError(
+            "approval was declared as author-edited, but the approved SRT is "
+            "identical to the subtitle embedded in the review MKV; stop and "
+            "recover the author's actual Subtitle Edit file before rendering"
+        )
     temporary = atomic_output_path(output)
     temporary.unlink(missing_ok=True)
     command = [
@@ -363,13 +401,19 @@ def approve(args: argparse.Namespace) -> Dict[str, Any]:
         "source_review_mkv": str(review),
         "approved_srt": str(srt),
         "approved_master_mkv": str(output),
+        "source_review_mkv_mtime_ns": review.stat().st_mtime_ns,
+        "approved_srt_mtime_ns": srt.stat().st_mtime_ns,
         "cue_count": len(cues),
+        "review_cue_count": len(review_cues),
+        "changed_from_review": changed_from_review,
+        "expect_edits": bool(args.expect_edits),
         "duration_seconds": round(duration_ms(info) / 1000.0, 3),
         "streams": selected,
         "source_streams": review_streams,
         "sha256": {
             "approved_master_mkv": sha256(output),
             "approved_srt": sha256(srt),
+            "review_embedded_srt": review_subtitle_sha256,
         },
     }
     write_report(Path(args.report).resolve() if args.report else None, report)
@@ -407,6 +451,14 @@ def main() -> int:
         "approve", help="replace the review track with the user-approved SRT"
     )
     approved.add_argument("--review", required=True, help="review MKV with video/audio")
+    approved.add_argument(
+        "--expect-edits",
+        action="store_true",
+        help=(
+            "fail if the approved SRT is identical to the review subtitle; "
+            "required when the author says they edited subtitles"
+        ),
+    )
     add_common(approved)
     approved.set_defaults(handler=approve)
 

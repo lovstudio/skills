@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.9.1] - 2026-08-24
+
+### Fixed
+
+- make delivered review MKV and SRT paths immutable author-owned inputs
+- require `approve --expect-edits` when the author says subtitles were edited
+- record review and approved subtitle hashes, timestamps, cue counts, and change state
+- require explicit author-SRT migration after timeline changes and frame proofs for burned-in platform files
+
 ## [0.9.0] - 2026-08-24
 
 ### Added

@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.8.2"
+version: "0.9.1"
 description: "将录屏、演示视频和音频素材整理为先审校后发布的成片，第一阶段交付内嵌可编辑 SRT 的 MKV，字幕批准后再生成归档母版与平台文件。"
 owner:
   team: "Media Creator Maintainers"
