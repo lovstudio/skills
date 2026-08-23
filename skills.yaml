@@ -1572,7 +1572,6 @@ skills:
   name_zh: 专业信息图
   paid: true
   encrypted_bundle: true
-  skill_path: ""
   price_cny: 0.99
   featured: true
   category: Design
@@ -3598,6 +3597,7 @@ skills:
   name_zh: 手工川工作室 Typeless 复刻版
   paid: true
   encrypted_bundle: true
+  skill_path: ""
   price_cny: 0.99
   category: General
   version: 0.1.0
