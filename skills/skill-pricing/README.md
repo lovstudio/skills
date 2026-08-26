@@ -1,6 +1,6 @@
 # lov-skill-pricing
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 为一个或多个 Agent Skill 生成有依据、可解释、可复评的 Skill Pricing Card，包含建议价、价格带、价值说明、渠道策略和证据缺口。
 
@@ -28,6 +28,8 @@ $lov-skill-pricing 批量评估写书、品牌海报和 PDF 翻译三个 Skill�
 ```
 
 输入可以是 Skill 源目录、README、能力 brief、现有价格或一组 Skill；输出默认是 Markdown，用户指定时附 JSON 摘要。当前平台价格上下限、结算机制和协议会单独核验，文章中的历史观察与现行规则分层记录。
+
+LovStudio 的产品卡、详情页、套餐、订阅和购买入口统一只显示 Credits。成本与价值仍可在内部使用法币估算，但法币金额只允许出现在 Credits 充值界面；外部市场要求的法币执行价也不会回流到 LovStudio 产品页。
 
 ## 设计依据
 

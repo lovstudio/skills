@@ -18,6 +18,8 @@
 | `direct_costs` | API、基础设施、素材、渠道和支付成本 | 账单、报价或标注过的假设 |
 | `value_evidence` | 省时、替代采购、质量、收入或风险变化 | 实测、客户反馈、案例或保守估算 |
 | `channel` | 公开市场、内容平台、安装市场或直销 | 当前页面、协议或用户指定 |
+| `display_unit` | LovStudio 产品展示固定为 `credits` | 当前产品规则 |
+| `credit_conversion` | 内部估值换算为 Credits 的当前规则 | 已核验配置或服务端常量 |
 
 ## 2. 成本底线
 
@@ -99,12 +101,25 @@ recommended_price = price_floor + capture_ratio × (price_ceiling - price_floor)
 2. `launch_price`：用于验证转化和收集反馈的短期价格，带结束条件；
 3. `price_range`：成本、价值和证据变化后的可讨论区间。
 
+### LovStudio 展示契约
+
+成本底线和价值锚点可以使用明确的内部估值币种，但 LovStudio 的产品卡、详情页、套餐、订阅和购买入口只显示 Credits：
+
+```text
+recommended_price_credits = convert_with_verified_rule(recommended_price)
+launch_price_credits = convert_with_verified_rule(launch_price)
+price_range_credits = convert_with_verified_rule(price_range)
+```
+
+不得在 Skill 产品界面展示 `¥`、`$`、`HKD`、`CNY` 等法币金额，也不得把法币金额与 Credits 并列作为“参考价”。法币只允许出现在 Credits 充值界面。外部市场强制要求法币时，其金额仅属于该外部渠道执行记录；LovStudio 产品价格仍为 Credits。兑换规则必须来自当前已核验配置，不硬编码可能过期的汇率。
+
 ## 6. 渠道与套餐
 
 文章提到的 WorkBuddy、内容绑定分发、支付宝 SkillPay 与 youmind 可作为渠道类型示例；它们是文章中的观察，当前价格、协议、结算与支付能力必须重新核验。
 
 | 渠道形态 | Pricing Card 应强调 | 常见承接 |
 | --- | --- | --- |
+| LovStudio 产品界面 | Credits 价格、周期、权益与兑换结果 | Credits 单项购买、订阅或套餐 |
 | 安装优先 | 免费结果样例、安装摩擦、使用边界 | 付费套餐、持续更新或落地服务 |
 | 内容绑定 | 内容即时收益、复刻路径、Skill 额外交付 | 内容转化、订阅或创作者分成 |
 | 强制标价/Agent 支付 | 机器可读价格、版本、安装与支付后交付 | 单项购买、额度或组合调用 |
@@ -128,9 +143,9 @@ recommended_price = price_floor + capture_ratio × (price_ceiling - price_floor)
 | --- | --- |
 | 版本 / 交付单元 | <version> / <unit> |
 | 目标买家 | <audience> |
-| 建议价格 | <currency> <recommended_price> / <billing_model> |
-| 稳定价格带 | <low>–<high> |
-| 首发测试价 | <launch_price>，持续至 <review_trigger> |
+| 建议价格 | <recommended_price_credits> Credits / <billing_model> |
+| 稳定价格带 | <low_credits>–<high_credits> Credits |
+| 首发测试价 | <launch_price_credits> Credits，持续至 <review_trigger> |
 | 渠道 | <channel> |
 | 置信度 | <high / medium / low> |
 
@@ -172,6 +187,7 @@ recommended_price = price_floor + capture_ratio × (price_ceiling - price_floor)
 一张可用的卡片应满足：
 
 - 买家只看主文案也能理解结果、价格、范围和风险；
+- LovStudio 产品卡、详情页、套餐、订阅和购买入口只出现 Credits，法币只出现在 Credits 充值界面；
 - 创作者能从成本、价值和评分备注复算结论；
 - 渠道运营能直接拿到首发、稳定价、套餐和推广动作；
 - 后续复评能定位是哪一个输入或证据变化造成价格变化。

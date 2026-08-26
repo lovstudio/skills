@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1] - 2026-08-26
+
+### Changed
+
+- require Credits-only pricing across LovStudio product surfaces while keeping fiat values inside recharge flows or channel-specific execution records
+
 ## [0.2.0] - 2026-08-24
 
 ### Added

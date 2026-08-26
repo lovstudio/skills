@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-skill-pricing
-version: "0.2.0"
+version: "0.2.1"
 runtime: skill-runtime/v1
 context:
   profile:
@@ -8,9 +8,9 @@ context:
   preferences:
     namespace: skill_pricing
     fields:
-      - path: currency
+      - path: valuation_currency
         required: false
-        question: "定价默认使用哪种货币？"
+        question: "内部成本与价值估算使用哪种币种？该币种不会展示在 LovStudio 产品页。"
       - path: channel
         required: false
         question: "定价默认面向哪个销售渠道？"
