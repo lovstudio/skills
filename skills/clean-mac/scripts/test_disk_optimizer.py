@@ -133,5 +133,66 @@ class StagedCleanupTests(unittest.TestCase):
             self.assertTrue(keep.exists())
 
 
+class ProtectedWorkspaceTests(unittest.TestCase):
+    def test_screen_studio_recordings_and_containing_parent_are_protected(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            screen_studio = Path(temp_dir) / "Screen Studio"
+            recordings = screen_studio / "Screen Studio Recordings"
+            recording_cache = recordings / "Current Recording" / "Caches"
+            with patch.object(MODULE, "builtin_protected_paths", return_value=(recordings.resolve(),)):
+                self.assertTrue(MODULE.protected(screen_studio, []))
+                self.assertTrue(MODULE.protected(recordings, []))
+                self.assertTrue(MODULE.protected(recording_cache, []))
+
+    def test_stage_cleanup_rejects_rebuildable_name_inside_protected_workspace(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            recordings = Path(temp_dir) / "Screen Studio Recordings"
+            recording_cache = recordings / "Current Recording" / "Caches"
+            recording_cache.mkdir(parents=True)
+            with patch.object(MODULE, "builtin_protected_paths", return_value=(recordings.resolve(),)):
+                with self.assertRaisesRegex(MODULE.OptimizerError, "候选命中保护边界"):
+                    MODULE.run_stage_cleanup(
+                        argparse.Namespace(
+                            path=[recording_cache],
+                            protected=[],
+                            rollback_root=Path(temp_dir) / "trash",
+                            recreate=False,
+                            execute=False,
+                            confirm="",
+                            output=None,
+                        )
+                    )
+
+    def test_migrate_rejects_protected_workspace(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            recordings = Path(temp_dir) / "Screen Studio Recordings"
+            recordings.mkdir()
+            archive = Path(temp_dir) / "archive"
+            archive.mkdir()
+            with patch.object(MODULE, "builtin_protected_paths", return_value=(recordings.resolve(),)):
+                with self.assertRaisesRegex(MODULE.OptimizerError, "迁移源命中保护边界"):
+                    MODULE.run_migrate(
+                        argparse.Namespace(source=recordings, archive_root=archive, protected=[])
+                    )
+
+    def test_explicit_protected_child_also_blocks_parent_mutation(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            parent = Path(temp_dir) / "parent"
+            protected_child = parent / "keep"
+            self.assertTrue(MODULE.protected(parent, [protected_child]))
+
+    def test_symlinked_protected_workspace_keeps_its_original_parent_protected(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            screen_studio = Path(temp_dir) / "Screen Studio"
+            screen_studio.mkdir()
+            recordings_link = screen_studio / "Screen Studio Recordings"
+            external_recordings = Path(temp_dir) / "external-recordings"
+            external_recordings.mkdir()
+            recordings_link.symlink_to(external_recordings, target_is_directory=True)
+            with patch.object(MODULE, "builtin_protected_paths", return_value=(recordings_link,)):
+                self.assertTrue(MODULE.protected(screen_studio, []))
+                self.assertTrue(MODULE.protected(external_recordings, []))
+
+
 if __name__ == "__main__":
     unittest.main()

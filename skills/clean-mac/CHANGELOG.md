@@ -1,10 +1,11 @@
 # Changelog
 
-## [0.4.0] - 2026-08-24
+## [0.4.0] - 2026-08-26
 
 ### Added
 
-- add the shared feedback-classification and approval-invalidation gate used by every LovStudio Skill
+- protect application-managed recording workspaces
+- block cleanup and migration of Screen Studio recordings and overlapping protected paths
 
 ## [0.3.0] - 2026-08-23
 

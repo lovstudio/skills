@@ -55,6 +55,9 @@ PROTECTED_PARTS = {
     "Photos Library.photoslibrary",
     "sessions",
 }
+BUILTIN_PROTECTED_RELATIVE_PATHS = (
+    Path("Library") / "Application Support" / "Screen Studio" / "Screen Studio Recordings",
+)
 SKIP_DISCOVERY = {".git", ".Trash", "Library", "Photos Library.photoslibrary"}
 
 
@@ -93,11 +96,27 @@ def is_relative_to(path: Path, parent: Path) -> bool:
         return False
 
 
+def builtin_protected_paths() -> Tuple[Path, ...]:
+    """Return application-managed workspaces that cleanup must never mutate."""
+    return tuple(lexical(Path.home() / relative) for relative in BUILTIN_PROTECTED_RELATIVE_PATHS)
+
+
+def paths_overlap(left: Path, right: Path) -> bool:
+    """Return whether either path contains the other."""
+    return left == right or is_relative_to(left, right) or is_relative_to(right, left)
+
+
 def protected(path: Path, extra: Sequence[Path]) -> bool:
-    path = resolved(path)
-    if any(part in PROTECTED_PARTS for part in path.parts):
+    path_variants = {lexical(path), resolved(path)}
+    if any(part in PROTECTED_PARTS for variant in path_variants for part in variant.parts):
         return True
-    return any(path == item or is_relative_to(path, item) for item in extra)
+    protected_roots = (*builtin_protected_paths(), *extra)
+    root_variants = {
+        variant
+        for root in protected_roots
+        for variant in (lexical(root), resolved(root))
+    }
+    return any(paths_overlap(path_variant, root_variant) for path_variant in path_variants for root_variant in root_variants)
 
 
 def guard_mutation_target(path: Path) -> Path:
@@ -221,7 +240,7 @@ def candidate(path: Path, size: int, category: str, reason: str) -> Dict[str, An
 
 def run_inventory(args: argparse.Namespace) -> int:
     roots = [resolved(item) for item in args.root]
-    extra_protected = [resolved(item) for item in args.protected]
+    extra_protected = [item.expanduser() for item in args.protected]
     minimum_bytes = int(args.min_gb * DECIMAL_GB)
     items: List[Dict[str, Any]] = []
     seen = set()
@@ -425,6 +444,9 @@ def run_migrate(args: argparse.Namespace) -> int:
     archive_root = resolved(args.archive_root)
     if not source.exists() or source.is_symlink():
         raise OptimizerError(f"源路径不存在或已经是链接：{source}")
+    extra_protected = [item.expanduser() for item in getattr(args, "protected", [])]
+    if protected(source, extra_protected):
+        raise OptimizerError(f"迁移源命中保护边界：{source}")
     if not archive_root.is_dir():
         raise OptimizerError(f"归档根目录不存在：{archive_root}")
     destination = resolved(args.destination) if args.destination else archive_root / args.category / source.name
@@ -498,7 +520,7 @@ def allowed_rebuildable(path: Path) -> bool:
 
 def run_stage_cleanup(args: argparse.Namespace) -> int:
     paths = [guard_mutation_target(item) for item in args.path]
-    extra_protected = [resolved(item) for item in args.protected]
+    extra_protected = [item.expanduser() for item in args.protected]
     actions: List[Dict[str, Any]] = []
     for path in paths:
         if not path.exists() or path.is_symlink():
@@ -783,6 +805,7 @@ def build_parser() -> argparse.ArgumentParser:
     migrate.add_argument("--archive-root", type=Path, required=True)
     migrate.add_argument("--category", default="projects")
     migrate.add_argument("--destination", type=Path)
+    migrate.add_argument("--protected", type=Path, action="append", default=[])
     migrate.add_argument("--rollback-root", type=Path, default=Path.home() / ".Trash")
     migrate.add_argument("--verify", choices=("metadata", "checksum"), default="metadata")
     migrate.add_argument("--reserve-gb", type=float, default=10.0)

@@ -3196,10 +3196,10 @@ skills:
   paid: false
   category: General
   version: "0.4.0"
-  updated_at: 2026-08-23T17:04:16Z
-  description: Guarded macOS disk cleanup with archive migration, rollback-aware staging, direct rollback-item purging, and real-capacity verification.
-  tagline_en: Clean up Mac storage with guarded planning, archive migration, exact rollback-item purging, and real-capacity verification.
-  tagline_zh: 按目标容量整理 Mac 磁盘，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
+  updated_at: 2026-08-26T06:15:18Z
+  description: Guarded macOS disk cleanup with protected app workspaces, rollback-aware staging, archive migration, and real-capacity verification.
+  tagline_en: Clean up Mac storage without touching protected app workspaces, with guarded migration, rollback, and real-capacity verification.
+  tagline_zh: 按目标容量整理 Mac 磁盘，保护 Screen Studio 等应用工作区，并以可回滚操作和真实可用空间完成验收。
   pricing:
     model: free_entry
     visibility: public
@@ -3210,17 +3210,17 @@ skills:
     - 0
     delivery_unit_zh: 公开 Skill 源码与当前版本说明
     delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 按目标容量整理 Mac 磁盘，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
-    value_en: Clean up Mac storage with guarded planning, archive migration, exact rollback-item purging, and real-capacity verification.
+    value_zh: 按目标容量整理 Mac 磁盘，保护应用工作区，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
+    value_en: Clean up Mac storage while protecting application-managed workspaces, with guarded migration, exact rollback-item purging, and real-capacity verification.
     anchor_zh: 一次处理通常可省下 30 分钟至半天的排查、整理和回滚往返。
     anchor_en: A run typically saves 30 minutes to half a day of storage diagnosis, cleanup, and rollback work.
-    basis_zh: 按一次可验证的磁盘空间改善定价，重点是减少误删风险、排查往返和重复清理。
-    basis_en: Priced around a verifiable improvement in free space, reducing deletion risk, debugging loops, and repeated cleanup.
-    boundary_zh: 默认只处理明确的可重建产物和用户确认的低频资料；照片、消息、邮件、Git 历史及受保护路径不进入自动清理。
-    boundary_en: Handles explicit rebuildable artifacts and user-confirmed cold data; photos, messages, mail, Git history, and protected paths stay out of automatic cleanup.
+    basis_zh: 作为免费可信入口发布，重点验证真实空间改善、应用工作区保护、误删风险降低和回滚可靠性。
+    basis_en: Published as a free trust-building entry point, emphasizing verifiable capacity gains, app-workspace protection, lower deletion risk, and reliable rollback.
+    boundary_zh: 默认只处理明确的可重建产物和用户确认的低频资料；照片、消息、邮件、Git 历史、Screen Studio 录制工作区及其他受保护路径不进入自动清理或迁移。
+    boundary_en: Handles explicit rebuildable artifacts and user-confirmed cold data; photos, messages, mail, Git history, Screen Studio recordings, and other protected paths stay out of cleanup and migration.
     maintenance_zh: 随 macOS、文件系统、归档卷挂载方式和真实使用反馈变化复评。
     maintenance_en: Review when macOS, filesystem behavior, archive-volume mounting, or real-use feedback change.
-    confidence: entry
+    confidence: case-backed
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/clean-mac.md
