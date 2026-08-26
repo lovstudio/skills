@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Validate depends_on / related fields in skills.yaml.
+"""Validate relationships and public pricing fields in skills.yaml.
 
 Rules:
   - Every name in depends_on / related must exist in skills.yaml.
   - related must be symmetric: if A lists B, B must list A.
   - depends_on graph must be acyclic.
+  - Public product prices must use Credits fields and Credits-only copy.
 
 Run standalone; both render-marketplace.py and render-readme.py import
 validate() so CI rejects bad states before regenerating outputs.
@@ -12,12 +13,43 @@ validate() so CI rejects bad states before regenerating outputs.
 from __future__ import annotations
 
 import sys
+import re
 from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 YAML_PATH = ROOT / "skills.yaml"
+
+FIAT_PRICE_KEYS = {
+    "price_cny",
+    "list_price_cny",
+    "launch_price_cny",
+    "price_range_cny",
+    "price_usd",
+    "list_price_usd",
+    "launch_price_usd",
+    "price_range_usd",
+}
+PUBLIC_COPY_FIELDS = {
+    "tagline_en",
+    "tagline_zh",
+    "delivery_unit_en",
+    "delivery_unit_zh",
+    "value_en",
+    "value_zh",
+    "anchor_en",
+    "anchor_zh",
+    "basis_en",
+    "basis_zh",
+    "boundary_en",
+    "boundary_zh",
+    "maintenance_en",
+    "maintenance_zh",
+    "review_trigger_en",
+    "review_trigger_zh",
+}
+FIAT_COPY = re.compile(r"(?:¥|￥|CNY|RMB|人民币|HK\$|US\$|[$€£]\s*\d)", re.IGNORECASE)
 
 
 def load_skills() -> list[dict]:
@@ -31,6 +63,20 @@ def validate(skills: list[dict]) -> list[str]:
 
     for s in skills:
         name = s["name"]
+        pricing = s.get("pricing") or {}
+        for key in FIAT_PRICE_KEYS.intersection(s):
+            errors.append(f"{name}.{key}: public product prices must use Credits")
+        for key in FIAT_PRICE_KEYS.intersection(pricing):
+            errors.append(f"{name}.pricing.{key}: public product prices must use Credits")
+
+        for key in PUBLIC_COPY_FIELDS:
+            value = s.get(key)
+            if isinstance(value, str) and FIAT_COPY.search(value):
+                errors.append(f"{name}.{key}: public product pricing copy must use Credits")
+            value = pricing.get(key)
+            if isinstance(value, str) and FIAT_COPY.search(value):
+                errors.append(f"{name}.pricing.{key}: public product pricing copy must use Credits")
+
         for field in ("depends_on", "related"):
             for ref in s.get(field) or []:
                 if ref not in by_name:
