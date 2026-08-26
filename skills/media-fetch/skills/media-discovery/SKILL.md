@@ -5,7 +5,7 @@ description: >
 license: MIT
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.4.0"
   tags:
     - media-search
     - dht
@@ -58,10 +58,10 @@ the source and confidence; do not treat a release filename as authoritative.
 
 Use at least two available paths:
 
-1. `scripts/qbittorrent_search.py` across enabled, reviewed search plugins;
+1. direct web research or catalog/index queries;
 2. a local DHT index such as Rats Search;
-3. direct web research or catalog/index queries;
-4. user-supplied Magnet, Torrent, hash, or URL inputs.
+3. user-supplied Magnet, Torrent, hash, or URL inputs;
+4. optional `scripts/qbittorrent_search.py` across enabled, reviewed search plugins.
 
 Run independent searches in parallel when the environment supports it. Use title,
 original title, year, edition terms, resolution, and subtitle markers as separate

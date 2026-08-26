@@ -82,8 +82,8 @@ Never print private tracker query tokens in the user-facing result.
   `zh-Hans`, `cht`/`zh-tw` to `zh-Hant`, and preserve `en`.
 - `metadata_confidence`: `verified`, `release-record`, `filename`, or `unknown`.
 - `info_hash`: uppercase hexadecimal when known. Deduplicate case-insensitively.
-- `transport_inputs`: the inputs accepted by the acquisition layer; the same content
-  can be resumed through qBittorrent or aria2 without changing release identity.
+- `transport_inputs`: the inputs accepted by the acquisition layer; aria2 is the
+  default backend, while optional qBittorrent may consume the same Torrent identity.
 
 ## Decision document
 

@@ -22,6 +22,7 @@ ${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}
 ```json
 {
   "media_fetch": {
+    "config_version": 2,
     "output_dir": "$HOME/Downloads/Media",
     "quality_mode": "balanced",
     "max_movie_size_gib": 24,
@@ -43,9 +44,9 @@ ${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}
       "complete",
       "theatrical"
     ],
-    "transport_backends": ["qbittorrent", "aria2"],
+    "transport_backends": ["aria2"],
     "aria2_binary": "aria2c",
-    "aria2_listen_port": 53555,
+    "aria2_listen_port": 0,
     "aria2_max_peers": 200,
     "aria2_max_restarts": 2,
     "subtitle_repair": "match-exact-release",
@@ -57,6 +58,9 @@ ${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}
 
 The default size cap is a guardrail, not a target. Explicit per-request values win.
 Series packs use the aggregate requested episode size when that is known.
+Profiles without `config_version: 2` migrate the former `qbittorrent,aria2` ordering
+to the aria2-only default and replace the fixed aria2 listen port with automatic port
+selection. Explicit request and environment overrides still win.
 
 ## First-run initialization
 
@@ -76,15 +80,18 @@ export MEDIA_FETCH_MAX_EPISODE_SIZE_GIB="6"
 export MEDIA_FETCH_RESERVE_FREE_GIB="15"
 export MEDIA_FETCH_PARALLEL_PROBES="3"
 export MEDIA_FETCH_SLOW_SPEED_MIB_S="1.0"
-export MEDIA_FETCH_TRANSPORT_BACKENDS="qbittorrent,aria2"
+export MEDIA_FETCH_TRANSPORT_BACKENDS="aria2"
 export MEDIA_FETCH_ARIA2_BIN="aria2c"
-export MEDIA_FETCH_ARIA2_LISTEN_PORT="53555"
+export MEDIA_FETCH_ARIA2_LISTEN_PORT="0"
 export MEDIA_FETCH_ARIA2_MAX_PEERS="200"
 export MEDIA_FETCH_ARIA2_MAX_RESTARTS="2"
 export QBITTORRENT_URL="http://127.0.0.1:8080"
 export QBITTORRENT_USERNAME="admin"
 export QBITTORRENT_PASSWORD="read-from-a-secure-source"
 ```
+
+Add `qbittorrent` to `MEDIA_FETCH_TRANSPORT_BACKENDS` only when its optional search,
+queue, swarm-inspection, or seeding capabilities are wanted for the current run.
 
 Do not place `QBITTORRENT_PASSWORD`, cookies, private tracker keys, or provider tokens
 in committed Skill source or the shared profile.

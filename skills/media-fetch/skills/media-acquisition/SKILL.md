@@ -1,28 +1,31 @@
 ---
 name: lov-media-acquisition
 description: >
-  在下载前检查磁盘空间，通过 qBittorrent 并行测试多个候选、选择持续速度更好的来源、观测进度并在停滞时切换；适用于“开始下载，太慢就换源”、"race sources and finish the download"。
+  Use when a selected media release must be downloaded, raced, resumed, or recovered. 通过 aria2 默认执行容量预检、候选测速、持续观测与慢源切换；适用于“开始下载，太慢就换源”。
 license: MIT
+compatibility: >
+  Python 3.9+ and aria2 1.36+; qBittorrent 5.x Web API is optional for search,
+  BitTorrent queue management, live swarm inspection, or long-term seeding.
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.4.0"
   tags:
     - storage-preflight
     - qbittorrent
     - aria2
     - download-monitoring
     - failover
-  compatibility: "Python 3.9+; qBittorrent 5.x Web API with aria2 1.36+ as resumable fallback."
   dependencies:
     - python
-    - qbittorrent
+    - aria2
 ---
 
 # Media Acquisition
 
 Treat download as an observed job with recovery, not a fire-and-forget client action.
-Use qBittorrent for integrated discovery and initial probes, with aria2 available as a
-same-input resumable transport when a swarm behaves better outside qBittorrent.
+Use aria2 as the primary transfer engine for direct and BitTorrent inputs. Treat
+qBittorrent as an optional adapter when its search, queue, inspection, or seeding
+capabilities add value.
 
 ## Triggers
 
@@ -43,10 +46,10 @@ same-input resumable transport when a swarm behaves better outside qBittorrent.
 ### Step 0: Load safeguards and connection
 
 Read `$KIT_DIR/references/acquisition-policy.md` and resolved configuration. Verify
-qBittorrent login before adding tasks. If first-run initialization is needed, keep the
-WebUI on loopback and credentials in the operating system credential store. Query
-existing hashes and mark them as
-pre-existing; never delete, relocate, or retag those tasks.
+aria2 and assign an isolated job directory plus unique listen/RPC ports. If optional
+qBittorrent is enabled, verify its login, keep the WebUI on loopback, and query existing
+hashes before adding tasks. Mark those hashes as pre-existing; never delete, relocate,
+or retag them.
 
 ### Step 1: Capacity preflight
 
@@ -62,10 +65,12 @@ payloads can be cleaned without broad path deletion.
 
 ### Step 3: Measure sustained usefulness
 
-Run `scripts/qbittorrent_acquire.py`. Ignore the warm-up window when comparing. Score
-sustained speed, availability, peers, progress, and ETA. A candidate with a brief burst
-followed by zero is weaker than a stable source. Keep advertised seeders and observed
-health in separate fields.
+Run `scripts/aria2_acquire.py` for the selected inputs, using distinct job identities
+and ports when probes overlap. Ignore the warm-up window when comparing. Score sustained
+speed, availability, peers, progress, and ETA. A candidate with a brief burst followed
+by zero is weaker than a stable source. Keep advertised seeders and observed health in
+separate fields. Use `scripts/qbittorrent_acquire.py` only when that optional backend is
+enabled for this run.
 
 ### Step 4: Continue and recover
 
@@ -73,7 +78,7 @@ health in separate fields.
 - Provide a user progress update at least once per minute while tools are active.
 - If progress and traffic remain below thresholds for `stall_seconds`, pause the
   current task and resume the next proven candidate.
-- If the same Magnet or Torrent input is better served by aria2, run:
+- Start or resume the default aria2 transfer with:
 
   ```bash
   python3 "$KIT_DIR/scripts/aria2_acquire.py" \
@@ -81,8 +86,12 @@ health in separate fields.
     --result ACQUISITION_JSON --watch --no-proxy
   ```
 
-  Keep the `.aria2` state in the isolated job directory, record the backend switch,
-  and verify the final payload before relocation.
+  Keep the `.aria2` state in the isolated job directory and verify the final payload
+  before relocation. For a direct URL with an opaque path, pass `--output-name` so the
+  completed media retains a verifiable suffix.
+- Switch to qBittorrent only after an enabled qBittorrent probe shows better sustained
+  health or the user needs its queue/seeding behavior. Record the evidence and avoid a
+  second full payload.
 - If the complete candidate list is exhausted, preserve the best paused job, return to
   discovery for the next wave, preflight the incremental probe budget, and continue.
 - Use a finite configured search wave per process; the agent owns the outer retry loop
@@ -96,7 +105,7 @@ Never delete by wildcard, parent directory, candidate name alone, or unresolved 
 
 ## Dependencies
 
-qBittorrent 5.x with WebUI enabled. Connection values come from
+aria2 1.36+ is required. Optional qBittorrent connection values come from
 `QBITTORRENT_URL`, `QBITTORRENT_USERNAME`, `QBITTORRENT_PASSWORD`, or the shared
 profile; secrets stay outside committed source.
 

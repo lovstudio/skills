@@ -1,20 +1,20 @@
 ---
 name: lov-app-generator
 description: >
-  This skill should be used when the user asks for "App生成器", "生成 Web App",
-  "生成 Tauri App", "只创建 web", or to standardize an existing frontend app with
-  branding, CI/CD, and Lovinsp.
+  Use when the user asks for "App生成器", "生成 Web App", "生成 Tauri App",
+  "生成原生 macOS App", "Finder Quick Action", "只创建 web", or to standardize
+  an existing app with branding, CI/CD, native integration, and Lovinsp where applicable.
 license: MIT
 compatibility: >
   Requires Python 3.8+ for the project audit helper. Designed for React,
-  TypeScript, Vite, Next.js, optional Tauri, shadcn/ui, TanStack Query, GitHub
-  Actions, web deploys, and Skill Publisher Configurable Academic branded apps. Every
-  generated or standardized frontend app must run `lov-integrate-lovinsp`. New apps
-  must generate a target-specific logo through `lov-gen-logo`; Tauri apps must run
-  the Tauri icon pipeline from that logo.
+  TypeScript, Vite, Next.js, optional Tauri, native macOS apps and Action Extensions,
+  shadcn/ui, TanStack Query, GitHub Actions, web deploys, and Skill Publisher
+  Configurable Academic branded apps. Every generated or standardized frontend app
+  must run `lov-integrate-lovinsp`. New apps must generate a target-specific logo
+  through `lov-gen-logo`; Tauri apps must run the Tauri icon pipeline from that logo.
 metadata:
   author: contributors
-  version: "0.4.0"
+  version: "0.5.0"
   tags:
     - skill-publisher
     - app-generator
@@ -34,10 +34,11 @@ metadata:
 
 Use this skill to create or upgrade a Skill Publisher-grade app. Choose the app type
 from the brief instead of forcing desktop packaging: use web-only when the
-workflow is browser-native, and use Tauri when native desktop capabilities or
-desktop distribution are required. Common stacks are React + TypeScript +
-Vite, Next.js, or Tauri + React, with shadcn/ui, Skill Publisher brand assets, Warm
-Academic UI, CI/CD or deploy wiring, and lovinsp click-to-code support.
+workflow is browser-native, use Tauri for a web-rendered desktop product, and use a
+native macOS host when an App Extension is the product's primary capability. Common
+stacks are React + TypeScript + Vite, Next.js, Tauri + React, or Swift/SwiftUI +
+AppKit extensions, with Skill Publisher brand assets, CI/CD or deploy wiring, and
+lovinsp click-to-code support for browser-rendered UI.
 
 ## Default Integration Invariant
 
@@ -61,6 +62,8 @@ and therefore falls outside the app-generation paths described below.
 
 - The user asks to generate a new Skill Publisher app, web app, PWA, desktop app, or
   cross-platform app.
+- The user asks for a native macOS app, Finder right-click action, Finder Quick
+  Action, Action Extension, or another packaged macOS integration.
 - The user has an existing frontend/Tauri project and wants it brought up to
   Skill Publisher app standards.
 - The user mentions web-only, Vite, Next.js, PWA, Tauri, shadcn, React Query /
@@ -101,6 +104,7 @@ Required fields:
 | Target mode | `new app` | `new app` or `upgrade existing app` |
 | App type | Case-by-case | `web-only`, `PWA`, `Tauri desktop`, or another fit from the brief |
 | Platforms | Case-by-case | Web browser/mobile responsive unless native desktop is justified |
+| Native integration | `none` | Record the exact surface: `Finder Quick Action`, `Services`, `Share Extension`, etc. |
 | Core screens | Ask user | 2-5 concrete screens or workflows |
 | Backend/API | Ask user if needed | REST, Supabase, local files, Tauri commands, static data, etc. |
 | Distribution | Case-by-case | Web deploy for web-only; GitHub Releases + updater for Tauri |
@@ -161,6 +165,10 @@ Pick the smallest app type that genuinely fits the brief:
   access beyond browser capabilities, tray/menu/global shortcuts, long-running
   background tasks, native OS integration, offline-first packaged use, or
   GitHub Releases distribution with auto update.
+- **Native macOS app**: use when a macOS App Extension is the primary deliverable,
+  including Finder Quick Actions that must be embedded, signed, enabled, and verified
+  as part of the containing app. Do not force a browser-rendered shell onto an
+  extension-first utility.
 - **Framework choice**: prefer Vite React for app-like single-page workflows,
   Next.js for SEO/SSR/content routing/API routes, and static HTML only for very
   small one-off deliverables.
@@ -168,6 +176,22 @@ Pick the smallest app type that genuinely fits the brief:
 Do not add Tauri simply because this skill historically defaulted to Tauri.
 If the user says "只创建 web" or the requirements do not need native desktop
 capabilities, create a web app.
+
+#### Native Surface Decision
+
+Treat the requested macOS surface as an acceptance criterion, not an implementation
+detail:
+
+- "Finder 右键菜单" or "Finder context menu" defaults to the **Quick Actions**
+  submenu when the command processes selected files or folders.
+- Services are only for explicit cross-app selection processing or Services shortcuts;
+  `NSServices` and Service-only workflows never satisfy a Quick Action request.
+- Classify the surface by the Finder preview flag and runtime placement, not the
+  `com.apple.services` identifier or `Library/Services` directory name.
+- Finder Sync is only for synchronization/status behavior in monitored directories.
+
+When the brief includes a Finder Quick Action, read
+`references/macos-finder-quick-actions.md` completely before scaffolding or editing.
 
 #### New Web App
 
@@ -235,6 +259,16 @@ Then apply the Skill Publisher layers in this order:
    endpoint wiring.
 8. Verification: typecheck, build, and app launch where practical.
 
+If the Tauri product also requires a Finder Quick Action, treat it as a hybrid macOS
+package and follow the native reference; prefer a native Swift/SwiftUI containing app
+when the extension is the product's main value.
+
+#### Finder Quick Action
+
+Follow `references/macos-finder-quick-actions.md`, run the audit with
+`--native-integration finder-quick-action`, and complete its packaged/runtime checks
+before claiming completion.
+
 #### Upgrade Existing App
 
 Do not rebuild the project from scratch. Patch the smallest surface needed:
@@ -245,10 +279,12 @@ Do not rebuild the project from scratch. Patch the smallest surface needed:
    conventions unless they conflict with Skill Publisher requirements.
 3. Add missing Skill Publisher layers from the audit; do not add Tauri to a web-only
    app unless the brief requires native desktop capabilities.
-4. Run `lov-integrate-lovinsp` to install/update Lovinsp and migrate any supported
+4. Preserve the requested native surface. A Quick Action remains a Quick Action after
+   an upgrade; do not silently replace it with a Service because that path is easier.
+5. Run `lov-integrate-lovinsp` to install/update Lovinsp and migrate any supported
    `code-inspector` integration.
-5. Preserve user code and unrelated changes.
-6. Prefer incremental commits/checkpoints when the app is already substantial.
+6. Preserve user code and unrelated changes.
+7. Prefer incremental commits/checkpoints when the app is already substantial.
 
 ### Step 5: Apply Brand and UI Standards
 
@@ -318,6 +354,7 @@ Only for Tauri desktop apps, check these areas:
 | Rust commands | typed command boundary, no broad stringly APIs where avoidable |
 | Frontend API | `invoke()` wrapped through query/mutation helpers for server state |
 | Filesystem/native APIs | least permission needed in Tauri capabilities |
+| Native extensions | when requested, signed `.appex` embedded in `Contents/PlugIns`; never Service-only fallback |
 | Icons | generated through Tauri icon pipeline from the target-specific logo produced by `lov-gen-logo` |
 | Dev server | stable project port, preferably via `lov-project-port` |
 
@@ -407,6 +444,9 @@ verify frontend behavior, start it and give the user the local URL.
 For UI changes, use browser or screenshot verification when practical. For
 Tauri-native behavior, report what was and was not verified.
 
+For Finder Quick Actions, source/build success is insufficient; complete every packaged
+and runtime acceptance check in `references/macos-finder-quick-actions.md`.
+
 ## User Configuration
 
 If local paths differ, prefer these environment variables rather than
@@ -420,12 +460,8 @@ hard-coding personal paths:
 
 ## CLI Reference
 
-| Argument | Default | Description |
-|----------|---------|-------------|
-| `--root` | `.` | Target app root to inspect |
-| `--app-type` | `auto` | `auto`, `web`, or `tauri`; controls which checks apply |
-| `--format` | `markdown` | `markdown` or `json` |
-| `--output` | stdout | Optional path to write the report |
+Run `python3 "$SKILL_DIR/scripts/audit_app_project.py" --help`; Finder Quick Action
+audits must pass `--native-integration finder-quick-action` explicitly.
 
 ## Dependencies
 
@@ -441,6 +477,7 @@ Report:
 
 - App path and stack chosen.
 - App type decision: web-only / PWA / Tauri, and why that fit the brief.
+- Native surface decision and evidence, including Quick Actions versus Services when relevant.
 - Skill Publisher layers added or confirmed: brand, UI, data layer, lovinsp, CI/CD,
   deploy/release, and updater only when applicable.
 - `lov-integrate-lovinsp` result, including installation/update/migration status and

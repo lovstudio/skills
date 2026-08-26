@@ -13,6 +13,7 @@ from typing import Any
 
 
 DEFAULTS: dict[str, Any] = {
+    "config_version": 2,
     "output_dir": "$HOME/Downloads/Media",
     "quality_mode": "balanced",
     "max_movie_size_gib": 24.0,
@@ -34,9 +35,9 @@ DEFAULTS: dict[str, Any] = {
         "complete",
         "theatrical",
     ],
-    "transport_backends": ["qbittorrent", "aria2"],
+    "transport_backends": ["aria2"],
     "aria2_binary": "aria2c",
-    "aria2_listen_port": 53555,
+    "aria2_listen_port": 0,
     "aria2_max_peers": 200,
     "aria2_max_restarts": 2,
     "subtitle_repair": "match-exact-release",
@@ -102,7 +103,14 @@ def resolve(profile: dict[str, Any], overrides: dict[str, Any]) -> dict[str, Any
     result = deepcopy(DEFAULTS)
     saved = profile.get("media_fetch")
     if isinstance(saved, dict):
-        result.update({key: value for key, value in saved.items() if key in DEFAULTS})
+        saved_values = {key: value for key, value in saved.items() if key in DEFAULTS}
+        if int(saved_values.get("config_version") or 1) < 2:
+            if saved_values.get("transport_backends") == ["qbittorrent", "aria2"]:
+                saved_values["transport_backends"] = ["aria2"]
+            if saved_values.get("aria2_listen_port") == 53555:
+                saved_values["aria2_listen_port"] = 0
+            saved_values["config_version"] = 2
+        result.update(saved_values)
     for key, env_name in ENV_MAP.items():
         if env_name in os.environ:
             result[key] = coerce(os.environ[env_name], DEFAULTS[key])

@@ -2,8 +2,9 @@
 
 `lov-media-fetch` turns a natural-language movie or series request into a normalized
 candidate list, an evidence-backed edition choice, a capacity-checked acquisition,
-and a final local media verification. It combines qBittorrent discovery and first
-probes with an aria2 continuation fallback for slow or unstable swarms.
+and a final local media verification. It uses aria2 as the default direct and
+BitTorrent transport, with qBittorrent available as an optional search, queue, and
+seeding adapter.
 
 # Owner
 
@@ -26,9 +27,9 @@ credentials outside the source and writes reports beside the selected job.
 
 # Requirements
 
-Python 3.9+, PyYAML, FFmpeg/ffprobe, and qBittorrent 5.x are the core requirements.
-aria2 1.36+ is an optional fallback. Storage preflight must pass before payload
-transfer, and the runtime must provide a secure external credential path for qBittorrent.
+Python 3.9+, PyYAML, FFmpeg/ffprobe, and aria2 1.36+ are the core requirements.
+qBittorrent 5.x is optional. Storage preflight must pass before payload transfer; when
+qBittorrent is enabled, credentials stay in a secure external store.
 
 # Known Risks
 
@@ -55,8 +56,9 @@ remain separate fields.
 
 # Skill Version
 
-0.2.0. This release adds aria2 continuation, transport evidence, the subtitle handoff,
-and the real 《指环王》三部曲 case.
+0.4.0. This release makes aria2 the primary transport, moves qBittorrent behind an
+optional capability boundary, adds direct-URL routing and job-specific ports, and
+migrates legacy backend preferences.
 
 # Ethical Considerations
 
@@ -71,8 +73,8 @@ presenting an incomplete language package as complete.
 Input: `指环王三部曲`, with extended edition, balanced quality, original audio, and
 `zh-Hans` plus English subtitle preferences. Prompt: `$lov-media-fetch 指环王三部曲`.
 
-Output: the selected Extended Remastered 1080p HEVC release completed through a
-qBittorrent discovery/probe followed by aria2 same-input continuation. Three media
+Output: the selected Extended Remastered 1080p HEVC release completed through an
+optional qBittorrent discovery/probe followed by aria2 same-input continuation. Three media
 files passed stream and duration inspection. The final warning precisely records the
 missing `zh-Hans` stream and opens the exact-release SRT handoff.
 
@@ -81,7 +83,7 @@ missing `zh-Hans` stream and opens the exact-release SRT handoff.
 | Dimension | Evidence | State |
 | --- | --- | --- |
 | 剪辑版本识别 | Extended Remastered candidate plus three duration readings | verified |
-| 下载韧性 | qBittorrent probe, aria2 continuation, `.aria2` state, final completion | verified |
+| 下载韧性 | aria2 primary transfer, optional qBittorrent probe, `.aria2` state, final completion | verified |
 | 容量纪律 | Preflight formula includes payload, probes, continuation files, and reserve | verified |
 | 媒体验收 | Three readable 1920x804 HEVC files, no errors | verified |
 | 字幕保真 | English embedded; `zh-Hans` gap is isolated for exact-release SRT matching | warning |

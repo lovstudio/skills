@@ -1,25 +1,27 @@
 ---
 name: lov-media-fetch
 description: >
-  自动检索、比较并下载电影、剧集或其他长视频，结合 qBittorrent 与 aria2 做多源测速、可恢复续传、慢源切换、容量预检、剪辑版核验与字幕验收；适用于“帮我找并下载这部电影”、"find and download the best release"。
+  Use when the user asks to find and download a film, series, or long video. 以 aria2 为默认传输后端，完成多源测速、续传、容量预检、版本核验与字幕验收；也适用于“帮我下载这部电影”。
 license: MIT
+compatibility: >
+  Portable Agent Skills format; Python 3.9+, aria2 1.36+, and ffprobe recommended.
+  qBittorrent 5.x Web API is an optional discovery, BitTorrent-management, and seeding adapter.
 metadata:
   author: contributors
-  version: "0.3.0"
+  version: "0.4.0"
   tags:
     - media-discovery
     - release-selection
     - download-orchestration
     - quality-control
-    - transport-fallback
+    - aria2-primary
+    - optional-qbittorrent
     - resumable-download
     - subtitle-handoff
   card_standard: "lovstudio/skill-card/v1"
-  compatibility: "Portable Agent Skills format; Python 3.9+, qBittorrent 5.x Web API, aria2 optional, and ffprobe recommended."
   dependencies:
     - python
     - pyyaml
-    - qbittorrent
     - aria2
     - ffprobe
 ---
@@ -63,10 +65,10 @@ the completed file.
 - Keep advertised seeders, observed peers, metadata readiness, received bytes, and
   sustained speed as separate evidence fields. A large seeder count is not a speed
   promise.
-- Use qBittorrent for discovery and first probes, then hand the same Magnet or Torrent
-  input to aria2 when the source is healthier there. Reuse the `.aria2` continuation
-  state and record every transport switch; do not create a second full payload by
-  accident.
+- Use aria2 as the default transfer backend for direct URLs, Metalinks, Magnets, and
+  Torrent inputs. Enable qBittorrent only when its search plugins, queue UI, swarm
+  inspection, or long-term seeding materially helps the task. Record every backend
+  choice and switch; do not create a second full payload by accident.
 - A missing `zh-Hans` stream is a recoverable subtitle gap, not a reason to mislabel
   the media. The subtitle branch may consult `lov-subtitle-freedom-skill` for
   timestamp-preserving UTF-8 SRT handling. Its English-learning gloss and ASS modes
@@ -96,12 +98,13 @@ Load the selected module completely before acting:
 
 ### Step 0: Resolve runtime and select a pipeline
 
-1. Resolve `SKILL_DIR`, `KIT_DIR`, configuration, qBittorrent and aria2 availability,
-   and `ffprobe`. Treat aria2 as the resumable fallback transport.
-2. On first use, bootstrap missing stable dependencies through the platform's native
-   package manager. Keep qBittorrent's WebUI on loopback and its credential in the
-   operating system credential store. Reuse an existing compatible client instead
-   when present; do not put secrets in profile or reports.
+1. Resolve `SKILL_DIR`, `KIT_DIR`, configuration, aria2 availability, and `ffprobe`.
+   Detect qBittorrent as an optional capability; its absence must not block discovery,
+   transfer, resume, verification, or reporting.
+2. On first use, bootstrap missing stable aria2 and ffprobe dependencies through the
+   platform's native package manager. When qBittorrent is explicitly enabled, keep its
+   WebUI on loopback and its credential in the operating system credential store. Do
+   not put secrets in profile or reports.
 3. Preserve existing client tasks. Every task created by this Skill must receive a
    unique job tag and an isolated probe directory.
 4. Select `full` for a title request, `choose` for comparison only, `download-known`
@@ -117,8 +120,8 @@ omitted values from the portable profile. Do not ask the user to choose tooling.
 ### Step 2: Discover independent candidates
 
 Run the discovery module. Use at least two independent discovery paths when possible:
-the qBittorrent search API, a local DHT index such as Rats Search, direct web research,
-or user-supplied links. Deduplicate by info hash and canonical release identity. Preserve
+direct web or catalog research, a local DHT index such as Rats Search, user-supplied
+links, or the optional qBittorrent search API. Deduplicate by info hash and canonical release identity. Preserve
 a `.torrent` URL or local Torrent path even when its info hash is not known until
 metadata resolution.
 
@@ -149,15 +152,16 @@ decision. Never silently consume the reserve.
 
 Run the acquisition module and `$KIT_DIR/references/acquisition-policy.md`.
 
-1. Probe up to the configured concurrency in an isolated job directory.
+1. Probe up to the configured concurrency in isolated per-candidate directories. Use
+   aria2 by default and allocate distinct listen/RPC ports for concurrent jobs.
 2. Observe warm speed, sustained speed, availability, peers, metadata readiness, and
    ETA; a short burst alone does not win.
 3. Pause non-winners, move the winner to the final destination, and continue polling.
 4. If the winner stalls beyond the configured threshold, pause it and first try the
-   next proven candidate. When the same Magnet/Torrent is better served by another
-   transport, run `scripts/aria2_acquire.py` with the same input and job identity so
-   partial state can continue. Use DHT, PeX, LSD, configured trackers, and direct
-   connections; record the reason, backend, and observed rate for each switch.
+   next proven candidate. Preserve the same aria2 job identity and `.aria2` state when
+   restarting an input. Switch to qBittorrent only when it is enabled and measured
+   evidence shows a healthier swarm or the user needs its queue/seeding behavior.
+   Record the reason, backend, and observed rate for each switch.
 5. If all candidates are slow, return to discovery for another wave.
 6. Keep the terminal session alive and poll at intervals short enough to provide the
    user a progress update at least once per minute during active work.
@@ -198,8 +202,9 @@ health, transport trace, elapsed time, and any remaining evidence gap. Distingui
 ## Dependencies
 
 - Python 3.9+ for deterministic helpers.
-- qBittorrent 5.x with WebUI enabled for integrated search and first acquisition.
-- aria2 1.36+ for resumable fallback acquisition; it is optional when qBittorrent is healthy.
+- aria2 1.36+ for primary HTTP(S), Metalink, Magnet, and Torrent acquisition.
+- Optional qBittorrent 5.x with WebUI enabled for integrated search, BT management,
+  queue visibility, or long-term seeding.
 - Search plugins or another discovery adapter for title search.
 - `ffprobe` from FFmpeg for final stream and duration inspection.
 - Optional Rats Search for independent DHT discovery.
@@ -211,13 +216,3 @@ health, transport trace, elapsed time, and any remaining evidence gap. Distingui
 - 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
 - `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
 - 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
-
-## 通用反馈闭环
-
-用户在 Skill 驱动任务中提出修改意见时，继续当前产物前必须执行：
-
-1. 先判断意见是 `task-specific`（仅本次）还是 `reusable`（可跨任务复用）。
-2. `task-specific` 只修改当前任务，不改 Skill。
-3. `reusable` 先确定作用域：领域规则先更新对应 canonical Skill；适用于所有 Skill 的规则先更新共享规范。
-4. 完成规则更新、版本、lint 与分发核验后，再把修改应用到当前任务。
-5. `reusable` 修改会使此前的“确认”“继续”“发吧”失效；完成当前产物修改和回读后必须停下，等待用户下一步指示，不自动进入发布、提交或其他外部写入。

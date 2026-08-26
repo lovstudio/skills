@@ -1,12 +1,13 @@
 # lov-app-generator
 
-![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
 
-Generate or standardize Skill Publisher apps, choosing web-only, PWA, or Tauri
-desktop case-by-case, with React/Vite or Next.js, shadcn/ui, TanStack Query
-when useful, Skill Publisher branding, CI/CD/deploy, optional auto update, and
-lovinsp. Every generated or standardized frontend app runs the idempotent
-`lov-integrate-lovinsp` workflow by default.
+Generate or standardize Skill Publisher apps, choosing web-only, PWA, Tauri,
+or native macOS case-by-case. It supports Finder Quick Actions as signed Action
+Extensions, React/Vite or Next.js, shadcn/ui, TanStack Query when useful, Skill
+Publisher branding, CI/CD/deploy, optional auto update, and lovinsp. Every generated
+or standardized frontend app runs the idempotent `lov-integrate-lovinsp` workflow by
+default.
 
 Independent source repository, also distributed through [skill-publisher dev-skills](https://example.com/skills/dev-skills) — by [example.com](https://example.com)
 
@@ -40,15 +41,18 @@ Requires: Python 3.8+ for the audit helper. No Python packages are required.
 # Or create web-only when desktop packaging is not needed:
 生成一个只创建 web 的 Skill Publisher App，按需求判断用 Vite 还是 Next.js，包含 Configurable Academic、shadcn 和 lovinsp
 
+# Or require a real Finder Quick Action rather than a Services fallback:
+生成一个原生 macOS App，对 Finder 选中的图片执行压缩；必须显示在 Quick Actions 和预览面板，不要做成 Services
+
 # Or audit an existing app:
-python3 "${SKILL_APP_GENERATOR_SKILL_DIR:-$HOME/.claude/skills/lov-app-generator}/scripts/audit_app_project.py" --root . --app-type auto --format markdown
+python3 "$SKILL_APP_GENERATOR_SKILL_DIR/scripts/audit_app_project.py" --root . --app-type auto --format markdown
 ```
 
 ## What It Does
 
 1. Collects the app brief: name, slug, app type, platform, screens, backend, and release/deploy channel.
 2. Audits the target project for Skill Publisher app requirements.
-3. Chooses web-only, PWA, or Tauri desktop from the brief instead of forcing desktop packaging.
+3. Chooses web-only, PWA, Tauri desktop, or native macOS from the brief instead of forcing one shell.
 4. Guides new app scaffolding or incremental upgrade.
 5. Applies the Configurable Academic UI system and Skill Publisher brand asset paths.
 6. Always invokes `lov-integrate-lovinsp` for frontend apps, including version
@@ -58,13 +62,16 @@ python3 "${SKILL_APP_GENERATOR_SKILL_DIR:-$HOME/.claude/skills/lov-app-generator
    and `project-port`.
 8. Adds or checks CI/CD, web deploy wiring, and Tauri updater wiring when applicable.
 9. Runs the lightest reliable verification commands available in the project.
+10. Treats Finder Quick Actions as a distinct delivery surface, rejects Service-only
+    substitutes, and verifies the embedded Action Extension configuration.
 
 ## Options
 
 | Option | Default | Description |
 |--------|---------|-------------|
 | `--root` | `.` | Target app root to inspect |
-| `--app-type` | `auto` | Audit profile: `auto`, `web`, or `tauri` |
+| `--app-type` | `auto` | Audit profile: `auto`, `web`, `tauri`, or `macos` |
+| `--native-integration` | `auto` | Native surface: `auto`, `none`, or `finder-quick-action` |
 | `--format` | `markdown` | Output format: `markdown` or `json` |
 | `--output` | stdout | Optional path to write the audit report |
 
@@ -90,9 +97,10 @@ See `references/user-config.md` for the complete resolution order.
 ## Audit Helper
 
 ```bash
-python3 "${SKILL_APP_GENERATOR_SKILL_DIR:-$HOME/.claude/skills/lov-app-generator}/scripts/audit_app_project.py" --root /path/to/app --app-type auto
-python3 "${SKILL_APP_GENERATOR_SKILL_DIR:-$HOME/.claude/skills/lov-app-generator}/scripts/audit_app_project.py" --root /path/to/app --app-type web --format json
-python3 "${SKILL_APP_GENERATOR_SKILL_DIR:-$HOME/.claude/skills/lov-app-generator}/scripts/audit_app_project.py" --root /path/to/app --app-type tauri --format markdown
+python3 "$SKILL_APP_GENERATOR_SKILL_DIR/scripts/audit_app_project.py" --root /path/to/app --app-type auto
+python3 "$SKILL_APP_GENERATOR_SKILL_DIR/scripts/audit_app_project.py" --root /path/to/app --app-type web --format json
+python3 "$SKILL_APP_GENERATOR_SKILL_DIR/scripts/audit_app_project.py" --root /path/to/app --app-type tauri --native-integration finder-quick-action
+python3 "$SKILL_APP_GENERATOR_SKILL_DIR/scripts/audit_app_project.py" --root /path/to/native-app --app-type macos --native-integration finder-quick-action
 ```
 
 ## License

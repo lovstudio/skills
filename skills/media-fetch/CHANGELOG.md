@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.0] - 2026-08-26
+
+### Added
+
+- make aria2 the primary transport backend
+- treat qBittorrent as an optional search, queue-management, and seeding adapter
+- support direct HTTP inputs, opaque output names, RPC progress, and job-specific ports in aria2 acquisition
+- detect RPC-resident completion through aria2.tellStopped and terminate the worker cleanly
+- migrate legacy transport preferences and document the aria2-first workflow
+
 ## [0.3.0] - 2026-08-24
 
 ### Added

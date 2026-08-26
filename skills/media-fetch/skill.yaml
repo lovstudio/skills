@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-media-fetch
-version: "0.3.0"
+version: "0.4.0"
 runtime: skill-runtime/v1
 context:
   profile:
@@ -16,7 +16,7 @@ context:
       question: 需要使用哪个时区处理日期和时间？
     - path: media_fetch.transport_backends
       required: false
-      question: 是否保留 qBittorrent 优先、aria2 续传的默认下载后端顺序？
+      question: 是否为本次任务启用可选的 qBittorrent 搜索、队列管理或长期做种能力？
     - path: media_fetch.preferred_subtitles
       required: false
       question: 需要优先验收哪些字幕语言？

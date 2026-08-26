@@ -25,9 +25,12 @@ belongs to its nearest existing parent.
 - Deduplicate by info hash before adding.
 - Use a unique tag `media-fetch-<job-id>` and exact per-candidate directories.
 - Existing hashes are read-only observations; never alter or clean them.
-- Prefer qBittorrent for integrated search and first probes. Keep aria2 as a resumable
-  fallback for the same Magnet or Torrent input; its `.aria2` control file is evidence
-  of continuation state, not a completed payload.
+- Prefer aria2 for direct URLs, Metalinks, Magnets, and Torrent inputs. Its `.aria2`
+  control file is evidence of continuation state, not a completed payload.
+- Treat qBittorrent as optional. Enable it for reviewed search plugins, queue UI,
+  deeper swarm inspection, or long-term seeding; do not make WebUI login a prerequisite
+  for an aria2-capable run.
+- Allocate distinct listen and RPC ports for concurrent aria2 probes.
 - Configure DHT, PeX, LSD, and a bounded tracker set. Direct connections are preferred
   when proxy environment variables produce a slow or incomplete swarm. Record the
   selected backend and connection mode in the report.
@@ -61,7 +64,7 @@ Prefer stability over a single peak sample.
 Cleanup starts only after the winner reports complete and the final file path exists.
 
 - Resolve exact task hashes created in this job.
-- Delete losing qBittorrent tasks using those hashes only.
+- Delete losing qBittorrent tasks using exact hashes only when that backend was used.
 - Delete files only inside the resolved job probe directory.
 - Preserve the winner, final destination, report JSON, and every pre-existing task.
 - If path resolution falls outside the job directory, skip file cleanup and report it.
@@ -74,11 +77,11 @@ Cleanup starts only after the winner reports complete and the final file path ex
 - `client_error`: connection or task API failure with copyable diagnostic details.
 - `cancelled`: user-requested stop; created tasks are paused and exact state is reported.
 
-## Transport handoff
+## Backend routing
 
-Run `scripts/aria2_acquire.py` when qBittorrent's live rate remains below the configured
-threshold while the source still has metadata or peer evidence. Use the same Magnet or
-Torrent input, a stable `job_id`, `--watch` for bounded restarts, and a report containing
-`backend_started`, `backend_restarted`, `last_snapshot`, and `final_snapshot` events.
-The final report must separate `download_status` from the later media and subtitle
-verdicts.
+Run `scripts/aria2_acquire.py` first for supported inputs. Use a stable `job_id`,
+`--watch` for bounded restarts, `--output-name` for opaque direct URLs, and a report
+containing `backend_started`, `backend_restarted`, `last_snapshot`, and
+`final_snapshot` events. Switch to qBittorrent only after an enabled probe supplies
+measured evidence or the requested queue/seeding behavior requires it. The final report
+must separate `download_status` from the later media and subtitle verdicts.

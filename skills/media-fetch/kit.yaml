@@ -1,6 +1,6 @@
 name: media-fetch
 display_name: "Media Fetch"
-version: "0.2.0"
+version: "0.4.0"
 entrypoint: lov-media-fetch
 runtime: skill-runtime/v1
 profile:

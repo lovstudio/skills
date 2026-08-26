@@ -5,7 +5,7 @@ description: >
 license: MIT
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.4.0"
   tags:
     - ffprobe
     - media-validation

@@ -13,7 +13,7 @@ use_case:
   tasks:
     - "独立检索并归一化候选"
     - "根据剪辑、画质、体积、字幕和实时健康度排序"
-    - "qBittorrent 首轮测速，aria2 同输入续传兜底"
+    - "aria2 默认测速、下载与续传，qBittorrent 按需启用"
     - "ffprobe 验收文件、音视频流、时长和字幕"
 deployment:
   geography: "global"
@@ -27,9 +27,9 @@ requirements:
     - "PyYAML"
     - "FFmpeg / ffprobe"
   transport:
-    - "qBittorrent 5.x Web API for integrated search and first probes"
-    - "aria2 1.36+ optional for resumable fallback"
-  credentials: "qBittorrent credentials remain in environment variables or an operating-system credential store; reports contain no secrets."
+    - "aria2 1.36+ for primary direct and BitTorrent acquisition"
+    - "qBittorrent 5.x Web API optional for search, queue management, and seeding"
+  credentials: "Optional qBittorrent credentials remain in environment variables or an operating-system credential store; reports contain no secrets."
   storage: "Destination capacity must cover payload, partial-file overhead, probe budget, continuation metadata, and configured reserve."
 risks:
   - risk: "搜索结果中的做种数和文件名会随时间漂移，且不等同于稳定下载速度。"
@@ -65,7 +65,7 @@ output:
     - "MKV / MP4 / supported container"
     - "UTF-8 SRT"
   validation: "Final output requires local file presence, readable video stream, positive duration, expected edition evidence, stream inspection, subtitle status, and no unresolved partial suffix."
-version: "0.2.0"
+version: "0.4.0"
 ethical_considerations: "尊重适用的版权、来源条款和隐私边界；凭据留在外部安全存储；报告明确区分发现线索、实时证据和最终验收，不把缺失字幕或客户端进度包装成完整结果。"
 dimensions:
   - id: "edition-identity"
@@ -75,7 +75,7 @@ dimensions:
   - id: "transport-resilience"
     label: "下载韧性"
     description: "以持续实测速度选择后端，并在同一输入上保留可恢复状态。"
-    evidence: "aria2_acquire.py 的 DHT/PeX/LSD/Tracker 配置、.aria2 状态和 LOTR 的 qBittorrent→aria2 传输记录。"
+    evidence: "aria2_acquire.py 的直链与 DHT/PeX/LSD/Tracker 路由、RPC 进度、.aria2 状态和 LOTR 传输记录。"
   - id: "storage-discipline"
     label: "容量纪律"
     description: "把成片、局部文件、探测预算和空间保留一起纳入预检。"
@@ -93,7 +93,7 @@ pricing:
   currency: "CNY"
   list_price_cny: 0
   basis: "本地 Skill 源码、脚本、结构化案例和验证门禁共同交付；价值来自减少错误版本、重复下载和未验收文件。"
-  boundary: "免费版本覆盖本地检索、选择、qBittorrent/aria2 下载编排、容量预检、媒体验收和字幕状态记录；外部来源、网络可达性、播放器和字幕内容本身不随 Skill 交付。"
+  boundary: "免费版本覆盖本地检索、选择、aria2 默认下载、可选 qBittorrent 编排、容量预检、媒体验收和字幕状态记录；外部来源、网络可达性、播放器和字幕内容本身不随 Skill 交付。"
   review_trigger: "当 aria2/qBittorrent API、FFmpeg、Skill runtime 或字幕 companion 的接口发生变化，或新增三类真实媒体任务后复评价格和交付边界。"
   confidence: "case-backed"
 distribution:

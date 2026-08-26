@@ -3,6 +3,13 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.5.0] - 2026-08-25
+
+### Added
+
+- add native macOS Finder Quick Action workflow
+- distinguish Finder Quick Actions from Services and audit the Action Extension target, activation rule, presentation, and embedding
+
 ## [0.4.0] - 2026-08-24
 
 ### Added
