@@ -1958,39 +1958,40 @@ skills:
     card_path: pricing-cards/video-chapter.md
 - name: media-creator
   runtime_name: lov-media-creator
-  updated_at: 2026-08-23T17:16:16Z
+  updated_at: 2026-08-26T14:44:31Z
   display_name: Media Creator
   repo: lovstudio/media-creator-skill
   name_zh: 媒体创作工作流
-  paid: false
+  paid: true
+  price_cny: 9.9
   category: Video Creation
   version: "0.9.1"
   description: Turn screen recordings into review-first video deliveries with editable-subtitle MKV, approved platform files, rendered covers for every required slot, protected source audio, and QC evidence.
   tagline_en: Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence.
   tagline_zh: 先交可编辑字幕 MKV，再交批准后的平台成片与各槽位真实封面，并保留原声和质检证据。
   pricing:
-    model: free_entry
+    model: one_time
     visibility: public
-    list_price_cny: 0.0
-    launch_price_cny: 0
+    list_price_cny: 9.9
+    launch_price_cny: 9.9
     price_range_cny:
-    - 0
-    - 0
-    delivery_unit_zh: 公开 Skill 源码与当前版本说明
-    delivery_unit_en: Public Skill source and current-version notes
+    - 9.9
+    - 9.9
+    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的工作流、脚本、模板与使用说明
+    delivery_unit_en: One complete Skill with the current workflow, scripts, templates, and usage notes
     value_zh: 先交可编辑字幕 MKV，再交批准后的平台成片与各槽位真实封面，并保留原声和质检证据。
     value_en: Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence.
     anchor_zh: 一次长录屏到成片任务保守可省 2–8 小时的剪辑、字幕回灌、封面返工和交付排错。
     anchor_en: A long-recording workflow can conservatively save 2–8 hours of editing, subtitle rework, cover iteration, and delivery debugging.
-    basis_zh: 能力达到专业工作流水平，但现有 Pricing Card 与 MIT 开源发行明确采用免费入口，先积累更多跨项目证据。
-    basis_en: The workflow reaches a professional level, but its existing Pricing Card and MIT release model explicitly use a free entry while cross-project evidence grows.
+    basis_zh: ¥9.9 是完整本地媒体制作工作流的一次性低门槛入口价，用于验证付费转化；它不是定制剪辑、托管执行或成本回收价。
+    basis_en: CNY 9.9 is a low-friction one-time entry price for the complete local media workflow and paid-conversion validation, not a custom-editing, managed-execution, or cost-recovery price.
     boundary_zh: 覆盖素材扫描、剪辑规划、字幕审校、FFmpeg 渲染、原声与 BGM 混音、各槽位正式封面和交付质检；云端渲染、版权素材、账号和代发布按实际条件处理。
     boundary_en: Covers media inspection, edit planning, subtitle review, FFmpeg rendering, source/BGM mixing, rendered covers for every required slot, and delivery QC; cloud rendering, licensed assets, accounts, and platform operation are separate.
     maintenance_zh: 随 FFmpeg、平台编码要求、播放器兼容性和真实使用反馈变化复评。
     maintenance_en: Review when FFmpeg, platform encoding requirements, player compatibility, or real-use feedback changes.
-    confidence: case-backed
-    review_trigger_zh: 版本变化、连续 10 次真实使用或平台交付规范与支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in platform requirements or support cost.
+    confidence: medium
+    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化，或平台交付规范与单买家支持成本明显变化时复评。
+    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version change, or a material change in platform requirements or per-buyer support cost.
     card_path: pricing-cards/media-creator.md
 - name: media-publisher
   runtime_name: lov-media-publisher
