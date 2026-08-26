@@ -59,6 +59,7 @@ metadata:
 3. 关键目标或边界缺失时，使用 `AskUserQuestion` 只询问一个会改变执行计划的聚焦问题。
 4. 把人物、项目背景、目录别名和“为什么暂时不用”等信息视为内部判断线索，默认不写入最终报告。
 5. 任何修改前阅读 [安全与分类](references/safety-and-classification.md)。
+6. `~/Library/Application Support/Screen Studio/Screen Studio Recordings` 是内置保护工作区；其本身、后代及能整体包含它的父目录都不得清理或迁移，不能被策略或执行确认覆盖。
 
 ### Step 1: 建立真实容量基线
 
@@ -128,6 +129,8 @@ python3 "$SKILL_DIR/scripts/disk_optimizer.py" stage-cleanup \
 
 禁止向脚本传入用户目录、磁盘根目录、Git 历史、照片库、消息、邮件、Agent 会话或额外保护路径。多路径执行时让脚本完成全部预检；任一路径发生权限或锁定错误时，脚本应回滚本轮已经移动的路径并返回结构化错误。
 
+应用托管的活跃工作区不是缓存。即使候选名为 `Caches`、`build` 或其他白名单名称，只要位于内置/显式保护路径中，或其父目录会整体包含受保护内容，脚本都必须拒绝执行。
+
 ### Step 5: 事务式迁移重要低频资料
 
 每个候选独立执行“复制 → 校验 → 源进入本机回滚区 → 原路径链接 → 记录日志”：
@@ -137,6 +140,7 @@ python3 "$SKILL_DIR/scripts/disk_optimizer.py" stage-cleanup \
 python3 "$SKILL_DIR/scripts/disk_optimizer.py" migrate \
   --source SOURCE_PATH \
   --archive-root ARCHIVE_ROOT \
+  --protected PROTECTED_PATH \
   --category media
 
 # 用户已要求直接执行时，确认字符串必须等于规范化源路径
@@ -152,6 +156,7 @@ python3 "$SKILL_DIR/scripts/disk_optimizer.py" migrate \
 - 复制中出现动态文件、权限、资源分支或目标冲突时，停止该候选并保留源目录；换一个稳定候选补足容量。
 - 代码与普通数据默认不复制资源分支；只有确认应用包依赖扩展属性时使用 `--preserve-xattrs`。
 - 外置卷断开时符号链接暂时不可用，最终报告必须说明这一点。
+- `migrate` 必须与 `stage-cleanup` 使用相同的内置和 `--protected` 边界；保护工作区不能通过迁移绕过。
 
 ### Step 6: 精确回收本轮回滚项
 
@@ -200,6 +205,7 @@ python3 "$SKILL_DIR/scripts/disk_optimizer.py" verify \
 ## Failure Recovery
 
 - 动态文件或复制失败：源目录保持原状；将不完整目标移出正式归档树后再决定重试。
+- Screen Studio 保存报告 `can't be recovered`：停止对其录制工作区的所有清理/迁移，先核对报错路径、工作区目录和回滚项；不要因为媒体文件仍存在就判定工程状态完整。
 - 校验差异：不移动源目录、不建立链接；重新同步差异并复验。
 - 清理后空间不增长：检查本机废纸篓、APFS 快照和仍被进程占用的文件，再读取真实数据卷容量。
 - Finder 出现删除确认框：立即停止调用 Finder 的自动化进程，读取 `list-staged`，改用 `purge-staged` 的显式路径模式；不要重复提交同一批删除。
@@ -242,13 +248,3 @@ python3 "$SKILL_DIR/scripts/test_disk_optimizer.py"
 - 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
 - `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
 - 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
-
-## 通用反馈闭环
-
-用户在 Skill 驱动任务中提出修改意见时，继续当前产物前必须执行：
-
-1. 先判断意见是 `task-specific`（仅本次）还是 `reusable`（可跨任务复用）。
-2. `task-specific` 只修改当前任务，不改 Skill。
-3. `reusable` 先确定作用域：领域规则先更新对应 canonical Skill；适用于所有 Skill 的规则先更新共享规范。
-4. 完成规则更新、版本、lint 与分发核验后，再把修改应用到当前任务。
-5. `reusable` 修改会使此前的“确认”“继续”“发吧”失效；完成当前产物修改和回读后必须停下，等待用户下一步指示，不自动进入发布、提交或其他外部写入。

@@ -12,6 +12,7 @@
 - 日期只记入日志，归档目录按来源稳定组织。
 - 所有修改命令默认预览，执行时需要显式确认。
 - 回滚区回收只接受显式 `.cleanup` 路径，直接使用文件系统操作，不触发 Finder 批量删除弹窗。
+- 内置保护 Screen Studio 录制工作区；保护目录、后代及包含它的父目录均不能清理或迁移。
 - 最终以十进制 GB 和重新挂载后的链接状态验收。
 
 ## 本地安装
@@ -76,6 +77,7 @@ python3 scripts/disk_optimizer.py plan \
 python3 scripts/disk_optimizer.py migrate \
   --source "$HOME/projects/PROJECT" \
   --archive-root /Volumes/ARCHIVE_VOLUME/cold-storage \
+  --protected "$HOME/projects/ACTIVE_PROJECT" \
   --category projects
 ```
 
@@ -113,6 +115,8 @@ python3 scripts/disk_optimizer.py purge-staged \
 - `list-staged` 只读列出回滚区顶层 `.cleanup` 项；`purge-staged` 只处理显式路径，不调用 Finder 或清空整个废纸篓。
 - `migrate` 目标存在、归档空间不足、源与目标同卷或校验失败时停止。
 - 照片库、消息、邮件、Git 历史、Agent 会话及用户保护路径不会进入自动执行计划。
+- `~/Library/Application Support/Screen Studio/Screen Studio Recordings` 是不可覆盖的内置保护路径；即使其中出现 `Caches`、`build` 等白名单名称也拒绝执行。
+- 显式保护路径同时阻止清理/迁移它的父目录，避免间接带走受保护内容。
 
 ## 质量门
 
