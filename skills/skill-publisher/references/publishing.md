@@ -51,6 +51,22 @@ Block publication when `paid: true` has neither a complete encrypted bundle nor
 explicit `public_source: true`. A paid card, synced Credits price, or live detail
 page is not delivery evidence.
 
+## License entitlement contract
+
+- `global` and `all` mean a dynamic license scope: while the license is active,
+  they include every Skill that is currently listed in the canonical catalog.
+- A new Skill becomes available to existing global licenses during catalog sync;
+  no per-license grant row, Credits balance, or repurchase is required.
+- A delisted Skill leaves the dynamic global scope. Explicit historical
+  per-Skill purchases remain fixed unless their own license is revoked.
+- Never implement `global` by materializing the current catalog into a fixed
+  list of Skill IDs. Catalog sync must maintain the listed/delisted state that
+  the entitlement resolver reads.
+- Publication verification for a new paid Skill must cover three paths: a
+  dynamic global license installs without Credits, an explicit owner installs
+  without duplicate Credits, and an unentitled account reaches the purchase
+  confirmation before source download.
+
 ## Catalog registration
 
 Use the unified `lovstudio/skills` catalog; the former split General and Dev

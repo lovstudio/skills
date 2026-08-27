@@ -1,6 +1,6 @@
 # lov-skill-publisher
 
-![Version](https://img.shields.io/badge/version-0.7.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.7.2-CC785C)
 
 把已经验证并安装在本地的 Skill 发布到一个或多个独立渠道。发布前默认调用 `lov-skill-pricing` 自动生成或刷新可解释定价，再把同一价格契约适配到各渠道，同时保持平台元数据和发行产物不污染源代码。
 
@@ -34,6 +34,9 @@ npx skills add lovstudio/skill-publisher-skill -g -y
 付费 Skill 必须在发布前明确交付模式：受保护源码使用已完成服务端登记和本地解密回归的
 加密包；用户明确保留公开源码时使用 `public_source: true`，CLI 在权益检查后从公开真源安装。
 只有付费目录卡和价格、却没有上述任一交付模式，不属于可发布状态。
+
+`global` / `all` license 是动态全量权益：有效期内覆盖目录里所有仍上架的 Skill，
+新 Skill 上架后自动纳入，不得在发放时展开成固定 Skill 清单；显式单项授权仍保持固定。
 
 ## 使用示例
 

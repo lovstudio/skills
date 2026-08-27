@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.2] - 2026-08-27
+
+### Fixed
+
+- define `global` / `all` licenses as dynamic access to every currently listed Skill instead of a frozen grant snapshot
+- require publication verification to cover dynamic global, explicit ownership, and unentitled Credits paths
+
 ## [0.7.1] - 2026-08-27
 
 ### Fixed
