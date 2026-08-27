@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **88 skills** — 72 Free + 16 Paid.
+> **89 skills** — 73 Free + 16 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -112,6 +112,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`auto-context`](https://github.com/lovstudio/auto-context-skill) | Watch your Claude Code context for pollution and suggest when to fork or reset. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`cc-migrate-session`](https://github.com/lovstudio/cc-migrate-session) | Keep your Claude Code session history working after you move a project folder. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`clash-tun-doctor`](https://github.com/lovstudio/clash-tun-doctor-skill) | Diagnose Clash TUN failures from runtime evidence, apply reversible fixes, and verify the real application path. — related: `env-management` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`cli2anything`](https://github.com/lovstudio/cli2anything-skill) | Turn authorized observed APIs into verified contracts, SDKs, Swagger, and task-focused CLIs. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`deploy-to-vercel`](https://github.com/lovstudio/deploy-to-vercel-skill) | Ship a frontend to Vercel with custom domain and Cloudflare DNS wired up automatically. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`dsh-plugin-creator`](https://github.com/lovstudio/dsh-plugin-creator-skill) | Author a DSH plugin end-to-end — pick the extension point, scaffold, implement, and pass the repo gates. — related: `dsh-plugin-publisher` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`dsh-plugin-publisher`](https://github.com/lovstudio/dsh-plugin-publisher-skill) | Publish a validated DSH plugin across npm, git, and tarball channels with per-channel load evidence. — related: `dsh-plugin-creator` |

@@ -1,0 +1,8 @@
+**/.chrome-profile/**
+node_modules/
+tmp/
+generated/
+**/SingletonCookie
+**/SingletonLock
+**/SingletonSocket
+npm-debug.log*

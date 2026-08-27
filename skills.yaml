@@ -3658,3 +3658,39 @@ skills:
     review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化或平均单买家支持超过 15 分钟时复评。
     review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version change, or average support above 15 minutes per buyer.
     card_path: pricing-cards/typeless-prompt.md
+- name: cli2anything
+  runtime_name: lov-cli2anything
+  updated_at: 2026-08-27T00:21:24Z
+  display_name: cli2anything++
+  repo: lovstudio/cli2anything-skill
+  name_zh: API 万物转换器++
+  paid: false
+  category: Dev Tools
+  version: "0.1.0"
+  description: Turn authorized observed APIs into verified OpenAPI, API graph, JavaScript SDK, Swagger, or task-focused CLI bundles.
+  tagline_en: Turn authorized observed APIs into verified contracts, SDKs, Swagger, and task-focused CLIs.
+  tagline_zh: 把已授权观察到的网站 API 变成可验证的 OpenAPI、SDK、Swagger 与任务型 CLI。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 一个可安装 Skill 与完整 cli2anything++ 本地运行时
+    delivery_unit_en: One installable Skill with the complete local cli2anything++ runtime
+    value_zh: 从已授权 API 证据一次生成目标范围内的契约、调用 SDK、交互页面与任务型命令行。
+    value_en: Generate a target-scoped contract, callable SDK, interactive UI, and task-focused CLI from authorized API evidence.
+    anchor_zh: 把原本分散的接口梳理、契约编写、SDK 封装、Swagger 接线和 CLI 生成收敛为一次可回读流程。
+    anchor_en: Consolidate endpoint analysis, contract authoring, SDK packaging, Swagger wiring, and CLI generation into one verifiable workflow.
+    basis_zh: 当前只有 ZenMux 目标适配器和一个真实案例；官网先以免费入口积累更多站点适配、重复使用与支持成本证据。
+    basis_en: With one ZenMux adapter and one real case, the website uses a free entry to build evidence across targets, repeat use, and support cost.
+    boundary_zh: 覆盖已授权证据的本地生成和验证；不含第三方账户权限、Cookie 或 Token 导出、新站点适配开发、托管执行与商业 SLA。
+    boundary_en: Covers local generation and validation from authorized evidence; excludes third-party account access, cookie or token export, new target adapters, hosted execution, and commercial SLA.
+    maintenance_zh: 随目标站点接口、前端 bundle、鉴权策略、Node 运行时和真实使用反馈复评。
+    maintenance_en: Review against target APIs, frontend bundles, authentication behavior, Node runtime changes, and real usage feedback.
+    confidence: entry
+    review_trigger_zh: 新增第二个生产目标适配器、累计 10 次真实使用、版本变化、托管执行上线或支持成本明显变化时复评。
+    review_trigger_en: Review after a second production target adapter, 10 real uses, a version change, hosted execution, or a material support-cost change.
+    card_path: pricing-cards/cli2anything.md

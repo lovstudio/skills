@@ -11,7 +11,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 29 free skills bundled together.",
+      "description": "Dev Tools — 30 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/env-management",
@@ -42,7 +42,8 @@
         "./skills/integrate-lovinsp",
         "./skills/dsh-plugin-creator",
         "./skills/dsh-plugin-publisher",
-        "./skills/npm-publisher"
+        "./skills/npm-publisher",
+        "./skills/cli2anything"
       ],
       "strict": false
     },

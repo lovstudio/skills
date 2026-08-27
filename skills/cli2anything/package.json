@@ -1,0 +1,41 @@
+{
+  "name": "cli2anything-plus-plus",
+  "version": "0.1.0",
+  "description": "Turn authorized observed API behavior into OpenAPI, SDK, Swagger, and task-focused CLI bundles.",
+  "type": "module",
+  "bin": {
+    "cli2anything": "./bin/cli2anything.mjs",
+    "cli2anything++": "./bin/cli2anything.mjs"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "artifacts/",
+    "openapi/",
+    "scripts/",
+    "references/",
+    "cases/",
+    "SKILL.md",
+    "skill.yaml",
+    "skill-card.yaml",
+    "skill-card.md",
+    "pricing-card.yaml",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "discover:zenmux": "node ./bin/cli2anything.mjs discover-zenmux --out ./artifacts/zenmux-discovered.json",
+    "generate:zenmux": "node ./bin/cli2anything.mjs generate-zenmux --out ./openapi/zenmux.openapi.json",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.67",
+    "ai": "^6.0.193",
+    "zod": "^4.4.3"
+  }
+}

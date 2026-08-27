@@ -1,0 +1,9 @@
+node_modules/
+tmp/
+generated/
+.DS_Store
+*.log
+**/.chrome-profile/
+**/SingletonCookie
+**/SingletonLock
+**/SingletonSocket
