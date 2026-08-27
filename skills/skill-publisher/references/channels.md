@@ -20,9 +20,12 @@ Before implementing or executing a new adapter, establish:
    billing model, free/paid funnel, confidence, evidence gaps, and review trigger.
 6. Delivery mode: free source, protected encrypted bundle, or explicitly public
    paid source. Paid catalog visibility by itself is not an installable delivery.
-7. Deterministic preparation and validation commands.
-8. External actions such as repository creation, upload, review, or submission.
-9. Observable completion evidence and rollback path.
+7. Entitlement behavior: explicit Skill grants are fixed, while scopes named
+   `global` or `all` dynamically cover every currently listed Skill and must not
+   be expanded into a snapshot of current IDs.
+8. Deterministic preparation and validation commands.
+9. External actions such as repository creation, upload, review, or submission.
+10. Observable completion evidence and rollback path.
 
 ## Adapter directory convention
 

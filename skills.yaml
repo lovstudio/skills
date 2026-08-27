@@ -2981,14 +2981,14 @@ skills:
     card_path: pricing-cards/media-crawler.md
 - name: skill-publisher
   runtime_name: lov-skill-publisher
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-08-27T03:29:53Z
   skillpay_product_id: P0806000200863857
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqavG
   repo: lovstudio/skill-publisher-skill
   name_zh: Skill 发布器
   paid: false
   category: Dev Tools
-  version: "0.7.0"
+  version: "0.7.2"
   description: Publish or submit a validated Skill, defaulting to the LovStudio official website with automatic pricing and using other channels only when explicitly requested.
   tagline_en: Auto-price every release, publish to the LovStudio website by default, and expand only to explicitly requested channels.
   tagline_zh: 每次发布先自动定价，默认上架 LovStudio 官网，仅在明确要求时扩展到其他渠道。

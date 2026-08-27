@@ -11,7 +11,7 @@ compatibility: >-
   stores; generated metadata and archives stay outside canonical source.
 metadata:
   author: contributors
-  version: "0.7.1"
+  version: "0.7.2"
   tags:
     - skill-publisher
     - release
@@ -54,6 +54,9 @@ report evidence per selected channel.
 - A request may select multiple channels in one run.
 - Pricing, visibility, protection, licensing, and target accounts are publishing
   inputs. Reuse context when known and ask only for values required by a target.
+- A license scope named `global` or `all` is a dynamic entitlement to every
+  currently listed Skill for the license lifetime. Never publish or migrate it
+  as a frozen list of current Skill IDs; explicit per-Skill grants remain fixed.
 - Every publish run invokes `lov-skill-pricing` by default to create or refresh one
   evidence-backed Pricing Card per Skill before channel preparation. An explicit
   user price is a constraint for that pricing pass, not a reason to skip it.
@@ -156,6 +159,9 @@ complete only when the expected version and release-specific content are visible
 on the live detail page and the catalog's exact install command succeeds through
 the declared delivery mode. A paid catalog entry without either a verified
 encrypted bundle or explicit `public_source: true` is blocked, not published.
+When a catalog refresh adds or delists a Skill, verify that dynamic `global`/`all`
+licenses immediately gain or lose catalog access without granting or spending
+Credits. This entitlement check is part of publication, not a later migration.
 
 ### Step 6: Publish WorkBuddy through CodeBuddy
 
