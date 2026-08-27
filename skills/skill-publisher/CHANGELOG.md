@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.1] - 2026-08-27
+
+### Fixed
+
+- require paid Skill Publisher entries to declare and verify either protected encrypted delivery or explicit public-source delivery before publication
+
 ## [0.7.0] - 2026-08-24
 
 ### Added

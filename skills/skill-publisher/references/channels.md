@@ -18,9 +18,11 @@ Before implementing or executing a new adapter, establish:
    commercial fields.
 5. The `lov-skill-pricing` Pricing Card that supplies the shared public price,
    billing model, free/paid funnel, confidence, evidence gaps, and review trigger.
-6. Deterministic preparation and validation commands.
-7. External actions such as repository creation, upload, review, or submission.
-8. Observable completion evidence and rollback path.
+6. Delivery mode: free source, protected encrypted bundle, or explicitly public
+   paid source. Paid catalog visibility by itself is not an installable delivery.
+7. Deterministic preparation and validation commands.
+8. External actions such as repository creation, upload, review, or submission.
+9. Observable completion evidence and rollback path.
 
 ## Adapter directory convention
 

@@ -11,7 +11,7 @@ compatibility: >-
   stores; generated metadata and archives stay outside canonical source.
 metadata:
   author: contributors
-  version: "0.7.0"
+  version: "0.7.1"
   tags:
     - skill-publisher
     - release
@@ -134,6 +134,7 @@ all-channel or multi-platform request.
 For each selected channel, resolve only required fields:
 
 - public/private visibility and free/paid catalog status where supported;
+- paid delivery mode: protected encrypted bundle or explicitly public source;
 - organization, account, catalog, or output location;
 - platform metadata, icon, examples, and source locator;
 - requested version versus current source version.
@@ -152,7 +153,9 @@ successful multi-channel release.
 Read `references/publishing.md` completely. Execute the source repository,
 release, catalog, cache refresh, and live verification workflow. Publication is
 complete only when the expected version and release-specific content are visible
-on the live detail page.
+on the live detail page and the catalog's exact install command succeeds through
+the declared delivery mode. A paid catalog entry without either a verified
+encrypted bundle or explicit `public_source: true` is blocked, not published.
 
 ### Step 6: Publish WorkBuddy through CodeBuddy
 
