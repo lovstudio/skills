@@ -3695,3 +3695,39 @@ skills:
     review_trigger_zh: 新增第二个生产目标适配器、累计 10 次真实使用、版本变化、托管执行上线或支持成本明显变化时复评。
     review_trigger_en: Review after a second production target adapter, 10 real uses, a version change, hosted execution, or a material support-cost change.
     card_path: pricing-cards/cli2anything.md
+- name: search-file
+  runtime_name: lov-search-file
+  updated_at: 2026-08-27T10:10:14Z
+  display_name: AI Conversation File Search
+  repo: lovstudio/search-file-skill
+  name_zh: AI 对话文件检索
+  paid: false
+  category: General
+  version: "0.1.0"
+  description: Find local files from earlier AI conversations with session evidence and durability ranking.
+  tagline_en: Recover files from past AI chats with conversation evidence, existence checks, and durable-copy ranking.
+  tagline_zh: 从历史 AI 对话找回仍然存在的文件，并用会话证据与存储耐久度排序。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 把模糊的 AI 对话线索还原为可验证的现存文件、来源会话与存储层级。
+    value_en: Turn fuzzy AI-conversation clues into verified existing files, source sessions, and storage tiers.
+    anchor_zh: 一次成功检索通常可省下约 10–45 分钟的任务翻找、全文搜索和路径核验。
+    anchor_en: A successful search can save roughly 10–45 minutes of task browsing, transcript search, and path verification.
+    basis_zh: 当前有一个真实图片找回案例和四项回归测试；官网先作为免费入口积累更多文件类型、宿主与跨平台证据。
+    basis_en: With one real image-recovery case and four focused regression tests, the website uses a free entry to build evidence across file types, hosts, and platforms.
+    boundary_zh: 覆盖本地 transcript、路径证据、session 生成目录、存在性验证和耐久度排序；不含云盘检索、文件恢复、移动、上传或发布。
+    boundary_en: Covers local transcripts, path evidence, session-generated directories, existence checks, and durability ranking; excludes cloud-drive search, recovery, moving, upload, or publication.
+    maintenance_zh: 随 Codex、Claude 等 transcript schema、操作系统路径和真实使用反馈复评。
+    maintenance_en: Review against Codex and Claude transcript schemas, operating-system paths, and real usage feedback.
+    confidence: case-backed
+    review_trigger_zh: 版本变化、累计 10 次真实使用、支持成本明显变化，或加入托管索引、跨设备云搜索与付费连接器时复评。
+    review_trigger_en: Review after a version change, 10 real uses, material support-cost change, or addition of hosted indexing, cross-device cloud search, or paid connectors.
+    card_path: pricing-cards/search-file.md

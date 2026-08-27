@@ -1,0 +1,91 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 从本机 AI 对话记录追溯图片、文档和其他交付文件，返回仍然存在的候选路径、来源会话、证据片段与存储耐久度。
+owner:
+  team: lovstudio
+  contact: lovstudio
+license:
+  name: MIT
+  terms: 免费使用；只读访问用户自己的本地对话记录与文件系统。
+  url: "../LICENSE"
+use_case:
+  audience: 需要从历史 AI 对话中找回本地图片、文档或其他交付文件的用户与开发者
+  scenario: 用户记得对话主题或一句原话，但忘记文件名、任务日期或保存位置
+  tasks:
+    - 按对话主题、片段或 session ID 定位相关文件
+    - 区分项目归档、下载副本、AI 生成缓存与临时文件
+    - 验证候选文件是否仍存在并返回证据来源
+deployment:
+  geography: global
+  environments:
+    - macOS
+    - Linux
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - Python 3.9+
+    - ripgrep（推荐，可选）
+risks:
+  - risk: 对话中提到的是原始输入或中间文件，被误认为最终交付
+    mitigation: 按消息角色、final_answer、输出关键词和存储耐久度评分，最终由 Agent 展示证据并说明副本类型
+  - risk: transcript 含私密信息，二次索引扩大暴露面
+    mitigation: 只在本机处理，缓存权限设为 0600，可用 --no-cache 禁用；默认输出短证据而非整段对话
+  - risk: 临时路径或 AI 缓存已过期
+    mitigation: 每次结果都实时 stat，默认过滤不存在路径，并把 temporary 和 ai-cache 排在项目归档之后
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+output:
+  types:
+    - 本地文件候选列表
+  formats:
+    - JSON
+    - 结构化文本
+  parameters:
+    - query
+    - kind
+    - session-id
+    - transcript-root
+    - root
+  validation:
+    - 默认返回的每条路径在本轮 stat 中存在
+    - 每条对话命中包含 session 或 transcript 来源
+    - 同一制品的临时缓存不得优先于现存项目归档
+  description: 返回绝对路径、存在性、大小、修改时间、来源会话、证据片段、分数与存储耐久度；不修改命中文件。
+ethical_considerations: 仅检索用户自己的本地数据，不上传 transcript 或文件；不绕过加密、访问控制或云端权限，不把已删除路径描述为仍存在。
+dimensions:
+  - id: correctness
+    label: 文件归因正确性
+    description: 候选是否由真实用户/助手消息、工具路径或同 session 的生成目录支持
+    evidence: P 头像真实案例定位到同一 session 的下载副本、项目归档与 generated_images 缓存
+    score: 5
+  - id: effectiveness
+    label: 找回有效性
+    description: 只有模糊对话线索时能否找到可直接使用的现存文件
+    evidence: 查询“P 头像”可通过同义词和对话证据找回职业形象照成品
+    score: 5
+  - id: efficiency
+    label: 检索效率
+    description: 避免逐个解析全部 transcript，并让重复检索复用增量索引
+    evidence: ripgrep 先筛文件，按 mtime/size 复用 0600 本地缓存，并限制 transcript 与派生目录扫描量
+    score: 4
+  - id: privacy
+    label: 本地隐私边界
+    description: 对话与文件信息是否始终留在本机且只输出完成任务所需证据
+    evidence: 标准库本地处理、无网络依赖、可禁用缓存、证据片段长度受限
+    score: 5
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 纯本地检索，无外部 API 或付费数据源成本
+  boundary: 包含本地 transcript 与文件系统追溯；不含云盘检索、文件恢复、移动、上传或发布
+  review_trigger: 加入托管索引、跨设备云搜索或付费连接器时复评
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - local
+    - github
+    - lovstudio

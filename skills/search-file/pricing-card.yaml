@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 从大量 AI 对话与生成缓存中快速找回真实交付文件，省去手工翻任务、猜目录和全盘搜索
+basis: 仅使用本机 transcript、文件系统与标准库，不调用外部 API 或付费数据源；作为本地检索基础能力免费分发
+boundary: 免费包含 transcript 预筛、路径证据提取、session 缓存关联、现存性验证和排序；不包含云盘检索、文件恢复、移动、上传或发布
+review_trigger: 若加入托管索引、跨设备云搜索或需要付费连接器时重新评估定价与隐私边界
+confidence: internal

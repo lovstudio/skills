@@ -1,0 +1,23 @@
+[
+  {
+    "type": "case",
+    "title": "从 Codex 历史会话找回 P 头像成品",
+    "description": "用户只记得曾让 Codex P 一张头像，不记得任务日期、文件名或保存目录。检索定位到原始会话，并确认下载副本、项目归档与 Codex 生成缓存仍存在。",
+    "input": {
+      "items": [
+        "用户查询：找一下之前我的 Codex 给我 P 头像的图片存储位置",
+        "记忆线索：P 头像；文件类型为图片",
+        "Codex session：019fabba-ca6f-79c1-8306-ff1a4cabf870"
+      ]
+    },
+    "prompt": "@~/Downloads/17f3b7b66df4fc79394da3569460a0.JPG 帮我 P 一下图，这张不够好看",
+    "output": {
+      "items": [
+        "下载副本：~/Downloads/17f3b7b66df4fc79394da3569460a0-职业形象照版.png",
+        "项目归档：WORKSPACE/p-图工厂/output/17f3b7b66df4fc79394da3569460a0-职业形象照版.png",
+        "生成缓存：$CODEX_HOME/generated_images/019fabba-ca6f-79c1-8306-ff1a4cabf870/call_y7qUuHzXDWHGPmCX1lJH7KlA.png",
+        "三处路径在检索当时均经文件系统回读确认存在"
+      ]
+    }
+  }
+]

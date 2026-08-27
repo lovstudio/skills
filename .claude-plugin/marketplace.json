@@ -50,7 +50,7 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 10 free + 3 paid (Credits redemption required).",
+      "description": "General — 11 free + 3 paid (Credits redemption required).",
       "category": "General",
       "skills": [
         "./skills/image-translation-errata",
@@ -66,7 +66,8 @@
         "./skills/china-website-filing",
         "./skills/describe-image",
         "./skills/personal-vocabulary",
-        "./skills/typeless-prompt"
+        "./skills/typeless-prompt",
+        "./skills/search-file"
       ],
       "strict": false
     },
