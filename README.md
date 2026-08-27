@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **88 个技能** — 72 个免费 + 16 个付费。
+> **89 个技能** — 73 个免费 + 16 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -111,6 +111,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`auto-context`](https://github.com/lovstudio/auto-context-skill) | [上下文体检](https://github.com/lovstudio/auto-context-skill) | 监测 Claude Code 上下文是否被污染，适时提示你 /fork 或 /btw。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`cc-migrate-session`](https://github.com/lovstudio/cc-migrate-session) | [会话迁移](https://github.com/lovstudio/cc-migrate-session) | 项目目录搬家后，让 Claude Code 的历史会话还能正常 `--resume`。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`clash-tun-doctor`](https://github.com/lovstudio/clash-tun-doctor-skill) | [Clash TUN 网络医生](https://github.com/lovstudio/clash-tun-doctor-skill) | 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。 — 相关: `env-management` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`cli2anything`](https://github.com/lovstudio/cli2anything-skill) | [API 万物转换器++](https://github.com/lovstudio/cli2anything-skill) | 把已授权观察到的网站 API 变成可验证的 OpenAPI、SDK、Swagger 与任务型 CLI。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`deploy-to-vercel`](https://github.com/lovstudio/deploy-to-vercel-skill) | [部署到 Vercel](https://github.com/lovstudio/deploy-to-vercel-skill) | 一键把前端部署到 Vercel，自动配好 Cloudflare DNS 和自定义域名。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`dsh-plugin-creator`](https://github.com/lovstudio/dsh-plugin-creator-skill) | [DSH 插件开发](https://github.com/lovstudio/dsh-plugin-creator-skill) | 端到端开发 DSH 插件：选扩展点、搭脚手架、实现并通过仓库门槛。 — 相关: `dsh-plugin-publisher` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`dsh-plugin-publisher`](https://github.com/lovstudio/dsh-plugin-publisher-skill) | [DSH 插件发布](https://github.com/lovstudio/dsh-plugin-publisher-skill) | 把已验证的 DSH 插件发布到 npm/git/tarball 渠道，并逐一核验可加载。 — 相关: `dsh-plugin-creator` |

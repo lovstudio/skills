@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "A repeatable local workflow that replaces manual API contract and client scaffolding for a verified target."
+basis: "The current Skill is an internal local interface to an early open-source project runtime and is distributed without charge."
+boundary: "Includes offline generation and local validation; new target adapters, account access, publishing, and hosted operation are excluded."
+review_trigger: "Revisit when multiple production target adapters, hosted execution, or supported commercial distribution are available."
+confidence: internal

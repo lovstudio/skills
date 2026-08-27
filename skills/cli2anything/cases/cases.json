@@ -1,0 +1,24 @@
+[
+  {
+    "type": "case",
+    "title": "Generate a ZenMux log API bundle from saved discovery evidence",
+    "description": "The existing authorized ZenMux discovery artifact was filtered to the log workflow and converted into a reproducible API package without requiring live credentials.",
+    "input": {
+      "items": [
+        "artifacts/zenmux-discovered.json",
+        "Target zenmux.ai",
+        "Filter keyword log"
+      ]
+    },
+    "prompt": "把 ZenMux 的 log API 做成可交互的 OpenAPI、SDK 和 CLI，并保留依赖接口与浏览器登录态调用能力。",
+    "output": {
+      "items": [
+        "generated/zenmux-ai-log/manifest.json",
+        "generated/zenmux-ai-log/openapi.json",
+        "generated/zenmux-ai-log/api-graph.json",
+        "generated/zenmux-ai-log/sdk/index.mjs",
+        "Project regression suite with 17 passing tests"
+      ]
+    }
+  }
+]

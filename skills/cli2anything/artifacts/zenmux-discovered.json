@@ -1,0 +1,246 @@
+{
+  "target": "zenmux.ai",
+  "discoveredAt": "2026-05-31T01:57:22.337Z",
+  "routes": {
+    "/platform/logs": [
+      47,
+      48,
+      72,
+      73,
+      82,
+      92,
+      93,
+      96,
+      97,
+      100,
+      101,
+      123,
+      124,
+      54,
+      119,
+      120
+    ],
+    "/platform/logs/detail/:id": [
+      46,
+      72,
+      73,
+      82,
+      92,
+      93,
+      100,
+      101,
+      47,
+      48,
+      96,
+      97,
+      123,
+      124,
+      54,
+      119,
+      120
+    ]
+  },
+  "chunks": [
+    {
+      "file": "4311e37b-async.d0071197.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/4311e37b-async.d0071197.js",
+      "endpoints": [
+        "GET /api/api_key/activity/{id}",
+        "GET /api/api_key/finish_reasons",
+        "GET /api/api_key/list",
+        "GET /api/api_key/list_all",
+        "GET /api/dashboard/cost/query/subscription_summary",
+        "GET /api/v1/generation",
+        "GET /api/v1/generation/request?id={value}&type={value}",
+        "GET /api/v1/generation/response?id={value}&type={value}",
+        "POST /api/api_key/activity",
+        "POST /api/api_key/create",
+        "POST /api/api_key/delete",
+        "POST /api/api_key/disable",
+        "POST /api/api_key/enable",
+        "POST /api/api_key/regenerate",
+        "POST /api/api_key/update",
+        "POST /api/dashboard/cost/query/cost",
+        "POST /api/dashboard/cost/query/summary",
+        "POST /api/dashboard/usage/query",
+        "POST /api/dashboard/usage/query/endpoint",
+        "POST /api/dashboard/usage/query/performance",
+        "POST /api/dashboard/usage/query_filters_by_type"
+      ],
+      "evidence": [
+        {
+          "needle": "api/api_key/activity",
+          "snippet": "lication/json\"},data:e,...t||{}});}async function u(e,t){return(0,n.request)(\"api/api_key/disable\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},data:e,...t||{}});}async function c(e,t){return(0,n.request)(\"api/api_key/activity\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},data:e,...t||{}});}async function p(e,t){let{id:a}=e;return(0,n.request)(`api/api_key/activity/${a}`,{method:\"GET\",params:{...e},...t||{}});}async function m(e){return(0,n.request)(\"api/api_key/finish_reasons\",{method:\"GET\",...e||{}});}asy"
+        },
+        {
+          "needle": "api/api_key/activity/",
+          "snippet": "\"},data:e,...t||{}});}async function c(e,t){return(0,n.request)(\"api/api_key/activity\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},data:e,...t||{}});}async function p(e,t){let{id:a}=e;return(0,n.request)(`api/api_key/activity/${a}`,{method:\"GET\",params:{...e},...t||{}});}async function m(e){return(0,n.request)(\"api/api_key/finish_reasons\",{method:\"GET\",...e||{}});}async function g(e,t){return(0,n.request)(\"api/api_key/regenerate\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},data:e,...t||{}});}},\"5b046034\":"
+        },
+        {
+          "needle": "api/v1/generation",
+          "snippet": "(\"852bbaa9\"),i=a(\"1133679b\"),l=a(\"dd70797c\"),r=n._(l),o=a(\"d9ae777e\"),d=n._(o),u=a(\"8cbbce6b\"),c=a(\"de5c0641\"),p=n._(c),m=a(\"daee3845\"),g=a(\"5259fa9e\"),x=s._(g),f=a(\"5dff0d0f\");async function j(e,t){return(0,f.request)(\"api/v1/generation\",{method:\"GET\",params:{...e},...t||{}});}var M={};a.e(M,{generation:function(){return j;}});var h=a(\"6296f3a8\"),y=a(\"e269f4f5\"),v=n._(y),N=a(\"cdbec241\"),z=n._(N),b=a(\"946c07b6\"),D=s._(b),A=a(\"7a10115b\"),T=n._(A),I=a(\"a02b0d35\"),k=a(\"cd53a605\");class w{cache;maxSize;constructor(e=100){this.cache=new Ma"
+        },
+        {
+          "needle": "/api/v1/generation/request",
+          "snippet": "ion:e.description,arguments:JSON.stringify((null==e?void 0:null===(t=e.input_schema)||void 0===t?void 0:t.properties)||\"\")}};}),J=async()=>{if(null==e?void 0:e.requestId){a(!0);try{var t,n,s,i,l,o,u,p;let a=await fetch(`/api/v1/generation/request?id=${null==e?void 0:e.requestId}&type=${h}`),m=await a.json();if(q(m),$){x(m.body);return;}if(B){L(m);return;}if(P){if(null==m?void 0:null===(i=m.body)||void 0===i?void 0:i.contents){let e=null==m?void 0:null===(u=m.body)||void 0===u?void 0:u.contents;N(e);}if(null==m?void 0:null===(l=m.body)"
+        },
+        {
+          "needle": "/api/v1/generation/response",
+          "snippet": "riginResult&&F(a.originResult),a.parsedResult&&($?M(a.parsedResult):B?R(a.parsedResult):Z?_(a.parsedResult):P?b(a.parsedResult):m(a.parsedResult)),s(!1);return;}s(!0);try{if(null==e?void 0:e.streamed){let a=await fetch(`/api/v1/generation/response?id=${null==e?void 0:e.requestId}&type=${y}`);if(await H(a),$){await eG(a,e=>{let a=()=>[...j||[],...e];M(a);let n=eH.get(t);eH.set(t,{originResult:(null==n?void 0:n.originResult)||null,parsedResult:a});});return;}if(P){try{await eB(a,e=>{b(e);let a=eH.get(t);eH.set(t,{originResult:(null==a?v"
+        },
+        {
+          "needle": "userRequest",
+          "snippet": "l gap-[8px]\",children:a.map(e=>(0,i.jsx)(er,{message:e},e.name))})]});}return null;})()})})});}),ez=a(\"5fe65233\"),eb=n._(ez),eD=a(\"a7f02697\"),eA=n._(eD),eT=a(\"0705c220\"),eI=n._(eT);let ek=[{label:\"User -> ZenMux\",value:\"userRequest\"},{label:\"ZenMux -> Origin\",value:\"providerRequest\"}],ew=[{label:\"ZenMux -> User\",value:\"userResponse\"},{label:\"Origin -> ZenMux\",value:\"providerResponse\"}],eS=e=>{let t=(0,f.useIntl)(),{type:a=\"Request\",children:n,jsonOnly:s}=e,[l,r]=D.default.useState(s?\"JSON\":\"Pretty\"),[o,d]=D.default.useState(!0),{isDar"
+        },
+        {
+          "needle": "providerRequest",
+          "snippet": "ssage:e},e.name))})]});}return null;})()})})});}),ez=a(\"5fe65233\"),eb=n._(ez),eD=a(\"a7f02697\"),eA=n._(eD),eT=a(\"0705c220\"),eI=n._(eT);let ek=[{label:\"User -> ZenMux\",value:\"userRequest\"},{label:\"ZenMux -> Origin\",value:\"providerRequest\"}],ew=[{label:\"ZenMux -> User\",value:\"userResponse\"},{label:\"Origin -> ZenMux\",value:\"providerResponse\"}],eS=e=>{let t=(0,f.useIntl)(),{type:a=\"Request\",children:n,jsonOnly:s}=e,[l,r]=D.default.useState(s?\"JSON\":\"Pretty\"),[o,d]=D.default.useState(!0),{isDark:u}=(0,m.useThemeContext)(),{queryType:c,setQu"
+        },
+        {
+          "needle": "userResponse",
+          "snippet": "(\"5fe65233\"),eb=n._(ez),eD=a(\"a7f02697\"),eA=n._(eD),eT=a(\"0705c220\"),eI=n._(eT);let ek=[{label:\"User -> ZenMux\",value:\"userRequest\"},{label:\"ZenMux -> Origin\",value:\"providerRequest\"}],ew=[{label:\"ZenMux -> User\",value:\"userResponse\"},{label:\"Origin -> ZenMux\",value:\"providerResponse\"}],eS=e=>{let t=(0,f.useIntl)(),{type:a=\"Request\",children:n,jsonOnly:s}=e,[l,r]=D.default.useState(s?\"JSON\":\"Pretty\"),[o,d]=D.default.useState(!0),{isDark:u}=(0,m.useThemeContext)(),{queryType:c,setQueryType:p,responseType:g,setResponseType:x}=(0,f.useMo"
+        },
+        {
+          "needle": "providerResponse",
+          "snippet": "eD),eT=a(\"0705c220\"),eI=n._(eT);let ek=[{label:\"User -> ZenMux\",value:\"userRequest\"},{label:\"ZenMux -> Origin\",value:\"providerRequest\"}],ew=[{label:\"ZenMux -> User\",value:\"userResponse\"},{label:\"Origin -> ZenMux\",value:\"providerResponse\"}],eS=e=>{let t=(0,f.useIntl)(),{type:a=\"Request\",children:n,jsonOnly:s}=e,[l,r]=D.default.useState(s?\"JSON\":\"Pretty\"),[o,d]=D.default.useState(!0),{isDark:u}=(0,m.useThemeContext)(),{queryType:c,setQueryType:p,responseType:g,setResponseType:x}=(0,f.useModel)(\"log.log\");return(0,i.jsxs)(\"div\",{children"
+        }
+      ]
+    },
+    {
+      "file": "lib-async.9de83815.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/lib-async.9de83815.js",
+      "endpoints": [],
+      "evidence": []
+    },
+    {
+      "file": "lib_refractor-async.69928333.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/lib_refractor-async.69928333.js",
+      "endpoints": [],
+      "evidence": []
+    },
+    {
+      "file": "shared_NW2sObIA-async.8381a6f4.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/shared_NW2sObIA-async.8381a6f4.js",
+      "endpoints": [],
+      "evidence": []
+    },
+    {
+      "file": "shared_xRuA8_GE-async.6e0a57d0.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/shared_xRuA8_GE-async.6e0a57d0.js",
+      "endpoints": [],
+      "evidence": []
+    },
+    {
+      "file": "shared_VZfVHtiV-async.685c290c.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/shared_VZfVHtiV-async.685c290c.js",
+      "endpoints": [],
+      "evidence": []
+    },
+    {
+      "file": "shared_XonIcvrm-async.d519ad1d.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/shared_XonIcvrm-async.d519ad1d.js",
+      "endpoints": [],
+      "evidence": []
+    },
+    {
+      "file": "382e4895-async.fe4dad3e.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/382e4895-async.fe4dad3e.js",
+      "endpoints": [
+        "POST /api/frontentd/insurance/list",
+        "POST /api/frontentd/insurance/summary",
+        "POST /api/frontentd/insurance/total"
+      ],
+      "evidence": []
+    },
+    {
+      "file": "shared_JQ6yA6lt-async.77c20dab.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/shared_JQ6yA6lt-async.77c20dab.js",
+      "endpoints": [],
+      "evidence": []
+    },
+    {
+      "file": "2fb35fcb-async.ed8dce61.js",
+      "url": "https://cdn.marmot-cloud.com/page/tbox-router-home/2fb35fcb-async.ed8dce61.js",
+      "endpoints": [
+        "GET /api/api_key/activity/{id}",
+        "GET /api/api_key/finish_reasons",
+        "GET /api/api_key/list",
+        "GET /api/api_key/list_all",
+        "GET /api/v1/generation",
+        "GET /api/v1/generation/request?id={value}&type={value}",
+        "GET /api/v1/generation/response?id={value}&type={value}",
+        "POST /api/api_key/activity",
+        "POST /api/api_key/create",
+        "POST /api/api_key/delete",
+        "POST /api/api_key/disable",
+        "POST /api/api_key/enable",
+        "POST /api/api_key/regenerate",
+        "POST /api/api_key/update"
+      ],
+      "evidence": [
+        {
+          "needle": "api/api_key/activity",
+          "snippet": "lication/json\"},data:e,...t||{}});}async function u(e,t){return(0,a.request)(\"api/api_key/disable\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},data:e,...t||{}});}async function c(e,t){return(0,a.request)(\"api/api_key/activity\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},data:e,...t||{}});}async function p(e,t){let{id:n}=e;return(0,a.request)(`api/api_key/activity/${n}`,{method:\"GET\",params:{...e},...t||{}});}async function m(e){return(0,a.request)(\"api/api_key/finish_reasons\",{method:\"GET\",...e||{}});}asy"
+        },
+        {
+          "needle": "api/api_key/activity/",
+          "snippet": "\"},data:e,...t||{}});}async function c(e,t){return(0,a.request)(\"api/api_key/activity\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},data:e,...t||{}});}async function p(e,t){let{id:n}=e;return(0,a.request)(`api/api_key/activity/${n}`,{method:\"GET\",params:{...e},...t||{}});}async function m(e){return(0,a.request)(\"api/api_key/finish_reasons\",{method:\"GET\",...e||{}});}async function x(e,t){return(0,a.request)(\"api/api_key/regenerate\",{method:\"POST\",headers:{\"Content-Type\":\"application/json\"},data:e,...t||{}});}},a02b0d35:fu"
+        },
+        {
+          "needle": "api/v1/generation",
+          "snippet": "(\"852bbaa9\"),i=n(\"1133679b\"),s=n(\"dd70797c\"),r=a._(s),o=n(\"d9ae777e\"),d=a._(o),u=n(\"8cbbce6b\"),c=n(\"de5c0641\"),p=a._(c),m=n(\"daee3845\"),x=n(\"5259fa9e\"),f=l._(x),g=n(\"5dff0d0f\");async function h(e,t){return(0,g.request)(\"api/v1/generation\",{method:\"GET\",params:{...e},...t||{}});}var v={};n.e(v,{generation:function(){return h;}});var y=n(\"6296f3a8\"),j=n(\"e269f4f5\"),b=a._(j),_=n(\"cdbec241\"),N=a._(_),k=n(\"946c07b6\"),w=l._(k),S=n(\"7a10115b\"),C=a._(S),R=n(\"a02b0d35\"),T=n(\"cd53a605\");class D{cache;maxSize;constructor(e=100){this.cache=new Ma"
+        },
+        {
+          "needle": "/api/v1/generation/request",
+          "snippet": "ion:e.description,arguments:JSON.stringify((null==e?void 0:null===(t=e.input_schema)||void 0===t?void 0:t.properties)||\"\")}};}),Q=async()=>{if(null==e?void 0:e.requestId){n(!0);try{var t,a,l,i,s,o,u,p;let n=await fetch(`/api/v1/generation/request?id=${null==e?void 0:e.requestId}&type=${y}`),m=await n.json();if(z(m),L){f(m.body);return;}if(Z){O(m);return;}if(B){if(null==m?void 0:null===(i=m.body)||void 0===i?void 0:i.contents){let e=null==m?void 0:null===(u=m.body)||void 0===u?void 0:u.contents;_(e);}if(null==m?void 0:null===(s=m.body)"
+        },
+        {
+          "needle": "/api/v1/generation/response",
+          "snippet": "riginResult&&W(n.originResult),n.parsedResult&&(L?v(n.parsedResult):Z?F(n.parsedResult):G?A(n.parsedResult):B?k(n.parsedResult):m(n.parsedResult)),l(!1);return;}l(!0);try{if(null==e?void 0:e.streamed){let n=await fetch(`/api/v1/generation/response?id=${null==e?void 0:e.requestId}&type=${j}`);if(await X(n),L){await eK(n,e=>{let n=()=>[...h||[],...e];v(n);let a=eX.get(t);eX.set(t,{originResult:(null==a?void 0:a.originResult)||null,parsedResult:n});});return;}if(B){try{await eZ(n,e=>{k(e);let n=eX.get(t);eX.set(t,{originResult:(null==n?v"
+        },
+        {
+          "needle": "userRequest",
+          "snippet": "l gap-[8px]\",children:n.map(e=>(0,i.jsx)(er,{message:e},e.name))})]});}return null;})()})})});}),eN=n(\"5fe65233\"),ek=a._(eN),ew=n(\"a7f02697\"),eS=a._(ew),eC=n(\"0705c220\"),eR=a._(eC);let eT=[{label:\"User -> ZenMux\",value:\"userRequest\"},{label:\"ZenMux -> Origin\",value:\"providerRequest\"}],eD=[{label:\"ZenMux -> User\",value:\"userResponse\"},{label:\"Origin -> ZenMux\",value:\"providerResponse\"}],eM=e=>{let t=(0,g.useIntl)(),{type:n=\"Request\",children:a,jsonOnly:l}=e,[s,r]=w.default.useState(l?\"JSON\":\"Pretty\"),[o,d]=w.default.useState(!0),{isDar"
+        },
+        {
+          "needle": "providerRequest",
+          "snippet": "ssage:e},e.name))})]});}return null;})()})})});}),eN=n(\"5fe65233\"),ek=a._(eN),ew=n(\"a7f02697\"),eS=a._(ew),eC=n(\"0705c220\"),eR=a._(eC);let eT=[{label:\"User -> ZenMux\",value:\"userRequest\"},{label:\"ZenMux -> Origin\",value:\"providerRequest\"}],eD=[{label:\"ZenMux -> User\",value:\"userResponse\"},{label:\"Origin -> ZenMux\",value:\"providerResponse\"}],eM=e=>{let t=(0,g.useIntl)(),{type:n=\"Request\",children:a,jsonOnly:l}=e,[s,r]=w.default.useState(l?\"JSON\":\"Pretty\"),[o,d]=w.default.useState(!0),{isDark:u}=(0,m.useThemeContext)(),{queryType:c,setQu"
+        },
+        {
+          "needle": "userResponse",
+          "snippet": "(\"5fe65233\"),ek=a._(eN),ew=n(\"a7f02697\"),eS=a._(ew),eC=n(\"0705c220\"),eR=a._(eC);let eT=[{label:\"User -> ZenMux\",value:\"userRequest\"},{label:\"ZenMux -> Origin\",value:\"providerRequest\"}],eD=[{label:\"ZenMux -> User\",value:\"userResponse\"},{label:\"Origin -> ZenMux\",value:\"providerResponse\"}],eM=e=>{let t=(0,g.useIntl)(),{type:n=\"Request\",children:a,jsonOnly:l}=e,[s,r]=w.default.useState(l?\"JSON\":\"Pretty\"),[o,d]=w.default.useState(!0),{isDark:u}=(0,m.useThemeContext)(),{queryType:c,setQueryType:p,responseType:x,setResponseType:f}=(0,g.useMo"
+        },
+        {
+          "needle": "providerResponse",
+          "snippet": "ew),eC=n(\"0705c220\"),eR=a._(eC);let eT=[{label:\"User -> ZenMux\",value:\"userRequest\"},{label:\"ZenMux -> Origin\",value:\"providerRequest\"}],eD=[{label:\"ZenMux -> User\",value:\"userResponse\"},{label:\"Origin -> ZenMux\",value:\"providerResponse\"}],eM=e=>{let t=(0,g.useIntl)(),{type:n=\"Request\",children:a,jsonOnly:l}=e,[s,r]=w.default.useState(l?\"JSON\":\"Pretty\"),[o,d]=w.default.useState(!0),{isDark:u}=(0,m.useThemeContext)(),{queryType:c,setQueryType:p,responseType:x,setResponseType:f}=(0,g.useModel)(\"log.log\");return(0,i.jsxs)(\"div\",{children"
+        }
+      ]
+    }
+  ],
+  "normalizedEndpoints": [
+    "GET /api/api_key/activity/{id}",
+    "GET /api/api_key/finish_reasons",
+    "GET /api/api_key/list",
+    "GET /api/api_key/list_all",
+    "GET /api/dashboard/cost/query/subscription_summary",
+    "GET /api/v1/generation",
+    "GET /api/v1/generation/request?id={value}&type={value}",
+    "GET /api/v1/generation/response?id={value}&type={value}",
+    "POST /api/api_key/activity",
+    "POST /api/api_key/create",
+    "POST /api/api_key/delete",
+    "POST /api/api_key/disable",
+    "POST /api/api_key/enable",
+    "POST /api/api_key/regenerate",
+    "POST /api/api_key/update",
+    "POST /api/dashboard/cost/query/cost",
+    "POST /api/dashboard/cost/query/summary",
+    "POST /api/dashboard/usage/query",
+    "POST /api/dashboard/usage/query/endpoint",
+    "POST /api/dashboard/usage/query/performance",
+    "POST /api/dashboard/usage/query_filters_by_type",
+    "POST /api/frontentd/insurance/list",
+    "POST /api/frontentd/insurance/summary",
+    "POST /api/frontentd/insurance/total"
+  ]
+}

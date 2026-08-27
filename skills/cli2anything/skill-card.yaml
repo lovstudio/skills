@@ -1,0 +1,85 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "Turns authorized observed API evidence into a validated OpenAPI contract, API graph, JavaScript SDK, Swagger UI, or task-focused local CLI."
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "Local use, modification, and redistribution are permitted under the bundled MIT License."
+  url: "LICENSE"
+use_case:
+  audience: "Developers and agents working with APIs they are authorized to inspect."
+  scenario: "Convert observed API evidence into a reproducible contract and callable local interface."
+  tasks:
+    - "Generate a filtered OpenAPI and SDK bundle from discovery evidence."
+    - "Generate a same-origin browser-session Swagger UI without copying cookies into the output."
+    - "Generate a task-focused local CLI package for the selected API scope."
+deployment:
+  geography: global
+  environments:
+    - "Local macOS or Linux agent runtime"
+requirements:
+  credentials: "None for offline artifacts; an authorized account session is required for live browser workflows."
+  dependencies:
+    - "Bundled cli2anything++ project"
+  runtime:
+    - "Python 3.8 or newer"
+    - "Node.js 20 or newer"
+risks:
+  - risk: "Observed traffic may contain credentials or private payloads."
+    mitigation: "Use only authorized traffic, prefer redacted offline evidence, and never persist credentials in Skill files or Profile records."
+  - risk: "A requested host may not have a verified target adapter."
+    mitigation: "Current built-in support is stated explicitly and unsupported hosts stop before generation."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Composition decision"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "API contract bundle"
+    - "Swagger UI"
+    - "Generated CLI package"
+  formats:
+    - "JSON"
+    - "JavaScript modules"
+    - "HTML"
+  parameters:
+    - "Target host"
+    - "Filter keyword and depth"
+    - "Bundle, swagger, or cli output mode"
+  validation:
+    - "Project regression suite"
+    - "OpenAPI and manifest parse checks"
+    - "Generated JavaScript syntax checks"
+  description: "A target-scoped, locally reproducible API package with explicit discovery evidence and validation."
+ethical_considerations: "Operate only on accounts, traffic, and interfaces the user is authorized to inspect. Do not export cookies, tokens, secrets, or unrelated private payloads."
+dimensions:
+  - id: correctness
+    label: "Contract correctness"
+    description: "Generated operations, dependencies, and graph edges match the selected discovery evidence."
+    evidence: "The maintained Node test suite exercises filtered, unfiltered, Swagger, and generated CLI paths."
+    score: null
+  - id: safety
+    label: "Credential containment"
+    description: "Browser-session workflows avoid copying account credentials into Swagger configuration or generated artifacts."
+    evidence: "Regression assertions reject consoleCookie material and exercise same-origin extension transport."
+    score: null
+  - id: reproducibility
+    label: "Local reproducibility"
+    description: "A saved discovery artifact deterministically produces a parseable bundle without live account access."
+    evidence: "The ZenMux case uses the shipped discovery JSON and validates generated files locally."
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The current Skill is an internal local interface to an early open-source project runtime."
+  boundary: "Includes local offline generation and validation; target adapter development, account access, publishing, and hosted operation are excluded."
+  review_trigger: "Review when more target adapters, hosted execution, or supported commercial distribution are added."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - "local-installed-and-verified"
