@@ -1963,6 +1963,7 @@ skills:
   repo: lovstudio/media-creator-skill
   name_zh: 媒体创作工作流
   paid: true
+  public_source: true
   price_credits: 1394
   category: Video Creation
   version: "0.9.1"
