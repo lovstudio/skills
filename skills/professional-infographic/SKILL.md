@@ -1,5 +1,5 @@
 ---
-name: lovstudio:professional-infographic
+name: lov-professional-infographic
 description: Create evidence-led consulting infographics with editable HTML/SVG, high-resolution
   PNG, source linkage, and strict QA. Use when the user asks for a professional infographic
   or Exhibit.
