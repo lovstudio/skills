@@ -1,0 +1,63 @@
+[
+  {
+    "type": "case",
+    "title": "尹方鸣的宇树投资阶梯：200万元如何走到约2.91亿元",
+    "titleEn": "Yin Fangming's Unitree investment staircase: RMB 2m to about RMB 291m",
+    "description": "将2016—2026年的进入、两次对外出售、持股载体迁移、融资稀释与IPO剩余价值放在同一条估值阶梯上；用现金回收桥区分已实现收益和未实现持仓，并明确2020年名义转让不是真实退出。3200×1800 PNG 严格审计 100/100。",
+    "descriptionEn": "Places the 2016–2026 entry, two external sales, vehicle migration, financing dilution, and IPO residual value on one valuation staircase. The return bridge separates realized cash from the remaining position and does not misclassify the 2020 nominal transfer as an exit. The 3200×1800 PNG passed strict audit at 100/100.",
+    "cover": "https://lovstudio.ai/images/skills/professional-infographic/yin-fangming-unitree-investment-staircase.png",
+    "input": {
+      "label": "输入",
+      "text": "量子位文章与宇树科技招股书、审计报告、上市公告等公开披露。"
+    },
+    "output": {
+      "label": "交付",
+      "items": [
+        "可编辑 HTML/SVG 与 3200×1800 PNG",
+        "进入、出售、载体迁移、稀释和IPO的分类事件账本",
+        "已实现现金、剩余持仓与145.5倍简单总价值的可复算桥"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "同一份跨端选型材料，重构成两张咨询 Exhibit",
+    "description": "不再用卡片墙总结文字，而是分别构造成决策矩阵与双轴定位图：决策矩阵采用主题标题与尾部建议，定位图保留结论型行动标题；同维比较、轴端与区域、直接标注、决策规则、来源和限定完整保留。两张 3200×1800 PNG 均通过严格审计、原图与缩略图人工复核。"
+  },
+  {
+    "id": "sun-ge-emotional-economics-timeline-money",
+    "type": "case",
+    "title": "《孙割情感经济学》：时间 × 金钱的叙事金额轨迹",
+    "titleEn": "Sun Ge Emotional Economics: a time × money narrative trail",
+    "description": "将一篇明确标注“纯属虚构”的公开叙事材料中的 8 个金额锚点按事件时间重排，以人民币等值对数轴同时保留 150 元与 3.5 亿元的可读性，并用形状区分声称发生的支出、参照金额、持续区间和未支付要求。最终 3200×1800 信息图通过严格审计与原图、缩略图人工复核。",
+    "descriptionEn": "Reframed eight money anchors from a public narrative explicitly labeled fictional onto an event-time axis and a logarithmic CNY-equivalent scale. Shape distinguishes claimed outflows, reference amounts, recurring ranges, and an unpaid demand. The 3200×1800 infographic passed strict audit and full-size plus thumbnail review.",
+    "input": {
+      "items": [
+        "公开且明确标注“纯属虚构”的叙事文本",
+        "用户对第一版结构的校正：横轴是时间，纵轴是金钱"
+      ]
+    },
+    "prompt": "标题《孙割情感经济学》；横轴是时间，纵轴是金钱。",
+    "output": {
+      "items": [
+        "可编辑 HTML/SVG 与 3200×1800 PNG",
+        "2011—2026 年 8 个金额锚点的时间 × 金钱坐标图",
+        "人民币等值 log 刻度、币种换算假设、事件类型图例与虚构边界",
+        "严格审计 0 错误、0 警告，质量代理 98/100"
+      ]
+    },
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-08-29",
+      "method": "在 3200×1800 原图与 640px 缩略图完成视觉回读；机器严格审计为 0 错误、0 警告，质量代理 98/100。",
+      "privacy": "公开摘要不含凭据、私人绝对路径或原始会话正文；叙事金额均标明其文本性质，完整 Session 由 lov-share-session 规范化和脱敏后付费提供。"
+    },
+    "session": {
+      "url": "https://lovstudio.ai/yoda/session/yss_qgRDW8zK9Qk8N_cRs8BXQbRm2oedplhwiVGcOySSs2w?detail=concise",
+      "access": "paid",
+      "priceCredits": 14,
+      "pricingRule": "ceil(target-skill-price/10)",
+      "targetSkill": "lov-professional-infographic"
+    }
+  }
+]
