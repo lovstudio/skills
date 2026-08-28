@@ -3195,7 +3195,9 @@ skills:
   display_name: Clean Mac
   repo: lovstudio/macos-disk-optimizer-skill
   name_zh: 清理 Mac
-  paid: false
+  paid: true
+  public_source: true
+  price_credits: 139
   category: General
   version: "0.4.0"
   updated_at: 2026-08-26T06:15:18Z
@@ -3203,28 +3205,28 @@ skills:
   tagline_en: Clean up Mac storage without touching protected app workspaces, with guarded migration, rollback, and real-capacity verification.
   tagline_zh: 按目标容量整理 Mac 磁盘，保护 Screen Studio 等应用工作区，并以可回滚操作和真实可用空间完成验收。
   pricing:
-    model: free_entry
+    model: one_time
     visibility: public
-    list_price_credits: 0
-    launch_price_credits: 0
+    list_price_credits: 139
+    launch_price_credits: 139
     price_range_credits:
-    - 0
-    - 0
+    - 139
+    - 139
     delivery_unit_zh: 公开 Skill 源码与当前版本说明
     delivery_unit_en: Public Skill source and current-version notes
     value_zh: 按目标容量整理 Mac 磁盘，保护应用工作区，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
     value_en: Clean up Mac storage while protecting application-managed workspaces, with guarded migration, exact rollback-item purging, and real-capacity verification.
     anchor_zh: 一次处理通常可省下 30 分钟至半天的排查、整理和回滚往返。
     anchor_en: A run typically saves 30 minutes to half a day of storage diagnosis, cleanup, and rollback work.
-    basis_zh: 作为免费可信入口发布，重点验证真实空间改善、应用工作区保护、误删风险降低和回滚可靠性。
-    basis_en: Published as a free trust-building entry point, emphasizing verifiable capacity gains, app-workspace protection, lower deletion risk, and reliable rollback.
+    basis_zh: 以 139 Credits 一次性解锁完整公开源码交付，价格用于验证真实付费意愿，重点价值是可回读的空间改善、应用工作区保护、误删风险降低和回滚可靠性。
+    basis_en: The complete public-source delivery is unlocked once for 139 Credits to validate paid demand, with value centered on verifiable capacity gains, app-workspace protection, lower deletion risk, and reliable rollback.
     boundary_zh: 默认只处理明确的可重建产物和用户确认的低频资料；照片、消息、邮件、Git 历史、Screen Studio 录制工作区及其他受保护路径不进入自动清理或迁移。
     boundary_en: Handles explicit rebuildable artifacts and user-confirmed cold data; photos, messages, mail, Git history, Screen Studio recordings, and other protected paths stay out of cleanup and migration.
     maintenance_zh: 随 macOS、文件系统、归档卷挂载方式和真实使用反馈变化复评。
     maintenance_en: Review when macOS, filesystem behavior, archive-volume mounting, or real-use feedback change.
     confidence: case-backed
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化，或支持成本明显变化时复评。
+    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version change, or a material change in support cost.
     card_path: pricing-cards/clean-mac.md
 - name: media-fetch
   runtime_name: lov-media-fetch
