@@ -1589,7 +1589,7 @@ skills:
     card_path: pricing-cards/rich-export.md
 - name: professional-infographic
   runtime_name: lovstudio:professional-infographic
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-08-28T20:36:58Z
   skillpay_product_id: P0806000200843450
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQE
   display_name: Professional Infographic
@@ -1597,7 +1597,7 @@ skills:
   name_zh: 专业信息图
   paid: true
   encrypted_bundle: true
-  price_credits: 14
+  price_credits: 139
   featured: true
   category: Design
   version: "0.5.0"
@@ -1611,11 +1611,11 @@ skills:
   pricing:
     model: one_time
     visibility: public
-    list_price_credits: 14
-    launch_price_credits: 14
+    list_price_credits: 139
+    launch_price_credits: 139
     price_range_credits:
-    - 14
-    - 14
+    - 139
+    - 139
     delivery_unit_zh: 单项 Skill 完整交付，含当前版本的加密安装包、使用说明与模板
     delivery_unit_en: One complete Skill with its encrypted bundle, current-version guide, and templates
     value_zh: 将证据、估值、进入与分阶段退出编成一张可编辑、可导出、可审计的专业信息图。
@@ -1623,15 +1623,15 @@ skills:
       infographic.
     anchor_zh: 一次结果通常可减少 1–6 小时的试稿、排版或资产整理。
     anchor_en: A result typically removes 1–6 hours of drafting, layout, or asset organization.
-    basis_zh: 按可预览、可导出、可继续编辑的视觉结果定价，价值来自减少反复试稿。
-    basis_en: Priced around a previewable, exportable, and reusable visual result, with value coming from fewer draft iterations.
+    basis_zh: 139 Credits 是完整加密 Skill 的一次性价格，以已验收案例验证付费意愿；重点价值来自可编辑、可导出、可审计的视觉结果与更少的反复试稿。
+    basis_en: 139 Credits is the one-time price for the complete encrypted Skill, using accepted cases to validate paid demand; value comes from editable, exportable, auditable visuals and fewer draft iterations.
     boundary_zh: 结果依赖输入素材、品牌约束和外部模型；复杂定制、素材采购与线下制作另计。
     boundary_en: Results depend on source assets, brand constraints, and external models; complex customization, asset sourcing,
       and physical production are separate.
     maintenance_zh: 随渲染工具、字体、模型和品牌资产变化复评；保持输出结构比追逐单一风格更重要。
     maintenance_en: Review against rendering tools, fonts, models, and brand assets; output structure matters more than chasing
       a single style.
-    confidence: medium
+    confidence: case-backed
     review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化或支持成本明显变化时复评。
     review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version change, or a material change in support
       cost.
