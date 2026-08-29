@@ -6,13 +6,15 @@ description: >
   Use when the user asks to publish, release, or ship a plugin. 触发：发布插件 / 上架插件 / release dsh 插件。
 license: MIT
 compatibility: >-
+  Author-only name: the skill keeps the unprefixed id `dsh-plugin-publisher`
+  (paired with `dsh-plugin-creator`); the standard `lov-` prefix is not used.
   Requires Node.js >= 20, pnpm >= 10, git, and the `dsh` CLI on PATH (or run
   the gates through the repo's `pnpm dsh`). Publishing to npm needs npm auth;
   git/topic operations need the GitHub CLI. Channel metadata stays outside
   canonical source.
 metadata:
   author: Lovstudio
-  version: "0.2.0"
+  version: "0.3.1"
   tags:
     - dsh-plugin
     - publisher
@@ -54,6 +56,19 @@ report evidence per channel.
   gates: `package.json` invariants hold, `dsh.bundle.patch` (or
   `dsh.plugin.json` for the yoda-style registry channel) is present, and no
   stale build artifacts sit in the tree.
+- **Publishing updates only the target plugin's code, never the whole
+  harness.** A plugin is often developed as a workspace member inside the
+  `deepseek-harness` monorepo (e.g. `packages/client/ui-plugin-market`) but
+  published from its own repository (e.g. `lovstudio/dsh-plugin-marketplace`;
+  such members are listed in `scripts/release/families.ts` as
+  `externalRepositoryMembers`). In that case the release diff is the plugin's
+  own files only: sync the changed plugin source plus its committed build
+  artifacts to the standalone repo, and leave every other harness change
+  (unrelated in-flight features, other packages, root manifests) untouched.
+  Keep the standalone repo's self-referencing import style — monorepo-internal
+  package references such as `@deepseek-ai/dsh-host-plugin-market-github` map
+  to the plugin's own exports (`@lovstudio/dsh-plugin-marketplace/...`) and
+  must not be copied over.
 - When the user does not name a channel, default to npm for `@lovstudio/dsh-*`
   plugins whose `publishConfig.access` is `public`, and to git for plugins
   meant to be consumed from source. Do not ask a channel-selection question
@@ -93,9 +108,19 @@ publication.
 - Resolve this Skill as `SKILL_DIR`.
 - Resolve the plugin source from an explicit path, current directory, or
   conversation. Confirm it is a DSH plugin (has `dsh.bundle` or `dsh.plugin.json`).
+- **Distinguish the development tree from the publishing repository.** All
+  lovstudio plugins are developed under `~/lovstudio/dsh-plugins/`, one
+  standalone git repository per plugin (e.g.
+  `~/lovstudio/dsh-plugins/dsh-plugin-marketplace`); each is installed into
+  the harness locally for testing and published from its own repository. When
+  a plugin still lives inside the `deepseek-harness` monorepo as a workspace
+  member, that member is only the source of the plugin's changes and the
+  standalone repo is the release target. Confirm which one the user means
+  before publishing.
 - Resolve the DSH harness checkout (for gates and the optional community
   mirror) from the repo where the plugin was authored, or
-  `$DSH_HARNESS` if set.
+  `$DSH_HARNESS` if set. When publishing from a standalone plugin repo, the
+  gates run there — not from the harness root.
 
 ### Step 1: Validate canonical source
 
@@ -113,13 +138,20 @@ A `@lovstudio/dsh-*` external plugin additionally sets
 
 ### Step 2: Run the repo gates
 
-From the harness repo root (or the plugin's own repo when it is standalone):
+Run the gates from the plugin's own publishing repository — the standalone
+repo when the plugin publishes from one, otherwise the harness root. Never run
+the whole-harness gate suite for a plugin that publishes from its own repo:
 
 ```sh
+# Standalone plugin repo
 pnpm install
-pnpm run doc-sync
-pnpm run constraints && pnpm run typecheck && pnpm run lint
-pnpm run build && pnpm run hygiene
+pnpm run typecheck && pnpm run lint && pnpm run build
+pnpm pack --dry-run                 # proves the publish payload packs
+
+# Plugin developed inside the harness monorepo but publishing from its own repo:
+# validate only the plugin's changed surface (its package tests/build), not the
+# harness-wide suite — unrelated in-flight harness changes must not block or
+# leak into the plugin release.
 ```
 
 Then run only the checks the changed surface reaches — do not default to the
@@ -145,6 +177,21 @@ archive format, or adapter order.
 Read `references/publish-dsh.md`, then execute only the selected channels.
 Keep independent state for each target so one failure does not masquerade as a
 successful multi-channel release.
+
+**Build the release diff before touching any channel.** The release diff is
+the target plugin's own changes only. When the plugin is developed inside the
+harness monorepo and published from a standalone repo:
+
+1. Compare the plugin's monorepo member tree against the standalone repo to
+   find the functional delta (for example a one-line icon fix). Ignore
+   monorepo-internal import-name differences — the standalone repo keeps its
+   self-referencing style.
+2. Apply only that delta to the standalone repo: the changed source file(s),
+   the committed build artifacts they feed (e.g. `lib/client.cjs`), the
+   `package.json` version bump, and the `CHANGELOG.md` entry.
+3. Do not copy over other harness files, unrelated in-flight features, or the
+   root manifests. `git status` in the standalone repo must show exactly the
+   plugin release files before committing.
 
 ### Step 5: Publish to npm
 

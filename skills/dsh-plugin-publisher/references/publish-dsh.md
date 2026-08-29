@@ -19,16 +19,39 @@ package.json 不变量（`packages/AGENTS.md` / `docs/cookbook/adding-a-package.
 - `@deepseek-ai/cordis` 同 range 进 peer + devDeps；每个 dsh peer dep 镜像进 devDeps。
 - `@lovstudio/dsh-*` 外部插件：`publishConfig.access: "public"` + `keywords` 含 `dsh-plugin`。
 
+### 1a. 发布边界：只发布目标插件的代码
+
+所有 lovstudio 插件的标准布局：**开发于 `~/lovstudio/dsh-plugins/<plugin-repo>`（每个插件一个独立 git 仓库），在 harness 内本地安装测试，通过后发布**。当前目录（截至 2026-08-29）：`dsh-plugin-marketplace`、`dsh-better-restart`、`dsh-frontend-inspector`、`dsh-inject-system-prompt`、`dsh-llm-config`。
+
+历史遗留：插件也曾在 `deepseek-harness` monorepo 内开发（workspace member），此类成员登记在 `scripts/release/families.ts` 的 `externalRepositoryMembers`（示例：`@lovstudio/dsh-plugin-marketplace` 曾开发于 `packages/client/ui-plugin-market/`，`@lovstudio/dsh-llm-config` 曾开发于 `packages/llm/llm-config/`）。发布更新只取目标插件自己的功能增量，**不是整个 Harness**：
+
+- monorepo 工作副本通常带着大量互不相关的在途改动（示例：发布 plugin-market 时工作区有 200+ 变更文件），发布 diff 只取该插件自己的功能增量。
+- 同步到独立仓库的内容：改动的源文件 + 其对应的已提交构建产物（如 `lib/client.cjs`）+ `package.json` 版本 + `CHANGELOG.md` 条目。`git status` 必须是这组文件。
+- 保留独立仓库的自引用风格：monorepo 内部包引用（如 `@deepseek-ai/dsh-host-plugin-market-github`）在独立仓库映射为插件自己的导出（`@lovstudio/dsh-plugin-marketplace/remote`、`/types`），不得整树复制。
+- 独立仓库没有构建脚本时（产物直接提交），对 `lib/` 内的单行产物做等价修改即可，不要用 monorepo 的 tsdown 产物整体覆盖（包名引用会错）。
+
+### 1b. 本地安装测试（发布前必做）
+
+发布前在 harness 内从本地路径安装验证插件可加载：
+
+```sh
+dsh plugin --profile <name> add /Users/mark/lovstudio/dsh-plugins/<plugin-repo>
+dsh --profile <name> --dump-config   # 期望出现 "# == <pkg>" layer
+```
+
+测试通过后再走发布渠道。
+
 ## 2. 仓库门槛（Step 2）
+
+从**插件的发布仓库**跑门槛；插件从独立仓库发布时，门槛在独立仓库跑，不要跑整个 Harness 的 gate 套件：
 
 ```sh
 pnpm install
-pnpm run doc-sync
-pnpm run constraints && pnpm run typecheck && pnpm run lint
-pnpm run build && pnpm run hygiene
+pnpm run typecheck && pnpm run lint && pnpm run build
+pnpm pack --dry-run
 ```
 
-再按行为跑相关检查（不默认全量）。`lefthook.yml` pre-push 只跑 `pnpm run typecheck`；pre-commit 跑 staged lint / whitespace / 翻译配对 / 第三方声明。CI 负责全矩阵。出处 plugin-dev-sop.md §7、harness `AGENTS.md`。
+monorepo 内开发的插件发布前只验证其改动的表面（该包测试/构建），Harness 里无关的在途改动既不能阻塞也不能混入插件发布。`lefthook.yml` pre-push 只跑 `pnpm run typecheck`；pre-commit 跑 staged lint / whitespace / 翻译配对 / 第三方声明。CI 负责全矩阵。出处 plugin-dev-sop.md §7、harness `AGENTS.md`。
 
 ## 3. npm 渠道（Step 5）
 

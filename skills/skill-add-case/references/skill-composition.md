@@ -13,6 +13,9 @@
   the downstream publisher detects a commercial change.
 - `lov-skill-optimizer` — audits or improves an entire Skill. It does not own
   acceptance evidence or append one case, so it is not composed.
+- `lov-share-session` — reads and redacts the accepted Agent transcript, uploads
+  the immutable snapshot, and returns a server-priced paid URL. **Required
+  composed dependency**; this Skill must not recreate its auth or upload logic.
 - LovStudio `fetchSkillShowcase` — not a Skill. It is the website consumer that
   reads the owning repository's `cases/cases.json` and refreshes under the
   `skill-cases:<id>` cache tag.
@@ -21,11 +24,15 @@
 
 - Optional upstream artifact: a validated Skill source created by
   `lov-skill-creator`; ownership ends when its local trust bundle passes.
-- Core input: one completed Skill invocation, an explicit user acceptance, the
-  minimum prompt, real input/output evidence, and any approved public assets.
-- Core output: one privacy-safe, deduplicated case in the target's canonical
-  `cases/cases.json`, with a stable ID and evidence SHA-256. This Skill owns the
-  correctness of that mutation.
+- Core input: one completed Skill invocation, explicit user acceptance for both
+  the public summary and paid transcript upload, the minimum prompt, real
+  input/output evidence, and any approved public assets.
+- Required intermediate artifact: `lov-share-session --json` output containing
+  the paid URL, target Skill, case ID, pricing rule, and server-derived Credits
+  price. Ownership returns here only after that contract validates.
+- Core output: one privacy-safe, deduplicated public case in the target's
+  `cases/cases.json`, with a stable ID, evidence SHA-256, and a link to the paid
+  full Session. This Skill owns the correctness of that mutation.
 - Optional downstream artifact: the validated target source plus case ID and
   fingerprint. `lov-skill-publisher` owns remote push, cache refresh, and the
   final public page state.
@@ -34,15 +41,14 @@
 
 ## Overlap Decisions
 
-No inspected Skill owns the same outcome. Creator only creates the initial trust
-bundle; Publisher publishes arbitrary validated changes; Optimizer reviews the
-whole Skill. This Skill adds the missing acceptance, privacy, duplicate, and
-case-specific live verification gate without copying those broader workflows.
+No inspected Skill owns the same combined outcome. Creator only creates the
+initial trust bundle; Share Session owns transcript publication; Publisher
+publishes arbitrary validated changes; Optimizer reviews the whole Skill. This
+Skill orchestrates those atoms without copying their implementations.
 
 ## Composition Decision
 
-This is a Single Skill with deterministic Python helpers. Case qualification,
-mutation, and verification share one context and one user-visible outcome. The
-remote publisher remains an optional artifact-level handoff because local-only
-Skills are valid targets and remote publication has its own independent account,
-catalog, pricing, and channel contract.
+This remains one orchestration Skill with a declared runtime dependency.
+Qualification and mutation share one context; `lov-share-session` is the required
+paid-transcript atom, and `lov-skill-publisher` remains an optional downstream
+artifact handoff. A case is not written when the required Session atom fails.

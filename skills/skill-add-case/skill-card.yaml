@@ -1,8 +1,8 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.2.2"
 description: >-
-  Convert one explicitly accepted Skill result into a privacy-safe evidence case,
-  update the owning source atomically, and verify public LovStudio synchronization.
+  Convert one accepted Skill result into a public summary plus a server-priced
+  paid full-session evidence page, then update and verify the owning source.
 owner:
   team: "LovStudio Skill contributors"
   contact: "Source repository maintainers"
@@ -12,10 +12,11 @@ license:
   url: "LICENSE"
 use_case:
   audience: "Skill users, maintainers, and catalog editors"
-  scenario: "A completed Skill result has explicit user approval and should become public, reviewable evidence."
+  scenario: "A completed Skill result has explicit approval for a public summary and a paid, redacted full Session."
   tasks:
     - "Qualify the exact accepted result and redact private data."
     - "Append one deduplicated case to the owning Skill."
+    - "Upload the complete Session through lov-share-session at one tenth of the target Skill price."
     - "Verify source publication and the live LovStudio detail page when applicable."
 deployment:
   geography: global
@@ -23,8 +24,9 @@ deployment:
     - "Local agent workspace with access to the target Skill source"
     - "GitHub and LovStudio network access for optional public synchronization"
 requirements:
-  credentials: "None for local use; existing repository and LovStudio revalidation credentials for public sync."
-  dependencies: []
+  credentials: "LovStudio authentication for paid Session upload; repository credentials only for public sync."
+  dependencies:
+    - "lov-share-session"
   runtime:
     - "Python 3.10 or newer"
     - "PyYAML for generated source validation"
@@ -33,6 +35,8 @@ risks:
     mitigation: "Require explicit acceptance tied to the exact result before any mutation."
   - risk: "A public case could leak secrets, private paths, transcript content, or customer data."
     mitigation: "Fail on high-risk patterns, require a privacy note, inspect the final diff, and publish only approved evidence."
+  - risk: "A client-selected price or public attachment URL could bypass the intended paid access contract."
+    mitigation: "Accept pricing only from the server and reject attachments in paid Session uploads."
   - risk: "A push or cache response could be mislabeled as a live website update."
     mitigation: "Verify both public raw JSON fingerprint and HTTP 200 detail-page marker before reporting live-verified."
 references:
@@ -45,6 +49,7 @@ references:
 output:
   types:
     - "validated Skill case record"
+    - "paid full-session evidence URL"
     - "public synchronization evidence"
   formats:
     - "JSON"
@@ -52,13 +57,17 @@ output:
   parameters:
     - "target Skill source"
     - "accepted case JSON object"
+    - "current or explicit Agent Session"
     - "optional public cases and detail-page URLs"
   validation:
     - "explicit user-confirmed evidence"
+    - "accepted final image required for primarily visual cases"
     - "atomic append with duplicate ID and fingerprint rejection"
+    - "server-derived Session price and paid paywall readback"
     - "target Skill source validation"
     - "public JSON fingerprint and detail-page marker readback"
-  description: "One truthful case plus exact local, pushed, and live-verification states."
+    - "rendered-page image references and non-empty image content"
+  description: "One truthful public case, one paid full Session, and exact local, pushed, and live states."
 ethical_considerations: >-
   The workflow minimizes public data, requires user acceptance, rejects obvious
   credentials and private paths, and does not manufacture testimonials, metrics,
@@ -79,6 +88,11 @@ dimensions:
     description: "Preserves valid existing cases and rejects duplicates before an atomic replacement."
     evidence: "Dry-run and write modes share validation, content fingerprints, duplicate gates, and atomic os.replace output."
     score: "source-verified"
+  - id: paid-session-integrity
+    label: "Paid Session integrity"
+    description: "Links the accepted case to a redacted full transcript at a server-authoritative Credits price."
+    evidence: "The composed helper validates target Skill and case IDs, rejects client pricing, and writes only after upload succeeds."
+    score: "source-verified"
   - id: live-truthfulness
     label: "Live-state truthfulness"
     description: "Separates local, pushed, and live-verified states."
@@ -97,5 +111,5 @@ distribution:
     - "workbuddy: not planned"
     - "skillpay: not planned"
   free:
-    - "github: v0.1.0 published"
-    - "lovstudio: live-verified 2026-08-23"
+    - "github: v0.1.0 published; v0.2.2 local-only"
+    - "lovstudio: v0.1.0 live-verified 2026-08-23"

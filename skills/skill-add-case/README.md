@@ -1,17 +1,16 @@
 # lov-skill-add-case
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 
-把一次已获用户明确认可的 Skill 结果，整理成脱敏、可验证的案例，安全写入
-目标 Skill，并在目标已公开时同步到 LovStudio 官网后回读验证。
+把一次已获用户明确认可的 Skill 结果，整理成公开摘要，并将脱敏后的完整 Session
+按目标 Skill 售价的 1/10 上传为付费证据；随后安全写入目标 Skill，并在公开时回读验证。
 
 ## 本地安装
 
-推荐使用共享安装层：
+标准安装：
 
 ```bash
-ln -s "/path/to/skill-add-case-skill" "$HOME/.agents/skills/lov-skill-add-case"
-ln -s "../../.agents/skills/lov-skill-add-case" "$HOME/.codex/skills/lov-skill-add-case"
+npx skills add lov-skill-add-case -g -y
 ```
 
 ## 使用
@@ -20,8 +19,13 @@ ln -s "../../.agents/skills/lov-skill-add-case" "$HOME/.codex/skills/lov-skill-a
 
 > 这个结果不错，用 skill-add-case 加到 lov-professional-infographic 的案例，并同步官网。
 
-Skill 会收集真实 Input → Prompt → Output、验收与隐私说明，先 dry-run，再原子
-更新 `cases/cases.json`，验证目标源，最后只对已公开目标执行 case-only 官网同步。
+Skill 会收集真实 Input → Prompt → Output、验收与隐私说明，调用
+`lov-share-session` 上传付费完整过程，验证服务端权威价格后再原子更新
+`cases/cases.json`，最后只对已公开目标执行 case-only 官网同步。
+
+视觉型案例必须把已验收的最终成品放进 `cover`；多张最终成品继续放入
+`gallery`。只有文字摘要、没有成品图的视觉案例不会通过新增案例校验。
+公开验收还会逐张确认图片已出现在详情页，并返回非空 `image/*` 内容。
 
 英文触发示例：
 
@@ -33,8 +37,14 @@ Skill 会收集真实 Input → Prompt → Output、验收与隐私说明，先 
 ### 确定性命令
 
 ```bash
-python3 scripts/add_case.py /path/to/target-skill --case /tmp/case.json --dry-run
-python3 scripts/add_case.py /path/to/target-skill --case /tmp/case.json
+python3 scripts/add_case_with_session.py /path/to/target-skill \
+  --case /tmp/case.json \
+  --share-session-script /path/to/lov-share-session/scripts/share_session.py \
+  --dry-run
+
+python3 scripts/add_case_with_session.py /path/to/target-skill \
+  --case /tmp/case.json \
+  --share-session-script /path/to/lov-share-session/scripts/share_session.py
 
 python3 scripts/verify_public_case.py \
   --cases-url https://raw.githubusercontent.com/org/repo/main/cases/cases.json \
@@ -54,6 +64,7 @@ python3 scripts/verify_public_case.py \
 ## 原子组合
 
 - `lov-skill-creator` 是可选上游：它定义标准案例与 Skill Card 契约。
+- `lov-share-session` 是必需依赖：它负责会话脱敏、上传和服务端定价。
 - `lov-skill-add-case` 拥有案例资格判断、脱敏、去重和本地写入。
 - `lov-skill-publisher` 是可选下游：它拥有仓库、目录、缓存与官网 live 状态。
 
@@ -69,6 +80,7 @@ python3 scripts/validate_skill.py .
 
 - Python 3.10+
 - PyYAML（源 Skill 校验）
+- `lov-share-session`
 - Git、GitHub 与网络仅用于公开同步
 
 ## License

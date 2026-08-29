@@ -15,8 +15,16 @@ from typing import Any
 
 
 CASE_ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+SKILL_ID_LINE_RE = re.compile(
+    r"(?m)^id:\s*['\"]?([a-z0-9]+(?:-[a-z0-9]+)*)['\"]?\s*$"
+)
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 URL_RE = re.compile(r"^https?://", re.IGNORECASE)
+SESSION_URL_RE = re.compile(
+    r"^https://(?:www\.)?lovstudio\.ai/yoda/session/"
+    r"yss_[A-Za-z0-9_-]{43}(?:\?detail=(?:hidden|concise|detailed|verbose))?$"
+)
+SESSION_PRICING_RULE = "ceil(target-skill-price/10)"
 PLACEHOLDER_RE = re.compile(r"\bTODO\b|\{[^}]+\}", re.IGNORECASE)
 PRIVATE_PATH_RE = re.compile(
     r"(?:/" r"Users/[^/\s]+|/home/[^/\s]+|[A-Za-z]:\\Users\\[^\\\s]+)"
@@ -31,6 +39,18 @@ SECRET_PATTERNS = (
 
 class CaseError(ValueError):
     """A copyable, user-fixable case contract error."""
+
+
+def target_skill_id(root: Path) -> str:
+    manifest = root / "skill.yaml"
+    if not manifest.is_file():
+        raise CaseError(f"target Skill is missing {manifest}")
+    match = SKILL_ID_LINE_RE.search(manifest.read_text(encoding="utf-8"))
+    if not match:
+        raise CaseError(
+            f"cannot resolve a lowercase kebab-case id from {manifest}"
+        )
+    return match.group(1)
 
 
 def canonical_bytes(value: Any) -> bytes:
@@ -98,7 +118,12 @@ def safe_relative_asset(root: Path, value: str, field: str) -> None:
         raise CaseError(f"{field} asset does not exist: {value}")
 
 
-def validate_case(root: Path, raw: Any) -> dict[str, Any]:
+def validate_case(
+    root: Path,
+    raw: Any,
+    *,
+    require_session: bool = True,
+) -> dict[str, Any]:
     if not isinstance(raw, dict):
         raise CaseError("case input must be one JSON object, not an array")
     case = dict(raw)
@@ -120,6 +145,11 @@ def validate_case(root: Path, raw: Any) -> dict[str, Any]:
             raise CaseError(f"evidence.{key} is required")
     if not DATE_RE.fullmatch(str(evidence["verified_at"]).strip()):
         raise CaseError("evidence.verified_at must use YYYY-MM-DD")
+    artifact_type = evidence.get("artifact_type")
+    if artifact_type is not None and artifact_type not in {"visual", "non-visual", "mixed"}:
+        raise CaseError(
+            "evidence.artifact_type must be 'visual', 'non-visual', or 'mixed'"
+        )
 
     case_id = str(case.get("id", "")).strip()
     if not case_id:
@@ -134,6 +164,47 @@ def validate_case(root: Path, raw: Any) -> dict[str, Any]:
     if not CASE_ID_RE.fullmatch(case_id):
         raise CaseError("id must use lowercase kebab-case")
 
+    session = case.get("session")
+    if require_session and not isinstance(session, dict):
+        raise CaseError(
+            "session is required; upload the accepted conversation with lov-share-session first"
+        )
+    if session is not None:
+        if not isinstance(session, dict):
+            raise CaseError("session must be an object")
+        expected_keys = {
+            "url",
+            "access",
+            "priceCredits",
+            "pricingRule",
+            "targetSkill",
+        }
+        if set(session) != expected_keys:
+            raise CaseError(
+                "session must contain only url, access, priceCredits, pricingRule, and targetSkill"
+            )
+        if session.get("access") != "paid":
+            raise CaseError("session.access must be 'paid'")
+        if not SESSION_URL_RE.fullmatch(str(session.get("url", ""))):
+            raise CaseError("session.url must be a LovStudio Yoda session share URL")
+        price_credits = session.get("priceCredits")
+        if (
+            not isinstance(price_credits, int)
+            or isinstance(price_credits, bool)
+            or price_credits <= 0
+        ):
+            raise CaseError("session.priceCredits must be a positive integer")
+        if session.get("pricingRule") != SESSION_PRICING_RULE:
+            raise CaseError(f"session.pricingRule must be '{SESSION_PRICING_RULE}'")
+        if not CASE_ID_RE.fullmatch(str(session.get("targetSkill", ""))):
+            raise CaseError("session.targetSkill must use lowercase kebab-case")
+        expected_target = target_skill_id(root)
+        if session.get("targetSkill") != expected_target:
+            raise CaseError(
+                "session.targetSkill must match the target Skill id "
+                f"'{expected_target}'"
+            )
+
     public_text = json.dumps(case, ensure_ascii=False, sort_keys=True)
     if any(PLACEHOLDER_RE.search(value) for value in string_values(case)):
         raise CaseError("case contains an unresolved placeholder")
@@ -145,6 +216,10 @@ def validate_case(root: Path, raw: Any) -> dict[str, Any]:
             raise CaseError("case contains a secret-like value; redact it before publication")
 
     cover = case.get("cover")
+    if artifact_type == "visual" and not has_content(cover):
+        raise CaseError(
+            "visual case requires cover with the accepted final output"
+        )
     if cover is not None:
         if not isinstance(cover, str) or not cover.strip():
             raise CaseError("cover must be a non-empty string")
@@ -196,12 +271,14 @@ def atomic_write(path: Path, cases: list[Any]) -> None:
             Path(temporary_name).unlink()
 
 
-def run(args: argparse.Namespace) -> dict[str, Any]:
-    root = args.target.expanduser().resolve()
-    if not (root / "SKILL.md").is_file():
-        raise CaseError(f"target is not a Skill source: missing {root / 'SKILL.md'}")
+def mutate_case(
+    root: Path,
+    case: dict[str, Any],
+    *,
+    replace_existing: bool,
+    dry_run: bool,
+) -> dict[str, Any]:
     registry_path = root / "cases" / "cases.json"
-    case = validate_case(root, load_json(args.case))
     case_id = case["id"]
     case_fingerprint = fingerprint(case)
     cases = read_registry(registry_path)
@@ -216,7 +293,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     )
     action = "added"
     if duplicate_id is not None:
-        if not args.replace_existing:
+        if not replace_existing:
             raise CaseError(f"duplicate case id at cases[{duplicate_id}]: {case_id}")
         cases[duplicate_id] = case
         action = "replaced"
@@ -225,17 +302,30 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     else:
         cases.append(case)
 
-    if not args.dry_run:
+    if not dry_run:
         atomic_write(registry_path, cases)
     return {
-        "status": "prepared" if args.dry_run else action,
+        "status": "prepared" if dry_run else action,
         "target": str(root),
         "cases_path": str(registry_path),
         "case_id": case_id,
         "fingerprint": case_fingerprint,
         "total_cases": len(cases),
-        "dry_run": bool(args.dry_run),
+        "dry_run": bool(dry_run),
     }
+
+
+def run(args: argparse.Namespace) -> dict[str, Any]:
+    root = args.target.expanduser().resolve()
+    if not (root / "SKILL.md").is_file():
+        raise CaseError(f"target is not a Skill source: missing {root / 'SKILL.md'}")
+    case = validate_case(root, load_json(args.case))
+    return mutate_case(
+        root,
+        case,
+        replace_existing=args.replace_existing,
+        dry_run=args.dry_run,
+    )
 
 
 def main() -> int:

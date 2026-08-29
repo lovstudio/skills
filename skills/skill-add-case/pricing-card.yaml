@@ -1,9 +1,9 @@
 schema: lovstudio/pricing-card/v1
-version: "0.1.0"
+version: "0.2.2"
 model: free
 currency: CNY
 list_price_cny: 0
-value_anchor: "Replace ad-hoc case editing and unverifiable sync claims with one acceptance-gated, auditable workflow."
+value_anchor: "Replace ad-hoc case editing with one accepted public summary, a paid full Session, and auditable live verification."
 basis: "Free evidence-maintenance utility that operates on user-owned Skill source and public website data."
 boundary: "Includes case qualification, safe local mutation, target validation, and public readback; excludes creating a new public listing without authorization."
 review_trigger: "Review if LovStudio changes its case schema, catalog source, cache tags, or official detail-page contract."

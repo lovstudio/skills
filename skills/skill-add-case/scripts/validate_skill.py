@@ -20,7 +20,15 @@ except ImportError:
     raise SystemExit(2)
 
 
-FRONTMATTER_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
+FRONTMATTER_KEYS = {
+    "name",
+    "description",
+    "license",
+    "compatibility",
+    "depends_on",
+    "allowed-tools",
+    "metadata",
+}
 TEXT_SUFFIXES = {".md", ".json", ".yaml", ".yml", ".txt", ".svg", ".py"}
 JUNK_NAMES = {"__pycache__", ".DS_Store"}
 JUNK_SUFFIXES = {".pyc", ".pyo"}
@@ -103,6 +111,14 @@ def validate_skill_file(path: Path, errors: list[str]) -> dict[str, Any] | None:
             f"{path}: description must contain 50-200 characters "
             f"(found {len(description)})"
         )
+
+    if not compact_text(data.get("compatibility")):
+        errors.append(f"{path}: top-level compatibility is required")
+    depends_on = data.get("depends_on", [])
+    if not isinstance(depends_on, list) or not all(
+        isinstance(item, str) and NAME_RE.fullmatch(item) for item in depends_on
+    ):
+        errors.append(f"{path}: depends_on must be a list of exact kebab-case Skill names")
 
     metadata = data.get("metadata")
     if not isinstance(metadata, dict):
