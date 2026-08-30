@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires Python 3.8+ for bundled scripts. search-cli and forge APIs are optional; use available web search and public repository metadata as fallbacks. The public name remains deep-research for compatibility with existing installations and dependency IDs.
 metadata:
   author: lovstudio
-  version: "2.5.1"
+  version: "2.5.2"
   tags: deep-research citations evidence open-source github gitlab gitee reports
   dependencies:
     - lov-dev-blog
@@ -73,7 +73,8 @@ Mode Selection
 3. **HTML/PDF output:** Load [html-generation.md](./reference/html-generation.md)
 4. **Quality checks:** Load [quality-gates.md](./reference/quality-gates.md)
 5. **Implementation/tooling research:** Load [open-source-solutions.md](./reference/open-source-solutions.md)
-6. **Long reports (>18K words):** Load [continuation.md](./reference/continuation.md)
+6. **Comparison/selection/adoption research:** Load [decision-guides.md](./reference/decision-guides.md)
+7. **Long reports (>18K words):** Load [continuation.md](./reference/continuation.md)
 
 **Templates:**
 - Report structure: [report_template.md](./templates/report_template.md)
@@ -84,6 +85,7 @@ Mode Selection
 - `python scripts/verify_citations.py --report [path]`
 - `python scripts/md_to_html.py [markdown_path]`
 - `python scripts/validate_open_source_solutions.py --artifact [open_source_solutions.jsonl] --report [report.md] --strict`
+- `python scripts/validate_decision_guide.py --report [report.md] --strict`
 
 **Post-report publishing (Skill Publisher):**
 - This is a mandatory completion gate, not an optional follow-up. Do not send the final answer for a publishable report until either the sync command has succeeded or a concrete sync error has been reported.
@@ -113,6 +115,7 @@ Mode Selection
 - Executive Summary (200-400 words)
 - Introduction (scope, methodology, assumptions)
 - Main Analysis (4-8 findings, 600-2,000 words each, cited)
+- Decision Guide (required for comparison, selection, procurement, architecture-choice, or adoption reports; place before detailed findings)
 - Open-Source Solutions Landscape (required when the topic concerns software, tooling, automation, implementation, or deployable solutions)
 - Synthesis & Insights (patterns, implications)
 - Limitations & Caveats
@@ -134,6 +137,7 @@ Mode Selection
 - 10+ sources, 3+ per major claim (cluster-independent, not just count)
 - All factual claims cited immediately [N] with evidence backing in `evidence.jsonl`
 - Claim-support verification mandatory: no unsupported factual claims pass delivery
+- Applicable comparison/selection reports must turn decisive constraints into a branching decision flow with explicit terminal recommendations and a textual fallback; score tables alone do not pass
 - Applicable implementation/tooling reports must search GitHub plus other relevant forges, inspect repository evidence beyond README claims, publish a linked comparison table, and persist `open_source_solutions.jsonl`; an explicit no-results record is required when no repository qualifies
 - No placeholders, no fabricated citations
 - Prose-first (>=80%), bullets sparingly

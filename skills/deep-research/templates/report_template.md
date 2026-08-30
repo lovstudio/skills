@@ -114,6 +114,21 @@ CITATION TRACKING (CRITICAL):
 
 ---
 
+## Decision Guide
+
+<!-- CONDITIONAL BUT MANDATORY for comparison, selection, procurement, architecture-choice, or adoption reports -->
+<!-- Use hard gates, a rendered branching diagram with explicit terminal recommendations, and a textual fallback. -->
+
+[Responsive inline SVG, verified Mermaid, semantic HTML flow, or stable text tree]
+
+### Outcome Map
+
+- [Terminal branch] → **Recommend:** [named option]
+- [Terminal branch] → **Prerequisite:** [required action]
+- [Terminal branch] → **Reject/Stop:** [reason]
+
+---
+
 ## Main Analysis
 
 <!-- CRITICAL: Write 4-8 detailed findings, each 600-2,000 words -->

@@ -59,6 +59,25 @@ python scripts/validate_open_source_solutions.py \
 - Attempt 2: Manual review + correction
 - After 2 failures: STOP, report issues, ask user
 
+### Decision Guide Gate
+
+For comparison, product selection, procurement, architecture choice, or adoption research:
+
+- [ ] The guide appears after the Introduction and before detailed findings
+- [ ] The first branches are hard gates that materially change the recommendation, such as authorization, irreversible automation, deployment boundary, budget, scale, or acceptance evidence
+- [ ] Every branch terminates in an explicit recommendation, rejection, or prerequisite action
+- [ ] The diagram does not collapse non-compensable risks into a weighted score
+- [ ] A compact textual outcome map repeats the terminal choices for accessibility and renderer fallback
+- [ ] Mermaid source is used only when the target renderer was verified; otherwise deliver rendered SVG/HTML or a stable text flow
+
+Run:
+
+```bash
+python scripts/validate_decision_guide.py --report [report_path] --strict
+```
+
+A comparison table may follow the guide, but cannot replace it.
+
 ### Validation Loop Protocol
 
 **After generating ANY report, run this loop:**

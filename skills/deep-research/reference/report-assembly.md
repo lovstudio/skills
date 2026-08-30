@@ -77,35 +77,42 @@ Source identity is stable across edits and continuation. Display numbers are der
    - Track citations
    - Progress: "Introduction complete"
 
-3. **Finding 1-N** (600-2,000 words each)
+3. **Decision Guide** (conditional; mandatory for comparison, selection, procurement, architecture-choice, or adoption reports)
+   - Place after the Introduction and before detailed findings
+   - Start with hard gates that change the answer, not weighted preferences
+   - Render a branching flow with explicit terminal recommendations
+   - Add a compact textual outcome map for accessibility and renderer fallback
+   - Validate with `scripts/validate_decision_guide.py --report [path] --strict`
+
+4. **Finding 1-N** (600-2,000 words each)
    - Tool: Edit(file, append Finding N)
    - Track citations
    - Progress: "Finding N complete"
 
-4. **Open-Source Solutions Landscape** (conditional, mandatory for software/tooling/automation/implementation topics)
+5. **Open-Source Solutions Landscape** (conditional, mandatory for software/tooling/automation/implementation topics)
    - Use the verified `open_source_solutions.jsonl` registry
    - Provide direct canonical repository links and a compact comparison table
    - Compare mechanism, activity, license, maturity, evidence inspected, fit, and risks
    - Separate repository facts from adoption recommendations
 
-5. **Synthesis & Insights**
+6. **Synthesis & Insights**
    - Novel insights beyond source statements
    - Tool: Edit(append)
 
-6. **Limitations & Caveats**
+7. **Limitations & Caveats**
    - Counterevidence, gaps, uncertainties
    - Tool: Edit(append)
 
-7. **Recommendations**
+8. **Recommendations**
    - Immediate actions, next steps, research needs
    - Tool: Edit(append)
 
-8. **Bibliography** (CRITICAL)
+9. **Bibliography** (CRITICAL)
    - EVERY citation from citations_used list
    - NO ranges, NO placeholders, NO truncation
    - Tool: Edit(append)
 
-9. **Methodology Appendix**
+10. **Methodology Appendix**
    - Research process, verification approach
    - Tool: Edit(append)
 

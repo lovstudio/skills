@@ -1,6 +1,6 @@
 # lov-deep-research
 
-![Version](https://img.shields.io/badge/version-2.5.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.5.2-CC785C)
 
 Enterprise-grade research engine for Claude Code. Produces citation-backed reports with source credibility scoring, multi-provider search, and automated validation.
 
@@ -116,6 +116,7 @@ deep-research/
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.5.2 | 2026-08-30 | Add early branching decision guides for comparison and solution-selection reports |
 | 2.5.1 | 2026-08-30 | Render direct HTTP(S) repository links as clickable anchors inside report tables and prose |
 | 2.5.0 | 2026-08-30 | Verified open-source forge discovery, code-level evidence, shareable repository registry, and multilingual validation parity |
 | 2.4.0 | 2026-08-24 | Shared feedback-classification and approval-invalidation gate |

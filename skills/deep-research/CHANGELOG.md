@@ -3,6 +3,14 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [2.5.2] - 2026-08-30
+
+### Added
+
+- require an early branching decision guide for comparison, procurement, architecture-choice, and adoption research
+- require explicit terminal recommendations and a textual fallback so the decision remains understandable without diagram rendering
+- add a strict decision-guide validator and regression tests
+
 ## [2.5.1] - 2026-08-30
 
 ### Fixed
