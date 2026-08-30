@@ -1,0 +1,116 @@
+schema: lovstudio/branding-consistency-dependencies/v1
+dependency: lov-branding-consistency
+policy: >-
+  A Skill belongs here when its normal result generates, edits, reviews, renders,
+  packages, or publishes text that an end user, reader, customer, or public audience
+  will see. The gate applies only to authored presentation copy and must preserve
+  quotations, transcripts, source data, legal text, identifiers, code, and user-entered
+  values unless the user explicitly asks to rewrite them.
+categories:
+  authoring_and_editorial:
+    - deep-research
+    - lov-academic-translator
+    - lov-anti-wechat-ai-check
+    - lov-article-creator
+    - lov-article-writing
+    - lov-better-github-desc
+    - lov-better-readme
+    - lov-better-seo
+    - lov-bp
+    - lov-bp-deck
+    - lov-bp-outline
+    - lov-bp-polish
+    - lov-daily-post
+    - lov-dev-blog
+    - lov-dev-research
+    - lov-distill
+    - lov-editorial-template
+    - lov-fact-check
+    - lov-hanzi-lens
+    - lov-harness-issue
+    - lov-human-writing
+    - lov-kill-emoji
+    - lov-legal-pages
+    - lov-paper-translator
+    - lov-product-onepage
+    - lov-quality-gate
+    - lov-review-doc
+    - lov-solution-architect
+    - lov-style-clone
+    - lov-thesis-polish
+    - lov-translation-review
+    - lov-typeless-prompt
+    - lov-write-professional-book
+    - lov-writing-style
+    - lov-xbti-creator
+  visual_and_document_presentation:
+    - lov-algo-viz-creator
+    - lov-align-wechat-uiux
+    - lov-any2deck
+    - lov-any2docx
+    - lov-any2pdf
+    - lov-business-card
+    - lov-cover-package
+    - lov-describe-image
+    - lov-document-illustrator
+    - lov-event-curator
+    - lov-event-poster
+    - lov-expense-report
+    - lov-gen-card
+    - lov-html2pptx
+    - lov-illustrate
+    - lov-image-decorator
+    - lov-image-translation-errata
+    - lov-landing-art-direction
+    - lov-landing-brand
+    - lov-landing-builder
+    - lov-landing-review
+    - lov-landing-strategy
+    - lov-mobile-adapt
+    - lov-oh-my-landingpage
+    - lov-professional-infographic
+    - lov-proposal
+    - lov-repo2docs
+    - lov-rich-export
+    - lov-table2image
+    - lov-visual-clone
+    - lovpen-cli
+  product_and_media_text:
+    - lov-app-generator
+    - lov-media-creator
+    - lov-subtitle-freedom-skill
+    - lov-video-chapter
+    - lov-video-chapter-design
+    - lov-video-chapter-export
+    - lov-video-chapter-plan
+    - lov-video-chapter-render
+    - lov-voice2srt
+  publishing_and_distribution:
+    - lov-app-release
+    - lov-maintain-partners
+    - lov-media-publisher
+    - lov-output
+    - lov-output-for-article
+    - lov-output-wechat-moment
+    - lov-publish-wechat-article
+    - lov-publish-wechat-channels
+    - lov-share-session
+    - lov-skill-add-case
+    - lov-skill-publisher
+    - lov-wechat-article-branding-skill
+    - lov-wechat-article-operator
+    - lov-wechat-branding-brand-application
+    - lov-wechat-branding-content-intelligence
+    - lov-wechat-branding-cover-direction
+    - lov-wechat-branding-quality-gate
+  skill_content_lifecycle:
+    - lov-skill-creator
+    - lov-skill-distiller
+    - lov-skill-optimizer
+    - lov-skill-pricing
+    - lov-skill-visualizer
+excluded_categories:
+  - pure search, retrieval, crawling, or data transport
+  - build, deployment, release infrastructure, and runtime diagnostics without authored public copy
+  - image-only generation or deterministic Logo composition without visible prose
+  - code refactoring, package installation, authentication, indexing, and storage

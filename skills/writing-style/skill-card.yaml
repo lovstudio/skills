@@ -1,0 +1,124 @@
+schema: lovstudio/skill-card/v1
+version: "2.3.0"
+description: "依据经 19 篇真实样本校准的个人中文文风，把事实、笔记或草稿写成工程实战驱动的第一人称深度内容，并支持保真改写、文风诊断与题材适配。"
+owner:
+  team: "LovStudio"
+  contact: "Local Skill source"
+license:
+  name: MIT
+  terms: "Skill 指令和本地脚本按 MIT 使用；输入、原始语料与输出归用户所有。"
+  url: "LICENSE"
+use_case:
+  audience: "需要长期保持个人声音的中文创作者、工程师、创业者和独立开发者。"
+  scenario: "输入已经确认的事实、笔记、草稿或资料，输出技术深度稿、创业复盘、产品实测、个人随笔、演讲招募稿，或针对现有稿件的文风诊断。"
+  tasks:
+    - "建立事实账本并隔离不确定信息"
+    - "选择一个主题材模式和清晰论点"
+    - "用亲历、框架、数据与边界构建论证"
+    - "按长句解释、短句落锤和一句段留白完成正文"
+    - "识别并阻止口头禅堆叠、题材错配和虚构现场"
+deployment:
+  geography: global
+  environments:
+    - "Any Agent Skills compatible runtime"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "lov-human-writing"
+    - "lov-branding-consistency"
+  runtime:
+    - "A language model capable of high-quality Chinese writing"
+    - "Python 3.8+ for local audit and Profile storage"
+    - "PyYAML for full source validation"
+risks:
+  - risk: "为了强化第一人称而虚构作者经历、数字、关系、引语或使用体验。"
+    mitigation: "事实账本先于成文；缺少亲历时使用诚实的判断位置，核心优先级禁止风格压过事实。"
+  - risk: "机械复读短句、口头禅、粗口和情绪反转，把文风写成戏仿。"
+    mitigation: "区分稳定特征与题材偶发特征；Anti-Parody Rules 禁止按配额插入表面标记。"
+  - risk: "把跨题材统计当成逐篇 KPI，导致文章为命中数字而失真。"
+    mitigation: "style_audit.py 只输出 diagnostic 与参考区间；短文本不做比例判断，人工验收事实和论证优先。"
+  - risk: "技术稿、快评和个人随笔使用同一套结构与情绪。"
+    mitigation: "每次只选择一个主模式；writing-modes.md 分别定义结构、证据、温度和禁忌。"
+  - risk: "必需的反 AI 或品牌门禁破坏已经验收的个人声音。"
+    mitigation: "composition contract 把个人声音列为受保护输入，并把作者性、品牌语境与文风验收边界分开。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Verified v2 style profile"
+    path: "references/style-profile.md"
+  - title: "Writing mode matrix"
+    path: "references/writing-modes.md"
+  - title: "Skill composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "new Chinese draft"
+    - "fact-preserving rewrite"
+    - "writing-style diagnosis"
+    - "title, opening, section, ending, talk, or short-post adaptation"
+  formats:
+    - "UTF-8 Markdown"
+    - "UTF-8 plain text"
+    - "JSON diagnostic report from the optional local audit"
+  parameters:
+    - "outcome, topic mode, audience, length, author identity, brand tone"
+  validation:
+    - "Facts, numbers, dates, versions, attribution, quotes, and uncertainty are preserved"
+    - "The selected mode controls structure and emotional register"
+    - "Every major section has evidence or an explicit source"
+    - "Long sentences explain and short sentences judge without mechanical fragmentation"
+    - "No fabricated first-person experience or unverified publication claim appears"
+  description: "A ready-to-use Chinese artifact or focused diagnosis that preserves facts while expressing the calibrated personal voice."
+ethical_considerations: "Use only user-authorized source material and profile records. Do not expose raw private samples, fabricate autobiographical facts, impersonate an unrelated author, or turn inference into attribution."
+dimensions:
+  - id: fact_fidelity
+    label: "事实保真"
+    description: "保留输入中的数字、版本、时间、归因、引语、限制与发布状态，不补造个人经历。"
+    evidence: "cases/cases.json 的 v2 发布复盘逐项保留 0.1.0、19 篇、12.46 万、2,846、2,559、39.1、79.9% 和仅本地状态。"
+    score: null
+  - id: argument_structure
+    label: "论证结构"
+    description: "从真实问题出发，经定义、区分、证据与边界形成可行动判断。"
+    evidence: "SKILL.md Step 2 至 Step 4 固化事实账本与论证链；真实案例从旧版缺口推进到 v2 设计取舍。"
+    score: null
+  - id: rhythm_fidelity
+    label: "节奏与版式"
+    description: "长句解释、短句落锤，一句段承担转折与停顿，同时避免机械切碎。"
+    evidence: "references/style-profile.md 提供样本统计；scripts/style_audit.py 可复测案例输出并明确只作诊断。"
+    score: null
+  - id: mode_adaptation
+    label: "题材适配"
+    description: "技术、创业、实测、随笔和演讲使用不同结构、证据与情感温度。"
+    evidence: "references/writing-modes.md 为五种模式分别记录开头、结构、证据、温度、允许项和禁忌。"
+    score: null
+  - id: anti_parody
+    label: "防戏仿"
+    description: "复现判断与论证方式，而不是按配额堆叠口头禅、粗口、英文和情绪反转。"
+    evidence: "references/style-profile.md 的 Anti-Parody Rules 与 SKILL.md Step 4、Silent validation 形成双重门禁。"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "当前为用户自有语料衍生的本地个人写作基础设施，没有云端成本，也没有公开渠道的付费转化与支持证据。"
+  boundary: "包含新写、改写、诊断、五种题材模式和本地审计；不包含事实研究、虚构经历、陌生作者画像提取、视觉包装或远程发布。"
+  review_trigger: "用户要求公开发布、增加云服务、画像主版本更新，或积累至少 20 个跨题材验收案例时复评。"
+  confidence: case-backed
+distribution:
+  paid:
+    - channel: workbuddy
+      state: not_prepared
+      note: "未制作付费包，未上传，未审核，未上线。"
+    - channel: skillpay
+      state: not_prepared
+      note: "未创建商品，未上传，未审核，未上线。"
+  free:
+    - channel: local
+      state: installed_verified
+      note: "v2 源码、Profile、案例与三层客户端入口在本地验证。"
+    - channel: github
+      state: not_published
+      note: "本次未执行远程仓库或 Release 发布。"
+    - channel: lovstudio
+      state: not_published
+      note: "本次未执行目录上架或公开页面回读。"

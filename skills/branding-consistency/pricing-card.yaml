@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把散落在公众号、网站、App、策划案与海报里的文案判断，统一为受众、品牌角色、组件惯例、可见性防火墙和删除测试。"
+basis: "当前交付是 instruction-first 的本地基础能力，无云端推理、API、数据订阅或运维成本；已有一个真实 Caption 案例和可复测辅助审计，因此保持免费本地使用。"
+boundary: "包含跨场景生成、改写、在位审校、删除决策、Profile 记录与本地辅助审计；不包含事实研究、用户调研、视觉设计、代码实现、A/B 测试、渠道写入或正式发布。"
+review_trigger: "积累至少 20 个跨场景真实验收案例、增加云端品牌知识库、团队协作或自动化批量审校后重新评估价格与支持边界。"
+confidence: case-backed

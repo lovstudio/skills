@@ -128,10 +128,12 @@
     {
       "name": "content-creation",
       "source": "./",
-      "description": "Content Creation — 4 free + 4 paid (Credits redemption required).",
+      "description": "Content Creation — 6 free + 4 paid (Credits redemption required).",
       "category": "Content Creation",
       "skills": [
-        "./skills/anti-wechat-ai-check",
+        "./skills/branding-consistency",
+        "./skills/human-writing",
+        "./skills/writing-style",
         "./skills/document-illustrator",
         "./skills/image-creator",
         "./skills/deep-research",

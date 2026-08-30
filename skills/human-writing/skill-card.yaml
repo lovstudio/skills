@@ -1,0 +1,197 @@
+schema: lovstudio/skill-card/v1
+version: "0.3.0"
+description: >
+  用作者性账本和七维篇章审计追溯中文非虚构稿的命题、因果、反例与结尾，再用
+  30 项表层指标定位句词问题并复测。交付账本、篇章报告、改写稿和数值对照，
+  不输出 AI 概率或平台通过承诺。
+owner:
+  team: "Lovstudio.AI（手工川工作室）"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: >
+    可自由使用、修改与再分发，保留版权声明。内置词表参考了 humanizer-zh
+    的 AI 写作模式分类（同为 MIT）。实测分位数由本机私人语料生成，仓库内
+    只包含聚合统计量，不含任何语料原文。
+  url: "../LICENSE"
+use_case:
+  audience: "需要发布中文长文的写作者、公众号运营者、学术与正式文体作者"
+  scenario: >
+    稿件由 AI 辅助生成或润色过，读起来「不像人写的」，需要在发布前定位问题
+    并改到真人文本的分布区间内。
+  tasks:
+    - "建立作者性账本，区分作者判断、亲历、删留决定、反例与禁编项"
+    - "按七个篇章维度审计整篇构思，并为每项发现提供原文证据"
+    - "度量一篇中文稿件的 30 项文本特征，定位到句"
+    - "按越界指标做定向改写（不做全文重写）"
+    - "用 --compare 验收改写是否真的生效、有没有推坏别的指标"
+    - "用 --calibrate 基于本人历史稿件生成个人基线"
+deployment:
+  geography: global
+  environments:
+    - "本地 Agent Skill（Claude Code / 兼容 Agent Skills 格式的宿主）"
+    - "命令行直接调用 scripts/measure.py"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "lov-branding-consistency"
+  runtime:
+    - "Python 3.8+（标准库，measure.py 与 profile_store.py 无第三方依赖）"
+    - "PyYAML —— 仅 scripts/validate_skill.py 质量门需要，不影响运行"
+risks:
+  - risk: >
+      把 fail 判定误解为「检测到 AI 生成」。本引擎只做分布定位，fail 的准确
+      含义是「越界密度超过 90% 的真人长文」。
+    mitigation: >
+      报告文本、SKILL.md 与 README 三处都显式声明不做身份判定；Step 6 明确
+      禁止向用户声称「已通过 AI 检测」。
+  - risk: >
+      判别力（对 AI 稿的召回率）尚无带标签语料验证，可能存在系统性漏判。
+    mitigation: >
+      局限完整记录在 references/benchmark.md 第 5 节；被问到准确率时按该节
+      回答，不得编造数字。已有一个实测点（case-01：真人中位压力分 4，AI 直出
+      稿 18），但单点不构成召回率。
+  - risk: >
+      默认区间来自特定语料（2020–2026 中文公众号博文与访谈整理），文风差异
+      大的用户（纯学术、纯技术文档、译稿）会被系统性误判。
+    mitigation: >
+      提供 --calibrate 生成个人基线，且基线自带压力标尺；SKILL.md Step 7 将
+      建基线列为强烈建议。四档 profile 覆盖常见文体差异。
+  - risk: >
+      为凑指标而写废话——例如把「补第一人称」做成硬塞「我觉得」。
+    mitigation: >
+      SKILL.md Step 4 明确三条禁令：不动事实、不动立场与术语、不为凑指标写
+      废话；Step 5 要求检查有无指标被反向推出界。
+  - risk: >
+      个人基线语料被 AI 生成物或口语转写污染，导致基线失效。
+    mitigation: >
+      calibrate 设 12 篇样本量下限并对低于 30 篇给出 note；benchmark.md
+      第 1 节记录了一次真实污染事故与三条清洗规则。
+  - risk: >
+      把虚构写作研究机械移植到中文非虚构，强行增加支线、模糊、时间跳跃或开放结尾。
+    mitigation: >
+      references/authorship-integrity.md 明确只审无依据的默认结构；所有结构修改必须
+      回指作者性账本或原文证据，材料简单时允许线性、明确和完整。
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "阈值与判定标尺的全部来源、复现方法、已知局限"
+    path: "references/benchmark.md"
+  - title: "作者性账本、七维篇章审计与非虚构边界"
+    path: "references/authorship-integrity.md"
+  - title: "与相邻 Skill 的分工、重叠决策与交接契约"
+    path: "references/skill-composition.md"
+  - title: "真实案例：AI 直出稿改写 + 351 篇误判审计"
+    path: "cases/cases.json"
+output:
+  types:
+    - "作者性账本"
+    - "带原文证据的篇章审计报告"
+    - "改写后的 Markdown 稿件"
+    - "指标度量报告（文本或 JSON）"
+    - "个人基线 JSON"
+  formats:
+    - "text（人读报告，含靶点句定位）"
+    - "json（schema: lov-human-writing/metrics/v1）"
+    - "json（schema: lov-human-writing/baseline/v1）"
+  parameters:
+    - "--profile: wechat | zhuque | neutral | thesis"
+    - "--baseline: 个人基线 JSON 路径（覆盖默认经验区间并自带压力标尺）"
+    - "--compare: 旧版本文件，输出逐项数值迁移与状态变化"
+    - "--calibrate / --out: 从语料目录生成个人基线"
+  validation:
+    - "篇章修改能回指作者性账本或原文证据"
+    - "没有制造经历、数字、错误、支线、矛盾或统一价值结尾"
+    - "改写后必须跑 --compare，压力分回落且无指标被反向推出界"
+    - "事实、立场、专业术语未被改动"
+    - "汇报中不把分布定位表述为 AI 身份判定"
+  description: >
+    主产物是改写稿，写入 ./output/ 并命名为「原文件名加 -human-v0.x.md 后缀」。附带的指标
+    对照是验收证据，说明哪些指标改善、哪些刻意保留及原因。
+ethical_considerations: >
+  本 Skill 的用途是提升中文写作质量与可读性，不是帮助伪造人类作者身份。它
+  不改变内容的事实性——Step 4 明确禁止新增日期、数字、人名与引语，缺细节
+  应向用户询问而非编造。工具本身不做「是否 AI 生成」的判定，因此也不适合
+  用于学术诚信或平台合规的举证。默认阈值由私人语料生成，仓库内仅保留聚合
+  统计量，不含语料原文，不泄露任何个人写作内容。
+dimensions:
+  - id: authorship-traceability
+    label: "作者选择可追溯"
+    description: "命题、第一人称、删留决定与未解决问题能够回指用户或输入材料。"
+    evidence: "references/authorship-integrity.md 定义八类账本字段；内部完整流程要求先建账本再审篇章。"
+    score: null
+    score_note: "新维度尚无独立盲评语料，不制造分数。"
+  - id: discourse-integrity
+    label: "篇章结构完整性"
+    description: "审计因果压缩、反例存活、收束压力、读者推理空间与结构非对称。"
+    evidence: "references/workflows/discourse-audit.md 要求每项发现包含原文证据、影响和最小编辑动作。"
+    score: null
+    score_note: "语义审计由模型执行，当前只验收证据链，不声称分类准确率。"
+  - id: false-positive-control
+    label: "真人稿件误判控制"
+    description: >
+      在真人中文长文上不产生大面积误判。这是去 AI 味工具的第一道门槛——
+      把真人写作特征当成 AI 特征来「修」，会主动破坏原本正常的稿子。
+    evidence: >
+      351 篇真人中文长文（约 169 万字，清洗规则见 benchmark.md 第 1 节）实测：
+      判 fail 比例 wechat 66%→9%、zhuque 76%→7%、neutral 63%→7%、
+      thesis 88%→7%。个人基线路径同类问题 57%→5%。
+    score: null
+    score_note: >
+      不给分：阈值与判定标尺均取自这批语料，同批回测得到约 10% 是定义使然，
+      属一致性检查而非独立验证。给分会制造假精度。
+  - id: rewrite-effectiveness
+    label: "定向改写的可验收性"
+    description: >
+      改写效果由数值迁移证明，而不是由执行改写的同一个模型自评。这是与
+      主观打分表方案的根本差异。
+    evidence: >
+      cases/cases.json case-01：AI 直出稿压力分 18（fail，越界 8 项）→
+      改写稿压力分 3（pass，越界 1 项）。--compare 输出 9 项状态迁移，
+      并如实记录 1 项反向副作用（neg_parallel_per_1k pass→warn）。
+    score: null
+    score_note: "单个案例，不足以支撑评分。"
+  - id: reproducibility
+    label: "阈值可复现与可重建"
+    description: >
+      每个阈值都能追溯到语料与分位数规则，任何人可用自己的语料复现同一流程，
+      而不是接受一组来源不明的手工数字。
+    evidence: >
+      references/benchmark.md 记录完整分位数表、双向定界规则、清洗规则与
+      复现命令；--calibrate 用同一套约定（target=p10/p90, warn=p05/p95）
+      重建基线，且基线自带压力标尺。
+    score: null
+    score_note: "属设计属性，非打分项。"
+  - id: detection-recall
+    label: "对 AI 稿的召回率"
+    description: "能否稳定识别出 AI 生成的中文散文。"
+    evidence: >
+      尚无带标签语料，无法给出。仅有一个实测点：真人压力分中位数 4，
+      case-01 的 AI 直出稿为 18。建 AI 正例集的尝试失败并已弃用（详见
+      benchmark.md 第 5 节：以 output/ 目录作启发式抓到的样本大量是人写的
+      发言稿与公关稿，且与真人集反向污染）。
+    score: null
+    score_note: "未验证维度，明确记为空缺而非留空不提。"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: >
+    核心价值在于那份公开的实测分布与校准方法论，它越被复现和质疑越可靠。
+    收费会阻碍这一点。实现是纯标准库的本地脚本，无 API 成本与运维成本。
+  boundary: >
+    含：30 项指标度量、四档 profile、靶点定位、--compare 复测、--calibrate
+    个人基线、完整基准文档。不含：判别力保证、平台合规举证、英文稿件支持、
+    代替用户提供真实细节（缺细节时会询问而不编造）。
+  review_trigger: >
+    补齐带标签 AI 语料并验证出可靠召回率后，重新评估是否作为付费能力发布。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - id: github
+      state: planned
+      note: "本地源已验证；远程仓库与发布交由 lov-skill-publisher。"
+    - id: lovstudio
+      state: planned
+      note: "待判别力验证补齐后再上架。"

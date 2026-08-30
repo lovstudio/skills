@@ -1,0 +1,4 @@
+interface:
+  display_name: "lov-writing-style"
+  short_description: "按经真实样本校准的个人文风写作、改写和诊断中文内容"
+  default_prompt: "Use $lov-writing-style to rewrite this draft in my verified writing style while preserving every fact."

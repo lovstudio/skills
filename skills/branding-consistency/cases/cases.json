@@ -1,0 +1,46 @@
+[
+  {
+    "type": "case",
+    "title": "公众号艺术首图不该解释自己的制作过程",
+    "description": "来自 2026-08-30《一种优雅的移动端表格排版解决方案》真实发布流程。原 Caption 把作品、官方 Logo、合成方式和组件名称混在一起，读起来像设计交付说明，而不是面向公众号读者的出版文案。",
+    "input": {
+      "items": [
+        "surface: 微信公众号文章",
+        "component: 正文开篇艺术首图 Caption",
+        "audience: 关注 AI 产品、工程与内容运营的读者",
+        "brand role: 手工川个人品牌，以克制、专业的出版者身份说话",
+        "original: Piet Mondrian《Composition (No. 1) Gray-Red》与手工川官方 Logo 构成的正文首图",
+        "article already contains a full 封面里的作品 section with attribution and rights status"
+      ]
+    },
+    "prompt": "使用 lov-branding-consistency 审校这条公众号首图 Caption。区分读者信息、作品归属、无障碍文本和内部制作说明；允许最终决定不显示 Caption。",
+    "output": {
+      "decision": "正文首图不显示可见 Caption；完整作品说明已经在后文承担背景与版权归属，继续显示只会重复并暴露制作过程。",
+      "accessibility_alt": "Piet Mondrian《Composition (No. 1) Gray-Red》，1935",
+      "optional_attribution": "Piet Mondrian，《Composition (No. 1) Gray-Red》，1935。",
+      "artwork_section_caption": "Piet Mondrian，《Composition (No. 1) Gray-Red》，1935，芝加哥艺术博物馆藏。"
+    },
+    "assertions": {
+      "must_remove_from_visible_caption": [
+        "正文首图",
+        "官方 Logo",
+        "构成的"
+      ],
+      "must_preserve_when_attribution_is_needed": [
+        "Piet Mondrian",
+        "Composition (No. 1) Gray-Red",
+        "1935"
+      ],
+      "must_not_claim": [
+        "new artwork facts not present in the source",
+        "a different museum or rights status",
+        "that the logo itself is part of Mondrian's original painting"
+      ]
+    },
+    "evidence": [
+      "scripts/copy_audit.py --self-test uses the original and corrected texts as bad/good fixtures.",
+      "references/scene-conventions.md states that opening art normally needs no visible Caption when attribution is already handled elsewhere.",
+      "references/quality-gate.md classifies component self-reference and production metadata as hard failures."
+    ]
+  }
+]

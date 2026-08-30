@@ -1,0 +1,67 @@
+schema: skill-manifest/v1
+id: lov-writing-style
+version: "2.3.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-writing-style
+    persist:
+      enabled: true
+      namespace: skills.lov-writing-style
+      records_path: skills.lov-writing-style.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次内容需要作者身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次内容需要品牌署名，请提供品牌名称。
+      - path: brand.tone
+        required: false
+        question: 如果已有品牌语气边界，请提供关键词。
+      - path: skills.lov-writing-style.records.default_style_profile
+        required: false
+        question: 默认使用哪个文风 Profile？
+      - path: skills.lov-writing-style.records.default_mode
+        required: false
+        question: 默认优先使用哪种题材模式？
+      - path: skills.lov-writing-style.records.audience
+        required: false
+        question: 默认面向哪类读者？
+  preferences:
+    namespace: lov_writing_style
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: skills.lov-writing-style.records.default_mode
+        required: false
+        question: 默认优先使用哪种题材模式？
+      - path: skills.lov-writing-style.records.audience
+        required: false
+        question: 默认面向哪类读者？
+  interaction:
+    ask_missing: true
+    max_questions: 1

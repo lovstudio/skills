@@ -1,0 +1,123 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.0"
+description: "从真实发布场景出发，把受众、品牌角色、组件惯例和信息可见性转成可直接使用的公众号、网站、App、策划案与海报文案，并识别应当删除的多余文字。"
+owner:
+  team: "LovStudio"
+  contact: "Local Skill source"
+license:
+  name: MIT
+  terms: "Skill 指令和本地脚本按 MIT 使用；输入、品牌资料与输出归用户所有。"
+  url: "LICENSE"
+use_case:
+  audience: "需要让公开内容、产品界面与商业文档稳定符合目标受众和品牌审美的创作者、产品经理、设计师、运营者与开发团队。"
+  scenario: "输入一句文案、完整草稿、界面选区或组件清单，结合目标场景、受众和品牌 Profile，输出可直接落位的版本、删除决策或聚焦审校。"
+  tasks:
+    - "建立 surface、component、audience、moment、job 与 brand role 的私有 context contract"
+    - "隔离读者文案、无障碍文本、归属信息与内部制作说明"
+    - "按公众号、网站、App、策划案、海报、社交媒体和邮件惯例生成或改写"
+    - "在真实邻接环境检查重复、抢层级、错误角色与错误字段"
+    - "以删除测试阻止为了交付文字而制造无信息 Caption 或说明"
+deployment:
+  geography: global
+  environments:
+    - "Any Agent Skills compatible runtime"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "A language model capable of audience and brand reasoning"
+    - "Python 3.8+ for optional audit and Profile storage"
+    - "PyYAML for full source validation"
+risks:
+  - risk: "只有泛化品牌形容词，没有真实品牌 Profile，导致所有品牌听起来一样。"
+    mitigation: "优先读取当前请求和 Profile；品牌通过事实选择、判断、节奏与克制体现，不靠自报高级或专业。"
+  - risk: "把内部制作说明、组件名、Logo 变体或 Agent 汇报写进读者文案。"
+    mitigation: "Visibility firewall 与 hard-failure gate 默认隔离 production metadata；copy_audit.py 提供可复测诊断。"
+  - risk: "为了简短而删除必要归属、风险、行动后果或无障碍信息。"
+    mitigation: "删除测试同时保护理解、行动与必要归属；Alt、Caption、正文和设计标注分别验收。"
+  - risk: "脱离真实界面审校，局部文案单看顺口，落位后重复或抢层级。"
+    mitigation: "Step 5 强制读取邻近标题、图片、控件、平台字段与移动端约束后再通过质量门。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Context contract"
+    path: "references/context-contract.md"
+  - title: "Scene conventions"
+    path: "references/scene-conventions.md"
+  - title: "Quality gate"
+    path: "references/quality-gate.md"
+  - title: "Skill composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "audience-aware final copy"
+    - "brand-aware rewrite"
+    - "in-place copy review"
+    - "delete or no-copy decision"
+    - "optional observable audit report"
+  formats:
+    - "UTF-8 plain text"
+    - "UTF-8 Markdown"
+    - "JSON audit report"
+  parameters:
+    - "surface, component, audience, moment, job, brand role, tone, constraints, visibility"
+  validation:
+    - "Visible copy speaks from the intended brand role to the intended audience"
+    - "Production metadata and Agent commentary do not leak into reader-facing copy"
+    - "Component length, syntax, hierarchy, attribution, and action consequences match the target surface"
+    - "Adjacent text and platform fields do not repeat the same information"
+    - "Facts, names, dates, versions, rights, quotes, and product promises remain supported"
+  description: "A directly usable text artifact or deletion decision that fits the target audience, brand role, surface, component, and information hierarchy."
+ethical_considerations: "Do not fabricate audience research, testimonials, product claims, rights, brand facts, urgency, legal assurances, or user consent. Keep private context and production metadata out of public copy unless disclosure is required."
+dimensions:
+  - id: context_fit
+    label: "语境适配"
+    description: "文案符合目标 surface、component、audience、moment 与唯一读者任务。"
+    evidence: "cases/cases.json 的公众号 Caption 案例将制作汇报改为无 Caption 决策和必要归属文本；references/scene-conventions.md 覆盖七类场景。"
+    score: null
+  - id: visibility_integrity
+    label: "可见性完整性"
+    description: "读者文案、Alt、归属与 production metadata 保持明确边界。"
+    evidence: "真实案例识别‘官方 Logo’‘正文首图’‘构成’泄漏；scripts/copy_audit.py self-test 可复测 bad/good 两端。"
+    score: null
+  - id: brand_alignment
+    label: "品牌一致性"
+    description: "品牌通过事实选择、叙述位置、节奏与克制体现，不靠无证据自我评价。"
+    evidence: "SKILL.md Step 1、Step 4 与 quality gate 的 Brand pass 共同定义品牌角色和表达门禁。"
+    score: null
+  - id: component_convention
+    label: "组件惯例"
+    description: "标题、Caption、按钮、错误、CTA、提案标题等遵守各自的信息职责与长度。"
+    evidence: "references/scene-conventions.md 与 quality-gate.md 分别定义媒介惯例和 Caption/delete test。"
+    score: null
+  - id: truth_and_restraint
+    label: "事实与克制"
+    description: "不虚构品牌、受众研究与承诺，且允许删除比改写更专业。"
+    evidence: "真实案例保留作者、作品和年代，删除制作过程；Output Contract 与 ethical considerations 禁止无证据扩写。"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "当前为 instruction-first 的本地基础能力，无云端推理、API 或运维成本；首个真实案例已经形成可复测的语境与可见性证据。"
+  boundary: "包含跨场景文案生成、改写、在位审校、删除决策、Profile 与本地辅助审计；不包含事实研究、用户调研、视觉设计、代码实现、A/B 测试或远程发布。"
+  review_trigger: "积累至少 20 个跨场景真实验收案例、增加云端品牌知识库或提供团队级自动审校服务时复评。"
+  confidence: case-backed
+distribution:
+  paid:
+    - channel: workbuddy
+      state: not_prepared
+      note: "未制作付费包，未上传，未审核，未上线。"
+    - channel: skillpay
+      state: not_prepared
+      note: "未创建商品，未上传，未审核，未上线。"
+  free:
+    - channel: local
+      state: installed_verified
+      note: "本地真源、共享安装入口、Profile、案例与辅助审计已验证。"
+    - channel: github
+      state: not_published
+      note: "本次未创建远程仓库或 Release。"
+    - channel: lovstudio
+      state: not_published
+      note: "本次未执行目录上架或公开页面回读。"

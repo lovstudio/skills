@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **90 skills** — 73 Free + 17 Paid.
+> **92 skills** — 75 Free + 17 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -98,13 +98,15 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`rich-export`](https://github.com/lovstudio/rich-export-skill) | Export one rich-media source into web, editable document, print, and archive formats. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`yoda-automation`](https://github.com/lovstudio/yoda-automation-skill) | Create reliable Yoda reminders and recurring follow-ups with verified schedules, run evidence, and a precise stop rule. |
 | **Content Creation** | | |
-| ![Free](https://img.shields.io/badge/Free-green) | [`anti-wechat-ai-check`](https://github.com/lovstudio/anti-wechat-ai-check-skill) | Detect AI fingerprints in an article and rewrite it to read like a human. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`branding-consistency`](https://github.com/lovstudio/branding-consistency-skill) | Keep visible copy aligned with its audience, brand role, component, and real publishing context. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`deep-research`](https://github.com/lovstudio/deep-research-skill) | Produce citation-tracked research reports with persistent evidence, claim verification, and shareable open-source solution catalogs. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`document-illustrator`](https://github.com/lovstudio/document-illustrator-skill) | Illustrate a long document in place — plan, generate, and insert images automatically. — requires: `image-creator` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`human-writing`](https://github.com/lovstudio/human-writing-skill) | Preserve the author's real judgments, repair discourse problems, then measure and retest surface patterns. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`style-clone`](https://github.com/lovstudio/style-clone-skill) | Extract a writing style profile from sample articles, then rewrite any content in that style. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wechat-article-branding`](https://github.com/lovstudio/wechat-article-branding-skill) | Turn a WeChat article into one coherent branded edition with an editorial art cover, centered publisher Logo, reusable prompt, and real-page acceptance. — related: `wechat-article-operator` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wechat-article-operator`](https://github.com/lovstudio/wechat-article-operator-skill) | Read and edit an existing WeChat article with persisted-state verification, from exact content changes to cover replacement. — related: `wechat-article-branding` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`write-professional-book`](https://github.com/lovstudio/write-professional-book-skill) | Write a full multi-chapter book — technical, tutorial, or monograph — from an outline. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`writing-style`](https://github.com/lovstudio/writing-style-skill) | Write from verified facts in a calibrated personal voice, then pass authorship, discourse, surface, audience, and brand gates. — requires: `branding-consistency`, `human-writing` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wxmp-cracker`](https://github.com/lovstudio/wxmp-cracker-skill) | Archive WeChat Official Account articles into clean, reusable text. |
 | **Dev Tools** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`app-generator`](https://github.com/lovstudio/app-generator-skill) | Generate Lovstudio-grade web, PWA, or Tauri apps with brand, UI, data, deploy/release, and developer tooling wired in. |

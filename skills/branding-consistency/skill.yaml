@@ -1,0 +1,64 @@
+schema: skill-manifest/v1
+id: lov-branding-consistency
+version: "0.2.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-branding-consistency
+    persist:
+      enabled: true
+      namespace: skills.lov-branding-consistency
+      records_path: skills.lov-branding-consistency.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要用户身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要品牌身份，请提供品牌名称。
+      - path: brand.site
+        required: false
+        question: 如果需要品牌官网，请提供地址。
+      - path: brand.tone
+        required: false
+        question: 如果已有品牌语气或审美关键词，请提供它们。
+      - path: brand.profile
+        required: false
+        question: 如果已有更完整的品牌表达规范，请提供其内容或位置。
+      - path: skills.lov-branding-consistency.profile.default_audience
+        required: false
+        question: 如果希望长期使用一个默认目标受众，请提供受众描述。
+      - path: skills.lov-branding-consistency.profile.default_surface
+        required: false
+        question: 如果希望长期使用一个默认发布场景，请提供场景名称。
+  preferences:
+    namespace: lov_branding_consistency
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

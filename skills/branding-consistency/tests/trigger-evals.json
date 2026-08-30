@@ -1,0 +1,26 @@
+{
+  "schema": "lovstudio/trigger-evals/v1",
+  "skill": "lov-branding-consistency",
+  "cases": [
+    {
+      "query": "这句 Caption 很像设计交付说明，请按公众号读者与品牌角度改好",
+      "expected": "activate",
+      "reason": "明确要求对公众号 Caption 做受众、品牌与组件语境审校。"
+    },
+    {
+      "query": "Review this UI copy against our brand voice and user context",
+      "expected": "activate",
+      "reason": "明确要求 UI 文案的品牌与用户语境验收。"
+    },
+    {
+      "query": "把这篇中文文章翻译成英文，保持原意",
+      "expected": "do_not_activate",
+      "reason": "纯翻译不要求受众、品牌或组件文案设计。"
+    },
+    {
+      "query": "发布这份已经定稿的 Markdown 到公众号草稿箱",
+      "expected": "do_not_activate",
+      "reason": "只要求渠道写入，不要求改变可见文案。"
+    }
+  ]
+}

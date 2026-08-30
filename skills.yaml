@@ -1038,20 +1038,18 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/find-logo.md
-- name: anti-wechat-ai-check
-  runtime_name: lov-anti-wechat-ai-check
-  updated_at: 2026-08-23T17:04:16Z
-  display_name: Humanizer
-  repo: lovstudio/anti-wechat-ai-check-skill
-  name_zh: 文章去 AI 味
+- name: branding-consistency
+  runtime_name: lov-branding-consistency
+  updated_at: 2026-08-30T10:02:57Z
+  display_name: Branding Consistency
+  repo: lovstudio/branding-consistency-skill
+  name_zh: 品牌语境门禁
   paid: false
   category: Content Creation
-  description: 检测文章 AI 痕迹 + 人性化润色，通过微信 3.27 条款检测。
-  tagline_en: Detect AI fingerprints in an article and rewrite it to read like a human.
-  tagline_zh: 检测文章的 AI 味并做人性化润色，帮助稳过微信 3.27 条款的机器判定。
-  skillpay_product_id: P0806000200847215
-  skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQW
-  version: "1.1.0"
+  version: "0.2.0"
+  description: Build audience, brand-role, component-convention, and information-visibility gates for user-facing copy across publishing and product surfaces.
+  tagline_en: Keep visible copy aligned with its audience, brand role, component, and real publishing context.
+  tagline_zh: 从受众、品牌角色、组件惯例和真实发布语境审校可见文案，并允许删除多余文字。
   pricing:
     model: free_entry
     visibility: public
@@ -1062,22 +1060,94 @@ skills:
     - 0
     delivery_unit_zh: 公开 Skill 源码与当前版本说明
     delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 检测文章的 AI 味并做人性化润色，帮助稳过微信 3.27 条款的机器判定。
-    value_en: Detect AI fingerprints in an article and rewrite it to read like a human.
-    anchor_zh: 一次交付通常可省下 1 小时至一天的研究、编排、配图或发布准备。
-    anchor_en: A run typically saves one hour to a day of research, editing, illustration, or publishing preparation.
-    basis_zh: 按能继续编辑、发布或复用的内容成品定价，重点是流程完整和证据可追溯。
-    basis_en: Priced around content that can be edited, published, or reused, with emphasis on a complete workflow and traceable
-      evidence.
-    boundary_zh: 结果质量取决于素材、事实和品牌约束；平台账号、第三方模型和发布操作按实际条件处理。
-    boundary_en: Quality depends on source material, facts, and brand constraints; platform accounts, third-party models,
-      and publishing operations follow actual conditions.
-    maintenance_zh: 随平台规则、内容格式、模型和素材库变化复评。
-    maintenance_en: Review when platform rules, content formats, models, or asset libraries change.
-    confidence: entry
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
-    card_path: pricing-cards/anti-wechat-ai-check.md
+    value_zh: 把公众号、网站、App、策划案与海报里的文案判断统一为受众、品牌角色、组件惯例、可见性防火墙和删除测试。
+    value_en: Unify copy decisions across publishing and product surfaces with audience, brand-role, component, visibility, and deletion gates.
+    anchor_zh: 一次验收可替代分散的语气检查、组件复核和制作信息清理，减少文案落位后的重复返工。
+    anchor_en: One gate replaces scattered tone, component, and production-metadata checks, reducing copy rework after placement.
+    basis_zh: 当前是 instruction-first 的本地基础能力，无云端推理、API 或运维成本；已有一个真实 Caption 案例和可复测辅助审计，因此官网保持免费入口。
+    basis_en: This is an instruction-first local capability with no hosted inference or operations cost; one real Caption case and a reproducible audit support a free website entry.
+    boundary_zh: 包含跨场景生成、改写、在位审校、删除决策、Profile 与本地辅助审计；不含事实研究、用户调研、视觉设计、代码实现、A/B 测试或远程发布。
+    boundary_en: Includes cross-surface drafting, rewriting, in-place review, deletion decisions, Profile use, and local audits; excludes research, visual design, implementation, A/B testing, and managed publication.
+    maintenance_zh: 随真实场景、组件惯例、品牌 Profile 和辅助审计规则变化复评。
+    maintenance_en: Review against real use cases, component conventions, brand Profiles, and audit-rule changes.
+    confidence: case-backed
+    review_trigger_zh: 累积至少 20 个跨场景真实验收案例，或增加云端品牌知识库、团队协作和批量审校后复评。
+    review_trigger_en: Review after 20 cross-surface cases or the addition of hosted brand knowledge, team workflows, or batch review.
+- name: human-writing
+  runtime_name: lov-human-writing
+  updated_at: 2026-08-30T10:03:12Z
+  display_name: Human Writing
+  repo: lovstudio/human-writing-skill
+  name_zh: 中文作者性与反 AI 编辑
+  paid: false
+  category: Content Creation
+  version: "0.3.0"
+  description: Improve Chinese drafts with an authorship ledger, discourse audit, evidence-constrained rewriting, and 30 deterministic surface metrics without claiming AI detection.
+  tagline_en: Preserve the author's real judgments, repair discourse problems, then measure and retest surface patterns.
+  tagline_zh: 先保住作者真实判断，再修篇章结构，最后用 30 项中文指标定位并复测表层问题。
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、作者性与篇章工作流、30 项指标脚本及当前版本说明
+    delivery_unit_en: Public source, authorship and discourse workflows, a 30-metric script, and current-version notes
+    value_zh: 用作者性账本、七维篇章审计、证据约束改写和确定性复测形成完整中文编辑闭环。
+    value_en: Combine an authorship ledger, seven-part discourse audit, evidence-constrained rewrite, and deterministic retest into one Chinese editing loop.
+    anchor_zh: 一次完整任务可替代作者性整理、篇章审校、局部改写和 30 项手工复核，并显示改写副作用。
+    anchor_en: One run replaces separate authorship, discourse, rewrite, and 30-metric checks while exposing rewrite side effects.
+    basis_zh: 核心资产是可复现的 351 篇真人中文长文分布与公开校准方法；本地脚本无 API 和运维成本，免费更有利于复现与质疑。
+    basis_en: The core asset is a reproducible distribution from 351 human-written Chinese articles and an open calibration method; local execution has no API or hosted-operations cost.
+    boundary_zh: 不判断作者身份，不输出 AI 概率，不承诺通过平台检测；不用于学术诚信举证，也不替用户虚构经历、数字和因果。
+    boundary_en: Does not identify authorship, output AI probabilities, promise detector bypass, support academic-integrity claims, or fabricate experiences, numbers, or causality.
+    maintenance_zh: 随带标签判别语料、真人基准、指标定义和真实改写案例变化复评。
+    maintenance_en: Review when labeled evaluation data, human baselines, metric definitions, or real rewrite cases change.
+    confidence: case-backed
+    review_trigger_zh: 获得可靠的带标签判别语料与召回率证据，或交付边界增加托管能力后复评。
+    review_trigger_en: Review after reliable labeled detection evidence and recall measurements, or when hosted capabilities expand the delivery boundary.
+- name: writing-style
+  runtime_name: lov-writing-style
+  updated_at: 2026-08-30T10:03:25Z
+  display_name: Personal Writing Style
+  repo: lovstudio/writing-style-skill
+  name_zh: 个人中文文风
+  paid: false
+  category: Content Creation
+  version: "2.3.0"
+  description: Turn verified facts, notes, and drafts into first-person Chinese content using a personal voice calibrated from 19 real samples, with fact-preserving rewrite and diagnosis.
+  tagline_en: Write from verified facts in a calibrated personal voice, then pass authorship, discourse, surface, audience, and brand gates.
+  tagline_zh: 用 19 篇真实样本校准的个人声音完成新写、保真改写与诊断，并经过作者性、篇章、表层和品牌语境门禁。
+  depends_on:
+  - branding-consistency
+  - human-writing
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、个人文风画像、五种题材模式、本地审计与当前版本说明
+    delivery_unit_en: Public source, personal style profile, five writing modes, local audit, and current-version notes
+    value_zh: 把经 19 篇真实样本校准的个人文风，落成事实账本、五种题材模式、论证结构、防戏仿校验和可复测审计。
+    value_en: Turn a personal voice calibrated from 19 real samples into fact ledgers, five modes, argument structures, anti-parody rules, and a reproducible audit.
+    anchor_zh: 一次任务把事实保真、题材选择、文风成稿、反 AI 编辑和品牌语境验收串成可直接交付的写作链路。
+    anchor_en: One workflow connects fact preservation, mode choice, personal-voice drafting, human-writing review, and brand-context acceptance.
+    basis_zh: 当前为用户自有语料衍生的本地写作基础设施，无云端和运维成本；已有 19 篇画像与真实案例，但尚无公开付费转化和支持成本证据。
+    basis_en: This is local writing infrastructure derived from user-owned samples with no hosted cost; it has a 19-sample profile and real case evidence but no public paid-conversion or support-cost evidence.
+    boundary_zh: 包含基于已知事实的新写、改写、诊断、局部适配、五种题材模式和本地审计；不含事实研究、虚构经历、陌生作者画像、视觉包装或远程发布。
+    boundary_en: Includes fact-grounded drafting, rewriting, diagnosis, local adaptation, five modes, and local audits; excludes research, fabricated experiences, unknown-author profiling, visual packaging, and managed publication.
+    maintenance_zh: 随文风画像主版本、跨题材案例、依赖门禁和真实使用反馈变化复评。
+    maintenance_en: Review with major style-profile changes, cross-mode cases, dependency-gate changes, and real usage feedback.
+    confidence: case-backed
+    review_trigger_zh: 画像主版本更新、积累至少 20 个跨题材验收案例、增加云端服务或明确支持成本后复评。
+    review_trigger_en: Review after a major profile update, 20 cross-mode cases, hosted service, or material support-cost evidence.
 - name: document-illustrator
   runtime_name: lov-document-illustrator
   updated_at: 2026-08-23T17:04:16Z

@@ -1,0 +1,115 @@
+[
+  {
+    "type": "case",
+    "id": "case-01-ai-draft-to-human",
+    "title": "把一篇 AI 直出的中文长文改到真人指标区间内",
+    "description": "用本 Skill 的完整流程（度量 → 定向改写 → --compare 复测）处理一篇典型 AI 直出稿。价值在于验收有据：压力分从 18 降到 3，越界项从 8 降到 1，每一项改善都有 --compare 的数值迁移支撑，而不是一句『读起来更自然了』。",
+    "input": {
+      "items": [
+        "cases/case-01-input-ai-draft.md — AI 直出风格的中文长文，864 字，主题为『人工智能时代下的个人成长路径探索』。含典型特征：三段式小标题、内联粗体列表、『随着人工智能技术的不断发展』『综上所述』『值得注意的是』等套话、零具体数字。"
+      ]
+    },
+    "prompt": "这篇稿子 AI 味太重，帮我改一下（profile=wechat）",
+    "steps": [
+      "python3 scripts/measure.py -i cases/case-01-input-ai-draft.md -p wechat",
+      "按 SKILL.md Step 4 的指标→改法映射做定向改写，只改越界项指向的位置",
+      "python3 scripts/measure.py -i cases/case-01-output-humanized.md -p wechat --compare cases/case-01-input-ai-draft.md"
+    ],
+    "output": {
+      "items": [
+        "cases/case-01-output-humanized.md — 改写稿，总判定 PASS，压力分 3（真人基准 p75=7 / p90=9）"
+      ],
+      "measured": {
+        "before": {
+          "overall": "fail",
+          "pressure": 18,
+          "failing_count": 8,
+          "warning_count": 2
+        },
+        "after": {
+          "overall": "pass",
+          "pressure": 3,
+          "failing_count": 1,
+          "warning_count": 1
+        },
+        "key_transitions": [
+          "sent_len_cv 0.452 → 0.657 (fail → pass)",
+          "para_len_cv 0.22 → 0.818 (fail → pass)",
+          "solo_para_ratio 0.0 → 0.417 (fail → pass)",
+          "hard_phrase_per_1k 4.63 → 0.78",
+          "tail_nominal_per_1k 1.16 → 0.0 (fail → pass)",
+          "list_item_len_cv 0.058 → 1.0 (fail → pass)",
+          "digit_per_1k 0.0 → 28.95 (fail → pass)",
+          "de_ratio 0.044 → 0.0274 (fail → pass)",
+          "concrete_anchor_count 0 → 11 (warn → pass)"
+        ]
+      }
+    },
+    "caveats": [
+      "neg_parallel_per_1k 由 1.16 升到 1.56（pass → warn）：改写时为增强语气引入了新的否定式对照。这正是 SKILL.md Step 5 要求检查的副作用——修一项推坏另一项，必须照实记录而非隐去。",
+      "hard_phrase_per_1k 仍有 0.78 未清零，剩余命中为改写稿中刻意保留的一处过渡。",
+      "本 case 说明的是改写流程有效，不构成『能识别 AI 生成文本』的证据。判别力（对 AI 稿的召回率）尚无带标签语料验证，见 references/benchmark.md 第 5 节。"
+    ]
+  },
+  {
+    "type": "case",
+    "id": "case-02-false-positive-audit",
+    "title": "在 351 篇真人长文上校准阈值与判定逻辑，把误判率从 66% 压到 9%",
+    "description": "这是本 Skill 得以成立的前置工作，也是与手工阈值方案的核心差异所在。初版阈值凭经验设定，在真人语料上误判 66%；实测分布暴露了阈值和聚合逻辑两层问题。",
+    "input": {
+      "items": [
+        "本机 Obsidian vault 的中文长文，CJK ≥ 800 字，初筛 669 篇",
+        "清洗后保留 351 篇 / 约 169 万字（剔除 315 篇：生成物与外部引用 163、英文占比过高的技术文档搬运 146、转写与翻译 6）"
+      ]
+    },
+    "prompt": "用真实中文语料跑出各指标分布，据此校准阈值",
+    "output": {
+      "items": [
+        "references/benchmark.md — 完整分位数表、定界规则、复现方法与已知局限",
+        "scripts/measure.py 的 BASE_BANDS / PROFILES / PROFILE_PRESSURE"
+      ],
+      "measured": {
+        "false_positive_rate": {
+          "wechat": "66% → 9%",
+          "zhuque": "76% → 7%",
+          "neutral": "63% → 7%",
+          "thesis": "88% → 7%"
+        },
+        "bugs_found": [
+          "阈值方向性错误：7 项过严（opener_repeat_ratio 上限设 0.10，真人中位数 0.29 / p90 0.49）、4 项过松（idiom4_per_1k 真人 p90 为 0，却给了 0.5 余量）",
+          "指标定义错误：em_dash_count / curly_quote_count 按出现总数计数，而中文正规写法本就用「——」和成对引号，从定义上注定误判。改为孤立单破折号与引号体系混用数",
+          "聚合逻辑错误（真正的根因）：overall() 用 any-fail，29 项设区间的指标按 p10/p90 定界各带约 10% 设计内尾部概率，取并集即 1 - 0.9^29 ≈ 95%。改为累计压力分，与同 profile 真人分布比较",
+          "自校准路径重犯同一错误：calibrate() 用 p25/p75 做 target 而主逻辑用 p10/p90，导致用户拿自己 40 篇稿件校准后回测同一批，57% 被判 fail。改为同一约定并让基线自带压力标尺，降至 5%"
+        ]
+      }
+    },
+    "caveats": [
+      "校准后的 7–9% 不是独立验证结果：阈值与判定标尺均取自这批语料，同批回测得到约 10% 的 fail 率是定义使然，它证明实现与设计意图一致，不证明误判率低。",
+      "建 AI 正例集的尝试失败并已弃用：以 output/ 目录作启发式抓到的 49 篇里大量是人写的发言稿、公关稿、提词版及大纲表格，且与真人集反向污染，基于它的分离度数字不成立。"
+    ]
+  },
+  {
+    "type": "case",
+    "id": "case-03-surface-blind-spot",
+    "title": "一篇讨论篇章级 AI 特征的文章通过了两个表层审计器",
+    "description": "用 APPSO《AI 味不是在一句话里，而是渗透了所有的文字》回测旧扫描器和本 Skill 0.1 的 30 项指标，验证表层工具看不到命题来源、因果压缩、收束压力与读者推理空间。",
+    "input": {
+      "items": [
+        "https://mp.weixin.qq.com/s/BGTg5vsyFPQHOg5iD_8cHA — 26 个正文块；文章讨论 StoryScope 的篇章级研究，并明确提醒研究不能直接外推到中文公众号。"
+      ]
+    },
+    "prompt": "把同一篇文章分别交给旧 anti-wechat 扫描器与 lov-human-writing 0.1 表层度量，检查它们实际能看到什么。",
+    "output": {
+      "items": [
+        "旧扫描器：LOW，3/100，仅命中 1 个模板模式",
+        "lov-human-writing 0.1：整体 pass，压力分 7；fail 为 para_len_cv 与 hedge_per_1k，warn 为三项句长指标",
+        "结论：两个结果都不能回答文章的命题来源、因果结构、反例作用或结尾收束，因此 0.2.0 增加作者性账本与七维篇章审计"
+      ]
+    },
+    "caveats": [
+      "这不是对文章作者身份的判断，也不证明表层指标无价值；它只证明表层通过不能替代篇章审计。",
+      "正文通过 HTML 块级元素还原为 26 个段落后度量，避免把网页 HTML 或单段抽取错误计入结果。",
+      "StoryScope 的研究对象是英文虚构故事，0.2.0 只借用观察维度，不把支线、时间跳跃或开放结尾当作中文非虚构 KPI。"
+    ]
+  }
+]
