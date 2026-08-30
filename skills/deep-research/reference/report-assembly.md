@@ -46,6 +46,7 @@ Each Write/Edit call contains ONE section (<=2,000 words per call)
 # Create run manifest and artifact files using citation_manager CLI
 python scripts/citation_manager.py init-run --out-dir [folder] --query "[question]" --mode [mode]
 # Creates: run_manifest.json, sources.jsonl, evidence.jsonl, claims.jsonl
+# For applicable software/tooling research, also create open_source_solutions.jsonl
 ```
 
 **Register each source as you encounter it:**
@@ -81,24 +82,30 @@ Source identity is stable across edits and continuation. Display numbers are der
    - Track citations
    - Progress: "Finding N complete"
 
-4. **Synthesis & Insights**
+4. **Open-Source Solutions Landscape** (conditional, mandatory for software/tooling/automation/implementation topics)
+   - Use the verified `open_source_solutions.jsonl` registry
+   - Provide direct canonical repository links and a compact comparison table
+   - Compare mechanism, activity, license, maturity, evidence inspected, fit, and risks
+   - Separate repository facts from adoption recommendations
+
+5. **Synthesis & Insights**
    - Novel insights beyond source statements
    - Tool: Edit(append)
 
-5. **Limitations & Caveats**
+6. **Limitations & Caveats**
    - Counterevidence, gaps, uncertainties
    - Tool: Edit(append)
 
-6. **Recommendations**
+7. **Recommendations**
    - Immediate actions, next steps, research needs
    - Tool: Edit(append)
 
-7. **Bibliography** (CRITICAL)
+8. **Bibliography** (CRITICAL)
    - EVERY citation from citations_used list
    - NO ranges, NO placeholders, NO truncation
    - Tool: Edit(append)
 
-8. **Methodology Appendix**
+9. **Methodology Appendix**
    - Research process, verification approach
    - Tool: Edit(append)
 

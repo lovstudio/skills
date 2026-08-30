@@ -4,6 +4,7 @@ Markdown to HTML converter for research reports
 Properly converts markdown sections to HTML while preserving structure and formatting
 """
 
+import argparse
 import re
 from typing import Tuple
 from pathlib import Path
@@ -20,7 +21,8 @@ def convert_markdown_to_html(markdown_text: str) -> Tuple[str, str]:
         Tuple of (content_html, bibliography_html)
     """
     # Split content and bibliography
-    parts = markdown_text.split('## Bibliography')
+    # Accept English or Chinese bibliography headings.
+    parts = re.split(r'##\s*(?:Bibliography|References|参考文献)[^\n]*\n', markdown_text, maxsplit=1)
     content_md = parts[0]
     bibliography_md = parts[1] if len(parts) > 1 else ""
 
@@ -305,17 +307,14 @@ def _close_sections(html: str) -> str:
 
 
 def main():
-    """Test the converter with a sample markdown file"""
-    import sys
+    """Convert a report and print the content and bibliography fragments."""
+    parser = argparse.ArgumentParser(description="Convert a research Markdown report to HTML fragments")
+    parser.add_argument("markdown_file", type=Path, help="Path to the Markdown report")
+    args = parser.parse_args()
 
-    if len(sys.argv) < 2:
-        print("Usage: python md_to_html.py <markdown_file>")
-        sys.exit(1)
-
-    md_file = Path(sys.argv[1])
+    md_file = args.markdown_file
     if not md_file.exists():
-        print(f"Error: File {md_file} not found")
-        sys.exit(1)
+        parser.error(f"file not found: {md_file}")
 
     markdown_text = md_file.read_text()
     content_html, bib_html = convert_markdown_to_html(markdown_text)

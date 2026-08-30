@@ -1122,18 +1122,17 @@ skills:
     card_path: pricing-cards/document-illustrator.md
 - name: deep-research
   runtime_name: deep-research
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-08-30T00:00:00.000Z
   display_name: Deep Research
   repo: lovstudio/deep-research-skill
   name_zh: 深度研究
   paid: false
   category: Content Creation
-  version: "2.4.0"
-  description: Use when the user needs multi-source research with citation tracking, evidence persistence, and structured
-    report generation.
-  tagline_en: Produce citation-tracked research reports with persistent evidence, claim verification, and Markdown/HTML/PDF
-    packaging.
-  tagline_zh: 生成带引用追踪、证据留存和主张校验的深度研究报告，并输出 Markdown/HTML/PDF。
+  version: "2.5.0"
+  description: Use when the user needs multi-source research with citation tracking, evidence persistence, structured
+    reports, or verified open-source solution landscapes across GitHub and other relevant forges.
+  tagline_en: Produce citation-tracked research reports with persistent evidence, claim verification, and shareable open-source solution catalogs.
+  tagline_zh: 生成带引用、证据和主张校验的深度研究报告，并收集分享 GitHub 等平台的已核验开源方案。
   skillpay_product_id: P0806000200846057
   distribution:
     skillpay: rejected

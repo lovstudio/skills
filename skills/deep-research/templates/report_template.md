@@ -177,6 +177,20 @@ CITATION TRACKING (CRITICAL):
 
 ---
 
+## Open-Source Solutions Landscape
+
+<!-- CONDITIONAL BUT MANDATORY for software/tooling/automation/implementation topics -->
+<!-- Populate from open_source_solutions.jsonl; use canonical upstream links -->
+<!-- Inspect implementation evidence beyond README claims -->
+
+| Project | Forge | Mechanism | Activity | License | Evidence inspected | Fit | Risks |
+|---|---|---|---|---|---|---|---|
+| [Repository name](https://canonical-repository-url) | GitHub/GitLab/Gitee/etc. | [How it works] | [Last push/release] | [SPDX or unknown] | [File/commit/release link] | [Best use] | [Maintenance/security/compliance limits] |
+
+[Explain which projects are genuinely reusable, which are only references, how mirrors/forks were deduplicated, and what was not found on the attempted forges. Keep repository facts separate from recommendations.]
+
+---
+
 ## Synthesis & Insights
 
 <!-- This section should be 500-1000 words -->

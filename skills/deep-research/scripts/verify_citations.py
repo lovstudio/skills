@@ -61,7 +61,8 @@ class CitationVerifier:
 
     def extract_bibliography(self) -> List[Dict]:
         """Extract bibliography entries from report"""
-        pattern = r'## Bibliography(.*?)(?=##|\Z)'
+        # Accept English or Chinese bibliography headings.
+        pattern = r'##\s*(?:Bibliography|References|参考文献)[^\n]*\n(.*?)(?=\n##\s|\Z)'
         match = re.search(pattern, self.content, re.DOTALL | re.IGNORECASE)
 
         if not match:

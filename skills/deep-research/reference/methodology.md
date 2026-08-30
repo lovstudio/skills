@@ -60,6 +60,12 @@ Before launching searches, decompose the research question into 5-10 independent
 7. **Industry analysis** - Commercial applications, market trends
 8. **Critical analysis/limitations** - Known problems, failure modes, edge cases
 
+### Open-Source Solutions Gate
+
+When the research question concerns software, automation, tooling, implementation, deployment, integrations, or a request for solutions, the repository landscape is a mandatory retrieval branch before Phase 4. Follow [open-source-solutions.md](./open-source-solutions.md). Search GitHub and at least two other relevant forges or code indexes when available, deduplicate mirrors to their upstream repository, inspect implementation files rather than relying on README claims alone, and persist the verified records to `open_source_solutions.jsonl`.
+
+The final report must include a shareable, directly linked comparison table. If no repository qualifies, preserve the attempted platforms and queries in a single `no_qualifying_repositories` record and state that limitation in the report; silence is not a passing result.
+
 ### Parallel Execution Protocol
 
 **Step 0: Get the current date**

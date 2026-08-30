@@ -1,15 +1,15 @@
 # lov-deep-research
 
-![Version](https://img.shields.io/badge/version-2.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-2.5.0-CC785C)
 
 Enterprise-grade research engine for Claude Code. Produces citation-backed reports with source credibility scoring, multi-provider search, and automated validation.
 
-Part of [skills](https://example.com/skills/skills) — by [example.com](https://example.com)
+Part of [LovStudio Skills](https://lovstudio.ai/skills) — by [LovStudio](https://lovstudio.ai)
 
 ## Installation
 
 ```bash
-npx skills add deep-research -g -y
+npx skills add lov-deep-research -g -y
 ```
 
 No additional dependencies required for basic usage.
@@ -53,11 +53,13 @@ Key features:
 - **Critique loop-back**: Phase 6 can return to Phase 3 with delta-queries if critical gaps found
 - **Multi-persona red teaming**: Skeptical Practitioner, Adversarial Reviewer, Implementation Engineer (Deep/UltraDeep)
 - **Disk-persisted citations**: `sources.json` survives context compaction and continuation agents
+- **Open-source solution landscape**: implementation research searches GitHub and other relevant forges, inspects code-level evidence, and publishes a reusable linked repository catalog
 
 ## Output
 
 Reports saved to `~/Documents/[Topic]_Research_[Date]/`:
 - Markdown (primary source of truth)
+- `open_source_solutions.jsonl` for applicable software/tooling research
 - HTML (McKinsey-style, auto-opened in browser)
 - PDF (professional print via WeasyPrint)
 
@@ -69,6 +71,7 @@ Reports >18K words auto-continue via recursive agent spawning with context prese
 - Executive summary 200-400 words
 - Findings 600-2,000 words each, prose-first (>=80%)
 - Full bibliography with URLs, no placeholders
+- GitHub plus other relevant forge coverage and a shareable repository comparison for implementation/tooling topics
 - Automated validation: `validate_report.py` (9 checks) + `verify_citations.py` (DOI/URL/hallucination detection)
 - Validation loop: validate &rarr; fix &rarr; retry (max 3 cycles)
 
@@ -89,6 +92,7 @@ deep-research/
 │   ├── methodology.md                # 8-phase pipeline details
 │   ├── report-assembly.md            # Progressive generation strategy
 │   ├── quality-gates.md              # Validation standards
+│   ├── open-source-solutions.md       # Forge discovery and shareable repository landscape
 │   ├── html-generation.md            # McKinsey HTML conversion
 │   ├── continuation.md               # Auto-continuation protocol
 │   └── weasyprint_guidelines.md      # PDF generation
@@ -100,6 +104,7 @@ deep-research/
 │   ├── verify_citations.py           # DOI/URL/hallucination checker
 │   ├── source_evaluator.py           # Source credibility scoring
 │   ├── citation_manager.py           # Citation tracking
+│   ├── validate_open_source_solutions.py # Open-source artifact and report-link gate
 │   ├── md_to_html.py                 # Markdown to HTML converter
 │   ├── verify_html.py                # HTML verification
 │   └── research_engine.py            # Core orchestration engine
@@ -111,6 +116,8 @@ deep-research/
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.5.0 | 2026-08-30 | Verified open-source forge discovery, code-level evidence, shareable repository registry, and multilingual validation parity |
+| 2.4.0 | 2026-08-24 | Shared feedback-classification and approval-invalidation gate |
 | 2.3.1 | 2026-03-19 | Template/validator harmonization, structured evidence, critique loop-back, multi-persona red teaming |
 | 2.3 | 2026-03-19 | Contract harmonization, search-cli integration, dynamic year detection, disk-persisted citations, validation loops |
 | 2.2 | 2025-11-05 | Auto-continuation system for unlimited length |

@@ -1,8 +1,12 @@
 ---
 name: deep-research
-description: Use when the user needs multi-source research with citation tracking, evidence persistence, and structured report generation. Triggers on "deep research", "comprehensive analysis", "research report", "compare X vs Y", "analyze trends", or "state of the art". Not for simple lookups, debugging, or questions answerable with 1-2 searches.
+description: Use when the user needs multi-source research with citation tracking, evidence persistence, structured report generation, or an implementation landscape that includes GitHub and other open-source forges. Triggers on "deep research", "comprehensive analysis", "research report", "compare X vs Y", "analyze trends", "state of the art", "open-source solutions", or "开源方案". Not for simple lookups, debugging, or questions answerable with 1-2 searches.
+license: MIT
+compatibility: Requires Python 3.8+ for bundled scripts. search-cli and forge APIs are optional; use available web search and public repository metadata as fallbacks. The public name remains deep-research for compatibility with existing installations and dependency IDs.
 metadata:
-  version: "2.4.0"
+  author: lovstudio
+  version: "2.5.0"
+  tags: deep-research citations evidence open-source github gitlab gitee reports
   dependencies:
     - lov-dev-blog
 ---
@@ -68,7 +72,8 @@ Mode Selection
 2. **Phase 8 (Report):** Load [report-assembly.md](./reference/report-assembly.md) for progressive generation
 3. **HTML/PDF output:** Load [html-generation.md](./reference/html-generation.md)
 4. **Quality checks:** Load [quality-gates.md](./reference/quality-gates.md)
-5. **Long reports (>18K words):** Load [continuation.md](./reference/continuation.md)
+5. **Implementation/tooling research:** Load [open-source-solutions.md](./reference/open-source-solutions.md)
+6. **Long reports (>18K words):** Load [continuation.md](./reference/continuation.md)
 
 **Templates:**
 - Report structure: [report_template.md](./templates/report_template.md)
@@ -78,6 +83,7 @@ Mode Selection
 - `python scripts/validate_report.py --report [path]`
 - `python scripts/verify_citations.py --report [path]`
 - `python scripts/md_to_html.py [markdown_path]`
+- `python scripts/validate_open_source_solutions.py --artifact [open_source_solutions.jsonl] --report [report.md] --strict`
 
 **Post-report publishing (Skill Publisher):**
 - This is a mandatory completion gate, not an optional follow-up. Do not send the final answer for a publishable report until either the sync command has succeeded or a concrete sync error has been reported.
@@ -95,7 +101,7 @@ Mode Selection
   - Re-syncing an existing report also promotes it into the index unless explicitly hidden.
   - Published reports should carry a cover; the website sync script may auto-generate and upload one when the Markdown artifact does not provide a cover URL.
 - Tell the user the final public URL in the form:
-  `https://example.com/blog/[slug]`
+  `https://lovstudio.ai/blog/[slug]`
 - In the final answer, include a one-line publishing status: `Published to Skill Publisher: yes/no`, plus the public URL when yes.
 - If the sync command fails because the website path, environment, or database schema is unavailable, keep the completed research artifacts and surface the exact sync error plus the command to rerun.
 
@@ -107,6 +113,7 @@ Mode Selection
 - Executive Summary (200-400 words)
 - Introduction (scope, methodology, assumptions)
 - Main Analysis (4-8 findings, 600-2,000 words each, cited)
+- Open-Source Solutions Landscape (required when the topic concerns software, tooling, automation, implementation, or deployable solutions)
 - Synthesis & Insights (patterns, implications)
 - Limitations & Caveats
 - Recommendations
@@ -119,6 +126,7 @@ Mode Selection
 - `evidence.jsonl` — append-only evidence store with quotes and locators
 - `claims.jsonl` — atomic claim ledger with support status
 - `run_manifest.json` — query, mode, assumptions, provider config
+- `open_source_solutions.jsonl` — canonical repository registry for applicable implementation/tooling research; one verified repository per line
 - HTML (McKinsey style, auto-opened)
 - PDF (professional print, auto-opened)
 
@@ -126,6 +134,7 @@ Mode Selection
 - 10+ sources, 3+ per major claim (cluster-independent, not just count)
 - All factual claims cited immediately [N] with evidence backing in `evidence.jsonl`
 - Claim-support verification mandatory: no unsupported factual claims pass delivery
+- Applicable implementation/tooling reports must search GitHub plus other relevant forges, inspect repository evidence beyond README claims, publish a linked comparison table, and persist `open_source_solutions.jsonl`; an explicit no-results record is required when no repository qualifies
 - No placeholders, no fabricated citations
 - Prose-first (>=80%), bullets sparingly
 

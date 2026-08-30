@@ -14,6 +14,36 @@ from typing import List, Tuple, Dict
 class ReportValidator:
     """Validates research report quality"""
 
+    # Section heading aliases. Reports may be written in English or Chinese;
+    # both must satisfy the same structural contract.
+    SECTION_ALIASES = {
+        "Executive Summary": ["Executive Summary", "摘要", "执行摘要", "概要"],
+        "Introduction": ["Introduction", "引言", "导言", "简介"],
+        "Main Analysis": ["Main Analysis", "Finding", "发现", "分析"],
+        "Synthesis": ["Synthesis", "综合", "洞察"],
+        "Limitations": ["Limitations", "局限", "警示"],
+        "Recommendations": ["Recommendations", "建议"],
+        "Bibliography": ["Bibliography", "References", "参考文献"],
+        "Methodology": ["Methodology", "方法论"],
+    }
+
+    @classmethod
+    def _alias_group(cls, section: str) -> str:
+        """Regex alternation matching any accepted spelling of a section name."""
+        return "|".join(re.escape(alias) for alias in cls.SECTION_ALIASES.get(section, [section]))
+
+    @classmethod
+    def _section_body_pattern(cls, section: str) -> str:
+        """Pattern capturing a section body up to the next level-two heading."""
+        return rf'##\s*(?:{cls._alias_group(section)})[^\n]*\n(.*?)(?=\n##\s|\Z)'
+
+    @staticmethod
+    def _count_words(text: str) -> int:
+        """Count Latin tokens and each CJK character for multilingual reports."""
+        cjk = len(re.findall(r'[\u3400-\u4dbf\u4e00-\u9fff\u3040-\u30ff]', text))
+        latin = len(re.findall(r"[A-Za-z0-9][A-Za-z0-9'\-]*", text))
+        return cjk + latin
+
     def __init__(self, report_path: Path):
         self.report_path = report_path
         self.content = self._read_report()
@@ -61,7 +91,7 @@ class ReportValidator:
 
     def _check_executive_summary(self) -> bool:
         """Check executive summary exists and is 200-400 words"""
-        pattern = r'## Executive Summary(.*?)(?=##|\Z)'
+        pattern = self._section_body_pattern("Executive Summary")
         match = re.search(pattern, self.content, re.DOTALL | re.IGNORECASE)
 
         if not match:
@@ -69,7 +99,7 @@ class ReportValidator:
             return False
 
         summary = match.group(1).strip()
-        word_count = len(summary.split())
+        word_count = self._count_words(summary)
 
         if word_count > 400:
             self.warnings.append(f"Executive summary too long: {word_count} words (should be ≤400)")
@@ -100,7 +130,7 @@ class ReportValidator:
 
         missing = []
         for section in required:
-            if not re.search(rf'##.*{section}', self.content, re.IGNORECASE):
+            if not re.search(rf'##.*(?:{self._alias_group(section)})', self.content, re.IGNORECASE):
                 missing.append(section)
 
         if missing:
@@ -146,7 +176,7 @@ class ReportValidator:
 
     def _check_bibliography(self) -> bool:
         """Check bibliography exists, matches citations, and has no truncation placeholders"""
-        pattern = r'## Bibliography(.*?)(?=##|\Z)'
+        pattern = self._section_body_pattern("Bibliography")
         match = re.search(pattern, self.content, re.DOTALL | re.IGNORECASE)
 
         if not match:
@@ -246,7 +276,7 @@ class ReportValidator:
 
     def _check_word_count(self) -> bool:
         """Check overall report length"""
-        word_count = len(self.content.split())
+        word_count = self._count_words(self.content)
 
         if word_count < 500:
             self.warnings.append(f"Report is very short: {word_count} words (consider expanding)")
@@ -256,7 +286,7 @@ class ReportValidator:
 
     def _check_source_count(self) -> bool:
         """Check minimum source count"""
-        pattern = r'## Bibliography(.*?)(?=##|\Z)'
+        pattern = self._section_body_pattern("Bibliography")
         match = re.search(pattern, self.content, re.DOTALL | re.IGNORECASE)
 
         if not match:

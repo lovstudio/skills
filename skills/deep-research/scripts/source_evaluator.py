@@ -4,7 +4,9 @@ Source Credibility Evaluator
 Assesses source quality, credibility, and potential biases
 """
 
-from dataclasses import dataclass
+import argparse
+import json
+from dataclasses import asdict, dataclass
 from typing import List, Dict, Optional
 from urllib.parse import urlparse
 from datetime import datetime, timedelta
@@ -260,33 +262,31 @@ class SourceEvaluator:
             return "verify"
 
 
-# Example usage
-if __name__ == '__main__':
-    evaluator = SourceEvaluator()
+def main():
+    parser = argparse.ArgumentParser(description="Evaluate the credibility of one source")
+    parser.add_argument("--url", required=True)
+    parser.add_argument("--title", required=True)
+    parser.add_argument("--content")
+    parser.add_argument("--publication-date")
+    parser.add_argument("--author")
+    parser.add_argument("--json", action="store_true")
+    args = parser.parse_args()
 
-    # Test sources
-    test_sources = [
-        {
-            'url': 'https://www.nature.com/articles/s41586-2025-12345',
-            'title': 'Breakthrough in Quantum Computing',
-            'publication_date': '2025-10-15'
-        },
-        {
-            'url': 'https://someblog.wordpress.com/shocking-discovery',
-            'title': 'SHOCKING! You Won\'t Believe This Discovery!',
-            'publication_date': '2020-01-01'
-        },
-        {
-            'url': 'https://docs.python.org/3/library/asyncio.html',
-            'title': 'asyncio — Asynchronous I/O',
-            'publication_date': '2025-11-01'
-        }
-    ]
-
-    for source in test_sources:
-        score = evaluator.evaluate_source(**source)
-        print(f"\nSource: {source['title']}")
-        print(f"URL: {source['url']}")
+    score = SourceEvaluator().evaluate_source(
+        url=args.url,
+        title=args.title,
+        content=args.content,
+        publication_date=args.publication_date,
+        author=args.author,
+    )
+    payload = asdict(score)
+    if args.json:
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+    else:
         print(f"Overall Score: {score.overall_score}/100")
         print(f"Recommendation: {score.recommendation}")
         print(f"Factors: {score.factors}")
+
+
+if __name__ == '__main__':
+    main()
