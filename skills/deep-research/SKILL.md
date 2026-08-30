@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires Python 3.8+ for bundled scripts. search-cli and forge APIs are optional; use available web search and public repository metadata as fallbacks. The public name remains deep-research for compatibility with existing installations and dependency IDs.
 metadata:
   author: lovstudio
-  version: "2.5.0"
+  version: "2.5.1"
   tags: deep-research citations evidence open-source github gitlab gitee reports
   dependencies:
     - lov-dev-blog

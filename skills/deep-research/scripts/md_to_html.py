@@ -89,6 +89,10 @@ def _convert_content_section(markdown: str) -> str:
     # Convert inline code `code`
     html = re.sub(r'`(.+?)`', r'<code>\1</code>', html)
 
+    # Convert direct HTTP(S) links before tables and paragraphs so repository
+    # links remain clickable inside the Open-Source Solutions Landscape.
+    html = _convert_inline_links(html)
+
     # Convert unordered lists
     html = _convert_lists(html)
 
@@ -115,6 +119,15 @@ def _convert_content_section(markdown: str) -> str:
         )
 
     return html
+
+
+def _convert_inline_links(html: str) -> str:
+    """Convert Markdown HTTP(S) links while leaving other URI schemes inert."""
+    return re.sub(
+        r'\[([^\]]+)\]\((https?://[^\s)]+)\)',
+        r'<a href="\2" target="_blank" rel="noreferrer">\1</a>',
+        html,
+    )
 
 
 def _convert_bibliography_section(markdown: str) -> str:

@@ -1128,7 +1128,7 @@ skills:
   name_zh: 深度研究
   paid: false
   category: Content Creation
-  version: "2.5.0"
+  version: "2.5.1"
   description: Use when the user needs multi-source research with citation tracking, evidence persistence, structured
     reports, or verified open-source solution landscapes across GitHub and other relevant forges.
   tagline_en: Produce citation-tracked research reports with persistent evidence, claim verification, and shareable open-source solution catalogs.
