@@ -1,0 +1,25 @@
+[
+  {
+    "type": "case",
+    "title": "曾颖公开 X 帖子与停用账号证据恢复",
+    "description": "2026-08-31 的真实用户任务要求逐字汇总曾颖公开 X/Twitter 内容。检索对象同时包含现账号和已停用旧账号，因此需要把 live 原帖、归档空壳、媒体嵌入卡片、转载截图与媒体转述分开。",
+    "input": {
+      "items": [
+        "现账号 @zengying1107 的 7 个公开搜索发现 status ID",
+        "旧账号 @tenten19901107 的 8 个公开搜索发现 status ID",
+        "TradingView、Yahoo Finance、MEXC 与 Wayback 页面截图证据"
+      ]
+    },
+    "prompt": "曾颖（孙宇晨前女友）推特原文汇总，需要原文；找不到的用截图汇总。",
+    "output": {
+      "items": [
+        "现账号 7 个已知 ID 全部恢复：6 个双渲染器等价，1 个渲染器文本冲突，保留较长版本并标记冲突",
+        "旧账号 8 个已知 ID 未被错误标记为已恢复；精确 Wayback 捕获只有 X JavaScript 空壳时保持 unrecovered",
+        "status 2017798141492539642 的媒体嵌入卡片只证明可见开头，标为 partial embedded_card，不冒充全文",
+        "4 张截图记录了来源页面、证据边界与 SHA-256，其中 TradingView crop 的哈希为 77e5a0a3a267f79ef30df472f51ff5b0e3d254c907211661339e3a49ecb29468",
+        "交付明确写明 15 个已知 ID 的覆盖范围不等于两个账号的完整历史"
+      ]
+    }
+  }
+]
+

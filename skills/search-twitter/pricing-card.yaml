@@ -1,0 +1,11 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "减少手工拆短链、复制 status ID、逐页试镜像、检查归档空壳、登记截图哈希和区分原文与转述的时间。"
+basis: "本地检索编排、证据分级和 Python 标准库 CLI 免费开放；用户自备网络、搜索与可选 OCR 能力。"
+boundary: "包含公开内容的 best-effort 发现、已知 ID 恢复、截图登记和证据报告；不包含托管搜索服务、X 登录凭据、绕过访问控制、人工法律核验或事实真伪裁决。"
+review_trigger: "增加托管索引、付费搜索 API、持续代理运维、团队证据仓库或人工核验 SLA 时复评。"
+confidence: internal
+

@@ -3842,6 +3842,43 @@ skills:
     review_trigger_zh: 新增第二个生产目标适配器、累计 10 次真实使用、版本变化、托管执行上线或支持成本明显变化时复评。
     review_trigger_en: Review after a second production target adapter, 10 real uses, a version change, hosted execution, or a material support-cost change.
     card_path: pricing-cards/cli2anything.md
+- name: search-twitter
+  runtime_name: lov-search-twitter
+  updated_at: 2026-08-31T15:12:00Z
+  display_name: X/Twitter Source Recovery
+  repo: lovstudio/search-twitter-skill
+  skill_path: ""
+  name_zh: X/Twitter 原帖恢复
+  paid: false
+  category: General
+  version: "0.1.0"
+  description: Recover public X/Twitter posts from known IDs, web archives, embedded cards and screenshots while preserving verbatim text, provenance and unrecovered gaps.
+  tagline_en: Recover verbatim X/Twitter posts, screenshot evidence, and the gaps that still cannot be proven.
+  tagline_zh: 恢复 X/Twitter 逐字正文与截图证据，并明确列出仍无法证明的缺口。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、CLI、证据规范与真实案例
+    delivery_unit_en: Public Skill source, CLI, evidence contract, and real case
+    value_zh: 从人物、账号、X 链接、status ID 或截图建立候选清单，恢复逐字正文并区分原帖、归档、截图、媒体引文和未恢复项。
+    value_en: Build a candidate inventory from people, handles, X links, status IDs, or screenshots, then recover verbatim text while separating originals, archives, screenshots, media quotes, and unrecovered items.
+    anchor_zh: 一次适合的研究任务可减少数小时的短链拆解、镜像尝试、归档检查、截图登记与证据对账，并降低把摘要或 OCR 误当原文的风险。
+    anchor_en: A suitable research task can save hours of short-link resolution, renderer checks, archive inspection, screenshot registration, and evidence reconciliation while reducing the risk of presenting summaries or OCR as original text.
+    basis_zh: 已有一个真实人物案例、10 项离线测试、实时双渲染器恢复和截图哈希回读；但公开搜索无法证明账号全量，上游也会变化，因此官网先作为免费可信入口。
+    basis_en: One real-person case, ten offline tests, a live two-renderer recovery, and screenshot-hash readback support the release; public search still cannot prove complete account history and upstreams change, so the website starts as a free trust entry.
+    boundary_zh: 包含公开内容的 best-effort 发现、已知 ID 恢复、Wayback/Common Crawl 回退、截图与 OCR 证据登记；不含 X 登录会话、绕过访问控制、托管索引、持续监控、法律核验或事实真伪裁决。
+    boundary_en: Includes best-effort public discovery, known-ID recovery, Wayback/Common Crawl fallback, and screenshot/OCR evidence registration; excludes X login sessions, access-control bypass, hosted indexing, continuous monitoring, legal review, and truth adjudication.
+    maintenance_zh: 随 X 页面、公开渲染器、网页归档、搜索覆盖与真实使用反馈复评。
+    maintenance_en: Review against X pages, public renderers, web archives, search coverage, and real usage feedback.
+    confidence: case-backed
+    review_trigger_zh: 版本变化、累计 10 次外部真实使用、引入托管基础设施，或上游维护成本显著变化时复评。
+    review_trigger_en: Review after a version change, ten external real uses, hosted infrastructure, or a material increase in upstream maintenance.
+    card_path: pricing-cards/search-twitter.md
 - name: search-file
   runtime_name: lov-search-file
   updated_at: 2026-08-27T10:10:14Z

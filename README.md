@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **95 个技能** — 78 个免费 + 17 个付费。
+> **96 个技能** — 79 个免费 + 17 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -59,6 +59,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-fetch`](https://github.com/lovstudio/media-fetch-skill) | [媒体抓取](https://github.com/lovstudio/media-fetch-skill) | 检索并选择合适版本，qBittorrent 与 aria2 续传兜底，最后验收本地媒体与字幕状态。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`personal-vocabulary`](https://github.com/lovstudio/personal-vocabulary-skill) | [personal-vocabulary](https://github.com/lovstudio/personal-vocabulary-skill) | 一份可跨语音输入法复用的个人词汇表。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`search-file`](https://github.com/lovstudio/search-file-skill) | [AI 对话文件检索](https://github.com/lovstudio/search-file-skill) | 从历史 AI 对话找回仍然存在的文件，并用会话证据与存储耐久度排序。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`search-twitter`](https://github.com/lovstudio/search-twitter-skill) | [X/Twitter 原帖恢复](https://github.com/lovstudio/search-twitter-skill) | 恢复 X/Twitter 逐字正文与截图证据，并明确列出仍无法证明的缺口。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`subtitle-freedom`](https://github.com/lovstudio/subtitle-freedom-skill) | [人人字幕](https://github.com/lovstudio/subtitle-freedom-skill) | 以用户选定级别为最低难度线生成英语学习字幕，覆盖更高难度表达，并可选生成不剧透人物卡片与不烧录视频的 ASS/PGS 水印外置字幕。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`typeless-prompt`](https://github.com/lovstudio/typeless-prompt-skill) | [手工川工作室 Typeless 复刻版](https://github.com/lovstudio/typeless-prompt-skill) | 消解口癖、重复和改口，把口述草稿整理成逻辑清楚、排版舒展、可直接发送的正文。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wdb-cli`](https://github.com/lovstudio/wdb-cli-skill) | [万能微信秘钥](https://github.com/lovstudio/wdb-cli-skill) | 自动发现 WDB Pro 管理密钥，精准读取聊天、联系人、朋友圈、结构与稳定记录。 |

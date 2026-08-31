@@ -1,0 +1,104 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "从公开网页、X 链接、status ID 与截图中发现并恢复可核验的 X/Twitter 帖子，交付逐字正文、来源分级、截图哈希和未恢复清单。"
+owner:
+  team: "LovStudio Skills"
+  contact: "maintainers@lovstudio.com"
+license:
+  name: MIT
+  terms: "Skill 源码为 MIT；X 内容仍归原权利人所有，使用者须遵守平台条款、版权与隐私边界。"
+  url: "LICENSE"
+use_case:
+  audience: "需要核对人物公开发言的研究者、记者、内容编辑和自动化 Agent"
+  scenario: "用户提供人物、账号、关键词、原帖链接、状态 ID 或转载截图，希望找到并逐字汇总公开 X/Twitter 内容。"
+  tasks:
+    - "通过网页与图片搜索建立候选 status ID 清单"
+    - "从公开渲染器和网页归档恢复逐字正文"
+    - "登记截图 SHA-256、OCR 派生文本与来源页面"
+    - "区分原帖、归档、嵌入卡片、媒体引文、转述和未恢复项"
+deployment:
+  geography: global
+  environments:
+    - "支持 Python 3.9+、网络搜索与文件访问的本地 Agent runtime"
+requirements:
+  credentials: "默认不需要登录；只有用户明确授权完整账号枚举时才可使用用户自有 X 会话，且凭据不得进入 Profile 或报告。"
+  dependencies:
+    - "Python 3.9+ standard library"
+    - "Web and image search or browser access for broad discovery"
+    - "Network access for public renderers and web archives"
+    - "OCR optional"
+    - "twscrape optional after explicit authorization"
+  runtime:
+    - "Portable local Agent Skill"
+risks:
+  - risk: "公开搜索会漏掉未索引、已删除或只在封闭中文 App 内流传的截图。"
+    mitigation: "同时执行网页与图片搜索，记录查询矩阵和候选清单，并把结果标为 best effort，禁止无证据声称账号全量。"
+  - risk: "搜索摘要、媒体转述、OCR 或空壳归档可能被误标为原文。"
+    mitigation: "使用七级 provenance 模型，逐字文本与 OCR、摘要、翻译分栏；空壳快照保持 unrecovered。"
+  - risk: "第三方公开渲染器可能截断、失效或返回不同文本。"
+    mitigation: "并行比较 FxTwitter 与 VXTwitter，保留所有冲突变体，并在失败后检查精确 Wayback 与 Common Crawl 记录。"
+  - risk: "帖子或截图可能涉及版权、隐私、骚扰或未经证实的指控。"
+    mitigation: "只恢复公开或获授权内容，保留原始出处，不放大私密数据，不把发帖事实写成指控内容已获证实。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Evidence model"
+    path: "references/evidence-model.md"
+  - title: "Discovery playbook"
+    path: "references/discovery-playbook.md"
+  - title: "Composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "candidate and original-post index"
+    - "verbatim text compilation"
+    - "screenshot evidence manifest"
+    - "unrecovered and conflict ledger"
+  formats:
+    - "JSON or JSONL"
+    - "Markdown"
+    - "Original image files with SHA-256 records"
+  parameters:
+    - "person, current and former handles, keywords, status URLs or IDs, screenshots, time range, languages"
+  validation:
+    - "every original-text claim has an exact status URL or archived original URL"
+    - "screenshot bytes have SHA-256 and source-page metadata"
+    - "OCR, translation, summary and verbatim fields stay separate"
+    - "recovered, conflict and unrecovered counts reconcile with the candidate inventory"
+  description: "A provenance-aware evidence bundle and readable report that state both recovered text and remaining gaps."
+ethical_considerations: "Never bypass private-account controls, suspensions, paywalls or rate limits. Credentials stay in OS storage or process memory. Public allegations are reported as source content, not endorsed as fact."
+dimensions:
+  - id: correctness
+    label: "逐字与身份正确性"
+    description: "正文、账号、status ID、链接、时间和可见截断必须与来源一致。"
+    evidence: "离线测试覆盖 URL 提取、HTML 文本抽取、URL 展开等价、冲突保留和空壳归档；真实案例逐条保留公开状态 ID。"
+    score: 4
+  - id: evidence_integrity
+    label: "证据完整性"
+    description: "每条记录必须区分原帖、归档、嵌入卡片、截图、媒体引文、转述和未恢复。"
+    evidence: "证据模型定义七级 provenance，截图登记命令记录 source URL、UTC 时间、SHA-256、OCR 派生关系与截断状态。"
+    score: 4
+  - id: discovery_coverage
+    label: "发现覆盖"
+    description: "发现同时覆盖 X URL 索引、网页结果、中文转载生态、图片结果和网页归档。"
+    evidence: "发现手册要求至少两条独立路径，并要求报告查询、候选、新增 ID 和未覆盖边界。"
+    score: 3
+  - id: efficiency
+    label: "恢复效率"
+    description: "已知 ID 应先走两路并发公开渲染器，失败后才查询较慢的归档与 WARC。"
+    evidence: "CLI 对 FxTwitter 与 VXTwitter 使用并发请求，并将 Common Crawl 设为显式可选回退。"
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "本地检索编排、证据分级和标准库 CLI 免费开放；用户自备网络、搜索与可选 OCR 能力。"
+  boundary: "包含公开内容的 best-effort 发现、已知 ID 恢复、截图登记和证据报告；不包含托管搜索服务、X 登录凭据、绕过访问控制、人工法律核验或事实真伪裁决。"
+  review_trigger: "增加托管索引、付费搜索 API、持续代理运维、团队证据仓库或人工核验 SLA 时复评。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - local
+    - github
+    - lovstudio

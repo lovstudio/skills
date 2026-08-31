@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **95 skills** — 78 Free + 17 Paid.
+> **96 skills** — 79 Free + 17 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -60,6 +60,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-fetch`](https://github.com/lovstudio/media-fetch-skill) | Find the right edition, resume through the faster transport, and verify the local media and subtitle status. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`personal-vocabulary`](https://github.com/lovstudio/personal-vocabulary-skill) | One personal vocabulary reused across speech-input apps. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`search-file`](https://github.com/lovstudio/search-file-skill) | Recover files from past AI chats with conversation evidence, existence checks, and durable-copy ranking. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`search-twitter`](https://github.com/lovstudio/search-twitter-skill) | Recover verbatim X/Twitter posts, screenshot evidence, and the gaps that still cannot be proven. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`subtitle-freedom`](https://github.com/lovstudio/subtitle-freedom-skill) | Make learner subtitles that keep the selected level and harder expressions, with spoiler-safe ASS cards and optional no-burn watermark sidecars. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`typeless-prompt`](https://github.com/lovstudio/typeless-prompt-skill) | Turn rough dictation into concise, structured, send-ready text without answering or executing it. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wdb-cli`](https://github.com/lovstudio/wdb-cli-skill) | Auto-discover WDB Pro managed keys and run precise local WeChat searches across chats, contacts, Moments, schemas, and exact records. |
