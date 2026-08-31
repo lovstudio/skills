@@ -124,6 +124,44 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/image-creator.md
+- name: create-qrcode
+  runtime_name: lov-create-qrcode
+  updated_at: 2026-08-31T10:35:51Z
+  display_name: QR Code Creator
+  repo: lovstudio/create-qrcode-skill
+  name_zh: 二维码生成器
+  paid: false
+  category: General
+  version: "0.1.1"
+  description: Create scan-verified QR code PNGs with saved user preferences, privacy-safe receipts, and optional poster styling; default to the bare QR code with no header or footer unless explicitly requested.
+  tagline_en: Generate a scan-ready QR code using saved preferences; output only the code by default and add poster framing only when requested.
+  tagline_zh: 复用已保存偏好生成可扫码二维码；默认只输出码本体，明确需要时才加海报框架。
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、Python CLI、偏好持久化与真实扫码案例
+    delivery_unit_en: Public Skill source, Python CLI, preference persistence, and scan-verified cases
+    value_zh: 默认只交付二维码码本体，并复用配色、形状、尺寸、纠错级别与 quiet zone 偏好；需要时再生成海报版。
+    value_en: Deliver only the QR code by default, reuse saved palette, shape, size, error-correction, and quiet-zone preferences, and add a poster only on request.
+    anchor_zh: 一次使用可省下约 5–20 分钟的参数确认、工具切换、重复排版和扫码返工，并降低载荷泄露风险。
+    anchor_en: One use can save roughly 5–20 minutes of parameter confirmation, tool switching, repeated layout, and scan rework while reducing payload-disclosure risk.
+    basis_zh: 六维加权得分为 3.0/5；本地确定性执行、无付费 API 或托管成本，但通用替代品多且公共源码易复制，因此官网作为免费基础能力入口。
+    basis_en: The six-dimension weighted score is 3.0/5; execution is local and deterministic with no paid API or hosting cost, while alternatives are abundant and public source is easy to copy, so the website uses a free foundational entry.
+    boundary_zh: 包含 PNG 裸码、可选海报、共享 Profile 偏好解析、对比度检查、隐私安全收据和可选 OpenCV 精确扫码比对；不含托管短链、动态跳转、访问分析、远程素材采购或代发布。
+    boundary_en: Includes bare PNG QR codes, optional posters, shared-Profile preference resolution, contrast checks, privacy-safe receipts, and optional exact OpenCV scan comparison; excludes hosted short links, dynamic redirects, analytics, remote asset sourcing, and managed publication.
+    maintenance_zh: 随二维码库、图像库、扫码兼容性和真实安装反馈复评；保持裸码默认，不把海报框架变成隐式输出。
+    maintenance_en: Review against QR and image libraries, scanner compatibility, and real installation feedback; preserve bare-code output as the default rather than making poster framing implicit.
+    confidence: case-backed
+    review_trigger_zh: 加入托管动态二维码、访问分析、专有付费模板、显著云成本，或完成 100 次真实安装后复评。
+    review_trigger_en: Review when hosted dynamic QR, analytics, proprietary paid templates, or material cloud cost is added, or after 100 real installs.
+    card_path: pricing-cards/create-qrcode.md
 - name: paid-add
   display_name: Paid Add (PoC)
   repo: lovstudio/paid-add-skill

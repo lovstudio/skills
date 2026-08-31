@@ -1,0 +1,68 @@
+schema: skill-manifest/v1
+id: lov-create-qrcode
+version: "0.1.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-create-qrcode
+    persist:
+      enabled: true
+      namespace: skills.lov-create-qrcode
+      records_path: skills.lov-create-qrcode.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果海报需要品牌标题，请提供品牌名称。
+      - path: brand.site
+        required: false
+        question: 如果二维码要指向品牌官网，请提供准确网址。
+      - path: brand.logo
+        required: false
+        question: 如果二维码需要嵌入 Logo，请提供有权使用的本地图片。
+      - path: brand.tone
+        required: false
+        question: 如果已有品牌审美关键词，请提供它们。
+  preferences:
+    namespace: lov_create_qrcode
+    fields:
+      - path: skills.lov-create-qrcode.records.preference_policy
+        required: false
+        question: 是否在每次生成时优先复用已经保存的二维码偏好？
+      - path: skills.lov-create-qrcode.records.default_palette
+        required: false
+        question: 长期默认使用哪套二维码配色？
+      - path: skills.lov-create-qrcode.records.default_shape
+        required: false
+        question: 长期默认使用哪种二维码码点形状？
+      - path: skills.lov-create-qrcode.records.default_size
+        required: false
+        question: 长期默认二维码尺寸是多少像素？
+      - path: skills.lov-create-qrcode.records.default_error_correction
+        required: false
+        question: 长期默认使用 L、M、Q、H 中哪一级纠错？
+      - path: skills.lov-create-qrcode.records.default_border
+        required: false
+        question: 长期默认 quiet zone 使用多少 modules？
+      - path: skills.lov-create-qrcode.records.default_poster
+        required: false
+        question: 默认是否生成带留白的海报版？
+      - path: skills.lov-create-qrcode.records.default_show_data
+        required: false
+        question: 默认是否把原始载荷显示在海报上？
+      - path: skills.lov-create-qrcode.records.default_title
+        required: false
+        question: 如果需要长期默认海报标题，请提供准确文本。
+  interaction:
+    ask_missing: true
+    max_questions: 1

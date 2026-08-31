@@ -50,11 +50,13 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 10 free + 3 paid (Credits redemption required).",
+      "description": "General — 11 free + 3 paid (Credits redemption required).",
       "category": "General",
       "skills": [
         "./skills/image-translation-errata",
         "./skills/image-creator",
+        "./skills/create-qrcode",
+        "./skills/branding-consistency",
         "./skills/hanzi-lens",
         "./skills/professional-infographic",
         "./skills/fact-check",

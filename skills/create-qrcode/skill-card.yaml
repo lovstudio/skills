@@ -1,0 +1,93 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "Generates privacy-preserving, profile-aware QR code PNG files with no header or footer by default, optionally creates a poster, and verifies the exact UTF-8 input."
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "The Skill source may be used and modified under MIT; users remain responsible for encoded content, trademarks, and Logo rights."
+  url: "LICENSE"
+use_case:
+  audience: "People and agents that need a reusable local QR generator with durable visual preferences."
+  scenario: "Encode a URL or UTF-8 text as a bare QR PNG by default, optionally wrap it in a requested poster, and verify the finished image."
+  tasks:
+    - "Generate a standard or styled QR code from positional input, stdin, or a UTF-8 file."
+    - "Resolve palette, shape, size, error correction, border, title, and poster behavior from the current request and user Profile."
+    - "Return structural or real scan evidence without echoing the original payload."
+deployment:
+  geography: global
+  environments:
+    - "Local agent runtime with Python and image dependencies."
+requirements:
+  credentials: "none"
+  dependencies:
+    - "lov-branding-consistency for audience-visible poster text"
+  runtime:
+    - "Python 3.10 or newer"
+    - "qrcode 7.4 or newer and Pillow 9 or newer"
+    - "OpenCV Python only when scan verification is required"
+risks:
+  - risk: "A low-contrast, damaged, dense, or heavily branded code may look correct but fail to scan."
+    mitigation: "Enforce contrast and quiet-zone gates, require H correction for Logo use, and support exact OpenCV decode comparison."
+  - risk: "A private payload may leak through shell history, visible poster text, logs, or the shared Profile."
+    mitigation: "Prefer stdin or input files, never persist payloads, omit them from JSON, and require explicit show-data for visible disclosure."
+  - risk: "A user may encode a deceptive link or use a Logo without permission."
+    mitigation: "Preserve the supplied payload without endorsement and require the user to own or be authorized to use embedded assets."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Style and verification contract"
+    path: "references/style-contract.md"
+  - title: "Skill composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "QR code image"
+    - "QR poster image"
+    - "machine-readable verification receipt"
+  formats:
+    - "PNG"
+    - "JSON to stdout"
+  parameters:
+    - "UTF-8 payload, palette, shape, dimensions, error correction, quiet zone, optional title, visible data, and Logo"
+  validation:
+    - "Atomic file creation and PNG readback"
+    - "Minimum four-module quiet zone and contrast gate"
+    - "Optional exact OpenCV decode equality"
+    - "SHA-256 for both output and undisclosed payload"
+  description: "A non-overwriting PNG plus a receipt that states what was verified without revealing the payload."
+ethical_considerations: "The Skill runs locally and minimizes payload disclosure. It does not validate the safety or truthfulness of encoded destinations and must not be used to conceal malicious links or impersonate brands."
+dimensions:
+  - id: correctness
+    label: "Encoding correctness"
+    description: "The final image must decode to the exact input, without normalization or silent rewriting."
+    evidence: "The default bare-code and optional poster LovStudio URL cases use OpenCV scan comparison and record matching payload hashes in cases/cases.json."
+    score: 1.0
+  - id: preference_fidelity
+    label: "Preference fidelity"
+    description: "Explicit request values override durable Skill records, which override shared preferences and safe defaults."
+    evidence: "The manifest declares QR-specific Profile fields and automated tests exercise saved shape and palette resolution."
+    score: 1.0
+  - id: privacy
+    label: "Payload privacy"
+    description: "Operational output must not echo or persist the original QR payload unless visible disclosure is explicitly requested."
+    evidence: "The CLI receipt contains only payload length and SHA-256; the style contract forbids payload persistence."
+    score: 1.0
+  - id: portability
+    label: "Local portability"
+    description: "Generation works without network, browser, credential, or a sibling Skill."
+    evidence: "The core path uses Python, qrcode, and Pillow; OpenCV is isolated to the requested scan-verification level."
+    score: 0.9
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "QR encoding is local deterministic infrastructure; the reusable profile and verification contract are provided without usage fees."
+  boundary: "Includes local PNG generation, poster layout, profile resolution, and verification; excludes URL hosting, short links, analytics, publication, and remote asset acquisition."
+  review_trigger: "Review if hosted dynamic QR management, paid analytics, proprietary templates, or cloud processing is added."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - "local-installed"

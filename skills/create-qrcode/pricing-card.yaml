@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.1"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "A reusable local QR workflow with cross-session preferences, branded output, privacy guards, and exact scan evidence."
+basis: "QR encoding is deterministic local infrastructure and does not consume hosted compute, paid models, or third-party APIs."
+boundary: "Includes PNG QR and poster generation, Profile resolution, structural validation, and optional OpenCV scan comparison. Excludes hosted short links, dynamic redirects, analytics, remote asset acquisition, and channel publication."
+review_trigger: "Reassess pricing only if the Skill adds a hosted dynamic QR service, proprietary paid templates, analytics, or material cloud operating cost."
+confidence: internal

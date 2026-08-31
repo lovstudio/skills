@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **93 个技能** — 76 个免费 + 17 个付费。
+> **94 个技能** — 77 个免费 + 17 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -49,6 +49,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | **通用** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`china-website-filing`](https://github.com/lovstudio/china-website-filing-skill) | [中国网站备案](https://github.com/lovstudio/china-website-filing-skill) | 把中国大陆网站从备案准备推进到 ICP、域名上线、公安联网备案与合规巡检，并保留权威证据链。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`clean-mac`](https://github.com/lovstudio/macos-disk-optimizer-skill) | [清理 Mac](https://github.com/lovstudio/macos-disk-optimizer-skill) | 按目标容量整理 Mac 磁盘，保护 Screen Studio 等应用工作区，并以可回滚操作和真实可用空间完成验收。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`create-qrcode`](https://github.com/lovstudio/create-qrcode-skill) | [二维码生成器](https://github.com/lovstudio/create-qrcode-skill) | 复用已保存偏好生成可扫码二维码；默认只输出码本体，明确需要时才加海报框架。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`describe-image`](https://github.com/lovstudio/describe-image-skill) | [图片描述](https://github.com/lovstudio/describe-image-skill) | 给纯文本模型"看图"：用免费视觉模型把任意图片转成文字描述。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`fact-check`](https://github.com/lovstudio/fact-check-skill) | [事实校验](https://github.com/lovstudio/fact-check-skill) | 用尽调思路确认事实：查一手资料、找反例、标证据等级，给出置信度和下一步。 — 相关: `image-translation-errata` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`hanzi-lens`](https://github.com/lovstudio/hanzi-lens-skill) | [汉字镜](https://github.com/lovstudio/hanzi-lens-skill) | 用证据看懂一个汉字：读音、字形、字书、经典语境与专业信息图。 — 依赖: `professional-infographic` |

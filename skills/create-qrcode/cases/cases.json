@@ -1,0 +1,42 @@
+[
+  {
+    "type": "case",
+    "title": "Default bare QR with no header or footer",
+    "description": "The user directly stated that the default must contain only the QR code. The shared Profile records default_poster and default_show_data as false. With no poster flags, the Skill produced a square QR image with no header, footer, title, visible payload, or card frame, then passed exact OpenCV decoding.",
+    "input": {
+      "items": [
+        "Public UTF-8 payload: https://lovstudio.ai",
+        "Durable preference: default_poster false and default_show_data false"
+      ]
+    },
+    "prompt": "默认只要码，不要加 header、footer，除非用户需要。",
+    "output": {
+      "items": [
+        "cases/artifacts/lovstudio-ai-default-bare.png",
+        "cases/artifacts/lovstudio-ai-default-bare.json",
+        "768 by 768 bare QR; OpenCV scan verification equals the exact input payload"
+      ]
+    },
+    "cover": "cases/artifacts/lovstudio-ai-default-bare.png"
+  },
+  {
+    "type": "case",
+    "title": "Explicitly requested LovStudio poster mode",
+    "description": "Poster presentation remains available only when explicitly requested. This optional case uses the public LovStudio site, the Warm Academic clay palette, rounded data modules, M correction, a four-module quiet zone, a title, and visible URL. The finished poster passed exact OpenCV decoding from its QR region.",
+    "input": {
+      "items": [
+        "Public UTF-8 payload: https://lovstudio.ai",
+        "Explicit request for poster, title, visible URL, rounded shape, and clay palette"
+      ]
+    },
+    "prompt": "把 https://lovstudio.ai 生成圆角陶土色二维码海报，显示标题和网址，并验证实际扫码结果。",
+    "output": {
+      "items": [
+        "cases/artifacts/lovstudio-ai-rounded-clay.png",
+        "cases/artifacts/lovstudio-ai-rounded-clay.json",
+        "OpenCV scan verification equals the exact input payload"
+      ]
+    },
+    "cover": "cases/artifacts/lovstudio-ai-rounded-clay.png"
+  }
+]
