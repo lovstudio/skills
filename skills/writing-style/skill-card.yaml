@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "2.3.0"
+version: "2.5.1"
 description: "依据经 19 篇真实样本校准的个人中文文风，把事实、笔记或草稿写成工程实战驱动的第一人称深度内容，并支持保真改写、文风诊断与题材适配。"
 owner:
   team: "LovStudio"
@@ -41,6 +41,8 @@ risks:
     mitigation: "每次只选择一个主模式；writing-modes.md 分别定义结构、证据、温度和禁忌。"
   - risk: "必需的反 AI 或品牌门禁破坏已经验收的个人声音。"
     mitigation: "composition contract 把个人声音列为受保护输入，并把作者性、品牌语境与文风验收边界分开。"
+  - risk: "benchmark 文章直接公布分数与排名，却把输入、Prompt、量尺和复现方法藏在附件里。"
+    mitigation: "技术深度模式要求结果前公开方法、逐步算分实例和可执行复现入口；附件不能替代正文解释。"
 references:
   - title: "Primary Skill instructions"
     path: "SKILL.md"
@@ -68,6 +70,7 @@ output:
     - "Every major section has evidence or an explicit source"
     - "Long sentences explain and short sentences judge without mechanical fragmentation"
     - "No fabricated first-person experience or unverified publication claim appears"
+    - "Benchmark scores are preceded by visible prompts, rubrics, a worked calculation, and a reproducible evidence path"
   description: "A ready-to-use Chinese artifact or focused diagnosis that preserves facts while expressing the calibrated personal voice."
 ethical_considerations: "Use only user-authorized source material and profile records. Do not expose raw private samples, fabricate autobiographical facts, impersonate an unrelated author, or turn inference into attribution."
 dimensions:

@@ -52,7 +52,7 @@ Profile 存储，PyYAML 用于完整源校验。
 
 ## Skill Version
 
-2.3.0
+2.5.1
 
 ## Ethical Considerations
 

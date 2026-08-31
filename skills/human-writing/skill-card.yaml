@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.3.0"
+version: "0.3.1"
 description: >
   用作者性账本和七维篇章审计追溯中文非虚构稿的命题、因果、反例与结尾，再用
   30 项表层指标定位句词问题并复测。交付账本、篇章报告、改写稿和数值对照，

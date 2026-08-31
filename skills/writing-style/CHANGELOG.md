@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.5.1 - 2026-08-31
+
+- 区分普通公众号文章与 benchmark / 实验报告的小标题策略。
+- Benchmark 章节默认使用简洁的论文式描述标题，不强制制造悬念、情绪判断或金句。
+
+## 2.5.0 - 2026-08-31
+
+- 为 benchmark、排名、评分和雷达图文章新增方法可见性门禁。
+- 要求在结果前交代输入、对照、执行 Prompt、评分 Prompt、维度设计、精确换算、单样本算分链和复现入口。
+- 禁止用附件替代正文方法解释，也禁止把尚未公开的本机复现包描述为读者可用。
+
+## 2.4.0 - 2026-08-31
+
+- 新增读者契约与 `zero-session-context` 默认值，区分文章事实和作者与 Agent 的协作历史。
+- 最终公开稿新增标题 + 开头 300 字 cold-reader hard gate。
+- 禁止用悬空的“前一版 / 这次重写 / 按你的要求”向陌生读者开场。
+
 ## 2.3.0 - 2026-08-30
 
 - make `lov-human-writing` a required pre-draft authorship and final quality gate

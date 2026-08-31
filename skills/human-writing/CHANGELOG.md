@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1 - 2026-09-01
+
+### Fixed
+
+- 补齐 `0.3.0` 入口已经引用、但官网发布仓库缺失的作者性契约与四个 progressive-disclosure workflow 文件。
+
 ## 0.3.0 - 2026-08-30
 
 ### Changed

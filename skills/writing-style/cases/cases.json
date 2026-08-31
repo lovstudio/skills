@@ -39,5 +39,41 @@
       "数字可回读 references/style-profile.md，版本与能力可回读 SKILL.md、skill.yaml 和 CHANGELOG.md。",
       "输出可通过 scripts/style_audit.py 复测可观察节奏，并人工核对全部 must_preserve 事实。"
     ]
+  },
+  {
+    "type": "case",
+    "title": "最终公众号文章从读者可见实验开始",
+    "description": "来自 2026-08-31 的真实回归。对话里存在多轮旧稿，但最终文章的公开读者没有参加审稿，开头必须从评测对象、规模和发现建立上下文。",
+    "input": {
+      "items": [
+        "标题：我调研了市面上所有的去 AI 味 Prompt",
+        "实际系统：5 个可执行 Skill、1 个一句话 Prompt 对照、1 个完全不改对照",
+        "输入：6 篇改写任务、3 篇真人 KEEP 任务",
+        "结果：63 次端到端运行",
+        "对话内部存在旧稿与用户批评，但它们不属于公开文章事实"
+      ]
+    },
+    "prompt": "使用 lov-writing-style 写最终公众号文章开头。目标读者没有看过聊天和旧稿；先建立实验对象与冲突，不写修改说明。",
+    "output": {
+      "text": "我把 5 套公开可复现的去 AI 味 Skill、一句 Prompt 和‘完全不改’放到同一组输入上，跑了 63 次。\n\n结果很尴尬。\n\n最复杂、最贵的方案没有赢；一句话 Prompt 也没有输得那么难看。真正拉开差距的，甚至不是改写能力，而是一个更基础的判断：这篇文章到底该不该改。"
+    },
+    "assertions": {
+      "must_preserve": [
+        "5 套",
+        "一句 Prompt",
+        "完全不改",
+        "63 次"
+      ],
+      "must_not_open_with": [
+        "我前一版 benchmark 做错了",
+        "这次我重新写",
+        "按你的要求"
+      ],
+      "reader_contract": "zero-session-context"
+    },
+    "evidence": [
+      "branding-consistency-skill/scripts/copy_audit.py --self-test 固定了失败句与合格句。",
+      "SKILL.md Step 0、Step 3 与 Step 9 要求最终文章通过 cold-reader test。"
+    ]
   }
 ]

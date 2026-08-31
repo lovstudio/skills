@@ -1,6 +1,6 @@
 # lov-human-writing
 
-![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
 
 先确认哪些问题、判断、取舍和未决处真正属于作者，再审整篇如何组织因果、反例与
 结尾，最后才量出 30 项中文表层指标并复测。目标是保住作者性，不是逃过检测。

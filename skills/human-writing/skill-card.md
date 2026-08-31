@@ -95,7 +95,7 @@ Agent；也可直接命令行调用 `scripts/measure.py`。
 
 ## Skill Version
 
-0.3.0
+0.3.1
 
 ## Ethical Considerations
 

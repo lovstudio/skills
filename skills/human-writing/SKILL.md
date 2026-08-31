@@ -10,7 +10,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.3.0"
+  version: "0.3.1"
   card_standard: lovstudio/skill-card/v1
   content_class: authored-prose
   tags:
