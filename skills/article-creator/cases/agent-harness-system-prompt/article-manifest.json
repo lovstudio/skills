@@ -1,0 +1,43 @@
+{
+  "schema": "lovstudio/wechat-article-package/v1",
+  "title": "Agent Harness 01：System Prompt",
+  "slug": "agent-harness-system-prompt",
+  "excerpt": "同一个模型为什么会在不同 Harness 里像换了一个人？从 Codex、Claude Code、Pi 与 DSH 的 System Prompt，看清四种设计品味与适用人群。",
+  "author": "手工川",
+  "language": "zh-CN",
+  "status": "prepared",
+  "article_path": "article.md",
+  "opening_image_path": "cover/article-opening-vertical.jpg",
+  "wide_cover_path": "cover/wechat-cover-wide.jpg",
+  "read_original_url": "https://lovstudio.ai/research/agent-harness",
+  "source_items": [
+    {
+      "title": "本期 GitHub Chapter",
+      "url": "https://github.com/lovstudio/agent-harness-design-and-implementation/tree/main/chapter-01-system-prompt",
+      "version": "2026-08-26",
+      "supports": "文章、四份 System Prompt 与版本说明"
+    },
+    {
+      "title": "在线 Prompt Review",
+      "url": "https://lovstudio.ai/prompts?source=agent-harness-book",
+      "version": "2026-08-26",
+      "supports": "读者可核对四份 System Prompt 全文"
+    }
+  ],
+  "brand": {
+    "name": "LovStudio",
+    "logo_source": "profile:brand.logo",
+    "site": "https://lovstudio.ai"
+  },
+  "products": [],
+  "publication": {
+    "name": "手工川",
+    "logo_source": "profile:skills.lov-article-creator.records.cover_logo_path",
+    "logo_variant": "horizontal-lockup",
+    "logo_color": "white",
+    "status": "prepared",
+    "remote_id": "L28WGu_uoilX-EFfRn5BRCYGSTTMS8TpkUoly2H4hf2pwm1CdH9Xt_JUo6eLUIvB",
+    "public_url": ""
+  },
+  "created_at": "2026-08-26T13:42:18Z"
+}

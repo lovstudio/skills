@@ -1,0 +1,61 @@
+[
+  {
+    "type": "case",
+    "title": "把 Agent Harness 研究长文装配成公众号文章包",
+    "description": "使用已有研究文章作为事实正文，补齐固定公众号模板、公开来源、手工川发布主体白色横向 Logo、横版封面、竖版首图与可回读质量报告；交付止于本地 prepared，未创建远端草稿。",
+    "input": {
+      "items": [
+        "chapter-01-system-prompt/README.md",
+        "用户确认的手工川文风、手工川发布主体与 LovStudio 母品牌系统",
+        "手工川官方白色横向 raster Logo",
+        "本期在线阅读与 Prompt Review 链接"
+      ]
+    },
+    "prompt": "创建专门用于公众号文章的 lov-article-creator，统一固定模板、文风和品牌系统；每篇文章生成横版公众号封面与竖版文章首图。发布主体使用手工川，封面使用白色横向手工川 Logo。用当前 Agent Harness 文章完成第一个真实案例。",
+    "output": {
+      "items": [
+        "cases/agent-harness-system-prompt/article.md",
+        "cases/agent-harness-system-prompt/article-manifest.json",
+        "cases/agent-harness-system-prompt/sources.md",
+        "cases/agent-harness-system-prompt/cover/cover-manifest.json",
+        "cases/agent-harness-system-prompt/quality-report.json"
+      ],
+      "status": "prepared",
+      "validation": "valid: true; 23 machine checks; 手工川 publication identity; white horizontal lockup; 0 errors; 0 warnings"
+    },
+    "cover": "cases/agent-harness-system-prompt/cover/wechat-cover-wide.png",
+    "gallery": [
+      "cases/agent-harness-system-prompt/cover/article-opening-vertical.png",
+      "cases/agent-harness-system-prompt/cover/art-master.png"
+    ]
+  },
+  {
+    "type": "case",
+    "title": "拦截依赖审稿历史的公众号开头",
+    "description": "2026-08-31 真实回归：最终公众号文章以‘我前一版 benchmark 做错了’开场，公开读者没有旧稿上下文，必须在进入模板与发布阶段前失败。",
+    "input": {
+      "title": "我调研了市面上所有的去 AI 味 Prompt",
+      "bad_opening": "我前一版 benchmark 做错了。",
+      "reader": "未参加作者与 Agent 审稿对话的公众号读者"
+    },
+    "prompt": "使用 rewrite 管线验收公众号最终稿。执行 zero-session-context cold-reader test，并将内部版本历史从公开正文移除。",
+    "output": {
+      "decision": "failed_then_rewritten",
+      "replacement_opening": "我把 5 套公开可复现的去 AI 味 Skill、一句 Prompt 和‘完全不改’放到同一组输入上，跑了 63 次。",
+      "validation": "opening contains no session_context_leak"
+    },
+    "assertions": {
+      "must_fail": [
+        "我前一版 benchmark 做错了",
+        "按你的要求，我重写了开头"
+      ],
+      "must_pass": [
+        "我把 5 套公开可复现的去 AI 味 Skill、一句 Prompt 和‘完全不改’放到同一组输入上，跑了 63 次。"
+      ]
+    },
+    "evidence": [
+      "scripts/validate_article_package.py --self-test 固定本次 bad/good opening。",
+      "skills/article-writing/SKILL.md 与 references/quality-gate.md 共同要求 cold-reader gate。"
+    ]
+  }
+]

@@ -1,0 +1,90 @@
+schema: skill-manifest/v1
+id: lov-article-creator
+version: "0.4.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-article-creator
+    persist:
+      enabled: true
+      namespace: skills.lov-article-creator
+      records_path: skills.lov-article-creator.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果文章需要作者署名，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望公众号文章使用哪种语言？
+      - path: user.timezone
+        required: false
+        question: 发布日期使用哪个时区？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: true
+        question: 请提供文章使用的发布品牌名称。
+      - path: brand.logo
+        aliases:
+          - identity.logo
+        required: true
+        question: 请提供发布主体官方 Logo 的路径或 URL。
+      - path: brand.site
+        required: false
+        question: 如果品牌尾注需要官网，请提供地址。
+      - path: brand.tone
+        required: false
+        question: 如果已有品牌语气，请提供关键词或 Profile。
+      - path: brand.design_guide
+        required: false
+        question: 如果已有品牌设计规范，请提供路径或 URL。
+  preferences:
+    namespace: lov_article_creator
+    fields:
+      - path: default_pipeline
+        required: false
+        question: 默认生成完整文章包、只改写、只做视觉还是只审计？
+      - path: writing_style
+        required: false
+        question: 默认使用哪套写作文风？
+      - path: article_template
+        required: false
+        question: 默认使用哪套公众号文章模板？
+      - path: brand_system
+        required: false
+        question: 默认使用哪套公众号品牌系统？
+      - path: publication_name
+        required: false
+        question: 公众号文章以哪个发布主体署名？
+      - path: cover_logo_variant
+        required: false
+        question: 封面使用哪种官方 Logo 变体？
+      - path: cover_logo_color
+        required: false
+        question: 封面 Logo 使用什么颜色？
+      - path: cover_logo_path
+        required: false
+        question: 封面使用的官方横向 raster Logo 在哪里？
+      - path: cover_wide_ratio
+        required: false
+        question: 横版公众号封面使用什么比例？
+      - path: body_hero_ratio
+        required: false
+        question: 正文首图使用什么比例？默认遵循 4:3 横向规范。
+      - path: opening_hero_enabled
+        required: false
+        question: 是否默认把 4:3 正文首图放在导语之前？
+  interaction:
+    ask_missing: true
+    max_questions: 1

@@ -1,0 +1,41 @@
+{
+  "schema": "lovstudio/wechat-cover-package/v1",
+  "brand": {
+    "name": "LovStudio"
+  },
+  "publication": {
+    "name": "手工川",
+    "logo_source": "profile:skills.lov-article-creator.records.cover_logo_path",
+    "logo_variant": "horizontal-lockup",
+    "logo_color": "white",
+    "logo_aspect_ratio": 2.901,
+    "logo_white_pixel_ratio": 1.0
+  },
+  "created_at": "2026-08-26T13:59:50Z",
+  "art_master_path": "cover/art-master.png",
+  "art_master_sha256": "f31da0ba1d6566c9c83a802b1f8ea0d973ca2dddebe890238d831cdcea9d7d83",
+  "wide": {
+    "png_path": "cover/wechat-cover-wide.png",
+    "jpg_path": "cover/wechat-cover-wide.jpg",
+    "width": 1880,
+    "height": 800,
+    "ratio": "2.35:1",
+    "logo_position": "center",
+    "sha256": {
+      "png": "2d2af01022de2293beb12120e7f614bb01fe4f5119225251bfd02d89fc79f54c",
+      "jpg": "5c077f45cce9629efe014e7a16375f06e48077262b24a10a1a7124953826505a"
+    }
+  },
+  "vertical": {
+    "png_path": "cover/article-opening-vertical.png",
+    "jpg_path": "cover/article-opening-vertical.jpg",
+    "width": 1200,
+    "height": 1600,
+    "ratio": "3:4",
+    "logo_position": "bottom-center",
+    "sha256": {
+      "png": "cfec0761eecd1e2704cb03b821595b90e59ee6e40e9b302b3b7ec74cc422da30",
+      "jpg": "c7d888433bc2b8db5e631b7ef8267fc59abe14a47f7d15e741a06b9cb815cb4e"
+    }
+  }
+}

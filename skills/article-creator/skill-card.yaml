@@ -1,0 +1,116 @@
+schema: lovstudio/skill-card/v1
+version: "0.4.1"
+description: "把事实材料变成完整微信公众号文章包，并以统一模板、个人文风、官方品牌和横竖双比例封面完成本地验收。"
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "Skill 源码采用 MIT；输入材料、Logo、字体和生成图片的使用权由调用者负责。"
+  url: "LICENSE"
+use_case:
+  audience: "独立作者、研究团队、产品工作室和维护公众号内容系统的 Agent 开发者"
+  scenario: "从主题、研究材料或旧稿创建统一品牌的公众号长文，或审计已有文章包。"
+  tasks:
+    - "建立事实边界并写作或改写正文"
+    - "套用固定语义模板并建立发布 manifest"
+    - "生成 2.35:1 分享封面和独立的 4:3 横向正文首图"
+    - "研究评测类文章强制公开方法、Prompt、评分示例与复现材料"
+    - "校验结构、品牌、图片尺寸、散列与发布状态"
+deployment:
+  geography: global
+  environments:
+    - "支持 Portable Agent Skills 的本地 Agent Harness"
+    - "可读取工作区文件并运行 Python 的桌面或 CLI 环境"
+requirements:
+  credentials: "本地创建和校验不需要凭据；图像生成或远端发布由宿主或下游能力单独负责。"
+  dependencies:
+    - "Pillow>=10"
+    - "PyYAML"
+  runtime:
+    - "Python 3.9+"
+    - "一份合法艺术底图或宿主图像生成能力"
+    - "共享 user-profile/v1 中的发布主体名称与官方 Logo"
+risks:
+  - risk: "输入材料不足时，文风适配可能把未经证实的判断写得过于确定。"
+    mitigation: "先建立 truth ledger，缺失证据时保留不确定性，不补造第一人称经历。"
+  - risk: "图像生成结果可能出现伪文字、陈词滥调或与文章命题无关的视觉。"
+    mitigation: "底图禁止文字和 Logo，生成后人工回读；品牌层由发布主体官方白色横向 raster lockup 确定性合成，母品牌、方形和非白色变体由脚本拒绝。"
+  - risk: "错误的发布主体或本地私有路径可能进入公开文章包。"
+    mitigation: "品牌从 Profile 解析，manifest 只记录 profile 引用；质量门扫描绝对用户路径。"
+  - risk: "本地文件生成可能被误报为已经进入草稿箱或正式发布。"
+    mitigation: "包装阶段使用 pending_validation，通过质量门后仅提升为 prepared；远端状态由下游回读。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Article template"
+    path: "references/article-template.md"
+  - title: "Cover system"
+    path: "references/cover-system.md"
+  - title: "Quality gate"
+    path: "references/quality-gate.md"
+  - title: "Real Agent Harness case"
+    path: "cases/agent-harness-system-prompt/quality-report.json"
+output:
+  types:
+    - "WeChat article package"
+    - "wide cover and 4:3 body opening image"
+    - "machine-readable validation report"
+  formats:
+    - "Markdown"
+    - "JSON"
+    - "PNG"
+    - "JPEG"
+  parameters:
+    - "pipeline: full | rewrite | visual | brand | repost | audit"
+    - "wide ratio: 2.35:1"
+    - "body hero ratio: 4:3"
+  validation:
+    - "article package validator returns valid: true"
+    - "image dimensions and SHA-256 match cover manifest"
+    - "article manifest status becomes prepared only after validation"
+  description: "一个可迁移的文章目录，正文、来源、品牌元数据、双比例图片和质量报告能够一起回读。"
+ethical_considerations: "尊重输入来源、作者身份与品牌资产；不伪造亲历、引语、来源或发布状态，不把凭据和私有路径写入公开制品。"
+dimensions:
+  - id: provenance
+    label: "事实与来源边界"
+    description: "关键事实、作者判断、第一人称和公开来源能被区分。"
+    evidence: "首个案例保留原文正文，仅机械插入首图；来源单独记录于 sources.md，未在本轮重新宣称事实核验。"
+    score: null
+  - id: editorial_completeness
+    label: "编辑完整度"
+    description: "正文、首图位置、摘要、品牌尾注、来源与发布元数据组成完整文章包。"
+    evidence: "cases/agent-harness-system-prompt/quality-report.json 通过 single H1、opening image placement、title 和 excerpt 检查。"
+    score: null
+  - id: brand_consistency
+    label: "品牌一致性"
+    description: "两张成品使用同一发布主体官方 Logo，艺术层与品牌层分离。"
+    evidence: "首个案例分别记录 LovStudio 母品牌与手工川发布主体，cover manifest 记录 white、horizontal-lockup、宽高比和白色像素比例，成品已人工回读。"
+    score: null
+  - id: mechanical_reliability
+    label: "机械可靠性"
+    description: "目录、schema、路径、图片尺寸、比例与散列能够自动回读。"
+    evidence: "首个案例质量报告为 valid: true，23 项机器检查通过且无 warning，其中包含 publication identity 与 white horizontal publication lockup。"
+    score: null
+  - id: portability
+    label: "可移植与状态诚实"
+    description: "源码和公开文章包不依赖私有绝对路径，也不冒充远端发布成功。"
+    evidence: "质量门通过 portable public paths；案例状态为 prepared，未创建远端草稿。"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "0.2.0 作为本地研究与工作流基础设施开放验证。"
+  boundary: "免费范围覆盖 Skill 源码、模板、合成脚本和本地校验；模型调用、素材授权和公众号运营服务不包含在内。"
+  review_trigger: "若增加托管生图、多人审批、云端资产库或代发布服务，重新评估价格与服务边界。"
+  confidence: internal
+distribution:
+  paid: []
+  free: []
+  states:
+    local: available
+    github: not_published
+    lovstudio: not_published
+    workbuddy: not_prepared
+    skillpay: not_prepared

@@ -1,0 +1,36 @@
+{
+  "schema": "lovstudio/wechat-article-quality/v1",
+  "valid": true,
+  "status": "prepared",
+  "checks": [
+    "article manifest schema",
+    "cover manifest schema",
+    "title length",
+    "excerpt length",
+    "article_path",
+    "opening_image_path",
+    "wide_cover_path",
+    "article brand identity",
+    "brand agreement",
+    "publication identity",
+    "white horizontal publication lockup",
+    "single H1",
+    "opening image placement",
+    "cold-reader opening context",
+    "portable public paths",
+    "cover/wechat-cover-wide.png dimensions",
+    "cover/wechat-cover-wide.png SHA-256",
+    "cover/wechat-cover-wide.jpg dimensions",
+    "cover/wechat-cover-wide.jpg SHA-256",
+    "cover/article-opening-vertical.png dimensions",
+    "cover/article-opening-vertical.png SHA-256",
+    "cover/article-opening-vertical.jpg dimensions",
+    "cover/article-opening-vertical.jpg SHA-256",
+    "publication state promoted to prepared"
+  ],
+  "errors": [],
+  "warnings": [
+    "legacy v1 package uses a 3:4 opening image; new packages must use the v2 4:3 body hero"
+  ],
+  "checked_at": "2026-08-31T16:19:40Z"
+}

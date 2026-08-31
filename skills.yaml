@@ -1114,13 +1114,13 @@ skills:
     review_trigger_en: Review after 20 cross-surface cases or the addition of hosted brand knowledge, team workflows, or batch review.
 - name: human-writing
   runtime_name: lov-human-writing
-  updated_at: 2026-08-30T10:03:12Z
+  updated_at: 2026-08-31T16:34:03Z
   display_name: Human Writing
   repo: lovstudio/human-writing-skill
   name_zh: 中文作者性与反 AI 编辑
   paid: false
   category: Content Creation
-  version: "0.3.0"
+  version: "0.3.1"
   description: Improve Chinese drafts with an authorship ledger, discourse audit, evidence-constrained rewriting, and 30 deterministic surface metrics without claiming AI detection.
   tagline_en: Preserve the author's real judgments, repair discourse problems, then measure and retest surface patterns.
   tagline_zh: 先保住作者真实判断，再修篇章结构，最后用 30 项中文指标定位并复测表层问题。
@@ -1149,15 +1149,16 @@ skills:
     confidence: case-backed
     review_trigger_zh: 获得可靠的带标签判别语料与召回率证据，或交付边界增加托管能力后复评。
     review_trigger_en: Review after reliable labeled detection evidence and recall measurements, or when hosted capabilities expand the delivery boundary.
+    card_path: pricing-cards/human-writing.md
 - name: writing-style
   runtime_name: lov-writing-style
-  updated_at: 2026-08-30T10:03:25Z
+  updated_at: 2026-08-31T16:34:03Z
   display_name: Personal Writing Style
   repo: lovstudio/writing-style-skill
   name_zh: 个人中文文风
   paid: false
   category: Content Creation
-  version: "2.3.0"
+  version: "2.5.1"
   description: Turn verified facts, notes, and drafts into first-person Chinese content using a personal voice calibrated from 19 real samples, with fact-preserving rewrite and diagnosis.
   tagline_en: Write from verified facts in a calibrated personal voice, then pass authorship, discourse, surface, audience, and brand gates.
   tagline_zh: 用 19 篇真实样本校准的个人声音完成新写、保真改写与诊断，并经过作者性、篇章、表层和品牌语境门禁。
@@ -1187,6 +1188,85 @@ skills:
     confidence: case-backed
     review_trigger_zh: 画像主版本更新、积累至少 20 个跨题材验收案例、增加云端服务或明确支持成本后复评。
     review_trigger_en: Review after a major profile update, 20 cross-mode cases, hosted service, or material support-cost evidence.
+    card_path: pricing-cards/writing-style.md
+- name: article-creator
+  runtime_name: lov-article-creator
+  updated_at: 2026-08-31T16:34:03Z
+  display_name: WeChat Article Creator
+  repo: lovstudio/article-creator-skill
+  name_zh: 公众号文章创作系统
+  paid: false
+  category: Content Creation
+  version: "0.4.1"
+  description: Turn source material, drafts, or partner articles into a complete WeChat article package with fact-grounded writing, branded covers, a 4:3 body hero, source traceability, and quality reports.
+  tagline_en: Create, rewrite, brand, or faithfully repost a complete WeChat article package before publication.
+  tagline_zh: 从材料、旧稿或来源文章生成完整公众号文章包，并完成写作、品牌、双比例视觉、转载保真与质量验收。
+  depends_on:
+  - branding-consistency
+  - writing-style
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、公众号文章包工作流、回归测试与当前版本说明
+    delivery_unit_en: Public source, WeChat article-package workflows, regression tests, and current-version notes
+    value_zh: 把正文写作、品牌包装、封面、4:3 正文首图、转载保真与发布前验收连接成一个可复测的文章包。
+    value_en: Connect writing, branding, covers, a 4:3 body hero, repost fidelity, and pre-publication acceptance into one reproducible article package.
+    anchor_zh: 一次完整任务可替代公众号创作、品牌包装、转载整理和发布前验收中的多轮手工拼接。
+    anchor_en: One complete task can replace several manual passes across writing, branding, repost preparation, and pre-publication review.
+    basis_zh: 六维加权得分 3.6/5；已有本地案例、转载回归与历史文章包验证，但尚缺公开安装和跨账号证据，因此官网先作为免费入口。
+    basis_en: The six-dimension score is 3.6/5, with local cases, repost regression, and historical package validation but limited public-install and cross-account evidence, so the website starts with a free entry.
+    boundary_zh: 包含本地文章包创建、改写、品牌化、忠实转载、双比例视觉与质量报告；不含托管模型调用、素材授权、公众号凭据、代运营或远程发布。
+    boundary_en: Includes local package creation, rewriting, branding, faithful reposting, dual-ratio visuals, and quality reports; excludes hosted inference, asset rights, WeChat credentials, managed operations, and remote publishing.
+    maintenance_zh: 随公众号格式、依赖 Skill、视觉规则、benchmark 和真实文章包反馈复评。
+    maintenance_en: Review against WeChat formats, dependency Skills, visual rules, benchmarks, and real article-package feedback.
+    confidence: internal
+    review_trigger_zh: 累计 20 个真实文章包，或加入托管生图、团队审批与持续支持后复评。
+    review_trigger_en: Review after 20 real article packages or the addition of hosted image generation, team approval, or ongoing support.
+    card_path: pricing-cards/article-creator.md
+- name: publish-wechat-article
+  runtime_name: lov-publish-wechat-article
+  updated_at: 2026-08-31T16:34:03Z
+  display_name: WeChat Article Publisher
+  repo: lovstudio/publish-wechat-article-skill
+  name_zh: 微信公众号文章发布器
+  paid: false
+  category: Content Creation
+  version: "0.8.0"
+  description: Read, minimally edit, create, verify, and publish WeChat Official Account drafts with branded-cover requirements, WeChat-copy HTML, remote readback, and explicit publication states.
+  tagline_en: Move a prepared article through WeChat draft creation, persisted-state verification, and publication without confusing a saved draft with a live post.
+  tagline_zh: 统一读取、局部编辑、创建、回读与发布公众号文章，并严格区分草稿、提交发布和正式上线。
+  depends_on:
+  - env-management
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、公众号状态机、远端回读工作流、48 项回归测试与当前版本说明
+    delivery_unit_en: Public source, WeChat publication state machine, remote-readback workflows, 48 regression tests, and current-version notes
+    value_zh: 减少公众号富文本、图片上传、原创字段、草稿回读和发布状态误报造成的人工返工。
+    value_en: Reduce manual rework caused by WeChat rich text, image upload, originality fields, draft readback, and false publication-state claims.
+    anchor_zh: 一次可靠交付把本地内容准备、远端草稿写入、持久化回读和发布状态核验连成一条可审计链路。
+    anchor_en: One reliable delivery connects local preparation, remote draft creation, persisted readback, and publication-state verification in an auditable chain.
+    basis_zh: 六维加权得分 3.7/5；已有 48 项回归测试和真实发布链经验，但缺少公开跨账号成功率，且运行依赖用户自己的微信权限与环境配置，因此官网先免费公开。
+    basis_en: The six-dimension score is 3.7/5, backed by 48 regression tests and real publication-chain experience but lacking public cross-account success rates and depending on each user's own WeChat permissions and environment.
+    boundary_zh: 包含草稿读取、最小编辑、新建、远端回读和正式发布状态核验；不含公众号凭据、托管额度、素材许可、人工审批、代运营或支持 SLA。
+    boundary_en: Includes draft reading, minimal editing, creation, remote readback, and publication-state verification; excludes WeChat credentials, hosted quotas, asset rights, human approval, managed operations, and support SLAs.
+    maintenance_zh: 随微信公众号 API、私有网页接口、Lovpen 输出契约、网关和真实跨账号结果复评。
+    maintenance_en: Review against WeChat APIs, private web interfaces, Lovpen output contracts, the gateway, and real cross-account outcomes.
+    confidence: internal
+    review_trigger_zh: 形成稳定跨账号成功率、托管 SLA、代发布支持或持续网关成本后复评。
+    review_trigger_en: Review after stable cross-account success rates, hosted SLAs, managed publication support, or sustained gateway cost.
+    card_path: pricing-cards/publish-wechat-article.md
 - name: document-illustrator
   runtime_name: lov-document-illustrator
   updated_at: 2026-08-23T17:04:16Z
@@ -1878,108 +1958,6 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/business-card.md
-- name: wechat-article-operator
-  runtime_name: lov-wechat-article-operator
-  updated_at: 2026-08-23T17:04:16Z
-  skillpay_product_id: P0806000200878055
-  skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lqb95
-  display_name: WeChat Article Operator
-  repo: lovstudio/wechat-article-operator-skill
-  name_zh: 公众号文章操作器
-  paid: true
-  encrypted_bundle: true
-  price_credits: 141
-  category: Content Creation
-  skill_path: ""
-  version: "0.2.0"
-  description: Reliably read, edit, save, and reload-verify existing WeChat Official Account articles through authenticated
-    browser automation.
-  tagline_en: Read and edit an existing WeChat article with persisted-state verification, from exact content changes to cover
-    replacement.
-  tagline_zh: 可靠读取、编辑、保存并重载验收现有公众号文章，支持精确内容修改与封面替换。
-  related:
-  - wechat-article-branding
-  distribution:
-    workbuddy: review
-    skillpay: live
-  pricing:
-    model: one_time
-    visibility: public
-    list_price_credits: 141
-    launch_price_credits: 141
-    price_range_credits:
-    - 141
-    - 280
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the current version
-    value_zh: 可靠读取、编辑、保存并重载验收现有公众号文章，支持精确内容修改与封面替换。
-    value_en: Read and edit an existing WeChat article with persisted-state verification, from exact content changes to cover
-      replacement.
-    anchor_zh: 一次交付通常可省下 1 小时至一天的研究、编排、配图或发布准备。
-    anchor_en: A run typically saves one hour to a day of research, editing, illustration, or publishing preparation.
-    basis_zh: 按能继续编辑、发布或复用的内容成品定价，重点是流程完整和证据可追溯。
-    basis_en: Priced around content that can be edited, published, or reused, with emphasis on a complete workflow and traceable
-      evidence.
-    boundary_zh: 结果质量取决于素材、事实和品牌约束；平台账号、第三方模型和发布操作按实际条件处理。
-    boundary_en: Quality depends on source material, facts, and brand constraints; platform accounts, third-party models,
-      and publishing operations follow actual conditions.
-    maintenance_zh: 随平台规则、内容格式、模型和素材库变化复评。
-    maintenance_en: Review when platform rules, content formats, models, or asset libraries change.
-    confidence: medium
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
-    card_path: pricing-cards/wechat-article-operator.md
-- name: wechat-article-branding
-  runtime_name: lov-wechat-article-branding-skill
-  updated_at: 2026-08-23T17:04:16Z
-  skillpay_product_id: P0806000200883359
-  skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt6XF
-  display_name: WeChat Article Branding
-  repo: lovstudio/wechat-article-branding-skill
-  name_zh: 公众号文章品牌化
-  paid: true
-  price_credits: 70
-  category: Content Creation
-  encrypted_bundle: true
-  skill_path: ""
-  version: "0.9.0"
-  description: Turn an existing WeChat Official Account article into polished branded content with an editorial art cover,
-    centered publisher Logo, reusable cover prompt, and persisted-page quality gates.
-  tagline_en: Turn a WeChat article into one coherent branded edition with an editorial art cover, centered publisher Logo,
-    reusable prompt, and real-page acceptance.
-  tagline_zh: 把现有公众号文章加工成结构清晰、艺术封面统一、Logo 居中、封面 Prompt 可复用且经过真实页面验收的品牌化成品。
-  related:
-  - wechat-article-operator
-  distribution:
-    workbuddy: review
-    skillpay: live
-  pricing:
-    model: one_time
-    visibility: public
-    list_price_credits: 141
-    launch_price_credits: 141
-    price_range_credits:
-    - 141
-    - 280
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the current version
-    value_zh: 把现有公众号文章自动加工成结构专业、封面成熟、品牌统一且经过真实页面验收的完整制品。
-    value_en: Turn a WeChat article into one coherent branded edition with stronger structure, cover, editorial polish, and
-      real-page acceptance.
-    anchor_zh: 一次交付通常可省下 1 小时至一天的研究、编排、配图或发布准备。
-    anchor_en: A run typically saves one hour to a day of research, editing, illustration, or publishing preparation.
-    basis_zh: 按能继续编辑、发布或复用的内容成品定价，重点是流程完整和证据可追溯。
-    basis_en: Priced around content that can be edited, published, or reused, with emphasis on a complete workflow and traceable
-      evidence.
-    boundary_zh: 结果质量取决于素材、事实和品牌约束；平台账号、第三方模型和发布操作按实际条件处理。
-    boundary_en: Quality depends on source material, facts, and brand constraints; platform accounts, third-party models,
-      and publishing operations follow actual conditions.
-    maintenance_zh: 随平台规则、内容格式、模型和素材库变化复评。
-    maintenance_en: Review when platform rules, content formats, models, or asset libraries change.
-    confidence: medium
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
-    card_path: pricing-cards/wechat-article-branding.md
 - name: academic-translator
   runtime_name: lov-academic-translator
   updated_at: 2026-08-23T17:04:16Z
@@ -3956,39 +3934,3 @@ skills:
     review_trigger_zh: 版本变化、累计 10 次真实使用、支持成本明显变化，或加入托管索引、跨设备云搜索与付费连接器时复评。
     review_trigger_en: Review after a version change, 10 real uses, material support-cost change, or addition of hosted indexing, cross-device cloud search, or paid connectors.
     card_path: pricing-cards/search-file.md
-- name: repost-wechat-article
-  runtime_name: lov-repost-wechat-article
-  updated_at: 2026-08-31T10:35:59Z
-  display_name: WeChat Article Repost
-  repo: lovstudio/repost-wechat-article-skill
-  name_zh: 微信公众号转载
-  paid: false
-  category: Content Creation
-  version: "0.1.0"
-  description: "Repost a source-faithful WeChat article with verified attribution, private-context isolation, publisher commentary, branded assets, and remote draft readback."
-  tagline_en: Keep the source intact, add your own context, and verify the reposted WeChat draft remotely.
-  tagline_zh: 保留合作方原文，加入自己的开场与收尾，并从微信远端回读转载草稿。
-  pricing:
-    model: free_entry
-    visibility: public
-    list_price_credits: 0
-    launch_price_credits: 0
-    price_range_credits:
-    - 0
-    - 0
-    delivery_unit_zh: 公开 Skill 源码、来源保真脚本、真实案例与当前版本说明
-    delivery_unit_en: Public Skill source, source-fidelity audit, verified case, and current-version notes
-    value_zh: 把来源定位、原文冻结、发布方增量、品牌资产和微信远端回读连接成一条可审计的转载流程。
-    value_en: Connect source discovery, frozen source content, publisher commentary, branded assets, and WeChat remote readback in one auditable repost workflow.
-    anchor_zh: 一次适合的转载可省下约 1–3 小时编辑与发布工作，并降低错误署名、私人语境泄露、重复草稿和误报发布状态风险。
-    anchor_en: A suitable repost can save roughly 1–3 hours of editorial and publishing work while reducing attribution, privacy, duplicate-draft, and false-publication risk.
-    basis_zh: 六维加权得分 3.8/5；已有一个完整远端案例和三项回归测试，但尚缺多用户重复使用证据，因此首版作为免费信任入口。
-    basis_en: The six-dimension score is 3.8/5, with one verified remote case and three regression tests; the first release stays free while multi-user evidence grows.
-    boundary_zh: 包含公开文章来源快照、原文冻结、发布方增量、转载权利门禁、保真审计和发布 Skill 交接；不含模型调用、素材许可、公众号账号、人工审批或代发布服务。
-    boundary_en: Includes public-source capture, frozen source content, publisher commentary, reprint-rights gates, fidelity audits, and publishing handoff; excludes model calls, rights clearance, WeChat accounts, human review, and managed publication.
-    maintenance_zh: 随微信页面结构、发布 API、真实使用反馈和支持成本复评。
-    maintenance_en: Review against WeChat page structure, publishing APIs, real usage, and support cost.
-    confidence: case-backed
-    review_trigger_zh: 达到 5 位独立用户、3 个新增远端案例，或加入托管抓取、多账号审批、版权许可与代发布时复评。
-    review_trigger_en: Review after five independent users, three additional remote cases, or addition of hosted extraction, multi-account approval, rights clearance, or managed publishing.
-    card_path: pricing-cards/repost-wechat-article.md

@@ -1,0 +1,33 @@
+schema: skill-manifest/v1
+id: lov-publish-wechat-article
+version: "0.8.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-publish-wechat-article
+    persist:
+      enabled: true
+      namespace: skills.lov-publish-wechat-article
+      records_path: skills.lov-publish-wechat-article.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: brand.name
+        required: false
+        question: 目标微信公众号名称是什么？
+  preferences:
+    namespace: lov_publish_wechat_article
+    fields:
+      - path: preferences.default_wechat_article_action
+        required: false
+        question: 默认只创建草稿，还是提交正式发布？
+  interaction:
+    ask_missing: true
+    max_questions: 1

@@ -1,0 +1,40 @@
+name: article-creator
+display_name: "LovStudio 公众号文章创建器"
+version: "0.4.1"
+entrypoint: lov-article-creator
+modules:
+  - id: article-writing
+    skill: lov-article-writing
+    path: skills/article-writing
+  - id: editorial-template
+    skill: lov-editorial-template
+    path: skills/editorial-template
+  - id: cover-package
+    skill: lov-cover-package
+    path: skills/cover-package
+  - id: quality-gate
+    skill: lov-quality-gate
+    path: skills/quality-gate
+pipelines:
+  full:
+    - article-writing
+    - editorial-template
+    - cover-package
+    - quality-gate
+  rewrite:
+    - article-writing
+    - editorial-template
+    - quality-gate
+  visual:
+    - cover-package
+    - quality-gate
+  brand:
+    - editorial-template
+    - cover-package
+    - quality-gate
+  repost:
+    - editorial-template
+    - cover-package
+    - quality-gate
+  audit:
+    - quality-gate

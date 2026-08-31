@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **97 个技能** — 80 个免费 + 17 个付费。
+> **96 个技能** — 81 个免费 + 15 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -100,14 +100,13 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`rich-export`](https://github.com/lovstudio/rich-export-skill) | [富媒体一键导出](https://github.com/lovstudio/rich-export-skill) | 一份富媒体内容，同时交付网页、可编辑文档、打印版和归档包。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`yoda-automation`](https://github.com/lovstudio/yoda-automation-skill) | [Yoda 自动化](https://github.com/lovstudio/yoda-automation-skill) | 把一次性提醒和周期跟进变成可核验的 Yoda 原生自动化，带时区、运行证据、去重与完成后停用。 |
 | **内容创作** | | | |
+| ![Free](https://img.shields.io/badge/Free-green) | [`article-creator`](https://github.com/lovstudio/article-creator-skill) | [公众号文章创作系统](https://github.com/lovstudio/article-creator-skill) | 从材料、旧稿或来源文章生成完整公众号文章包，并完成写作、品牌、双比例视觉、转载保真与质量验收。 — 依赖: `branding-consistency`, `writing-style` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`branding-consistency`](https://github.com/lovstudio/branding-consistency-skill) | [品牌语境门禁](https://github.com/lovstudio/branding-consistency-skill) | 从受众、品牌角色、组件惯例和真实发布语境审校可见文案，并允许删除多余文字。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`deep-research`](https://github.com/lovstudio/deep-research-skill) | [深度研究](https://github.com/lovstudio/deep-research-skill) | 生成带引用、证据和主张校验的深度研究报告，并收集分享 GitHub 等平台的已核验开源方案。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`document-illustrator`](https://github.com/lovstudio/document-illustrator-skill) | [文档配图](https://github.com/lovstudio/document-illustrator-skill) | 给长文原地配图，先规划插入点再并行出图，最后自动插回原文。 — 依赖: `image-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`human-writing`](https://github.com/lovstudio/human-writing-skill) | [中文作者性与反 AI 编辑](https://github.com/lovstudio/human-writing-skill) | 先保住作者真实判断，再修篇章结构，最后用 30 项中文指标定位并复测表层问题。 — 依赖: `branding-consistency` |
-| ![Free](https://img.shields.io/badge/Free-green) | [`repost-wechat-article`](https://github.com/lovstudio/repost-wechat-article-skill) | [微信公众号转载](https://github.com/lovstudio/repost-wechat-article-skill) | 保留合作方原文，加入自己的开场与收尾，并从微信远端回读转载草稿。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`publish-wechat-article`](https://github.com/lovstudio/publish-wechat-article-skill) | [微信公众号文章发布器](https://github.com/lovstudio/publish-wechat-article-skill) | 统一读取、局部编辑、创建、回读与发布公众号文章，并严格区分草稿、提交发布和正式上线。 — 依赖: `env-management`, `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`style-clone`](https://github.com/lovstudio/style-clone-skill) | [文风克隆](https://github.com/lovstudio/style-clone-skill) | 从样本文章中提取文风画像，再把任意内容改写成该文风。 |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wechat-article-branding`](https://github.com/lovstudio/wechat-article-branding-skill) | [公众号文章品牌化](https://github.com/lovstudio/wechat-article-branding-skill) | 把现有公众号文章加工成结构清晰、艺术封面统一、Logo 居中、封面 Prompt 可复用且经过真实页面验收的品牌化成品。 — 相关: `wechat-article-operator` |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wechat-article-operator`](https://github.com/lovstudio/wechat-article-operator-skill) | [公众号文章操作器](https://github.com/lovstudio/wechat-article-operator-skill) | 可靠读取、编辑、保存并重载验收现有公众号文章，支持精确内容修改与封面替换。 — 相关: `wechat-article-branding` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`write-professional-book`](https://github.com/lovstudio/write-professional-book-skill) | [专业写书](https://github.com/lovstudio/write-professional-book-skill) | 从大纲开始，逐章写出一本完整的书，技术、教程、专著多种风格。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`writing-style`](https://github.com/lovstudio/writing-style-skill) | [个人中文文风](https://github.com/lovstudio/writing-style-skill) | 用 19 篇真实样本校准的个人声音完成新写、保真改写与诊断，并经过作者性、篇章、表层和品牌语境门禁。 — 依赖: `branding-consistency`, `human-writing` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wxmp-cracker`](https://github.com/lovstudio/wxmp-cracker-skill) | [公众号神器](https://github.com/lovstudio/wxmp-cracker-skill) | 把微信公众号的文章批量归档成可再利用的整洁文本。 |
