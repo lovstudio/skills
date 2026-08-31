@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **94 个技能** — 77 个免费 + 17 个付费。
+> **95 个技能** — 78 个免费 + 17 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -112,7 +112,6 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | **开发工具** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`app-generator`](https://github.com/lovstudio/app-generator-skill) | [App 生成器](https://github.com/lovstudio/app-generator-skill) | 按需求生成 Lovstudio 级 web、PWA 或 Tauri App，内置品牌、UI、数据层、部署/发布和开发辅助。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`ataru-indexing`](https://github.com/lovstudio/ataru-indexing-skill) | [Ataru 索引](https://github.com/lovstudio/ataru-indexing-skill) | 在检索之前，先确认本机的 AI 会话记忆真的可被搜索。 |
-| ![Free](https://img.shields.io/badge/Free-green) | [`ataru-search`](https://github.com/lovstudio/ataru-search-skill) | [Ataru 检索](https://github.com/lovstudio/ataru-search-skill) | 把你和 AI 已经想清楚的事找回来，并读回它原本的上下文。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`auto-context`](https://github.com/lovstudio/auto-context-skill) | [上下文体检](https://github.com/lovstudio/auto-context-skill) | 监测 Claude Code 上下文是否被污染，适时提示你 /fork 或 /btw。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`cc-migrate-session`](https://github.com/lovstudio/cc-migrate-session) | [会话迁移](https://github.com/lovstudio/cc-migrate-session) | 项目目录搬家后，让 Claude Code 的历史会话还能正常 `--resume`。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`clash-tun-doctor`](https://github.com/lovstudio/clash-tun-doctor-skill) | [Clash TUN 网络医生](https://github.com/lovstudio/clash-tun-doctor-skill) | 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。 — 相关: `env-management` |
@@ -133,10 +132,12 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`mobile-adapt`](https://github.com/lovstudio/mobile-adapt-skill) | [移动端适配](https://github.com/lovstudio/mobile-adapt-skill) | 扫描并修复 Web 项目的移动端适配问题——溢出、安全区、视口单位、响应式布局和多级导航。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`npm-publisher`](https://github.com/lovstudio/lov-npm-publisher-skill) | [npm 发布器](https://github.com/lovstudio/lov-npm-publisher-skill) | 自动发布 npm 包，无需重复登录——OIDC trusted publishing 或本地 NPM_TOKEN。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`obsidian-reset-cache`](https://github.com/lovstudio/obsidian-reset-cache-skill) | [重置 Obsidian 缓存](https://github.com/lovstudio/obsidian-reset-cache-skill) | Obsidian 卡在 Loading cache 时，一键重置缓存救场。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`open-codex-session`](https://github.com/lovstudio/open-codex-session-skill) | [打开 Codex 会话](https://github.com/lovstudio/open-codex-session-skill) | 给出 thread ID 或刚确认的 session，让 Codex 直接打开准确任务。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`optimize-tauri-backend`](https://github.com/lovstudio/optimize-tauri-backend-skill) | [Tauri 后端优化](https://github.com/lovstudio/optimize-tauri-backend-skill) | 优化 Tauri 后端结构、命令边界和长 IPC 生命周期，降低 Rust 重启带来的开发摩擦。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`project-port`](https://github.com/lovstudio/project-port-skill) | [项目端口分配](https://github.com/lovstudio/project-port-skill) | 给每个项目分配一个稳定且唯一的开发端口，彻底告别端口撞车。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`release-via-cicd`](https://github.com/lovstudio/release-via-cicd-skill) | [CI/CD 发布](https://github.com/lovstudio/release-via-cicd-skill) | 配置发布流水线、发布新版本，并验证 Tauri/macOS 签名与 notarization 产物。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`repo2docs`](https://github.com/lovstudio/repo2docs-skill) | [文件夹生成文档站](https://github.com/lovstudio/repo2docs-skill) | 把任意文件夹（代码、文章、图片）增量编纂成精美的 Fumadocs 文档站，并部署到 {id}.lovstudio.ai/docs。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`search-chat`](https://github.com/lovstudio/search-chat-skill) | [历史会话检索](https://github.com/lovstudio/search-chat-skill) | 把你和 AI 已经想清楚的事找回来，并读回它原本的上下文。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-distiller`](https://github.com/lovstudio/skill-distiller-skill) | [Skill 经验蒸馏](https://github.com/lovstudio/skill-distiller-skill) | 将项目经验蒸馏为边界清晰、可创建且可验收的 Skill 蓝图。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-pricing`](https://github.com/lovstudio/skill-pricing-skill) | [Skill 定价](https://github.com/lovstudio/skill-pricing-skill) | 从成本、价值、信心度与渠道适配出发，生成可解释的 Skill Pricing Card。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-publisher`](https://github.com/lovstudio/skill-publisher-skill) | [Skill 发布器](https://github.com/lovstudio/skill-publisher-skill) | 每次发布先自动定价，默认上架 LovStudio 官网，仅在明确要求时扩展到其他渠道。 — 依赖: `skill-pricing` |

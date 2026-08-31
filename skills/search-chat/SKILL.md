@@ -1,5 +1,5 @@
 ---
-name: lov-ataru-search
+name: lov-search-chat
 description: >
   从本机 Ataru 记忆索引里召回过去的 AI 会话上下文，返回可定位的命中与原文片段。
   Use when asked what was discussed, decided, or fixed in an earlier session.
@@ -17,7 +17,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-ataru-search — 从本地记忆里召回上下文
+# lov-search-chat — 从本地记忆里召回上下文
 
 在本机已有的 AI 会话历史里找出与当前问题相关的过去记录，交回两样能直接用的
 东西：带稳定标识（Project / Session / Message）的排序命中，以及围绕某个命中的一段
@@ -40,7 +40,7 @@ metadata:
 ## User Profile (cross-session)
 
 `skill.yaml` 声明 `user-profile/v1`。每次运行开始时读取共享的 user、brand、
-workspace、preferences 以及本 Skill 的 `skills.lov-ataru-search` 命名空间。
+workspace、preferences 以及本 Skill 的 `skills.lov-search-chat` 命名空间。
 
 值得长期保存的记录有两项：`records.ataru_bin`（本机可用的 Ataru 可执行文件路径）与
 `records.default_level`（用户偏好的检索粒度）。用户直接说出这类值时，用
@@ -60,7 +60,7 @@ workspace、preferences 以及本 Skill 的 `skills.lov-ataru-search` 命名空�
 ### Step 0: Resolve the binary, then confirm the index
 
 ```bash
-export SKILL_DIR="$HOME/.claude/skills/lov-ataru-search"
+export SKILL_DIR="$HOME/.claude/skills/lov-search-chat"
 python3 "$SKILL_DIR/scripts/ataru_recall.py" index-status
 ```
 

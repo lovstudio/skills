@@ -11,7 +11,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 30 free skills bundled together.",
+      "description": "Dev Tools — 31 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/env-management",
@@ -38,7 +38,8 @@
         "./skills/project-port",
         "./skills/clash-tun-doctor",
         "./skills/ataru-indexing",
-        "./skills/ataru-search",
+        "./skills/search-chat",
+        "./skills/open-codex-session",
         "./skills/integrate-lovinsp",
         "./skills/dsh-plugin-creator",
         "./skills/dsh-plugin-publisher",

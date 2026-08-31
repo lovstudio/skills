@@ -1,0 +1,22 @@
+[
+  {
+    "type": "case",
+    "title": "打开微信读书投稿 Codex 会话",
+    "description": "用户先要求从历史记录找到微信读书投稿会话，随后要求在 Codex 中直接打开；结果必须是准确导航，而不是只返回 session ID。",
+    "input": {
+      "items": [
+        "请求：找到微信读书投稿的 session 并打开",
+        "经 Ataru 原文回读确认的会话标题：核实 Agent 写书发布微信读书",
+        "稳定 Codex sessionId"
+      ]
+    },
+    "prompt": "那请打开",
+    "output": {
+      "items": [
+        "调用 Codex 任务导航能力，参数为已确认的 sessionId",
+        "宿主返回 navigated=true",
+        "当前 Codex 主窗口打开目标任务，归档状态未改变"
+      ]
+    }
+  }
+]

@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把复制 ID、翻侧边栏和误开相似任务的多步操作收束为一次可验证导航。"
+basis: "核心能力调用本地 Codex 宿主，不产生模型外部成本；作为基础操作型 Skill 免费提供。"
+boundary: "包含 UUID/deeplink 归一化、唯一目标确认、任务导航与成功回读；不包含会话检索服务、消息发送、分享、取消归档或远程发布。"
+review_trigger: "当宿主导航接口需要付费服务、跨设备同步或受保护的云端检索时重新评估。"
+confidence: internal

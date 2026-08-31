@@ -1,0 +1,78 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "接受 Codex thread UUID、deeplink 或已确认的 sessionId，在当前 Codex 主窗口打开准确任务，并用宿主导航结果验收。"
+owner:
+  team: "LovStudio Skills"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "可依 MIT 许可使用、修改和分发；宿主应用及第三方服务仍受各自条款约束。"
+  url: "LICENSE"
+use_case:
+  audience: "需要从搜索结果、任务列表或 deeplink 快速回到指定 Codex 任务的本地用户"
+  scenario: "用户给出唯一任务标识，或刚刚确认了一个历史会话，希望当前 Codex 主窗口直接进入该任务。"
+  tasks:
+    - "归一化 thread UUID 或 Codex deeplink"
+    - "在描述性请求中复用刚确认的唯一 sessionId"
+    - "调用宿主任务导航并验证 navigated=true"
+deployment:
+  geography: local
+  environments:
+    - "Codex desktop with task navigation capability"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Codex desktop host"
+    - "Python 3.8+ for shared Profile operations"
+risks:
+  - risk: "关键词命中多个相似任务时可能打开错误目标。"
+    mitigation: "在导航前要求唯一稳定 ID；描述性检索必须回读标题与原文，歧义未消除时不打开。"
+  - risk: "宿主没有任务导航工具时，deeplink 或系统自动化可能产生无法验证的假成功。"
+    mitigation: "缺少宿主能力时明确失败，不以 shell、浏览器或 Computer Use 替代成功证据。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Skill composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "Codex desktop navigation result"
+  formats:
+    - "host tool response and concise confirmation"
+  parameters:
+    - "threadId"
+  validation:
+    - "target resolves to exactly one UUID"
+    - "host response contains navigated=true"
+  description: "当前 Codex 主窗口切换到目标任务；任务内容、归档状态和 Git 状态保持不变。"
+ethical_considerations: "仅导航到用户本机可访问的任务；不持久化 thread ID 或转录，不分享内容，不绕过访问控制。"
+dimensions:
+  - id: correctness
+    label: "目标正确性"
+    description: "导航前把输入解析为唯一稳定 threadId，并在描述性检索时核对原文。"
+    evidence: "真实案例中先确认“核实 Agent 写书发布微信读书”会话，再以稳定 sessionId 导航。"
+    score: "verified-single-case"
+  - id: runtime-verification
+    label: "运行验收"
+    description: "不把 UUID 解析或工具调用本身当成完成，必须回读宿主成功状态。"
+    evidence: "真实 Codex desktop 调用返回 navigated=true。"
+    score: "verified-single-case"
+  - id: scope-safety
+    label: "范围安全"
+    description: "只执行窗口导航，不取消归档、不发送消息、不创建任务。"
+    evidence: "真实案例打开归档任务后未改变归档状态，也未向任务写入新消息。"
+    score: "verified-single-case"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "本地基础导航能力，无外部模型或服务成本。"
+  boundary: "仅包含目标解析、导航和成功回读。"
+  review_trigger: "宿主能力变为付费云服务或加入跨设备检索时复评。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

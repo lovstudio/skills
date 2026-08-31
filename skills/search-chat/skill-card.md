@@ -1,4 +1,4 @@
-# Skill Card — lov-ataru-search
+# Skill Card — lov-search-chat
 
 This human-readable card mirrors `skill-card.yaml`. It is a release record, not
 an implementation note.
@@ -57,7 +57,7 @@ stdout 上的单个 UTF-8 JSON 对象。`search` 返回 `query`、`level`、`mod
 
 ## Skill Version
 
-0.1.0
+0.2.0
 
 ## Ethical Considerations
 

@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.2.0"
 description: >
   从本机 Ataru 记忆索引里召回过去的 AI 会话上下文。先确认索引就绪，再按 turn /
   run / session / project 粒度检索，返回带稳定标识的排序命中，并支持围绕任一命中

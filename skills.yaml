@@ -3477,15 +3477,15 @@ skills:
     confidence: entry
     review_trigger_zh: Ataru 本体开始按检索能力收费，或语义索引初始化产生真实外部推理成本时复评。
     review_trigger_en: Review if Ataru starts charging for retrieval, or semantic initialization incurs real external inference cost.
-- name: ataru-search
-  runtime_name: lov-ataru-search
-  display_name: Ataru Search
-  repo: lovstudio/ataru-search-skill
-  name_zh: Ataru 检索
+- name: search-chat
+  runtime_name: lov-search-chat
+  display_name: Search Chat
+  repo: lovstudio/search-chat-skill
+  name_zh: 历史会话检索
   paid: false
   category: Dev Tools
   version: "0.2.0"
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-08-31T12:40:40Z
   description: 'Recall past AI session context from the local Ataru memory index: keyword search with locatable Turn/Session hits and source-window read-back by stable ID.'
   tagline_en: Find what you and your AI already worked out, and read it back in its original context.
   tagline_zh: 把你和 AI 已经想清楚的事找回来，并读回它原本的上下文。
@@ -3509,9 +3509,47 @@ skills:
     boundary_en: Covers index-readiness gating, keyword recall, hit projection, and source windows; index building or repair, semantic and hybrid ranking, and cross-machine retrieval are excluded.
     maintenance_zh: 随 Ataru 检索命令的过滤参数、上限与稳定 ID 契约变化复评。
     maintenance_en: Review when Ataru search filters, limits, or the stable-ID contract change.
-    confidence: entry
-    review_trigger_zh: 命令行开始支持语义检索并产生真实推理成本，或 Ataru 本体按检索能力收费时复评。
-    review_trigger_en: Review when the CLI gains semantic retrieval with real inference cost, or Ataru starts charging for retrieval.
+    confidence: medium
+    review_trigger_zh: 累计 25 次真实检索、命令行开始支持付费语义检索、稳定 ID 契约变化，或 Ataru 本体按检索能力收费时复评。
+    review_trigger_en: Review after 25 real searches, paid semantic retrieval is added to the CLI, the stable-ID contract changes, or Ataru starts charging for retrieval.
+    card_path: pricing-cards/search-chat.md
+
+- name: open-codex-session
+  runtime_name: lov-open-codex-session
+  display_name: Open Codex Session
+  repo: lovstudio/open-codex-session-skill
+  name_zh: 打开 Codex 会话
+  paid: false
+  category: Dev Tools
+  version: "0.1.0"
+  updated_at: 2026-08-31T12:40:40Z
+  description: 'Open an exact Codex desktop task from a thread UUID, deeplink, or confirmed session ID, then verify that the host actually navigated.'
+  tagline_en: Open the exact Codex task you mean, then verify the desktop actually navigated.
+  tagline_zh: 给出 thread ID 或刚确认的 session，让 Codex 直接打开准确任务。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 单项 Skill、目标解析、Codex 主窗口导航与成功回读
+    delivery_unit_en: One Skill with target resolution, Codex main-window navigation, and success read-back
+    value_zh: 把稳定 ID 解析、唯一目标确认、应用内导航与成功验收收束成一个动作，减少误开相似任务和假成功。
+    value_en: Combines stable-ID parsing, unique-target confirmation, in-app navigation, and success verification into one action, reducing wrong-task opens and false success.
+    anchor_zh: 一次使用预计节省 1–10 分钟的侧边栏翻找、ID 复制和误开任务成本。
+    anchor_en: One use can save an estimated 1–10 minutes of sidebar searching, ID copying, and opening the wrong task.
+    basis_zh: 核心执行由本地 Codex 宿主提供，无模型、托管或 API 运行成本，作为原子基础能力免费发布。
+    basis_en: The local Codex host provides the core execution with no model, hosting, or API runtime cost, so this atomic capability ships free.
+    boundary_zh: 包含目标解析、导航与 navigated=true 回读；不包含历史检索、跨设备同步、消息发送、分享或归档管理。
+    boundary_en: Covers target resolution, navigation, and navigated=true read-back; history search, cross-device sync, messaging, sharing, and archive management are excluded.
+    maintenance_zh: 随 Codex desktop 任务导航接口和 deeplink 约定变化复评。
+    maintenance_en: Review when Codex desktop task-navigation interfaces or deeplink conventions change.
+    confidence: medium-low
+    review_trigger_zh: 累计 10 次真实使用、导航 API 变化、加入跨设备托管检索，或支持成本明显上升时复评。
+    review_trigger_en: Review after 10 real uses, a navigation API change, adding hosted cross-device retrieval, or a material increase in support cost.
+    card_path: pricing-cards/open-codex-session.md
 
 - name: integrate-lovinsp
   runtime_name: lov-integrate-lovinsp
