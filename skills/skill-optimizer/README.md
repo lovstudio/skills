@@ -1,10 +1,12 @@
 # lov-skill-optimizer
 
-![Version](https://img.shields.io/badge/version-0.10.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.11.1-CC785C)
 
 自动审计并优化 Agent Skill：按当前对话优先修复问题，统一 README、SKILL.md、
 `skill.yaml` 与 CHANGELOG 版本，然后核对规范源、安装副本和 catalog 的同步状态。
 支持独立 Skill 目录、嵌套仓库和已安装副本，不把未发现的位置当成已同步。
+付费 Skill 仓库会审计 `src/SKILL.md`，同步时只使用 `public/` 加密分发载荷，避免把
+明文规范误装到用户目录。
 
 用户反馈先分三层：仅当前任务、单个 Skill 可复用、所有 Skill 全局可复用。全局规则只进入
 用户级共享规范（例如生效中的 `AGENTS.md`），不会机械复制到每个 `SKILL.md`；如果之前放错
@@ -53,7 +55,7 @@ python3 scripts/lint_skill.py --all --root /absolute/path/to/skills --json
 
 ## 处理顺序
 
-1. 读取当前对话中的具体问题；
+1. 读取当前对话中的具体问题，区分已认可基线、请求增量和被否决的修复尝试；
 2. 运行 lint，检查 frontmatter、触发语句、可移植性、版本漂移和脚本 CLI；
 3. 只修改规范源；
 4. 统一版本、追加 CHANGELOG；

@@ -26,6 +26,8 @@ FRONTMATTER_REQUIRED = ["name", "description", "license", "compatibility", "meta
 METADATA_REQUIRED = ["author", "version", "tags"]
 STANDARD_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
+AUDIENCE_ACTION_RE = re.compile(r"\b(create|generate|write|edit|render|publish|package)\b|创建|生成|撰写|编辑|渲染|发布|排版", re.I)
+AUDIENCE_ARTIFACT_RE = re.compile(r"\b(poster|article|document|pdf|deck|copy|proposal|report|flyer)\b|海报|文章|文案|文档|报告|策划案", re.I)
 USER_CONFIG_CUES = (
     "## User Configuration",
     "## 用户配置",
@@ -79,9 +81,11 @@ def looks_like_skills_root(path: Path) -> bool:
         return False
     try:
         for child in path.iterdir():
-            if child.is_dir() and (child / "SKILL.md").exists():
+            if child.is_dir() and ((child / "SKILL.md").exists() or (child / "src" / "SKILL.md").exists()):
                 return True
-            if child.is_dir() and child.name.endswith("-skill") and (child / "SKILL.md").exists():
+            if child.is_dir() and child.name.endswith("-skill") and (
+                (child / "SKILL.md").exists() or (child / "src" / "SKILL.md").exists()
+            ):
                 return True
     except OSError:
         return False
@@ -117,7 +121,7 @@ def resolve_skill_dir(name: str, path: str | None) -> Path:
         root / raw,
     ]
     for c in candidates:
-        if (c / "SKILL.md").exists():
+        if (c / "SKILL.md").exists() or (c / "src" / "SKILL.md").exists():
             return c.resolve()
     return candidates[0].resolve()
 
@@ -129,10 +133,24 @@ def discover_skill_dirs(root: Path) -> list[Path]:
         parts = set(skill_md.parts)
         if parts.intersection(ignored):
             continue
-        dirs.append(skill_md.parent)
+        if skill_md.parent.name in {"src", "public"} and (skill_md.parent.parent / "skill.yaml").exists():
+            dirs.append(skill_md.parent.parent)
+        else:
+            dirs.append(skill_md.parent)
     if (root / "SKILL.md").exists():
         dirs.append(root)
     return sorted(set(dirs))
+
+
+def canonical_skill_md(skill_dir: Path) -> Path:
+    """Return the authored Skill spec, including paid/encrypted repo layouts."""
+    root_spec = skill_dir / "SKILL.md"
+    if root_spec.exists():
+        return root_spec
+    source_spec = skill_dir / "src" / "SKILL.md"
+    if source_spec.exists():
+        return source_spec
+    return root_spec
 
 
 def read_manifest_fields(path: Path) -> dict[str, str]:
@@ -233,8 +251,8 @@ class Linter:
                 f"Directory '{self.dir.name}' is not in a recognized source/install format",
                 "Use <name>-skill for source repos or lov-<name> for installed/distributed dirs",
             )
-        for required in ("SKILL.md", "README.md"):
-            f = self.dir / required
+        required_files = (("SKILL.md", canonical_skill_md(self.dir)), ("README.md", self.dir / "README.md"))
+        for required, f in required_files:
             if not f.exists():
                 self.add(
                     "error",
@@ -245,11 +263,13 @@ class Linter:
                 )
 
     def check_skill_md(self):
-        path = self.dir / "SKILL.md"
+        path = canonical_skill_md(self.dir)
         if not path.exists():
             return
+        rel = path.relative_to(self.dir).as_posix()
         text = path.read_text(encoding="utf-8")
         fm, body = parse_frontmatter(text)
+        frontmatter = text[: text.find("\n---", 3) + 4] if text.startswith("---") and text.find("\n---", 3) >= 0 else ""
 
         for key in FRONTMATTER_REQUIRED:
             if key not in fm:
@@ -258,7 +278,7 @@ class Linter:
                     "FM_MISSING_FIELD",
                     f"SKILL.md frontmatter missing required field '{key}'",
                     f"Add '{key}:' to frontmatter",
-                    file="SKILL.md",
+                    file=rel,
                 )
 
         name = fm.get("name", "")
@@ -268,7 +288,7 @@ class Linter:
                 "FM_NAME_INVALID",
                 f"frontmatter name '{name}' is not Agent Skills-compatible",
                 f"Use name: {self.expected_standard_name}",
-                file="SKILL.md",
+                file=rel,
             )
         elif name and name != self.expected_standard_name:
             self.add(
@@ -276,7 +296,7 @@ class Linter:
                 "FM_NAME_MISMATCH",
                 f"frontmatter name '{name}' does not match standard expected name '{self.expected_standard_name}'",
                 f"Set name: {self.expected_standard_name} or document why this is author-only",
-                file="SKILL.md",
+                file=rel,
             )
 
         desc = fm.get("description", "") or ""
@@ -287,7 +307,7 @@ class Linter:
                     "FM_DESC_TOO_SHORT",
                     "description is shorter than 80 chars — likely missing trigger info",
                     "Expand description to cover: what it does + when to trigger + specific user phrases",
-                    file="SKILL.md",
+                    file=rel,
                 )
             if "trigger" not in desc.lower() and "mention" not in desc.lower() and "use when" not in desc.lower():
                 self.add(
@@ -295,7 +315,7 @@ class Linter:
                     "FM_DESC_NO_TRIGGER",
                     "description lacks explicit trigger cues (e.g. 'Use when...', 'trigger when user mentions...')",
                     "Add 'Use when ...' and 'Also trigger when the user mentions \"...\"' phrases",
-                    file="SKILL.md",
+                    file=rel,
                 )
 
         meta = fm.get("metadata")
@@ -307,7 +327,7 @@ class Linter:
                         "FM_META_FIELD",
                         f"metadata.{k} missing",
                         f"Add metadata.{k}",
-                        file="SKILL.md",
+                        file=rel,
                     )
             version = meta.get("version", "")
             if version and not SEMVER_RE.match(version):
@@ -316,10 +336,21 @@ class Linter:
                     "FM_VERSION_FORMAT",
                     f"metadata.version '{version}' is not semver x.y.z",
                     "Use semver format like 0.1.0",
-                    file="SKILL.md",
+                    file=rel,
                 )
 
-        self.check_version_sources(fm)
+        self.check_version_sources(fm, rel)
+
+        audience_sample = f"{fm.get('description', '')}\n{body[:4000]}"
+        audience_visible = AUDIENCE_ACTION_RE.search(audience_sample) and AUDIENCE_ARTIFACT_RE.search(audience_sample)
+        if audience_visible and "lov-branding-consistency" not in frontmatter:
+            self.add(
+                "warn",
+                "MISSING_BRANDING_DEP",
+                "audience-visible authored output lacks the lov-branding-consistency dependency",
+                "Add lov-branding-consistency to top-level depends_on; preserve quoted/source text verbatim",
+                file=rel,
+            )
 
         # Body checks
         if re.search(r"TODO:\s", body) or "TODO_CN" in body or "TODO_EN" in body:
@@ -328,7 +359,7 @@ class Linter:
                 "BODY_TODO",
                 "SKILL.md body still contains TODO placeholders",
                 "Replace all TODOs with real content",
-                file="SKILL.md",
+                file=rel,
             )
         non_interactive = any(
             phrase in body.lower()
@@ -344,7 +375,7 @@ class Linter:
                 "BODY_NO_ASKUSER",
                 "Workflow does not mention AskUserQuestion — interactive skills should collect options before running",
                 "Add an 'Ask the user' step using AskUserQuestion",
-                file="SKILL.md",
+                file=rel,
             )
         if len(body.splitlines()) > 500:
             self.add(
@@ -352,10 +383,10 @@ class Linter:
                 "BODY_TOO_LONG",
                 "SKILL.md body exceeds 500 lines — consider progressive disclosure",
                 "Split long sections to references/ and link from SKILL.md",
-                file="SKILL.md",
+                file=rel,
             )
 
-    def check_version_sources(self, fm: dict):
+    def check_version_sources(self, fm: dict, skill_rel: str):
         """Ensure README, SKILL.md and skill.yaml do not advertise different versions."""
         versions: dict[str, str] = {}
         readme = self.dir / "README.md"
@@ -367,9 +398,37 @@ class Linter:
             if match:
                 versions["README.md"] = match.group(1)
 
+        if fm.get("version"):
+            versions[f"{skill_rel} version"] = str(fm["version"])
+
         metadata = fm.get("metadata")
         if isinstance(metadata, dict) and metadata.get("version"):
-            versions["SKILL.md"] = str(metadata["version"])
+            versions[f"{skill_rel} metadata.version"] = str(metadata["version"])
+
+        public_spec = self.dir / "public" / "SKILL.md"
+        if public_spec.exists():
+            public_fm, _ = parse_frontmatter(public_spec.read_text(encoding="utf-8", errors="replace"))
+            if public_fm.get("version"):
+                versions["public/SKILL.md version"] = str(public_fm["version"])
+
+        encrypted_versions: list[tuple[str, str]] = []
+        for manifest_rel in ("public/MANIFEST.enc.json", "dist/MANIFEST.enc.json"):
+            encrypted_manifest = self.dir / manifest_rel
+            if not encrypted_manifest.exists():
+                continue
+            try:
+                encrypted_data = json.loads(encrypted_manifest.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                self.add(
+                    "error",
+                    "ENC_MANIFEST_INVALID",
+                    f"{manifest_rel} is not valid JSON",
+                    "Regenerate the encrypted distribution bundle",
+                    file=manifest_rel,
+                )
+                continue
+            if encrypted_data.get("skill_version"):
+                encrypted_versions.append((manifest_rel, str(encrypted_data["skill_version"])))
 
         manifest = read_manifest_fields(self.dir / "skill.yaml")
         if manifest.get("version"):
@@ -394,6 +453,17 @@ class Linter:
                 file="README.md/SKILL.md/skill.yaml",
             )
 
+        canonical_version = manifest.get("version") or next(iter(versions.values()), "")
+        for manifest_rel, encrypted_version in encrypted_versions:
+            if canonical_version and encrypted_version != canonical_version:
+                self.add(
+                    "warn",
+                    "ENC_BUNDLE_STALE",
+                    f"{manifest_rel} is {encrypted_version}, canonical source is {canonical_version}",
+                    "Rebuild and publish the encrypted bundle before reporting distribution sync",
+                    file=manifest_rel,
+                )
+
         manifest_id = manifest.get("id")
         skill_name = str(fm.get("name", ""))
         if manifest_id and skill_name and manifest_id != skill_name:
@@ -407,8 +477,9 @@ class Linter:
 
     def check_portability(self):
         files = []
-        for rel in ("SKILL.md", "README.md"):
-            path = self.dir / rel
+        spec = canonical_skill_md(self.dir)
+        candidates = ((spec.relative_to(self.dir).as_posix(), spec), ("README.md", self.dir / "README.md"))
+        for rel, path in candidates:
             if path.exists():
                 files.append((rel, path))
         scripts_dir = self.dir / "scripts"
@@ -421,7 +492,7 @@ class Linter:
             for _, path in files
         )
         has_user_config = any(cue in combined for cue in USER_CONFIG_CUES)
-        skill_md = self.dir / "SKILL.md"
+        skill_md = canonical_skill_md(self.dir)
         compatibility = ""
         if skill_md.exists():
             fm, _ = parse_frontmatter(skill_md.read_text(encoding="utf-8", errors="replace"))

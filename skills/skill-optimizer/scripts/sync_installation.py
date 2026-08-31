@@ -42,6 +42,13 @@ def payload_files(directory: Path) -> dict[str, Path]:
     return files
 
 
+def distribution_payload(source: Path) -> Path:
+    public = source / "public"
+    if (source / "src" / "SKILL.md").exists() and (public / "SKILL.md").exists():
+        return public
+    return source
+
+
 def file_digest(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -90,12 +97,13 @@ def copy_files(source: Path, target: Path, relative_paths: list[str]) -> None:
         shutil.copy2(source_path, target_path)
 
 
-def sync_target(source: Path, target: Path, apply: bool, prune: bool) -> dict:
+def sync_target(source: Path, target: Path, apply: bool, prune: bool, canonical_source: Path | None = None) -> dict:
     source = source.resolve()
+    canonical_source = canonical_source.resolve() if canonical_source else source
     target_is_symlink = target.is_symlink()
     if target_is_symlink:
         resolved = target.resolve()
-        state = "synced" if resolved == source else "drifted"
+        state = "synced" if resolved in {source, canonical_source} else "drifted"
         return {
             "path": str(target),
             "kind": "symlink",
@@ -137,17 +145,22 @@ def main() -> None:
     if args.prune and not args.apply:
         parser.error("--prune requires --apply")
 
-    source = Path(args.source).expanduser().resolve()
-    if not source.is_dir():
-        parser.error(f"source directory not found: {source}")
+    canonical_source = Path(args.source).expanduser().resolve()
+    if not canonical_source.is_dir():
+        parser.error(f"source directory not found: {canonical_source}")
+    source = distribution_payload(canonical_source)
 
     try:
         targets = [Path(value).expanduser() for value in args.target]
         result = {
-            "source": str(source),
+            "source": str(canonical_source),
+            "payload": str(source),
             "mode": "apply" if args.apply else "plan",
             "prune": args.prune,
-            "targets": [sync_target(source, target, args.apply, args.prune) for target in targets],
+            "targets": [
+                sync_target(source, target, args.apply, args.prune, canonical_source)
+                for target in targets
+            ],
         }
     except (OSError, ValueError) as error:
         print(f"ERROR: {error}", file=sys.stderr)

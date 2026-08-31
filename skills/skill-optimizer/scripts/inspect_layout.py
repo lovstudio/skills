@@ -61,6 +61,14 @@ def tree_digest(directory: Path) -> str | None:
     return digest.hexdigest()
 
 
+def distribution_payload(source: Path) -> Path:
+    """Use the publishable payload for paid/encrypted source repositories."""
+    public = source / "public"
+    if (source / "src" / "SKILL.md").exists() and (public / "SKILL.md").exists():
+        return public
+    return source
+
+
 def split_paths(values: list[str]) -> list[Path]:
     paths: list[Path] = []
     for value in values:
@@ -97,11 +105,18 @@ def catalog_candidates(source: Path, explicit_roots: list[str]) -> list[Path]:
     if environment:
         roots.extend(split_paths([environment]))
     git_root = run_git(source, "rev-parse", "--show-toplevel")
-    anchors = [source.parent]
+    anchors = [source.parent, source.parent.parent]
     if git_root:
-        anchors.append(Path(git_root).parent)
+        git_parent = Path(git_root).parent
+        anchors.extend((git_parent, git_parent.parent))
     for anchor in anchors:
-        for name in ("general-skills", "dev-skills"):
+        for name in (
+            "lovstudio-skills",
+            "lovstudio-general-skills",
+            "lovstudio-dev-skills",
+            "general-skills",
+            "dev-skills",
+        ):
             candidate = anchor / name
             if candidate.is_dir():
                 roots.append(candidate)
@@ -150,21 +165,24 @@ def inspect(source: Path, install_roots: list[str], catalog_roots: list[str]) ->
         raise FileNotFoundError(source)
     short_name = skill_short_name(source)
     source_digest = tree_digest(source)
+    payload = distribution_payload(source)
+    payload_digest = tree_digest(payload)
     installations = []
     for candidate in installation_candidates(source, install_roots):
-        digest = source_digest if candidate.is_symlink() and candidate.resolve() == source else tree_digest(candidate)
+        resolves_to_payload = candidate.is_symlink() and candidate.resolve() in {source, payload}
+        digest = payload_digest if resolves_to_payload else tree_digest(candidate)
         installations.append(
             {
                 "path": str(candidate),
                 "kind": "symlink" if candidate.is_symlink() else "copy",
                 "digest": digest,
-                "state": "synced" if digest == source_digest else "drifted",
+                "state": "synced" if digest == payload_digest else "drifted",
             }
         )
     git_root = run_git(source, "rev-parse", "--show-toplevel")
     status = run_git(source, "status", "--porcelain=v1", "--untracked-files=all")
     branch = run_git(source, "branch", "--show-current")
-    catalogs = [catalog_state(path, short_name, source_digest) for path in catalog_candidates(source, catalog_roots)]
+    catalogs = [catalog_state(path, short_name, payload_digest) for path in catalog_candidates(source, catalog_roots)]
     distribution_state = (
         "complete"
         if installations and all(item["state"] == "synced" for item in installations)
@@ -192,6 +210,11 @@ def inspect(source: Path, install_roots: list[str], catalog_roots: list[str]) ->
             "branch": branch,
             "worktree": "dirty" if status else "clean",
             "status_lines": len(status.splitlines()) if status else 0,
+        },
+        "payload": {
+            "path": str(payload),
+            "digest": payload_digest,
+            "kind": "public" if payload != source else "source",
         },
         "installations": installations,
         "catalogs": catalogs,

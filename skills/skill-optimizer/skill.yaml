@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-skill-optimizer
-version: "0.10.0"
+version: "0.11.1"
 runtime: skill-runtime/v1
 context:
   profile:

@@ -32,13 +32,33 @@ BADGE_COLOR = "CC785C"  # LovStudio terracotta
 BADGE_RE = re.compile(
     r"!\[Version\]\(https://img\.shields\.io/badge/version-(\d+\.\d+\.\d+)-[A-Za-z0-9]+\)"
 )
-FM_VERSION_RE = re.compile(r'(?m)^(\s+version:\s*["\']?)(\d+\.\d+\.\d+)(["\']?\s*)$')
+FM_VERSION_RE = re.compile(r'(?m)^(\s*version:\s*["\']?)(\d+\.\d+\.\d+)(["\']?\s*)$')
 MANIFEST_VERSION_RE = re.compile(r'(?m)^(version:\s*["\']?)(\d+\.\d+\.\d+)(["\']?\s*)$')
+
+
+def canonical_skill_md(skill_dir: Path) -> Path:
+    root_spec = skill_dir / "SKILL.md"
+    if root_spec.exists():
+        return root_spec
+    source_spec = skill_dir / "src" / "SKILL.md"
+    if source_spec.exists():
+        return source_spec
+    return root_spec
+
+
+def frontmatter_text(path: Path) -> str:
+    if not path.exists():
+        return ""
+    text = path.read_text(encoding="utf-8", errors="replace")
+    if not text.startswith("---"):
+        return ""
+    end = text.find("\n---", 3)
+    return text[: end + 4] if end >= 0 else ""
 
 
 def find_repo_root(start: Path) -> Path:
     for p in [start] + list(start.parents):
-        if (p / "SKILL.md").exists() and (p / "skill.yaml").exists():
+        if ((p / "SKILL.md").exists() or (p / "src" / "SKILL.md").exists()) and (p / "skill.yaml").exists():
             return p
         if (p / "CLAUDE.md").exists() and (p / "skills").is_dir():
             return p
@@ -65,7 +85,11 @@ def resolve_skill_dir(name: str, path: str | None) -> Path:
     if (root / "SKILL.md").exists():
         candidates.insert(0, root)
     for candidate in candidates:
-        if (candidate / "SKILL.md").exists() or (candidate / "README.md").exists():
+        if (
+            (candidate / "SKILL.md").exists()
+            or (candidate / "src" / "SKILL.md").exists()
+            or (candidate / "README.md").exists()
+        ):
             return candidate.resolve()
     return candidates[0].resolve()
 
@@ -78,11 +102,19 @@ def read_version_sources(skill_dir: Path) -> dict[str, str]:
         if match:
             versions["README.md"] = match.group(1)
 
-    skill_md = skill_dir / "SKILL.md"
+    skill_md = canonical_skill_md(skill_dir)
     if skill_md.exists():
-        match = FM_VERSION_RE.search(skill_md.read_text(encoding="utf-8", errors="replace"))
+        rel = skill_md.relative_to(skill_dir).as_posix()
+        matches = list(FM_VERSION_RE.finditer(frontmatter_text(skill_md)))
+        for index, match in enumerate(matches, start=1):
+            label = rel if len(matches) == 1 else f"{rel}#{index}"
+            versions[label] = match.group(2)
+
+    public_skill = skill_dir / "public" / "SKILL.md"
+    if public_skill.exists():
+        match = FM_VERSION_RE.search(frontmatter_text(public_skill))
         if match:
-            versions["SKILL.md"] = match.group(2)
+            versions["public/SKILL.md"] = match.group(2)
 
     manifest = skill_dir / "skill.yaml"
     if manifest.exists():
@@ -94,7 +126,7 @@ def read_version_sources(skill_dir: Path) -> dict[str, str]:
 
 def read_current_version(skill_dir: Path) -> str:
     versions = read_version_sources(skill_dir)
-    for source in ("README.md", "SKILL.md", "skill.yaml"):
+    for source in ("README.md", "SKILL.md", "src/SKILL.md", "src/SKILL.md#1", "skill.yaml"):
         if source in versions:
             return versions[source]
     return "0.0.0"
@@ -144,16 +176,17 @@ def update_readme(skill_dir: Path, new_version: str, dry: bool) -> bool:
     return False
 
 
-def update_skill_md_version(skill_dir: Path, new_version: str, dry: bool) -> bool:
-    skill_md = skill_dir / "SKILL.md"
-    if not skill_md.exists():
+def update_markdown_versions(path: Path, new_version: str, dry: bool) -> bool:
+    if not path.exists():
         return False
-    text = skill_md.read_text(encoding="utf-8")
-    if not FM_VERSION_RE.search(text):
+    text = path.read_text(encoding="utf-8")
+    frontmatter = frontmatter_text(path)
+    if not frontmatter or not FM_VERSION_RE.search(frontmatter):
         return False
-    new_text = FM_VERSION_RE.sub(rf'\g<1>{new_version}\g<3>', text, count=1)
+    updated_frontmatter = FM_VERSION_RE.sub(rf'\g<1>{new_version}\g<3>', frontmatter)
+    new_text = updated_frontmatter + text[len(frontmatter) :]
     if new_text != text and not dry:
-        skill_md.write_text(new_text, encoding="utf-8")
+        path.write_text(new_text, encoding="utf-8")
     return new_text != text
 
 
@@ -260,8 +293,12 @@ def main():
     changed = []
     if update_readme(skill_dir, new_version, args.dry_run):
         changed.append("README.md")
-    if update_skill_md_version(skill_dir, new_version, args.dry_run):
-        changed.append("SKILL.md")
+    skill_md = canonical_skill_md(skill_dir)
+    if update_markdown_versions(skill_md, new_version, args.dry_run):
+        changed.append(skill_md.relative_to(skill_dir).as_posix())
+    public_skill = skill_dir / "public" / "SKILL.md"
+    if update_markdown_versions(public_skill, new_version, args.dry_run):
+        changed.append("public/SKILL.md")
     if update_manifest_version(skill_dir, new_version, args.dry_run):
         changed.append("skill.yaml")
     update_changelog(skill_dir, new_version, args.message, args.change, kind, args.dry_run)

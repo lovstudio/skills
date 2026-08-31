@@ -16,9 +16,11 @@ compatibility: >
   for source commit/push verification. Catalog synchronization is discovered
   from explicit paths, environment variables, or nearby checkouts; unavailable
   locations are reported rather than assumed.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.10.0"
+  version: "0.11.1"
   tags: meta skill-maintenance versioning changelog lint portability sync
 ---
 
@@ -51,6 +53,12 @@ source checkout, an installed copy, or a catalog entry. Before editing:
    only when its content digest matches the source; a missing location is
    `not_discovered`, never `complete`. A symlink is `synced` only when it
    resolves to the canonical source.
+
+Paid/encrypted repositories may keep the authored specification at
+`src/SKILL.md` and the installable payload under `public/`. Treat the repository
+root as canonical, lint and version the authored spec, and compare or sync only
+the `public/` payload to installations. Never copy plaintext `src/` content into
+an installed paid Skill.
 
 Do not absorb pre-existing edits into a maintenance commit. If a target file is
 already dirty, review the overlap before editing it and stage only the exact
@@ -87,6 +95,12 @@ Collect the current-conversation fix list first: broken flags, trigger misses,
 wrong paths, confusing output, missing modules, compatibility requirements, or
 other concrete symptoms.
 
+For every correction, distinguish four pieces of evidence: the observed
+defect, the latest user-approved baseline, the requested delta, and any remedy
+the user rejected. A rejected remedy is negative evidence, not a reusable best
+practice. Preserve the approved baseline outside the requested delta, and do
+not encode a failed over-correction into the target Skill.
+
 ### Step 2: Baseline lint
 
 For each target, run the linter against the resolved canonical path:
@@ -108,6 +122,12 @@ reusable Skill: move personal paths to flags, environment variables, or
 `references/user-config.md`, or mark a genuinely author-only dependency in
 `compatibility`.
 
+Classify the Skill's normal output before editing. If it generates, edits,
+reviews, renders, packages, or publishes text visible to an end user or reader,
+top-level `depends_on` must contain `lov-branding-consistency`. This dependency
+gates authored presentation copy only; it must not rewrite quotations,
+transcripts, source data, legal text, identifiers, or code without permission.
+
 ### Step 3: Apply focused fixes
 
 Edit only the canonical source. Keep the Skill's public trigger surface,
@@ -116,7 +136,14 @@ Use progressive disclosure when SKILL.md grows beyond roughly 500 lines. Add a
 script or reference file only when it resolves a concrete audit finding or
 conversation issue.
 
-The linter checks:
+When the user has already approved an artifact and then requests a localized
+fix, optimize the domain Skill around a minimal-delta contract: lock accepted
+layout, copy, data, and behavior as invariants; change only the defective
+region; verify the whole artifact afterward. A broad redesign requires an
+explicit new request, not an inferred opportunity.
+
+The linter checks both root `SKILL.md` repositories and paid/encrypted
+`src/SKILL.md` repositories:
 
 - Agent Skills-compatible frontmatter and trigger phrases;
 - README version badge and installation command;
@@ -125,6 +152,7 @@ The linter checks:
 - TODO placeholders and oversized instruction bodies;
 - personal paths, fixed runtime paths, and missing user configuration;
 - source/install/catalog layout evidence.
+- missing `lov-branding-consistency` dependency for audience-visible text Skills.
 
 ### Step 4: Bump semver and changelog
 
@@ -141,8 +169,9 @@ python3 scripts/bump_version.py \
 Choose `patch` for bug, wording, frontmatter, or lint fixes; `minor` for a new
 flag, reference, module, or expanded workflow; `major` for a breaking CLI or
 removed behavior. Stay in `0.x` unless the user explicitly requests otherwise.
-The tool updates README.md, SKILL.md, skill.yaml, and CHANGELOG.md and refuses
-to duplicate an existing changelog version.
+The tool updates README.md, the authored SKILL.md, paid-skill public wrappers,
+skill.yaml, and CHANGELOG.md and refuses to duplicate an existing changelog
+version.
 
 ### Step 5: Re-lint and inspect layout
 
@@ -164,11 +193,13 @@ matching Skill payload digest is `synced`.
 `inspect_layout.py` checks conventional and configured installation roots:
 `AGENT_SKILLS_DIR`, `CLAUDE_SKILLS_DIR`, `CODEX_SKILLS_DIR`, `SKILLS_DIR`,
 plus the host's agent-managed fallback roots. It also checks explicit
-`--install-root` and `--catalog-root` values plus nearby `general-skills` and
-`dev-skills` checkouts. Use an environment variable or explicit flag when the
-installation root is outside the conventional layout.
+`--install-root` and `--catalog-root` values plus the nearby unified
+`lovstudio-skills` catalog and legacy general/dev catalog names. Use an
+environment variable or explicit flag when the installation root is outside
+the conventional layout.
 
-For a non-symlink installation copy, first run a read-only sync plan:
+For a non-symlink installation copy, first run a read-only sync plan. Paid
+repositories automatically use their `public/` payload:
 
 ```bash
 python3 scripts/sync_installation.py \
