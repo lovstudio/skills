@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "A reusable identity-preserving Riso portrait workflow with a proven gpt-image-2 art direction, avatar crop rules, anatomy checks, and targeted correction contract."
+basis: "The Skill is an installable instruction and quality-gate layer; users supply their own image-generation runtime and model usage. Free publication supports the accompanying educational article and builds broader evidence across faces, poses, clothing and image providers."
+boundary: "Includes source inspection, gpt-image-2 prompt construction, direct Riso redraw, identity and anatomy review, circular-avatar crop review, and one-fact-at-a-time correction. Excludes model credits, hosted generation, photo rights clearance, public upload, text or Logo poster design, and guaranteed deterministic output."
+review_trigger: "Reassess after 100 verified external uses, five non-synthetic public cases across varied subjects, or the addition of hosted generation, proprietary presets, batch processing, team review, or material support cost."
+confidence: internal

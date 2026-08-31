@@ -1,0 +1,40 @@
+[
+  {
+    "type": "case",
+    "title": "Three avatar candidates redrawn with one Riso contract",
+    "description": "Three authorized single-person photos with different poses, hair and backgrounds were each redrawn through gpt-image-2. The comparison verifies that identity, gaze and clothing cues survive while the visual medium changes to limited inks, halftone and paper grain.",
+    "input": {
+      "items": [
+        "Three authorized source portraits supplied for avatar selection",
+        "Square avatar use with identity, pose, gaze and clothing locked"
+      ]
+    },
+    "prompt": "使用 Riso 人像 Skill 处理这些照片。保持人物身份、脸部结构、发型、视线和服装不变，裁成适合圆形头像的近景，使用朱红与深青主墨色，并保留纸张颗粒、网点和轻微套印偏移。",
+    "output": {
+      "items": [
+        "cases/artifacts/avatar-source-and-riso.jpg",
+        "A 2 by 3 source/result comparison with three recognizable Riso portraits"
+      ]
+    },
+    "cover": "cases/artifacts/avatar-source-and-riso.jpg"
+  },
+  {
+    "type": "case",
+    "title": "Targeted correction from four fingers to five",
+    "description": "An authorized event portrait already had a strong Riso treatment, but the raised hand contained four fingers. A single-fact correction restored five fingers while preserving the person, pose, microphone, clothing and style.",
+    "input": {
+      "items": [
+        "Authorized event source photo",
+        "First Riso output with an incorrect raised hand"
+      ]
+    },
+    "prompt": "只修正右上方的手，必须是五根手指；其他人物特征、动作、构图和 Riso 风格保持不变。",
+    "output": {
+      "items": [
+        "cases/artifacts/five-finger-correction.jpg",
+        "Source, four-finger first pass and verified five-finger correction with detail crops"
+      ]
+    },
+    "cover": "cases/artifacts/five-finger-correction.jpg"
+  }
+]

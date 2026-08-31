@@ -97,6 +97,7 @@ skills:
   related:
   - professional-infographic
   - professional-portrait
+  - riso-portrait
   - image-translation-errata
   pricing:
     model: free_entry
@@ -1630,6 +1631,7 @@ skills:
   tagline_zh: 把一张普通人像修成干净、自然、仍然像本人的职业形象照。
   related:
   - image-creator
+  - riso-portrait
   pricing:
     model: free_entry
     visibility: public
@@ -1656,6 +1658,45 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/professional-portrait.md
+- name: riso-portrait
+  runtime_name: lov-riso-portrait
+  updated_at: 2026-08-31T16:33:19Z
+  display_name: Riso Portrait
+  repo: lovstudio/riso-portrait-skill
+  name_zh: Riso 人像
+  paid: false
+  category: Design
+  version: "0.1.0"
+  description: Redraw an authorized single-person photo as an identity-preserving Riso avatar with gpt-image-2, then verify facial identity, anatomy, accessories, scene facts, and circular cropping.
+  tagline_en: Turn one photo into a recognizable Riso avatar, then check the face, hands, objects, and circular crop.
+  tagline_zh: 把一张照片重绘成仍然像本人的 Riso 头像，并检查五官、手指、物件与圆形裁切。
+  related:
+  - image-creator
+  - professional-portrait
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、Riso art direction、质量门与两组真实案例
+    delivery_unit_en: Public Skill source, Riso art direction, quality gates, and two real cases
+    value_zh: 用 gpt-image-2 直接重绘授权人像，锁住身份与场景事实，并在交付前检查头像裁切、五官、手指、饰品和持物。
+    value_en: Redraw an authorized portrait directly with gpt-image-2, lock identity and scene facts, then check the avatar crop, face, hands, accessories, and held objects.
+    anchor_zh: 一次使用可保守减少约 30–90 分钟的 Prompt 试错、错误滤镜路径和局部返工，并把人物与解剖检查变成明确验收。
+    anchor_en: One use can conservatively save about 30–90 minutes of prompt trial, filter dead ends, and local rework while turning identity and anatomy review into an explicit gate.
+    basis_zh: 六维加权得分为 3.4/5；已有三张原图对照和一次四指到五指的真实修正，但模型额度由用户承担，公开 instruction-only 源码也易复制，因此官网先作为免费内容入口。
+    basis_en: The six-dimension score is 3.4/5, backed by three source/result comparisons and one real four-to-five-finger correction; users still supply model usage and the public instruction source is easy to copy, so the website starts as a free content-linked entry.
+    boundary_zh: 包含原图检查、gpt-image-2 提示词、直接 Riso 重绘、身份与解剖验收、圆形头像裁切和单事实修正；不含模型额度、托管生成、照片授权服务、公开上传或文字海报。
+    boundary_en: Includes source inspection, gpt-image-2 prompting, direct Riso redraw, identity and anatomy review, circular-avatar cropping, and one-fact correction; excludes model credits, hosted generation, rights clearance, public upload, and text posters.
+    maintenance_zh: 随 gpt-image-2 行为、运行时图像接口、人物多样性和真实使用反馈复评。
+    maintenance_en: Review against gpt-image-2 behavior, runtime image interfaces, subject diversity, and real usage feedback.
+    confidence: case-backed
+    review_trigger_zh: 达到 100 次真实外部使用、五组多样化公开案例，或加入托管生成、专有预设、批处理、团队审阅与显著支持成本后复评。
+    review_trigger_en: Review after 100 verified external uses, five varied public cases, or the addition of hosted generation, proprietary presets, batch processing, team review, or material support cost.
+    card_path: pricing-cards/riso-portrait.md
 - name: rich-export
   runtime_name: lov-rich-export
   updated_at: 2026-08-23T17:04:16Z

@@ -1,0 +1,42 @@
+schema: skill-manifest/v1
+id: lov-riso-portrait
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-riso-portrait
+    persist:
+      enabled: true
+      namespace: skills.lov-riso-portrait
+      records_path: skills.lov-riso-portrait.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言交付结果？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区记录生成时间？
+  preferences:
+    namespace: lov_riso_portrait
+    fields:
+      - path: skills.lov-riso-portrait.records.default_palette
+        required: false
+        question: 长期默认使用哪套 Riso 墨色？
+      - path: skills.lov-riso-portrait.records.default_crop
+        required: false
+        question: 长期默认使用怎样的头像景别与裁切？
+      - path: skills.lov-riso-portrait.records.default_paper
+        required: false
+        question: 长期默认使用怎样的纸张颜色与颗粒感？
+  interaction:
+    ask_missing: true
+    max_questions: 1

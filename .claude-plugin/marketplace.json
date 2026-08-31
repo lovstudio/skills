@@ -77,7 +77,7 @@
     {
       "name": "design",
       "source": "./",
-      "description": "Design — 4 free + 4 paid (Credits redemption required).",
+      "description": "Design — 5 free + 4 paid (Credits redemption required).",
       "category": "Design",
       "skills": [
         "./skills/maintain-partners",
@@ -85,6 +85,7 @@
         "./skills/event-poster",
         "./skills/visual-clone",
         "./skills/professional-portrait",
+        "./skills/riso-portrait",
         "./skills/professional-infographic",
         "./skills/oh-my-landingpage",
         "./skills/business-card"

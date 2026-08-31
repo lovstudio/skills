@@ -1,0 +1,97 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "Redraws an authorized single-person photo as an identity-preserving Riso avatar with gpt-image-2, then checks facial identity, anatomy, accessories and circular cropping before delivery."
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "The Skill source may be used and modified under MIT. Users remain responsible for image rights, consent, provider terms, model charges and the final use of generated portraits."
+  url: "LICENSE"
+use_case:
+  audience: "People and agents creating distinctive profile avatars from authorized single-person photos."
+  scenario: "Translate a recognizable portrait into a hand-drawn Riso medium without changing the person's identity, pose, gaze, clothing or key objects."
+  tasks:
+    - "Inspect the source as the edit target and identity reference."
+    - "Build an identity-locked gpt-image-2 edit prompt using a limited-ink Riso art direction."
+    - "Review the result at full, face-crop and circular-avatar scales."
+    - "Correct one anatomy, accessory or crop fact at a time without broad regeneration."
+deployment:
+  geography: global
+  environments:
+    - "Agent runtime with image viewing and gpt-image-2 image editing."
+requirements:
+  credentials: "Provider credentials or product access required by the user's image-generation runtime."
+  dependencies: []
+  runtime:
+    - "Image viewing"
+    - "gpt-image-2 generative raster-image editing"
+risks:
+  - risk: "The model may alter identity, age, pose, clothing, jewelry, fingers or held objects."
+    mitigation: "Use the source as the sole identity reference, lock scene facts in every prompt, and run the face, anatomy and object quality gates after each pass."
+  - risk: "A filtered photo may be mistaken for a Riso redraw."
+    mitigation: "Require direct gpt-image-2 visual reorganization and reject Canvas, Sharp, CSS, color-map or post-processing substitutes."
+  - risk: "Portraits may be uploaded, published or used without adequate rights or consent."
+    mitigation: "Require authorized inputs, keep source and outputs local unless the user separately authorizes publication, and never persist photos in the shared Profile."
+  - risk: "A square result may fail when cropped into a small circular avatar."
+    mitigation: "Inspect the full hair silhouette, chin, gaze room and recognizable contrast at chat-list scale before delivery."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Riso art direction"
+    path: "references/riso-art-direction.md"
+  - title: "Quality gate"
+    path: "references/quality-gate.md"
+  - title: "Skill composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "Riso portrait image"
+    - "optional source/result comparison"
+    - "optional iteration comparison"
+  formats:
+    - "PNG"
+    - "JPEG comparison artifact"
+  parameters:
+    - "authorized single-person source image, avatar crop, limited-ink palette and optional creator note"
+  validation:
+    - "identity match at full and avatar size"
+    - "face, hands, accessories, clothing and held-object fact check"
+    - "limited-ink Riso medium rather than filtered photography"
+    - "circular crop safety"
+  description: "A non-destructive square portrait plus evidence of identity, anatomy, medium and avatar-crop review."
+ethical_considerations: "Use only photos the user is authorized to process. Do not infer identity or sensitive traits, publish private portraits without separate permission, or describe model output as a faithful documentary image."
+dimensions:
+  - id: identity_fidelity
+    label: "Identity fidelity"
+    description: "The result remains immediately recognizable as the person in the edit target."
+    evidence: "The three-photo comparison preserves distinct face, hair, gaze and clothing cues across three authorized source portraits."
+    score: 0.9
+  - id: medium_fidelity
+    label: "Riso medium fidelity"
+    description: "The model redesigns line, flat ink, halftone and paper rather than applying a photo filter."
+    evidence: "The accepted gpt-image-2 result was selected against two rejected programmatic filter and over-processing stages."
+    score: 0.9
+  - id: factual_integrity
+    label: "Factual integrity"
+    description: "Visible anatomy, accessories, clothing and held objects match the source."
+    evidence: "The hand-correction case records a four-finger defect and the targeted five-finger repair."
+    score: 0.8
+  - id: avatar_readiness
+    label: "Avatar readiness"
+    description: "The square output remains recognizable and safely framed after circular crop and downscaling."
+    evidence: "The workflow requires full-image, face-crop, circular-crop and chat-list-size review."
+    score: 0.85
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The Skill is a reusable instruction and QA layer; users provide their own gpt-image-2 access and usage."
+  boundary: "Includes art direction and review; excludes hosted model access, generation credits, rights clearance and public publishing."
+  review_trigger: "Review after 100 verified external uses, five varied public cases, or the addition of hosted generation or material support cost."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - "github"
+    - "lovstudio"
