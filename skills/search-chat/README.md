@@ -1,6 +1,6 @@
 # lov-search-chat
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 从本机 Ataru 记忆索引里召回过去的 AI 会话上下文，返回可定位的命中与原文片段。
 
@@ -9,7 +9,7 @@
 从 LovStudio 统一 Skill 目录安装：
 
 ```bash
-npx skills add lovstudio/skills -s search-chat -g -y
+npx skills add lovstudio/skills -s lov-search-chat -g -y
 ```
 
 也可以直接从源码仓库安装：

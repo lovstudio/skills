@@ -3484,8 +3484,8 @@ skills:
   name_zh: 历史会话检索
   paid: false
   category: Dev Tools
-  version: "0.2.0"
-  updated_at: 2026-08-31T12:40:40Z
+  version: "0.2.1"
+  updated_at: 2026-08-31T12:54:53Z
   description: 'Recall past AI session context from the local Ataru memory index: keyword search with locatable Turn/Session hits and source-window read-back by stable ID.'
   tagline_en: Find what you and your AI already worked out, and read it back in its original context.
   tagline_zh: 把你和 AI 已经想清楚的事找回来，并读回它原本的上下文。
@@ -3521,8 +3521,8 @@ skills:
   name_zh: 打开 Codex 会话
   paid: false
   category: Dev Tools
-  version: "0.1.0"
-  updated_at: 2026-08-31T12:40:40Z
+  version: "0.1.1"
+  updated_at: 2026-08-31T12:54:53Z
   description: 'Open an exact Codex desktop task from a thread UUID, deeplink, or confirmed session ID, then verify that the host actually navigated.'
   tagline_en: Open the exact Codex task you mean, then verify the desktop actually navigated.
   tagline_zh: 给出 thread ID 或刚确认的 session，让 Codex 直接打开准确任务。

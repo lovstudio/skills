@@ -1,6 +1,6 @@
 # lov-open-codex-session
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 用稳定的 Codex thread ID 或 deeplink，把当前 Codex 主窗口直接切换到目标任务。
 
@@ -9,7 +9,7 @@
 从 LovStudio 统一 Skill 目录安装：
 
 ```bash
-npx skills add lovstudio/skills -s open-codex-session -g -y
+npx skills add lovstudio/skills -s lov-open-codex-session -g -y
 ```
 
 也可以直接从源码仓库安装：

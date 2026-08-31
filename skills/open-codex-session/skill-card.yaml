@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: "接受 Codex thread UUID、deeplink 或已确认的 sessionId，在当前 Codex 主窗口打开准确任务，并用宿主导航结果验收。"
 owner:
   team: "LovStudio Skills"

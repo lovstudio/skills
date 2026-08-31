@@ -6,7 +6,7 @@ license: MIT
 compatibility: "Codex desktop host with navigate_to_codex_page; Python 3.8+ for the shared Profile reader."
 metadata:
   author: lovstudio-contributors
-  version: "0.1.0"
+  version: "0.1.1"
   card_standard: lovstudio/skill-card/v1
   content_class: deterministic-output
   tags:

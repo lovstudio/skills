@@ -44,7 +44,7 @@ MIT。宿主应用及第三方服务继续受各自条款约束。
 
 ## Skill Version
 
-0.1.0
+0.1.1
 
 ## Ethical Considerations
 

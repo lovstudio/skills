@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.1] - 2026-08-31
+
+- 修正 LovStudio 统一目录安装命令，按 runtime 名 `lov-search-chat` 选择 Skill。
+
 ## [0.2.0] - 2026-08-31
 
 - 将用户可见 Skill 名从 `lov-ataru-search` 统一为 `lov-search-chat`。
