@@ -3802,3 +3802,39 @@ skills:
     review_trigger_zh: 版本变化、累计 10 次真实使用、支持成本明显变化，或加入托管索引、跨设备云搜索与付费连接器时复评。
     review_trigger_en: Review after a version change, 10 real uses, material support-cost change, or addition of hosted indexing, cross-device cloud search, or paid connectors.
     card_path: pricing-cards/search-file.md
+- name: repost-wechat-article
+  runtime_name: lov-repost-wechat-article
+  updated_at: 2026-08-31T10:35:59Z
+  display_name: WeChat Article Repost
+  repo: lovstudio/repost-wechat-article-skill
+  name_zh: 微信公众号转载
+  paid: false
+  category: Content Creation
+  version: "0.1.0"
+  description: "Repost a source-faithful WeChat article with verified attribution, private-context isolation, publisher commentary, branded assets, and remote draft readback."
+  tagline_en: Keep the source intact, add your own context, and verify the reposted WeChat draft remotely.
+  tagline_zh: 保留合作方原文，加入自己的开场与收尾，并从微信远端回读转载草稿。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、来源保真脚本、真实案例与当前版本说明
+    delivery_unit_en: Public Skill source, source-fidelity audit, verified case, and current-version notes
+    value_zh: 把来源定位、原文冻结、发布方增量、品牌资产和微信远端回读连接成一条可审计的转载流程。
+    value_en: Connect source discovery, frozen source content, publisher commentary, branded assets, and WeChat remote readback in one auditable repost workflow.
+    anchor_zh: 一次适合的转载可省下约 1–3 小时编辑与发布工作，并降低错误署名、私人语境泄露、重复草稿和误报发布状态风险。
+    anchor_en: A suitable repost can save roughly 1–3 hours of editorial and publishing work while reducing attribution, privacy, duplicate-draft, and false-publication risk.
+    basis_zh: 六维加权得分 3.8/5；已有一个完整远端案例和三项回归测试，但尚缺多用户重复使用证据，因此首版作为免费信任入口。
+    basis_en: The six-dimension score is 3.8/5, with one verified remote case and three regression tests; the first release stays free while multi-user evidence grows.
+    boundary_zh: 包含公开文章来源快照、原文冻结、发布方增量、转载权利门禁、保真审计和发布 Skill 交接；不含模型调用、素材许可、公众号账号、人工审批或代发布服务。
+    boundary_en: Includes public-source capture, frozen source content, publisher commentary, reprint-rights gates, fidelity audits, and publishing handoff; excludes model calls, rights clearance, WeChat accounts, human review, and managed publication.
+    maintenance_zh: 随微信页面结构、发布 API、真实使用反馈和支持成本复评。
+    maintenance_en: Review against WeChat page structure, publishing APIs, real usage, and support cost.
+    confidence: case-backed
+    review_trigger_zh: 达到 5 位独立用户、3 个新增远端案例，或加入托管抓取、多账号审批、版权许可与代发布时复评。
+    review_trigger_en: Review after five independent users, three additional remote cases, or addition of hosted extraction, multi-account approval, rights clearance, or managed publishing.
+    card_path: pricing-cards/repost-wechat-article.md

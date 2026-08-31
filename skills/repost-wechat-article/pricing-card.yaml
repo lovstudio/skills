@@ -1,0 +1,17 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把来源定位、原文冻结、发布方增量、品牌资产和微信远端回读连接成一条可审计的转载流程。"
+basis: "0.1.0 作为公众号来源保真与本地 Agent 组合能力开放验证。"
+boundary: "免费范围覆盖 Skill 源码、转载契约、保真脚本、真实案例和本地安装；模型调用、素材许可、公众号账号、云端托管、人工审核和代发布服务不包含。"
+review_trigger: "加入托管网页抓取、多账号审批、版权许可工作流、云端资产库、批量转载或商业代发布后重新评估。"
+confidence: internal
+distribution:
+  local: available
+  github: not_published
+  lovstudio: not_published
+  workbuddy: not_prepared
+  skillpay: not_prepared
+
