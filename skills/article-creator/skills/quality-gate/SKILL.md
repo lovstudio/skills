@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: LovStudio
-  version: "0.3.1"
+  version: "0.4.0"
   tags: [quality-gate, wechat, validation]
   dependencies: []
 ---
@@ -40,8 +40,10 @@ metadata:
    判为内容失败，不得用其他指标抵消。
 5. 若文章包含调研、评测、benchmark、排名、总分或雷达图，逐项核对测试方法、完整 Prompt、指标定义、评分方法、评分示例、复现方法、原始产物索引和局限性，并确认它们在测试结果之前建立。
 6. 人工回读分享封面和 `4:3` 正文首图：焦点、Logo、裁切、文字污染、缩略图与手机首屏。
-7. `audit` 管线只报告；`full`、`rewrite`、`visual` 管线发现问题后修复并重跑。
-8. 只有机器规则与人工语义检查都通过，才把结果标记为 `prepared`。
+7. 核对平台标题、H1、H2/H3 与 TOC 的职责没有混淆；目录由最终 HTML 根据章节生成，
+   canonical Markdown 没有重复写死一份呈现型 TOC。
+8. `audit` 管线只报告；`full`、`rewrite`、`visual` 管线发现问题后修复并重跑。
+9. 只有机器规则与人工语义检查都通过，才把结果标记为 `prepared`。
 
 ## Machine checks
 
@@ -57,6 +59,7 @@ metadata:
 - 关键结论有材料支持，推断被明确标出。
 - 文风像真实作者，而不是统一腔调的 AI 说明书。
 - 标题、摘要、开头与结论承诺一致。
+- H2/H3 形成清楚的认知推进；同级标题按同一轴区分，没有用人物属性或虚假先后替代本质。
 - 目标读者无需知道旧稿、用户反馈或 Agent 工作过程，开头的所有指代都有可见先行词。
 - 母品牌与发布主体分开，Logo 为发布主体官方白色横向 lockup，产品和延伸链接不冒充品牌。
 - 分享封面适合消息列表，`4:3` 正文首图适合文章第一屏，二者角色独立且视觉语言一致。

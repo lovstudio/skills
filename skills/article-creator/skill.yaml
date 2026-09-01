@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-article-creator
-version: "0.4.1"
+version: "0.5.0"
 runtime: skill-runtime/v1
 context:
   profile:
@@ -85,6 +85,12 @@ context:
       - path: opening_hero_enabled
         required: false
         question: 是否默认把 4:3 正文首图放在导语之前？
+      - path: hide_body_h1
+        required: false
+        question: 写入微信时是否默认隐藏正文内的重复一级标题？
+      - path: supplementary_link_style
+        required: false
+        question: 正文中的资料链接和引申阅读默认使用什么视觉层级？
   interaction:
     ask_missing: true
     max_questions: 1

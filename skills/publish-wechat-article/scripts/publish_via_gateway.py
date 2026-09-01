@@ -312,10 +312,18 @@ def render_lovpen_wechat_html(
             "lovpen_validation",
             "Lovpen HTML 不是唯一的微信复制态 section.lovpen-renderer；请使用 lovpen-cli render --format wechat 重新生成。",
         )
-    if soup.find("style") or soup.find("script") or soup.find("link", rel=lambda value: value and "stylesheet" in value):
+    disallowed_style = next(
+        (
+            style
+            for style in soup.find_all("style")
+            if style.find_parent("mp-common-videosnap") is None
+        ),
+        None,
+    )
+    if disallowed_style or soup.find("script") or soup.find("link", rel=lambda value: value and "stylesheet" in value):
         raise GatewayPublishError(
             "lovpen_validation",
-            "Lovpen 微信 HTML 含外部样式或脚本；请使用 --format wechat 生成已内联样式的复制态 HTML。",
+            "Lovpen 微信 HTML 含正文级外部样式或脚本；仅允许原生视频号组件 Shadow DOM 内的隔离样式。",
         )
 
     metrics = lovpen_fidelity_metrics(lovpen_source)
@@ -421,6 +429,39 @@ def _unwrap_only_removed_anchors(source_soup: Any, remote_soup: Any) -> int:
     return len(removed)
 
 
+def _normalize_native_video_components(source_soup: Any, remote_soup: Any) -> int:
+    """Validate Channels identity, then ignore WeChat-owned shadow markup."""
+    source_videos = source_soup.find_all("mp-common-videosnap")
+    remote_videos = remote_soup.find_all("mp-common-videosnap")
+    if len(source_videos) != len(remote_videos):
+        raise GatewayPublishError(
+            "draft_get",
+            "微信远端正文的视频号组件数量与提交内容不一致。",
+        )
+
+    identity_attributes = (
+        "data-id",
+        "data-nonceid",
+        "data-username",
+        "data-pluginname",
+        "data-type",
+    )
+    for index, (source_video, remote_video) in enumerate(zip(source_videos, remote_videos)):
+        changed = [
+            name
+            for name in identity_attributes
+            if source_video.get(name) != remote_video.get(name)
+        ]
+        if changed:
+            raise GatewayPublishError(
+                "draft_get",
+                f"微信远端正文第 {index + 1} 个视频号组件身份字段不一致：{changed}",
+            )
+        source_video.clear()
+        remote_video.clear()
+    return len(source_videos)
+
+
 def audit_remote_lovpen_fidelity(
     submitted_html: str,
     remote_html: str,
@@ -429,6 +470,7 @@ def audit_remote_lovpen_fidelity(
 
     source_soup = BeautifulSoup(submitted_html, "html.parser")
     remote_soup = BeautifulSoup(remote_html, "html.parser")
+    normalized_native_videos = _normalize_native_video_components(source_soup, remote_soup)
     removed_anchors = 0
     source_tags = source_soup.find_all(True)
     remote_tags = remote_soup.find_all(True)
@@ -444,7 +486,7 @@ def audit_remote_lovpen_fidelity(
             "draft_get",
             "微信远端正文的标签序列与提交内容不一致，且不能仅由平台移除外链标签解释。",
         )
-    if _normalized_visible_text(str(source_soup)) != _normalized_visible_text(remote_html):
+    if _normalized_visible_text(str(source_soup)) != _normalized_visible_text(str(remote_soup)):
         raise GatewayPublishError("draft_get", "微信远端正文的可见文字与提交内容不一致。")
 
     removed_properties: Counter[str] = Counter()
@@ -493,6 +535,7 @@ def audit_remote_lovpen_fidelity(
         "remoteWechatSanitization": {
             "removedTags": {"a": removed_anchors} if removed_anchors else {},
             "removedStyleProperties": dict(sorted(removed_properties.items())),
+            "normalizedNativeVideoComponents": normalized_native_videos,
             "preservedNodeCountAfterAnchorUnwrap": len(remote_tags),
             "preservedTagSequence": True,
             "preservedClasses": True,
@@ -712,6 +755,7 @@ def update_receipt(
     state: str,
     media_id: str | None,
     detail: dict[str, Any],
+    verification_pending: bool | None = None,
 ) -> None:
     receipt: dict[str, Any] = {}
     if receipt_path.exists():
@@ -724,7 +768,11 @@ def update_receipt(
             "state": state,
             "transport": "uni-api-gateway",
             "mediaId": media_id,
-            "verificationPending": state != "draft_created",
+            "verificationPending": (
+                state != "draft_created"
+                if verification_pending is None
+                else verification_pending
+            ),
             "checkedAt": utc_now(),
         }
     )
@@ -948,7 +996,39 @@ def main(argv: list[str] | None = None) -> int:
         need_open_comment=args.need_open_comment,
         only_fans_can_comment=args.only_fans_can_comment,
     )
-    readback = client.get_draft(media_id)
+    if args.receipt:
+        update_receipt(
+            args.receipt.expanduser().resolve(),
+            state="draft_created",
+            media_id=media_id,
+            verification_pending=True,
+            detail={
+                "transport": "uni-api-gateway",
+                "gatewayBase": args.gateway_base,
+                "wechatCredentialLocator": args.wechat_secret_locator,
+                "gatewayKeyLocator": args.gateway_key_locator,
+                "inlineImages": len(images),
+                "layout": layout,
+                "lovpenArtifact": base_result.get("lovpenArtifact"),
+                "lovpenArtifactBytes": base_result.get("lovpenArtifactBytes"),
+                "lovpenArtifactSha256": base_result.get("lovpenArtifactSha256"),
+                "coverCompositionVerified": base_result.get("coverCompositionVerified"),
+                "coverCompositionReceipt": base_result.get("coverCompositionReceipt"),
+                "blocker": "草稿已创建，等待远端回读验收。",
+            },
+        )
+    try:
+        readback = client.get_draft(media_id)
+    except GatewayPublishError as error:
+        if args.receipt:
+            update_receipt(
+                args.receipt.expanduser().resolve(),
+                state="draft_created",
+                media_id=media_id,
+                verification_pending=True,
+                detail={"blocker": str(error), "verificationStage": error.stage},
+            )
+        raise
     verified = (
         readback.get("media_id") == media_id
         and readback.get("title") == title
@@ -956,14 +1036,34 @@ def main(argv: list[str] | None = None) -> int:
         and bool(readback.get("thumb_media_id"))
     )
     if not verified:
-        raise GatewayPublishError("draft_get", "草稿已创建，但远端回读未通过完整性校验。")
+        error = GatewayPublishError("draft_get", "草稿已创建，但远端回读未通过完整性校验。")
+        if args.receipt:
+            update_receipt(
+                args.receipt.expanduser().resolve(),
+                state="draft_created",
+                media_id=media_id,
+                verification_pending=True,
+                detail={"blocker": str(error), "verificationStage": error.stage},
+            )
+        raise error
 
     remote_lovpen_audit: dict[str, Any] = {}
     if lovpen_metrics is not None:
         remote_content = readback.get("content")
         if not isinstance(remote_content, str) or not remote_content:
             raise GatewayPublishError("draft_get", "草稿已创建，但远端回读没有返回 Lovpen 正文。")
-        remote_lovpen_audit = audit_remote_lovpen_fidelity(content_html, remote_content)
+        try:
+            remote_lovpen_audit = audit_remote_lovpen_fidelity(content_html, remote_content)
+        except GatewayPublishError as error:
+            if args.receipt:
+                update_receipt(
+                    args.receipt.expanduser().resolve(),
+                    state="draft_created",
+                    media_id=media_id,
+                    verification_pending=True,
+                    detail={"blocker": str(error), "verificationStage": error.stage},
+                )
+            raise
 
     result = {
         "status": "draft_created",
@@ -984,6 +1084,7 @@ def main(argv: list[str] | None = None) -> int:
             args.receipt.expanduser().resolve(),
             state="draft_created",
             media_id=media_id,
+            verification_pending=False,
             detail={
                 "transport": "uni-api-gateway",
                 "gatewayBase": args.gateway_base,

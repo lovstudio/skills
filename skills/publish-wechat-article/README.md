@@ -1,6 +1,6 @@
 # 微信公众号文章发布器
 
-![Version](https://img.shields.io/badge/version-0.8.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.9.0-CC785C)
 
 微信公众号远端操作的唯一入口：读取或局部编辑已有草稿，也可从 Markdown、HTML 或纯文本创建草稿并通过统一网关回读核验。正式发布与草稿创建使用不同状态，只有微信返回公开文章标识时才报告已发布。
 
@@ -12,6 +12,7 @@
 - 解析 `lov-env-management` locator，不在参数、日志或收据中暴露密钥
 - 直接接收 `lovpen-cli --format wechat` 复制态 HTML，只替换图片 URL，并对微信存储后的正文逐节点回读版式
 - 在 Lovpen 渲染前调用 `lov-image-decorator`，只为需要证据说明、必要归属或解释的图片生成带 Caption 的派生文件与收据
+- canonical Markdown 只维护 H2/H3，Lovpen 微信 HTML 按最终章节生成唯一 TOC 与阅读时间；资料小字就地、低调并逐项换行
 - 读取公众号品牌 Profile，验收永久品牌尾注、个人介绍卡片与仍开放且未满员的活动组件
 - 强制接收 `lov-wechat-branding-cover-composition` 的 `cover-composition.json`，核对官方 Logo 与实际上传封面
 - 通过已登录编辑器的 `operate_appmsg` 私有网页 API 写入原创声明，保存重载确认后再把草稿标记为完整可用
@@ -35,7 +36,9 @@ npx skills add lov-publish-wechat-article -g -y
 2. 确认 canonical Markdown 第一块是独立的 `4:3` 横向正文首图；研究评测类文章的方法、Prompt、评分与复现链完整。
 3. 用 `lov-wechat-branding-cover-composition` 生成带官方公众号 Logo 的 `share-cover-wide-logo.jpg` 与 `cover-composition.json`。
 4. 逐图判断 Caption 是否承担真实阅读任务；需要者用 `lov-image-decorator` 和显式 Caption 生成派生文件，不需要者保持原样。
-5. 用 `lovpen-cli` 渲染已更新的文章副本，生成 `--format wechat` 产物，再把同一品牌 Profile 传给预检和 `publish_via_gateway.py --brand-profile`。
+5. 确认 Markdown 没有写死呈现型 TOC；多项资料小字逐项分行，再用 `lovpen-cli` 渲染
+   `--format wechat` 产物，回读 HTML 中唯一目录、阅读时间和小字换行，最后把同一品牌
+   Profile 传给预检和 `publish_via_gateway.py --brand-profile`。
 
 活动满员、暂停、关闭或过期后只更新 Profile 状态，不修改通用 Skill，也不继续要求新文章携带该活动。图片装饰不允许调用默认 `Powered by ...` fallback 代替编辑判断，也不能把 alt、邻接正文和 Caption 写成同一句。独立网页格式 `--format standalone` 不属于微信公众号复制态。缺少必需上游产物时，发布脚本会在远端写入前失败关闭；两个 `--allow-*` 开关只用于显式诊断旧链路。
 

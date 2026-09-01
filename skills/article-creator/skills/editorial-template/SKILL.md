@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: LovStudio
-  version: "0.3.0"
+  version: "0.4.0"
   tags: [wechat, editorial-template, packaging]
   dependencies: []
 ---
@@ -35,10 +35,11 @@ metadata:
 
 文章按实际内容使用以下语义顺序：
 
-1. 唯一一级标题；
+1. canonical 源文件中的唯一一级标题；发布到微信时仅写入平台标题字段，正文默认隐藏；
 2. `cover/article-opening-4x3.jpg` 横向正文首图；
 3. 导语；
-4. 正文与必要时的 TOC；
+4. 正文与稳定的 H2/H3；canonical Markdown 默认不写死呈现型 TOC，Lovpen 微信 HTML
+   根据最终章节生成目录；
 5. 结论或“写在最后”；
 6. 真实存在的代码、原文、博客或延伸阅读；
 7. 稳定品牌尾注。
@@ -51,8 +52,11 @@ metadata:
 2. 确认标题、摘要、作者、slug、发布主体、来源和 `read_original_url`。
 3. 在一级标题之后、导语之前插入独立的 `4:3` 正文首图；已有正确引用时不得重复插入。
 4. 保留正文原有论证层级，只修复模板位置、重复标题和缺失元数据。
-5. 运行 Kit 根目录 `scripts/build_article_package.py` 建立 `article.md`、manifest 与 `sources.md`，并把正文引用的本地图片按原相对路径复制进包内。
-6. 检查输出中没有用户私有绝对路径、临时文件地址或未解析占位符。
+5. 将正文中穿插的来源、参考资料和引申链接统一降级为小字斜体资料注；多项资料逐项
+   分行或分点，不挤成一段，也不集中堆到文末。主要行动入口单独保留，不与资料链接
+   混排。
+6. 运行 Kit 根目录 `scripts/build_article_package.py` 建立 `article.md`、manifest 与 `sources.md`，并把正文引用的本地图片按原相对路径复制进包内。
+7. 检查输出中没有用户私有绝对路径、临时文件地址或未解析占位符。
 
 ## Acceptance
 

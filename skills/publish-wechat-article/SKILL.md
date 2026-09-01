@@ -11,7 +11,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.8.0"
+  version: "0.9.0"
   tags:
     - wechat-official-account
     - article-publishing
@@ -45,6 +45,10 @@ metadata:
 
 - 正文：一个 Markdown、HTML 或纯文本文件。用户只在会话中给出正文时，先保存为本次任务的临时 `.md` 或 `.txt` 文件。常规草稿创建必须先调用 `lovpen-cli`，并接收它通过 `--format wechat` 写出的微信复制态 HTML；不要接收 `--format standalone` 产物后再重建版式。`compact-markdown` 只保留给显式诊断旧链路。
 - 内容质量交接：发布器消费已经完成内容校对的 canonical Markdown，不负责把论文式章节改成网感标题。文章含调研、评测、benchmark、排名、总分或雷达图时，预检必须看到位于结果之前的“测试方法”“Prompt”“评价指标”“评分方法”“评分示例”“复现方法”，并在结果之后看到“局限性”；`Prompt` 章节至少公开一份实际执行文本。缺失时在任何远端写入前失败关闭。
+- 目录与小字：canonical Markdown 提供稳定的 H2/H3，不写死呈现型 TOC；Lovpen 在微信
+  HTML 中根据最终章节生成目录与阅读时间，避免正文与目录两份标题漂移。穿插资料、来源
+  和引申链接就地使用低调小字；多项内容逐项分行或分点，不挤成一段，也不集中堆到底部。
+  完整约定见 [Lovpen 编辑渲染交接](references/lovpen-editorial-rendering.md)。
 - 正文首图：常规发布的 Markdown 第一块内容必须是独立的 `4:3` 横向首图，位于导语之前，并与分享封面是两个不同文件。`3:4` 竖图、缺图、远程占位图或直接复用分享封面成品均不得通过预检。
 - 正文图片 Caption：在 Lovpen 渲染前逐图判断读者是否需要补充证据、归属或解释。需要 Caption 的图片必须调用 `lov-image-decorator`，使用显式 Caption 生成不覆盖原图的派生文件与 JSON 收据，再把文章副本的图片引用改为派生文件；不需要 Caption 的图片保持原样，不使用 `Powered by ...` fallback 填充。
 - 出版组件：每次读取当前公众号品牌 Profile。永久 `blocks.endcap` 必须包含已批准简介、链接与启用的个人卡片；`blocks.campaigns` 中仍开放、未满员且未过期的活动必须位于 endcap 之前。详细状态与字段见 [Profile 驱动的出版组件](references/editorial-components.md)。
@@ -139,7 +143,7 @@ AppSecret 与网关 API Key 必须由 `lov-env-management` 的 locator 解析。
 
 统一网关路径：
 
-1. 先核对 canonical Markdown 的内容交接：研究评测类方法链完整，正文第一块是独立的 `4:3` 横向首图；再用 `--brand-profile` 核对永久 endcap、个人卡片，以及仍开放且未满员的活动。任一项缺失、重复或错位时在远端写入前失败关闭。
+1. 先核对 canonical Markdown 的内容交接：研究评测类方法链完整，正文第一块是独立的 `4:3` 横向首图，H2/H3 稳定且没有写死一份呈现型 TOC；再用 `--brand-profile` 核对永久 endcap、个人卡片，以及仍开放且未满员的活动。任一项缺失、重复或错位时在远端写入前失败关闭。
 2. 核对 Caption 准备结果：所有被选中图片都有 `lov-image-decorator` 收据，文章引用的是派生文件，未选中图片未被改写，Caption 没有与相邻正文或图注重复。
 3. 用 `preflight_article.py --transport gateway` 核对标题、正文、Lovpen 微信复制态 HTML、品牌封面合成收据、图片和扩展字段。
 4. 用 `publish_via_gateway.py` 传入 AppID、品牌 Profile 与两个受管密钥 locator；不要传密钥明文。
@@ -159,7 +163,7 @@ python3 <lovpen-skill-dir>/scripts/run_lovpen_cli.py \
   --template-kit typora-newsprint
 ```
 
-只有 JSON 回执显示 `renderer_mode=wechat-browser-copy`、`clipboard_source` 指向 `extractWechatClipboardHTML`，且产物根节点为 `section.lovpen-renderer`、包含内联样式而不含 `<style>` 时，才交给发布脚本：
+只有 JSON 回执显示 `renderer_mode=wechat-browser-copy`、`clipboard_source` 指向 `extractWechatClipboardHTML`，且产物根节点为 `section.lovpen-renderer`、正文样式已内联时，才交给发布脚本。原生 `mp-common-videosnap` 的 Shadow DOM 可保留组件隔离 `<style>`；文章正文其他位置仍不得出现 `<style>`：
 
 ```bash
 python3 <skill-dir>/scripts/publish_via_gateway.py ARTICLE.md \
@@ -173,6 +177,10 @@ python3 <skill-dir>/scripts/publish_via_gateway.py ARTICLE.md \
 ```
 
 脚本不解析重建正文，也不清除 `class`、`style`、`span` 或表格；只在原始 HTML 字符串中把本地 JPG/PNG 的 `src` 替换为上传占位符，再替换成微信 HTTPS 地址。上传前后必须核对内联样式、class、span、table 与 img 数量完全一致，并比较忽略图片 `src` 后的全文 SHA-256。`--lovpen-html` 保留为兼容别名，但输入契约同样只接受 `--format wechat` 产物。`--allow-compact-markdown` 和 `--allow-unverified-cover` 只用于显式诊断旧链路，不得用于正常交付。收据同时记录 Lovpen 产物和品牌封面合成证据。
+
+长文存在多个稳定 H2 或 H2/H3 时，交付前人工回读 Lovpen HTML：目录位于导语和第一章
+之间，包含克制的预计阅读时间，条目与最终章节一致且没有第二份 Markdown 目录；小字资料
+在对应正文就地出现，多项逐条换行。目录与资料注的字号、颜色和间距不得压过正文。
 
 浏览器或显式 direct transport 也必须返回远端 `media_id` 或提供草稿箱重载证据。一次按钮点击、进度结束或本地 HTML 生成都不是远端草稿证据。
 
@@ -256,6 +264,8 @@ python3 <skill-dir>/scripts/publish_existing_draft.py status \
 10. 需要原创声明时，收据 transport 为 `wechat-web-private-api`、`originalVerified=true`、`editorFieldsVerified=true`，并且已保存重载后回读 `copyright_type=1` 与目标分类；只得到 `operate_appmsg ret=0` 不算完成。推荐语、封面和其他指定字段同样必须回读一致，未指定设置保持平台默认。
 11. 所有需要读者可见 Caption 的正文图片均已由 `lov-image-decorator` 生成派生文件并回读收据；Caption 只承担证据说明、必要归属或解释任务，不重复 alt、正文或内部制作备注，也不暗示未经授权的品牌背书。
 12. `publicationComponentsVerified=true`；永久品牌尾注与个人卡片已出现，当前仍开放、未满员且未过期的活动位于其前，满员或结束的活动未被误投。
+13. `lovpenEditorialRenderingVerified=true`；长文目录由最终 HTML 根据 H2/H3 生成并位于第一章
+    之前，canonical Markdown 没有重复 TOC；小字资料就地、低调、多项分行，未堆在文末。
 
 官方端点、字段限制与状态码见 [references/official-api.md](references/official-api.md)。
 
@@ -264,4 +274,5 @@ python3 <skill-dir>/scripts/publish_existing_draft.py status \
 - [已有草稿操作](references/existing-draft-operations.md)
 - [文章状态契约](references/article-state-contract.md)
 - [结果契约](references/result-contract.md)
+- [Lovpen 编辑渲染交接](references/lovpen-editorial-rendering.md)
 - [Skill 组合](references/skill-composition.md)

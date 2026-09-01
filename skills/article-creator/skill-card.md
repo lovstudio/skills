@@ -48,7 +48,7 @@ Skill 源码采用 MIT。输入文章、Logo、字体、图片和模型生成资
 
 ## Skill Version
 
-0.4.1
+0.4.2
 
 ## Ethical Considerations
 

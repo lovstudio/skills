@@ -1,6 +1,6 @@
 name: article-creator
 display_name: "LovStudio 公众号文章创建器"
-version: "0.4.1"
+version: "0.5.0"
 entrypoint: lov-article-creator
 modules:
   - id: article-writing
