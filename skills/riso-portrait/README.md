@@ -1,6 +1,6 @@
 # lov-riso-portrait
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 把单人照片用 `gpt-image-2` 重绘成身份保真的 Riso 头像，并在交付前检查五官、手指、
 饰品与圆形头像裁切。它要求模型直接完成画面重组，不使用程序化滤镜冒充 Riso。

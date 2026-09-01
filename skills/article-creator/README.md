@@ -1,6 +1,6 @@
 # lov-article-creator
 
-![Version](https://img.shields.io/badge/version-0.4.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
 
 公众号文章统一离线入口：从主题、研究材料或旧稿创建正文，也可品牌化现有文章或忠实转载合作方原文；正文文风统一走 `lov-writing-style → lov-human-writing`，再生成来源、分享封面、`4:3` 正文首图、品牌信息和质量报告。
 
@@ -53,6 +53,8 @@ ln -s /absolute/path/to/article-creator-skill ~/.agents/skills/lov-article-creat
 - 横版封面：`2.35:1`，默认 `1880×800`
 - 正文首图：`4:3` 横向，默认 `1600×1200`
 - 首图位置：标题之后、导语之前
+- 微信正文：默认隐藏 canonical H1，标题只写入平台标题字段
+- 资料链接：默认为低对比度小字斜体资料注
 
 这些值记录在共享 `user-profile/v1`，源码只保留可移植的安全默认值，不写入用户私有绝对路径。
 

@@ -1,6 +1,6 @@
 # lov-writing-style
 
-![Version](https://img.shields.io/badge/version-2.5.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.6.0-CC785C)
 
 把事实、笔记或草稿写成工程实战驱动的第一人称中文内容。v2 基于 19 篇、约
 12.46 万字元的真实样本画像，不靠堆叠口头禅，而是复现作者如何使用现场、证据、

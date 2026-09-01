@@ -9,7 +9,7 @@ depends_on:
   - lov-writing-style
 metadata:
   author: LovStudio
-  version: "0.4.1"
+  version: "0.5.0"
   card_standard: lovstudio/skill-card/v1
   tags:
     - wechat
@@ -47,14 +47,18 @@ metadata:
 
 - **One article, one package.** 正文、来源、封面、首图和验收记录位于同一文章目录。
 - **Facts before voice.** 先建立事实账本，再套用文风；不得用第一人称补造经历、数字或判断变化。
+- **Objective before outline.** 先明确创作条件、动机、传播目标与 `desired_reader_change`，再决定结构。用户给出的命题、开头、章节或草稿是重要约束和证据，不自动等于已经充分、正确的传播策略。
 - **One writing owner.** 新写与改写必须调用 `lov-writing-style`；其内部调用唯一的反 AI / 作者性规则源 `lov-human-writing`。本 Skill 只拥有公众号题材、结构、品牌和制品规则，不复制通用文风规则。
 - **Template is semantic.** 固定的是信息顺序、证据门槛与品牌组件，不强迫所有题材使用同一组空洞标题。
+- **Heading roles stay separate.** 文件名、平台标题、正文 H1、章节 H2/H3 与 TOC 标签是不同制品。章节标题负责划分读者的认知阶段并逐步引人进入，不负责压缩段落；TOC 只镜像最终章节结构，不反向决定正文。
 - **Brand comes from Profile.** 发布主体、Logo、官网、色彩和禁用信息从共享 Profile 解析，不把用户私有路径写入公开文章或 Skill 源码。
 - **Two image roles are mandatory.** 完整管线必须输出 `2.35:1` 分享封面和独立的 `4:3` 横向正文首图；不得把分享封面成品直接当正文首图。
 - **Benchmark claims require benchmark evidence.** 文章一旦给出排名、雷达图或量化优劣，就必须在结果之前公开测试对象、输入、完整 Prompt、执行环境、评价指标、评分规则、至少一个逐项算分示例和复现方法；分数不得先于方法出现。
 - **Publication identity wins.** 公众号发布主体与母品牌分开；封面只使用发布主体官方白色横向 lockup，方形图标、母品牌 Logo 和橙色变体都不能替代。
 - **Generated is not accepted.** 文件存在不等于完成；必须通过尺寸、引用、事实、品牌和移动阅读质量门。
 - **Publishing is separate.** 默认止于本地可发布文章包；写入草稿箱或正式发布需要明确授权，并交给下游发布能力。
+- **Platform title is not body content.** canonical Markdown 保留唯一 H1 作为标题真源；写入微信公众号时，标题进入平台标题字段，正文默认隐藏该 H1，避免首图前重复出现同名标题。
+- **References stay quiet.** 正文中穿插的资料来源、补充链接和引申阅读默认使用低对比度的小字斜体资料注，不与章节标题、正文论点或主要行动入口争夺视觉层级。
 - **Repost source is frozen.** 转载时来源正文是逐字冻结区；作者性优化只作用于发布方新增区块，且 `copyrightMode` 固定为 `reprint`。
 
 ## User Profile
@@ -108,6 +112,23 @@ metadata:
 
 把文章真正要纠正的旧说法或推动的判断压成一句命题。输入不足以支撑关键结论时，保留边界或请求最少事实，不编造完整故事。
 
+完整读取 [创作战略与标题系统](references/editorial-strategy-and-headings.md)，建立内部
+`strategy brief`：当前可用条件、作者为何此刻要写、传播目标、目标读者起点、
+`desired_reader_change`、期望读者动作、现有证据和证据缺口。公众号传播指标可以是
+打开、读完、点赞、转发、留言或体验，但不得为了指标伪造冲突、关系或结果。
+
+再判断本次交互属于哪一种工作形态：
+
+- 只有命题或项目材料：自顶向下提出命题、读者变化与结构；
+- 已给开头、章节或明确写法：把它们视为已接受约束，补足缺口，不静默改写；
+- 语音转写、思绪或素材堆：自下而上提炼事实、动机与结构；
+- 已有完整稿件：以最小改动迭代，先保留用户已校对部分，再修真正阻碍目标的段落；
+- 混合输入：固定用户已经决定的层级，只对未决定部分使用相应方法。
+
+用户提供的方案若与真实目标冲突，不得盲从，也不得擅自覆盖。先指出具体冲突、缺失
+证据及其对传播目标的影响，再给一个可执行替代；只有这项选择会实质改变成品时才请
+用户决定。
+
 同时建立 `reader contract`：发布渠道、目标读者、读者打开文章时已知内容和成品边界。
 公众号最终稿默认面对没有参加作者与 Agent 对话的公开读者。旧稿轮次、用户批评、
 修改说明和任务过程属于内部上下文；除非它们本身是研究对象并在正文内完整建立，
@@ -123,12 +144,16 @@ metadata:
 2. 把标题与开头 300 字单独交给 `zero-session-context` 冷读者；所有版本、人物、事件和
    指代都必须在可见成品中有先行词。出现悬空的“前一版 / 上一稿 / 这次重写 / 按你
    的要求”时直接重写，不能进入下一阶段。
-3. 正文优先按定义、区分、证据、代价与行动推进。
+3. 正文按 `desired_reader_change` 选择认知路径；定义、区分、证据、代价与行动只是
+   可用模块，不是固定顺序。
 4. 每个主要章节至少有一项事实、案例、数字、亲历或来源。
 5. 长句承担解释，短句负责落锤；保持移动端一句段与长段交替。
 6. 先完成事实与论证，再做个人文风适配；不复制口头禅，不制造虚假情绪。
 7. 先判断题材。研究、调研、对比测试、benchmark 或带排名/雷达图的文章使用论文式方法结构：`调研对象`、`测试方法`、`Prompt`、`评价指标`、`评分方法`、`评分示例`、`复现方法`、`测试结果`、`局限性`、`结论`。这些标题以检索和复现为先，保持朴素，不强行改成悬念句或判断句。
 8. 研究评测类文章在 `测试结果` 前必须让读者看见：被测版本或散列、统一输入、实际执行 Prompt、模型与关键参数、隔离条件、样本数与重复次数、盲评或随机化方式、指标定义和权重、逐项评分示例、可运行命令与原始产物索引。缺一项就只能写“探索性观察”，不能给确定排名。
+9. 先确定章节的认知阶段，再给 H2/H3 命名。并列问题使用正交概念，不把人物性别、
+   “案例一 / 案例二”或偶然先后当作本质；没有真实顺序时禁止用“先……再……”制造
+   流程。用户已明确给定章节名时默认保留，除非它与正文或传播目标明显冲突。
 
 `repost` 管线不改写来源正文。完整读取 [来源保真](references/repost-source-fidelity.md)、[转载增量](references/repost-editorial-overlay.md) 与 [作者性边界](references/repost-authorship-integrity.md)，把来源放入唯一 `data-repost-source="true"` 冻结区；只把新增开场、来源标注、收尾和品牌微文案交给写作链路。
 
@@ -139,7 +164,8 @@ metadata:
 1. 标题与发布元数据；
 2. `4:3` 横向正文首图；
 3. 导语；
-4. 正文与必要的 TOC；
+4. 正文与稳定的 H2/H3 层级；Lovpen 微信 HTML 可据此生成 TOC，canonical Markdown
+   默认不写死呈现型目录；
 5. 结论或“写在最后”；
 6. 有真实去向时加入代码、原文、博客或延伸阅读；
 7. 稳定品牌尾注；
@@ -215,6 +241,7 @@ quality-report.json
 ## References
 
 - [文章模板](references/article-template.md)
+- [创作战略与标题系统](references/editorial-strategy-and-headings.md)
 - [写作风格](references/writing-style.md)
 - [品牌系统](references/brand-system.md)
 - [封面系统](references/cover-system.md)

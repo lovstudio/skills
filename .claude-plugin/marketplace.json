@@ -133,7 +133,7 @@
     {
       "name": "content-creation",
       "source": "./",
-      "description": "Content Creation — 8 free + 2 paid (Credits redemption required).",
+      "description": "Content Creation — 10 free + 2 paid (Credits redemption required).",
       "category": "Content Creation",
       "skills": [
         "./skills/branding-consistency",
@@ -142,12 +142,14 @@
         "./skills/article-creator",
         "./skills/publish-wechat-article",
         "./skills/env-management",
+        "./skills/lovpen-add-wechat-channel-comp",
         "./skills/document-illustrator",
         "./skills/image-creator",
         "./skills/deep-research",
         "./skills/write-professional-book",
         "./skills/wxmp-cracker",
-        "./skills/style-clone"
+        "./skills/style-clone",
+        "./skills/illustrate"
       ],
       "strict": false
     },

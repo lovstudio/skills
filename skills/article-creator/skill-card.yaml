@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.4.1"
+version: "0.4.2"
 description: "把事实材料变成完整微信公众号文章包，并以统一模板、个人文风、官方品牌和横竖双比例封面完成本地验收。"
 owner:
   team: "LovStudio"

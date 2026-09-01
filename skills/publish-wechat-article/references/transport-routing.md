@@ -20,7 +20,9 @@
 
 本地只访问 LovStudio 后端，不需要将当前家庭、办公或移动网络 IP 加入微信白名单。AppSecret 与网关 API Key 不作为 CLI 明文参数，也不写入文章、收据或日志。
 
-常规草稿创建必须由 `lovpen-cli` 直接生成 `--format wechat` 复制态 HTML。该产物来自 Lovpen 的 `wechat-browser-copy` / `extractWechatClipboardHTML` 链路，根节点是 `section.lovpen-renderer`，样式已内联且不含 `<style>`。发布脚本只替换本地图片 `src`，不通过 BeautifulSoup 或 Markdown 重建正文；替换前后核对 style、class、span、table 与 img 数量，并比较忽略图片 `src` 后的全文 SHA-256。`--format standalone` 是独立网页契约，必须拒绝，不能再压缩投影成微信正文。
+`draft/add` 返回后必须先把 `media_id` 写入回执，再调用 `draft/get`。即使回读或保真校验失败，也要保留同一草稿的 `media_id`，不得通过再次 `draft/add` 重试。原生 `mp-common-videosnap` 回读时先核对 `data-id`、`data-nonceid`、`data-username` 等身份字段，再允许微信接管其 Shadow DOM、尺寸与签名资源；文章其他节点仍执行严格保真校验。
+
+常规草稿创建必须由 `lovpen-cli` 直接生成 `--format wechat` 复制态 HTML。该产物来自 Lovpen 的 `wechat-browser-copy` / `extractWechatClipboardHTML` 链路，根节点是 `section.lovpen-renderer`，正文样式已内联；仅原生 `mp-common-videosnap` 的 Shadow DOM 可保留组件隔离 `<style>`，文章正文其他位置不得出现 `<style>`。发布脚本只替换本地图片 `src`，不通过 BeautifulSoup 或 Markdown 重建正文；替换前后核对 style、class、span、table 与 img 数量，并比较忽略图片 `src` 后的全文 SHA-256。`--format standalone` 是独立网页契约，必须拒绝，不能再压缩投影成微信正文。
 
 Lovpen 渲染前先按 [Profile 驱动的出版组件](editorial-components.md) 验收永久品牌尾注、个人卡片与当前生效活动，再完成正文图片 Caption 判断。需要补充证据、归属或解释的图片通过 `lov-image-decorator` 生成派生文件；不需要 Caption 的图片保持原样。文章链只接受显式 Caption，不使用默认 fallback 代替编辑判断。详细契约见 [image-caption-preparation.md](image-caption-preparation.md)。
 

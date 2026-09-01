@@ -10,6 +10,9 @@
   扫描；新任务统一路由到 lov-human-writing。
 - lov-wechat-article-branding：为已完成文章添加目录、封面 Prompt、首屏和品牌
   内容。它消费正文，不决定文章观点和文风。
+- lov-article-creator：拥有公众号文章的 conditions、motivation、objective、
+  `desired_reader_change`、交互形态、章节结构与标题层级。本 Skill 接收已经确定的
+  结构后完成个人文风，不以“更像作者”为由重排用户确认过的 H2/H3。
 - lov-output-for-article：把最终正文保存为 Markdown、TXT、JSON 或 YAML 文件。
   它负责落盘，不改写内容。
 - lov-personal-vocabulary：维护和同步语音输入术语。它可能改善上游素材准确性，
@@ -39,6 +42,8 @@
 - lov-branding-consistency 只负责最终可见文案的媒介、受众、品牌角色与信息可见性，
   不拥有正文立场、个人文风或反 AI 验收。
 - 公众号品牌化、文件输出和发布都发生在正文验收之后，不嵌入本 Skill。
+- 文章战略与章节标题由 `lov-article-creator` 负责；本 Skill 只检查标题措辞是否符合
+  个人声音，并明确平台标题、H1、H2/H3 与 TOC 的不同职责。
 - personal-vocabulary 与成文没有直接验收交接，归类为 not composed。
 
 ## Composition Decision

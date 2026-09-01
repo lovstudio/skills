@@ -3,6 +3,29 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.9.0] - 2026-09-01
+
+### Added
+
+- 增加 Lovpen 动态 TOC、小字分行与 Caption 互斥的编辑渲染交接。
+
+## [0.8.2] - 2026-09-01
+
+### Changed
+
+- 草稿创建成功后立即在回执中保存 `media_id`；后续回读失败时保留同一草稿，避免重复创建。
+- 远端 Lovpen 保真校验核对视频号组件身份字段，并允许微信接管原生组件的 Shadow DOM、尺寸与签名资源。
+
+## [0.8.1] - 2026-09-01
+
+### Changed
+
+- 允许微信复制态 HTML 在原生 `mp-common-videosnap` Shadow DOM 内保留视频号组件隔离样式，同时继续拒绝正文级 `<style>`、脚本和外部样式表。
+
+### Added
+
+- 增加视频号组件样式通过与正文级样式拒绝的发布器回归测试。
+
 ## [0.8.0] - 2026-08-31
 
 ### Added

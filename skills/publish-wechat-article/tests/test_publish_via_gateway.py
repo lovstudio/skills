@@ -172,6 +172,43 @@ cover: image.jpg
             with self.assertRaisesRegex(MODULE.GatewayPublishError, "--format wechat"):
                 MODULE.render_lovpen_wechat_html(lovpen_html, markdown)
 
+    def test_lovpen_wechat_html_allows_native_video_shadow_style(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            markdown = root / "article.md"
+            markdown.write_text("# 标题\n", encoding="utf-8")
+            source = (
+                '<section class="lovpen-renderer" style="color:#111">'
+                '<mp-common-videosnap data-pluginname="mpvideosnap" data-id="export/video">'
+                '<template shadowrootmode="open"><style>.wx-root{display:flex}</style>'
+                '<div class="wx-root"><div style="width:282px">视频号</div></div></template>'
+                '</mp-common-videosnap></section>'
+            )
+            lovpen_html = root / "article.lovpen.wechat.html"
+            lovpen_html.write_text(source, encoding="utf-8")
+            content, images, layout, _metrics, _fingerprint = MODULE.render_lovpen_wechat_html(
+                lovpen_html, markdown
+            )
+
+        self.assertEqual(content, source)
+        self.assertEqual(images, [])
+        self.assertEqual(layout, "lovpen-wechat-copy")
+
+    def test_lovpen_wechat_html_rejects_article_level_style(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            markdown = root / "article.md"
+            markdown.write_text("# 标题\n", encoding="utf-8")
+            lovpen_html = root / "article.lovpen.wechat.html"
+            lovpen_html.write_text(
+                '<section class="lovpen-renderer" style="color:#111">'
+                '<style>.article{color:red}</style><p style="line-height:1.8">正文</p></section>',
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(MODULE.GatewayPublishError, "正文级外部样式"):
+                MODULE.render_lovpen_wechat_html(lovpen_html, markdown)
+
     def test_lovpen_wechat_html_rejects_remote_images(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -251,6 +288,46 @@ cover: image.jpg
         self.assertTrue(audit["remoteFidelityVerified"])
         self.assertEqual(audit["remoteWechatSanitization"]["removedTags"], {"a": 1})
 
+    def test_remote_lovpen_audit_allows_wechat_to_own_native_video_shadow_markup(self) -> None:
+        submitted = (
+            '<section class="lovpen-renderer" style="color:#111">'
+            '<p style="margin:0">正文</p>'
+            '<mp-common-videosnap class="js_uneditable channels_iframe" '
+            'data-id="export/video" data-nonceid="nonce-1" data-username="finder-1" '
+            'data-pluginname="mpvideosnap" data-type="video" data-height="1440">'
+            '<template shadowrootmode="open"><style>.wx-root{display:flex}</style>'
+            '<div class="wx-root"><span>本地预览作者名</span></div></template>'
+            '</mp-common-videosnap></section>'
+        )
+        remote = (
+            '<section class="lovpen-renderer" style="color:#111">'
+            '<p style="margin:0">正文</p>'
+            '<mp-common-videosnap class="js_uneditable channels_iframe" '
+            'data-id="export/video" data-nonceid="nonce-1" data-username="finder-1" '
+            'data-pluginname="mpvideosnap" data-type="video" data-height="1928" '
+            'data-parentwidth="362"></mp-common-videosnap></section>'
+        )
+
+        audit = MODULE.audit_remote_lovpen_fidelity(submitted, remote)
+
+        self.assertTrue(audit["remoteFidelityVerified"])
+        self.assertEqual(
+            audit["remoteWechatSanitization"]["normalizedNativeVideoComponents"], 1
+        )
+
+    def test_remote_lovpen_audit_rejects_changed_native_video_identity(self) -> None:
+        submitted = (
+            '<section class="lovpen-renderer" style="color:#111">'
+            '<mp-common-videosnap data-id="export/video" data-nonceid="nonce-1" '
+            'data-username="finder-1" data-pluginname="mpvideosnap" data-type="video">'
+            '<template shadowrootmode="open"><div>预览</div></template>'
+            '</mp-common-videosnap></section>'
+        )
+        remote = submitted.replace('data-id="export/video"', 'data-id="export/other"')
+
+        with self.assertRaisesRegex(MODULE.GatewayPublishError, "身份字段不一致"):
+            MODULE.audit_remote_lovpen_fidelity(submitted, remote)
+
     def test_remote_lovpen_audit_rejects_other_css_loss(self) -> None:
         submitted = (
             '<section class="lovpen-renderer" style="color:#111">'
@@ -291,6 +368,22 @@ cover: image.jpg
         self.assertEqual(receipt["mediaId"], "MEDIA_ID")
         self.assertNotIn("apiErrorCode", receipt["technicalDetail"])
         self.assertNotIn("whitelistIp", receipt["technicalDetail"])
+
+    def test_receipt_can_checkpoint_created_draft_before_verification(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            receipt_path = Path(temporary) / "receipt.json"
+            MODULE.update_receipt(
+                receipt_path,
+                state="draft_created",
+                media_id="MEDIA_ID",
+                verification_pending=True,
+                detail={"blocker": "等待远端回读"},
+            )
+            receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(receipt["state"], "draft_created")
+        self.assertEqual(receipt["mediaId"], "MEDIA_ID")
+        self.assertTrue(receipt["verificationPending"])
 
     def test_default_publish_requires_lovpen_wechat_artifact(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
