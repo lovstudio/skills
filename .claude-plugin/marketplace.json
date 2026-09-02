@@ -113,7 +113,7 @@
     {
       "name": "business",
       "source": "./",
-      "description": "Business — 8 free + 2 paid (Credits redemption required).",
+      "description": "Business — 9 free + 2 paid (Credits redemption required).",
       "category": "Business",
       "skills": [
         "./skills/bp",
@@ -126,7 +126,8 @@
         "./skills/review-doc",
         "./skills/contract-review-pro",
         "./skills/expense-report",
-        "./skills/event-curator"
+        "./skills/event-curator",
+        "./skills/publish-event-onto-hdx"
       ],
       "strict": false
     },

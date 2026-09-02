@@ -1,0 +1,88 @@
+schema: lovstudio/skill-card/v1
+version: "0.3.0"
+description: >
+  诊断活动行活动的分类与标签配置，找出在分类导航页不可见的根因（Category=0 未分类），
+  提供基于 3800+ 个活动真实数据的标签替换建议，并在用户修复后回读排名变化。
+owner:
+  team: Lovstudio
+  contact: mark@lovstudio.ai
+license:
+  name: MIT
+  terms: "自由使用、修改和分发，保留版权声明。"
+  url: "../LICENSE"
+use_case:
+  audience: "在活动行发布付费或免费活动的主办方，尤其是在分类页找不到自己活动的用户"
+  scenario: "活动发布后进行曝光检查，或收到反馈说某分类下看不到活动时的诊断"
+  tasks:
+    - "读取活动页 ativityJson，提取 Category 和 Tag 字段"
+    - "判断分类页可见性（Category=0 则完全不可见）"
+    - "查热门点击排序下的排名"
+    - "对比真实高频标签数据，给出替换建议"
+deployment:
+  geography: CN
+  environments:
+    - "Claude Code CLI（ego-browser 已安装）"
+    - "用户已登录活动行（huodongxing.com）"
+requirements:
+  credentials: "none（继承 ego-browser 任务空间的已登录态）"
+  dependencies:
+    - ego-browser
+  runtime:
+    - "Python 3.8+（profile_store.py）"
+    - "ego-browser CLI"
+risks:
+  - risk: "极验滑块验证阻断"
+    mitigation: "检测到验证页时自动交接给用户，等待完成后继续；不尝试自动绕过"
+  - risk: "活动行改版导致 ativityJson 结构变化"
+    mitigation: "脚本中加 null 保护，字段缺失时降级到 meta keywords 提取"
+  - risk: "分类/标签字段的后台位置未确认，Agent 可能凭猜测给出错误路径"
+    mitigation: "分类标签位置已实测确认（edit?view=editbase 的 .edit-btn[0]）；Tag 编辑入口仍未确认，SKILL.md 禁止断言并要求标注未确认"
+  - risk: "Agent 把推想结果当作实测观测写入文档（已发生过：虚构 /myevent/manage 路径，实为 404）"
+    mitigation: "SKILL.md 明文禁止编造观测结果，未在当次会话打开读取过的页面一律标注未确认"
+references:
+  - title: "Skill 指令"
+    path: "SKILL.md"
+  - title: "真实用户案例"
+    path: "cases/cases.json"
+output:
+  types:
+    - "诊断报告（中文散文）"
+    - "标签替换建议（列表）"
+  formats:
+    - "终端 Markdown 文本"
+  parameters:
+    - "活动行活动 URL"
+  validation:
+    - "回读 ativityJson.Category 确认不为 0"
+    - "在热门点击排序下找到活动并给出位置"
+  description: "输出当前状态诊断 + 具体修复路径 + 修复后排名变化"
+ethical_considerations: "仅读取公开活动页信息，不存储用户登录凭据，不尝试绕过平台验证机制。"
+dimensions:
+  - id: correctness
+    label: "状态读取准确性"
+    description: "从 ativityJson 读取的 Category/Tag 是否与后台实际值一致"
+    evidence: "手工川 AI 创造营第五期：抓取数据 Category=0，ego-browser 实测也读到 0，修复后回读到 11，与用户在后台改的值一致"
+    score: 0.95
+  - id: effectiveness
+    label: "根因定位有效性"
+    description: "诊断是否指向用户真正需要改的字段"
+    evidence: "Category=0 是导致分类页不可见的直接字段，指向该字段后用户一次修复成功，热门点击排名从不存在变为第 4 位"
+    score: 0.9
+  - id: efficiency
+    label: "操作路径简洁性"
+    description: "从触发到给出建议的步骤数"
+    evidence: "一次 ego-browser 调用读取状态，一次分析，给出明确路径；用户只需在主办方后台点两个字段"
+    score: 0.85
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "诊断+建议型 Skill，不消耗平台 Credits，作为活动发布后的标准检查步骤免费提供。"
+  boundary: "包含分类/标签状态读取、分类页可见性核查、热门点击排名检查、标签替换建议。不包含自动修改后台字段、活动内容撰写、海报生成。"
+  review_trigger: "活动行改版导致 ativityJson 字段变化或分类体系调整时复评。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

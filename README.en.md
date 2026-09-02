@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **96 skills** — 81 Free + 15 Paid.
+> **97 skills** — 82 Free + 15 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -70,14 +70,15 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`bp-outline`](https://github.com/lovstudio/bp-skill) | Turn project evidence into an investor narrative and a source-backed 12–15 slide outline before making PPT. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`bp-polish`](https://github.com/lovstudio/bp-skill) | Audit and polish an existing BP with a scored report and page-level fixes—without changing the facts. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`contract-review-pro`](https://github.com/lovstudio/contract-review-pro-skill) | Professional-grade contract review — four-layer methodology, structured comments with risk levels, summary, opinion, and business flowchart. |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-curator`](https://github.com/lovstudio/event-curator-skill) | Turn a guest bio into a ready-to-run event plan — title, rundown, host questions, and gifts. |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-curator`](https://github.com/lovstudio/event-curator-skill) | Turn a guest bio into a ready-to-run event plan — title, rundown, host questions, and gifts. — related: `publish-event-onto-hdx` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`expense-report`](https://github.com/lovstudio/expense-report-skill) | Turn a pile of invoices into a categorized Excel expense report. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`proposal`](https://github.com/lovstudio/proposal-skill) | Turn a project brief into a complete, client-ready business proposal. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`publish-event-onto-hdx`](https://github.com/lovstudio/publish-event-onto-hdx-skill) | Find out why your Huodongxing event is missing from its category page, and what to change to get seen. — related: `event-curator`, `event-poster` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`review-doc`](https://github.com/lovstudio/review-doc-skill) | Review a document or contract and return it with inline comments. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`solution-architect`](https://github.com/lovstudio/solution-architect-skill) | Turn a product or technical requirement into a researched, open-source-first implementation plan. |
 | **Design** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`business-card`](https://github.com/lovstudio/business-card-skill) | Turn anyone's name, roles and tagline into a polished editorial business card — high-res PNG plus a click-to-download HTML. |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | Turn an event brief into a polished poster, ready to share or print for exhibitions. |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | Turn an event brief into a polished poster, ready to share or print for exhibitions. — related: `publish-event-onto-hdx` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`find-logo`](https://github.com/lovstudio/find-logo-skill) | Collect brand logos from public sources — wide and transparent preferred, archived for website/PPT/poster lineups. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`maintain-partners`](https://github.com/lovstudio/maintain-partners-skill) | Scrape, normalize, and wire brand logos into the partners section across 4 locales in one shot. — requires: `find-logo` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`oh-my-landingpage`](https://github.com/lovstudio/oh-my-landingpage-skill) | Turn product truth into a distinctive landing page, with brand, story, visual direction, implementation, and production review working as one system. |

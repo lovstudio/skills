@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **96 个技能** — 81 个免费 + 15 个付费。
+> **97 个技能** — 82 个免费 + 15 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -69,14 +69,15 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`bp-outline`](https://github.com/lovstudio/bp-skill) | [BP 大纲](https://github.com/lovstudio/bp-skill) | 先把项目材料变成证据账本和投资人看得懂的 12–15 页大纲，再决定是否制作 PPT。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`bp-polish`](https://github.com/lovstudio/bp-skill) | [BP 审稿润色](https://github.com/lovstudio/bp-skill) | 给已有 BP 做投资逻辑、证据、文字、图表和视觉体检，输出评分报告与逐页修改，不为好看改事实。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`contract-review-pro`](https://github.com/lovstudio/contract-review-pro-skill) | [合同审阅 · 专业版](https://github.com/lovstudio/contract-review-pro-skill) | 专业级合同审阅 — 四层方法论（主体核验 + 基础 + 业务 + 法务），结构化批注含风险等级，附合同摘要、综合意见与业务流程图。 |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-curator`](https://github.com/lovstudio/event-curator-skill) | [活动策展](https://github.com/lovstudio/event-curator-skill) | 从嘉宾履历一键生成可交付的活动策划案 — 主题文案、分钟级 rundown、主持人问题卡、伴手礼。 |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-curator`](https://github.com/lovstudio/event-curator-skill) | [活动策展](https://github.com/lovstudio/event-curator-skill) | 从嘉宾履历一键生成可交付的活动策划案 — 主题文案、分钟级 rundown、主持人问题卡、伴手礼。 — 相关: `publish-event-onto-hdx` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`expense-report`](https://github.com/lovstudio/expense-report-skill) | [报销整理](https://github.com/lovstudio/expense-report-skill) | 发票图片或文字一键整理成分类报销 Excel，业务招待、差旅、办公自动归类。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`proposal`](https://github.com/lovstudio/proposal-skill) | [专业需求评估](https://github.com/lovstudio/proposal-skill) | 把项目简述一键变成可交付的商业提案，方案、报价、排版全配齐。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`publish-event-onto-hdx`](https://github.com/lovstudio/publish-event-onto-hdx-skill) | [活动行曝光诊断](https://github.com/lovstudio/publish-event-onto-hdx-skill) | 一次看清活动行活动为什么在分类页找不到，以及改哪个字段、用哪种排序能被看见。 — 相关: `event-curator`, `event-poster` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`review-doc`](https://github.com/lovstudio/review-doc-skill) | [合同审阅 · 日常版](https://github.com/lovstudio/review-doc-skill) | 审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`solution-architect`](https://github.com/lovstudio/solution-architect-skill) | [解决方案架构师](https://github.com/lovstudio/solution-architect-skill) | 把产品或技术需求转成有调研依据、开源优先的可执行解决方案。 |
 | **设计** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`business-card`](https://github.com/lovstudio/business-card-skill) | [专业名片生成](https://github.com/lovstudio/business-card-skill) | 把任何人的姓名、头衔、金句一键变成精美的编辑式名片，输出高清 PNG 与可点击下载的 HTML。 |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | [大师级海报生成](https://github.com/lovstudio/event-poster-skill) | 把活动信息一键变成高质感海报，可直接分享或用于线下展览。 |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | [大师级海报生成](https://github.com/lovstudio/event-poster-skill) | 把活动信息一键变成高质感海报，可直接分享或用于线下展览。 — 相关: `publish-event-onto-hdx` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`find-logo`](https://github.com/lovstudio/find-logo-skill) | [Logo 狩猎](https://github.com/lovstudio/find-logo-skill) | 按品牌名或网址抓取 logo，自动评分择优（偏好长条形 + 透明底），统一归档到本地，方便网站/PPT/海报罗列。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`maintain-partners`](https://github.com/lovstudio/maintain-partners-skill) | [合作伙伴维护](https://github.com/lovstudio/maintain-partners-skill) | 一键抓取品牌 logo、标准化处理并接入官网 partners 区块，多语言全覆盖。 — 依赖: `find-logo` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`oh-my-landingpage`](https://github.com/lovstudio/oh-my-landingpage-skill) | [品牌着陆页](https://github.com/lovstudio/oh-my-landingpage-skill) | 从产品与品牌事实出发，独立推导适合当前产品的叙事与视觉，并完成实现、响应式和生产回读。 |
