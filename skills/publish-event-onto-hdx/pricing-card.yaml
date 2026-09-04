@@ -1,10 +1,10 @@
 schema: lovstudio/pricing-card/v1
-version: "0.3.0"
+version: "0.4.0"
 model: free
 currency: CNY
 list_price_cny: 0
 value_anchor: "活动行活动分类缺失导致曝光归零，修复一次节省重新发布的时间成本"
 basis: "纯诊断+建议型 Skill，不消耗平台 Credits，作为活动发布后的标准检查步骤免费提供。"
-boundary: "包含：读取当前 Category/Tag 状态、分类页可见性核查、热门点击排名检查、标签替换建议。不包含：自动修改后台字段（受平台登录态保护，需用户手动执行）、活动内容撰写、海报生成。"
+boundary: "包含：读取当前 Category/Tag 状态、分类页可见性核查、热门点击排名检查、标签现状说明、活动详情正文配图替换，以及保存后守住分类被清空的回读流程。不包含：从零创建活动、活动内容撰写、海报设计生成；Tag 多值关键词后台无录入入口，不可修改。"
 review_trigger: "活动行改版导致 ativityJson 字段变化、分类体系调整、或 ego-browser 接口不兼容时复评。"
 confidence: internal

@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.0] - 2026-09-04
+
+### Added
+
+- record the SaveEvent category-wipe mechanism and the UEditor image replacement procedure
+- add a mandatory editbase re-submit guard and post-write readback step
+- resolve the Tag edit-entry question: no backend form exposes it
+- add README install command and two new usage examples
+
 ## 0.3.0
 
 修正 0.2.0 中「分类字段位置未确认」的空缺，并订正一处更严重的错误：Agent 曾把

@@ -3945,9 +3945,9 @@ skills:
   name_zh: 活动行曝光诊断
   paid: false
   category: Business
-  version: "0.3.0"
-  updated_at: 2026-09-02T12:00:00Z
-  description: "Diagnose Huodongxing (活动行) event exposure: read category/tag state, check category-page visibility and ranking, and advise on tags, refresh, and pinning."
+  version: "0.4.0"
+  updated_at: 2026-09-04T06:00:00Z
+  description: "Diagnose and safely edit a published Huodongxing (活动行) event: read category/tag state, check category-page visibility and ranking, replace detail-body images, and guard against the back-office save that silently wipes the category."
   tagline_en: Find out why your Huodongxing event is missing from its category page, and what to change to get seen.
   tagline_zh: 一次看清活动行活动为什么在分类页找不到，以及改哪个字段、用哪种排序能被看见。
   related:
@@ -3969,11 +3969,11 @@ skills:
     anchor_en: One diagnosis prevents an uncategorized event from being invisible on every category page, saving roughly 0.5–2 hours of back-office guesswork.
     basis_zh: 按一次可验证的诊断结论定价，价值来自实测得到的后台路径与字段区分，而非功能数量。
     basis_en: Priced around one verifiable diagnosis, with value coming from field-tested back-office paths and field distinctions rather than feature count.
-    boundary_zh: 只诊断已发布活动，不覆盖从零创建；分类标签需用户在后台手动修改；Tag 字段编辑入口尚未确认。
-    boundary_en: Diagnoses published events only, not creation; category label changes are made manually by the user; the Tag edit entry is not yet confirmed.
+    boundary_zh: 只处理已发布活动，不覆盖从零创建；可替换详情正文配图并守住保存后的分类回读；Tag 多值关键词后台无录入入口，不可修改。
+    boundary_en: Handles published events only, not creation; can replace detail-body images and enforce a post-save category readback; the multi-value Tag field has no back-office entry and cannot be edited.
     maintenance_zh: 随活动行后台改版、极验策略变化与 ego-browser 接口复评；仅在一个真实活动上验证。
     maintenance_en: Review against Huodongxing back-office changes, captcha policy, and ego-browser compatibility; verified on a single real event so far.
     confidence: entry
-    review_trigger_zh: 版本变化、连续 10 次真实使用、活动行后台改版或确认 Tag 编辑入口后复评。
-    review_trigger_en: Review after a version change, 10 real uses, a Huodongxing back-office redesign, or once the Tag edit entry is confirmed.
+    review_trigger_zh: 版本变化、连续 10 次真实使用、活动行后台改版，或 SaveEvent 字段集发生变化后复评。
+    review_trigger_en: Review after a version change, 10 real uses, a Huodongxing back-office redesign, or a change in the SaveEvent field set.
     card_path: pricing-cards/publish-event-onto-hdx.md

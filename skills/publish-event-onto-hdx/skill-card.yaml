@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.3.0"
+version: "0.4.0"
 description: >
   诊断活动行活动的分类与标签配置，找出在分类导航页不可见的根因（Category=0 未分类），
   提供基于 3800+ 个活动真实数据的标签替换建议，并在用户修复后回读排名变化。
@@ -36,7 +36,9 @@ risks:
   - risk: "活动行改版导致 ativityJson 结构变化"
     mitigation: "脚本中加 null 保护，字段缺失时降级到 meta keywords 提取"
   - risk: "分类/标签字段的后台位置未确认，Agent 可能凭猜测给出错误路径"
-    mitigation: "分类标签位置已实测确认（edit?view=editbase 的 .edit-btn[0]）；Tag 编辑入口仍未确认，SKILL.md 禁止断言并要求标注未确认"
+    mitigation: "分类标签位置已实测确认（edit?view=editbase 的 .edit-btn[0]）；Tag 已结案为后台无录入入口，SKILL.md 禁止向用户承诺可改"
+  - risk: "基本信息页保存会静默清空分类与主办方、截断 Tag，用户以为是自己操作失误"
+    mitigation: "SKILL.md 记录 SaveEvent payload 实测字段集与派生关系，并把「保存后补一次 editbase 提交 + 回读四字段」列为不可跳过的步骤"
   - risk: "Agent 把推想结果当作实测观测写入文档（已发生过：虚构 /myevent/manage 路径，实为 404）"
     mitigation: "SKILL.md 明文禁止编造观测结果，未在当次会话打开读取过的页面一律标注未确认"
 references:
@@ -47,7 +49,8 @@ references:
 output:
   types:
     - "诊断报告（中文散文）"
-    - "标签替换建议（列表）"
+    - "标签现状说明（列表）"
+    - "线上字段回读比对结果"
   formats:
     - "终端 Markdown 文本"
   parameters:

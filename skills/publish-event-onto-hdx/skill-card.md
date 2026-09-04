@@ -43,13 +43,13 @@ MIT — 自由使用、修改和分发，保留版权声明。
 
 ## Skill Output
 
-- 类型：诊断报告（中文散文）+ 标签替换建议列表
+- 类型：诊断报告（中文散文）+ 标签现状说明 + 写入后字段回读比对
 - 格式：终端 Markdown 文本
-- 验证：回读 ativityJson.Category 确认不为 0；在热门点击排序下找到活动并报告位置
+- 验证：回读 ativityJson 的 Category / Setting.HdxTags / Organizers / Tag 四项与改动前基线比对，Category 不为 0；在热门点击排序下找到活动并报告位置
 
 ## Skill Version
 
-0.3.0
+0.4.0
 
 ## Ethical Considerations
 

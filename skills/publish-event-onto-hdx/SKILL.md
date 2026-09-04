@@ -1,9 +1,9 @@
 ---
 name: lov-publish-event-onto-hdx
 description: >
-  诊断活动行活动的曝光问题：读取分类与标签现状、核查分类页可见性与排名、给出标签与
-  刷新置顶建议。Trigger: 活动行分类找不到、活动行标签、活动行排名、活动行曝光、
-  hdx event visibility, hdx category not showing。
+  诊断并修改活动行已发布活动：核查分类页可见性与排名、替换详情正文配图，并守住
+  后台保存会清空分类这一平台陷阱。Trigger: 活动行分类找不到、活动行分类没了、
+  活动行排名、活动行曝光、活动行换海报、hdx category not showing, hdx category reset。
 license: MIT
 compatibility: >
   ego-browser（继承用户已登录的活动行会话）；Python 3.8+；无需额外凭据。
@@ -11,7 +11,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: markshawn2020
-  version: "0.3.0"
+  version: "0.4.0"
   card_standard: lovstudio/skill-card/v1
   content_class: microcopy
   tags:
@@ -31,6 +31,8 @@ metadata:
 
 - 用户说"帮我看看活动行上的活动""活动行里找不到自己""活动行分类没设"
 - 用户说"活动行标签怎么设""活动行排名""活动行曝光"
+- 用户说"活动行分类怎么没了""刚保存完分类就没了"
+- 用户说"换掉活动行详情里的海报""替换活动行正文配图"
 - 用户说"publish event on hdx""fix hdx category""hdx event not showing"
 - 用户提供一个活动行活动链接，想知道为什么在分类页找不到
 
@@ -94,7 +96,7 @@ AI赋能(41)、AI智能体(37)、Agent(33)、AI Agent(33)、AI应用(30)、大�
 | 我的活动列表 | `/console/eventadmin` | 链接已确认 |
 | 创建新活动 | `/createv3` | 链接已确认 |
 | 编辑活动（完整表单） | `/myevent/edit?view=editbase&id=<id>` | 已验证，**含分类标签字段** |
-| ~~`/myevent/edit?id=<id>`~~（缺 view 参数） | — | 表单不完整，无分类字段 |
+| `/myevent/edit?id=<id>`（缺 view 参数） | — | **危险**：表单不完整，且保存会清空分类与主办方，见下节 |
 | ~~`/myevent/manage?id=<id>`~~ | — | 404「该页面已经迷失了」 |
 | 活动概览 | `/myevent/home?id=<id>` | 已验证，无分类/标签 |
 | 推广（刷新/置顶） | `/myevent/promote?id=<id>&tab=8` | 已验证 |
@@ -119,12 +121,92 @@ AI赋能(41)、AI智能体(37)、Agent(33)、AI Agent(33)、AI应用(30)、大�
 |---|---|---|
 | 数量 | 单选，1 个 | 多值，逗号分隔 |
 | 作用 | 决定分类页归属（对应 `Category`） | 站内搜索与长尾关键词 |
-| 后台位置 | `edit?view=editbase` 的 `.edit-btn[0]` | 未确认在何处编辑 |
+| 后台位置 | `edit?view=editbase` 的 `.edit-btn[0]` | **后台无录入入口（2026-09-04 实测）** |
 
 改「分类标签」不会改动 `Tag`。实测案例：用户把分类标签改为 AI 后，前台
 `ativityJson.Tag` 仍是原值 `Agent,DeepSeek,Harness,工作流自动化`，`UpdateDate` 未变。
-因此**基于 `Tag` 给「标签替换建议」时，必须先确认用户能在哪里编辑 `Tag`**，
-不要假设改分类标签就能改 `Tag`。
+
+`Tag` 的编辑入口问题已在 2026-09-04 结案：**两个编辑表单都没有该字段**，
+页面全文搜不到「标签」「分类标签」「关键词」任一词作为可编辑项。它只在保存请求里被
+表单模型回显（并且会被截断，见下节）。多值 `Tag` 最可能是发布时 `createv3` 流程写入的，
+**但这一点未验证，不得当作结论告诉用户**。
+
+因此**不要向用户承诺可以修改 `Tag`**。给标签建议时只能说明现状与影响，
+或者建议在下次创建活动时于 `createv3` 流程里填好。
+
+### 致命陷阱：基本信息页保存会静默清空分类（2026-09-04 实测）
+
+**`Category` 不是一个可直接写入的字段，它由服务端从 `Setting.HdxTags`（分类标签）派生。**
+两个保存入口提交的字段集不同，其中一个会把分类连根拔掉：
+
+| | `/myevent/edit`（基本信息页） | `/myevent/edit?view=editbase` |
+|---|---|---|
+| 端点 | POST `/myevent/SaveEvent` | 连发 5 个 POST，末尾也是 `SaveEvent` |
+| `Setting.HdxTags` | **整个 key 不存在** → 服务端写 null → `Category=0` | `Setting.HdxTags=<值>` → 分类正常 |
+| `Organizers` | `Organizers= `（一个空格）→ 写 null | `Organizers=<orgId>` |
+| `Tag` | **只提交最后一个关键词** → 多值被永久截断 | 回显当前值，不恢复多值 |
+| `Category` | `Category=`（空） | `Category=0` 与 `Category=` 各出现一次，均被忽略 |
+
+派生关系的证据：editbase 的 payload 里 `Category` 只有 `0` 和空值，但因为带了
+`Setting.HdxTags=AI`，落库结果是 `Category:11`。所以**永远不要试图直接写 `Category`**。
+
+`Tag` 截断在两个独立活动上复现：库里 4 个关键词，基本信息页只提交末位一个
+（`Agent,DeepSeek,Harness,工作流自动化` → `工作流自动化`；
+`AI,Agent,一人公司,创业复盘` → `创业复盘`）。截断后无法恢复。
+
+**强制守则：任何一次从 `/myevent/edit` 基本信息页点「保存活动信息」之后，
+必须立刻再去 `?view=editbase` 提交一次，并回读公开页确认三个字段。**
+这与用户填了什么无关——只要走那个入口保存，分类必然归零。
+
+### 另一个静默失败：必填字段加载为空
+
+编辑页的必填字段（实测为「详细地址」）经常**加载成空值**。此时点保存
+**一个网络请求都不会发出**——前端校验直接拦截，没有红框、没有 toast，
+页面只是默默滚回该字段。
+
+不要把「点了没反应」判断成保存成功，也不要判断成按钮坏了。诊断方法：
+
+```js
+// 在保存前 hook 住所有非 GET 请求；有 payload 说明校验通过，没有则是被拦截
+window.__cap = [];
+const of = window.fetch;
+window.fetch = function (input, init) {
+  const u = String(typeof input === 'string' ? input : (input && input.url) || '');
+  const m = String((init && init.method) || 'GET').toUpperCase();
+  if (m !== 'GET') {
+    let b = init && init.body;
+    if (b instanceof FormData) b = [...b.entries()].map(([k, v]) => k + '=' + String(v).slice(0, 240)).join('&');
+    window.__cap.push({ url: u, body: typeof b === 'string' ? b : String(b) });
+    return new Promise(() => {});   // 阻断：只观察，不写入
+  }
+  return of.apply(this, arguments);
+};
+```
+
+同一段 hook 也是**在真正写入前预演一次保存**的标准手法：先阻断并读出 payload，
+确认 `Setting.HdxTags` / `Organizers` / `Tag` 是否会被破坏，再决定要不要真的保存。
+
+### 替换活动详情正文里的配图（UEditor）
+
+活动详情正文是 UEditor，图片替换分三步，全部实测：
+
+1. **上传**：POST `/ueditor/ue_handler?action=uploadimage`，字段名 `upfile`，
+   上限 `imageMaxSize = 2048000`（约 2 MB，超了要先压）。
+   返回 `{"state":"SUCCESS","url":"/file/ue/...jpg",...}`，
+   对外完整地址是 `http://cdn.huodongxing.com` + 该 `url`。
+2. **换 src**：编辑器 iframe 是 `#ueditor_0`。**必须同时改 `src` 和 `_src` 两个属性**——
+   UEditor 序列化时读的是 `_src`，只改 `src` 会导致 `getContent()` 仍输出旧地址：
+
+   ```js
+   const d = document.getElementById('ueditor_0').contentDocument;
+   const img = [...d.querySelectorAll('img')].at(-1);
+   img.setAttribute('src', NEW_URL);
+   img.setAttribute('_src', NEW_URL);   // 缺这行，改动不会进入 getContent()
+   // 校验：window.UE.instants['ueditorInstant0'].getContent().includes(NEW_URL)
+   ```
+
+3. **保存**：走基本信息页的保存按钮——因此**必然触发上面的分类清空陷阱**，
+   保存后必须补一次 editbase 提交。
 
 ### 曝光的另一条杠杆：刷新与置顶
 
@@ -186,8 +268,8 @@ AI赋能(41)、AI智能体(37)、Agent(33)、AI Agent(33)、AI应用(30)、大�
 依次检查：
 
 1. **Category 是否为 0？** → 必须在主办方后台设置分类，否则在所有分类页不可见。
-2. **`Tag` 是否包含零曝光词？** → 对照上方分布给出建议，但**先说明 `Tag` 与
-   「分类标签」是两个字段**，且 `Tag` 的编辑入口尚未确认，不要许诺能改。
+2. **`Tag` 是否包含零曝光词？** → 对照上方分布说明现状，但**先说明 `Tag` 与
+   「分类标签」是两个字段**，且后台无 `Tag` 录入入口（已实测），**不要许诺能改**。
 3. **当前分类页排名如何？** → 查 `v`（热门点击）排序下的页面位置。
 
 ### Step 3: 输出诊断报告
@@ -197,7 +279,7 @@ AI赋能(41)、AI智能体(37)、Agent(33)、AI Agent(33)、AI应用(30)、大�
 - 当前 Category、分类标签、`Tag` 三者的值（明确区分后两者）
 - 分类页可见性结论（可见/不可见/原因）
 - 热门点击排序下的排名
-- `Tag` 关键词建议，并说明其编辑入口尚未确认
+- `Tag` 关键词现状说明，并明确后台无法修改
 
 如需改动分类，按「分类标签字段：已实测定位」一节的路径与选择器处理。
 曝光问题还要评估「刷新与置顶」的配额。
@@ -206,10 +288,29 @@ AI赋能(41)、AI智能体(37)、Agent(33)、AI Agent(33)、AI应用(30)、大�
 页面路径、`.edit-btn` 数量和字段位置当作实测结果写入本文件，路径实为 404。
 凡未在本次会话真正打开并读取过的页面，一律标注「未确认」，不得写成已验证。
 
-### Step 4: 验证（可选）
+### Step 3.5: 写入前确认（任何改动线上活动的操作）
 
-用户完成后台修改后，重新读取 `ativityJson` 确认 Category 已变更，
-并重新查排名，以回读结果报告最终状态。
+活动行的活动是**已发布、有人报名的公开页面**，任何后台保存都是对外写入。
+动手前用 `AskUserQuestion` 确认一次，问题里必须包含：要改哪个字段、改成什么值、
+以及本次保存会顺带影响什么（分类被清空、`Tag` 被截断）。
+
+改动前**先抄下当前的 `Category` / `Setting.HdxTags` / `Organizers` / `Tag` 四个值**，
+作为回读比对的基线。用户没有明确同意就不要保存。
+
+### Step 4: 写入后强制回读（不可跳过）
+
+**只要本次流程点过 `/myevent/edit` 基本信息页的保存，就必须补一次
+`?view=editbase` 提交**，否则分类已经归零。然后重新抓公开页 `ativityJson` 逐项比对：
+
+| 字段 | 期望 |
+|---|---|
+| `Category` | 非 0，且与改动前一致（或为本次有意变更的值） |
+| `Setting.HdxTags` | 非 null |
+| `Organizers` | 非 null |
+| `Tag` | 与基线一致；若已被截断，如实告知不可恢复 |
+
+**「保存动作成功」不等于「线上正确」。** 以公开页回读为准，不以点击成功为准。
+发现字段被清空要主动报告，不要等用户发现。
 
 ### Step 5: 持久化
 
