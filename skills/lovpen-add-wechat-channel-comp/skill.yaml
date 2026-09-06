@@ -1,0 +1,42 @@
+schema: skill-manifest/v1
+id: lov-lovpen-add-wechat-channel-comp
+version: "0.1.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-lovpen-add-wechat-channel-comp
+    persist:
+      enabled: true
+      namespace: skills.lov-lovpen-add-wechat-channel-comp
+      records_path: skills.lov-lovpen-add-wechat-channel-comp.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: workspace.output_dir
+        required: false
+        question: 如果没有指定输出文件，请提供默认输出目录。
+      - path: skills.lov-lovpen-add-wechat-channel-comp.profile.default_format
+        required: false
+        question: 默认生成 md 还是 html？
+  preferences:
+    namespace: lov_lovpen_add_wechat_channel_comp
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: skills.lov-lovpen-add-wechat-channel-comp.records.default_marker
+        required: false
+        question: 需要使用哪个固定插入标记？
+  interaction:
+    ask_missing: true
+    max_questions: 1

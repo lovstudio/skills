@@ -1,0 +1,110 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "Normalize one WeChat Channels DOM or Lovpen DSL and safely render it into Markdown or native component HTML."
+owner:
+  team: "LovStudio contributors"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "The Skill and local renderer are MIT licensed. Users remain responsible for rights to the referenced video, cover, avatar, and article content."
+  url: "LICENSE"
+use_case:
+  audience: "Writers, editors, developers, and agents composing Lovpen or WeChat Official Account articles."
+  scenario: "Convert a copied mp-common-videosnap DOM or an existing Lovpen video directive into a stable Markdown component or native HTML fragment, optionally replacing one explicit marker in a document."
+  tasks:
+    - "Parse exactly one native WeChat Channels component or Lovpen DSL directive."
+    - "Validate identifiers, media URLs, text metadata, and dimensions."
+    - "Render canonical Markdown DSL or native mp-common-videosnap HTML."
+    - "Atomically replace one explicit marker in an existing Markdown or HTML file."
+deployment:
+  geography: global
+  environments:
+    - "Any local agent runtime with Python 3.8 or newer and UTF-8 filesystem access."
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.8 or newer; the renderer uses only the standard library."
+    - "PyYAML is needed only for full Skill source validation."
+risks:
+  - risk: "A malformed or unrelated custom element could be mistaken for a valid video component."
+    mitigation: "Require exactly one mp-common-videosnap and validate all canonical identifiers, URLs, and positive dimensions before rendering."
+  - risk: "Writing a fragment into the wrong location could damage surrounding article content."
+    mitigation: "Existing targets must contain exactly one explicit marker; writes are atomic and zero or multiple matches fail closed."
+  - risk: "A syntactically valid component may reference expired media URLs or a video the user cannot publish."
+    mitigation: "Preserve source values exactly and limit acceptance to structural rendering; media availability, rights, draft creation, and playback require downstream verification."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Component contract"
+    path: "references/component-contract.md"
+  - title: "Composition record"
+    path: "references/skill-composition.md"
+  - title: "Verified user case"
+    path: "cases/cases.json"
+output:
+  types:
+    - "Canonical Lovpen WeChat Channels directive"
+    - "Native mp-common-videosnap HTML fragment"
+    - "Safely updated Markdown or HTML file"
+    - "Machine-readable integrity result"
+  formats:
+    - "Markdown"
+    - "HTML"
+    - "lovpen/wechat-channel-component/v1 JSON"
+  parameters:
+    - "DOM, DSL, UTF-8 input file, or stdin"
+    - "md or html output format"
+    - "Optional output path and exact insertion marker"
+  validation:
+    - "Exactly one input component and nine canonical fields"
+    - "HTTP media URLs and positive integer dimensions"
+    - "Stable field order, byte count, and SHA-256"
+    - "Exactly one marker for every existing-file write"
+    - "Focused unit tests and a real user-provided component case"
+  description: "A deterministic local component artifact that preserves WeChat identifiers and can enter Lovpen's Markdown-to-WeChat rendering chain."
+ethical_considerations: "The Skill runs locally and does not upload DOM, identifiers, media URLs, or article content. It does not grant rights to a video or prove that remote media remains available, playable, or publishable."
+dimensions:
+  - id: contract-fidelity
+    label: "Component contract fidelity"
+    description: "The DOM and DSL paths preserve the same canonical identifiers, metadata, URLs, and dimensions."
+    evidence: "The real supplied 78757-byte component round-tripped DOM to 962-byte DSL and back with nickname, description, ID, nonce, username, media URLs, and 1080 by 1440 dimensions unchanged; the portable case is redacted."
+    score: 1.0
+  - id: native-html-integrity
+    label: "Native HTML integrity"
+    description: "HTML output restores the custom element, all 11 key attributes, and a declarative Shadow DOM template."
+    evidence: "The real local input produced one 2558-byte native fragment; the redacted portable case produced one 1357-byte fragment. Both retained mpvideosnap metadata and template shadowrootmode open."
+    score: 1.0
+  - id: file-write-safety
+    label: "Existing-file write safety"
+    description: "The renderer only modifies an existing target when one exact insertion marker is present."
+    evidence: "The focused suite verifies exact-marker replacement, surrounding-content preservation, and rejection of ambiguous multi-component input."
+    score: 1.0
+  - id: portability
+    label: "Portable local execution"
+    description: "The transform runs without Lovpen source, Node.js, browser, network, or credentials."
+    evidence: "Six of six Python standard-library tests passed, including subprocess JSON output, exact-marker materialization, and line-ending plus file-mode preservation."
+    score: 1.0
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The local deterministic parser and renderer contain no hosted compute, storage, paid API, or bundled proprietary service."
+  boundary: "Includes single-component parsing, validation, Markdown and HTML rendering, exact-marker insertion, and integrity evidence. Excludes preview-link fetching, full-article styling, remote drafts, publication, media hosting, and playback guarantees."
+  review_trigger: "Revisit pricing if the Skill adds hosted preview extraction, managed media refresh, batch document migration, platform publication, or commercial support."
+  confidence: verified-local
+distribution:
+  paid:
+    - channel: workbuddy
+      state: not_published
+      offering: not_offered
+    - channel: skillpay
+      state: not_published
+      offering: not_offered
+  free:
+    - channel: github
+      state: not_published
+      evidence: "No remote repository or release was created in this workflow."
+    - channel: lovstudio
+      state: local_installed
+      evidence: "Validated source is installed through the shared local Skill entrypoint."
