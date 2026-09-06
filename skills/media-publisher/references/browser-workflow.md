@@ -28,7 +28,7 @@
 | `captureScreenshot({ path: '/tmp/a.png' })` | 抛 `ERR_INVALID_ARG_TYPE`，它把对象当路径 |
 | `captureScreenshot('/tmp/a.png')` | 正常，返回路径字符串 |
 | `screenshot(...)` | `ReferenceError`，helper 名是 `captureScreenshot` |
-| `mouseClick(x, y)` | `ReferenceError`，**没有按坐标点击的 helper**。要按坐标点用 `cdp('Input.dispatchMouseEvent', { type: 'mousePressed'/'mouseReleased', x, y, button: 'left', clickCount: 1 })` |
+| `mouseClick(x, y)` | `ReferenceError`，没有这个 helper。当前运行时可用 `click([x, y])`（2026-09-06 实测），或 `cdp('Input.dispatchMouseEvent', { type: 'mousePressed'/'mouseReleased', x, y, button: 'left', clickCount: 1 })`；坐标必须来自最新浏览器截图或节点 rect |
 | `completeTaskSpace(task, opts)` | 抛 `requires a task space name or id`，和 `handOffTaskSpace` 同坑。写 `completeTaskSpace(task.id, { keep: true })` |
 
 heredoc 按 **ES module** 解析：`require` 报 "Cannot determine intended module format"，
@@ -47,7 +47,12 @@ heredoc 按 **ES module** 解析：`require` 报 "Cannot determine intended modu
 **代理侧的中断按同一规则处理**：任何命令报 `The user has taken control of this task space` 是硬停，
 不重试、不 `takeOverTaskSpace()`。
 
-按用户的常驻要求，交出控制权时同步做三件事：发系统通知、语音播报、然后在后台轮询等待归还，不要停下来要求用户回话。轮询只读控制权状态，不读页面、不点击。
+按用户的常驻要求，交出控制权时同步做四件事：
+
+1. 在对话中展示已冻结的视频/封面绝对路径，让用户可以直接点开或拖放；
+2. 系统通知只写一个具体动作，不用「请处理一下」之类模糊说法；
+3. `notify_user.py --tts-provider auto` 优先用火山 TTS 播报同一条指令，并说清是否可点发布；
+4. 后台轮询等待归还，不停下要求用户回话。轮询只读控制权状态，不读页面、不点击。
 
 ## 任务启动
 
@@ -83,6 +88,12 @@ EOF
 - 从快照中定位「上传视频」「选择文件」「上传」语义控件，优先使用 `loc` 或 `@ref`。
 - 文件提交优先使用 `uploadFile`，并使用绝对路径。
 - 上传后读取进度文案与页面状态；仅 `progress=100` 不代表入库完成，需等待 `封面生成/解析中/转码中` 等消失。
+- 上传观察和字段写入是两条独立通道：不要用一个阻塞的「等上传完」调用占住整个流程。
+  若标题、描述、话题、合集、原创、标注等独立字段已经挂载并连续两次回读稳定，立即填写；
+  只在字段操作的空档低频回读上传状态。素材解析结束后再全量回读一次。
+- 封面编辑器若明确显示「上传中，等待完成后再编辑」，只把封面通道记为 blocked；
+  不得因此暂停标题、描述、标签或合集。封面自动写入确定失败时，立即交付封面绝对路径和唯一需要点击的槽位。
+- 封面、转码错误检查和最终提交仍等待素材解析完成。
 - **同一页面上可能有多个 `accept` 相同的 file input**，必须锚定到主上传区再提交，
   不能取第一个（视频号按 shadow 穿透 + `accept` 区分，B 站按祖先链含 `upload-wrp` 区分）。
   不复用旧 `nodeId`/`backendNodeId`。
@@ -161,16 +172,21 @@ await cdp('Input.dispatchMouseEvent', { type: 'mouseReleased', x, y, button: 'le
 
 完成后如无明确保留需求，执行 `completeTaskSpace(task.id, { keep: false })` 关闭任务空间（**传 id，传对象会抛 `requires a task space name or id`**）。用户在任务任意阶段提出保留 review 页面时，该要求持续到明确撤销；清理无效 scratch tab 后，在独立最终命令中执行 `completeTaskSpace(task.id, { keep: true })`，并检查返回值 `done=true`。
 
-## 视频号登录 iframe 是跨域的，快捷登录点不到（2026-08-21 EP.02）
+## 视频号跨域 iframe 的快捷登录（2026-09-06 实测）
 
-视频号创建页的登录组件在 `open.weixin.qq.com` 的**跨域 iframe** 里（`snapshotText` 能显示
-「微信快捷登录」按钮文本，但 DOM / accessibility 都读不到，`elementFromPoint` 也命中不了）。
-agent 无法自动点「微信快捷登录」：
+视频号登录组件位于 `open.weixin.qq.com` 的跨域 iframe。`snapshotText()` 可能读到账号名和
+「微信快捷登录」文本，却没有可点击 ref；顶层 DOM / accessibility 查询失败或语义点击
+报 `Element not found`，只能说明当前定位方式不适用，不能据此判定代理无法点击。
 
-- `DOM.getDocument({pierce:true})` 不穿透跨域 iframe；`Accessibility.getFullAXTree` 也不含它。
-- 语义 `click('微信快捷登录')` 报 `Element not found`。
-- 只有 `snapshotText` 能显示 iframe 内文本（ego-browser 的 CDP 穿透），但无法定位点击。
+在代理仍持有任务空间控制权、本机微信已登录且目标账号明确时：
 
-**结论**：本机微信已登录时若快捷登录按钮在跨域 iframe 里点不到，不要反复试——直接
-`handOffTaskSpace(task.id)` 交给用户，让用户点「微信快捷登录」完成授权，再用
-`waitForAgentControl(task.id)` 等归还。这比「先试自动点再交接」省一轮。
+1. 用 `captureScreenshot(SCREENSHOT_PATH)` 保存当前浏览器页面截图，路径取本轮独立文件，
+   确认账号与可见的快捷登录按钮。
+2. 从这张最新截图确定按钮中心，以 `click([x, y])` 执行一次浏览器坐标点击；也可使用
+   浏览器 CDP 的 `Input.dispatchMouseEvent`。不要照搬历史坐标，不调用系统级鼠标或切换前台应用。
+3. 重新读取快照与页面 URL，确认进入创建页，并逐字核对已登录账号。2026-09-06 本轮按此
+   流程一次点击后进入创建页，回读账号为「手工川」；这是本次证据，不是其他账号的默认值。
+4. 只有当前截图无法确认控件、一次点击后确认仍失败，或页面要求额外用户授权时，才按控制权
+   规则 `handOffTaskSpace(task.id)`，说明唯一待完成动作并等待归还；不连续盲点，也不绕过验证。
+
+以上操作全部发生在浏览器任务空间内；用户已接管时仍须停止读页与点击，等待控制权归还。

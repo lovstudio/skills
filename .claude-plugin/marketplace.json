@@ -172,6 +172,7 @@
       "skills": [
         "./skills/video-chapter",
         "./skills/media-publisher",
+        "./skills/branding-consistency",
         "./skills/publish-wechat-channels"
       ],
       "strict": false

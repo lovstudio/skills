@@ -135,6 +135,64 @@ class ValidateProbeTests(unittest.TestCase):
         )
         self.assertTrue(override_result["valid"])
 
+    def test_rejects_file_named_for_another_platform(self):
+        result = check_video.validate_probe(
+            Path("ep02-wechat-channels-v2.1.mp4"),
+            valid_probe(),
+            size_bytes=100 * 1024 ** 2,
+            platform="bilibili",
+        )
+
+        self.assertFalse(result["valid"])
+        self.assertEqual(
+            {item["code"] for item in result["errors"]},
+            {"cross_platform_filename"},
+        )
+
+    def test_cross_platform_name_requires_explicit_override(self):
+        result = check_video.validate_probe(
+            Path("ep02-wechat-channels-v2.1.mp4"),
+            valid_probe(),
+            size_bytes=100 * 1024 ** 2,
+            platform="bilibili",
+            allow_cross_platform_name=True,
+        )
+
+        self.assertTrue(result["valid"])
+        self.assertTrue(result["asset_selection"]["cross_platform_name_override"])
+
+    def test_rejects_orientation_mismatch_from_project_contract(self):
+        probe = valid_probe()
+        probe["streams"][0]["width"] = 1080
+        probe["streams"][0]["height"] = 1920
+
+        result = check_video.validate_probe(
+            Path("ep02-bilibili-v2.1.mp4"),
+            probe,
+            size_bytes=100 * 1024 ** 2,
+            platform="bilibili",
+            expected_orientation="horizontal",
+        )
+
+        self.assertFalse(result["valid"])
+        self.assertEqual(result["media"]["orientation"], "vertical")
+        self.assertEqual(
+            {item["code"] for item in result["errors"]},
+            {"orientation_mismatch"},
+        )
+
+    def test_accepts_matching_project_orientation(self):
+        result = check_video.validate_probe(
+            Path("ep02-bilibili-v2.1.mp4"),
+            valid_probe(),
+            size_bytes=100 * 1024 ** 2,
+            platform="bilibili",
+            expected_orientation="horizontal",
+        )
+
+        self.assertTrue(result["valid"])
+        self.assertEqual(result["media"]["orientation"], "horizontal")
+
 
 if __name__ == "__main__":
     unittest.main()

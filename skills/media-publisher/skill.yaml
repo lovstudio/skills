@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-media-publisher
-version: "0.6.1"
+version: "0.9.1"
 runtime: skill-runtime/v1
 context:
   profile:
@@ -36,9 +36,6 @@ context:
   preferences:
     namespace: lov_media_publisher
     fields:
-      - path: preferences.default_platform
-        required: false
-        question: 默认发到哪个平台（wechat-channels / bilibili）？
       - path: user.timezone
         required: false
         question: 定时发布要按哪个时区核对页面时间？

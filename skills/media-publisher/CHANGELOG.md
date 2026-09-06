@@ -3,19 +3,78 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.9.1] - 2026-09-06
+
+### Fixed
+
+- 生成内容标注按用户明确的素材来源说明和可核实制作证据判断，不再由 AI 话题、产品演示或辅助剪辑/字幕/调色推断。
+- 记录乐元现场分享误标教训；未知来源先查证，实际生成/合成素材再按适用平台规则判断，保留平台自身标识。
+
+## [0.9.0] - 2026-09-06
+
+### Changed
+
+- 默认平台队列固定为微信视频号 → B 站；当前请求明确指定的平台与顺序覆盖默认。
+- 视频号动作及列表回读完成后再处理 B 站；前一平台阻塞时先处理具体问题，不擅自改序。
+- 删除未指定平台时的泛问及 Manifest 中重复询问默认目的地的字段；条目状态查询保持原平台范围。
+
+### Fixed
+
+- 根据 2026-09-06 实测，跨域 iframe 的微信快捷登录无可点击 ref 时，先用最新浏览器截图定位并执行一次 `click([x, y])`，回读创建页与账号；仅真实阻塞时交接，保留原控制权和提交确认规则。
+
+## [0.8.0] - 2026-09-01
+
+### Added
+
+- gate platform-specific video variants before upload
+- reject sibling-platform filenames unless the user explicitly overrides reuse
+- validate the project-approved output orientation without assuming every Bilibili video is horizontal
+- route missing target-platform files back to lov-media-creator before opening the publisher
+
+## [0.7.0] - 2026-08-31
+
+### Added
+
+- parallelize uploads and form completion with actionable handoffs
+- prefer Volcengine TTS for user handoffs with a system-voice fallback
+- freeze and expose exact video and cover paths before opening the publisher
+
+## [0.6.4] - 2026-08-30
+
+### Fixed
+
+- correct Bilibili dual-cover canvas targeting
+- persist Quill descriptions with user-source input and blur
+- verify public title, description, cover, and tags on the same BV
+
+## [0.6.3] - 2026-08-26
+
+### Fixed
+
+- verify published Bilibili tags
+- read the Bilibili tag API and public tag nodes as an unordered exact-name set
+
+## [0.6.2] - 2026-08-26
+
+### Fixed
+
+- make short-video descriptions hook-first
+- preserve user-published copy across platforms and prevent duplicate submission after manual publish
+- treat user-selected collections as frozen state instead of reopening the old empty field table
+
 ## [0.6.1] - 2026-08-24
 
 ### Fixed
 
-- require a complete clickable Bilibili chapter timeline when final chapters are already approved
-- source chapter timestamps only from the final rendered timeline and re-read every line before submission
-- preserve user-edited descriptions by allowing only explicit minimal timeline additions
+- move global feedback policy to the shared instruction layer
+- keep the Bilibili chapter timeline gate domain-specific and remove the duplicated all-Skill policy
 
 ## [0.6.0] - 2026-08-24
 
 ### Added
 
-- add the shared feedback-classification and approval-invalidation gate used by every LovStudio Skill
+- add reusable feedback gate and Bilibili chapter timeline requirement
+- classify user corrections before continuing, optimize reusable guidance first, invalidate prior confirmation, and require verified clickable Bilibili chapter timestamps
 
 ## [0.5.3] - 2026-08-23
 
