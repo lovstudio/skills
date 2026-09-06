@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **97 个技能** — 82 个免费 + 15 个付费。
+> **98 个技能** — 83 个免费 + 15 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -146,6 +146,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | **Video Creation** | | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`media-creator`](https://github.com/lovstudio/media-creator-skill) | [媒体创作工作流](https://github.com/lovstudio/media-creator-skill) | 先交可编辑字幕 MKV，再交批准后的平台成片与各槽位真实封面，并保留原声和质检证据。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-publisher`](https://github.com/lovstudio/media-publisher-skill) | [视频发布器](https://github.com/lovstudio/media-publisher-skill) | 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`migrate-camera-media`](https://github.com/lovstudio/migrate-camera-media-skill) | [相机素材迁移](https://github.com/lovstudio/migrate-camera-media-skill) | 把相机素材完整转存到 SSD，逐文件校验，并留下可复查的转存报告。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`publish-wechat-channels`](https://github.com/lovstudio/publish-wechat-channels-skill) | [视频号发布器](https://github.com/lovstudio/publish-wechat-channels-skill) | 通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-chapter`](https://github.com/lovstudio/video-chapter-skill) | [视频章节工作台](https://github.com/lovstudio/video-chapter-skill) | 从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。 |
 | **Meta** | | | |

@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **97 skills** — 82 Free + 15 Paid.
+> **98 skills** — 83 Free + 15 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -147,6 +147,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | **Video Creation** | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`media-creator`](https://github.com/lovstudio/media-creator-skill) | Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-publisher`](https://github.com/lovstudio/media-publisher-skill) | Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates. — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`migrate-camera-media`](https://github.com/lovstudio/migrate-camera-media-skill) | Transfer camera media to SSD, verify every file, and keep an auditable copy report. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`publish-wechat-channels`](https://github.com/lovstudio/publish-wechat-channels-skill) | Publish WeChat Channels videos with preflight, field readback, and status verification. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-chapter`](https://github.com/lovstudio/video-chapter-skill) | Plan chapters, tune the progress bar in React Studio, then export an overlay, final video, or editor package. |
 | **Meta** | | |

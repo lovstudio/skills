@@ -3979,3 +3979,49 @@ skills:
     review_trigger_zh: 版本变化、连续 10 次真实使用、活动行后台改版，或 SaveEvent 字段集发生变化后复评。
     review_trigger_en: Review after a version change, 10 real uses, a Huodongxing back-office redesign, or a change in the SaveEvent field set.
     card_path: pricing-cards/publish-event-onto-hdx.md
+- name: migrate-camera-media
+  runtime_name: lov-migrate-camera-media
+  display_name: Camera Media Migration
+  name_zh: 相机素材迁移
+  repo: lovstudio/migrate-camera-media-skill
+  paid: false
+  category: Video Creation
+  version: 0.1.0
+  updated_at: '2026-09-06T01:04:35Z'
+  description: Offload camera cards on macOS with USB diagnostics, resumable whole-card
+    copying, SHA-256 readback, media sampling, and explicitly authorized cleanup.
+  tagline_en: Transfer camera media to SSD, verify every file, and keep an auditable
+    copy report.
+  tagline_zh: 把相机素材完整转存到 SSD，逐文件校验，并留下可复查的转存报告。
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、转存校验脚本和操作说明
+    delivery_unit_en: Public Skill source, offload verification scripts, and usage
+      guidance
+    value_zh: 保留整卡内容，核验目标副本，区分复制完成与允许清卡。
+    value_en: Preserve the whole card, verify the destination, and require explicit
+      cleanup authorization.
+    anchor_zh: 减少手工核对与重传；省时幅度取决于设备和原工作流，尚无跨设备统计。
+    anchor_en: Reduce manual reconciliation and repeated transfers; time savings vary
+      and are not yet measured across devices.
+    basis_zh: 六维评分 3.05/5；单次实战与14项测试提供初步证据，先免费积累外部反馈。
+    basis_en: A 3.05/5 weighted score, one field workflow, and 14 tests support a
+      free entry while external evidence grows.
+    boundary_zh: 目前支持 macOS 挂载卷；不含损坏素材恢复、全片审核或人工服务。
+    boundary_en: Supports macOS mounted volumes; excludes damaged-media recovery,
+      full-video review, and managed services.
+    maintenance_zh: 随文件系统、机型与依赖变化复评。
+    maintenance_en: Review with filesystem, camera, and dependency changes.
+    confidence: case-backed
+    review_trigger_zh: 10 次外部真实转存或3种机型，新增平台或支持成本变化时复评。
+    review_trigger_en: Review after 10 external transfers, three camera models, platform
+      expansion, or material support-cost changes.
+    card_path: pricing-cards/migrate-camera-media.md
