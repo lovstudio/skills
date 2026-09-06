@@ -4058,3 +4058,47 @@ skills:
     review_trigger_zh: 累计 10 次真实使用、宿主机制变化或新增服务范围时复评。
     review_trigger_en: Review after 10 real uses, host behavior changes, or expanded service scope.
     card_path: pricing-cards/praise-before-work.md
+- name: video-moments
+  runtime_name: lov-video-moments
+  display_name: Video Moments
+  name_zh: 视频现场瞬间
+  repo: lovstudio/video-moments-skill
+  paid: false
+  category: Video Creation
+  version: 0.3.0
+  updated_at: '2026-09-06T16:16:26Z'
+  description: Select faithful photo moments from event videos, restore S-Log3 and Rec.709 color, and deliver
+    bright, traceable photo sets.
+  tagline_en: Select real moments from event videos, restore color, and deliver consistently bright photos
+    with source timecodes.
+  tagline_zh: 从课程和活动视频挑选真实瞬间，完成色彩还原与统一提亮，交付可回溯的照片组。
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、摄影调色脚本和照片交付规范
+    delivery_unit_en: Public Skill source, photographic color scripts, and photo delivery contracts
+    value_zh: 筛选真实现场照片，按原片证据还原颜色，统一提亮并保留时间码。
+    value_en: Select authentic event photos, restore source color, balance brightness, and preserve timecodes.
+    anchor_zh: 减少逐帧挑选和组图整理；尚无人工耗时对照，不承诺固定省时比例。
+    anchor_en: Reduce manual frame selection and photo-set preparation; time savings have not been measured
+      against a manual baseline.
+    basis_zh: 六维加权得分 3.275/5；六张真实摄影成片和六项色彩回归提供初步证据，保留免费模式积累跨设备反馈。
+    basis_en: Weighted score 3.275/5; six real photographic outputs and six color regressions support a free
+      entry while cross-device evidence grows.
+    boundary_zh: 自备视频与宿主视觉能力；需要 Python、Pillow、NumPy、FFmpeg/FFprobe，不含人工修图、托管推理和代发布。
+    boundary_en: Requires source video, host vision, Python, Pillow, NumPy, and FFmpeg/FFprobe; excludes managed
+      retouching, hosted inference, and publishing services.
+    maintenance_zh: 随相机色彩模式、FFmpeg、宿主能力和真实案例反馈复评。
+    maintenance_en: Review with camera color modes, FFmpeg, host capabilities, and real-case feedback.
+    confidence: case-backed
+    review_trigger_zh: 跨设备真实案例达到 10 次，或新增托管推理、人工交付及持续支持时复评。
+    review_trigger_en: Review after 10 cross-device cases or the addition of hosted inference, managed delivery,
+      or ongoing support.
+    card_path: pricing-cards/video-moments.md

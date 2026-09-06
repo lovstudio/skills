@@ -1,0 +1,12 @@
+schema: lovstudio/pricing-card/v1
+version: "0.3.0"
+model: free
+currency: CNY
+list_price_cny: 0
+display_unit: credits
+list_price_credits: 0
+value_anchor: 从长视频中获取可分享照片，减少逐帧挑选和组图整理工作
+basis: 本地流程与脚本开放；没有人工耗时对照和完整模型账单，不声称具体节省比例。
+boundary: 含索引、筛选规则、源帧提取、编辑契约和本地交付校验；模型与转录由宿主提供并可能另行计费；不含发布与肖像授权。
+review_trigger: 获得跨视频通过率、人工耗时和模型账单后复评；增加托管推理时重新评估付费。
+confidence: internal

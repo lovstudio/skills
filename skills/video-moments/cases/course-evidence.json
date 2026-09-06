@@ -1,0 +1,288 @@
+{
+  "schema": "video-moments-case-evidence/v1",
+  "date": "2026-09-06",
+  "source": {
+    "name": "A20260906_0031.MP4",
+    "duration_seconds": 15012.96,
+    "bytes": 43021372505,
+    "size": [
+      1920,
+      1080
+    ],
+    "fps": 25
+  },
+  "coverage": {
+    "coarse_frames": 167,
+    "coarse_interval_seconds": 90,
+    "refinement_frames": 144,
+    "burst_frames": 28,
+    "basis": "visual-only",
+    "full_transcription": false
+  },
+  "source_package": {
+    "status": "originals-preview",
+    "count": 6,
+    "size": [
+      1920,
+      1080
+    ],
+    "files": [
+      {
+        "order": 1,
+        "file": "images/01.png",
+        "id": "moment-01",
+        "time": 3541.0,
+        "timecode": "00:59:01.000",
+        "reason": "讲授者抬头面对学员，身后保留手写 Skill 结构图。",
+        "category": "teaching",
+        "edit_method": "original",
+        "sha256": "c2b8a8a1cf66d4b18e1d4c1ff2b92c8dc9fd57936976d072ab9384d3902fc994",
+        "bytes": 1943167,
+        "size": [
+          1920,
+          1080
+        ],
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 2,
+        "file": "images/02.png",
+        "id": "moment-02",
+        "time": 8001.5,
+        "timecode": "02:13:21.500",
+        "reason": "两位讲授者相互面向交流，人物关系清楚，手部没有明显运动拖影。",
+        "category": "discussion",
+        "edit_method": "original",
+        "sha256": "3eb2bd6ead9c6fdcf31f2aafc928451b60016aa7b88141d2f5233778f5a8085d",
+        "bytes": 2077608,
+        "size": [
+          1920,
+          1080
+        ],
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 3,
+        "file": "images/03.png",
+        "id": "moment-03",
+        "time": 11870.0,
+        "timecode": "03:17:50.000",
+        "reason": "参与者展示有明确布局的工作台页面，人物和演示内容同时可见。",
+        "category": "demo",
+        "edit_method": "original",
+        "sha256": "c6757427c63b7c98c68d2d24232a70bfa68dda0168470dbf72c3a294da301f85",
+        "bytes": 1688320,
+        "size": [
+          1920,
+          1080
+        ],
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 4,
+        "file": "images/04.png",
+        "id": "moment-04",
+        "time": 12244.0,
+        "timecode": "03:24:04.000",
+        "reason": "参与者面对听众展示 AI 与具体生活主题，标题清楚、画面简洁。",
+        "category": "presentation",
+        "edit_method": "original",
+        "sha256": "f02014e6a4db6990eaecfd19471cb25f8037fb926419b2f98efe41173a6fe1ea",
+        "bytes": 1761606,
+        "size": [
+          1920,
+          1080
+        ],
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 5,
+        "file": "images/05.png",
+        "id": "moment-05",
+        "time": 12966.0,
+        "timecode": "03:36:06.000",
+        "reason": "同一分享的收束页面与自然笑容，形成内容结束的视觉节点。",
+        "category": "closing",
+        "edit_method": "original",
+        "sha256": "f98311ac44e169a230a2c6269683c4aa54fedbb03f15696149e22d2956142f9d",
+        "bytes": 1709134,
+        "size": [
+          1920,
+          1080
+        ],
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 6,
+        "file": "images/06.png",
+        "id": "moment-06",
+        "time": 13758.0,
+        "timecode": "03:49:18.000",
+        "reason": "另一位参与者操作个人站点，页面和人物均可辨识。",
+        "category": "showcase",
+        "edit_method": "original",
+        "sha256": "d6eb727229ddf44a05a8e40f8ad75b45d70bae6de33ddd650817054300add482",
+        "bytes": 1933200,
+        "size": [
+          1920,
+          1080
+        ],
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      }
+    ]
+  },
+  "beautification": {
+    "status": "ai-beautified-review-delivered",
+    "tool": "built-in imagegen",
+    "user_feedback": "要美化，而且感觉太暗了",
+    "count": 6,
+    "size": [
+      1672,
+      941
+    ],
+    "result": "明显提亮人物面部与室内暗部，减轻偏蓝；已回看整组与人物局部原图对比。",
+    "strict_documentary_pass": false,
+    "limitation": "投影中的部分小字和细节有 AI 重绘，未通过严格纪实保真门禁；未调用通过门禁的成品打包流程。",
+    "delivery": [
+      "本地原图切换对比页",
+      "六张统一尺寸 PNG 的 ZIP 下载包",
+      "源帧/成图 SHA-256 与时间码记录"
+    ],
+    "validation": {
+      "images_decoded": true,
+      "uniform_size": true,
+      "copied_hashes_matched": true,
+      "local_links_exist": true,
+      "zip_integrity": true
+    },
+    "files": [
+      {
+        "id": "moment-01",
+        "order": 1,
+        "time_seconds": 3541.0,
+        "timecode": "00:59:01.000",
+        "edited_sha256": "cc8eef7c9554259c06fb8cdbd98795eece68d216b59fe07a617b8a41dd087248",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 2062562
+      },
+      {
+        "id": "moment-02",
+        "order": 2,
+        "time_seconds": 8001.5,
+        "timecode": "02:13:21.500",
+        "edited_sha256": "95ffc46a21ffad7442de8df23c3fb3b0cd02f97e46222e89fe9e0c6385491688",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 1980953
+      },
+      {
+        "id": "moment-03",
+        "order": 3,
+        "time_seconds": 11870.0,
+        "timecode": "03:17:50.000",
+        "edited_sha256": "c20670db8aa8e4d2e41ffc64debd3f7a0b0ccaadceef2cfc0c493e47b346903f",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 1842839
+      },
+      {
+        "id": "moment-04",
+        "order": 4,
+        "time_seconds": 12244.0,
+        "timecode": "03:24:04.000",
+        "edited_sha256": "436ba25daf437deab283a22c419a16362e1a1e90ed00ba940791b64f6a74e69f",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 1812470
+      },
+      {
+        "id": "moment-05",
+        "order": 5,
+        "time_seconds": 12966.0,
+        "timecode": "03:36:06.000",
+        "edited_sha256": "82070cddaaaa9e7c836d6a37171dd3caa470cd8c60b8dd4bfab632e7a01a2dc9",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 1966764
+      },
+      {
+        "id": "moment-06",
+        "order": 6,
+        "time_seconds": 13758.0,
+        "timecode": "03:49:18.000",
+        "edited_sha256": "aa2d009c400252fc35dc3288c5a0283b29b9ee4f99661fe8b9b5d7bd584218be",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 1939709
+      }
+    ],
+    "earlier_trial": {
+      "result": "rejected-detail-drift",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    "style_approval": {
+      "approved": true,
+      "date": "2026-09-06",
+      "user_statement": "这个明亮美化不错",
+      "preset": "bright-documentary",
+      "scope": "亮度、肤色和整体观感；不等于逐字或逐像素保真"
+    }
+  },
+  "engineering": {
+    "cli_integration": "passed",
+    "synthetic_fixture_not_user_case": true
+  },
+  "publication": "not-published"
+}

@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **99 skills** — 84 Free + 15 Paid.
+> **100 skills** — 85 Free + 15 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -151,6 +151,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`migrate-camera-media`](https://github.com/lovstudio/migrate-camera-media-skill) | Transfer camera media to SSD, verify every file, and keep an auditable copy report. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`publish-wechat-channels`](https://github.com/lovstudio/publish-wechat-channels-skill) | Publish WeChat Channels videos with preflight, field readback, and status verification. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-chapter`](https://github.com/lovstudio/video-chapter-skill) | Plan chapters, tune the progress bar in React Studio, then export an overlay, final video, or editor package. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`video-moments`](https://github.com/lovstudio/video-moments-skill) | Select real moments from event videos, restore color, and deliver consistently bright photos with source timecodes. — requires: `branding-consistency` |
 | **Meta** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-add-case`](https://github.com/lovstudio/skill-add-case-skill) | Record an accepted Skill result as truthful evidence, then verify its public source and LovStudio detail page. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) | Scaffold a new skill as an independent source repo with release-driven aggregate distribution. |
