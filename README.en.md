@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **98 skills** — 83 Free + 15 Paid.
+> **99 skills** — 84 Free + 15 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -59,6 +59,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-crawler`](https://github.com/lovstudio/media-crawler-skill) | Turn an authorized social-media link into a verified local media file with resumable downloads and diagnostics. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-fetch`](https://github.com/lovstudio/media-fetch-skill) | Find the right edition, resume through the faster transport, and verify the local media and subtitle status. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`personal-vocabulary`](https://github.com/lovstudio/personal-vocabulary-skill) | One personal vocabulary reused across speech-input apps. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`praise-before-work`](https://github.com/lovstudio/praise-before-work-skill) | Start each task with specific encouragement, then get to work. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`search-file`](https://github.com/lovstudio/search-file-skill) | Recover files from past AI chats with conversation evidence, existence checks, and durable-copy ranking. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`search-twitter`](https://github.com/lovstudio/search-twitter-skill) | Recover verbatim X/Twitter posts, screenshot evidence, and the gaps that still cannot be proven. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`subtitle-freedom`](https://github.com/lovstudio/subtitle-freedom-skill) | Make learner subtitles that keep the selected level and harder expressions, with spoiler-safe ASS cards and optional no-burn watermark sidecars. |

@@ -4025,3 +4025,36 @@ skills:
     review_trigger_en: Review after 10 external transfers, three camera models, platform
       expansion, or material support-cost changes.
     card_path: pricing-cards/migrate-camera-media.md
+- name: praise-before-work
+  runtime_name: praise-before-work
+  display_name: Praise Before Work
+  name_zh: 开工前夸夸
+  repo: lovstudio/praise-before-work-skill
+  paid: false
+  category: General
+  version: 0.2.0
+  description: Give explicit, context-grounded encouragement before starting a task, including greetings when invoked explicitly.
+  tagline_zh: 开工前先收到一段具体的夸奖，再开始处理任务。
+  tagline_en: Start each task with specific encouragement, then get to work.
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本 Skill 指令、使用示例与安装说明
+    delivery_unit_en: Current Skill instructions, usage examples, and installation guide
+    value_zh: 在开工前获得明确、具体的肯定，夸完直接做事。
+    value_en: Receive explicit, specific encouragement before work begins.
+    anchor_zh: 改善协作开场体验，尚未量化省时或经济收益。
+    anchor_en: A friendlier opening; no measured time or financial benefit.
+    basis_zh: 六维加权得分 1.425/5，普通提示可替代且外部效果证据有限，作为免费体验入口。
+    basis_en: Weighted score 1.425/5; readily replaceable by a prompt and limited external evidence support a free entry.
+    boundary_zh: 自动触发取决于宿主，具体措辞由模型与上下文决定；不含专属支持。
+    boundary_en: Automatic selection depends on the host; wording depends on the model and context. No dedicated support.
+    confidence: low
+    review_trigger_zh: 累计 10 次真实使用、宿主机制变化或新增服务范围时复评。
+    review_trigger_en: Review after 10 real uses, host behavior changes, or expanded service scope.
+    card_path: pricing-cards/praise-before-work.md
