@@ -66,13 +66,18 @@ await cdp('Input.insertText', { text: TITLE })
 ## 简介是 Quill，不是 contenteditable 裸写
 
 `document.execCommand('insertText', false, 多行文本)` 会把多行**吞成首行**
-（观测：736 字 → 22 字）。拿 Quill 实例直接 setText：
+（观测：736 字 → 22 字）。拿 Quill 实例以用户来源写入并主动失焦：
 
 ```js
-document.querySelector('.ql-container').__quill.setText(text)
+const q = document.querySelector('.ql-container').__quill
+q.setText(text, 'user')
+q.blur()
 ```
 
-实例挂在 `.ql-container` 的 `__quill` 双下划线属性上。
+实例挂在 `.ql-container` 的 `__quill` 双下划线属性上。写入必须下一轮读取
+`.ql-editor > p` / `.ql-editor.innerText` 或 `q.getText()`，与冻结全文逐字比较；只看编辑器里
+出现文字不代表提交模型已更新。2026-08-30 实测首次提交公开 `view.data.desc` 为空，按上述
+`setText(text, 'user') → blur → 下一轮回读` 修正后才真正发布简介。
 
 ## 计数器探针不要用 innerText 匹配
 
@@ -97,6 +102,22 @@ const x = r.x + r.width / 2, y = r.y + r.height / 2
 await cdp('Input.dispatchMouseEvent', { type: 'mousePressed',  x, y, button: 'left', clickCount: 1 })
 await cdp('Input.dispatchMouseEvent', { type: 'mouseReleased', x, y, button: 'left', clickCount: 1 })
 ```
+
+## 投稿后标签回读：`view` 接口不含 tags
+
+投稿页标签节点只证明编辑表单当时有值。发布后用标签专用公开接口回读：
+
+```bash
+curl -s 'https://api.bilibili.com/x/tag/archive/tags?bvid=BVxxx'
+```
+
+验收字段是 `data[].tag_name`。公开页的第二条证据是
+`.video-tag-container a.tag-link`；链接应带 `from_source=video_tag`。B 站会重排标签顺序，
+所以把预期值与两个来源都规范化成名称集合再比较，不按投稿顺序比较。
+
+不要用 `/x/web-interface/view` 是否含 tags 判断——这个接口不返回标签；也不要因为简介里没有
+`#AI #Agent ...` 就判断 tags 丢失，B 站把简介与标签作为两个独立字段展示。标签接口和公开页
+节点都命中完整集合时，结论是 tags 已发布，无需重新编辑或投稿。
 
 ## 按钮落在视口外时，坐标点会静默丢
 
@@ -141,7 +162,7 @@ skill 正文里「原创权益弹窗」那套写法是**视频号**的，B 站�
 | 首页推荐封面 | 4:3 | 首页推荐位 |
 | 个人空间封面 | 16:9 | **合集列表、个人空间、信息流** |
 
-一次上传**只落到当前激活的那个 tab 对应的槽**，另一个仍是平台自动抽的视频帧。
+一次上传**只落到当前激活的编辑画布**，另一个仍是平台自动抽的视频帧。
 `.cover-img` 的 `backgroundImage` 只反映 4:3 那个，表单显示「封面设置」也只证明 4:3 有图。
 
 **唯一可信验证**是投稿后拉一次公开接口，看 `pic` 字段并把图下载下来看：
@@ -155,16 +176,9 @@ curl -s 'https://api.bilibili.com/x/web-interface/view?bvid=BVxxx' | python3 -c 
 2026-08-18 就是靠这条抓到「两期封面都只改了 4:3」：EP.01 的 `pic` 是 1080×607 纯黑，
 EP.02 的 `pic` 是随机抽的一帧。
 
-补 16:9 有两条路：
-
-- 点「个人空间」tab 切槽，然后对该槽的 file input `DOM.setFileInputFiles`；
-- 或改动 4:3 后，平台会弹「检测到个人空间封面（16:9）未修改」，点**确认同步**。
-  弹窗里那张 1920×1080 预览图是 data: URI，可以用页内 canvas 抠出来核对。
-
-两个陷阱：
-
-- **重传同一个文件不会触发同步弹窗**：平台按哈希判定「未修改」。必须切槽直传。
-- **关掉封面弹窗不等于提交**：改完封面要重新点「立即投稿」才生效。
+补 16:9 必须激活对应的编辑画布 wrapper 后直传；具体结构和恢复顺序见下文。不要依赖同步弹窗，
+`双比例同步改动` 应保持关闭。**重传同一个文件可能因哈希不触发变化；关掉封面弹窗也不等于提交**，
+改完仍要重新点「立即投稿」。
 
 ## `captureScreenshot` 在封面编辑器里出全白图
 
@@ -196,7 +210,7 @@ return c.toDataURL('image/jpeg', 0.9)
 | --- | --- | --- | --- |
 | 分区 | `.video-human-type` | `.select-controller` | `p.select-item-cont` 的文本 |
 | 合集 | `.video-season` | `.season-enter` | `.season-enter-text` 的 **`title` 属性** |
-| 封面 | `.cover-main` | `.cover-slot span.edit-text` | `.cover-img` 的 `background-image` |
+| 封面 | `.cover-main` | `.cover-main .edit-text` | `.cover-main .cover-img` 的 `background-image`（仅证明 4:3） |
 
 不存在的东西（我全试过）：`.choose-btn`、`.ant-select-*`、`.ant-cascader-menu-item`、
 `.ant-form-item`、`[role="combobox"]`、`.category-item`。B 站创作中心是自研组件库 +
@@ -228,7 +242,7 @@ const ctrl = label.closest('.video-human-type').querySelector('.select-controlle
 
 主文档里 `input[type=file]` 只有 3 个：两个 `.mp4`（见上文「两个 accept=.mp4」）和一个 `.txt`
 （字幕）。**没有任何 `accept=image` 的输入**，`DOM.getDocument({pierce:true})` 也一样查不到——
-不是藏起来了，是还没挂载。必须先点 `.cover-slot span.edit-text` 打开封面编辑器，
+不是藏起来了，是还没挂载。必须先点 `.cover-main .edit-text` 打开封面编辑器，
 弹窗里才会出现图片输入。
 
 而 `span.edit-text` 不是 `<button>`，`querySelectorAll('button')` 按文本找「添加封面」找不到；
@@ -243,20 +257,33 @@ const ctrl = label.closest('.video-human-type').querySelector('.select-controlle
 首帧是片头静帧，当封面等于没有封面。EP.03 线上 16:9 是 1440×810 的正式封面（人像 + 标题），
 和抽帧完全是两回事。
 
-## 封面 16:9 槽切换的正确入口（2026-08-20 EP.05 实测补充）
+## 封面 16:9 槽切换的正确入口（2026-08-30 EP.04 纠正）
 
-- 封面编辑器打开后，**4:3 / 16:9 的切换按钮是右侧顶部的「首页推荐」「个人空间」两个 `div.button`**（`own text` 全等「个人空间」且 `class` 含 `button`），不是左侧的 tab 标题 `span.text`「首页推荐封面（4:3）」「个人空间封面（16:9）」。点左侧标题不切槽，上传仍落 4:3。
-- 切槽成功的判据：目标按钮的 `class` 从 `button` 变成 `button active`（读回确认），而不是看标题高亮。
-- 上传 16:9 后验证：公开接口 `pic` 字段（反映 16:9 槽）拉下来是 1440×810；判断是否真生效要对比两侧亮度——我合成的是「4:3 居中 + 两侧放大模糊压暗」，两侧应明显暗于中央；若 `pic` 两侧亮度≈中央（接近 4:3 原图），说明 16:9 没生效，是 4:3 拉伸过去的。
-- 编辑器里有一个「双比例同步改动」开关：开着时改一个比例会自动同步另一个，传独立 16:9 前要先关掉。投稿成功落地页（「稿件投递成功 / 立即加热 / 再投一个」）会遮住编辑表单，重新编辑要从管理列表点进稿件，不要直接 goto 编辑 URL 白等。
+右侧「首页推荐 / 个人空间」两个 `div.button` **只切换右侧效果预览，不切换上传目标**；
+`button active` 只能证明预览卡片变了，把它当编辑槽证据会让 16:9 仍保留视频抽帧。
 
-## 立即投稿提交：自动化易被弹窗/视频预览遮挡，建议交用户手动（2026-08-21 EP.02）
+真正的两个编辑目标是 `.cover-editor-panel-canvas > div` 包住的 `#editor_4_3` 与
+`#editor_16_9`。wrapper 的 `active / inactive` 才是当前上传目标状态：上传 4:3 前确认第一个
+wrapper active；再点击第二个 inactive wrapper / canvas，回读其 class 变 active 后上传 16:9。
+弹窗可能只有一个可见 `span.upload-text`，图片 file input 也只有打开编辑器后才挂载，因此每次
+上传都必须先证明正确 wrapper 已激活，不能按第几个上传按钮猜槽位。
+
+`双比例同步改动` 保持关闭。两张图上传后同时截图 `#editor_4_3` 与 `#editor_16_9` 的 canvas，
+再点 `div.button.submit`「完成」。如果先前把素材传错槽，最安全的恢复是点「取消」丢弃本次未保存
+图层，重新打开编辑器，按 4:3 wrapper → 上传 → 16:9 wrapper → 上传 → 双 canvas 截图 → 完成
+的顺序重做；不要在未知激活状态上继续叠图。
+
+投稿后仍用 `view.data.pic` 验收 16:9，并下载目视核对。投稿成功落地页会遮住编辑表单；需要修正时
+从内容管理进入同一 BV 的编辑页，修完再次「立即投稿」，不得新建重复稿件。
+
+## 立即投稿提交：先做一次语义点击，遮挡时再交用户（2026-08-30 修订）
 
 - 点「立即投稿」会弹「封面制作」弹窗（4:3 / 16:9 封面效果确认），点「确定」后提交。
 - 「立即投稿」按钮常被预渲染 `bcc-dialog`、视频预览 `canvas`/`vp-nd-b`、素材容器 `materials` 遮挡，
   `elementFromPoint` 命中遮挡元素，CDP 真鼠标点击落到遮挡上，按钮的 React onClick 不触发。
 - **不要 `display:none` 弹窗/预览容器去「透传」**——那会破坏 React 状态，导致「立即投稿」的
   onClick 彻底失效（本 EP 踩过：隐藏弹窗后点「立即投稿」无任何反应，页面停留投稿页）。
-- 最可靠的做法：agent 负责填字段（标题/简介/标签/分区/封面/合集），把「提交」这个动作
-  （点「立即投稿」+ 封面确认弹窗「确定」）明确作为**用户手动步骤**交回，避免自动化被
-  React 状态 + 预渲染弹窗遮挡卡死。封面确认弹窗的「确定」用真鼠标 + scrollIntoView + 新 rect。
+- 终稿确认后先把主按钮滚入视口，刷新 rect，按可见名称做一次语义/直接点击；出现加载、跳转、
+  成功页或提交态后立刻停止点击，只进入回读。
+- 只有检查 `elementFromPoint` 后确认真实遮挡、且一次点击没有触发任何提交态时，才把「立即投稿」
+  与封面确认弹窗交给用户。不要无条件手动交接，也不要隐藏遮挡层或盲目重复点击。

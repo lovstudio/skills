@@ -2126,13 +2126,15 @@ skills:
     card_path: pricing-cards/media-creator.md
 - name: media-publisher
   runtime_name: lov-media-publisher
-  updated_at: 2026-08-23T17:16:16Z
+  updated_at: 2026-09-06T01:01:14Z
   display_name: Media Publisher
   repo: lovstudio/media-publisher-skill
   name_zh: 视频发布器
   paid: false
   category: Video Creation
-  version: "0.6.1"
+  depends_on:
+  - branding-consistency
+  version: "0.9.1"
   description: Publish videos to WeChat Channels or Bilibili with media preflight, frozen user-edited descriptions, cover gates, final confirmation, and post-submit status readback.
   tagline_en: Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates.
   tagline_zh: 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。
@@ -2148,8 +2150,8 @@ skills:
     delivery_unit_en: Public Skill source and current-version notes
     value_zh: 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。
     value_en: Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates.
-    anchor_zh: 一次发布通常可省 20–60 分钟字段填写、封面槽检查、状态确认与重复提交排查，并降低旧草稿覆盖用户终稿的风险。
-    anchor_en: A publish run can typically save 20–60 minutes of field entry, cover-slot checks, status verification, and duplicate-submit diagnosis while reducing final-copy overwrite risk.
+    anchor_zh: 减少重复填写、封面裁切检查、用户定稿覆盖和重复提交排查；节省时长仍待对照验证。
+    anchor_en: Reduce repeated field entry, cover-crop checks, final-copy overwrite, and duplicate-submit diagnosis; time savings still need controlled measurement.
     basis_zh: 由旧免费 Skill 升级且采用 MIT 许可；当前跨平台与长期页面适配证据仍有限，先以免费入口积累稳定性。
     basis_en: Upgraded from a free MIT Skill; current cross-platform and long-term UI adaptation evidence remains limited, so it stays a free entry while stability evidence grows.
     boundary_zh: 需要用户已登录的创作者后台和本地视频；账号权限、平台审核、网络可达性、素材版权与最终提交确认按实际条件处理。
@@ -2157,8 +2159,8 @@ skills:
     maintenance_zh: 随视频号与 B 站页面结构、平台规则、浏览器行为和媒体格式变化复评。
     maintenance_en: Review when WeChat Channels or Bilibili UI, platform rules, browser behavior, or media formats change.
     confidence: entry
-    review_trigger_zh: 版本变化、累计 10 次跨平台真实发布或平台页面与支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 cross-platform real publishes, or a material change in platform UI or support cost.
+    review_trigger_zh: 版本变化、累计 10 次经平台回读的完整发布，或平台页面与支持成本明显变化时复评。
+    review_trigger_en: Review after a version change, 10 complete publications verified on the platforms, or a material change in platform UI or support cost.
     card_path: pricing-cards/media-publisher.md
 - name: publish-wechat-channels
   runtime_name: lov-publish-wechat-channels

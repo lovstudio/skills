@@ -5,10 +5,12 @@
 在视频号接近上限，在 B 站是小件。所以文件大小、时长和最短时长都按 `--platform` 取。
 
     python3 check_video.py 片子.mp4 --platform wechat-channels --json
-    python3 check_video.py 片子.mp4 --platform bilibili --json
+    python3 check_video.py 片子.mp4 --platform bilibili --expected-orientation horizontal --json
 
 `--max-gb` / `--max-hours` 仍可覆盖，用于页面显示了灰度放宽时（视频号 20 GiB / 8 小时）。
-建议项（编码、分辨率、码率、帧率、音频）两个平台共用，都只报 warning。
+建议项（编码、分辨率、码率、帧率、音频）两个平台共用，都只报 warning。目标项目已经
+声明横竖版时，用 `--expected-orientation` 把选错成片变成硬错误；文件名明确属于另一个平台时
+默认也会失败，只有用户明确要求跨平台复用时才传 `--allow-cross-platform-name`。
 """
 
 from __future__ import annotations
@@ -58,6 +60,11 @@ PLATFORMS: Dict[str, Dict[str, Any]] = {
 }
 
 DEFAULT_PLATFORM = "wechat-channels"
+ORIENTATIONS = ("horizontal", "vertical", "square")
+PLATFORM_FILENAME_TOKENS = {
+    "wechat-channels": ("wechat-channels", "wechat_channels"),
+    "bilibili": ("bilibili",),
+}
 
 
 class ProbeError(RuntimeError):
@@ -108,6 +115,27 @@ def _issue(code: str, message: str) -> Dict[str, str]:
     return {"code": code, "message": message}
 
 
+def _orientation(width: Optional[int], height: Optional[int]) -> Optional[str]:
+    if width is None or height is None:
+        return None
+    if width > height:
+        return "horizontal"
+    if height > width:
+        return "vertical"
+    return "square"
+
+
+def _foreign_platform_token(path: Path, platform: str) -> Optional[str]:
+    filename = path.name.casefold()
+    for candidate, tokens in PLATFORM_FILENAME_TOKENS.items():
+        if candidate == platform:
+            continue
+        for token in tokens:
+            if token.casefold() in filename:
+                return token
+    return None
+
+
 def run_ffprobe(path: Path, ffprobe: str = "ffprobe") -> Dict[str, Any]:
     """Run ffprobe without writing to the media file."""
 
@@ -154,6 +182,8 @@ def validate_probe(
     platform: str = DEFAULT_PLATFORM,
     max_gb: Optional[float] = None,
     max_hours: Optional[float] = None,
+    expected_orientation: Optional[str] = None,
+    allow_cross_platform_name: bool = False,
 ) -> Dict[str, Any]:
     """Validate supplied ffprobe data; useful for deterministic fixture tests."""
 
@@ -168,6 +198,16 @@ def validate_probe(
     warnings: List[Dict[str, str]] = []
     max_bytes = int(max_gb * GIB)
     max_duration = max_hours * 3600.0
+
+    foreign_token = _foreign_platform_token(path, platform)
+    if foreign_token and not allow_cross_platform_name:
+        errors.append(
+            _issue(
+                "cross_platform_filename",
+                f"文件名含另一平台标识 {foreign_token!r}，与目标平台 {spec['label']} 不一致；"
+                "请改选目标平台成片，或在用户明确要求复用时使用 --allow-cross-platform-name",
+            )
+        )
 
     if size_bytes <= 0:
         errors.append(_issue("empty_file", "视频文件为空"))
@@ -283,7 +323,21 @@ def validate_probe(
         "audio_codec": audio_codec,
         "audio_bitrate_bps": audio_bitrate,
         "audio_sample_rate_hz": audio_sample_rate,
+        "orientation": _orientation(width, height),
     }
+    actual_orientation = media["orientation"]
+    if (
+        expected_orientation is not None
+        and actual_orientation is not None
+        and actual_orientation != expected_orientation
+    ):
+        errors.append(
+            _issue(
+                "orientation_mismatch",
+                f"项目要求 {expected_orientation} 成片，实际为 {actual_orientation} "
+                f"({width}x{height})",
+            )
+        )
     return {
         "valid": not errors,
         "status": "pass" if not errors else "fail",
@@ -291,6 +345,12 @@ def validate_probe(
         "read_only": True,
         "platform": platform,
         "platform_label": spec["label"],
+        "asset_selection": {
+            "expected_orientation": expected_orientation,
+            "actual_orientation": actual_orientation,
+            "foreign_platform_token": foreign_token,
+            "cross_platform_name_override": allow_cross_platform_name,
+        },
         "limits": {
             "max_gb": max_gb,
             "max_bytes": max_bytes,
@@ -314,6 +374,8 @@ def _failure_result(
     platform: str,
     max_gb: Optional[float],
     max_hours: Optional[float],
+    expected_orientation: Optional[str],
+    allow_cross_platform_name: bool,
 ) -> Dict[str, Any]:
     spec = PLATFORMS[platform]
     if max_gb is None:
@@ -327,6 +389,12 @@ def _failure_result(
         "read_only": True,
         "platform": platform,
         "platform_label": spec["label"],
+        "asset_selection": {
+            "expected_orientation": expected_orientation,
+            "actual_orientation": None,
+            "foreign_platform_token": _foreign_platform_token(path, platform),
+            "cross_platform_name_override": allow_cross_platform_name,
+        },
         "limits": {
             "max_gb": max_gb,
             "max_bytes": int(max_gb * GIB),
@@ -349,11 +417,19 @@ def check_video(
     platform: str = DEFAULT_PLATFORM,
     max_gb: Optional[float] = None,
     max_hours: Optional[float] = None,
+    expected_orientation: Optional[str] = None,
+    allow_cross_platform_name: bool = False,
     ffprobe: str = "ffprobe",
 ) -> Dict[str, Any]:
     def fail(msg: str) -> Dict[str, Any]:
         return _failure_result(
-            path, msg, platform=platform, max_gb=max_gb, max_hours=max_hours
+            path,
+            msg,
+            platform=platform,
+            max_gb=max_gb,
+            max_hours=max_hours,
+            expected_orientation=expected_orientation,
+            allow_cross_platform_name=allow_cross_platform_name,
         )
 
     if not path.exists():
@@ -372,6 +448,8 @@ def check_video(
         platform=platform,
         max_gb=max_gb,
         max_hours=max_hours,
+        expected_orientation=expected_orientation,
+        allow_cross_platform_name=allow_cross_platform_name,
     )
 
 
@@ -408,6 +486,11 @@ def format_human(result: Dict[str, Any]) -> str:
             f"视频 {media.get('video_codec') or '未知'}；"
             f"音频 {media.get('audio_codec') or '无/未知'}"
         ),
+        (
+            "成片方向："
+            f"实际 {media.get('orientation') or '未知'}；"
+            f"项目要求 {result.get('asset_selection', {}).get('expected_orientation') or '未声明'}"
+        ),
     ]
     if result["errors"]:
         lines.append("硬错误：")
@@ -440,6 +523,17 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="覆盖时长上限（小时）。页面显示灰度放宽时才用",
     )
+    parser.add_argument(
+        "--expected-orientation",
+        choices=ORIENTATIONS,
+        default=None,
+        help="项目批准的成片方向；用于拦截横竖版选错，不从平台名称擅自推断",
+    )
+    parser.add_argument(
+        "--allow-cross-platform-name",
+        action="store_true",
+        help="允许文件名带另一平台标识；仅在用户明确要求跨平台复用时使用",
+    )
     parser.add_argument("--ffprobe", default="ffprobe", help="ffprobe 可执行文件")
     parser.add_argument("--json", action="store_true", help="输出 JSON")
     return parser
@@ -452,6 +546,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         platform=args.platform,
         max_gb=args.max_gb,
         max_hours=args.max_hours,
+        expected_orientation=args.expected_orientation,
+        allow_cross_platform_name=args.allow_cross_platform_name,
         ffprobe=args.ffprobe,
     )
     if args.json:
