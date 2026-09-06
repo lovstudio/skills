@@ -1,0 +1,102 @@
+schema: lovstudio/skill-card/v1
+version: "0.3.0"
+description: 从视频筛选值得分享的真实现场照片，保真美化并统一成组交付。
+owner:
+  team: Local skill contributors
+  contact: 本地 Skill 源目录维护者
+license:
+  name: MIT
+  terms: 脚本与指令遵循 MIT，源视频与照片权利保持原归属。
+  url: LICENSE
+use_case:
+  audience: 课程讲师、活动组织者与记录者
+  scenario: 长课程或活动实录中挑选朋友圈照片
+  tasks:
+    - 带时间码索引和候选窗口细筛
+    - 保留原始帧的纪实美化
+    - 统一图片组和本地审阅页
+deployment:
+  geography: global
+  environments:
+    - Local agent runtime with FFmpeg and vision
+requirements:
+  credentials: 核心 CLI 无凭据；宿主图像或转录能力遵循宿主鉴权
+  dependencies:
+    - Pillow >=10.1
+    - NumPy for photographic color processing
+    - FFmpeg
+    - FFprobe
+    - PyYAML
+    - lov-branding-consistency
+  runtime:
+    - Python >=3.9
+    - Host vision; editing follows the user's selected method and host rules
+risks:
+  - risk: 生成编辑改变真实人脸或课件小字
+    mitigation: 逐张与源帧比较，失败拒收；沿用用户已保存的摄影调色偏好，按源色彩证据确定性处理。
+  - risk: 稀疏采样漏掉很短的精彩瞬间
+    mitigation: 记录覆盖与间隔，候选加密，不声称逐帧无遗漏。
+  - risk: 私人课程或肖像被误当作公开素材
+    mitigation: 案例只保存验证摘要，原图不进入 Skill 分发；发布遵循授权范围。
+references:
+  - title: Primary instructions
+    path: SKILL.md
+  - title: Real case evidence
+    path: cases/cases.json
+output:
+  types:
+    - 照片组
+    - 时间码索引
+    - 本地审阅页
+  formats:
+    - JPEG
+    - PNG
+    - JSON
+    - HTML
+  parameters:
+    - 视频路径与采样间隔
+    - 目标图片数、比例和长边
+    - 摄影参数
+  validation:
+    - 源帧与时间码绑定
+    - 原图与成图哈希
+    - 视觉保真和尺寸统一
+    - 文件实际回读
+  description: 1–9 张真实 moments 照片及独立于图上内容的制作元数据。
+ethical_considerations: 不伪造授课成果、参与者反应、引文或身份；私有课程原片和人物照片不随 Skill 公开分发。
+dimensions:
+  - id: traceability
+    label: 源证据可溯源
+    description: 从源时间码和帧哈希绑定交付图。
+    evidence: scripts/check_workflow.py 的伪造时间码、源哈希和损坏文件拒绝测试；真实案例见 cases/cases.json。
+    score: null
+  - id: authenticity
+    label: 纪实保真
+    description: 不改人物、动作与课件文字，实际视觉门禁拥有验收。
+    evidence: references/image-contract.md 与真实试修图记录。
+    score: null
+  - id: shareability
+    label: 组图分享价值
+    description: 差异化事件、清楚主体和统一尺寸，不以随机抽帧代替判断。
+    evidence: references/selection-policy.md 与真实案例筛选理由。
+    score: null
+  - id: resilience
+    label: 大文件与中断恢复
+    description: 不复制完整原片，源身份匹配后保留已完成抽帧。
+    evidence: scripts/check_workflow.py 的续跑与采样参数变更拒绝测试。
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  display_unit: credits
+  list_price_credits: 0
+  basis: 本地流程开放；未取得成本对照，不宣称具体时间或金额收益。
+  boundary: 宿主推理、生图与转录可能另行计费；不含对外发布。
+  review_trigger: 收集真实使用反馈、耗时与账单后复评。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - MIT source
+  verification: 渠道发布状态由独立 Publisher 记录维护；以仓库 Release 和官网实际页面为准。

@@ -1,0 +1,193 @@
+{
+  "schema": "video-moments-case-evidence/v1",
+  "date": "2026-09-06",
+  "input": {
+    "source_count": 6,
+    "selected_source_count": 4,
+    "coarse_frames": 319,
+    "contact_sheets_reviewed": 17,
+    "selection_basis": "visual",
+    "refinement_intervals_seconds": [
+      2,
+      0.5
+    ],
+    "modes_observed": [
+      "s-log3-cine / s-gamut3-cine / rec709 coding / pc range",
+      "rec709 / tv range"
+    ]
+  },
+  "feedback": {
+    "scope": "skill-specific reusable",
+    "user_statement": "默认改用摄影调色，完成色彩还原与统一提亮",
+    "requested_delta": "使用摄影色彩还原与统一提亮，保存长期修图方法偏好",
+    "invariants": [
+      "六张既有选帧与时间码",
+      "人物、动作、构图与屏幕内容",
+      "明亮自然方向"
+    ],
+    "rejected_candidate": "AI 样张改动部分人物/文字且输出尺寸错误，未列入验收成品"
+  },
+  "photographic_delivery": {
+    "status": "local-reviewed",
+    "count": 6,
+    "size": [
+      1920,
+      1080
+    ],
+    "encoding": "sRGB JPEG, quality 95, 4:4:4, no EXIF",
+    "method": "本地浮点摄影调色；S-Log3反解与S-Gamut3.Cine原色变换，逐图白平衡/曝光，高光保护；两张局部柔和提亮，Log三张轻微色度降噪",
+    "files": [
+      {
+        "order": 1,
+        "id": "moment-01",
+        "source_name": "C20260905_0028.MP4",
+        "time": 4586.0,
+        "timecode": "01:16:26.000",
+        "sha256": "5ece2c0eb8f3a1ff8cedac1e938f0e418666237e01aa63f3489084b3b14ce36f",
+        "bytes": 1010326,
+        "size": [
+          1920,
+          1080
+        ],
+        "edit_method": "photographic",
+        "original_sha256": "4bf15889e1ed8740a7b2512bf1590b2a7a28f4083a588e425270b70a5f300ab8",
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 2,
+        "id": "moment-02",
+        "source_name": "C20260905_0023.MP4",
+        "time": 179.0,
+        "timecode": "00:02:59.000",
+        "sha256": "ec152b6470bc58ec1d3a137a96e3fe50d4eaf3e1881d62924c0cdb67fd4d148e",
+        "bytes": 770524,
+        "size": [
+          1920,
+          1080
+        ],
+        "edit_method": "photographic",
+        "original_sha256": "90f156641530f4167bbb7999aaeebebe7da644b76f9ba49f70608342f7e8ff5a",
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 3,
+        "id": "moment-03",
+        "source_name": "C20260905_0023.MP4",
+        "time": 2244.0,
+        "timecode": "00:37:24.000",
+        "sha256": "47a371bf3bd3d8d004c37a25132285b1515c2e8c6cef9c9cf1113c63d71e03a2",
+        "bytes": 797149,
+        "size": [
+          1920,
+          1080
+        ],
+        "edit_method": "photographic",
+        "original_sha256": "4e6dd60cc0d5c645f637b405c0888e58896ce859b892aec8b571c62b6f6c97e8",
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 4,
+        "id": "moment-04",
+        "source_name": "C20260905_0026.MP4",
+        "time": 8643.0,
+        "timecode": "02:24:03.000",
+        "sha256": "d4be4ec9f93e3258b416fd2ebbf64452fe3eb8181898bb76411e2cbd9e81b5ad",
+        "bytes": 833178,
+        "size": [
+          1920,
+          1080
+        ],
+        "edit_method": "photographic",
+        "original_sha256": "2a19a79aecbb4b702cca36d62121dc16ffd56a21ee4309224f285c7af5be3a06",
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 5,
+        "id": "moment-05",
+        "source_name": "C20260905_0028.MP4",
+        "time": 8288.0,
+        "timecode": "02:18:08.000",
+        "sha256": "531bae7e1e89c61e19258eda7e0ecf6ac13d4728e749c591773c5381a83dbc32",
+        "bytes": 1000213,
+        "size": [
+          1920,
+          1080
+        ],
+        "edit_method": "photographic",
+        "original_sha256": "bd94fc8a9c5166fb2e8861843a99408f054a78e68d05a0efbbd672c0c0457dc5",
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      },
+      {
+        "order": 6,
+        "id": "moment-06",
+        "source_name": "C20260906_0029.MP4",
+        "time": 2609.5,
+        "timecode": "00:43:29.500",
+        "sha256": "3b3a7fa17dfd75738df91f7591861be6121bd3e93a9509b147b98afcd6bbd860",
+        "bytes": 1046736,
+        "size": [
+          1920,
+          1080
+        ],
+        "edit_method": "photographic",
+        "original_sha256": "a4467225694db597b428b21075c65052b948a9cbd8b665f7cdc41980be0ecd26",
+        "review": {
+          "source_match": true,
+          "identity": true,
+          "screen_text": true,
+          "composition": true,
+          "privacy": true
+        }
+      }
+    ],
+    "verification": {
+      "native_resolution_review": true,
+      "before_after_face_crops": true,
+      "phone_scale_overview": true,
+      "source_and_final_hashes": true,
+      "zip_crc_and_hashes": true,
+      "gallery_links": true
+    },
+    "style_approval": {
+      "explicit_per_image_user_approval": false,
+      "note": "用户明确选择摄影调色方法；成图由 Agent 回读。不得把方法选择记为用户逐图审美批准。"
+    },
+    "limitations": [
+      "保留源片低照度噪点、软焦及动作模糊",
+      "未核验音频，不补造授课内容"
+    ],
+    "publication": "not-published"
+  },
+  "implementation_note": "这次交付使用本地任务脚本；0.3.0 内置 CLI 复用通用颜色还原，不声称自带局部人脸遮罩或降噪。",
+  "media_policy": "私有视频、照片、人物身份和绝对路径仅留在本地任务目录；此文件只含脱敏过程与哈希证据。"
+}

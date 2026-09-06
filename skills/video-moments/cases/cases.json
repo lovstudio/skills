@@ -1,0 +1,52 @@
+[
+  {
+    "type": "case",
+    "title": "2026-09-06 四小时线下课程的朋友圈照片筛选与明亮美化",
+    "description": "真实用户请求，完成全片稀疏索引、候选细筛和六张原帧；按用户偏暗反馈制作六张明亮 AI 美化图与原图对比页。投影小字存在重绘，保真门禁仍未通过。",
+    "input": {
+      "items": [
+        "用户提供 A20260906_0031.MP4：15012.96 秒、1920×1080、25 fps、43021372505 字节。",
+        "素材处理中由相机盘移动到外置 SSD，已按新路径恢复。"
+      ]
+    },
+    "prompt": "给定一个线下课程实录视频，提取比较重要、适合发朋友圈的 moments，并做图像美化与标准化。",
+    "output": {
+      "items": [
+        "6 张 1920×1080 PNG 原帧预选及时间码清单。",
+        "6 张统一为 1672×941 的明亮 AI 美化图、本地原图切换对比页和 ZIP 下载包。",
+        "已查看人物局部与整组色调，校验图像解码、尺寸、哈希、链接和 ZIP；投影部分小字有重绘，未宣称严格纪实保真。",
+        "cases/course-evidence.json 保存脱敏回读证据、源帧和美化图哈希。",
+        "用户认可明亮美化效果，已固化 bright-documentary 视觉方向；保真记录保持独立。"
+      ]
+    },
+    "status": "ai-beautified-review-delivered-strict-fidelity-not-passed",
+    "evidence": [
+      "cases/course-evidence.json"
+    ],
+    "media_policy": "私有课堂照片留在用户本地运行目录，不随 Skill 源分发。"
+  },
+  {
+    "type": "case",
+    "title": "2026-09-06 混合 Log 与 Rec.709 的六张课程现场摄影调色",
+    "description": "六段素材经过稀疏索引与相邻帧比较，六张精选完成色彩还原、统一提亮和原图对比。用户明确选择并保存默认摄影调色方法。",
+    "input": {
+      "items": [
+        "6 段本地相机素材；包含 S-Log3 / S-Gamut3.Cine 与 Rec.709 两种录制模式。",
+        "既有 6 张精选帧保持时间码、构图、人物与屏幕内容。"
+      ]
+    },
+    "prompt": "默认改用摄影调色，完成色彩还原与统一提亮",
+    "output": {
+      "items": [
+        "6 张 1920×1080 sRGB JPEG、组图总览、原图切换对比页与 ZIP。",
+        "逐图原尺寸与面部局部回读，源帧/成图哈希、ICC、尺寸、ZIP 与链接核验通过。",
+        "长期 edit_method 偏好写入用户 Profile；素材路径与课程调色数值未写入通用默认。"
+      ]
+    },
+    "status": "photographic-local-reviewed",
+    "evidence": [
+      "cases/photographic-evidence.json"
+    ],
+    "media_policy": "私有照片与视频保留本地，不随 Skill 源分发。"
+  }
+]
