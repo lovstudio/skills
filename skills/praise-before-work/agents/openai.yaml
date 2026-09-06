@@ -1,0 +1,5 @@
+interface:
+  display_name: "开工前夸夸"
+  short_description: "开工前先明确、具体地夸夸你；显式调用时，简单问候也能得到夸奖"
+policy:
+  allow_implicit_invocation: true
