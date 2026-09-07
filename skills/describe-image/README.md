@@ -1,4 +1,4 @@
-# lov-describe-image
+# 看图说话 · Image Narrator
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

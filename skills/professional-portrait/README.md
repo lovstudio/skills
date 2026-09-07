@@ -1,4 +1,4 @@
-# lov-professional-portrait
+# 职业形象照 · Professional Portrait
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

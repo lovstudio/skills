@@ -26,7 +26,7 @@ metadata:
   card_standard: lovstudio/skill-card/v1
 ---
 
-# Supabase 身份认证
+# Supabase 登录接入 · Supabase Auth Setup
 
 为 React 应用接入 Supabase 登录、账户恢复及桌面浏览器 OAuth。
 

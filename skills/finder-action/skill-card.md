@@ -1,4 +1,4 @@
-# Finder 右键动作 Skill Card
+# Finder 快捷动作 · Finder Actions · Skill Card
 
 ## Description
 

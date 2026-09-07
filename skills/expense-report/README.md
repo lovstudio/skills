@@ -1,4 +1,4 @@
-# lov-expense-report
+# 报销管家 · Expense Assistant
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

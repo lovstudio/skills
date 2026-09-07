@@ -1,4 +1,4 @@
-# 链接修复 Skill Card
+# 链接修补匠 · Link Fixer · Skill Card
 
 ## Description
 

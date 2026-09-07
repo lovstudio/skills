@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 知识检索
+# 知识寻回 · Knowledge Finder
 
 跨已配置的 memory 与 distill 知识记录检索并返回可追溯结果。
 

@@ -1,4 +1,4 @@
-# CI/CD 发布
+# 自动发版 · Release Pilot
 
 ![Version](https://img.shields.io/badge/version-8.7.1-CC785C)
 

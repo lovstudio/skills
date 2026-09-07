@@ -1,4 +1,4 @@
-# lov-env-management
+# 凭据管家 · Credential Keeper
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

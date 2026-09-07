@@ -1,4 +1,4 @@
-# dsh-plugin-publisher
+# DSH 插件发布 · DSH Plugin Publisher
 
 Publish one validated DSH plugin package (`@deepseek-ai/dsh-*` or
 `@lovstudio/dsh-*`) to the DeepSeek Harness distribution channels — npm, git,

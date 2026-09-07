@@ -1,4 +1,4 @@
-# 代码模块拆分
+# 模块拆分师 · Module Refactorer
 
 ![Version](https://img.shields.io/badge/version-1.2.1-CC785C)
 

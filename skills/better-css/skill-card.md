@@ -1,4 +1,4 @@
-# CSS 整理 Skill Card
+# CSS 精修 · CSS Polish · Skill Card
 
 ## Description
 

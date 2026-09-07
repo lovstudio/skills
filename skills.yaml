@@ -2,9 +2,9 @@ version: 1
 skills:
 - name: frontend-design
   runtime_name: lov-frontend-design
-  display_name: Frontend Design
+  display_name: "Interface Designer"
   repo: lovstudio/frontend-design-skill
-  name_zh: 前端设计
+  name_zh: "界面设计师"
   paid: false
   category: Design
   version: "0.3.0"
@@ -38,9 +38,9 @@ skills:
     card_path: pricing-cards/frontend-design.md
 - name: env-management
   runtime_name: lov-env-management
-  display_name: Environment Ledger
+  display_name: "Credential Keeper"
   repo: lovstudio/env-management-skill
-  name_zh: 环境凭据账本
+  name_zh: "凭据管家"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -77,9 +77,9 @@ skills:
     card_path: pricing-cards/env-management.md
 - name: image-translation-errata
   runtime_name: lov-image-translation-errata
-  display_name: Image Translation Errata
+  display_name: "Image Translation Review"
   repo: lovstudio/image-translation-errata-skill
-  name_zh: 图片翻译勘误
+  name_zh: "图片译校"
   paid: false
   category: General
   version: "0.2.0"
@@ -118,9 +118,9 @@ skills:
 - name: image-creator
   runtime_name: lov-image-creator
   updated_at: 2026-09-07T09:40:45Z
-  display_name: Image Studio
+  display_name: "Image Maker"
   repo: lovstudio/image-creator-skill
-  name_zh: 图像创作
+  name_zh: "造图师"
   paid: false
   featured: true
   category: General
@@ -160,9 +160,9 @@ skills:
 - name: create-qrcode
   runtime_name: lov-create-qrcode
   updated_at: 2026-08-31T10:35:51Z
-  display_name: QR Code Creator
+  display_name: "QR Studio"
   repo: lovstudio/create-qrcode-skill
-  name_zh: 二维码生成器
+  name_zh: "二维码工坊"
   paid: false
   category: General
   version: "0.1.1"
@@ -287,9 +287,9 @@ skills:
 - name: maintain-partners
   runtime_name: lov-maintain-partners
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Partners Maintainer
+  display_name: "Partner Directory"
   repo: lovstudio/maintain-partners-skill
-  name_zh: 合作伙伴维护
+  name_zh: "伙伴名录"
   paid: false
   category: Design
   description: Maintain a website's partners section — scrape brand logos from homepages, normalize them, and wire them into
@@ -330,9 +330,9 @@ skills:
 - name: fill-form
   runtime_name: lov-fill-form
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Form Filler
+  display_name: "Form Assistant"
   repo: lovstudio/fill-form-skill
-  name_zh: 表单代笔
+  name_zh: "表单小助手"
   paid: false
   category: Office Automation
   description: Fill Word form templates (.docx). Auto-detects table fields, CJK font support.
@@ -369,9 +369,9 @@ skills:
 - name: fill-web-form
   runtime_name: lov-fill-web-form
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Web Form Filler
+  display_name: "Web Form Assistant"
   repo: lovstudio/fill-web-form-skill
-  name_zh: 网页代笔
+  name_zh: "网页填表助手"
   paid: false
   category: Office Automation
   description: Fill web forms from local knowledge base. Fetch URL → deep-search KB → generate markdown doc.
@@ -408,10 +408,10 @@ skills:
 - name: any2pdf
   runtime_name: lov-any2pdf
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Any → PDF
+  display_name: "PDF Master"
   repo: lovstudio/any2pdf-skill
   version: "1.5.0"
-  name_zh: 万物转 PDF
+  name_zh: "PDF大师"
   paid: false
   featured: true
   category: Office Automation
@@ -451,9 +451,9 @@ skills:
   runtime_name: lov-any2docx
   version: "0.4.0"
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Any → Word
+  display_name: "Word Master"
   repo: lovstudio/any2docx-skill
-  name_zh: 万物转 Word
+  name_zh: "Word 大师"
   paid: false
   featured: true
   category: Office Automation
@@ -493,9 +493,9 @@ skills:
 - name: any2deck
   runtime_name: lov-any2deck
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Any → Slides
+  display_name: "PPT Master"
   repo: lovstudio/any2deck-skill
-  name_zh: 万物转幻灯
+  name_zh: "PPT 大师"
   paid: false
   featured: true
   category: Office Automation
@@ -536,9 +536,9 @@ skills:
 - name: pdf2png
   runtime_name: lov-pdf2png
   updated_at: 2026-08-23T17:04:16Z
-  display_name: PDF → Image
+  display_name: "PDF Scroll"
   repo: lovstudio/pdf2png-skill
-  name_zh: PDF 出长图
+  name_zh: "PDF 长图"
   paid: false
   category: Office Automation
   description: PDF → single vertically concatenated PNG. Uses macOS CoreGraphics, ~20x faster than pdftoppm.
@@ -575,9 +575,9 @@ skills:
 - name: png2svg
   runtime_name: lov-png2svg
   updated_at: 2026-08-23T17:04:16Z
-  display_name: PNG → SVG
+  display_name: "Vector Tracer"
   repo: lovstudio/png2svg-skill
-  name_zh: PNG 矢量化
+  name_zh: "矢量描摹"
   paid: false
   category: Office Automation
   description: PNG → high-quality SVG conversion with background removal and spline curves.
@@ -614,9 +614,9 @@ skills:
 - name: bp
   runtime_name: lov-bp
   updated_at: 2026-08-23T17:04:16Z
-  display_name: BP Skill Kit
+  display_name: "BP Studio"
   repo: lovstudio/bp-skill
-  name_zh: BP 工具包
+  name_zh: "BP 工坊"
   paid: false
   featured: true
   category: Business
@@ -659,10 +659,10 @@ skills:
 - name: bp-outline
   runtime_name: lov-bp-outline
   updated_at: 2026-08-23T17:04:16Z
-  display_name: BP Outline
+  display_name: "BP Blueprint"
   repo: lovstudio/bp-skill
   skill_path: skills/bp-outline
-  name_zh: BP 大纲
+  name_zh: "BP 蓝图"
   paid: false
   category: Business
   version: "0.2.0"
@@ -700,10 +700,10 @@ skills:
 - name: bp-deck
   runtime_name: lov-bp-deck
   updated_at: 2026-08-23T17:04:16Z
-  display_name: BP Deck
+  display_name: "BP Master"
   repo: lovstudio/bp-skill
   skill_path: skills/bp-deck
-  name_zh: BP 幻灯片
+  name_zh: "BP 大师"
   paid: false
   category: Business
   version: "0.2.0"
@@ -743,10 +743,10 @@ skills:
 - name: bp-polish
   runtime_name: lov-bp-polish
   updated_at: 2026-08-23T17:04:16Z
-  display_name: BP Polish
+  display_name: "BP Polish"
   repo: lovstudio/bp-skill
   skill_path: skills/bp-polish
-  name_zh: BP 审稿润色
+  name_zh: "BP 精修"
   paid: false
   category: Business
   version: "0.2.0"
@@ -784,9 +784,9 @@ skills:
 - name: proposal
   runtime_name: lov-proposal
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Proposal Writer
+  display_name: "Proposal Expert"
   repo: lovstudio/proposal-skill
-  name_zh: 专业需求评估
+  name_zh: "提案专家"
   paid: true
   category: Business
   description: Business proposal with architecture, budget & PDF / 完整商业提案
@@ -825,9 +825,9 @@ skills:
 - name: solution-architect
   runtime_name: lov-solution-architect
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Solution Architect
+  display_name: "Solution Architect"
   repo: lovstudio/solution-architect-skill
-  name_zh: 解决方案架构师
+  name_zh: "方案架构师"
   paid: false
   category: Business
   version: "0.2.0"
@@ -863,9 +863,9 @@ skills:
 - name: review-doc
   runtime_name: lov-review-doc
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Contract Review
+  display_name: "Contract Polish"
   repo: lovstudio/review-doc-skill
-  name_zh: 合同审阅 · 日常版
+  name_zh: "合同精修"
   paid: false
   featured: true
   category: Business
@@ -903,9 +903,9 @@ skills:
 - name: contract-review-pro
   runtime_name: contract-review-pro
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Contract Review Pro
+  display_name: "Contract Reviewer"
   repo: lovstudio/contract-review-pro-skill
-  name_zh: 合同审阅 · 专业版
+  name_zh: "合同批注专家"
   paid: false
   recommended_by: industry
   category: Business
@@ -946,9 +946,9 @@ skills:
 - name: expense-report
   runtime_name: lov-expense-report
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Expense Reporter
+  display_name: "Expense Assistant"
   repo: lovstudio/expense-report-skill
-  name_zh: 报销整理
+  name_zh: "报销管家"
   paid: false
   category: Business
   description: Invoice images/text → categorized Excel expense report
@@ -985,9 +985,9 @@ skills:
 - name: event-poster
   runtime_name: lov-event-poster
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Event Poster
+  display_name: "Professional Poster"
   repo: lovstudio/event-poster-skill
-  name_zh: 大师级海报生成
+  name_zh: "专业海报"
   paid: true
   category: Design
   version: "0.5.0"
@@ -1029,9 +1029,9 @@ skills:
 - name: visual-clone
   runtime_name: lov-visual-clone
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Visual Clone
+  display_name: "Style Sampler"
   repo: lovstudio/visual-clone-skill
-  name_zh: 像素级海报复刻
+  name_zh: "风格采样"
   paid: true
   encrypted_bundle: true
   category: Design
@@ -1072,9 +1072,9 @@ skills:
 - name: find-logo
   runtime_name: lov-find-logo
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Logo Hunter
+  display_name: "Logo Radar"
   repo: lovstudio/find-logo-skill
-  name_zh: Logo 狩猎
+  name_zh: "Logo 雷达"
   paid: false
   featured: true
   category: Design
@@ -1114,9 +1114,9 @@ skills:
 - name: branding-consistency
   runtime_name: lov-branding-consistency
   updated_at: 2026-08-30T10:02:57Z
-  display_name: Branding Consistency
+  display_name: "Brand Editor"
   repo: lovstudio/branding-consistency-skill
-  name_zh: 品牌语境门禁
+  name_zh: "品牌审校官"
   paid: false
   category: Content Creation
   version: "0.2.0"
@@ -1149,9 +1149,9 @@ skills:
 - name: human-writing
   runtime_name: lov-human-writing
   updated_at: 2026-08-31T16:34:03Z
-  display_name: Human Writing
+  display_name: "Text Editor"
   repo: lovstudio/human-writing-skill
-  name_zh: 中文作者性与反 AI 编辑
+  name_zh: "文稿润色师"
   paid: false
   category: Content Creation
   version: "0.3.1"
@@ -1187,9 +1187,9 @@ skills:
 - name: writing-style
   runtime_name: lov-writing-style
   updated_at: 2026-08-31T16:34:03Z
-  display_name: Personal Writing Style
+  display_name: "My Writing Voice"
   repo: lovstudio/writing-style-skill
-  name_zh: 个人中文文风
+  name_zh: "我的文风"
   paid: false
   category: Content Creation
   version: "2.5.1"
@@ -1226,9 +1226,9 @@ skills:
 - name: article-creator
   runtime_name: lov-article-creator
   updated_at: 2026-08-31T16:34:03Z
-  display_name: WeChat Article Creator
+  display_name: "WeChat Writer"
   repo: lovstudio/article-creator-skill
-  name_zh: 公众号文章创作系统
+  name_zh: "公众号写手"
   paid: false
   category: Content Creation
   version: "0.5.0"
@@ -1265,9 +1265,9 @@ skills:
 - name: publish-wechat-article
   runtime_name: lov-publish-wechat-article
   updated_at: 2026-08-31T16:34:03Z
-  display_name: WeChat Article Publisher
+  display_name: "WeChat Publisher"
   repo: lovstudio/publish-wechat-article-skill
-  name_zh: 微信公众号文章发布器
+  name_zh: "公众号发布助手"
   paid: false
   category: Content Creation
   version: "0.8.0"
@@ -1304,9 +1304,9 @@ skills:
 - name: document-illustrator
   runtime_name: lov-document-illustrator
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Document Illustrator
+  display_name: "Document Illustrator"
   repo: lovstudio/document-illustrator-skill
-  name_zh: 文档配图
+  name_zh: "文档插画师"
   paid: false
   category: Content Creation
   description: 为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。
@@ -1346,9 +1346,9 @@ skills:
 - name: deep-research
   runtime_name: deep-research
   updated_at: 2026-08-30T00:00:00.000Z
-  display_name: Deep Research
+  display_name: "Deep Research"
   repo: lovstudio/deep-research-skill
-  name_zh: 深度研究
+  name_zh: "深度研究"
   paid: false
   category: Content Creation
   version: "2.5.2"
@@ -1389,9 +1389,9 @@ skills:
 - name: write-professional-book
   runtime_name: lov-write-professional-book
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Book Writer
+  display_name: "Book Writing Expert"
   repo: lovstudio/write-professional-book-skill
-  name_zh: 专业写书
+  name_zh: "写书专家"
   paid: true
   category: Content Creation
   description: Write multi-chapter books (technical, tutorial, monograph) / 逐章写书，支持多种风格
@@ -1431,9 +1431,9 @@ skills:
 - name: wxmp-cracker
   runtime_name: lov-wxmp-cracker
   updated_at: 2026-08-23T17:04:16Z
-  display_name: WeChat Archiver
+  display_name: "WeChat Archiver"
   repo: lovstudio/wxmp-cracker-skill
-  name_zh: 公众号神器
+  name_zh: "公众号神器"
   paid: true
   category: Content Creation
   version: "0.4.0"
@@ -1473,9 +1473,9 @@ skills:
 - name: event-curator
   runtime_name: lov-event-curator
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Event Curator
+  display_name: "Event Planner"
   repo: lovstudio/event-curator-skill
-  name_zh: 活动策展
+  name_zh: "活动策划师"
   paid: true
   category: Business
   version: "0.2.0"
@@ -1520,9 +1520,9 @@ skills:
 - name: thesis-polish
   runtime_name: lov-thesis-polish
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Thesis Polish
+  display_name: "Thesis Polish"
   repo: lovstudio/thesis-polish-skill
-  name_zh: 论文润色
+  name_zh: "论文精修"
   paid: false
   category: Academic
   description: MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。
@@ -1560,9 +1560,9 @@ skills:
 - name: translation-review
   runtime_name: lov-translation-review
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Translation Review
+  display_name: "Translation Review"
   repo: lovstudio/translation-review-skill
-  name_zh: 译文审阅
+  name_zh: "译文校对"
   paid: false
   category: Academic
   description: Chinese-to-English translation review. Compares source & translation across 6 dimensions.
@@ -1602,9 +1602,9 @@ skills:
 - name: style-clone
   runtime_name: lov-style-clone
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Style Clone
+  display_name: "Voice Replica"
   repo: lovstudio/style-clone-skill
-  name_zh: 文风克隆
+  name_zh: "文风复刻"
   paid: false
   category: Content Creation
   version: "0.2.0"
@@ -1647,9 +1647,9 @@ skills:
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847226
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQo
-  display_name: Hanzi Lens
+  display_name: "Hanzi Lens"
   repo: lovstudio/hanzi-lens-skill
-  name_zh: 汉字镜
+  name_zh: "汉字镜"
   paid: false
   category: General
   version: "0.2.0"
@@ -1692,9 +1692,9 @@ skills:
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200844928
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-s
-  display_name: Fact Check
+  display_name: "Fact Checker"
   repo: lovstudio/fact-check-skill
-  name_zh: 事实校验
+  name_zh: "事实核查员"
   paid: false
   category: General
   version: "0.2.0"
@@ -1735,9 +1735,9 @@ skills:
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846060
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQC
-  display_name: Professional Portrait
+  display_name: "Professional Portrait"
   repo: lovstudio/professional-portrait-skill
-  name_zh: 职业形象照
+  name_zh: "职业形象照"
   paid: false
   category: Design
   version: "0.2.0"
@@ -1777,9 +1777,9 @@ skills:
 - name: riso-portrait
   runtime_name: lov-riso-portrait
   updated_at: 2026-08-31T16:33:19Z
-  display_name: Riso Portrait
+  display_name: "Riso Portrait"
   repo: lovstudio/riso-portrait-skill
-  name_zh: Riso 人像
+  name_zh: "Riso 人像"
   paid: false
   category: Design
   version: "0.1.0"
@@ -1816,9 +1816,9 @@ skills:
 - name: rich-export
   runtime_name: lov-rich-export
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Rich Media Export
+  display_name: "Rich Export"
   repo: lovstudio/rich-export-skill
-  name_zh: 富媒体一键导出
+  name_zh: "富文档导出"
   paid: false
   category: Office Automation
   version: "0.2.0"
@@ -1856,9 +1856,9 @@ skills:
   updated_at: 2026-08-28T20:36:58Z
   skillpay_product_id: P0806000200843450
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQE
-  display_name: Professional Infographic
+  display_name: "Professional Infographic"
   repo: lovstudio/professional-infographic-skill
-  name_zh: 专业信息图
+  name_zh: "专业信息图"
   paid: true
   encrypted_bundle: true
   price_credits: 139
@@ -1905,9 +1905,9 @@ skills:
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200858608
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqYNF
-  display_name: Oh My Landing Page
+  display_name: "Website Whiz"
   repo: lovstudio/oh-my-landingpage-skill
-  name_zh: 品牌着陆页
+  name_zh: "官网小能手"
   paid: true
   encrypted_bundle: true
   price_credits: 14
@@ -1957,9 +1957,9 @@ skills:
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847218
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQM
-  display_name: Business Card
+  display_name: "Business Card Studio"
   repo: lovstudio/business-card-skill
-  name_zh: 专业名片生成
+  name_zh: "名片工坊"
   paid: false
   category: Design
   version: "0.2.0"
@@ -1999,9 +1999,9 @@ skills:
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200858607
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqYND
-  display_name: Academic PDF Translator
+  display_name: "Academic Translator"
   repo: lovstudio/academic-translator-skill
-  name_zh: 论文 PDF 超级翻译官
+  name_zh: "学术译者"
   paid: true
   encrypted_bundle: true
   price_credits: 70
@@ -2039,9 +2039,9 @@ skills:
     card_path: pricing-cards/academic-translator.md
 - name: paper-translator
   updated_at: 2026-08-23T17:04:16Z
-  display_name: Paper Translator
+  display_name: "Paper Translator"
   repo: lovstudio/paper-translator-skill
-  name_zh: 论文超级翻译官
+  name_zh: "论文翻译官"
   paid: true
   price_credits: 70
   category: Academic
@@ -2080,9 +2080,9 @@ skills:
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843460
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsf
-  display_name: Video Chapter Skill Kit
+  display_name: "Video Chapters"
   repo: lovstudio/video-chapter-skill
-  name_zh: 视频章节工作台
+  name_zh: "视频章节师"
   paid: false
   category: Video Creation
   version: "0.3.0"
@@ -2121,9 +2121,9 @@ skills:
 - name: media-creator
   runtime_name: lov-media-creator
   updated_at: 2026-08-26T15:50:02Z
-  display_name: Media Creator
+  display_name: "Video Studio"
   repo: lovstudio/media-creator-skill
-  name_zh: 媒体创作工作流
+  name_zh: "视频工坊"
   paid: true
   public_source: true
   price_credits: 1394
@@ -2159,9 +2159,9 @@ skills:
 - name: media-publisher
   runtime_name: lov-media-publisher
   updated_at: 2026-09-06T01:01:14Z
-  display_name: Media Publisher
+  display_name: "Video Publisher"
   repo: lovstudio/media-publisher-skill
-  name_zh: 视频发布器
+  name_zh: "视频分发助手"
   paid: false
   category: Video Creation
   depends_on:
@@ -2196,9 +2196,9 @@ skills:
     card_path: pricing-cards/media-publisher.md
 - name: publish-wechat-channels
   runtime_name: lov-publish-wechat-channels
-  display_name: WeChat Channels Publisher
+  display_name: "WeChat Channels Publisher"
   repo: lovstudio/publish-wechat-channels-skill
-  name_zh: 视频号发布器
+  name_zh: "视频号发布助手"
   paid: false
   category: Video Creation
   version: "0.1.0"
@@ -2234,9 +2234,9 @@ skills:
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843454
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-k
-  display_name: Mobile Adapt
+  display_name: "Mobile Fit"
   repo: lovstudio/mobile-adapt-skill
-  name_zh: 移动端适配
+  name_zh: "移动适配师"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -2279,9 +2279,9 @@ skills:
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843456
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsZ
-  display_name: Repo to Docs
+  display_name: "Docs Site Builder"
   repo: lovstudio/repo2docs-skill
-  name_zh: 文件夹生成文档站
+  name_zh: "文档站工坊"
   paid: false
   category: Dev Tools
   version: "0.3.0"
@@ -2326,9 +2326,9 @@ skills:
   skillpay_product_id: P0806000201803813
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt_Qi
   skillpay_review_product_id: P0806000201871143
-  display_name: Universal WeChat Key
+  display_name: "Universal WeChat Key"
   repo: lovstudio/wdb-cli-skill
-  name_zh: 万能微信秘钥
+  name_zh: "万能微信秘钥"
   paid: true
   encrypted_bundle: true
   price_credits: 280
@@ -2366,12 +2366,13 @@ skills:
     review_trigger_en: Review at 20 paid users, 100 successful database workflows, version 0.3.0, average support above 30 minutes, or 2027-02-22.
     card_path: pricing-cards/wdb-cli.md
 - name: skill-creator
+  display_name: "Skill Studio"
   runtime_name: lov-skill-creator
   updated_at: 2026-09-07T09:40:45Z
   skillpay_product_id: P0806000200846064
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-w
   repo: lovstudio/skill-creator-skill
-  name_zh: Skill 创建与迁移
+  name_zh: "Skill 工坊"
   paid: false
   category: Meta
   version: 4.6.0
@@ -2401,10 +2402,11 @@ skills:
   depends_on:
   - branding-consistency
 - name: skill-add-case
+  display_name: "Skill Showcase"
   runtime_name: lov-skill-add-case
   updated_at: 2026-09-07T09:49:19Z
   repo: lovstudio/skill-add-case-skill
-  name_zh: Skill 案例收录
+  name_zh: "Skill 案例馆"
   paid: false
   category: Meta
   version: "0.4.1"
@@ -2438,12 +2440,13 @@ skills:
     review_trigger_en: Review after 10 live-verified cases, a related contract change, or a material support-cost increase.
     card_path: pricing-cards/skill-add-case.md
 - name: skill-optimizer
+  display_name: "Skill Refiner"
   runtime_name: lov-skill-optimizer
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846065
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsb
   repo: lovstudio/skill-optimizer-skill
-  name_zh: 技能优化器
+  name_zh: "Skill 精修师"
   paid: false
   category: Meta
   version: "0.10.0"
@@ -2477,12 +2480,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-optimizer.md
 - name: auto-context
+  display_name: "Context Sentinel"
   runtime_name: lov-auto-context
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846061
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP8
   repo: lovstudio/auto-context-skill
-  name_zh: 上下文体检
+  name_zh: "上下文哨兵"
   paid: false
   category: Dev Tools
   version: "0.4.0"
@@ -2516,12 +2520,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/auto-context.md
 - name: cc-migrate-session
+  display_name: "Session Mover"
   runtime_name: lov-cc-mv
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847221
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP6
   repo: lovstudio/cc-migrate-session
-  name_zh: 会话迁移
+  name_zh: "会话搬家"
   paid: false
   category: Dev Tools
   version: "0.3.0"
@@ -2556,12 +2561,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/cc-migrate-session.md
 - name: deploy-to-vercel
+  display_name: "Vercel Deployer"
   runtime_name: lov-deploy-to-vercel
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847222
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP2
   repo: lovstudio/deploy-to-vercel-skill
-  name_zh: 部署到 Vercel
+  name_zh: "Vercel 部署助手"
   paid: false
   category: Dev Tools
   version: "2.1.0"
@@ -2595,12 +2601,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/deploy-to-vercel.md
 - name: finder-action
+  display_name: "Finder Actions"
   runtime_name: lov-finder-action
   updated_at: 2026-09-07T09:40:45Z
   skillpay_product_id: P0806000200847223
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP0
   repo: lovstudio/finder-action-skill
-  name_zh: Finder 右键动作
+  name_zh: "Finder 快捷动作"
   paid: false
   category: Dev Tools
   version: 0.4.1
@@ -2630,12 +2637,13 @@ skills:
   depends_on:
   - branding-consistency
 - name: gh-access
+  display_name: "GitHub Collaborator Manager"
   runtime_name: lov-gh-access
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200844926
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsh
   repo: lovstudio/gh-access-skill
-  name_zh: GitHub 协作者管理
+  name_zh: "GitHub 协作管家"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -2669,12 +2677,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/gh-access.md
 - name: gh-contribute
+  display_name: "Open Source Contributor"
   runtime_name: lov-gh-contribute
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843453
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-m
   repo: lovstudio/gh-contribute-skill
-  name_zh: GitHub 投稿 PR
+  name_zh: "开源贡献助手"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -2709,12 +2718,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/gh-contribute.md
 - name: gh-tidy
+  display_name: "GitHub Organizer"
   runtime_name: lov-gh-tidy
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846062
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-2
   repo: lovstudio/gh-tidy-skill
-  name_zh: GitHub 仓库整理
+  name_zh: "GitHub 整理师"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -2748,12 +2758,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/gh-tidy.md
 - name: install-tanstack-query
+  display_name: "TanStack Query Setup"
   runtime_name: lov-install-tanstack-query
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846063
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsV
   repo: lovstudio/install-tanstack-query-skill
-  name_zh: TanStack Query 初始化
+  name_zh: "TanStack Query 接入"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -2787,12 +2798,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/install-tanstack-query.md
 - name: release-via-cicd
+  display_name: "Release Pilot"
   runtime_name: lov-release-via-cicd
   updated_at: 2026-09-07T09:40:45Z
   skillpay_product_id: P0806000200847225
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-4
   repo: lovstudio/release-via-cicd-skill
-  name_zh: CI/CD 发布
+  name_zh: "自动发版"
   paid: false
   category: Dev Tools
   version: 8.7.1
@@ -2822,12 +2834,13 @@ skills:
   depends_on:
   - branding-consistency
 - name: optimize-tauri-backend
+  display_name: "Tauri Backend Tuner"
   runtime_name: lov-optimize-tauri-backend
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847224
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsX
   repo: lovstudio/optimize-tauri-backend-skill
-  name_zh: Tauri 后端优化
+  name_zh: "Tauri 后端调优"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -2863,12 +2876,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/optimize-tauri-backend.md
 - name: app-generator
+  display_name: "App Studio"
   runtime_name: lov-app-generator
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843451
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP-
   repo: lovstudio/app-generator-skill
-  name_zh: App 生成器
+  name_zh: "应用工坊"
   paid: false
   category: Dev Tools
   version: "0.4.0"
@@ -2905,12 +2919,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/app-generator.md
 - name: electron-delta-updater
+  display_name: "Electron Delta Updates"
   runtime_name: sgc-electron-delta-updater
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846070
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsq
   repo: lovstudio/electron-delta-updater-skill
-  name_zh: Electron 增量更新
+  name_zh: "Electron 增量更新"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -2944,12 +2959,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/electron-delta-updater.md
 - name: electron-app-relaunch
+  display_name: "Desktop App Relaunch"
   runtime_name: sgc-electron-app-relaunch
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847229
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqWfZ
   repo: lovstudio/electron-app-relaunch-skill
-  name_zh: Electron 应用重启
+  name_zh: "桌面应用重启"
   paid: false
   category: Dev Tools
   version: "0.3.0"
@@ -2983,12 +2999,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/electron-app-relaunch.md
 - name: install-ai
+  display_name: "AI Integrator"
   runtime_name: sgc-install-ai
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843464
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqWfb
   repo: lovstudio/install-ai-skill
-  name_zh: AI 功能初始化
+  name_zh: "AI 接入助手"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -3024,12 +3041,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/install-ai.md
 - name: skill-distiller
+  display_name: "Skill Alchemist"
   runtime_name: sgc-skill-distiller
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200866866
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqZJs
   repo: lovstudio/skill-distiller-skill
-  name_zh: Skill 经验蒸馏
+  name_zh: "Skill 炼金师"
   paid: false
   category: Dev Tools
   version: "0.4.0"
@@ -3063,10 +3081,11 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-distiller.md
 - name: skill-pricing
+  display_name: "Skill Pricer"
   runtime_name: lov-skill-pricing
   updated_at: 2026-08-26T15:50:02Z
   repo: lovstudio/skill-pricing-skill
-  name_zh: Skill 定价
+  name_zh: "Skill 定价师"
   paid: false
   category: Dev Tools
   version: "0.2.1"
@@ -3098,10 +3117,11 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-pricing.md
 - name: media-crawler
+  display_name: "Media Downloader"
   runtime_name: lov-media-crawler
   updated_at: 2026-08-23T17:04:16Z
   repo: lovstudio/media-crawler-skill
-  name_zh: 媒体链接下载
+  name_zh: "媒体下载器"
   paid: false
   category: General
   version: "0.2.0"
@@ -3133,12 +3153,13 @@ skills:
     review_trigger_en: Review after a new platform, a resolution regression, 10 real uses, or a material support-cost change.
     card_path: pricing-cards/media-crawler.md
 - name: skill-publisher
+  display_name: "Skill Publisher"
   runtime_name: lov-skill-publisher
   updated_at: 2026-08-27T03:29:53Z
   skillpay_product_id: P0806000200863857
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqavG
   repo: lovstudio/skill-publisher-skill
-  name_zh: Skill 发布器
+  name_zh: "Skill 发布助手"
   paid: false
   category: Dev Tools
   version: "0.7.2"
@@ -3174,12 +3195,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-publisher.md
 - name: obsidian-reset-cache
+  display_name: "Obsidian Cache Reset"
   runtime_name: lov-obsidian-reset-cache
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843455
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-q
   repo: lovstudio/obsidian-reset-cache-skill
-  name_zh: 重置 Obsidian 缓存
+  name_zh: "Obsidian 缓存清理"
   paid: false
   category: Dev Tools
   version: "1.1.0"
@@ -3213,12 +3235,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/obsidian-reset-cache.md
 - name: project-port
+  display_name: "Port Keeper"
   runtime_name: lov-project-port
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200844927
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-o
   repo: lovstudio/project-port-skill
-  name_zh: 项目端口分配
+  name_zh: "端口管家"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -3252,12 +3275,13 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/project-port.md
 - name: clash-tun-doctor
+  display_name: "Clash Network Doctor"
   runtime_name: lov-clash-tun-doctor
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843452
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP4
   repo: lovstudio/clash-tun-doctor-skill
-  name_zh: Clash TUN 网络医生
+  name_zh: "Clash 网络医生"
   paid: false
   category: Dev Tools
   version: "0.3.0"
@@ -3297,9 +3321,9 @@ skills:
   runtime_name: lov-subtitle-freedom
   skillpay_product_id: P0806000201813011
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LuB_1
-  display_name: Subtitle Freedom
+  display_name: "Subtitle Freedom"
   repo: lovstudio/subtitle-freedom-skill
-  name_zh: 人人字幕
+  name_zh: "人人字幕"
   paid: true
   price_credits: 14
   category: General
@@ -3345,9 +3369,9 @@ skills:
     card_path: pricing-cards/subtitle-freedom.md
 - name: clean-mac
   runtime_name: lov-clean-mac
-  display_name: Clean Mac
+  display_name: "Mac Cleaner"
   repo: lovstudio/macos-disk-optimizer-skill
-  name_zh: 清理 Mac
+  name_zh: "Mac 清理助手"
   paid: true
   public_source: true
   price_credits: 139
@@ -3383,9 +3407,9 @@ skills:
     card_path: pricing-cards/clean-mac.md
 - name: media-fetch
   runtime_name: lov-media-fetch
-  display_name: Media Fetch
+  display_name: "Media Finder"
   repo: lovstudio/media-fetch-skill
-  name_zh: 媒体抓取
+  name_zh: "影视寻宝"
   paid: false
   category: General
   version: "0.3.0"
@@ -3419,9 +3443,9 @@ skills:
     card_path: pricing-cards/media-fetch.md
 - name: china-website-filing
   runtime_name: lov-china-website-filing
-  display_name: China Website Filing
+  display_name: "Website Filing Assistant"
   repo: lovstudio/china-website-filing-skill
-  name_zh: 中国网站备案
+  name_zh: "网站备案助手"
   paid: false
   category: General
   version: "0.2.0"
@@ -3454,9 +3478,9 @@ skills:
     review_trigger_en: Review after a version change, a new region or provider, 10 real uses, or a material regulatory or platform workflow change.
 - name: yoda-automation
   runtime_name: lov-yoda-automation
-  display_name: Yoda Automation
+  display_name: "Yoda Automation"
   repo: lovstudio/yoda-automation-skill
-  name_zh: Yoda 自动化
+  name_zh: "Yoda 自动化"
   paid: false
   category: Office Automation
   version: "0.2.0"
@@ -3490,9 +3514,9 @@ skills:
     card_path: pricing-cards/yoda-automation.md
 - name: ataru-indexing
   runtime_name: lov-ataru-indexing
-  display_name: Ataru Indexing
+  display_name: "Ataru Indexing"
   repo: lovstudio/ataru-indexing-skill
-  name_zh: Ataru 索引
+  name_zh: "Ataru 索引"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -3525,9 +3549,9 @@ skills:
     review_trigger_en: Review if Ataru starts charging for retrieval, or semantic initialization incurs real external inference cost.
 - name: search-chat
   runtime_name: lov-search-chat
-  display_name: Search Chat
+  display_name: "Chat Finder"
   repo: lovstudio/search-chat-skill
-  name_zh: 历史会话检索
+  name_zh: "会话寻踪"
   paid: false
   category: Dev Tools
   version: "0.2.1"
@@ -3562,9 +3586,9 @@ skills:
 
 - name: open-codex-session
   runtime_name: lov-open-codex-session
-  display_name: Open Codex Session
+  display_name: "Codex Task Launcher"
   repo: lovstudio/open-codex-session-skill
-  name_zh: 打开 Codex 会话
+  name_zh: "Codex 任务直达"
   paid: false
   category: Dev Tools
   version: "0.1.1"
@@ -3599,9 +3623,9 @@ skills:
 
 - name: integrate-lovinsp
   runtime_name: lov-integrate-lovinsp
-  display_name: Lovinsp Integration
+  display_name: "Lovinsp Setup"
   repo: lovstudio/integrate-lovinsp-skill
-  name_zh: Lovinsp 接入
+  name_zh: "Lovinsp 接入"
   paid: false
   category: Dev Tools
   version: "1.6.2"
@@ -3633,9 +3657,9 @@ skills:
   - branding-consistency
 - name: dsh-plugin-creator
   runtime_name: dsh-plugin-creator
-  display_name: DSH Plugin Creator
+  display_name: "DSH Plugin Studio"
   repo: lovstudio/dsh-plugin-creator-skill
-  name_zh: DSH 插件开发
+  name_zh: "DSH 插件工坊"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -3670,9 +3694,9 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
 - name: dsh-plugin-publisher
   runtime_name: dsh-plugin-publisher
-  display_name: DSH Plugin Publisher
+  display_name: "DSH Plugin Publisher"
   repo: lovstudio/dsh-plugin-publisher-skill
-  name_zh: DSH 插件发布
+  name_zh: "DSH 插件发布"
   paid: false
   category: Dev Tools
   version: "0.2.0"
@@ -3707,9 +3731,9 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
 - name: describe-image
   runtime_name: lov-describe-image
-  display_name: Describe Image
+  display_name: "Image Narrator"
   repo: lovstudio/describe-image-skill
-  name_zh: 图片描述
+  name_zh: "看图说话"
   paid: false
   category: General
   version: "0.2.0"
@@ -3742,6 +3766,8 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or when a paid vision backend is added.
     card_path: pricing-cards/describe-image.md
 - name: personal-vocabulary
+  display_name: "My Vocabulary"
+  name_zh: "我的词库"
   runtime_name: lov-personal-vocabulary
   repo: lovstudio/personal-vocabulary-skill
   updated_at: 2026-08-23T17:04:16Z
@@ -3777,9 +3803,9 @@ skills:
 - name: npm-publisher
   runtime_name: lov-npm-publisher
   updated_at: 2026-08-23T17:04:16Z
-  display_name: NPM Publisher
+  display_name: "npm Publisher"
   repo: lovstudio/lov-npm-publisher-skill
-  name_zh: npm 发布器
+  name_zh: "npm 发布助手"
   paid: false
   category: Dev Tools
   version: "0.3.0"
@@ -3812,9 +3838,9 @@ skills:
 - name: typeless-prompt
   runtime_name: lov-typeless-prompt
   updated_at: 2026-08-23T17:04:16Z
-  display_name: SGC Typeless Clone
+  display_name: "Dictation Editor"
   repo: lovstudio/typeless-prompt-skill
-  name_zh: 手工川工作室 Typeless 复刻版
+  name_zh: "口述成文"
   paid: true
   encrypted_bundle: true
   skill_path: ""
@@ -3854,9 +3880,9 @@ skills:
 - name: cli2anything
   runtime_name: lov-cli2anything
   updated_at: 2026-08-27T00:21:24Z
-  display_name: cli2anything++
+  display_name: "API Studio"
   repo: lovstudio/cli2anything-skill
-  name_zh: API 万物转换器++
+  name_zh: "接口工坊"
   paid: false
   category: Dev Tools
   version: "0.1.0"
@@ -3890,10 +3916,10 @@ skills:
 - name: search-twitter
   runtime_name: lov-search-twitter
   updated_at: 2026-08-31T15:12:00Z
-  display_name: X/Twitter Source Recovery
+  display_name: "X Post Recovery"
   repo: lovstudio/search-twitter-skill
   skill_path: ""
-  name_zh: X/Twitter 原帖恢复
+  name_zh: "X 原帖寻回"
   paid: false
   category: General
   version: "0.1.0"
@@ -3927,9 +3953,9 @@ skills:
 - name: search-file
   runtime_name: lov-search-file
   updated_at: 2026-08-27T10:10:14Z
-  display_name: AI Conversation File Search
+  display_name: "File Finder"
   repo: lovstudio/search-file-skill
-  name_zh: AI 对话文件检索
+  name_zh: "文件寻踪"
   paid: false
   category: General
   version: "0.1.0"
@@ -3962,9 +3988,9 @@ skills:
     card_path: pricing-cards/search-file.md
 - name: publish-event-onto-hdx
   runtime_name: lov-publish-event-onto-hdx
-  display_name: Huodongxing Event Exposure
+  display_name: "Huodongxing Diagnostics"
   repo: lovstudio/publish-event-onto-hdx-skill
-  name_zh: 活动行曝光诊断
+  name_zh: "活动行诊断"
   paid: false
   category: Business
   version: "0.4.0"
@@ -4001,8 +4027,8 @@ skills:
     card_path: pricing-cards/publish-event-onto-hdx.md
 - name: migrate-camera-media
   runtime_name: lov-migrate-camera-media
-  display_name: Camera Media Migration
-  name_zh: 相机素材迁移
+  display_name: "Camera Media Keeper"
+  name_zh: "相机素材管家"
   repo: lovstudio/migrate-camera-media-skill
   paid: false
   category: Video Creation
@@ -4047,8 +4073,8 @@ skills:
     card_path: pricing-cards/migrate-camera-media.md
 - name: praise-before-work
   runtime_name: praise-before-work
-  display_name: Praise Before Work
-  name_zh: 开工前夸夸
+  display_name: "A Little Encouragement"
+  name_zh: "开工夸夸"
   repo: lovstudio/praise-before-work-skill
   paid: false
   category: General
@@ -4080,8 +4106,8 @@ skills:
     card_path: pricing-cards/praise-before-work.md
 - name: video-moments
   runtime_name: lov-video-moments
-  display_name: Video Moments
-  name_zh: 视频现场瞬间
+  display_name: "Video Stills"
+  name_zh: "精彩定格"
   repo: lovstudio/video-moments-skill
   paid: false
   category: Video Creation
@@ -4123,10 +4149,11 @@ skills:
       or ongoing support.
     card_path: pricing-cards/video-moments.md
 - name: better-css
+  display_name: "CSS Polish"
   runtime_name: lov-better-css
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: CSS 整理
+  name_zh: "CSS 精修"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4158,7 +4185,7 @@ skills:
     card_path: pricing-cards/better-css.md
 - name: better-github-desc
   runtime_name: lov-better-github-desc
-  display_name: GitHub Repository Description Optimization
+  display_name: "GitHub Repository Description Optimization"
   updated_at: "2026-09-07T10:34:30Z"
   repo: lovstudio/skills
   name_zh: "GitHub 仓库简介优化"
@@ -4192,10 +4219,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-github-desc.md
 - name: better-project-structure
+  display_name: "Project Organizer"
   runtime_name: lov-better-project-structure
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 项目结构整理
+  name_zh: "项目整理师"
   paid: false
   category: Dev Tools
   version: 2.0.1
@@ -4226,10 +4254,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-project-structure.md
 - name: better-readme
+  display_name: "README Polish"
   runtime_name: lov-better-readme
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: README 完善
+  name_zh: "README 精修"
   paid: false
   category: Dev Tools
   version: 2.9.1
@@ -4260,10 +4289,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-readme.md
 - name: better-seo
+  display_name: "Next.js SEO Assistant"
   runtime_name: lov-better-seo
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: Next.js SEO
+  name_zh: "Next.js SEO 助手"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4294,10 +4324,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-seo.md
 - name: better-statusline
+  display_name: "Status Line Studio"
   runtime_name: lov-better-statusline
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 状态栏配置
+  name_zh: "状态栏工坊"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4328,10 +4359,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-statusline.md
 - name: brainstorm
+  display_name: "Requirements Compass"
   runtime_name: lov-brainstorm
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 需求梳理
+  name_zh: "需求梳理"
   paid: false
   category: General
   version: 1.0.1
@@ -4362,10 +4394,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/brainstorm.md
 - name: checkpoint-list
+  display_name: "Checkpoint History"
   runtime_name: lov-checkpoint-list
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 检查点历史
+  name_zh: "检查点回看"
   paid: false
   category: Dev Tools
   version: 0.1.1
@@ -4396,10 +4429,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/checkpoint-list.md
 - name: checkpoint
+  display_name: "Project Checkpoint"
   runtime_name: lov-checkpoint
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 项目检查点
+  name_zh: "项目存档"
   paid: false
   category: Dev Tools
   version: 0.1.1
@@ -4430,10 +4464,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/checkpoint.md
 - name: clone-rebrand
+  display_name: "Project Makeover"
   runtime_name: lov-clone-rebrand
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 模板项目改造
+  name_zh: "项目换装"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4464,10 +4499,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/clone-rebrand.md
 - name: daily-post
+  display_name: "Dev Diary"
   runtime_name: lov-daily-post
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 项目日更文案
+  name_zh: "开发日记"
   paid: false
   category: General
   version: 1.0.1
@@ -4498,10 +4534,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/daily-post.md
 - name: dev-research
+  display_name: "Tech Selection Advisor"
   runtime_name: lov-dev-research
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 研发选型调研
+  name_zh: "技术选型顾问"
   paid: false
   category: Dev Tools
   version: 2.0.1
@@ -4532,10 +4569,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/dev-research.md
 - name: distill-to-system
+  display_name: "Lessons to Rules"
   runtime_name: lov-distill-to-system
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 经验写入规则
+  name_zh: "经验入规"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4566,10 +4604,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/distill-to-system.md
 - name: distill
+  display_name: "Lesson Distiller"
   runtime_name: lov-distill
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 经验提炼
+  name_zh: "经验萃取"
   paid: false
   category: Dev Tools
   version: 3.7.1
@@ -4600,10 +4639,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/distill.md
 - name: fix-broken-links
+  display_name: "Link Fixer"
   runtime_name: lov-fix-broken-links
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 链接修复
+  name_zh: "链接修补匠"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4634,10 +4674,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/fix-broken-links.md
 - name: fix-by-add-log
+  display_name: "Log Detective"
   runtime_name: lov-fix-by-add-log
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 日志定位问题
+  name_zh: "日志侦探"
   paid: false
   category: Dev Tools
   version: 1.1.1
@@ -4668,10 +4709,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/fix-by-add-log.md
 - name: fix-general
+  display_name: "Troubleshooter"
   runtime_name: lov-fix-general
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 问题诊断修复
+  name_zh: "故障诊疗"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4702,10 +4744,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/fix-general.md
 - name: fix-until-no-error
+  display_name: "Verified Fixes"
   runtime_name: lov-fix-until-no-error
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 持续修复错误
+  name_zh: "验证修复"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4736,10 +4779,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/fix-until-no-error.md
 - name: gen-logo
+  display_name: "Logo Studio"
   runtime_name: lov-gen-logo
   updated_at: 2026-09-07T09:44:42Z
   repo: lovstudio/skills
-  name_zh: Logo 创作
+  name_zh: "Logo 工坊"
   paid: false
   category: Dev Tools
   version: "5.1.2"
@@ -4770,10 +4814,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/gen-logo.md
 - name: gen-project-name
+  display_name: "Project Namer"
   runtime_name: lov-gen-project-name
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 项目命名
+  name_zh: "项目起名师"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4804,10 +4849,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/gen-project-name.md
 - name: git-commit-with-context
+  display_name: "Context Commit"
   runtime_name: lov-git-commit-with-context
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 按会话提交
+  name_zh: "会话提交"
   paid: false
   category: Dev Tools
   version: 1.1.1
@@ -4838,10 +4884,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/git-commit-with-context.md
 - name: help-cmd
+  display_name: "Command Helper"
   runtime_name: lov-help-cmd
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 需求转命令
+  name_zh: "命令助手"
   paid: false
   category: Dev Tools
   version: 0.1.1
@@ -4872,10 +4919,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/help-cmd.md
 - name: i18n-check-i18n
+  display_name: "I18n Inspector"
   runtime_name: lov-i18n-check-i18n
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 前端国际化
+  name_zh: "国际化巡检"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -4906,10 +4954,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/i18n-check-i18n.md
 - name: illustrate
+  display_name: "Document Visuals"
   runtime_name: lov-illustrate
   updated_at: 2026-09-07T09:44:42Z
   repo: lovstudio/skills
-  name_zh: 文档配图
+  name_zh: "图解文档"
   paid: false
   category: Dev Tools
   version: "2.6.2"
@@ -4940,10 +4989,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/illustrate.md
 - name: init-auth
+  display_name: "Supabase Auth Setup"
   runtime_name: lov-init-auth
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: Supabase 身份认证
+  name_zh: "Supabase 登录接入"
   paid: false
   category: Dev Tools
   version: 1.2.1
@@ -4974,10 +5024,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/init-auth.md
 - name: init-port
+  display_name: "Port Setup"
   runtime_name: lov-init-port
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 项目端口配置
+  name_zh: "端口初始化"
   paid: false
   category: Dev Tools
   version: 1.1.1
@@ -5008,10 +5059,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/init-port.md
 - name: install-design
+  display_name: "Design System Setup"
   runtime_name: lov-install-design
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 设计系统接入
+  name_zh: "设计系统接入"
   paid: false
   category: Dev Tools
   version: 1.2.2
@@ -5042,10 +5094,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-design.md
 - name: install-shadcn-ui
+  display_name: "shadcn/ui Setup"
   runtime_name: lov-install-shadcn-ui
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: shadcn/ui 接入
+  name_zh: "shadcn/ui 接入"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -5076,10 +5129,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-shadcn-ui.md
 - name: install-tauri-logo
+  display_name: "Tauri Icon Setup"
   runtime_name: lov-install-tauri-logo
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: Tauri 图标接入
+  name_zh: "Tauri 图标助手"
   paid: false
   category: Dev Tools
   version: 4.1.1
@@ -5110,10 +5164,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-tauri-logo.md
 - name: install-web-logo
+  display_name: "Website Logo Setup"
   runtime_name: lov-install-web-logo
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 网页图标接入
+  name_zh: "网站 Logo 助手"
   paid: false
   category: Dev Tools
   version: 1.2.1
@@ -5144,10 +5199,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-web-logo.md
 - name: install-zenmux-api
+  display_name: "ZenMux Setup"
   runtime_name: lov-install-zenmux-api
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: ZenMux API 接入
+  name_zh: "ZenMux 接入"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -5178,10 +5234,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-zenmux-api.md
 - name: kb-organize
+  display_name: "Knowledge Organizer"
   runtime_name: lov-kb-organize
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 知识库整理
+  name_zh: "知识库管家"
   paid: false
   category: General
   version: 0.1.1
@@ -5212,10 +5269,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/kb-organize.md
 - name: kill-emoji
+  display_name: "Emoji Makeover"
   runtime_name: lov-kill-emoji
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 界面符号整理
+  name_zh: "Emoji 换装"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -5246,10 +5304,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/kill-emoji.md
 - name: legal-pages
+  display_name: "Website Legal Pages"
   runtime_name: lov-legal-pages
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 网站法律页面草稿
+  name_zh: "网站条款助手"
   paid: false
   category: Dev Tools
   version: 1.1.1
@@ -5280,10 +5339,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/legal-pages.md
 - name: memory-add
+  display_name: "Knowledge Capture"
   runtime_name: lov-memory-add
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 知识记录
+  name_zh: "知识入库"
   paid: false
   category: General
   version: 1.0.1
@@ -5314,10 +5374,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/memory-add.md
 - name: memory-search
+  display_name: "Knowledge Finder"
   runtime_name: lov-memory-search
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 知识检索
+  name_zh: "知识寻回"
   paid: false
   category: General
   version: 1.0.1
@@ -5348,10 +5409,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/memory-search.md
 - name: meta-command
+  display_name: "Workflow Studio"
   runtime_name: lov-meta-command
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 命令能力封装
+  name_zh: "流程工坊"
   paid: false
   category: Dev Tools
   version: 4.2.1
@@ -5382,10 +5444,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/meta-command.md
 - name: nano-banana-pro
+  display_name: "Image Prompt Crafter"
   runtime_name: lov-nano-banana-pro
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 图像提示词整理
+  name_zh: "图像提示师"
   paid: false
   category: General
   version: 0.1.1
@@ -5416,10 +5479,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/nano-banana-pro.md
 - name: obsidian-ensure-dev-sync
+  display_name: "Obsidian Dev Sync"
   runtime_name: lov-obsidian-ensure-dev-sync
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: Obsidian 开发同步
+  name_zh: "Obsidian 开发同步"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -5450,10 +5514,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/obsidian-ensure-dev-sync.md
 - name: output-wechat-moment
+  display_name: "WeChat Moments Copy"
   runtime_name: lov-output-wechat-moment
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 朋友圈文案输出
+  name_zh: "朋友圈文案"
   paid: false
   category: General
   version: 1.1.1
@@ -5484,10 +5549,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/output-wechat-moment.md
 - name: output
+  display_name: "Content Keeper"
   runtime_name: lov-output
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 内容保存文件
+  name_zh: "内容收纳"
   paid: false
   category: General
   version: 0.1.1
@@ -5518,10 +5584,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/output.md
 - name: refactor-api
+  display_name: "API Refiner"
   runtime_name: lov-refactor-api
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: API 冗余整理
+  name_zh: "API 精修"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -5552,10 +5619,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/refactor-api.md
 - name: refactor-modular
+  display_name: "Module Refactorer"
   runtime_name: lov-refactor-modular
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 代码模块拆分
+  name_zh: "模块拆分师"
   paid: false
   category: Dev Tools
   version: 1.2.1
@@ -5586,10 +5654,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/refactor-modular.md
 - name: rename-project
+  display_name: "Project Renamer"
   runtime_name: lov-rename-project
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 项目重命名
+  name_zh: "项目改名"
   paid: false
   category: Dev Tools
   version: 2.3.1
@@ -5620,10 +5689,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/rename-project.md
 - name: repo-takeover
+  display_name: "Repository Takeover"
   runtime_name: lov-repo-takeover
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 仓库接管
+  name_zh: "仓库接手"
   paid: false
   category: Dev Tools
   version: 1.0.1
@@ -5654,10 +5724,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/repo-takeover.md
 - name: version-management-manual
+  display_name: "Version Review"
   runtime_name: lov-version-management-manual
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: Changeset 人工审阅
+  name_zh: "版本审阅"
   paid: false
   category: Dev Tools
   version: 0.1.1
@@ -5688,10 +5759,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/version-management-manual.md
 - name: version-management
+  display_name: "Version Keeper"
   runtime_name: lov-version-management
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: Changesets 版本管理
+  name_zh: "版本管家"
   paid: false
   category: Dev Tools
   version: 2.0.1
@@ -5722,10 +5794,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/version-management.md
 - name: xbti-gallery
+  display_name: "XBTI Gallery"
   runtime_name: lov-xbti-gallery
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/xbti-gallery-skill
-  name_zh: XBTI 案例浏览
+  name_zh: "XBTI 图鉴"
   paid: false
   category: Dev Tools
   version: 1.0.3
@@ -5755,10 +5828,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/xbti-gallery.md
 - name: five
+  display_name: "Five-Unit Replies"
   runtime_name: lov-five
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 五字简答
+  name_zh: "五字答"
   paid: false
   category: General
   version: 0.1.0
@@ -5789,10 +5863,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/five.md
 - name: add-task
+  display_name: "Task Capture"
   runtime_name: lov-add-task
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 任务清单追加
+  name_zh: "任务随手记"
   paid: false
   category: Dev Tools
   version: 0.1.0
@@ -5823,10 +5898,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/add-task.md
 - name: think
+  display_name: "Deep Thinking"
   runtime_name: lov-think
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 复杂问题分析
+  name_zh: "深度思考"
   paid: false
   category: General
   version: 0.1.0
@@ -5857,10 +5933,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/think.md
 - name: code-review
+  display_name: "Code Reviewer"
   runtime_name: lov-code-review
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 代码审查
+  name_zh: "代码审阅官"
   paid: false
   category: Dev Tools
   version: 0.1.0
@@ -5891,10 +5968,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/code-review.md
 - name: architecture-documentation
+  display_name: "Architecture Atlas"
   runtime_name: lov-architecture-documentation
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: 架构文档
+  name_zh: "架构图谱"
   paid: false
   category: Dev Tools
   version: 0.1.0
@@ -5925,10 +6003,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/architecture-documentation.md
 - name: agent-instructions
+  display_name: "Agent Guide Keeper"
   runtime_name: lov-agent-instructions
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
-  name_zh: Agent 项目规范
+  name_zh: "Agent 规范管家"
   paid: false
   category: Dev Tools
   version: 0.1.0
@@ -5959,10 +6038,11 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/agent-instructions.md
 - name: add-tool
+  display_name: "Web Tool Studio"
   runtime_name: lov-add-tool
   updated_at: '2026-09-07T09:48:03Z'
   repo: lovstudio/skills
-  name_zh: 在线工具集成
+  name_zh: "小工具工坊"
   paid: false
   category: Dev Tools
   version: 0.1.0

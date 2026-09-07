@@ -1,4 +1,4 @@
-# 状态栏配置 Skill Card
+# 状态栏工坊 · Status Line Studio · Skill Card
 
 ## Description
 

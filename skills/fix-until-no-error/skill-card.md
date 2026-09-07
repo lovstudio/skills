@@ -1,4 +1,4 @@
-# 持续修复错误 Skill Card
+# 验证修复 · Verified Fixes · Skill Card
 
 ## Description
 

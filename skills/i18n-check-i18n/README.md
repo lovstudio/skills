@@ -1,4 +1,4 @@
-# 前端国际化
+# 国际化巡检 · I18n Inspector
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

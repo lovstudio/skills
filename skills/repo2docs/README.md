@@ -1,4 +1,4 @@
-# lov-repo2docs
+# 文档站工坊 · Docs Site Builder
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 

@@ -1,4 +1,4 @@
-# Logo 创作 Skill Card
+# Logo 工坊 · Logo Studio · Skill Card
 
 ## Description
 

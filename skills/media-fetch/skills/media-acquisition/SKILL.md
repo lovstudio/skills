@@ -20,7 +20,7 @@ metadata:
     - aria2
 ---
 
-# Media Acquisition
+# 影视下载 · Media Download
 
 Treat download as an observed job with recovery, not a fire-and-forget client action.
 Use aria2 as the primary transfer engine for direct and BitTorrent inputs. Treat

@@ -1,4 +1,4 @@
-# 视频发布器（微信视频号 / Bilibili）
+# 视频分发助手 · Video Publisher
 
 ![Version](https://img.shields.io/badge/version-0.9.1-CC785C)
 

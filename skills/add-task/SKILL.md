@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 任务清单追加
+# 任务随手记 · Task Capture
 
 在当前任务清单中按优先级和位置追加事项并保留已有状态。
 

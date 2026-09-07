@@ -4,7 +4,7 @@ description: 从产品与品牌事实出发，独立推导适合当前产品的�
 version: 0.4.0
 ---
 
-# Oh My Landing Page（加密 Skill）
+# 官网小能手 · Website Whiz
 
 这是 LovStudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 

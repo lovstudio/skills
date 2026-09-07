@@ -1,4 +1,4 @@
-# Skill Card — lov-env-management
+# 凭据管家 · Credential Keeper · Skill Card
 
 ## Description
 

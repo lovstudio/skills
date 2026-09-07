@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# CSS 整理
+# CSS 精修 · CSS Polish
 
 清理冗余 CSS 并在现有 Tailwind 项目中重构样式。
 

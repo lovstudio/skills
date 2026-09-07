@@ -1,4 +1,4 @@
-# sgc-skill-distiller
+# Skill 炼金师 · Skill Alchemist
 
 ![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 

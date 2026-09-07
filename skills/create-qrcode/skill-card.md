@@ -1,4 +1,4 @@
-# Skill Card — lov-create-qrcode
+# 二维码工坊 · QR Studio · Skill Card
 
 ## Description
 

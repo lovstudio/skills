@@ -1,4 +1,4 @@
-# lov-quality-gate
+# 文章验收 · Article Quality Gate
 
 `lov-article-creator` 内嵌验收模块。检查文章包结构、内容证据、研究评测可复现性、品牌、图片比例、散列和状态语义。
 

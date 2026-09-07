@@ -14,7 +14,7 @@ metadata:
   tags: skill-kit business-plan pitch-deck fundraising outline slides polish audit
 ---
 
-# BP Skill Kit
+# BP 工坊 · BP Studio
 
 Compose only the stages the user needs. The kit preserves the existing
 `$lov-bp` entrypoint while exposing three focused skills that can be used

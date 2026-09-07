@@ -1,4 +1,4 @@
-# Tauri 图标接入 Skill Card
+# Tauri 图标助手 · Tauri Icon Setup · Skill Card
 
 ## Description
 

@@ -1,4 +1,4 @@
-# 持续修复错误
+# 验证修复 · Verified Fixes
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

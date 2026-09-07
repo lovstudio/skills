@@ -1,4 +1,4 @@
-# 五字简答
+# 五字答 · Five-Unit Replies
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 

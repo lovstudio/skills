@@ -1,4 +1,4 @@
-# lov-create-qrcode
+# 二维码工坊 · QR Studio
 
 ![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 

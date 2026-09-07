@@ -34,6 +34,8 @@ from pathlib import Path
 
 import yaml
 
+from skill_display_names import apply_catalog_names
+
 ROOT = Path(__file__).resolve().parent.parent
 YAML_PATH = ROOT / "skills.yaml"
 MIRROR_ROOT = ROOT / "skills"
@@ -318,6 +320,11 @@ def main() -> int:
                 f"at {dest.relative_to(ROOT)}/ — did you forget to commit dist/?",
                 file=sys.stderr,
             )
+    # Display metadata belongs to this catalog and must survive upstream re-sync.
+    module_path = ROOT / 'module-display-names.yaml'
+    module_names = yaml.safe_load(module_path.read_text()) if module_path.exists() else {}
+    renamed = apply_catalog_names(MIRROR_ROOT, all_skills, module_names or {})
+    print(f'  Applied catalog display names to {renamed} files')
     return 0
 
 

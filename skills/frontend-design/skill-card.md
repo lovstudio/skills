@@ -1,4 +1,4 @@
-# Skill Card — lov-frontend-design
+# 界面设计师 · Interface Designer · Skill Card
 
 ## Description
 

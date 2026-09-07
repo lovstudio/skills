@@ -19,7 +19,7 @@ metadata:
   tags: tauri rust backend ipc commands hot-reload modularization dev-experience
 ---
 
-# optimize-tauri-backend — Tauri 后端优化
+# Tauri 后端调优 · Tauri Backend Tuner
 
 Use this skill to turn a growing Tauri backend into a smaller, more stable,
 more pleasant development surface. The goal is not magical Rust HMR. The goal

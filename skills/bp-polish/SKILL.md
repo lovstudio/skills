@@ -13,7 +13,7 @@ metadata:
   tags: business-plan review polish audit evidence charts visual-quality pitch-deck
 ---
 
-# BP Polish
+# BP 精修 · BP Polish
 
 Improve an existing BP without silently changing its business facts. This skill can
 be used before deck production, after rendering, or in a correction loop.

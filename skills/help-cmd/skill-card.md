@@ -1,4 +1,4 @@
-# 需求转命令 Skill Card
+# 命令助手 · Command Helper · Skill Card
 
 ## Description
 

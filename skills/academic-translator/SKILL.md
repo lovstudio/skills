@@ -5,7 +5,7 @@ description: 将英文论文、arXiv、期刊/会议文章及技术 PDF 翻译�
 version: 0.2.0
 ---
 
-# academic-translator（加密 Skill）
+# 学术译者 · Academic Translator
 
 这是 Lovstudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 

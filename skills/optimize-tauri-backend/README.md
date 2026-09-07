@@ -1,4 +1,4 @@
-# lov-optimize-tauri-backend
+# Tauri 后端调优 · Tauri Backend Tuner
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

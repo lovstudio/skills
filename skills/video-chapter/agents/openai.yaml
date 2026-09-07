@@ -1,5 +1,5 @@
 interface:
-  display_name: "Video Chapter Skill Kit"
+  display_name: "视频章节师"
   short_description: "字幕分章、React 设计、透明渲染与视频烧录"
   icon_small: "./assets/lov-video-chapter.svg"
   icon_large: "./assets/lov-video-chapter.svg"

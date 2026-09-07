@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 状态栏配置
+# 状态栏工坊 · Status Line Studio
 
 配置并备份 Agent 状态栏，支持列出历史版本和恢复。
 

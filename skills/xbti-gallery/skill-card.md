@@ -1,4 +1,4 @@
-# XBTI 案例浏览 Skill Card
+# XBTI 图鉴 · XBTI Gallery · Skill Card
 
 ## Description
 

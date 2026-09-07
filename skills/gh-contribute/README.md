@@ -1,4 +1,4 @@
-# lov-gh-contribute
+# 开源贡献助手 · Open Source Contributor
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

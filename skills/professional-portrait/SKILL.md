@@ -22,7 +22,7 @@ metadata:
   tags: portrait headshot retouch identity-preserve photo-editing
 ---
 
-# Professional Portrait — 职业形象照精修
+# 职业形象照 · Professional Portrait
 
 Turn one source photo into a polished, believable professional portrait. The
 face should still look unmistakably like the same person; "more professional"

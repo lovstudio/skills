@@ -1,4 +1,4 @@
-# Skill Card — lov-writing-style
+# 我的文风 · My Writing Voice · Skill Card
 
 ## Description
 

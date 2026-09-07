@@ -1,4 +1,4 @@
-# lov-maintain-partners
+# 伙伴名录 · Partner Directory
 
 ![Version](https://img.shields.io/badge/version-0.10.0-CC785C)
 

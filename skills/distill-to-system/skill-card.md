@@ -1,4 +1,4 @@
-# 经验写入规则 Skill Card
+# 经验入规 · Lessons to Rules · Skill Card
 
 ## Description
 

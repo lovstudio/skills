@@ -1,4 +1,4 @@
-# lov-search-twitter
+# X 原帖寻回 · X Post Recovery
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 

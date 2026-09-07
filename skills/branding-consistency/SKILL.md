@@ -17,7 +17,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-branding-consistency
+# 品牌审校官 · Brand Editor
 
 把文案当作真实产品或出版物的一部分，而不是模型回答的残留物。先确定谁在什么场景
 看到这句话、此刻要完成什么，再决定写什么、写多少，以及是否根本不该显示文字。

@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 内容保存文件
+# 内容收纳 · Content Keeper
 
 将已确认内容按指定文件名与文本格式保存并回读校验。
 

@@ -1,4 +1,4 @@
-# 图像创作
+# 造图师 · Image Maker
 
 ![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
 

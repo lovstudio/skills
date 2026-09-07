@@ -14,7 +14,7 @@ metadata:
   tags: business-plan pitch-deck pptx pdf style charts branding slides
 ---
 
-# BP Deck
+# BP 大师 · BP Master
 
 Produce the presentation after the investment narrative is approved. This skill owns
 style selection, visual specification, rendering, export, and final-image QA; it does

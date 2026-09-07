@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# ZenMux API 接入
+# ZenMux 接入 · ZenMux Setup
 
 为应用接入 ZenMux 服务端代理，隔离密钥并验证请求链路。
 

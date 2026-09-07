@@ -5,7 +5,7 @@ description: Create event posters, exhibition posters, flyers, and promotional g
 version: 0.5.0
 ---
 
-# event-poster（加密 Skill）
+# 专业海报 · Professional Poster
 
 这是 Lovstudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 

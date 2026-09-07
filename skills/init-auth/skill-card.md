@@ -1,4 +1,4 @@
-# Supabase 身份认证 Skill Card
+# Supabase 登录接入 · Supabase Auth Setup · Skill Card
 
 ## Description
 

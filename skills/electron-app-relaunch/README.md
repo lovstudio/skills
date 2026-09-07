@@ -1,4 +1,4 @@
-# sgc-electron-app-relaunch
+# 桌面应用重启 · Desktop App Relaunch
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 

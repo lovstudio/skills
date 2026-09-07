@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 模板项目改造
+# 项目换装 · Project Makeover
 
 将模板或 fork 改造为新项目，按范围同步品牌、语言和部署设置。
 

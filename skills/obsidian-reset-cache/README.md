@@ -1,4 +1,4 @@
-# lov-obsidian-reset-cache
+# Obsidian 缓存清理 · Obsidian Cache Reset
 
 ![Version](https://img.shields.io/badge/version-1.1.0-CC785C)
 

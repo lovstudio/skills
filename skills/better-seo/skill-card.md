@@ -1,4 +1,4 @@
-# Next.js SEO Skill Card
+# Next.js SEO 助手 · Next.js SEO Assistant · Skill Card
 
 ## Description
 

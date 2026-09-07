@@ -1,4 +1,4 @@
-# 知识记录 Skill Card
+# 知识入库 · Knowledge Capture · Skill Card
 
 ## Description
 

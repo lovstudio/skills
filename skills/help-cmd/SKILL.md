@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 需求转命令
+# 命令助手 · Command Helper
 
 把操作目标转换为适合当前系统和 shell 的可执行命令说明。
 

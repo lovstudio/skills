@@ -1,4 +1,4 @@
-# Skill Card — lov-cli2anything
+# 接口工坊 · API Studio · Skill Card
 
 This card mirrors `skill-card.yaml` and records the currently verified local
 release state.

@@ -19,7 +19,7 @@ metadata:
     - draft-verification
 ---
 
-# 发布微信公众号文章
+# 公众号发布助手 · WeChat Publisher
 
 把“准备内容”“写入远端草稿”“提交发布”“平台发布完成”建模为不同状态。所有微信公众号 API 请求默认经 `api.lovstudio.ai` 的统一网关发出，由后端固定出口与微信通信；本机无需进入微信 IP 白名单。
 

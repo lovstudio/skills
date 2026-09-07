@@ -24,7 +24,7 @@ metadata:
   tags: meta skill-maintenance versioning changelog lint portability sync
 ---
 
-# skill-optimizer — 自动优化 Agent Skill 并维护版本与分发状态
+# Skill 精修师 · Skill Refiner
 
 This is a non-interactive maintenance workflow. It infers the target and
 prioritizes issues from the current conversation, then supplements them with a

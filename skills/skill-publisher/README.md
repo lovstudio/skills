@@ -1,4 +1,4 @@
-# lov-skill-publisher
+# Skill 发布助手 · Skill Publisher
 
 ![Version](https://img.shields.io/badge/version-0.7.2-CC785C)
 

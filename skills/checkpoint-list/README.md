@@ -1,4 +1,4 @@
-# 检查点历史
+# 检查点回看 · Checkpoint History
 
 ![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 

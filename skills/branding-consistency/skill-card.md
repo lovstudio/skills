@@ -1,4 +1,4 @@
-# Skill Card — lov-branding-consistency
+# 品牌审校官 · Brand Editor · Skill Card
 
 ## Description
 

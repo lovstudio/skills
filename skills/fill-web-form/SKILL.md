@@ -22,7 +22,7 @@ metadata:
   tags: form web fill knowledge-base conference speaker application
 ---
 
-# fill-web-form — Fill Web Forms from Local Knowledge Base
+# 网页填表助手 · Web Form Assistant
 
 Fetch a web form, extract all fields, deep-search the user's local knowledge
 base for matching information, and output a ready-to-use markdown document.

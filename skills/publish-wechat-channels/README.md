@@ -1,4 +1,4 @@
-# 微信视频号发布
+# 视频号发布助手 · WeChat Channels Publisher
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 

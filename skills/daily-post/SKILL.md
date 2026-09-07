@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 项目日更文案
+# 开发日记 · Dev Diary
 
 将近期真实项目更新写成面向读者的简短日更文案。
 

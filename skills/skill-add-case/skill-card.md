@@ -1,4 +1,4 @@
-# Skill Card — lov-skill-add-case
+# Skill 案例馆 · Skill Showcase · Skill Card
 
 ## Description
 

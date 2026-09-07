@@ -1,4 +1,4 @@
-# 项目日更文案 Skill Card
+# 开发日记 · Dev Diary · Skill Card
 
 ## Description
 

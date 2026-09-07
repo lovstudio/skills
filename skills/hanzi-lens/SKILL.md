@@ -20,7 +20,7 @@ metadata:
   tags: hanzi chinese-character etymology lexicography infographic cjk unicode
 ---
 
-# Hanzi Lens
+# 汉字镜 · Hanzi Lens
 
 Turn one Han character into a source-backed visual explanation. The character
 is the subject: do not infer a person's character, fate, relationships, or

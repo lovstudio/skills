@@ -1,4 +1,4 @@
-# 项目命名 Skill Card
+# 项目起名师 · Project Namer · Skill Card
 
 ## Description
 

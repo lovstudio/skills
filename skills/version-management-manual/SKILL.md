@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# Changeset 人工审阅
+# 版本审阅 · Version Review
 
 生成 changeset 草稿并提供编辑入口，审阅后验证版本计划。
 

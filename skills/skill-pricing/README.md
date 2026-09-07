@@ -1,4 +1,4 @@
-# lov-skill-pricing
+# Skill 定价师 · Skill Pricer
 
 ![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 

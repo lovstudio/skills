@@ -1,4 +1,4 @@
-# Skill Card — lov-ataru-indexing
+# Ataru 索引 · Ataru Indexing · Skill Card
 
 This human-readable card mirrors `skill-card.yaml`. It is a release record, not
 an implementation note.

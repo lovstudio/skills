@@ -17,7 +17,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-env-management
+# 凭据管家 · Credential Keeper
 
 把散落的开发环境变量收进“平台 → 账号 → Key”账本，明确每个 Key 的生命周期、验证状态和当前投影目标，并在不回显秘密的前提下同步 Shell 或用户图形会话环境。
 

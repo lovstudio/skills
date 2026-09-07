@@ -1,4 +1,4 @@
-# 网页图标接入 Skill Card
+# 网站 Logo 助手 · Website Logo Setup · Skill Card
 
 ## Description
 

@@ -1,4 +1,4 @@
-# Contract Review Pro / 合同审阅（专业版）
+# 合同批注专家 · Contract Reviewer
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

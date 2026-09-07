@@ -1,4 +1,4 @@
-# README 完善
+# README 精修 · README Polish
 
 ![Version](https://img.shields.io/badge/version-2.9.1-CC785C)
 

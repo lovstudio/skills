@@ -11,7 +11,7 @@ metadata:
     - lov-dev-blog
 ---
 
-# Deep Research
+# 深度研究 · Deep Research
 
 ## Core Purpose
 

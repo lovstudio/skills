@@ -1,4 +1,4 @@
-# lov-open-codex-session
+# Codex 任务直达 · Codex Task Launcher
 
 ![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 

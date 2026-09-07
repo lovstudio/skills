@@ -1,4 +1,4 @@
-# Skill Card — lov-publish-event-onto-hdx
+# 活动行诊断 · Huodongxing Diagnostics · Skill Card
 
 This human-readable card mirrors `skill-card.yaml`.
 

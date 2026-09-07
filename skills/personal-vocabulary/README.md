@@ -1,4 +1,4 @@
-# lov-personal-vocabulary
+# 我的词库 · My Vocabulary
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

@@ -1,4 +1,4 @@
-# 代码模块拆分 Skill Card
+# 模块拆分师 · Module Refactorer · Skill Card
 
 ## Description
 

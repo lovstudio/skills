@@ -1,4 +1,4 @@
-# lov-bp-outline
+# BP 蓝图 · BP Blueprint
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

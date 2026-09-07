@@ -1,4 +1,4 @@
-# 检查点历史 Skill Card
+# 检查点回看 · Checkpoint History · Skill Card
 
 ## Description
 

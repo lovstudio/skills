@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 按会话提交
+# 会话提交 · Context Commit
 
 结合会话意图与实际 Git 差异生成并执行范围准确的提交。
 

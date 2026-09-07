@@ -18,7 +18,7 @@ metadata:
     - browser-automation
 ---
 
-# 发布微信视频号内容
+# 视频号发布助手 · WeChat Channels Publisher
 
 只操作 `https://channels.weixin.qq.com` 下的视频号助手可见网页，新建入口为 `https://channels.weixin.qq.com/platform/post/create`。把页面当作动态界面：每一步重新读取当前页面，按语义定位控件，不依赖历史 CSS 选择器或坐标。
 

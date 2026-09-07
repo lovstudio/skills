@@ -1,4 +1,4 @@
-# lov-human-writing
+# 文稿润色师 · Text Editor
 
 ![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
 

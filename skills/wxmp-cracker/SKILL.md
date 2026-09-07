@@ -4,7 +4,7 @@ description: Export WeChat Official Account articles into reusable structured co
 version: 0.4.0
 ---
 
-# wxmp-cracker（加密 Skill）
+# 公众号神器 · WeChat Archiver
 
 这是 Lovstudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 

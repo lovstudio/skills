@@ -1,4 +1,4 @@
-# Skill Card — lov-media-crawler
+# 媒体下载器 · Media Downloader · Skill Card
 
 ## Description
 

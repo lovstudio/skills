@@ -1,4 +1,4 @@
-# lov-hanzi-lens
+# 汉字镜 · Hanzi Lens
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-24324A)

@@ -1,4 +1,4 @@
-# 任务清单追加
+# 任务随手记 · Task Capture
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 

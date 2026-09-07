@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 项目命名
+# 项目起名师 · Project Namer
 
 根据项目用途提供可用于文件夹与仓库的名称及定位说明。
 

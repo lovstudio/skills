@@ -1,4 +1,4 @@
-# 知识库整理
+# 知识库管家 · Knowledge Organizer
 
 ![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 

@@ -15,7 +15,7 @@ metadata:
   dependencies: []
 ---
 
-# Electron 增量自动更新
+# Electron 增量更新 · Electron Delta Updates
 
 为现有 Electron 应用交付可验证的增量更新链路；以用户实际安装包、公开更新源和安装结果为准，而不是以 CI 成功为准。
 

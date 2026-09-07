@@ -14,7 +14,7 @@ metadata:
   dependencies: []
 ---
 
-# Article Writing
+# 文章写作 · Article Writing
 
 把输入材料整理成公众号正文写作任务，并交给 `lov-writing-style` 完成文风适配；后者内置调用 `lov-human-writing` 做作者性审计。这个模块只拥有公众号题材与结构约束，不再维护第二套通用写作或“去 AI 味”规则。
 

@@ -17,7 +17,7 @@ metadata:
     - python
 ---
 
-# lov-personal-vocabulary — 个人词汇表
+# 我的词库 · My Vocabulary
 
 把散落在各语音输入法里的词条收敛成**一份**属于你的规范词汇表，需要时再按 App 的格式同步回去。不改任何 App 内部行为，只做词条的收集、去重、映射与推送。
 

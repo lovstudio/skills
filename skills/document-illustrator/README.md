@@ -1,4 +1,4 @@
-# lov-document-illustrator
+# 文档插画师 · Document Illustrator
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 

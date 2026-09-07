@@ -1,4 +1,4 @@
-# lov-rename-project
+# 项目改名 · Project Renamer
 
 ![Version](https://img.shields.io/badge/version-2.3.1-CC785C)
 

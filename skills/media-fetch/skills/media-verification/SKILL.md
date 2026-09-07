@@ -16,7 +16,7 @@ metadata:
     - ffprobe
 ---
 
-# Media Verification
+# 影视验片 · Media Verification
 
 Confirm the local artifact, selected edition, and language coverage before declaring
 the request complete. A missing Simplified Chinese stream opens a subtitle handoff,

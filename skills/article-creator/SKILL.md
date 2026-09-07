@@ -19,7 +19,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-article-creator
+# 公众号写手 · WeChat Writer
 
 把零散事实、研究材料或现有草稿变成一套可交付的公众号文章包，而不只是写出一段 Markdown。
 

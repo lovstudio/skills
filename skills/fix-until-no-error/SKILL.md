@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 持续修复错误
+# 验证修复 · Verified Fixes
 
 围绕明确验证命令持续定位和修复失败项直到通过或遇到真实阻塞。
 

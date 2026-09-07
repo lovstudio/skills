@@ -1,4 +1,4 @@
-# 图像创作 Skill Card
+# 造图师 · Image Maker · Skill Card
 
 ## Description
 

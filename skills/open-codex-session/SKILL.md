@@ -16,7 +16,7 @@ metadata:
     - desktop
 ---
 
-# lov-open-codex-session — 打开指定 Codex 任务
+# Codex 任务直达 · Codex Task Launcher
 
 把稳定的 Codex `sessionId` / `threadId` 交给宿主导航能力，让当前 Codex 主窗口切换到准确任务。Skill 只负责定位与打开，不修改任务内容、归档状态或 Git 状态。
 

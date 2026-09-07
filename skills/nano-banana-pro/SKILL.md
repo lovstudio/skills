@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 图像提示词整理
+# 图像提示师 · Image Prompt Crafter
 
 将图像需求整理为结构清晰、遵循参考素材的生成或编辑提示词。
 

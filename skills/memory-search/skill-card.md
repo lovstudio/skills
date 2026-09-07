@@ -1,4 +1,4 @@
-# 知识检索 Skill Card
+# 知识寻回 · Knowledge Finder · Skill Card
 
 ## Description
 

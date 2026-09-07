@@ -1,4 +1,4 @@
-# lov-search-file
+# 文件寻踪 · File Finder
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 

@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# README 完善
+# README 精修 · README Polish
 
 依据项目代码完善 README、安装说明、使用示例与真实品牌资产。
 

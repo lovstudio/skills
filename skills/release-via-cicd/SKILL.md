@@ -25,7 +25,7 @@ metadata:
   card_standard: lovstudio/skill-card/v1
 ---
 
-# CI/CD 发布
+# 自动发版 · Release Pilot
 
 配置或运行现有项目发布流水线，并回读产物与真实上线状态。
 

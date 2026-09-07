@@ -1,4 +1,4 @@
-# Skill Publisher Rich Export
+# 富文档导出 · Rich Export
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

@@ -1,4 +1,4 @@
-# Skill Card — lov-domain-cutover
+# 备案域名上线 · Domain Launch · Skill Card
 
 ## Description
 

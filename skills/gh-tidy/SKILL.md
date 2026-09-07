@@ -17,7 +17,7 @@ metadata:
   tags: github tidy cleanup issues pr branches hygiene
 ---
 
-# lov-gh-tidy
+# GitHub 整理师 · GitHub Organizer
 
 Interactive GitHub repo triage — issues, PRs, branches, labels in one pass.
 

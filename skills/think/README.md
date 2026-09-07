@@ -1,4 +1,4 @@
-# 复杂问题分析
+# 深度思考 · Deep Thinking
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 

@@ -14,7 +14,7 @@ metadata:
   tags: [frontend-design, product-interaction, art-direction, gsap, multimedia, accessibility]
 ---
 
-# lov-frontend-design
+# 界面设计师 · Interface Designer
 
 把内容、视觉和交互落实为可用的界面。目标受众应能看懂、能操作、能完成任务，同时
 获得与内容相称的审美体验。直接实现修改请求；用户明确要求审查时保持只读。

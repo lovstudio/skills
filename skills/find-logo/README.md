@@ -1,4 +1,4 @@
-# lov-find-logo
+# Logo 雷达 · Logo Radar
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 

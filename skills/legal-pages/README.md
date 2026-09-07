@@ -1,4 +1,4 @@
-# 网站法律页面草稿
+# 网站条款助手 · Website Legal Pages
 
 ![Version](https://img.shields.io/badge/version-1.1.1-CC785C)
 

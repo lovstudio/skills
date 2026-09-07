@@ -1,4 +1,4 @@
-# lov-media-fetch
+# 影视寻宝 · Media Finder
 
 ![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 

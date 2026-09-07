@@ -4,7 +4,7 @@ description: Write multi-chapter books end-to-end from an outline.
 version: 0.4.0
 ---
 
-# write-professional-book（加密 Skill）
+# 写书专家 · Book Writing Expert
 
 这是 Lovstudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 

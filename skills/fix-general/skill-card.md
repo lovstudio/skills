@@ -1,4 +1,4 @@
-# 问题诊断修复 Skill Card
+# 故障诊疗 · Troubleshooter · Skill Card
 
 ## Description
 

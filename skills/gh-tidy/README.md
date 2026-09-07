@@ -1,4 +1,4 @@
-# lov-gh-tidy
+# GitHub 整理师 · GitHub Organizer
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

@@ -19,7 +19,7 @@ metadata:
   version: "0.3.0"
 ---
 
-# lov-cc-mv
+# 会话搬家 · Session Mover
 
 Two modes in one tool:
 

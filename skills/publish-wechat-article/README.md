@@ -1,4 +1,4 @@
-# 微信公众号文章发布器
+# 公众号发布助手 · WeChat Publisher
 
 ![Version](https://img.shields.io/badge/version-0.9.0-CC785C)
 

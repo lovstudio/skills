@@ -1,4 +1,4 @@
-# lov-fact-check
+# 事实核查员 · Fact Checker
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

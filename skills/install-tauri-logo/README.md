@@ -1,4 +1,4 @@
-# Tauri 图标接入
+# Tauri 图标助手 · Tauri Icon Setup
 
 ![Version](https://img.shields.io/badge/version-4.1.1-CC785C)
 

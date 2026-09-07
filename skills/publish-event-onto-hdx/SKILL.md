@@ -21,7 +21,7 @@ metadata:
     - china-platform
 ---
 
-# lov-publish-event-onto-hdx
+# 活动行诊断 · Huodongxing Diagnostics
 
 帮助在活动行（huodongxing.com）完成活动的分类设置、标签优化和曝光排名核查。
 

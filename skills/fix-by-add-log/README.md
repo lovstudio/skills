@@ -1,4 +1,4 @@
-# 日志定位问题
+# 日志侦探 · Log Detective
 
 ![Version](https://img.shields.io/badge/version-1.1.1-CC785C)
 

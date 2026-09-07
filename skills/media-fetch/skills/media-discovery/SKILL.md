@@ -15,7 +15,7 @@ metadata:
     - python
 ---
 
-# Media Discovery
+# 影视找片 · Media Discovery
 
 Identify the requested work before collecting releases, then return normalized,
 deduplicated candidates with evidence kept separate from search-result claims. Keep

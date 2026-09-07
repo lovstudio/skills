@@ -1,4 +1,4 @@
-# sgc-install-ai
+# AI 接入助手 · AI Integrator
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

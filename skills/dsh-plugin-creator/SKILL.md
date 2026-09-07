@@ -6,7 +6,7 @@ metadata:
   tags: [plugin, package, capability-seam, tool, dsh]
 ---
 
-# DSH Plugin Creator
+# DSH 插件工坊 · DSH Plugin Studio
 
 Use this skill when adding or modifying a plugin (`@deepseek-ai/dsh-*` package) in this repository. It compresses the repo's extension-point map, package checklist, and testing policy into one ordered procedure. Each step names the authoritative file; the full grounded detail with per-step sources lives in `references/plugin-dev-sop.md`.
 

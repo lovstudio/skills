@@ -1,4 +1,4 @@
-# lov-review-doc
+# 合同精修 · Contract Polish
 
 ![Version](https://img.shields.io/badge/version-1.1.0-CC785C) ![Category](https://img.shields.io/badge/category-business-blue)
 

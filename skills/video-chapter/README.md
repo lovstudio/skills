@@ -1,4 +1,4 @@
-# Video Chapter Skill Kit
+# 视频章节师 · Video Chapters
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-green)

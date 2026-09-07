@@ -19,7 +19,7 @@ metadata:
   tags: pdf png macos coregraphics finder-action
 ---
 
-# pdf2png — PDF to Vertically Concatenated PNG
+# PDF 长图 · PDF Scroll
 
 Convert multi-page PDF files into a single tall PNG image. All pages are rendered
 at 2x scale (Retina quality) and stitched vertically. Uses macOS CoreGraphics

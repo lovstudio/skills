@@ -20,7 +20,7 @@ metadata:
   card_standard: lovstudio/skill-card/v1
 ---
 
-# Integrate Lovinsp
+# Lovinsp 接入 · Lovinsp Setup
 
 幂等地将 lovinsp（点击 DOM 跳转源码）集成到当前前端项目。支持从 code-inspector 自动迁移。
 

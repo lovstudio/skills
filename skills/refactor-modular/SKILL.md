@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 代码模块拆分
+# 模块拆分师 · Module Refactorer
 
 按职责拆分长文件并保持公共接口、依赖和行为一致。
 

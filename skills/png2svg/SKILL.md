@@ -17,7 +17,7 @@ metadata:
   tags: png svg vectorization imagemagick vtracer
 ---
 
-# PNG to SVG Skill
+# 矢量描摹 · Vector Tracer
 
 将 PNG 图片转换为高质量矢量 SVG，支持去除白色背景。
 

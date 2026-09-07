@@ -1,4 +1,4 @@
-# lov-riso-portrait
+# Riso 人像 · Riso Portrait
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

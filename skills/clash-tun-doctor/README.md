@@ -1,4 +1,4 @@
-# lov-clash-tun-doctor
+# Clash 网络医生 · Clash Network Doctor
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 

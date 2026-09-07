@@ -15,7 +15,7 @@ metadata:
   dependencies: []
 ---
 
-# Skill Pricing Card
+# Skill 定价师 · Skill Pricer
 
 把 Skill 的价格从一次拍脑袋，变成一张可以向创作者、购买者和渠道解释的 Pricing Card。结果聚焦可交付价值：建议价、价格带、定价依据、渠道适配、推广动作、风险和证据缺口；内部提示、源文件细节和个人背景只作为判断上下文。
 

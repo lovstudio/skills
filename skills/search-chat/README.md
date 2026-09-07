@@ -1,4 +1,4 @@
-# lov-search-chat
+# 会话寻踪 · Chat Finder
 
 ![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 

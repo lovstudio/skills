@@ -1,4 +1,4 @@
-# 朋友圈文案输出
+# 朋友圈文案 · WeChat Moments Copy
 
 ![Version](https://img.shields.io/badge/version-1.1.1-CC785C)
 

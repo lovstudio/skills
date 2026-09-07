@@ -19,7 +19,7 @@ metadata:
   tags: slide deck presentation pptx pdf image generation
 ---
 
-# Slide Deck Generator
+# PPT 大师 · PPT Master
 
 Transform content into professional slide deck images.
 

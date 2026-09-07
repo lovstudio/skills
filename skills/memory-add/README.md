@@ -1,4 +1,4 @@
-# 知识记录
+# 知识入库 · Knowledge Capture
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

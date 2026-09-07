@@ -15,7 +15,7 @@ metadata:
   tags: clash mihomo tun network diagnostics wechat macos
 ---
 
-# Clash TUN Doctor
+# Clash 网络医生 · Clash Network Doctor
 
 Evidence-first diagnosis and reversible repair for application networking
 failures behind Clash Verge Rev TUN mode.

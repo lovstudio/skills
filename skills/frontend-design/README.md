@@ -1,4 +1,4 @@
-# lov-frontend-design
+# 界面设计师 · Interface Designer
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 

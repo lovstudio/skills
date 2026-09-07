@@ -1,4 +1,4 @@
-# ZenMux API 接入 Skill Card
+# ZenMux 接入 · ZenMux Setup · Skill Card
 
 ## Description
 

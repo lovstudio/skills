@@ -1,4 +1,4 @@
-# 问题诊断修复
+# 故障诊疗 · Troubleshooter
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 
