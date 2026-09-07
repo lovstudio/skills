@@ -10,7 +10,7 @@ CLI 别名、存储命名空间、迁移、Schema 与环境变量等兼容契约
 ## 安装
 
 ```bash
-npx skills add lovstudio/skills --skill lov-rename-project
+npx skills add lovstudio/skills --skill lov-rename-project -y -g
 ```
 
 Requires: Python 3.8+、Git；GitHub 仓库回读另需 `gh` CLI。
