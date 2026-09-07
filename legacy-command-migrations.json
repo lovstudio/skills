@@ -1,587 +1,591 @@
-{
-  "schema": "slash-command-migrations/v1",
-  "date": "2026-09-07",
-  "commands": [
-    {
-      "source": "commands/Skill Development.md",
-      "kind": "command",
-      "skill": "lov-skill-creator",
-      "catalog_id": "skill-creator",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/skill-creator"
-    },
-    {
-      "source": "commands/cc-doctor/cc-doctor.md",
-      "kind": "command",
-      "skill": "lov-agent-instructions",
-      "catalog_id": "agent-instructions",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/agent-instructions"
-    },
-    {
-      "source": "commands/code-reviewer.md",
-      "kind": "command",
-      "skill": "lov-code-review",
-      "catalog_id": "code-review",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/code-review"
-    },
-    {
-      "source": "commands/create-architecture-documentation.md",
-      "kind": "command",
-      "skill": "lov-architecture-documentation",
-      "catalog_id": "architecture-documentation",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/architecture-documentation"
-    },
-    {
-      "source": "commands/enhance-claude-md/enhance-claude-md.md",
-      "kind": "command",
-      "skill": "lov-agent-instructions",
-      "catalog_id": "agent-instructions",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/agent-instructions"
-    },
-    {
-      "source": "commands/enhance-claude-md.backup.20260303_013706/README.md",
-      "kind": "documentation",
-      "state": "preserved"
-    },
-    {
-      "source": "commands/enhance-claude-md.backup.20260303_013706/enhance-claude-md.md",
-      "kind": "backup",
-      "skill": "lov-agent-instructions",
-      "catalog_id": "agent-instructions",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/agent-instructions"
-    },
-    {
-      "source": "commands/frontend-design.md",
-      "kind": "command",
-      "skill": "lov-frontend-design",
-      "catalog_id": "frontend-design",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/frontend-design"
-    },
-    {
-      "source": "commands/lovstudio/add-task.md",
-      "kind": "command",
-      "skill": "lov-add-task",
-      "catalog_id": "add-task",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/add-task"
-    },
-    {
-      "source": "commands/lovstudio/brand-migrate.md",
-      "kind": "command",
-      "skill": "lov-rename-project",
-      "catalog_id": "rename-project",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/rename-project"
-    },
-    {
-      "source": "commands/lovstudio/finder-action.md",
-      "kind": "command",
-      "skill": "lov-finder-action",
-      "catalog_id": "finder-action",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/finder-action"
-    },
-    {
-      "source": "commands/lovstudio/five.md",
-      "kind": "command",
-      "skill": "lov-five",
-      "catalog_id": "five",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/five"
-    },
-    {
-      "source": "commands/lovstudio/image.md",
-      "kind": "command",
-      "skill": "lov-image-creator",
-      "catalog_id": "image-creator",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/image-creator"
-    },
-    {
-      "source": "commands/lovstudio/think/think-hard.md",
-      "kind": "command",
-      "skill": "lov-think",
-      "catalog_id": "think",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/think"
-    },
-    {
-      "source": "commands/lovstudio/think/think-harder.md",
-      "kind": "command",
-      "skill": "lov-think",
-      "catalog_id": "think",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/think"
-    },
-    {
-      "source": "commands/lovstudio/think/think-ultra.md",
-      "kind": "command",
-      "skill": "lov-think",
-      "catalog_id": "think",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/think"
-    },
-    {
-      "source": "commands/lovstudio/think/think.md",
-      "kind": "command",
-      "skill": "lov-think",
-      "catalog_id": "think",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/think"
-    },
-    {
-      "source": "commands/lovstudio/xbti-gallery.md",
-      "kind": "command",
-      "skill": "lov-xbti-gallery",
-      "catalog_id": "xbti-gallery",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/xbti-gallery"
-    },
-    {
-      "source": "commands/t.md",
-      "kind": "alias",
-      "skill": "lov-think",
-      "catalog_id": "think",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/think"
-    },
-    {
-      "source": "commands/tt.md",
-      "kind": "alias",
-      "skill": "lov-think",
-      "catalog_id": "think",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/think"
-    },
-    {
-      "source": "commands/ttt.md",
-      "kind": "alias",
-      "skill": "lov-think",
-      "catalog_id": "think",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/think"
-    },
-    {
-      "source": "commands/tttt.md",
-      "kind": "alias",
-      "skill": "lov-think",
-      "catalog_id": "think",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/think"
-    },
-    {
-      "source": "archive/meta-skill.md",
-      "kind": "command",
-      "skill": "lov-skill-creator",
-      "catalog_id": "skill-creator",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/skill-creator"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/better-css.md",
-      "kind": "command",
-      "skill": "lov-better-css",
-      "catalog_id": "better-css",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/better-css"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/better-github-desc.md",
-      "kind": "command",
-      "skill": "lov-better-github-desc",
-      "catalog_id": "better-github-desc",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/better-github-desc"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/better-project-structure.md",
-      "kind": "command",
-      "skill": "lov-better-project-structure",
-      "catalog_id": "better-project-structure",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/better-project-structure"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/better-readme.md",
-      "kind": "command",
-      "skill": "lov-better-readme",
-      "catalog_id": "better-readme",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/better-readme"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/better-seo.md",
-      "kind": "command",
-      "skill": "lov-better-seo",
-      "catalog_id": "better-seo",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/better-seo"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/better-statusline.md",
-      "kind": "command",
-      "skill": "lov-better-statusline",
-      "catalog_id": "better-statusline",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/better-statusline"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/brainstorm.md",
-      "kind": "command",
-      "skill": "lov-brainstorm",
-      "catalog_id": "brainstorm",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/brainstorm"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/checkpoint-list.md",
-      "kind": "command",
-      "skill": "lov-checkpoint-list",
-      "catalog_id": "checkpoint-list",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/checkpoint-list"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/checkpoint.md",
-      "kind": "command",
-      "skill": "lov-checkpoint",
-      "catalog_id": "checkpoint",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/checkpoint"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/clone-rebrand.md",
-      "kind": "command",
-      "skill": "lov-clone-rebrand",
-      "catalog_id": "clone-rebrand",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/clone-rebrand"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/daily-post.md",
-      "kind": "command",
-      "skill": "lov-daily-post",
-      "catalog_id": "daily-post",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/daily-post"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/dev-research.md",
-      "kind": "command",
-      "skill": "lov-dev-research",
-      "catalog_id": "dev-research",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/dev-research"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/distill-to-system.md",
-      "kind": "command",
-      "skill": "lov-distill-to-system",
-      "catalog_id": "distill-to-system",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/distill-to-system"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/distill.md",
-      "kind": "command",
-      "skill": "lov-distill",
-      "catalog_id": "distill",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/distill"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/fix-broken-links.md",
-      "kind": "command",
-      "skill": "lov-fix-broken-links",
-      "catalog_id": "fix-broken-links",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/fix-broken-links"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/fix-by-add-log.md",
-      "kind": "command",
-      "skill": "lov-fix-by-add-log",
-      "catalog_id": "fix-by-add-log",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/fix-by-add-log"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/fix-general.md",
-      "kind": "command",
-      "skill": "lov-fix-general",
-      "catalog_id": "fix-general",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/fix-general"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/fix-until-no-error.md",
-      "kind": "command",
-      "skill": "lov-fix-until-no-error",
-      "catalog_id": "fix-until-no-error",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/fix-until-no-error"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/gen-logo.md",
-      "kind": "command",
-      "skill": "lov-gen-logo",
-      "catalog_id": "gen-logo",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/gen-logo"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/gen-project-name.md",
-      "kind": "command",
-      "skill": "lov-gen-project-name",
-      "catalog_id": "gen-project-name",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/gen-project-name"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/git-commit-with-context.md",
-      "kind": "command",
-      "skill": "lov-git-commit-with-context",
-      "catalog_id": "git-commit-with-context",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/git-commit-with-context"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/help-cmd.md",
-      "kind": "command",
-      "skill": "lov-help-cmd",
-      "catalog_id": "help-cmd",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/help-cmd"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/i18n-check-i18n.md",
-      "kind": "command",
-      "skill": "lov-i18n-check-i18n",
-      "catalog_id": "i18n-check-i18n",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/i18n-check-i18n"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/illustrate.md",
-      "kind": "command",
-      "skill": "lov-illustrate",
-      "catalog_id": "illustrate",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/illustrate"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/init-auth.md",
-      "kind": "command",
-      "skill": "lov-init-auth",
-      "catalog_id": "init-auth",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/init-auth"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/init-port.md",
-      "kind": "command",
-      "skill": "lov-init-port",
-      "catalog_id": "init-port",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/init-port"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/install-design.md",
-      "kind": "command",
-      "skill": "lov-install-design",
-      "catalog_id": "install-design",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/install-design"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/install-lovinsp.md",
-      "kind": "command",
-      "skill": "lov-integrate-lovinsp",
-      "catalog_id": "integrate-lovinsp",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/integrate-lovinsp"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/install-shadcn-ui.md",
-      "kind": "command",
-      "skill": "lov-install-shadcn-ui",
-      "catalog_id": "install-shadcn-ui",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/install-shadcn-ui"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/install-tauri-logo.md",
-      "kind": "command",
-      "skill": "lov-install-tauri-logo",
-      "catalog_id": "install-tauri-logo",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/install-tauri-logo"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/install-web-logo.md",
-      "kind": "command",
-      "skill": "lov-install-web-logo",
-      "catalog_id": "install-web-logo",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/install-web-logo"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/install-zenmux-api.md",
-      "kind": "command",
-      "skill": "lov-install-zenmux-api",
-      "catalog_id": "install-zenmux-api",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/install-zenmux-api"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/kb-organize.md",
-      "kind": "command",
-      "skill": "lov-kb-organize",
-      "catalog_id": "kb-organize",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/kb-organize"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/kill-emoji.md",
-      "kind": "command",
-      "skill": "lov-kill-emoji",
-      "catalog_id": "kill-emoji",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/kill-emoji"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/legal-pages.md",
-      "kind": "command",
-      "skill": "lov-legal-pages",
-      "catalog_id": "legal-pages",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/legal-pages"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/memory-add.md",
-      "kind": "command",
-      "skill": "lov-memory-add",
-      "catalog_id": "memory-add",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/memory-add"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/memory-search.md",
-      "kind": "command",
-      "skill": "lov-memory-search",
-      "catalog_id": "memory-search",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/memory-search"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/meta-command.md",
-      "kind": "command",
-      "skill": "lov-meta-command",
-      "catalog_id": "meta-command",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/meta-command"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/nano-banana-pro.md",
-      "kind": "command",
-      "skill": "lov-nano-banana-pro",
-      "catalog_id": "nano-banana-pro",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/nano-banana-pro"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/obsidian-ensure-dev-sync.md",
-      "kind": "command",
-      "skill": "lov-obsidian-ensure-dev-sync",
-      "catalog_id": "obsidian-ensure-dev-sync",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/obsidian-ensure-dev-sync"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/output-for-article.md",
-      "kind": "command",
-      "skill": "lov-article-creator",
-      "catalog_id": "article-creator",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/article-creator"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/output-wechat-moment.md",
-      "kind": "command",
-      "skill": "lov-output-wechat-moment",
-      "catalog_id": "output-wechat-moment",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/output-wechat-moment"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/output.md",
-      "kind": "command",
-      "skill": "lov-output",
-      "catalog_id": "output",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/output"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/refactor-api.md",
-      "kind": "command",
-      "skill": "lov-refactor-api",
-      "catalog_id": "refactor-api",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/refactor-api"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/refactor-modular.md",
-      "kind": "command",
-      "skill": "lov-refactor-modular",
-      "catalog_id": "refactor-modular",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/refactor-modular"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/release-via-cicd.md",
-      "kind": "command",
-      "skill": "lov-release-via-cicd",
-      "catalog_id": "release-via-cicd",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/release-via-cicd"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/rename-project.md",
-      "kind": "command",
-      "skill": "lov-rename-project",
-      "catalog_id": "rename-project",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/rename-project"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/repo-takeover.md",
-      "kind": "command",
-      "skill": "lov-repo-takeover",
-      "catalog_id": "repo-takeover",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/repo-takeover"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/version-management-manual.md",
-      "kind": "command",
-      "skill": "lov-version-management-manual",
-      "catalog_id": "version-management-manual",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/version-management-manual"
-    },
-    {
-      "source": "archive/migrated-2026-05-04/version-management.md",
-      "kind": "command",
-      "skill": "lov-version-management",
-      "catalog_id": "version-management",
-      "state": "mapped",
-      "url": "https://lovstudio.ai/skills/version-management"
-    }
-  ]
-}
+[
+  {
+    "source": "commands/Skill Development.md",
+    "kind": "command",
+    "skill": "lov-skill-creator",
+    "catalog_id": "skill-creator",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/skill-creator"
+  },
+  {
+    "source": "commands/cc-doctor/cc-doctor.md",
+    "kind": "command",
+    "skill": "lov-agent-instructions",
+    "catalog_id": "agent-instructions",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/agent-instructions"
+  },
+  {
+    "source": "commands/code-reviewer.md",
+    "kind": "command",
+    "skill": "lov-code-review",
+    "catalog_id": "code-review",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/code-review"
+  },
+  {
+    "source": "commands/create-architecture-documentation.md",
+    "kind": "command",
+    "skill": "lov-architecture-documentation",
+    "catalog_id": "architecture-documentation",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/architecture-documentation"
+  },
+  {
+    "source": "commands/enhance-claude-md/enhance-claude-md.md",
+    "kind": "command",
+    "skill": "lov-agent-instructions",
+    "catalog_id": "agent-instructions",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/agent-instructions"
+  },
+  {
+    "source": "commands/enhance-claude-md.backup.20260303_013706/README.md",
+    "kind": "documentation",
+    "state": "preserved"
+  },
+  {
+    "source": "commands/enhance-claude-md.backup.20260303_013706/enhance-claude-md.md",
+    "kind": "backup",
+    "skill": "lov-agent-instructions",
+    "catalog_id": "agent-instructions",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/agent-instructions"
+  },
+  {
+    "source": "commands/frontend-design.md",
+    "kind": "command",
+    "skill": "lov-frontend-design",
+    "catalog_id": "frontend-design",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/frontend-design"
+  },
+  {
+    "source": "commands/lovstudio/add-task.md",
+    "kind": "command",
+    "skill": "lov-add-task",
+    "catalog_id": "add-task",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/add-task"
+  },
+  {
+    "source": "commands/lovstudio/brand-migrate.md",
+    "kind": "command",
+    "skill": "lov-rename-project",
+    "catalog_id": "rename-project",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/rename-project"
+  },
+  {
+    "source": "commands/lovstudio/finder-action.md",
+    "kind": "command",
+    "skill": "lov-finder-action",
+    "catalog_id": "finder-action",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/finder-action"
+  },
+  {
+    "source": "commands/lovstudio/five.md",
+    "kind": "command",
+    "skill": "lov-five",
+    "catalog_id": "five",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/five"
+  },
+  {
+    "source": "commands/lovstudio/image.md",
+    "kind": "command",
+    "skill": "lov-image-creator",
+    "catalog_id": "image-creator",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/image-creator"
+  },
+  {
+    "source": "commands/lovstudio/think/think-hard.md",
+    "kind": "command",
+    "skill": "lov-think",
+    "catalog_id": "think",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/think"
+  },
+  {
+    "source": "commands/lovstudio/think/think-harder.md",
+    "kind": "command",
+    "skill": "lov-think",
+    "catalog_id": "think",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/think"
+  },
+  {
+    "source": "commands/lovstudio/think/think-ultra.md",
+    "kind": "command",
+    "skill": "lov-think",
+    "catalog_id": "think",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/think"
+  },
+  {
+    "source": "commands/lovstudio/think/think.md",
+    "kind": "command",
+    "skill": "lov-think",
+    "catalog_id": "think",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/think"
+  },
+  {
+    "source": "commands/lovstudio/xbti-gallery.md",
+    "kind": "command",
+    "skill": "lov-xbti-gallery",
+    "catalog_id": "xbti-gallery",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/xbti-gallery"
+  },
+  {
+    "source": "commands/t.md",
+    "kind": "alias",
+    "skill": "lov-think",
+    "catalog_id": "think",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/think"
+  },
+  {
+    "source": "commands/tt.md",
+    "kind": "alias",
+    "skill": "lov-think",
+    "catalog_id": "think",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/think"
+  },
+  {
+    "source": "commands/ttt.md",
+    "kind": "alias",
+    "skill": "lov-think",
+    "catalog_id": "think",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/think"
+  },
+  {
+    "source": "commands/tttt.md",
+    "kind": "alias",
+    "skill": "lov-think",
+    "catalog_id": "think",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/think"
+  },
+  {
+    "source": "archive/meta-skill.md",
+    "kind": "command",
+    "skill": "lov-skill-creator",
+    "catalog_id": "skill-creator",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/skill-creator"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/better-css.md",
+    "kind": "command",
+    "skill": "lov-better-css",
+    "catalog_id": "better-css",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/better-css"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/better-github-desc.md",
+    "kind": "command",
+    "skill": "lov-better-github-desc",
+    "catalog_id": "better-github-desc",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/better-github-desc"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/better-project-structure.md",
+    "kind": "command",
+    "skill": "lov-better-project-structure",
+    "catalog_id": "better-project-structure",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/better-project-structure"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/better-readme.md",
+    "kind": "command",
+    "skill": "lov-better-readme",
+    "catalog_id": "better-readme",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/better-readme"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/better-seo.md",
+    "kind": "command",
+    "skill": "lov-better-seo",
+    "catalog_id": "better-seo",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/better-seo"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/better-statusline.md",
+    "kind": "command",
+    "skill": "lov-better-statusline",
+    "catalog_id": "better-statusline",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/better-statusline"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/brainstorm.md",
+    "kind": "command",
+    "skill": "lov-brainstorm",
+    "catalog_id": "brainstorm",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/brainstorm"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/checkpoint-list.md",
+    "kind": "command",
+    "skill": "lov-checkpoint-list",
+    "catalog_id": "checkpoint-list",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/checkpoint-list"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/checkpoint.md",
+    "kind": "command",
+    "skill": "lov-checkpoint",
+    "catalog_id": "checkpoint",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/checkpoint"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/clone-rebrand.md",
+    "kind": "command",
+    "skill": "lov-clone-rebrand",
+    "catalog_id": "clone-rebrand",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/clone-rebrand"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/daily-post.md",
+    "kind": "command",
+    "skill": "lov-daily-post",
+    "catalog_id": "daily-post",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/daily-post"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/dev-research.md",
+    "kind": "command",
+    "skill": "lov-dev-research",
+    "catalog_id": "dev-research",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/dev-research"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/distill-to-system.md",
+    "kind": "command",
+    "skill": "lov-distill-to-system",
+    "catalog_id": "distill-to-system",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/distill-to-system"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/distill.md",
+    "kind": "command",
+    "skill": "lov-distill",
+    "catalog_id": "distill",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/distill"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/fix-broken-links.md",
+    "kind": "command",
+    "skill": "lov-fix-broken-links",
+    "catalog_id": "fix-broken-links",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/fix-broken-links"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/fix-by-add-log.md",
+    "kind": "command",
+    "skill": "lov-fix-by-add-log",
+    "catalog_id": "fix-by-add-log",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/fix-by-add-log"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/fix-general.md",
+    "kind": "command",
+    "skill": "lov-fix-general",
+    "catalog_id": "fix-general",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/fix-general"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/fix-until-no-error.md",
+    "kind": "command",
+    "skill": "lov-fix-until-no-error",
+    "catalog_id": "fix-until-no-error",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/fix-until-no-error"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/gen-logo.md",
+    "kind": "command",
+    "skill": "lov-gen-logo",
+    "catalog_id": "gen-logo",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/gen-logo"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/gen-project-name.md",
+    "kind": "command",
+    "skill": "lov-gen-project-name",
+    "catalog_id": "gen-project-name",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/gen-project-name"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/git-commit-with-context.md",
+    "kind": "command",
+    "skill": "lov-git-commit-with-context",
+    "catalog_id": "git-commit-with-context",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/git-commit-with-context"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/help-cmd.md",
+    "kind": "command",
+    "skill": "lov-help-cmd",
+    "catalog_id": "help-cmd",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/help-cmd"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/i18n-check-i18n.md",
+    "kind": "command",
+    "skill": "lov-i18n-check-i18n",
+    "catalog_id": "i18n-check-i18n",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/i18n-check-i18n"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/illustrate.md",
+    "kind": "command",
+    "skill": "lov-illustrate",
+    "catalog_id": "illustrate",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/illustrate"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/init-auth.md",
+    "kind": "command",
+    "skill": "lov-init-auth",
+    "catalog_id": "init-auth",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/init-auth"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/init-port.md",
+    "kind": "command",
+    "skill": "lov-init-port",
+    "catalog_id": "init-port",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/init-port"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/install-design.md",
+    "kind": "command",
+    "skill": "lov-install-design",
+    "catalog_id": "install-design",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/install-design"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/install-lovinsp.md",
+    "kind": "command",
+    "skill": "lov-integrate-lovinsp",
+    "catalog_id": "integrate-lovinsp",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/integrate-lovinsp"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/install-shadcn-ui.md",
+    "kind": "command",
+    "skill": "lov-install-shadcn-ui",
+    "catalog_id": "install-shadcn-ui",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/install-shadcn-ui"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/install-tauri-logo.md",
+    "kind": "command",
+    "skill": "lov-install-tauri-logo",
+    "catalog_id": "install-tauri-logo",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/install-tauri-logo"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/install-web-logo.md",
+    "kind": "command",
+    "skill": "lov-install-web-logo",
+    "catalog_id": "install-web-logo",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/install-web-logo"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/install-zenmux-api.md",
+    "kind": "command",
+    "skill": "lov-install-zenmux-api",
+    "catalog_id": "install-zenmux-api",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/install-zenmux-api"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/kb-organize.md",
+    "kind": "command",
+    "skill": "lov-kb-organize",
+    "catalog_id": "kb-organize",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/kb-organize"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/kill-emoji.md",
+    "kind": "command",
+    "skill": "lov-kill-emoji",
+    "catalog_id": "kill-emoji",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/kill-emoji"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/legal-pages.md",
+    "kind": "command",
+    "skill": "lov-legal-pages",
+    "catalog_id": "legal-pages",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/legal-pages"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/memory-add.md",
+    "kind": "command",
+    "skill": "lov-memory-add",
+    "catalog_id": "memory-add",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/memory-add"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/memory-search.md",
+    "kind": "command",
+    "skill": "lov-memory-search",
+    "catalog_id": "memory-search",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/memory-search"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/meta-command.md",
+    "kind": "command",
+    "skill": "lov-meta-command",
+    "catalog_id": "meta-command",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/meta-command"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/nano-banana-pro.md",
+    "kind": "command",
+    "skill": "lov-nano-banana-pro",
+    "catalog_id": "nano-banana-pro",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/nano-banana-pro"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/obsidian-ensure-dev-sync.md",
+    "kind": "command",
+    "skill": "lov-obsidian-ensure-dev-sync",
+    "catalog_id": "obsidian-ensure-dev-sync",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/obsidian-ensure-dev-sync"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/output-for-article.md",
+    "kind": "command",
+    "skill": "lov-article-creator",
+    "catalog_id": "article-creator",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/article-creator"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/output-wechat-moment.md",
+    "kind": "command",
+    "skill": "lov-output-wechat-moment",
+    "catalog_id": "output-wechat-moment",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/output-wechat-moment"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/output.md",
+    "kind": "command",
+    "skill": "lov-output",
+    "catalog_id": "output",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/output"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/refactor-api.md",
+    "kind": "command",
+    "skill": "lov-refactor-api",
+    "catalog_id": "refactor-api",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/refactor-api"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/refactor-modular.md",
+    "kind": "command",
+    "skill": "lov-refactor-modular",
+    "catalog_id": "refactor-modular",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/refactor-modular"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/release-via-cicd.md",
+    "kind": "command",
+    "skill": "lov-release-via-cicd",
+    "catalog_id": "release-via-cicd",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/release-via-cicd"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/rename-project.md",
+    "kind": "command",
+    "skill": "lov-rename-project",
+    "catalog_id": "rename-project",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/rename-project"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/repo-takeover.md",
+    "kind": "command",
+    "skill": "lov-repo-takeover",
+    "catalog_id": "repo-takeover",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/repo-takeover"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/version-management-manual.md",
+    "kind": "command",
+    "skill": "lov-version-management-manual",
+    "catalog_id": "version-management-manual",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/version-management-manual"
+  },
+  {
+    "source": "archive/migrated-2026-05-04/version-management.md",
+    "kind": "command",
+    "skill": "lov-version-management",
+    "catalog_id": "version-management",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/version-management"
+  },
+  {
+    "source": "web/.claude/commands/add-tool.md",
+    "kind": "project-command",
+    "skill": "lov-add-tool",
+    "catalog_id": "add-tool",
+    "state": "mapped",
+    "url": "https://lovstudio.ai/skills/add-tool"
+  }
+]

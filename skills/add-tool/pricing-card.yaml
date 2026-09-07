@@ -1,0 +1,8 @@
+schema: lovstudio/pricing-card/v1
+model: free_entry
+currency: CNY
+list_price_cny: 0
+basis: 轻量公开工具能力；当前证据主要是源码迁移与安装验证，采用免费入口积累业务结果。
+boundary: 交付 Skill 源码与使用合同，不含第三方服务费用、账户或人工代运营。
+review_trigger: 十次真实业务使用或依赖接口与维护成本明显变化后复评。
+confidence: low

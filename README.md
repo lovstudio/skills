@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **155 个技能** — 140 个免费 + 15 个付费。
+> **156 个技能** — 141 个免费 + 15 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -125,6 +125,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wxmp-cracker`](https://github.com/lovstudio/wxmp-cracker-skill) | [公众号神器](https://github.com/lovstudio/wxmp-cracker-skill) | 把微信公众号的文章批量归档成可再利用的整洁文本。 |
 | **开发工具** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`add-task`](https://github.com/lovstudio/skills) | [任务清单追加](https://github.com/lovstudio/skills) | 在当前任务清单中按优先级和位置追加事项并保留已有状态 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`add-tool`](https://github.com/lovstudio/skills) | [在线工具集成](https://github.com/lovstudio/skills) | 为现有网站新增可用的在线工具，并接入多语言、工具目录、站点地图和必要的成本提示 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`agent-instructions`](https://github.com/lovstudio/skills) | [Agent 项目规范](https://github.com/lovstudio/skills) | 诊断或完善项目 Agent 指令文件，适配不同宿主并保留真实工程约定 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`app-generator`](https://github.com/lovstudio/app-generator-skill) | [App 生成器](https://github.com/lovstudio/app-generator-skill) | 按需求生成 Lovstudio 级 web、PWA 或 Tauri App，内置品牌、UI、数据层、部署/发布和开发辅助。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`architecture-documentation`](https://github.com/lovstudio/skills) | [架构文档](https://github.com/lovstudio/skills) | 从项目实际实现生成架构视图、接口说明与决策记录草稿 — 依赖: `branding-consistency` |

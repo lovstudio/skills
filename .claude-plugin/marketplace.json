@@ -31,7 +31,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 75 free skills bundled together.",
+      "description": "Dev Tools — 76 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/env-management",
@@ -109,7 +109,8 @@
         "./skills/add-task",
         "./skills/code-review",
         "./skills/architecture-documentation",
-        "./skills/agent-instructions"
+        "./skills/agent-instructions",
+        "./skills/add-tool"
       ],
       "strict": false
     },

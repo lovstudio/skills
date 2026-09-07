@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **155 skills** — 140 Free + 15 Paid.
+> **156 skills** — 141 Free + 15 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -126,6 +126,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wxmp-cracker`](https://github.com/lovstudio/wxmp-cracker-skill) | Archive WeChat Official Account articles into clean, reusable text. |
 | **Dev Tools** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`add-task`](https://github.com/lovstudio/skills) | Add an item to the current task list — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`add-tool`](https://github.com/lovstudio/skills) | Add an online tool to an existing website — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`agent-instructions`](https://github.com/lovstudio/skills) | Review or improve project agent instructions — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`app-generator`](https://github.com/lovstudio/app-generator-skill) | Generate Lovstudio-grade web, PWA, or Tauri apps with brand, UI, data, deploy/release, and developer tooling wired in. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`architecture-documentation`](https://github.com/lovstudio/skills) | Create architecture documentation from a codebase — requires: `branding-consistency` |

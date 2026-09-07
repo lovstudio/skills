@@ -1231,7 +1231,7 @@ skills:
   name_zh: 公众号文章创作系统
   paid: false
   category: Content Creation
-  version: "0.4.1"
+  version: "0.5.0"
   description: Turn source material, drafts, or partner articles into a complete WeChat article package with fact-grounded writing, branded covers, a 4:3 body hero, source traceability, and quality reports.
   tagline_en: Create, rewrite, brand, or faithfully repost a complete WeChat article package before publication.
   tagline_zh: 从材料、旧稿或来源文章生成完整公众号文章包，并完成写作、品牌、双比例视觉、转载保真与质量验收。
@@ -5955,3 +5955,39 @@ skills:
     review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/agent-instructions.md
+- name: add-tool
+  runtime_name: lov-add-tool
+  updated_at: '2026-09-07T09:48:03Z'
+  repo: lovstudio/skills
+  name_zh: 在线工具集成
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: Add an online tool to an existing website
+  tagline_en: Add an online tool to an existing website
+  tagline_zh: 为现有网站新增可用的在线工具，并接入多语言、工具目录、站点地图和必要的成本提示
+  depends_on:
+  - branding-consistency
+  skill_path: skills/add-tool
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 为现有网站新增可用的在线工具，并接入多语言、工具目录、站点地图和必要的成本提示
+    value_en: Add an online tool to an existing website
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes
+      need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material
+      maintenance change.
+    card_path: pricing-cards/add-tool.md
