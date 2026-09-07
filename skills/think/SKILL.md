@@ -1,0 +1,68 @@
+---
+name: lov-think
+description: 围绕复杂问题比较方案、验证假设并给出有依据的决策建议。支持明确输入与结果回读。Use to analyze a complex decision
+  and its tradeoffs.
+license: MIT
+compatibility: 支持 Agent Skills 的宿主；Python 3.8+ 与 PyYAML 用于 Profile 和校验。业务工具要求见工作流。
+depends_on:
+- lov-branding-consistency
+metadata:
+  author: contributors
+  version: 0.1.0
+  content_class: authored-prose
+  card_standard: lovstudio/skill-card/v1
+  tags:
+  - think
+  - portable-skill
+---
+
+# 复杂问题分析
+
+围绕复杂问题比较方案、验证假设并给出有依据的决策建议。
+
+## Triggers
+
+### Activate when
+
+- “围绕复杂问题比较方案、验证假设并给出有依据的决策建议。”
+- “Analyze a complex decision and its tradeoffs.”
+
+### Do not activate when
+
+- 只是查询本 Skill 的说明，或请求与上述结果无关的任务；不执行实际业务操作。
+- 用户仅要预览或审查时，不进入修改、提交或发布分支。
+
+## Execution boundary
+
+自然语言请求即可触发；无需旧 slash 路径、参数插值或指定助手。明确解析当前请求中的
+项目、目标文件、选项与输出位置；用当前宿主实际提供的文件、搜索、CLI 和浏览器能力。
+项目依赖版本与外部 API 在执行时核实，不能假设示例是现行配置。随包脚本从 Skill 根解析，
+业务文件从目标项目根解析。先读当前状态，保护已有未提交内容与其他任务的暂存区。
+分析、预览请求保持只读；修改、提交、推送、部署和发布各依当前请求的明确范围执行。
+不绕过保护、自动发送消息、强制结束用户进程或抢前台。失败保留可诊断原始错误。
+
+## Workflow
+
+1. 读取问题、目标、约束与已知事实。兼容 think、think-hard、think-harder、think-ultra 的深度意图，合并为同一能力，不声称关键词能切换底层模型。
+
+2. 分解关键变量与依赖，列出少量可行方案，比较成本、风险、收益与可恢复性；深层问题补二阶影响、失败模式和边界情景。
+
+3. 需要事实时检索原始来源或现有数据，明确未知与假设；不为了显得全面列无关角度，不编造穷举或确定性。
+
+4. 用结论、主要证据、取舍和下一步验证回答；不展示内部逐字思考过程或声称已提高计算预算。
+
+5. 分析请求保持只读；实现、实验或发布只在用户授权范围内展开。
+
+## Composition
+
+执行前读取 [能力组合](references/skill-composition.md)，按明确制品交接相邻能力。
+
+## Runtime context (shared)
+
+运行前读取本包 `skill.yaml` 与 [Profile 合同](references/user-profile.md)。优先级为当前请求、
+项目上下文、本 Skill records、共享 preferences、brand/user Profile、安全默认值。
+只读取声明字段；没有专用运行时的宿主可使用 `scripts/profile_store.py` 读取共享 Profile。
+配置缺失只问影响结果的一个问题。用户明确要求长期保存的值通过该脚本原子写入，
+报告实际路径；不保存推断、凭据或其他任务的资料。
+
+作者性文本执行 [作者性与来源合同](references/authorship-integrity.md)，不编造作者经历、事实或来源。

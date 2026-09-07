@@ -14,14 +14,6 @@ Existing platform packaging and release workflows move to
 `lov-skill-publisher`. Historical sections below describe older layouts and
 remain only for migration audits.
 
-## 2026-08: unified distribution catalog
-
-`lovstudio/skills` is now the sole LovStudio distribution index. The former
-`lovstudio/general-skills` and `lovstudio/dev-skills` manifests and mirrors were
-merged into its `skills.yaml` and `skills/` tree, then archived. New releases
-register only in `lovstudio/skills`; independent `lovstudio/<name>-skill`
-repositories remain the source of truth.
-
 ## 2026-07: v3 source/distribution split
 
 New scaffolds keep portable Agent Skills frontmatter in the canonical source
@@ -29,16 +21,22 @@ and generate marketplace-only fields into distribution copies.
 
 When migrating an existing Skill:
 
-1. Move top-level `compatibility` and `depends_on` under `metadata`.
+1. Move `compatibility` and `depends_on` to the top level.
 2. Keep source top-level keys to `name`, `description`, `license`,
-   `allowed-tools`, and `metadata`.
+   `compatibility`, `allowed-tools`, `depends_on`, and `metadata`.
 3. Add explicit `## Triggers`, activation phrases, and non-trigger conditions.
 4. Keep the Skill description between 50 and 200 characters.
 5. Convert controller/sibling relationships into a self-contained `kit.yaml`
    plus embedded `skills/<module>/SKILL.md` paths.
-6. Add WorkBuddy metadata with `--distribution workbuddy` or copy the generated
+6. Add `lov-branding-consistency` to `depends_on` when the Skill authors or
+   presents audience-visible text.
+7. Classify normal output under `metadata.content_class`. For `authored-prose`,
+   add and route to `references/authorship-integrity.md`; for `microcopy`, keep
+   branding review; for `verbatim`, protect source fidelity; for
+   `deterministic-output`, validate correctness and completeness.
+8. Add WorkBuddy metadata with `--distribution workbuddy` or copy the generated
    profile from a fresh scaffold.
-7. Run `scripts/validate_skill.py` before rebuilding releases.
+9. Run `scripts/validate_skill.py` before rebuilding releases.
 
 Do not copy WorkBuddy `version`, `author`, or source-location fields back into
 the canonical source frontmatter. The platform builder injects them.

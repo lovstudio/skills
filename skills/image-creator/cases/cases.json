@@ -1,0 +1,16 @@
+[
+  {
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "f2eb8738c845a07f76e747da489bc13ce192f73ca0c442cb4a39fbe06128a442"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    }
+  }
+]

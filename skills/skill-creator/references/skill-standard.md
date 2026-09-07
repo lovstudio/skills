@@ -8,9 +8,30 @@ and channel packaging belong to `lov-skill-publisher`.
 - Local source directory: `<name>-skill`.
 - Frontmatter and installed directory: `lov-<name>`.
 - Names use lowercase letters, numbers, and single hyphens.
-- Source top-level fields are `name`, `description`, `license`, `allowed-tools`,
-  and `metadata`; version, compatibility, tags, and dependencies live in
+- Source top-level fields are `name`, `description`, `license`, `compatibility`,
+  `allowed-tools`, `depends_on`, and `metadata`; version and tags live in
   `metadata`.
+- Any Skill that authors or presents audience-visible text declares
+  `lov-branding-consistency` in top-level `depends_on`.
+- New sources classify normal output in `metadata.content_class` as
+  `authored-prose`, `microcopy`, `verbatim`, or `deterministic-output`.
+
+## Content class and authorship
+
+- `authored-prose` covers articles, reports, scripts, letters, and prose where
+  the writer's reasoning and editorial decisions are part of the result. It
+  requires `lov-branding-consistency` plus
+  `references/authorship-integrity.md`.
+- `microcopy` covers short audience-visible labels, descriptions, prompts, and
+  notices. It requires `lov-branding-consistency` but not a long-form ledger.
+- `verbatim` covers transcripts, quotations, legal text, identifiers, and other
+  material whose acceptance criterion is source fidelity.
+- `deterministic-output` covers structured, operational, retrieval, storage,
+  diagnostic, deployment, and binary transformation results.
+
+Authored prose is checked in two layers: trace claims and decisions to an
+authorship ledger, then audit discourse before surface polish. Surface metrics
+or detector scores are never accepted as proof of authorship.
 
 ## Trigger contract
 

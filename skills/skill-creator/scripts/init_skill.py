@@ -13,20 +13,27 @@ from pathlib import Path
 from typing import Optional, Tuple
 
 
+CONTENT_CLASSES = (
+    "authored-prose",
+    "microcopy",
+    "verbatim",
+    "deterministic-output",
+)
+
 SKILL_MD = """---
 name: lov-{name}
 description: >
   TODO：用 50–200 个字符说明这个 Skill 能完成什么、适用于哪些输入或任务，
   并自然包含用户会说出的中文与 English 触发语句。
 license: MIT
-metadata:
+compatibility: "Portable Agent Skills format. TODO: list runtime requirements."
+{branding_dependency}metadata:
   author: skill-publisher
   version: "0.1.0"
   card_standard: lovstudio/skill-card/v1
+  content_class: {content_class}
   tags:
     - TODO
-  compatibility: "Portable Agent Skills format. TODO: list runtime requirements."
-  dependencies: []
 ---
 
 # {title}
@@ -44,7 +51,7 @@ TODO：用一到两句话说明用户得到的结果，不要把内部背景或�
 
 - TODO：列出相邻但不属于本 Skill 的任务，并说明应交给什么能力。
 
-{user_profile_section}{kit_section}{skill_composition_section}## Workflow (MANDATORY)
+{user_profile_section}{kit_section}{skill_composition_section}{authorship_section}## Workflow (MANDATORY)
 
 **You MUST follow these steps in order.**
 
@@ -124,6 +131,63 @@ extend any adjacent capability. The record distinguishes optional upstream and
 downstream handoffs from embedded Kit modules. Do not silently depend on a
 sibling Skill that is not shipped with this source.
 
+"""
+
+AUTHORSHIP_SKILL_SECTION = """## Authorship Integrity
+
+This Skill creates authored prose, so read `references/authorship-integrity.md`
+before drafting or revising. Build an authorship ledger from supplied evidence,
+audit discourse before sentence polish, preserve counterevidence and unresolved
+questions, and never invent firsthand experience, motives, quotations, numbers,
+or causal links merely to make the text feel human.
+
+"""
+
+AUTHORSHIP_INTEGRITY_MD = """# Authorship Integrity Contract
+
+Use this contract when `metadata.content_class` is `authored-prose`. It governs
+essays, articles, reports, scripts, letters, and other prose where the writer's
+reasoning and editorial choices are part of the deliverable.
+
+## Authorship ledger
+
+Before drafting, record:
+
+- `source_question`: the real question or tension behind the piece;
+- `author_positions`: claims explicitly supplied or approved by the user;
+- `firsthand_evidence`: experiences, observations, decisions, and emotions that
+  are safe to write in the first person;
+- `editorial_decisions`: what to foreground, omit, defer, or leave unexplained;
+- `counterevidence`: facts and interpretations that complicate the main claim;
+- `open_questions`: uncertainty that should survive the draft;
+- `preserve_verbatim`: quotations, transcripts, legal text, names, numbers, and
+  identifiers that must not be paraphrased;
+- `forbidden_inventions`: experiences, motives, facts, quotations, and causal
+  links the Skill must not add.
+
+## Discourse audit
+
+Inspect the draft before surface polishing:
+
+1. thesis provenance — trace each major claim to evidence or an explicit author
+   decision;
+2. causal compression — reject neat explanations that collapse a complex process
+   without support;
+3. counterevidence survival — preserve meaningful exceptions and alternatives;
+4. closure pressure — do not resolve more than the evidence permits;
+5. reader inference budget — leave room for readers to connect supported ideas;
+6. structural asymmetry — let the material determine section size and order;
+7. author decision trace — show why a fact, example, or boundary mattered.
+
+## Boundaries
+
+- Do not fabricate personal noise, false starts, typos, memories, or emotional
+  confession to simulate humanity.
+- Do not force every piece into conflict, reversal, open ending, or human-values
+  uplift. Those are options only when the material supports them.
+- Do not treat surface metrics or detector scores as authorship proof.
+- For `verbatim`, preserve source text. For `microcopy`, optimize clarity and
+  brand fit. For `deterministic-output`, validate correctness and completeness.
 """
 
 KIT_SECTION = """## Skill Kit Modules
@@ -693,7 +757,14 @@ def normalize_name(value: str) -> str:
     return name
 
 
-def write_skill(path: Path, name: str, kit_section: str, user_config: bool = False) -> None:
+def write_skill(
+    path: Path,
+    name: str,
+    kit_section: str,
+    user_config: bool = False,
+    branding_consistency: bool = False,
+    content_class: str = "deterministic-output",
+) -> None:
     """Write a Skill instruction file with the always-on profile contract."""
 
     path.write_text(
@@ -704,6 +775,15 @@ def write_skill(path: Path, name: str, kit_section: str, user_config: bool = Fal
             user_profile_section=USER_PROFILE_SKILL_SECTION,
             user_profile_runtime=USER_PROFILE_RUNTIME,
             skill_composition_section=SKILL_COMPOSITION_SECTION,
+            authorship_section=(
+                AUTHORSHIP_SKILL_SECTION if content_class == "authored-prose" else ""
+            ),
+            content_class=content_class,
+            branding_dependency=(
+                "depends_on:\n  - lov-branding-consistency\n"
+                if branding_consistency
+                else ""
+            ),
         ),
         encoding="utf-8",
     )
@@ -727,6 +807,13 @@ def write_composition_reference(path: Path) -> None:
     (path / "references").mkdir(exist_ok=True)
     (path / "references" / "skill-composition.md").write_text(
         SKILL_COMPOSITION_MD, encoding="utf-8"
+    )
+
+
+def write_authorship_reference(path: Path) -> None:
+    (path / "references").mkdir(exist_ok=True)
+    (path / "references" / "authorship-integrity.md").write_text(
+        AUTHORSHIP_INTEGRITY_MD, encoding="utf-8"
     )
 
 
@@ -800,10 +887,33 @@ def parse_args() -> argparse.Namespace:
         help="Create a Skill Kit controller and embedded child modules",
     )
     parser.add_argument(
+        "--branding-consistency",
+        action="store_true",
+        help="Declare lov-branding-consistency for audience-visible text output",
+    )
+    parser.add_argument(
+        "--content-class",
+        choices=CONTENT_CLASSES,
+        default="deterministic-output",
+        help="Classify normal output so the scaffold applies the correct quality contract",
+    )
+    parser.add_argument(
+        "--authored-prose",
+        action="store_true",
+        help="Compatibility shortcut for --content-class authored-prose",
+    )
+    parser.add_argument(
         "--module",
         action="append",
         default=[],
         help="Embedded module short name; repeat for each module (requires --kit)",
+    )
+    parser.add_argument(
+        "--module-content-class",
+        action="append",
+        default=[],
+        metavar="MODULE=CLASS",
+        help="Override one embedded module output class; repeat as needed",
     )
     return parser.parse_args()
 
@@ -817,8 +927,23 @@ def main() -> int:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
 
+    if args.authored_prose and args.content_class not in (
+        "deterministic-output",
+        "authored-prose",
+    ):
+        print("ERROR: --authored-prose conflicts with --content-class", file=sys.stderr)
+        return 1
+    content_class = "authored-prose" if args.authored_prose else args.content_class
+    branding_consistency = args.branding_consistency or content_class in (
+        "authored-prose",
+        "microcopy",
+    )
+
     if args.module and not args.kit:
         print("ERROR: --module requires --kit", file=sys.stderr)
+        return 1
+    if args.module_content_class and not args.kit:
+        print("ERROR: --module-content-class requires --kit", file=sys.stderr)
         return 1
     if args.kit and not modules:
         print("ERROR: --kit requires at least one --module", file=sys.stderr)
@@ -829,6 +954,35 @@ def main() -> int:
     if name in modules:
         print("ERROR: a module name must differ from the controller name", file=sys.stderr)
         return 1
+
+    module_content_classes: dict[str, str] = {}
+    for item in args.module_content_class:
+        module_name, separator, module_class = item.partition("=")
+        try:
+            module_name = normalize_name(module_name)
+        except ValueError as exc:
+            print(f"ERROR: invalid module content class target: {exc}", file=sys.stderr)
+            return 1
+        if not separator or module_class not in CONTENT_CLASSES:
+            print(
+                "ERROR: --module-content-class must use MODULE="
+                + "|".join(CONTENT_CLASSES),
+                file=sys.stderr,
+            )
+            return 1
+        if module_name not in modules:
+            print(
+                f"ERROR: module content class target is not declared: {module_name}",
+                file=sys.stderr,
+            )
+            return 1
+        if module_name in module_content_classes:
+            print(
+                f"ERROR: duplicate module content class target: {module_name}",
+                file=sys.stderr,
+            )
+            return 1
+        module_content_classes[module_name] = module_class
 
     base = resolve_base(args.path)
     skill_dir = base / f"{name}-skill"
@@ -853,17 +1007,40 @@ def main() -> int:
         for module in modules:
             module_dir = skill_dir / "skills" / module
             module_dir.mkdir(parents=True)
-            write_skill(module_dir / "SKILL.md", module, "", args.user_config)
+            module_content_class = module_content_classes.get(module, content_class)
+            module_branding_consistency = (
+                args.branding_consistency
+                or module_content_class in ("authored-prose", "microcopy")
+            )
+            write_skill(
+                module_dir / "SKILL.md",
+                module,
+                "",
+                args.user_config,
+                module_branding_consistency,
+                module_content_class,
+            )
             write_card_bundle(module_dir, module)
             write_manifest(module_dir, module)
             write_profile_reference(module_dir)
             write_composition_reference(module_dir)
+            if module_content_class == "authored-prose":
+                write_authorship_reference(module_dir)
 
-    write_skill(skill_dir / "SKILL.md", name, kit_section, args.user_config)
+    write_skill(
+        skill_dir / "SKILL.md",
+        name,
+        kit_section,
+        args.user_config,
+        branding_consistency,
+        content_class,
+    )
     write_card_bundle(skill_dir, name)
     write_manifest(skill_dir, name)
     write_profile_reference(skill_dir)
     write_composition_reference(skill_dir)
+    if content_class == "authored-prose":
+        write_authorship_reference(skill_dir)
     (skill_dir / "README.md").write_text(
         README_MD.format(
             name=name,
@@ -889,6 +1066,13 @@ def main() -> int:
     print(f"kind={kind}")
     print("profile_contract=user-profile/v1")
     print("composition_record=references/skill-composition.md")
+    print(f"content_class={content_class}")
+    for module in modules:
+        print(
+            f"module_content_class.{module}="
+            f"{module_content_classes.get(module, content_class)}"
+        )
+    print(f"branding_consistency={'enabled' if branding_consistency else 'not-applicable'}")
     print(f"user_config={'compatibility-flag' if args.user_config else 'always-on'}")
     print(f"installed={install_path if install_path else 'pending'}")
     if install_path:

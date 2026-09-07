@@ -1,6 +1,6 @@
 name: APP_NAME
 options:
-  bundleIdPrefix: com.skill-publisher
+  bundleIdPrefix: BUNDLE_ID_PREFIX
   deploymentTarget:
     macOS: "14.0"
 
@@ -59,8 +59,4 @@ targets:
       path: FinderExtension/FinderExtension.entitlements
       properties:
         com.apple.security.app-sandbox: true
-        # File system access for creating files
-        com.apple.security.temporary-exception.files.absolute-path.read-write:
-          - /
-        # AppleScript automation (for launching terminals, etc.)
-        com.apple.security.automation.apple-events: true
+        # Add only entitlements justified by the selected action and current platform contract.

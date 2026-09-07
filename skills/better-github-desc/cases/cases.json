@@ -1,0 +1,39 @@
+[
+  {
+    "title": "从创建器 README 生成仓库信息预览",
+    "description": "基于本次真实 README 与 GitHub 只读回读生成字段变更预览。",
+    "input": {
+      "repository": "lovstudio/skill-creator-skill",
+      "readme_excerpt": "创建、验证并安装本地 Skill Publisher Skill 或自包含 Skill Kit。旧 slash command 也可迁移。",
+      "observed_description": "Scaffold new lovstudio skills with proper structure, SKILL.md + README.md.",
+      "observed_homepage": "",
+      "observed_topics": []
+    },
+    "prompt": "依据 README 预览 GitHub 描述、主题和官网变更，不写入仓库。",
+    "output": {
+      "description": "Create, migrate, validate, and locally install portable Agent Skills and self-contained Skill Kits.",
+      "add_topics": [
+        "agent-skills",
+        "skill-creator",
+        "slash-commands"
+      ],
+      "homepage_action": "omit: README 未给出已验证的项目官网",
+      "state": "preview-only",
+      "verification": "已核对 README 内容与 gh repo view 返回值；未执行 gh repo edit。"
+    }
+  },
+  {
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "142e82c1fe81d75f0b7e365fa4aa634983d477ebbfd88fbd95ca1e02fa0d0230"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    }
+  }
+]

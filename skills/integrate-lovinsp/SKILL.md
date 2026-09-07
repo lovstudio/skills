@@ -1,22 +1,23 @@
 ---
 name: lov-integrate-lovinsp
-description: >
-  幂等集成 lovinsp (click-to-code) 到当前前端项目，并支持从 code-inspector 自动迁移。
-  Use when the user asks to "装 lovinsp"、"集成 lovinsp"、"接入点击跳转源码"、"click to code"、
-  "从 code-inspector 迁移"，or when scaffolding/upgrading a browser-rendered app that needs
-  click-to-source support. Also trigger when another skill (例如 lov-app-generator) requires
-  the Lovinsp integration invariant to be satisfied. 重复执行安全：已集成则只做版本检查。
 license: MIT
-compatibility: "Portable Agent Skills format. Requires a Node frontend project with pnpm or npm and a supported bundler config (Vite / Webpack / Next.js / Nuxt / Rspack / Farm / Mako)."
+compatibility: Portable Agent Skills format. Requires a Node frontend project with
+  pnpm or npm and a supported bundler config (Vite / Webpack / Next.js / Nuxt / Rspack
+  / Farm / Mako).
+description: 为现有前端项目幂等接入 Lovinsp 并验证点击定位源码能力。支持明确输入与结果回读。Use to integrate Lovinsp
+  in a frontend project.
+depends_on:
+- lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.6.0"
+  version: 1.6.1
   tags:
-    - lovinsp
-    - click-to-code
-    - devtools
-    - frontend-integration
-  dependencies: []
+  - lovinsp
+  - click-to-code
+  - devtools
+  - frontend-integration
+  content_class: deterministic-output
+  card_standard: lovstudio/skill-card/v1
 ---
 
 # Integrate Lovinsp
@@ -26,6 +27,8 @@ metadata:
 ## Triggers
 
 ### Activate when
+
+- The user asks to use this Skill for its documented outcome.
 
 - 用户说「装 lovinsp」「集成 lovinsp」「接入点击跳转源码」「click to code」「从 code-inspector 迁移」。
 - 用户新建或升级一个浏览器渲染的前端应用，且需要开发期点击定位源码的能力。
@@ -214,15 +217,29 @@ curl -s http://127.0.0.1:<port>/src/main.tsx | rg "lovinsp-component|lovinsp v"
 - Nuxt
 - Rspack, Farm, Mako
 
-ARGUMENTS: $ARGUMENTS
+
+
+
+## Execution boundary
+
+自然语言请求即可触发；无需旧 slash 路径、参数插值或指定助手。明确解析当前请求中的
+项目、目标文件、选项与输出位置；用当前宿主实际提供的文件、搜索、CLI 和浏览器能力。
+项目依赖版本与外部 API 在执行时核实，不能假设示例是现行配置。随包脚本从 Skill 根解析，
+业务文件从目标项目根解析。先读当前状态，保护已有未提交内容与其他任务的暂存区。
+分析、预览请求保持只读；修改、提交、推送、部署和发布各依当前请求的明确范围执行。
+不绕过保护、自动发送消息、强制结束用户进程或抢前台。失败保留可诊断原始错误。
+
+## Composition
+
+执行前读取 [能力组合](references/skill-composition.md)，按明确制品交接相邻能力。
 
 ## Runtime context (shared)
 
-运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
-
-- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
-- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
-- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
+运行前读取本包 `skill.yaml` 与 [Profile 合同](references/user-profile.md)。优先级为当前请求、
+项目上下文、本 Skill records、共享 preferences、brand/user Profile、安全默认值。
+只读取声明字段；没有专用运行时的宿主可使用 `scripts/profile_store.py` 读取共享 Profile。
+配置缺失只问影响结果的一个问题。用户明确要求长期保存的值通过该脚本原子写入，
+报告实际路径；不保存推断、凭据或其他任务的资料。
 
 ## 通用反馈闭环
 

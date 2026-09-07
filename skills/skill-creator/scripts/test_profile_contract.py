@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import subprocess
@@ -70,6 +71,11 @@ class ProfileContractTests(unittest.TestCase):
             )
             self.assertTrue((skill / "references" / "user-profile.md").is_file())
             self.assertTrue((skill / "scripts" / "profile_store.py").is_file())
+            skill_data = yaml.safe_load(
+                (skill / "SKILL.md").read_text(encoding="utf-8").split("---", 2)[1]
+            )
+            self.assertEqual(skill_data["metadata"]["content_class"], "deterministic-output")
+            self.assertNotIn("depends_on", skill_data)
 
             missing_confirmation = self.run_command(
                 [
@@ -123,6 +129,104 @@ class ProfileContractTests(unittest.TestCase):
             self.assertEqual(context["brand"]["name"], "Example Brand")
             self.assertEqual(context["records"]["subtitle_level"], "cet4")
 
+    def test_authored_prose_generates_integrity_contract_and_brand_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary)
+            result = self.run_command(
+                [
+                    sys.executable,
+                    str(INIT),
+                    "essay-helper",
+                    "--path",
+                    str(workspace),
+                    "--content-class",
+                    "authored-prose",
+                ],
+                dict(os.environ),
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            skill = workspace / "essay-helper-skill"
+            text = (skill / "SKILL.md").read_text(encoding="utf-8")
+            skill_data = yaml.safe_load(text.split("---", 2)[1])
+            self.assertEqual(skill_data["metadata"]["content_class"], "authored-prose")
+            self.assertIn("lov-branding-consistency", skill_data["depends_on"])
+            self.assertIn("references/authorship-integrity.md", text)
+            self.assertTrue(
+                (skill / "references" / "authorship-integrity.md").is_file()
+            )
+            self.assertIn("content_class=authored-prose", result.stdout)
+
+    def test_microcopy_adds_brand_gate_without_long_form_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary)
+            result = self.run_command(
+                [
+                    sys.executable,
+                    str(INIT),
+                    "ui-copy",
+                    "--path",
+                    str(workspace),
+                    "--content-class",
+                    "microcopy",
+                ],
+                dict(os.environ),
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            skill = workspace / "ui-copy-skill"
+            text = (skill / "SKILL.md").read_text(encoding="utf-8")
+            skill_data = yaml.safe_load(text.split("---", 2)[1])
+            self.assertIn("lov-branding-consistency", skill_data["depends_on"])
+            self.assertFalse(
+                (skill / "references" / "authorship-integrity.md").exists()
+            )
+
+    def test_kit_modules_can_use_different_content_classes(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary)
+            result = self.run_command(
+                [
+                    sys.executable,
+                    str(INIT),
+                    "publishing-kit",
+                    "--path",
+                    str(workspace),
+                    "--kit",
+                    "--module",
+                    "research",
+                    "--module",
+                    "draft",
+                    "--module-content-class",
+                    "draft=authored-prose",
+                ],
+                dict(os.environ),
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            skill = workspace / "publishing-kit-skill"
+            research_text = (skill / "skills" / "research" / "SKILL.md").read_text(
+                encoding="utf-8"
+            )
+            draft_text = (skill / "skills" / "draft" / "SKILL.md").read_text(
+                encoding="utf-8"
+            )
+            research_data = yaml.safe_load(research_text.split("---", 2)[1])
+            draft_data = yaml.safe_load(draft_text.split("---", 2)[1])
+            self.assertEqual(
+                research_data["metadata"]["content_class"], "deterministic-output"
+            )
+            self.assertEqual(draft_data["metadata"]["content_class"], "authored-prose")
+            self.assertFalse(
+                (skill / "skills" / "research" / "references" / "authorship-integrity.md").exists()
+            )
+            self.assertTrue(
+                (skill / "skills" / "draft" / "references" / "authorship-integrity.md").is_file()
+            )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.parse_args()
+    unittest.main(argv=[sys.argv[0]])
+
 
 if __name__ == "__main__":
-    unittest.main()
+    main()

@@ -1,0 +1,47 @@
+schema: lovstudio/skill-card/v1
+description: 按用途生成图像、制作可编辑图文布局或整理图像提示词
+owner: contributors
+license: MIT
+use_case: 按用途生成图像、制作可编辑图文布局或整理图像提示词
+deployment: 本地 Agent 宿主，业务系统按任务指定
+requirements: 可读取文件的 Agent；业务依赖见 SKILL.md
+risks:
+- risk: 不同项目与工具版本存在差异，迁移验证不能替代业务运行验证。
+  mitigation: 执行前发现实际环境，按工作流回读结果。
+references:
+- SKILL.md
+- cases/cases.json
+- references/skill-composition.md
+output: 按用途生成图像、制作可编辑图文布局或整理图像提示词
+version: 0.3.1
+ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
+dimensions:
+- id: portability
+  label: 宿主可移植性
+  description: 显式输入与实际宿主能力
+  evidence: SKILL.md 的 Triggers 和 Execution boundary
+  score: null
+- id: context
+  label: 配置隔离
+  description: 用户配置与公开源分离
+  evidence: skill.yaml 与 Profile 合同
+  score: null
+- id: traceability
+  label: 结果可追溯
+  description: 原始输入摘要与迁移结果
+  evidence: cases/cases.json；尚无业务效果评分
+  score: null
+pricing:
+  model: free_entry
+  basis: pricing-card.yaml
+distribution:
+  free:
+  - channel: github
+    status: prepared
+  - channel: lovstudio
+    status: prepared
+  paid:
+  - channel: workbuddy
+    status: not_selected
+  - channel: skillpay
+    status: not_selected

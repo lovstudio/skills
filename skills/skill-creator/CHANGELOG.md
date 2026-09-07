@@ -1,10 +1,26 @@
 # Changelog
 
-## [4.4.0] - 2026-08-24
+## [4.6.0] - 2026-09-07
+
+- Support raw, nested, archived and partially migrated slash commands.
+- Add read-only batch inventory and isolated preparation with source checksums.
+- Require semantic portability, alias resolution, preserved safeguards and per-item website verification.
+
+## [4.5.0] - 2026-08-30
 
 ### Added
 
-- add the shared feedback-classification and approval-invalidation gate used by every LovStudio Skill
+- classify generated output as authored prose, microcopy, verbatim, or deterministic
+- scaffold an authorship ledger and discourse-integrity contract for authored prose
+- automatically enable branding consistency for authored prose and microcopy
+- support per-module content classes in mixed Skill Kits
+
+## [4.4.0] - 2026-08-30
+
+### Added
+
+- add audience-visible branding dependency scaffolding
+- move compatibility and depends_on to canonical top-level frontmatter
 
 ## 4.3.0
 

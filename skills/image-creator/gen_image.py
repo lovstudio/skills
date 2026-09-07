@@ -1,176 +1,85 @@
 #!/usr/bin/env python3
-import os
-import sys
+"""Optional legacy Vertex-compatible adapter; prefer native host image tools."""
 import argparse
-import time
 import io
-import subprocess
-import shutil
-import importlib
-import importlib.util
+import os
+from pathlib import Path
+import sys
 
-def _ensure_deps():
-    required = [("PIL", "Pillow"), ("google.genai", "google-genai")]
-    missing = [pkg for mod, pkg in required if importlib.util.find_spec(mod) is None]
-    if not missing:
-        return
-    print(f"Installing missing dependencies: {', '.join(missing)}...", file=sys.stderr)
-    cmd = [sys.executable, "-m", "pip", "install", "--user", "--quiet", *missing]
-    try:
-        subprocess.run(cmd, check=True)
-    except subprocess.CalledProcessError:
-        print("Retrying with --break-system-packages...", file=sys.stderr)
-        subprocess.run([*cmd, "--break-system-packages"], check=True)
-    importlib.invalidate_caches()
 
-_ensure_deps()
-
-from PIL import Image
-from google import genai
-from google.genai import types
-
-def generate_image(prompt, output_file, quality='low', show_ascii=False):
-    # Get API key from environment
+def generate_image(prompt, output_file, quality="high", show_ascii=False, model=None):
+    model = model or os.environ.get("ZENMUX_IMAGE_MODEL")
+    if not model:
+        raise ValueError("provide --model or ZENMUX_IMAGE_MODEL after checking current provider availability")
     api_key = os.environ.get("ZENMUX_API_KEY")
     if not api_key:
-        print("Error: ZENMUX_API_KEY environment variable is not set.")
-        sys.exit(1)
-
-    client = genai.Client(
-        api_key=api_key,
-        vertexai=True,
-        http_options=types.HttpOptions(
-            api_version='v1',
-            base_url='https://zenmux.ai/api/vertex-ai'
-        ),
-    )
-
-    print(f"Generating image for prompt: {prompt[:50]}...")
-
+        raise ValueError("ZENMUX_API_KEY is not configured")
+    output = Path(output_file)
+    if output.exists() or output.is_symlink():
+        raise ValueError("output already exists; choose a new filename")
     try:
-        # Map quality string to MediaResolution enum
-        resolution_map = {
-            'low': types.MediaResolution.MEDIA_RESOLUTION_LOW,
-            'medium': types.MediaResolution.MEDIA_RESOLUTION_MEDIUM,
-            'high': types.MediaResolution.MEDIA_RESOLUTION_HIGH
-        }
+        from google import genai
+        from google.genai import types
+        from PIL import Image
+    except ImportError as exc:
+        raise ValueError("install google-genai and Pillow in the selected project environment") from exc
+    client = genai.Client(api_key=api_key, vertexai=True,
+        http_options=types.HttpOptions(api_version="v1",
+            base_url="https://zenmux.ai/api/vertex-ai"))
+    resolutions = {"low": types.MediaResolution.MEDIA_RESOLUTION_LOW,
+                   "medium": types.MediaResolution.MEDIA_RESOLUTION_MEDIUM,
+                   "high": types.MediaResolution.MEDIA_RESOLUTION_HIGH}
+    response = client.models.generate_content(model=model, contents=[prompt],
+        config=types.GenerateContentConfig(response_modalities=["TEXT", "IMAGE"],
+            media_resolution=resolutions[quality]))
+    for part in response.parts or []:
+        if part.inline_data is None:
+            continue
+        data = part.inline_data.data
+        with Image.open(io.BytesIO(data)) as generated:
+            generated.load()
+            width, height = generated.size
+            fmt = generated.format
+            if output.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
+                raise ValueError("choose a PNG, JPEG or WebP output suffix")
+            formats = {".png": "PNG", ".jpg": "JPEG", ".jpeg": "JPEG", ".webp": "WEBP"}
+            target_format = formats[output.suffix.lower()]
+            if target_format != fmt:
+                converted = io.BytesIO()
+                (generated.convert("RGB") if target_format == "JPEG" else generated).save(converted, format=target_format)
+                data = converted.getvalue()
+            output.parent.mkdir(parents=True, exist_ok=True)
+            with output.open("xb") as file:
+                file.write(data)
+            if show_ascii:
+                preview = generated.convert("L").resize((60, max(1, round(height / width * 30))))
+                chars = "@#S%?*+;:,."
+                pixels = list(preview.getdata())
+                print("\n".join("".join(chars[v * (len(chars)-1) // 255] for v in pixels[i:i+60]) for i in range(0,len(pixels),60)))
+        print("saved=" + str(output.resolve()))
+        print("dimensions=" + str(width) + "x" + str(height))
+        return
+    raise ValueError("provider returned no image")
 
-        # Default to low if not specified or invalid
-        resolution = resolution_map.get(quality, types.MediaResolution.MEDIA_RESOLUTION_LOW)
 
-        response = client.models.generate_content(
-            model="google/gemini-3-pro-image-preview",
-            contents=[prompt],
-            config=types.GenerateContentConfig(
-                response_modalities=["TEXT", "IMAGE"],
-                media_resolution=resolution
-            )
-        )
-
-        image_saved = False
-        if response.parts:
-            for part in response.parts:
-                if part.text is not None:
-                    print(f"Model response: {part.text}")
-                if part.inline_data is not None:
-                    # Get raw bytes
-                    img_data = part.inline_data.data
-
-                    # Save to file
-                    with open(output_file, 'wb') as f:
-                        f.write(img_data)
-                    print(f"Image saved successfully to {output_file}")
-
-                    # Open image with system viewer (macOS)
-                    if sys.platform == 'darwin':
-                        try:
-                            subprocess.run(["open", output_file], check=False)
-                            print(f"Opened image in default viewer.")
-                        except Exception as e:
-                            print(f"Warning: Failed to open image: {e}")
-
-                    # Optional ASCII preview
-                    if show_ascii:
-                        try:
-                            # Create PIL Image for ASCII preview
-                            image = Image.open(io.BytesIO(img_data))
-                            print("\n" + "="*40)
-                            print("ASCII PREVIEW")
-                            print("="*40)
-                            print_ascii(image)
-                            print("\n" + "="*40)
-                        except Exception as e:
-                            print(f"Warning: Could not generate ASCII preview: {e}")
-
-                    image_saved = True
-        else:
-            print("Response contained no parts.")
-
-        if not image_saved:
-            print("No image was returned in the response.")
-            sys.exit(1)
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        sys.exit(1)
-
-def print_ascii(image, width=60):
-    """Prints an ASCII representation of the image."""
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("prompt")
+    parser.add_argument("-o", "--output", default="generated_image.png")
+    parser.add_argument("--model", help="Currently available Vertex-compatible image model")
+    parser.add_argument("-q", "--quality", choices=["low", "medium", "high"], default="high")
+    parser.add_argument("--ascii", action="store_true")
+    args = parser.parse_args()
     try:
-        # Determine dimensions safely
-        if hasattr(image, 'size'):
-            img_width, img_height = image.size
-        elif hasattr(image, 'width') and hasattr(image, 'height'):
-            img_width = image.width
-            img_height = image.height
-        else:
-            # Try to force load if it's a lazy object or similar
-            if hasattr(image, 'load'):
-                image.load()
-                if hasattr(image, 'size'):
-                    img_width, img_height = image.size
-                else:
-                    print(f"Cannot determine dimensions for object: {type(image)}")
-                    return
-            else:
-                print(f"Cannot determine dimensions for object: {type(image)}")
-                return
+        generate_image(args.prompt,args.output,args.quality,args.ascii,args.model)
+    except ValueError as exc:
+        print("ERROR: " + str(exc),file=sys.stderr)
+        return 1
+    except Exception as exc:
+        print("ERROR: image provider request failed (" + type(exc).__name__ + "); inspect provider status without logging credentials",file=sys.stderr)
+        return 1
+    return 0
 
-        aspect_ratio = img_height / img_width
-        # Terminal characters are roughly twice as tall as they are wide
-        new_height = int(width * aspect_ratio * 0.5)
-
-        # Ensure minimum dimensions
-        if new_height < 1: new_height = 1
-
-        # Resize image
-        img = image.resize((width, new_height))
-        # Convert to grayscale
-        img = img.convert('L')
-
-        pixels = list(img.getdata())
-
-        # ASCII chars from dark to light
-        chars = ["@", "#", "S", "%", "?", "*", "+", ";", ":", ",", "."]
-
-        # Map pixels to characters
-        new_pixels = [chars[pixel * (len(chars)-1) // 255] for pixel in pixels]
-        new_pixels = ''.join(new_pixels)
-
-        # Split string of chars into multiple strings of length equal to new width and print
-        new_pixels_count = len(new_pixels)
-        ascii_image = [new_pixels[index:index + width] for index in range(0, new_pixels_count, width)]
-        print("\n".join(ascii_image))
-    except Exception as e:
-        print(f"Error creating ASCII art: {e}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate images using ZenMux/Gemini")
-    parser.add_argument("prompt", help="The image description prompt")
-    parser.add_argument("-o", "--output", default="generated_image.png", help="Output filename")
-    parser.add_argument("-q", "--quality", choices=['low', 'medium', 'high'], default="low", help="Image generation quality (default: low)")
-    parser.add_argument("--ascii", action="store_true", help="Show ASCII preview in terminal")
-
-    args = parser.parse_args()
-
-    generate_image(args.prompt, args.output, args.quality, args.ascii)
+    raise SystemExit(main())

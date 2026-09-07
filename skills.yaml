@@ -117,17 +117,17 @@ skills:
     card_path: pricing-cards/image-translation-errata.md
 - name: image-creator
   runtime_name: lov-image-creator
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-09-07T09:40:45Z
   display_name: Image Studio
   repo: lovstudio/image-creator-skill
-  name_zh: 图像工坊
+  name_zh: 图像创作
   paid: false
   featured: true
   category: General
-  version: "0.3.0"
-  description: 'Multi-mechanism image generation: end-to-end AI, code rendering, or prompt engineering'
-  tagline_en: Generate images through the right mechanism — AI, code rendering, or prompt tuning.
-  tagline_zh: 按需选择最合适的出图方式：端到端 AI、代码渲染或提示词精修。
+  version: 0.3.1
+  description: Create an image, designed graphic, or image prompt
+  tagline_en: Create an image, designed graphic, or image prompt
+  tagline_zh: 按用途生成图像、制作可编辑图文布局或整理图像提示词
   skillpay_product_id: P0806000200844929
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqXdR
   related:
@@ -143,24 +143,20 @@ skills:
     price_range_credits:
     - 0
     - 0
-    delivery_unit_zh: 公开 Skill 源码与当前版本说明
-    delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 按需选择最合适的出图方式：端到端 AI、代码渲染或提示词精修。
-    value_en: Generate images through the right mechanism — AI, code rendering, or prompt tuning.
-    anchor_zh: 一次完成通常可省下约 30 分钟至 3 小时的检索、整理或判断时间。
-    anchor_en: A completed run typically saves roughly 30 minutes to 3 hours of research, organization, or judgment work.
-    basis_zh: 按一次可复用的判断或处理结果定价，重点看是否减少查找、判断与重复操作。
-    basis_en: Priced around a reusable decision or processing result, with emphasis on reducing lookup and repeated work.
-    boundary_zh: 适合明确的问题与输入；开放式探索、外部数据和第三方服务成本另行计算。
-    boundary_en: Best for a defined question and input; open-ended exploration, external data, and third-party service costs
-      are separate.
-    maintenance_zh: 随上游数据格式、模型能力和使用反馈复评；小版本更新通常沿用原交付范围。
-    maintenance_en: Review against upstream data formats, model capability, and usage feedback; minor updates usually stay
-      within the original scope.
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 按用途生成图像、制作可编辑图文布局或整理图像提示词
+    value_en: Create an image, designed graphic, or image prompt
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
     confidence: entry
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/image-creator.md
+  depends_on:
+  - branding-consistency
 - name: create-qrcode
   runtime_name: lov-create-qrcode
   updated_at: 2026-08-31T10:35:51Z
@@ -2371,17 +2367,17 @@ skills:
     card_path: pricing-cards/wdb-cli.md
 - name: skill-creator
   runtime_name: lov-skill-creator
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-09-07T09:40:45Z
   skillpay_product_id: P0806000200846064
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-w
   repo: lovstudio/skill-creator-skill
-  name_zh: 技能脚手架
+  name_zh: Skill 创建与迁移
   paid: false
   category: Meta
-  version: "4.4.0"
-  description: Scaffold independently versioned lovstudio skill repositories.
-  tagline_en: Scaffold a new skill as an independent source repo with release-driven aggregate distribution.
-  tagline_zh: 一条命令生成独立版本仓库，并通过 Release 自动同步到聚合分发仓库。
+  version: 4.6.0
+  description: Create, migrate, validate and install portable Agent Skills
+  tagline_en: Create, migrate, validate and install portable Agent Skills
+  tagline_zh: 创建、迁移、验证并安装通用 Skill 与自包含 Skill Kit
   pricing:
     model: free_entry
     visibility: public
@@ -2390,24 +2386,20 @@ skills:
     price_range_credits:
     - 0
     - 0
-    delivery_unit_zh: 公开 Skill 源码与当前版本说明
-    delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 一条命令生成独立版本仓库，并通过 Release 自动同步到聚合分发仓库。
-    value_en: Scaffold a new skill as an independent source repo with release-driven aggregate distribution.
-    anchor_zh: 一次完成通常可省下约 30 分钟至 3 小时的检索、整理或判断时间。
-    anchor_en: A completed run typically saves roughly 30 minutes to 3 hours of research, organization, or judgment work.
-    basis_zh: 按一次可复用的判断或处理结果定价，重点看是否减少查找、判断与重复操作。
-    basis_en: Priced around a reusable decision or processing result, with emphasis on reducing lookup and repeated work.
-    boundary_zh: 适合明确的问题与输入；开放式探索、外部数据和第三方服务成本另行计算。
-    boundary_en: Best for a defined question and input; open-ended exploration, external data, and third-party service costs
-      are separate.
-    maintenance_zh: 随上游数据格式、模型能力和使用反馈复评；小版本更新通常沿用原交付范围。
-    maintenance_en: Review against upstream data formats, model capability, and usage feedback; minor updates usually stay
-      within the original scope.
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 创建、迁移、验证并安装通用 Skill 与自包含 Skill Kit
+    value_en: Create, migrate, validate and install portable Agent Skills
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
     confidence: entry
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/skill-creator.md
+  depends_on:
+  - branding-consistency
 - name: skill-add-case
   runtime_name: lov-skill-add-case
   updated_at: 2026-08-23T17:04:16Z
@@ -2602,17 +2594,17 @@ skills:
     card_path: pricing-cards/deploy-to-vercel.md
 - name: finder-action
   runtime_name: lov-finder-action
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-09-07T09:40:45Z
   skillpay_product_id: P0806000200847223
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP0
   repo: lovstudio/finder-action-skill
-  name_zh: 访达右键动作
+  name_zh: Finder 右键动作
   paid: false
   category: Dev Tools
-  version: "0.4.0"
-  description: Generate Mac Finder right-click menu actions. Quick Action or Finder Sync Extension.
-  tagline_en: Add a custom right-click action to macOS Finder in minutes.
-  tagline_zh: 几分钟给 macOS 访达右键菜单加一个你自己的动作。
+  version: 0.4.1
+  description: Create a Finder context menu action
+  tagline_en: Create a Finder context menu action
+  tagline_zh: 创建 macOS Finder 文件快捷操作或目录背景菜单扩展
   pricing:
     model: free_entry
     visibility: public
@@ -2621,24 +2613,20 @@ skills:
     price_range_credits:
     - 0
     - 0
-    delivery_unit_zh: 公开 Skill 源码与当前版本说明
-    delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 几分钟给 macOS 访达右键菜单加一个你自己的动作。
-    value_en: Add a custom right-click action to macOS Finder in minutes.
-    anchor_zh: 一次处理通常可省下 30 分钟至半天的排错、配置或发布往返。
-    anchor_en: A run typically saves 30 minutes to half a day of debugging, setup, or release back-and-forth.
-    basis_zh: 按一次可验证的工程状态改善定价，重点是减少排查往返、回滚风险和重复配置。
-    basis_en: Priced around a verifiable improvement to engineering state, reducing debugging loops, rollback risk, and repeated
-      setup.
-    boundary_zh: 默认在现有项目与工具链上工作；云资源、账号权限、代码审阅和大规模迁移另行确认。
-    boundary_en: Works within the existing project and toolchain; cloud resources, account permissions, code review, and large
-      migrations are separate.
-    maintenance_zh: 随框架、操作系统、CLI、平台 API 和发布流程变化复评。
-    maintenance_en: Review when frameworks, operating systems, CLIs, platform APIs, or release workflows change.
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 创建 macOS Finder 文件快捷操作或目录背景菜单扩展
+    value_en: Create a Finder context menu action
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
     confidence: entry
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/finder-action.md
+  depends_on:
+  - branding-consistency
 - name: gh-access
   runtime_name: lov-gh-access
   updated_at: 2026-08-23T17:04:16Z
@@ -2798,18 +2786,17 @@ skills:
     card_path: pricing-cards/install-tanstack-query.md
 - name: release-via-cicd
   runtime_name: lov-release-via-cicd
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-09-07T09:40:45Z
   skillpay_product_id: P0806000200847225
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-4
   repo: lovstudio/release-via-cicd-skill
   name_zh: CI/CD 发布
   paid: false
   category: Dev Tools
-  version: "8.7.0"
-  description: Configure CI/CD and publish new versions for Node, Tauri, Vite, shell, and GitHub Release projects with macOS
-    signing/notarization verification.
-  tagline_en: Configure release workflows, publish versions, and verify signed Tauri app artifacts.
-  tagline_zh: 配置发布流水线、发布新版本，并验证 Tauri/macOS 签名与 notarization 产物。
+  version: 8.7.1
+  description: Set up or run a verified CI/CD release
+  tagline_en: Set up or run a verified CI/CD release
+  tagline_zh: 配置或运行现有项目发布流水线，并回读产物与真实上线状态
   pricing:
     model: free_entry
     visibility: public
@@ -2818,24 +2805,20 @@ skills:
     price_range_credits:
     - 0
     - 0
-    delivery_unit_zh: 公开 Skill 源码与当前版本说明
-    delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 配置发布流水线、发布新版本，并验证 Tauri/macOS 签名与 notarization 产物。
-    value_en: Configure release workflows, publish versions, and verify signed Tauri app artifacts.
-    anchor_zh: 一次处理通常可省下 30 分钟至半天的排错、配置或发布往返。
-    anchor_en: A run typically saves 30 minutes to half a day of debugging, setup, or release back-and-forth.
-    basis_zh: 按一次可验证的工程状态改善定价，重点是减少排查往返、回滚风险和重复配置。
-    basis_en: Priced around a verifiable improvement to engineering state, reducing debugging loops, rollback risk, and repeated
-      setup.
-    boundary_zh: 默认在现有项目与工具链上工作；云资源、账号权限、代码审阅和大规模迁移另行确认。
-    boundary_en: Works within the existing project and toolchain; cloud resources, account permissions, code review, and large
-      migrations are separate.
-    maintenance_zh: 随框架、操作系统、CLI、平台 API 和发布流程变化复评。
-    maintenance_en: Review when frameworks, operating systems, CLIs, platform APIs, or release workflows change.
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 配置或运行现有项目发布流水线，并回读产物与真实上线状态
+    value_en: Set up or run a verified CI/CD release
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
     confidence: entry
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/release-via-cicd.md
+  depends_on:
+  - branding-consistency
 - name: optimize-tauri-backend
   runtime_name: lov-optimize-tauri-backend
   updated_at: 2026-08-23T17:04:16Z
@@ -3616,14 +3599,14 @@ skills:
   runtime_name: lov-integrate-lovinsp
   display_name: Lovinsp Integration
   repo: lovstudio/integrate-lovinsp-skill
-  name_zh: Lovinsp 集成
+  name_zh: Lovinsp 接入
   paid: false
   category: Dev Tools
-  version: "1.6.0"
-  updated_at: 2026-08-23T17:04:16Z
-  description: 'Idempotently integrate Lovinsp (click-to-code) into a frontend project, with optional code-inspector migration.'
-  tagline_en: Click a page element in dev and jump straight to its source.
-  tagline_zh: 开发时点击页面元素直达源码。
+  version: 1.6.1
+  updated_at: 2026-09-07T09:40:45Z
+  description: Integrate Lovinsp in a frontend project
+  tagline_en: Integrate Lovinsp in a frontend project
+  tagline_zh: 为现有前端项目幂等接入 Lovinsp 并验证点击定位源码能力
   pricing:
     model: free_entry
     visibility: public
@@ -3632,21 +3615,20 @@ skills:
     price_range_credits:
     - 0
     - 0
-    delivery_unit_zh: 公开 Skill 源码与当前版本说明
-    delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 把开发期「从页面元素定位源码」从手工搜索变成一键点击跳转，并自动迁移旧 code-inspector 配置。
-    value_en: Turn dev-time source lookup from manual searching into one-click jumps from a page element, with automatic code-inspector migration.
-    anchor_zh: 每次手动定位一个组件或样式的源码通常要数十秒到几分钟，频繁发生时累积成明显耗时。
-    anchor_en: Manually locating the source for a component or style typically takes tens of seconds to minutes each time, adding up across frequent lookups.
-    basis_zh: 按一次可复用的集成结果定价，重点看是否省去重复的源码定位与迁移操作。
-    basis_en: Priced around a reusable integration result, with emphasis on removing repeated source-location and migration work.
-    boundary_zh: 适合浏览器渲染的前端项目（Vite、Webpack、Next、Nuxt 等）；不包含源码定位之外的调试、性能或业务逻辑排查。
-    boundary_en: For browser-rendered frontend projects (Vite, Webpack, Next, Nuxt, etc.); excludes debugging, performance, or business-logic work beyond source location.
-    maintenance_zh: 随 lovinsp 上游版本与打包器配置方式变化复评；小版本更新通常沿用原交付范围。
-    maintenance_en: Review against upstream lovinsp versions and bundler configuration changes; minor updates usually stay within the original scope.
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 为现有前端项目幂等接入 Lovinsp 并验证点击定位源码能力
+    value_en: Integrate Lovinsp in a frontend project
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
     confidence: entry
-    review_trigger_zh: lovinsp 出现破坏性版本变化、支持成本明显上升，或转为按功能收费时复评。
-    review_trigger_en: Review when lovinsp has a breaking version change, support cost rises materially, or it starts charging by capability.
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/integrate-lovinsp.md
+  depends_on:
+  - branding-consistency
 - name: dsh-plugin-creator
   runtime_name: dsh-plugin-creator
   display_name: DSH Plugin Creator
@@ -4138,3 +4120,1838 @@ skills:
     review_trigger_en: Review after 10 cross-device cases or the addition of hosted inference, managed delivery,
       or ongoing support.
     card_path: pricing-cards/video-moments.md
+- name: better-css
+  runtime_name: lov-better-css
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: CSS 整理
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Refactor CSS and Tailwind styles
+  tagline_en: Refactor CSS and Tailwind styles
+  tagline_zh: 清理冗余 CSS 并在现有 Tailwind 项目中重构样式
+  depends_on:
+  - branding-consistency
+  skill_path: skills/better-css
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 清理冗余 CSS 并在现有 Tailwind 项目中重构样式
+    value_en: Refactor CSS and Tailwind styles
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/better-css.md
+- name: better-github-desc
+  runtime_name: lov-better-github-desc
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: GitHub 仓库信息
+  paid: false
+  category: Dev Tools
+  version: 1.1.1
+  description: Update a GitHub repository description from its README
+  tagline_en: Update a GitHub repository description from its README
+  tagline_zh: 依据 README 更新 GitHub 仓库描述、主题标签及已核实的官网链接
+  depends_on:
+  - branding-consistency
+  skill_path: skills/better-github-desc
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 依据 README 更新 GitHub 仓库描述、主题标签及已核实的官网链接
+    value_en: Update a GitHub repository description from its README
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/better-github-desc.md
+- name: better-project-structure
+  runtime_name: lov-better-project-structure
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 项目结构整理
+  paid: false
+  category: Dev Tools
+  version: 2.0.1
+  description: Improve a project directory structure
+  tagline_en: Improve a project directory structure
+  tagline_zh: 分析任意语言项目的目录职责并渐进调整文件结构和引用
+  depends_on:
+  - branding-consistency
+  skill_path: skills/better-project-structure
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 分析任意语言项目的目录职责并渐进调整文件结构和引用
+    value_en: Improve a project directory structure
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/better-project-structure.md
+- name: better-readme
+  runtime_name: lov-better-readme
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: README 完善
+  paid: false
+  category: Dev Tools
+  version: 2.9.1
+  description: Create or improve a project README
+  tagline_en: Create or improve a project README
+  tagline_zh: 依据项目代码完善 README、安装说明、使用示例与真实品牌资产
+  depends_on:
+  - branding-consistency
+  skill_path: skills/better-readme
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 依据项目代码完善 README、安装说明、使用示例与真实品牌资产
+    value_en: Create or improve a project README
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/better-readme.md
+- name: better-seo
+  runtime_name: lov-better-seo
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: Next.js SEO
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Review and improve Next.js SEO
+  tagline_en: Review and improve Next.js SEO
+  tagline_zh: 检查 Next.js 页面元数据、索引规则、站点地图与分享展示
+  depends_on:
+  - branding-consistency
+  skill_path: skills/better-seo
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 检查 Next.js 页面元数据、索引规则、站点地图与分享展示
+    value_en: Review and improve Next.js SEO
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/better-seo.md
+- name: better-statusline
+  runtime_name: lov-better-statusline
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 状态栏配置
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Update an agent status line with rollback
+  tagline_en: Update an agent status line with rollback
+  tagline_zh: 配置并备份 Agent 状态栏，支持列出历史版本和恢复
+  depends_on:
+  - branding-consistency
+  skill_path: skills/better-statusline
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 配置并备份 Agent 状态栏，支持列出历史版本和恢复
+    value_en: Update an agent status line with rollback
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/better-statusline.md
+- name: brainstorm
+  runtime_name: lov-brainstorm
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 需求梳理
+  paid: false
+  category: General
+  version: 1.0.1
+  description: Help clarify requirements through brainstorming
+  tagline_en: Help clarify requirements through brainstorming
+  tagline_zh: 通过证据和聚焦追问明确需求、约束、取舍及验收条件
+  depends_on:
+  - branding-consistency
+  skill_path: skills/brainstorm
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 通过证据和聚焦追问明确需求、约束、取舍及验收条件
+    value_en: Help clarify requirements through brainstorming
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/brainstorm.md
+- name: checkpoint-list
+  runtime_name: lov-checkpoint-list
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 检查点历史
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: List a project checkpoint history
+  tagline_en: List a project checkpoint history
+  tagline_zh: 汇总 Git 与项目日志中的检查点、时间范围和演进记录
+  depends_on:
+  - branding-consistency
+  skill_path: skills/checkpoint-list
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 汇总 Git 与项目日志中的检查点、时间范围和演进记录
+    value_en: List a project checkpoint history
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/checkpoint-list.md
+- name: checkpoint
+  runtime_name: lov-checkpoint
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 项目检查点
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Create a project checkpoint
+  tagline_en: Create a project checkpoint
+  tagline_zh: 根据当前 Git 差异和历史记录保存项目里程碑及后续事项
+  depends_on:
+  - branding-consistency
+  skill_path: skills/checkpoint
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 根据当前 Git 差异和历史记录保存项目里程碑及后续事项
+    value_en: Create a project checkpoint
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/checkpoint.md
+- name: clone-rebrand
+  runtime_name: lov-clone-rebrand
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 模板项目改造
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Create a project from a template and rebrand it
+  tagline_en: Create a project from a template and rebrand it
+  tagline_zh: 将模板或 fork 改造为新项目，按范围同步品牌、语言和部署设置
+  depends_on:
+  - branding-consistency
+  skill_path: skills/clone-rebrand
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将模板或 fork 改造为新项目，按范围同步品牌、语言和部署设置
+    value_en: Create a project from a template and rebrand it
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/clone-rebrand.md
+- name: daily-post
+  runtime_name: lov-daily-post
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 项目日更文案
+  paid: false
+  category: General
+  version: 1.0.1
+  description: Write a daily project update from real changes
+  tagline_en: Write a daily project update from real changes
+  tagline_zh: 将近期真实项目更新写成面向读者的简短日更文案
+  depends_on:
+  - branding-consistency
+  skill_path: skills/daily-post
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将近期真实项目更新写成面向读者的简短日更文案
+    value_en: Write a daily project update from real changes
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/daily-post.md
+- name: dev-research
+  runtime_name: lov-dev-research
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 研发选型调研
+  paid: false
+  category: Dev Tools
+  version: 2.0.1
+  description: Research a development plan and technology choices
+  tagline_en: Research a development plan and technology choices
+  tagline_zh: 根据软件需求比较复用策略并输出有来源的技术选型与研发计划
+  depends_on:
+  - branding-consistency
+  skill_path: skills/dev-research
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 根据软件需求比较复用策略并输出有来源的技术选型与研发计划
+    value_en: Research a development plan and technology choices
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/dev-research.md
+- name: distill-to-system
+  runtime_name: lov-distill-to-system
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 经验写入规则
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Persist a reusable lesson in agent instructions
+  tagline_en: Persist a reusable lesson in agent instructions
+  tagline_zh: 把有证据的可复用经验写入最合适的项目或共享 Agent 规范
+  depends_on:
+  - branding-consistency
+  skill_path: skills/distill-to-system
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 把有证据的可复用经验写入最合适的项目或共享 Agent 规范
+    value_en: Persist a reusable lesson in agent instructions
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/distill-to-system.md
+- name: distill
+  runtime_name: lov-distill
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 经验提炼
+  paid: false
+  category: Dev Tools
+  version: 3.7.1
+  description: Distill a solved problem into reusable knowledge
+  tagline_en: Distill a solved problem into reusable knowledge
+  tagline_zh: 将真实解决过程整理为可复用经验文档并维护知识索引
+  depends_on:
+  - branding-consistency
+  skill_path: skills/distill
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将真实解决过程整理为可复用经验文档并维护知识索引
+    value_en: Distill a solved problem into reusable knowledge
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/distill.md
+- name: fix-broken-links
+  runtime_name: lov-fix-broken-links
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 链接修复
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Find and fix broken links in a project
+  tagline_en: Find and fix broken links in a project
+  tagline_zh: 核对项目路由及页面链接，修复失效目标并保留有效导航
+  depends_on:
+  - branding-consistency
+  skill_path: skills/fix-broken-links
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 核对项目路由及页面链接，修复失效目标并保留有效导航
+    value_en: Find and fix broken links in a project
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/fix-broken-links.md
+- name: fix-by-add-log
+  runtime_name: lov-fix-by-add-log
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 日志定位问题
+  paid: false
+  category: Dev Tools
+  version: 1.1.1
+  description: Debug a problem with targeted logging
+  tagline_en: Debug a problem with targeted logging
+  tagline_zh: 针对难复现问题增加最少的诊断日志并用实际输出定位根因
+  depends_on:
+  - branding-consistency
+  skill_path: skills/fix-by-add-log
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 针对难复现问题增加最少的诊断日志并用实际输出定位根因
+    value_en: Debug a problem with targeted logging
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/fix-by-add-log.md
+- name: fix-general
+  runtime_name: lov-fix-general
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 问题诊断修复
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Diagnose and fix a software error
+  tagline_en: Diagnose and fix a software error
+  tagline_zh: 根据报错和复现证据定位根因、实施修复并验证原路径
+  depends_on:
+  - branding-consistency
+  skill_path: skills/fix-general
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 根据报错和复现证据定位根因、实施修复并验证原路径
+    value_en: Diagnose and fix a software error
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/fix-general.md
+- name: fix-until-no-error
+  runtime_name: lov-fix-until-no-error
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 持续修复错误
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Fix errors until the specified checks pass
+  tagline_en: Fix errors until the specified checks pass
+  tagline_zh: 围绕明确验证命令持续定位和修复失败项直到通过或遇到真实阻塞
+  depends_on:
+  - branding-consistency
+  skill_path: skills/fix-until-no-error
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 围绕明确验证命令持续定位和修复失败项直到通过或遇到真实阻塞
+    value_en: Fix errors until the specified checks pass
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/fix-until-no-error.md
+- name: gen-logo
+  runtime_name: lov-gen-logo
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: Logo 创作
+  paid: false
+  category: Dev Tools
+  version: 5.1.1
+  description: Create a logo and application icon
+  tagline_en: Create a logo and application icon
+  tagline_zh: 根据项目用途制作版本化 Logo 草稿及应用图标，并按确认范围接入
+  depends_on:
+  - branding-consistency
+  skill_path: skills/gen-logo
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 根据项目用途制作版本化 Logo 草稿及应用图标，并按确认范围接入
+    value_en: Create a logo and application icon
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/gen-logo.md
+- name: gen-project-name
+  runtime_name: lov-gen-project-name
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 项目命名
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Generate a project name from its purpose
+  tagline_en: Generate a project name from its purpose
+  tagline_zh: 根据项目用途提供可用于文件夹与仓库的名称及定位说明
+  depends_on:
+  - branding-consistency
+  skill_path: skills/gen-project-name
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 根据项目用途提供可用于文件夹与仓库的名称及定位说明
+    value_en: Generate a project name from its purpose
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/gen-project-name.md
+- name: git-commit-with-context
+  runtime_name: lov-git-commit-with-context
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 按会话提交
+  paid: false
+  category: Dev Tools
+  version: 1.1.1
+  description: Create a Git commit for the current task changes
+  tagline_en: Create a Git commit for the current task changes
+  tagline_zh: 结合会话意图与实际 Git 差异生成并执行范围准确的提交
+  depends_on:
+  - branding-consistency
+  skill_path: skills/git-commit-with-context
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 结合会话意图与实际 Git 差异生成并执行范围准确的提交
+    value_en: Create a Git commit for the current task changes
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/git-commit-with-context.md
+- name: help-cmd
+  runtime_name: lov-help-cmd
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 需求转命令
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Create a command line for a task
+  tagline_en: Create a command line for a task
+  tagline_zh: 把操作目标转换为适合当前系统和 shell 的可执行命令说明
+  depends_on:
+  - branding-consistency
+  skill_path: skills/help-cmd
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 把操作目标转换为适合当前系统和 shell 的可执行命令说明
+    value_en: Create a command line for a task
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/help-cmd.md
+- name: i18n-check-i18n
+  runtime_name: lov-i18n-check-i18n
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 前端国际化
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Review and fix frontend internationalization
+  tagline_en: Review and fix frontend internationalization
+  tagline_zh: 检查并修复用户可见文案硬编码、缺失翻译键及语言配置
+  depends_on:
+  - branding-consistency
+  skill_path: skills/i18n-check-i18n
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 检查并修复用户可见文案硬编码、缺失翻译键及语言配置
+    value_en: Review and fix frontend internationalization
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/i18n-check-i18n.md
+- name: illustrate
+  runtime_name: lov-illustrate
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 文档配图
+  paid: false
+  category: Dev Tools
+  version: 2.6.1
+  description: Illustrate a document with evidence and relevant images
+  tagline_en: Illustrate a document with evidence and relevant images
+  tagline_zh: 依据文档内容选择真实素材、图表或生成图并校验插入位置
+  depends_on:
+  - branding-consistency
+  skill_path: skills/illustrate
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 依据文档内容选择真实素材、图表或生成图并校验插入位置
+    value_en: Illustrate a document with evidence and relevant images
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/illustrate.md
+- name: init-auth
+  runtime_name: lov-init-auth
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: Supabase 身份认证
+  paid: false
+  category: Dev Tools
+  version: 1.2.1
+  description: Add Supabase authentication to a React application
+  tagline_en: Add Supabase authentication to a React application
+  tagline_zh: 为 React 应用接入 Supabase 登录、账户恢复及桌面浏览器 OAuth
+  depends_on:
+  - branding-consistency
+  skill_path: skills/init-auth
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 为 React 应用接入 Supabase 登录、账户恢复及桌面浏览器 OAuth
+    value_en: Add Supabase authentication to a React application
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/init-auth.md
+- name: init-port
+  runtime_name: lov-init-port
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 项目端口配置
+  paid: false
+  category: Dev Tools
+  version: 1.1.1
+  description: Configure a stable development port
+  tagline_en: Configure a stable development port
+  tagline_zh: 为项目选择稳定开发端口并更新实际框架启动配置
+  depends_on:
+  - branding-consistency
+  skill_path: skills/init-port
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 为项目选择稳定开发端口并更新实际框架启动配置
+    value_en: Configure a stable development port
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/init-port.md
+- name: install-design
+  runtime_name: lov-install-design
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 设计系统接入
+  paid: false
+  category: Dev Tools
+  version: 1.2.2
+  description: Install a project design system
+  tagline_en: Install a project design system
+  tagline_zh: 将项目品牌设计规范映射到已有前端样式与组件系统
+  depends_on:
+  - branding-consistency
+  skill_path: skills/install-design
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将项目品牌设计规范映射到已有前端样式与组件系统
+    value_en: Install a project design system
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/install-design.md
+- name: install-shadcn-ui
+  runtime_name: lov-install-shadcn-ui
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: shadcn/ui 接入
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Install and configure shadcn/ui for a project
+  tagline_en: Install and configure shadcn/ui for a project
+  tagline_zh: 安装并按项目品牌配置 shadcn/ui，保留现有主题和组件修改
+  depends_on:
+  - branding-consistency
+  skill_path: skills/install-shadcn-ui
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 安装并按项目品牌配置 shadcn/ui，保留现有主题和组件修改
+    value_en: Install and configure shadcn/ui for a project
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/install-shadcn-ui.md
+- name: install-tauri-logo
+  runtime_name: lov-install-tauri-logo
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: Tauri 图标接入
+  paid: false
+  category: Dev Tools
+  version: 4.1.1
+  description: Install a logo in a Tauri application
+  tagline_en: Install a logo in a Tauri application
+  tagline_zh: 把已确认 Logo 接入 Tauri 包图标和托盘并核验生成资源
+  depends_on:
+  - branding-consistency
+  skill_path: skills/install-tauri-logo
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 把已确认 Logo 接入 Tauri 包图标和托盘并核验生成资源
+    value_en: Install a logo in a Tauri application
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/install-tauri-logo.md
+- name: install-web-logo
+  runtime_name: lov-install-web-logo
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 网页图标接入
+  paid: false
+  category: Dev Tools
+  version: 1.2.1
+  description: Install a web logo and favicon set
+  tagline_en: Install a web logo and favicon set
+  tagline_zh: 将正式 Logo 接入 favicon、PWA manifest、网页头部和相关组件
+  depends_on:
+  - branding-consistency
+  skill_path: skills/install-web-logo
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将正式 Logo 接入 favicon、PWA manifest、网页头部和相关组件
+    value_en: Install a web logo and favicon set
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/install-web-logo.md
+- name: install-zenmux-api
+  runtime_name: lov-install-zenmux-api
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: ZenMux API 接入
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Integrate the ZenMux API through a secure backend
+  tagline_en: Integrate the ZenMux API through a secure backend
+  tagline_zh: 为应用接入 ZenMux 服务端代理，隔离密钥并验证请求链路
+  depends_on:
+  - branding-consistency
+  skill_path: skills/install-zenmux-api
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 为应用接入 ZenMux 服务端代理，隔离密钥并验证请求链路
+    value_en: Integrate the ZenMux API through a secure backend
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/install-zenmux-api.md
+- name: kb-organize
+  runtime_name: lov-kb-organize
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 知识库整理
+  paid: false
+  category: General
+  version: 0.1.1
+  description: Organize a knowledge base and its references
+  tagline_en: Organize a knowledge base and its references
+  tagline_zh: 检查并整理知识库索引、重复文档、图片位置和内部引用
+  depends_on:
+  - branding-consistency
+  skill_path: skills/kb-organize
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 检查并整理知识库索引、重复文档、图片位置和内部引用
+    value_en: Organize a knowledge base and its references
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/kb-organize.md
+- name: kill-emoji
+  runtime_name: lov-kill-emoji
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 界面符号整理
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Replace interface emoji with appropriate icons
+  tagline_en: Replace interface emoji with appropriate icons
+  tagline_zh: 将界面中不合适的 emoji 替换为语义一致的图标或简洁文案
+  depends_on:
+  - branding-consistency
+  skill_path: skills/kill-emoji
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将界面中不合适的 emoji 替换为语义一致的图标或简洁文案
+    value_en: Replace interface emoji with appropriate icons
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/kill-emoji.md
+- name: legal-pages
+  runtime_name: lov-legal-pages
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 网站法律页面草稿
+  paid: false
+  category: Dev Tools
+  version: 1.1.1
+  description: Draft website privacy and terms pages
+  tagline_en: Draft website privacy and terms pages
+  tagline_zh: 根据真实业务与数据处理事实生成隐私政策和服务条款页面草稿
+  depends_on:
+  - branding-consistency
+  skill_path: skills/legal-pages
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 根据真实业务与数据处理事实生成隐私政策和服务条款页面草稿
+    value_en: Draft website privacy and terms pages
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/legal-pages.md
+- name: memory-add
+  runtime_name: lov-memory-add
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 知识记录
+  paid: false
+  category: General
+  version: 1.0.1
+  description: Save a knowledge note with categories and tags
+  tagline_en: Save a knowledge note with categories and tags
+  tagline_zh: 将用户指定信息保存为带分类、标签和来源的知识文档及索引
+  depends_on:
+  - branding-consistency
+  skill_path: skills/memory-add
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将用户指定信息保存为带分类、标签和来源的知识文档及索引
+    value_en: Save a knowledge note with categories and tags
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/memory-add.md
+- name: memory-search
+  runtime_name: lov-memory-search
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 知识检索
+  paid: false
+  category: General
+  version: 1.0.1
+  description: Search a personal knowledge base
+  tagline_en: Search a personal knowledge base
+  tagline_zh: 跨已配置的 memory 与 distill 知识记录检索并返回可追溯结果
+  depends_on:
+  - branding-consistency
+  skill_path: skills/memory-search
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 跨已配置的 memory 与 distill 知识记录检索并返回可追溯结果
+    value_en: Search a personal knowledge base
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/memory-search.md
+- name: meta-command
+  runtime_name: lov-meta-command
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 命令能力封装
+  paid: false
+  category: Dev Tools
+  version: 4.2.1
+  description: Turn a repeated command workflow into a portable skill
+  tagline_en: Turn a repeated command workflow into a portable skill
+  tagline_zh: 把重复操作封装成通用 Skill，并按需提供宿主 slash command 适配入口
+  depends_on:
+  - branding-consistency
+  skill_path: skills/meta-command
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 把重复操作封装成通用 Skill，并按需提供宿主 slash command 适配入口
+    value_en: Turn a repeated command workflow into a portable skill
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/meta-command.md
+- name: nano-banana-pro
+  runtime_name: lov-nano-banana-pro
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 图像提示词整理
+  paid: false
+  category: General
+  version: 0.1.1
+  description: Create a structured image prompt
+  tagline_en: Create a structured image prompt
+  tagline_zh: 将图像需求整理为结构清晰、遵循参考素材的生成或编辑提示词
+  depends_on:
+  - branding-consistency
+  skill_path: skills/nano-banana-pro
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将图像需求整理为结构清晰、遵循参考素材的生成或编辑提示词
+    value_en: Create a structured image prompt
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/nano-banana-pro.md
+- name: obsidian-ensure-dev-sync
+  runtime_name: lov-obsidian-ensure-dev-sync
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: Obsidian 开发同步
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Fix an Obsidian plugin development sync chain
+  tagline_en: Fix an Obsidian plugin development sync chain
+  tagline_zh: 诊断并修复插件构建、Vault 同步及热重载链路
+  depends_on:
+  - branding-consistency
+  skill_path: skills/obsidian-ensure-dev-sync
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 诊断并修复插件构建、Vault 同步及热重载链路
+    value_en: Fix an Obsidian plugin development sync chain
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/obsidian-ensure-dev-sync.md
+- name: output-wechat-moment
+  runtime_name: lov-output-wechat-moment
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 朋友圈文案输出
+  paid: false
+  category: General
+  version: 1.1.1
+  description: Format and save a WeChat Moments post
+  tagline_en: Format and save a WeChat Moments post
+  tagline_zh: 把已有内容整理成适合朋友圈阅读的纯文本并保存文件
+  depends_on:
+  - branding-consistency
+  skill_path: skills/output-wechat-moment
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 把已有内容整理成适合朋友圈阅读的纯文本并保存文件
+    value_en: Format and save a WeChat Moments post
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/output-wechat-moment.md
+- name: output
+  runtime_name: lov-output
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 内容保存文件
+  paid: false
+  category: General
+  version: 0.1.1
+  description: Save the current content to a file
+  tagline_en: Save the current content to a file
+  tagline_zh: 将已确认内容按指定文件名与文本格式保存并回读校验
+  depends_on:
+  - branding-consistency
+  skill_path: skills/output
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将已确认内容按指定文件名与文本格式保存并回读校验
+    value_en: Save the current content to a file
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/output.md
+- name: refactor-api
+  runtime_name: lov-refactor-api
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: API 冗余整理
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Refactor redundant backend APIs
+  tagline_en: Refactor redundant backend APIs
+  tagline_zh: 识别后端接口重复并在保持调用契约的前提下实施重构
+  depends_on:
+  - branding-consistency
+  skill_path: skills/refactor-api
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 识别后端接口重复并在保持调用契约的前提下实施重构
+    value_en: Refactor redundant backend APIs
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/refactor-api.md
+- name: refactor-modular
+  runtime_name: lov-refactor-modular
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 代码模块拆分
+  paid: false
+  category: Dev Tools
+  version: 1.2.1
+  description: Refactor a large file into cohesive modules
+  tagline_en: Refactor a large file into cohesive modules
+  tagline_zh: 按职责拆分长文件并保持公共接口、依赖和行为一致
+  depends_on:
+  - branding-consistency
+  skill_path: skills/refactor-modular
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 按职责拆分长文件并保持公共接口、依赖和行为一致
+    value_en: Refactor a large file into cohesive modules
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/refactor-modular.md
+- name: rename-project
+  runtime_name: lov-rename-project
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 项目重命名
+  paid: false
+  category: Dev Tools
+  version: 2.3.1
+  description: Rename a project and preserve compatibility
+  tagline_en: Rename a project and preserve compatibility
+  tagline_zh: 在保留兼容键与运行连续性的前提下重命名项目、路径和仓库
+  depends_on:
+  - branding-consistency
+  skill_path: skills/rename-project
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 在保留兼容键与运行连续性的前提下重命名项目、路径和仓库
+    value_en: Rename a project and preserve compatibility
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/rename-project.md
+- name: repo-takeover
+  runtime_name: lov-repo-takeover
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 仓库接管
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: Publish a cloned repository under your account
+  tagline_en: Publish a cloned repository under your account
+  tagline_zh: 将已有 clone 连接到用户自己的 GitHub 仓库并保留来源与历史
+  depends_on:
+  - branding-consistency
+  skill_path: skills/repo-takeover
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 将已有 clone 连接到用户自己的 GitHub 仓库并保留来源与历史
+    value_en: Publish a cloned repository under your account
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/repo-takeover.md
+- name: version-management-manual
+  runtime_name: lov-version-management-manual
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: Changeset 人工审阅
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Create a changeset for manual review
+  tagline_en: Create a changeset for manual review
+  tagline_zh: 生成 changeset 草稿并提供编辑入口，审阅后验证版本计划
+  depends_on:
+  - branding-consistency
+  skill_path: skills/version-management-manual
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 生成 changeset 草稿并提供编辑入口，审阅后验证版本计划
+    value_en: Create a changeset for manual review
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/version-management-manual.md
+- name: version-management
+  runtime_name: lov-version-management
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: Changesets 版本管理
+  paid: false
+  category: Dev Tools
+  version: 2.0.1
+  description: Manage package versions with Changesets
+  tagline_en: Manage package versions with Changesets
+  tagline_zh: 根据实际包变更生成 changeset，并按请求更新版本与 CHANGELOG
+  depends_on:
+  - branding-consistency
+  skill_path: skills/version-management
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 根据实际包变更生成 changeset，并按请求更新版本与 CHANGELOG
+    value_en: Manage package versions with Changesets
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/version-management.md
+- name: xbti-gallery
+  runtime_name: lov-xbti-gallery
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/xbti-gallery-skill
+  name_zh: XBTI 案例浏览
+  paid: false
+  category: Dev Tools
+  version: 1.0.3
+  description: Browse a gallery of XBTI personality tests
+  tagline_en: Browse a gallery of XBTI personality tests
+  tagline_zh: 从已核实的社区地址或仓库列出可访问的 XBTI 人格测试案例
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 从已核实的社区地址或仓库列出可访问的 XBTI 人格测试案例
+    value_en: Browse a gallery of XBTI personality tests
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/xbti-gallery.md
+- name: five
+  runtime_name: lov-five
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 五字简答
+  paid: false
+  category: General
+  version: 0.1.0
+  description: Use a five-unit concise reply mode
+  tagline_en: Use a five-unit concise reply mode
+  tagline_zh: 在明确要求时使用五单位以内的简短回复，并支持随时恢复正常
+  depends_on:
+  - branding-consistency
+  skill_path: skills/five
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 在明确要求时使用五单位以内的简短回复，并支持随时恢复正常
+    value_en: Use a five-unit concise reply mode
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/five.md
+- name: add-task
+  runtime_name: lov-add-task
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 任务清单追加
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: Add an item to the current task list
+  tagline_en: Add an item to the current task list
+  tagline_zh: 在当前任务清单中按优先级和位置追加事项并保留已有状态
+  depends_on:
+  - branding-consistency
+  skill_path: skills/add-task
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 在当前任务清单中按优先级和位置追加事项并保留已有状态
+    value_en: Add an item to the current task list
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/add-task.md
+- name: think
+  runtime_name: lov-think
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 复杂问题分析
+  paid: false
+  category: General
+  version: 0.1.0
+  description: Analyze a complex decision and its tradeoffs
+  tagline_en: Analyze a complex decision and its tradeoffs
+  tagline_zh: 围绕复杂问题比较方案、验证假设并给出有依据的决策建议
+  depends_on:
+  - branding-consistency
+  skill_path: skills/think
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 围绕复杂问题比较方案、验证假设并给出有依据的决策建议
+    value_en: Analyze a complex decision and its tradeoffs
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/think.md
+- name: code-review
+  runtime_name: lov-code-review
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 代码审查
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: Review a code change for actionable defects
+  tagline_en: Review a code change for actionable defects
+  tagline_zh: 审查实际差异中的正确性、安全和维护风险并给出可定位意见
+  depends_on:
+  - branding-consistency
+  skill_path: skills/code-review
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 审查实际差异中的正确性、安全和维护风险并给出可定位意见
+    value_en: Review a code change for actionable defects
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/code-review.md
+- name: architecture-documentation
+  runtime_name: lov-architecture-documentation
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: 架构文档
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: Create architecture documentation from a codebase
+  tagline_en: Create architecture documentation from a codebase
+  tagline_zh: 从项目实际实现生成架构视图、接口说明与决策记录草稿
+  depends_on:
+  - branding-consistency
+  skill_path: skills/architecture-documentation
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 从项目实际实现生成架构视图、接口说明与决策记录草稿
+    value_en: Create architecture documentation from a codebase
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/architecture-documentation.md
+- name: agent-instructions
+  runtime_name: lov-agent-instructions
+  updated_at: 2026-09-07T09:40:45Z
+  repo: lovstudio/skills
+  name_zh: Agent 项目规范
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: Review or improve project agent instructions
+  tagline_en: Review or improve project agent instructions
+  tagline_zh: 诊断或完善项目 Agent 指令文件，适配不同宿主并保留真实工程约定
+  depends_on:
+  - branding-consistency
+  skill_path: skills/agent-instructions
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、工作流与配置合同
+    delivery_unit_en: Public Skill source, workflow and configuration contract
+    value_zh: 诊断或完善项目 Agent 指令文件，适配不同宿主并保留真实工程约定
+    value_en: Review or improve project agent instructions
+    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
+    basis_en: Free entry based on migration and installation evidence; business outcomes need per-run verification.
+    boundary_zh: 不含第三方账号、服务用量或人工代运营。
+    boundary_en: Excludes third-party accounts, usage charges and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用、接口变化或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
+    card_path: pricing-cards/agent-instructions.md

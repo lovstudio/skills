@@ -5,7 +5,7 @@ class FinderSync: FIFinderSync {
 
     override init() {
         super.init()
-        FIFinderSyncController.default().directoryURLs = [URL(fileURLWithPath: "/")]
+        FIFinderSyncController.default().directoryURLs = [URL(fileURLWithPath: "MONITORED_DIRECTORY")]
     }
 
     override func menu(for menuKind: FIMenuKind) -> NSMenu? {
@@ -23,6 +23,7 @@ class FinderSync: FIFinderSync {
             keyEquivalent: ""
         )
         item.image = NSImage(systemSymbolName: "SF_SYMBOL_NAME", accessibilityDescription: nil)
+        item.target = self
         menu.addItem(item)
         return menu
     }

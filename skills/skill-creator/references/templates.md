@@ -12,13 +12,15 @@ description: >
   Use 50-200 characters to explain the outcome, supported inputs, and concrete
   Chinese and English trigger phrases.
 license: MIT
+compatibility: "Portable Agent Skills format. List runtime requirements."
+depends_on:
+  - lov-branding-consistency # required for audience-visible text output
 metadata:
   author: skill-publisher
   version: "0.1.0"
+  content_class: authored-prose # or microcopy, verbatim, deterministic-output
   tags:
     - <tag>
-  compatibility: "Portable Agent Skills format. List runtime requirements."
-  dependencies: []
 ---
 ```
 
@@ -33,6 +35,19 @@ Every generated Skill includes the Profile contract:
 python3 scripts/init_skill.py <name> --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
 
+Choose the normal output class explicitly:
+
+```bash
+python3 scripts/init_skill.py <name> \
+  --content-class authored-prose \
+  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+```
+
+`authored-prose` generates `references/authorship-integrity.md` and, like
+`microcopy`, automatically adds `lov-branding-consistency`. `verbatim` protects
+source fidelity. Pure retrieval, storage, deployment, diagnostics, structured
+output, or binary transformation uses `deterministic-output`.
+
 Self-contained Skill Kit:
 
 ```bash
@@ -42,6 +57,10 @@ python3 scripts/init_skill.py <name> \
   --module <module-b> \
   --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
+
+Modules inherit the controller's class unless overridden with
+`--module-content-class <module>=<class>`. Use the override for mixed pipelines,
+such as deterministic research followed by authored drafting.
 
 The generated source always includes `skill.yaml`,
 `references/user-profile.md`, and `scripts/profile_store.py`. The old

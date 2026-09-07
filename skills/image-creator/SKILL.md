@@ -1,153 +1,77 @@
 ---
 name: lov-image-creator
-category: Image & Design
-tagline: "Multi-mechanism image generation: end-to-end AI, code rendering, or prompt engineering"
-description: >
-  Generate images via multiple mechanisms. Supports:
-  (1) End-to-end AI generation via Gemini/ZenMux — given a prompt, directly output an image.
-  (2) Code-based rendering — generate HTML/React single-file, render to PNG via Playwright.
-  (3) Prompt engineering — generate optimized prompts for external models (nano-banana-pro, etc.).
-  Trigger words: image, generate image, 生图, render, poster, 海报, banner, card, 卡片
 license: MIT
-compatibility: >
-  Requires Python 3.8+. End-to-end image generation requires ZENMUX_API_KEY
-  plus google-genai and Pillow, which gen_image.py can install into the user
-  Python environment. Code rendering requires Playwright Python.
+compatibility: 'Requires Python 3.8+. End-to-end image generation requires ZENMUX_API_KEY
+  plus google-genai and Pillow, which gen_image.py can install into the user Python
+  environment. Code rendering requires Playwright Python.
+
+  '
+description: 按用途生成图像、制作可编辑图文布局或整理图像提示词。支持明确输入与结果回读。Use to create an image, designed
+  graphic, or image prompt.
+depends_on:
+- lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.0"
-  tags: image-generation design rendering prompt-engineering
+  version: 0.3.1
+  tags:
+  - image-generation
+  - design
+  - rendering
+  - prompt-engineering
+  content_class: microcopy
+  card_standard: lovstudio/skill-card/v1
 ---
 
-# Image Creator — Multi-Mechanism Framework
+# 图像创作
 
-## Mechanism Selection
+按用途生成图像、制作可编辑图文布局或整理图像提示词。
 
-Choose the mechanism based on user intent:
+## Triggers
 
-| Mechanism | When to Use | Output |
-|-----------|------------|--------|
-| **end-to-end** | User wants AI-generated artwork, photos, illustrations | PNG image |
-| **code** | User wants designed layouts (posters, cards, banners) with editable content | HTML file + PNG |
-| **prompt** | User wants a prompt for external model (Midjourney, nano-banana-pro, etc.) | Text prompt |
+### Activate when
 
-If the user doesn't specify, infer from context:
-- "生成一张猫的图片" → end-to-end
-- "做一张活动海报" → code
-- "帮我写一个 Midjourney prompt" → prompt
+- “按用途生成图像、制作可编辑图文布局或整理图像提示词。”
+- “Create an image, designed graphic, or image prompt.”
 
-## Mechanism 1: End-to-End (Gemini)
+### Do not activate when
 
-```bash
-python3 gen_image.py "PROMPT" [-o output.png] [-q low|medium|high] [--ascii]
-```
+- 只是查询本 Skill 的说明，或请求与上述结果无关的任务；不执行实际业务操作。
+- 用户仅要预览或审查时，不进入修改、提交或发布分支。
 
-- Generates image directly via Gemini 3 Pro (through ZenMux)
-- Requires `ZENMUX_API_KEY` environment variable
-- First run auto-installs `google-genai` and `Pillow` via `pip --user` (no manual setup)
-- Display result with `Read` tool after generation
+## Execution boundary
 
-## Mechanism 2: Code-Based Rendering
+自然语言请求即可触发；无需旧 slash 路径、参数插值或指定助手。明确解析当前请求中的
+项目、目标文件、选项与输出位置；用当前宿主实际提供的文件、搜索、CLI 和浏览器能力。
+项目依赖版本与外部 API 在执行时核实，不能假设示例是现行配置。随包脚本从 Skill 根解析，
+业务文件从目标项目根解析。先读当前状态，保护已有未提交内容与其他任务的暂存区。
+分析、预览请求保持只读；修改、提交、推送、部署和发布各依当前请求的明确范围执行。
+不绕过保护、自动发送消息、强制结束用户进程或抢前台。失败保留可诊断原始错误。
 
-### Step 1: Generate HTML
+## Workflow
 
-Write a single self-contained HTML file that includes all styles inline. Use:
-- **React 19** via CDN (`https://cdn.jsdelivr.net/npm/react@19/umd/react.production.min.js`)
-- **ReactDOM 19** via CDN
-- **Tailwind CSS** via CDN (`https://cdn.tailwindcss.com`)
-- **Google Fonts** via `<link>` for CJK: `Noto Sans SC`, `Noto Serif SC`
+1. 先区分生成图、编辑已有图、含排版的设计稿与仅提示词。根据用户意图选机制，保持参考图、文字、品牌资产与用途边界。
 
-Template structure:
+2. 优先使用当前宿主提供的图像生成/编辑工具，按其输入协议传递参考图。用户只要提示词时只输出提示词，不能声称已有图像。
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/react@19/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@19/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: { extend: { /* custom theme */ } }
-    }
-  </script>
-  <style>
-    /* Reset & base styles */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { width: {{WIDTH}}px; height: {{HEIGHT}}px; overflow: hidden; }
-  </style>
-</head>
-<body>
-  <div id="root"></div>
-  <script type="text/babel" data-type="module">
-    // React component here
-    function Poster() {
-      return (/* JSX */);
-    }
-    ReactDOM.createRoot(document.getElementById('root')).render(<Poster />);
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
-</body>
-</html>
-```
+3. 外部 API 仅在该渠道被授权且凭据已配置时使用，先核实当前生产模型与官方端点，不固定过时模型、不自行安装全局 Python 包或扫描其他项目密钥。
 
-**IMPORTANT**: Babel standalone script MUST come AFTER the text/babel script block.
+4. 海报、卡片等需可编辑文字时可用 HTML/SVG 与已安装的排版工具；根据实际字体检查中文覆盖，使用可靠静态布局，不引用不存在的 React UMD 版本。
 
-### Step 2: Render to PNG
+5. 生成或编辑完成后查看最终文件，核对构图、文字、参考一致性、尺寸和透明度；不要用纯图像生成伪造真实 Logo、来源照片或事件证据。
 
-```bash
-python3 scripts/render_to_png.py \
-  /path/to/poster.html \
-  -o output.png \
-  -W 1200 -H 630 \
-  --scale 2
-```
+6. 保存到用户指定位置或项目 output，回读实际文件并展示结果。不自动打开前台应用、上传或发布；原旧 API 脚本不再作为默认执行入口。
 
-Common aspect ratios:
-| Ratio | Dimensions | Use Case |
-|-------|-----------|----------|
-| 16:9 | 1200×675 | Social media banner |
-| 4:3 | 1200×900 | Presentation |
-| 1:1 | 1080×1080 | Instagram post |
-| 9:16 | 1080×1920 | Story / mobile poster |
-| 3:4 | 900×1200 | Portrait poster |
-| A4 | 794×1123 | Print poster (210mm×297mm @96dpi) |
+## Composition
 
-### Step 3: Display & Iterate
-
-- Use `Read` to display the PNG
-- Open with `open output.png` on macOS
-- User can request edits → modify the HTML → re-render
-
-## Mechanism 3: Prompt Engineering
-
-Generate optimized prompts for external models. Include:
-- **Positive prompt**: subject, style, lighting, quality tags
-- **Negative prompt**: common defects to avoid
-
-Format output as copyable code block.
-
-## Reference Image Support
-
-When user provides a reference image:
-- **End-to-end**: describe the style/composition in the prompt
-- **Code**: analyze the layout, colors, typography → replicate in HTML/CSS
-- **Prompt**: extract style keywords for the external model
-
-## Aspect Ratio
-
-Always ask or infer the desired aspect ratio. Map to pixel dimensions using the table above.
+执行前读取 [能力组合](references/skill-composition.md)，按明确制品交接相邻能力。
 
 ## Runtime context (shared)
 
-运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
-
-- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
-- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
-- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
+运行前读取本包 `skill.yaml` 与 [Profile 合同](references/user-profile.md)。优先级为当前请求、
+项目上下文、本 Skill records、共享 preferences、brand/user Profile、安全默认值。
+只读取声明字段；没有专用运行时的宿主可使用 `scripts/profile_store.py` 读取共享 Profile。
+配置缺失只问影响结果的一个问题。用户明确要求长期保存的值通过该脚本原子写入，
+报告实际路径；不保存推断、凭据或其他任务的资料。
 
 ## 通用反馈闭环
 

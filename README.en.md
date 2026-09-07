@@ -41,28 +41,38 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **101 skills** — 86 Free + 15 Paid.
+> **155 skills** — 140 Free + 15 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
 | | Skill | Description |
 |---|---|---|
 | **General** | | |
+| ![Free](https://img.shields.io/badge/Free-green) | [`brainstorm`](https://github.com/lovstudio/skills) | Help clarify requirements through brainstorming — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`china-website-filing`](https://github.com/lovstudio/china-website-filing-skill) | Move a mainland China website from filing readiness through ICP, domain launch, public security filing, and verified compliance follow-up. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`clean-mac`](https://github.com/lovstudio/macos-disk-optimizer-skill) | Clean up Mac storage without touching protected app workspaces, with guarded migration, rollback, and real-capacity verification. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`create-qrcode`](https://github.com/lovstudio/create-qrcode-skill) | Generate a scan-ready QR code using saved preferences; output only the code by default and add poster framing only when requested. — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`daily-post`](https://github.com/lovstudio/skills) | Write a daily project update from real changes — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`describe-image`](https://github.com/lovstudio/describe-image-skill) | Give text-only models sight — describe any image via a free vision model. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`fact-check`](https://github.com/lovstudio/fact-check-skill) | Verify claims like a careful researcher, with primary sources, counterexamples, confidence, and next steps. — related: `image-translation-errata` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`five`](https://github.com/lovstudio/skills) | Use a five-unit concise reply mode — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`hanzi-lens`](https://github.com/lovstudio/hanzi-lens-skill) | See one Chinese character through evidence — readings, form, history, classical context, meaning, and a professional visual. — requires: `professional-infographic` |
-| ![Free](https://img.shields.io/badge/Free-green) | [`image-creator`](https://github.com/lovstudio/image-creator-skill) | Generate images through the right mechanism — AI, code rendering, or prompt tuning. — related: `professional-infographic`, `professional-portrait`, `riso-portrait`, `image-translation-errata` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`image-creator`](https://github.com/lovstudio/image-creator-skill) | Create an image, designed graphic, or image prompt — requires: `branding-consistency`; related: `professional-infographic`, `professional-portrait`, `riso-portrait`, `image-translation-errata` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`image-translation-errata`](https://github.com/lovstudio/image-translation-errata-skill) | Expose bad machine translation, show the correction, and preserve the original image. — related: `translation-review`, `image-creator`, `fact-check` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`kb-organize`](https://github.com/lovstudio/skills) | Organize a knowledge base and its references — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-crawler`](https://github.com/lovstudio/media-crawler-skill) | Turn an authorized social-media link into a verified local media file with resumable downloads and diagnostics. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-fetch`](https://github.com/lovstudio/media-fetch-skill) | Find the right edition, resume through the faster transport, and verify the local media and subtitle status. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`memory-add`](https://github.com/lovstudio/skills) | Save a knowledge note with categories and tags — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`memory-search`](https://github.com/lovstudio/skills) | Search a personal knowledge base — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`nano-banana-pro`](https://github.com/lovstudio/skills) | Create a structured image prompt — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`output`](https://github.com/lovstudio/skills) | Save the current content to a file — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`output-wechat-moment`](https://github.com/lovstudio/skills) | Format and save a WeChat Moments post — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`personal-vocabulary`](https://github.com/lovstudio/personal-vocabulary-skill) | One personal vocabulary reused across speech-input apps. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`praise-before-work`](https://github.com/lovstudio/praise-before-work-skill) | Start each task with specific encouragement, then get to work. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`search-file`](https://github.com/lovstudio/search-file-skill) | Recover files from past AI chats with conversation evidence, existence checks, and durable-copy ranking. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`search-twitter`](https://github.com/lovstudio/search-twitter-skill) | Recover verbatim X/Twitter posts, screenshot evidence, and the gaps that still cannot be proven. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`subtitle-freedom`](https://github.com/lovstudio/subtitle-freedom-skill) | Make learner subtitles that keep the selected level and harder expressions, with spoiler-safe ASS cards and optional no-burn watermark sidecars. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`think`](https://github.com/lovstudio/skills) | Analyze a complex decision and its tradeoffs — requires: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`typeless-prompt`](https://github.com/lovstudio/typeless-prompt-skill) | Turn rough dictation into concise, structured, send-ready text without answering or executing it. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wdb-cli`](https://github.com/lovstudio/wdb-cli-skill) | Auto-discover WDB Pro managed keys and run precise local WeChat searches across chats, contacts, Moments, schemas, and exact records. |
 | **Business** | | |
@@ -115,37 +125,81 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`writing-style`](https://github.com/lovstudio/writing-style-skill) | Write from verified facts in a calibrated personal voice, then pass authorship, discourse, surface, audience, and brand gates. — requires: `branding-consistency`, `human-writing` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`wxmp-cracker`](https://github.com/lovstudio/wxmp-cracker-skill) | Archive WeChat Official Account articles into clean, reusable text. |
 | **Dev Tools** | | |
+| ![Free](https://img.shields.io/badge/Free-green) | [`add-task`](https://github.com/lovstudio/skills) | Add an item to the current task list — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`agent-instructions`](https://github.com/lovstudio/skills) | Review or improve project agent instructions — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`app-generator`](https://github.com/lovstudio/app-generator-skill) | Generate Lovstudio-grade web, PWA, or Tauri apps with brand, UI, data, deploy/release, and developer tooling wired in. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`architecture-documentation`](https://github.com/lovstudio/skills) | Create architecture documentation from a codebase — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`ataru-indexing`](https://github.com/lovstudio/ataru-indexing-skill) | Make sure your local AI session memory is actually searchable before you search it. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`auto-context`](https://github.com/lovstudio/auto-context-skill) | Watch your Claude Code context for pollution and suggest when to fork or reset. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`better-css`](https://github.com/lovstudio/skills) | Refactor CSS and Tailwind styles — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`better-github-desc`](https://github.com/lovstudio/skills) | Update a GitHub repository description from its README — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`better-project-structure`](https://github.com/lovstudio/skills) | Improve a project directory structure — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`better-readme`](https://github.com/lovstudio/skills) | Create or improve a project README — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`better-seo`](https://github.com/lovstudio/skills) | Review and improve Next.js SEO — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`better-statusline`](https://github.com/lovstudio/skills) | Update an agent status line with rollback — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`cc-migrate-session`](https://github.com/lovstudio/cc-migrate-session) | Keep your Claude Code session history working after you move a project folder. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`checkpoint`](https://github.com/lovstudio/skills) | Create a project checkpoint — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`checkpoint-list`](https://github.com/lovstudio/skills) | List a project checkpoint history — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`clash-tun-doctor`](https://github.com/lovstudio/clash-tun-doctor-skill) | Diagnose Clash TUN failures from runtime evidence, apply reversible fixes, and verify the real application path. — related: `env-management` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`cli2anything`](https://github.com/lovstudio/cli2anything-skill) | Turn authorized observed APIs into verified contracts, SDKs, Swagger, and task-focused CLIs. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`clone-rebrand`](https://github.com/lovstudio/skills) | Create a project from a template and rebrand it — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`code-review`](https://github.com/lovstudio/skills) | Review a code change for actionable defects — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`deploy-to-vercel`](https://github.com/lovstudio/deploy-to-vercel-skill) | Ship a frontend to Vercel with custom domain and Cloudflare DNS wired up automatically. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`dev-research`](https://github.com/lovstudio/skills) | Research a development plan and technology choices — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`distill`](https://github.com/lovstudio/skills) | Distill a solved problem into reusable knowledge — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`distill-to-system`](https://github.com/lovstudio/skills) | Persist a reusable lesson in agent instructions — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`dsh-plugin-creator`](https://github.com/lovstudio/dsh-plugin-creator-skill) | Author a DSH plugin end-to-end — pick the extension point, scaffold, implement, and pass the repo gates. — related: `dsh-plugin-publisher` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`dsh-plugin-publisher`](https://github.com/lovstudio/dsh-plugin-publisher-skill) | Publish a validated DSH plugin across npm, git, and tarball channels with per-channel load evidence. — related: `dsh-plugin-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`electron-app-relaunch`](https://github.com/lovstudio/electron-app-relaunch-skill) | Add a real Electron relaunch while keeping renderer reload and update handoff separate. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`electron-delta-updater`](https://github.com/lovstudio/electron-delta-updater-skill) | Build verified Electron delta updates with Sparkle, appcasts, signing, and installation proof. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`env-management`](https://github.com/lovstudio/env-management-skill) | Track every account and rotating Key, select one binding per environment target, and keep secrets off the Dashboard. — related: `install-ai`, `clash-tun-doctor` |
-| ![Free](https://img.shields.io/badge/Free-green) | [`finder-action`](https://github.com/lovstudio/finder-action-skill) | Add a custom right-click action to macOS Finder in minutes. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`finder-action`](https://github.com/lovstudio/finder-action-skill) | Create a Finder context menu action — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`fix-broken-links`](https://github.com/lovstudio/skills) | Find and fix broken links in a project — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`fix-by-add-log`](https://github.com/lovstudio/skills) | Debug a problem with targeted logging — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`fix-general`](https://github.com/lovstudio/skills) | Diagnose and fix a software error — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`fix-until-no-error`](https://github.com/lovstudio/skills) | Fix errors until the specified checks pass — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`gen-logo`](https://github.com/lovstudio/skills) | Create a logo and application icon — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`gen-project-name`](https://github.com/lovstudio/skills) | Generate a project name from its purpose — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`gh-access`](https://github.com/lovstudio/gh-access-skill) | Grant, revoke, or audit collaborator access on private GitHub repos in one command. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`gh-contribute`](https://github.com/lovstudio/gh-contribute-skill) | Ship a clean PR to any upstream GitHub repo — fork, branch, push, and open PR for you. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`gh-tidy`](https://github.com/lovstudio/gh-tidy-skill) | Triage and clean up GitHub issues, PRs, branches, and labels in a single pass. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`git-commit-with-context`](https://github.com/lovstudio/skills) | Create a Git commit for the current task changes — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`help-cmd`](https://github.com/lovstudio/skills) | Create a command line for a task — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`i18n-check-i18n`](https://github.com/lovstudio/skills) | Review and fix frontend internationalization — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`illustrate`](https://github.com/lovstudio/skills) | Illustrate a document with evidence and relevant images — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`init-auth`](https://github.com/lovstudio/skills) | Add Supabase authentication to a React application — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`init-port`](https://github.com/lovstudio/skills) | Configure a stable development port — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`install-ai`](https://github.com/lovstudio/install-ai-skill) | Add an App AI feature with Agent Client, MaaS routing, model intent, and optional UI. — related: `env-management` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`install-design`](https://github.com/lovstudio/skills) | Install a project design system — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`install-shadcn-ui`](https://github.com/lovstudio/skills) | Install and configure shadcn/ui for a project — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`install-tanstack-query`](https://github.com/lovstudio/install-tanstack-query-skill) | Initialize TanStack Query and migrate request state into shared query keys and hooks. |
-| ![Free](https://img.shields.io/badge/Free-green) | [`integrate-lovinsp`](https://github.com/lovstudio/integrate-lovinsp-skill) | Click a page element in dev and jump straight to its source. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`install-tauri-logo`](https://github.com/lovstudio/skills) | Install a logo in a Tauri application — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`install-web-logo`](https://github.com/lovstudio/skills) | Install a web logo and favicon set — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`install-zenmux-api`](https://github.com/lovstudio/skills) | Integrate the ZenMux API through a secure backend — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`integrate-lovinsp`](https://github.com/lovstudio/integrate-lovinsp-skill) | Integrate Lovinsp in a frontend project — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`kill-emoji`](https://github.com/lovstudio/skills) | Replace interface emoji with appropriate icons — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`legal-pages`](https://github.com/lovstudio/skills) | Draft website privacy and terms pages — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`meta-command`](https://github.com/lovstudio/skills) | Turn a repeated command workflow into a portable skill — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`mobile-adapt`](https://github.com/lovstudio/mobile-adapt-skill) | Scan a web project for mobile issues and fix them — overflow, safe area, viewport units, responsive layouts, and page navigation. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`npm-publisher`](https://github.com/lovstudio/lov-npm-publisher-skill) | Publish npm packages without repeated login — OIDC trusted publishing or a local NPM_TOKEN. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`obsidian-ensure-dev-sync`](https://github.com/lovstudio/skills) | Fix an Obsidian plugin development sync chain — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`obsidian-reset-cache`](https://github.com/lovstudio/obsidian-reset-cache-skill) | Reset Obsidian's cache when it gets stuck on "Loading cache". |
 | ![Free](https://img.shields.io/badge/Free-green) | [`open-codex-session`](https://github.com/lovstudio/open-codex-session-skill) | Open the exact Codex task you mean, then verify the desktop actually navigated. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`optimize-tauri-backend`](https://github.com/lovstudio/optimize-tauri-backend-skill) | Reduce Tauri Rust restart pain by modularizing the backend, shrinking command surfaces, and hardening long IPC streams. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`project-port`](https://github.com/lovstudio/project-port-skill) | Assign each project a stable, unique dev port so services stop colliding. |
-| ![Free](https://img.shields.io/badge/Free-green) | [`release-via-cicd`](https://github.com/lovstudio/release-via-cicd-skill) | Configure release workflows, publish versions, and verify signed Tauri app artifacts. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`refactor-api`](https://github.com/lovstudio/skills) | Refactor redundant backend APIs — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`refactor-modular`](https://github.com/lovstudio/skills) | Refactor a large file into cohesive modules — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`release-via-cicd`](https://github.com/lovstudio/release-via-cicd-skill) | Set up or run a verified CI/CD release — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`rename-project`](https://github.com/lovstudio/skills) | Rename a project and preserve compatibility — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`repo-takeover`](https://github.com/lovstudio/skills) | Publish a cloned repository under your account — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`repo2docs`](https://github.com/lovstudio/repo2docs-skill) | Turn any folder — code, articles, images — into a polished Fumadocs site, built incrementally and shipped to {id}.lovstudio.ai/docs. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`search-chat`](https://github.com/lovstudio/search-chat-skill) | Find what you and your AI already worked out, and read it back in its original context. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-distiller`](https://github.com/lovstudio/skill-distiller-skill) | Turn delivery history into a clear, reusable Skill blueprint with boundaries and acceptance checks. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-pricing`](https://github.com/lovstudio/skill-pricing-skill) | Turn Skill pricing into an explainable decision backed by cost, value, confidence, and channel fit. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-publisher`](https://github.com/lovstudio/skill-publisher-skill) | Auto-price every release, publish to the LovStudio website by default, and expand only to explicitly requested channels. — requires: `skill-pricing` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`version-management`](https://github.com/lovstudio/skills) | Manage package versions with Changesets — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`version-management-manual`](https://github.com/lovstudio/skills) | Create a changeset for manual review — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [`xbti-gallery`](https://github.com/lovstudio/xbti-gallery-skill) | Browse a gallery of XBTI personality tests — requires: `branding-consistency` |
 | **Video Creation** | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`media-creator`](https://github.com/lovstudio/media-creator-skill) | Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence. |
 | ![Free](https://img.shields.io/badge/Free-green) | [`media-publisher`](https://github.com/lovstudio/media-publisher-skill) | Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates. — requires: `branding-consistency` |
@@ -155,7 +209,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-moments`](https://github.com/lovstudio/video-moments-skill) | Select real moments from event videos, restore color, and deliver consistently bright photos with source timecodes. — requires: `branding-consistency` |
 | **Meta** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-add-case`](https://github.com/lovstudio/skill-add-case-skill) | Record an accepted Skill result as truthful evidence, then verify its public source and LovStudio detail page. |
-| ![Free](https://img.shields.io/badge/Free-green) | [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) | Scaffold a new skill as an independent source repo with release-driven aggregate distribution. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) | Create, migrate, validate and install portable Agent Skills — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-optimizer`](https://github.com/lovstudio/skill-optimizer-skill) | Audit an existing skill, auto-fix issues, and bump its version in one pass. |
 <!-- SKILLS:END -->
 

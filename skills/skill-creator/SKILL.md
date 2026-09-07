@@ -1,11 +1,15 @@
 ---
 name: lov-skill-creator
 description: >
-  创建、验证并安装本地 Skill Publisher Skill 或 Skill Kit，并为每个新 Skill 固化真实案例、维度地图、定价依据和分发状态；当用户说“创建 skill”、"create a skill" 或 "scaffold skill kit" 时使用。
+  创建、验证、安装通用 Skill 或 Skill Kit；将旧 slash command、命令目录及半迁移 Skill 升级为可跨宿主使用的能力。Use to create a skill, migrate slash commands, or scaffold a skill kit.
 license: MIT
+compatibility: "Python 3.8+ and PyYAML. Git is optional for local source history."
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "4.4.0"
+  version: "4.6.0"
+  content_class: deterministic-output
   tags:
     - skill-creator
     - scaffold
@@ -13,8 +17,6 @@ metadata:
     - skill-kit
     - skill-card
     - user-cases
-  compatibility: "Python 3.8+ and PyYAML. Git is optional for local source history."
-  dependencies: []
 ---
 
 # lov-skill-creator
@@ -30,6 +32,7 @@ uploads, and live-channel verification belong to `lov-skill-publisher`.
 
 - 用户要“创建 skill”“封装成 skill”“生成 Skill Kit”或优化 Skill 生成机制。
 - The user asks to create, scaffold, validate, or locally install an Agent Skill.
+- 用户要把 Claude Code 早期 slash command 全量迁移为通用 Skill，或升级只改了文件名的旧迁移结果。
 
 ### Do not activate when
 
@@ -64,7 +67,7 @@ Key rules:
 - Creation ends with a validated, locally discoverable Skill.
 - Source frontmatter name is `lov-{name}` and uses kebab-case.
 - Source top-level fields are limited to `name`, `description`, `license`,
-  `allowed-tools`, and `metadata`.
+  `compatibility`, `allowed-tools`, `depends_on`, and `metadata`.
 - Required modules live inside a Skill Kit; no external sibling dependencies.
 - User-specific values come from flags, environment, or a portable profile.
 - Every generated Skill declares and reads a shared user Profile across sessions;
@@ -76,8 +79,28 @@ Key rules:
   those records are filled and validated.
 - Skill Publisher is a possible profile value, never a separate implementation mode.
 - Do not create remotes, releases, catalogs, platform packages, or uploads here.
+- If the Skill generates, edits, reviews, renders, packages, or publishes text
+  visible to an end user or reader, declare `lov-branding-consistency` in its
+  top-level `depends_on`. Preserve source data, quotations, transcripts, legal
+  text, identifiers, and code unless the user explicitly asks to rewrite them.
+- Classify normal output as `authored-prose`, `microcopy`, `verbatim`, or
+  `deterministic-output` before scaffolding. Authored prose receives an
+  authorship-integrity contract; microcopy receives branding review; verbatim
+  material remains source-faithful; deterministic output is accepted on
+  correctness and completeness.
 
 ## Creation Workflow
+
+### Step 0: Route legacy command migrations
+
+For raw command files, command directories, archived commands, or partially
+migrated Skills, first read [Slash command migration](references/slash-command-migration.md).
+Inventory the full requested scope, resolve aliases and existing capabilities,
+then upgrade each canonical source through the normal workflow below. Use
+`scripts/migrate_command.py` for read-only inventory and isolated preparation.
+Do not treat renaming Markdown, removing host switches, or generating a scaffold
+as completed migration. A website synchronization request includes the publisher
+handoff after validation; keep each item's local and live evidence separate.
 
 ### Step 1: Infer the product shape
 
@@ -93,6 +116,18 @@ Record these decisions internally:
 4. Public layer versus protected logic, prompts, keys, rules, or data.
 5. The first real user case: input, minimum prompt/brief, output, and evidence
    assets. Do not manufacture a case or score to make the card look complete.
+6. The normal output class:
+   - `authored-prose` for articles, reports, scripts, letters, and prose where
+     reasoning and editorial choice are part of the result;
+   - `microcopy` for labels, descriptions, prompts, notices, and short UI text;
+   - `verbatim` for transcripts, quotations, legal text, identifiers, and other
+     source-faithful material;
+   - `deterministic-output` for retrieval, storage, deployment, diagnostics,
+     structured data, and binary transformation.
+7. Use `--content-class authored-prose` or `--authored-prose` for the first
+   class. Authored prose and microcopy automatically enable
+   `lov-branding-consistency`; authored prose also generates and routes to
+   `references/authorship-integrity.md`.
 
 Background details, personal names, and competitor observations are context by
 default. Include them in generated products only when they serve the end user.
@@ -178,6 +213,9 @@ Skill Publisher-only branch; different users supply different profile values.
 - Skill group decision → `references/skill-composition.md`, including nearby
   Skills inspected, atomic handoffs, overlap decisions, and the final
   Single-versus-Kit rationale.
+- Authorship integrity → `references/authorship-integrity.md` for
+  `authored-prose`, including a source ledger, seven discourse checks, and
+  explicit non-fabrication boundaries.
 
 Python scripts must be standalone files without package scaffolding. Treat CJK
 text handling as a core requirement for document and content workflows.
@@ -188,8 +226,22 @@ Single Skill:
 
 ```bash
 python3 "$SKILL_DIR/scripts/init_skill.py" <name> \
+  --content-class deterministic-output \
   --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
+
+For articles, reports, scripts, letters, or other authored prose:
+
+```bash
+python3 "$SKILL_DIR/scripts/init_skill.py" <name> \
+  --content-class authored-prose \
+  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+```
+
+Use `microcopy` for short audience-visible text, `verbatim` when source fidelity
+owns acceptance, and `deterministic-output` for operational or structured
+results. `--branding-consistency` remains an explicit override for unusual
+mixed-output Skills.
 
 Skill Kit:
 
@@ -201,9 +253,41 @@ python3 "$SKILL_DIR/scripts/init_skill.py" <name> \
   --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
 
+When embedded stages produce different kinds of output, classify them at the
+module boundary instead of forcing one rule across the Kit:
+
+```bash
+python3 "$SKILL_DIR/scripts/init_skill.py" publishing \
+  --kit --module research --module draft \
+  --module-content-class draft=authored-prose \
+  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+```
+
 Resolve the install directory from an explicit flag, environment variable,
 shared profile, or the active agent runtime. If it remains unknown, ask once.
 The initializer must reject an occupied install target instead of overwriting it.
+
+> Tool pit: `init_skill.py` 只把 `~/.claude/skills/lov-{name}` 建为指向真源的
+> 绝对 symlink；要符合 Lovstudio 三层链约定，需再补中间层
+> `~/.agents/skills/lov-{name}`（绝对指向真源）并把 install 改成相对
+> `../../.agents/skills/lov-{name}`，`readlink -f` 才会解析到真源
+> （2026-08-20, ab88955）。
+>
+> Tool pit: skills 仓库 working tree 常驻大量未提交改动（其他 skill 的 WIP、
+> 子模块指针），`git add -A` / `git commit -a` 会把它们卷进提交；提交前先
+> `git status`，只 `git add <目标 skill 目录>`（2026-08-20, 99c10a0）。
+>
+> Tool pit: `validate_skill.py` 对 description 按「compact 后文本」计 50–200
+> 字符，中英混排极易超 200；先写短版过校验再展开正文（2026-08-20, 009afde）。
+>
+> Tool pit: 卡片/案例文件里 `dict[str, list[str]]` 这类花括号字面量会被
+> `contains_placeholder` 的 `\{[^}]+\}` 误判为占位符；skill-card / cases /
+> pricing 文件一律避免花括号写法（2026-08-20, 009afde）。
+>
+> Tool pit: `~/lovstudio/coding/skills/skill-creator-skill` 是**嵌套独立 git
+> 仓库**（自带 .git），父仓库 `~/lovstudio/coding/skills` 把它当单个未跟踪目录，
+> 从父仓库 `git add` 内部文件不会生效；改 skill-creator 源要在其自身仓库内提交
+> （2026-08-20, c09a0a1）。
 
 For cloud-split implementations, read `references/cloud-split.md` completely
 before coding. Keep real logic in the configured cloud handler, return minimal
@@ -218,7 +302,8 @@ Write the source as instructions for an agent, not as notes about this chat:
   plus English triggers in 50–200 characters.
 - Add `## Triggers`, activation examples, and adjacent non-trigger conditions.
 - Keep `SKILL.md` below 500 lines; move detail to relevant references.
-- Put compatibility, version, tags, and dependencies under `metadata`.
+- Put `compatibility` and `depends_on` at the top level. Keep version, tags,
+  card standard, and package-only runtime metadata under `metadata`.
 - Keep the NVIDIA-compatible required card fields intact, then add LovStudio's
   user case, dimension map, pricing basis, and distribution fields.
 - Keep external Skills optional unless they are embedded Kit modules; expose

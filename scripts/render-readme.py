@@ -92,6 +92,9 @@ def gh_sync(skills: list[dict]) -> None:
     """Refresh `description` (Agent-facing trigger copy) from each skill's GitHub
     repo description. Never touches tagline_en / tagline_zh — those are human-maintained."""
     for s in skills:
+        # A repository description cannot describe one Skill in a multi-Skill repo.
+        if s.get("skill_path"):
+            continue
         repo = s["repo"]
         try:
             out = subprocess.check_output(

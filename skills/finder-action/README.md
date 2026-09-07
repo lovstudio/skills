@@ -1,29 +1,36 @@
-# lov-finder-action
+# Finder 右键动作
 
-![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.1-CC785C)
 
-Generate Mac Finder right-click menu actions. Automator Quick Actions for file/folder menus, Finder Sync Extensions (Swift) for blank-space menus. Auto-detects which mode to use.
+创建 macOS Finder 文件快捷操作或目录背景菜单扩展。
 
-Part of [skill-publisher/skills](https://example.com/skills/skills) &mdash; by [example.com](https://example.com)
-
-## Install
+## 安装
 
 ```bash
-npx skills add skill-publisher/skills --skill lov-finder-action -y -g
+npx skills add lov-finder-action -g -y
 ```
 
-Requires: macOS 14+, Xcode (for Mode B), `brew install xcodegen` (for Mode B)
+## 使用
 
-## Usage
+- 创建 macOS Finder 文件快捷操作或目录背景菜单扩展。
+- Create a Finder context menu action.
 
+支持自然语言调用，具体执行步骤与边界见 [SKILL.md](SKILL.md)。分析、预览和实际修改分开处理。
+
+## 配置与依赖
+
+读取 [共享 Profile](references/user-profile.md)；项目路径、输出目录与品牌来自当前请求或用户配置。
+业务工具和目标系统依赖见工作流；公开文案使用 lov-branding-consistency 审校。
+
+## 质量与案例
+
+```bash
+python3 scripts/validate_skill.py .
 ```
-/lov-finder-action pdf2png .pdf 将PDF转PNG
-/lov-finder-action 新建md文件 空白处右键创建markdown
-```
 
-## Modes
+[案例](cases/cases.json) 记录真实迁移输入和输出，仅证明所声明的验收范围。
+[Skill Card](skill-card.md) 与 [定价依据](pricing-card.yaml) 说明使用边界；业务运行结果须逐次回读。
 
-| Trigger | Mode | Tech |
-|---------|------|------|
-| Right-click file/folder | Quick Action | Automator workflow |
-| Right-click blank space | Finder Extension | Swift + xcodegen |
+## License
+
+MIT

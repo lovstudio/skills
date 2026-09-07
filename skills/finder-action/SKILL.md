@@ -1,268 +1,80 @@
 ---
 name: lov-finder-action
-category: Dev Tools
-tagline: "Generate Mac Finder right-click menu actions. Quick Action or Finder Sync Extension."
-description: >
-  Generate Mac Finder right-click menu actions. Two modes: (A) Automator Quick Action
-  for file/folder context menus, (B) Finder Sync Extension (Swift + xcodegen) for
-  blank-space context menus. Automatically selects mode based on user intent. Trigger
-  when user mentions "Finder右键", "右键菜单", "Quick Action", "Finder extension",
-  "空白处右键", "新建文件", "context menu", or wants to add custom actions to Finder.
 license: MIT
-compatibility: >
-  macOS 14+. Mode A requires Automator. Mode B requires Xcode and xcodegen
+compatibility: 'macOS 14+. Mode A requires Automator. Mode B requires Xcode and xcodegen
   (`brew install xcodegen`). Ad-hoc signed — works locally, not distributable.
+
+  '
+description: 创建 macOS Finder 文件快捷操作或目录背景菜单扩展。支持明确输入与结果回读。Use to create a Finder context
+  menu action.
+depends_on:
+- lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.4.0"
-  tags: macos finder context-menu quick-action finder-sync-extension swift
-examples:
-  - name: OpenCC
-    url: https://github.com/MarkShawn2020/mac_open-claude-code
-    description: Right-click to open Claude Code in iTerm2 (with helper app)
+  version: 0.4.1
+  tags:
+  - macos
+  - finder
+  - context-menu
+  - quick-action
+  - finder-sync-extension
+  - swift
+  content_class: deterministic-output
+  card_standard: lovstudio/skill-card/v1
 ---
 
-# finder-action — Mac Finder 右键菜单动作生成器
+# Finder 右键动作
 
-根据用户描述生成 Finder 右键菜单动作，自动判断模式：
+创建 macOS Finder 文件快捷操作或目录背景菜单扩展。
 
-| 场景 | 模式 | 技术方案 |
-|------|------|----------|
-| 右键**文件/文件夹** | Quick Action | Automator workflow |
-| 右键**空白处** | Finder Extension | Swift + xcodegen |
+## Triggers
 
-## 参数格式
+### Activate when
 
-`<动作名称> [触发描述]`
+- “创建 macOS Finder 文件快捷操作或目录背景菜单扩展。”
+- “Create a Finder context menu action.”
 
-示例：
-- `pdf2png .pdf 将PDF所有页面纵向拼接成一张PNG` → Quick Action
-- `新建md文件 在空白处右键创建markdown文件` → Finder Extension
+### Do not activate when
 
-## 模式判断
+- 只是查询本 Skill 的说明，或请求与上述结果无关的任务；不执行实际业务操作。
+- 用户仅要预览或审查时，不进入修改、提交或发布分支。
 
-关键词命中 → Finder Extension 模式：
-- 提到「空白处」「背景」「目录背景」「新建文件」「blank space」「background」
-- 动作不需要选中文件即可触发
+## Execution boundary
 
-其他情况 → Quick Action 模式
+自然语言请求即可触发；无需旧 slash 路径、参数插值或指定助手。明确解析当前请求中的
+项目、目标文件、选项与输出位置；用当前宿主实际提供的文件、搜索、CLI 和浏览器能力。
+项目依赖版本与外部 API 在执行时核实，不能假设示例是现行配置。随包脚本从 Skill 根解析，
+业务文件从目标项目根解析。先读当前状态，保护已有未提交内容与其他任务的暂存区。
+分析、预览请求保持只读；修改、提交、推送、部署和发布各依当前请求的明确范围执行。
+不绕过保护、自动发送消息、强制结束用户进程或抢前台。失败保留可诊断原始错误。
 
----
+## Workflow
 
-## Mode A: Quick Action（Automator workflow）
+1. 根据是否需要选中文件选择 Automator Quick Action 或 Finder Sync Extension；解析动作名称、文件类型、实际处理逻辑与目标目录。
 
-### Step 1: 分析需求
+2. Quick Action 使用按参数接收的脚本与 workflow plist，工具路径从实际安装解析，处理中文、空格、多选和同名输出；参考 references/automator-template.xml 并核验当前系统字段。
 
-收集（缺失时 AskUserQuestion）：
-- **动作名称**：右键菜单显示名
-- **触发文件类型**：`.pdf`、`.md`、`.jpg` 等
-- **核心命令**：用什么工具做什么
+3. Finder Extension 使用实际 Xcode 工具链、独立 bundle ID、必要沙盒权限和精确监控目录，菜单 action 明确 target；按当前 Apple 文档核实能力，不要求整个磁盘临时例外权限。
 
-### Step 2: 检查依赖
+4. 需要跨进程 helper 时使用可验证的结构化消息和固定操作集合，不从剪贴板读取任意 shell 命令，不用 helper 绕过系统权限。
 
-```bash
-which <所需工具>
-```
+5. 生成构建配置和代码后检查 plist、编译及扩展注册；本地 ad-hoc 签名与可分发签名分别报告，不将前者称作正式发行。
 
-不存在则提示 `brew install <tool>`。
+6. 不强制 killall Finder、打开 Automator 或切换应用前台；需用户启用扩展的步骤准确说明。实际菜单触发只有完成观察后才标验证。
 
-### Step 3: 生成 shell 脚本
+7. 保留现有 workflow 与应用，明确安装位置和回退路径；不覆盖同名菜单动作。
 
-```bash
-#!/bin/bash
-for f in "$@"; do
-  [[ "$f" == *.<ext> ]] || continue
-  output="${f%.<ext>}.<out_ext>"
-  <具体命令> "$f" -o "$output"
-done
-```
+## Composition
 
-- 工具路径用绝对路径（Quick Action 环境没有 `$PATH`）
-- `"$@"` 接收文件参数（inputMethod=1）
-
-### Step 4: 创建 Automator workflow
-
-创建 `~/Library/Services/<动作名称>.workflow/Contents/document.wflow`。
-
-模板见 `references/automator-template.xml`。
-
-关键配置：
-- `inputMethod`: `1`
-- `serviceInputTypeIdentifier`: `com.apple.Automator.fileSystemObject`
-- `workflowTypeIdentifier`: `com.apple.Automator.servicesMenu`
-
-### Step 5: 验证注册
-
-```bash
-plutil -lint ~/Library/Services/<动作名称>.workflow/Contents/document.wflow
-/System/Library/CoreServices/pbs -update
-killall Finder
-```
-
-### Step 6: Automator 保存（关键）
-
-```bash
-open -a Automator ~/Library/Services/<动作名称>.workflow
-```
-
-必须在 Automator 中 Cmd+S 保存一次才会正式注册。
-
----
-
-## Mode B: Finder Sync Extension（Swift app）
-
-### Step 1: 检查工具链
-
-```bash
-which xcodegen && which xcodebuild
-```
-
-缺 xcodegen 则 `brew install xcodegen`。
-
-### Step 2: 创建项目结构
-
-```
-<ProjectName>/
-├── project.yml
-├── <ProjectName>/
-│   └── AppDelegate.swift
-└── FinderExtension/
-    └── FinderSync.swift
-```
-
-### Step 3: 生成 project.yml
-
-模板见 `references/xcodegen-template.yml`。替换 `APP_NAME` 和 `BUNDLE_ID`。
-
-关键点：
-- 宿主 App: `LSUIElement: true`（无 Dock 图标）
-- Extension: `NSExtensionPointIdentifier: com.apple.FinderSync`
-- 签名: `CODE_SIGN_IDENTITY: "-"`（ad-hoc）
-- **沙盒必须开启**（`app-sandbox: true`），否则扩展不会被系统加载
-- 文件写入需用 `temporary-exception.files.absolute-path.read-write: [/]`，`files.user-selected.read-write` 无效
-
-### Step 4: 生成 AppDelegate.swift
-
-```swift
-import Cocoa
-
-@main
-class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationDidFinishLaunching(_ notification: Notification) {}
-}
-```
-
-### Step 5: 生成 FinderSync.swift
-
-模板见 `references/finder-sync-template.swift`。
-
-核心 API：
-- `FIFinderSyncController.default().directoryURLs = [URL(fileURLWithPath: "/")]` — 监控所有目录
-- `menu(for: .contextualMenuForContainer)` — 空白处右键菜单
-- `FIFinderSyncController.default().targetedURL()` — 获取当前目录
-
-常见 action 模式：
-- **创建文件**：`FileManager.default.createFile` + 自动递增文件名
-- **打开终端**：AppleScript 控制 iTerm2/Terminal（见 `references/applescript-iterm.swift`）
-- **执行脚本**：`Process()` 启动 shell 命令
-
-**AppleScript 自动化**需要在 entitlements 中添加：
-```yaml
-com.apple.security.automation.apple-events: true
-```
-
-### Step 6: 构建安装
-
-```bash
-xcodegen generate
-xcodebuild -project APP_NAME.xcodeproj -scheme APP_NAME -configuration Debug build
-cp -R ~/Library/Developer/Xcode/DerivedData/APP_NAME-*/Build/Products/Debug/APP_NAME.app /Applications/
-open /Applications/APP_NAME.app
-pluginkit -e use -i BUNDLE_ID.FinderExtension
-```
-
-### Step 7: 验证
-
-```bash
-pluginkit -m -i BUNDLE_ID.FinderExtension
-```
-
-不出现时指引：**系统设置 → 通用 → 登录项与扩展 → 已添加的扩展** → 勾选。
-
-## 沙盒限制与 Helper App 方案
-
-Finder Sync Extension 的沙盒限制非常严格：
-
-| 操作 | 是否允许 | 说明 |
-|------|----------|------|
-| 写入 /tmp | ❌ | 即使添加 temporary-exception 也被阻止 |
-| Process() 子进程 | ❌ | 无法启动外部命令 |
-| NSAppleScript | ❌ | 无法控制其他应用 |
-| NSWorkspace.open(file) | ❌ | 无法打开文件/目录 |
-| NSWorkspace.open(app) | ✅ | 可以打开应用 |
-| NSPasteboard | ✅ | 可以读写剪贴板 |
-
-**推荐方案**：创建一个非沙盒的 Helper App，Extension 把命令放入剪贴板后打开 Helper App，由 Helper App 执行实际操作。
-
-### Helper App 示例
-
-```bash
-mkdir -p "/Applications/OpenCCHelper.app/Contents/MacOS"
-cat > "/Applications/OpenCCHelper.app/Contents/Info.plist" << 'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>CFBundleExecutable</key><string>run.sh</string>
-    <key>CFBundleIdentifier</key><string>com.skill-publisher.OpenCCHelper</string>
-    <key>LSUIElement</key><true/>
-</dict>
-</plist>
-EOF
-
-cat > "/Applications/OpenCCHelper.app/Contents/MacOS/run.sh" << 'EOF'
-#!/bin/bash
-CMD=$(pbpaste)
-osascript << APPLESCRIPT
-tell application "iTerm"
-    activate
-    tell current window
-        create tab with default profile
-        tell current session
-            write text "$CMD"
-        end tell
-    end tell
-end tell
-APPLESCRIPT
-EOF
-chmod +x "/Applications/OpenCCHelper.app/Contents/MacOS/run.sh"
-```
-
-Extension 中调用：
-```swift
-let command = "cd '\(targetPath)' && claude"
-NSPasteboard.general.clearContents()
-NSPasteboard.general.setString(command, forType: .string)
-NSWorkspace.shared.open(URL(fileURLWithPath: "/Applications/OpenCCHelper.app"))
-```
-
-## 其他已知限制
-
-- **Bundle ID 不能含下划线**：使用连字符或驼峰命名（`OpenCC` 而非 `open_cc`）
-- **NSHomeDirectory() 返回容器路径**：沙盒中返回 `~/Library/Containers/<bundle-id>/Data/`，监控目录需硬编码真实路径
-- **NSMenuItem 必须设置 target**：`item.target = self`，否则 action 不会触发
-- Finder Extension 菜单项位置由系统决定，无法排在「新建文件夹」之前
-- Quick Action 环境没有 `$PATH`，工具路径必须用绝对路径
-- Automator workflow 需在 Automator 中打开保存才能注册
-- Extension 使用 ad-hoc 签名，仅限本机使用
+执行前读取 [能力组合](references/skill-composition.md)，按明确制品交接相邻能力。
 
 ## Runtime context (shared)
 
-运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
-
-- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
-- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
-- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
+运行前读取本包 `skill.yaml` 与 [Profile 合同](references/user-profile.md)。优先级为当前请求、
+项目上下文、本 Skill records、共享 preferences、brand/user Profile、安全默认值。
+只读取声明字段；没有专用运行时的宿主可使用 `scripts/profile_store.py` 读取共享 Profile。
+配置缺失只问影响结果的一个问题。用户明确要求长期保存的值通过该脚本原子写入，
+报告实际路径；不保存推断、凭据或其他任务的资料。
 
 ## 通用反馈闭环
 

@@ -1,6 +1,6 @@
 # lov-skill-creator
 
-![Version](https://img.shields.io/badge/version-4.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-4.6.0-CC785C)
 
 ## Skill 群组原子组合
 
@@ -8,19 +8,52 @@
 
 创建、验证并安装本地 Skill Publisher Skill 或自包含 Skill Kit。它会根据产品需求自动判断实现形态、Single/Kit 结构，并为每个新 Skill 自动绑定跨 session 的用户 Profile。
 
+Creator 现在还会先区分 `authored-prose`、`microcopy`、`verbatim` 与
+`deterministic-output`。文章、报告、脚本等作者性文本会自动得到作者性账本、
+篇章审计与禁止伪造边界，不再只靠表层“去 AI 味”规则。
+
 远程仓库、目录市场、平台发行包与上传验收由独立的 `lov-skill-publisher` 负责。
 
 ## 安装
 
 ```bash
-git clone https://example.com/skills/skill-creator-skill \
+npx skills add lov-skill-creator -g -y
+```
+
+本地真源安装：
+
+```bash
+git clone https://github.com/lovstudio/skill-creator-skill.git \
   "${SKILL_SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}/lov-skill-creator"
 ```
 
 ## 创建本地 Skill
 
+旧 slash command 也可迁移：先批量盘点，再按实际功能合并别名、升级已有真源，
+或生成独立迁移工作区。迁移包括参数、工具、路径、授权边界、Profile 和真实验收，
+不依赖 Claude Code 的命令插值。详见 [迁移流程](references/slash-command-migration.md)。
+
+```bash
+python3 "$SKILL_DIR/scripts/migrate_command.py" inventory \
+  --command-root "$COMMAND_ROOT" --source-root "$SKILL_SOURCE_ROOT"
+python3 "$SKILL_DIR/scripts/migrate_command.py" prepare "$COMMAND_FILE" \
+  --name better-github-desc --content-class microcopy --output "$MIGRATION_WORK_AREA"
+```
+
+准备命令保留原文与摘要，拒绝覆盖已有工作区，不安装未完成的候选 Skill。
+官网同步由 `lov-skill-publisher` 接收已通过校验的真源并完成上线与安装回读。
+
 ```bash
 python3 "$SKILL_DIR/scripts/init_skill.py" wcx \
+  --content-class deterministic-output \
+  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+```
+
+作者性文本：
+
+```bash
+python3 "$SKILL_DIR/scripts/init_skill.py" article-tool \
+  --content-class authored-prose \
   --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
 
@@ -32,6 +65,15 @@ python3 "$SKILL_DIR/scripts/init_skill.py" bp \
   --module bp-outline \
   --module bp-deck \
   --module bp-polish \
+  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+```
+
+混合 Kit 可以按模块覆盖，例如：
+
+```bash
+python3 "$SKILL_DIR/scripts/init_skill.py" publishing \
+  --kit --module research --module draft \
+  --module-content-class draft=authored-prose \
   --install-dir "$SKILL_SKILLS_INSTALL_DIR"
 ```
 
