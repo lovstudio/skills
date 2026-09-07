@@ -1,0 +1,98 @@
+{
+  "skill": "lov-frontend-design",
+  "version": "0.3.0",
+  "mode": "read-only runtime replay",
+  "activation": "用 lov-frontend-design 只读检查官网资源入口，验证电脑和手机上的标签、键盘与跳转。",
+  "checkedAt": "2026-09-06T06:44:29.202Z",
+  "records": [
+    {
+      "locale": "zh-CN",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "label": "Skills 能力地图与案例集",
+      "href": "/skill-atlas",
+      "labelFits": true,
+      "menuReopened": false,
+      "activation": "keyboard; Escape restores focus",
+      "finalUrl": "https://lovstudio.ai/skill-atlas",
+      "mapNodes": 244
+    },
+    {
+      "locale": "en",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "label": "Skills Atlas & Case Studies",
+      "href": "/skill-atlas",
+      "labelFits": true,
+      "menuReopened": false,
+      "activation": "mouse",
+      "finalUrl": "https://lovstudio.ai/skill-atlas",
+      "mapNodes": 244
+    },
+    {
+      "locale": "ja",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "label": "Skills 能力マップと事例集",
+      "href": "/skill-atlas",
+      "labelFits": true,
+      "menuReopened": false,
+      "activation": "mouse",
+      "finalUrl": "https://lovstudio.ai/skill-atlas",
+      "mapNodes": 244
+    },
+    {
+      "locale": "th",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "label": "แผนที่ Skills และกรณีศึกษา",
+      "href": "/skill-atlas",
+      "labelFits": true,
+      "menuReopened": false,
+      "activation": "mouse",
+      "finalUrl": "https://lovstudio.ai/skill-atlas",
+      "mapNodes": 244
+    },
+    {
+      "locale": "zh-CN",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "Skills 能力地图与案例集",
+      "href": "/skill-atlas",
+      "labelFits": true,
+      "menuReopened": false,
+      "activation": "touch",
+      "finalUrl": "https://lovstudio.ai/skill-atlas",
+      "mapNodes": 244
+    },
+    {
+      "locale": "zh-CN",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "label": "Skills 能力地图与案例集",
+      "href": "/skill-atlas",
+      "labelFits": true,
+      "menuReopened": false,
+      "activation": "touch",
+      "finalUrl": "https://lovstudio.ai/skill-atlas",
+      "mapNodes": 244
+    }
+  ],
+  "limitations": [
+    "Authenticated navigation branches inspected in source only; no signed-in runtime test.",
+    "No screen-reader or non-Chromium browser test.",
+    "Media playback is covered by separately archived historical evidence, not this navigation replay."
+  ]
+}

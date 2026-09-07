@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **100 个技能** — 85 个免费 + 15 个付费。
+> **101 个技能** — 86 个免费 + 15 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -80,6 +80,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`business-card`](https://github.com/lovstudio/business-card-skill) | [专业名片生成](https://github.com/lovstudio/business-card-skill) | 把任何人的姓名、头衔、金句一键变成精美的编辑式名片，输出高清 PNG 与可点击下载的 HTML。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | [大师级海报生成](https://github.com/lovstudio/event-poster-skill) | 把活动信息一键变成高质感海报，可直接分享或用于线下展览。 — 相关: `publish-event-onto-hdx` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`find-logo`](https://github.com/lovstudio/find-logo-skill) | [Logo 狩猎](https://github.com/lovstudio/find-logo-skill) | 按品牌名或网址抓取 logo，自动评分择优（偏好长条形 + 透明底），统一归档到本地，方便网站/PPT/海报罗列。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`frontend-design`](https://github.com/lovstudio/frontend-design-skill) | [前端设计](https://github.com/lovstudio/frontend-design-skill) | 把真实内容和现有代码落实为有辨识度、交互一致、媒体可用的界面，并留下验收证据。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`maintain-partners`](https://github.com/lovstudio/maintain-partners-skill) | [合作伙伴维护](https://github.com/lovstudio/maintain-partners-skill) | 一键抓取品牌 logo、标准化处理并接入官网 partners 区块，多语言全覆盖。 — 依赖: `find-logo` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`oh-my-landingpage`](https://github.com/lovstudio/oh-my-landingpage-skill) | [品牌着陆页](https://github.com/lovstudio/oh-my-landingpage-skill) | 从产品与品牌事实出发，独立推导适合当前产品的叙事与视觉，并完成实现、响应式和生产回读。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`professional-infographic`](https://github.com/lovstudio/professional-infographic-skill) | [专业信息图](https://github.com/lovstudio/professional-infographic-skill) | 把复杂材料或投资路径重构为一条可回溯的视觉论证，从进入、分阶段退出到最终判断。 — 相关: `image-creator` |

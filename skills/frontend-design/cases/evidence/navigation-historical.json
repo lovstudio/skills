@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-09-06T02:53:29.360Z",
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "label": "Skills 能力地图与案例集",
+      "menu": "资源",
+      "href": "/skill-atlas",
+      "finalUrl": "https://lovstudio.ai/skill-atlas",
+      "mapNodes": 244,
+      "labelFits": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "label": "Skills 能力地图与案例集",
+      "menu": "资源",
+      "href": "/skill-atlas",
+      "finalUrl": "https://lovstudio.ai/skill-atlas",
+      "mapNodes": 244,
+      "labelFits": true
+    }
+  ]
+}

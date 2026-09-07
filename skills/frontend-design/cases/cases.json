@@ -1,0 +1,105 @@
+[
+  {
+    "type": "case",
+    "id": "skill-atlas-exhibit",
+    "title": "Skill 能力地图与多媒体案例集",
+    "description": "面向学员同步 Skill 探索的真实展示，采用能力分布、时间线与案例逐层展开。作品早于本 Skill 创建，本条为历史案例归档。",
+    "input": {
+      "items": [
+        "真实 Skill 清单、先前能力分布分析与一年探索材料",
+        "用户要求适合展示、清晰详实，并支持图片、音频、视频",
+        "用户允许该专题不遵循手工川品牌设计约束"
+      ]
+    },
+    "prompt": "基于以上分析，以及过去一年的聊天记录进行深挖，结合 gsap，制作适合展示、清晰详实的《手工川 Skill 能力地图与案例集》，风格视内容而选择，重点支持图片、音频、视频。",
+    "prompt_fidelity": "由原始请求压缩的最小 brief，非逐字转录。",
+    "output": {
+      "items": [
+        "公开的能力地图与案例集",
+        "244 个地图节点、6 个案例和可检索索引",
+        "GSAP 布局切换、图片放大、原声与合成声音对比、视频播放及课堂演示"
+      ],
+      "url": "https://lovstudio.ai/skill-atlas"
+    },
+    "evidence": {
+      "kind": "historical-task-before-skill-creation",
+      "record": "cases/evidence/atlas-historical.json",
+      "source_commit": "83e41a909e9e4be98f248117b598ccd12466bb2a",
+      "date": "2026-09-06",
+      "limitations": [
+        "不声称该作品由 lov-frontend-design 0.3.0 新生成。",
+        "归档运行记录不证明所有可访问性、字幕与离线要求均已通过。"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "id": "resources-navigation",
+    "title": "官网资源菜单中的能力地图入口",
+    "description": "为已上线专题补齐真实导航入口，覆盖桌面与移动端。原始实现属于历史任务，新版本复核独立记录。",
+    "input": {
+      "items": [
+        "已上线的 /skill-atlas 专题",
+        "官网桌面资源菜单和两种移动端身份分支",
+        "简体中文、英文、日文、泰文四种现有语言"
+      ]
+    },
+    "prompt": "应该在官网增加入口： 导航 - 资源 - Skills 能力地图与案例集",
+    "output": {
+      "items": [
+        "桌面资源菜单及移动端菜单增加原生链接",
+        "中文标签为 Skills 能力地图与案例集，补齐四种翻译",
+        "验证 1440 px 桌面与 390 px 手机点击后加载 244 个地图节点"
+      ]
+    },
+    "evidence": {
+      "kind": "historical-task-before-skill-creation",
+      "record": "cases/evidence/navigation-historical.json",
+      "website_commit": "2a003a934580aaee5e9c58f5a32131ad70fe665a",
+      "date": "2026-09-06",
+      "limitations": [
+        "已登录移动端只核对源码，未用真实登录账户执行。"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "id": "frontend-design-030-replay",
+    "title": "工作室版本 0.3.0 的只读导航演练",
+    "description": "新 Skill 按自身的交互与验收约定复核已部署页面，实际执行键盘、鼠标和触控。本次不修改网站。",
+    "input": {
+      "items": [
+        "实际官网设计页的资源导航及 /skill-atlas",
+        "四种现有语言和 1440、390、320 px 宽度",
+        "本 Skill 的 interaction 与 acceptance 参考文档"
+      ]
+    },
+    "prompt": "用 lov-frontend-design 只读检查官网资源入口，验证电脑和手机上的标签、键盘与跳转。",
+    "output": {
+      "items": [
+        "四种语言的桌面菜单均显示完整标签并到达能力地图",
+        "中文桌面 Escape 关闭后焦点恢复，Enter 可打开并选择入口",
+        "390 px 和 320 px 手机触控到达能力地图，各加载 244 个节点",
+        "标明未登录分支为运行验证，已登录分支为源码检查；未进行跨浏览器或屏幕阅读器测试",
+        "发现 320×740 视口下长菜单的登录条目底部超出视口，菜单 overflow-y 为 hidden，滚轮未使其完整可见；本次只读，未改官网。"
+      ]
+    },
+    "gallery": [
+      "cases/evidence/resources-1440.png",
+      "cases/evidence/resources-390.png",
+      "cases/evidence/resources-320.png"
+    ],
+    "evidence": {
+      "kind": "new-skill-read-only-runtime-replay",
+      "record": "cases/evidence/navigation-replay.json",
+      "skill_version": "0.3.0",
+      "checked_at": "2026-09-06T06:44:29.202Z",
+      "limitations": [
+        "Authenticated navigation branches inspected in source only; no signed-in runtime test.",
+        "No screen-reader or non-Chromium browser test.",
+        "Media playback is covered by separately archived historical evidence, not this navigation replay."
+      ],
+      "open_finding": "cases/evidence/narrow-menu-finding.json"
+    }
+  }
+]

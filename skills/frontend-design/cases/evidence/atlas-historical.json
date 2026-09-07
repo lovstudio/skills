@@ -1,0 +1,35 @@
+{
+  "url": "https://lovstudio.ai/skill-atlas",
+  "errors": [],
+  "failedRequests": [],
+  "checks": [
+    "HTTP 200; correct source commit; 244 entries; 6 cases",
+    "GSAP layout switch and category highlighting",
+    "CDN image gallery and full-resolution event poster",
+    "Original and synthesized audio playback",
+    "Full video playback and seek through Release Range requests",
+    "Index search and classroom presentation controls",
+    "390 px mobile layout without horizontal page overflow",
+    "Visible entry on official Skills page"
+  ],
+  "sourceCommit": "83e41a909e9e4be98f248117b598ccd12466bb2a",
+  "originalAudio": {
+    "duration": 28.905333,
+    "time": 1.892606,
+    "error": null
+  },
+  "cloneAudio": {
+    "duration": 28.9,
+    "time": 1.434295,
+    "error": null
+  },
+  "video": {
+    "duration": 358.549333,
+    "time": 121.976749,
+    "width": 1280,
+    "height": 720,
+    "error": null
+  },
+  "csp": [],
+  "completedAt": "2026-09-06T02:39:55.367Z"
+}

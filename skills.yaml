@@ -1,5 +1,41 @@
 version: 1
 skills:
+- name: frontend-design
+  runtime_name: lov-frontend-design
+  display_name: Frontend Design
+  repo: lovstudio/frontend-design-skill
+  name_zh: 前端设计
+  paid: false
+  category: Design
+  version: "0.3.0"
+  updated_at: 2026-09-07T06:40:38Z
+  description: Build content-led interfaces with consistent controls, GSAP motion, working multimedia, and traceable acceptance evidence.
+  tagline_en: Turn real content and existing code into distinctive, usable interfaces with verified interactions and media.
+  tagline_zh: 把真实内容和现有代码落实为有辨识度、交互一致、媒体可用的界面，并留下验收证据。
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits: [0, 0]
+    delivery_unit_zh: 公开设计方法、Profile 工具、参考文档和三个案例记录
+    delivery_unit_en: Public design workflow, Profile tools, references, and three case records
+    value_zh: 将内容适配、控件语义、GSAP、图片音视频和真实访问路径验收纳入同一个前端设计工作流。
+    value_en: Bring content direction, control semantics, GSAP, images, audio, video, and real navigation checks into one frontend workflow.
+    anchor_zh: 价值来自可复用方法与可追溯案例；尚无可靠的跨项目省时测量，不承诺固定节省时间。
+    anchor_en: Value comes from reusable methods and traceable cases; cross-project time savings have not been measured reliably.
+    basis_zh: 六维加权判断为 2.975/5；公开方法替代较多且证据仍有限，由维护者承担当前成本，作为免费入口。
+    basis_en: The six-dimension judgment scores 2.975/5; alternatives and evidence gaps favor a free entry subsidized by the maintainer.
+    boundary_zh: 覆盖页面、组件、导航和多媒体展示；不含模型费用、素材采购、媒体生成、托管、定制开发或代发布。
+    boundary_en: Covers pages, components, navigation, and multimedia presentations; excludes model fees, media procurement or generation, hosting, custom development, and managed publishing.
+    maintenance_zh: 根据真实使用反馈、浏览器与工具变化维护，不承诺付费支持时效。
+    maintenance_en: Maintain against real usage feedback and browser or tool changes, without a paid support SLA.
+    confidence: case-backed
+    review_trigger_zh: 累计 10 次跨项目真实使用、版本变化、维护负担明显增加或加入托管服务时复评。
+    review_trigger_en: Review after ten real cross-project uses, a version change, substantially higher maintenance, or hosted services.
+    card_path: pricing-cards/frontend-design.md
 - name: env-management
   runtime_name: lov-env-management
   display_name: Environment Ledger

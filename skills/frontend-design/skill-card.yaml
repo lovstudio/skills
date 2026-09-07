@@ -1,0 +1,110 @@
+schema: lovstudio/skill-card/v1
+version: 0.3.0
+description: 手工川工作室维护的前端设计方法，统一内容、视觉、产品交互、GSAP 与真实多媒体，并输出可运行界面和可追溯验收。
+owner:
+  team: LovStudio contributors
+  contact: local Skill source maintainers
+license:
+  name: MIT
+  terms: 新编写指令与配套工具保留许可归属；示例站点及第三方素材不随本包重新授权。
+  url: LICENSE
+use_case:
+  audience: 维护产品前端、教学展示与案例集的开发者、设计者及代码 Agent
+  scenario: 已有页面要统一交互，或真实内容需要形成清楚、有辨识度的展示。
+  tasks:
+  - 理解受众与内容，选择适配风格
+  - 实现一致的控件、导航与响应式界面
+  - 用 GSAP 和真实图片音视频解释内容
+  - 记录构建、交互和最终路径的验收证据
+deployment:
+  geography: global
+  environments:
+  - local repository-aware agent
+  - existing frontend project or standalone exhibit
+requirements:
+  credentials: 核心本地方法不需要凭据；项目私有数据和发布渠道按任务单独提供。
+  dependencies:
+  - lov-branding-consistency
+  runtime:
+  - target project frontend toolchain
+  - browser tooling for runtime acceptance
+  - Python 3.8+ and PyYAML for local Skill utilities
+risks:
+- risk: 过度追求新视觉破坏已有产品操作习惯。
+  mitigation: 先读取相邻控件与 token，语义和状态优先。
+- risk: 把静态资源存在或构建成功误写成媒体、交互已验证。
+  mitigation: 实际点击、触控、播放和拖动分别记录；不可测项明确标记。
+- risk: 从历史聊天和素材泄露私人内容或伪造来源。
+  mitigation: 明确公开范围，保留来源与真实或合成属性，不打包聊天原件或凭据。
+- risk: 新版本借用历史成果夸大能力。
+  mitigation: 历史案例和新版本复核分别存证，不给无依据评分。
+references:
+- title: Primary instructions
+  path: SKILL.md
+- title: Acceptance
+  path: references/acceptance.md
+- title: Provenance
+  path: references/provenance.md
+- title: Real cases
+  path: cases/cases.json
+output:
+  types:
+  - frontend source or scoped patch
+  - media references and provenance
+  - verification evidence
+  formats:
+  - project-native HTML/CSS/JS or components
+  - JSON evidence and concise Markdown
+  parameters:
+  - audience and user task
+  - project design system and style scope
+  - media sources and access boundary
+  - supported viewports and verification scope
+  validation:
+  - real navigation reaches expected content
+  - labels and actions retain meaning at narrow widths
+  - relevant media actually plays
+  - project-native checks pass or gaps are explicit
+  description: 可用的页面或组件、真实素材与可核查的验收范围。
+ethical_considerations: 不制造案例、评价或量化能力分数。读者文案不混入私有过程，作品来源与合成声音明确标识；不默认发布。
+dimensions:
+- id: product-semantics
+  label: 产品交互
+  description: 导航、动作、状态与切换使用稳定语义。
+  evidence: cases/evidence/navigation-replay.json：四种语言、桌面键盘和两种手机宽度的触控均实际到达 244 节点地图。
+    同轮另发现窄屏长菜单底部溢出，见 cases/evidence/narrow-menu-finding.json。
+  score: verified-entry-with-open-finding
+- id: content-structure
+  label: 内容与能力表达
+  description: 大量能力以地图、索引和案例逐层展示。
+  evidence: cases/evidence/atlas-historical.json 记录 244 个节点、6 个案例、布局切换与索引检查。
+  score: verified-historical-case
+- id: multimedia
+  label: 真实多媒体
+  description: 验收实际图像浏览、声音播放、视频与拖动。
+  evidence: cases/evidence/atlas-historical.json 保存音频时间增长、视频 1280×720 与跳转记录。
+  score: verified-historical-case
+- id: portable-method
+  label: 方法可移植性
+  description: 维护品牌与作品品牌分离，复用项目技术和共享 Profile。
+  evidence: skill.yaml、references/skill-composition.md 与 references/provenance.md
+    明确上下文和边界。
+  score: reviewed-contract
+- id: motion-accessibility
+  label: 动效与可访问性
+  description: GSAP 作用域、减少动效、文本替代路径与键盘行为纳入验收。
+  evidence: references/motion-and-media.md 和 references/acceptance.md 声明要求；完整跨浏览器和辅助技术测试仍未完成。
+  score: specified-not-fully-verified
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 当前提供可移植设计指令、参考方法与真实案例，没有托管服务或专有数据，当前本地使用免费。
+  boundary: 包含界面设计、实现与相称验收；不包含模型调用、媒体生成、托管、商业品牌咨询或远程发布费用。
+  review_trigger: 增加独立自动化设计工具、托管验收或持续维护服务时重新评估；不因新增案例直接推断涨价。
+  confidence: documented-local-scope
+distribution:
+  policy: Release-specific channel states are maintained outside canonical source
+    by the publisher.
+  paid: []
+  free: []
