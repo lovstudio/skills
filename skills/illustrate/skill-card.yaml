@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 依据文档内容选择真实素材、图表或生成图并校验插入位置
-version: 2.6.1
+version: 2.6.2
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

@@ -10,7 +10,7 @@ depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 1.6.1
+  version: 1.6.2
   tags:
   - lovinsp
   - click-to-code

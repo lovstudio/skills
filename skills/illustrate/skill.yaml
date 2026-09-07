@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-illustrate
-version: 2.6.1
+version: 2.6.2
 runtime: skill-runtime/v1
 context:
   profile:

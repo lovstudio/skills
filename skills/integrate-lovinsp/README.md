@@ -1,6 +1,6 @@
 # lov-integrate-lovinsp
 
-![Version](https://img.shields.io/badge/version-1.6.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.6.2-CC785C)
 
 > 幂等集成 lovinsp (click-to-code) 到当前前端项目，支持从 code-inspector 迁移
 
@@ -9,7 +9,7 @@
 在本仓库根目录执行：
 
 ```bash
-export SKILL_SOURCE_DIR="$(pwd)/integrate-lovinsp-skill"
+export SKILL_SOURCE_DIR="$(pwd)"
 ln -s "$SKILL_SOURCE_DIR" \
   "${SKILL_SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}/lov-integrate-lovinsp"
 ```
@@ -19,7 +19,7 @@ ln -s "$SKILL_SOURCE_DIR" \
 显式调用：
 
 ```
-/lov-integrate-lovinsp [arguments]
+使用 lov-integrate-lovinsp 完成以下任务：<任务目标、输入和约束>
 ```
 
 也可由模型自动触发。典型触发语：
@@ -33,5 +33,11 @@ ln -s "$SKILL_SOURCE_DIR" \
 
 ## Status
 
-- Version: 1.5.0
+- Version: 1.6.2
 - Published at `github.com/lovstudio/integrate-lovinsp-skill`
+
+## 官网安装
+
+```bash
+npx -y lovstudio@latest skills add integrate-lovinsp
+```

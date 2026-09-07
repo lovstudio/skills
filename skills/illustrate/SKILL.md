@@ -14,7 +14,7 @@ description: 依据文档内容选择真实素材、图表或生成图并校验�
   evidence and relevant images.
 metadata:
   author: contributors
-  version: 2.6.1
+  version: 2.6.2
   tags:
   - illustration
   - markdown

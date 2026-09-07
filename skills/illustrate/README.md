@@ -1,6 +1,6 @@
 # lov-illustrate
 
-![Version](https://img.shields.io/badge/version-2.6.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.6.2-CC785C)
 
 > 为md文档智能添加插图，提升可读性
 
@@ -17,9 +17,15 @@ npx skills add lov-illustrate -g -y
 ## Invocation
 
 ```
-/lov-illustrate [arguments]
+使用 lov-illustrate 完成以下任务：<任务目标、输入和约束>
 ```
 
 ## Status
 
-- Version: 2.4.0
+- Version: 2.6.2
+
+## 官网安装
+
+```bash
+npx -y lovstudio@latest skills add illustrate
+```

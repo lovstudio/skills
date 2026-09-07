@@ -3602,8 +3602,8 @@ skills:
   name_zh: Lovinsp 接入
   paid: false
   category: Dev Tools
-  version: 1.6.1
-  updated_at: 2026-09-07T09:40:45Z
+  version: "1.6.2"
+  updated_at: 2026-09-07T09:44:42Z
   description: Integrate Lovinsp in a frontend project
   tagline_en: Integrate Lovinsp in a frontend project
   tagline_zh: 为现有前端项目幂等接入 Lovinsp 并验证点击定位源码能力
@@ -4734,12 +4734,12 @@ skills:
     card_path: pricing-cards/fix-until-no-error.md
 - name: gen-logo
   runtime_name: lov-gen-logo
-  updated_at: 2026-09-07T09:40:45Z
+  updated_at: 2026-09-07T09:44:42Z
   repo: lovstudio/skills
   name_zh: Logo 创作
   paid: false
   category: Dev Tools
-  version: 5.1.1
+  version: "5.1.2"
   description: Create a logo and application icon
   tagline_en: Create a logo and application icon
   tagline_zh: 根据项目用途制作版本化 Logo 草稿及应用图标，并按确认范围接入
@@ -4904,12 +4904,12 @@ skills:
     card_path: pricing-cards/i18n-check-i18n.md
 - name: illustrate
   runtime_name: lov-illustrate
-  updated_at: 2026-09-07T09:40:45Z
+  updated_at: 2026-09-07T09:44:42Z
   repo: lovstudio/skills
   name_zh: 文档配图
   paid: false
   category: Dev Tools
-  version: 2.6.1
+  version: "2.6.2"
   description: Illustrate a document with evidence and relevant images
   tagline_en: Illustrate a document with evidence and relevant images
   tagline_zh: 依据文档内容选择真实素材、图表或生成图并校验插入位置

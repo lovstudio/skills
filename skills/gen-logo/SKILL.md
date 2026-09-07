@@ -8,7 +8,7 @@ depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 5.1.1
+  version: 5.1.2
   tags:
   - logo
   - app-icon

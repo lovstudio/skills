@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-gen-logo
-version: 5.1.1
+version: 5.1.2
 runtime: skill-runtime/v1
 context:
   profile:

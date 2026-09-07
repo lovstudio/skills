@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 根据项目用途制作版本化 Logo 草稿及应用图标，并按确认范围接入
-version: 5.1.1
+version: 5.1.2
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 为现有前端项目幂等接入 Lovinsp 并验证点击定位源码能力
-version: 1.6.1
+version: 1.6.2
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability
