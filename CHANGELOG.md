@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2 — 2026-09-07
+
+- Make runtime-name synchronization independent of display-field order and repair repeated runtime_name keys without changing IDs or other catalog metadata.
+- Reject duplicate runtime-name fields during validation and cover reordered, duplicate and missing fields with regression tests.
+
 ## 1.0.1 — 2026-09-07
 
 - Review all 156 public Skill names for accuracy, brevity and a memorable product voice, preserving names explicitly approved by the user.

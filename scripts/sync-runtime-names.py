@@ -23,8 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent
 YAML_PATH = ROOT / "skills.yaml"
 MIRROR_ROOT = ROOT / "skills"
 ENTRY_RE = re.compile(
-    r"(?m)^- name: (?P<name>[^\n]+)\n(?:  runtime_name: (?P<runtime>[^\n]+)\n)?"
+    r"(?ms)^- name: (?P<name>[^\n]+)\n(?P<body>.*?)(?=^- name: |\Z)"
 )
+RUNTIME_FIELD_RE = re.compile(r"(?m)^  runtime_name:[^\n]*(?:\n|$)")
 
 
 def read_runtime_name(skill_md: Path) -> str:
@@ -75,7 +76,20 @@ def rewrite(text: str, runtime_names: dict[str, str]) -> str:
         if runtime_name is None:
             return match.group(0)
         seen.add(name)
-        return f"- name: {name}\n  runtime_name: {runtime_name}\n"
+        body = match.group('body')
+        replaced = False
+
+        def replace_field(field: re.Match[str]) -> str:
+            nonlocal replaced
+            if replaced:
+                return ''
+            replaced = True
+            return f'  runtime_name: {runtime_name}\n'
+
+        body = RUNTIME_FIELD_RE.sub(replace_field, body)
+        if not replaced:
+            body = f'  runtime_name: {runtime_name}\n' + body
+        return f'- name: {name}\n{body}'
 
     result = ENTRY_RE.sub(replace, text)
     missing = sorted(set(runtime_names) - seen)
@@ -99,6 +113,14 @@ def validate(catalog: dict[str, dict], runtime_names: dict[str, str]) -> list[st
     return errors
 
 
+def duplicate_runtime_fields(text: str) -> list[str]:
+    return [
+        f"{match.group('name').strip()}: repeated runtime_name field"
+        for match in ENTRY_RE.finditer(text)
+        if len(RUNTIME_FIELD_RE.findall(match.group('body'))) > 1
+    ]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", action="store_true", help="update skills.yaml before validating")
@@ -117,9 +139,9 @@ def main() -> int:
         if next_text != text:
             YAML_PATH.write_text(next_text, encoding="utf-8")
             print(f"Updated runtime_name for {len(runtime_names)} catalog entries.")
-        _, catalog = load_catalog()
+        text, catalog = load_catalog()
 
-    errors = validate(catalog, runtime_names)
+    errors = validate(catalog, runtime_names) + duplicate_runtime_fields(text)
     if errors:
         print("Runtime name validation failed:", file=sys.stderr)
         for error in errors:
