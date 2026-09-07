@@ -2324,22 +2324,22 @@ skills:
     card_path: pricing-cards/repo2docs.md
 - name: wdb-cli
   runtime_name: lov-wdb-cli
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: '2026-09-07T16:04:08.993035Z'
   skillpay_product_id: P0806000201803813
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt_Qi
   skillpay_review_product_id: P0806000201871143
-  display_name: "Universal WeChat Key"
+  display_name: Universal WeChat Key
   repo: lovstudio/wdb-cli-skill
-  name_zh: "万能微信秘钥"
+  name_zh: 万能微信秘钥
   paid: true
   encrypted_bundle: true
   price_credits: 280
   category: General
-  skill_path: ""
-  version: "0.3.0"
-  description: Use existing keys or decrypted databases to query local WeChat data with WDB Pro managed-key discovery and exact row identity.
-  tagline_en: Auto-discover WDB Pro managed keys and run precise local WeChat searches across chats, contacts, Moments, schemas, and exact records.
-  tagline_zh: 自动发现 WDB Pro 管理密钥，精准读取聊天、联系人、朋友圈、结构与稳定记录。
+  skill_path: ''
+  version: 0.3.1
+  description: Query local WeChat data through isolated DB+WAL copies, preserving exact record identity without opening the live database with SQLite or SQLCipher.
+  tagline_en: Read WeChat data through isolated copies while preserving exact record identity.
+  tagline_zh: 通过隔离副本读取微信数据，保留精确记录身份。
   distribution:
     workbuddy: review
     skillpay: review
@@ -2355,18 +2355,20 @@ skills:
     delivery_unit_en: One complete Skill with installation and usage notes for the current version
     value_zh: 自动发现 WDB Pro 管理密钥，或使用已有密钥与已解密数据库，按日期、联系人、关键词、朋友圈动态或稳定记录身份精准读取本地微信数据。
     value_en: Auto-discover WDB Pro managed keys, or use existing keys and decrypted databases, to query local WeChat data by date, contact, keyword, Moment, schema, or exact record identity.
-    anchor_zh: 一次典型检索、核验或整理通常可节省约 1.5 至 4 小时。
-    anchor_en: A typical search, verification, or organization task can save roughly 1.5 to 4 hours.
-    basis_zh: 模型建议价为 421 Credits；本次沿用既有 280 Credits 首发公价，以真实销量和支持成本作为后续复评依据。
-    basis_en: The model recommends 421 Credits; this release keeps the existing 280 Credits launch price pending sales and support evidence.
-    boundary_zh: 需要已有可读的本地数据库与密钥；数据库完整度和微信版本结构差异会影响可读取范围。
-    boundary_en: Requires an already readable local database and key; database completeness and WeChat schema differences affect coverage.
+    anchor_zh: 自动化替代手工查表和精确定位；节省时间因数据和任务而异，尚无买家统计。
+    anchor_en: Automates table inspection and exact record lookup; time savings vary and buyer measurements are not yet available.
+    basis_zh: 本次稳定性修复沿用 280 Credits 买断价；15 项测试与真实联系人库验证通过，待补齐微信运行中和跨机器证据。
+    basis_en: This stability update keeps the 280 Credits one-time price. Fifteen tests and a real contact database check passed; running-WeChat and cross-machine evidence remain pending.
+    boundary_zh: 需已有数据库和密钥、SQLCipher 及临时磁盘空间；副本逐库创建，不保证跨库原子一致。
+    boundary_en: Requires existing databases and keys, SQLCipher, and temporary disk space. Copies are per database, not an atomic cross-database snapshot.
     maintenance_zh: 随微信数据库结构、SQLCipher 环境和真实支持成本变化复评。
     maintenance_en: Review when WeChat schemas, SQLCipher environments, or observed support costs change.
     confidence: medium
-    review_trigger_zh: 达到 20 名付费用户、100 次成功数据库工作流、0.3.0、平均支持超过 30 分钟或 2027-02-22 时复评。
-    review_trigger_en: Review at 20 paid users, 100 successful database workflows, version 0.3.0, average support above 30 minutes, or 2027-02-22.
+    review_trigger_zh: 20 名付费用户、100 次成功流程、支持超过 30 分钟、0.4.0 或 2027-02-22；优先补齐运行中稳定性证据。
+    review_trigger_en: Review at 20 buyers, 100 successful workflows, support over 30 minutes, 0.4.0, or 2027-02-22; prioritize running-WeChat stability evidence.
     card_path: pricing-cards/wdb-cli.md
+  depends_on:
+  - branding-consistency
 - name: skill-creator
   runtime_name: lov-skill-creator
   display_name: "Skill Studio"

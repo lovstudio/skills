@@ -1,7 +1,9 @@
 ---
 name: lov-wdb-cli
-description: 万能微信秘钥：自动发现 WDB Pro 管理密钥，或使用已有密钥与已解密数据库，按日期、对象、关键词、结构与稳定记录身份精准读取本地微信数据。
-version: 0.3.0
+description: "万能微信秘钥：通过隔离 DB+WAL 副本读取本地微信数据，保留精确记录身份，避免查询引擎干扰微信共享内存。"
+depends_on:
+  - lov-branding-consistency
+version: 0.3.1
 ---
 
 # 万能微信秘钥 · Universal WeChat Key
@@ -21,3 +23,5 @@ uvx lovstudio-skill-helper decrypt wdb-cli
 ```
 
 解密输出仅用于当前 Agent 调用，不会把源代码写入安装目录。
+
+0.3.1：所有查询使用私有 DB+WAL 副本，复制失败不直连原库。15 项回归测试通过；微信运行中稳定性尚待实测。
