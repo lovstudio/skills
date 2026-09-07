@@ -2366,6 +2366,7 @@ skills:
     review_trigger_en: Review at 20 paid users, 100 successful database workflows, version 0.3.0, average support above 30 minutes, or 2027-02-22.
     card_path: pricing-cards/wdb-cli.md
 - name: skill-creator
+  runtime_name: lov-skill-creator
   display_name: "Skill Studio"
   runtime_name: lov-skill-creator
   updated_at: 2026-09-07T09:40:45Z
@@ -2402,6 +2403,7 @@ skills:
   depends_on:
   - branding-consistency
 - name: skill-add-case
+  runtime_name: lov-skill-add-case
   display_name: "Skill Showcase"
   runtime_name: lov-skill-add-case
   updated_at: 2026-09-07T09:49:19Z
@@ -2440,6 +2442,7 @@ skills:
     review_trigger_en: Review after 10 live-verified cases, a related contract change, or a material support-cost increase.
     card_path: pricing-cards/skill-add-case.md
 - name: skill-optimizer
+  runtime_name: lov-skill-optimizer
   display_name: "Skill Refiner"
   runtime_name: lov-skill-optimizer
   updated_at: 2026-08-23T17:04:16Z
@@ -2480,6 +2483,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-optimizer.md
 - name: auto-context
+  runtime_name: lov-auto-context
   display_name: "Context Sentinel"
   runtime_name: lov-auto-context
   updated_at: 2026-08-23T17:04:16Z
@@ -2520,6 +2524,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/auto-context.md
 - name: cc-migrate-session
+  runtime_name: lov-cc-mv
   display_name: "Session Mover"
   runtime_name: lov-cc-mv
   updated_at: 2026-08-23T17:04:16Z
@@ -2561,6 +2566,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/cc-migrate-session.md
 - name: deploy-to-vercel
+  runtime_name: lov-deploy-to-vercel
   display_name: "Vercel Deployer"
   runtime_name: lov-deploy-to-vercel
   updated_at: 2026-08-23T17:04:16Z
@@ -2601,6 +2607,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/deploy-to-vercel.md
 - name: finder-action
+  runtime_name: lov-finder-action
   display_name: "Finder Actions"
   runtime_name: lov-finder-action
   updated_at: 2026-09-07T09:40:45Z
@@ -2637,6 +2644,7 @@ skills:
   depends_on:
   - branding-consistency
 - name: gh-access
+  runtime_name: lov-gh-access
   display_name: "GitHub Collaborator Manager"
   runtime_name: lov-gh-access
   updated_at: 2026-08-23T17:04:16Z
@@ -2677,6 +2685,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/gh-access.md
 - name: gh-contribute
+  runtime_name: lov-gh-contribute
   display_name: "Open Source Contributor"
   runtime_name: lov-gh-contribute
   updated_at: 2026-08-23T17:04:16Z
@@ -2718,6 +2727,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/gh-contribute.md
 - name: gh-tidy
+  runtime_name: lov-gh-tidy
   display_name: "GitHub Organizer"
   runtime_name: lov-gh-tidy
   updated_at: 2026-08-23T17:04:16Z
@@ -2758,6 +2768,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/gh-tidy.md
 - name: install-tanstack-query
+  runtime_name: lov-install-tanstack-query
   display_name: "TanStack Query Setup"
   runtime_name: lov-install-tanstack-query
   updated_at: 2026-08-23T17:04:16Z
@@ -2798,6 +2809,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/install-tanstack-query.md
 - name: release-via-cicd
+  runtime_name: lov-release-via-cicd
   display_name: "Release Pilot"
   runtime_name: lov-release-via-cicd
   updated_at: 2026-09-07T09:40:45Z
@@ -2834,6 +2846,7 @@ skills:
   depends_on:
   - branding-consistency
 - name: optimize-tauri-backend
+  runtime_name: lov-optimize-tauri-backend
   display_name: "Tauri Backend Tuner"
   runtime_name: lov-optimize-tauri-backend
   updated_at: 2026-08-23T17:04:16Z
@@ -2876,6 +2889,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/optimize-tauri-backend.md
 - name: app-generator
+  runtime_name: lov-app-generator
   display_name: "App Studio"
   runtime_name: lov-app-generator
   updated_at: 2026-08-23T17:04:16Z
@@ -2919,6 +2933,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/app-generator.md
 - name: electron-delta-updater
+  runtime_name: sgc-electron-delta-updater
   display_name: "Electron Delta Updates"
   runtime_name: sgc-electron-delta-updater
   updated_at: 2026-08-23T17:04:16Z
@@ -2959,6 +2974,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/electron-delta-updater.md
 - name: electron-app-relaunch
+  runtime_name: sgc-electron-app-relaunch
   display_name: "Desktop App Relaunch"
   runtime_name: sgc-electron-app-relaunch
   updated_at: 2026-08-23T17:04:16Z
@@ -2999,6 +3015,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/electron-app-relaunch.md
 - name: install-ai
+  runtime_name: sgc-install-ai
   display_name: "AI Integrator"
   runtime_name: sgc-install-ai
   updated_at: 2026-08-23T17:04:16Z
@@ -3041,6 +3058,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/install-ai.md
 - name: skill-distiller
+  runtime_name: sgc-skill-distiller
   display_name: "Skill Alchemist"
   runtime_name: sgc-skill-distiller
   updated_at: 2026-08-23T17:04:16Z
@@ -3081,6 +3099,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-distiller.md
 - name: skill-pricing
+  runtime_name: lov-skill-pricing
   display_name: "Skill Pricer"
   runtime_name: lov-skill-pricing
   updated_at: 2026-08-26T15:50:02Z
@@ -3117,6 +3136,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-pricing.md
 - name: media-crawler
+  runtime_name: lov-media-crawler
   display_name: "Media Downloader"
   runtime_name: lov-media-crawler
   updated_at: 2026-08-23T17:04:16Z
@@ -3153,6 +3173,7 @@ skills:
     review_trigger_en: Review after a new platform, a resolution regression, 10 real uses, or a material support-cost change.
     card_path: pricing-cards/media-crawler.md
 - name: skill-publisher
+  runtime_name: lov-skill-publisher
   display_name: "Skill Publisher"
   runtime_name: lov-skill-publisher
   updated_at: 2026-08-27T03:29:53Z
@@ -3195,6 +3216,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/skill-publisher.md
 - name: obsidian-reset-cache
+  runtime_name: lov-obsidian-reset-cache
   display_name: "Obsidian Cache Reset"
   runtime_name: lov-obsidian-reset-cache
   updated_at: 2026-08-23T17:04:16Z
@@ -3235,6 +3257,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/obsidian-reset-cache.md
 - name: project-port
+  runtime_name: lov-project-port
   display_name: "Port Keeper"
   runtime_name: lov-project-port
   updated_at: 2026-08-23T17:04:16Z
@@ -3275,6 +3298,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material change in support cost.
     card_path: pricing-cards/project-port.md
 - name: clash-tun-doctor
+  runtime_name: lov-clash-tun-doctor
   display_name: "Clash Network Doctor"
   runtime_name: lov-clash-tun-doctor
   updated_at: 2026-08-23T17:04:16Z
@@ -3766,6 +3790,7 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or when a paid vision backend is added.
     card_path: pricing-cards/describe-image.md
 - name: personal-vocabulary
+  runtime_name: lov-personal-vocabulary
   display_name: "My Vocabulary"
   name_zh: "我的词库"
   runtime_name: lov-personal-vocabulary
@@ -4149,6 +4174,7 @@ skills:
       or ongoing support.
     card_path: pricing-cards/video-moments.md
 - name: better-css
+  runtime_name: lov-better-css
   display_name: "CSS Polish"
   runtime_name: lov-better-css
   updated_at: 2026-09-07T09:40:45Z
@@ -4219,6 +4245,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-github-desc.md
 - name: better-project-structure
+  runtime_name: lov-better-project-structure
   display_name: "Project Organizer"
   runtime_name: lov-better-project-structure
   updated_at: 2026-09-07T09:40:45Z
@@ -4254,6 +4281,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-project-structure.md
 - name: better-readme
+  runtime_name: lov-better-readme
   display_name: "README Polish"
   runtime_name: lov-better-readme
   updated_at: 2026-09-07T09:40:45Z
@@ -4289,6 +4317,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-readme.md
 - name: better-seo
+  runtime_name: lov-better-seo
   display_name: "Next.js SEO Assistant"
   runtime_name: lov-better-seo
   updated_at: 2026-09-07T09:40:45Z
@@ -4324,6 +4353,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-seo.md
 - name: better-statusline
+  runtime_name: lov-better-statusline
   display_name: "Status Line Studio"
   runtime_name: lov-better-statusline
   updated_at: 2026-09-07T09:40:45Z
@@ -4359,6 +4389,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/better-statusline.md
 - name: brainstorm
+  runtime_name: lov-brainstorm
   display_name: "Requirements Compass"
   runtime_name: lov-brainstorm
   updated_at: 2026-09-07T09:40:45Z
@@ -4394,6 +4425,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/brainstorm.md
 - name: checkpoint-list
+  runtime_name: lov-checkpoint-list
   display_name: "Checkpoint History"
   runtime_name: lov-checkpoint-list
   updated_at: 2026-09-07T09:40:45Z
@@ -4429,6 +4461,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/checkpoint-list.md
 - name: checkpoint
+  runtime_name: lov-checkpoint
   display_name: "Project Checkpoint"
   runtime_name: lov-checkpoint
   updated_at: 2026-09-07T09:40:45Z
@@ -4464,6 +4497,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/checkpoint.md
 - name: clone-rebrand
+  runtime_name: lov-clone-rebrand
   display_name: "Project Makeover"
   runtime_name: lov-clone-rebrand
   updated_at: 2026-09-07T09:40:45Z
@@ -4499,6 +4533,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/clone-rebrand.md
 - name: daily-post
+  runtime_name: lov-daily-post
   display_name: "Dev Diary"
   runtime_name: lov-daily-post
   updated_at: 2026-09-07T09:40:45Z
@@ -4534,6 +4569,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/daily-post.md
 - name: dev-research
+  runtime_name: lov-dev-research
   display_name: "Tech Selection Advisor"
   runtime_name: lov-dev-research
   updated_at: 2026-09-07T09:40:45Z
@@ -4569,6 +4605,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/dev-research.md
 - name: distill-to-system
+  runtime_name: lov-distill-to-system
   display_name: "Lessons to Rules"
   runtime_name: lov-distill-to-system
   updated_at: 2026-09-07T09:40:45Z
@@ -4604,6 +4641,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/distill-to-system.md
 - name: distill
+  runtime_name: lov-distill
   display_name: "Lesson Distiller"
   runtime_name: lov-distill
   updated_at: 2026-09-07T09:40:45Z
@@ -4639,6 +4677,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/distill.md
 - name: fix-broken-links
+  runtime_name: lov-fix-broken-links
   display_name: "Link Fixer"
   runtime_name: lov-fix-broken-links
   updated_at: 2026-09-07T09:40:45Z
@@ -4674,6 +4713,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/fix-broken-links.md
 - name: fix-by-add-log
+  runtime_name: lov-fix-by-add-log
   display_name: "Log Detective"
   runtime_name: lov-fix-by-add-log
   updated_at: 2026-09-07T09:40:45Z
@@ -4709,6 +4749,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/fix-by-add-log.md
 - name: fix-general
+  runtime_name: lov-fix-general
   display_name: "Troubleshooter"
   runtime_name: lov-fix-general
   updated_at: 2026-09-07T09:40:45Z
@@ -4744,6 +4785,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/fix-general.md
 - name: fix-until-no-error
+  runtime_name: lov-fix-until-no-error
   display_name: "Verified Fixes"
   runtime_name: lov-fix-until-no-error
   updated_at: 2026-09-07T09:40:45Z
@@ -4779,6 +4821,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/fix-until-no-error.md
 - name: gen-logo
+  runtime_name: lov-gen-logo
   display_name: "Logo Studio"
   runtime_name: lov-gen-logo
   updated_at: 2026-09-07T09:44:42Z
@@ -4814,6 +4857,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/gen-logo.md
 - name: gen-project-name
+  runtime_name: lov-gen-project-name
   display_name: "Project Namer"
   runtime_name: lov-gen-project-name
   updated_at: 2026-09-07T09:40:45Z
@@ -4849,6 +4893,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/gen-project-name.md
 - name: git-commit-with-context
+  runtime_name: lov-git-commit-with-context
   display_name: "Context Commit"
   runtime_name: lov-git-commit-with-context
   updated_at: 2026-09-07T09:40:45Z
@@ -4884,6 +4929,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/git-commit-with-context.md
 - name: help-cmd
+  runtime_name: lov-help-cmd
   display_name: "Command Helper"
   runtime_name: lov-help-cmd
   updated_at: 2026-09-07T09:40:45Z
@@ -4919,6 +4965,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/help-cmd.md
 - name: i18n-check-i18n
+  runtime_name: lov-i18n-check-i18n
   display_name: "I18n Inspector"
   runtime_name: lov-i18n-check-i18n
   updated_at: 2026-09-07T09:40:45Z
@@ -4954,6 +5001,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/i18n-check-i18n.md
 - name: illustrate
+  runtime_name: lov-illustrate
   display_name: "Document Visuals"
   runtime_name: lov-illustrate
   updated_at: 2026-09-07T09:44:42Z
@@ -4989,6 +5037,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/illustrate.md
 - name: init-auth
+  runtime_name: lov-init-auth
   display_name: "Supabase Auth Setup"
   runtime_name: lov-init-auth
   updated_at: 2026-09-07T09:40:45Z
@@ -5024,6 +5073,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/init-auth.md
 - name: init-port
+  runtime_name: lov-init-port
   display_name: "Port Setup"
   runtime_name: lov-init-port
   updated_at: 2026-09-07T09:40:45Z
@@ -5059,6 +5109,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/init-port.md
 - name: install-design
+  runtime_name: lov-install-design
   display_name: "Design System Setup"
   runtime_name: lov-install-design
   updated_at: 2026-09-07T09:40:45Z
@@ -5094,6 +5145,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-design.md
 - name: install-shadcn-ui
+  runtime_name: lov-install-shadcn-ui
   display_name: "shadcn/ui Setup"
   runtime_name: lov-install-shadcn-ui
   updated_at: 2026-09-07T09:40:45Z
@@ -5129,6 +5181,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-shadcn-ui.md
 - name: install-tauri-logo
+  runtime_name: lov-install-tauri-logo
   display_name: "Tauri Icon Setup"
   runtime_name: lov-install-tauri-logo
   updated_at: 2026-09-07T09:40:45Z
@@ -5164,6 +5217,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-tauri-logo.md
 - name: install-web-logo
+  runtime_name: lov-install-web-logo
   display_name: "Website Logo Setup"
   runtime_name: lov-install-web-logo
   updated_at: 2026-09-07T09:40:45Z
@@ -5199,6 +5253,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-web-logo.md
 - name: install-zenmux-api
+  runtime_name: lov-install-zenmux-api
   display_name: "ZenMux Setup"
   runtime_name: lov-install-zenmux-api
   updated_at: 2026-09-07T09:40:45Z
@@ -5234,6 +5289,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/install-zenmux-api.md
 - name: kb-organize
+  runtime_name: lov-kb-organize
   display_name: "Knowledge Organizer"
   runtime_name: lov-kb-organize
   updated_at: 2026-09-07T09:40:45Z
@@ -5269,6 +5325,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/kb-organize.md
 - name: kill-emoji
+  runtime_name: lov-kill-emoji
   display_name: "Emoji Makeover"
   runtime_name: lov-kill-emoji
   updated_at: 2026-09-07T09:40:45Z
@@ -5304,6 +5361,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/kill-emoji.md
 - name: legal-pages
+  runtime_name: lov-legal-pages
   display_name: "Website Legal Pages"
   runtime_name: lov-legal-pages
   updated_at: 2026-09-07T09:40:45Z
@@ -5339,6 +5397,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/legal-pages.md
 - name: memory-add
+  runtime_name: lov-memory-add
   display_name: "Knowledge Capture"
   runtime_name: lov-memory-add
   updated_at: 2026-09-07T09:40:45Z
@@ -5374,6 +5433,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/memory-add.md
 - name: memory-search
+  runtime_name: lov-memory-search
   display_name: "Knowledge Finder"
   runtime_name: lov-memory-search
   updated_at: 2026-09-07T09:40:45Z
@@ -5409,6 +5469,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/memory-search.md
 - name: meta-command
+  runtime_name: lov-meta-command
   display_name: "Workflow Studio"
   runtime_name: lov-meta-command
   updated_at: 2026-09-07T09:40:45Z
@@ -5444,6 +5505,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/meta-command.md
 - name: nano-banana-pro
+  runtime_name: lov-nano-banana-pro
   display_name: "Image Prompt Crafter"
   runtime_name: lov-nano-banana-pro
   updated_at: 2026-09-07T09:40:45Z
@@ -5479,6 +5541,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/nano-banana-pro.md
 - name: obsidian-ensure-dev-sync
+  runtime_name: lov-obsidian-ensure-dev-sync
   display_name: "Obsidian Dev Sync"
   runtime_name: lov-obsidian-ensure-dev-sync
   updated_at: 2026-09-07T09:40:45Z
@@ -5514,6 +5577,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/obsidian-ensure-dev-sync.md
 - name: output-wechat-moment
+  runtime_name: lov-output-wechat-moment
   display_name: "WeChat Moments Copy"
   runtime_name: lov-output-wechat-moment
   updated_at: 2026-09-07T09:40:45Z
@@ -5549,6 +5613,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/output-wechat-moment.md
 - name: output
+  runtime_name: lov-output
   display_name: "Content Keeper"
   runtime_name: lov-output
   updated_at: 2026-09-07T09:40:45Z
@@ -5584,6 +5649,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/output.md
 - name: refactor-api
+  runtime_name: lov-refactor-api
   display_name: "API Refiner"
   runtime_name: lov-refactor-api
   updated_at: 2026-09-07T09:40:45Z
@@ -5619,6 +5685,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/refactor-api.md
 - name: refactor-modular
+  runtime_name: lov-refactor-modular
   display_name: "Module Refactorer"
   runtime_name: lov-refactor-modular
   updated_at: 2026-09-07T09:40:45Z
@@ -5654,6 +5721,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/refactor-modular.md
 - name: rename-project
+  runtime_name: lov-rename-project
   display_name: "Project Renamer"
   runtime_name: lov-rename-project
   updated_at: 2026-09-07T09:40:45Z
@@ -5689,6 +5757,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/rename-project.md
 - name: repo-takeover
+  runtime_name: lov-repo-takeover
   display_name: "Repository Takeover"
   runtime_name: lov-repo-takeover
   updated_at: 2026-09-07T09:40:45Z
@@ -5724,6 +5793,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/repo-takeover.md
 - name: version-management-manual
+  runtime_name: lov-version-management-manual
   display_name: "Version Review"
   runtime_name: lov-version-management-manual
   updated_at: 2026-09-07T09:40:45Z
@@ -5759,6 +5829,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/version-management-manual.md
 - name: version-management
+  runtime_name: lov-version-management
   display_name: "Version Keeper"
   runtime_name: lov-version-management
   updated_at: 2026-09-07T09:40:45Z
@@ -5794,6 +5865,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/version-management.md
 - name: xbti-gallery
+  runtime_name: lov-xbti-gallery
   display_name: "XBTI Gallery"
   runtime_name: lov-xbti-gallery
   updated_at: 2026-09-07T09:40:45Z
@@ -5828,6 +5900,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/xbti-gallery.md
 - name: five
+  runtime_name: lov-five
   display_name: "Five-Unit Replies"
   runtime_name: lov-five
   updated_at: 2026-09-07T09:40:45Z
@@ -5863,6 +5936,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/five.md
 - name: add-task
+  runtime_name: lov-add-task
   display_name: "Task Capture"
   runtime_name: lov-add-task
   updated_at: 2026-09-07T09:40:45Z
@@ -5898,6 +5972,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/add-task.md
 - name: think
+  runtime_name: lov-think
   display_name: "Deep Thinking"
   runtime_name: lov-think
   updated_at: 2026-09-07T09:40:45Z
@@ -5933,6 +6008,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/think.md
 - name: code-review
+  runtime_name: lov-code-review
   display_name: "Code Reviewer"
   runtime_name: lov-code-review
   updated_at: 2026-09-07T09:40:45Z
@@ -5968,6 +6044,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/code-review.md
 - name: architecture-documentation
+  runtime_name: lov-architecture-documentation
   display_name: "Architecture Atlas"
   runtime_name: lov-architecture-documentation
   updated_at: 2026-09-07T09:40:45Z
@@ -6003,6 +6080,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/architecture-documentation.md
 - name: agent-instructions
+  runtime_name: lov-agent-instructions
   display_name: "Agent Guide Keeper"
   runtime_name: lov-agent-instructions
   updated_at: 2026-09-07T09:40:45Z
@@ -6038,6 +6116,7 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material maintenance change.
     card_path: pricing-cards/agent-instructions.md
 - name: add-tool
+  runtime_name: lov-add-tool
   display_name: "Web Tool Studio"
   runtime_name: lov-add-tool
   updated_at: '2026-09-07T09:48:03Z'
