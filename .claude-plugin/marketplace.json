@@ -9,6 +9,26 @@
   },
   "plugins": [
     {
+      "name": "design",
+      "source": "./",
+      "description": "Design — 6 free + 4 paid (Credits redemption required).",
+      "category": "Design",
+      "skills": [
+        "./skills/frontend-design",
+        "./skills/branding-consistency",
+        "./skills/maintain-partners",
+        "./skills/find-logo",
+        "./skills/event-poster",
+        "./skills/visual-clone",
+        "./skills/professional-portrait",
+        "./skills/riso-portrait",
+        "./skills/professional-infographic",
+        "./skills/oh-my-landingpage",
+        "./skills/business-card"
+      ],
+      "strict": false
+    },
+    {
       "name": "dev-tools",
       "source": "./",
       "description": "Dev Tools — 31 free skills bundled together.",
@@ -72,24 +92,6 @@
         "./skills/search-twitter",
         "./skills/search-file",
         "./skills/praise-before-work"
-      ],
-      "strict": false
-    },
-    {
-      "name": "design",
-      "source": "./",
-      "description": "Design — 5 free + 4 paid (Credits redemption required).",
-      "category": "Design",
-      "skills": [
-        "./skills/maintain-partners",
-        "./skills/find-logo",
-        "./skills/event-poster",
-        "./skills/visual-clone",
-        "./skills/professional-portrait",
-        "./skills/riso-portrait",
-        "./skills/professional-infographic",
-        "./skills/oh-my-landingpage",
-        "./skills/business-card"
       ],
       "strict": false
     },

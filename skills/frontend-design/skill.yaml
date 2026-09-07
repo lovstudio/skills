@@ -1,0 +1,79 @@
+schema: skill-manifest/v1
+id: lov-frontend-design
+version: 0.3.0
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+    - user
+    - brand
+    - workspace
+    - preferences
+    - skills.lov-frontend-design
+    persist:
+      enabled: true
+      namespace: skills.lov-frontend-design
+      records_path: skills.lov-frontend-design.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+    - path: user.name
+      aliases:
+      - identity.name
+      required: false
+      question: 如果本次输出需要用户身份，请提供名称。
+    - path: user.language
+      required: false
+      question: 希望使用哪种语言输出？
+    - path: user.timezone
+      required: false
+      question: 需要使用哪个时区处理日期和时间？
+    - path: brand.name
+      aliases:
+      - identity.name
+      required: false
+      question: 如果本次输出需要品牌身份，请提供品牌名称。
+    - path: brand.site
+      required: false
+      question: 如果需要品牌官网，请提供地址。
+    - path: brand.tone
+      required: false
+      question: 如果已有品牌语气或审美关键词，请提供它们。
+    - path: brand.logo
+      required: false
+      question: 已有确认过的品牌标识时，请提供它的位置。
+    - path: brand.design_guide
+      required: false
+      question: 已有设计规范时，请提供其内容或位置。
+    - path: workspace.project_root
+      required: false
+      question: 无法从当前项目判断时，请提供目标项目目录。
+    - path: workspace.output_root
+      required: false
+      question: 有指定交付目录时，请提供它的位置。
+    - path: skills.lov-frontend-design.records.style_mode
+      required: false
+      question: 是否有明确需要长期沿用的风格模式？
+    - path: skills.lov-frontend-design.records.default_audience
+      required: false
+      question: 是否有明确需要长期沿用的受众？
+    - path: skills.lov-frontend-design.records.min_viewport
+      required: false
+      question: 是否有明确需要长期沿用的最窄支持宽度？
+    - path: skills.lov-frontend-design.records.motion_preference
+      required: false
+      question: 是否有明确需要长期沿用的动效偏好？
+  preferences:
+    namespace: lov_frontend_design
+    fields:
+    - path: user.language
+      required: false
+      question: 希望使用哪种语言输出？
+    - path: user.timezone
+      required: false
+      question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

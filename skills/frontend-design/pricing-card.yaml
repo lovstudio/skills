@@ -1,0 +1,9 @@
+schema: lovstudio/pricing-card/v1
+version: 0.3.0
+model: free
+currency: CNY
+list_price_cny: 0
+basis: 当前提供可移植设计指令、参考方法与真实案例，没有托管服务或专有数据，当前本地使用免费。
+boundary: 包含界面设计、实现与相称验收；不包含模型调用、媒体生成、托管、商业品牌咨询或远程发布费用。
+review_trigger: 增加独立自动化设计工具、托管验收或持续维护服务时重新评估；不因新增案例直接推断涨价。
+confidence: documented-local-scope

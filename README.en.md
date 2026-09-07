@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **100 skills** — 85 Free + 15 Paid.
+> **101 skills** — 86 Free + 15 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -81,6 +81,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [`business-card`](https://github.com/lovstudio/business-card-skill) | Turn anyone's name, roles and tagline into a polished editorial business card — high-res PNG plus a click-to-download HTML. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`event-poster`](https://github.com/lovstudio/event-poster-skill) | Turn an event brief into a polished poster, ready to share or print for exhibitions. — related: `publish-event-onto-hdx` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`find-logo`](https://github.com/lovstudio/find-logo-skill) | Collect brand logos from public sources — wide and transparent preferred, archived for website/PPT/poster lineups. |
+| ![Free](https://img.shields.io/badge/Free-green) | [`frontend-design`](https://github.com/lovstudio/frontend-design-skill) | Turn real content and existing code into distinctive, usable interfaces with verified interactions and media. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`maintain-partners`](https://github.com/lovstudio/maintain-partners-skill) | Scrape, normalize, and wire brand logos into the partners section across 4 locales in one shot. — requires: `find-logo` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`oh-my-landingpage`](https://github.com/lovstudio/oh-my-landingpage-skill) | Turn product truth into a distinctive landing page, with brand, story, visual direction, implementation, and production review working as one system. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [`professional-infographic`](https://github.com/lovstudio/professional-infographic-skill) | Turn dense material or an investment path into one sourced visual argument, from entry and staged exits to the decision that follows. — related: `image-creator` |

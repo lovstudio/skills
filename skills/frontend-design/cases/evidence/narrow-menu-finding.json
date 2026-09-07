@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-09-06T06:46:29.379Z",
+  "url": "https://lovstudio.ai/design",
+  "viewport": {
+    "width": 320,
+    "height": 740
+  },
+  "loginBefore": {
+    "x": 93.2672119140625,
+    "y": 711.4755249023438,
+    "width": 205.465576171875,
+    "height": 30.72381591796875
+  },
+  "loginAfter": {
+    "x": 89.79358673095703,
+    "y": 726.554931640625,
+    "width": 212.41283416748047,
+    "height": 31.7626953125
+  },
+  "menu": {
+    "overflowY": "hidden",
+    "clientHeight": 681,
+    "scrollHeight": 681,
+    "scrollTop": 0
+  },
+  "loginBottomAfter": 758.317626953125,
+  "entryVerifiedSeparately": true,
+  "status": "open-finding",
+  "observation": "The long mobile menu places Login below the 740 px viewport; a wheel gesture inside the menu did not expose it.",
+  "scope": "Read-only evidence; no website edits."
+}
