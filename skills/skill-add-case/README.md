@@ -1,6 +1,6 @@
 # lov-skill-add-case
 
-![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.1-CC785C)
 
 把一次已确认满意的 Skill 结果整理成官网案例。用户可以导入网页后手动发布，
 也可以授权 Agent 直接投稿；普通 LovStudio 账号即可使用，无需 GitHub 权限。
@@ -46,9 +46,9 @@ python3 scripts/submit_case.py publish CATALOG_ID \
 最多 4 张 PNG、JPEG 或 WebP，每张 1 MiB，总计 2 MiB，请求最多 3 MiB。
 更大的图片可交给网页编辑器优化。
 
-直接提交复用 `lov-share-session` 的登录缓存、刷新和浏览器设备授权，不读取或
-上传转录。通过 `--share-session-script` 或 `LOV_SHARE_SESSION_SKILL_DIR` 可指定
-依赖。用户无需复制凭据给 Agent。
+直接提交自带 LovStudio 登录模块，与 `lov-share-session` 共用登录缓存和授权契约，
+不读取或上传转录。全新安装无需额外安装登录依赖；也可通过 `--share-session-script`
+或 `LOV_SHARE_SESSION_SKILL_DIR` 显式指定已有实现。用户无需复制凭据给 Agent。
 
 历史 `consent` 标记不会自动生效。发布必须确认当前内容指纹；修改文字、图片
 或 Session 链接后需要重新预览。失败时保留同一个案例 ID 和文件重试。
@@ -75,8 +75,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
 python3 scripts/validate_skill.py .
 ```
 
-Python 3.10+；准备 JSON 只需标准库。直接提交需要网络、LovStudio 登录和
-`lov-share-session`；源码校验另需 PyYAML。Git、GitHub 与 `lov-skill-publisher`
+Python 3.10+；准备 JSON 和直接投稿均只需标准库，投稿需网络与 LovStudio 登录。
+源码校验另需 PyYAML。`lov-share-session`、Git、GitHub 与 `lov-skill-publisher`
 仅用于维护者路径。
 
 ## License

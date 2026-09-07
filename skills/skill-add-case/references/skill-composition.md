@@ -7,9 +7,10 @@
 - The website `GET /api/skills/<id>/cases` supplies the active contract. Its
   authenticated POST owns source selection, Session ownership checks, image and
   JSON persistence, concurrency, idempotency and cache refresh.
-- `lov-share-session` is the shared-auth dependency. The client imports its cache,
-  refresh and device-login functions without invoking transcript discovery or
-  upload. Offline preparation does not resolve this dependency or authenticate.
+- The package bundles the MIT LovStudio auth adapter adapted from
+  `lov-share-session` 0.4.1, retaining cache and device/refresh contracts. No
+  transcript functions are bundled. This avoids an unpublished sibling dependency
+  on new installations. Explicit auth overrides remain supported.
 - `lov-branding-consistency` reviews authored titles, summaries and instructions;
   it does not rewrite original prompts or evidence.
 - Manual handoff ends with the submission file and verified form URL. The user
@@ -33,9 +34,9 @@ maintains the Skill itself, not individual case records.
 
 ## Overlap Decisions
 
-This Skill owns the accepted-case outcome. Share Session owns authentication and
-transcript upload; Publisher owns explicit maintainer publication. Reuse shared
-auth without coupling ordinary case submission to transcript upload.
+This Skill owns the accepted-case outcome and distributes the small login adapter
+it needs. Share Session owns transcript upload; Publisher owns explicit maintainer
+publication. No transcript implementation is copied into ordinary submission.
 
 ## Composition Decision
 

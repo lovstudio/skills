@@ -219,6 +219,9 @@ def http_json(method: str, url: str, body: dict | None = None, token: str | None
 
 
 def load_auth(path: Path | None):
+    if path is None and not os.environ.get("LOV_SHARE_SESSION_SKILL_DIR"):
+        import lovstudio_auth
+        return lovstudio_auth
     from add_case_with_session import resolve_share_script
     script = resolve_share_script(path)
     spec = importlib.util.spec_from_file_location("lov_case_shared_auth", script)

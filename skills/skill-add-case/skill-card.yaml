@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.4.0"
+version: "0.4.1"
 description: >-
   Prepare an accepted result for website import or submit it through LovStudio
   account authentication, then verify the public case and accepted images.
@@ -26,7 +26,6 @@ deployment:
 requirements:
   credentials: "Ordinary LovStudio login for website submission; GitHub permissions only for the explicit legacy maintainer route."
   dependencies:
-    - "lov-share-session"
     - "lov-branding-consistency"
   runtime:
     - "Python 3.10 or newer"

@@ -5,11 +5,10 @@ description: >
 license: MIT
 compatibility: "Python 3.10+ (stdlib). Website submission needs LovStudio sign-in and network; JSON preparation works offline. PyYAML is only needed for source validation."
 depends_on:
-  - lov-share-session
   - lov-branding-consistency
 metadata:
   author: LovStudio contributors
-  version: "0.4.0"
+  version: "0.4.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - skill-case
@@ -121,11 +120,12 @@ mode and preserve the input. Only an explicit maintainer request uses the
 `formUrl`. They sign in, import, preview and confirm. No Agent login is needed.
 Report `prepared`, not published, until the resulting URL is read back.
 
-**Direct Agent submission:** the helper reuses `lov-share-session` login-cache,
-refresh and device-login functions without invoking transcript discovery or
-upload. Users authorize in the browser. Never ask for passwords, browser cookies,
-GitHub tokens or copied access tokens. Dependency discovery supports
-`--share-session-script` and `LOV_SHARE_SESSION_SKILL_DIR`.
+**Direct Agent submission:** the package includes the LovStudio login adapter,
+with the same cache, refresh and device flow as `lov-share-session`. It never
+discovers or uploads transcripts. New installations need no sibling Skill.
+Users authorize in the browser; never ask for passwords, browser cookies, GitHub
+tokens or copied access tokens. An explicitly selected existing auth implementation
+can use `--share-session-script` or `LOV_SHARE_SESSION_SKILL_DIR`.
 
 ```bash
 python3 "$SKILL_DIR/scripts/submit_case.py" check CATALOG_ID \
@@ -184,7 +184,7 @@ from a drafted URL.
 
 - Python 3.10+ (stdlib); preparation works offline without an account.
 - LovStudio account and network for direct submission.
-- `lov-share-session` supplies shared login and the legacy paid uploader.
+- Login is bundled. `lov-share-session` is only required for the explicit legacy paid uploader.
 - PyYAML is only needed for source validation.
 - Git/GitHub and `lov-skill-publisher` are only needed for the explicit maintainer route.
 

@@ -23,7 +23,7 @@ MIT，详见 [`LICENSE`](LICENSE)。
 
 ## Requirements / Dependencies
 
-需要 Python 3.10+。直接投稿复用 `lov-share-session` 登录，普通 LovStudio 账号
+需要 Python 3.10+。直接投稿自带兼容的 LovStudio 登录模块，普通 LovStudio 账号
 即可，无需 GitHub 权限；PyYAML 仅用于源码校验。完整会话不是必填项。
 
 ## Known Risks and Mitigations
@@ -47,7 +47,7 @@ Output、验收证据、成品图与可选公开 Session。分别报告准备、
 
 ## Skill Version
 
-0.4.0
+0.4.1
 
 ## Ethical Considerations
 
