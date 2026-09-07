@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 网站法律页面草稿
+# 网站条款助手 · Website Legal Pages
 
 根据真实业务与数据处理事实生成隐私政策和服务条款页面草稿。
 

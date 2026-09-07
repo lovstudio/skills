@@ -3,7 +3,7 @@ name: lov-video-chapter-design
 description: Refine chapter boundaries, titles, colors, typography, placement, and progress behavior in the bundled React video chapter editor. Use when the user wants to preview, debug, beautify, or customize a video chapter progress bar.
 ---
 
-# Chapter Design
+# 章节样式 · Chapter Design
 
 1. Open `../../studio` and run `npm install`, then `npm run dev`.
 2. Import the canonical `chapter-project.json`.

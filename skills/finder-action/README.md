@@ -1,4 +1,4 @@
-# Finder 右键动作
+# Finder 快捷动作 · Finder Actions
 
 ![Version](https://img.shields.io/badge/version-0.4.1-CC785C)
 

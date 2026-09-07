@@ -1,4 +1,4 @@
-# CSS 整理
+# CSS 精修 · CSS Polish
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

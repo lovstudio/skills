@@ -10,7 +10,7 @@ metadata:
     - personal-preference
 ---
 
-# 开工前夸夸
+# 开工夸夸 · A Little Encouragement
 
 ## Triggers
 

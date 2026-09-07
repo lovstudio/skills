@@ -1,4 +1,4 @@
-# lov-png2svg
+# 矢量描摹 · Vector Tracer
 
 ![Version](https://img.shields.io/badge/version-1.1.0-CC785C)
 

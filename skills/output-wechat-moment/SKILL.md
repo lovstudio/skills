@@ -22,7 +22,7 @@ metadata:
   card_standard: lovstudio/skill-card/v1
 ---
 
-# 朋友圈文案输出
+# 朋友圈文案 · WeChat Moments Copy
 
 把已有内容整理成适合朋友圈阅读的纯文本并保存文件。
 

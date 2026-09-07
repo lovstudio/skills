@@ -1,4 +1,4 @@
-# 命令能力封装
+# 流程工坊 · Workflow Studio
 
 ![Version](https://img.shields.io/badge/version-4.2.1-CC785C)
 

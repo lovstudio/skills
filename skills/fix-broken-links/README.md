@@ -1,4 +1,4 @@
-# 链接修复
+# 链接修补匠 · Link Fixer
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

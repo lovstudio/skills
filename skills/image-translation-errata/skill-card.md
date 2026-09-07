@@ -1,4 +1,4 @@
-# Skill Card — lov-image-translation-errata
+# 图片译校 · Image Translation Review · Skill Card
 
 ## Description
 

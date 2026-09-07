@@ -22,7 +22,7 @@ metadata:
   tags: github collaborator access invite private-repo permissions
 ---
 
-# lov-gh-access
+# GitHub 协作管家 · GitHub Collaborator Manager
 
 Grant, revoke, and audit collaborator access on private GitHub repos — by
 username **or** email, with read-only as the safe default.

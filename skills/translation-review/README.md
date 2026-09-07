@@ -1,4 +1,4 @@
-# lov-translation-review
+# 译文校对 · Translation Review
 
 ![Version](https://img.shields.io/badge/version-1.1.0-CC785C)
 

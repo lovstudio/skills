@@ -1,4 +1,4 @@
-# lov-thesis-polish
+# 论文精修 · Thesis Polish
 
 ![Version](https://img.shields.io/badge/version-1.1.0-CC785C)
 

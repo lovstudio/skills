@@ -1,4 +1,4 @@
-# XBTI 案例浏览
+# XBTI 图鉴 · XBTI Gallery
 
 ![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
 

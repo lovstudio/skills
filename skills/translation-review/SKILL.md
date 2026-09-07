@@ -18,7 +18,7 @@ metadata:
   tags: translation, review, chinese, english, proofreading
 ---
 
-# translation-review — Chinese-English Translation Review
+# 译文校对 · Translation Review
 
 Systematically compare a Chinese source document against its English translation,
 identify issues across 6 dimensions, and produce a prioritized review report.

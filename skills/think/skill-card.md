@@ -1,4 +1,4 @@
-# 复杂问题分析 Skill Card
+# 深度思考 · Deep Thinking · Skill Card
 
 ## Description
 

@@ -1,4 +1,4 @@
-# lov-china-website-filing
+# 网站备案助手 · Website Filing Assistant
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

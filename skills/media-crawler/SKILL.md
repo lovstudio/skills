@@ -19,7 +19,7 @@ metadata:
     - curl
 ---
 
-# lov-media-crawler — 链接到本地媒体文件
+# 媒体下载器 · Media Downloader
 
 用户给一个公开且有权保存的社交媒体链接，本 Skill 负责识别平台、复用已有授权、下载原始媒体，并交付文件与 JSON 验证报告。优先减少等待、重复登录和中间选择。
 

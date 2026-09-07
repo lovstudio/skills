@@ -22,7 +22,7 @@ metadata:
   tags: markdown docx word cjk python-docx typesetting
 ---
 
-# any2docx — Markdown to Professional DOCX
+# Word 大师 · Word Master
 
 This skill converts any Markdown file into a professionally styled Word document using
 Python's python-docx library. It shares the same theme palette as any2pdf and handles

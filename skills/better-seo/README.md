@@ -1,4 +1,4 @@
-# Next.js SEO
+# Next.js SEO 助手 · Next.js SEO Assistant
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

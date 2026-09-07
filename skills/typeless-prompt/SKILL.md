@@ -4,7 +4,7 @@ description: 把 ASR 转写或带改口的口述草稿整理成简洁、逻辑�
 version: 0.2.0
 ---
 
-# 手工川工作室 Typeless 复刻版（加密 Skill）
+# 口述成文 · Dictation Editor
 
 这是手工川工作室通过 LovStudio 发布的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 

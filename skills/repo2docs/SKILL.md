@@ -26,7 +26,7 @@ metadata:
   tags: docs fumadocs documentation nextjs vercel codebase articles knowledge-base images
 ---
 
-# repo2docs — Folder → Polished Docs Site (incremental)
+# 文档站工坊 · Docs Site Builder
 
 Turn any folder of source material into a professional Fumadocs documentation
 website and deploy it to `https://{product-id}.example.com/docs`.

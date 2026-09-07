@@ -1,4 +1,4 @@
-# 项目结构整理 Skill Card
+# 项目整理师 · Project Organizer · Skill Card
 
 ## Description
 

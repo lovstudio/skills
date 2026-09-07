@@ -15,7 +15,7 @@ metadata:
     - python
 ---
 
-# Media Selection
+# 影视选片 · Media Selection
 
 Choose for viewing value, not label prestige: confirm the cut, then balance useful
 detail, efficient encoding, size, language coverage, current health, and evidence.

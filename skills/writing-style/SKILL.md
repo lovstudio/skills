@@ -22,7 +22,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-writing-style v2
+# 我的文风 · My Writing Voice
 
 把已经确认的事实、经历、判断和素材，写成工程实战驱动的创业者第一人称内容。
 现场、工程细节、概念辨析、判断和人的处境是历史样本中的高频材料，不是每篇都要

@@ -1,4 +1,4 @@
-# 仓库接管 Skill Card
+# 仓库接手 · Repository Takeover · Skill Card
 
 ## Description
 

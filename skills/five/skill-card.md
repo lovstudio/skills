@@ -1,4 +1,4 @@
-# 五字简答 Skill Card
+# 五字答 · Five-Unit Replies · Skill Card
 
 ## Description
 

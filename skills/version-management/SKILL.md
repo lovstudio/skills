@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# Changesets 版本管理
+# 版本管家 · Version Keeper
 
 根据实际包变更生成 changeset，并按请求更新版本与 CHANGELOG。
 

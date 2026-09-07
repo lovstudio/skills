@@ -1,4 +1,4 @@
-# lov-bp-polish
+# BP 精修 · BP Polish
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

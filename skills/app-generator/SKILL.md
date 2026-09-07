@@ -30,7 +30,7 @@ metadata:
     - lovinsp
 ---
 
-# app-generator — Skill Publisher App 生成器
+# 应用工坊 · App Studio
 
 Use this skill to create or upgrade a Skill Publisher-grade app. Choose the app type
 from the brief instead of forcing desktop packaging: use web-only when the

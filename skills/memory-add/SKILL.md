@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 知识记录
+# 知识入库 · Knowledge Capture
 
 将用户指定信息保存为带分类、标签和来源的知识文档及索引。
 

@@ -1,4 +1,4 @@
-# 项目重命名 Skill Card
+# 项目改名 · Project Renamer · Skill Card
 
 ## Description
 

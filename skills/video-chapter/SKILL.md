@@ -7,7 +7,7 @@ metadata:
   tags: video chapters subtitle editing rendering
 ---
 
-# Video Chapter Skill Kit
+# 视频章节师 · Video Chapters
 
 Build a complete chapter-bar workflow from semantic planning to final video.
 Keep every stage connected through one `chapter-project.json`.

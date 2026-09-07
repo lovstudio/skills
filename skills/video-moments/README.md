@@ -1,4 +1,4 @@
-# lov-video-moments
+# 精彩定格 · Video Stills
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 

@@ -1,4 +1,4 @@
-# Skill Card — lov-video-moments
+# 精彩定格 · Video Stills · Skill Card
 
 ## Description
 从课程或活动视频挑选真实照片 moments，完成纪实美化、组图标准化与可回溯交付。

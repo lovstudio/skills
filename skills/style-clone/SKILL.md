@@ -15,7 +15,7 @@ metadata:
   tags: writing, style, rewrite, 文风, 改写
 ---
 
-# style-clone — 文风克隆
+# 文风复刻 · Voice Replica
 
 输入一篇或多篇样本文章，提取**文风画像**（结构化描述），然后将任意目标文章改写成该文风。
 

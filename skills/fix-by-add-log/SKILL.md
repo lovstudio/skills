@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 日志定位问题
+# 日志侦探 · Log Detective
 
 针对难复现问题增加最少的诊断日志并用实际输出定位根因。
 

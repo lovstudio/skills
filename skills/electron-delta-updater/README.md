@@ -1,4 +1,4 @@
-# sgc-electron-delta-updater
+# Electron 增量更新 · Electron Delta Updates
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

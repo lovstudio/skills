@@ -16,7 +16,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-app-adapters — 各 App 词库映射
+# 词库适配器 · Vocabulary Adapters
 
 把规范词库的字段映射成某款具体 App 的词汇表格式，并负责读写。映射是声明式的；读取目标 App 时只读、不覆盖对方已有词条。
 

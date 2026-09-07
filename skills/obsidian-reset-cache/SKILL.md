@@ -16,7 +16,7 @@ metadata:
   tags: obsidian, cache, troubleshooting
 ---
 
-# obsidian-reset-cache — 重置 Obsidian 缓存
+# Obsidian 缓存清理 · Obsidian Cache Reset
 
 解决 Obsidian 卡在 "Loading cache..." 无法启动的问题。
 

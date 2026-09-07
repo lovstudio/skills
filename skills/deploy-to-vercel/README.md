@@ -1,4 +1,4 @@
-# lov-deploy-to-vercel
+# Vercel 部署助手 · Vercel Deployer
 
 ![Version](https://img.shields.io/badge/version-2.1.0-CC785C)
 

@@ -20,7 +20,7 @@ metadata:
   tags: invoice expense report reimbursement excel categorize
 ---
 
-# expense-report — Invoice → Categorized Excel
+# 报销管家 · Expense Assistant
 
 Extract invoice information from images or text, classify expenses, and generate
 a professional Excel report with subtotals per category.

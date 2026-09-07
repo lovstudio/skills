@@ -18,7 +18,7 @@ metadata:
   tags: [branding, assets, logo, scraping]
 ---
 
-# find-logo — collect brand logos, prefer wide + transparent
+# Logo 雷达 · Logo Radar
 
 Takes a brand name or URL, probes Clearbit + the site's own og:image /
 `<link rel=icon>` / favicon, scores each candidate, and archives the best

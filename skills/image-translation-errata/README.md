@@ -1,4 +1,4 @@
-# lov-image-translation-errata
+# 图片译校 · Image Translation Review
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

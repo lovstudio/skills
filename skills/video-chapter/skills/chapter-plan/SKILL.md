@@ -3,7 +3,7 @@ name: lov-video-chapter-plan
 description: Analyze timestamped SRT/VTT subtitles and determine 3–5 natural video chapters with cue-aligned cuts, concrete titles, summaries, and platform-ready timestamps. Use when the user asks to segment a long video from subtitles or decide chapter content.
 ---
 
-# Chapter Plan
+# 章节策划 · Chapter Plan
 
 1. Run `../../scripts/subtitle_chapters.py` to build the analysis pack.
 2. Read every transcript window and meaningful gap.

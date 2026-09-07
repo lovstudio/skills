@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 复杂问题分析
+# 深度思考 · Deep Thinking
 
 围绕复杂问题比较方案、验证假设并给出有依据的决策建议。
 

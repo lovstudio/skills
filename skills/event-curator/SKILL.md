@@ -4,7 +4,7 @@ description: Generate a complete professional event plan from guest background m
 version: 0.2.0
 ---
 
-# event-curator（加密 Skill）
+# 活动策划师 · Event Planner
 
 这是 Lovstudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 

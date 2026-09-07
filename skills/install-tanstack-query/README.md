@@ -1,4 +1,4 @@
-# lov-install-tanstack-query
+# TanStack Query 接入 · TanStack Query Setup
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

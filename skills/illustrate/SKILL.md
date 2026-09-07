@@ -26,7 +26,7 @@ metadata:
   card_standard: lovstudio/skill-card/v1
 ---
 
-# Illustrate - 文档智能配图
+# 图解文档 · Document Visuals
 
 为 Markdown 文档智能分析插图位置，并行生成/检索图片，输出带插图的增强版文档。
 

@@ -1,4 +1,4 @@
-# Skill Card — lov-human-writing
+# 文稿润色师 · Text Editor · Skill Card
 
 This human-readable card mirrors `skill-card.yaml`. It is a release record, not
 an implementation note. A reviewer should understand the Skill without opening

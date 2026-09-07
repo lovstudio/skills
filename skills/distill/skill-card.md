@@ -1,4 +1,4 @@
-# 经验提炼 Skill Card
+# 经验萃取 · Lesson Distiller · Skill Card
 
 ## Description
 

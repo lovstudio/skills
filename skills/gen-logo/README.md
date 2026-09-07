@@ -1,4 +1,4 @@
-# lov-gen-logo
+# Logo 工坊 · Logo Studio
 
 ![Version](https://img.shields.io/badge/version-5.1.2-blue)
 

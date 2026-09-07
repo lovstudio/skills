@@ -1,4 +1,4 @@
-# 项目日更文案
+# 开发日记 · Dev Diary
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

@@ -1,4 +1,4 @@
-# 知识检索
+# 知识寻回 · Knowledge Finder
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

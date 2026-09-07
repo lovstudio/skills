@@ -1,4 +1,4 @@
-# lov-npm-publisher
+# npm 发布助手 · npm Publisher
 
 ![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
 

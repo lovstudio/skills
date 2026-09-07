@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# Tauri 图标接入
+# Tauri 图标助手 · Tauri Icon Setup
 
 把已确认 Logo 接入 Tauri 包图标和托盘并核验生成资源。
 

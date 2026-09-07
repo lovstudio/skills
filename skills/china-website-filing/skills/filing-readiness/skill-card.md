@@ -1,4 +1,4 @@
-# Skill Card — lov-filing-readiness
+# 备案预检 · Filing Readiness · Skill Card
 
 ## Description
 

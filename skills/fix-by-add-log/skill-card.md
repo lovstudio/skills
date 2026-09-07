@@ -1,4 +1,4 @@
-# 日志定位问题 Skill Card
+# 日志侦探 · Log Detective · Skill Card
 
 ## Description
 

@@ -1,4 +1,4 @@
-# CI/CD 发布 Skill Card
+# 自动发版 · Release Pilot · Skill Card
 
 ## Description
 

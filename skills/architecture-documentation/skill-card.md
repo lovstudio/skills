@@ -1,4 +1,4 @@
-# 架构文档 Skill Card
+# 架构图谱 · Architecture Atlas · Skill Card
 
 ## Description
 

@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 问题诊断修复
+# 故障诊疗 · Troubleshooter
 
 根据报错和复现证据定位根因、实施修复并验证原路径。
 

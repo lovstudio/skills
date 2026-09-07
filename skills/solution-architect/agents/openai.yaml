@@ -1,5 +1,5 @@
 interface:
-  display_name: "Solution Architect"
+  display_name: "方案架构师"
   short_description: "需求调研、技术选型与现代开源优先的端到端解决方案设计"
   icon_small: "./assets/lov-logo.svg"
   icon_large: "./assets/lov-logo.svg"

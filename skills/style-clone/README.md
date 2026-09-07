@@ -1,4 +1,4 @@
-# lov-style-clone
+# 文风复刻 · Voice Replica
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

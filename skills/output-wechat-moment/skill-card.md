@@ -1,4 +1,4 @@
-# 朋友圈文案输出 Skill Card
+# 朋友圈文案 · WeChat Moments Copy · Skill Card
 
 ## Description
 

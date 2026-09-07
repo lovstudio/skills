@@ -1,4 +1,4 @@
-# Description
+# 影视寻宝 · Media Finder · Skill Card
 
 `lov-media-fetch` turns a natural-language movie or series request into a normalized
 candidate list, an evidence-backed edition choice, a capacity-checked acquisition,

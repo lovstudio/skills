@@ -17,7 +17,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-ataru-indexing — 让本地记忆索引可被检索
+# Ataru 索引 · Ataru Indexing
 
 把本机 AI 会话历史的 Ataru 索引带到 searchable 状态，并把结果作为一份可判断
 的 JSON 报告交回：现在能不能检索、还差多少、这次做了什么。检索本身属于

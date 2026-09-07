@@ -1,4 +1,4 @@
-# Skill Card — lov-open-codex-session
+# Codex 任务直达 · Codex Task Launcher · Skill Card
 
 ## Description
 

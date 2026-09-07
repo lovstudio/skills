@@ -9,7 +9,7 @@ description: 'Analyze a reference design image and extract visual DNA — layout
 version: 1.1.0
 ---
 
-# visual-clone（加密 Skill）
+# 风格采样 · Style Sampler
 
 这是 Lovstudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 

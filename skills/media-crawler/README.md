@@ -1,4 +1,4 @@
-# lov-media-crawler
+# 媒体下载器 · Media Downloader
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

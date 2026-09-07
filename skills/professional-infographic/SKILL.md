@@ -6,7 +6,7 @@ description: Create evidence-led consulting infographics with editable HTML/SVG,
 version: 0.5.0
 ---
 
-# professional-infographic (encrypted)
+# 专业信息图 · Professional Infographic
 
 This skill's real instructions are encrypted. To use it, decrypt them first:
 

@@ -18,7 +18,7 @@ metadata:
   card_standard: lovstudio/skill-card/v1
 ---
 
-# Gen Logo
+# Logo 工坊 · Logo Studio
 
 迭代生成 Logo，保留每一版原稿，并将“品牌标志”和“应用图标”作为不同产物处理。
 

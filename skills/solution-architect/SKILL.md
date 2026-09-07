@@ -15,7 +15,7 @@ metadata:
   tags: solution architecture technical-plan product-plan research technology-selection open-source
 ---
 
-# Solution Architect
+# 方案架构师 · Solution Architect
 
 Turn a user's raw requirement into a detailed, researched solution plan in Simplified Chinese.
 

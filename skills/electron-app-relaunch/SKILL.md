@@ -15,7 +15,7 @@ metadata:
   dependencies: []
 ---
 
-# Electron 应用重启
+# 桌面应用重启 · Desktop App Relaunch
 
 为用户提供真正重启桌面应用的入口，并在开发态、生产态和更新安装时保持正确的进程生命周期。
 

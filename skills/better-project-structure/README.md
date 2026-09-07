@@ -1,4 +1,4 @@
-# 项目结构整理
+# 项目整理师 · Project Organizer
 
 ![Version](https://img.shields.io/badge/version-2.0.1-CC785C)
 

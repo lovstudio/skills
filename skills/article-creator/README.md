@@ -1,4 +1,4 @@
-# lov-article-creator
+# 公众号写手 · WeChat Writer
 
 ![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
 

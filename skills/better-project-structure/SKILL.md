@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 项目结构整理
+# 项目整理师 · Project Organizer
 
 分析任意语言项目的目录职责并渐进调整文件结构和引用。
 

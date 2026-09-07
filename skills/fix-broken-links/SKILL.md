@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 链接修复
+# 链接修补匠 · Link Fixer
 
 核对项目路由及页面链接，修复失效目标并保留有效导航。
 

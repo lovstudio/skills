@@ -1,4 +1,4 @@
-# 状态栏配置
+# 状态栏工坊 · Status Line Studio
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

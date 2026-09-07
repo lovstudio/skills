@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 知识库整理
+# 知识库管家 · Knowledge Organizer
 
 检查并整理知识库索引、重复文档、图片位置和内部引用。
 

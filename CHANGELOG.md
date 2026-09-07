@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 — 2026-09-07
+
+- Review all 156 public Skill names for accuracy, brevity and a memorable product voice, preserving names explicitly approved by the user.
+- Keep Chinese and English labels aligned across the catalog, README tables, installed wrappers and embedded modules.
+- Reapply catalog display names after source mirroring so scheduled sync cannot restore obsolete titles; preserve runtime IDs, package versions, pricing and encrypted payloads.
+
 ## 1.0.0 — 2026-08-24
 
 - Upgrade all 88 production Skills with the shared reusable-feedback classification and approval-invalidation gate.

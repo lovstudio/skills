@@ -20,7 +20,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-yoda-automation
+# Yoda 自动化 · Yoda Automation
 
 将自然语言的提醒、巡检或定期跟进需求收敛为一条可回读的 Yoda 原生自动化；交付明确的时区、cron、下次运行、通知内容、完成门和运行证据。
 

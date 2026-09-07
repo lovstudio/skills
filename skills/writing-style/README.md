@@ -1,4 +1,4 @@
-# lov-writing-style
+# 我的文风 · My Writing Voice
 
 ![Version](https://img.shields.io/badge/version-2.6.0-CC785C)
 

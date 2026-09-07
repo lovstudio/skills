@@ -26,7 +26,7 @@ metadata:
     - ffprobe
 ---
 
-# Media Fetch
+# 影视寻宝 · Media Finder
 
 Turn one natural-language request into a verified local media file. Search broadly,
 identify the actual cut, balance picture quality against size, check storage before

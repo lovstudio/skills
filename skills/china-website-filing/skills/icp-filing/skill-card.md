@@ -1,4 +1,4 @@
-# Skill Card — lov-icp-filing
+# ICP 备案助手 · ICP Filing Assistant · Skill Card
 
 ## Description
 

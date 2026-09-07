@@ -4,7 +4,7 @@ description: 万能微信秘钥：自动发现 WDB Pro 管理密钥，或使用�
 version: 0.3.0
 ---
 
-# 万能微信秘钥（加密 Skill）
+# 万能微信秘钥 · Universal WeChat Key
 
 这是 Lovstudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
 

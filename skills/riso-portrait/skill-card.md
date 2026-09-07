@@ -1,4 +1,4 @@
-# Skill Card — lov-riso-portrait
+# Riso 人像 · Riso Portrait · Skill Card
 
 ## Description
 

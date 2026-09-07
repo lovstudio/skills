@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 前端国际化
+# 国际化巡检 · I18n Inspector
 
 检查并修复用户可见文案硬编码、缺失翻译键及语言配置。
 

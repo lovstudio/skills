@@ -25,7 +25,7 @@ license: MIT
 compatibility: ">=1.0"
 ---
 
-# Document Illustrator Skill
+# 文档插画师 · Document Illustrator
 
 基于 AI 智能分析的文档配图生成工具。全局规划、并行生成、异步插入，高效为文档添加配图。
 

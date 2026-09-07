@@ -1,4 +1,4 @@
-# lov-publish-event-onto-hdx
+# 活动行诊断 · Huodongxing Diagnostics
 
 ![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 

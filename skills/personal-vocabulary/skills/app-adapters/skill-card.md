@@ -1,4 +1,4 @@
-# Skill Card — lov-app-adapters
+# 词库适配器 · Vocabulary Adapters · Skill Card
 
 ## Description
 

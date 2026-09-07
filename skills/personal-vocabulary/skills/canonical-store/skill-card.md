@@ -1,4 +1,4 @@
-# Skill Card — lov-canonical-store
+# 词库整理 · Vocabulary Store · Skill Card
 
 ## Description
 

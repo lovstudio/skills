@@ -21,7 +21,7 @@ metadata:
     - browser-automation
 ---
 
-# 发布视频到微信视频号 / Bilibili
+# 视频分发助手 · Video Publisher
 
 只操作平台自己的创作者后台可见网页。把页面当作动态界面：每一步重新读取当前页面，
 按语义定位控件，不依赖历史 CSS 选择器、旧句柄或坐标。

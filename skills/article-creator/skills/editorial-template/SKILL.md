@@ -13,7 +13,7 @@ metadata:
   dependencies: []
 ---
 
-# Editorial Template
+# 文章装帧 · Article Layout
 
 把写好的内容变成结构稳定、可继续进入视觉与发布环节的公众号文章包。固定的是语义位置和交付字段，不是每篇文章都长得一样。
 

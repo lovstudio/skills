@@ -22,7 +22,7 @@ metadata:
     - typesetting
 ---
 
-# any2pdf — Markdown to Professional PDF
+# PDF大师 · PDF Master
 
 This skill converts any Markdown file into a publication-quality PDF using Python's
 reportlab library. It was developed through extensive iteration on real Chinese

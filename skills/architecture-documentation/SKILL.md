@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 架构文档
+# 架构图谱 · Architecture Atlas
 
 从项目实际实现生成架构视图、接口说明与决策记录草稿。
 

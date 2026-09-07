@@ -1,4 +1,4 @@
-# lov-deep-research
+# 深度研究 · Deep Research
 
 ![Version](https://img.shields.io/badge/version-2.5.2-CC785C)
 

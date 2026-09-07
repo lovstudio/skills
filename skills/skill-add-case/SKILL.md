@@ -18,7 +18,7 @@ metadata:
     - account-submission
 ---
 
-# lov-skill-add-case
+# Skill 案例馆 · Skill Showcase
 
 Turn an explicitly accepted Skill result into a factual public case. The default
 route is the same signed-in website API used by the manual editor. Users need no

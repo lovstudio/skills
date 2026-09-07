@@ -1,4 +1,4 @@
-# 图像提示词整理
+# 图像提示师 · Image Prompt Crafter
 
 ![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 

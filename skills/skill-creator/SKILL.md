@@ -19,7 +19,7 @@ metadata:
     - user-cases
 ---
 
-# lov-skill-creator
+# Skill 工坊 · Skill Studio
 
 Create every Skill as a portable local source directory named `{name}-skill`,
 bind it to the shared `user-profile/v1` contract, validate it, and install it

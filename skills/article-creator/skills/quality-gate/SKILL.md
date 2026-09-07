@@ -13,7 +13,7 @@ metadata:
   dependencies: []
 ---
 
-# Quality Gate
+# 文章验收 · Article Quality Gate
 
 确认文章包不仅“生成了”，而且在内容、模板、品牌、图片和状态上真的能交付。自动校验处理确定性规则，人工审阅处理事实与品味。
 

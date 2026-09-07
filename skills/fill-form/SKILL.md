@@ -23,7 +23,7 @@ metadata:
   tags: form fill template docx word table cjk
 ---
 
-# fill-form — Fill Word Form Templates
+# 表单小助手 · Form Assistant
 
 This skill fills in Word document form templates (.docx) with user-provided data.
 It detects table-based form fields (label in one cell, value in the adjacent cell)

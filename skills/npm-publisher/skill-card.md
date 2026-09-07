@@ -1,4 +1,4 @@
-# Skill Card — lov-npm-publisher
+# npm 发布助手 · npm Publisher · Skill Card
 
 ## Description
 

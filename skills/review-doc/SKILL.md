@@ -11,7 +11,7 @@ metadata:
   compatibility: Python 3.8+、python-docx 1.0+、lxml 4.9+；支持 macOS、Windows 和 Linux
 ---
 
-# 合同专家审阅
+# 合同精修 · Contract Polish
 
 以资深交易律师与法务负责人的工作标准审阅合同。既判断法律风险，也判断交易能否履行、责任是否对等、证据是否留得住、争议时是否执行得了。不要把关键词扫描冒充专业审阅。
 

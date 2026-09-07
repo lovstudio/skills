@@ -18,7 +18,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-search-file — 从 AI 对话追到本地文件
+# 文件寻踪 · File Finder
 
 把用户记得的对话主题、片段或 session ID 还原为可验证的本地文件候选。结果会区分
 项目归档、下载目录、AI 生成缓存与临时目录，优先返回仍然存在且更耐久的副本。

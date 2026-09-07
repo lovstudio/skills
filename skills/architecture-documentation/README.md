@@ -1,4 +1,4 @@
-# 架构文档
+# 架构图谱 · Architecture Atlas
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 

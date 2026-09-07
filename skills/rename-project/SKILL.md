@@ -27,7 +27,7 @@ metadata:
   card_standard: lovstudio/skill-card/v1
 ---
 
-# Rename Project
+# 项目改名 · Project Renamer
 
 ## Triggers
 

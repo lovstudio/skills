@@ -18,7 +18,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-npm-publisher
+# npm 发布助手 · npm Publisher
 
 把 npm 包从“每次登录或维护长期 token”迁移到可审计的自动发布链。支持两种平级的认证方式：
 

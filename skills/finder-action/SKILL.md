@@ -23,7 +23,7 @@ metadata:
   card_standard: lovstudio/skill-card/v1
 ---
 
-# Finder 右键动作
+# Finder 快捷动作 · Finder Actions
 
 创建 macOS Finder 文件快捷操作或目录背景菜单扩展。
 

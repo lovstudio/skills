@@ -15,7 +15,7 @@ metadata:
   - portable-skill
 ---
 
-# 项目检查点
+# 项目存档 · Project Checkpoint
 
 根据当前 Git 差异和历史记录保存项目里程碑及后续事项。
 

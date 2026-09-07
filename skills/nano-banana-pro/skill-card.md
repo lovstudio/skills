@@ -1,4 +1,4 @@
-# 图像提示词整理 Skill Card
+# 图像提示师 · Image Prompt Crafter · Skill Card
 
 ## Description
 

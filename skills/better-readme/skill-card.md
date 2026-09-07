@@ -1,4 +1,4 @@
-# README 完善 Skill Card
+# README 精修 · README Polish · Skill Card
 
 ## Description
 

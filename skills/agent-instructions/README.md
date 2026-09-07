@@ -1,4 +1,4 @@
-# Agent 项目规范
+# Agent 规范管家 · Agent Guide Keeper
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 

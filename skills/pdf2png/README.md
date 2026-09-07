@@ -1,4 +1,4 @@
-# lov-pdf2png
+# PDF 长图 · PDF Scroll
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

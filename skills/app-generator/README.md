@@ -1,4 +1,4 @@
-# lov-app-generator
+# 应用工坊 · App Studio
 
 ![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
 

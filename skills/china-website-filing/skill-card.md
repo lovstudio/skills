@@ -1,4 +1,4 @@
-# Skill Card — lov-china-website-filing
+# 网站备案助手 · Website Filing Assistant · Skill Card
 
 ## Description
 

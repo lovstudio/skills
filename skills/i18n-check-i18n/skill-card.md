@@ -1,4 +1,4 @@
-# 前端国际化 Skill Card
+# 国际化巡检 · I18n Inspector · Skill Card
 
 ## Description
 

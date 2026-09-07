@@ -1,4 +1,4 @@
-# 界面符号整理
+# Emoji 换装 · Emoji Makeover
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

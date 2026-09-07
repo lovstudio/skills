@@ -1,4 +1,4 @@
-# lov-bp-deck
+# BP 大师 · BP Master
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

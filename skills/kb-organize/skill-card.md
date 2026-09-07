@@ -1,4 +1,4 @@
-# 知识库整理 Skill Card
+# 知识库管家 · Knowledge Organizer · Skill Card
 
 ## Description
 

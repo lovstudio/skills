@@ -1,4 +1,4 @@
-# lov-skill-optimizer
+# Skill 精修师 · Skill Refiner
 
 ![Version](https://img.shields.io/badge/version-0.11.1-CC785C)
 

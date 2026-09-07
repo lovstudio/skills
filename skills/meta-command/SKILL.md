@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 命令能力封装
+# 流程工坊 · Workflow Studio
 
 把重复操作封装成通用 Skill，并按需提供宿主 slash command 适配入口。
 

@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 界面符号整理
+# Emoji 换装 · Emoji Makeover
 
 将界面中不合适的 emoji 替换为语义一致的图标或简洁文案。
 

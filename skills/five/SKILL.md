@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 五字简答
+# 五字答 · Five-Unit Replies
 
 在明确要求时使用五单位以内的简短回复，并支持随时恢复正常。
 

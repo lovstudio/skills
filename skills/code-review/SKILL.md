@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 代码审查
+# 代码审阅官 · Code Reviewer
 
 审查实际差异中的正确性、安全和维护风险并给出可定位意见。
 

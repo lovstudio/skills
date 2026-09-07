@@ -17,7 +17,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-image-translation-errata
+# 图片译校 · Image Translation Review
 
 把含有原文与自动翻译的截图改成可直接传播的校样式勘误图：读者既能看懂
 正确译文，也能看出旧机翻错在哪里，同时保留原图的身份、版式和信息层级。

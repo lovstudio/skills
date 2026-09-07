@@ -1,4 +1,4 @@
-# 文档配图 Skill Card
+# 图解文档 · Document Visuals · Skill Card
 
 ## Description
 

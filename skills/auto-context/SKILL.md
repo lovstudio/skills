@@ -22,7 +22,7 @@ metadata:
   tags: context memory claude-code
 ---
 
-# AutoContext: Context Operator
+# 上下文哨兵 · Context Sentinel
 
 Not just a health check — a full operator over everything that shapes
 context. Three layers by action sensitivity:

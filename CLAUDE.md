@@ -66,6 +66,14 @@ skills:
 
 ### Field responsibilities
 
+- **`name_zh` / `display_name`** — Chinese and English product names. Prefer
+  short, memorable names and preserve user-approved choices. Functional, role
+  and metaphor names are all valid; keep task-defining platform names and omit
+  creator/studio prefixes. Runtime IDs, installation slugs and paths remain
+  separate. `sync-skills.py` applies these labels to mirrored display surfaces;
+  `module-display-names.yaml` supplies names for embedded modules without
+  creating standalone catalog listings. Do not edit encrypted bytes for a
+  display-name update.
 - **`description`** — read by Claude Code / Agents to decide when to trigger the skill.
   Keep it professional, English, and terse (Agents have a skills-token budget).
   CI pulls this from each skill's GitHub repo description nightly (`GH_SYNC=1`) — so the repo

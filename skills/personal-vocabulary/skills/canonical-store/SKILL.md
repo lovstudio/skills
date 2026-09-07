@@ -16,7 +16,7 @@ metadata:
     - python
 ---
 
-# lov-canonical-store — 规范词汇表
+# 词库整理 · Vocabulary Store
 
 规范词库是**单一事实来源**：一份 `vocabulary.json` 持有你的全部词条，其它 App 只是它的下游视图。本模块负责这份文件的结构、去重合并与导入导出。
 

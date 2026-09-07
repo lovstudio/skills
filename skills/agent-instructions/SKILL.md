@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# Agent 项目规范
+# Agent 规范管家 · Agent Guide Keeper
 
 诊断或完善项目 Agent 指令文件，适配不同宿主并保留真实工程约定。
 

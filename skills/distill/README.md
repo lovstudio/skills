@@ -1,4 +1,4 @@
-# 经验提炼
+# 经验萃取 · Lesson Distiller
 
 ![Version](https://img.shields.io/badge/version-3.7.1-CC785C)
 

@@ -1,4 +1,4 @@
-# Supabase 身份认证
+# Supabase 登录接入 · Supabase Auth Setup
 
 ![Version](https://img.shields.io/badge/version-1.2.1-CC785C)
 

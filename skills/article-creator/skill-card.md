@@ -1,4 +1,4 @@
-# Skill Card — lov-article-creator
+# 公众号写手 · WeChat Writer · Skill Card
 
 ## Description
 

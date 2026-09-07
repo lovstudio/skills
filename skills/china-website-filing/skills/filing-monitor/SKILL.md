@@ -16,7 +16,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-filing-monitor — 备案状态巡检
+# 备案哨兵 · Filing Monitor
 
 ## Input and output
 

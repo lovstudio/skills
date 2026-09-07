@@ -147,14 +147,17 @@ def render_table(skills: list[dict], lang: str) -> str:
             badge = PAID_BADGE if s.get("paid") else FREE_BADGE
             link = f"https://github.com/{s['repo']}"
             tagline = pick_tagline(s, lang) + render_deps_suffix(s, lang)
+            english_name = (s.get("display_name") or "").strip()
+            english_cell = (
+                f"[{english_name}]({link}) (`{s['name']}`)"
+                if english_name else f"[`{s['name']}`]({link})"
+            )
             if lang == "zh":
-                english_cell = f"[`{s['name']}`]({link})"
                 zh_name = (s.get("name_zh") or s.get("display_name") or s["name"]).strip()
                 zh_cell = f"[{zh_name}]({link})"
                 rows.append(f"| {badge} | {english_cell} | {zh_cell} | {tagline} |")
             else:
-                name_cell = f"[`{s['name']}`]({link})"
-                rows.append(f"| {badge} | {name_cell} | {tagline} |")
+                rows.append(f"| {badge} | {english_cell} | {tagline} |")
     return "\n".join(rows)
 
 

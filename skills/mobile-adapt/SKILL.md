@@ -17,7 +17,7 @@ metadata:
   tags: mobile, responsive, safe-area, overflow, navigation
 ---
 
-# mobile-adapt — Mobile-First Adaptation for Web Projects
+# 移动适配师 · Mobile Fit
 
 Scan and fix mobile adaptation issues in an existing web project: viewport
 configuration, overflow prevention, safe area handling, responsive breakpoints,

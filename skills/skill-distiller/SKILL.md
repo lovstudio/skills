@@ -15,7 +15,7 @@ metadata:
   dependencies: []
 ---
 
-# sgc-skill-distiller — 将经验变成可创建的 Skill
+# Skill 炼金师 · Skill Alchemist
 
 这不是泛泛寻找机会，而是把已经发生过的工作蒸馏成稳定、可移植且可验收的能力契约。最终产物是 **Skill 蓝图**：它足以交给 `sgc-skill-creator` 落地，却不泄漏人名、项目代号、私有路径、密钥或聊天背景。
 

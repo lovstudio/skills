@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 仓库接管
+# 仓库接手 · Repository Takeover
 
 将已有 clone 连接到用户自己的 GitHub 仓库并保留来源与历史。
 

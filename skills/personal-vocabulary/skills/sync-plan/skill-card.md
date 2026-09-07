@@ -1,4 +1,4 @@
-# Skill Card — lov-sync-plan
+# 词库同步 · Vocabulary Sync · Skill Card
 
 ## Description
 

@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 经验提炼
+# 经验萃取 · Lesson Distiller
 
 将真实解决过程整理为可复用经验文档并维护知识索引。
 

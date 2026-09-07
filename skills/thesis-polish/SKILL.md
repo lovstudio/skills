@@ -18,7 +18,7 @@ metadata:
   tags: thesis academic writing MBA polish 论文 润色
 ---
 
-# thesis-polish — MBA 论文全面润色
+# 论文精修 · Thesis Polish
 
 将 MBA 论文从初稿提升至全国优秀论文水准。涵盖语言润色、结构优化、论证强化、创新点凸显四个维度。
 

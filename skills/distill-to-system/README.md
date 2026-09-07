@@ -1,4 +1,4 @@
-# 经验写入规则
+# 经验入规 · Lessons to Rules
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# Next.js SEO
+# Next.js SEO 助手 · Next.js SEO Assistant
 
 检查 Next.js 页面元数据、索引规则、站点地图与分享展示。
 

@@ -8,6 +8,8 @@ on:
       - "scripts/render-readme.py"
       - "scripts/render-marketplace.py"
       - "scripts/sync-skills.py"
+      - "scripts/skill_display_names.py"
+      - "module-display-names.yaml"
       - "README.md"
       - "README.en.md"
       - ".github/workflows/render-readme.yml"
@@ -48,6 +50,9 @@ jobs:
 
       - name: Install deps
         run: pip install pyyaml
+
+      - name: Verify catalog rendering
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
 
       - name: Mirror free skill repos
         # Runs on schedule/dispatch (to pull upstream changes) and on push

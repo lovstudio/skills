@@ -1,4 +1,4 @@
-# lov-skill-creator
+# Skill 工坊 · Skill Studio
 
 ![Version](https://img.shields.io/badge/version-4.6.0-CC785C)
 

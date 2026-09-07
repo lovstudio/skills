@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 经验写入规则
+# 经验入规 · Lessons to Rules
 
 把有证据的可复用经验写入最合适的项目或共享 Agent 规范。
 

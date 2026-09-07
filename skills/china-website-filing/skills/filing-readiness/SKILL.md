@@ -15,7 +15,7 @@ metadata:
   dependencies: []
 ---
 
-# lov-filing-readiness — 备案准备核验
+# 备案预检 · Filing Readiness
 
 ## Input and output
 

@@ -1,4 +1,4 @@
-# 项目命名
+# 项目起名师 · Project Namer
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

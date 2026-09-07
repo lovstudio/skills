@@ -1,4 +1,4 @@
-# Skill Card — lov-yoda-automation
+# Yoda 自动化 · Yoda Automation · Skill Card
 
 ## Description
 

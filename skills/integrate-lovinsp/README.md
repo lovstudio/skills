@@ -1,4 +1,4 @@
-# lov-integrate-lovinsp
+# Lovinsp 接入 · Lovinsp Setup
 
 ![Version](https://img.shields.io/badge/version-1.6.2-CC785C)
 

@@ -1,4 +1,4 @@
-# 网页图标接入
+# 网站 Logo 助手 · Website Logo Setup
 
 ![Version](https://img.shields.io/badge/version-1.2.1-CC785C)
 

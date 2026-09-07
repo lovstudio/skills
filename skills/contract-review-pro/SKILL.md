@@ -5,7 +5,7 @@ metadata:
   version: "0.2.0"
 ---
 
-# Contract Review Skill
+# 合同批注专家 · Contract Reviewer
 
 ## Overview
 

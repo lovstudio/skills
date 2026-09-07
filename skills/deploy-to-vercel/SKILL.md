@@ -18,7 +18,7 @@ metadata:
   tags: deploy vercel cloudflare dns frontend
 ---
 
-# deploy-vercel — One-Command Frontend Deployment
+# Vercel 部署助手 · Vercel Deployer
 
 Deploy frontend projects to Vercel with automatic custom domain and DNS setup.
 

@@ -22,7 +22,7 @@ metadata:
     - lov-skill-pricing
 ---
 
-# lov-skill-publisher
+# Skill 发布助手 · Skill Publisher
 
 Publish one validated local Skill source to the LovStudio official website or
 explicitly selected additional channels. When the user does not specify a

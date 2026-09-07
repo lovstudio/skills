@@ -25,7 +25,7 @@ metadata:
     - dsh-plugin-creator
 ---
 
-# dsh-plugin-publisher
+# DSH 插件发布 · DSH Plugin Publisher
 
 Publish one validated DSH plugin package to the DeepSeek Harness distribution
 channels and verify each channel can load it. Input is the finished package

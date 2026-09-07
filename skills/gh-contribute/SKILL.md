@@ -16,7 +16,7 @@ metadata:
   tags: [github, pr, contribute, fork, open-source]
 ---
 
-# gh-contribute — Clean PRs to Upstream Repos
+# 开源贡献助手 · Open Source Contributor
 
 Turn local changes into a clean, professional pull request against an upstream repo
 you don't own. Handles the full fork → branch → commit → push → PR pipeline, and

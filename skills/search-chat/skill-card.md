@@ -1,4 +1,4 @@
-# Skill Card — lov-search-chat
+# 会话寻踪 · Chat Finder · Skill Card
 
 This human-readable card mirrors `skill-card.yaml`. It is a release record, not
 an implementation note.

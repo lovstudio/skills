@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 在线工具集成
+# 小工具工坊 · Web Tool Studio
 
 为现有网站新增可用的在线工具，并接入多语言、工具目录、站点地图和必要的成本提示。
 

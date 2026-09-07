@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# 检查点历史
+# 检查点回看 · Checkpoint History
 
 汇总 Git 与项目日志中的检查点、时间范围和演进记录。
 

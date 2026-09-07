@@ -1,4 +1,4 @@
-# 网站法律页面草稿 Skill Card
+# 网站条款助手 · Website Legal Pages · Skill Card
 
 ## Description
 

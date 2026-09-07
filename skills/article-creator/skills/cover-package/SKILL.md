@@ -13,7 +13,7 @@ metadata:
   dependencies: []
 ---
 
-# Cover Package
+# 封面工坊 · Cover Studio
 
 为同一篇文章生成视觉语言一致、但角色和构图独立的分享封面与 `4:3` 正文首图。生图或合法素材负责艺术底图，脚本负责 Logo、比例、导出与校验。
 

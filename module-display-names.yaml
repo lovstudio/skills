@@ -1,0 +1,60 @@
+lov-app-adapters:
+  name_zh: 词库适配器
+  display_name: Vocabulary Adapters
+lov-article-writing:
+  name_zh: 文章写作
+  display_name: Article Writing
+lov-canonical-store:
+  name_zh: 词库整理
+  display_name: Vocabulary Store
+lov-cover-package:
+  name_zh: 封面工坊
+  display_name: Cover Studio
+lov-domain-cutover:
+  name_zh: 备案域名上线
+  display_name: Domain Launch
+lov-editorial-template:
+  name_zh: 文章装帧
+  display_name: Article Layout
+lov-filing-monitor:
+  name_zh: 备案哨兵
+  display_name: Filing Monitor
+lov-filing-readiness:
+  name_zh: 备案预检
+  display_name: Filing Readiness
+lov-icp-filing:
+  name_zh: ICP 备案助手
+  display_name: ICP Filing Assistant
+lov-media-acquisition:
+  name_zh: 影视下载
+  display_name: Media Download
+lov-media-discovery:
+  name_zh: 影视找片
+  display_name: Media Discovery
+lov-media-selection:
+  name_zh: 影视选片
+  display_name: Media Selection
+lov-media-verification:
+  name_zh: 影视验片
+  display_name: Media Verification
+lov-public-security-filing:
+  name_zh: 公安备案助手
+  display_name: Public Security Filing
+lov-quality-gate:
+  name_zh: 文章验收
+  display_name: Article Quality Gate
+lov-sync-plan:
+  name_zh: 词库同步
+  display_name: Vocabulary Sync
+lov-video-chapter-design:
+  name_zh: 章节样式
+  display_name: Chapter Design
+lov-video-chapter-export:
+  name_zh: 章节打包
+  display_name: Chapter Export
+lov-video-chapter-plan:
+  name_zh: 章节策划
+  display_name: Chapter Plan
+lov-video-chapter-render:
+  name_zh: 章节渲染
+  display_name: Chapter Render

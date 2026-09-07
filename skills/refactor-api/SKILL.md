@@ -16,7 +16,7 @@ metadata:
   - portable-skill
 ---
 
-# API 冗余整理
+# API 精修 · API Refiner
 
 识别后端接口重复并在保持调用契约的前提下实施重构。
 
