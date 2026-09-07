@@ -2,8 +2,8 @@
 
 ## Description
 
-把一次已明确认可的 Skill 结果变成公开摘要，并把脱敏后的完整 Session 作为目标
-Skill 售价 1/10 的付费证据上传、关联和回读。
+把一次已明确认可的 Skill 结果整理成官网案例，支持网页 JSON 导入或 Agent
+登录投稿，保留最终成品、真实证据和发布前确认。
 
 ## Owner
 
@@ -19,19 +19,20 @@ MIT，详见 [`LICENSE`](LICENSE)。
 
 ## Deployment Geography
 
-本地工作区全球可用；公开同步使用 GitHub 与 LovStudio 官网。
+离线生成 JSON；在线投稿使用 LovStudio 官网账号与服务。
 
 ## Requirements / Dependencies
 
-本地需要 Python 3.10+、PyYAML 与 `lov-share-session`。Session 上传需要 LovStudio
-账号；公开同步沿用目标仓库与官网已有权限。
+需要 Python 3.10+。直接投稿自带兼容的 LovStudio 登录模块，普通 LovStudio 账号
+即可，无需 GitHub 权限；PyYAML 仅用于源码校验。完整会话不是必填项。
 
 ## Known Risks and Mitigations
 
 - 未获用户认可：硬性验收门阻止写入。
-- 泄露私有信息：高风险模式检查、隐私说明与最终 diff 审查。
-- 客户端伪造价格：只接受服务端按目标 Skill 售价计算并返回的 Credits 价格。
-- 把 push 当上线：公开 JSON 指纹和官网详情页双回读。
+- 泄露私有信息：高风险模式检查、隐私说明和完整预览确认。
+- 同意后内容变动：发布要求用户审阅过的完整内容指纹。
+- 付费 Session 混入普通投稿：官网仅接受可选的本人公开链接，付费维护者路径单独授权。
+- 把提交当上线：公开 JSON 指纹、实际页面、图片及可选 Session 回读。
 
 ## References
 
@@ -41,16 +42,17 @@ MIT，详见 [`LICENSE`](LICENSE)。
 
 ## Skill Output
 
-一个带稳定 ID、真实 Input → Prompt → Output、验收证据和付费 Session 链接的案例；
-公开目标另有 raw JSON 指纹、官网 HTTP 状态和付费墙 marker 证据。
+可导入官网的 JSON，或经账号授权发布的稳定 ID 案例；包含真实 Input → Prompt →
+Output、验收证据、成品图与可选公开 Session。分别报告准备、预检、提交和线上验收状态。
 
 ## Skill Version
 
-0.2.2
+0.4.1
 
 ## Ethical Considerations
 
-只发布得到明确认可的公开摘要与脱敏 Session，不制造评价、价格、指标、文件或上线状态。
+只发布用户确认过的脱敏摘要与图片。分享摘要不等于同意上传完整会话；不制造评价、
+价格、指标、文件或上线状态。
 
 ## LovStudio Evidence
 
@@ -70,5 +72,5 @@ integrity 与 live truthfulness 五个维度及其证据状态。
 
 ### Distribution
 
-WorkBuddy 与 SkillPay 不计划上架。GitHub 已发布 `v0.1.0`；`v0.2.2` 目前仅在本地
-完成实现，尚未发布或部署。
+通过 LovStudio 官网与源仓库分发。远端版本、Release 和安装结果须分别核验，
+不由本地版本号推断。WorkBuddy 与 SkillPay 不在本次分发范围。

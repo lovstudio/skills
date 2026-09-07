@@ -2402,15 +2402,17 @@ skills:
   - branding-consistency
 - name: skill-add-case
   runtime_name: lov-skill-add-case
-  updated_at: 2026-08-23T17:04:16Z
+  updated_at: 2026-09-07T09:49:19Z
   repo: lovstudio/skill-add-case-skill
   name_zh: Skill 案例收录
   paid: false
   category: Meta
-  version: "0.2.0"
-  description: Turn an explicitly accepted Skill result into a privacy-safe evidence case, update the owning source atomically, and verify the public LovStudio page.
-  tagline_en: Record an accepted Skill result as truthful evidence, then verify its public source and LovStudio detail page.
-  tagline_zh: 把明确认可的 Skill 结果沉淀为真实案例，并回读公开源与 LovStudio 详情页。
+  version: "0.4.1"
+  description: Prepare accepted Skill results for website import or signed-in Agent submission, with consent, final images, safe retries and public verification.
+  tagline_en: Share an accepted Skill result through your LovStudio account, manually or with an Agent.
+  tagline_zh: 登录即可把满意的 Skill 结果分享成案例，支持手动导入或 Agent 投稿。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -2419,16 +2421,16 @@ skills:
     price_range_credits:
     - 0
     - 0
-    delivery_unit_zh: 公开 Skill 源码、案例写入工具与官网双回读验证工具
-    delivery_unit_en: Public Skill source, case mutation helper, and website readback verifier
-    value_zh: 用明确验收、隐私检查、原子写入、重复检测与公开回读替代临时手改和口头上线结论。
-    value_en: Replace ad-hoc edits and verbal launch claims with acceptance, privacy, atomic mutation, duplicate checks, and public readback.
-    anchor_zh: 单次通常可减少约 15 至 45 分钟的案例整理与核验，并降低泄露私有信息或误报上线的风险。
-    anchor_en: A run can save roughly 15 to 45 minutes of case editing and verification while reducing privacy leaks and false launch claims.
+    delivery_unit_zh: 官网导入 JSON、账号投稿工具与公开案例回读验证工具
+    delivery_unit_en: Website import JSON, account submission client, and public case verifier
+    value_zh: 用真实结果、最终成品图和发布前确认完成案例投稿，无需 GitHub 权限。
+    value_en: Submit factual results and final images with review before publication, without GitHub permissions.
+    anchor_zh: 减少整理、投稿和回读的重复步骤；具体节省时间尚待实际使用测量。
+    anchor_en: Reduces repeated preparation, submission and verification steps; time savings remain unmeasured.
     basis_zh: 当前作为提高整个公开 Skill 目录证据密度的免费基础能力；开发成本不代表用户售价为零。
     basis_en: Free catalog infrastructure builds evidence density across public Skills; the zero price does not imply zero development cost.
-    boundary_zh: 只收录与当前输出绑定的明确认可；未授权时不创建公开仓库、目录条目或付费渠道。
-    boundary_en: Requires explicit acceptance tied to the current output and does not create public repositories, listings, or paid channels without authorization.
+    boundary_zh: 只收录明确验收的结果；公开 Session 为可选，付费 Session 保留为单独授权的维护者流程。
+    boundary_en: Requires acceptance of the exact result; public Sessions are optional and paid Sessions require a separate maintainer workflow.
     maintenance_zh: 随案例 schema、GitHub 源、目录字段、缓存标签和官网详情页契约变化复评。
     maintenance_en: Review when the case schema, GitHub source, catalog fields, cache tags, or detail-page contract changes.
     confidence: medium-low

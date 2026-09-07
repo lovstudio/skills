@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.4.1] - 2026-09-07
+
+### Fixed
+
+- 将兼容的 LovStudio 登录模块随包分发，修复全新安装缺少共享依赖的问题
+- 无需单独安装 lov-share-session 即可登录和投稿；旧付费上传仍显式依赖它
+
+## [0.4.0] - 2026-09-07
+
+### Added
+
+- 对齐官网账号投稿，支持 JSON 导入与 Agent 直接提交
+- 复用 LovStudio 登录，加入服务端预检、内容指纹确认与幂等重试
+- 公开 Session 改为可选；旧付费 Session 命令保留为显式维护者路径
+- 修正公开案例验收的实际 DOM、图片路径和 Session 检查
+
+## 0.3.0 - 2026-08-29
+
+- Give every case a stable public detail route owned by its case ID.
+- Keep parent Skill pages concise and move full public Input → Prompt → Output
+  plus paid-session access to the independent case page.
+- Extend live verification to the case page without exposing transcript content.
+
 ## 0.2.2 - 2026-08-29
 
 - Verify every public `cover` and `gallery` asset returns non-empty image content.

@@ -208,7 +208,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-chapter`](https://github.com/lovstudio/video-chapter-skill) | [视频章节工作台](https://github.com/lovstudio/video-chapter-skill) | 从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [`video-moments`](https://github.com/lovstudio/video-moments-skill) | [视频现场瞬间](https://github.com/lovstudio/video-moments-skill) | 从课程和活动视频挑选真实瞬间，完成色彩还原与统一提亮，交付可回溯的照片组。 — 依赖: `branding-consistency` |
 | **Meta** | | | |
-| ![Free](https://img.shields.io/badge/Free-green) | [`skill-add-case`](https://github.com/lovstudio/skill-add-case-skill) | [Skill 案例收录](https://github.com/lovstudio/skill-add-case-skill) | 把明确认可的 Skill 结果沉淀为真实案例，并回读公开源与 LovStudio 详情页。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [`skill-add-case`](https://github.com/lovstudio/skill-add-case-skill) | [Skill 案例收录](https://github.com/lovstudio/skill-add-case-skill) | 登录即可把满意的 Skill 结果分享成案例，支持手动导入或 Agent 投稿。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-creator`](https://github.com/lovstudio/skill-creator-skill) | [Skill 创建与迁移](https://github.com/lovstudio/skill-creator-skill) | 创建、迁移、验证并安装通用 Skill 与自包含 Skill Kit — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [`skill-optimizer`](https://github.com/lovstudio/skill-optimizer-skill) | [技能优化器](https://github.com/lovstudio/skill-optimizer-skill) | 一键体检并修复现有技能，自动升版本号并追加 CHANGELOG。 |
 <!-- SKILLS:END -->
