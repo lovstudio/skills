@@ -9,6 +9,7 @@ on:
       - "scripts/render-marketplace.py"
       - "scripts/sync-skills.py"
       - "scripts/skill_display_names.py"
+      - "scripts/sync-runtime-names.py"
       - "module-display-names.yaml"
       - "README.md"
       - "README.en.md"

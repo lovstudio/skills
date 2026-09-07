@@ -2368,7 +2368,6 @@ skills:
 - name: skill-creator
   runtime_name: lov-skill-creator
   display_name: "Skill Studio"
-  runtime_name: lov-skill-creator
   updated_at: 2026-09-07T09:40:45Z
   skillpay_product_id: P0806000200846064
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-w
@@ -2405,7 +2404,6 @@ skills:
 - name: skill-add-case
   runtime_name: lov-skill-add-case
   display_name: "Skill Showcase"
-  runtime_name: lov-skill-add-case
   updated_at: 2026-09-07T09:49:19Z
   repo: lovstudio/skill-add-case-skill
   name_zh: "Skill 案例馆"
@@ -2444,7 +2442,6 @@ skills:
 - name: skill-optimizer
   runtime_name: lov-skill-optimizer
   display_name: "Skill Refiner"
-  runtime_name: lov-skill-optimizer
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846065
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsb
@@ -2485,7 +2482,6 @@ skills:
 - name: auto-context
   runtime_name: lov-auto-context
   display_name: "Context Sentinel"
-  runtime_name: lov-auto-context
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846061
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP8
@@ -2526,7 +2522,6 @@ skills:
 - name: cc-migrate-session
   runtime_name: lov-cc-mv
   display_name: "Session Mover"
-  runtime_name: lov-cc-mv
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847221
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP6
@@ -2568,7 +2563,6 @@ skills:
 - name: deploy-to-vercel
   runtime_name: lov-deploy-to-vercel
   display_name: "Vercel Deployer"
-  runtime_name: lov-deploy-to-vercel
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847222
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP2
@@ -2609,7 +2603,6 @@ skills:
 - name: finder-action
   runtime_name: lov-finder-action
   display_name: "Finder Actions"
-  runtime_name: lov-finder-action
   updated_at: 2026-09-07T09:40:45Z
   skillpay_product_id: P0806000200847223
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP0
@@ -2646,7 +2639,6 @@ skills:
 - name: gh-access
   runtime_name: lov-gh-access
   display_name: "GitHub Collaborator Manager"
-  runtime_name: lov-gh-access
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200844926
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsh
@@ -2687,7 +2679,6 @@ skills:
 - name: gh-contribute
   runtime_name: lov-gh-contribute
   display_name: "Open Source Contributor"
-  runtime_name: lov-gh-contribute
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843453
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-m
@@ -2729,7 +2720,6 @@ skills:
 - name: gh-tidy
   runtime_name: lov-gh-tidy
   display_name: "GitHub Organizer"
-  runtime_name: lov-gh-tidy
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846062
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-2
@@ -2770,7 +2760,6 @@ skills:
 - name: install-tanstack-query
   runtime_name: lov-install-tanstack-query
   display_name: "TanStack Query Setup"
-  runtime_name: lov-install-tanstack-query
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846063
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsV
@@ -2811,7 +2800,6 @@ skills:
 - name: release-via-cicd
   runtime_name: lov-release-via-cicd
   display_name: "Release Pilot"
-  runtime_name: lov-release-via-cicd
   updated_at: 2026-09-07T09:40:45Z
   skillpay_product_id: P0806000200847225
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-4
@@ -2848,7 +2836,6 @@ skills:
 - name: optimize-tauri-backend
   runtime_name: lov-optimize-tauri-backend
   display_name: "Tauri Backend Tuner"
-  runtime_name: lov-optimize-tauri-backend
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847224
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsX
@@ -2891,7 +2878,6 @@ skills:
 - name: app-generator
   runtime_name: lov-app-generator
   display_name: "App Studio"
-  runtime_name: lov-app-generator
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843451
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP-
@@ -2935,7 +2921,6 @@ skills:
 - name: electron-delta-updater
   runtime_name: sgc-electron-delta-updater
   display_name: "Electron Delta Updates"
-  runtime_name: sgc-electron-delta-updater
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200846070
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsq
@@ -2976,7 +2961,6 @@ skills:
 - name: electron-app-relaunch
   runtime_name: sgc-electron-app-relaunch
   display_name: "Desktop App Relaunch"
-  runtime_name: sgc-electron-app-relaunch
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200847229
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqWfZ
@@ -3017,7 +3001,6 @@ skills:
 - name: install-ai
   runtime_name: sgc-install-ai
   display_name: "AI Integrator"
-  runtime_name: sgc-install-ai
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843464
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqWfb
@@ -3060,7 +3043,6 @@ skills:
 - name: skill-distiller
   runtime_name: sgc-skill-distiller
   display_name: "Skill Alchemist"
-  runtime_name: sgc-skill-distiller
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200866866
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqZJs
@@ -3101,7 +3083,6 @@ skills:
 - name: skill-pricing
   runtime_name: lov-skill-pricing
   display_name: "Skill Pricer"
-  runtime_name: lov-skill-pricing
   updated_at: 2026-08-26T15:50:02Z
   repo: lovstudio/skill-pricing-skill
   name_zh: "Skill 定价师"
@@ -3138,7 +3119,6 @@ skills:
 - name: media-crawler
   runtime_name: lov-media-crawler
   display_name: "Media Downloader"
-  runtime_name: lov-media-crawler
   updated_at: 2026-08-23T17:04:16Z
   repo: lovstudio/media-crawler-skill
   name_zh: "媒体下载器"
@@ -3175,7 +3155,6 @@ skills:
 - name: skill-publisher
   runtime_name: lov-skill-publisher
   display_name: "Skill Publisher"
-  runtime_name: lov-skill-publisher
   updated_at: 2026-08-27T03:29:53Z
   skillpay_product_id: P0806000200863857
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqavG
@@ -3218,7 +3197,6 @@ skills:
 - name: obsidian-reset-cache
   runtime_name: lov-obsidian-reset-cache
   display_name: "Obsidian Cache Reset"
-  runtime_name: lov-obsidian-reset-cache
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843455
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-q
@@ -3259,7 +3237,6 @@ skills:
 - name: project-port
   runtime_name: lov-project-port
   display_name: "Port Keeper"
-  runtime_name: lov-project-port
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200844927
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-o
@@ -3300,7 +3277,6 @@ skills:
 - name: clash-tun-doctor
   runtime_name: lov-clash-tun-doctor
   display_name: "Clash Network Doctor"
-  runtime_name: lov-clash-tun-doctor
   updated_at: 2026-08-23T17:04:16Z
   skillpay_product_id: P0806000200843452
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP4
@@ -3793,7 +3769,6 @@ skills:
   runtime_name: lov-personal-vocabulary
   display_name: "My Vocabulary"
   name_zh: "我的词库"
-  runtime_name: lov-personal-vocabulary
   repo: lovstudio/personal-vocabulary-skill
   updated_at: 2026-08-23T17:04:16Z
   paid: false
@@ -4176,7 +4151,6 @@ skills:
 - name: better-css
   runtime_name: lov-better-css
   display_name: "CSS Polish"
-  runtime_name: lov-better-css
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "CSS 精修"
@@ -4247,7 +4221,6 @@ skills:
 - name: better-project-structure
   runtime_name: lov-better-project-structure
   display_name: "Project Organizer"
-  runtime_name: lov-better-project-structure
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "项目整理师"
@@ -4283,7 +4256,6 @@ skills:
 - name: better-readme
   runtime_name: lov-better-readme
   display_name: "README Polish"
-  runtime_name: lov-better-readme
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "README 精修"
@@ -4319,7 +4291,6 @@ skills:
 - name: better-seo
   runtime_name: lov-better-seo
   display_name: "Next.js SEO Assistant"
-  runtime_name: lov-better-seo
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "Next.js SEO 助手"
@@ -4355,7 +4326,6 @@ skills:
 - name: better-statusline
   runtime_name: lov-better-statusline
   display_name: "Status Line Studio"
-  runtime_name: lov-better-statusline
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "状态栏工坊"
@@ -4391,7 +4361,6 @@ skills:
 - name: brainstorm
   runtime_name: lov-brainstorm
   display_name: "Requirements Compass"
-  runtime_name: lov-brainstorm
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "需求梳理"
@@ -4427,7 +4396,6 @@ skills:
 - name: checkpoint-list
   runtime_name: lov-checkpoint-list
   display_name: "Checkpoint History"
-  runtime_name: lov-checkpoint-list
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "检查点回看"
@@ -4463,7 +4431,6 @@ skills:
 - name: checkpoint
   runtime_name: lov-checkpoint
   display_name: "Project Checkpoint"
-  runtime_name: lov-checkpoint
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "项目存档"
@@ -4499,7 +4466,6 @@ skills:
 - name: clone-rebrand
   runtime_name: lov-clone-rebrand
   display_name: "Project Makeover"
-  runtime_name: lov-clone-rebrand
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "项目换装"
@@ -4535,7 +4501,6 @@ skills:
 - name: daily-post
   runtime_name: lov-daily-post
   display_name: "Dev Diary"
-  runtime_name: lov-daily-post
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "开发日记"
@@ -4571,7 +4536,6 @@ skills:
 - name: dev-research
   runtime_name: lov-dev-research
   display_name: "Tech Selection Advisor"
-  runtime_name: lov-dev-research
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "技术选型顾问"
@@ -4607,7 +4571,6 @@ skills:
 - name: distill-to-system
   runtime_name: lov-distill-to-system
   display_name: "Lessons to Rules"
-  runtime_name: lov-distill-to-system
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "经验入规"
@@ -4643,7 +4606,6 @@ skills:
 - name: distill
   runtime_name: lov-distill
   display_name: "Lesson Distiller"
-  runtime_name: lov-distill
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "经验萃取"
@@ -4679,7 +4641,6 @@ skills:
 - name: fix-broken-links
   runtime_name: lov-fix-broken-links
   display_name: "Link Fixer"
-  runtime_name: lov-fix-broken-links
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "链接修补匠"
@@ -4715,7 +4676,6 @@ skills:
 - name: fix-by-add-log
   runtime_name: lov-fix-by-add-log
   display_name: "Log Detective"
-  runtime_name: lov-fix-by-add-log
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "日志侦探"
@@ -4751,7 +4711,6 @@ skills:
 - name: fix-general
   runtime_name: lov-fix-general
   display_name: "Troubleshooter"
-  runtime_name: lov-fix-general
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "故障诊疗"
@@ -4787,7 +4746,6 @@ skills:
 - name: fix-until-no-error
   runtime_name: lov-fix-until-no-error
   display_name: "Verified Fixes"
-  runtime_name: lov-fix-until-no-error
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "验证修复"
@@ -4823,7 +4781,6 @@ skills:
 - name: gen-logo
   runtime_name: lov-gen-logo
   display_name: "Logo Studio"
-  runtime_name: lov-gen-logo
   updated_at: 2026-09-07T09:44:42Z
   repo: lovstudio/skills
   name_zh: "Logo 工坊"
@@ -4859,7 +4816,6 @@ skills:
 - name: gen-project-name
   runtime_name: lov-gen-project-name
   display_name: "Project Namer"
-  runtime_name: lov-gen-project-name
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "项目起名师"
@@ -4895,7 +4851,6 @@ skills:
 - name: git-commit-with-context
   runtime_name: lov-git-commit-with-context
   display_name: "Context Commit"
-  runtime_name: lov-git-commit-with-context
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "会话提交"
@@ -4931,7 +4886,6 @@ skills:
 - name: help-cmd
   runtime_name: lov-help-cmd
   display_name: "Command Helper"
-  runtime_name: lov-help-cmd
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "命令助手"
@@ -4967,7 +4921,6 @@ skills:
 - name: i18n-check-i18n
   runtime_name: lov-i18n-check-i18n
   display_name: "I18n Inspector"
-  runtime_name: lov-i18n-check-i18n
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "国际化巡检"
@@ -5003,7 +4956,6 @@ skills:
 - name: illustrate
   runtime_name: lov-illustrate
   display_name: "Document Visuals"
-  runtime_name: lov-illustrate
   updated_at: 2026-09-07T09:44:42Z
   repo: lovstudio/skills
   name_zh: "图解文档"
@@ -5039,7 +4991,6 @@ skills:
 - name: init-auth
   runtime_name: lov-init-auth
   display_name: "Supabase Auth Setup"
-  runtime_name: lov-init-auth
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "Supabase 登录接入"
@@ -5075,7 +5026,6 @@ skills:
 - name: init-port
   runtime_name: lov-init-port
   display_name: "Port Setup"
-  runtime_name: lov-init-port
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "端口初始化"
@@ -5111,7 +5061,6 @@ skills:
 - name: install-design
   runtime_name: lov-install-design
   display_name: "Design System Setup"
-  runtime_name: lov-install-design
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "设计系统接入"
@@ -5147,7 +5096,6 @@ skills:
 - name: install-shadcn-ui
   runtime_name: lov-install-shadcn-ui
   display_name: "shadcn/ui Setup"
-  runtime_name: lov-install-shadcn-ui
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "shadcn/ui 接入"
@@ -5183,7 +5131,6 @@ skills:
 - name: install-tauri-logo
   runtime_name: lov-install-tauri-logo
   display_name: "Tauri Icon Setup"
-  runtime_name: lov-install-tauri-logo
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "Tauri 图标助手"
@@ -5219,7 +5166,6 @@ skills:
 - name: install-web-logo
   runtime_name: lov-install-web-logo
   display_name: "Website Logo Setup"
-  runtime_name: lov-install-web-logo
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "网站 Logo 助手"
@@ -5255,7 +5201,6 @@ skills:
 - name: install-zenmux-api
   runtime_name: lov-install-zenmux-api
   display_name: "ZenMux Setup"
-  runtime_name: lov-install-zenmux-api
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "ZenMux 接入"
@@ -5291,7 +5236,6 @@ skills:
 - name: kb-organize
   runtime_name: lov-kb-organize
   display_name: "Knowledge Organizer"
-  runtime_name: lov-kb-organize
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "知识库管家"
@@ -5327,7 +5271,6 @@ skills:
 - name: kill-emoji
   runtime_name: lov-kill-emoji
   display_name: "Emoji Makeover"
-  runtime_name: lov-kill-emoji
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "Emoji 换装"
@@ -5363,7 +5306,6 @@ skills:
 - name: legal-pages
   runtime_name: lov-legal-pages
   display_name: "Website Legal Pages"
-  runtime_name: lov-legal-pages
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "网站条款助手"
@@ -5399,7 +5341,6 @@ skills:
 - name: memory-add
   runtime_name: lov-memory-add
   display_name: "Knowledge Capture"
-  runtime_name: lov-memory-add
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "知识入库"
@@ -5435,7 +5376,6 @@ skills:
 - name: memory-search
   runtime_name: lov-memory-search
   display_name: "Knowledge Finder"
-  runtime_name: lov-memory-search
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "知识寻回"
@@ -5471,7 +5411,6 @@ skills:
 - name: meta-command
   runtime_name: lov-meta-command
   display_name: "Workflow Studio"
-  runtime_name: lov-meta-command
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "流程工坊"
@@ -5507,7 +5446,6 @@ skills:
 - name: nano-banana-pro
   runtime_name: lov-nano-banana-pro
   display_name: "Image Prompt Crafter"
-  runtime_name: lov-nano-banana-pro
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "图像提示师"
@@ -5543,7 +5481,6 @@ skills:
 - name: obsidian-ensure-dev-sync
   runtime_name: lov-obsidian-ensure-dev-sync
   display_name: "Obsidian Dev Sync"
-  runtime_name: lov-obsidian-ensure-dev-sync
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "Obsidian 开发同步"
@@ -5579,7 +5516,6 @@ skills:
 - name: output-wechat-moment
   runtime_name: lov-output-wechat-moment
   display_name: "WeChat Moments Copy"
-  runtime_name: lov-output-wechat-moment
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "朋友圈文案"
@@ -5615,7 +5551,6 @@ skills:
 - name: output
   runtime_name: lov-output
   display_name: "Content Keeper"
-  runtime_name: lov-output
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "内容收纳"
@@ -5651,7 +5586,6 @@ skills:
 - name: refactor-api
   runtime_name: lov-refactor-api
   display_name: "API Refiner"
-  runtime_name: lov-refactor-api
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "API 精修"
@@ -5687,7 +5621,6 @@ skills:
 - name: refactor-modular
   runtime_name: lov-refactor-modular
   display_name: "Module Refactorer"
-  runtime_name: lov-refactor-modular
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "模块拆分师"
@@ -5723,7 +5656,6 @@ skills:
 - name: rename-project
   runtime_name: lov-rename-project
   display_name: "Project Renamer"
-  runtime_name: lov-rename-project
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "项目改名"
@@ -5759,7 +5691,6 @@ skills:
 - name: repo-takeover
   runtime_name: lov-repo-takeover
   display_name: "Repository Takeover"
-  runtime_name: lov-repo-takeover
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "仓库接手"
@@ -5795,7 +5726,6 @@ skills:
 - name: version-management-manual
   runtime_name: lov-version-management-manual
   display_name: "Version Review"
-  runtime_name: lov-version-management-manual
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "版本审阅"
@@ -5831,7 +5761,6 @@ skills:
 - name: version-management
   runtime_name: lov-version-management
   display_name: "Version Keeper"
-  runtime_name: lov-version-management
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "版本管家"
@@ -5867,7 +5796,6 @@ skills:
 - name: xbti-gallery
   runtime_name: lov-xbti-gallery
   display_name: "XBTI Gallery"
-  runtime_name: lov-xbti-gallery
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/xbti-gallery-skill
   name_zh: "XBTI 图鉴"
@@ -5902,7 +5830,6 @@ skills:
 - name: five
   runtime_name: lov-five
   display_name: "Five-Unit Replies"
-  runtime_name: lov-five
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "五字答"
@@ -5938,7 +5865,6 @@ skills:
 - name: add-task
   runtime_name: lov-add-task
   display_name: "Task Capture"
-  runtime_name: lov-add-task
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "任务随手记"
@@ -5974,7 +5900,6 @@ skills:
 - name: think
   runtime_name: lov-think
   display_name: "Deep Thinking"
-  runtime_name: lov-think
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "深度思考"
@@ -6010,7 +5935,6 @@ skills:
 - name: code-review
   runtime_name: lov-code-review
   display_name: "Code Reviewer"
-  runtime_name: lov-code-review
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "代码审阅官"
@@ -6046,7 +5970,6 @@ skills:
 - name: architecture-documentation
   runtime_name: lov-architecture-documentation
   display_name: "Architecture Atlas"
-  runtime_name: lov-architecture-documentation
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "架构图谱"
@@ -6082,7 +6005,6 @@ skills:
 - name: agent-instructions
   runtime_name: lov-agent-instructions
   display_name: "Agent Guide Keeper"
-  runtime_name: lov-agent-instructions
   updated_at: 2026-09-07T09:40:45Z
   repo: lovstudio/skills
   name_zh: "Agent 规范管家"
@@ -6118,7 +6040,6 @@ skills:
 - name: add-tool
   runtime_name: lov-add-tool
   display_name: "Web Tool Studio"
-  runtime_name: lov-add-tool
   updated_at: '2026-09-07T09:48:03Z'
   repo: lovstudio/skills
   name_zh: "小工具工坊"
