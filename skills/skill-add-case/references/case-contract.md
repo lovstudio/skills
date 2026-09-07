@@ -1,85 +1,87 @@
-# Case contract
+# Website case contract
 
-`scripts/add_case.py` accepts one JSON object. The target's canonical
-`cases/cases.json` remains a JSON array.
+The service contract is `GET https://lovstudio.ai/api/skills/<id>/cases`.
+Free and paid targets have the same contribution auth. The server owns the
+canonical `cases/cases.json` array and its assets.
 
-## Required public fields
+## Public case input for prepare
 
 ```json
 {
-  "id": "stable-kebab-case-id",
+  "id": "accepted-reading-handbook",
   "type": "case",
-  "title": "Short result-led title",
-  "description": "What was needed, what changed, and why it mattered.",
-  "input": {"items": ["Real, public-safe starting artifact or state"]},
-  "prompt": "The minimum real prompt or brief.",
-  "output": {"items": ["Real result or reviewable artifact"]},
-  "session": {
-    "url": "https://lovstudio.ai/yoda/session/yss_<43-char-token>?detail=concise",
-    "access": "paid",
-    "priceCredits": 140,
-    "pricingRule": "ceil(target-skill-price/10)",
-    "targetSkill": "lov-target-skill"
-  },
+  "title": "A readable workshop handbook",
+  "description": "Organized public workshop notes into a checked reading handbook.",
+  "input": {"text": "Public workshop notes, 12 pages."},
+  "prompt": "Keep the original text and organize headings and page numbers.",
+  "output": {"items": ["A handbook with consistent sections and page numbers."]},
   "evidence": {
     "acceptance": "user-confirmed",
-    "verified_at": "2026-08-23",
-    "method": "How the output was checked",
-    "privacy": "What was redacted or why publication is safe",
-    "artifact_type": "visual"
+    "verified_at": "2026-09-07",
+    "method": "The author checked every page against the original notes.",
+    "privacy": "Only public workshop material is included.",
+    "artifact_type": "other"
   }
 }
 ```
 
-The `session` object is required for every newly added case. Its price and target
-must come from the structured `lov-share-session --json` response; they may not
-be typed by hand. Optional website fields are `titleEn`, `descriptionEn`, `testimonial`,
-`testimonialEn`, `author`, `cover`, `gallery`, and `languageUnits`.
+This is a format example, not evidence of a real run. Replace factual fields with
+the accepted result. Input/output objects contain text and/or items. Prompt is a
+string. Artifact type is required: visual or other. Images, posters, charts and
+slides require their final artifact as cover; gallery holds up to 3 more variants.
 
-## Evidence rules
+Optional case fields are author, cover and gallery. Unsupported fields are
+rejected, including legacy session objects, translations, transcripts and prices.
+A legacy record needs deliberate preparation and review; never silently convert
+its paid Session.
 
-- Acceptance must refer to this exact output, not a different run or general
-  praise for the Skill.
-- `input`, `prompt`, and `output` are factual. Do not turn plans into completed
-  results or local validation into production proof.
-- Absolute home paths, access tokens, cookies, authorization headers, raw
-  transcripts, customer names, and unpublished business data are excluded from
-  the public case. The paid transcript is separately normalized and redacted by
-  `lov-share-session` before upload.
-- Relative image paths must resolve inside the target Skill. HTTPS images must
-  be stable and authorized for public display.
-- Set `evidence.artifact_type` to `visual` when the accepted result is primarily
-  an image, poster, infographic, diagram, slide, or other visual artifact. Such
-  a case must include `cover` with the accepted final output. When the result has
-  multiple final variants, put the primary artifact in `cover` and the remaining
-  accepted outputs in `gallery`; do not substitute process screenshots.
-- A relative asset in a paid or private target repository is not public evidence
-  unless the website serves it through an authenticated asset proxy. Otherwise
-  publish a sanitized copy to the approved public catalog asset location and use
-  its stable HTTPS URL.
-- The case fingerprint is SHA-256 over canonical UTF-8 JSON. Public verification
-  compares the entire case object, not only its title.
-- `session.url` must be an HTTPS `lovstudio.ai/yoda/session/yss_*` URL. The public
-  case never embeds transcript blocks or an arbitrary client-selected price.
-- A paid Session contains text only. Attachments remain disallowed until their
-  storage URLs are access-controlled as strictly as the snapshot.
+## Submission envelope
 
-## Duplicate and correction policy
+`prepare` emits `{case: PUBLIC_CASE, images: [], consent: false, dryRun: true}`.
+Optional `sessionUrl` is an existing public
+`https://lovstudio.ai/yoda/session/yss_*` URL owned by the submitter; supported
+detail parameters are concise and full. The server checks ownership and public
+access. A well-formed URL alone proves neither. Linking does not upload a Session.
 
-An existing `id` or evidence fingerprint is a duplicate. A correction to the
-same case uses `--replace-existing` and preserves the stable ID. A materially new
-result receives a new case ID even when the prompt resembles an older example.
+Local images become `{contentType, dataBase64}` entries; cover uses `upload:0`
+and gallery references subsequent indices. Otherwise images must be public HTTPS
+URLs without embedded credentials. Local paths and private image URLs are not
+public evidence. The server persists uploaded images with the case.
 
-## Website completion gate
+Limits: ID 3–100 characters, title 2–120, description 5–1200, prompt/text up to
+8000, up to 20 input/output items of 2000 characters each, author up to 80,
+verification/privacy text 2–1200, image URLs up to 2000. At most 4 images,
+1 MiB each, 2 MiB combined, 3 MiB request. Acceptance uses a real YYYY-MM-DD date.
+The authenticated server remains authoritative for validation, image decoding,
+target availability and quotas.
 
-The following states are distinct:
+## Privacy and consent
 
-1. `local` — the canonical local case file and target validator pass.
-2. `pushed` — the intended source commit is on the public default branch.
-3. `live-verified` — public raw JSON matches the fingerprint, the detail page is
-   HTTP 200, every case image is referenced by the rendered page and returns
-   non-empty `image/*` content, and the unauthenticated Session URL renders its
-   paid paywall with the exact case title and Credits price after cache refresh.
+Acceptance refers to this exact output. Use factual Input → Prompt → Output and
+reviewable images. Never present planned work as completed. Redact credentials,
+private paths, personal identifiers and unpublished customer material. Transcripts
+do not belong in this JSON. Pattern checks do not replace explicit review.
 
-Never report `live-verified` from a local build, a successful push, or a cache
-refresh response alone.
+Prepare/check never publish. Saved consent flags are ignored.
+`publish --confirm SHA256` binds consent to the reviewed payloadFingerprint,
+covering case content, image bytes and optional Session. Transport flags are
+excluded. A fresh server preflight runs before the consent-bearing POST.
+
+## Retries and completion
+
+- Retry unchanged bytes and ID: timeout may follow a successful source commit.
+  Duplicate success is safe; another payload under an existing ID is rejected.
+  There is no website `--replace-existing` path.
+- prepared: local import file only; offline form URLs are not yet verified.
+- validated: authenticated server dry-run passed, no case written.
+- published: source commit confirmed; report cacheRefreshed separately and retain
+  the response's server fingerprint.
+- live-verified: source JSON matches that server fingerprint, parent and case
+  pages render the result, all images return non-empty image content, and any
+  public Session is accessible without login.
+
+Approval and server fingerprints differ. The latter covers the complete stored
+case including server metadata. A dry-run's source fingerprint is transient;
+only the published response is used for final source readback. If source JSON is
+private, report verified public surfaces and partial verification without asking
+for GitHub credentials.

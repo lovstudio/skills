@@ -5,13 +5,64 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import html
 import json
+import re
 import sys
 import urllib.error
 import urllib.parse
 import urllib.request
 from typing import Any
+from html.parser import HTMLParser
+
+
+class PublicPage(HTMLParser):
+    """Inspect actual case elements without matching Next's serialized payloads."""
+    VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
+
+    def __init__(self, text: str):
+        super().__init__(convert_charrefs=True)
+        self.stack: list[str] = []
+        self.case_depth: int | None = None
+        self.words: list[str] = []
+        self.headings: list[str] = []
+        self.images: list[str] = []
+        self.links: list[str] = []
+        self.has_case = False
+        self.has_transcript = False
+        self.feed(text)
+
+    def handle_starttag(self, tag, attrs):
+        values = dict(attrs)
+        if tag not in self.VOID:
+            self.stack.append(tag)
+        if values.get("data-testid") == "skill-case-details":
+            self.case_depth = len(self.stack)
+            self.has_case = True
+        if tag == "section" and values.get("aria-label") == "会话记录":
+            self.has_transcript = True
+        if self.case_depth is not None:
+            if tag == "img" and values.get("src"):
+                self.images.append(values["src"])
+            if tag == "a" and values.get("href"):
+                self.links.append(values["href"])
+
+    def handle_endtag(self, tag):
+        if tag in self.stack:
+            index = len(self.stack) - 1 - self.stack[::-1].index(tag)
+            del self.stack[index:]
+            if self.case_depth is not None and len(self.stack) < self.case_depth:
+                self.case_depth = None
+
+    def handle_data(self, data):
+        if any(tag in self.stack for tag in ("script", "style", "template")):
+            return
+        self.words.append(data)
+        if self.case_depth is not None and any(tag in self.stack for tag in ("h1", "h2", "h3")):
+            self.headings.append(data)
+
+    @property
+    def text(self):
+        return " ".join(self.words)
 
 
 def canonical_fingerprint(value: Any) -> str:
@@ -25,7 +76,10 @@ def canonical_fingerprint(value: Any) -> str:
 
 
 def fetch(url: str, timeout: float) -> tuple[int, bytes, str]:
-    request = urllib.request.Request(url, headers={"User-Agent": "lov-skill-add-case/0.1"})
+    headers = {"User-Agent": "Mozilla/5.0 LovStudioCaseVerifier", "Accept-Language": "zh-CN,zh;q=0.9"}
+    if urllib.parse.urlsplit(url).hostname == "lovstudio.ai":
+        headers["Cookie"] = "locale=zh-CN"
+    request = urllib.request.Request(url, headers=headers)
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             return response.status, response.read(), response.headers.get_content_charset() or "utf-8"
@@ -36,7 +90,7 @@ def fetch(url: str, timeout: float) -> tuple[int, bytes, str]:
 
 
 def fetch_public_image(url: str, timeout: float) -> dict[str, Any]:
-    request = urllib.request.Request(url, headers={"User-Agent": "lov-skill-add-case/0.2"})
+    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 LovStudioCaseVerifier"})
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             body = response.read()
@@ -83,11 +137,23 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
     page_status, page_body, page_charset = fetch(args.page_url, args.timeout)
     try:
-        page_text = html.unescape(page_body.decode(page_charset, errors="replace"))
+        page_text = page_body.decode(page_charset, errors="replace")
     except LookupError as exc:
         raise ValueError(f"unsupported page charset: {page_charset}") from exc
-    if args.marker not in page_text:
+    if args.marker not in PublicPage(page_text).text:
         raise ValueError(f"public detail page is missing marker: {args.marker}")
+    case_page_status, case_page_body, case_page_charset = fetch(
+        args.case_page_url, args.timeout
+    )
+    case_page_text = case_page_body.decode(case_page_charset, errors="replace")
+    case_page = PublicPage(case_page_text)
+    if not case_page.has_case or args.marker not in case_page.text:
+        raise ValueError("public case page is missing rendered case content")
+    for case_page_marker in ("input", "prompt", "output"):
+        if not re.search(rf"\b{case_page_marker}\b", " ".join(case_page.headings), re.I):
+            raise ValueError(
+                f"public case page is missing marker: {case_page_marker}"
+            )
     image_values: list[str] = []
     cover = match.get("cover")
     if isinstance(cover, str) and cover.strip():
@@ -102,19 +168,29 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     image_results: list[dict[str, Any]] = []
     for value in dict.fromkeys(image_values):
         if value.startswith("data:image/"):
-            if value not in page_text:
+            if value not in case_page.images:
                 raise ValueError("public detail page is missing embedded case image")
             image_results.append({"url": "data:image/...", "embedded": True})
             continue
-        if value.startswith("/"):
-            image_url = urllib.parse.urljoin(args.page_url, value)
-        else:
-            image_url = urllib.parse.urljoin(args.cases_url, value)
-        if value not in page_text and image_url not in page_text:
-            raise ValueError(f"public detail page is missing case image: {value}")
-        image_results.append(fetch_public_image(image_url, args.timeout))
+        root = args.cases_url.rsplit("/cases/cases.json", 1)[0] + "/"
+        image_url = urllib.parse.urljoin(args.page_url if value.startswith("/") else root, value)
+        rendered = None
+        for src in case_page.images:
+            absolute = urllib.parse.urljoin(args.case_page_url, src)
+            parsed = urllib.parse.urlsplit(absolute)
+            query = urllib.parse.parse_qs(parsed.query)
+            original = query.get("url", [absolute])[0] if parsed.path == "/_next/image" else absolute
+            asset_path = query.get("path", [""])[0]
+            if original == image_url or (parsed.path == "/api/skill-asset" and not urllib.parse.urlsplit(value).scheme and asset_path == value):
+                rendered = absolute
+                break
+        if rendered is None:
+            raise ValueError(f"public case page is missing case image: {value}")
+        image_results.append(fetch_public_image(rendered, args.timeout))
     session_result: dict[str, Any] = {}
     session = match.get("session")
+    if isinstance(session, dict) and session.get("url") not in case_page.links:
+        raise ValueError("public case page is missing the Session link")
     if isinstance(session, dict) and session.get("access") == "paid":
         session_url = session.get("url")
         price_credits = session.get("priceCredits")
@@ -125,9 +201,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         session_status, session_body, session_charset = fetch(
             session_url, args.timeout
         )
-        session_text = html.unescape(
-            session_body.decode(session_charset, errors="replace")
-        )
+        session_text = PublicPage(session_body.decode(session_charset, errors="replace")).text
         for session_marker in (
             "PAID CASE SESSION",
             str(match.get("title", "")),
@@ -143,6 +217,15 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "session_access": "paid-paywall-verified",
             "session_price_credits": price_credits,
         }
+    elif isinstance(session, dict) and session.get("access") == "public":
+        session_url = session.get("url", "")
+        if not re.fullmatch(r"https://lovstudio\.ai/yoda/session/yss_[A-Za-z0-9_-]{43}(?:\?detail=(?:concise|full))?", session_url):
+            raise ValueError("public case contains an invalid public Session URL")
+        status, body, charset = fetch(session_url, args.timeout)
+        public_session = PublicPage(body.decode(charset, errors="replace"))
+        if not public_session.has_transcript or "PAID CASE SESSION" in public_session.text:
+            raise ValueError("public Session has no transcript section or exposes a paid paywall")
+        session_result = {"session_url": session_url, "session_http_status": status, "session_access": "public-page-checked"}
 
     return {
         "status": "live-verified",
@@ -152,6 +235,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "cases_http_status": cases_status,
         "page_url": args.page_url,
         "page_http_status": page_status,
+        "case_page_url": args.case_page_url,
+        "case_page_http_status": case_page_status,
         "marker": args.marker,
         "images": image_results,
         **session_result,
@@ -162,6 +247,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--cases-url", required=True)
     parser.add_argument("--page-url", required=True)
+    parser.add_argument("--case-page-url", required=True)
     parser.add_argument("--case-id", required=True)
     parser.add_argument("--fingerprint", required=True)
     parser.add_argument("--marker", required=True)

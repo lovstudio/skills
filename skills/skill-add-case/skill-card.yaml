@@ -1,8 +1,8 @@
 schema: lovstudio/skill-card/v1
-version: "0.2.2"
+version: "0.4.0"
 description: >-
-  Convert one accepted Skill result into a public summary plus a server-priced
-  paid full-session evidence page, then update and verify the owning source.
+  Prepare an accepted result for website import or submit it through LovStudio
+  account authentication, then verify the public case and accepted images.
 owner:
   team: "LovStudio Skill contributors"
   contact: "Source repository maintainers"
@@ -12,21 +12,22 @@ license:
   url: "LICENSE"
 use_case:
   audience: "Skill users, maintainers, and catalog editors"
-  scenario: "A completed Skill result has explicit approval for a public summary and a paid, redacted full Session."
+  scenario: "A completed Skill result has explicit acceptance and approval to publish its reviewed public bundle."
   tasks:
     - "Qualify the exact accepted result and redact private data."
-    - "Append one deduplicated case to the owning Skill."
-    - "Upload the complete Session through lov-share-session at one tenth of the target Skill price."
+    - "Prepare importable JSON or submit a case through the signed-in website API."
+    - "Optionally link the contributor's existing public Session without uploading a transcript."
     - "Verify source publication and the live LovStudio detail page when applicable."
 deployment:
   geography: global
   environments:
-    - "Local agent workspace with access to the target Skill source"
-    - "GitHub and LovStudio network access for optional public synchronization"
+    - "Local agent workspace for offline JSON preparation"
+    - "LovStudio account and network access for website submission"
 requirements:
-  credentials: "LovStudio authentication for paid Session upload; repository credentials only for public sync."
+  credentials: "Ordinary LovStudio login for website submission; GitHub permissions only for the explicit legacy maintainer route."
   dependencies:
     - "lov-share-session"
+    - "lov-branding-consistency"
   runtime:
     - "Python 3.10 or newer"
     - "PyYAML for generated source validation"
@@ -49,25 +50,26 @@ references:
 output:
   types:
     - "validated Skill case record"
-    - "paid full-session evidence URL"
+    - "website import JSON and optional public Session link"
     - "public synchronization evidence"
   formats:
     - "JSON"
     - "plain-text status report"
   parameters:
-    - "target Skill source"
+    - "target catalog Skill ID"
     - "accepted case JSON object"
-    - "current or explicit Agent Session"
+    - "accepted final images and optional existing public Session URL"
     - "optional public cases and detail-page URLs"
   validation:
     - "explicit user-confirmed evidence"
     - "accepted final image required for primarily visual cases"
-    - "atomic append with duplicate ID and fingerprint rejection"
-    - "server-derived Session price and paid paywall readback"
-    - "target Skill source validation"
+    - "server-owned atomic commit and immutable case ID retry checks"
+    - "reviewed payload fingerprint and fresh authenticated dry-run"
+    - "optional Session ownership and public access validated by the server"
     - "public JSON fingerprint and detail-page marker readback"
     - "rendered-page image references and non-empty image content"
-  description: "One truthful public case, one paid full Session, and exact local, pushed, and live states."
+    - "independent public case page with actual Input, Prompt and Output headings"
+  description: "One truthful public case with prepared, validated, published and live-verified states."
 ethical_considerations: >-
   The workflow minimizes public data, requires user acceptance, rejects obvious
   credentials and private paths, and does not manufacture testimonials, metrics,
@@ -85,8 +87,8 @@ dimensions:
     score: "source-verified"
   - id: mutation-safety
     label: "Mutation safety"
-    description: "Preserves valid existing cases and rejects duplicates before an atomic replacement."
-    evidence: "Dry-run and write modes share validation, content fingerprints, duplicate gates, and atomic os.replace output."
+    description: "Requires reviewed content and lets the server preserve existing cases through atomic submission."
+    evidence: "Client tests cover dry-run, exact-content confirmation, expired login and immutable retry identity."
     score: "source-verified"
   - id: paid-session-integrity
     label: "Paid Session integrity"
@@ -95,7 +97,7 @@ dimensions:
     score: "source-verified"
   - id: live-truthfulness
     label: "Live-state truthfulness"
-    description: "Separates local, pushed, and live-verified states."
+    description: "Separates prepared, validated, published, and live-verified states."
     evidence: "The public verifier matched the canonical case SHA-256 and found the expected marker on the HTTP 200 LovStudio detail page on 2026-08-23."
     score: "live-verified"
 pricing:
@@ -111,5 +113,5 @@ distribution:
     - "workbuddy: not planned"
     - "skillpay: not planned"
   free:
-    - "github: v0.1.0 published; v0.2.2 local-only"
-    - "lovstudio: v0.1.0 live-verified 2026-08-23"
+    - "github: source repository and versioned releases"
+    - "lovstudio: official Skill catalog and installation entry"

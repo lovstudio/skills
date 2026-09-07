@@ -246,6 +246,7 @@ class AddCaseWithSessionTests(unittest.TestCase):
         args = argparse.Namespace(
             cases_url="https://example.com/cases/cases.json",
             page_url="https://lovstudio.ai/skills/demo",
+            case_page_url="https://lovstudio.ai/skills/demo/cases/accepted-result",
             case_id=case["id"],
             fingerprint=case_fingerprint,
             marker=case["title"],
@@ -255,7 +256,10 @@ class AddCaseWithSessionTests(unittest.TestCase):
         def fake_fetch(url: str, _timeout: float):
             if url == args.cases_url:
                 return 200, json.dumps([case]).encode(), "utf-8"
-            page = f'{case["title"]} {case["cover"]}'.encode()
+            if url == args.page_url:
+                return 200, case["title"].encode(), "utf-8"
+            page = (f'<h1>{case["title"]}</h1><article data-testid="skill-case-details">'
+                    f'<img src="{case["cover"]}"><h2>Input</h2><h2>Prompt</h2><h2>Output</h2></article>').encode()
             return 200, page, "utf-8"
 
         with (
@@ -282,10 +286,43 @@ class AddCaseWithSessionTests(unittest.TestCase):
             side_effect=[
                 (200, json.dumps([case]).encode(), "utf-8"),
                 (200, case["title"].encode(), "utf-8"),
+                (200, f'<h1>{case["title"]}</h1><article data-testid="skill-case-details"><h2>Input</h2><h2>Prompt</h2><h2>Output</h2></article>'.encode(), "utf-8"),
             ],
         ):
             with self.assertRaisesRegex(ValueError, "missing case image"):
                 public_verifier.run(args)
+
+    def test_public_verifier_ignores_serialized_script_and_checks_real_headings(self):
+        page = public_verifier.PublicPage('<script>Accepted result INPUT PROMPT OUTPUT</script><article data-testid="skill-case-details"><h2>输入 / Input</h2></article>')
+        self.assertNotIn("Accepted result", page.text)
+        self.assertEqual(page.headings, ["输入 / Input"])
+        self.assertTrue(page.has_case)
+
+    def test_relative_uploaded_images_resolve_from_the_skill_root(self):
+        case = base_case()
+        case["cover"] = "cases/assets/accepted-result/1.png"
+        args = argparse.Namespace(cases_url="https://raw.githubusercontent.com/lovstudio/demo/main/cases/cases.json", page_url="https://lovstudio.ai/skills/demo",
+                                  case_page_url="https://lovstudio.ai/skills/demo/cases/accepted-result", case_id=case["id"],
+                                  fingerprint=public_verifier.canonical_fingerprint(case), marker=case["title"], timeout=15)
+        image = "https://raw.githubusercontent.com/lovstudio/demo/main/" + case["cover"]
+        detail = f'<h1>{case["title"]}</h1><article data-testid="skill-case-details"><img src="{image}"><h2>Input</h2><h2>Prompt</h2><h2>Output</h2></article>'
+        with patch.object(public_verifier, "fetch", side_effect=[(200, json.dumps([case]).encode(), "utf-8"), (200, case["title"].encode(), "utf-8"), (200, detail.encode(), "utf-8")]), patch.object(public_verifier, "fetch_public_image", return_value={}) as fetch_image:
+            public_verifier.run(args)
+        fetch_image.assert_called_once_with(image, 15)
+
+    def test_public_session_is_checked_and_is_not_reported_as_paid(self):
+        case = base_case()
+        case["session"] = {"access": "public", "url": f"https://lovstudio.ai/yoda/session/{SLUG}"}
+        args = argparse.Namespace(cases_url="https://example.com/cases/cases.json", page_url="https://lovstudio.ai/skills/demo", case_page_url="https://lovstudio.ai/skills/demo/cases/accepted-result", case_id=case["id"],
+                                  fingerprint=public_verifier.canonical_fingerprint(case), marker=case["title"], timeout=15)
+        detail = f'<h1>{case["title"]}</h1><article data-testid="skill-case-details"><h2>Input</h2><h2>Prompt</h2><h2>Output</h2><a href="{case["session"]["url"]}">Session</a></article>'
+        for body, expected in [('<section aria-label="会话记录">Public conversation</section>', "public-page-checked"), ("<main>PAID CASE SESSION</main>", None)]:
+            with patch.object(public_verifier, "fetch", side_effect=[(200, json.dumps([case]).encode(), "utf-8"), (200, case["title"].encode(), "utf-8"), (200, detail.encode(), "utf-8"), (200, body.encode(), "utf-8")]):
+                if expected:
+                    self.assertEqual(public_verifier.run(args)["session_access"], expected)
+                else:
+                    with self.assertRaisesRegex(ValueError, "paywall"):
+                        public_verifier.run(args)
 
 
 if __name__ == "__main__":
