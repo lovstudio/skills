@@ -1,4 +1,4 @@
-# GitHub 仓库信息 Skill Card
+# GitHub 仓库简介优化 Skill Card
 
 ## Description
 
@@ -38,7 +38,7 @@ MIT
 
 ## Skill Version
 
-1.1.1
+1.1.2
 
 ## Ethical Considerations
 
