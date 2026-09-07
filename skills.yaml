@@ -4158,12 +4158,13 @@ skills:
     card_path: pricing-cards/better-css.md
 - name: better-github-desc
   runtime_name: lov-better-github-desc
-  updated_at: 2026-09-07T09:40:45Z
+  display_name: GitHub Repository Description Optimization
+  updated_at: "2026-09-07T10:34:30Z"
   repo: lovstudio/skills
-  name_zh: GitHub 仓库信息
+  name_zh: "GitHub 仓库简介优化"
   paid: false
   category: Dev Tools
-  version: 1.1.1
+  version: "1.1.2"
   description: Update a GitHub repository description from its README
   tagline_en: Update a GitHub repository description from its README
   tagline_zh: 依据 README 更新 GitHub 仓库描述、主题标签及已核实的官网链接

@@ -1,6 +1,6 @@
-# GitHub 仓库信息
+# GitHub 仓库简介优化
 
-![Version](https://img.shields.io/badge/version-1.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.2-CC785C)
 
 依据 README 更新 GitHub 仓库描述、主题标签及已核实的官网链接。
 
