@@ -2120,18 +2120,18 @@ skills:
     card_path: pricing-cards/video-chapter.md
 - name: media-creator
   runtime_name: lov-media-creator
-  updated_at: 2026-08-26T15:50:02Z
-  display_name: "Video Studio"
+  updated_at: '2026-09-07T15:04:06Z'
+  display_name: Video Studio
   repo: lovstudio/media-creator-skill
-  name_zh: "视频工坊"
+  name_zh: 天才剪辑师
   paid: true
   public_source: true
   price_credits: 1394
   category: Video Creation
-  version: "0.9.1"
+  version: 0.13.3
   description: Turn screen recordings into review-first video deliveries with editable-subtitle MKV, approved platform files, rendered covers for every required slot, protected source audio, and QC evidence.
-  tagline_en: Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence.
-  tagline_zh: 先交可编辑字幕 MKV，再交批准后的平台成片与各槽位真实封面，并保留原声和质检证据。
+  tagline_en: Turn recordings and Screen Studio projects into reviewable video, then deliver approved horizontal and vertical videos, covers, and quality reports.
+  tagline_zh: 把录屏和 Screen Studio 源工程整理为可审校视频，以批准字幕生成横竖版成片、封面和质检报告。
   pricing:
     model: one_time
     visibility: public
@@ -2142,8 +2142,8 @@ skills:
     - 1394
     delivery_unit_zh: 单项 Skill 完整交付，含当前版本的工作流、脚本、模板与使用说明
     delivery_unit_en: One complete Skill with the current workflow, scripts, templates, and usage notes
-    value_zh: 先交可编辑字幕 MKV，再交批准后的平台成片与各槽位真实封面，并保留原声和质检证据。
-    value_en: Deliver review-first video, approved platform files, real covers for every slot, protected source audio, and QC evidence.
+    value_zh: 把录屏和 Screen Studio 源工程整理为可审校视频，以批准字幕生成横竖版成片、封面和质检报告。
+    value_en: Turn recordings and Screen Studio projects into reviewable video, then deliver approved horizontal and vertical videos, covers, and quality reports.
     anchor_zh: 一次长录屏到成片任务保守可省 2–8 小时的剪辑、字幕回灌、封面返工和交付排错。
     anchor_en: A long-recording workflow can conservatively save 2–8 hours of editing, subtitle rework, cover iteration, and delivery debugging.
     basis_zh: 1,394 Credits 是完整本地媒体制作工作流的一次性价格，用于验证付费转化；它不是定制剪辑、托管执行或成本回收价。
