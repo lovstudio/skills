@@ -2120,6 +2120,8 @@ skills:
     card_path: pricing-cards/video-chapter.md
 - name: media-creator
   runtime_name: lov-media-creator
+  depends_on:
+  - branding-consistency
   updated_at: '2026-09-07T15:04:06Z'
   display_name: Video Studio
   repo: lovstudio/media-creator-skill
