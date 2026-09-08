@@ -6109,3 +6109,41 @@ skills:
     boundary_zh: 运行模型与存储成本由使用环境承担；不包含视频发布。
     confidence: existing-free-contract
     review_trigger_zh: 商业模式变化或取得跨素材实测账单后复评。
+- name: wxmp-cli
+  runtime_name: lov-wxmp-cli
+  display_name: Weitan CLI
+  repo: lovstudio/wxmp-cli-skill
+  name_zh: 微探命令行
+  paid: true
+  encrypted_bundle: true
+  price_credits: 690
+  category: General
+  version: 0.1.1
+  description: Search, read and export cached WeChat official-account articles with Weitan CLI.
+  tagline_en: Find cached WeChat articles and export them in four formats, with a complete CLI runtime included.
+  tagline_zh: 检索公众号文章缓存，导出四种格式，内含完整命令行运行包
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: one_time
+    visibility: public
+    list_price_credits: 690
+    launch_price_credits: 690
+    price_range_credits:
+    - 550
+    - 970
+    delivery_unit_zh: 完整命令行运行包与 Agent Skill，一次性购买
+    delivery_unit_en: Complete CLI runtime and Agent Skill, one-time purchase
+    value_zh: 按公众号与关键词检索本机文章，并导出 Markdown、HTML、JSON 或 CSV。
+    value_en: Search local articles by account and keyword; export Markdown, HTML, JSON or CSV.
+    basis_zh: 真实缓存读取及四种格式导出已验证；六维评分 3.2/5，外部买家证据仍待积累。
+    basis_en: Real cache reads and four export formats verified; scored 3.2/5, with external buyer evidence pending.
+    boundary_zh: 需要 macOS、uv 和本机缓存；在线操作需要有效登录，成功在线采集尚未现场验证。不含账号服务、人工代采集和文章发布。
+    boundary_en: Requires macOS, uv and local cache; online actions require a valid login and have not been field-verified.
+      Accounts, managed collection and publishing are excluded.
+    maintenance_zh: 按版本交付；外部登录或采集行为变化可能需要后续适配。
+    maintenance_en: Versioned delivery; upstream login and collection changes may require later adaptation.
+    confidence: medium
+    review_trigger_zh: 20 名买家、100 次成功流程、平均支持超过 30 分钟或六个月后复评。
+    review_trigger_en: Review after 20 buyers, 100 successful workflows, support exceeding 30 minutes on average, or six months.
+    card_path: pricing-cards/wxmp-cli.md

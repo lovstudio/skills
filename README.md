@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **157 个技能** — 142 个免费 + 15 个付费。
+> **158 个技能** — 142 个免费 + 16 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -74,6 +74,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Deep Thinking](https://github.com/lovstudio/skills) (`think`) | [深度思考](https://github.com/lovstudio/skills) | 围绕复杂问题比较方案、验证假设并给出有依据的决策建议 — 依赖: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Dictation Editor](https://github.com/lovstudio/typeless-prompt-skill) (`typeless-prompt`) | [口述成文](https://github.com/lovstudio/typeless-prompt-skill) | 消解口癖、重复和改口，把口述草稿整理成逻辑清楚、排版舒展、可直接发送的正文。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Universal WeChat Key](https://github.com/lovstudio/wdb-cli-skill) (`wdb-cli`) | [万能微信秘钥](https://github.com/lovstudio/wdb-cli-skill) | 通过隔离副本读取微信数据，保留精确记录身份。 — 依赖: `branding-consistency` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Weitan CLI](https://github.com/lovstudio/wxmp-cli-skill) (`wxmp-cli`) | [微探命令行](https://github.com/lovstudio/wxmp-cli-skill) | 检索公众号文章缓存，导出四种格式，内含完整命令行运行包 — 依赖: `branding-consistency` |
 | **商务** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [BP Studio](https://github.com/lovstudio/bp-skill) (`bp`) | [BP 工坊](https://github.com/lovstudio/bp-skill) | 可组合的投资人 BP 工具包：大纲、PPT 制作、审稿润色既能单独使用，也能串成完整流程。 — 依赖: `bp-outline`, `bp-deck`, `bp-polish` |
 | ![Free](https://img.shields.io/badge/Free-green) | [BP Master](https://github.com/lovstudio/bp-skill) (`bp-deck`) | [BP 大师](https://github.com/lovstudio/bp-skill) | 把已经确认的 BP 大纲做成风格统一、图表专业的 PPTX、PDF 和全稿预览。 — 依赖: `any2deck` |
