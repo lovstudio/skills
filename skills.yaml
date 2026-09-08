@@ -2408,12 +2408,12 @@ skills:
 - name: skill-add-case
   runtime_name: lov-skill-add-case
   display_name: "Skill Showcase"
-  updated_at: 2026-09-07T09:49:19Z
+  updated_at: 2026-09-08T04:53:59.784141Z
   repo: lovstudio/skill-add-case-skill
   name_zh: "Skill 案例馆"
   paid: false
   category: Meta
-  version: "0.4.1"
+  version: 0.5.0
   description: Prepare accepted Skill results for website import or signed-in Agent submission, with consent, final images, safe retries and public verification.
   tagline_en: Share an accepted Skill result through your LovStudio account, manually or with an Agent.
   tagline_zh: 登录即可把满意的 Skill 结果分享成案例，支持手动导入或 Agent 投稿。
@@ -6078,3 +6078,34 @@ skills:
     review_trigger_en: Review after ten business uses, an API change or a material
       maintenance change.
     card_path: pricing-cards/add-tool.md
+
+- name: media-preprocessor
+  runtime_name: lov-media-preprocessor
+  display_name: Video Prep
+  name_zh: 视频素材精整
+  repo: lovstudio/media-preprocessor-skill
+  paid: false
+  price_credits: 0
+  category: Video Creation
+  version: 0.2.0
+  description: Enhance long recordings and segment meaningful content with source
+    timecodes and a verified creator handoff.
+  tagline_zh: 把长实录提亮、按内容整理，交付可剪素材与源时间码。
+  tagline_en: Enhance long recordings and organize useful segments with verified source
+    timecodes.
+  depends_on:
+  - branding-consistency
+  updated_at: '2026-09-08T04:53:59.784573Z'
+  pricing:
+    model: free
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 开源本地增强、分段与成片交接工作流
+    value_zh: 保留原声与时间码，把长实录准备为清楚、有内容的素材库。
+    boundary_zh: 运行模型与存储成本由使用环境承担；不包含视频发布。
+    confidence: existing-free-contract
+    review_trigger_zh: 商业模式变化或取得跨素材实测账单后复评。

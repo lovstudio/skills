@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: 0.1.0
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 把长实录准备成明亮且有内容的素材库
+basis: 本地开源流程免费，缺少人工对照和完整账单，不声称具体节省比例。
+boundary: 含分析、判断契约、增强和导出；模型、存储或外部转录可另计，不含发布。
+review_trigger: 获得跨素材耗时、通过率和服务账单后复评。
+confidence: internal

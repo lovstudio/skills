@@ -27,6 +27,8 @@ class PublicPage(HTMLParser):
         self.headings: list[str] = []
         self.images: list[str] = []
         self.links: list[str] = []
+        self.all_links: list[str] = []
+        self.videos: list[str] = []
         self.has_case = False
         self.has_transcript = False
         self.feed(text)
@@ -40,7 +42,11 @@ class PublicPage(HTMLParser):
             self.has_case = True
         if tag == "section" and values.get("aria-label") == "会话记录":
             self.has_transcript = True
+        if tag == "a" and values.get("href"):
+            self.all_links.append(values["href"])
         if self.case_depth is not None:
+            if tag == "video" and values.get("src"):
+                self.videos.append(values["src"])
             if tag == "img" and values.get("src"):
                 self.images.append(values["src"])
             if tag == "a" and values.get("href"):
@@ -154,6 +160,20 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             raise ValueError(
                 f"public case page is missing marker: {case_page_marker}"
             )
+    relation_results = []
+    skill_ids = match.get("skillIds", [])
+    for skill_id in skill_ids:
+        if not isinstance(skill_id, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", skill_id):
+            raise ValueError("public case contains an invalid related Skill ID")
+        skill_path = f"/skills/{skill_id}"
+        if not any(urllib.parse.urlsplit(link).path == skill_path for link in case_page.links):
+            raise ValueError(f"case page is missing related Skill link: {skill_id}")
+        skill_url = urllib.parse.urljoin(args.case_page_url, skill_path)
+        status, body, charset = fetch(skill_url, args.timeout)
+        skill_page = PublicPage(body.decode(charset, errors="replace"))
+        if args.marker not in skill_page.text or not any(urllib.parse.urlsplit(link).path == f"/cases/{args.case_id}" for link in skill_page.all_links):
+            raise ValueError(f"related Skill page does not link this canonical case: {skill_id}")
+        relation_results.append({"skill_id": skill_id, "url": skill_url, "http_status": status})
     image_values: list[str] = []
     cover = match.get("cover")
     if isinstance(cover, str) and cover.strip():
@@ -187,6 +207,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         if rendered is None:
             raise ValueError(f"public case page is missing case image: {value}")
         image_results.append(fetch_public_image(rendered, args.timeout))
+    video_result = None
+    if match.get("video"):
+        if match["video"] not in case_page.videos:
+            raise ValueError("public case page is missing the final video")
+        video_status, video_body, _ = fetch(match["video"], args.timeout)
+        if len(video_body) < 12 or video_body[4:8] != b"ftyp":
+            raise ValueError("public case video is not a readable MP4")
+        video_result = {"url": match["video"], "http_status": video_status, "bytes": len(video_body)}
     session_result: dict[str, Any] = {}
     session = match.get("session")
     if isinstance(session, dict) and session.get("url") not in case_page.links:
@@ -239,6 +267,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "case_page_http_status": case_page_status,
         "marker": args.marker,
         "images": image_results,
+        "video": video_result,
+        "related_skills": relation_results,
         **session_result,
     }
 

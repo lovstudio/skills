@@ -1,0 +1,74 @@
+{
+  "schema": "media-preprocess-case-evidence/v1",
+  "date": "2026-09-07",
+  "source": {
+    "name": "A20260906_0031.MP4",
+    "bytes": 43021372505,
+    "duration": 15012.96,
+    "width": 1920,
+    "height": 1080,
+    "fps": "25/1",
+    "edge_sha256": "d58b4e0fff88e3c2f4547a925fdd53b1835fb0d33de7c3efd727497c2b400754"
+  },
+  "analysis": {
+    "status": "complete",
+    "frames": 501,
+    "interval": 30,
+    "quiet_intervals": 1048,
+    "semantics": "complete timestamped transcript reviewed; 26 chunks",
+    "visual_review": "501 sparse analysis frames and 120 targeted final cut-boundary frames; not frame-by-frame",
+    "human_auditory_review": false
+  },
+  "enhancement": {
+    "status": "entire 15012.96-second master rendered and fully decoded; representative master and segment frames inspected",
+    "size": [
+      1920,
+      1080
+    ],
+    "ai_frame_generation": false,
+    "first_attempt": "rejected-gray-blacks",
+    "direction": "preserve blacks and lift midtones",
+    "engine_comparison": {
+      "window_start": 3541,
+      "duration": 12,
+      "ssim_all": 0.981946,
+      "interpretation": "similar graded content; not pixel-identical"
+    },
+    "temporal_check": "complete sample decode, 25 fps, 12.000 s video and audio, zero start offsets",
+    "master_sha256": "3757c66808826f4f9647fbaab231bc7b14d354ccad6b2fdf79d90e980e2d4550"
+  },
+  "full_processing": {
+    "transcription": "complete: full large-v3 FP16, local MLX, conservative VAD, all 26 chunks reviewed",
+    "semantic_plan": "complete; full source coverage and 24 removal boundaries reviewed conservatively",
+    "plan_sha256": "5062b44a2d996a417abb12c2332974a8ee5c1f465186883197f8fb0f14830d9e",
+    "full_render": "complete and verified",
+    "segment_files": 76,
+    "decision_counts": {
+      "keep": 58,
+      "drop": 24,
+      "review": 18
+    },
+    "duration_seconds": {
+      "keep": 9714.52,
+      "review": 2867.52,
+      "drop": 2430.92
+    },
+    "verification": {
+      "master_full_decode": true,
+      "all_segments_full_decode": true,
+      "file_hashes_and_source_mapping": "passed",
+      "source_identity": "unchanged"
+    },
+    "audio_alignment": {
+      "windows": 228,
+      "max_absolute_lag_ms": 21.3125,
+      "minimum_correlation": 0.9789568427996551,
+      "status": "passed",
+      "method": "16 kHz mono cross-correlation against source analysis PCM; head/middle/tail, no human auditory review",
+      "human_auditory_review": false
+    },
+    "editorial_level": "topic-oriented source preparation; not word-level final cut"
+  },
+  "engineering": "FFmpeg and Metal integration tests passed, including incomplete-output rejection",
+  "publication": "not-published"
+}

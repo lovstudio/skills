@@ -1,8 +1,10 @@
 # Website case contract
 
-The service contract is `GET https://lovstudio.ai/api/skills/<id>/cases`.
+The service contract is `GET https://lovstudio.ai/api/cases` (`schemaVersion: 2`).
 Free and paid targets have the same contribution auth. The server owns the
-canonical `cases/cases.json` array and its assets.
+shared `lovstudio/skills:cases/cases.json` array and its assets. `case.skillIds`
+is the many-to-many relation. Case URLs are `/cases/<id>`; Skill pages resolve
+the same record. Legacy per-Skill routes remain compatibility adapters.
 
 ## Public case input for prepare
 
@@ -10,6 +12,7 @@ canonical `cases/cases.json` array and its assets.
 {
   "id": "accepted-reading-handbook",
   "type": "case",
+  "skillIds": ["any2docx", "any2pdf"],
   "title": "A readable workshop handbook",
   "description": "Organized public workshop notes into a checked reading handbook.",
   "input": {"text": "Public workshop notes, 12 pages."},
@@ -30,7 +33,11 @@ the accepted result. Input/output objects contain text and/or items. Prompt is a
 string. Artifact type is required: visual or other. Images, posters, charts and
 slides require their final artifact as cover; gallery holds up to 3 more variants.
 
-Optional case fields are author, cover and gallery. Unsupported fields are
+Each new case requires 1–12 unique catalog IDs in `skillIds`; verify every ID
+before publication. Missing or unknown IDs abort the entire write. Optional case
+fields are author, cover, gallery and `video` (an existing public HTTPS final
+video file URL). Video is played inline; this small JSON API does not upload
+video binaries. Images still demonstrate the accepted output. Unsupported fields are
 rejected, including legacy session objects, translations, transcripts and prices.
 A legacy record needs deliberate preparation and review; never silently convert
 its paid Session.
@@ -64,7 +71,7 @@ do not belong in this JSON. Pattern checks do not replace explicit review.
 
 Prepare/check never publish. Saved consent flags are ignored.
 `publish --confirm SHA256` binds consent to the reviewed payloadFingerprint,
-covering case content, image bytes and optional Session. Transport flags are
+covering case content, all Skill associations, image bytes and optional Session. Transport flags are
 excluded. A fresh server preflight runs before the consent-bearing POST.
 
 ## Retries and completion
@@ -76,8 +83,8 @@ excluded. A fresh server preflight runs before the consent-bearing POST.
 - validated: authenticated server dry-run passed, no case written.
 - published: source commit confirmed; report cacheRefreshed separately and retain
   the response's server fingerprint.
-- live-verified: source JSON matches that server fingerprint, parent and case
-  pages render the result, all images return non-empty image content, and any
+- live-verified: source JSON matches that server fingerprint, the collection, every related Skill page and the canonical case
+  page render the result, all images return non-empty image content, and any
   public Session is accessible without login.
 
 Approval and server fingerprints differ. The latter covers the complete stored

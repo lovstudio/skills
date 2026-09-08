@@ -1,7 +1,7 @@
 schema: lovstudio/skill-card/v1
-version: "0.4.1"
+version: "0.5.0"
 description: >-
-  Prepare an accepted result for website import or submit it through LovStudio
+  Prepare one accepted result with all participating Skill IDs for website import or submit it through LovStudio
   account authentication, then verify the public case and accepted images.
 owner:
   team: "LovStudio Skill contributors"
@@ -55,7 +55,7 @@ output:
     - "JSON"
     - "plain-text status report"
   parameters:
-    - "target catalog Skill ID"
+    - "participating catalog Skill IDs"
     - "accepted case JSON object"
     - "accepted final images and optional existing public Session URL"
     - "optional public cases and detail-page URLs"

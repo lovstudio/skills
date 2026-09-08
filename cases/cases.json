@@ -3689,5 +3689,49 @@
         "fingerprint": "7098da6a997d8d0ee229a66a3c791bb252cb672d9ffd19aa80a1bf642fa60ebf"
       }
     ]
+  },
+  {
+    "id": "case-7281e7a8c8d9a1b5070c",
+    "type": "case",
+    "title": "2026-09-06 四小时课程的全片增强与分段",
+    "description": "将用户认可的明亮自然方向迁移到 4 小时课程实录，完成全片增强、保守语义分段与本地素材库验收。",
+    "input": {
+      "items": [
+        "A20260906_0031.MP4，15012.96 秒，1920×1080，25 fps。",
+        "用户已认可的明亮自然照片方向。"
+      ]
+    },
+    "prompt": "对全片都这么处理，并智能去除低质量、无意义的部分，保留/增强高质量、有内容的内容，进行分段。",
+    "output": {
+      "items": [
+        "15012.96 秒完整明亮版，保持 1920×1080、25 fps、原速与原声。",
+        "58 段可用内容（161.9 分钟）和 18 段待复核（47.8 分钟），全部导出保留。",
+        "24 个已核验删除区间（40.5 分钟）；原片与完整增强版保留全部内容。",
+        "完整增强版和全部 76 段通过全文件解码；228 个声音窗口通过原片波形对齐检查。",
+        "可搜索、可筛选的单播放器素材库，以及源时间映射、取舍计划和验证记录。"
+      ]
+    },
+    "status": "full-processing-completed-and-verified",
+    "evidence": [
+      "cases/course-evidence.json"
+    ],
+    "media_policy": "私有课堂图像、音视频和转录留在用户运行目录，不随源码分发。",
+    "limitations": [
+      "主题素材粗分段，未做逐字口水词精剪。",
+      "18 段证据不足或现场排障内容保留为待复核。",
+      "连续摄影调色，不逐帧生成或重画人物和课件；视频经过有损编码。",
+      "声音对齐采用波形检查，未进行人工听审。"
+    ],
+    "skillIds": [
+      "media-preprocessor"
+    ],
+    "legacy": [
+      {
+        "skillId": "media-preprocessor",
+        "title": "2026-09-06 四小时课程的全片增强与分段",
+        "source": "https://raw.githubusercontent.com/lovstudio/media-preprocessor-skill/main/cases/cases.json",
+        "fingerprint": "7281e7a8c8d9a1b5070c7c5cdeb0c0c6bfbf2988098563ba95f2be77977e4e17"
+      }
+    ]
   }
 ]

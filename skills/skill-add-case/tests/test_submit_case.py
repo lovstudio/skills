@@ -19,7 +19,7 @@ PNG = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4
 
 def sample():
     return {"case": {
-        "id": "accepted-result", "type": "case", "title": "Accepted result",
+        "id": "accepted-result", "type": "case", "skillIds": ["skill-add-case"], "title": "Accepted result",
         "description": "A real accepted result.", "input": {"text": "Public notes"},
         "prompt": "Organize the public notes.", "output": {"items": ["Readable notes"]},
         "evidence": {"acceptance": "user-confirmed", "verified_at": "2026-09-01",
@@ -36,9 +36,9 @@ class SubmitCaseTests(unittest.TestCase):
         self.file.write_text(json.dumps(sample()))
         self.args = argparse.Namespace(action="check", skill="skill-add-case", submission=self.file,
                                        timeout=10, profile_path=None, share_session_script=None)
-        self.contract = {"endpoint": client.ORIGIN + "/api/skills/skill-add-case/cases"}
+        self.contract = {"schemaVersion": 2, "endpoint": client.ORIGIN + "/api/cases", "skills": [{"id": "skill-add-case"}, {"id": "media-creator"}]}
         self.validated = {"status": "validated", "caseId": "accepted-result"}
-        self.published = {"status": "published", "caseId": "accepted-result", "url": "/skills/skill-add-case/cases/accepted-result",
+        self.published = {"status": "published", "caseId": "accepted-result", "url": "/cases/accepted-result", "skillIds": ["skill-add-case"],
                           "fingerprint": "server-fingerprint", "commit": "source-commit", "duplicate": False, "cacheRefreshed": False}
 
     def test_offline_prepare_needs_no_account_source_checkout_or_session(self):
@@ -182,3 +182,24 @@ class SubmitCaseTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class MultiSkillTests(unittest.TestCase):
+    def test_one_preparation_associates_every_requested_skill(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); case = root / "case.json"; output = root / "output.json"
+            case.write_text(json.dumps(sample()["case"]))
+            args = client.build_args(["prepare", "skill-add-case", "--skill", "media-creator", "--case", str(case), "--output", str(output)])
+            with patch.object(client, "http_json", side_effect=AssertionError("offline")):
+                result = client.run(args)
+            self.assertEqual(result["skillIds"], ["media-creator", "skill-add-case"])
+            self.assertEqual(json.loads(output.read_text())["case"]["skillIds"], result["skillIds"])
+
+    def test_relationships_are_part_of_publication_fingerprint(self):
+        before = sample(); after = copy.deepcopy(before)
+        after["case"]["skillIds"].append("media-creator")
+        self.assertNotEqual(client.fingerprint(before), client.fingerprint(after))
+        for invalid in [[], ["../private"], ["same", "same"], "skill-add-case"]:
+            after["case"]["skillIds"] = invalid
+            with self.assertRaisesRegex(client.SubmissionError, "invalid_skill_ids"):
+                client.validate(after)

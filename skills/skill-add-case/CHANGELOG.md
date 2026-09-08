@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0] - 2026-09-08
+
+### Added
+
+- Add a shared case collection with many-to-many Skill associations
+- Prepare one case for all participating Skills; verify all linked pages and preserve legacy case identity during migration
+
 ## [0.4.1] - 2026-09-07
 
 ### Fixed

@@ -76,13 +76,19 @@ def public_url(value: str) -> bool:
 def validate(payload: Any) -> dict:
     keys(payload, {"case", "images", "sessionUrl", "consent", "dryRun"}, "submission")
     case = payload.get("case")
-    keys(case, {"id", "type", "title", "description", "input", "prompt", "output", "author", "cover", "gallery", "evidence"}, "case")
+    keys(case, {"id", "type", "title", "description", "input", "prompt", "output", "author", "cover", "gallery", "evidence", "skillIds", "video"}, "case")
     if not isinstance(case.get("id"), str) or not 3 <= len(case["id"]) <= 100 or not ID.fullmatch(case["id"]):
         raise SubmissionError("invalid_case: use a stable lowercase kebab-case id (3–100 characters)")
+    if "skillIds" in case:
+        ids = case["skillIds"]
+        if not isinstance(ids, list) or not 1 <= len(ids) <= 12 or any(not isinstance(value, str) or len(value) > 120 or not ID.fullmatch(value) for value in ids) or len(set(ids)) != len(ids):
+            raise SubmissionError("invalid_skill_ids: supply 1–12 unique catalog IDs")
     if case.get("type") != "case":
         raise SubmissionError("invalid_case: type must be case")
     for key, low, high in [("title", 2, 120), ("description", 5, 1200), ("prompt", 1, 8000)]:
         string(case.get(key), low, high, key)
+    if "video" in case and (not isinstance(case["video"], str) or len(case["video"]) > 2000 or not public_url(case["video"])):
+        raise SubmissionError("invalid_video: use an existing public HTTPS final video URL")
     if "author" in case:
         string(case["author"], 0, 80, "author")
     for key in ("input", "output"):
@@ -166,10 +172,15 @@ def image_type(data: bytes) -> str:
     raise SubmissionError("invalid_image: only PNG, JPEG and WebP are supported")
 
 
-def prepare(case_path: Path, image_paths: list[Path], session_url: str | None) -> dict:
+def prepare(case_path: Path, image_paths: list[Path], session_url: str | None, skill_ids: list[str] | None = None) -> dict:
     case = read_json(case_path)
     if not isinstance(case, dict):
         raise SubmissionError("invalid_case: --case expects one public case object")
+    if skill_ids:
+        previous = case.get("skillIds", [])
+        if not isinstance(previous, list) or any(not isinstance(value, str) for value in previous):
+            raise SubmissionError("invalid_skill_ids: expected catalog IDs")
+        case["skillIds"] = sorted(set([*previous, *skill_ids]))
     case.setdefault("type", "case")
     case.setdefault("id", "case-" + hashlib.sha256(encoded(case)).hexdigest()[:20])
     images = []
@@ -251,43 +262,53 @@ def authenticated_post(url: str, payload: dict, args: argparse.Namespace, auth) 
         raise SubmissionError("auth_failed: complete LovStudio device sign-in and retry; never share credentials") from None
 
 
-def contract(skill: str, timeout: int) -> dict:
-    if not ID.fullmatch(skill):
+def contract(skill: str | None, timeout: int) -> dict:
+    if skill and not ID.fullmatch(skill):
         raise SubmissionError("invalid_skill: use the exact ID from the website URL")
-    endpoint = f"{ORIGIN}/api/skills/{skill}/cases"
+    endpoint = f"{ORIGIN}/api/cases"
     result = http_json("GET", endpoint, timeout=timeout)
-    if result.get("skillId") != skill or result.get("endpoint") != endpoint or result.get("formUrl") != f"{ORIGIN}/skills/{skill}/cases/new":
+    if result.get("schemaVersion") != 2 or result.get("endpoint") != endpoint or result.get("formUrl") != f"{ORIGIN}/cases/new":
         raise SubmissionError("contract_mismatch: do not send credentials to an unexpected endpoint")
     if result.get("available") is not True:
-        raise SubmissionError("source_write_unavailable: retain the draft; the website operator must enable this source")
+        raise SubmissionError("source_write_unavailable: retain the draft; the website operator must enable the collection")
+    if skill and skill not in {item.get("id") for item in result.get("skills", [])}:
+        raise SubmissionError("skill_not_found: the target is not in the verified catalog")
     return result
 
 
 def run(args: argparse.Namespace) -> dict:
-    if not ID.fullmatch(args.skill):
-        raise SubmissionError("invalid_skill: use the exact ID from the website URL")
-    form = f"{ORIGIN}/skills/{args.skill}/cases/new"
+    targets = ([args.skill] if args.skill else []) + getattr(args, "related_skills", [])
+    if any(not ID.fullmatch(value) for value in targets):
+        raise SubmissionError("invalid_skill: use exact catalog IDs from website URLs")
+    form = f"{ORIGIN}/cases/new"
     if args.action == "contract":
         return contract(args.skill, args.timeout)
     if args.action == "prepare":
-        payload = prepare(args.case, args.image, args.session_url)
-        # Exclusive creation preserves an existing user's draft.
+        payload = prepare(args.case, args.image, args.session_url, targets)
+        if not payload["case"].get("skillIds"):
+            raise SubmissionError("skill_ids_required: include case.skillIds or use --skill for each participating Skill")
         with args.output.open("x", encoding="utf-8") as handle:
             json.dump(payload, handle, ensure_ascii=False, indent=2)
-        return {"status": "prepared", "submission": str(args.output), "payloadFingerprint": fingerprint(payload), "formUrl": form, "contract": "not_checked"}
+        return {"status": "prepared", "submission": str(args.output), "skillIds": payload["case"]["skillIds"], "payloadFingerprint": fingerprint(payload), "formUrl": form, "contract": "not_checked"}
     payload = validate(read_json(args.submission))
+    ids = payload["case"].get("skillIds", [])
+    if not ids or any(value not in ids for value in targets):
+        raise SubmissionError("skill_ids_required: prepare one bundle containing all participating Skill IDs before checking or publishing")
     digest = fingerprint(payload)
     if args.action == "publish" and args.confirm != digest:
         raise SubmissionError("consent_mismatch: review this exact file and images, run check, then pass its payloadFingerprint to --confirm")
     api = contract(args.skill, args.timeout)
+    known = {item.get("id") for item in api.get("skills", [])}
+    if any(value not in known for value in ids):
+        raise SubmissionError("skill_not_found: every association must use a verified catalog ID")
     auth = load_auth(args.share_session_script)
     preflight = authenticated_post(api["endpoint"], payload, args, auth)
     if preflight.get("status") != "validated" or preflight.get("caseId") != payload["case"]["id"]:
         raise SubmissionError("invalid_response: preflight did not validate this case")
     if args.action == "check":
-        return {"status": "validated", "caseId": payload["case"]["id"], "payloadFingerprint": digest, "formUrl": form}
+        return {"status": "validated", "caseId": payload["case"]["id"], "skillIds": ids, "payloadFingerprint": digest, "formUrl": form}
     result = authenticated_post(api["endpoint"], {**payload, "dryRun": False, "consent": True}, args, auth)
-    if result.get("status") != "published" or result.get("caseId") != payload["case"]["id"] or result.get("url") != f"/skills/{args.skill}/cases/{payload['case']['id']}":
+    if result.get("status") != "published" or result.get("caseId") != payload["case"]["id"] or result.get("url") != f"/cases/{payload['case']['id']}" or set(result.get("skillIds", [])) != set(ids):
         raise SubmissionError("invalid_response: publication unconfirmed; retry the unchanged payload and case.id")
     return {**result, "url": ORIGIN + result["url"], "payloadFingerprint": digest, "liveVerification": "pending"}
 
@@ -297,7 +318,8 @@ def build_args(argv=None) -> argparse.Namespace:
     commands = parser.add_subparsers(dest="action", required=True)
     for action in ("contract", "prepare", "check", "publish"):
         command = commands.add_parser(action)
-        command.add_argument("skill", help="Exact catalog ID from /skills/<id>, not a local path")
+        command.add_argument("skill", nargs="?", help="Optional initial catalog ID; the complete relationship lives in case.skillIds")
+        command.add_argument("--skill", dest="related_skills", action="append", default=[], help="Participating catalog ID; repeat to associate several Skills with one case")
         command.add_argument("--timeout", type=int, default=60)
         if action == "prepare":
             command.add_argument("--case", type=Path, required=True)

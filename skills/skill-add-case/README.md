@@ -1,8 +1,8 @@
-# Skill 案例馆 · Skill Showcase
+# lov-skill-add-case
 
-![Version](https://img.shields.io/badge/version-0.4.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
 
-把一次已确认满意的 Skill 结果整理成官网案例。用户可以导入网页后手动发布，
+把一次已确认满意的结果收录到全站案例集，并关联实际参与的所有 Skill。用户可以导入网页后手动发布，
 也可以授权 Agent 直接投稿；普通 LovStudio 账号即可使用，无需 GitHub 权限。
 
 ## 安装
@@ -19,7 +19,10 @@ npx skills add lov-skill-add-case -g -y
 官网的 JSON。用户登录后预览并确认发布。免费与付费 Skill 均可投稿，目标必须
 已经收录且支持官网写入。
 
-案例拥有独立详情页。完整会话不是必填项，可自愿附上本人已有的公开 Session；
+[案例集](https://lovstudio.ai/cases) 集中展示全部案例，每个案例拥有 `/cases/<id>` 独立详情页。
+案例和 Skill 是多对多关系：一次投稿建立一个案例，各相关 Skill 页面展示同一份内容。
+旧案例迁移后保留原地址跳转，旧正文、图片、语言版本和付费会话属性保持不变。
+完整会话不是必填项，可自愿附上本人已有的公开 Session；
 当前投稿接口不接受付费 Session。
 
 ## 命令
@@ -28,10 +31,10 @@ npx skills add lov-skill-add-case -g -y
 
 ```bash
 # 只读确认目标和投稿条件
-python3 scripts/submit_case.py contract CATALOG_ID
+python3 scripts/submit_case.py contract
 
 # 离线生成导入文件；视觉作品可重复传 --image，第一张作为封面
-python3 scripts/submit_case.py prepare CATALOG_ID \
+python3 scripts/submit_case.py prepare CATALOG_ID --skill OTHER_CATALOG_ID \
   --case case.json --image final.png --output submission.json
 
 # 仅在要求 Agent 直接提交时：设备登录和预检，不发布
@@ -41,6 +44,11 @@ python3 scripts/submit_case.py check CATALOG_ID --submission submission.json
 python3 scripts/submit_case.py publish CATALOG_ID \
   --submission submission.json --confirm REVIEWED_PAYLOAD_FINGERPRINT
 ```
+
+`--skill` 可重复使用；也可直接在 JSON 的 `case.skillIds` 中指定所有相关 Skill。
+一次结果只投稿一次，重试复用同一个 ID。无关联字段的旧草稿先重新准备为 v2 投稿包。
+
+视频案例可填 `case.video`（已公开的成片文件 HTTPS 地址），在详情页直接播放。
 
 文字案例省略 `--image`；已有公开图片可直接填入案例的 `cover` / `gallery`。
 最多 4 张 PNG、JPEG 或 WebP，每张 1 MiB，总计 2 MiB，请求最多 3 MiB。
@@ -55,6 +63,7 @@ python3 scripts/submit_case.py publish CATALOG_ID \
 
 ## 数据与状态
 
+- [旧案例迁移](references/legacy-migration.md)
 - [案例字段与状态](references/case-contract.md)
 - [能力组合](references/skill-composition.md)
 - [维护者付费 Session 路径](references/maintainer-paid-cases.md)：保留旧命令，需要

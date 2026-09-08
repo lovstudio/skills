@@ -1,0 +1,115 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.0"
+description: 对实录做连续画质增强、内容取舍和语义分段，输出可回溯素材库。
+owner:
+  team: Local skill contributors
+  contact: 本地 Skill 源目录维护者
+license:
+  name: MIT
+  terms: 脚本与指令遵循 MIT，源视频与照片权利保持原归属。
+  url: LICENSE
+use_case:
+  audience: 课程讲师、活动记录者、视频编辑者
+  scenario: 长实录整理成可剪辑素材
+  tasks:
+  - 全片索引与内容证据
+  - 明亮自然增强与语义取舍
+  - 分段视频和源映射
+deployment:
+  geography: global
+  environments:
+  - Local agent runtime with FFmpeg and vision
+requirements:
+  credentials: 本地管线无凭据；外部 ASR 遵循宿主边界
+  dependencies:
+  - NumPy
+  - OpenCV
+  - FFmpeg
+  - FFprobe
+  - PyYAML
+  - lov-branding-consistency
+  runtime:
+  - Python >=3.9
+  - Host vision and timestamped speech evidence
+  - Optional local ASR and supplied model
+risks:
+- risk: 静音或静止画面误删
+  mitigation: 语义与画面共同审阅，证据不足标 review 并保留。
+- risk: 提亮导致黑位发灰、过曝或闪烁
+  mitigation: 代表窗口校准，固定段内参数并实际回读。
+- risk: 中断后混用素材
+  mitigation: 源、模型、计划与完成文件哈希核验后续跑。
+references:
+- title: Primary instructions
+  path: SKILL.md
+- title: Real case evidence
+  path: cases/cases.json
+output:
+  types:
+  - 增强分段视频
+  - 源映射与取舍清单
+  - 本地审阅页
+  formats:
+  - MP4
+  - JSON
+  - HTML
+  parameters:
+  - 视频与输出目录
+  - 增强曲线与颜色
+  - 时间线与证据
+  - 编码和 ASR 模型
+  validation:
+  - 源全覆盖时间线
+  - 删除审阅和 review 保留
+  - 实际解码、音轨、时长、尺寸和哈希
+  - 实际视觉与剪口检查
+  description: 全片范围的可剪辑素材库，粗预处理不等于出版精剪。
+ethical_considerations: 不伪造对白、演示、动作或课件；原片只读，私有素材不随源码分发。
+dimensions:
+- id: content-integrity
+  label: 内容完整性
+  description: 删除有据，独有内容和待复核段保留。
+  evidence: references/segmentation-contract.md 与 scripts/check_workflow.py
+  score: null
+- id: visual-consistency
+  label: 连续画质
+  description: 主体提亮、课件可读、黑位和时间稳定。
+  evidence: references/enhancement-contract.md 与 cases/course-evidence.json
+  score: null
+- id: traceability
+  label: 源时间回溯
+  description: 源指纹、全覆盖计划和新时间映射。
+  evidence: scripts/check_workflow.py 源、间隙和损坏拒绝测试
+  score: null
+- id: resilience
+  label: 长任务恢复
+  description: 分块转录与顺序导出，验证契约后续跑。
+  evidence: scripts/media_preprocessor.py 与真实运行进度
+  score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 本地开源流程免费，缺少人工对照和完整账单，不声称具体节省比例。
+  boundary: 含分析、判断契约、增强和导出；模型、存储或外部转录可另计，不含发布。
+  review_trigger: 收集真实使用反馈、耗时与账单后复评。
+  confidence: internal
+distribution:
+  paid: []
+  free: []
+  local:
+    status: installed
+    channel: shared-agent-and-codex
+  channels:
+    workbuddy:
+      status: not-published
+      access: undecided
+    skillpay:
+      status: not-published
+      access: undecided
+    github:
+      status: not-published
+      access: free-planned
+    lovstudio:
+      status: not-published
+      access: free-planned

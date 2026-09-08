@@ -4,7 +4,7 @@
 
 - `lov-skill-add-case` owns accepted-result qualification, public text and image
   packaging, exact-content consent, API submission and live readback.
-- The website `GET /api/skills/<id>/cases` supplies the active contract. Its
+- The website `GET /api/cases` supplies the active contract. Its
   authenticated POST owns source selection, Session ownership checks, image and
   JSON persistence, concurrency, idempotency and cache refresh.
 - The package bundles the MIT LovStudio auth adapter adapted from
@@ -20,7 +20,7 @@
 ## Atomic Handoffs
 
 For the website route, this Skill hands public JSON to the user or authenticated
-API, then receives a source commit and URL for independent readback. No source
+API as one record with `case.skillIds`, then receives a source commit and URL for independent readback. No source
 checkout or publisher handoff is required.
 
 Only an explicitly requested maintainer update uses `add_case_with_session.py`,
@@ -41,6 +41,6 @@ publication. No transcript implementation is copied into ordinary submission.
 ## Composition Decision
 
 The API confirms the source commit, not rendering. This Skill owns final public
-readback of source JSON, parent and case pages, images and optional Session access.
+readback of source JSON, the collection, all related Skill pages and the canonical case page, images and optional Session access.
 Missing source visibility is partial verification, never a reason to export
 repository credentials.
