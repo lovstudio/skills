@@ -1,0 +1,3693 @@
+[
+  {
+    "id": "case-954ec12183872d3f6c6a",
+    "title": "产品发布会演示文稿",
+    "description": "从产品 PRD 文档直接生成 16 页发布会风格 slide deck，sketch-notes 风格，导出 PPTX。",
+    "testimonial": "做 PPT 从来都是最痛苦的环节，any2deck 让我把时间花在内容上，设计全自动。",
+    "author": "小陈 · 产品经理",
+    "type": "case",
+    "skillIds": [
+      "any2deck"
+    ],
+    "legacy": [
+      {
+        "skillId": "any2deck",
+        "title": "产品发布会演示文稿",
+        "source": "https://raw.githubusercontent.com/lovstudio/any2deck-skill/main/cases/cases.json",
+        "fingerprint": "954ec12183872d3f6c6a589bd1c7621aa3dd390300d660b3a8ec65a62280d1b3"
+      }
+    ]
+  },
+  {
+    "id": "case-b7db921f57d493c0e7d3",
+    "title": "技术分享会 Slides",
+    "description": "把技术博客文章一键转为 12 张演讲用 slides，minimal 风格，适合技术 meetup 分享。",
+    "testimonial": "写完博客就能出 slides，不用再重新做一套 PPT 了。16 种风格随便换，太省事了。",
+    "author": "Jason · 全栈工程师",
+    "type": "case",
+    "skillIds": [
+      "any2deck"
+    ],
+    "legacy": [
+      {
+        "skillId": "any2deck",
+        "title": "技术分享会 Slides",
+        "source": "https://raw.githubusercontent.com/lovstudio/any2deck-skill/main/cases/cases.json",
+        "fingerprint": "b7db921f57d493c0e7d34378fd4352726b7ae2605dadc663263b5f8dc6951738"
+      }
+    ]
+  },
+  {
+    "id": "case-7f74751f4d23c533fdd6",
+    "title": "培训课件批量生成",
+    "description": "为 8 节培训课程批量生成 slide deck，统一品牌 overlay，导出 PDF 分发给学员。",
+    "testimonial": "8 套课件如果手动做 PPT 至少一周，用 any2deck 一个下午全搞定。",
+    "author": "吴老师 · 企业培训师",
+    "type": "case",
+    "skillIds": [
+      "any2deck"
+    ],
+    "legacy": [
+      {
+        "skillId": "any2deck",
+        "title": "培训课件批量生成",
+        "source": "https://raw.githubusercontent.com/lovstudio/any2deck-skill/main/cases/cases.json",
+        "fingerprint": "7f74751f4d23c533fdd63121dadb1a03f70fb9460044444f05cbb41f103ff9e6"
+      }
+    ]
+  },
+  {
+    "id": "case-f3bf1131ef102ef05c06",
+    "title": "季度技术复盘报告",
+    "description": "将团队技术复盘的 Markdown 笔记转为 warm-academic 主题 PDF，含封面、目录、水印，直接发给领导。",
+    "testimonial": "以前用 Word 排版一份报告要半天，现在一条命令 30 秒搞定，而且比 Word 好看太多了。",
+    "author": "赵工 · 技术主管",
+    "type": "case",
+    "skillIds": [
+      "any2pdf"
+    ],
+    "legacy": [
+      {
+        "skillId": "any2pdf",
+        "title": "季度技术复盘报告",
+        "source": "https://raw.githubusercontent.com/lovstudio/any2pdf-skill/main/cases/cases.json",
+        "fingerprint": "f3bf1131ef102ef05c06137830b433d45dd9ff33fadb6fb4a181d1657b9c8fbb"
+      }
+    ]
+  },
+  {
+    "id": "case-db9ee4d501a83f0c8980",
+    "title": "开源项目文档 PDF 化",
+    "description": "把 GitHub 上的 README + 设计文档合并转为 ieee-journal 风格 PDF，用于学术引用和归档。",
+    "testimonial": "CJK 混排终于不用操心了，中英文、代码块、表格全部自动处理，排版效果堪比 LaTeX。",
+    "author": "Mike · 开源作者",
+    "type": "case",
+    "skillIds": [
+      "any2pdf"
+    ],
+    "legacy": [
+      {
+        "skillId": "any2pdf",
+        "title": "开源项目文档 PDF 化",
+        "source": "https://raw.githubusercontent.com/lovstudio/any2pdf-skill/main/cases/cases.json",
+        "fingerprint": "db9ee4d501a83f0c8980ab8624058829fcaf1208278e94d452473ac74f6e5058"
+      }
+    ]
+  },
+  {
+    "id": "case-d5a3bd5356bbc53a04ea",
+    "title": "客户方案 PDF 交付",
+    "description": "用 chinese-red 主题将商务方案 Markdown 转为正式 PDF，带封面和公司水印，直接交付客户。",
+    "testimonial": "客户拿到 PDF 后以为我们有专门的设计师排版，其实就是一条命令。",
+    "author": "林总 · 咨询公司",
+    "type": "case",
+    "skillIds": [
+      "any2pdf"
+    ],
+    "legacy": [
+      {
+        "skillId": "any2pdf",
+        "title": "客户方案 PDF 交付",
+        "source": "https://raw.githubusercontent.com/lovstudio/any2pdf-skill/main/cases/cases.json",
+        "fingerprint": "d5a3bd5356bbc53a04ea257c026fd5cda5df0dfbe60cbc65939fe18808e5d58d"
+      }
+    ]
+  },
+  {
+    "id": "case-801b0cef1c96df364117",
+    "type": "case",
+    "title": "把 Agent Harness 研究长文装配成公众号文章包",
+    "description": "使用已有研究文章作为事实正文，补齐固定公众号模板、公开来源、手工川发布主体白色横向 Logo、横版封面、竖版首图与可回读质量报告；交付止于本地 prepared，未创建远端草稿。",
+    "input": {
+      "items": [
+        "chapter-01-system-prompt/README.md",
+        "用户确认的手工川文风、手工川发布主体与 LovStudio 母品牌系统",
+        "手工川官方白色横向 raster Logo",
+        "本期在线阅读与 Prompt Review 链接"
+      ]
+    },
+    "prompt": "创建专门用于公众号文章的 lov-article-creator，统一固定模板、文风和品牌系统；每篇文章生成横版公众号封面与竖版文章首图。发布主体使用手工川，封面使用白色横向手工川 Logo。用当前 Agent Harness 文章完成第一个真实案例。",
+    "output": {
+      "items": [
+        "cases/agent-harness-system-prompt/article.md",
+        "cases/agent-harness-system-prompt/article-manifest.json",
+        "cases/agent-harness-system-prompt/sources.md",
+        "cases/agent-harness-system-prompt/cover/cover-manifest.json",
+        "cases/agent-harness-system-prompt/quality-report.json"
+      ],
+      "status": "prepared",
+      "validation": "valid: true; 23 machine checks; 手工川 publication identity; white horizontal lockup; 0 errors; 0 warnings"
+    },
+    "cover": "https://raw.githubusercontent.com/lovstudio/article-creator-skill/main/cases/agent-harness-system-prompt/cover/wechat-cover-wide.png",
+    "gallery": [
+      "https://raw.githubusercontent.com/lovstudio/article-creator-skill/main/cases/agent-harness-system-prompt/cover/article-opening-vertical.png",
+      "https://raw.githubusercontent.com/lovstudio/article-creator-skill/main/cases/agent-harness-system-prompt/cover/art-master.png"
+    ],
+    "skillIds": [
+      "article-creator"
+    ],
+    "legacy": [
+      {
+        "skillId": "article-creator",
+        "title": "把 Agent Harness 研究长文装配成公众号文章包",
+        "source": "https://raw.githubusercontent.com/lovstudio/article-creator-skill/main/cases/cases.json",
+        "fingerprint": "801b0cef1c96df3641176b5dbb7ad54221bd67a38ee5ba6f824c882d470e9f9a"
+      }
+    ]
+  },
+  {
+    "id": "case-3033d50d9d885e451c99",
+    "type": "case",
+    "title": "拦截依赖审稿历史的公众号开头",
+    "description": "2026-08-31 真实回归：最终公众号文章以‘我前一版 benchmark 做错了’开场，公开读者没有旧稿上下文，必须在进入模板与发布阶段前失败。",
+    "input": {
+      "title": "我调研了市面上所有的去 AI 味 Prompt",
+      "bad_opening": "我前一版 benchmark 做错了。",
+      "reader": "未参加作者与 Agent 审稿对话的公众号读者"
+    },
+    "prompt": "使用 rewrite 管线验收公众号最终稿。执行 zero-session-context cold-reader test，并将内部版本历史从公开正文移除。",
+    "output": {
+      "decision": "failed_then_rewritten",
+      "replacement_opening": "我把 5 套公开可复现的去 AI 味 Skill、一句 Prompt 和‘完全不改’放到同一组输入上，跑了 63 次。",
+      "validation": "opening contains no session_context_leak"
+    },
+    "assertions": {
+      "must_fail": [
+        "我前一版 benchmark 做错了",
+        "按你的要求，我重写了开头"
+      ],
+      "must_pass": [
+        "我把 5 套公开可复现的去 AI 味 Skill、一句 Prompt 和‘完全不改’放到同一组输入上，跑了 63 次。"
+      ]
+    },
+    "evidence": [
+      "scripts/validate_article_package.py --self-test 固定本次 bad/good opening。",
+      "skills/article-writing/SKILL.md 与 references/quality-gate.md 共同要求 cold-reader gate。"
+    ],
+    "skillIds": [
+      "article-creator"
+    ],
+    "legacy": [
+      {
+        "skillId": "article-creator",
+        "title": "拦截依赖审稿历史的公众号开头",
+        "source": "https://raw.githubusercontent.com/lovstudio/article-creator-skill/main/cases/cases.json",
+        "fingerprint": "3033d50d9d885e451c99f64b8e295ebf2c24983e18e9b7809317f1468e0d51e8"
+      }
+    ]
+  },
+  {
+    "id": "case-302106ffd9051350e2bb",
+    "type": "case",
+    "title": "无界面调用方第一次让本地记忆索引变得可检索",
+    "description": "Ataru 的 JSON CLI 原先只有 search 与 session read，README 里写的 ensure_index 这一步实际无法在命令行完成，Agent 必须先让用户手动打开桌面端。补上 index status / index build 后，本 Skill 在一台真实机器上完成了从状态确认到可检索的全过程。",
+    "input": {
+      "items": [
+        "一台本机装有 Ataru 0.41.3 的 macOS 机器",
+        "已有的 Claude Code 与 Codex 会话历史目录，共 2704 个会话、847072 条消息"
+      ]
+    },
+    "prompt": "先确认本地 Ataru 记忆索引能不能检索，需要构建就构建，别抢桌面端正在跑的任务。",
+    "output": {
+      "items": [
+        "resolve-bin 拒绝了 PATH 上 0.40.0 的旧二进制并给出原因，避免了旧版把 index status 当成桌面启动参数打开窗口",
+        "status 报告 state=ready、searchAvailable=true、needsBuild=false、totalSessions=2704、totalMessages=847072、indexSizeBytes 约 6.6GB",
+        "ensure 以 actions=[already-ready] 退出码 0 结束，没有触发任何多余构建"
+      ]
+    },
+    "skillIds": [
+      "ataru-indexing"
+    ],
+    "legacy": [
+      {
+        "skillId": "ataru-indexing",
+        "title": "无界面调用方第一次让本地记忆索引变得可检索",
+        "source": "https://raw.githubusercontent.com/lovstudio/ataru-indexing-skill/main/cases/cases.json",
+        "fingerprint": "302106ffd9051350e2bb7163662b9b56924c75e2140e2bfe529c9bab320c52fd"
+      }
+    ]
+  },
+  {
+    "id": "case-033edd5f8a6801902632",
+    "type": "case",
+    "title": "Yoda 种子轮投资人 BP",
+    "description": "完整演示 bp-outline → bp-deck → bp-polish 的组合：把技术导向的“多智能体编程工作台”重构为投资人可理解的“Agent 时代集成委托环境”，再用真实产品截图、专业图表和定向视觉修正完成 15 页 PPTX/PDF。",
+    "skillIds": [
+      "bp",
+      "bp-deck",
+      "bp-outline",
+      "bp-polish"
+    ],
+    "legacy": [
+      {
+        "skillId": "bp",
+        "title": "Yoda 种子轮投资人 BP",
+        "source": "https://raw.githubusercontent.com/lovstudio/bp-skill/main/cases/cases.json",
+        "fingerprint": "033edd5f8a68019026327a0d5f3eb902dbd3cbefa11e97728dfb45b92b925da3"
+      },
+      {
+        "skillId": "bp-outline",
+        "title": "Yoda 种子轮投资人 BP",
+        "source": "https://raw.githubusercontent.com/lovstudio/bp-skill/main/cases/cases.json",
+        "fingerprint": "033edd5f8a68019026327a0d5f3eb902dbd3cbefa11e97728dfb45b92b925da3"
+      },
+      {
+        "skillId": "bp-deck",
+        "title": "Yoda 种子轮投资人 BP",
+        "source": "https://raw.githubusercontent.com/lovstudio/bp-skill/main/cases/cases.json",
+        "fingerprint": "033edd5f8a68019026327a0d5f3eb902dbd3cbefa11e97728dfb45b92b925da3"
+      },
+      {
+        "skillId": "bp-polish",
+        "title": "Yoda 种子轮投资人 BP",
+        "source": "https://raw.githubusercontent.com/lovstudio/bp-skill/main/cases/cases.json",
+        "fingerprint": "033edd5f8a68019026327a0d5f3eb902dbd3cbefa11e97728dfb45b92b925da3"
+      }
+    ]
+  },
+  {
+    "id": "case-e0660332d6bcaa9d0e1d",
+    "type": "case",
+    "title": "公众号艺术首图不该解释自己的制作过程",
+    "description": "来自 2026-08-30《一种优雅的移动端表格排版解决方案》真实发布流程。原 Caption 把作品、官方 Logo、合成方式和组件名称混在一起，读起来像设计交付说明，而不是面向公众号读者的出版文案。",
+    "input": {
+      "items": [
+        "surface: 微信公众号文章",
+        "component: 正文开篇艺术首图 Caption",
+        "audience: 关注 AI 产品、工程与内容运营的读者",
+        "brand role: 手工川个人品牌，以克制、专业的出版者身份说话",
+        "original: Piet Mondrian《Composition (No. 1) Gray-Red》与手工川官方 Logo 构成的正文首图",
+        "article already contains a full 封面里的作品 section with attribution and rights status"
+      ]
+    },
+    "prompt": "使用 lov-branding-consistency 审校这条公众号首图 Caption。区分读者信息、作品归属、无障碍文本和内部制作说明；允许最终决定不显示 Caption。",
+    "output": {
+      "decision": "正文首图不显示可见 Caption；完整作品说明已经在后文承担背景与版权归属，继续显示只会重复并暴露制作过程。",
+      "accessibility_alt": "Piet Mondrian《Composition (No. 1) Gray-Red》，1935",
+      "optional_attribution": "Piet Mondrian，《Composition (No. 1) Gray-Red》，1935。",
+      "artwork_section_caption": "Piet Mondrian，《Composition (No. 1) Gray-Red》，1935，芝加哥艺术博物馆藏。"
+    },
+    "assertions": {
+      "must_remove_from_visible_caption": [
+        "正文首图",
+        "官方 Logo",
+        "构成的"
+      ],
+      "must_preserve_when_attribution_is_needed": [
+        "Piet Mondrian",
+        "Composition (No. 1) Gray-Red",
+        "1935"
+      ],
+      "must_not_claim": [
+        "new artwork facts not present in the source",
+        "a different museum or rights status",
+        "that the logo itself is part of Mondrian's original painting"
+      ]
+    },
+    "evidence": [
+      "scripts/copy_audit.py --self-test uses the original and corrected texts as bad/good fixtures.",
+      "references/scene-conventions.md states that opening art normally needs no visible Caption when attribution is already handled elsewhere.",
+      "references/quality-gate.md classifies component self-reference and production metadata as hard failures."
+    ],
+    "skillIds": [
+      "branding-consistency"
+    ],
+    "legacy": [
+      {
+        "skillId": "branding-consistency",
+        "title": "公众号艺术首图不该解释自己的制作过程",
+        "source": "https://raw.githubusercontent.com/lovstudio/branding-consistency-skill/main/cases/cases.json",
+        "fingerprint": "e0660332d6bcaa9d0e1dc81aeb881faceaf6d122634133651e0b5d13c51f3ab8"
+      }
+    ]
+  },
+  {
+    "id": "case-b2f677e740db7bcff62b",
+    "type": "case",
+    "title": "LovStudio 从新增服务 ICP 到公安联网备案提交",
+    "description": "真实企业网站案例：先保持域名未开放，等待 ICP 管局通过；随后部署并绑定备案域名，展示 ICP 号，再在全国互联网安全管理服务平台提交公安联网备案。",
+    "input": {
+      "items": [
+        "主办单位：北京飞脑科技有限公司",
+        "服务名称：飞脑科技",
+        "域名：lovstudio.cn",
+        "腾讯云 ICP 订单：30178537319491747",
+        "管局下发服务备案号：京ICP备2025108424号-3"
+      ]
+    },
+    "prompt": "ICP 备案通过了，继续部署绑定域名，并完成公安联网备案；遇到提交、登录或安全评估时让我确认。",
+    "output": {
+      "items": [
+        "ICP 通过后才执行大陆域名切换，lovstudio.cn 已解析并以 HTTPS 提供服务",
+        "首页底部展示京ICP备2025108424号-3并链接工信部备案系统",
+        "公安联网备案于 2026-08-14 00:54:17 提交，权威状态为待审核，审核单位为海淀驻区大队",
+        "平台提示的舆论属性/社会动员能力安全评估被保留为独立分支，未在缺少确认时擅自申报"
+      ]
+    },
+    "evidence": [
+      "https://beian.miit.gov.cn/",
+      "https://beian.mps.gov.cn/",
+      "https://lovstudio.cn/"
+    ],
+    "skillIds": [
+      "china-website-filing"
+    ],
+    "legacy": [
+      {
+        "skillId": "china-website-filing",
+        "title": "LovStudio 从新增服务 ICP 到公安联网备案提交",
+        "source": "https://raw.githubusercontent.com/lovstudio/china-website-filing-skill/main/cases/cases.json",
+        "fingerprint": "b2f677e740db7bcff62bd940236af4965d4bef150b9fd1fe6cf83e2ed5d6d6ca"
+      }
+    ]
+  },
+  {
+    "id": "case-6ed6d2ea99fca5155a6d",
+    "type": "case",
+    "title": "Generate a ZenMux log API bundle from saved discovery evidence",
+    "description": "The existing authorized ZenMux discovery artifact was filtered to the log workflow and converted into a reproducible API package without requiring live credentials.",
+    "input": {
+      "items": [
+        "artifacts/zenmux-discovered.json",
+        "Target zenmux.ai",
+        "Filter keyword log"
+      ]
+    },
+    "prompt": "把 ZenMux 的 log API 做成可交互的 OpenAPI、SDK 和 CLI，并保留依赖接口与浏览器登录态调用能力。",
+    "output": {
+      "items": [
+        "generated/zenmux-ai-log/manifest.json",
+        "generated/zenmux-ai-log/openapi.json",
+        "generated/zenmux-ai-log/api-graph.json",
+        "generated/zenmux-ai-log/sdk/index.mjs",
+        "Project regression suite with 17 passing tests"
+      ]
+    },
+    "skillIds": [
+      "cli2anything"
+    ],
+    "legacy": [
+      {
+        "skillId": "cli2anything",
+        "title": "Generate a ZenMux log API bundle from saved discovery evidence",
+        "source": "https://raw.githubusercontent.com/lovstudio/cli2anything-skill/main/cases/cases.json",
+        "fingerprint": "6ed6d2ea99fca5155a6d9c96f687db858bcc658ce89e596c869426e5d00f40d9"
+      }
+    ]
+  },
+  {
+    "id": "case-89137c57e4a82acd9989",
+    "type": "case",
+    "title": "Default bare QR with no header or footer",
+    "description": "The user directly stated that the default must contain only the QR code. The shared Profile records default_poster and default_show_data as false. With no poster flags, the Skill produced a square QR image with no header, footer, title, visible payload, or card frame, then passed exact OpenCV decoding.",
+    "input": {
+      "items": [
+        "Public UTF-8 payload: https://lovstudio.ai",
+        "Durable preference: default_poster false and default_show_data false"
+      ]
+    },
+    "prompt": "默认只要码，不要加 header、footer，除非用户需要。",
+    "output": {
+      "items": [
+        "cases/artifacts/lovstudio-ai-default-bare.png",
+        "cases/artifacts/lovstudio-ai-default-bare.json",
+        "768 by 768 bare QR; OpenCV scan verification equals the exact input payload"
+      ]
+    },
+    "cover": "https://raw.githubusercontent.com/lovstudio/create-qrcode-skill/main/cases/artifacts/lovstudio-ai-default-bare.png",
+    "skillIds": [
+      "create-qrcode"
+    ],
+    "legacy": [
+      {
+        "skillId": "create-qrcode",
+        "title": "Default bare QR with no header or footer",
+        "source": "https://raw.githubusercontent.com/lovstudio/create-qrcode-skill/main/cases/cases.json",
+        "fingerprint": "89137c57e4a82acd998995a5a69cd6767342f764afeacac08cd60d9029b44506"
+      }
+    ]
+  },
+  {
+    "id": "case-903ffbe2a08d63b488a2",
+    "type": "case",
+    "title": "Explicitly requested LovStudio poster mode",
+    "description": "Poster presentation remains available only when explicitly requested. This optional case uses the public LovStudio site, the Warm Academic clay palette, rounded data modules, M correction, a four-module quiet zone, a title, and visible URL. The finished poster passed exact OpenCV decoding from its QR region.",
+    "input": {
+      "items": [
+        "Public UTF-8 payload: https://lovstudio.ai",
+        "Explicit request for poster, title, visible URL, rounded shape, and clay palette"
+      ]
+    },
+    "prompt": "把 https://lovstudio.ai 生成圆角陶土色二维码海报，显示标题和网址，并验证实际扫码结果。",
+    "output": {
+      "items": [
+        "cases/artifacts/lovstudio-ai-rounded-clay.png",
+        "cases/artifacts/lovstudio-ai-rounded-clay.json",
+        "OpenCV scan verification equals the exact input payload"
+      ]
+    },
+    "cover": "https://raw.githubusercontent.com/lovstudio/create-qrcode-skill/main/cases/artifacts/lovstudio-ai-rounded-clay.png",
+    "skillIds": [
+      "create-qrcode"
+    ],
+    "legacy": [
+      {
+        "skillId": "create-qrcode",
+        "title": "Explicitly requested LovStudio poster mode",
+        "source": "https://raw.githubusercontent.com/lovstudio/create-qrcode-skill/main/cases/cases.json",
+        "fingerprint": "903ffbe2a08d63b488a2ff73c1c1fe1b95cf34744f6d93160012335efac488a4"
+      }
+    ]
+  },
+  {
+    "id": "case-08666ae6ad2a0a759c55",
+    "type": "case",
+    "title": "Manage multiple accounts and rotating API Keys from one local ledger",
+    "description": "A software developer requested a reusable Skill that can manage common development environment variables, including several accounts on one platform, several Keys per account, per-Key validity maintenance, zsh and system targets, and a Dashboard.",
+    "input": {
+      "items": [
+        "The original request for lov-env-management",
+        "An isolated temporary storage directory",
+        "Three dummy non-production secret strings used only by automated tests"
+      ]
+    },
+    "prompt": "Create lov-env-management for common software-development environment management, especially multiple accounts per platform, multiple Keys per account, validity maintenance, zsh and system environment targets, and a Dashboard.",
+    "output": {
+      "items": [
+        "scripts/env_manager.py with secure storage adapters, lifecycle, binding, projection, audit, and Dashboard",
+        "cases/evidence/smoke-test.json with the local verification result",
+        "A validated local installation named lov-env-management"
+      ]
+    },
+    "skillIds": [
+      "env-management"
+    ],
+    "legacy": [
+      {
+        "skillId": "env-management",
+        "title": "Manage multiple accounts and rotating API Keys from one local ledger",
+        "source": "https://raw.githubusercontent.com/lovstudio/env-management-skill/main/cases/cases.json",
+        "fingerprint": "08666ae6ad2a0a759c55af43d6b991f54887a4091ab4fd37f401ec12cf129e7a"
+      }
+    ]
+  },
+  {
+    "id": "case-408864d9c3d2ceae22a2",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "9653bf50207ba0eb68cee56aaeaca554b026d2e537acd003957da0a69aeec944"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "finder-action"
+    ],
+    "legacy": [
+      {
+        "skillId": "finder-action",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/finder-action-skill/main/cases/cases.json",
+        "fingerprint": "408864d9c3d2ceae22a230fe4bbe49fae28ae26145832467c949264403b82e72"
+      }
+    ]
+  },
+  {
+    "id": "case-ad9442b3af25045ef158",
+    "type": "case",
+    "title": "Skill 能力地图与多媒体案例集",
+    "description": "面向学员同步 Skill 探索的真实展示，采用能力分布、时间线与案例逐层展开。作品早于本 Skill 创建，本条为历史案例归档。",
+    "input": {
+      "items": [
+        "真实 Skill 清单、先前能力分布分析与一年探索材料",
+        "用户要求适合展示、清晰详实，并支持图片、音频、视频",
+        "用户允许该专题不遵循手工川品牌设计约束"
+      ]
+    },
+    "prompt": "基于以上分析，以及过去一年的聊天记录进行深挖，结合 gsap，制作适合展示、清晰详实的《手工川 Skill 能力地图与案例集》，风格视内容而选择，重点支持图片、音频、视频。",
+    "prompt_fidelity": "由原始请求压缩的最小 brief，非逐字转录。",
+    "output": {
+      "items": [
+        "公开的能力地图与案例集",
+        "244 个地图节点、6 个案例和可检索索引",
+        "GSAP 布局切换、图片放大、原声与合成声音对比、视频播放及课堂演示"
+      ],
+      "url": "https://lovstudio.ai/skill-atlas"
+    },
+    "evidence": {
+      "kind": "historical-task-before-skill-creation",
+      "record": "cases/evidence/atlas-historical.json",
+      "source_commit": "83e41a909e9e4be98f248117b598ccd12466bb2a",
+      "date": "2026-09-06",
+      "limitations": [
+        "不声称该作品由 lov-frontend-design 0.3.0 新生成。",
+        "归档运行记录不证明所有可访问性、字幕与离线要求均已通过。"
+      ]
+    },
+    "skillIds": [
+      "frontend-design"
+    ],
+    "legacy": [
+      {
+        "skillId": "frontend-design",
+        "caseId": "skill-atlas-exhibit",
+        "title": "Skill 能力地图与多媒体案例集",
+        "source": "https://raw.githubusercontent.com/lovstudio/frontend-design-skill/main/cases/cases.json",
+        "fingerprint": "ad9442b3af25045ef15822f7454b84c468841c29dbee445f1f7ab210509b7414"
+      }
+    ]
+  },
+  {
+    "id": "case-497106887043847ca676",
+    "type": "case",
+    "title": "官网资源菜单中的能力地图入口",
+    "description": "为已上线专题补齐真实导航入口，覆盖桌面与移动端。原始实现属于历史任务，新版本复核独立记录。",
+    "input": {
+      "items": [
+        "已上线的 /skill-atlas 专题",
+        "官网桌面资源菜单和两种移动端身份分支",
+        "简体中文、英文、日文、泰文四种现有语言"
+      ]
+    },
+    "prompt": "应该在官网增加入口： 导航 - 资源 - Skills 能力地图与案例集",
+    "output": {
+      "items": [
+        "桌面资源菜单及移动端菜单增加原生链接",
+        "中文标签为 Skills 能力地图与案例集，补齐四种翻译",
+        "验证 1440 px 桌面与 390 px 手机点击后加载 244 个地图节点"
+      ]
+    },
+    "evidence": {
+      "kind": "historical-task-before-skill-creation",
+      "record": "cases/evidence/navigation-historical.json",
+      "website_commit": "2a003a934580aaee5e9c58f5a32131ad70fe665a",
+      "date": "2026-09-06",
+      "limitations": [
+        "已登录移动端只核对源码，未用真实登录账户执行。"
+      ]
+    },
+    "skillIds": [
+      "frontend-design"
+    ],
+    "legacy": [
+      {
+        "skillId": "frontend-design",
+        "caseId": "resources-navigation",
+        "title": "官网资源菜单中的能力地图入口",
+        "source": "https://raw.githubusercontent.com/lovstudio/frontend-design-skill/main/cases/cases.json",
+        "fingerprint": "497106887043847ca67612f48f1590ec3334ab07d594dbb3e504f85967e30b9f"
+      }
+    ]
+  },
+  {
+    "id": "case-70ca2bdd35269c95499d",
+    "type": "case",
+    "title": "工作室版本 0.3.0 的只读导航演练",
+    "description": "新 Skill 按自身的交互与验收约定复核已部署页面，实际执行键盘、鼠标和触控。本次不修改网站。",
+    "input": {
+      "items": [
+        "实际官网设计页的资源导航及 /skill-atlas",
+        "四种现有语言和 1440、390、320 px 宽度",
+        "本 Skill 的 interaction 与 acceptance 参考文档"
+      ]
+    },
+    "prompt": "用 lov-frontend-design 只读检查官网资源入口，验证电脑和手机上的标签、键盘与跳转。",
+    "output": {
+      "items": [
+        "四种语言的桌面菜单均显示完整标签并到达能力地图",
+        "中文桌面 Escape 关闭后焦点恢复，Enter 可打开并选择入口",
+        "390 px 和 320 px 手机触控到达能力地图，各加载 244 个节点",
+        "标明未登录分支为运行验证，已登录分支为源码检查；未进行跨浏览器或屏幕阅读器测试",
+        "发现 320×740 视口下长菜单的登录条目底部超出视口，菜单 overflow-y 为 hidden，滚轮未使其完整可见；本次只读，未改官网。"
+      ]
+    },
+    "gallery": [
+      "https://raw.githubusercontent.com/lovstudio/frontend-design-skill/main/cases/evidence/resources-1440.png",
+      "https://raw.githubusercontent.com/lovstudio/frontend-design-skill/main/cases/evidence/resources-390.png",
+      "https://raw.githubusercontent.com/lovstudio/frontend-design-skill/main/cases/evidence/resources-320.png"
+    ],
+    "evidence": {
+      "kind": "new-skill-read-only-runtime-replay",
+      "record": "cases/evidence/navigation-replay.json",
+      "skill_version": "0.3.0",
+      "checked_at": "2026-09-06T06:44:29.202Z",
+      "limitations": [
+        "Authenticated navigation branches inspected in source only; no signed-in runtime test.",
+        "No screen-reader or non-Chromium browser test.",
+        "Media playback is covered by separately archived historical evidence, not this navigation replay."
+      ],
+      "open_finding": "cases/evidence/narrow-menu-finding.json"
+    },
+    "skillIds": [
+      "frontend-design"
+    ],
+    "legacy": [
+      {
+        "skillId": "frontend-design",
+        "caseId": "frontend-design-030-replay",
+        "title": "工作室版本 0.3.0 的只读导航演练",
+        "source": "https://raw.githubusercontent.com/lovstudio/frontend-design-skill/main/cases/cases.json",
+        "fingerprint": "70ca2bdd35269c95499d88d12b3e578663493a737f8c5210ab03d3a2e10bc543"
+      }
+    ]
+  },
+  {
+    "id": "case-cc7af6a2a25e939a5659",
+    "type": "case",
+    "title": "把“翕”解释成一条可见的字义动势",
+    "description": "从《说文》与段注的“起也 / 鸟将起必敛翼”，建立“敛翼而起”的核心动势，再以《周易》《广韵》《诗经》《论语》证明收束、聚合与和协三组语义。画面只解释字本身，并通过字体、来源、信息图与人工复核四重门。",
+    "skillIds": [
+      "hanzi-lens"
+    ],
+    "legacy": [
+      {
+        "skillId": "hanzi-lens",
+        "title": "把“翕”解释成一条可见的字义动势",
+        "source": "https://raw.githubusercontent.com/lovstudio/hanzi-lens-skill/main/cases/cases.json",
+        "fingerprint": "cc7af6a2a25e939a56597bb42339f651b5a03decccb7ee6b0838524aa4f7907d"
+      }
+    ]
+  },
+  {
+    "id": "case-64e2da7eebf1eaed7e89",
+    "type": "case",
+    "title": "把一篇 AI 直出的中文长文改到真人指标区间内",
+    "description": "用本 Skill 的完整流程（度量 → 定向改写 → --compare 复测）处理一篇典型 AI 直出稿。价值在于验收有据：压力分从 18 降到 3，越界项从 8 降到 1，每一项改善都有 --compare 的数值迁移支撑，而不是一句『读起来更自然了』。",
+    "input": {
+      "items": [
+        "cases/case-01-input-ai-draft.md — AI 直出风格的中文长文，864 字，主题为『人工智能时代下的个人成长路径探索』。含典型特征：三段式小标题、内联粗体列表、『随着人工智能技术的不断发展』『综上所述』『值得注意的是』等套话、零具体数字。"
+      ]
+    },
+    "prompt": "这篇稿子 AI 味太重，帮我改一下（profile=wechat）",
+    "steps": [
+      "python3 scripts/measure.py -i cases/case-01-input-ai-draft.md -p wechat",
+      "按 SKILL.md Step 4 的指标→改法映射做定向改写，只改越界项指向的位置",
+      "python3 scripts/measure.py -i cases/case-01-output-humanized.md -p wechat --compare cases/case-01-input-ai-draft.md"
+    ],
+    "output": {
+      "items": [
+        "cases/case-01-output-humanized.md — 改写稿，总判定 PASS，压力分 3（真人基准 p75=7 / p90=9）"
+      ],
+      "measured": {
+        "before": {
+          "overall": "fail",
+          "pressure": 18,
+          "failing_count": 8,
+          "warning_count": 2
+        },
+        "after": {
+          "overall": "pass",
+          "pressure": 3,
+          "failing_count": 1,
+          "warning_count": 1
+        },
+        "key_transitions": [
+          "sent_len_cv 0.452 → 0.657 (fail → pass)",
+          "para_len_cv 0.22 → 0.818 (fail → pass)",
+          "solo_para_ratio 0.0 → 0.417 (fail → pass)",
+          "hard_phrase_per_1k 4.63 → 0.78",
+          "tail_nominal_per_1k 1.16 → 0.0 (fail → pass)",
+          "list_item_len_cv 0.058 → 1.0 (fail → pass)",
+          "digit_per_1k 0.0 → 28.95 (fail → pass)",
+          "de_ratio 0.044 → 0.0274 (fail → pass)",
+          "concrete_anchor_count 0 → 11 (warn → pass)"
+        ]
+      }
+    },
+    "caveats": [
+      "neg_parallel_per_1k 由 1.16 升到 1.56（pass → warn）：改写时为增强语气引入了新的否定式对照。这正是 SKILL.md Step 5 要求检查的副作用——修一项推坏另一项，必须照实记录而非隐去。",
+      "hard_phrase_per_1k 仍有 0.78 未清零，剩余命中为改写稿中刻意保留的一处过渡。",
+      "本 case 说明的是改写流程有效，不构成『能识别 AI 生成文本』的证据。判别力（对 AI 稿的召回率）尚无带标签语料验证，见 references/benchmark.md 第 5 节。"
+    ],
+    "skillIds": [
+      "human-writing"
+    ],
+    "legacy": [
+      {
+        "skillId": "human-writing",
+        "caseId": "case-01-ai-draft-to-human",
+        "title": "把一篇 AI 直出的中文长文改到真人指标区间内",
+        "source": "https://raw.githubusercontent.com/lovstudio/human-writing-skill/main/cases/cases.json",
+        "fingerprint": "64e2da7eebf1eaed7e89a4740bd2a4138261664f1c517de9b5a927157b70bd69"
+      }
+    ]
+  },
+  {
+    "id": "case-4d4b755650bcc4eabd89",
+    "type": "case",
+    "title": "在 351 篇真人长文上校准阈值与判定逻辑，把误判率从 66% 压到 9%",
+    "description": "这是本 Skill 得以成立的前置工作，也是与手工阈值方案的核心差异所在。初版阈值凭经验设定，在真人语料上误判 66%；实测分布暴露了阈值和聚合逻辑两层问题。",
+    "input": {
+      "items": [
+        "本机 Obsidian vault 的中文长文，CJK ≥ 800 字，初筛 669 篇",
+        "清洗后保留 351 篇 / 约 169 万字（剔除 315 篇：生成物与外部引用 163、英文占比过高的技术文档搬运 146、转写与翻译 6）"
+      ]
+    },
+    "prompt": "用真实中文语料跑出各指标分布，据此校准阈值",
+    "output": {
+      "items": [
+        "references/benchmark.md — 完整分位数表、定界规则、复现方法与已知局限",
+        "scripts/measure.py 的 BASE_BANDS / PROFILES / PROFILE_PRESSURE"
+      ],
+      "measured": {
+        "false_positive_rate": {
+          "wechat": "66% → 9%",
+          "zhuque": "76% → 7%",
+          "neutral": "63% → 7%",
+          "thesis": "88% → 7%"
+        },
+        "bugs_found": [
+          "阈值方向性错误：7 项过严（opener_repeat_ratio 上限设 0.10，真人中位数 0.29 / p90 0.49）、4 项过松（idiom4_per_1k 真人 p90 为 0，却给了 0.5 余量）",
+          "指标定义错误：em_dash_count / curly_quote_count 按出现总数计数，而中文正规写法本就用「——」和成对引号，从定义上注定误判。改为孤立单破折号与引号体系混用数",
+          "聚合逻辑错误（真正的根因）：overall() 用 any-fail，29 项设区间的指标按 p10/p90 定界各带约 10% 设计内尾部概率，取并集即 1 - 0.9^29 ≈ 95%。改为累计压力分，与同 profile 真人分布比较",
+          "自校准路径重犯同一错误：calibrate() 用 p25/p75 做 target 而主逻辑用 p10/p90，导致用户拿自己 40 篇稿件校准后回测同一批，57% 被判 fail。改为同一约定并让基线自带压力标尺，降至 5%"
+        ]
+      }
+    },
+    "caveats": [
+      "校准后的 7–9% 不是独立验证结果：阈值与判定标尺均取自这批语料，同批回测得到约 10% 的 fail 率是定义使然，它证明实现与设计意图一致，不证明误判率低。",
+      "建 AI 正例集的尝试失败并已弃用：以 output/ 目录作启发式抓到的 49 篇里大量是人写的发言稿、公关稿、提词版及大纲表格，且与真人集反向污染，基于它的分离度数字不成立。"
+    ],
+    "skillIds": [
+      "human-writing"
+    ],
+    "legacy": [
+      {
+        "skillId": "human-writing",
+        "caseId": "case-02-false-positive-audit",
+        "title": "在 351 篇真人长文上校准阈值与判定逻辑，把误判率从 66% 压到 9%",
+        "source": "https://raw.githubusercontent.com/lovstudio/human-writing-skill/main/cases/cases.json",
+        "fingerprint": "4d4b755650bcc4eabd89620e002c41bf8f6eefb626a27bdd1858282b943afb84"
+      }
+    ]
+  },
+  {
+    "id": "case-8eadba14c2e4c52ba78a",
+    "type": "case",
+    "title": "一篇讨论篇章级 AI 特征的文章通过了两个表层审计器",
+    "description": "用 APPSO《AI 味不是在一句话里，而是渗透了所有的文字》回测旧扫描器和本 Skill 0.1 的 30 项指标，验证表层工具看不到命题来源、因果压缩、收束压力与读者推理空间。",
+    "input": {
+      "items": [
+        "https://mp.weixin.qq.com/s/BGTg5vsyFPQHOg5iD_8cHA — 26 个正文块；文章讨论 StoryScope 的篇章级研究，并明确提醒研究不能直接外推到中文公众号。"
+      ]
+    },
+    "prompt": "把同一篇文章分别交给旧 anti-wechat 扫描器与 lov-human-writing 0.1 表层度量，检查它们实际能看到什么。",
+    "output": {
+      "items": [
+        "旧扫描器：LOW，3/100，仅命中 1 个模板模式",
+        "lov-human-writing 0.1：整体 pass，压力分 7；fail 为 para_len_cv 与 hedge_per_1k，warn 为三项句长指标",
+        "结论：两个结果都不能回答文章的命题来源、因果结构、反例作用或结尾收束，因此 0.2.0 增加作者性账本与七维篇章审计"
+      ]
+    },
+    "caveats": [
+      "这不是对文章作者身份的判断，也不证明表层指标无价值；它只证明表层通过不能替代篇章审计。",
+      "正文通过 HTML 块级元素还原为 26 个段落后度量，避免把网页 HTML 或单段抽取错误计入结果。",
+      "StoryScope 的研究对象是英文虚构故事，0.2.0 只借用观察维度，不把支线、时间跳跃或开放结尾当作中文非虚构 KPI。"
+    ],
+    "skillIds": [
+      "human-writing"
+    ],
+    "legacy": [
+      {
+        "skillId": "human-writing",
+        "caseId": "case-03-surface-blind-spot",
+        "title": "一篇讨论篇章级 AI 特征的文章通过了两个表层审计器",
+        "source": "https://raw.githubusercontent.com/lovstudio/human-writing-skill/main/cases/cases.json",
+        "fingerprint": "8eadba14c2e4c52ba78a4fda6fbc8ed590be38e17fc61b5ae903b50dd3be3519"
+      }
+    ]
+  },
+  {
+    "id": "case-804f5e2d97de4aef328e",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "f2eb8738c845a07f76e747da489bc13ce192f73ca0c442cb4a39fbe06128a442"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "image-creator"
+    ],
+    "legacy": [
+      {
+        "skillId": "image-creator",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/image-creator-skill/main/cases/cases.json",
+        "fingerprint": "804f5e2d97de4aef328e85f6d0de3a2b55f3b35ea0ebaacbb2c87687bd9e8d0b"
+      }
+    ]
+  },
+  {
+    "id": "case-02cb5da07d5868c75760",
+    "type": "case",
+    "title": "Codex banked-reset tweet with misleading automatic Chinese translation",
+    "description": "A bilingual X screenshot translated banked reset as 银行重置 and rendered the final sentence as a stiff literal instruction. The user required a corrected image that also made the machine-translation failure visible while preserving the tweet layout.",
+    "input": {
+      "items": [
+        "Attached 1200 by 888 bilingual social-media screenshot with two Tibo tweets and one quoted card",
+        "Source term: banked reset",
+        "Old fragments included 银行重置已到达, 太平洋标准时间下午 8 点到达, and 请自行处理这些信息",
+        "User acceptance goals: communicate the correct translation, expose the bad automatic translation, and preserve the original layout"
+      ]
+    },
+    "prompt": "保留错误机翻的关键措辞并用删除线标出，正确译文紧接其后；基本保持英文、头像、卡片、互动数据与布局不变。删除线已经表明是勘误时，不再额外标注勘误二字。",
+    "output": {
+      "items": [
+        "Verified banked reset as a storable Codex usage or rate-limit reset rather than a bank operation",
+        "Corrected top meaning: 可储备的用量重置已经到账。我再说一遍，可储备的用量重置已经到账。祝大家周末愉快。",
+        "Corrected lower meaning: 可储备的用量重置将在太平洋时间晚上 8 点前到账，面向 ChatGPT Work 和 Codex 的所有付费用户。知道这个消息后该怎么做，就看你们了。",
+        "Proofreader treatment: old decisive fragments remain legible under red strikethroughs, corrected fragments appear in dark red, and no redundant errata label is shown by default",
+        "Immutable contract covers English copy, portraits, names, badges, handles, timestamps, card border, metrics, icons, divider, crop, and hierarchy"
+      ]
+    },
+    "evidence": {
+      "verified_at": "2026-08-22",
+      "method": "Visual transcription, official product-term source check, two reference-image edit iterations, and direct user feedback",
+      "acceptance_note": "The user explicitly rejected clean replacement and a redundant errata heading, establishing visible track changes without a label as the default."
+    },
+    "skillIds": [
+      "image-translation-errata"
+    ],
+    "legacy": [
+      {
+        "skillId": "image-translation-errata",
+        "title": "Codex banked-reset tweet with misleading automatic Chinese translation",
+        "source": "https://raw.githubusercontent.com/lovstudio/image-translation-errata-skill/main/cases/cases.json",
+        "fingerprint": "02cb5da07d5868c757606b1d784c42e6b3ecf00cabec41eeca3c365587221cb5"
+      }
+    ]
+  },
+  {
+    "id": "case-06086bc2ddbf994df03b",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "e211eb4fdc15b4213eeb66de7376f5be335ccad6e3c7a5a24e6170de8e2e8d1d"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "integrate-lovinsp"
+    ],
+    "legacy": [
+      {
+        "skillId": "integrate-lovinsp",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/integrate-lovinsp-skill/main/cases/cases.json",
+        "fingerprint": "06086bc2ddbf994df03b2488221f723466af2eacba685bdcd1439bf00fb9debe"
+      }
+    ]
+  },
+  {
+    "id": "case-f4786d52fff19e57fe78",
+    "type": "case",
+    "title": "新 npm 包首次发布后切换到免登录 OIDC",
+    "description": "用户先查证程序化发布新 npm 包如何避免反复登录，随后要求把该方法固化为 lov-npm-publisher。关键结果是不能掩盖全新包的一次性身份引导，同时让后续版本不依赖长期 token。",
+    "input": {
+      "items": [
+        "用户请求：npm 发布新包，如何可以不需要再次登录",
+        "后续请求：创建 lov-npm-publisher",
+        "官方边界：Trusted Publisher 只能绑定已经存在的 npm 包"
+      ]
+    },
+    "prompt": "创建并本地安装一个 Skill，自动判断全新包与已有包，生成 GitHub Actions OIDC 发布链，并以 npm registry 精确版本回读作为完成标准。",
+    "output": {
+      "items": [
+        "scripts/publish.py：只读审计、missing 与 exists 状态计划、保守 workflow 写入",
+        "references/npm-publishing-contract.md：截至 2026-08-22 的官方认证边界与复核链接",
+        "缺失包 dry-run 和已有包 dry-run 均返回结构化计划",
+        "生成的 publish.yml 包含 id-token write 与 npm publish，且不包含长期 npm secret",
+        "本地 Skill 源验证和三层安装解析通过"
+      ]
+    },
+    "skillIds": [
+      "npm-publisher"
+    ],
+    "legacy": [
+      {
+        "skillId": "npm-publisher",
+        "title": "新 npm 包首次发布后切换到免登录 OIDC",
+        "source": "https://raw.githubusercontent.com/lovstudio/lov-npm-publisher-skill/main/cases/cases.json",
+        "fingerprint": "f4786d52fff19e57fe787c96b07203f3381808f89e19a0fc9e06332845f9c971"
+      }
+    ]
+  },
+  {
+    "id": "case-dac2af27cd00f71a2a24",
+    "type": "case",
+    "title": "本地用 granular NPM_TOKEN 直接发布，与 OIDC 平级",
+    "description": "用户要求 lov-npm-auto-publish 升级为 lov-npm-publisher，并让本地 granular NPM_TOKEN（bypass）成为与 OIDC 平级的一等认证方式，而非过渡手段。关键结果是 auto 模式按 GitHub 仓库有无自动选型，bypass 不写 workflow、不读 token 值。",
+    "input": {
+      "items": [
+        "用户请求：lov-npm-auto-publish 升级为 lov-npm-publisher，兼容 bypass、oidc 等多种方式",
+        "决策：bypass 与 oidc 平级、全量改名、并入 publisher 并弃用 lov-npm-config-oidc 脚手架"
+      ]
+    },
+    "prompt": "扩展脚本与文档，使 oidc 与 bypass 成为对等的认证模式，auto 在解析到 GitHub 仓库时选 oidc、否则选 bypass，并弃用独立的 OIDC 脚手架。",
+    "output": {
+      "items": [
+        "scripts/publish.py：新增 --auth-mode auto/oidc/bypass，bypass 检测 NPM_TOKEN/~/.npmrc 存在但不读值，产出 auth.publish_command",
+        "--write 在 bypass 模式下返回 not-applicable，不生成 workflow",
+        "SKILL.md / README / skill-card / contract / composition 同步为双模式",
+        "cases 与 pricing 记录 bypass 为一等方式"
+      ]
+    },
+    "skillIds": [
+      "npm-publisher"
+    ],
+    "legacy": [
+      {
+        "skillId": "npm-publisher",
+        "title": "本地用 granular NPM_TOKEN 直接发布，与 OIDC 平级",
+        "source": "https://raw.githubusercontent.com/lovstudio/lov-npm-publisher-skill/main/cases/cases.json",
+        "fingerprint": "dac2af27cd00f71a2a240a30515d389e49871582d3b8aa09733e92c2bfe0537c"
+      }
+    ]
+  },
+  {
+    "id": "case-d5826ad1a23fd43f11a3",
+    "type": "case",
+    "title": "释放 173.38 GB，同时保留活跃项目与应用工作区",
+    "titleEn": "Reclaimed 173.38 GB without touching active projects or app workspaces",
+    "description": "一台 macOS 设备的阶段基线可用空间仅 23.19 GB。经过只读盘点、活跃进程复核、可重建产物精确回收和官方缓存清理，可用空间提升到 196.57 GB；用户选择在不删除最近使用的 Simulator runtime 和命名设备的前提下验收结果。",
+    "descriptionEn": "Starting from a 23.19 GB stage baseline, guarded inventory, active-process checks, exact rebuildable cleanup, and official cache pruning raised real free space to 196.57 GB. The user accepted the result without deleting recently used Simulator runtimes or named devices.",
+    "input": {
+      "items": [
+        "目标：将 macOS 数据卷可用空间提升到 200 GB",
+        "阶段基线：23.19 GB 可用；初始观测最低为 15.11 GB",
+        "Screen Studio、个人资料、消息、浏览器资料、Agent 会话、Git 历史和活跃项目必须保留",
+        "外置盘剩余约 116.05 GB，不能单独满足目标"
+      ]
+    },
+    "prompt": "使用 lov-clean-mac 将 macOS 可用空间提升到 200 GB；任何高影响清理先确认，并保护 Screen Studio、个人资料和活跃项目。",
+    "output": {
+      "items": [
+        "真实可用空间从阶段基线 23.19 GB 提升到 196.57 GB",
+        "按数据卷回读净增 173.38 GB",
+        "回收 19 个非活跃且未跟踪的构建或依赖目录，并清理 Docker 未使用缓存与官方工具缓存",
+        "保留 15 个活跃 Docker 镜像、3 个运行中容器、volumes、最近使用的 iOS runtime、4 个命名 Simulator 设备及所有活跃项目",
+        "用户在了解距 200 GB 尚差 3.43 GB 和补充清理代价后回复“没事，够了”"
+      ]
+    },
+    "testimonial": "没事，够了",
+    "testimonialEn": "That is enough.",
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-08-28",
+      "method": "分阶段读取 /System/Volumes/Data 的真实可用字节；执行前以 lsof、Git/worktree 状态和打开文件排除活跃目录；清理后回读 Docker 保留状态、Simulator 保留项与最终容量。",
+      "privacy": "公开摘要移除了本机绝对路径、具体仓库路径、进程标识、凭据和原始会话正文；付费 Session 仅保留与本次清理和验收直接相关的用户可见对话。"
+    },
+    "session": {
+      "url": "https://lovstudio.ai/yoda/session/yss_BH3E1eias-pZkZTTfsPDfXm30jn634W94ORy4RVvGhc?detail=detailed",
+      "access": "paid",
+      "priceCredits": 14,
+      "pricingRule": "ceil(target-skill-price/10)",
+      "targetSkill": "lov-clean-mac"
+    },
+    "skillIds": [
+      "clean-mac"
+    ],
+    "legacy": [
+      {
+        "skillId": "clean-mac",
+        "caseId": "release-173gb-protect-workspaces",
+        "title": "释放 173.38 GB，同时保留活跃项目与应用工作区",
+        "source": "https://raw.githubusercontent.com/lovstudio/macos-disk-optimizer-skill/main/cases/cases.json",
+        "fingerprint": "d5826ad1a23fd43f11a3875561ac71151d9cb795417d9d8fb8357bee958c2931"
+      }
+    ]
+  },
+  {
+    "id": "case-6e06758799b9a59b04db",
+    "type": "case",
+    "title": "2.85 MB MP4 direct-download path",
+    "description": "A real public sample MP4 exercised resolver bypass, aria2 transfer, byte-count validation, container magic and ffprobe stream inspection on 2026-08-14.",
+    "input": {
+      "items": [
+        "https://download.samplelib.com/mp4/sample-5s.mp4",
+        "output directory with no existing sample-5s.mp4"
+      ]
+    },
+    "prompt": "Download this media link quickly and verify the result.",
+    "output": {
+      "items": [
+        "sample-5s.mp4 — 2,848,208 bytes",
+        "SHA-256 05bd857af7f70bf51b6aac1144046973bf3325c9101a554bc27dc9607dbbd8f5",
+        "verified ISO-BMFF with H.264 1920x1080 video, AAC audio, duration 5.758549 seconds",
+        "aria2 engine, 4.729 seconds wall time, 4.818 Mbps average in the observed environment"
+      ]
+    },
+    "skillIds": [
+      "media-crawler"
+    ],
+    "legacy": [
+      {
+        "skillId": "media-crawler",
+        "title": "2.85 MB MP4 direct-download path",
+        "source": "https://raw.githubusercontent.com/lovstudio/media-crawler-skill/main/cases/cases.json",
+        "fingerprint": "6e06758799b9a59b04db787e836b0dafd646c444d5898e751d4178fe034f03fe"
+      }
+    ]
+  },
+  {
+    "id": "case-254e74ccb6b0d41aee39",
+    "type": "case",
+    "title": "WeChat Channels sph link honest authorization boundary",
+    "description": "The user-supplied public sph link was probed through the official preview API on 2026-08-14. Public metadata resolved in under one second, but no video stream was exposed without a user-owned Yuanbao session.",
+    "input": {
+      "items": [
+        "https://weixin.qq.com/sph/AUlZ10EgtS"
+      ]
+    },
+    "prompt": "给定这个视频号链接，快速下载并提供清晰诊断。",
+    "output": {
+      "items": [
+        "status=authorization_required; no false downloaded file was created",
+        "official metadata title 从县城修车工到营收7亿的车企老板。",
+        "official author 程前朋友圈",
+        "copyable next action: python3 scripts/authorize_yuanbao.py --test-url URL"
+      ]
+    },
+    "skillIds": [
+      "media-crawler"
+    ],
+    "legacy": [
+      {
+        "skillId": "media-crawler",
+        "title": "WeChat Channels sph link honest authorization boundary",
+        "source": "https://raw.githubusercontent.com/lovstudio/media-crawler-skill/main/cases/cases.json",
+        "fingerprint": "254e74ccb6b0d41aee399651e7559fa1d33219fa7b7d9398299eeee8fdc279b6"
+      }
+    ]
+  },
+  {
+    "id": "case-7560f1f937ee28d0aea8",
+    "type": "case",
+    "title": "我跑通了视频号自动发布工作流：从长录屏到 V4 成片",
+    "description": "真实用户将一段约 17 分钟的工作流录屏整理为视频号成片，重点修复了上传弹窗过长、最终成果段原声被删和 BGM 抢占注意力的问题，并完成线上回读。",
+    "input": {
+      "items": [
+        "ego自动发公众号视频.mp4",
+        "Global Technology Background.mp3",
+        "视频号发布过程中的最终结果播放片段",
+        "原始录屏中的上传弹窗、操作证据和发布回读信息"
+      ],
+      "source_profile": {
+        "duration_seconds": 1065.877,
+        "resolution": "1660x1080",
+        "frame_rate": 60,
+        "audio": "mono AAC"
+      }
+    },
+    "prompt": "把这段录屏剪成 16:9 视频号成片，标题为《我跑通了视频号自动发布工作流》；上传弹窗弱化，保留最终视频连续播放和原声，BGM 只做氛围，成果段让原声成为主角，并给出可回读的质检与发布报告。",
+    "output": {
+      "items": [
+        "我跑通了视频号自动发布工作流-16x9-v4.mp4",
+        "质检与发布报告-v4.md",
+        "1920x1080、30fps、H.264、AAC 48kHz 双声道",
+        "64.9 秒，综合响度 -15.6 LUFS-I，True Peak -1.2 dBFS",
+        "视频号对象 ID 已回读，status=1，isPostProcessSuccess=true，isPostHasPosted=true，最终状态 published"
+      ],
+      "editorial_changes": [
+        "上传弹窗从约 11 秒压缩到 2.4 秒",
+        "恢复最终视频连续播放和原声",
+        "在高潮段降低 BGM，进入成果段后隐藏解释性字幕与顶栏"
+      ],
+      "evidence": {
+        "sha256": "605c6fa9a8a763bf3ea41527f6be45e776d373ddd532bb365b8b2114870714ae",
+        "publication_date": "2026-08-12",
+        "publication_time": "18:52"
+      }
+    },
+    "skillIds": [
+      "media-creator"
+    ],
+    "legacy": [
+      {
+        "skillId": "media-creator",
+        "title": "我跑通了视频号自动发布工作流：从长录屏到 V4 成片",
+        "source": "https://raw.githubusercontent.com/lovstudio/media-creator-skill/main/cases/cases.json",
+        "fingerprint": "7560f1f937ee28d0aea8b79263c7877072b8616c246cf1565e70339f95f5d1cd"
+      }
+    ]
+  },
+  {
+    "id": "case-551477a6750588cd1bff",
+    "type": "case",
+    "title": "EP.03：先交可编辑字幕的 MKV，再等作者批准",
+    "description": "第三期原本已经导出硬字幕 MP4；作者明确要求第一遍只交可在 Subtitle Edit 中编辑的 MKV，随后又要求校准章节语义，并在每章正文前加入黑幕标题卡。流程重新渲染无旁白硬字幕画面，把 SRT 同时作为默认 SubRip 轨和外置文件交付，并阻断最终封装与发布。",
+    "input": {
+      "items": [
+        "约 13 分钟原始录屏",
+        "已完成的 EDL、音频母带、系列覆盖层和 209 条成片时间轴字幕",
+        "作者偏好：字幕批准前只生成 MKV，不生成平台 MP4"
+      ],
+      "source_profile": {
+        "duration_seconds": 798.144,
+        "resolution": "1660x1080",
+        "frame_rate": 60,
+        "audio": "mono AAC"
+      }
+    },
+    "prompt": "第一遍只生成内嵌 SRT 的 MKV，方便我导入 Subtitle Edit 编辑；字幕确认后再封装最终成片，并根据平台支持决定是否派生 MP4。",
+    "output": {
+      "items": [
+        "review-v0.1.mkv：H.264、AAC 48kHz 双声道、默认中文 SubRip 轨",
+        "review-v0.1.srt：UTF-8，209 条，可修改文字、断句和时间码",
+        "subtitle-review.json：内嵌字幕回抽一致性、流信息与双文件 SHA-256",
+        "六张 1.20 秒黑幕标题卡：背景、录音恢复、现场验证、自定义 Prompt、产品取舍、最终判断",
+        "状态 review-ready / awaiting-review / blocked-on-subtitle-approval"
+      ],
+      "editorial_changes": [
+        "重新渲染无旁白硬字幕画面，避免软硬字幕叠加",
+        "用实际口播与画面证据重命名六幕，并把标题卡吸附到句界/EDL 边界",
+        "标题卡期间暂停人声、延续低声配乐与轻转场声，统一累计后移字幕和全部时间码",
+        "保留片名卡、章节进度条、身份块和关键原声",
+        "把旧硬字幕 MP4 降级为 provisional，不进入发布交接"
+      ],
+      "evidence": {
+        "duration_seconds": 485.871,
+        "frame_count": 29151,
+        "cue_count": 209,
+        "integrated_lufs_i": -16.06,
+        "true_peak_dbfs": -1.8,
+        "chapter_card_count": 6,
+        "chapter_card_duration_seconds": 1.2,
+        "chapter_card_cue_crossings": 0,
+        "review_mkv_sha256": "ec48d5f4513ccfb7bcc7104abe1de00e9f6c630547d7c7c49c4a2aacb9467862",
+        "external_srt_sha256": "7d54fb4ede731eb990ae4e36dd7d002c64fbb8defc60a92d09f0585cda912c02"
+      }
+    },
+    "skillIds": [
+      "media-creator"
+    ],
+    "legacy": [
+      {
+        "skillId": "media-creator",
+        "title": "EP.03：先交可编辑字幕的 MKV，再等作者批准",
+        "source": "https://raw.githubusercontent.com/lovstudio/media-creator-skill/main/cases/cases.json",
+        "fingerprint": "551477a6750588cd1bff4c15a7fcd703e21afb038cbe1468a41c9eaa775ff2e9"
+      }
+    ]
+  },
+  {
+    "id": "case-ff3f359987e4538b11b4",
+    "type": "case",
+    "title": "《手工川 AI 实战》EP.01：从 Screen Studio 源工程到双比例 Remotion 成片",
+    "description": "真实项目直接读取 Screen Studio 源工程的独立屏幕、摄像头、麦克风、系统声与事件轨，经过多轮审片修复完整句截断、口误重说、静音钩子、摄像头断层、动画遮挡、章节导航和 BGM 卡顿，最终交付横竖双版、官网产品卡、片尾资源页和平台封面，并公开发布可回看的 B 站版本。",
+    "input": {
+      "items": [
+        "一份 565.632 秒的 .screenstudio 源工程",
+        "独立 display / webcam / microphone / system-audio 通道",
+        "鼠标、点击、快捷键和自动缩放事件",
+        "主题：高阶技巧——如何突破 Skill 限制",
+        "平台目标：横版优先，锁定后同步派生十分钟内的竖版"
+      ],
+      "source_profile": {
+        "duration_seconds": 565.632,
+        "display_resolution": "3024x1964",
+        "webcam_resolution": "1920x1080",
+        "audio_sample_rate": 48000,
+        "source_type": "Screen Studio project"
+      }
+    },
+    "prompt": "直接基于 Screen Studio 源工程，结合 Remotion，制作《手工川 AI 实战》第一期「高阶技巧：如何突破 Skill 限制」。不要先压成扁平 MP4；利用源工程独立控制摄像头、鼠标、快捷键、背景与音乐，让摄像头可按内容切换右下角、侧栏或全屏 B-roll。保留自动剔除口水词、章节划分与进度条、开头高光和自动 BGM，并用 Remotion 加入动画、过渡、可视化解释、专业特效字幕与封面；知识传播风格的配乐可优先试听 Screen Studio 内置 lo-fi「Bright Lounge」。先完成适合 B 站等平台的横版；若成片不超过 10 分钟，再输出视频号竖版。",
+    "output": {
+      "items": [
+        "横版成片：1920x1080、30fps、H.264 + AAC、358.549 秒",
+        "竖版成片：1080x1920、30fps，并按视频号实际容器预留顶部安全区",
+        "243 条审校字幕、2 张官网产品卡、1 张 7.2 秒片尾资源页",
+        "Remotion Studio 双 Composition、双比例封面与可回读质检报告",
+        "B 站公开成片：https://www.bilibili.com/video/BV1Zx8Z6vEgj/"
+      ],
+      "editorial_changes": [
+        "39 个样本级 cleanup range 删除 36.44 秒口水词、失败起句和错误修正",
+        "开场由两个槽点和一个完整结果证据组成，不显示内部高光标签，也不保留表情整理",
+        "章节卡只显示章号和标题，顶部进度导航任意时刻显示全部五章",
+        "保持摄像头连续，并在用户恢复操作屏幕时结束解释动画",
+        "为 Codeex 与 Yoda 制作官网信息卡，片尾列出资源和 BGM 来源",
+        "画面与对白锁定后最后生成单条连续 BGM，Remotion 根层只挂载一次",
+        "封面只保留“如何突破 Skill 限制”主标题与系列标识，使用异字号混排并复用已确认职业照"
+      ],
+      "quality_metrics": {
+        "source_playback_rate": 1.12,
+        "cleanup_range_count": 39,
+        "cleanup_removed_seconds": 36.44,
+        "clip_count": 78,
+        "caption_count": 243,
+        "full_asr_segment_count": 218,
+        "full_asr_filler_gate": "no standalone 啊 / 呃 / 嗯 and no Agent Ski restart",
+        "bgm_internal_silence_gate": "no silence >=250ms at -55dB",
+        "studio_playback_fps": 30.08,
+        "studio_fresh_console": "0 errors / 0 warnings",
+        "bilibili_video_sha256": "2f5d96d2fa84e91d310b910eb940fa1ed11471ffd3d385cef0054a3ea06bdc93"
+      },
+      "publication": {
+        "platform": "Bilibili",
+        "url": "https://www.bilibili.com/video/BV1Zx8Z6vEgj/",
+        "bvid": "BV1Zx8Z6vEgj",
+        "title": "如何突破 Skill 限制",
+        "collection": "手工川 AI 实战",
+        "state": "public"
+      }
+    },
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-08-27",
+      "method": "用户在最终审片中明确评价“感觉 95% 没问题了，行，这个版本的迭代先到这”；随后对平台文件执行 SHA-256 与 FFprobe 回读，并通过 Bilibili 公开接口确认稿件标题、公开状态、1920x1080 画幅和“手工川 AI 实战”合集归属。",
+      "privacy": "已移除本地绝对路径、Screen Studio 工程内容、原始转写全文、账号凭据和发布会话信息；只保留用户本人公开发布的 B 站链接、公开封面与不可逆媒体摘要。"
+    },
+    "cover": "https://i1.hdslb.com/bfs/archive/ff07bff235da934be1f30f940527ea67ed11f361.jpg",
+    "skillIds": [
+      "media-creator"
+    ],
+    "legacy": [
+      {
+        "skillId": "media-creator",
+        "caseId": "screenstudio-remotion-skill-limits-ep01",
+        "title": "《手工川 AI 实战》EP.01：从 Screen Studio 源工程到双比例 Remotion 成片",
+        "source": "https://raw.githubusercontent.com/lovstudio/media-creator-skill/main/cases/cases.json",
+        "fingerprint": "ff3f359987e4538b11b466a44f04efa2b46dbf80dbb2e2d60872958333579427"
+      }
+    ]
+  },
+  {
+    "id": "case-3bda7af8780b247c693c",
+    "title": "指环王三部曲：qBittorrent 慢源切换到 aria2 续传",
+    "description": "用户只给出片名并偏好加长版、原声、合理体积和简中字幕；任务通过候选检索、版本排序、容量预检、qBittorrent 首轮测速、aria2 同输入续传和最终 ffprobe 验收完成。",
+    "input": {
+      "request": "指环王三部曲",
+      "preferences": {
+        "edition": "extended",
+        "quality": "balanced",
+        "audio": "original",
+        "subtitles": [
+          "zh-Hans",
+          "en"
+        ]
+      },
+      "starting_state": "qBittorrent search plugins returned several candidates; the strongest candidate had a large advertised swarm but a weak sustained first probe."
+    },
+    "prompt": "$lov-media-fetch 指环王三部曲",
+    "output": {
+      "download_status": "complete",
+      "release": "The Lord of the Rings Trilogy 2002 EXTENDED REMASTERED 1080p BluRay HEVC x265 5.1 BONE",
+      "info_hash": "AB25E785ABEA95343249A300A516455D14E54144",
+      "transport_trace": [
+        "qBittorrent discovery",
+        "qBittorrent first probe",
+        "aria2 resumed same input"
+      ],
+      "files": 3,
+      "size_bytes": 13028499982,
+      "verification_status": "passed_with_warnings",
+      "media_observation": "three readable 1920x804 HEVC files with original English AAC 6-channel audio and embedded English SubRip subtitles",
+      "subtitle_status": "missing",
+      "open_item": "zh-Hans was absent from the verified embedded streams; the exact-release subtitle handoff remains a separate follow-up.",
+      "evidence": [
+        "cases/evidence/lotr-download.json",
+        "cases/evidence/lotr-verification.json"
+      ]
+    },
+    "type": "case",
+    "skillIds": [
+      "media-fetch"
+    ],
+    "legacy": [
+      {
+        "skillId": "media-fetch",
+        "title": "指环王三部曲：qBittorrent 慢源切换到 aria2 续传",
+        "source": "https://raw.githubusercontent.com/lovstudio/media-fetch-skill/main/cases/cases.json",
+        "fingerprint": "3bda7af8780b247c693c9a7769297035d8171265f298f1184e0ffe7ec1e9e942"
+      }
+    ]
+  },
+  {
+    "id": "case-0930d34a063879d1a5ce",
+    "type": "case",
+    "title": "打开微信读书投稿 Codex 会话",
+    "description": "用户先要求从历史记录找到微信读书投稿会话，随后要求在 Codex 中直接打开；结果必须是准确导航，而不是只返回 session ID。",
+    "input": {
+      "items": [
+        "请求：找到微信读书投稿的 session 并打开",
+        "经 Ataru 原文回读确认的会话标题：核实 Agent 写书发布微信读书",
+        "稳定 Codex sessionId"
+      ]
+    },
+    "prompt": "那请打开",
+    "output": {
+      "items": [
+        "调用 Codex 任务导航能力，参数为已确认的 sessionId",
+        "宿主返回 navigated=true",
+        "当前 Codex 主窗口打开目标任务，归档状态未改变"
+      ]
+    },
+    "skillIds": [
+      "open-codex-session"
+    ],
+    "legacy": [
+      {
+        "skillId": "open-codex-session",
+        "title": "打开微信读书投稿 Codex 会话",
+        "source": "https://raw.githubusercontent.com/lovstudio/open-codex-session-skill/main/cases/cases.json",
+        "fingerprint": "0930d34a063879d1a5ce9f09bd1e5784205ed562b1567246625bc89e7474c789"
+      }
+    ]
+  },
+  {
+    "id": "case-2f2cf7e72ac9b3b065bd",
+    "type": "case",
+    "title": "把 OpenLess 词汇表迁入规范词库并验证同步",
+    "description": "用户先请我把 Typeless 里的词表填进 OpenLess，随后提出要一份可跨语音输入法复用的规范词汇表。我以 OpenLess 现有 21 条词库为真实来源，建立规范词库并跑完整 merge/validate/diff 流水线，确认去重与同步分类正确。",
+    "input": {
+      "items": [
+        "真实来源：OpenLess 本机词库文件（21 条词条）",
+        "目标：建立单份规范词汇表并复用"
+      ]
+    },
+    "prompt": "把 OpenLess 词汇表导入规范词库，按 phrase 去重，并 diff 确认全部已同步。",
+    "output": {
+      "items": [
+        "vocabulary.json：21 条，validate 通过（0 错误）",
+        "merge：added=21 skipped=0",
+        "diff：skip=21 conflict=0 app_only=0"
+      ]
+    },
+    "skillIds": [
+      "personal-vocabulary"
+    ],
+    "legacy": [
+      {
+        "skillId": "personal-vocabulary",
+        "title": "把 OpenLess 词汇表迁入规范词库并验证同步",
+        "source": "https://raw.githubusercontent.com/lovstudio/personal-vocabulary-skill/main/cases/cases.json",
+        "fingerprint": "2f2cf7e72ac9b3b065bd013a7c3c52debbe3c6a699cf46f0f18cf716031a937b"
+      }
+    ]
+  },
+  {
+    "id": "case-d169a8673d91256a3cbd",
+    "type": "case",
+    "title": "尹方鸣的宇树投资阶梯：200万元如何走到约2.91亿元",
+    "titleEn": "Yin Fangming's Unitree investment staircase: RMB 2m to about RMB 291m",
+    "description": "将2016—2026年的进入、两次对外出售、持股载体迁移、融资稀释与IPO剩余价值放在同一条估值阶梯上；用现金回收桥区分已实现收益和未实现持仓，并明确2020年名义转让不是真实退出。3200×1800 PNG 严格审计 100/100。",
+    "descriptionEn": "Places the 2016–2026 entry, two external sales, vehicle migration, financing dilution, and IPO residual value on one valuation staircase. The return bridge separates realized cash from the remaining position and does not misclassify the 2020 nominal transfer as an exit. The 3200×1800 PNG passed strict audit at 100/100.",
+    "cover": "https://lovstudio.ai/images/skills/professional-infographic/yin-fangming-unitree-investment-staircase.png",
+    "input": {
+      "label": "输入",
+      "text": "量子位文章与宇树科技招股书、审计报告、上市公告等公开披露。"
+    },
+    "output": {
+      "label": "交付",
+      "items": [
+        "可编辑 HTML/SVG 与 3200×1800 PNG",
+        "进入、出售、载体迁移、稀释和IPO的分类事件账本",
+        "已实现现金、剩余持仓与145.5倍简单总价值的可复算桥"
+      ]
+    },
+    "skillIds": [
+      "professional-infographic"
+    ],
+    "legacy": [
+      {
+        "skillId": "professional-infographic",
+        "title": "尹方鸣的宇树投资阶梯：200万元如何走到约2.91亿元",
+        "source": "https://raw.githubusercontent.com/lovstudio/professional-infographic-skill/main/cases/cases.json",
+        "fingerprint": "d169a8673d91256a3cbdfbb85c368609621154e2f2fb2b02e12860f3581a4e4e"
+      },
+      {
+        "skillId": "professional-infographic",
+        "title": "尹方鸣的宇树投资阶梯：200万元如何走到约2.91亿元",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/professional-infographic/cases/cases.json",
+        "fingerprint": "d169a8673d91256a3cbdfbb85c368609621154e2f2fb2b02e12860f3581a4e4e"
+      }
+    ]
+  },
+  {
+    "id": "case-62844819ec6b58bd2a2a",
+    "type": "case",
+    "title": "同一份跨端选型材料，重构成两张咨询 Exhibit",
+    "description": "不再用卡片墙总结文字，而是分别构造成决策矩阵与双轴定位图：决策矩阵采用主题标题与尾部建议，定位图保留结论型行动标题；同维比较、轴端与区域、直接标注、决策规则、来源和限定完整保留。两张 3200×1800 PNG 均通过严格审计、原图与缩略图人工复核。",
+    "cover": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/professional-infographic/cases/assets/mobile-cross-platform-comparison-matrix.png",
+    "gallery": [
+      "https://cdn.jsdelivr.net/gh/lovstudio/skills@main/skills/professional-infographic/cases/assets/mobile-cross-platform-positioning-map.png"
+    ],
+    "input": {
+      "items": [
+        "同一份包含 React Native、Flutter、KMP、uni-app / Taro 与 Capacitor 的跨端选型材料"
+      ]
+    },
+    "prompt": "不要用卡片墙总结文字；分别重构成决策矩阵与双轴定位图。",
+    "output": {
+      "items": [
+        "3200×1800 跨端选型决策矩阵 PNG",
+        "3200×1800 跨端路线双轴定位图 PNG",
+        "两张成品均通过严格审计、原图与缩略图人工复核"
+      ]
+    },
+    "skillIds": [
+      "professional-infographic"
+    ],
+    "legacy": [
+      {
+        "skillId": "professional-infographic",
+        "title": "同一份跨端选型材料，重构成两张咨询 Exhibit",
+        "source": "https://raw.githubusercontent.com/lovstudio/professional-infographic-skill/main/cases/cases.json",
+        "fingerprint": "62844819ec6b58bd2a2a01b10cafe9c738bcb953378fa05b3a42cfc1ae0be10e"
+      },
+      {
+        "skillId": "professional-infographic",
+        "title": "同一份跨端选型材料，重构成两张咨询 Exhibit",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/professional-infographic/cases/cases.json",
+        "fingerprint": "62844819ec6b58bd2a2a01b10cafe9c738bcb953378fa05b3a42cfc1ae0be10e"
+      }
+    ]
+  },
+  {
+    "id": "case-b6a4136dbff6a750b835",
+    "type": "case",
+    "title": "《孙割情感经济学》：时间 × 金钱的叙事金额轨迹",
+    "titleEn": "Sun Ge Emotional Economics: a time × money narrative trail",
+    "description": "将一篇明确标注“纯属虚构”的公开叙事材料中的 8 个金额锚点按事件时间重排，以人民币等值对数轴同时保留 150 元与 3.5 亿元的可读性，并用形状区分声称发生的支出、参照金额、持续区间和未支付要求。最终 3200×1800 信息图通过严格审计与原图、缩略图人工复核。",
+    "descriptionEn": "Reframed eight money anchors from a public narrative explicitly labeled fictional onto an event-time axis and a logarithmic CNY-equivalent scale. Shape distinguishes claimed outflows, reference amounts, recurring ranges, and an unpaid demand. The 3200×1800 infographic passed strict audit and full-size plus thumbnail review.",
+    "cover": "https://cdn.jsdelivr.net/gh/lovstudio/skills@main/skills/professional-infographic/cases/assets/sun-ge-emotional-economics-timeline-money.png",
+    "input": {
+      "items": [
+        "公开且明确标注“纯属虚构”的叙事文本",
+        "用户对第一版结构的校正：横轴是时间，纵轴是金钱"
+      ]
+    },
+    "prompt": "标题《孙割情感经济学》；横轴是时间，纵轴是金钱。",
+    "output": {
+      "items": [
+        "可编辑 HTML/SVG 与 3200×1800 PNG",
+        "2011—2026 年 8 个金额锚点的时间 × 金钱坐标图",
+        "人民币等值 log 刻度、币种换算假设、事件类型图例与虚构边界",
+        "严格审计 0 错误、0 警告，质量代理 98/100"
+      ]
+    },
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-08-29",
+      "method": "在 3200×1800 原图与 640px 缩略图完成视觉回读；机器严格审计为 0 错误、0 警告，质量代理 98/100。",
+      "privacy": "公开摘要不含凭据、私人绝对路径或原始会话正文；叙事金额均标明其文本性质，完整 Session 由 lov-share-session 规范化和脱敏后付费提供。",
+      "artifact_type": "visual"
+    },
+    "session": {
+      "url": "https://lovstudio.ai/yoda/session/yss_qgRDW8zK9Qk8N_cRs8BXQbRm2oedplhwiVGcOySSs2w?detail=concise",
+      "access": "paid",
+      "priceCredits": 14,
+      "pricingRule": "ceil(target-skill-price/10)",
+      "targetSkill": "lov-professional-infographic"
+    },
+    "skillIds": [
+      "professional-infographic"
+    ],
+    "legacy": [
+      {
+        "skillId": "professional-infographic",
+        "caseId": "sun-ge-emotional-economics-timeline-money",
+        "title": "《孙割情感经济学》：时间 × 金钱的叙事金额轨迹",
+        "source": "https://raw.githubusercontent.com/lovstudio/professional-infographic-skill/main/cases/cases.json",
+        "fingerprint": "b6a4136dbff6a750b835571555a796339756a7b98ea2d5fede6454d78baf3ae4"
+      },
+      {
+        "skillId": "professional-infographic",
+        "caseId": "sun-ge-emotional-economics-timeline-money",
+        "title": "《孙割情感经济学》：时间 × 金钱的叙事金额轨迹",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/professional-infographic/cases/cases.json",
+        "fingerprint": "b6a4136dbff6a750b835571555a796339756a7b98ea2d5fede6454d78baf3ae4"
+      }
+    ]
+  },
+  {
+    "id": "case-be49beb72fea5307b939",
+    "type": "case",
+    "title": "一锭古墨的生命链：从课程资料到证据型咨询信息图",
+    "description": "将《古墨缘》课程讲义前 11 页中的制墨题记、张充和用墨经验、藏墨传承与保存条件，整理为一张 1600×900 的证据型信息图。成品用时间轴呈现 1666 年至 2010 年的关键节点，以独立模块区分松烟与油烟、保存湿度边界，并把归纳性判断明确标为“推断”、行动方案标为“建议”。",
+    "input": {
+      "text": "《古墨缘——和张充和一起欣赏她珍藏的古墨》课程讲义 PDF 第 1—11 页，包含制墨题记、张充和的用墨经验、藏墨传承、迁移保存与开箱信息。"
+    },
+    "prompt": "使用 lov-professional-infographic，把附件 PDF 第 1—11 页制作成一张专业咨询信息图。先提取事实、数字、时间和因果关系，不补造信息；区分事实、推断和建议；选择最适合内容的视觉结构；输出可编辑 HTML/SVG 和高清 PNG；关键结论标注材料来源；检查文字截断、重叠、数据错误、来源遗漏和缩略图可读性，并附质量检查报告。",
+    "output": {
+      "items": [
+        "一张 1600×900 的证据型咨询信息图，以及对应的可编辑 HTML/SVG。",
+        "横向生命链串联 1666、1765、1872、7—8 岁、1949 前后与 2010 等关键节点，并在节点旁保留来源代号和页码。",
+        "松烟与油烟、保存湿度边界分别使用独立视觉模块，避免与时间事实混在一起。",
+        "跨代留存的多因素归纳被标为“推断”，保存行动被标为“建议”，没有冒充原文结论。"
+      ]
+    },
+    "cover": "https://lovstudio.ai/api/skill-asset?repo=lovstudio%2Fprofessional-infographic-skill&path=cases%2Fassets%2Fancient-ink-life-cycle-infographic-20260907%2F1.png",
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-09-07",
+      "method": "用户已验收最终成品；复核范围包括时间节点、来源代号与页码、事实/推断/建议标签，以及 1600×900 成品和缩略图的可读性。",
+      "privacy": "未包含完整对话、账号、密钥、客户资料或本地文件路径；输入只概述材料范围，图片仅保留理解作品所需的人物、年代、页码来源标记与最终结论。",
+      "artifact_type": "visual"
+    },
+    "skillIds": [
+      "professional-infographic"
+    ],
+    "legacy": [
+      {
+        "skillId": "professional-infographic",
+        "caseId": "ancient-ink-life-cycle-infographic-20260907",
+        "title": "一锭古墨的生命链：从课程资料到证据型咨询信息图",
+        "source": "https://raw.githubusercontent.com/lovstudio/professional-infographic-skill/main/cases/cases.json",
+        "fingerprint": "be49beb72fea5307b93926c466854552c3e2b0aa59b509888ad925c64ba47cdc"
+      }
+    ],
+    "legacySubmission": {
+      "fingerprint": "9d8e4ce5eb340f055735a51e63d4679db5f2324e7ca0227b5f1b0eb074a292f8",
+      "contributor": "5b79c45e401447c85e998fd91499abecdb8df5ccdb987e6f0c3298e00ff953aa",
+      "submittedAt": "2026-09-07T10:20:39.521Z"
+    }
+  },
+  {
+    "id": "case-c8c8d0ea8a9c4985d961",
+    "type": "case",
+    "title": "从带帽生活照到职业形象照",
+    "description": "基于一张普通人像，依次完成轻磨皮、面部提亮、去帽与三七分发型重建，再收敛为职业照级别的光影和干净度。每轮只增强一个维度，并始终以本人身份、脸型、姿态和服装不漂移为验收门槛。",
+    "cover": "https://raw.githubusercontent.com/lovstudio/professional-portrait-skill/main/cases/professional-portrait-progress-16x9.png",
+    "skillIds": [
+      "professional-portrait"
+    ],
+    "legacy": [
+      {
+        "skillId": "professional-portrait",
+        "title": "从带帽生活照到职业形象照",
+        "source": "https://raw.githubusercontent.com/lovstudio/professional-portrait-skill/main/cases/cases.json",
+        "fingerprint": "c8c8d0ea8a9c4985d961ef11ad4da55620aa57f9c5d73b755929d40fdbb85b95"
+      }
+    ]
+  },
+  {
+    "id": "case-5c2b7e59f63898ce5163",
+    "type": "case",
+    "title": "手工川 AI 创造营第五期分类修复",
+    "description": "活动发布后在分类页找不到自己，排查发现 Category=0（未分类），修复后验证曝光排名，并定位后台分类标签字段的真实位置。",
+    "input": {
+      "items": [
+        "活动行 URL: https://www.huodongxing.com/event/2876375450211",
+        "症状：活动行 AI 分类下找不到自己的活动"
+      ]
+    },
+    "prompt": "我最新一期活动行活动里似乎缺少相关标签分类，导致分类排行里找不到自己",
+    "output": {
+      "items": [
+        "诊断：ativityJson.Category=0，活动在所有分类导航页不可见",
+        "根因：发布时未在主办方后台设置分类字段",
+        "修复：用户在后台将分类标签设为 AI，Category 变为 11",
+        "验证：热门点击排序第 4 位，最新发布第 13 位，综合排序第 49 位（第 3 页第 9 个）",
+        "字段定位：分类标签在 /myevent/edit?view=editbase&id= 的 .edit-btn[0]，单选",
+        "重要区分：改分类标签不影响 ativityJson.Tag，两者是不同字段"
+      ]
+    },
+    "skillIds": [
+      "publish-event-onto-hdx"
+    ],
+    "legacy": [
+      {
+        "skillId": "publish-event-onto-hdx",
+        "title": "手工川 AI 创造营第五期分类修复",
+        "source": "https://raw.githubusercontent.com/lovstudio/publish-event-onto-hdx-skill/main/cases/cases.json",
+        "fingerprint": "5c2b7e59f63898ce5163b41c995f4bc6dc084c56f62ec8190a7fa8532a804f0d"
+      }
+    ]
+  },
+  {
+    "id": "case-4ef9e75cd399eb262e28",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "bf09d4b98f884018ef02ea73f4400e440280e1278031d3bb0da2dde40d3b6702"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "release-via-cicd"
+    ],
+    "legacy": [
+      {
+        "skillId": "release-via-cicd",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/release-via-cicd-skill/main/cases/cases.json",
+        "fingerprint": "4ef9e75cd399eb262e28540119a5e47ecc7ad25dadeca6e0c9cab2d7f5f44e76"
+      }
+    ]
+  },
+  {
+    "id": "case-ff708b29a5fff1531205",
+    "type": "case",
+    "title": "Three avatar candidates redrawn with one Riso contract",
+    "description": "Three authorized single-person photos with different poses, hair and backgrounds were each redrawn through gpt-image-2. The comparison verifies that identity, gaze and clothing cues survive while the visual medium changes to limited inks, halftone and paper grain.",
+    "input": {
+      "items": [
+        "Three authorized source portraits supplied for avatar selection",
+        "Square avatar use with identity, pose, gaze and clothing locked"
+      ]
+    },
+    "prompt": "使用 Riso 人像 Skill 处理这些照片。保持人物身份、脸部结构、发型、视线和服装不变，裁成适合圆形头像的近景，使用朱红与深青主墨色，并保留纸张颗粒、网点和轻微套印偏移。",
+    "output": {
+      "items": [
+        "cases/artifacts/avatar-source-and-riso.jpg",
+        "A 2 by 3 source/result comparison with three recognizable Riso portraits"
+      ]
+    },
+    "cover": "https://raw.githubusercontent.com/lovstudio/riso-portrait-skill/main/cases/artifacts/avatar-source-and-riso.jpg",
+    "skillIds": [
+      "riso-portrait"
+    ],
+    "legacy": [
+      {
+        "skillId": "riso-portrait",
+        "title": "Three avatar candidates redrawn with one Riso contract",
+        "source": "https://raw.githubusercontent.com/lovstudio/riso-portrait-skill/main/cases/cases.json",
+        "fingerprint": "ff708b29a5fff1531205ecd505b5699c9e84b550383001d81eaea04b06429b42"
+      }
+    ]
+  },
+  {
+    "id": "case-03a8618b4a121a064143",
+    "type": "case",
+    "title": "Targeted correction from four fingers to five",
+    "description": "An authorized event portrait already had a strong Riso treatment, but the raised hand contained four fingers. A single-fact correction restored five fingers while preserving the person, pose, microphone, clothing and style.",
+    "input": {
+      "items": [
+        "Authorized event source photo",
+        "First Riso output with an incorrect raised hand"
+      ]
+    },
+    "prompt": "只修正右上方的手，必须是五根手指；其他人物特征、动作、构图和 Riso 风格保持不变。",
+    "output": {
+      "items": [
+        "cases/artifacts/five-finger-correction.jpg",
+        "Source, four-finger first pass and verified five-finger correction with detail crops"
+      ]
+    },
+    "cover": "https://raw.githubusercontent.com/lovstudio/riso-portrait-skill/main/cases/artifacts/five-finger-correction.jpg",
+    "skillIds": [
+      "riso-portrait"
+    ],
+    "legacy": [
+      {
+        "skillId": "riso-portrait",
+        "title": "Targeted correction from four fingers to five",
+        "source": "https://raw.githubusercontent.com/lovstudio/riso-portrait-skill/main/cases/cases.json",
+        "fingerprint": "03a8618b4a121a0641436c969d4e409271489859f34e2473dba724f9a22a4199"
+      }
+    ]
+  },
+  {
+    "id": "case-5c996028c22eb0c32609",
+    "type": "case",
+    "title": "从本机 84 万条历史消息里定位一次关于索引更新的讨论并读回原文",
+    "description": "验证一次完整召回：先确认索引可用，再按消息粒度检索，然后用命中里的稳定标识把原文上下文读回来。命中同时来自 Claude Code 与 Codex 两种来源的会话，说明跨工具历史是统一可检索的。",
+    "input": {
+      "items": [
+        "本机 2704 个会话、847072 条消息的 Ataru 关键词索引，state=ready",
+        "检索词「索引没有更新」，level=turn，limit=2"
+      ]
+    },
+    "prompt": "我上次是在哪儿讨论过索引没有更新这件事？把那段原文给我看看。",
+    "output": {
+      "items": [
+        "两条命中，分别来自一个 Claude Code 会话与一个 Codex 归档会话，各自带 projectId、sessionId、messageId、lineNumber、role、timestamp 与 600 字符内的 snippet",
+        "响应元信息如实标出 mode=keyword、semanticAvailable=false、tookMs=48139，不掩饰命令行只有关键词检索这一事实",
+        "用第一条命中的 messageId 执行 read --window 1，返回该消息前后共 3 条原文，正文按 message-chars 截断并标注剩余字符数"
+      ]
+    },
+    "skillIds": [
+      "search-chat"
+    ],
+    "legacy": [
+      {
+        "skillId": "search-chat",
+        "title": "从本机 84 万条历史消息里定位一次关于索引更新的讨论并读回原文",
+        "source": "https://raw.githubusercontent.com/lovstudio/search-chat-skill/main/cases/cases.json",
+        "fingerprint": "5c996028c22eb0c326097616ef626b15643f7a10d2d78e98f4c7217a32cfd0cd"
+      }
+    ]
+  },
+  {
+    "id": "case-9a3c3216e0b4f5190c13",
+    "type": "case",
+    "title": "从 Codex 历史会话找回 P 头像成品",
+    "description": "用户只记得曾让 Codex P 一张头像，不记得任务日期、文件名或保存目录。检索定位到原始会话，并确认下载副本、项目归档与 Codex 生成缓存仍存在。",
+    "input": {
+      "items": [
+        "用户查询：找一下之前我的 Codex 给我 P 头像的图片存储位置",
+        "记忆线索：P 头像；文件类型为图片",
+        "Codex session：019fabba-ca6f-79c1-8306-ff1a4cabf870"
+      ]
+    },
+    "prompt": "@~/Downloads/17f3b7b66df4fc79394da3569460a0.JPG 帮我 P 一下图，这张不够好看",
+    "output": {
+      "items": [
+        "下载副本：~/Downloads/17f3b7b66df4fc79394da3569460a0-职业形象照版.png",
+        "项目归档：WORKSPACE/p-图工厂/output/17f3b7b66df4fc79394da3569460a0-职业形象照版.png",
+        "生成缓存：$CODEX_HOME/generated_images/019fabba-ca6f-79c1-8306-ff1a4cabf870/call_y7qUuHzXDWHGPmCX1lJH7KlA.png",
+        "三处路径在检索当时均经文件系统回读确认存在"
+      ]
+    },
+    "skillIds": [
+      "search-file"
+    ],
+    "legacy": [
+      {
+        "skillId": "search-file",
+        "title": "从 Codex 历史会话找回 P 头像成品",
+        "source": "https://raw.githubusercontent.com/lovstudio/search-file-skill/main/cases/cases.json",
+        "fingerprint": "9a3c3216e0b4f5190c13ba48a8e184bfefa8994f037e13b986f3898024df040a"
+      }
+    ]
+  },
+  {
+    "id": "case-a43937ae384f0d918237",
+    "type": "case",
+    "title": "曾颖公开 X 帖子与停用账号证据恢复",
+    "description": "2026-08-31 的真实用户任务要求逐字汇总曾颖公开 X/Twitter 内容。检索对象同时包含现账号和已停用旧账号，因此需要把 live 原帖、归档空壳、媒体嵌入卡片、转载截图与媒体转述分开。",
+    "input": {
+      "items": [
+        "现账号 @zengying1107 的 7 个公开搜索发现 status ID",
+        "旧账号 @tenten19901107 的 8 个公开搜索发现 status ID",
+        "TradingView、Yahoo Finance、MEXC 与 Wayback 页面截图证据"
+      ]
+    },
+    "prompt": "曾颖（孙宇晨前女友）推特原文汇总，需要原文；找不到的用截图汇总。",
+    "output": {
+      "items": [
+        "现账号 7 个已知 ID 全部恢复：6 个双渲染器等价，1 个渲染器文本冲突，保留较长版本并标记冲突",
+        "旧账号 8 个已知 ID 未被错误标记为已恢复；精确 Wayback 捕获只有 X JavaScript 空壳时保持 unrecovered",
+        "status 2017798141492539642 的媒体嵌入卡片只证明可见开头，标为 partial embedded_card，不冒充全文",
+        "4 张截图记录了来源页面、证据边界与 SHA-256，其中 TradingView crop 的哈希为 77e5a0a3a267f79ef30df472f51ff5b0e3d254c907211661339e3a49ecb29468",
+        "交付明确写明 15 个已知 ID 的覆盖范围不等于两个账号的完整历史"
+      ]
+    },
+    "skillIds": [
+      "search-twitter"
+    ],
+    "legacy": [
+      {
+        "skillId": "search-twitter",
+        "title": "曾颖公开 X 帖子与停用账号证据恢复",
+        "source": "https://raw.githubusercontent.com/lovstudio/search-twitter-skill/main/cases/cases.json",
+        "fingerprint": "a43937ae384f0d918237d4b30d672caac44d94a4881bdffa47d656168353ae7f"
+      }
+    ]
+  },
+  {
+    "id": "case-1c50a019785ca14ad3bd",
+    "type": "case",
+    "title": "把满意的 Skill 结果沉淀为官网案例",
+    "titleEn": "Turn an accepted Skill result into a website case",
+    "description": "用户提出一个可重复的收尾动作：某个 Skill 的结果获得明确认可后，使用独立 Skill 把真实 Input → Prompt → Output 写入案例，并把公开目标同步到官网。",
+    "descriptionEn": "The user requested a repeatable closeout step that records an explicitly accepted Skill result as truthful evidence and syncs public targets to the official site.",
+    "input": {
+      "items": [
+        "现有 LovStudio Skill Card 与 cases/cases.json 契约",
+        "官网从公开 Skill 仓库读取案例并按 skill-cases 标签缓存的真实链路",
+        "用户明确要求仅在结果不错时收录，并同步官网"
+      ]
+    },
+    "prompt": "创建 skill-add-case：每次调用某个 Skill 后，如果结果不错，就把该 case 增加到使用案例中，并同步到官网。",
+    "output": {
+      "items": [
+        "一个可本地安装的 lov-skill-add-case 单 Skill",
+        "原子写入、隐私检查、重复检测与 SHA-256 证据指纹 CLI",
+        "公开 cases.json 与 LovStudio 详情页双回读验证 CLI",
+        "Creator 上游与 Publisher 下游的明确原子交接",
+        "GitHub v0.1.0 Release 与 LovStudio 官网 live-verified 详情页"
+      ]
+    },
+    "evidence": {
+      "acceptance": "user-requested",
+      "verified_at": "2026-08-23",
+      "method": "Created from the user's direct product request; source validation, deterministic success and failure checks, GitHub v0.1.0 Release, catalog CI, public raw JSON, and the LovStudio detail page were verified.",
+      "privacy": "The case contains only the public product request and reusable contracts; no transcript body, credential, or private absolute path is included."
+    },
+    "publication": {
+      "status": "live-verified",
+      "source": "https://github.com/lovstudio/skill-add-case-skill",
+      "release": "https://github.com/lovstudio/skill-add-case-skill/releases/tag/v0.1.0",
+      "page": "https://lovstudio.ai/skills/skill-add-case"
+    },
+    "skillIds": [
+      "skill-add-case"
+    ],
+    "legacy": [
+      {
+        "skillId": "skill-add-case",
+        "caseId": "create-accepted-case-workflow",
+        "title": "把满意的 Skill 结果沉淀为官网案例",
+        "source": "https://raw.githubusercontent.com/lovstudio/skill-add-case-skill/main/cases/cases.json",
+        "fingerprint": "1c50a019785ca14ad3bdd4ad2dd22c68ab38aff9f9cf9be16af07b187c50d6a3"
+      }
+    ]
+  },
+  {
+    "id": "case-6c50f17a686b9b54e926",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "add-task",
+      "agent-instructions",
+      "architecture-documentation",
+      "code-review",
+      "five",
+      "think"
+    ],
+    "legacy": [
+      {
+        "skillId": "add-task",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/add-task/cases/cases.json",
+        "fingerprint": "6c50f17a686b9b54e926ab1cf4b7244f8d43846e5163a388095b906a770fb189"
+      },
+      {
+        "skillId": "agent-instructions",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/agent-instructions/cases/cases.json",
+        "fingerprint": "6c50f17a686b9b54e926ab1cf4b7244f8d43846e5163a388095b906a770fb189"
+      },
+      {
+        "skillId": "architecture-documentation",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/architecture-documentation/cases/cases.json",
+        "fingerprint": "6c50f17a686b9b54e926ab1cf4b7244f8d43846e5163a388095b906a770fb189"
+      },
+      {
+        "skillId": "code-review",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/code-review/cases/cases.json",
+        "fingerprint": "6c50f17a686b9b54e926ab1cf4b7244f8d43846e5163a388095b906a770fb189"
+      },
+      {
+        "skillId": "five",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/five/cases/cases.json",
+        "fingerprint": "6c50f17a686b9b54e926ab1cf4b7244f8d43846e5163a388095b906a770fb189"
+      },
+      {
+        "skillId": "think",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/think/cases/cases.json",
+        "fingerprint": "6c50f17a686b9b54e926ab1cf4b7244f8d43846e5163a388095b906a770fb189"
+      }
+    ]
+  },
+  {
+    "id": "case-79a05e1625eab2caf593",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "project .claude/commands/add-tool.md v1.2.0",
+      "sha256": "ec8e6ff29f62011b089c26dbdad88680ba525baf02d7322e324730806b9cef18"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "add-tool"
+    ],
+    "legacy": [
+      {
+        "skillId": "add-tool",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/add-tool/cases/cases.json",
+        "fingerprint": "79a05e1625eab2caf5934e7b4f3466f532283d7e3d98ad891771d99066474529"
+      }
+    ]
+  },
+  {
+    "id": "case-d9e0dbf2f9959477b26f",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "34f115b81a8e20d649014079d81126a8ce4976a94b70fd59b2ccd0f2b1c622dc"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "better-css"
+    ],
+    "legacy": [
+      {
+        "skillId": "better-css",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/better-css/cases/cases.json",
+        "fingerprint": "d9e0dbf2f9959477b26f2cdfc1e8697b5b46dd40259d2925d8d809108f71c67d"
+      }
+    ]
+  },
+  {
+    "id": "case-323f7b3ecba5f601c3e9",
+    "title": "从创建器 README 生成仓库信息预览",
+    "description": "基于本次真实 README 与 GitHub 只读回读生成字段变更预览。",
+    "input": {
+      "repository": "lovstudio/skill-creator-skill",
+      "readme_excerpt": "创建、验证并安装本地 Skill Publisher Skill 或自包含 Skill Kit。旧 slash command 也可迁移。",
+      "observed_description": "Scaffold new lovstudio skills with proper structure, SKILL.md + README.md.",
+      "observed_homepage": "",
+      "observed_topics": []
+    },
+    "prompt": "依据 README 预览 GitHub 描述、主题和官网变更，不写入仓库。",
+    "output": {
+      "description": "Create, migrate, validate, and locally install portable Agent Skills and self-contained Skill Kits.",
+      "add_topics": [
+        "agent-skills",
+        "skill-creator",
+        "slash-commands"
+      ],
+      "homepage_action": "omit: README 未给出已验证的项目官网",
+      "state": "preview-only",
+      "verification": "已核对 README 内容与 gh repo view 返回值；未执行 gh repo edit。"
+    },
+    "type": "case",
+    "skillIds": [
+      "better-github-desc"
+    ],
+    "legacy": [
+      {
+        "skillId": "better-github-desc",
+        "title": "从创建器 README 生成仓库信息预览",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/better-github-desc/cases/cases.json",
+        "fingerprint": "323f7b3ecba5f601c3e93d0ad870df778089fc85db668091695dcc5cf18f6e70"
+      }
+    ]
+  },
+  {
+    "id": "case-ce0b249907fcf8817189",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "142e82c1fe81d75f0b7e365fa4aa634983d477ebbfd88fbd95ca1e02fa0d0230"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "better-github-desc"
+    ],
+    "legacy": [
+      {
+        "skillId": "better-github-desc",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/better-github-desc/cases/cases.json",
+        "fingerprint": "ce0b249907fcf8817189cf225639fa6b0a40073bf9d5455417bf5afb93f4c476"
+      }
+    ]
+  },
+  {
+    "id": "case-03c79ef0ece1a6c8a5dc",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "79b7a068c2fbc348b9539d277b4886c71489bd8da9b0180ec9f4297c0f38eca7"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "better-project-structure"
+    ],
+    "legacy": [
+      {
+        "skillId": "better-project-structure",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/better-project-structure/cases/cases.json",
+        "fingerprint": "03c79ef0ece1a6c8a5dcb9ff8806448ba237ba805fb911b53377849c92d0c940"
+      }
+    ]
+  },
+  {
+    "id": "case-0568b4943ddc53253b54",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "0a2b6938cfdb7c2292519dda527f5c5b6964f5e62cd55795b31651b299c216c0"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "better-readme"
+    ],
+    "legacy": [
+      {
+        "skillId": "better-readme",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/better-readme/cases/cases.json",
+        "fingerprint": "0568b4943ddc53253b54b95cd026fcb5e4abf70039c61cad26b405736f62d725"
+      }
+    ]
+  },
+  {
+    "id": "case-bcfdbaffd621e7faf99e",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "efc357c76a00102d8f4a60a94a5bede8cafc2b9d25c14ad527a573b1f0465bad"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "better-seo"
+    ],
+    "legacy": [
+      {
+        "skillId": "better-seo",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/better-seo/cases/cases.json",
+        "fingerprint": "bcfdbaffd621e7faf99efce47de3688b00a224b72a70df9ffd838ffb09422eb2"
+      }
+    ]
+  },
+  {
+    "id": "case-0e5cf03bff577426593d",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "4fe3982e6a52273a1f9edab31cfba99d91123ebfb3ffd175f04a2c0054ff84b5"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "better-statusline"
+    ],
+    "legacy": [
+      {
+        "skillId": "better-statusline",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/better-statusline/cases/cases.json",
+        "fingerprint": "0e5cf03bff577426593d324270fcaf20d60ff2c4aa3c190a07f9a4beafd2e541"
+      }
+    ]
+  },
+  {
+    "id": "case-1ac2998a06f527e9f3c5",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "f940e9622dfb06a4bbd62790cda29fbc7a2bf38f43d911647a9d1b87cb4674c6"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "brainstorm"
+    ],
+    "legacy": [
+      {
+        "skillId": "brainstorm",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/brainstorm/cases/cases.json",
+        "fingerprint": "1ac2998a06f527e9f3c5289fe6e90879f7a6d542f8755cb2b822f80280df71be"
+      }
+    ]
+  },
+  {
+    "id": "case-0f87daca1aee175d121e",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "88fc5dadd9aae016cb8963af12f652a7c1e49c1aac23340eb4f08b09e4584475"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "checkpoint-list"
+    ],
+    "legacy": [
+      {
+        "skillId": "checkpoint-list",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/checkpoint-list/cases/cases.json",
+        "fingerprint": "0f87daca1aee175d121e3e061264b0c9ca93972e232661d4c13bf255c4ae3d86"
+      }
+    ]
+  },
+  {
+    "id": "case-2ba73099866f9100d4ae",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "0f405741e4ddd66f003add8d667dd78dfa4691d40419769a2e5b17dd7cf27403"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "checkpoint"
+    ],
+    "legacy": [
+      {
+        "skillId": "checkpoint",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/checkpoint/cases/cases.json",
+        "fingerprint": "2ba73099866f9100d4ae21a0c4172a9717c3728b13cd69da904b4b0f4b387302"
+      }
+    ]
+  },
+  {
+    "id": "case-bbd960c22744b856e8f9",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "b40024006db71892cb94f731025d665be67f042ee686b9684b7eab5cb782dc5f"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "clone-rebrand"
+    ],
+    "legacy": [
+      {
+        "skillId": "clone-rebrand",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/clone-rebrand/cases/cases.json",
+        "fingerprint": "bbd960c22744b856e8f9f5c9e952ce99188d3b67528824e927cd8a03a5d5eba2"
+      }
+    ]
+  },
+  {
+    "id": "case-08240145b82f2f694ea6",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "bc16a4635ebd771b7c74994ab32536032f336a6cf8dee7f98f9fb7fdb430a4f7"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "daily-post"
+    ],
+    "legacy": [
+      {
+        "skillId": "daily-post",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/daily-post/cases/cases.json",
+        "fingerprint": "08240145b82f2f694ea6edb13389fcbaf786048fd19f40730e592aef52acb5da"
+      }
+    ]
+  },
+  {
+    "id": "case-bc0603edf4c4f41775ee",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "cb8bde8ff35ad351c6b97fa6ba572f2f81d2b312df33743c00219b7ed54cb92b"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "dev-research"
+    ],
+    "legacy": [
+      {
+        "skillId": "dev-research",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/dev-research/cases/cases.json",
+        "fingerprint": "bc0603edf4c4f41775eed39f8a4c5fe3abec7cabcaddf5de1205e1f191040916"
+      }
+    ]
+  },
+  {
+    "id": "case-44011bfc6b7705768260",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "60ab7a982a02a1698d5d20a91429d3c04ef16f94178344a1ba8e88c2f71c9575"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "distill-to-system"
+    ],
+    "legacy": [
+      {
+        "skillId": "distill-to-system",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/distill-to-system/cases/cases.json",
+        "fingerprint": "44011bfc6b77057682603405018f6840328322b56e00b318932e18fbacfaca09"
+      }
+    ]
+  },
+  {
+    "id": "case-1e217e1057eeafb5c0c7",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "7adcfcbf4a5e4d0d0bb2deebc052f12b19fcca018d51a5b073a6900e75831eb9"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "distill"
+    ],
+    "legacy": [
+      {
+        "skillId": "distill",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/distill/cases/cases.json",
+        "fingerprint": "1e217e1057eeafb5c0c7aaa8ef590ee1f87cf10afc5176dd443613e4fd475a07"
+      }
+    ]
+  },
+  {
+    "id": "case-341991ed3766bb15cc42",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "1bdc0146e239686f298e0db6ad3e6071b22a9695ea9d0458169dee9d4e359335"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "fix-broken-links"
+    ],
+    "legacy": [
+      {
+        "skillId": "fix-broken-links",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/fix-broken-links/cases/cases.json",
+        "fingerprint": "341991ed3766bb15cc4219956ff60ff6aecb4f6e8bf20547295b5a9f59dc09b2"
+      }
+    ]
+  },
+  {
+    "id": "case-d93454d0c8912c293e78",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "55e2b93cdf42660cf747e312b71d79e25684df4dd1f41b5bce34ec79f029e3fa"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "fix-by-add-log"
+    ],
+    "legacy": [
+      {
+        "skillId": "fix-by-add-log",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/fix-by-add-log/cases/cases.json",
+        "fingerprint": "d93454d0c8912c293e78cae3e0ecec4979a83c4461361444444d30e697b4ea04"
+      }
+    ]
+  },
+  {
+    "id": "case-4b685ef9ad67c025d5e5",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "f0dc85a7e982c7286fc8d1692f49f5b5370a39982238ed2b37309cec9c3c92c5"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "fix-general"
+    ],
+    "legacy": [
+      {
+        "skillId": "fix-general",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/fix-general/cases/cases.json",
+        "fingerprint": "4b685ef9ad67c025d5e5a09ea9a4a54ee803c7fccff98be8ef38ca6d4bb69f9c"
+      }
+    ]
+  },
+  {
+    "id": "case-bf56d8a84b22529a37be",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "d8df827cb2ddfd36c649fcfab79e0620f9e099951b9ea0d234958c39e24f7394"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "fix-until-no-error"
+    ],
+    "legacy": [
+      {
+        "skillId": "fix-until-no-error",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/fix-until-no-error/cases/cases.json",
+        "fingerprint": "bf56d8a84b22529a37be1bba440a2050080452e2781f71f358da4a8a38abb530"
+      }
+    ]
+  },
+  {
+    "id": "case-adc701f80c3147394aa2",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "6989a80a6ba3d0462231f28771d1b914857cdb6b23e221a929eaf78c31adcea8"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "gen-logo"
+    ],
+    "legacy": [
+      {
+        "skillId": "gen-logo",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/gen-logo/cases/cases.json",
+        "fingerprint": "adc701f80c3147394aa2a00a811c82d0d83111006e37efa94f559acf3df66b4a"
+      }
+    ]
+  },
+  {
+    "id": "case-1e651adac0e85c20db3e",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "57637c1809c8e9dcf191706bd60fbf82bec4d91cc1ac18ff9ead390b6565e889"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "gen-project-name"
+    ],
+    "legacy": [
+      {
+        "skillId": "gen-project-name",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/gen-project-name/cases/cases.json",
+        "fingerprint": "1e651adac0e85c20db3efb1534afcc15d29349d8fa0faf4211b25c3689720d63"
+      }
+    ]
+  },
+  {
+    "id": "case-2dff1113780b9bce6692",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "e41e43873768d9b3ae4a0e8fd4909305168359ff99c0af062d2d7e1833b0b4e0"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "git-commit-with-context"
+    ],
+    "legacy": [
+      {
+        "skillId": "git-commit-with-context",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/git-commit-with-context/cases/cases.json",
+        "fingerprint": "2dff1113780b9bce66929b3a3cfd33d4831c40b7cf77d5d750be88c95dd5871a"
+      }
+    ]
+  },
+  {
+    "id": "case-f1059374c57294976b91",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "e1ccb78c1dd014f79952f5420d09519fd5c9d24f13dd45075c21b0a5f2738f20"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "help-cmd"
+    ],
+    "legacy": [
+      {
+        "skillId": "help-cmd",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/help-cmd/cases/cases.json",
+        "fingerprint": "f1059374c57294976b91ab2ed6af1b52fd8cb6fda24676d065f6176d1d8a01cc"
+      }
+    ]
+  },
+  {
+    "id": "case-27d40234d77f23d85f55",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "33448e1d81f0350488f836489a391467dfe8db29b1ed66ce08132b1c5a59e5ad"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "i18n-check-i18n"
+    ],
+    "legacy": [
+      {
+        "skillId": "i18n-check-i18n",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/i18n-check-i18n/cases/cases.json",
+        "fingerprint": "27d40234d77f23d85f555e29dcf8dd9f5c6cd0b15eab7bd4afccbdce3f1c80d3"
+      }
+    ]
+  },
+  {
+    "id": "case-879356b59674887f7438",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "9bb08e6157017dc96a8102373b3f1e04aecfe01a30777534ad11d63472210784"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "illustrate"
+    ],
+    "legacy": [
+      {
+        "skillId": "illustrate",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/illustrate/cases/cases.json",
+        "fingerprint": "879356b59674887f743897243a8cf3ddcb95c67bed1b1d1ce3bb9d4ab3ea74a2"
+      }
+    ]
+  },
+  {
+    "id": "case-fbfea288405c9561a3a0",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "e84f10a581c033613f48f324caa2ea6a5309e73b6d7baf2f728df40d3d3fa4b7"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "init-auth"
+    ],
+    "legacy": [
+      {
+        "skillId": "init-auth",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/init-auth/cases/cases.json",
+        "fingerprint": "fbfea288405c9561a3a03dcb64dea96c8afde8d063e094350e84ebcf2ee67d97"
+      }
+    ]
+  },
+  {
+    "id": "case-f7eb946b17ce35d124c5",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "f5d266de81c71fc2efb557a550919e230d361f5199559801f7fd6d03df76e026"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "init-port"
+    ],
+    "legacy": [
+      {
+        "skillId": "init-port",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/init-port/cases/cases.json",
+        "fingerprint": "f7eb946b17ce35d124c57adbfa45c6fff84c7162654be40c7382f6401e00a0e6"
+      }
+    ]
+  },
+  {
+    "id": "case-5b1e85a61bdaecf01431",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "8a98a8a1e0a4eb6fba10c7df81d5899df481c70ff800068d4eb5601ac2f64f0b"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "install-design"
+    ],
+    "legacy": [
+      {
+        "skillId": "install-design",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/install-design/cases/cases.json",
+        "fingerprint": "5b1e85a61bdaecf014313c9667b4e9257f57dba5892151861a0d59ab1ac37274"
+      }
+    ]
+  },
+  {
+    "id": "case-b5f2d20337ea468d56ec",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "80bc72be7ad850e22d192c290bcec5741db3d419ea9d2f4740be413d363dfaf9"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "install-shadcn-ui"
+    ],
+    "legacy": [
+      {
+        "skillId": "install-shadcn-ui",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/install-shadcn-ui/cases/cases.json",
+        "fingerprint": "b5f2d20337ea468d56ecabd4303b8bd4800d37c38a213adfbb992620a32b82c1"
+      }
+    ]
+  },
+  {
+    "id": "case-ea7cf90469dcbeb7614d",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "c6e5db935d19d2e3c31989ac58dbc39fd1d8e3a47c681d027faac949ae4f1ecc"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "install-tauri-logo"
+    ],
+    "legacy": [
+      {
+        "skillId": "install-tauri-logo",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/install-tauri-logo/cases/cases.json",
+        "fingerprint": "ea7cf90469dcbeb7614d8b6bb5659d7653865b3bdd9ea1aaf96b6eb767f36da6"
+      }
+    ]
+  },
+  {
+    "id": "case-e73168638c22772fcced",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "a9e9a0aaf71089bd0eca7ba972651d7df7c2dbc143e32ad7446548f55f40a648"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "install-web-logo"
+    ],
+    "legacy": [
+      {
+        "skillId": "install-web-logo",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/install-web-logo/cases/cases.json",
+        "fingerprint": "e73168638c22772fccede2718fcf52f0f6f969f2067cfa2a75c4201369e66e38"
+      }
+    ]
+  },
+  {
+    "id": "case-08013635cdd0833f3e32",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "97e811952f2e21f1452fa40f00edd6874806ca7b6f88ce5a1ca09d177dd0f777"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "install-zenmux-api"
+    ],
+    "legacy": [
+      {
+        "skillId": "install-zenmux-api",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/install-zenmux-api/cases/cases.json",
+        "fingerprint": "08013635cdd0833f3e32fc3250cd0184a94178dfd3a50ee17f22574006e9c819"
+      }
+    ]
+  },
+  {
+    "id": "case-3e4b129fae9df0b7ed65",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "7a888fcb4a97f4e4eb768519619257e0327607028a79f6ef5c388c22eef87fdf"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "kb-organize"
+    ],
+    "legacy": [
+      {
+        "skillId": "kb-organize",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/kb-organize/cases/cases.json",
+        "fingerprint": "3e4b129fae9df0b7ed65b5ab5628a0962a7deaa50436624b13713ea9e74444ba"
+      }
+    ]
+  },
+  {
+    "id": "case-ec9d0d13b3e2acde75fd",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "f1c6aa8761139157eb0ed1aa9a435a12506f61be92df074101408aa00f0f16f2"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "kill-emoji"
+    ],
+    "legacy": [
+      {
+        "skillId": "kill-emoji",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/kill-emoji/cases/cases.json",
+        "fingerprint": "ec9d0d13b3e2acde75fd3060d3b8f2ed52caa20c98a647935364cb4c578b020b"
+      }
+    ]
+  },
+  {
+    "id": "case-240f0a122dbd03ff9651",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "03976aade70e099804fc6f0a993f8b8de6e469f3a24f6aab5fc02d34f2e402dd"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "legal-pages"
+    ],
+    "legacy": [
+      {
+        "skillId": "legal-pages",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/legal-pages/cases/cases.json",
+        "fingerprint": "240f0a122dbd03ff9651c8c714bf383da001570198a1914ef28adbaa036b29b9"
+      }
+    ]
+  },
+  {
+    "id": "case-748f24b3b1184746b3d2",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "0e50f5683995b495d6286331f5281b3fbd0e2272361aa74ae67e6a1b9c0d55df"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "memory-add"
+    ],
+    "legacy": [
+      {
+        "skillId": "memory-add",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/memory-add/cases/cases.json",
+        "fingerprint": "748f24b3b1184746b3d22eeb41a78e61a3da823cdce8088e5537df402ae5eda6"
+      }
+    ]
+  },
+  {
+    "id": "case-6cdc43dbef01c9ca0b98",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "a1f1d5df7950664bd884a49be8c9b490a6b0ce6786894215b8ac4b4a82e2b25f"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "memory-search"
+    ],
+    "legacy": [
+      {
+        "skillId": "memory-search",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/memory-search/cases/cases.json",
+        "fingerprint": "6cdc43dbef01c9ca0b98e321aca83fa6b6eca1807aaf3aa105e0b0eb105dd0b2"
+      }
+    ]
+  },
+  {
+    "id": "case-612c80d8cf75a6be6f73",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "a6dcadf64a61e88a4ffeb371f749cc31cf7a2005466b62f51db696236bd7149b"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "meta-command"
+    ],
+    "legacy": [
+      {
+        "skillId": "meta-command",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/meta-command/cases/cases.json",
+        "fingerprint": "612c80d8cf75a6be6f7397b61c3340d08e57db0d5f9fdba72c80d3fa649db211"
+      }
+    ]
+  },
+  {
+    "id": "case-43c2f18ea8698a979795",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "8a04e52b7a421cb74b7040445a73401bf9d595e547dc8f281fe5b3610e534cff"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "nano-banana-pro"
+    ],
+    "legacy": [
+      {
+        "skillId": "nano-banana-pro",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/nano-banana-pro/cases/cases.json",
+        "fingerprint": "43c2f18ea8698a979795723ef3e8ab7cdc93116f6b26862afb6bf9de5588143c"
+      }
+    ]
+  },
+  {
+    "id": "case-86c945fdb7a96104d381",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "5329b32197c5169850911a0b122a8275b4e7e5c9beebb98337176565e428dc06"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "obsidian-ensure-dev-sync"
+    ],
+    "legacy": [
+      {
+        "skillId": "obsidian-ensure-dev-sync",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/obsidian-ensure-dev-sync/cases/cases.json",
+        "fingerprint": "86c945fdb7a96104d381a5923637778a91036cc95dfc0d4010ec1f2b51a64890"
+      }
+    ]
+  },
+  {
+    "id": "case-b53eb49bf3df84ada7d2",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "399cb2e43c71c5fc3505c42a95ff9a32e91312a4d72a7db99e1f3c0ba258814e"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "output-wechat-moment"
+    ],
+    "legacy": [
+      {
+        "skillId": "output-wechat-moment",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/output-wechat-moment/cases/cases.json",
+        "fingerprint": "b53eb49bf3df84ada7d2b0b13e637d1954ead8310a2551dbff612792fd7c3001"
+      }
+    ]
+  },
+  {
+    "id": "case-b71d03148bd9ff5df874",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "afad8b84fcd1b61ee32f9b7a65e20e240117d95ace92be32db7722511e1411b6"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "output"
+    ],
+    "legacy": [
+      {
+        "skillId": "output",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/output/cases/cases.json",
+        "fingerprint": "b71d03148bd9ff5df87487a1cd2d6c8efde40456a294a57a0a06db9ac8875240"
+      }
+    ]
+  },
+  {
+    "id": "case-c4a65e4348474b99aef7",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "4bfcfbfd39f03ef71709eda39a35cf55f7231c45f2cb7c21f38998678cb7ddd5"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "refactor-api"
+    ],
+    "legacy": [
+      {
+        "skillId": "refactor-api",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/refactor-api/cases/cases.json",
+        "fingerprint": "c4a65e4348474b99aef78d22a8e8ca09a800b1074604b9d394573a0a881ef74b"
+      }
+    ]
+  },
+  {
+    "id": "case-fad4f7e7d91fee16d9af",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "c7e300b7a97c49d21216fb7d04c616f336ed6ef854b320589ca42e81274bc89c"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "refactor-modular"
+    ],
+    "legacy": [
+      {
+        "skillId": "refactor-modular",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/refactor-modular/cases/cases.json",
+        "fingerprint": "fad4f7e7d91fee16d9af1cf2207a3345c3aaae45ddd5e11b58fe0b6a81801c35"
+      }
+    ]
+  },
+  {
+    "id": "case-bdd5f28ba4e000f2e47c",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "37301910a2a06183f52abe1e9d72f8ac534a95ee6b5e8a09cbffb552d729a228"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "rename-project"
+    ],
+    "legacy": [
+      {
+        "skillId": "rename-project",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/rename-project/cases/cases.json",
+        "fingerprint": "bdd5f28ba4e000f2e47c6cb5685fc62f5f5e99cac2eb2be56c8520e1a981c51e"
+      }
+    ]
+  },
+  {
+    "id": "case-82f379efe2d41489bee5",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "76ed6fd2e7258c49618d49820c66eba878b13e1937f8b47a183d9fc8b1cbfe3d"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "repo-takeover"
+    ],
+    "legacy": [
+      {
+        "skillId": "repo-takeover",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/repo-takeover/cases/cases.json",
+        "fingerprint": "82f379efe2d41489bee52ed9b3abd5bac833e03bb5a21c5edea6014055fdb7d2"
+      }
+    ]
+  },
+  {
+    "id": "case-cbcc91a04eaf613aff40",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "5a09e5e95ecc9f3111723a8fb50ff5c459ae4ae5c65ccb88d0e46797fd22cf7a"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "version-management-manual"
+    ],
+    "legacy": [
+      {
+        "skillId": "version-management-manual",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/version-management-manual/cases/cases.json",
+        "fingerprint": "cbcc91a04eaf613aff4074343b1570e8cd9f83d22d34bdddc5f0c4141000daae"
+      }
+    ]
+  },
+  {
+    "id": "case-743aa52e970dec41a63f",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "2520417a8098dc5f6083cff220e690177e5526c6d5bfdab0ab32359b49b2de96"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "version-management"
+    ],
+    "legacy": [
+      {
+        "skillId": "version-management",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/skills/main/skills/version-management/cases/cases.json",
+        "fingerprint": "743aa52e970dec41a63ffb462a2a4e907c83ddfe02c384d40991d5cec78bf82a"
+      }
+    ]
+  },
+  {
+    "id": "case-eaf23513f2448109b5a6",
+    "type": "case",
+    "title": "《指环王》：从英文 SRT 到可学习字幕",
+    "titleEn": "The Lord of the Rings: from English SRT to learner subtitles",
+    "description": "以《护戒使者》英文字幕为输入，把 CET4 作为最低难度线，覆盖 CET4 及以上真正影响理解的语言单元：生僻词、习语/谚语、俚语与文化表达，以及必要时的复杂句意。用户显式开启艺术层后，再结合字幕文字、语义、联网资料和局部视频证据生成 Arwen 人物卡与优雅克制的全局水印。",
+    "descriptionEn": "Use the English subtitle track from The Fellowship of the Ring with CET-4 as the minimum difficulty floor. Keep CET-4 and higher language units that block comprehension—rare words, idioms/proverbs, slang, cultural expressions, and genuinely difficult sentence senses—then add an optional Arwen card and restrained global watermark after the user enables the art layer.",
+    "testimonial": "输入的是字幕，得到的是一套可以直接观看、复查和继续迭代的学习字幕成品。",
+    "testimonialEn": "The input is a subtitle track; the output is a watchable, auditable, and iteratable learner-subtitle package.",
+    "author": "Subtitle Gloss · 真实交付案例",
+    "cover": "https://lovstudio.ai/images/skills/subtitle-gloss/lotr-arwen-card.jpg",
+    "gallery": [
+      "https://lovstudio.ai/images/skills/subtitle-gloss/lotr-fellowship-gloss.jpg"
+    ],
+    "languageUnits": [
+      "生僻词 / rare words",
+      "习语、谚语 / idioms & proverbs",
+      "俚语、文化表达 / slang & culture",
+      "复杂句子 / complex sentences"
+    ],
+    "input": {
+      "label": "Input",
+      "items": [
+        "电影中的英文字幕文件（从视频提取即可，不必上传大视频）",
+        "学习者 Profile：CET4 及以上；提示语言：中文",
+        "可选偏好：开启 ASS 人物卡；水印为“手工川工作室 Agent 字幕组”"
+      ]
+    },
+    "prompt": {
+      "label": "Prompt",
+      "text": "请基于这份《指环王：护戒使者》英文字幕，把 CET4 作为最低难度线，解释 CET4 及以上真正影响理解的生僻词、习语/谚语、俚语、文化表达和复杂句子，保留原时间轴；开启人物卡后，用字幕、语义、联网和局部视频证据综合判断新人物首次有意义出场，输出克制的 ASS 人物艺术字幕，水印使用“手工川工作室 Agent 字幕组”。"
+    },
+    "output": {
+      "label": "Output",
+      "items": [
+        "学习字幕 SRT：cue ID、时间轴和对白保持不变，只加入必要解释",
+        "可选 ASS：Arwen 人物卡、优雅克制的艺术层和统一品牌水印",
+        "可在播放器中直接回看，并根据文字、语义、联网和视频证据继续校正"
+      ]
+    },
+    "skillIds": [
+      "subtitle-freedom"
+    ],
+    "legacy": [
+      {
+        "skillId": "subtitle-freedom",
+        "title": "《指环王》：从英文 SRT 到可学习字幕",
+        "source": "https://raw.githubusercontent.com/lovstudio/subtitle-freedom-skill/main/cases/cases.json",
+        "fingerprint": "eaf23513f2448109b5a6581755fe56d906fde7791646c569801b9991c0f23638"
+      }
+    ]
+  },
+  {
+    "id": "case-274a32dc7d31ec0cef12",
+    "type": "case",
+    "title": "节点锚点反馈：把三项交互要求从连续段落拆开",
+    "description": "来自 2026-08-23 OpenLess 自定义 Style Pack 迭代的真实产品反馈。原始口述同时包含触发范围、锚点数量和左右两种创建规则，需要在不增加方案的前提下变得易扫描。",
+    "input": {
+      "items": [
+        "目前是 hover 节点边缘才出现锚点，应该改成 hover 整个节点就出现锚点。锚点只要左右两个，从左边拖出去创建前置节点，从右边拖出去创建后置节点。"
+      ]
+    },
+    "prompt": "按 Typeless 风格整理这段口述，保留全部交互规则，不要挤成一段。",
+    "output": {
+      "items": [
+        "调整节点锚点交互：\n\n- **触发范围**：hover 整个节点时显示锚点，不再只在边缘触发。\n- **锚点数量**：仅保留左右两个。\n- **创建规则**：\n  - 从左侧拖出：默认创建前置节点。\n  - 从右侧拖出：默认创建后置节点。"
+      ]
+    },
+    "evidence": [
+      "输入来自用户对 OpenLess 交互的真实反馈",
+      "输出被纳入手工川工作室 Typeless 复刻版 0.2.0 Prompt 示例"
+    ],
+    "skillIds": [
+      "typeless-prompt"
+    ],
+    "legacy": [
+      {
+        "skillId": "typeless-prompt",
+        "title": "节点锚点反馈：把三项交互要求从连续段落拆开",
+        "source": "https://raw.githubusercontent.com/lovstudio/typeless-prompt-skill/main/cases/cases.json",
+        "fingerprint": "274a32dc7d31ec0cef12c5b649d4bafcf143d080bbeaae5b1318c1793f2ab58a"
+      }
+    ]
+  },
+  {
+    "id": "case-10227c3eba0b0b55df1e",
+    "type": "case",
+    "title": "重新布局动画：分离预期、当前表现和调整项",
+    "description": "来自同一次真实 Prompt 迭代。原始口述把动画顺序、轴心约束和最低调整要求连在一句话里，容易在生成结果中挤成连续段落。",
+    "input": {
+      "items": [
+        "重新布局后先缩小再放大最后往上移，轴心不应该变，至少最后一步不要。"
+      ]
+    },
+    "prompt": "整理成清爽的产品反馈，区分当前表现、预期和调整，不新增实现方案。",
+    "output": {
+      "items": [
+        "优化“重新布局”动画：\n\n- **预期**：动画过程中轴心保持不变。\n- **当前表现**：先缩小、再放大，最后向上移动。\n- **调整**：移除最后的上移动作。"
+      ]
+    },
+    "evidence": [
+      "输入来自用户对重新布局动画的真实反馈",
+      "输出被纳入手工川工作室 Typeless 复刻版 0.2.0 Prompt 示例"
+    ],
+    "skillIds": [
+      "typeless-prompt"
+    ],
+    "legacy": [
+      {
+        "skillId": "typeless-prompt",
+        "title": "重新布局动画：分离预期、当前表现和调整项",
+        "source": "https://raw.githubusercontent.com/lovstudio/typeless-prompt-skill/main/cases/cases.json",
+        "fingerprint": "10227c3eba0b0b55df1e998f9dde793d8f87924b788382c65d5483af60be5612"
+      }
+    ]
+  },
+  {
+    "id": "case-376ecb6174de94e71c2f",
+    "type": "case",
+    "title": "2026-09-06 四小时线下课程的朋友圈照片筛选与明亮美化",
+    "description": "真实用户请求，完成全片稀疏索引、候选细筛和六张原帧；按用户偏暗反馈制作六张明亮 AI 美化图与原图对比页。投影小字存在重绘，保真门禁仍未通过。",
+    "input": {
+      "items": [
+        "用户提供 A20260906_0031.MP4：15012.96 秒、1920×1080、25 fps、43021372505 字节。",
+        "素材处理中由相机盘移动到外置 SSD，已按新路径恢复。"
+      ]
+    },
+    "prompt": "给定一个线下课程实录视频，提取比较重要、适合发朋友圈的 moments，并做图像美化与标准化。",
+    "output": {
+      "items": [
+        "6 张 1920×1080 PNG 原帧预选及时间码清单。",
+        "6 张统一为 1672×941 的明亮 AI 美化图、本地原图切换对比页和 ZIP 下载包。",
+        "已查看人物局部与整组色调，校验图像解码、尺寸、哈希、链接和 ZIP；投影部分小字有重绘，未宣称严格纪实保真。",
+        "cases/course-evidence.json 保存脱敏回读证据、源帧和美化图哈希。",
+        "用户认可明亮美化效果，已固化 bright-documentary 视觉方向；保真记录保持独立。"
+      ]
+    },
+    "status": "ai-beautified-review-delivered-strict-fidelity-not-passed",
+    "evidence": [
+      "cases/course-evidence.json"
+    ],
+    "media_policy": "私有课堂照片留在用户本地运行目录，不随 Skill 源分发。",
+    "skillIds": [
+      "video-moments"
+    ],
+    "legacy": [
+      {
+        "skillId": "video-moments",
+        "title": "2026-09-06 四小时线下课程的朋友圈照片筛选与明亮美化",
+        "source": "https://raw.githubusercontent.com/lovstudio/video-moments-skill/main/cases/cases.json",
+        "fingerprint": "376ecb6174de94e71c2fdc1e5fea09626678f299f5fa9560bd9a7d22aa85c8ba"
+      }
+    ]
+  },
+  {
+    "id": "case-6f8b97803c126c42678f",
+    "type": "case",
+    "title": "2026-09-06 混合 Log 与 Rec.709 的六张课程现场摄影调色",
+    "description": "六段素材经过稀疏索引与相邻帧比较，六张精选完成色彩还原、统一提亮和原图对比。用户明确选择并保存默认摄影调色方法。",
+    "input": {
+      "items": [
+        "6 段本地相机素材；包含 S-Log3 / S-Gamut3.Cine 与 Rec.709 两种录制模式。",
+        "既有 6 张精选帧保持时间码、构图、人物与屏幕内容。"
+      ]
+    },
+    "prompt": "默认改用摄影调色，完成色彩还原与统一提亮",
+    "output": {
+      "items": [
+        "6 张 1920×1080 sRGB JPEG、组图总览、原图切换对比页与 ZIP。",
+        "逐图原尺寸与面部局部回读，源帧/成图哈希、ICC、尺寸、ZIP 与链接核验通过。",
+        "长期 edit_method 偏好写入用户 Profile；素材路径与课程调色数值未写入通用默认。"
+      ]
+    },
+    "status": "photographic-local-reviewed",
+    "evidence": [
+      "cases/photographic-evidence.json"
+    ],
+    "media_policy": "私有照片与视频保留本地，不随 Skill 源分发。",
+    "skillIds": [
+      "video-moments"
+    ],
+    "legacy": [
+      {
+        "skillId": "video-moments",
+        "title": "2026-09-06 混合 Log 与 Rec.709 的六张课程现场摄影调色",
+        "source": "https://raw.githubusercontent.com/lovstudio/video-moments-skill/main/cases/cases.json",
+        "fingerprint": "6f8b97803c126c42678fdb2edf5e762cb6abe4c2582ed1370b1013ce538089e5"
+      }
+    ]
+  },
+  {
+    "id": "case-4fe5ab74649447524829",
+    "title": "《AI 编程实战》技术书",
+    "description": "用 write-book 从零写了一本 12 章的 AI 编程实战教程，mdBook 构建 + GitHub Pages 发布，两周完成初稿。",
+    "testimonial": "以前写书最头疼的就是上下文断裂，写到第 8 章忘了第 3 章说过什么。write-book 的压缩摘要策略彻底解决了这个问题。",
+    "author": "张工 · 后端工程师",
+    "type": "case",
+    "skillIds": [
+      "write-professional-book"
+    ],
+    "legacy": [
+      {
+        "skillId": "write-professional-book",
+        "title": "《AI 编程实战》技术书",
+        "source": "https://raw.githubusercontent.com/lovstudio/write-professional-book-skill/main/cases/cases.json",
+        "fingerprint": "4fe5ab746494475248297894a3358786749f5cdad0d61e16fa45117145e75489"
+      }
+    ]
+  },
+  {
+    "id": "case-dd01f4c2a15fdc69f442",
+    "title": "O'Reilly 风格 Kubernetes 教程",
+    "description": "为团队内训写了一本 Kubernetes 入门教程，O'Reilly 实战风格，含代码示例和架构图。",
+    "testimonial": "从大纲到完稿只花了 3 个周末，质量不输市面上的技术书。pandoc 导出的 PDF 中文排版也很棒。",
+    "author": "李明 · SRE 团队负责人",
+    "type": "case",
+    "skillIds": [
+      "write-professional-book"
+    ],
+    "legacy": [
+      {
+        "skillId": "write-professional-book",
+        "title": "O'Reilly 风格 Kubernetes 教程",
+        "source": "https://raw.githubusercontent.com/lovstudio/write-professional-book-skill/main/cases/cases.json",
+        "fingerprint": "dd01f4c2a15fdc69f442ed0f1b931753425c21477e59db52604bda4ae660fc31"
+      }
+    ]
+  },
+  {
+    "id": "case-43ba81d67109c0407628",
+    "title": "MBA 毕业论文专著",
+    "description": "用 write-book 整理 MBA 毕业论文为专著格式，包含文献综述、案例分析、数据图表等。",
+    "testimonial": "学术写作最需要前后一致的术语和引用，BOOK_SUMMARY 机制让 AI 始终记得全书脉络，省了大量返工。",
+    "author": "王薇 · MBA 在读",
+    "type": "case",
+    "skillIds": [
+      "write-professional-book"
+    ],
+    "legacy": [
+      {
+        "skillId": "write-professional-book",
+        "title": "MBA 毕业论文专著",
+        "source": "https://raw.githubusercontent.com/lovstudio/write-professional-book-skill/main/cases/cases.json",
+        "fingerprint": "43ba81d67109c0407628731fa03804981d701bb834bc9e209d597804bc130c2e"
+      }
+    ]
+  },
+  {
+    "id": "case-2a363545c05b604b7c2e",
+    "title": "Python 数据分析入门",
+    "description": "面向零基础学员的 Python 数据分析教程，15 章，含习题和项目实战。",
+    "testimonial": "write-book 的分章写作 + 自动构建流程太丝滑了，改一章就能自动更新整本书的在线版本。",
+    "author": "陈老师 · 培训讲师",
+    "type": "case",
+    "skillIds": [
+      "write-professional-book"
+    ],
+    "legacy": [
+      {
+        "skillId": "write-professional-book",
+        "title": "Python 数据分析入门",
+        "source": "https://raw.githubusercontent.com/lovstudio/write-professional-book-skill/main/cases/cases.json",
+        "fingerprint": "2a363545c05b604b7c2ea0f4991498e245f4ff61cfec93cad730351a4df1adac"
+      }
+    ]
+  },
+  {
+    "id": "case-649c753c97b18745d8e4",
+    "type": "case",
+    "title": "19 篇文章之后，我重做了自己的写作 Skill",
+    "description": "来自 2026-08-26 lov-writing-style v2 升级的真实案例。输入只提供版本与样本事实，输出需要形成发布复盘，同时不能虚构作者经历或远程发布状态。",
+    "input": {
+      "items": [
+        "旧版 Skill 版本为 0.1.0。",
+        "新文风画像基于 19 篇文章，约 12.46 万字元、2,846 个句子、2,559 个行段。",
+        "样本中一句段约占 79.9%，平均句长约 39.1 字。",
+        "v2 增加事实账本、五种题材模式、防戏仿校验和本地风格审计。",
+        "本次只做本地升级与安装，不宣称远程发布。"
+      ]
+    },
+    "prompt": "使用 lov-writing-style，按产品发布复盘模式把这些事实写成一段可直接发布的中文更新说明。保留全部数字，不新增个人经历，不写成更新日志。",
+    "output": {
+      "text": "# 19 篇文章之后，我重做了自己的写作 Skill\n\n这次，我没有给旧 Prompt 换个名字就算升级，而是把 19 篇文章、约 12.46 万字元、2,846 个句子和 2,559 个行段重新压回 lov-writing-style v2。\n\n旧版是 0.1.0，那还是一个很轻的版本。\n\n它抓住了第一人称、长短句和工程术语，却还没有回答一个更难的问题：一篇文章为什么像同一个人，而不是像一组被复制的口头禅？\n\n这些数据给了我第一层答案，也把旧版的模糊判断重新拉回到了证据上。\n\n样本平均句长约 39.1 字，一句段约占 79.9%；长句负责把背景、条件和因果讲清楚，短句负责落锤。\n\n但数字不是文风。\n\n所以 v2 先建立事实账本，再从技术深度、创业复盘、产品实测、个人随笔和演讲招募里选择主模式，最后才处理节奏。它会检查一篇稿子有没有真实现场、有没有概念边界、有没有承认代价，也会阻止模型凭空替作者发明一次失败、一笔账或一个根本不存在的凌晨。\n\n我还加了一个本地风格审计，用来复测那些肉眼容易误判的节奏。它能量句长、段落、数字锚点和公关套话，但不会给作者身份打分，更不会把命中 79.9% 当成写作目标。\n\n这次升级只完成了本地能力和安装验证，没有远程发布。\n\n文风从来不只是怎么说。\n\n它更像一个人如何看见事实，如何改变判断，又如何把工具重新放回人的选择里。"
+    },
+    "assertions": {
+      "must_preserve": [
+        "0.1.0",
+        "19 篇",
+        "12.46 万",
+        "2,846",
+        "2,559",
+        "39.1",
+        "79.9%",
+        "本地",
+        "没有远程发布"
+      ],
+      "must_not_claim": [
+        "已经发布到 GitHub",
+        "已经上架 LovStudio",
+        "作者亲历了输入未提供的事件"
+      ]
+    },
+    "evidence": [
+      "输入来自本次真实 v2 升级和用户提供的 2026-08-25 文风画像。",
+      "数字可回读 references/style-profile.md，版本与能力可回读 SKILL.md、skill.yaml 和 CHANGELOG.md。",
+      "输出可通过 scripts/style_audit.py 复测可观察节奏，并人工核对全部 must_preserve 事实。"
+    ],
+    "skillIds": [
+      "writing-style"
+    ],
+    "legacy": [
+      {
+        "skillId": "writing-style",
+        "title": "19 篇文章之后，我重做了自己的写作 Skill",
+        "source": "https://raw.githubusercontent.com/lovstudio/writing-style-skill/main/cases/cases.json",
+        "fingerprint": "649c753c97b18745d8e443f4f3c497841f654763b101149f8397f1d940714476"
+      }
+    ]
+  },
+  {
+    "id": "case-a104feec7b1c9e8f877b",
+    "type": "case",
+    "title": "最终公众号文章从读者可见实验开始",
+    "description": "来自 2026-08-31 的真实回归。对话里存在多轮旧稿，但最终文章的公开读者没有参加审稿，开头必须从评测对象、规模和发现建立上下文。",
+    "input": {
+      "items": [
+        "标题：我调研了市面上所有的去 AI 味 Prompt",
+        "实际系统：5 个可执行 Skill、1 个一句话 Prompt 对照、1 个完全不改对照",
+        "输入：6 篇改写任务、3 篇真人 KEEP 任务",
+        "结果：63 次端到端运行",
+        "对话内部存在旧稿与用户批评，但它们不属于公开文章事实"
+      ]
+    },
+    "prompt": "使用 lov-writing-style 写最终公众号文章开头。目标读者没有看过聊天和旧稿；先建立实验对象与冲突，不写修改说明。",
+    "output": {
+      "text": "我把 5 套公开可复现的去 AI 味 Skill、一句 Prompt 和‘完全不改’放到同一组输入上，跑了 63 次。\n\n结果很尴尬。\n\n最复杂、最贵的方案没有赢；一句话 Prompt 也没有输得那么难看。真正拉开差距的，甚至不是改写能力，而是一个更基础的判断：这篇文章到底该不该改。"
+    },
+    "assertions": {
+      "must_preserve": [
+        "5 套",
+        "一句 Prompt",
+        "完全不改",
+        "63 次"
+      ],
+      "must_not_open_with": [
+        "我前一版 benchmark 做错了",
+        "这次我重新写",
+        "按你的要求"
+      ],
+      "reader_contract": "zero-session-context"
+    },
+    "evidence": [
+      "branding-consistency-skill/scripts/copy_audit.py --self-test 固定了失败句与合格句。",
+      "SKILL.md Step 0、Step 3 与 Step 9 要求最终文章通过 cold-reader test。"
+    ],
+    "skillIds": [
+      "writing-style"
+    ],
+    "legacy": [
+      {
+        "skillId": "writing-style",
+        "title": "最终公众号文章从读者可见实验开始",
+        "source": "https://raw.githubusercontent.com/lovstudio/writing-style-skill/main/cases/cases.json",
+        "fingerprint": "a104feec7b1c9e8f877bc7e76b219ab7889baed598162df04abf22efade9009b"
+      }
+    ]
+  },
+  {
+    "id": "case-6923a81c5aa16dcebf53",
+    "title": "历史命令通用化迁移验证",
+    "description": "真实迁移请求的结构与可发现性验收；业务系统操作没有在本案例执行。",
+    "input": {
+      "source": "历史命令或本地已迁移 Skill",
+      "sha256": "b1b9778bc1a3435f8a6b3be8ed5aa0f15484d57fb5c0f6f79d78edbb35fec4d8"
+    },
+    "prompt": "将本地所有历史 slash command 逐一升级，并全部同步官网。",
+    "output": {
+      "artifact": "SKILL.md",
+      "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
+      "limitation": "该案例不证明外部业务写入成功"
+    },
+    "type": "case",
+    "skillIds": [
+      "xbti-gallery"
+    ],
+    "legacy": [
+      {
+        "skillId": "xbti-gallery",
+        "title": "历史命令通用化迁移验证",
+        "source": "https://raw.githubusercontent.com/lovstudio/xbti-gallery-skill/main/cases/cases.json",
+        "fingerprint": "6923a81c5aa16dcebf53bbed78af0dee8f088da135756ab5fa6558652a56cfb4"
+      }
+    ]
+  },
+  {
+    "id": "case-7098da6a997d8d0ee229",
+    "type": "case",
+    "title": "将过期的一次性催款任务修复为工作日提醒",
+    "description": "用户要求每个工作日北京时间 10 点提醒跟进一笔活动平台结算，直到收款完成。原记录虽然标记为 cron，却把过去的单次时间写入 cron 字段，且缺少时区与下次运行时间。",
+    "input": {
+      "items": [
+        "用户的周期提醒请求",
+        "Yoda 自动化页面回读：单次标题、过去计划、等待生成下一次计划与一次应用退出失败记录"
+      ]
+    },
+    "prompt": "请每个工作日 10 点通知我打电话催促与获得解释，直到收款完成。",
+    "output": {
+      "items": [
+        "编辑原自动化为活动行催款：工作日 10:00",
+        "保存 cron_expr=0 10 * * 1-5 与 timezone=Asia/Shanghai",
+        "回读 active 状态和 next_run_at=2026-08-17T02:00:00.000Z",
+        "移除替代的系统级重复提醒"
+      ]
+    },
+    "skillIds": [
+      "yoda-automation"
+    ],
+    "legacy": [
+      {
+        "skillId": "yoda-automation",
+        "title": "将过期的一次性催款任务修复为工作日提醒",
+        "source": "https://raw.githubusercontent.com/lovstudio/yoda-automation-skill/main/cases/cases.json",
+        "fingerprint": "7098da6a997d8d0ee229a66a3c791bb252cb672d9ffd19aa80a1bf642fa60ebf"
+      }
+    ]
+  }
+]
