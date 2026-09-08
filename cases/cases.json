@@ -3733,5 +3733,48 @@
         "fingerprint": "7281e7a8c8d9a1b5070c7c5cdeb0c0c6bfbf2988098563ba95f2be77977e4e17"
       }
     ]
+  },
+  {
+    "id": "course-recording-independent-clips",
+    "type": "case",
+    "skillIds": [
+      "media-creator",
+      "media-preprocessor",
+      "media-publisher",
+      "publish-wechat-channels"
+    ],
+    "title": "从线下课程实录到可独立观看的视频切片",
+    "description": "一场录制不完整、包含讲师与多位学员分享的现场交流，先统一提亮，再按内容完整性筛选独立片段，进行字幕、画面和封面包装，交付视频号。案例同时展示后续用于复用流程验证的 30.8 秒样片。",
+    "input": {
+      "text": "约 4 小时 10 分钟的线下课程实录，画面偏暗，分享者较多，部分表达与现场操作没有形成完整录制。"
+    },
+    "prompt": "要美化，而且感觉太暗了。这次的视频没有录制成功我的完整分享，不适合做成严肃的系列、分集，就切成一些相对独立的切片。我要发布全部所有有传播价值的。",
+    "output": {
+      "items": [
+        "统一增强整场素材亮度，保留原声与源时间码，清理经核验的无效区间。",
+        "围绕相对完整的观点、经验与现场讨论制作独立传播切片，原项目批次累计交付并发布 48 条。",
+        "对选中片段校准字幕、整理竖版布局并制作横竖封面；质量欠佳但有内容的片段使用原声与观点摘要。",
+        "把流程固化为预处理交接与成片批处理能力；下面的可播放视频与配图来自 30.8 秒本地回归，未再次发布到视频号。"
+      ]
+    },
+    "author": "手工川",
+    "cover": "cases/assets/course-recording-independent-clips/1.png",
+    "video": "https://raw.githubusercontent.com/lovstudio/skills/main/cases/assets/course-recording-independent-clips/sample.mp4",
+    "gallery": [
+      "cases/assets/course-recording-independent-clips/2.png",
+      "cases/assets/course-recording-independent-clips/3.jpg"
+    ],
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-09-07",
+      "method": "用户确认“感觉剪得还可以”。原批次发布结果在当时任务中回读。随后用 30.8 秒实片验证复用流程，检查成片首中尾、字幕、音画同步与两种封面；样片为 1080×1920、25 fps。",
+      "privacy": "仅展示已完成结果、简短需求与成品样片，不上传完整课堂原片、完整转录、浏览器账号信息或私人文件路径。",
+      "artifact_type": "visual"
+    },
+    "submission": {
+      "fingerprint": "7c1adfe96f5021f17428f01d1e5a24af021b4b474f38fdcc1db88c586b2c4a1f",
+      "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
+      "submittedAt": "2026-09-08T05:05:12.225Z"
+    }
   }
 ]
