@@ -6147,3 +6147,41 @@ skills:
     review_trigger_zh: 20 名买家、100 次成功流程、平均支持超过 30 分钟或六个月后复评。
     review_trigger_en: Review after 20 buyers, 100 successful workflows, support exceeding 30 minutes on average, or six months.
     card_path: pricing-cards/wxmp-cli.md
+- name: read-wechat-article
+  runtime_name: lov-read-wechat-article
+  display_name: WeChat Article Reader
+  repo: MarkShawn2020/read-wechat-article-skill
+  name_zh: 公众号文章读取器
+  paid: false
+  category: General
+  version: 0.1.0
+  updated_at: '2026-09-09T14:00:00Z'
+  description: Fetch a public WeChat Official Account article and export local Markdown with original images, metadata, OCR, and source notes.
+  tagline_en: Turn a public WeChat article URL into offline Markdown with original images and metadata.
+  tagline_zh: 把公开公众号文章整理为可离线 Markdown，保留正文、原图和来源。
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、原图保留脚本、中文 OCR 与 Markdown 生成工作流
+    delivery_unit_en: Public Skill source, image-preservation scripts, Chinese OCR, and Markdown workflow
+    value_zh: 把公开公众号文章转成可离线阅读、可编辑的 Markdown，并保留原图和来源。
+    value_en: Convert a public WeChat article into editable offline Markdown while preserving images and source attribution.
+    anchor_zh: 一次使用可省下约 15–40 分钟的抓取、图片保存、OCR 和人工整理时间；实际节省尚缺批量回读。
+    anchor_en: A run can save roughly 15-40 minutes of fetching, image preservation, OCR, and manual cleanup; batch evidence is still missing.
+    basis_zh: 六维加权 3.23/5；已有真实案例和端到端冒烟测试，但批量使用与生产下载证据不足，采用免费生态入口。
+    basis_en: The six-dimension score is 3.23/5; one real case and smoke tests exist, but batch use and download telemetry are missing, so it starts as a free ecosystem entry.
+    boundary_zh: 覆盖公开公众号文章 URL、元数据、原图、OCR、Markdown 和来源备注；不含远程发布、付费内容访问、视频下载、登录绕过或商业授权代理。
+    boundary_en: Covers public article URLs, metadata, original images, OCR, Markdown, and source notes; excludes remote publishing, paid content access, video downloads, auth bypass, and commercial licensing.
+    maintenance_zh: 随微信页面结构、OCR 工具和真实使用反馈维护；不承诺付费支持时效。
+    maintenance_en: Maintain against WeChat page structure, OCR tooling, and real usage feedback; no paid support SLA.
+    confidence: case-backed
+    review_trigger_zh: 累计 10 次真实文章转换、微信页面结构变化、维护负担明显增加或加入托管服务时复评。
+    review_trigger_en: Review after ten real article conversions, WeChat page changes, material maintenance increase, or hosted services.
+    card_path: pricing-cards/read-wechat-article.md
