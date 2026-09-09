@@ -1,7 +1,9 @@
 ---
-name: lovstudio:wdb-cli
+name: lov-wdb-cli
 description: 万能微信秘钥：先为本地微信准备密钥，再查询聊天、联系人、朋友圈和任意只读 SQL。Use when the user mentions“万能微信秘钥”“查微信记录”“读取朋友圈”。
-version: 0.4.0
+depends_on:
+  - lov-branding-consistency
+version: "0.4.0"
 ---
 
 # 万能微信秘钥 · Universal WeChat Key
