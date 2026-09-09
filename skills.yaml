@@ -2721,7 +2721,7 @@ skills:
       change in support cost.
     card_path: pricing-cards/repo2docs.md
 - name: wdb-cli
-  runtime_name: lov-wdb-cli
+  runtime_name: lovstudio:wdb-cli
   updated_at: '2026-09-09T22:55:00Z'
   skillpay_product_id: P0806000201803813
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt_Qi
