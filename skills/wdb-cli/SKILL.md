@@ -1,27 +1,41 @@
 ---
-name: lov-wdb-cli
-description: "万能微信秘钥：通过隔离 DB+WAL 副本读取本地微信数据，保留精确记录身份，避免查询引擎干扰微信共享内存。"
-depends_on:
-  - lov-branding-consistency
-version: 0.3.1
+name: lovstudio:wdb-cli
+description: 万能微信秘钥：先为本地微信准备密钥，再查询聊天、联系人、朋友圈和任意只读 SQL。Use when the user mentions“万能微信秘钥”“查微信记录”“读取朋友圈”。
+version: 0.4.0
 ---
 
 # 万能微信秘钥 · Universal WeChat Key
 
-这是 Lovstudio 的付费 Skill。安装时只会下载加密分发包；登录并用 Credits 兑换后，运行时才会按账户权益解密。
-
-安装与兑换：
-
-```bash
-npx lovstudio skills add wdb-cli
-```
-
-解密当前 Skill：
+This skill's real instructions are encrypted. To use it, decrypt them first:
 
 ```bash
 uvx lovstudio-skill-helper decrypt wdb-cli
 ```
 
-解密输出仅用于当前 Agent 调用，不会把源代码写入安装目录。
+**What to do:**
 
-0.3.1：所有查询使用私有 DB+WAL 副本，复制失败不直连原库。15 项回归测试通过；微信运行中稳定性尚待实测。
+1. Run the command above.
+2. The output is the actual SKILL.md for wdb-cli. Read it as if it were these instructions, and follow it to the letter.
+3. If the command prints `error: not activated` or `error: not logged in`, tell the user:
+   > 这是一个 Lovstudio 付费 skill，请先激活（CLI 会打开浏览器让你登录，然后绑定你的 license key）：
+   > ```
+   > npx lovstudio license <your-license-key>
+   > ```
+   > 还没有 license key？前往 https://lovstudio.ai 购买，或关注 #公众号：手工川 购买。
+4. If the command prints `error: not entitled`, the helper will interactively prompt the user to (a) enter a license key, (b) open the purchase page, or (c) cancel. Just let the user pick.
+5. If the command prints `error: skill 'wdb-cli' not installed`, the encrypted bundle isn't on disk yet. Tell the user:
+   > ```
+   > npx lovstudio skills add wdb-cli                      # recommended: also checks deps
+   > npx skills add lovstudio/skills --skill wdb-cli       # raw alternative
+   > ```
+6. Do NOT cache the decrypted output between invocations — always re-decrypt on each use. The decryption is cheap (one HTTP round-trip) and re-running guarantees the user's license is still valid.
+7. If the decrypted SKILL.md references additional files (e.g. `references/workflow.md`, `assets/...`), DO NOT use the `Read` tool on them — those paths only exist on disk as encrypted `.enc` blobs. Instead, decrypt each one on demand by passing its relative path as a second argument:
+   ```bash
+   uvx lovstudio-skill-helper decrypt wdb-cli references/workflow.md
+   ```
+   Requires lovstudio-skill-helper ≥ 0.9.0. Earlier versions only decrypt SKILL.md.
+
+The encrypted payload lives in one of:
+- `~/.claude/skills/wdb-cli/`
+- `~/.claude/skills/lovstudio-wdb-cli/`
+You don't need to touch it directly — just call `uvx lovstudio-skill-helper decrypt wdb-cli [<rel_path>]`.
