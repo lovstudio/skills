@@ -4,13 +4,15 @@ license: MIT
 compatibility: Portable Agent Skills format. Requires a Node frontend project with
   pnpm or npm and a supported bundler config (Vite / Webpack / Next.js / Nuxt / Rspack
   / Farm / Mako).
-description: 为现有前端项目幂等接入 Lovinsp 并验证点击定位源码能力。支持明确输入与结果回读。Use to integrate Lovinsp
-  in a frontend project.
+description: >
+  Use to integrate Lovinsp into an existing Vite/Webpack/Next.js/Nuxt frontend
+  and verify click-to-source. Trigger when the user mentions 装 lovinsp、集成
+  lovinsp、接入点击跳转源码 or click to code.
 depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 1.6.4
+  version: 1.6.5
   tags:
   - lovinsp
   - click-to-code
@@ -146,6 +148,34 @@ export default defineConfig({
 });
 ```
 
+**Vite 纯 JS / 无框架应用（必须补充 DOM 定位属性）：**
+
+Lovinsp 的 Vite transform 只会为框架模板、JSX 等静态结构自动注入
+`data-insp-path`；纯 JS 用 `innerHTML`、`document.createElement` 动态生成的
+DOM 不会自动获得该属性。此时即使 `lovinsp-component` 已创建，点击也不会响应。
+
+手动标注格式为 `<file>:<line>:<column>:<tag>`：运行时会取最后一段作为元素名、
+倒数第二段作为 column、倒数第三段作为 line。示例：
+
+```javascript
+const SOURCE_PATH = '/absolute/path/to/project/src/main.js'
+
+function annotate(line = 1) {
+  for (const el of document.querySelectorAll('body *')) {
+    if (!el.hasAttribute('data-insp-path')) {
+      el.setAttribute(
+        'data-insp-path',
+        `${SOURCE_PATH}:${line}:1:${el.tagName.toLowerCase()}`
+      )
+    }
+  }
+}
+```
+
+在首次渲染后调用一次 `annotate()`，并且每次动态更新 `innerHTML` 或新增节点后
+再次调用；否则新 DOM 仍没有定位属性。若项目页面由后端反向代理 Vite dev server
+提供，也同样需要在 Vite 转换后的模块上做上述标注。
+
 **Webpack (webpack.config.js):**
 ```javascript
 const { lovinspPlugin } = require('lovinsp');
@@ -191,6 +221,7 @@ module.exports = {
 - Vite 项目中 `lovinspPlugin({ bundler: 'vite' })` 排在框架插件之前；
 - package.json 与配置文件里都不再残留 `code-inspector` 引用。
 - 检查默认行为为 Copy Path，Open in IDE 使用额外的 Command / Ctrl 修饰键；检查 README 和交付文案没有把两者颠倒。
+- 无框架 Vite 页面必须确认浏览器 DOM 中 `document.querySelectorAll('[data-insp-path]').length > 0`；为 0 时按上文补充手动标注。
 
 运行期回读（Vite 项目，dev server 已在跑时做；用户未启动 dev server 就跳过，
 不要为了验证而自行拉起或杀掉服务）：
@@ -199,7 +230,13 @@ module.exports = {
 curl -s http://127.0.0.1:<port>/src/main.tsx | rg "lovinsp-component|lovinsp v"
 ```
 
-命中只证明 transform 已生效。浏览器可用时，还要回读检查器的 `defaultAction`、`copyKeys`、`locateKeys` 或等价运行态，核实 Copy Path / Open in IDE 顺序，并分别激活两种模式确认 `currentMode`。不用为测试而打开 IDE 或改写剪贴板；是否实际点击执行应遵守宿主权限与用户前台约束。未命中或未验证时，在结果里如实说明验证到哪一步为止。
+命中只证明 transform 已生效。浏览器可用时，还要：
+
+- 回读检查器的 `defaultAction`、`copyKeys`、`locateKeys` 或等价运行态，核实 Copy Path / Open in IDE 顺序；
+- 分别激活两种模式确认 `currentMode`；
+- 对纯 JS 页面检查 `data-insp-path` 数量和首个节点内容，确认路径能定位到真实模块。
+
+不用为测试而打开 IDE 或改写剪贴板；是否实际点击执行应遵守宿主权限与用户前台约束。未命中或未验证时，在结果里如实说明验证到哪一步为止。
 
 **build --watch 架构（非 `vite dev` serve）：**
 
@@ -227,7 +264,7 @@ curl -s http://127.0.0.1:<port>/src/main.tsx | rg "lovinsp-component|lovinsp v"
 
 ## 支持的框架
 
-- Vite: React, Vue2, Vue3, Svelte, Solid, Preact, Qwik, Astro
+- Vite（含无框架纯 JS）: React, Vue2, Vue3, Svelte, Solid, Preact, Qwik, Astro
 - Webpack: React, Vue
 - Next.js (Turbopack/Webpack)
 - Nuxt

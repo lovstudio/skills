@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.5] - 2026-09-10
+
+### Fixed
+
+- add plain JS DOM annotation guidance
+- document data-insp-path requirement for frameworkless Vite pages
+
 ## [1.6.4] - 2026-09-08
 
 ### Fixed

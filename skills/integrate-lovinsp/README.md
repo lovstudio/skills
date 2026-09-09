@@ -1,8 +1,14 @@
 # Lovinsp 接入 · Lovinsp Setup
 
-![Version](https://img.shields.io/badge/version-1.6.4-CC785C)
+![Version](https://img.shields.io/badge/version-1.6.5-CC785C)
 
 > 幂等集成 lovinsp (click-to-code) 到当前前端项目，支持从 code-inspector 迁移
+
+## 安装
+
+```bash
+npx skills add lovstudio/skills --skill integrate-lovinsp -y -g
+```
 
 ## 本地安装
 
@@ -44,7 +50,7 @@ ln -s "$SKILL_SOURCE_DIR" \
 
 ## Status
 
-- Version: 1.6.4
+- Version: 1.6.5
 - Published at `github.com/lovstudio/integrate-lovinsp-skill`
 
 ## 官网安装

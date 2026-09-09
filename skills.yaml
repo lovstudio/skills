@@ -4240,11 +4240,11 @@ skills:
   name_zh: Lovinsp 接入
   paid: false
   category: Dev Tools
-  version: 1.6.2
-  updated_at: 2026-09-07 09:44:42+00:00
-  description: Integrate Lovinsp in a frontend project
-  tagline_en: Integrate Lovinsp in a frontend project
-  tagline_zh: 为现有前端项目幂等接入 Lovinsp 并验证点击定位源码能力
+  version: 1.6.5
+  updated_at: 2026-09-09 16:31:16+00:00
+  description: Integrate Lovinsp in a frontend project, including plain JS Vite DOM annotation
+  tagline_en: Integrate Lovinsp in a frontend project, including plain JS Vite DOM annotation
+  tagline_zh: 为现有前端项目幂等接入 Lovinsp（含无框架 Vite DOM 标注）并验证点击定位源码能力
   pricing:
     model: free_entry
     visibility: public
@@ -4257,9 +4257,9 @@ skills:
     delivery_unit_en: Public Skill source, workflow and configuration contract
     value_zh: 为现有前端项目幂等接入 Lovinsp 并验证点击定位源码能力
     value_en: Integrate Lovinsp in a frontend project
-    basis_zh: 保留免费入口；以迁移与安装证据为基础，业务效果仍需逐次验证。
-    basis_en: Free entry based on migration and installation evidence; business outcomes
-      need per-run verification.
+    basis_zh: 保留免费入口；证据覆盖通用迁移、安装与无框架 Vite 的 data-insp-path 定位验证。
+    basis_en: Free entry based on migration, installation, and data-insp-path annotation
+      evidence for plain JS Vite pages.
     boundary_zh: 不含第三方账号、服务用量或人工代运营。
     boundary_en: Excludes third-party accounts, usage charges and managed services.
     confidence: entry
