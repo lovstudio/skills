@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **158 个技能** — 142 个免费 + 16 个付费。
+> **159 个技能** — 143 个免费 + 16 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -68,6 +68,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Moments Copy](https://github.com/lovstudio/skills) (`output-wechat-moment`) | [朋友圈文案](https://github.com/lovstudio/skills) | 把已有内容整理成适合朋友圈阅读的纯文本并保存文件 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [My Vocabulary](https://github.com/lovstudio/personal-vocabulary-skill) (`personal-vocabulary`) | [我的词库](https://github.com/lovstudio/personal-vocabulary-skill) | 一份可跨语音输入法复用的个人词汇表。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [A Little Encouragement](https://github.com/lovstudio/praise-before-work-skill) (`praise-before-work`) | [开工夸夸](https://github.com/lovstudio/praise-before-work-skill) | 开工前先收到一段具体的夸奖，再开始处理任务。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [WeChat Article Reader](https://github.com/MarkShawn2020/read-wechat-article-skill) (`read-wechat-article`) | [公众号文章读取器](https://github.com/MarkShawn2020/read-wechat-article-skill) | 把公开公众号文章整理为可离线 Markdown，保留正文、原图和来源。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [File Finder](https://github.com/lovstudio/search-file-skill) (`search-file`) | [文件寻踪](https://github.com/lovstudio/search-file-skill) | 从历史 AI 对话找回仍然存在的文件，并用会话证据与存储耐久度排序。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [X Post Recovery](https://github.com/lovstudio/search-twitter-skill) (`search-twitter`) | [X 原帖寻回](https://github.com/lovstudio/search-twitter-skill) | 恢复 X/Twitter 逐字正文与截图证据，并明确列出仍无法证明的缺口。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Subtitle Freedom](https://github.com/lovstudio/subtitle-freedom-skill) (`subtitle-freedom`) | [人人字幕](https://github.com/lovstudio/subtitle-freedom-skill) | 以用户选定级别为最低难度线生成英语学习字幕，覆盖更高难度表达，并可选生成不剧透人物卡片与不烧录视频的 ASS/PGS 水印外置字幕。 |

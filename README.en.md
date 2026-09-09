@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **158 skills** — 142 Free + 16 Paid.
+> **159 skills** — 143 Free + 16 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -69,6 +69,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Moments Copy](https://github.com/lovstudio/skills) (`output-wechat-moment`) | Format and save a WeChat Moments post — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [My Vocabulary](https://github.com/lovstudio/personal-vocabulary-skill) (`personal-vocabulary`) | One personal vocabulary reused across speech-input apps. |
 | ![Free](https://img.shields.io/badge/Free-green) | [A Little Encouragement](https://github.com/lovstudio/praise-before-work-skill) (`praise-before-work`) | Start each task with specific encouragement, then get to work. |
+| ![Free](https://img.shields.io/badge/Free-green) | [WeChat Article Reader](https://github.com/MarkShawn2020/read-wechat-article-skill) (`read-wechat-article`) | Turn a public WeChat article URL into offline Markdown with original images and metadata. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [File Finder](https://github.com/lovstudio/search-file-skill) (`search-file`) | Recover files from past AI chats with conversation evidence, existence checks, and durable-copy ranking. |
 | ![Free](https://img.shields.io/badge/Free-green) | [X Post Recovery](https://github.com/lovstudio/search-twitter-skill) (`search-twitter`) | Recover verbatim X/Twitter posts, screenshot evidence, and the gaps that still cannot be proven. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Subtitle Freedom](https://github.com/lovstudio/subtitle-freedom-skill) (`subtitle-freedom`) | Make learner subtitles that keep the selected level and harder expressions, with spoiler-safe ASS cards and optional no-burn watermark sidecars. |

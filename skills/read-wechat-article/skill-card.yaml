@@ -1,0 +1,101 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: >
+  把公开微信公众号文章 URL 转为本地可编辑 Markdown，保留正文或图片、元数据、
+  来源和原文表述；图片型文章使用中文 OCR 并由代理逐图核对。
+owner:
+  team: contributors
+  contact: https://github.com/lovstudio/skills
+license:
+  name: MIT
+  terms: 源码按 MIT 许可使用；整理稿中的原文内容、图片、商标和版权归原作者。
+  url: ../LICENSE
+use_case:
+  audience: 需要把公开公众号文章归档、转写或二次引用的人。
+  scenario: 用户提供一条公开 mp.weixin.qq.com 文章 URL，期望得到可编辑、可离线阅读的 Markdown。
+  tasks:
+    - 提取标题、公众号名、发布时间和正文
+    - 下载并保留原文图片
+    - 对图片型文章执行中文 OCR 和逐图核对
+    - 生成带来源与原图目录的 Markdown
+deployment:
+  geography: global
+  environments:
+    - local-python
+    - macos
+requirements:
+  credentials: none
+  dependencies:
+    - python
+    - urllib
+    - PyYAML
+    - macOS Vision or Tesseract with chi_sim
+  runtime:
+    - Python 3.8+
+    - 公共网络访问
+    - 可选的 Xcode Command Line Tools
+risks:
+  - risk: 页面需要登录、验证或地域限制
+    mitigation: 只处理公开可访问内容；失败即停止，不绕过访问控制。
+  - risk: OCR 误识别关键数字、日期或公司名
+    mitigation: 强制逐图视觉核对；不明确的字词保留原图并在备注中标明。
+  - risk: 原文前后不一致被静默统一
+    mitigation: 按原文保留表述，在“原文备注”中记录差异，不替作者做事实修正。
+  - risk: 版权或转载边界不清
+    mitigation: 保留来源、公众号和原图；不声明整理稿拥有原文版权。
+references:
+  - title: Primary Skill instructions
+    path: SKILL.md
+  - title: WeChat extraction notes
+    path: references/wechat-extraction.md
+  - title: Skill group composition
+    path: references/skill-composition.md
+output:
+  types:
+    - markdown
+    - json
+    - png
+  formats:
+    - UTF-8 Markdown
+    - manifest.json
+    - images/ 原图
+  parameters:
+    - article URL
+    - output directory
+    - OCR engine
+  validation:
+    - Markdown 中所有本地图片引用可解析
+    - 标题、账号、发布时间、原图数量与 manifest 一致
+    - 图片型文章必须经过人工视觉核对
+  description: 一个可离线阅读的 Markdown，配套 JSON 清单和原图目录。
+ethical_considerations: >
+  只能用于用户有权访问和保存的公开内容。保留来源与署名，不绕过登录、付费、
+  私密或地域限制；不把整篇受版权保护内容擅自重新发布为原创。
+dimensions:
+  - id: source-fidelity
+    label: 来源保真
+    description: 保留标题、账号、时间、数字、专名、原图和原文不一致表述。
+    evidence: 已用一条真实图片型公众号文章验证，13 张原图全部保留，OCR 后逐图核对并记录四大赛道与五条赛道差异。
+    score: observed
+  - id: completeness
+    label: 完整度
+    description: 元数据、正文或图片、原图目录、来源链接同时交付。
+    evidence: 真实案例输出 Markdown、13 张原图、manifest、OCR 草稿和原文备注。
+    score: observed
+  - id: portability
+    label: 可移植性
+    description: 不依赖付费解密包或远端服务，公开 URL 即可运行。
+    evidence: 源码使用 Python 标准库、本地 Vision OCR 和 MIT 许可；无 Cookie、Token 或专有运行时依赖。
+    score: observed
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 免费提供公开文章本地归档与来源保真整理，避免重复编写抓取和 OCR 流程。
+  boundary: 不包含公众号远程发布、账号登录、付费内容访问、视频下载或商业授权代理。
+  review_trigger: 微信公众号页面结构、OCR 可用性、法律或平台条款发生显著变化时复评。
+  confidence: local
+distribution:
+  paid: []
+  free:
+    - local

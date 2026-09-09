@@ -1,0 +1,23 @@
+[
+  {
+    "type": "case",
+    "title": "图片型公众号文章转为可编辑 Markdown",
+    "description": "真实处理了一条‘攻壳机动队主题黑客松深圳站’公众号文章。正文只包含 13 张设计海报，没有可复制的 HTML 文本；下载全部原图、执行中文 OCR、逐图视觉核对，并生成带来源和原文备注的 Markdown。",
+    "input": {
+      "items": [
+        "https://mp.weixin.qq.com/s/aC80pMzpCcK0czDKvwbbOA",
+        "公开可访问的公众号文章，正文为竖版海报"
+      ]
+    },
+    "prompt": "整理 https://mp.weixin.qq.com/s/aC80pMzpCcK0czDKvwbbOA 为 md 版本",
+    "output": {
+      "items": [
+        "攻壳机动队黑客松深圳站.md",
+        "13 张保留在原图目录中的竖版海报",
+        "manifest.json 与 OCR 草稿",
+        "原文备注：四大赛道与五条赛道差异，以及图片标题重复"
+      ]
+    },
+    "cover": "cases/artifacts/cover.png"
+  }
+]

@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 节省重复编写公开文章抓取、图片保留、中文 OCR 和 Markdown 整理流程的时间。
+basis: 免费提供本地、可审计、来源保真的公众号文章整理能力；不依赖付费解密包或远端服务。
+boundary: 不包含公众号远程发布、账号登录、付费内容访问、视频下载、商业授权代理或原文版权授权。
+review_trigger: 微信公众号页面结构、OCR 可用性、平台条款或法律边界发生显著变化时复评。
+confidence: local

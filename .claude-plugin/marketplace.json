@@ -117,7 +117,7 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 23 free + 4 paid (Credits redemption required).",
+      "description": "General — 24 free + 4 paid (Credits redemption required).",
       "category": "General",
       "skills": [
         "./skills/image-translation-errata",
@@ -148,7 +148,8 @@
         "./skills/output",
         "./skills/five",
         "./skills/think",
-        "./skills/wxmp-cli"
+        "./skills/wxmp-cli",
+        "./skills/read-wechat-article"
       ],
       "strict": false
     },
