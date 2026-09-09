@@ -1,6 +1,6 @@
 # Lovinsp 接入 · Lovinsp Setup
 
-![Version](https://img.shields.io/badge/version-1.6.2-CC785C)
+![Version](https://img.shields.io/badge/version-1.6.4-CC785C)
 
 > 幂等集成 lovinsp (click-to-code) 到当前前端项目，支持从 code-inspector 迁移
 
@@ -29,11 +29,22 @@ ln -s "$SKILL_SOURCE_DIR" \
 - 「把 code-inspector 迁移成 lovinsp。」
 - 由 `lov-app-generator` 等 Skill 把 Lovinsp 集成列为默认不变量时自动调用。
 
-本 Skill 幂等：已集成则只做版本检查，重复执行无副作用，因此适合无人值守推进。
+本 Skill 幂等：已集成则检查版本与默认交互，重复执行无副作用，因此适合无人值守推进。
+
+## 默认交互
+
+默认顺序固定为 **Copy Path → Open in IDE**，优先使用 Lovinsp 原生默认配置。
+
+| 操作 | Mac | Windows / Linux |
+| --- | --- | --- |
+| Copy Path（默认） | Option + Shift + 点击 | Alt + Shift + 点击 |
+| Open in IDE | Option + Shift + Command + 点击 | Alt + Shift + Ctrl + 点击 |
+
+不得因“点击定位源码”的任务描述而擅自交换按键。集成和幂等检查都需核对配置、运行态与说明文案。
 
 ## Status
 
-- Version: 1.6.2
+- Version: 1.6.4
 - Published at `github.com/lovstudio/integrate-lovinsp-skill`
 
 ## 官网安装

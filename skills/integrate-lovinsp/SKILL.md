@@ -10,7 +10,7 @@ depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 1.6.2
+  version: 1.6.4
   tags:
   - lovinsp
   - click-to-code
@@ -39,7 +39,7 @@ metadata:
 - 目标不是浏览器渲染的前端项目（纯后端服务、CLI、库、无 UI 的 Skill 包）。
 - 用户只想了解 lovinsp 是什么、不要求改动当前项目。
 
-本 Skill 是幂等的：已集成时只做版本检查，不会重复写入配置，因此可以被模型自动调用，
+本 Skill 是幂等的：已集成时检查版本与默认交互是否正确，不会重复写入配置，因此可以被模型自动调用，
 不需要人工逐步确认。
 
 ## 执行步骤
@@ -68,7 +68,8 @@ glob: package.json
 如果已存在：
 1. 检查版本更新：`pnpm view lovinsp version` 对比当前版本
 2. 若有更新：提示「当前 x.x.x → 最新 y.y.y」并执行 `pnpm update lovinsp`
-3. 若已是最新：输出「✓ lovinsp 已集成（v最新版），无需操作」
+3. 即使版本已是最新，也检查 `behavior.defaultAction`、`behavior.keys`、`hotKeys` 与说明文案。未经用户明确要求的快捷键倒置必须修正，不能仅凭已安装就跳过。
+4. 版本与默认交互均正确时，输出「lovinsp 已集成，默认交互正确，无需操作」。
 
 ### 3. 检测并迁移 code-inspector（如存在）
 
@@ -114,6 +115,21 @@ npm uninstall code-inspector-plugin
 - 不存在：执行 `pnpm add -D lovinsp` 或 `npm install -D lovinsp`
 
 ### 5. 修改构建配置
+
+先遵守以下默认交互，再按 bundler 类型配置插件。
+
+**默认交互是固定验收项：Copy Path 在前，Open in IDE 在后。**
+
+| 操作 | Mac | Windows / Linux |
+| --- | --- | --- |
+| Copy Path（默认） | Option + Shift + 点击 | Alt + Shift + 点击 |
+| Open in IDE | Option + Shift + Command + 点击 | Alt + Shift + Ctrl + 点击 |
+
+- 优先保留 Lovinsp 原生默认配置，不写 `behavior.keys` 或 `hotKeys`；当前默认 `behavior.defaultAction` 为 `copy`。
+- 如已有 `behavior` 配置，只保留本任务所需字段；必要时明确设 `defaultAction: 'copy'`，同时保留 copy / locate 两种能力。
+- **禁止为了“点击定位源码”擅自改成 `defaultAction: 'locate'`，禁止把基础组合键设成 Open in IDE、把额外修饰键设成 Copy Path。** 只有用户明确要求自定义按键或行为时才能偏离上表。
+- 依赖升级后核对实际默认值；若版本默认值已变化，应配置为上表约定，而不是继承变化后不一致的行为。
+- 文档、交付说明和现有项目都遵循同一顺序，不再笼统声称“Option + Shift 点击即打开 IDE”。
 
 根据 bundler 类型，在配置文件中添加插件：
 
@@ -174,6 +190,7 @@ module.exports = {
 - 配置文件里确实 import 了 `lovinsp` 并调用了 `lovinspPlugin`；
 - Vite 项目中 `lovinspPlugin({ bundler: 'vite' })` 排在框架插件之前；
 - package.json 与配置文件里都不再残留 `code-inspector` 引用。
+- 检查默认行为为 Copy Path，Open in IDE 使用额外的 Command / Ctrl 修饰键；检查 README 和交付文案没有把两者颠倒。
 
 运行期回读（Vite 项目，dev server 已在跑时做；用户未启动 dev server 就跳过，
 不要为了验证而自行拉起或杀掉服务）：
@@ -182,7 +199,7 @@ module.exports = {
 curl -s http://127.0.0.1:<port>/src/main.tsx | rg "lovinsp-component|lovinsp v"
 ```
 
-命中即证明 transform 已生效。未命中或未验证时，在结果里如实说明验证到哪一步为止。
+命中只证明 transform 已生效。浏览器可用时，还要回读检查器的 `defaultAction`、`copyKeys`、`locateKeys` 或等价运行态，核实 Copy Path / Open in IDE 顺序，并分别激活两种模式确认 `currentMode`。不用为测试而打开 IDE 或改写剪贴板；是否实际点击执行应遵守宿主权限与用户前台约束。未命中或未验证时，在结果里如实说明验证到哪一步为止。
 
 **build --watch 架构（非 `vite dev` serve）：**
 
@@ -196,9 +213,8 @@ curl -s http://127.0.0.1:<port>/src/main.tsx | rg "lovinsp-component|lovinsp v"
 ✓ lovinsp 集成完成
 
 使用方法：
-- Mac: Option + Shift 激活检查器
-- Windows: Alt + Shift 激活检查器
-- 点击任意 DOM 元素跳转到源码
+- Copy Path（默认）：Mac 按 Option + Shift 点击；Windows / Linux 按 Alt + Shift 点击
+- Open in IDE：Mac 按 Option + Shift + Command 点击；Windows / Linux 按 Alt + Shift + Ctrl 点击
 
 文档: https://inspector.fe-dev.cn/en
 ```
@@ -206,7 +222,7 @@ curl -s http://127.0.0.1:<port>/src/main.tsx | rg "lovinsp-component|lovinsp v"
 ## 幂等性保证
 
 - 依赖检查：已安装则跳过
-- 配置检查：已配置则跳过
+- 配置检查：已配置且默认交互正确则跳过；发现未经授权的快捷键倒置时修正
 - 重复执行：结果一致，无副作用
 
 ## 支持的框架

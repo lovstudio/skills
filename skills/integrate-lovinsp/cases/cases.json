@@ -12,5 +12,12 @@
       "result": "显式输入、自然语言触发、跨宿主执行边界及共享 Profile 合同",
       "limitation": "该案例不证明外部业务写入成功"
     }
+  },
+  {
+    "title": "修正重复颠倒的默认交互",
+    "description": "用户指出集成时将默认 Copy Path 改成 Open in IDE，要求修正 Skill，避免后续任务重复出现。",
+    "input": "已集成的项目把 Option + Shift 映射为 locate，并把带 Command 的按键映射为 copy。",
+    "prompt": "默认应该是 Copy Path、Open in IDE，然后修改这个 Skill。",
+    "output": "Skill 固定默认顺序和跨平台快捷键，优先保留包默认值；已有集成也检查行为漂移，并回读两种运行模式。"
   }
 ]
