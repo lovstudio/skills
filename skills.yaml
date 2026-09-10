@@ -7017,3 +7017,54 @@ skills:
     review_trigger_zh: 累计 10 次真实文章转换、微信页面结构变化、维护负担明显增加或加入托管服务时复评。
     review_trigger_en: Review after ten real article conversions, WeChat page changes, material maintenance increase, or hosted services.
     card_path: pricing-cards/read-wechat-article.md
+
+- name: xhs
+  runtime_name: lov-xhs
+  display_name: Xiaohongshu Researcher
+  repo: lovstudio/xhs-skill
+  name_zh: 小红书调研助手
+  paid: true
+  encrypted_bundle: true
+  price_credits: 300
+  category: General
+  version: 0.2.0
+  description: Turn a Xiaohongshu topic request into a source-backed research report,
+    with note-body collection and explicit search-only export.
+  tagline_en: Research a Xiaohongshu topic and get a source-backed report, not just
+    another search result.
+  tagline_zh: 把小红书主题变成有来源的调研报告，而不只是再搜一次。
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: one_time
+    visibility: public
+    list_price_credits: 300
+    launch_price_credits: 300
+    price_range_credits:
+    - 300
+    - 300
+    delivery_unit_zh: 单项 Skill、当前版本使用说明、正文采集脚本、报告契约与同范围小版本修正
+    delivery_unit_en: One Skill, current-version usage notes, note-body collection
+      scripts, the report contract, and same-scope minor fixes
+    value_zh: 把「主题」直接整理成结论、方案、证据表和来源链接，同时保留原始 JSON 与正文语料。
+    value_en: Turn a topic into conclusions, an executable plan, an evidence table,
+      and source links while preserving the raw JSON and note-body corpus.
+    anchor_zh: 一次完整调研通常可减少 30 分钟至 3 小时的检索、筛选、整理与判断时间。
+    anchor_en: A complete research run typically saves 30 minutes to 3 hours of
+      search, filtering, organization, and judgment.
+    basis_zh: 按一次可复用的调研结果定价，重点看能否把平台素材直接转成可执行判断。
+    basis_en: Priced around a reusable research result, with emphasis on turning
+      platform material into an executable judgment.
+    boundary_zh: 需要本机可用的小红书登录态、网络和当前平台可用性；不含账号服务、人工代运营、官方数据许可或平台结果再分发权。
+    boundary_en: Requires a working local Xiaohongshu login, network, and current
+      platform availability; excludes account provisioning, managed research,
+      official data licensing, and redistribution rights.
+    maintenance_zh: 随小红书接口、风控、登录态和真实使用反馈复评；同范围小版本修正包含在一次性解锁内。
+    maintenance_en: Review against Xiaohongshu APIs, risk controls, login state,
+      and real usage feedback; same-scope minor fixes are included in the one-time
+      unlock.
+    confidence: internal
+    review_trigger_zh: 100 次兑换、10 次真实使用、重大版本变化或 Credits 规则变化时复评。
+    review_trigger_en: Review after 100 redemptions, 10 real uses, a material version
+      change, or a Credits rule change.
+    card_path: pricing-cards/xhs.md

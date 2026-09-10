@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **159 skills** — 143 Free + 16 Paid.
+> **160 skills** — 143 Free + 17 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -77,6 +77,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Dictation Editor](https://github.com/lovstudio/typeless-prompt-skill) (`typeless-prompt`) | Turn rough dictation into concise, structured, send-ready text without answering or executing it. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Universal WeChat Key](https://github.com/lovstudio/wdb-cli-skill) (`wdb-cli`) | Prepare local WeChat keys, then read isolated database copies with exact record identity. — requires: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Weitan CLI](https://github.com/lovstudio/wxmp-cli-skill) (`wxmp-cli`) | Find cached WeChat articles and export them in four formats, with a complete CLI runtime included. — requires: `branding-consistency` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Xiaohongshu Researcher](https://github.com/lovstudio/xhs-skill) (`xhs`) | Research a Xiaohongshu topic and get a source-backed report, not just another search result. — requires: `branding-consistency` |
 | **Business** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [BP Studio](https://github.com/lovstudio/bp-skill) (`bp`) | A composable BP skill kit — use outline, deck, and polish alone or run the complete investor workflow. — requires: `bp-outline`, `bp-deck`, `bp-polish` |
 | ![Free](https://img.shields.io/badge/Free-green) | [BP Master](https://github.com/lovstudio/bp-skill) (`bp-deck`) | Turn an approved BP outline into a professional PPTX, PDF, and full-deck preview with deliberate style selection. — requires: `any2deck` |

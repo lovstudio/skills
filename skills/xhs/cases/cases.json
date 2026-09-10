@@ -1,0 +1,75 @@
+[
+  {
+    "type": "case",
+    "title": "Search AI programming notes with a logged-in Xiaohongshu CLI",
+    "description": "Operator already completed xhs login and asked for a machine-readable note list for a broad topic. The skill reused the installed CLI and returned the platform results without adding model-generated titles.",
+    "input": {
+      "items": [
+        "xiaohongshu-cli 0.6.4 with authenticated browser session",
+        "query: AI编程",
+        "sort: general",
+        "pages: 1"
+      ]
+    },
+    "prompt": "Run the deterministic search script with the query AI编程 and no title term filter; output JSON.",
+    "output": {
+      "items": [
+        "ok true",
+        "items_fetched 20",
+        "meta.matches 20",
+        "first title observed: Vibe Coding，3 款小程序拿下 52 万用户",
+        "each row includes id, title, author, likes, comments, collects, shares, and URL"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "Require both title terms for Mount Kailash pilgrimage notes",
+    "description": "Operator asked for notes whose title contains both 冈仁波齐 and 转山. The script fetched real platform results and applied both local terms; no title was invented to make the filter pass.",
+    "input": {
+      "items": [
+        "query: 转山",
+        "must contain: 冈仁波齐",
+        "must contain: 转山",
+        "pages: 3",
+        "sort: general"
+      ]
+    },
+    "prompt": "Search for 转山, require both terms in the title, scan three pages, and report the match count.",
+    "output": {
+      "items": [
+        "ok true",
+        "items_fetched 63",
+        "title terms: 冈仁波齐, 转山",
+        "meta.matches 0",
+        "the zero match result is reported instead of being replaced with unverified rows"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "Turn a bare Kailash topic into a source-backed route report",
+    "description": "The operator supplied only the topic 「冈仁波齐线路规划」. The optimized Skill treated it as a report request by default, discovered notes, collected note bodies, and returned a 3-day Kailash kora plan with source links instead of stopping at search JSON.",
+    "input": {
+      "items": [
+        "xiaohongshu-cli 0.6.4 with authenticated session",
+        "request: [$lov-xhs] 「冈仁波齐线路规划」",
+        "mode: report (default)",
+        "discovery: exact topic query, 1-3 pages",
+        "collection: note bodies with delay and partial-error capture"
+      ]
+    },
+    "prompt": "Use lov-xhs on the bare topic 「冈仁波齐线路规划」 and deliver the user-facing research result.",
+    "output": {
+      "items": [
+        "default mode resolved to report, not search-only",
+        "search JSON and note-body corpus were retained as evidence",
+        "20 note bodies were collected across the run",
+        "report led with conclusions and a 3-day itinerary",
+        "route, equipment, lodging, border-permit, weather, and altitude-risk guidance were separated from source facts",
+        "each nontrivial source-derived claim remained traceable to a note URL",
+        "an explicit search-only request still returns normalized JSON rows"
+      ]
+    }
+  }
+]

@@ -1,0 +1,76 @@
+{
+  "skill_name": "xhs",
+  "skill_version": "0.2.0",
+  "skill_id": 6578,
+  "skill_version_id": 76,
+  "format_version": 2,
+  "cipher": "aes-256-gcm",
+  "files": {
+    "SKILL.md": {
+      "iv": "wEUpuNAVUCmBO0f2",
+      "tag": "BHZ3XvWC3rHvbjY1/uSDOQ==",
+      "original_checksum": "632bdf28c62e68603b030087220026ed1380e778782ba8e4d5bdd914f0d12615",
+      "original_size": 8080
+    },
+    "references/authorship-integrity.md": {
+      "iv": "ql9PqZ0cwKiHHNgU",
+      "tag": "fiTWjQ+cwp3/vcAExuCcpg==",
+      "original_checksum": "f80afb98bc63e38263693e2d9a1f8f8436b4975f3641c5d7fd9f6b4e94f2aad2",
+      "original_size": 2663
+    },
+    "references/implementation.md": {
+      "iv": "DLtJRXAXNh7AWxZ5",
+      "tag": "5tlcUtFH/25QQ8bxKC8BOg==",
+      "original_checksum": "556010086007ee85fec90213aa9a700676e61b0d7cc58cadc2fc1791b82029c8",
+      "original_size": 3782
+    },
+    "references/research-report.md": {
+      "iv": "UW5l3mykJNasJOMn",
+      "tag": "4yYYqparLiwktjx5BC38fw==",
+      "original_checksum": "694b32f9241bac0198ce291b9e0f9dab0d6fcaff784b7e343feb4af68a4f4d4d",
+      "original_size": 3240
+    },
+    "references/skill-card-standard.md": {
+      "iv": "2ISGMeKstq4X6Qcq",
+      "tag": "+us3i4yGzl6CirTA4jRlfw==",
+      "original_checksum": "bf07e7e49921707b89c8e9b562d49669b710839fcba99be1729767a2daba9a26",
+      "original_size": 660
+    },
+    "references/skill-composition.md": {
+      "iv": "vTTv92gu4UK9rprO",
+      "tag": "vyxGxfJofRaExCNBpfPQ3w==",
+      "original_checksum": "5b3d114ae43bc1ff73b6b75a651cd1ee5b0c1da05e2b7e5ef3c55e8c38f91a16",
+      "original_size": 2649
+    },
+    "references/user-profile.md": {
+      "iv": "biUE8wv3wyaBaeLZ",
+      "tag": "115h+zm2eBkRmTFOLN8cVA==",
+      "original_checksum": "763b6558feae12fd90cc59917938b8e9c57a8aa161173e7249da82209362904c",
+      "original_size": 2779
+    },
+    "scripts/profile_store.py": {
+      "iv": "pywOJB+B2vB6YqsY",
+      "tag": "RMrUMQCGwJvCLbTwD9nhqw==",
+      "original_checksum": "f1184f9ac4630691b5d8f6af90ed3c4171d1a2bb14769642249e8ea73658fb0e",
+      "original_size": 8521
+    },
+    "scripts/validate_skill.py": {
+      "iv": "up1Di1wZcEUowhti",
+      "tag": "k8XV1jGPLcv0XJF2OJ6i+g==",
+      "original_checksum": "2bace30bc828eea58fca7e008643e51171e6f2112b678f72636f92063f039b87",
+      "original_size": 26852
+    },
+    "scripts/xhs_collect.py": {
+      "iv": "QYfb/6SXcXVytJCc",
+      "tag": "c+pcN8/Ktq/1RKIbSZg/Yg==",
+      "original_checksum": "cd7b219030efe91ef22be532616db0c7271b742a0971d85daea3ca644a1afaa5",
+      "original_size": 8155
+    },
+    "scripts/xhs_search.py": {
+      "iv": "Ol9fMcZmZReLwQrV",
+      "tag": "lBGYLClRzvbhPymr4BMg1Q==",
+      "original_checksum": "c13ef56df09a6f2175660c23cab195f50133a92cbc44c36959d3af6c9ad32cbc",
+      "original_size": 8950
+    }
+  }
+}
