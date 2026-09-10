@@ -1,4 +1,4 @@
-# lov-check-balance
+# 额度体检 · Check Balance
 
 > 这个 skill 可以看到你多个平台（例如 cc、codex、ds 等）的账号的用量，以及什么时候重置。
 
