@@ -1,0 +1,3 @@
+interface:
+  display_name: "Sync with Synology"
+  short_description: "Verified Synology upload, MD5 check, and local cleanup"

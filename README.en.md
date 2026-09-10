@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **160 skills** — 144 Free + 16 Paid.
+> **161 skills** — 145 Free + 16 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -201,6 +201,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Alchemist](https://github.com/lovstudio/skill-distiller-skill) (`skill-distiller`) | Turn delivery history into a clear, reusable Skill blueprint with boundaries and acceptance checks. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Pricer](https://github.com/lovstudio/skill-pricing-skill) (`skill-pricing`) | Turn Skill pricing into an explainable decision backed by cost, value, confidence, and channel fit. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Publisher](https://github.com/lovstudio/skill-publisher-skill) (`skill-publisher`) | Auto-price every release, publish to the LovStudio website by default, and expand only to explicitly requested channels. — requires: `skill-pricing` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Synology Sync](https://github.com/lovstudio/sync-with-synology-skill) (`sync-with-synology`) | Move local files to Synology with verified uploads and safe local pruning. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Version Keeper](https://github.com/lovstudio/skills) (`version-management`) | Manage package versions with Changesets — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Version Review](https://github.com/lovstudio/skills) (`version-management-manual`) | Create a changeset for manual review — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [XBTI Gallery](https://github.com/lovstudio/xbti-gallery-skill) (`xbti-gallery`) | Browse a gallery of XBTI personality tests — requires: `branding-consistency` |

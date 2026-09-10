@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **160 个技能** — 144 个免费 + 16 个付费。
+> **161 个技能** — 145 个免费 + 16 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -200,6 +200,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Alchemist](https://github.com/lovstudio/skill-distiller-skill) (`skill-distiller`) | [Skill 炼金师](https://github.com/lovstudio/skill-distiller-skill) | 将项目经验蒸馏为边界清晰、可创建且可验收的 Skill 蓝图。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Pricer](https://github.com/lovstudio/skill-pricing-skill) (`skill-pricing`) | [Skill 定价师](https://github.com/lovstudio/skill-pricing-skill) | 从成本、价值、信心度与渠道适配出发，生成可解释的 Skill Pricing Card。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Publisher](https://github.com/lovstudio/skill-publisher-skill) (`skill-publisher`) | [Skill 发布助手](https://github.com/lovstudio/skill-publisher-skill) | 每次发布先自动定价，默认上架 LovStudio 官网，仅在明确要求时扩展到其他渠道。 — 依赖: `skill-pricing` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Synology Sync](https://github.com/lovstudio/sync-with-synology-skill) (`sync-with-synology`) | [群晖同步助手](https://github.com/lovstudio/sync-with-synology-skill) | 把本地文件安全迁移到群晖：先校验，再清理本地副本。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Version Keeper](https://github.com/lovstudio/skills) (`version-management`) | [版本管家](https://github.com/lovstudio/skills) | 根据实际包变更生成 changeset，并按请求更新版本与 CHANGELOG — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Version Review](https://github.com/lovstudio/skills) (`version-management-manual`) | [版本审阅](https://github.com/lovstudio/skills) | 生成 changeset 草稿并提供编辑入口，审阅后验证版本计划 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [XBTI Gallery](https://github.com/lovstudio/xbti-gallery-skill) (`xbti-gallery`) | [XBTI 图鉴](https://github.com/lovstudio/xbti-gallery-skill) | 从已核实的社区地址或仓库列出可访问的 XBTI 人格测试案例 — 依赖: `branding-consistency` |

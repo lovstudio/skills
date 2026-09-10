@@ -7065,3 +7065,40 @@ skills:
     review_trigger_en: Review when hosted services, proprietary data, guaranteed
       support, or direct paid delivery are added.
     card_path: pricing-cards/xhs.md
+
+- name: sync-with-synology
+  runtime_name: sync-with-synology
+  display_name: Synology Sync
+  repo: lovstudio/sync-with-synology-skill
+  name_zh: 群晖同步助手
+  paid: false
+  category: Dev Tools
+  version: 1.0.0
+  updated_at: '2026-09-10T02:10:00Z'
+  description: Upload local files to a Synology NAS through QuickConnect or DSM HTTPS, verify size and MD5, then safely prune the local copy.
+  tagline_en: Move local files to Synology with verified uploads and safe local pruning.
+  tagline_zh: 把本地文件安全迁移到群晖：先校验，再清理本地副本。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、synology-cli、安装脚本和本地验证夹具
+    delivery_unit_en: Public Skill source, synology-cli, install scripts, and local verification fixtures
+    value_zh: 用一条命令完成 QuickConnect/DSM 上传，校验远端大小与 MD5 后再处理本地副本，避免“上传成功但文件损坏”。
+    value_en: Move files through QuickConnect or DSM in one command, verify remote size and MD5, and only then prune the local copy.
+    anchor_zh: 一次批量迁移预计节省 20–60 分钟的逐文件操作、校验和清理，并降低误删唯一副本的风险。
+    anchor_en: A batch migration can save roughly 20–60 minutes of manual transfer, validation, and cleanup while reducing the risk of deleting a damaged or missing local copy.
+    basis_zh: 六维加权 2.7/5；真实 7 文件测试、MD5 校验和故障保护已经验证，但 QuickConnect 协议维护风险较高，当前作为免费公开入口。
+    basis_en: The six-dimension score is 2.7/5; real seven-file tests, MD5 checks, and failure protection pass, but QuickConnect protocol maintenance risk keeps it as a free public entry.
+    boundary_zh: 覆盖 File Station 上传、QuickConnect/HTTPS 连接、远端大小与 MD5 校验、回收站与显式 unlink、审计日志；不含 C2 Object Storage、S3、远端删除、账号开通、托管执行或 SLA。
+    boundary_en: Covers File Station upload, QuickConnect/HTTPS transport, remote size and MD5 checks, reversible trash or explicit unlink, and audit logs; excludes C2 Object Storage, S3, remote deletion, account provisioning, hosted execution, and SLAs.
+    maintenance_zh: 随 DSM、QuickConnect relay、认证方式和真实使用反馈复评；不承诺付费支持时效。
+    maintenance_en: Review against DSM, QuickConnect relay, authentication changes, and real usage feedback; no paid support SLA.
+    confidence: case-backed
+    review_trigger_zh: 累计 10 次外部真实迁移、3 个非作者案例、版本或协议变化、加入托管服务、企业部署或保证支持时复评。
+    review_trigger_en: Review after ten external real migrations, three non-author cases, a version or protocol change, hosted service, enterprise deployment, or guaranteed support.
+    card_path: pricing-cards/sync-with-synology.md
