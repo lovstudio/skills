@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Turn a Xiaohongshu topic from raw discovery into a source-backed, executable research report while preserving a search-only JSON path."
+basis: "Free public-source entry because the implementation wraps an existing open-source CLI and standard Python discovery, note-body collection, and local filtering; no proprietary service or recurring infrastructure is required."
+boundary: "Includes exact-topic discovery, optional title filtering, note-body collection, source-backed report synthesis, pagination, and JSON export. Excludes account provisioning, manual research services, media downloading, publishing, official data licensing, and any guarantee that Xiaohongshu results can be redistributed."
+review_trigger: "Review when a hosted service, proprietary data, guaranteed support, or a direct paid delivery is added."
+confidence: internal

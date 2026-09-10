@@ -1,0 +1,107 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.0"
+description: "Turn a Xiaohongshu topic request into a source-backed research report by default, with an explicit search-only mode for discovery rows and JSON export."
+owner:
+  team: contributors
+  contact: repository
+license:
+  name: MIT
+  terms: Use and redistribute with attribution; upstream xiaohongshu-cli is Apache-2.0 and must keep its own notice.
+  url: ../LICENSE
+use_case:
+  audience: Chinese content researchers, independent creators, travel planners, and agent workflows.
+  scenario: Operator gives a Xiaohongshu topic or question and expects a conclusion, plan, or research report rather than a raw list of notes.
+  tasks:
+    - Discover Xiaohongshu notes from an exact topic query.
+    - Collect note bodies into an auditable evidence corpus.
+    - Synthesize a source-backed research report with uncertainty.
+    - Support explicit search-only filtering and JSON export.
+deployment:
+  geography: global
+  environments:
+    - macOS
+    - Linux
+    - Windows with WSL
+requirements:
+  credentials: Active browser login for Xiaohongshu; no API key.
+  dependencies:
+    - xiaohongshu-cli 0.6.4 or newer
+    - lov-branding-consistency for audience-visible authored report copy
+  runtime:
+    - Python 3.9 or newer
+    - UTF-8 terminal
+risks:
+  - risk: Upstream API may change or close without notice.
+    mitigation: Surface CLI errors and ask the operator to update xiaohongshu-cli; keep the raw error message.
+  - risk: Aggressive paging or note reads may trigger risk control or captcha.
+    mitigation: Start with one or two pages, use a delay between note reads, and preserve partial corpus state instead of fabricating missing content.
+  - risk: A report may overgeneralize from a small or promotional sample.
+    mitigation: Separate source facts from synthesis, show the note count, surface conflicts, and mark unresolved uncertainty.
+  - risk: Operator may expect redistribution rights from public search results.
+    mitigation: Return source data and note URLs; do not claim copyright or authorize republishing.
+references:
+  - title: Primary Skill instructions
+    path: SKILL.md
+  - title: Research report contract
+    path: references/research-report.md
+  - title: Implementation notes
+    path: references/implementation.md
+  - title: Skill group composition
+    path: references/skill-composition.md
+output:
+  types:
+    - Research report
+    - Evidence corpus
+    - Note list
+  formats:
+    - Markdown
+    - JSON
+  parameters:
+    - query
+    - must-contain
+    - pages
+    - sort
+    - type
+    - max-notes
+    - output path
+  validation:
+    - ok true
+    - meta.matches
+    - meta.notes_collected
+    - every returned title or URL resolves to the source envelope
+  description: A default source-backed report plus the search and note-body JSON used to produce it.
+ethical_considerations: Do not expose cookies or tokens. Use only an account the operator is authorized to use. Treat notes as source evidence, not rights to republish; label recommendations separately from platform facts.
+dimensions:
+  - id: correctness
+    label: Result fidelity
+    description: Returned titles, authors, interaction counts, note bodies, and URLs come from xhs CLI JSON rather than model memory.
+    evidence: Verified with authenticated September 2026 searches; the collector preserves raw note bodies and records read failures in meta.errors.
+    score: verified
+  - id: research-usefulness
+    label: Research usefulness
+    description: A bare topic request produces an answer, plan, or recommendation instead of stopping at raw search rows.
+    evidence: The September 2026 冈仁波齐线路规划 run collected 20 note bodies and produced a 3-day route plan with source links.
+    score: verified
+  - id: filter-precision
+    label: Filter precision
+    description: Search-only mode applies every requested title term locally and never invents a row to pass a filter.
+    evidence: Tested with dual-term title filters; zero-match results are reported instead of being replaced with unverified rows.
+    score: verified
+  - id: efficiency
+    label: Setup and speed
+    description: The Skill reuses the installed CLI and browser login; no API key, jq, or external database is needed.
+    evidence: Configuration is one installed CLI plus login; discovery and note reads run locally with a configurable delay.
+    score: verified
+pricing:
+  model: free_entry
+  currency: CNY
+  list_price_cny: 0
+  basis: Free public-source entry for authenticated Xiaohongshu discovery, note-body collection, and source-backed report synthesis.
+  boundary: Includes exact-topic discovery, note-body collection, source-backed report synthesis, title filtering, and JSON export. Excludes account provisioning, manual research services, media downloading, publishing, official data licensing, and any guarantee that Xiaohongshu results can be redistributed.
+  review_trigger: Review when a hosted service, proprietary data, guaranteed support, or a direct paid delivery is added.
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

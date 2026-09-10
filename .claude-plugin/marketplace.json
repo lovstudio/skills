@@ -117,7 +117,7 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 24 free + 5 paid (Credits redemption required).",
+      "description": "General — 25 free + 4 paid (Credits redemption required).",
       "category": "General",
       "skills": [
         "./skills/image-translation-errata",
