@@ -11,7 +11,7 @@
     {
       "name": "design",
       "source": "./",
-      "description": "Design — 6 free + 4 paid (Credits redemption required).",
+      "description": "Design — 7 free + 4 paid (Credits redemption required).",
       "category": "Design",
       "skills": [
         "./skills/frontend-design",
@@ -23,6 +23,7 @@
         "./skills/professional-portrait",
         "./skills/riso-portrait",
         "./skills/professional-infographic",
+        "./skills/mobile-infographic",
         "./skills/oh-my-landingpage",
         "./skills/business-card"
       ],

@@ -2195,6 +2195,7 @@ skills:
   tagline_zh: 把复杂材料或投资路径重构为一条可回溯的视觉论证，从进入、分阶段退出到最终判断。
   related:
   - image-creator
+  - mobile-infographic
   pricing:
     model: one_time
     visibility: public
@@ -2227,6 +2228,46 @@ skills:
     review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
       change, or a material change in support cost.
     card_path: pricing-cards/professional-infographic.md
+- name: mobile-infographic
+  runtime_name: lov-mobile-infographic
+  updated_at: 2026-09-10T16:03:39Z
+  display_name: "Mobile Infographic"
+  repo: lovstudio/mobile-infographic-skill
+  name_zh: "手机信息图"
+  paid: false
+  category: Design
+  version: "0.1.0"
+  description: "Turn conclusions into 1080px vertical mobile infographics with readable type floors, evidence linkage, and audited HTML/PNG output."
+  tagline_en: Turn an existing conclusion into vertical infographics a phone can actually read, with type floors, safe areas, and an audit report.
+  tagline_zh: 把已有结论重排成手机上真能读完的竖版信息图，自带字号下限、安全区与可复核审计报告。
+  related:
+  - professional-infographic
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、六个语义模板、五种画布比例、移动可读性门禁与一组真实三卡案例
+    delivery_unit_en: Public Skill source, six semantic templates, five canvas ratios, a mobile readability gate, and one real three-card case
+    value_zh: 把结论、证据与来源重排成手机上读得完的竖版信息图，并用字号下限、行宽上限、对比度与安全区把「能读」变成可判定结果。
+    value_en: Re-lay-out a conclusion, its evidence and its sources into vertical infographics a phone can finish, turning readability into measurable type floors, line limits, contrast and safe areas.
+    anchor_zh: 一次使用可保守减少约 1–3 小时的字号试错、版式返工与导出检查，并让单位、口径与来源成为交付的一部分。
+    anchor_en: One use can conservatively save about one to three hours of type trial, layout rework and export checks, while making units, caveats and sources part of the delivery.
+    basis_zh: 六维加权 3.3/5；公开源码易复制且外部使用证据仅一组，因此先以 0 Credits 作为免费入口，与付费的「专业信息图」互补。
+    basis_en: The six-dimension score is 3.3/5; the source is easy to copy and only one case exists, so the website starts as a free entry that complements the paid Professional Infographic.
+    boundary_zh: 覆盖排版、渲染、移动可读性审计与系列组织；不含内容写作、事实核查、生图插图、翻译、托管渲染与平台发布。
+    boundary_en: Covers layout, rendering, mobile readability audit and series organization; excludes writing, fact checking, generated illustration, translation, hosted rendering and platform publishing.
+    maintenance_zh: 随浏览器渲染、字体度量、平台导出规格与真实使用反馈复评。
+    maintenance_en: Review against browser rendering, font metrics, platform export specs and real usage feedback.
+    confidence: case-backed
+    review_trigger_zh: 达到 100 次真实外部使用、五组公开案例、可读性阈值或画布比例变化，或加入托管渲染、专有模板包与团队审阅后复评。
+    review_trigger_en: Review after 100 verified external uses, five varied public cases, a change to the readability thresholds or canvas ratios, or the addition of hosted rendering, proprietary template packs or team review.
+    card_path: pricing-cards/mobile-infographic.md
 - name: oh-my-landingpage
   runtime_name: lov-oh-my-landingpage
   updated_at: 2026-08-23 17:04:16+00:00

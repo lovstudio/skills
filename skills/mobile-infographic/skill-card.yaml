@@ -1,0 +1,115 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: >
+  把已有结论的内容重排成 1080 宽竖屏可读的证据型信息卡，交付可编辑 HTML、2× PNG 与可复核的
+  移动可读性审计报告；支持单卡与三到五张的系列。
+owner:
+  team: LovStudio Skills
+  contact: https://lovstudio.ai/skills/mobile-infographic
+license:
+  name: MIT
+  terms: >
+    源码以 MIT 发布，可自由使用与修改；用户提供的素材、引文与数据版权仍归原权利人，
+    生成物中可以出现来源标注，但本 Skill 不授予第三方素材的再分发权。
+  url: LICENSE
+use_case:
+  audience: 需要把结论发到手机渠道的创作者、产品与运营人员
+  scenario: 手里已经有结论、证据与来源，需要在信息流、朋友圈、微信图文或课程材料里被读完
+  tasks:
+    - 把一段结论整理成一张竖屏信息卡
+    - 把一组要点整理成三到五张可连续滑动的系列卡
+    - 为已有卡片补口径、单位与来源标注
+deployment:
+  geography: global
+  environments:
+    - 本地 Agent 会话（macOS、Linux、Windows 的 Python 3.8+ 环境）
+    - 无浏览器的环境仅可使用 scaffold 与 init-brand
+requirements:
+  credentials: none
+  dependencies:
+    - Playwright for Python 与 Chromium 或 Google Chrome（render 与 audit）
+  runtime:
+    - Python 3.8+
+    - 中文字体（PingFang SC、Hiragino Sans GB 或 Microsoft YaHei 之一）
+risks:
+  - risk: 为了把内容塞进一屏而缩小字号或删掉口径
+    mitigation: 字号下限、行宽上限与口径检查写入机器审计，低于阈值即失败，只能改内容或拆卡
+  - risk: 机器审计通过被当作“好看”的证据
+    mitigation: audit 明确声明是代理指标；发布前必须做原图与 320px 缩略图复核，并在报告中记录
+  - risk: 卡片上的数字缺少单位、周期或分母而被误读
+    mitigation: metric-focus 模板强制单位与对比基准字段，evidence_linkage 检查要求编码元素挂在来源上
+  - risk: 品牌强调色直接用于文字导致对比度不足
+    mitigation: 文字强调统一使用 accent_ink，audit 按 4.5:1 与 3:1 分档检查
+references:
+  - title: 手机可读性标准
+    path: references/mobile-reading-standard.md
+  - title: 模板语法
+    path: references/template-grammar.md
+  - title: HTML 契约与 audit 字段
+    path: references/spec-schema.md
+  - title: 系列与导出
+    path: references/series-and-export.md
+  - title: 品牌与用户配置
+    path: references/user-config.md
+output:
+  types:
+    - 手机竖屏信息卡（单张或系列）
+  formats:
+    - 可编辑 card.html（内联 CSS 与 data URL 品牌 Logo）
+    - 2× PNG（默认 2160 宽，比例 3:4 时为 2160×2880）
+    - brief.md 与 source.md
+    - audit.json（100 分制代理分、逐项检查、人工复核状态）
+    - manifest.json（系列）
+  parameters:
+    - ratio 取 3:4、4:5、9:16、1:1 或 long
+    - scale 默认 2，可设 3
+    - series-index 与 series-size 控制页码范围
+  validation:
+    - 字号下限、行宽上限、对比度、安全区、裁切与越界
+    - 单一 data-claim、证据挂载、品牌页脚、系列页码
+    - 骨架文案必须全部替换；省略号截断按 warning 记录
+  description: >
+    PNG 由浏览器按精确像素栅格化，尺寸与画布不一致时渲染直接失败，避免交付被缩放或裁切的成品。
+ethical_considerations: >
+  只处理用户有权使用的材料；引用、转录与标识符保持原样，不改写事实。审计报告与卡片内不得写入
+  凭据、Cookie 或私密路径。涉及金融、医疗或法律判断的卡片必须保留口径与来源，不得用视觉确定性
+  掩盖不确定的前提。
+dimensions:
+  - id: readability
+    label: 移动可读性
+    description: 在真实手机观看距离下能否被读完，而不只是被渲染出来
+    evidence: 字号下限 72/50/36/26px、每行字符当量上限、对比度 4.5:1，由 audit 逐项测量
+    score: 100
+  - id: evidence_integrity
+    label: 证据完整性
+    description: 每个可见数字与判据都能追到来源、口径与单位
+    evidence: evidence_linkage 检查编码元素是否挂在 data-source-ref 上，brief.md 记录证据表
+    score: 100
+  - id: mobile_layout
+    label: 竖屏版式正确性
+    description: 内容不越界、不裁切、不挤压安全区，系列保持一致的页脚与宽度
+    evidence: canvas、overflow、out_of_bounds、safe_area、series_page 五项检查
+    score: 100
+  - id: brand_fidelity
+    label: 品牌一致性
+    description: Logo、署名与强调色符合品牌 Profile，且强调色在文字上仍可读
+    evidence: brand_footer 检查、accent_ink 对比度测量、brand_origin 来源回读
+    score: 100
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: >
+    免费。价值来自把“结论 → 手机可读卡片”的重复劳动与返工成本降下来，并让每张卡自带可复核的
+    可读性报告；评审者不需要打开源码就能看懂这张卡在讲什么。
+  boundary: >
+    包含排版、渲染、审计与系列组织；不包含内容写作、事实核查、生图、发布到任何平台，
+    也不包含把未核实的数字包装成结论。
+  review_trigger: >
+    当模板数量、审计阈值、平台导出规格变化，或出现需要账号与 Credits 的云端渲染与生图能力时重新评估。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

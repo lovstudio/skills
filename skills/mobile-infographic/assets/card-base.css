@@ -1,0 +1,313 @@
+/* Mobile Infographic shared layout.
+   Font floors, line-length limits, safe areas, and ratio rules are defined in
+   references/mobile-reading-standard.md. Keep this file brand-agnostic: the
+   template sets the :root variables. */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #d8d8d6;
+}
+
+.card {
+  position: relative;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  padding: var(--safe-top) var(--safe-x) var(--safe-bottom);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--block-gap);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  overflow: hidden;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card[data-ratio="long"] {
+  height: auto;
+  min-height: calc(var(--canvas-width) * 1.2);
+}
+
+/* ---------- head ---------- */
+
+.card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 72px;
+  line-height: 1.32;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.claim {
+  margin: 0;
+  font-size: 52px;
+  line-height: 1.34;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.rule {
+  width: 100%;
+  height: 3px;
+  background: var(--ink);
+  opacity: 0.85;
+}
+
+/* ---------- body ---------- */
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  min-height: 0;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.block-label {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.body-text {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.5;
+  font-weight: 450;
+}
+
+.body-text strong {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.note {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.source {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---------- components ---------- */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--soft-line);
+}
+
+.step:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.step-index {
+  width: 84px;
+  height: 84px;
+  border-radius: 24px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: 40px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.step-title {
+  margin: 0 0 10px;
+  font-size: 44px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 36px 0;
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+}
+
+.metric-value {
+  font-size: 132px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--accent-ink);
+  letter-spacing: -0.02em;
+}
+
+.metric-unit {
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.compare {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.compare-side {
+  padding: 32px 34px;
+  border-radius: 28px;
+  background: var(--tint);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.compare-side[data-side="against"] {
+  background: var(--tint-soft);
+  border: 2px dashed var(--soft-line);
+}
+
+.compare-tag {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.check {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.check-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.check[data-state="avoid"] .check-mark {
+  background: transparent;
+  border: 3px solid var(--muted);
+  color: var(--muted);
+}
+
+.quote {
+  margin: 0;
+  padding-left: 40px;
+  border-left: 8px solid var(--accent);
+  font-size: 50px;
+  line-height: 1.4;
+  font-weight: 550;
+}
+
+.quote-attribution {
+  margin: 0;
+  font-size: 30px;
+  color: var(--muted);
+}
+
+/* ---------- foot ---------- */
+
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 28px;
+  border-top: 2px solid var(--soft-line);
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.brand-logo {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+
+.attribution {
+  font-size: 28px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attribution a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-mark {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}

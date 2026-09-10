@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **163 skills** — 147 Free + 16 Paid.
+> **164 skills** — 148 Free + 16 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -96,8 +96,9 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Logo Radar](https://github.com/lovstudio/find-logo-skill) (`find-logo`) | Collect brand logos from public sources — wide and transparent preferred, archived for website/PPT/poster lineups. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Interface Designer](https://github.com/lovstudio/frontend-design-skill) (`frontend-design`) | Turn real content and existing code into distinctive, usable interfaces with verified interactions and media. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Partner Directory](https://github.com/lovstudio/maintain-partners-skill) (`maintain-partners`) | Scrape, normalize, and wire brand logos into the partners section across 4 locales in one shot. — requires: `find-logo` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Mobile Infographic](https://github.com/lovstudio/mobile-infographic-skill) (`mobile-infographic`) | Turn an existing conclusion into vertical infographics a phone can actually read, with type floors, safe areas, and an audit report. — requires: `branding-consistency`; related: `professional-infographic` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Website Whiz](https://github.com/lovstudio/oh-my-landingpage-skill) (`oh-my-landingpage`) | Turn product truth into a distinctive landing page, with brand, story, visual direction, implementation, and production review working as one system. |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Professional Infographic](https://github.com/lovstudio/professional-infographic-skill) (`professional-infographic`) | Turn dense material or an investment path into one sourced visual argument, from entry and staged exits to the decision that follows. — related: `image-creator` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Professional Infographic](https://github.com/lovstudio/professional-infographic-skill) (`professional-infographic`) | Turn dense material or an investment path into one sourced visual argument, from entry and staged exits to the decision that follows. — related: `image-creator`, `mobile-infographic` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Professional Portrait](https://github.com/lovstudio/professional-portrait-skill) (`professional-portrait`) | Turn one photo into a clean, identity-preserving professional portrait. — related: `image-creator`, `riso-portrait` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Riso Portrait](https://github.com/lovstudio/riso-portrait-skill) (`riso-portrait`) | Turn one photo into a recognizable Riso avatar, then check the face, hands, objects, and circular crop. — related: `image-creator`, `professional-portrait` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Style Sampler](https://github.com/lovstudio/visual-clone-skill) (`visual-clone`) | Extract the design DNA of a reference image so you can recreate the look. |

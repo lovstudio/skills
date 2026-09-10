@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>{{TITLE}}</title>
+  <style>
+    :root {
+      --canvas-width: {{CANVAS_WIDTH}}px;
+      --canvas-height: {{CANVAS_HEIGHT}}px;
+      --safe-x: {{SAFE_X}}px;
+      --safe-top: {{SAFE_TOP}}px;
+      --safe-bottom: {{SAFE_BOTTOM}}px;
+      --block-gap: {{BLOCK_GAP}}px;
+      --primary: {{BRAND_PRIMARY}};
+      --accent: {{BRAND_ACCENT}};
+      --accent-ink: {{BRAND_ACCENT_INK}};
+      --ink: {{BRAND_INK}};
+      --muted: {{BRAND_MUTED}};
+      --paper: {{BRAND_PAPER}};
+      --font: {{FONT_FAMILY}};
+      --soft-line: color-mix(in srgb, var(--ink) 12%, transparent);
+      --tint: color-mix(in srgb, var(--primary) 8%, var(--paper));
+      --tint-soft: color-mix(in srgb, var(--muted) 6%, var(--paper));
+      --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--paper));
+    }
+{{BASE_CSS}}
+  </style>
+</head>
+<body>
+  <article class="card" data-card data-template="{{TEMPLATE_ID}}" data-ratio="{{RATIO}}" data-series-index="{{SERIES_INDEX}}" data-series-size="{{SERIES_SIZE}}">
+    <header class="card-head">
+      <p class="eyebrow" data-role="label" data-skeleton="1">{{EYEBROW}}</p>
+      <h1 class="card-title" data-role="title" data-claim>{{TITLE}}</h1>
+      <div class="rule"></div>
+    </header>
+    <div class="card-body">
+      <p class="claim" data-role="claim" data-source-ref="{{SOURCE_ID}}">{{CLAIM}}</p>
+      <div class="compare">
+        <section class="compare-side" data-side="for" data-source-ref="{{SOURCE_ID}}">
+          <span class="compare-tag" data-role="label" data-skeleton="1">A 侧 · 判据名称</span>
+          <p class="body-text" data-role="body" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">A 侧在同一判据下的表现，写清数值或可观察事实。</p>
+        </section>
+        <section class="compare-side" data-side="against" data-source-ref="{{SOURCE_ID}}">
+          <span class="compare-tag" data-role="label" data-skeleton="1">B 侧 · 同一判据</span>
+          <p class="body-text" data-role="body" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">B 侧在同一判据下的表现，与 A 侧可比才算数。</p>
+        </section>
+      </div>
+      <p class="note" data-role="note" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">比较口径：两侧使用同一指标、同一周期、同一分母。</p>
+      <p class="source" data-role="source" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">{{SOURCE}}</p>
+    </div>
+    <footer class="card-foot">
+      <span class="brand-lockup">
+        <img class="brand-logo" data-brand-logo src="{{BRAND_LOGO}}" alt="{{BRAND_NAME}}">
+        <span class="attribution" data-attribution>{{ATTRIBUTION}} · <a href="{{BRAND_SITE}}">{{BRAND_SITE_LABEL}}</a></span>
+      </span>
+      <span class="page-mark" data-page>{{PAGE_MARK}}</span>
+    </footer>
+  </article>
+</body>
+</html>

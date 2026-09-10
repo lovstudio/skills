@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **163 个技能** — 147 个免费 + 16 个付费。
+> **164 个技能** — 148 个免费 + 16 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -95,8 +95,9 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Logo Radar](https://github.com/lovstudio/find-logo-skill) (`find-logo`) | [Logo 雷达](https://github.com/lovstudio/find-logo-skill) | 按品牌名或网址抓取 logo，自动评分择优（偏好长条形 + 透明底），统一归档到本地，方便网站/PPT/海报罗列。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Interface Designer](https://github.com/lovstudio/frontend-design-skill) (`frontend-design`) | [界面设计师](https://github.com/lovstudio/frontend-design-skill) | 把真实内容和现有代码落实为有辨识度、交互一致、媒体可用的界面，并留下验收证据。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Partner Directory](https://github.com/lovstudio/maintain-partners-skill) (`maintain-partners`) | [伙伴名录](https://github.com/lovstudio/maintain-partners-skill) | 一键抓取品牌 logo、标准化处理并接入官网 partners 区块，多语言全覆盖。 — 依赖: `find-logo` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Mobile Infographic](https://github.com/lovstudio/mobile-infographic-skill) (`mobile-infographic`) | [手机信息图](https://github.com/lovstudio/mobile-infographic-skill) | 把已有结论重排成手机上真能读完的竖版信息图，自带字号下限、安全区与可复核审计报告。 — 依赖: `branding-consistency`; 相关: `professional-infographic` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Website Whiz](https://github.com/lovstudio/oh-my-landingpage-skill) (`oh-my-landingpage`) | [官网小能手](https://github.com/lovstudio/oh-my-landingpage-skill) | 从产品与品牌事实出发，独立推导适合当前产品的叙事与视觉，并完成实现、响应式和生产回读。 |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Professional Infographic](https://github.com/lovstudio/professional-infographic-skill) (`professional-infographic`) | [专业信息图](https://github.com/lovstudio/professional-infographic-skill) | 把复杂材料或投资路径重构为一条可回溯的视觉论证，从进入、分阶段退出到最终判断。 — 相关: `image-creator` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Professional Infographic](https://github.com/lovstudio/professional-infographic-skill) (`professional-infographic`) | [专业信息图](https://github.com/lovstudio/professional-infographic-skill) | 把复杂材料或投资路径重构为一条可回溯的视觉论证，从进入、分阶段退出到最终判断。 — 相关: `image-creator`, `mobile-infographic` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Professional Portrait](https://github.com/lovstudio/professional-portrait-skill) (`professional-portrait`) | [职业形象照](https://github.com/lovstudio/professional-portrait-skill) | 把一张普通人像修成干净、自然、仍然像本人的职业形象照。 — 相关: `image-creator`, `riso-portrait` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Riso Portrait](https://github.com/lovstudio/riso-portrait-skill) (`riso-portrait`) | [Riso 人像](https://github.com/lovstudio/riso-portrait-skill) | 把一张照片重绘成仍然像本人的 Riso 头像，并检查五官、手指、物件与圆形裁切。 — 相关: `image-creator`, `professional-portrait` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Style Sampler](https://github.com/lovstudio/visual-clone-skill) (`visual-clone`) | [风格采样](https://github.com/lovstudio/visual-clone-skill) | 从参考图中提取设计要素，生成可复刻同款风格的指令。 |

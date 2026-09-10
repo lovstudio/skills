@@ -1,0 +1,46 @@
+[
+  {
+    "id": "harness-action-guide-series",
+    "type": "case",
+    "title": "把一段 harness 行动指南做成三张手机信息图",
+    "titleEn": "Turning a harness action guide into three mobile info cards",
+    "description": "从一次真实项目讨论中已有的结论出发，重排成 3:4 竖屏卡系列：结论卡说明自变量与因变量的关系，行动卡给出三条可执行动作，验收卡给出通过与否决判据。三张卡机器审计各 100/100，附原图与 320px 缩略图复核记录。",
+    "descriptionEn": "Reframes an existing conclusion from a real project discussion into a 3:4 vertical card series: a claim card, a three-step action card, and a pass or reject gate card. All three cards scored 100/100 on the machine audit, with full-size and 320px thumbnail review recorded.",
+    "cover": "cases/assets/harness-action-guide-01.png",
+    "gallery": [
+      "cases/assets/harness-action-guide-02.png",
+      "cases/assets/harness-action-guide-03.png"
+    ],
+    "input": {
+      "label": "输入",
+      "items": [
+        "本机会话中已经形成的 harness 行动指南结论（固定模型、控制注意力预算、用 A/B 实测决定 Skill 去留）",
+        "本机 Skill 目录实测数字：.codex 203 项、.agents 318 项、.claude 257 项，186 个同名项为软链",
+        "视频《如何构建个人 harness？从 vibe 动画到 auto 动画》作为方法来源"
+      ]
+    },
+    "prompt": "把上面的 harness 行动指南做成一套手机上能读完的卡片，三张，竖版。",
+    "output": {
+      "label": "交付",
+      "items": [
+        "3:4 竖屏卡三张，2160×2880 的 2× PNG",
+        "可编辑 card-01.html、card-02.html、card-03.html，内联 CSS 与 data URL 品牌 Logo",
+        "card-01 结论卡（single-claim）、card-02 行动卡（step-strip）、card-03 验收卡（checklist-gate）",
+        "machine audit 3/3 通过，各 100/100，阈值 85",
+        "原图与 320px 缩略图复核：缩略图可读出「优化 harness 的三步」，未见裁切、重叠或越界",
+        "series manifest 记录品牌来源、证据与逐卡审计文件"
+      ]
+    },
+    "evidence": {
+      "machine": "3/3 卡片机器审计 100/100 通过",
+      "visual": "原图与 320px 缩略图由视觉模型回读，未见裁切、重叠、越界或排版失衡",
+      "human": "人眼复核待补：本案例的人像复核状态为 pending，未以人工名义声明通过",
+      "assets": [
+        "cases/assets/harness-action-guide-01.html",
+        "cases/assets/harness-action-guide-02.html",
+        "cases/assets/harness-action-guide-03.html",
+        "cases/assets/harness-action-guide-manifest.json"
+      ]
+    }
+  }
+]

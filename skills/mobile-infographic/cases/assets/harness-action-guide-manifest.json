@@ -1,0 +1,50 @@
+{
+  "schema": "lov-mobile-infographic/series/v1",
+  "series_id": "harness-action-guide-2026-09-10",
+  "title": "优化 harness 的三步",
+  "ratio": "3:4",
+  "canvas_px": { "width": 1080, "height": 1440 },
+  "export_scale": 2,
+  "brand": {
+    "name": "手工川",
+    "site": "https://lovstudio.ai/skills/mobile-infographic",
+    "profile_origin": "packaged"
+  },
+  "created_at": "2026-09-10",
+  "evidence": [
+    "视频《如何构建个人 harness？从 vibe 动画到 auto 动画》（浙大猫学长，视频号）",
+    "本机 Skill 目录现场盘点：.codex 203 项 / .agents 318 项 / .claude 257 项，186 个同名项为软链",
+    "本机 ~/.codex/memories 5.9 MB，MEMORY.md 6330 行，摘要 84 行"
+  ],
+  "cards": [
+    {
+      "index": 1,
+      "template": "single-claim",
+      "html": "card-01.html",
+      "png": "手工川-harness行动指南-2026-09-10-v0.1-01.png",
+      "audit": "card-01.audit.json",
+      "claim": "模型是自变量，harness 是因变量"
+    },
+    {
+      "index": 2,
+      "template": "step-strip",
+      "html": "card-02.html",
+      "png": "手工川-harness行动指南-2026-09-10-v0.1-02.png",
+      "audit": "card-02.audit.json",
+      "claim": "固定模型 → 管住注意力 → A/B 实测"
+    },
+    {
+      "index": 3,
+      "template": "checklist-gate",
+      "html": "card-03.html",
+      "png": "手工川-harness行动指南-2026-09-10-v0.1-03.png",
+      "audit": "card-03.audit.json",
+      "claim": "没有对照实验的 Skill，等于没有证据"
+    }
+  ],
+  "review": {
+    "machine": "3/3 卡片机器审计 100/100 通过",
+    "visual": "原图与 320px 缩略图由视觉模型回读，未见裁切、重叠、越界或失衡",
+    "human": "人眼复核待补"
+  }
+}
