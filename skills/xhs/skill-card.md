@@ -1,4 +1,4 @@
-# Skill Card — lov-xhs
+# 小红书调研助手 · Xiaohongshu Researcher · Skill Card
 
 This human-readable card mirrors `skill-card.yaml`. It is a release record, not
 an implementation note. A reviewer should understand how a topic request

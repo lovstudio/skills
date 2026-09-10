@@ -1,4 +1,4 @@
-# lov-xhs
+# 小红书调研助手 · Xiaohongshu Researcher
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

@@ -1,3 +1,3 @@
 interface:
-  display_name: "Sync with Synology"
+  display_name: "群晖同步助手"
   short_description: "Verified Synology upload, MD5 check, and local cleanup"

@@ -1,4 +1,4 @@
-# lov-sync-with-synology
+# 群晖同步助手 · Synology Sync
 
 ![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
 

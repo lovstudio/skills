@@ -28,7 +28,7 @@ metadata:
     - note-research
 ---
 
-# 小红书调研助手 · Xiaohongshu Research
+# 小红书调研助手 · Xiaohongshu Researcher
 
 A bare Xiaohongshu topic request is a **research request**, not a request to
 dump search JSON. The Skill discovers notes, reads selected note bodies,

@@ -13,7 +13,7 @@ metadata:
     - md5
 ---
 
-# Sync with Synology
+# 群晖同步助手 · Synology Sync
 
 Use this skill when the user wants to move local files to Synology, QuickConnect, DSM File Station, or a Synology Drive target directory, and expects the local source to be cleaned up only after a verified upload.
 
