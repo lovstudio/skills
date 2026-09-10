@@ -3776,5 +3776,41 @@
       "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
       "submittedAt": "2026-09-08T05:05:12.225Z"
     }
+  },
+  {
+    "id": "wechat-image-tun-ipv6-repair",
+    "type": "case",
+    "skillIds": [
+      "clash-tun-doctor"
+    ],
+    "title": "TUN 模式下微信发图失败的 IPv6 直连故障修复",
+    "description": "在开启 TUN 模式的 Clash Verge Rev 环境中，微信图片发送失败。用户只调用了排障 Skill、没有附加症状描述，诊断仍逐层检查应用级配置、生成配置、运行时状态、活跃连接与服务日志，定位到两个叠加因素：Mihomo 运行时启用了 IPv6，而当前物理网络没有可用的 IPv6 上游；国内域名解析出的 AAAA 记录命中 GeoIP 直连规则后，经 IPv6 直连持续报 no route to host。关闭全局 IPv6 覆盖并持久化微信直连规则后，微信连接恢复为 IPv4 直连、日志错误停止，用户实测可以正常发送图片。",
+    "input": {
+      "items": [
+        "macOS + Clash Verge Rev（TUN 模式）；调用排障 Skill 时未提供症状描述，按默认目标应用（微信）开始诊断。",
+        "物理网络只提供 IPv4 出口：网卡无全局 IPv6 地址，也没有可用的 IPv6 默认路由。"
+      ]
+    },
+    "prompt": "[$lov-clash-tun-doctor]",
+    "output": {
+      "items": [
+        "定位根因：运行时 ipv6=true 与物理网络无 IPv6 上游叠加，国内域名 AAAA 记录命中 GeoIP(cn) 直连后失败；修复前 18 分钟内出现 960 条 no route to host，全部指向 IPv6 目标。",
+        "执行修复：关闭全局 IPv6 覆盖（ipv6: false），持久化 8 条微信直连规则（WeChat / WeChatAppEx / WeChatAppEx Helper 进程与 weixin.qq.com、wechat.com、servicewechat.com、qpic.cn、qlogo.cn 域名）。",
+        "验证：运行时 ipv6=false；weixin.qq.com 的 AAAA 查询返回为空、A 记录走 fake-IP；微信活跃连接全部为 IPv4 且命中 DIRECT；重启后服务日志不再出现 no route to host。",
+        "用户实测：微信可以正常发送图片。修复前未截图，本案例不含前后对比图。"
+      ]
+    },
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-09-10",
+      "method": "用户实测微信可正常发送图片，作为对本次输出的验收；同时回读运行时 ipv6=false、DNS AAAA 返回为空、微信活跃连接为 IPv4 且命中 DIRECT，并确认修复后的服务日志不再出现 no route to host。",
+      "privacy": "已移除主目录与用户路径、订阅与节点名称、配置标识和完整日志；不含账号信息或对话记录。修复前未截图，故无前后对比图。",
+      "artifact_type": "other"
+    },
+    "submission": {
+      "fingerprint": "83240a73c2c4f106a39304bacc8a05de9c9f256f4f13f9198213e67eba90add0",
+      "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
+      "submittedAt": "2026-09-10T05:42:03.270Z"
+    }
   }
 ]
