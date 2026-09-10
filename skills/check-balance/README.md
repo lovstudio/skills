@@ -1,6 +1,8 @@
-# 额度体检 · Check Balance
+# lov-check-balance
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+> 这个 skill 可以看到你多个平台（例如 cc、codex、ds 等）的账号的用量，以及什么时候重置。
+
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 一条只读命令查清 Claude、Codex、DeepSeek 等 agent 账号还剩多少额度、什么时候
 重置，以及按当前强度还能用多久。

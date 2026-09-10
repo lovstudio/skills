@@ -1,6 +1,6 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
-description: "只读汇总 Claude、Codex、DeepSeek 等 agent 账号的剩余额度、重置时间与本地消费速率，输出统一的文本表或 JSON。"
+version: "0.1.1"
+description: "看到你多个平台（例如 Claude Code、Codex、DeepSeek 等）账号的用量与重置时间，并汇总本地消费速率，输出统一的文本表或 JSON。"
 owner:
   team: skill-publisher
   contact: contributors

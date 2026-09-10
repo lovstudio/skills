@@ -1,14 +1,12 @@
 ---
 name: lov-check-balance
 description: >
-  一条命令查清 Claude、Codex、DeepSeek 等 agent 账号的剩余额度与重置时间，
-  合并官方订阅窗口、API 余额、本地网关消费与消耗速率；用户说“查我的额度”
-  “还有多少用量”“什么时候重置”，或问 how much quota is left 时使用。
+  一条命令查清 Claude、Codex、DeepSeek 等 agent 账号的剩余额度与重置时间，合并官方订阅窗口、API 余额、本地网关消费与消耗速率；用户说“查我的额度”“还有多少用量”“什么时候重置”，或问 how much quota is left 时使用。
 license: MIT
 compatibility: "Portable Agent Skills format. Python 3.8+ standard library only. macOS Keychain, Codex auth.json, cc-switch SQLite, and LiteLLM request logs are optional inputs; an unavailable source degrades into a labelled gap instead of failing the run."
 metadata:
   author: skill-publisher
-  version: "0.1.0"
+  version: "0.1.1"
   card_standard: lovstudio/skill-card/v1
   content_class: deterministic-output
   tags:

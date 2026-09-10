@@ -2,7 +2,7 @@
 
 | 项目 | 结论 |
 | --- | --- |
-| 版本 / 交付单元 | 0.1.0 / 公开 Skill 源码、六个 provider 探测、JSON 输出、Profile 契约 |
+| 版本 / 交付单元 | 0.1.1 / 公开 Skill 源码、六个 provider 探测、JSON 输出、Profile 契约 |
 | 目标买家 | 同时使用多个 agent 或 API 平台的个人开发者与小团队 |
 | 建议价格 | 0 Credits |
 | 稳定价格带 | 0 Credits，保持公开免费入口 |
@@ -57,7 +57,7 @@
 ```json
 {
   "skill_id": "lov-check-balance",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "display_unit": "credits",
   "billing_model": "free_entry",
   "recommended_price_credits": 0,

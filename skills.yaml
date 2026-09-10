@@ -7108,11 +7108,11 @@ skills:
   name_zh: 额度体检
   paid: false
   category: Dev Tools
-  version: 0.1.0
-  updated_at: '2026-09-10T02:40:00Z'
-  description: Report remaining agent quota and reset times across Claude, Codex, DeepSeek and OpenRouter, plus local gateway spend and burn rate.
-  tagline_en: See what is left on every agent account before a limit stops the work.
-  tagline_zh: 在被限流之前，看清每个 agent 账号还剩多少、什么时候重置。
+  version: 0.1.1
+  updated_at: '2026-09-10T03:05:00Z'
+  description: See how much quota your accounts across multiple platforms (Claude Code, Codex, DeepSeek and more) have left, and when each limit resets.
+  tagline_en: See how much quota your accounts across multiple platforms (cc, codex, ds and more) have left, and when each limit resets.
+  tagline_zh: 这个 skill 可以看到你多个平台（例如 cc、codex、ds 等）的账号的用量，以及什么时候重置。
   pricing:
     model: free_entry
     visibility: public

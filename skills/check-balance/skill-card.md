@@ -1,9 +1,9 @@
-# 额度体检 · Check Balance · Skill Card
+# Skill Card — lov-check-balance
 
 ## Description
 
-只读汇总 Claude、Codex、DeepSeek 等 agent 账号的剩余额度、重置时间与本地消费
-速率，输出统一的文本表或 JSON。
+看到你多个平台（例如 Claude Code、Codex、DeepSeek 等）账号的用量与重置时间，
+并汇总本地消费速率，输出统一的文本表或 JSON。
 
 ## Owner
 
@@ -46,7 +46,7 @@ LiteLLM 请求日志。无第三方依赖。
 
 ## Skill Version
 
-0.1.0
+0.1.1
 
 ## Ethical Considerations
 
