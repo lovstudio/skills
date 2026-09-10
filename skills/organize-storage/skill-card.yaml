@@ -1,0 +1,103 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 按项目、用途与生命周期盘点整块存储盘，规划同卷安全重命名与迁移，输出映射、回滚记录和不可删除门禁。
+owner:
+  team: contributors
+  contact: local-skill-source
+license:
+  name: MIT
+  terms: 允许在本地 Agent 宿主中使用、修改与分发；保留来源与许可证。
+  url: LICENSE
+use_case:
+  audience: 需要整理外置盘、归档盘或大型目录的个人与团队
+  scenario: 根目录混合相机项目、个人归档、成片、app 数据、安装包与系统目录
+  tasks:
+    - 只读盘点存储盘职责
+    - 按项目或事件分类
+    - 生成同卷迁移映射与回滚脚本
+    - 在执行后逐项验收
+deployment:
+  geography: local
+  environments:
+    - macOS
+    - Linux
+requirements:
+  credentials: none
+  dependencies:
+    - Python 3.8+
+    - PyYAML
+  runtime:
+    - 可读写的目标存储卷
+    - 同卷 rename 权限
+risks:
+  - risk: 移动正在使用的项目或 app 库会破坏绝对路径。
+    mitigation: 48 小时活跃检查、打开句柄检查、app 库门禁和用户确认。
+  - risk: 回收站里的唯一副本被误清空。
+    mitigation: 回收站封存门禁；本 Skill 永不删除。
+  - risk: exFAT 的 AppleDouble sidecar 与目标文件分离。
+    mitigation: apply 自动携带并 verify 配对状态。
+references:
+  - title: Primary Skill instructions
+    path: SKILL.md
+  - title: Project-first taxonomy
+    path: references/storage-taxonomy.md
+  - title: Safety gates
+    path: references/safety-gates.md
+output:
+  types:
+    - inventory JSON
+    - move plan JSON
+    - mapping JSON
+    - rollback shell script
+    - verification report
+  formats:
+    - JSON
+    - Markdown
+    - shell
+  parameters:
+    - target root
+    - move map
+    - log directory
+  validation:
+    - same-volume rename
+    - destination conflict check
+    - source gone and destination present
+    - sidecar pairing
+  description: 只读盘面清单、可审计迁移计划、逐项验收结果与可恢复旧路径。
+ethical_considerations: 不删除、不覆盖、不移动系统目录或唯一副本；保留历史日志与用户授权边界，不虚构验证结果。
+dimensions:
+  - id: safety
+    label: 不可删除与回收站门禁
+    description: 在结构移动中保护唯一副本、系统目录和 app 库。
+    evidence: references/safety-gates.md 与 storage_organizer.py 的 hard block 逻辑。
+    score: null
+  - id: reversibility
+    label: 可逆性
+    description: 每次 apply 都生成 mapping 与 rollback。
+    evidence: apply 子命令与 cases/cases.json 的真实迁移案例。
+    score: null
+  - id: traceability
+    label: 可追溯性
+    description: 旧路径、新路径、inode、size 与时间戳逐项记录。
+    evidence: mapping.json 结构与 verify 子命令。
+    score: null
+  - id: portability
+    label: 宿主可移植性
+    description: 仅依赖 Python 标准库和本地文件系统。
+    evidence: scripts/storage_organizer.py 使用 argparse 与标准库。
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 先用真实盘级迁移案例积累安全性和可逆性证据。
+  boundary: 交付本 Skill 源码、脚本与文档；不含第三方存储、云同步、数据恢复或人工代运营。
+  review_trigger: 十次真实盘级迁移后，或跨平台文件系统差异导致维护成本明显变化时复评。
+  confidence: medium
+distribution:
+  paid: []
+  free:
+    - channel: github
+      status: prepared
+    - channel: lovstudio
+      status: prepared
