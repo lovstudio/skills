@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **162 skills** — 146 Free + 16 Paid.
+> **163 skills** — 147 Free + 16 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -191,6 +191,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Obsidian Cache Reset](https://github.com/lovstudio/obsidian-reset-cache-skill) (`obsidian-reset-cache`) | Reset Obsidian's cache when it gets stuck on "Loading cache". |
 | ![Free](https://img.shields.io/badge/Free-green) | [Codex Task Launcher](https://github.com/lovstudio/open-codex-session-skill) (`open-codex-session`) | Open the exact Codex task you mean, then verify the desktop actually navigated. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Tauri Backend Tuner](https://github.com/lovstudio/optimize-tauri-backend-skill) (`optimize-tauri-backend`) | Reduce Tauri Rust restart pain by modularizing the backend, shrinking command surfaces, and hardening long IPC streams. |
+| ![Free](https://img.shields.io/badge/Free-green) | [Storage Organizer](https://github.com/lovstudio/organize-storage-skill) (`organize-storage`) | Turn a messy drive into a project-first archive without deleting or overwriting. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Port Keeper](https://github.com/lovstudio/project-port-skill) (`project-port`) | Assign each project a stable, unique dev port so services stop colliding. |
 | ![Free](https://img.shields.io/badge/Free-green) | [API Refiner](https://github.com/lovstudio/skills) (`refactor-api`) | Refactor redundant backend APIs — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Module Refactorer](https://github.com/lovstudio/skills) (`refactor-modular`) | Refactor a large file into cohesive modules — requires: `branding-consistency` |

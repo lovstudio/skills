@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 避免整盘重排时的路径破坏、唯一副本丢失和不可逆操作。
+basis: 免费入口，先用真实盘级迁移案例积累安全性与可逆性证据。
+boundary: 交付本 Skill 源码、脚本与文档；不含云存储、数据恢复、跨卷复制和人工代运营。
+review_trigger: 十次真实盘级迁移后，或跨平台文件系统差异导致维护成本明显变化时复评。
+confidence: medium

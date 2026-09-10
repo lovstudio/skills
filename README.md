@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **162 个技能** — 146 个免费 + 16 个付费。
+> **163 个技能** — 147 个免费 + 16 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -190,6 +190,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Obsidian Cache Reset](https://github.com/lovstudio/obsidian-reset-cache-skill) (`obsidian-reset-cache`) | [Obsidian 缓存清理](https://github.com/lovstudio/obsidian-reset-cache-skill) | Obsidian 卡在 Loading cache 时，一键重置缓存救场。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Codex Task Launcher](https://github.com/lovstudio/open-codex-session-skill) (`open-codex-session`) | [Codex 任务直达](https://github.com/lovstudio/open-codex-session-skill) | 给出 thread ID 或刚确认的 session，让 Codex 直接打开准确任务。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Tauri Backend Tuner](https://github.com/lovstudio/optimize-tauri-backend-skill) (`optimize-tauri-backend`) | [Tauri 后端调优](https://github.com/lovstudio/optimize-tauri-backend-skill) | 优化 Tauri 后端结构、命令边界和长 IPC 生命周期，降低 Rust 重启带来的开发摩擦。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [Storage Organizer](https://github.com/lovstudio/organize-storage-skill) (`organize-storage`) | [存储整理师](https://github.com/lovstudio/organize-storage-skill) | 把混乱的存储盘整理成项目优先的归档结构，同卷安全迁移、可回滚、不删除。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Port Keeper](https://github.com/lovstudio/project-port-skill) (`project-port`) | [端口管家](https://github.com/lovstudio/project-port-skill) | 给每个项目分配一个稳定且唯一的开发端口，彻底告别端口撞车。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [API Refiner](https://github.com/lovstudio/skills) (`refactor-api`) | [API 精修](https://github.com/lovstudio/skills) | 识别后端接口重复并在保持调用契约的前提下实施重构 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Module Refactorer](https://github.com/lovstudio/skills) (`refactor-modular`) | [模块拆分师](https://github.com/lovstudio/skills) | 按职责拆分长文件并保持公共接口、依赖和行为一致 — 依赖: `branding-consistency` |

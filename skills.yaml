@@ -7137,3 +7137,41 @@ skills:
     review_trigger_zh: 累计 10 次外部真实使用、3 个非作者案例、上游接口字段变化、加入云端聚合或团队看板时复评。
     review_trigger_en: Review after ten external real uses, three non-author cases, an upstream interface change, cloud aggregation, or a team dashboard.
     card_path: pricing-cards/check-balance.md
+- name: organize-storage
+  runtime_name: lov-organize-storage
+  display_name: 'Storage Organizer'
+  updated_at: '2026-09-10T10:40:00Z'
+  repo: lovstudio/organize-storage-skill
+  name_zh: '存储整理师'
+  paid: false
+  category: Dev Tools
+  version: '0.1.0'
+  description: 'Organize a storage volume by project with safe same-volume moves, rollback, and no-deletion gates.'
+  tagline_en: 'Turn a messy drive into a project-first archive without deleting or overwriting.'
+  tagline_zh: '把混乱的存储盘整理成项目优先的归档结构，同卷安全迁移、可回滚、不删除。'
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: '公开 Skill 源码、项目优先分类法、同卷迁移 CLI、mapping、rollback 和不可删除门禁'
+    delivery_unit_en: 'Public Skill source, project-first taxonomy, same-volume CLI, mapping, rollback, and no-deletion gates'
+    value_zh: '把混乱的存储盘整理成项目优先的归档结构，并保留可回滚的旧路径映射。'
+    value_en: 'Turn a messy storage volume into a project-first archive while preserving a rollback mapping.'
+    anchor_zh: '一次盘级重组通常节省 2–8 小时的目录梳理、路径排查和回滚准备，并降低不可逆移动风险。'
+    anchor_en: 'A volume-level reorganization typically saves 2–8 hours of sorting, path checks, and rollback preparation while reducing irreversible-move risk.'
+    basis_zh: '以一次真实外置盘迁移和本地 fixture 验证为证据，免费入口用于积累跨文件系统、跨用户结果。'
+    basis_en: 'Based on one real external-volume migration and local fixture verification; free entry to accumulate cross-filesystem and cross-user evidence.'
+    boundary_zh: '只处理本地可读写存储卷的同卷 rename；不含跨卷复制、云同步、数据恢复、唯一副本删除和人工代运营。'
+    boundary_en: 'Local same-volume rename only; excludes cross-volume copies, cloud sync, data recovery, sole-copy deletion, and managed services.'
+    maintenance_zh: '随文件系统行为、app 库路径和真实使用反馈变化复评。'
+    maintenance_en: 'Review when filesystem behavior, app-library paths, or real-use feedback change.'
+    confidence: entry
+    review_trigger_zh: '十次真实盘级迁移、版本变化、支持成本明显变化或出现付费需求时复评。'
+    review_trigger_en: 'Review after ten real volume migrations, a version change, a material support-cost change, or evidence of paid demand.'
+    card_path: pricing-cards/organize-storage.md
