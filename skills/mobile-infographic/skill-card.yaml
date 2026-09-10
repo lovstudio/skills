@@ -2,7 +2,7 @@ schema: lovstudio/skill-card/v1
 version: "0.1.0"
 description: >
   把已有结论的内容重排成 1080 宽竖屏可读的证据型信息卡，交付可编辑 HTML、2× PNG 与可复核的
-  移动可读性审计报告；支持单卡与三到五张的系列。
+  移动可读性审计报告；默认一张 long 自适应高度卡，用户明确要多张时才做三到五张系列。
 owner:
   team: LovStudio Skills
   contact: https://lovstudio.ai/skills/mobile-infographic
@@ -17,7 +17,8 @@ use_case:
   scenario: 手里已经有结论、证据与来源，需要在信息流、朋友圈、微信图文或课程材料里被读完
   tasks:
     - 把一段结论整理成一张竖屏信息卡
-    - 把一组要点整理成三到五张可连续滑动的系列卡
+    - 把三项以上可比数据画成条形榜单（bar-ranking），标题写成可被反驳的观点
+    - 只有在明确要求多张时，才把一组要点整理成三到五张可连续滑动的系列卡
     - 为已有卡片补口径、单位与来源标注
 deployment:
   geography: global
@@ -53,15 +54,15 @@ references:
     path: references/user-config.md
 output:
   types:
-    - 手机竖屏信息卡（单张或系列）
+    - 手机竖屏信息卡（默认单张 long 自适应高度，可选系列）
   formats:
     - 可编辑 card.html（内联 CSS 与 data URL 品牌 Logo）
-    - 2× PNG（默认 2160 宽，比例 3:4 时为 2160×2880）
+    - 2× PNG（默认 2160 宽，高度随内容；固定 3:4 时为 2160×2880）
     - brief.md 与 source.md
     - audit.json（100 分制代理分、逐项检查、人工复核状态）
     - manifest.json（系列）
   parameters:
-    - ratio 取 3:4、4:5、9:16、1:1 或 long
+    - ratio 默认 long（高度自适应），可显式改为 3:4、4:5、9:16 或 1:1
     - scale 默认 2，可设 3
     - series-index 与 series-size 控制页码范围
   validation:

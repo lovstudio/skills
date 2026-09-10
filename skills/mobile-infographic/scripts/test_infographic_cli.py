@@ -117,22 +117,73 @@ class TemplateAssemblyTests(unittest.TestCase):
         )
         self.assertIn("--canvas-height: 0px", html)
 
-    def test_site_label_drops_scheme(self):
-        brand = dict(json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8")))
-        html = cli.build_card_html(
+    def _build(self, brand: dict) -> str:
+        return cli.build_card_html(
             template="single-claim",
             ratio="3:4",
             title="标题",
             claim="结论",
             eyebrow="标签",
-            source="来源",
+            source="来源：群聊记录",
             source_id="S1",
             brand=brand,
             series_index=1,
             series_size=1,
         )
-        self.assertNotIn(">https://lovstudio.ai", html)
-        self.assertIn(">lovstudio.ai/skills/mobile-infographic<", html)
+
+    def test_credit_link_is_opt_in_and_drops_scheme(self):
+        brand = dict(json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8")))
+        brand["credit_link"] = True
+        html = self._build(brand)
+        self.assertNotIn("https://lovstudio.ai", html)  # scheme is stripped
+        self.assertIn("lovstudio.ai/skills/mobile-infographic", html)
+        self.assertNotIn("<a href", html)  # a PNG cannot be clicked
+
+    def test_default_footer_is_logo_only(self):
+        # provenance lives in the appendix block, so the packaged footer stays empty
+        brand = dict(json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8")))
+        html = self._build(brand)
+        self.assertIn('<span class="attribution" data-attribution></span>', html)
+
+    def test_credit_can_be_omitted(self):
+        brand = dict(json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8")))
+        brand["credit"] = ""
+        brand["credit_link"] = False
+        html = self._build(brand)
+        self.assertIn('<span class="attribution" data-attribution></span>', html)
+
+    def test_bar_rows_become_bars_with_length_encoding(self):
+        brand = dict(json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8")))
+        html = cli.build_card_html(
+            template="bar-ranking",
+            ratio="long",
+            title="最受欢迎的是继续做事的那类城",
+            claim="前三类合计 41 人",
+            eyebrow="调研",
+            source="来源：群聊记录",
+            source_id="S1",
+            brand=brand,
+            series_index=1,
+            series_size=1,
+            rows=cli.build_bar_rows(
+                [
+                    "01 新海|25|New Harbor · AI 进入工作|早＊ · 南艺 89|voice",
+                    "04 新界|13|Nexus · 低税低监管|刘＊畅 · Cakinna|civic",
+                ],
+                "S1",
+            ),
+        )
+        self.assertIn('data-encoding="长度 = 数值"', html)
+        self.assertIn("bar-head", html)
+        self.assertIn("bar-desc", html)
+        self.assertIn("bar-note", html)
+        self.assertIn('style="width:100.0%"', html)
+        self.assertIn('style="width:52.0%"', html)
+        self.assertIn("（25 人）", html)
+        self.assertIn('bar-track"><span class="bar-fill" style="width:100.0%"></span></span>\n            <span class="bar-value"', html)
+        # three stacked full-width lines: head, metric, roster (no side-by-side columns)
+        self.assertNotIn("bar-line", html)
+        self.assertNotIn("data-source-ref=\"{{SOURCE_ID}}\"", html)
 
 
 class BrandResolutionTests(unittest.TestCase):
@@ -289,4 +340,12 @@ class CliParserTests(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Run the mobile-infographic CLI regression suite")
+    parser.add_argument("-v", "--verbose", type=int, default=2, choices=(0, 1, 2),
+                        help="unittest verbosity (default 2)")
+    parser.add_argument("pattern", nargs="?", help="only run test names containing this substring")
+    args = parser.parse_args()
+    argv = [sys.argv[0]] + ([args.pattern] if args.pattern else [])
+    unittest.main(verbosity=args.verbose, argv=argv)

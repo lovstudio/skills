@@ -2,10 +2,10 @@
   {
     "id": "harness-action-guide-series",
     "type": "case",
-    "title": "把一段 harness 行动指南做成三张手机信息图",
-    "titleEn": "Turning a harness action guide into three mobile info cards",
-    "description": "从一次真实项目讨论中已有的结论出发，重排成 3:4 竖屏卡系列：结论卡说明自变量与因变量的关系，行动卡给出三条可执行动作，验收卡给出通过与否决判据。三张卡机器审计各 100/100，附原图与 320px 缩略图复核记录。",
-    "descriptionEn": "Reframes an existing conclusion from a real project discussion into a 3:4 vertical card series: a claim card, a three-step action card, and a pass or reject gate card. All three cards scored 100/100 on the machine audit, with full-size and 320px thumbnail review recorded.",
+    "title": "按要求做三张：harness 行动指南的手机信息图系列",
+    "titleEn": "An explicit three-card request: turning a harness action guide into a mobile series",
+    "description": "用户明确要求“一套三张”时的系列案例：从真实项目讨论已有的结论出发，重排成 3:4 竖屏卡系列——结论卡说明自变量与因变量的关系，行动卡给出三条可执行动作，验收卡给出通过与否决判据。三张卡机器审计各 100/100，附原图与 320px 缩略图复核记录。默认形态其实是一张 long 自适应高度卡，本案例记录的是显式多张请求下的形态。",
+    "descriptionEn": "The series case for when the user explicitly asks for three cards: an existing conclusion is reframed into a 3:4 vertical series (claim card, three-step action card, pass or reject gate card). All three cards scored 100/100 on the machine audit, with full-size and 320px thumbnail review recorded. The default output form is a single long card with adaptive height; this case records the explicit multi-card path.",
     "cover": "cases/assets/harness-action-guide-01.png",
     "gallery": [
       "cases/assets/harness-action-guide-02.png",

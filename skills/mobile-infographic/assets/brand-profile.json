@@ -2,7 +2,7 @@
   "schema_version": 1,
   "name": "手工川",
   "site": "https://lovstudio.ai/skills/mobile-infographic",
-  "logo": "shougongchuan-logo.png",
+  "logo": "shougongchuan-logo-trimmed.png",
   "primary": "#182033",
   "accent": "#EB6637",
   "accent_ink": "#B0491A",
@@ -11,5 +11,7 @@
   "paper": "#F7F4EF",
   "font_family": "PingFang SC, Hiragino Sans GB, Microsoft YaHei, Inter, sans-serif",
   "attribution": "Powered by",
+  "credit": "",
+  "credit_link": false,
   "output_dir": "$HOME/Documents/mobile-infographic"
 }

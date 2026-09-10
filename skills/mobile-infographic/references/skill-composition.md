@@ -6,7 +6,7 @@
 
 | Skill | 真实路由契约 | 与本 Skill 的关系 |
 | --- | --- | --- |
-| `lov-professional-infographic` | 证据驱动的咨询 Exhibit，默认 16:9 主版，输出 poster.html 与 3200×1800 PNG，附 brief.md、source.md、audit.json | 最接近的同类。本 Skill 是面向手机单列阅读的重排能力：画布 1080 宽、竖版比例、字号下限、行宽上限与系列页码都是它没有的约束 |
+| `lov-professional-infographic` | 证据驱动的咨询 Exhibit，默认 16:9 主版，输出 poster.html 与 3200×1800 PNG，附 brief.md、source.md、audit.json | 最接近的同类。本 Skill 是面向手机单列阅读的重排能力：画布 1080 宽、默认 long 自适应高度、字号下限、行宽上限与系列页码都是它没有的约束 |
 | `lov-gen-card` | 把结构化 JSON 与独立示意图排成固定比例编辑式知识卡，900×1350 预设，强调可复制 Prompt 与图鉴系列 | 输出形态相近，内容模型不同：图鉴卡的核心是示意图与评分字段，本 Skill 的核心是结论与证据，且不做生图 |
 | `baoyu-xhs-images` | 生成 1–10 张卡通风格社交媒体图卡，12 风格 8 版式 3 配色，面向种草与互动 | 方向不同：该 Skill 以生图与风格化为目标，本 Skill 以代码排版与可核查口径为目标 |
 | `lov-product-onepage` | 产品 Brief 到品牌一页纸宣发海报，含转化文案与产品证据 | 目的不同：宣发海报服务转化叙事，本 Skill 服务结论与证据的移动端复述 |
@@ -19,7 +19,7 @@
 
 | 分类 | 归属 | 输入产物 | 输出产物 | 验收边界 |
 | --- | --- | --- | --- | --- |
-| core atom | 本 Skill | 一段已有结论的内容加上可核查来源 | card.html、2× PNG、brief.md、source.md、audit.json | 机器审计通过且完成原图与缩略图复核 |
+| core atom | 本 Skill | 一段已有结论的内容加上可核查来源 | 默认一张 long 卡：card.html、2× PNG、brief.md、source.md、audit.json；仅显式多张时另附 manifest.json | 机器审计通过且完成原图与缩略图复核 |
 | optional upstream | 用户或 `lov-table2image` | 表格、报表、调研材料 | 可提炼的数字与判据 | 单位、周期、分母明确 |
 | optional downstream | `lov-article-creator` / `lov-publish-wechat-article` | 通过审计的 PNG | 文章内嵌图或分享首图 | 由下游渠道的可见性回读负责 |
 | optional downstream | `lov-media-publisher` | 通过审计的 PNG | 平台发布结果 | 由平台回读负责 |

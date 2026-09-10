@@ -2230,14 +2230,14 @@ skills:
     card_path: pricing-cards/professional-infographic.md
 - name: mobile-infographic
   runtime_name: lov-mobile-infographic
-  updated_at: 2026-09-10T16:03:39Z
+  updated_at: 2026-09-11T00:45:00Z
   display_name: "Mobile Infographic"
   repo: lovstudio/mobile-infographic-skill
   name_zh: "手机信息图"
   paid: false
   category: Design
-  version: "0.1.0"
-  description: "Turn conclusions into 1080px vertical mobile infographics with readable type floors, evidence linkage, and audited HTML/PNG output."
+  version: "0.9.1"
+  description: "Turn conclusions into one long 1080px mobile infographic with a thesis title, ranked bars, readable type floors, an appendix of sources, and audited HTML/PNG output."
   tagline_en: Turn an existing conclusion into vertical infographics a phone can actually read, with type floors, safe areas, and an audit report.
   tagline_zh: 把已有结论重排成手机上真能读完的竖版信息图，自带字号下限、安全区与可复核审计报告。
   related:
@@ -2252,9 +2252,9 @@ skills:
     price_range_credits:
     - 0
     - 0
-    delivery_unit_zh: 公开 Skill 源码、六个语义模板、五种画布比例、移动可读性门禁与一组真实三卡案例
-    delivery_unit_en: Public Skill source, six semantic templates, five canvas ratios, a mobile readability gate, and one real three-card case
-    value_zh: 把结论、证据与来源重排成手机上读得完的竖版信息图，并用字号下限、行宽上限、对比度与安全区把「能读」变成可判定结果。
+    delivery_unit_zh: 公开 Skill 源码、七个语义模板（含排位条形图）、默认单张 long 自适应高度卡（仅 Logo 页脚 + 附录署名）、移动可读性门禁与一组真实案例
+    delivery_unit_en: Public Skill source, seven semantic templates (including a ranked bar chart), a long-card default with a logo-only footer and appendix, the mobile readability gate, and one real case
+    value_zh: 把结论、证据与来源重排成手机上读得完的竖版信息图：先立观点标题，再用条形长度编码排位，把来源与工具收进附录，并用字号下限、行宽上限、对比度与安全区把「能读」变成可判定结果。
     value_en: Re-lay-out a conclusion, its evidence and its sources into vertical infographics a phone can finish, turning readability into measurable type floors, line limits, contrast and safe areas.
     anchor_zh: 一次使用可保守减少约 1–3 小时的字号试错、版式返工与导出检查，并让单位、口径与来源成为交付的一部分。
     anchor_en: One use can conservatively save about one to three hours of type trial, layout rework and export checks, while making units, caveats and sources part of the delivery.

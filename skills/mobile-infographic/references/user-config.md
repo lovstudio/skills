@@ -23,7 +23,9 @@
 | `accent_ink` | 强调色对应的文字色，必须达到 4.5:1 对比度 |
 | `ink` / `muted` / `paper` | 正文色、次级色与纸色 |
 | `font_family` | 字体栈，默认包含 PingFang SC 与回退字体 |
-| `attribution` | 署名前缀，默认 `Powered by` |
+| `attribution` | 旧版署名前缀（兼容字段），默认 `Powered by` |
+| `credit` | 页脚署名正文，如 `Powered by 卡片`；留空即不署名 |
+| `credit_link` | 是否在署名后追加 `site` 链接，默认 `false` |
 
 ## 初始化
 

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>{{TITLE}}</title>
+  <style>
+    :root {
+      --canvas-width: {{CANVAS_WIDTH}}px;
+      --canvas-height: {{CANVAS_HEIGHT}}px;
+      --safe-x: {{SAFE_X}}px;
+      --safe-top: {{SAFE_TOP}}px;
+      --safe-bottom: {{SAFE_BOTTOM}}px;
+      --block-gap: {{BLOCK_GAP}}px;
+      --primary: {{BRAND_PRIMARY}};
+      --accent: {{BRAND_ACCENT}};
+      --accent-ink: {{BRAND_ACCENT_INK}};
+      --ink: {{BRAND_INK}};
+      --muted: {{BRAND_MUTED}};
+      --paper: {{BRAND_PAPER}};
+      --font: {{FONT_FAMILY}};
+      --soft-line: color-mix(in srgb, var(--ink) 12%, transparent);
+      --tint: color-mix(in srgb, var(--primary) 8%, var(--paper));
+      --tint-soft: color-mix(in srgb, var(--muted) 6%, var(--paper));
+      --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--paper));
+    }
+{{BASE_CSS}}
+    .chart {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    /* one row = three stacked, full-width lines:
+       ① item + description ② count + bar ③ roster/annotation */
+    .bar-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      padding: 20px 0;
+      border-top: 1px solid var(--soft-line);
+    }
+    .bar-row:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .bar-head {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      margin: 0;
+      min-width: 0;
+    }
+    .bar-label {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .bar-desc {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.4;
+      color: var(--muted);
+      min-width: 0;
+    }
+    .bar-metric {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+    .bar-track {
+      position: relative;
+      flex: 1 1 auto;
+      height: 12px;
+      background: var(--tint-soft);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      background: var(--accent);
+      border-radius: 6px;
+    }
+    .bar-value {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      min-width: 132px;
+    }
+    .bar-note {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.4;
+      min-width: 0;
+    }
+  </style>
+</head>
+<body>
+  <article class="card" data-card data-template="{{TEMPLATE_ID}}" data-ratio="{{RATIO}}" data-series-index="{{SERIES_INDEX}}" data-series-size="{{SERIES_SIZE}}">
+    <header class="card-head">
+      <p class="eyebrow" data-role="label" data-skeleton="1">{{EYEBROW}}</p>
+      <h1 class="card-title" data-role="title" data-claim>{{TITLE}}</h1>
+      <div class="rule"></div>
+    </header>
+    <div class="card-body">
+      <p class="claim" data-role="claim" data-source-ref="{{SOURCE_ID}}">{{CLAIM}}</p>
+      <div class="chart" data-source-ref="{{SOURCE_ID}}" data-encoding="长度 = 人数">
+{{ROWS}}
+      </div>
+      <div class="block">
+        <p class="body-text" data-role="body" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">解释这个排序说明什么，以及读者应该据此做什么判断。</p>
+        <p class="note" data-role="note" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">口径与限定：单位、分母、周期。</p>
+      </div>
+      <p class="source" data-role="source" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">{{SOURCE}}</p>
+    </div>
+    <footer class="card-foot">
+      <span class="brand-lockup">
+        <img class="brand-logo" data-brand-logo src="{{BRAND_LOGO}}" alt="{{BRAND_NAME}}">
+        <span class="attribution" data-attribution>{{CREDIT_LINE}}</span>
+      </span>
+      <span class="page-mark" data-page>{{PAGE_MARK}}</span>
+    </footer>
+  </article>
+</body>
+</html>

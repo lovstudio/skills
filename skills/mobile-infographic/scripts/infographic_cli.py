@@ -32,7 +32,33 @@ TEMPLATES = (
     "compare-pair",
     "checklist-gate",
     "quote-evidence",
+    "bar-ranking",
 )
+
+# Skeleton bars used when `scaffold --row` is not supplied for bar-ranking.
+# One row = two lines: (1) item + its one-line description, (2) bar + value + roster.
+DEFAULT_BAR_ROWS = """        <div class="bar-row" data-source-ref="{{SOURCE_ID}}" data-encoding="长度 = 数值">
+          <p class="bar-head">
+            <span class="bar-label" data-role="label" data-skeleton="1">01 条目</span>
+            <span class="bar-desc" data-role="note" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">这一行是什么：一句设定或背景。</span>
+          </p>
+          <div class="bar-metric">
+            <span class="bar-track"><span class="bar-fill" style="width:100%"></span></span>
+            <span class="bar-value" data-role="label" data-skeleton="1">（0 人）</span>
+          </div>
+          <p class="bar-note" data-role="note" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">人数对应的名单或依据。</p>
+        </div>
+        <div class="bar-row" data-source-ref="{{SOURCE_ID}}" data-encoding="长度 = 数值">
+          <p class="bar-head">
+            <span class="bar-label" data-role="label" data-skeleton="1">02 条目</span>
+            <span class="bar-desc" data-role="note" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">这一行是什么：一句设定或背景。</span>
+          </p>
+          <div class="bar-metric">
+            <span class="bar-track"><span class="bar-fill" style="width:60%"></span></span>
+            <span class="bar-value" data-role="label" data-skeleton="1">（0 人）</span>
+          </div>
+          <p class="bar-note" data-role="note" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">人数对应的名单或依据。</p>
+        </div>"""
 
 # Canvas sizes at 1080 logical width. `long` grows with the content.
 RATIOS: dict[str, tuple[int, int]] = {
@@ -42,6 +68,9 @@ RATIOS: dict[str, tuple[int, int]] = {
     "9:16": (1080, 1920),
     "long": (1080, 0),
 }
+
+# `long` grows with the content; three 3:4 screens is the documented ceiling.
+LONG_MAX_HEIGHT = 1440 * 3
 
 SAFE_AREA = {"x": 88, "top": 96, "bottom": 96, "gap": 40}
 
@@ -171,6 +200,75 @@ def page_mark(index: int, size: int) -> str:
     return f"{index}/{size}" if size > 1 else "1/1"
 
 
+def credit_line(brand: dict[str, Any]) -> str:
+    """Footer credit. `credit` is free text; the site is appended as *plain text* when
+    `credit_link` is on.
+
+    The deliverable is a PNG: a hyperlink is invisible once rasterised, so any URL has to
+    be readable as text. Cards about private material can omit the credit entirely.
+    """
+    credit = str(brand.get("credit", "") or "").strip()
+    site = str(brand.get("site", "") or "").strip()
+    show_site = bool(brand.get("credit_link"))
+    label = re.sub(r"^https?://", "", site).rstrip("/")
+    if credit and show_site and label:
+        return f"{credit} · {label}"
+    if credit:
+        return credit
+    if show_site and label:
+        return label
+    return ""
+
+
+def build_bar_rows(specs: list[str], source_id: str) -> list[str] | None:
+    """Turn `--row "label|value|description|members|group"` specs into bar-ranking markup.
+
+    Each row is two lines by design: the first line names the item and says what it is,
+    the second line carries the bar, the count and the roster. The bar length is the
+    row's share of the largest value, so the ranking is read before any number.
+    """
+    parsed: list[dict[str, Any]] = []
+    for spec in specs:
+        parts = [part.strip() for part in spec.split("|")]
+        label = parts[0] if parts else ""
+        try:
+            value = float(parts[1]) if len(parts) > 1 and parts[1] else 0.0
+        except ValueError:
+            raise SystemExit(f"--row value must be numeric: {spec!r}")
+        description = parts[2] if len(parts) > 2 else ""
+        members = parts[3] if len(parts) > 3 else ""
+        group = parts[4] if len(parts) > 4 and parts[4] else "voice"
+        parsed.append({
+            "label": label,
+            "value": value,
+            "description": description,
+            "members": members,
+            "group": group,
+        })
+    if not parsed:
+        return None
+    largest = max(row["value"] for row in parsed) or 1.0
+    rows = []
+    for row in parsed:
+        width = max(2.0, round(row["value"] / largest * 100, 1))
+        rows.append(
+            "\n".join([
+                f'        <div class="bar-row" data-group="{row["group"]}" data-source-ref="{source_id}" data-encoding="长度 = 数值">',
+                '          <p class="bar-head">',
+                f'            <span class="bar-label" data-role="label">{row["label"]}</span>',
+                f'            <span class="bar-desc" data-role="note" data-source-ref="{source_id}">{row["description"]}</span>',
+                '          </p>',
+                '          <div class="bar-metric">',
+                f'            <span class="bar-track"><span class="bar-fill" style="width:{width}%"></span></span>',
+                f'            <span class="bar-value" data-role="label">（{row["value"]:g} 人）</span>',
+                '          </div>',
+                f'          <p class="bar-note" data-role="note" data-source-ref="{source_id}">{row["members"]}</p>',
+                "        </div>",
+            ])
+        )
+    return rows
+
+
 def build_card_html(
     *,
     template: str,
@@ -183,6 +281,7 @@ def build_card_html(
     brand: dict[str, Any],
     series_index: int,
     series_size: int,
+    rows: list[str] | None = None,
 ) -> str:
     template_path = TEMPLATE_DIR / f"{template}.html"
     if not template_path.is_file():
@@ -224,12 +323,16 @@ def build_card_html(
         "{{CLAIM}}": claim,
         "{{SOURCE}}": source,
         "{{SOURCE_ID}}": source_id,
+        "{{ROWS}}": "\n".join(rows) if rows else DEFAULT_BAR_ROWS,
+        "{{CREDIT_LINE}}": credit_line(brand),
         "{{SERIES_INDEX}}": str(series_index),
         "{{SERIES_SIZE}}": str(series_size),
         "{{PAGE_MARK}}": page_mark(series_index, series_size),
     }
     for token, value in replacements.items():
         markup = markup.replace(token, value)
+    # Rows are injected as markup and may carry their own tokens.
+    markup = markup.replace("{{SOURCE_ID}}", source_id).replace("{{SOURCE}}", source)
     return markup
 
 
@@ -277,6 +380,7 @@ def cmd_scaffold(args: argparse.Namespace) -> int:
         brand=brand,
         series_index=args.series_index,
         series_size=args.series_size,
+        rows=build_bar_rows(args.row or [], args.source_id),
     )
     target.write_text(html, encoding="utf-8")
 
@@ -431,6 +535,17 @@ MEASURE_JS = r"""
   });
 
   const overflow = [];
+  const bars = [];
+  card.querySelectorAll('.bar-row').forEach((row) => {
+    const value = row.querySelector('.bar-value');
+    const label = row.querySelector('.bar-label');
+    const parsed = value ? parseFloat(value.textContent) : NaN;
+    bars.push({
+      label: label ? label.textContent.trim().slice(0, 40) : '',
+      value: Number.isFinite(parsed) ? parsed : null,
+    });
+  });
+
   card.querySelectorAll('*').forEach((element) => {
     const style = getComputedStyle(element);
     if (style.display === 'none' || style.visibility === 'hidden') { return; }
@@ -510,6 +625,7 @@ MEASURE_JS = r"""
       background: style.backgroundColor,
     },
     text_entries: textEntries,
+    bars,
     overflow,
     out_of_bounds: outOfBounds,
     safe_violations: logged,
@@ -575,7 +691,9 @@ def cmd_render(args: argparse.Namespace) -> int:
 
     width_px, height_px = png_size(output)
     expected = (int(round(box["width"] * args.scale)), int(round(box["height"] * args.scale)))
-    ok = (width_px, height_px) == expected
+    # A `long` card has a fractional height: the element box and the captured bitmap can
+    # differ by one device pixel, so allow 1px and flag anything larger.
+    ok = all(abs(actual - want) <= 1 for actual, want in zip((width_px, height_px), expected))
     report = {
         "status": "rendered" if ok else "size_mismatch",
         "image": str(output),
@@ -628,8 +746,28 @@ def audit_measurements(m: dict[str, Any], ratio_expected: tuple[int, int] | None
 
     if image_px:
         expected = (round(canvas["w"] * scale), round(canvas["h"] * scale))
-        add_issue(checks, "image_size", "error", image_px == expected,
-                  f"PNG {image_px[0]}×{image_px[1]}，期望 {expected[0]}×{expected[1]}（scale {scale}）")
+        # A `long` card has a fractional content height, so the browser's element box and
+        # the captured bitmap can differ by one device pixel; anything larger is a real bug.
+        within_one_px = all(abs(actual - want) <= 1 for actual, want in zip(image_px, expected))
+        add_issue(checks, "image_size", "error", within_one_px,
+                  f"PNG {image_px[0]}×{image_px[1]}，期望 {expected[0]}×{expected[1]}（scale {scale}，容差 1px）")
+
+    if canvas["ratio"] == "long":
+        add_issue(checks, "long_height", "warning", canvas["h"] <= LONG_MAX_HEIGHT,
+                  f"长卡高度 {round(canvas['h'])}px（上限 {LONG_MAX_HEIGHT}px，即三个 3:4 屏；"
+                  "超出应先拆卡或删减）")
+
+    bars = [bar for bar in m.get("bars", []) if bar.get("value") is not None]
+    if len(bars) > 1:
+        ordered = all(
+            bars[index]["value"] >= bars[index + 1]["value"]
+            for index in range(len(bars) - 1)
+        )
+        add_issue(checks, "bar_order", "error", ordered,
+                  "条形按数值倒序排列" if ordered else
+                  "条形未按数值倒序："
+                  + " → ".join(f"{bar['label']} {bar['value']:g}" for bar in bars[:6])
+                  + "（排位图必须从大到小，读者靠长度和顺序同时读）")
 
     tiny = [
         entry for entry in m["text_entries"]
@@ -685,8 +823,9 @@ def audit_measurements(m: dict[str, Any], ratio_expected: tuple[int, int] | None
               ))
     add_issue(checks, "glyph_overflow", "warning", not glyphs,
               "文本未溢出自身盒模型" if not glyphs else
-              "字形超出自身盒模型（不裁切，但行高偏紧）：" + "; ".join(
-                  f"{item['tag']}.{item['cls']} 纵向 +{item['dy']}px" for item in glyphs[:3]
+              "内容超出自身盒模型（未裁切，但已被压紧）：" + "; ".join(
+                  f"{item['tag']}.{item['cls']} 纵向 +{item['dy']}px 横向 +{item['dx']}px"
+                  for item in glyphs[:3]
               ))
 
     add_issue(checks, "out_of_bounds", "critical", not m["out_of_bounds"],
@@ -712,16 +851,42 @@ def audit_measurements(m: dict[str, Any], ratio_expected: tuple[int, int] | None
               f"其中已挂来源 {counts['encodings_linked']} 个")
 
     logo = m["logo"]
-    footer_ok = bool(logo and logo["present"] and logo["natural_w"] > 0) and bool(m["attribution"])
+    # The logotype is required; the credit line is optional (a card about private
+    # material may omit it, and the implementation tooling is never mandatory).
+    footer_ok = bool(logo and logo["present"] and logo["natural_w"] > 0)
     add_issue(checks, "brand_footer", "critical", footer_ok,
-              "品牌页脚完整" if footer_ok else
-              f"Logo={logo}，署名「{m['attribution']}」")
+              f"品牌页脚 Logo 完整，署名「{m['attribution'] or '（未署名）'}」"
+              if footer_ok else f"Logo={logo}")
+
+    title_text = (m.get("title") or "").strip()
+    has_number = bool(re.search(r"\d", title_text))
+    judgment_cues = ("应该", "必须", "值得", "才是", "不是", "而是", "其实", "真正",
+                     "反而", "意味着", "只能", "更", "最", "成了", "正在", "决定")
+    add_issue(checks, "title_is_thesis", "warning",
+              not has_number or any(cue in title_text for cue in judgment_cues),
+              "标题是判断句" if not has_number or any(cue in title_text for cue in judgment_cues)
+              else f"标题像事实陈述「{title_text[:24]}」：信息图标题应给出观点或主题，数字留给图表")
+
+    sensitive = ("db_storage", "sqlcipher", ".db", "wxid_", "/Users/", "~/Library", "Msg_")
+    leaked = [entry for entry in m["text_entries"]
+              if any(pattern.lower() in (entry["text"] or "").lower() for pattern in sensitive)]
+    add_issue(checks, "source_hygiene", "error", not leaked,
+              "来源行只含对外可披露的来源"
+              if not leaked else
+              "文本疑似泄漏内部数据来源：" + "; ".join(
+                  f"「{(entry['text'] or '')[:24]}」" for entry in leaked[:3]
+              ) + "（内部数据库路径、表名与工具名不要出现在卡片上）")
 
     size = int(canvas["series_size"] or 1)
     index = int(canvas["series_index"] or 1)
-    page_ok = bool(m["page_mark"]) and (size <= 1 or bool(re.fullmatch(rf"{index}/{size}", m["page_mark"])))
-    add_issue(checks, "series_page", "warning", page_ok,
-              f"页码标记「{m['page_mark']}」，系列 {index}/{size}")
+    # A single card is not a series: no page mark is the correct state there.
+    if size <= 1:
+        page_ok = True
+        page_detail = "单卡不需要页码标记"
+    else:
+        page_ok = bool(re.fullmatch(rf"{index}/{size}", m["page_mark"]))
+        page_detail = f"页码标记「{m['page_mark']}」，系列 {index}/{size}"
+    add_issue(checks, "series_page", "warning", page_ok, page_detail)
 
     add_issue(checks, "skeleton_replaced", "critical", counts["skeletons"] == 0,
               "骨架文案已全部替换" if counts["skeletons"] == 0 else
@@ -758,6 +923,12 @@ def cmd_audit(args: argparse.Namespace) -> int:
         page.wait_for_timeout(150)
         page.evaluate("() => document.fonts && document.fonts.ready")
         page.wait_for_timeout(80)
+        # `long` cards grow with their content: size the viewport to the card first so
+        # the measurement and the captured bitmap agree on the same layout pass.
+        box = page.locator("[data-card]").bounding_box()
+        if box:
+            page.set_viewport_size({"width": args.width, "height": int(box["height"]) + 40})
+            page.wait_for_timeout(60)
         measured = page.evaluate(MEASURE_JS)
         browser.close()
 
@@ -895,11 +1066,22 @@ def build_parser() -> argparse.ArgumentParser:
 
     scaffold = sub.add_parser("scaffold", help="assemble an editable card.html")
     scaffold.add_argument("--template", default="single-claim", choices=TEMPLATES)
-    scaffold.add_argument("--ratio", default="3:4", choices=tuple(RATIOS))
+    scaffold.add_argument(
+        "--ratio",
+        default="long",
+        choices=tuple(RATIOS),
+        help="default 'long': one card whose height follows the content",
+    )
     scaffold.add_argument("--title", required=True)
     scaffold.add_argument("--claim", default="")
     scaffold.add_argument("--eyebrow", default="")
     scaffold.add_argument("--source", default="待补充来源")
+    scaffold.add_argument(
+        "--row",
+        action="append",
+        metavar="LABEL|VALUE|DESCRIPTION|MEMBERS|GROUP",
+        help="bar-ranking row (repeatable): line 1 = item + description, line 2 = bar + count + roster",
+    )
     scaffold.add_argument("--source-id", default="S1")
     scaffold.add_argument("--series-index", type=int, default=1)
     scaffold.add_argument("--series-size", type=int, default=1)

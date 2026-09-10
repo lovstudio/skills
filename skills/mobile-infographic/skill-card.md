@@ -1,4 +1,4 @@
-# 手机信息图 · Mobile Infographic · Skill Card
+# Skill Card — lov-mobile-infographic
 
 This human-readable card mirrors `skill-card.yaml`. It is a release record, not
 an implementation note. A reviewer should understand the Skill without opening
@@ -7,7 +7,7 @@ its source.
 ## Description
 
 把已有结论的内容重排成 1080 宽竖屏可读的证据型信息卡，交付可编辑 HTML、2× PNG 与可复核的
-移动可读性审计报告；支持单卡与三到五张的系列。
+移动可读性审计报告；默认一张 `long` 自适应高度卡，用户在请求里明确要多张时才做三到五张系列。
 
 ## Owner
 
@@ -20,7 +20,7 @@ MIT。源码可自由使用与修改；用户提供的素材、引文与数据�
 ## Use Case
 
 读者是需要把结论发到手机渠道的创作者、产品与运营人员。典型任务：把一段结论做成一张竖屏卡、
-把一组要点做成三到五张可连续滑动的系列卡、为已有卡片补口径与来源标注。
+用户明确要求时把一组要点做成三到五张可连续滑动的系列卡、为已有卡片补口径与来源标注。
 
 ## Deployment Geography
 
@@ -54,9 +54,9 @@ global。运行在本地 Agent 会话；没有浏览器时只能使用 `scaffold
 
 ## Skill Output
 
-可编辑 `card.html`（内联 CSS 与 data URL 品牌 Logo）、2× PNG（默认 2160 宽，`3:4` 时为
-2160×2880）、`brief.md`、`source.md`、`audit.json`，系列另附 `manifest.json`。
-参数：`ratio` 取 `3:4`、`4:5`、`9:16`、`1:1`、`long`；`scale` 默认 2；`series-index` 与
+可编辑 `card.html`（内联 CSS 与 data URL 品牌 Logo）、2× PNG（默认 2160 宽、高度随内容，
+固定 `3:4` 时为 2160×2880）、`brief.md`、`source.md`、`audit.json`，系列另附 `manifest.json`。
+参数：`ratio` 默认 `long`（高度自适应），可显式改为 `3:4`、`4:5`、`9:16`、`1:1`；`scale` 默认 2；`series-index` 与
 `series-size` 控制页码范围。校验：字号下限、行宽上限、对比度、安全区、裁切与越界、单一结论、
 证据挂载、品牌页脚、系列页码、骨架文案残留。
 
@@ -72,7 +72,7 @@ global。运行在本地 Agent 会话；没有浏览器时只能使用 `scaffold
 
 ## User Cases
 
-See [`cases/cases.json`](cases/cases.json). 已记录一个真实案例：三张 `3:4` 的 harness 行动指南系列，
+See [`cases/cases.json`](cases/cases.json). 已记录一个真实案例：用户明确要求三张时的 harness 行动指南 `3:4` 系列，
 机器审计 3/3 通过（各 100/100），附原图与 320px 缩略图复核结论。
 
 ## Dimension Map
