@@ -1,4 +1,4 @@
-# Skill Card — lov-mobile-infographic
+# 手机信息图 · Mobile Infographic · Skill Card
 
 This human-readable card mirrors `skill-card.yaml`. It is a release record, not
 an implementation note. A reviewer should understand the Skill without opening

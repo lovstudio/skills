@@ -1,4 +1,4 @@
-# lov-mobile-infographic
+# 手机信息图 · Mobile Infographic
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
