@@ -1,0 +1,98 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.0"
+description: "Diagnoses and recovers a Codex thread that cannot resume: 'No tool output found for tool call' or 'Model provider ... not found' after switching providers. It repairs the rollout or syncs thread provider metadata."
+owner:
+  team: "contributors"
+  contact: "local: lov-fix-codex-session"
+license:
+  name: MIT
+  terms: "MIT. Use and modify freely; keep attribution. Redistribution must preserve the license."
+  url: "../LICENSE"
+use_case:
+  audience: "Codex desktop / CLI users whose thread is stuck on a tool-call validation error or cannot open after a provider switch."
+  scenario: "A thread shows systemError, or an old thread fails to open after CC Switch changes the active provider."
+  tasks:
+    - "Resolve the thread id from a codex:// link or UUID."
+    - "Diagnose dangling function_call / function_call_output pairing in the rollout."
+    - "Recover the real deliverables already saved in the project directory."
+    - "Optionally write a repaired rollout that stops at the last healthy milestone."
+    - "Sync stale threads.model_provider values to the active config provider without rewriting rollout JSONL."
+deployment:
+  geography: global
+  environments:
+    - "Codex desktop app"
+    - "codex CLI with local ~/.codex/sessions"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.8+ (standard library only)"
+    - "Read access to the Codex sessions directory"
+    - "Read/write access to state_*.sqlite only for explicit provider sync"
+risks:
+  - risk: "Editing a live thread's rollout may not take effect if the host caches state in memory."
+    mitigation: "Prefer resuming from on-disk deliverables in a new thread; only edit the rollout when the thread is idle, and always keep a .bak backup."
+  - risk: "A repaired rollout may drop the poisoned tail that was never successfully processed."
+    mitigation: "The script never overwrites by default and names the repaired file separately; deliverables are preserved on disk."
+  - risk: "Rewriting rollout JSONL can invalidate paginated byte offsets."
+    mitigation: "Provider repair only updates state_*.sqlite and never rewrites sessions/*.jsonl; backup before --apply."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+output:
+  types:
+    - "Diagnostic report of rollout health"
+    - "Provider mismatch report from state_*.sqlite"
+    - "Recovered deliverable paths from the project directory"
+    - "Optional repaired rollout JSONL copy"
+  formats:
+    - "JSON (machine-readable)"
+    - "human-readable summary"
+    - "JSONL rollout copy"
+  parameters:
+    - "thread_id"
+    - "codex_home (default ~/.codex)"
+    - "config.toml path"
+    - "state_*.sqlite path"
+    - "target provider / source provider filters"
+  validation:
+    - "Reported dangling_calls list matches the poisoned tail."
+    - "Repaired rollout parses as valid JSONL."
+    - "Provider sync reports stale-only candidates and restores no provider after apply."
+    - "Recovered deliverables open and are unchanged."
+  description: "Two deterministic CLIs plus instruction context: rollout repair for tool-call poisoning, and SQLite-only provider sync after provider switching."
+ethical_considerations: "Local-first and read-only by default. No credentials collected; thread content, transcripts, and full private paths are never persisted to the shared profile. Only an explicit --fix / --write touches a rollout; provider sync only runs after a consistent SQLite backup."
+dimensions:
+  - id: correctness
+    label: "Diagnosis accuracy"
+    description: "Correctly flags the dangling tool-call/output pairing behind 'No tool output found'."
+    evidence: "Verified against a real 01a08678-… thread that re-raised the exact error; parser matched the orphaned call_id."
+    score: verified
+  - id: effectiveness
+    label: "Recovery completeness"
+    description: "Recovers the real deliverable (regenerated PDF) rather than only the error message."
+    evidence: "The Markdown deliverable referenced the flight-chain image and the PDF was regenerated and QAted at 18 pages."
+    score: verified
+  - id: efficiency
+    label: "Low-friction diagnosis"
+    description: "One read-only command returns the poisoned file and the dangling call ids."
+    evidence: "Stdlib-only script; no network or third-party dependency."
+    score: verified
+  - id: provider-safety
+    label: "Provider repair safety"
+    description: "Migrates only stale thread provider bindings and avoids rollout rewrites."
+    evidence: "Verified in a copied state_5.sqlite: 9 custom rows migrated to litellm, 2 openai rows untouched, backup created."
+    score: verified
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Local-first recovery utility that prevents re-typing the same diagnosis."
+  boundary: "Does not repair arbitrary software errors or publish to remote channels."
+  review_trigger: "Revisit when the Codex rollout format or the error message changes."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

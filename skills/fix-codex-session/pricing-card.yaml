@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Saves the time of re-diagnosing a Codex thread that cannot resume after tool-call poisoning or provider switching, and protects on-disk deliverables."
+basis: "Free. The diagnostic and recovery logic is deterministic and local; there is no ongoing service cost."
+boundary: "Includes thread-id resolution, rollout diagnosis, deliverable recovery, an optional repaired copy, and SQLite-only provider sync. Excludes config provider management, rollout rewriting, generic software repair, remote publishing, and platform distribution."
+review_trigger: "Revisit when the Codex rollout schema, state DB schema, or the 'No tool output found' / 'Model provider not found' validation changes, or when real users report a new recovery path."
+confidence: internal

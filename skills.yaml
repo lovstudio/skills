@@ -7216,3 +7216,40 @@ skills:
     review_trigger_zh: '十次真实盘级迁移、版本变化、支持成本明显变化或出现付费需求时复评。'
     review_trigger_en: 'Review after ten real volume migrations, a version change, a material support-cost change, or evidence of paid demand.'
     card_path: pricing-cards/organize-storage.md
+
+- name: fix-codex-session
+  runtime_name: lov-fix-codex-session
+  display_name: 'Session Rescuer'
+  name_zh: '会话救援'
+  repo: lovstudio/fix-codex-session-skill
+  paid: false
+  category: Dev Tools
+  version: '0.2.0'
+  updated_at: '2026-09-10T18:03:53Z'
+  description: 'Diagnose and repair a Codex thread that cannot resume: dangling tool-call/output pairing or a stale model_provider binding after switching providers.'
+  tagline_en: 'Diagnose a Codex thread stuck on a tool-call error or a stale provider binding, recover the deliverables it left on disk, and get a path you can continue.'
+  tagline_zh: '把卡在 tool-call 报错或 provider 切换后的 Codex 线程只读诊断清楚，抢救磁盘上的交付物并给出可继续的恢复路径。'
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: '公开 Skill 源码、rollout 只读诊断与修复副本 CLI、provider 绑定同步 CLI、故障手册与可信度卡'
+    delivery_unit_en: 'Public Skill source, a read-only rollout diagnosis and repaired-copy CLI, a provider-binding sync CLI, the troubleshooting guide, and the trust bundle'
+    value_zh: '一条只读命令定位悬挂的 tool call 与中毒 rollout，必要时生成独立修复副本；provider 场景只同步过期绑定并先备份 SQLite，让打不开的旧线程重新可用。'
+    value_en: 'One read-only command pinpoints the dangling tool call and the poisoned rollout, an optional repaired copy is written separately, and stale provider bindings are synced only after an SQLite backup so old threads open again.'
+    anchor_zh: '真实案例中保住了一份正在生成、含航班链图的 18 页行程 PDF，并把切换中转站后打不开的 9 条旧线程接回新 provider；手工重新定位故障与重做收尾约 30–60 分钟。'
+    anchor_en: 'Real cases kept an in-progress 18-page trip PDF with its flight-chain diagram and reconnected nine unopenable threads after a provider switch; manual re-diagnosis and rework costs roughly 30-60 minutes.'
+    basis_zh: '六维加权 2.90/5；两个真实案例带线程 id 与修复前后回读，源码校验通过，但场景低频且存在新开线程的替代路径，作为免费公开入口。'
+    basis_en: 'The six-dimension score is 2.90/5; two real cases carry thread ids and before/after readbacks and source validation passes, but the failure is rare and new-thread workarounds exist, so it stays a free public entry.'
+    boundary_zh: '只处理 Codex 会话持久化状态：悬挂 tool-call/output 配对与过期 provider 绑定；不含 config.toml provider 管理、通用软件修复、rollout 重写与远程发布。'
+    boundary_en: 'Covers Codex session persistence only: dangling tool-call/output pairing and stale provider bindings; excludes config provider management, generic software repair, rollout rewriting, and remote publishing.'
+    maintenance_zh: '随 Codex rollout JSONL 与 state_*.sqlite 结构、报错校验语义和真实使用反馈复评；不承诺付费支持时效。'
+    maintenance_en: 'Review against Codex rollout JSONL and state database schema changes, host validation semantics, and real usage feedback; no paid support SLA.'
+    confidence: case-backed
+    review_trigger_zh: '累计 10 次外部真实使用、3 个非作者案例、rollout 或 state 数据库结构变化、宿主校验语义变化，或出现托管修复服务时复评。'
+    review_trigger_en: 'Review after ten external real uses, three non-author cases, a rollout or state schema change, a host validation change, or a hosted recovery service.'
+    card_path: pricing-cards/fix-codex-session.md

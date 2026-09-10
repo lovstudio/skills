@@ -1,0 +1,42 @@
+[
+  {
+    "type": "case",
+    "title": "修复卡死在 tool call 报错的冈仁波齐转山会话",
+    "description": "一条规划冈仁波齐转山行程的 Codex 线程在生成 PDF 时崩溃，之后每次继续都报 'No tool output found for tool call call_01_syEaRJl1e4cxiKx7Wp7t9659'，线程无法再继续。",
+    "input": {
+      "items": [
+        "thread_id 01a08678-4e04-74c0-a99c-b0fca72c526a",
+        "rollout ~/.codex/sessions/2026/09/09/rollout-2026-09-09T22-00-26-01a08678-4e04-74c0-a99c-b0fca72c526a.jsonl",
+        "报错 No tool output found for tool call call_01_syEaRJl1e4cxiKx7Wp7t9659"
+      ]
+    },
+    "prompt": "修复 codex://threads/01a08678-4e04-74c0-a99c-b0fca72c526a 里报错：No tool output found for tool call call_01_syEaRJl1e4cxiKx7Wp7t9659。以及为什么、如何避免。",
+    "output": {
+      "items": [
+        "定位到悬挂的 view_image 调用 call_01_syEaRJl1e4cxiKx7Wp7t9659 与其未配对输出",
+        "恢复并重新生成交付物 output/deliverables/手工川-冈仁波齐转山-行程方案-v0.1.pdf（18 页，含航班链图）",
+        "结论：从已有产物继续、新开线程接手，优于复活旧历史"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "切换中转站后旧会话报 Model provider custom not found",
+    "description": "从 DeepSeek 官方 API 切到 LiteLLM 后，旧 Codex 线程仍记录 model_provider custom，打开时报 Model provider custom not found，需要把过期线程的 provider 元数据统一为当前值。",
+    "input": {
+      "items": [
+        "报错 Model provider custom not found",
+        "config.toml 根级 model_provider = litellm",
+        "state_5.sqlite 中仍有 9 条 custom 线程"
+      ]
+    },
+    "prompt": "切换中转站后旧 codex thread 打开报 Model provider custom not found，请在 lov-fix-codex-session 中支持把所有 thread 的 model_provider 统一为当前 provider。",
+    "output": {
+      "items": [
+        "新增 sync_thread_provider.py：只读预演识别 9 条 custom 线程",
+        "默认仅同步过期 provider，保留 2 条 built-in openai 历史",
+        "在复制出的 state_5.sqlite 上验证 9 条 custom 改为 litellm，且应用前生成一致备份"
+      ]
+    }
+  }
+]
