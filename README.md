@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **161 个技能** — 145 个免费 + 16 个付费。
+> **162 个技能** — 146 个免费 + 16 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -141,6 +141,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Next.js SEO Assistant](https://github.com/lovstudio/skills) (`better-seo`) | [Next.js SEO 助手](https://github.com/lovstudio/skills) | 检查 Next.js 页面元数据、索引规则、站点地图与分享展示 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Status Line Studio](https://github.com/lovstudio/skills) (`better-statusline`) | [状态栏工坊](https://github.com/lovstudio/skills) | 配置并备份 Agent 状态栏，支持列出历史版本和恢复 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Session Mover](https://github.com/lovstudio/cc-migrate-session) (`cc-migrate-session`) | [会话搬家](https://github.com/lovstudio/cc-migrate-session) | 项目目录搬家后，让 Claude Code 的历史会话还能正常 `--resume`。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [Check Balance](https://github.com/lovstudio/check-balance-skill) (`check-balance`) | [额度体检](https://github.com/lovstudio/check-balance-skill) | 在被限流之前，看清每个 agent 账号还剩多少、什么时候重置。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Checkpoint](https://github.com/lovstudio/skills) (`checkpoint`) | [项目存档](https://github.com/lovstudio/skills) | 根据当前 Git 差异和历史记录保存项目里程碑及后续事项 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Checkpoint History](https://github.com/lovstudio/skills) (`checkpoint-list`) | [检查点回看](https://github.com/lovstudio/skills) | 汇总 Git 与项目日志中的检查点、时间范围和演进记录 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | [Clash 网络医生](https://github.com/lovstudio/clash-tun-doctor-skill) | 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。 — 相关: `env-management` |

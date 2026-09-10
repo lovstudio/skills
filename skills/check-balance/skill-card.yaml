@@ -1,0 +1,94 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "只读汇总 Claude、Codex、DeepSeek 等 agent 账号的剩余额度、重置时间与本地消费速率，输出统一的文本表或 JSON。"
+owner:
+  team: skill-publisher
+  contact: contributors
+license:
+  name: MIT
+  terms: "MIT 许可。脚本在本机运行，凭据不离开本机，除查询各 provider 官方额度接口外无外部写入。"
+  url: "../LICENSE"
+use_case:
+  audience: "同时使用多个 agent 或 API 平台的个人开发者与小团队。"
+  scenario: "在被限流、余额见底或需要决定切换 provider 之前，快速确认每个账号的剩余额度与重置时间。"
+  tasks:
+    - "查询官方订阅的窗口用量与重置时间"
+    - "查询 API 平台的预付余额与重置策略"
+    - "聚合本地网关消费并估算按当前强度还能用多久"
+deployment:
+  geography: global
+  environments:
+    - "本地 macOS（Keychain 可用时）"
+    - "本地 Linux（使用环境变量或凭据文件）"
+requirements:
+  credentials: "可选：macOS Keychain 服务名、环境变量或凭据文件路径，均为本机已有凭据。"
+  dependencies:
+    - "Python 3.8+ 标准库"
+  runtime:
+    - "Python 3.8+"
+    - "可选：sqlite3 命令行工具用于人工排查"
+risks:
+  - risk: "读取本机凭据时若被错误实现，可能把 token 写入日志或制品。"
+    mitigation: "脚本只把凭据用于一次只读请求，从不打印、从不在 JSON 输出中回传；代码可审计。"
+  - risk: "把已过期的登录态误判为额度耗尽，导致错误结论。"
+    mitigation: "凭据过期单独标记为 expired，与额度用满区分，并给出重新登录的提示。"
+  - risk: "预付余额按批次结算，短窗口采样会得出错误的消耗速率。"
+    mitigation: "采样窗口短于 120 秒时标注汇率不可靠，并在余额未变化时回退到网关计价估算。"
+references:
+  - title: "Skill instructions"
+    path: "SKILL.md"
+  - title: "Provider probe contracts"
+    path: "references/providers.md"
+  - title: "Skill group composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "额度体检表"
+    - "结构化额度 JSON"
+  formats:
+    - "终端文本"
+    - "JSON"
+  parameters:
+    - "--only 选择单个 provider"
+    - "--watch 二次采样估算消耗速率"
+    - "--min-balance-cny 余额告警阈值"
+  validation:
+    - "每个 provider 独立标记 ok、expired 或 unavailable"
+    - "输出中不出现任何密钥材料"
+    - "退出码区分正常、部分不可用与全部失败"
+  description: "同一份 schema 覆盖官方订阅窗口与预付余额两类语义，便于人工阅读与下游自动化消费。"
+ethical_considerations: "只读访问用户本机凭据，不刷新、不上传、不落盘；不代用户执行充值或购买；结果可能包含账号邮箱，分享输出前应自行脱敏。"
+dimensions:
+  - id: coverage
+    label: "覆盖度"
+    description: "同时覆盖官方订阅窗口、API 预付余额与本地代理消费三类额度语义。"
+    evidence: "codex、claude、deepseek、openrouter、gateway、cc-switch 六个独立探测，缺失来源降级为 labelled gap。"
+    score: null
+  - id: correctness
+    label: "正确性"
+    description: "额度判定与重置时间必须可追溯到官方接口字段，不靠推测。"
+    evidence: "重置时间来自 wham/usage 的 reset_at 与 oauth/usage 的 resets_at；余额来自 user/balance 的 balance_infos。"
+    score: null
+  - id: safety
+    label: "安全性"
+    description: "只读、不打印密钥、不刷新登录态，避免为了查询额度而破坏用户会话。"
+    evidence: "凭据仅用于一次请求；过期凭据直接标记 expired 而不触发刷新流程。"
+    score: null
+  - id: actionability
+    label: "可执行性"
+    description: "输出能直接回答还剩多少、什么时候重置、现在该不该切换 provider。"
+    evidence: "每次运行给出已用百分比、重置时间、余额与消耗速率，并把需要动作的项汇总进 alerts。"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "纯本地标准库实现，无托管成本。"
+  boundary: "不包含充值、订阅购买、密钥轮换与通知投递。"
+  review_trigger: "出现云端聚合或付费托管需求时复评。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - local-source
+    - lovstudio

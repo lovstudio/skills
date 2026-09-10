@@ -1,0 +1,43 @@
+[
+  {
+    "type": "case",
+    "title": "一次问清 Claude / Codex / DeepSeek 的剩余额度与重置时间",
+    "description": "用户在同一台 Mac 上同时使用 Codex 桌面版（本地 LiteLLM 转发到 DeepSeek）、Claude 桌面本地 agent（cc-switch 转发到同一个 DeepSeek 账号）与官方 ChatGPT Pro 订阅。需要判断哪条链路还有额度、哪条即将见底、官方订阅什么时候重置。",
+    "input": {
+      "items": [
+        "macOS Keychain：DeepSeek key 服务 codex-litellm-deepseek，Claude Code 凭据服务 Claude Code-credentials",
+        "cc-switch 数据库 ~/.cc-switch/cc-switch.db 中的 ChatGPT OAuth 登录态与 proxy_request_logs",
+        "LiteLLM 网关日志 requests-brief.jsonl"
+      ]
+    },
+    "prompt": "确定当前的 claude、codex 等 agent 的个人账号现在还有多少用量，什么时候重置",
+    "output": {
+      "items": [
+        "ChatGPT / Codex 官方：Pro 计划，7 天窗口已用 100%，2026-09-15 10:10 重置（北京时间）",
+        "Claude 官方：凭据 2025-08-16 过期，当前没有官方额度消耗，需重新登录才能查询",
+        "DeepSeek：余额 213.41 元，由 Codex 与 Claude 桌面 agent 共用同一把 key",
+        "本地网关：当日 3277 次请求、5.29 美元，累计 5.63 美元",
+        "消耗速率：20 秒采样显示余额按批次结算，脚本回退到网关计价并标注不可靠的隐含汇率"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "被限流前发现周额度已用满",
+    "description": "用户以为 Codex 还能继续用官方额度，实际周窗口已经耗尽。体检表把已用百分比与重置时间放在同一行，并进入 alerts，避免在任务中途被硬拦。",
+    "input": {
+      "items": [
+        "cc-switch 中保存的 ChatGPT Pro 登录态",
+        "用户口头问题：Codex 还能用吗"
+      ]
+    },
+    "prompt": "我的 codex 额度还剩多少，什么时候重置",
+    "output": {
+      "items": [
+        "主窗口 7 天已用 100%，limit_reached=false，重置时间 2026-09-15 10:10",
+        "附加池 GPT-5.3-Codex-Spark 已用 0%，可作为备用路径",
+        "提醒：主窗口已用满，若要继续使用官方额度需等待重置"
+      ]
+    }
+  }
+]

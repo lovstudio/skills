@@ -7101,3 +7101,39 @@ skills:
     review_trigger_zh: 累计 10 次外部真实迁移、3 个非作者案例、版本或协议变化、加入托管服务、企业部署或保证支持时复评。
     review_trigger_en: Review after ten external real migrations, three non-author cases, a version or protocol change, hosted service, enterprise deployment, or guaranteed support.
     card_path: pricing-cards/sync-with-synology.md
+- name: check-balance
+  runtime_name: lov-check-balance
+  display_name: Check Balance
+  repo: lovstudio/check-balance-skill
+  name_zh: 额度体检
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  updated_at: '2026-09-10T02:40:00Z'
+  description: Report remaining agent quota and reset times across Claude, Codex, DeepSeek and OpenRouter, plus local gateway spend and burn rate.
+  tagline_en: See what is left on every agent account before a limit stops the work.
+  tagline_zh: 在被限流之前，看清每个 agent 账号还剩多少、什么时候重置。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、六个 provider 只读探测、统一 JSON 输出和 Profile 契约
+    delivery_unit_en: Public Skill source, six read-only provider probes, unified JSON output, and the Profile contract
+    value_zh: 一条只读命令汇总订阅窗口、预付余额、本地网关消费与消耗速率，把跨平台额度排查从多次手工查询压缩到几秒，并在见底前给出提醒。
+    value_en: One read-only command merges subscription windows, prepaid balances, local gateway spend, and burn rate so a cross-provider quota check takes seconds and warns before exhaustion.
+    anchor_zh: 一次跨平台额度排查原本约需 30–60 分钟手工查询；真实案例中发现官方周额度已用满并测得每小时消耗，避免任务中途被限流。
+    anchor_en: A manual cross-provider quota check takes roughly 30-60 minutes; the real case surfaced an exhausted weekly window and an hourly burn rate before work was blocked.
+    basis_zh: 六维加权 2.85/5；六探测实跑、源码校验与降级路径均已验证，但替代方案较多且复制门槛低，当前作为免费公开入口。
+    basis_en: The six-dimension score is 2.85/5; six probes, source validation, and degradation paths pass, but common alternatives and low copy barriers keep it as a free public entry.
+    boundary_zh: 覆盖官方订阅窗口、预付余额、本地网关消费聚合与消耗速率估算；不含充值、订阅购买、密钥轮换、限额设置、通知投递与托管巡检。
+    boundary_en: Covers official subscription windows, prepaid balances, local gateway spend aggregation, and burn-rate estimation; excludes top-ups, purchases, key rotation, limit configuration, notification delivery, and hosted monitoring.
+    maintenance_zh: 随 wham/usage、oauth/usage、余额接口与 cc-switch 结构变化，以及外部使用反馈复评；不承诺付费支持时效。
+    maintenance_en: Review against wham/usage, oauth/usage, balance endpoints, cc-switch schema changes, and external usage feedback; no paid support SLA.
+    confidence: case-backed
+    review_trigger_zh: 累计 10 次外部真实使用、3 个非作者案例、上游接口字段变化、加入云端聚合或团队看板时复评。
+    review_trigger_en: Review after ten external real uses, three non-author cases, an upstream interface change, cloud aggregation, or a team dashboard.
+    card_path: pricing-cards/check-balance.md

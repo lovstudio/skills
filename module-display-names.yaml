@@ -7,6 +7,9 @@ lov-article-writing:
 lov-canonical-store:
   name_zh: 词库整理
   display_name: Vocabulary Store
+lov-check-balance:
+  name_zh: 额度体检
+  display_name: Check Balance
 lov-cover-package:
   name_zh: 封面工坊
   display_name: Cover Studio

@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **161 skills** — 145 Free + 16 Paid.
+> **162 skills** — 146 Free + 16 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -142,6 +142,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Next.js SEO Assistant](https://github.com/lovstudio/skills) (`better-seo`) | Review and improve Next.js SEO — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Status Line Studio](https://github.com/lovstudio/skills) (`better-statusline`) | Update an agent status line with rollback — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Session Mover](https://github.com/lovstudio/cc-migrate-session) (`cc-migrate-session`) | Keep your Claude Code session history working after you move a project folder. |
+| ![Free](https://img.shields.io/badge/Free-green) | [Check Balance](https://github.com/lovstudio/check-balance-skill) (`check-balance`) | See what is left on every agent account before a limit stops the work. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Checkpoint](https://github.com/lovstudio/skills) (`checkpoint`) | Create a project checkpoint — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Checkpoint History](https://github.com/lovstudio/skills) (`checkpoint-list`) | List a project checkpoint history — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | Diagnose Clash TUN failures from runtime evidence, apply reversible fixes, and verify the real application path. — related: `env-management` |

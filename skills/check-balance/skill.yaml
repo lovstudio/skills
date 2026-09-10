@@ -1,0 +1,54 @@
+schema: skill-manifest/v1
+id: lov-check-balance
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-check-balance
+    persist:
+      enabled: true
+      namespace: skills.lov-check-balance
+      records_path: skills.lov-check-balance.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望用哪种语言输出额度体检结果？
+      - path: user.timezone
+        required: false
+        question: 重置时间需要按哪个时区展示？
+      - path: skills.lov-check-balance.profile.gateway_log
+        aliases:
+          - skills.lov-check-balance.records.gateway_log
+        required: false
+        question: 本地 LiteLLM 网关的请求日志放在哪个路径？
+      - path: skills.lov-check-balance.profile.min_balance_cny
+        aliases:
+          - skills.lov-check-balance.records.min_balance_cny
+        required: false
+        question: 余额低于多少元时需要在结果里提醒？
+      - path: skills.lov-check-balance.profile.watch_seconds
+        aliases:
+          - skills.lov-check-balance.records.watch_seconds
+        required: false
+        question: 估算消耗速率时默认采样多少秒？
+  preferences:
+    namespace: lov_check_balance
+    fields:
+      - path: preferences.quota.default_timezone
+        required: false
+        question: 额度与重置时间默认使用哪个时区？
+      - path: preferences.quota.min_balance_cny
+        required: false
+        question: 余额告警的默认阈值是多少元？
+  interaction:
+    ask_missing: true
+    max_questions: 1

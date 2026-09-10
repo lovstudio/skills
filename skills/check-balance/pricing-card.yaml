@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把跨 agent 的额度排查从多次手工查询压缩成一条只读命令，并在被限流或余额见底前给出可执行提醒。"
+basis: "免费。脚本只使用 Python 标准库与用户本机已有凭据，无服务器成本、无第三方服务依赖，维护成本低。"
+boundary: "包含本机额度探测、消费聚合、消耗速率估算与结构化 JSON 输出；不包含充值、订阅购买、密钥轮换、限额设置与通知投递。"
+review_trigger: "当接入的 provider 数量显著增加、需要云端聚合多台设备额度，或出现付费托管需求时重新评估。"
+confidence: internal

@@ -31,7 +31,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 77 free skills bundled together.",
+      "description": "Dev Tools — 78 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/env-management",
@@ -111,7 +111,8 @@
         "./skills/architecture-documentation",
         "./skills/agent-instructions",
         "./skills/add-tool",
-        "./skills/sync-with-synology"
+        "./skills/sync-with-synology",
+        "./skills/check-balance"
       ],
       "strict": false
     },
