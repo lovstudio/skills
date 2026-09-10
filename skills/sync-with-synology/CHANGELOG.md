@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 - 2026-09-10
+
+- Fix the runtime Skill name and local install path to use the LovStudio `lov-` prefix: `lov-sync-with-synology`.
+
 ## 1.0.0 - 2026-09-10
 
 - Added the `synology-cli` CLI.

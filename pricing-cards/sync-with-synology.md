@@ -1,8 +1,8 @@
-# Skill Pricing Card：sync-with-synology
+# Skill Pricing Card：lov-sync-with-synology
 
 | 项目 | 结论 |
 | --- | --- |
-| 版本 / 交付单元 | 1.0.0 / 公开 Skill 源码、`synology-cli`、安装脚本和本地验证夹具 |
+| 版本 / 交付单元 | 1.0.1 / 公开 Skill 源码、`synology-cli`、安装脚本和本地验证夹具 |
 | 目标买家 | 需要把本地文件迁移到群晖 NAS 的个人开发者、创作者和小团队 |
 | 建议价格 | 0 Credits |
 | 稳定价格带 | 0 Credits，保持公开免费入口 |
@@ -56,8 +56,8 @@
 
 ```json
 {
-  "skill_id": "sync-with-synology",
-  "version": "1.0.0",
+  "skill_id": "lov-sync-with-synology",
+  "version": "1.0.1",
   "display_unit": "credits",
   "billing_model": "free_entry",
   "recommended_price_credits": 0,

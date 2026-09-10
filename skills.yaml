@@ -7065,16 +7065,15 @@ skills:
     review_trigger_en: Review when hosted services, proprietary data, guaranteed
       support, or direct paid delivery are added.
     card_path: pricing-cards/xhs.md
-
 - name: sync-with-synology
-  runtime_name: sync-with-synology
+  runtime_name: lov-sync-with-synology
   display_name: Synology Sync
   repo: lovstudio/sync-with-synology-skill
   name_zh: 群晖同步助手
   paid: false
   category: Dev Tools
-  version: 1.0.0
-  updated_at: '2026-09-10T02:10:00Z'
+  version: 1.0.1
+  updated_at: '2026-09-10T02:14:00Z'
   description: Upload local files to a Synology NAS through QuickConnect or DSM HTTPS, verify size and MD5, then safely prune the local copy.
   tagline_en: Move local files to Synology with verified uploads and safe local pruning.
   tagline_zh: 把本地文件安全迁移到群晖：先校验，再清理本地副本。

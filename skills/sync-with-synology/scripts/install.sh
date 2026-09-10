@@ -13,5 +13,5 @@ fi
 "$VENV/bin/python" - <<'PY'
 import synology_api
 from synology_api.auth import Authentication
-print('sync-with-synology runtime ready')
+print('lov-sync-with-synology runtime ready')
 PY

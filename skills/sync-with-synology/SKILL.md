@@ -1,10 +1,10 @@
 ---
-name: sync-with-synology
+name: lov-sync-with-synology
 description: Upload local files to a Synology NAS through QuickConnect or DSM HTTPS, verify remote size and MD5, then move the local copy to a reversible trash directory.
 license: MIT
 metadata:
   author: MarkShawn2020
-  version: "1.0.0"
+  version: "1.0.1"
   tags:
     - synology
     - quickconnect
@@ -53,8 +53,8 @@ The deterministic CLI is installed at:
 The source implementation and runtime live inside this skill:
 
 ```text
-~/.agents/skills/sync-with-synology/scripts/synology_cli.py
-~/.agents/skills/sync-with-synology/.venv
+~/.agents/skills/lov-sync-with-synology/scripts/synology_cli.py
+~/.agents/skills/lov-sync-with-synology/.venv
 ```
 
 ## Standard Workflow
@@ -131,7 +131,7 @@ security add-generic-password \
 Use the repository-local fake DSM to test the full HTTPS API flow without touching a real NAS:
 
 ```bash
-~/.agents/skills/sync-with-synology/scripts/test_e2e.sh
+~/.agents/skills/lov-sync-with-synology/scripts/test_e2e.sh
 ```
 
 See `references/operations.md` for the exact safety checks, exit behavior, and recovery procedure.

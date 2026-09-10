@@ -4,7 +4,7 @@ SKILL_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PY="$SKILL_ROOT/.venv/bin/python"
 CLI="$SKILL_ROOT/scripts/synology_cli.py"
 FAKE="$SKILL_ROOT/scripts/fake_dsm_server.py"
-TMP="$(mktemp -d "${TMPDIR:-/tmp}/sync-with-synology-e2e.XXXXXX")"
+TMP="$(mktemp -d "${TMPDIR:-/tmp}/lov-sync-with-synology-e2e.XXXXXX")"
 PIDS=()
 
 cleanup() {
