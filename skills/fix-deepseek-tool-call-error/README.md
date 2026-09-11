@@ -1,4 +1,4 @@
-# 任务急救 · Thread Rescuer
+# DeepSeek 会话急救 · DeepSeek Thread First Aid
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 
