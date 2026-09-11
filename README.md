@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **168 个技能** — 152 个免费 + 16 个付费。
+> **168 个技能** — 151 个免费 + 17 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -118,7 +118,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Rich Export](https://github.com/lovstudio/rich-export-skill) (`rich-export`) | [富文档导出](https://github.com/lovstudio/rich-export-skill) | 一份富媒体内容，同时交付网页、可编辑文档、打印版和归档包。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Yoda Automation](https://github.com/lovstudio/yoda-automation-skill) (`yoda-automation`) | [Yoda 自动化](https://github.com/lovstudio/yoda-automation-skill) | 把一次性提醒和周期跟进变成可核验的 Yoda 原生自动化，带时区、运行证据、去重与完成后停用。 |
 | **内容创作** | | | |
-| ![Free](https://img.shields.io/badge/Free-green) | [WeChat Writer](https://github.com/lovstudio/article-creator-skill) (`article-creator`) | [公众号写手](https://github.com/lovstudio/article-creator-skill) | 从材料、旧稿或来源文章生成完整公众号文章包，并完成写作、品牌、双比例视觉、转载保真与质量验收。 — 依赖: `branding-consistency`, `writing-style` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Genius Writer](https://github.com/lovstudio/article-creator-skill) (`article-creator`) | [天才写手](https://github.com/lovstudio/article-creator-skill) | 从材料、旧稿或来源文章生成完整公众号文章包，并完成写作、品牌、双比例视觉、正文配图、转载保真与质量验收。 — 依赖: `branding-consistency`, `writing-style`, `illustrate` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Brand Editor](https://github.com/lovstudio/branding-consistency-skill) (`branding-consistency`) | [品牌审校官](https://github.com/lovstudio/branding-consistency-skill) | 从受众、品牌角色、组件惯例和真实发布语境审校可见文案，并允许删除多余文字。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Deep Research](https://github.com/lovstudio/deep-research-skill) (`deep-research`) | [深度研究](https://github.com/lovstudio/deep-research-skill) | 生成带引用、证据和主张校验的深度研究报告，并收集分享 GitHub 等平台的已核验开源方案。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Document Illustrator](https://github.com/lovstudio/document-illustrator-skill) (`document-illustrator`) | [文档插画师](https://github.com/lovstudio/document-illustrator-skill) | 给长文原地配图，先规划插入点再并行出图，最后自动插回原文。 — 依赖: `image-creator` |
