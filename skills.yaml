@@ -7292,3 +7292,50 @@ skills:
     review_trigger_zh: '站点新增面向 Agent 的读写接口、skill_contexts 迁移上线，或使用范围从工作室内部扩展到外部创作者时复评可见性。'
     review_trigger_en: 'Review after a new agent-facing read/write API, the skill_contexts migration going live, or use widening beyond studio staff.'
     card_path: pricing-cards/lovstudio-web.md
+- name: feedback-loop
+  runtime_name: lov-feedback-loop
+  display_name: Feedback Flywheel
+  repo: lovstudio/feedback-loop-skill
+  name_zh: 反馈飞轮
+  paid: true
+  encrypted_bundle: true
+  category: Meta
+  version: 0.2.0
+  description: Capture user satisfaction and complaints as feedback events, tune
+    prompts/skills at the smallest scope, and report satisfaction trends.
+  tagline_en: Turn satisfaction and complaints into tracked feedback that tunes your
+    prompts and skills.
+  tagline_zh: 把用户的满意与不满变成可统计的反馈，并让 Prompt 与 Skill 随之迭代。
+  pricing:
+    model: one_time
+    visibility: public
+    list_price_credits: 139
+    launch_price_credits: 139
+    price_range_credits:
+    - 139
+    - 139
+    delivery_unit_zh: 单项 Skill 完整交付，含加密安装包、反馈协议契约，以及账本、回扫、报告与接入脚本
+    delivery_unit_en: One complete Skill with the encrypted bundle, the feedback protocol
+      contracts, and the ledger, scan, report, and installer scripts
+    value_zh: 把用户满意还是不满意从一次性感受变成可记录、可统计、可回填的反馈事件，并把可复用反馈沉淀到最窄的规则层。
+    value_en: Turn satisfaction from a fleeting impression into trackable events,
+      and push reusable feedback into the narrowest rule layer.
+    anchor_zh: 每次信号省下的是重新解释偏好的来回；复盘时能看到未闭环清单与修复时长，而不是靠记忆。
+    anchor_en: Each signal removes a round of re-explaining preferences, and reviews
+      surface unresolved items and time-to-fix instead of relying on memory.
+    basis_zh: 用户指定的首发档位按目录现行换算定为 139 Credits，与 70 Credits 档保持同一档位比例；作为入口验证价，积累真实使用证据后复评。
+    basis_en: The user-selected launch tier maps to 139 Credits, in the same tier ratio
+      as the 70-Credit entry tier; it is a validation price to be revisited once
+      real usage evidence accumulates.
+    boundary_zh: 包含本地账本、会话回扫、满意度报告与宿主接入脚本；不含云端同步、团队看板、托管服务与多人协作权限。
+    boundary_en: Covers the local ledger, session scan, satisfaction reports, and
+      host installer; excludes cloud sync, team dashboards, hosted services, and
+      multi-user permissions.
+    maintenance_zh: 随根规则、宿主目录约定与账本 schema 变化复评；脚本保持 Python 3.8+ 标准库依赖。
+    maintenance_en: Review against root-rule changes, host directory conventions,
+      and ledger schema changes; scripts stay Python 3.8+ standard-library only.
+    confidence: entry
+    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化，或出现云端聚合与团队协作需求时复评。
+    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
+      change, or emerging cloud-aggregation and team-collaboration needs.
+    card_path: pricing-cards/feedback-loop.md

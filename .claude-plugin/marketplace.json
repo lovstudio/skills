@@ -250,13 +250,14 @@
     {
       "name": "meta",
       "source": "./",
-      "description": "Meta — 3 free skills bundled together.",
+      "description": "Meta — 3 free + 1 paid (Credits redemption required).",
       "category": "Meta",
       "skills": [
         "./skills/skill-creator",
         "./skills/branding-consistency",
         "./skills/skill-add-case",
-        "./skills/skill-optimizer"
+        "./skills/skill-optimizer",
+        "./skills/feedback-loop"
       ],
       "strict": false
     }

@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **165 个技能** — 149 个免费 + 16 个付费。
+> **166 个技能** — 149 个免费 + 17 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -217,6 +217,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Chapters](https://github.com/lovstudio/video-chapter-skill) (`video-chapter`) | [视频章节师](https://github.com/lovstudio/video-chapter-skill) | 从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Stills](https://github.com/lovstudio/video-moments-skill) (`video-moments`) | [精彩定格](https://github.com/lovstudio/video-moments-skill) | 从课程和活动视频挑选真实瞬间，完成色彩还原与统一提亮，交付可回溯的照片组。 — 依赖: `branding-consistency` |
 | **Meta** | | | |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Feedback Flywheel](https://github.com/lovstudio/feedback-loop-skill) (`feedback-loop`) | [反馈飞轮](https://github.com/lovstudio/feedback-loop-skill) | 把用户的满意与不满变成可统计的反馈，并让 Prompt 与 Skill 随之迭代。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Showcase](https://github.com/lovstudio/skill-add-case-skill) (`skill-add-case`) | [Skill 案例馆](https://github.com/lovstudio/skill-add-case-skill) | 登录即可把满意的 Skill 结果分享成案例，支持手动导入或 Agent 投稿。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Studio](https://github.com/lovstudio/skill-creator-skill) (`skill-creator`) | [Skill 工坊](https://github.com/lovstudio/skill-creator-skill) | 创建、迁移、验证并安装通用 Skill 与自包含 Skill Kit — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Refiner](https://github.com/lovstudio/skill-optimizer-skill) (`skill-optimizer`) | [Skill 精修师](https://github.com/lovstudio/skill-optimizer-skill) | 一键体检并修复现有技能，自动升版本号并追加 CHANGELOG。 |

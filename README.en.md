@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **165 skills** — 149 Free + 16 Paid.
+> **166 skills** — 149 Free + 17 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -218,6 +218,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Chapters](https://github.com/lovstudio/video-chapter-skill) (`video-chapter`) | Plan chapters, tune the progress bar in React Studio, then export an overlay, final video, or editor package. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Stills](https://github.com/lovstudio/video-moments-skill) (`video-moments`) | Select real moments from event videos, restore color, and deliver consistently bright photos with source timecodes. — requires: `branding-consistency` |
 | **Meta** | | |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Feedback Flywheel](https://github.com/lovstudio/feedback-loop-skill) (`feedback-loop`) | Turn satisfaction and complaints into tracked feedback that tunes your prompts and skills. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Showcase](https://github.com/lovstudio/skill-add-case-skill) (`skill-add-case`) | Share an accepted Skill result through your LovStudio account, manually or with an Agent. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Studio](https://github.com/lovstudio/skill-creator-skill) (`skill-creator`) | Create, migrate, validate and install portable Agent Skills — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Refiner](https://github.com/lovstudio/skill-optimizer-skill) (`skill-optimizer`) | Audit an existing skill, auto-fix issues, and bump its version in one pass. |
