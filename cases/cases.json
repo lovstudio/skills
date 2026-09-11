@@ -3853,5 +3853,54 @@
       "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
       "submittedAt": "2026-09-11T01:01:00.635Z"
     }
+  },
+  {
+    "id": "media-fetch-paths-of-the-soul-film-archive",
+    "type": "case",
+    "skillIds": [
+      "frontend-design",
+      "media-fetch"
+    ],
+    "title": "从 Torrent 寻源到官网电影页：《冈仁波齐》的下载、验证与上线",
+    "description": "官网「资源 → 电影」板块的第一条收录。先用影视寻宝把《冈仁波齐 / Paths of the Soul》(2015) 从公开种子源下到本地并逐项验证，再把片源、字幕、体积和种子状态整理成一个有独立链接的影片页：三个可核对的版本规格、一段 90 秒在线预览、四张带中英字幕原文的剧照，以及两份可一键复制的磁力链接。种子状态如实标注，没有种子的版本直接写明。",
+    "input": {
+      "text": "用户给出片名，要求把看过的片子整理进官网的「资源」板块。",
+      "items": [
+        "片名：冈仁波齐 / Paths of the Soul (2015)，张杨导演，藏语原声",
+        "可公开引用的元数据：115 分钟、2015.09.15 多伦多电影节首映、2017.06.20 中国大陆公映",
+        "官网既有「资源」菜单，以及列表页加详情页的路由惯例"
+      ]
+    },
+    "prompt": "$lov-media-fetch 冈仁波齐；随后补充：「每部电影都应该有一个独立的链接」",
+    "output": {
+      "text": "影片本地留存并通过验证，同时在官网新增「资源 → 电影」板块，含列表页与独立详情页。",
+      "items": [
+        "下载与验证：720P DVDRip 藏语原声（1.09 GB，720×378，118 分钟，外挂简中字幕 599 条）+ 1080P（1.66 GB）与 2160P（4.80 GB）WEB-DL 高分辨率留存版本",
+        "官网列表页 /movies：3:4 封面网格，标题、原名、年份、时长与一句话简介",
+        "详情页 /movies/paths-of-the-soul：影片事实、标签、剧情简介，以及「在线预览 / 剧照 / 版本与规格 / 种子与磁力 / 怎么下载」五个分区",
+        "在线预览：从 2160P 版截取的 90 秒带中英硬字幕片段，支持拖动与全屏",
+        "版本与规格：三个版本各自的容器、音轨、字幕与体积，均标注是否本地验收过",
+        "种子与磁力：自制 2160P 单文件种子与原始发布合集两张卡片，一键复制磁力或 Hash、可直接下载 .torrent",
+        "公开链接：https://lovstudio.ai/movies/paths-of-the-soul"
+      ]
+    },
+    "cover": "cases/assets/media-fetch-paths-of-the-soul-film-archive/1.jpg",
+    "gallery": [
+      "cases/assets/media-fetch-paths-of-the-soul-film-archive/2.jpg",
+      "cases/assets/media-fetch-paths-of-the-soul-film-archive/3.jpg",
+      "cases/assets/media-fetch-paths-of-the-soul-film-archive/4.jpg"
+    ],
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-09-11",
+      "method": "下载侧：ffprobe 核对容器与流信息、首尾片段解码无错、字幕逐点抽样，并用画面硬字幕与中文字幕交叉印证（36:06 画面英文 This Dongda mountain is high. 对应 36:05「这座东达山很高」）。页面侧：pnpm build、tsc --noEmit、eslint 与小程序检查全过，再在本地生产构建上回读页面、视频 Range 请求与 .torrent 响应；合并上线后回读线上列表页、详情页、封面、预览与 sitemap，并从部署接口确认线上部署的提交号与合并提交一致。",
+      "privacy": "只使用公开的影片元数据、官网公开页面与自制截图；未包含账号凭据、私人目录路径、聊天记录与未公开素材。",
+      "artifact_type": "visual"
+    },
+    "submission": {
+      "fingerprint": "a04c8ce0ebcf2d5a66a1fedc14cf7ff1842fc0bc29c0236002d7ca976aac6eb5",
+      "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
+      "submittedAt": "2026-09-11T02:39:51.040Z"
+    }
   }
 ]
