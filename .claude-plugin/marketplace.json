@@ -32,7 +32,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 80 free skills bundled together.",
+      "description": "Dev Tools — 81 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/env-management",
@@ -115,7 +115,8 @@
         "./skills/sync-with-synology",
         "./skills/check-balance",
         "./skills/organize-storage",
-        "./skills/fix-codex-session"
+        "./skills/fix-codex-session",
+        "./skills/fix-deepseek-tool-call-error"
       ],
       "strict": false
     },

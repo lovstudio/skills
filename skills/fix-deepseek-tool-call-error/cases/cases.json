@@ -1,0 +1,24 @@
+[
+  {
+    "type": "case",
+    "title": "同一天六条 thread 被同一个 400 锁死，靠 rollout 取证恢复",
+    "description": "2026-09-11，用户在做 Anthropic 九月报告的五行信息图系列与另一个截图排查任务时，反复遇到 No tool output found for tool call。要求查清原因并避免复发。",
+    "input": {
+      "items": [
+        "codex://threads/01a08f09-cb30-7ab3-991a-1e5cc5c7c0fd",
+        "~/.codex/archived_sessions/rollout-2026-09-11T13-19-15-01a08ee7-df34-7892-95a7-4c4ec45cb20e.jsonl",
+        "报错原文：No tool output found for tool call call_01_6R6UelTq0db0bFvY857b2592"
+      ]
+    },
+    "prompt": "为什么我在 codex 里用 deepseek 经常出现类似 No tool output found for tool call 的错误，如何避免？",
+    "output": {
+      "items": [
+        "scripts/scan_deepseek_sessions.py 输出：incidents=8 sessions=6 wedged=1",
+        "判定：诱因是批次里存在被缩放的图片，Codex 插入 image_resize_notice 后提前发出下一轮请求",
+        "规避：规则 51 与 MISC-29（view_image 独占回合、看图前缩到长边 2048、外部看图外包）",
+        "恢复：中毒 thread 不重试不 fork，新 thread 只读文本接续"
+      ]
+    }
+  }
+]
+

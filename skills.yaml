@@ -7376,3 +7376,40 @@ skills:
     review_trigger_zh: 语义一致率稳定过 80% 门槛、累计 10 次真实外部使用、版本变化，或需要内置更强模型并承担外部调用成本时复评。
     review_trigger_en: Review once agreement clears its own 80% gate, after ten real external uses, on a version change, or when a stronger model with external call costs is bundled.
     card_path: pricing-cards/do-they-love-me.md
+- name: fix-deepseek-tool-call-error
+  runtime_name: lov-fix-deepseek-tool-call-error
+  display_name: "Thread Rescuer"
+  repo: lovstudio/fix-deepseek-tool-call-error-skill
+  name_zh: "任务急救"
+  paid: false
+  category: "Dev Tools"
+  version: "0.1.0"
+  updated_at: 2026-09-11 09:35:00+00:00
+  description: "Diagnose and fix Codex DeepSeek threads that fail with No tool output found for tool call: scan rollout evidence, recover the thread, apply prevention rules."
+  tagline_en: "Scan local Codex rollouts to list every No tool output found incident, explain why the thread wedged, and hand back a recovery and prevention plan."
+  tagline_zh: "扫一遍本地 Codex 会话，列出所有 No tool output found 事故，说清 thread 为什么锁死，并给出恢复与规避方案。"
+  depends_on: []
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、只读扫描脚本、机制／恢复／预防三份参考文档，以及一组真实事故记录
+    delivery_unit_en: Public Skill source, the read-only scanner, the mechanism, recovery and prevention references, and one real incident record
+    value_zh: 一次 400 会让整条 thread 报废、后续每一轮都在一秒内失败；本 Skill 把这次事故变成可盘点、可恢复、可预防的清单，并明确不靠关闭看图能力来规避。
+    value_en: A single 400 retires the whole thread and every later turn fails within a second; this turns the incident into an inventory, a recovery path, and prevention rules that do not sacrifice image support.
+    anchor_zh: 以同机单日的六条 thread、八起事故计算，每次事故至少省掉一轮无效重试与一次重新取证；跨环境的稳定收益尚未测量。
+    anchor_en: Across six wedged threads and eight incidents in one day on one machine, each incident saves at least one blind retry and one full re-investigation; cross-environment savings are not measured yet.
+    basis_zh: 六维加权 2.95/5；判据易复制、证据集中在单机单日，因此由维护者承担成本，作为免费入口。
+    basis_en: The six-dimension judgment scores 2.95/5; the checks are easy to replicate and the evidence covers one machine and one day, so the maintainer keeps it as a free entry.
+    boundary_zh: 覆盖事故盘点、恢复方案与预防规则；不含修复 Codex 上游竞态、不含远程发布，也不改写历史会话文件。
+    boundary_en: Covers incident inventory, recovery and prevention; excludes fixing the upstream Codex race, remote publishing, and any rewrite of historical session files.
+    maintenance_zh: 随 Codex 版本与 DeepSeek responses 契约变化复评；纯本地只读，无托管与调用成本。
+    maintenance_en: Review against Codex releases and the DeepSeek responses contract; runs locally, read-only, with no hosting or API cost.
+    confidence: case-backed
+    review_trigger_zh: 上游修复该竞态、累计十次外部使用，或 Codex 调整图片与批次行为时复评。
+    review_trigger_en: Review once the upstream race is fixed, after ten external uses, or when Codex changes image or batching behaviour.
+    card_path: pricing-cards/fix-deepseek-tool-call-error.md

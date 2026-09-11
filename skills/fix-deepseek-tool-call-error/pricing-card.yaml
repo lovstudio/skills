@@ -1,0 +1,11 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "一次 400 会让整条 thread 报废、后续每轮在一秒内失败；本 Skill 把它变成可盘点、可恢复、可预防的清单"
+basis: "纯本地只读诊断，无外部 API 成本；免费分发能让同一环境的用户先止损"
+boundary: "包含取证扫描、恢复方案与预防规则；不含修复 Codex 上游竞态，也不含远程发布"
+review_trigger: "上游修复该竞态后，或本机连续 30 天不再出现该 400 时复评"
+confidence: internal
+

@@ -1,0 +1,94 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "扫描本地 Codex rollout，定位 DeepSeek 会话里 No tool output found for tool call 400 的事故现场（被拒调用、同批调用、是否涉及缩放图片、thread 是否已锁死），并给出恢复与预防方案。"
+owner:
+  team: LovStudio
+  contact: mark@lovstudio.ai
+license:
+  name: MIT
+  terms: "本地只读诊断；不含远程发布，也不修改历史会话。"
+  url: "../LICENSE"
+use_case:
+  audience: "在 Codex desktop 上通过 provider=yoda 使用 DeepSeek 的个人与小团队"
+  scenario: "长任务或看图任务跑到一半突然 400，整条 thread 再也接不上"
+  tasks:
+    - "盘点本机中毒 thread 与共同诱因"
+    - "恢复任务并接续到新 thread"
+    - "把规避规则写进常驻 Prompt 与领域 reference"
+deployment:
+  geography: global
+  environments:
+    - "macOS 或 Linux 上的本地 Codex 会话目录"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.8+ 标准库"
+    - "可读的 ~/.codex/sessions 与 ~/.codex/archived_sessions"
+risks:
+  - risk: "把 400 当成模型故障反复重试，继续消耗额度并扩大影响面"
+    mitigation: "先跑扫描器确认受害调用与批次构成，再选择恢复方式"
+  - risk: "误以为存档缺记录而手改 rollout 文件"
+    mitigation: "扫描器只读；恢复走重新加载或新 thread 接续，不改历史文件"
+  - risk: "用关闭 view_image 的方式强推规避，破坏整机看图能力"
+    mitigation: "预防清单明确禁止该反模式，只允许缩图、独占回合与外包看图"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "机制与证据"
+    path: "references/mechanism.md"
+  - title: "预防规则"
+    path: "references/prevention.md"
+  - title: "恢复手册"
+    path: "references/recovery.md"
+output:
+  types:
+    - "事故清单"
+    - "恢复方案"
+    - "预防清单"
+  formats:
+    - "Markdown"
+    - "JSON"
+  parameters:
+    - "--root 可重复指定会话根目录"
+    - "--file 指定单个 rollout 文件"
+    - "--json 输出机器可读结构"
+  validation:
+    - "对 2026-09-11 的本机会话复跑，命中 8 起事故、6 条会话、1 条确认锁死"
+  description: "事故清单按时间排序，列出被拒调用、批次构成、变体与同一调用的重复失败次数。"
+ethical_considerations: "只读本地会话；不上传、不共享、不写入外部服务；报告保留最小必要片段，避免暴露凭据与私人对话。"
+dimensions:
+  - id: correctness
+    label: "取证正确性"
+    description: "事故定位是否与 Codex 会话记录一致"
+    evidence: "扫描本机 rollout 得到 8 起事故，与人工逐条核对一致，包括 01a08f9c 缺失的是 exec_command 而非图片"
+    score: 4
+  - id: effectiveness
+    label: "恢复有效性"
+    description: "能否把卡住的任务接回可继续状态"
+    evidence: "新 thread 接续与归档重载路径已被实际使用；app 侧对缩放提示的 A/B 验证仍待补"
+    score: 3
+  - id: efficiency
+    label: "扫描效率"
+    description: "全量扫描本机会话所需时间"
+    evidence: "约 150 MB rollout 全量扫描 47 秒，含行级预过滤，纯标准库"
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "本地只读诊断，无外部服务成本；价值在于避免重复踩同一个 400 与无效重试"
+  boundary: "包含事故盘点、恢复方案与预防清单；不含修复 Codex 上游竞态，也不含远程发布"
+  review_trigger: "上游修复该竞态后复评：若 400 不再出现，本 Skill 退化为历史取证工具"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio
+  states:
+    workbuddy: "计划中"
+    skillpay: "计划中"
+    github: "本地源就绪，尚未推送"
+    lovstudio: "尚未上架"
+
