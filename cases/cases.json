@@ -3812,5 +3812,46 @@
       "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
       "submittedAt": "2026-09-10T05:42:03.270Z"
     }
+  },
+  {
+    "id": "ai-app-user-scale-trend-infographic",
+    "type": "case",
+    "skillIds": [
+      "professional-infographic"
+    ],
+    "title": "AI App 用户规模趋势图：把对话助手与编程 Agent 的 50 倍差距画进一张图",
+    "description": "一句「codex、claude 等 app 的月活趋势对比」，最后变成一张能直接拿给决策者看的信息图。真正的难点不是画图而是口径：OpenAI 和 Anthropic 都不公布月活，社交平台上流传的 Codex 数字也没有定义周期。处理方式是把对话助手和编程 Agent 分成两条各自独立的对数刻度，用形状与线型区分官方披露、第三方估算和更换过的口径，不把不可比的数字连成一条线。",
+    "input": {
+      "text": "一句中文需求：codex、claude 等（请展开）app 的月活趋势对比。没有给数据源，需要自行取证。",
+      "items": [
+        "公开来源：Sensor Tower《State of AI 2026》、路透与 TechCrunch 的转载、Alphabet 财报与 Google I/O、OpenAI 官方披露、Anthropic 披露、微软 FY26 Q2 财报、CNBC",
+        "社媒来源：OpenAI Codex 工程负责人 Tibo Sottiaux（@thsottiaux）在 X 上发布的增长里程碑",
+        "第三方估算：Sensor Tower 的面板估算、Cursor 月活的第三方估算"
+      ]
+    },
+    "prompt": "[$lov-professional-infographic] codex, claude 等（请展开） app 的月活趋势对比",
+    "output": {
+      "text": "一张 16:9 的咨询级信息图，外加可编辑源文件、证据台账和质检记录。主视觉是两条上下对齐的趋势面板，共享 2025-01 到 2026-08 的时间轴，各自使用对数刻度，每个系列都直接标注数值、口径与来源编号。",
+      "items": [
+        "高清成图（3200×1800）",
+        "可编辑的源文件，含内嵌品牌标识",
+        "证据台账：逐条列出数值、期间、口径、局限与原文引用",
+        "质检记录：结构、对比度、溢出、出图尺寸与人工复核结论",
+        "视觉编码：位置＝规模，颜色＝梯队，形状＝披露性质（实心圆为官方同口径，实心菱形为官方合并口径，空心圆为第三方估算，空心菱形为同口径快照）"
+      ]
+    },
+    "cover": "cases/assets/ai-app-user-scale-trend-infographic/1.png",
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-09-11",
+      "method": "先做权威来源取证与交叉核对，再用该 Skill 自带的严格质检通道验收：0 错误、0 警告，机器代理 100/100，含 28 个数据点与 34 处来源引用，并完成整图与缩略图两轮人工视觉复核。第二轮补充社媒数据时逐条核对原帖与转载，确认其中没有可支撑「日活」的表述。",
+      "privacy": "仅使用公开披露数据、公开财报、公开新闻报道与公开社媒帖子；不含账号、密钥、客户材料或对话正文，本机路径与生成环境细节已移除。",
+      "artifact_type": "visual"
+    },
+    "submission": {
+      "fingerprint": "bf8bf5439bfa465685b81944ab0636e737f7384e7b50b0b1d4b0d15eac6dd616",
+      "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
+      "submittedAt": "2026-09-11T01:01:00.635Z"
+    }
   }
 ]
