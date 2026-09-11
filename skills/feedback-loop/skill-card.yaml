@@ -1,0 +1,104 @@
+schema: lovstudio/skill-card/v1
+version: "0.3.0"
+description: "把用户对 Agent 的情绪与判断记成可统计的反馈事件，按最小作用域迭代规则，并输出满意度复盘。"
+owner:
+  team: LovStudio
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "源码与本地账本归使用者所有；报告摘录用户原话前必须去敏。"
+  url: "../LICENSE"
+use_case:
+  audience: "希望让 Agent 随真实使用持续迭代的个人用户与团队。"
+  scenario: "用户说了『做得很棒』或反复纠偏之后，希望这条信号既不丢失、也不越权改规则。"
+  tasks:
+    - "把表情、短语与评分归一成反馈事件"
+    - "回扫历史会话找出未闭环的不满"
+    - "把可复用反馈沉淀到最窄的规则层"
+    - "生成可复盘、可统计的满意度报告"
+    - "把同一套机制接入其他宿主"
+deployment:
+  geography: global
+  environments:
+    - "本地 Agent 宿主（Codex、Claude Code、Cursor、OpenClaw 及兼容 AGENTS.md 的客户端）"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "Python 3.8+"
+  runtime:
+    - "标准库即可运行；validate_skill.py 需要 PyYAML"
+risks:
+  - risk: "把普通需求描述误判成不满情绪，产生噪音事件与错误迭代。"
+    mitigation: "被动信号必须有原话证据且 confidence 小于 1；强度 1–2 需重复成模式才落账。"
+  - risk: "记录用户原话时泄漏凭据或第三方隐私。"
+    mitigation: "证据截断到 240 字符并去敏；默认只写本地账本，共享前需显式授权。"
+  - risk: "借用户满意之名擅自改动全局 Prompt 或对外发布。"
+    mitigation: "作用域阶梯要求跨领域证据才升级；发布与外部写入仍按原授权边界确认。"
+  - risk: "接入其他宿主时覆盖用户已有的指令文件内容。"
+    mitigation: "只写托管块，改动前备份；同名技能目录默认停止，需显式 --force。"
+references:
+  - title: "反馈飞轮协议"
+    path: "references/protocol.md"
+  - title: "账本字段"
+    path: "references/store-schema.md"
+  - title: "宿主接入"
+    path: "references/host-adapters.md"
+output:
+  types:
+    - "feedback-event/v1 事件"
+    - "feedback-outcome/v1 结果"
+    - "满意度报告（Markdown、HTML、JSON）"
+    - "宿主接入结果"
+  formats:
+    - "jsonl"
+    - "markdown"
+    - "html"
+    - "json"
+  parameters:
+    - "store 路径"
+    - "since 时间窗"
+    - "host 与 prompt-target"
+  validation:
+    - "feedback_store.py verify 校验账本"
+    - "validate_skill.py 校验本 Skill"
+  description: "事件与结果都是追加式记录，报告与统计从两者合并生成。"
+ethical_considerations: "情绪推断只用于改进本机 Agent 的表现，用于其他目的、对外分享或训练上传都需要用户显式授权；报告中保留用户原话时必须先去敏。"
+dimensions:
+  - id: signal-fidelity
+    label: "信号保真"
+    description: "判定结果与用户原话、语气是否一致，是否避免把需求当情绪。"
+    evidence: "本机实录：对『还是不行』与『做得很棒』两类原话分别落账 negative/positive，证据字段保留原话。"
+  - id: scope-discipline
+    label: "作用域纪律"
+    description: "是否选择最窄但成立的规则层，历史编号是否保持稳定。"
+    evidence: "本机实录：跨领域信号升级根 Prompt，只追加 48–50，既有一到四十七号未重排。"
+  - id: verification-chain
+    label: "验证链"
+    description: "规则改动与接入动作是否留下可回读的证据。"
+    evidence: "本机实录：四个 OpenClaw 副本回读 SHA-256 与 canonical 一致。"
+  - id: statistics-readiness
+    label: "可统计性"
+    description: "事件字段是否足以支持趋势、未闭环清单与 signal-to-fix 时长统计。"
+    evidence: "本机实录：stats 与 report 基于真实 events.jsonl 输出趋势与未闭环清单。"
+  - id: install-safety
+    label: "接入安全"
+    description: "写入宿主指令文件前的 dry-run、托管块与备份是否齐备。"
+    evidence: "本机实录：install 脚本对目标文件先输出 dry-run 计划，落盘前生成 .bak 备份。"
+  - id: receipt-brevity
+    label: "收据克制"
+    description: "评价收据是否一行说清且无 AI 腔。"
+    evidence: "收据模板固定为记录、作用域、下一步三段事实。"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "反馈闭环是 Agent 的基础设施能力，免费换来更真实的信号与更好的迭代样本。"
+  boundary: "包含本地账本、回扫、报告与接入脚本；不包含云端同步、团队看板与托管服务。"
+  review_trigger: "出现多人协作、跨设备同步或云端聚合需求时重新评估。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio
+    - local

@@ -1,0 +1,176 @@
+[
+  {
+    "type": "case",
+    "title": "把情绪感知与主动 judge 做成可统计的反馈闭环",
+    "description": "用户要求系统提示词具备情绪感知，并把被动情绪与主动评价统一进可迭代、可统计的循环。交付包括根 Prompt 规则、reference 路由与一个反馈闭环 Skill。",
+    "input": {
+      "items": [
+        "2026-09-11 Codex 会话（thread 01a08e24）中的方向变更请求",
+        "既有规则集 0.13.0 与相邻 Skill 的路由契约"
+      ]
+    },
+    "prompt": "我们的 System Prompt 里面应该加上对用户沟通时的情绪感知。除了自动识别被动情绪外，我们还要提供一些 skill，显式地让用户去执行。我们希望把用户的被动情绪和主动 judge 都引入到这个 loop 里面。",
+    "output": {
+      "items": [
+        "根 Prompt 升级到 0.14.0，新增 48–50 与反馈与迭代小节",
+        "reference 路由 ~/.agents/references/feedback-loop.md 指向 Skill 协议真源",
+        "四个 OpenClaw 副本回读 SHA-256 与 canonical 一致（02d2fda6）"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "回扫历史会话捕获未闭环的不满",
+    "description": "在没有显式点踩的情况下，从历史会话中提取用户消息并判定重复纠偏信号，落账为可追踪事件；同时修复了注入上下文被误当作用户消息的问题。",
+    "input": {
+      "items": [
+        "本机 Codex 2026-09-07 会话 JSONL（thread 01a07975，证据已去敏）",
+        "本机 Codex 2026-09-11 当前会话 JSONL（用于验证注入上下文过滤）"
+      ]
+    },
+    "prompt": "回扫历史会话，找出还没有闭环的不满。",
+    "output": {
+      "items": [
+        "scan_session.py 提取用户消息『已测试，还是不行』，过滤掉 AGENTS.md 注入上下文",
+        "判定 passive 通道：negative / 强度 4 / repeat_complaint / confidence 0.75",
+        "落账事件 fb-20260911T015253-f2b0，状态 deferred 并写明复查条件"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "词表映射验证：表情与短评归一为事件",
+    "description": "在安装副本上执行评价词表的确定性验证：把表情与短评映射成规范化事件并落账。此用例是映射与落账验证，不是伪造的用户评价记录。",
+    "input": {
+      "items": [
+        "词表条目：👍 与『做得很棒』映射为 positive / 5 / delight",
+        "临时安装副本 work/install-check 的账本"
+      ]
+    },
+    "prompt": "把『👍 做得很棒』归一为反馈事件并落账。",
+    "output": {
+      "items": [
+        "事件 fb-20260911T015400-b20d 写入 work/install-check/store/events.jsonl",
+        "verify 返回 PASSED: 账本结构有效",
+        "收据模板已定义：已记录：满意 5/5，作用域 task"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "追加式账本与结果回填",
+    "description": "真实事件写入并经结果回填后，账本 verify 通过，list 合并视图正确显示两种状态；CLI 还修复了 --store 只能写在子命令之前的问题。",
+    "input": {
+      "items": [
+        "~/.feedback-loop 新建账本",
+        "两条真实事件：历史重复纠偏、本次方向变更"
+      ]
+    },
+    "prompt": "把这次反馈记下来，修好后回填结果。",
+    "output": {
+      "items": [
+        "events.jsonl 与 outcomes.jsonl 各写入 2 条记录",
+        "list 显示 deferred 与 verified 两种状态，证据字段保留去敏原话",
+        "verify 返回 PASSED: 账本结构有效",
+        "append 的 --store 现已支持写在子命令之后"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "把跨领域信号升级为根 Prompt 规则",
+    "description": "方向变更信号经作用域判定升级到根 Prompt，改动以追加方式落地，并完成版本、副本与校验和回读。",
+    "input": {
+      "items": [
+        "事件 fb-20260911T015255-1759（scope: root-prompt）",
+        "根规则集 0.13.0"
+      ]
+    },
+    "prompt": "把这条反馈沉淀到最窄但成立的规则层，并给出验证。",
+    "output": {
+      "items": [
+        "规则集升级 0.14.0，追加 48–50，历史编号未重排",
+        "CHANGELOG 写入 0.14.0 条目",
+        "四个 OpenClaw 副本 SHA-256 与 canonical 一致（02d2fda6）"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "基于真实账本生成满意度报告",
+    "description": "用真实事件生成 Markdown、自包含 HTML 与 JSON 摘要，并回读关键数字；报告在结果回填后重新生成，与 stats 口径一致。",
+    "input": {
+      "items": [
+        "~/.feedback-loop 中 2 条真实事件与 2 条结果",
+        "窗口 30 天"
+      ]
+    },
+    "prompt": "给我一份满意度复盘。",
+    "output": {
+      "items": [
+        "work/feedback-report-check/feedback-report-2026-09-11.md",
+        "同目录 HTML（内联 SVG 趋势图，无外部依赖）与 JSON 摘要",
+        "回读数字：total=2、unresolved=1、satisfaction=0%、修复时长中位数 0.00 天"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "一键接入通用宿主",
+    "description": "对临时工作区执行真实接入：写入托管块、复制技能目录、创建账本，并逐项回读；重复执行时正确走 skip 与 force 备份路径。",
+    "input": {
+      "items": [
+        "空目录 work/install-check",
+        "Skill 真源与托管块资产"
+      ]
+    },
+    "prompt": "把反馈飞轮装进我的 AI。",
+    "output": {
+      "items": [
+        "AGENTS.md 写入托管块，block sha256 826ebe7d…",
+        "skills/lov-feedback-loop 复制完成，副本内 scripts 可直接运行",
+        "store 创建 config.json、events.jsonl、outcomes.jsonl",
+        "dry-run 与落盘使用同一计划结构；重复接入提示 skip 或先备份再覆盖"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "按调用模型把 Kit 收敛为单 Skill",
+    "description": "用户指出自动链路不需要 skill 路由，不需要主动调用的部分应当是模块而不是 skill。据此删除 Skill Kit 结构与六个内嵌模块，把判定、账本与迭代规程并入协议，主动入口保留在唯一 SKILL.md。",
+    "input": {
+      "items": [
+        "0.1.0 的 Kit 结构：1 个控制器加 6 个内嵌模块，目录中出现 7 条技能条目",
+        "用户判断：skill 只应服务于主动调用"
+      ]
+    },
+    "prompt": "既然都不需要主动调用，那也没必要做成 skill 吧。skill 一般来说是支持主动调用才需要的。",
+    "output": {
+      "items": [
+        "删除 kit.yaml 与六个模块目录，条目从 7 条降为 1 条",
+        "判定红线、账本操作与最小改动清单并入 references/protocol.md",
+        "scan_session.py 上移到 scripts/，与其余三个 CLI 同级",
+        "卡片与用例合并为一份，版本升到 0.2.0"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "另一条会话中自动触发并落账",
+    "description": "重构进行期间，另一条并行的 Codex 会话依据根 Prompt 规则自行判定并写入了一条真实负向信号，账本与报告无需改动即可读取。",
+    "input": {
+      "items": [
+        "另一条 Codex 会话（thread 01a08e0c）中关于海报风格的重复不满",
+        "已生效的 0.14.0 根规则与 ~/.feedback-loop 账本"
+      ]
+    },
+    "prompt": "无需提示词：该会话按根规则自行判定并落账。",
+    "output": {
+      "items": [
+        "事件 fb-20260911T020820-e9d7：negative / 强度 4 / repeat_complaint / scope skill",
+        "note 记录了根因与已做的产物层修复，状态 change-applied",
+        "verify 与 report 直接读取成功，未因外部写入的格式差异出错"
+      ]
+    }
+  }
+]

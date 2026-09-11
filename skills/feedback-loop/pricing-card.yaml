@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.3.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "省下的是同类不满重复出现的次数，以及复盘时找不到证据的时间。"
+basis: "反馈闭环属于 Agent 的基础设施能力，免费换取更真实的信号样本。"
+boundary: "包含六个本地模块与三个 CLI；不包含云端同步、团队看板与托管服务。"
+review_trigger: "出现多人协作、跨设备同步或云端聚合需求时重新评估。"
+confidence: internal

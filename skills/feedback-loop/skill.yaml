@@ -1,0 +1,45 @@
+schema: skill-manifest/v1
+id: lov-feedback-loop
+version: "0.3.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-feedback-loop
+    persist:
+      enabled: true
+      namespace: skills.lov-feedback-loop
+      records_path: skills.lov-feedback-loop.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 反馈报告默认使用哪种语言？
+      - path: user.timezone
+        required: false
+        question: 统计与日期分组按哪个时区计算？
+      - path: workspace.output
+        required: false
+        question: 反馈报告默认输出到哪个目录？
+      - path: preferences.feedback_loop
+        required: false
+        question: 反馈账本默认放在哪个目录？
+  preferences:
+    namespace: lov_feedback_loop
+    fields:
+      - path: user.language
+        required: false
+        question: 反馈报告默认使用哪种语言？
+      - path: user.timezone
+        required: false
+        question: 统计与日期分组按哪个时区计算？
+  interaction:
+    ask_missing: true
+    max_questions: 1

@@ -251,7 +251,7 @@
     {
       "name": "meta",
       "source": "./",
-      "description": "Meta — 3 free + 1 paid (Credits redemption required).",
+      "description": "Meta — 4 free skills bundled together.",
       "category": "Meta",
       "skills": [
         "./skills/skill-creator",
