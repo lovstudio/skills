@@ -1,0 +1,14 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把一次感情困惑变成一份带误差范围的分析，并省掉手工统计与语义标注的全部工作量"
+basis: >
+  免费：口径与流程本身是公共价值，收费只会让更多人退回「数条数」的自欺式结论。
+  交付成本主要是本机算力（本地 8B 模型标注 2000 条约 20 分钟），没有持续的云端开销。
+boundary: >
+  含：互动量化、语义分层与校准、三张图形与一张卡片、口径与隐私自查。
+  不含：微信取数能力（依赖本机取数 Skill）、心理咨询与关系建议、对第三方的评价服务。
+review_trigger: "语义校准一致率长期低于 80%，或需要内置更强模型与外部后端并承担调用成本时。"
+confidence: internal

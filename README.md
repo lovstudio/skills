@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **166 个技能** — 149 个免费 + 17 个付费。
+> **167 个技能** — 150 个免费 + 17 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -53,6 +53,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [QR Studio](https://github.com/lovstudio/create-qrcode-skill) (`create-qrcode`) | [二维码工坊](https://github.com/lovstudio/create-qrcode-skill) | 复用已保存偏好生成可扫码二维码；默认只输出码本体，明确需要时才加海报框架。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Dev Diary](https://github.com/lovstudio/skills) (`daily-post`) | [开发日记](https://github.com/lovstudio/skills) | 将近期真实项目更新写成面向读者的简短日更文案 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Narrator](https://github.com/lovstudio/describe-image-skill) (`describe-image`) | [看图说话](https://github.com/lovstudio/describe-image-skill) | 给纯文本模型"看图"：用免费视觉模型把任意图片转成文字描述。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [Love Index Analysis](https://github.com/lovstudio/do-they-love-me-skill) (`do-they-love-me`) | [恋爱指数分析](https://github.com/lovstudio/do-they-love-me-skill) | 把两个人的聊天记录变成一份带口径与误差的关系结构分析，而不是一句安慰。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Fact Checker](https://github.com/lovstudio/fact-check-skill) (`fact-check`) | [事实核查员](https://github.com/lovstudio/fact-check-skill) | 用尽调思路确认事实：查一手资料、找反例、标证据等级，给出置信度和下一步。 — 相关: `image-translation-errata` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Five-Unit Replies](https://github.com/lovstudio/skills) (`five`) | [五字答](https://github.com/lovstudio/skills) | 在明确要求时使用五单位以内的简短回复，并支持随时恢复正常 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Hanzi Lens](https://github.com/lovstudio/hanzi-lens-skill) (`hanzi-lens`) | [汉字镜](https://github.com/lovstudio/hanzi-lens-skill) | 用证据看懂一个汉字：读音、字形、字书、经典语境与专业信息图。 — 依赖: `professional-infographic` |

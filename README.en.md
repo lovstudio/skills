@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **166 skills** — 149 Free + 17 Paid.
+> **167 skills** — 150 Free + 17 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -54,6 +54,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [QR Studio](https://github.com/lovstudio/create-qrcode-skill) (`create-qrcode`) | Generate a scan-ready QR code using saved preferences; output only the code by default and add poster framing only when requested. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Dev Diary](https://github.com/lovstudio/skills) (`daily-post`) | Write a daily project update from real changes — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Narrator](https://github.com/lovstudio/describe-image-skill) (`describe-image`) | Give text-only models sight — describe any image via a free vision model. |
+| ![Free](https://img.shields.io/badge/Free-green) | [Love Index Analysis](https://github.com/lovstudio/do-they-love-me-skill) (`do-they-love-me`) | Turn a real chat export into an evidence-based relationship analysis with disclosed error bounds, instead of a comforting guess. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Fact Checker](https://github.com/lovstudio/fact-check-skill) (`fact-check`) | Verify claims like a careful researcher, with primary sources, counterexamples, confidence, and next steps. — related: `image-translation-errata` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Five-Unit Replies](https://github.com/lovstudio/skills) (`five`) | Use a five-unit concise reply mode — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Hanzi Lens](https://github.com/lovstudio/hanzi-lens-skill) (`hanzi-lens`) | See one Chinese character through evidence — readings, form, history, classical context, meaning, and a professional visual. — requires: `professional-infographic` |

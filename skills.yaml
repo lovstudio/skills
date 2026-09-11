@@ -7339,3 +7339,41 @@ skills:
     review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
       change, or emerging cloud-aggregation and team-collaboration needs.
     card_path: pricing-cards/feedback-loop.md
+- name: do-they-love-me
+  runtime_name: lov-do-they-love-me
+  updated_at: "2026-09-11T03:00:00Z"
+  display_name: "Love Index Analysis"
+  repo: lovstudio/do-they-love-me-skill
+  name_zh: "恋爱指数分析"
+  paid: false
+  category: "General"
+  version: "0.2.0"
+  description: "Turn a two-person WeChat chat export into an evidence-based relationship analysis: interaction metrics, local work/affection/life semantic layering, disclosed error bounds, and an auditable mobile infographic card."
+  tagline_en: "Turn a real chat export into an evidence-based relationship analysis with disclosed error bounds, instead of a comforting guess."
+  tagline_zh: "把两个人的聊天记录变成一份带口径与误差的关系结构分析，而不是一句安慰。"
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、量化与语义分层脚本、校准协议、三张图形生成器，以及一组真实案例
+    delivery_unit_en: Public Skill source, the metrics and semantic-layering scripts, the calibration protocol, three figure generators, and one real case record
+    value_zh: 把「数条数」升级成语义分层：先判掉没有话题的消息，再区分工作／情感／生活，并强制在结论里同时给出模型、一致率与反证。
+    value_en: Upgrade counting messages into semantic layering — drop topic-free messages, separate work from affection and everyday life, and force model, agreement, and counter-evidence into every conclusion.
+    anchor_zh: 一次使用通常省下 3–6 小时的手工统计、脚本编写与逐条阅读，并避免把工作消息当成情感热度这类会直接改变结论的偏误。
+    anchor_en: One run typically removes 3 to 6 hours of manual counting, scripting, and message-by-message reading, and avoids the bias of reading work chatter as affection.
+    basis_zh: 六维加权 3.15/5，属于标准交付；但公开源码易复制、外部使用证据只有一组，且语义一致率尚未稳定过自设门槛，因此由维护者承担成本，作为免费入口。
+    basis_en: The six-dimension judgment scores 3.15/5; easy replication, one case, and an agreement below its own gate favor a free entry subsidized by the maintainer.
+    boundary_zh: 覆盖互动量化、语义分层、三张图形与隐私自查；不含微信取数能力、心理咨询与关系建议，也不输出对他人的评价或判决句。
+    boundary_en: Covers interaction metrics, semantic layering, three figures, and the privacy self-check; excludes WeChat data access, counselling, and any judgement of third parties.
+    maintenance_zh: 随本地模型版本、语义阈值与取数工具变化复评；默认全本地推理，无托管与调用成本。
+    maintenance_en: Review against local model versions, semantic thresholds, and data-access tooling; default inference stays local with no hosting or API cost.
+    confidence: case-backed
+    review_trigger_zh: 语义一致率稳定过 80% 门槛、累计 10 次真实外部使用、版本变化，或需要内置更强模型并承担外部调用成本时复评。
+    review_trigger_en: Review once agreement clears its own 80% gate, after ten real external uses, on a version change, or when a stronger model with external call costs is bundled.
+    card_path: pricing-cards/do-they-love-me.md
