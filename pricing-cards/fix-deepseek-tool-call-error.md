@@ -1,4 +1,4 @@
-# DeepSeek 会话急救
+# Codex × DeepSeek 会话急救
 
 建议价格：0 Credits；免费入口。
 

@@ -1,4 +1,4 @@
-# DeepSeek 会话急救 · DeepSeek Thread First Aid
+# Codex × DeepSeek 会话急救 · Codex × DeepSeek Thread First Aid
 
 ![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
 

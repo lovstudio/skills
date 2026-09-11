@@ -17,7 +17,7 @@ metadata:
     - recovery
 ---
 
-# DeepSeek 会话急救 · DeepSeek Thread First Aid
+# Codex × DeepSeek 会话急救 · Codex × DeepSeek Thread First Aid
 
 Codex 在 DeepSeek（`provider=yoda`、`wire_api = "responses"`）上跑长任务时，只要一条
 assistant 消息里同时发出多个工具调用、且批次里存在被缩放的图片，Codex 就会在批次结果

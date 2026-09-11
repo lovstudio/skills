@@ -7378,9 +7378,9 @@ skills:
     card_path: pricing-cards/do-they-love-me.md
 - name: fix-deepseek-tool-call-error
   runtime_name: lov-fix-deepseek-tool-call-error
-  display_name: "DeepSeek Thread First Aid"
+  display_name: "Codex × DeepSeek Thread First Aid"
   repo: lovstudio/fix-deepseek-tool-call-error-skill
-  name_zh: "DeepSeek 会话急救"
+  name_zh: "Codex × DeepSeek 会话急救"
   paid: false
   category: "Dev Tools"
   version: "0.1.0"
