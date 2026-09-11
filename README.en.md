@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **168 skills** — 152 Free + 16 Paid.
+> **168 skills** — 151 Free + 17 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -119,7 +119,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Rich Export](https://github.com/lovstudio/rich-export-skill) (`rich-export`) | Export one rich-media source into web, editable document, print, and archive formats. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Yoda Automation](https://github.com/lovstudio/yoda-automation-skill) (`yoda-automation`) | Create reliable Yoda reminders and recurring follow-ups with verified schedules, run evidence, and a precise stop rule. |
 | **Content Creation** | | |
-| ![Free](https://img.shields.io/badge/Free-green) | [WeChat Writer](https://github.com/lovstudio/article-creator-skill) (`article-creator`) | Create, rewrite, brand, or faithfully repost a complete WeChat article package before publication. — requires: `branding-consistency`, `writing-style` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Genius Writer](https://github.com/lovstudio/article-creator-skill) (`article-creator`) | Create, rewrite, brand, or faithfully repost a complete WeChat article package before publication. — requires: `branding-consistency`, `writing-style`, `illustrate` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Brand Editor](https://github.com/lovstudio/branding-consistency-skill) (`branding-consistency`) | Keep visible copy aligned with its audience, brand role, component, and real publishing context. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Deep Research](https://github.com/lovstudio/deep-research-skill) (`deep-research`) | Produce citation-tracked research reports with persistent evidence, claim verification, and shareable open-source solution catalogs. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Document Illustrator](https://github.com/lovstudio/document-illustrator-skill) (`document-illustrator`) | Illustrate a long document in place — plan, generate, and insert images automatically. — requires: `image-creator` |

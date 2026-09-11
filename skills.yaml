@@ -1439,54 +1439,60 @@ skills:
     card_path: pricing-cards/writing-style.md
 - name: article-creator
   runtime_name: lov-article-creator
-  updated_at: 2026-08-31 16:34:03+00:00
-  display_name: WeChat Writer
+  updated_at: 2026-09-11T10:50:00Z
+  display_name: Genius Writer
   repo: lovstudio/article-creator-skill
-  name_zh: 公众号写手
-  paid: false
+  name_zh: 天才写手
+  paid: true
+  public_source: true
+  price_credits: 280
   category: Content Creation
-  version: 0.5.0
-  description: Turn source material, drafts, or partner articles into a complete WeChat
-    article package with fact-grounded writing, branded covers, a 4:3 body hero, source
-    traceability, and quality reports.
+  version: 0.7.0
+  description: Create, rewrite, brand, or faithfully repost complete WeChat article
+    packages with body-figure decisions, branded dual-ratio covers, and traceable
+    quality evidence.
   tagline_en: Create, rewrite, brand, or faithfully repost a complete WeChat article
     package before publication.
-  tagline_zh: 从材料、旧稿或来源文章生成完整公众号文章包，并完成写作、品牌、双比例视觉、转载保真与质量验收。
+  tagline_zh: 从材料、旧稿或来源文章生成完整公众号文章包，并完成写作、品牌、双比例视觉、正文配图、转载保真与质量验收。
   depends_on:
   - branding-consistency
   - writing-style
+  - illustrate
   pricing:
-    model: free_entry
+    model: one_time
     visibility: public
-    list_price_credits: 0
-    launch_price_credits: 0
+    list_price_credits: 280
+    launch_price_credits: 280
     price_range_credits:
-    - 0
-    - 0
+    - 280
+    - 280
     delivery_unit_zh: 公开 Skill 源码、公众号文章包工作流、回归测试与当前版本说明
     delivery_unit_en: Public source, WeChat article-package workflows, regression
       tests, and current-version notes
-    value_zh: 把正文写作、品牌包装、封面、4:3 正文首图、转载保真与发布前验收连接成一个可复测的文章包。
-    value_en: Connect writing, branding, covers, a 4:3 body hero, repost fidelity,
-      and pre-publication acceptance into one reproducible article package.
-    anchor_zh: 一次完整任务可替代公众号创作、品牌包装、转载整理和发布前验收中的多轮手工拼接。
+    value_zh: 把正文写作、模板装配、正文配图、品牌封面、4:3 正文首图、转载保真与发布前验收连接成一个可复测的文章包。
+    value_en: Connect writing, template assembly, body figures, branded covers, a
+      4:3 hero image, repost fidelity, and pre-publication acceptance into one reproducible
+      article package.
+    anchor_zh: 一次完整任务可替代公众号创作、品牌包装、配图整理、转载整理和发布前验收中的多轮手工拼接。
     anchor_en: One complete task can replace several manual passes across writing,
-      branding, repost preparation, and pre-publication review.
-    basis_zh: 六维加权得分 3.6/5；已有本地案例、转载回归与历史文章包验证，但尚缺公开安装和跨账号证据，因此官网先作为免费入口。
-    basis_en: The six-dimension score is 3.6/5, with local cases, repost regression,
-      and historical package validation but limited public-install and cross-account
-      evidence, so the website starts with a free entry.
-    boundary_zh: 包含本地文章包创建、改写、品牌化、忠实转载、双比例视觉与质量报告；不含托管模型调用、素材授权、公众号凭据、代运营或远程发布。
+      branding, figure preparation, repost preparation, and pre-publication review.
+    basis_zh: 以 280 Credits 一次性解锁完整文章包工作流，价格用于验证真实付费意愿；相比免费入口增加正文配图决策、文风散列绑定与更严格质量门，公开源码交付不提供源码保密。
+    basis_en: The complete article-package workflow unlocks once for 280 Credits to
+      validate paid demand; compared with the free entry it adds body-figure decisions,
+      style-review hash binding, and a stricter quality gate, with no source secrecy
+      under public-source delivery.
+    boundary_zh: 包含本地文章包创建、改写、品牌化、忠实转载、正文配图、双比例视觉与质量报告；不含托管模型调用、素材授权、公众号凭据、代运营或远程发布。
     boundary_en: Includes local package creation, rewriting, branding, faithful reposting,
-      dual-ratio visuals, and quality reports; excludes hosted inference, asset rights,
-      WeChat credentials, managed operations, and remote publishing.
+      body figures, dual-ratio visuals, and quality reports; excludes hosted inference,
+      asset rights, WeChat credentials, managed operations, and remote publishing.
     maintenance_zh: 随公众号格式、依赖 Skill、视觉规则、benchmark 和真实文章包反馈复评。
     maintenance_en: Review against WeChat formats, dependency Skills, visual rules,
       benchmarks, and real article-package feedback.
-    confidence: internal
-    review_trigger_zh: 累计 20 个真实文章包，或加入托管生图、团队审批与持续支持后复评。
-    review_trigger_en: Review after 20 real article packages or the addition of hosted
-      image generation, team approval, or ongoing support.
+    confidence: medium
+    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化、支持成本明显变化，或从公开源码切换为加密交付时复评。
+    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
+      change, a material support-cost change, or a switch from public source to encrypted
+      delivery.
     card_path: pricing-cards/article-creator.md
 - name: publish-wechat-article
   runtime_name: lov-publish-wechat-article
