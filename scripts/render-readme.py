@@ -67,7 +67,12 @@ def load_skills() -> list[dict]:
         for e in errors:
             print(f"  - {e}", file=sys.stderr)
         raise SystemExit("skills.yaml dependency validation failed")
-    return [s for s in data["skills"] if not s.get("test")]
+    # Internal entries stay in skills.yaml for the website's staff gate, but
+    # this repo is public: never advertise them here.
+    return [
+        s for s in data["skills"]
+        if not s.get("test") and (s.get("pricing") or {}).get("visibility") != "internal"
+    ]
 
 
 def render_deps_suffix(skill: dict, lang: str) -> str:

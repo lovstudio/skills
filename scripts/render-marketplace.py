@@ -46,7 +46,12 @@ def load_installable_skills() -> tuple[list[dict], list[dict]]:
     All is needed to resolve depends_on targets that may themselves be either class."""
     with YAML_PATH.open() as f:
         data = yaml.safe_load(f)
-    all_skills = [s for s in data["skills"] if not s.get("test")]
+    # Internal entries stay in skills.yaml for the website's staff gate, but
+    # this repo is public: never advertise them here.
+    all_skills = [
+        s for s in data["skills"]
+        if not s.get("test") and (s.get("pricing") or {}).get("visibility") != "internal"
+    ]
     errors = validate(data["skills"])
     if errors:
         for e in errors:

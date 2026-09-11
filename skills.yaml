@@ -7253,3 +7253,42 @@ skills:
     review_trigger_zh: '累计 10 次外部真实使用、3 个非作者案例、rollout 或 state 数据库结构变化、宿主校验语义变化，或出现托管修复服务时复评。'
     review_trigger_en: 'Review after ten external real uses, three non-author cases, a rollout or state schema change, a host validation change, or a hosted recovery service.'
     card_path: pricing-cards/fix-codex-session.md
+
+- name: lovstudio-web
+  runtime_name: lovstudio-web
+  display_name: 'Lovstudio Web'
+  name_zh: '官网同步台'
+  repo: lovstudio/lovstudio-web-skill
+  paid: false
+  category: Dev Tools
+  version: '0.1.0'
+  updated_at: '2026-09-11T01:41:45Z'
+  description: 'Give an agent the real lovstudio.ai surface: read catalog, app, article, document and prompt data, verify account entitlements server-side, and write a case or feedback back only after explicit consent.'
+  tagline_en: 'Read real lovstudio.ai catalog and account state into verifiable local files, and publish a case or feedback only after explicit consent.'
+  tagline_zh: '把官网真实目录与账号状态读成可回读的本地文件，只在明确同意后才把案例或反馈写回站点。'
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: internal
+    visibility: internal
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: '内部 Skill 源码（私有仓库）、六组命令 CLI 与站点契约文档'
+    delivery_unit_en: 'Internal Skill source in a private repository, the six-command CLI, and the site contract reference'
+    value_zh: '一次任务读齐站点目录、文档与账号已购状态，并产出带条数与完整性标记的同步 manifest，替代反复手工核对。'
+    value_en: 'One run reads the site catalog, documents, and account entitlements, then writes a sync manifest with counts and completeness flags instead of manual re-checking.'
+    anchor_zh: '一次同步可省下约 20–60 分钟的手工清点与错漏排查；实测一次拉取得到 168 条 Skill、39 条 App 与 16 项已购权益。'
+    anchor_en: 'A sync run saves roughly 20-60 minutes of manual counting and error chasing; one measured pull returned 168 skills, 39 apps, and 16 owned entitlements.'
+    basis_zh: '六维加权 3.10/5；作为站点自身能力的 Agent 化入口，只服务工作室内部流程，不进入公开目录与公开发行渠道，因此按 0 Credits 维护。'
+    basis_en: 'The six-dimension score is 3.10/5. As an internal agent entry point to the studio website it serves staff workflows only, so it stays at 0 Credits and out of public distribution.'
+    boundary_zh: '覆盖目录读取、账号权益核对、本地同步、案例与反馈写回、线上回读；不含购买、改价、管理员写入、公众号发布与 Skill 上架。'
+    boundary_en: 'Covers catalog reads, entitlement checks, local sync, consent-gated case and feedback write-back, and live verification; excludes purchases, repricing, admin writes, WeChat publishing, and Skill listing.'
+    maintenance_zh: '随站点接口变化与 references/site-contract.md 的实测结论维护；接口漂移时优先修契约文档。'
+    maintenance_en: 'Maintained against site API changes and the measured findings in the site contract reference.'
+    confidence: internal
+    review_trigger_zh: '站点新增面向 Agent 的读写接口、skill_contexts 迁移上线，或使用范围从工作室内部扩展到外部创作者时复评可见性。'
+    review_trigger_en: 'Review after a new agent-facing read/write API, the skill_contexts migration going live, or use widening beyond studio staff.'
+    card_path: pricing-cards/lovstudio-web.md

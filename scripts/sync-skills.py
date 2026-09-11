@@ -18,6 +18,10 @@ Three classes of skill:
      → Publisher workflow: run pack-skill.py in the upstream skill repo,
        copy dist/* here, commit.
 
+  4. Internal skills (pricing.visibility: internal)
+     → Never mirrored. Their source would otherwise land in this public repo,
+       which would make the website's staff-only gate cosmetic.
+
 Env:
     SKIP_CLONE=1   # reuse existing ./skills/<name>/ without re-cloning
                    # (useful for local iteration; CI always clones fresh)
@@ -59,11 +63,16 @@ RSYNC_EXCLUDES = [
 def load_skills() -> list[dict]:
     with YAML_PATH.open() as f:
         data = yaml.safe_load(f)
-    return [s for s in data["skills"] if not s.get("test")]
+    return [s for s in data["skills"] if not s.get("test") and not is_internal(s)]
+
+
+def is_internal(skill: dict) -> bool:
+    """Lovstudio staff-only entry: listed for staff, never mirrored publicly."""
+    return (skill.get("pricing") or {}).get("visibility") == "internal"
 
 
 def free_skills(skills: list[dict]) -> list[dict]:
-    return [s for s in skills if not s.get("paid")]
+    return [s for s in skills if not s.get("paid") and not is_internal(s)]
 
 
 def encrypted_skills(skills: list[dict]) -> list[dict]:
@@ -248,7 +257,8 @@ def prune_stale(installable_names: set[str]) -> None:
     """Remove ./skills/<name>/ dirs for skills no longer installable.
 
     A skill is "installable" if it's free OR it's a paid skill with
-    encrypted_bundle:true. Anything else in ./skills/ is stale.
+    encrypted_bundle:true; internal skills are never installable. Anything
+    else in ./skills/ is stale.
     """
     if not MIRROR_ROOT.exists():
         return
