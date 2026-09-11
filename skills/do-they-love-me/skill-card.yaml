@@ -1,0 +1,103 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.0"
+description: >
+  把两个人的微信私聊做成有证据的恋爱指数分析：量化互动节奏，用本地模型把消息分成
+  工作／情感／生活三类，再产出一张手机竖版信息图，并给出每项结论的口径与误差。
+owner:
+  team: "Lovstudio.AI"
+  contact: "手工川"
+license:
+  name: MIT
+  terms: >
+    仅用于分析使用者本人有权读取的聊天记录；不得用于跟踪、骚扰或评价第三方，
+    交付物中不得包含账号、数据库路径与联系方式。
+  url: "../LICENSE"
+use_case:
+  audience: "想搞清楚一段关系里真实互动结构的当事人本人"
+  scenario: >
+    用户手里有本机微信记录，想知道谁更主动、聊的到底是什么、以及九月那段热度
+    是感情还是工作，并希望得到一张能自己看的卡片。
+  tasks:
+    - "把私聊记录量化成互动指标（回复速度、开场收尾、深夜、连续天数）"
+    - "用本地模型区分工作／情感／生活，输出占比与周趋势"
+    - "生成日历矩阵与构成图，并成卡交付"
+deployment:
+  geography: global
+  environments:
+    - "本地 macOS 桌面（取数依赖本机微信数据库隔离副本）"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "本地 Ollama 模型（默认语义标注后端，可替换为已获授权的远端后端）"
+  runtime:
+    - "Python 3.9+"
+    - "Playwright for Python（图形几何复核与卡片渲染）"
+risks:
+  - risk: "把工作内容算成情感热度，得出偏颇结论"
+    mitigation: "先做语义分层再算比例；工作类单独统计并写进卡面；活动度指数不称情感"
+  - risk: "把自定义指数当成对当事人情绪的测量"
+    mitigation: "指数公式固定并公开，命名限定为活动度／构成；结论只指向可核查行为"
+  - risk: "第三方私人聊天外泄"
+    mitigation: "默认本地模型与本地落盘；外发模型、公开渠道与长段引用都必须先取得明确授权"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "互动量化口径"
+    path: "references/chat-metrics.md"
+  - title: "语义分类法与校准协议"
+    path: "references/semantic-taxonomy.md"
+  - title: "卡片蓝图与交付契约"
+    path: "references/card-blueprint.md"
+  - title: "隐私与授权边界"
+    path: "references/privacy-and-consent.md"
+output:
+  types:
+    - "互动量化结果"
+    - "语义构成与周趋势"
+    - "手机竖版信息图"
+  formats:
+    - "JSON · JSONL · SVG · HTML · PNG（2×）"
+  parameters:
+    - "时间窗、对象、语义模型、卡片比例（默认 long）"
+  validation:
+    - "语义标注必须通过手工校准集阈值"
+    - "卡片必须通过 lov-mobile-infographic 的 --strict 审计"
+    - "图形几何必须通过 verify_figures.py（0 重叠／0 溢出／0 越界）"
+  description: "中间结论全部可复算；卡片与报告只出现可披露信息。"
+ethical_considerations: >
+  处理的是第三方私人对话，默认只在本机分析与交付给本人；不得用于跟踪、骚扰、
+  职场或家庭胁迫；不得输出对他人人格与感情的判决句；涉及自伤或胁迫时停止娱乐化表达。
+dimensions:
+  - id: correctness
+    label: "口径可复算"
+    description: "每个数字都有单位、分母、周期与算法；语义结论附带模型与一致率"
+    evidence: "2105 条有文字的私聊上复现了同一套指标；语义校准一致率 77.1%，工作类精度 0.875／召回 0.903；一致率低于自设 80% 门槛，占比只作粗分档"
+    score: 4
+  - id: effectiveness
+    label: "结论可行动"
+    description: "卡面同时给出支持与反证，读者能据此判断关系结构而不是接受一个分数"
+    evidence: "案例卡给出她 25%／我 25% 工作占比、情感 3%／7%、最后一周工作占比 30% 的对照"
+    score: 4
+  - id: efficiency
+    label: "本地可跑"
+    description: "全流程离线可复算，语义标注用本地模型，不依赖外部服务"
+    evidence: "本地 qwen3:8b 标注 1900 余条用时约 20 分钟（M3 Pro，含上文）；其余脚本秒级完成"
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: >
+    本 Skill 的价值在口径与流程：把「数条数」升级为语义分层，并强制披露误差。
+    免费发布可以让更多人复用这套口径，避免自欺式的恋爱指数。
+  boundary: >
+    只交付分析结果与卡片，不含微信取数能力（依赖本机既有取数 Skill），
+    不提供心理咨询、关系修复建议或对第三方的评价服务。
+  review_trigger: >
+    当语义校准一致率长期低于 80%、或需要内置更强模型与外部后端时重新评估。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio
