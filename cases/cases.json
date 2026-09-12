@@ -3947,5 +3947,40 @@
       "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
       "submittedAt": "2026-09-12T10:44:52.932Z"
     }
+  },
+  {
+    "id": "wechat-channels-restricted-long-video-client-capture",
+    "type": "case",
+    "skillIds": [
+      "media-crawler"
+    ],
+    "title": "元宝解析不了的视频号长视频，改走本机代理劫持，19 秒落盘",
+    "description": "外滩大会 AI 付开发者沙龙的视频号录像长 2 小时 50 分，每次复制链接都是新的动态短码，微信外打开只提示扫码，腾讯元宝的解析接口也返回空结果。Skill 没有停在“登录态过期”的误判上：先用对照链接证明元宝通道本身正常，再把上游 wx_channels_download 的本机代理劫持做成内置回退，由微信客户端自己取流。448 MB 在 19 秒内落盘、ffprobe 校验通过，随后按语音边界剪出手工川 21 分钟的分享。用户原话：“这个视频很长，链接都是动态的，直接用元宝是不行的，Fable 做了一个中间代理劫持，太牛了，等会更新进手工川的视频下载 Skill 内，又是业界独一份了。”",
+    "input": {
+      "text": "视频号分享链接 https://weixin.qq.com/sph/A4Eeqzptfo（同一条视频每次复制都生成新短码，此前两次是 A5A1a1IPo0 和 At9I56DcWx）。在普通浏览器打开只显示“可前往微信观看此内容”，微信预览接口返回 errMsg.type=4，元宝解析接口返回空 wx_export_id。"
+    },
+    "prompt": "下载 https://weixin.qq.com/sph/A5A1a1IPo0 ，并剪出手工川部分。\n（追问）为什么不行，以前都可以的？\n（追问）上游 wx_channels_download 的本机代理拦截模式如何理解？那请实现一下。",
+    "output": {
+      "items": [
+        "诊断：用上游样例链接和历史成功链接做对照，同一份元宝 Cookie 当场解析成功，证明通道正常；这条视频是发布方限制微信外解析，重新授权无效。Skill 把这种情况从 authorization_failed 改判为 resolver_failed 并说明原因。",
+        "实现：新增 setup-wxclient（下载并按官方 checksums 校验 wx_channels_download v260907）、wxclient.sh start/status/stop（用户以管理员身份启动本机代理）和 download --via {auto,yuanbao,wxclient}；元宝失败且本地下载器在线时自动回退，通过 /api/channels/feed/profile 取详情、/api/v1/download_task/create 建任务并轮询到完成。",
+        "结果：观猹×外滩大会 AI 付开发者沙龙录像，2 小时 50 分、1280×720、448 MB，19.3 秒落盘，平均 195 Mbps，ffprobe 校验 h264/aac 通过，JSON 报告 status=verified、engine=wx_channels_download。",
+        "剪辑：按幻灯片 logo、讲者特征和首尾语音转写定位，剪出手工川《Skill 开发最佳实践与商业化探索》片段 01:39:33–02:01:08，共 21 分 34 秒，从主持人介绍开始，到讲者“谢谢”后淡出。",
+        "发布：lov-media-crawler 0.3.0 已推送源仓库、打 v0.3.0 Release、同步 lovstudio/skills 目录并在官网详情页回读。"
+      ]
+    },
+    "cover": "cases/assets/wechat-channels-restricted-long-video-client-capture/1.jpg",
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-09-12",
+      "method": "下载报告含 ffprobe 流信息与字节数；片段首尾各 8 秒重新转写确认句子完整；用户在微信中确认结果并要求收录进 Skill。",
+      "privacy": "仅包含公开活动的视频号分享链接、公开发布的 Skill 源码和用户本人的公开发言片段；不含任何凭据、Cookie 或私人路径。",
+      "artifact_type": "other"
+    },
+    "submission": {
+      "fingerprint": "28261474671dd0ac9d7eacde769cfb6aa0be26a65a3c8ec149cc0411805c89b4",
+      "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
+      "submittedAt": "2026-09-12T12:01:47.777Z"
+    }
   }
 ]
