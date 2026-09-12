@@ -3902,5 +3902,50 @@
       "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
       "submittedAt": "2026-09-11T02:39:51.040Z"
     }
+  },
+  {
+    "id": "ai-pay-book-100k-words-single-session",
+    "type": "case",
+    "skillIds": [
+      "write-professional-book"
+    ],
+    "title": "一次会话写完《AI 支付就选 AI 付》10 万字书稿",
+    "description": "用户只给了一句话需求：写一本关于支付宝「AI 付」的畅销商业书，10 万字左右、面向获客、不要提问直接干。Skill 按大纲、逐章写作、审校、构建的流程，在同一次会话里完成了 20 章正文、前言后记与 5 个附录，全部日期、数字、命令与引述带脚注来源，并产出 mdBook 站点、145 页带封面的 PDF 和私有 GitHub 仓库。",
+    "input": {
+      "items": [
+        "书名与主题：《AI 支付就选 AI 付》，AI 付是支付宝 2025 年 9 月发布的智能体支付服务",
+        "目标：约 10 万字、畅销经典风格、面向商家与开发者的获客导向",
+        "约束：不向用户提问，全程自主完成",
+        "资料来源：28 篇公开报道与官方文档（量子位、新浪、IT 之家、支付宝 Agent 支付官网等），访问日期 2026-09-12"
+      ]
+    },
+    "prompt": "/lov-write-professional-book 《AI 支付就选 AI 付》（AI 付是支付宝平台的），10 万字左右，畅销经典，获取客户，不要问我问题，直接干",
+    "output": {
+      "items": [
+        "五部分 20 章：大势（3 章）、产品拆解（4 章）、实战（5 章）、未来（2 章）、行业实战范例（6 章），加前言、后记与 5 个附录（命令速查、术语表、大事记、参考文献、话术模板库）",
+        "正文约 9.5 万字、全书约 10 万字（按 CJK 字符 + 英文单词计，仓库内 scripts/wordcount.py 可复算）",
+        "每处事实带脚注，来源 28 篇；第五部分示例商家明确标注为虚构；全书声明为独立作者出版物",
+        "构建产物：mdBook HTML、Pandoc + xelatex 生成的 145 页 A4 PDF（第 1 页整幅封面）、GitHub Actions 自动构建",
+        "封面：AI 生成无文字底图，标题、副标题、作者与 Logo 用 HTML + Playwright 合成",
+        "审校方式：章节数与目录一致性脚本、脚注闭合校验、占位符与 emoji 扫描、PDF 逐页渲染回读"
+      ]
+    },
+    "cover": "cases/assets/ai-pay-book-100k-words-single-session/1.jpg",
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-09-12",
+      "method": "作者回读 PDF 封面、扉页、目录与正文样页；脚本校验 20 章目录一致、全部脚注闭合、无残留占位符；字数用 CJK 字符 + 英文单词口径复算",
+      "privacy": "只描述书稿结构与产出，不含书稿正文、私有仓库内容、本机路径与任何凭据；引用的全部为公开报道与官方文档",
+      "artifact_type": "visual"
+    },
+    "session": {
+      "url": "https://lovstudio.ai/yoda/session/yss_5MOVYtNIrRztwLN51sB912ty5d6rjWNNc37gU-Qml4A?detail=full",
+      "access": "public"
+    },
+    "submission": {
+      "fingerprint": "01c92f49896727742bbb222257cd4a21816e8f2ae076fe9e49f327bf606323b6",
+      "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
+      "submittedAt": "2026-09-12T10:44:52.932Z"
+    }
   }
 ]
