@@ -1,4 +1,4 @@
-# 媒体下载器 · Media Downloader · Skill Card
+# 万能视频下载 · Universal Video Grabber · Skill Card
 
 ## Description
 

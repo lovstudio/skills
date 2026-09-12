@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 
-VERSION = "0.3.0"
+VERSION = "0.3.1"
 WXCLIENT_REPOSITORY = "ltaoo/wx_channels_download"
 WXCLIENT_VERSION = "v260907"
 WXCLIENT_API = "http://127.0.0.1:2022"

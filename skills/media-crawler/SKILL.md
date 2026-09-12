@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.0"
+  version: "0.3.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - media-crawler
@@ -21,7 +21,7 @@ metadata:
     - curl
 ---
 
-# 媒体下载器 · Media Downloader
+# 万能视频下载 · Universal Video Grabber
 
 用户给一个公开且有权保存的社交媒体链接，本 Skill 负责识别平台、复用已有授权、下载原始媒体，并交付文件与 JSON 验证报告。优先减少等待、重复登录和中间选择。
 

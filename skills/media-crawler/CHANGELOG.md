@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1] - 2026-09-12
+
+### Fixed
+
+- rename display name to 万能视频下载 / Universal Video Grabber
+- 调用 ID lov-media-crawler、仓库名与配置键保持不变
+
 ## [0.3.0] - 2026-09-12
 
 ### Added

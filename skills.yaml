@@ -3676,13 +3676,13 @@ skills:
     card_path: pricing-cards/skill-pricing.md
 - name: media-crawler
   runtime_name: lov-media-crawler
-  display_name: Media Downloader
-  updated_at: 2026-09-12 11:49:05+00:00
+  display_name: Universal Video Grabber
+  updated_at: 2026-09-12 12:03:22+00:00
   repo: lovstudio/media-crawler-skill
-  name_zh: 媒体下载器
+  name_zh: 万能视频下载
   paid: false
   category: General
-  version: 0.3.0
+  version: 0.3.1
   description: Resolve and download authorized media links from WeChat Channels and
     other supported social platforms with a verifiable report; restricted Channels
     videos fall back to local WeChat client capture.
