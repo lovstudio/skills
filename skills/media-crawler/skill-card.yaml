@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.3.0"
 description: "把一个已知的公开视频或社交媒体内容链接解析为经过容器与大小检查的本地媒体文件，并附带速度、来源和诊断 JSON。"
 owner:
   team: "LovStudio Skills"

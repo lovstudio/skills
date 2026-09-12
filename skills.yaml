@@ -3677,17 +3677,18 @@ skills:
 - name: media-crawler
   runtime_name: lov-media-crawler
   display_name: Media Downloader
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-09-12 11:49:05+00:00
   repo: lovstudio/media-crawler-skill
   name_zh: 媒体下载器
   paid: false
   category: General
-  version: 0.2.0
+  version: 0.3.0
   description: Resolve and download authorized media links from WeChat Channels and
-    other supported social platforms with a verifiable report.
-  tagline_en: Turn an authorized social-media link into a verified local media file
-    with resumable downloads and diagnostics.
-  tagline_zh: 将有权保存的视频号等社交媒体链接变成可验证的本地媒体文件与诊断报告。
+    other supported social platforms with a verifiable report; restricted Channels
+    videos fall back to local WeChat client capture.
+  tagline_en: Turn an authorized social-media link into a verified local media file,
+    with a WeChat client capture fallback for publisher-restricted Channels videos.
+  tagline_zh: 将有权保存的视频号等社交媒体链接变成可验证的本地媒体文件；发布方限制微信外解析的视频号内容自动回退到本机微信客户端取流。
   pricing:
     model: free_entry
     visibility: public
@@ -3696,22 +3697,23 @@ skills:
     price_range_credits:
     - 0
     - 0
-    delivery_unit_zh: 公开 Skill 源码、平台解析脚本与媒体验证报告
-    delivery_unit_en: Public Skill source, platform resolution scripts, and media
-      verification report
+    delivery_unit_zh: 公开 Skill 源码、平台解析脚本、微信客户端取流适配与媒体验证报告
+    delivery_unit_en: Public Skill source, platform resolution scripts, the WeChat
+      client capture adapter, and the media verification report
     value_zh: 一次交付包含登录态复用、链接解析、断点下载、编码检查与可复制诊断。
     value_en: A run covers session reuse, URL resolution, resumable download, codec
       checks, and copyable diagnostics.
-    anchor_zh: 真实视频号案例已验证 48 秒至 1.10 GiB 媒体，单次通常可节省 20 分钟至 3 小时的解析、重试和校验时间。
-    anchor_en: Real WeChat Channels cases from 48 seconds to 1.10 GiB show savings
-      of roughly 20 minutes to 3 hours of resolution, retries, and verification per
-      task.
-    basis_zh: 当前以免费入口积累真实平台覆盖与回归证据，不代表开发成本或用户价值为零。
-    basis_en: Free entry builds real platform coverage and regression evidence; it
-      does not imply zero development cost or user value.
-    boundary_zh: 仅处理用户有权保存的内容；平台变更、账号风控、会话失效和第三方限制不作成功保证。
-    boundary_en: Only use for content the user may save; platform changes, account
-      controls, expired sessions, and third-party limits are not guaranteed away.
+    anchor_zh: 真实视频号案例已验证 48 秒至 1.10 GiB 媒体；2026-09-12 一条被限制微信外解析的 2 小时 50 分录像（448 MB）经客户端取流 19 秒落盘并通过校验，单次通常可节省 20 分钟至 3 小时。
+    anchor_en: Real WeChat Channels cases span 48 seconds to 1.10 GiB; on 2026-09-12 a
+      publisher-restricted 2h50m recording (448 MB) landed in 19 seconds through client
+      capture and passed verification, saving roughly 20 minutes to 3 hours per task.
+    basis_zh: 六维加权 2.85/5；当前以免费入口积累真实平台覆盖与回归证据，不代表开发成本或用户价值为零。
+    basis_en: The six-dimension judgment scores 2.85/5; free entry builds real platform
+      coverage and regression evidence and does not imply zero development cost or user value.
+    boundary_zh: 仅处理用户有权保存的内容；客户端取流需用户自行以管理员身份启动本地代理；平台变更、账号风控、会话失效和第三方限制不作成功保证。
+    boundary_en: Only use for content the user may save; client capture requires the user
+      to start the local proxy with admin rights; platform changes, account controls,
+      expired sessions, and third-party limits are not guaranteed away.
     maintenance_zh: 随平台页面、签名、登录流程和媒体格式变化持续复评。
     maintenance_en: Reassess whenever platform pages, signatures, login flows, or
       media formats change.

@@ -19,10 +19,26 @@ sys.path.insert(0, str(SCRIPT_DIR))
 
 from media_crawler import (  # noqa: E402
     KEYCHAIN_SERVICE,
+    YUANBAO_PARSE_URL,
     JobError,
     normalize_url,
+    request_json,
     resolve_wechat_direct,
+    yuanbao_headers,
 )
+
+
+def yuanbao_authenticated(url: str, cookie: str) -> bool:
+    """Return True when the parse API accepts the Cookie, even if it cannot parse this URL."""
+    try:
+        parsed = request_json(
+            YUANBAO_PARSE_URL,
+            payload={"type": "video_channel_url", "url": url, "scene": 1},
+            headers=yuanbao_headers(cookie),
+        )
+    except JobError:
+        return False
+    return parsed.get("code") == 0
 
 
 def cookie_header(cookies: list[dict]) -> str:
@@ -112,6 +128,14 @@ def main() -> int:
                                 return 0
                         except JobError as exc:
                             last_error = exc.code
+                            if exc.code == "resolver_failed" and yuanbao_authenticated(url, header):
+                                save_keychain(header)
+                                print(
+                                    f"授权成功，已保存到 macOS Keychain service={KEYCHAIN_SERVICE}\n"
+                                    "注意：登录态有效，但元宝无法解析这条测试链接（发布方限制或链接受限）；"
+                                    "请换一条公开视频号链接验证下载。"
+                                )
+                                return 0
                     page.wait_for_timeout(2000)
                 print(
                     f"授权超时，未保存凭据。last_status={last_error or 'login_not_detected'}",

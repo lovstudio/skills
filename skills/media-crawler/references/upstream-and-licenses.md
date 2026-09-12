@@ -18,6 +18,14 @@ The public MediaCrawler platform enum does not include WeChat Channels. The dedi
 
 The API flow was cross-checked against `ltaoo/wx_channels_download` and its public Cloudflare Worker source. That project carries an MIT license with Commons Clause restriction. This Skill does not bundle or sell that project. A third-party Worker is never used without explicit opt-in.
 
+## WeChat client capture (`wx_channels_download` binary)
+
+- Repository: `https://github.com/ltaoo/wx_channels_download`
+- Pinned release: `v260907`, macOS `darwin_arm64` / `darwin_x86_64` zip, verified against the release `checksums.txt` before unpacking.
+- Install location: `~/.cache/lov-media-crawler/wx_channels_download/<version>/`, with a Skill-owned `workdir/config.yaml` that only changes the download directory and database path.
+- Role: a local MITM proxy that injects into the WeChat desktop Channels page, exposing `/api/channels/feed/profile` and `/api/v1/download_task/*` on `127.0.0.1:2022`. It reaches content the Yuanbao path cannot (publisher blocks out-of-WeChat parsing) because the request is made by the logged-in WeChat client itself.
+- Boundary: starting it installs a root certificate and sets the system proxy. That is a system security change and is always executed by the user (`scripts/wxclient.sh start`), never by the Agent. The binary is not bundled in this Skill; `setup-wxclient` downloads it only when invoked.
+
 The local Python implementation is original glue around the documented HTTP contracts and standard download tools. Service behavior can change; treat authentication failures as a prompt to reauthorize, not as permission to bypass platform controls.
 
 ## Responsibility boundary

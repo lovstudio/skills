@@ -1,11 +1,14 @@
 ---
 name: lov-media-crawler
 description: >
-  给定视频号、小红书、抖音、快手、B站、微博、贴吧或知乎链接，复用登录态解析并高速下载媒体，返回可验证文件与诊断报告；适用于“下载这个视频链接”、"download this media link"。
+  给定视频号、小红书、抖音、快手、B站、微博、贴吧或知乎链接，复用登录态解析并高速下载媒体，视频号受限内容可回退到本机微信客户端取流，返回可验证文件与诊断报告。Use when the user asks to download a media link, save a WeChat Channels video, or says “下载这个视频链接”.
 license: MIT
+compatibility: "Portable Agent Skills format; Python 3.9+, curl; optional aria2, ffprobe, uv, Git, Playwright, Chrome, MediaCrawler; WeChat client capture needs macOS, WeChat desktop and admin rights for the local proxy."
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.3.0"
   card_standard: lovstudio/skill-card/v1
   tags:
     - media-crawler
@@ -13,7 +16,6 @@ metadata:
     - wechat-channels
     - mediacrawler
     - resumable-download
-  compatibility: "Portable Agent Skills format; Python 3.9+, curl; optional aria2, uv, Git, Playwright, Chrome, and MediaCrawler."
   dependencies:
     - python
     - curl
@@ -85,7 +87,17 @@ python3 "$SKILL_DIR/scripts/media_crawler.py" probe URL --json
   python3 "$SKILL_DIR/scripts/authorize_yuanbao.py" --test-url URL
   ```
 
-  公共 Worker 默认禁用。只有用户明确接受把公开分享链接发送给该服务时，才使用 `--allow-public-resolver`；优先使用用户自建的 `--worker-url`。
+  公共 Worker 默认禁用。只有用户明确接受把公开分享链接发送给该服务时，才使用 `--allow-public-resolver`；优先使用用户自建的 `--worker-url`。需要用户决定时（是否把链接交给公共解析服务、是否下载第三方取流程序），用宿主的 AskUserQuestion 提一个聚焦问题，不在对话里猜测同意。
+
+  元宝鉴权通过但返回空 `wx_export_id`（`resolver_failed`）说明发布方限制了微信外解析，重新授权无效。此时走**微信客户端取流**：`download` 默认 `--via auto`，在元宝失败且本机 `wx_channels_download` 在线时自动回退；`--via wxclient` 强制走此路径。准备步骤：
+
+  ```bash
+  python3 "$SKILL_DIR/scripts/media_crawler.py" setup-wxclient      # 下载固定版本、校验 SHA256、生成工作目录
+  bash "$SKILL_DIR/scripts/wxclient.sh" start                          # 用户自行执行：需要管理员权限
+  bash "$SKILL_DIR/scripts/wxclient.sh" status                         # 确认 API 在线且视频号页面已连接
+  ```
+
+  启动会安装代理根证书并把系统代理指向 127.0.0.1:2023，属于系统安全设置，必须由用户在自己的终端执行，Agent 不得代跑。之后用户在微信 PC 端打开任意视频号页面并保持打开，Skill 通过 `127.0.0.1:2022` 的 `/api/channels/feed/profile` 取详情、`/api/v1/download_task/create` 建任务并轮询到完成，再做同样的媒体验证。
 
 - **MediaCrawler 支持的平台**：使用本机已有 checkout；没有时，先告知上游的非商业学习许可证，再执行：
 
@@ -138,6 +150,7 @@ python3 "$SKILL_DIR/scripts/media_crawler.py" download URL \
 - 必需：Python 3.9+、curl。
 - 推荐：aria2（多连接与稳定续传）、ffprobe（媒体验证）。
 - 视频号一次性授权：Playwright Python 包与 Chrome；凭据默认存 macOS Keychain。
+- 视频号客户端取流（macOS）：`ltaoo/wx_channels_download` 固定版本 v260907，由 `setup-wxclient` 下载并校验；启动需管理员权限，微信 PC 端需已登录。
 - MediaCrawler 路径：Git、uv、Node.js、Chrome，以及上游自身依赖；其代码与使用受上游非商业学习许可证约束。
 
 完整平台边界见 [`references/platform-matrix.md`](references/platform-matrix.md)，上游与许可证见 [`references/upstream-and-licenses.md`](references/upstream-and-licenses.md)，故障码见 [`references/troubleshooting.md`](references/troubleshooting.md)。

@@ -23,7 +23,11 @@ from pathlib import Path
 from typing import Any, Optional
 
 
-VERSION = "0.1.0"
+VERSION = "0.3.0"
+WXCLIENT_REPOSITORY = "ltaoo/wx_channels_download"
+WXCLIENT_VERSION = "v260907"
+WXCLIENT_API = "http://127.0.0.1:2022"
+WXCLIENT_PROXY_PORT = 2023
 MEDIACRAWLER_REPOSITORY = "https://github.com/NanmiCoder/MediaCrawler.git"
 MEDIACRAWLER_COMMIT = "5665a271ef15e0ec82b1f48a951b66760e054db9"
 DEFAULT_CACHE_ROOT = Path.home() / ".cache" / "lov-media-crawler"
@@ -160,6 +164,12 @@ def request_json(
         with urllib.request.urlopen(request, timeout=timeout) as response:
             return json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
+        if exc.code in (401, 403):
+            raise JobError(
+                "authorization_failed",
+                f"解析接口返回 HTTP {exc.code}，登录态失效或未授权。",
+                "python3 scripts/authorize_yuanbao.py --test-url URL",
+            ) from exc
         raise JobError(
             "resolver_failed", f"解析接口返回 HTTP {exc.code}。"
         ) from exc
@@ -269,10 +279,14 @@ def resolve_wechat_direct(url: str, cookie: str) -> dict[str, Any]:
     )
     parse_data = parsed.get("data") if isinstance(parsed.get("data"), dict) else {}
     if not parse_data.get("wx_export_id"):
+        # HTTP 200 + code 0 means the Cookie passed authentication; an empty
+        # export id means Yuanbao itself cannot parse this share link (publisher
+        # restriction or a limited link), which re-authorizing will not fix.
         raise JobError(
-            "authorization_failed",
-            "本机元宝授权未能解析该视频号链接，登录态可能已过期。",
-            "python3 scripts/authorize_yuanbao.py --test-url URL",
+            "resolver_failed",
+            "元宝已通过鉴权，但无法解析该视频号链接：发布方限制了微信外解析或链接受限，"
+            "重新授权不会改变结果。",
+            "python3 scripts/media_crawler.py probe ANOTHER_SPH_URL --json  # 用其他公开链接确认通道正常",
         )
     playable = urllib.parse.urlparse(str(parse_data.get("playable_url", "")))
     query = urllib.parse.parse_qs(playable.query)
@@ -345,6 +359,197 @@ def feed_video_url(data: dict[str, Any]) -> str:
         if isinstance(candidate, str) and candidate.startswith(("http://", "https://")):
             return candidate
     return ""
+
+
+def wxclient_root() -> Path:
+    return DEFAULT_CACHE_ROOT / "wx_channels_download"
+
+
+def wxclient_binary() -> Path:
+    return wxclient_root() / WXCLIENT_VERSION / "wx_video_download"
+
+
+def wxclient_workdir() -> Path:
+    return wxclient_root() / "workdir"
+
+
+def wxclient_start_hint() -> str:
+    script = Path(__file__).resolve().parent / "wxclient.sh"
+    return f"bash '{script}' start   # 需要管理员权限；随后在微信 PC 端打开任意视频号页面"
+
+
+def wxclient_request(
+    path: str,
+    *,
+    params: Optional[dict[str, str]] = None,
+    payload: Optional[dict[str, Any]] = None,
+    timeout: int = 15,
+) -> dict[str, Any]:
+    url = WXCLIENT_API + path
+    if params:
+        url += "?" + urllib.parse.urlencode(params)
+    data = json.dumps(payload, ensure_ascii=False).encode("utf-8") if payload is not None else None
+    request = urllib.request.Request(url, data=data, method="POST" if data else "GET")
+    request.add_header("Accept", "application/json")
+    if data:
+        request.add_header("Content-Type", "application/json")
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        raise JobError("wxclient_failed", f"本地下载器接口 {path} 返回 HTTP {exc.code}。") from exc
+    except (urllib.error.URLError, TimeoutError, ConnectionError, OSError, json.JSONDecodeError) as exc:
+        raise JobError(
+            "wxclient_unavailable",
+            "本地视频号下载器（wx_channels_download）未运行或不可达。",
+            wxclient_start_hint(),
+        ) from exc
+
+
+def wxclient_available() -> bool:
+    try:
+        result = wxclient_request("/api/v1/download_task/list", params={"page_size": "1"}, timeout=3)
+    except JobError:
+        return False
+    return isinstance(result, dict) and result.get("code") == 0
+
+
+def wxclient_profile(url: str) -> dict[str, Any]:
+    result = wxclient_request("/api/channels/feed/profile", params={"url": url}, timeout=60)
+    if result.get("code") == 400:
+        raise JobError(
+            "wxclient_not_connected",
+            "本地下载器已运行，但微信视频号页面尚未连接。",
+            "在微信 PC 端打开任意视频号视频页面（保持打开），然后重试同一命令。",
+        )
+    if result.get("code") != 0:
+        raise JobError("wxclient_failed", f"本地下载器解析失败：{result.get('msg', '')}")
+    inner = result.get("data") if isinstance(result.get("data"), dict) else {}
+    body = inner.get("data") if isinstance(inner.get("data"), dict) else {}
+    obj = body.get("object") if isinstance(body.get("object"), dict) else {}
+    if not obj.get("id"):
+        raise JobError(
+            "wxclient_failed",
+            f"微信客户端未返回该视频的详情：{inner.get('errMsg') or body.get('BaseResponse', {})}",
+            "确认该链接在微信内可以正常播放，再重试。",
+        )
+    return obj
+
+
+def wxclient_metadata(obj: dict[str, Any]) -> dict[str, Any]:
+    desc = obj.get("objectDesc") if isinstance(obj.get("objectDesc"), dict) else {}
+    contact = obj.get("contact") if isinstance(obj.get("contact"), dict) else {}
+    description = str(desc.get("description", "")).strip()
+    media = desc.get("media") if isinstance(desc.get("media"), list) else []
+    first = media[0] if media and isinstance(media[0], dict) else {}
+    return {
+        "title": description.splitlines()[0][:120] if description else "视频号视频",
+        "description": description,
+        "author": str(contact.get("nickname", "")),
+        "cover_url": safe_url(str(first.get("coverUrl") or first.get("thumbUrl") or "")),
+        "created_at": obj.get("createtime", 0),
+        "likes": "",
+        "comments": "",
+        "object_id": str(obj.get("id", "")),
+        "duration_seconds": first.get("videoPlayLen", 0),
+    }
+
+
+def wxclient_download(url: str, output_dir: Path, *, quiet: bool, timeout_minutes: int = 30) -> dict[str, Any]:
+    started = time.monotonic()
+    eprint("通过本机微信客户端取流…", quiet)
+    obj = wxclient_profile(url)
+    metadata = wxclient_metadata(obj)
+    eprint(f"已通过微信客户端取得详情：{metadata['title']}", quiet)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    created: dict[str, Any] = {}
+    last_error = ""
+    for content in (obj, {"id": obj["id"]}):
+        result = wxclient_request(
+            "/api/v1/download_task/create",
+            payload={
+                "objects": [
+                    {
+                        "platform": "wxchannels",
+                        "content": content,
+                        "download_dir": str(output_dir),
+                        "auto_start": True,
+                        "config": {"existing_action": "skip"},
+                    }
+                ]
+            },
+            timeout=60,
+        )
+        tasks = (result.get("data") or {}).get("tasks") or []
+        item = tasks[0] if tasks and isinstance(tasks[0], dict) else {}
+        if result.get("code") == 0 and item.get("code", 0) == 0 and isinstance(item.get("data"), dict):
+            created = item["data"]
+            break
+        last_error = str(item.get("msg") or result.get("msg") or "unknown")
+    if not created.get("id"):
+        raise JobError("wxclient_failed", f"本地下载器无法创建下载任务：{last_error}")
+    task_id = int(created["id"])
+    eprint(f"下载任务 #{task_id} 已创建，等待微信客户端取流…", quiet)
+    deadline = time.monotonic() + timeout_minutes * 60
+    last_report = 0.0
+    detail: dict[str, Any] = {}
+    while time.monotonic() < deadline:
+        detail = (wxclient_request("/api/v1/download_task/detail", params={"id": str(task_id)}, timeout=30).get("data") or {})
+        status = int(detail.get("status", -1))
+        if status == 5:
+            break
+        if status in (6, 7):
+            raise JobError(
+                "wxclient_failed",
+                f"本地下载器任务 #{task_id} {'失败' if status == 6 else '已取消'}：{detail.get('error', '')}",
+                f"curl '{WXCLIENT_API}/api/v1/download_task/detail?id={task_id}'",
+            )
+        now = time.monotonic()
+        if now - last_report >= 5:
+            size = int(detail.get("size") or 0)
+            done = int(detail.get("downloaded") or 0)
+            speed = float(detail.get("speed") or 0)
+            eprint(
+                f"进度 {detail.get('progress', 0)}% · {done / 1_048_576:.1f}/{size / 1_048_576:.1f} MB · {speed * 8 / 1_000_000:.2f} Mbps",
+                quiet,
+            )
+            last_report = now
+        time.sleep(1)
+    else:
+        raise JobError("wxclient_failed", f"等待任务 #{task_id} 超过 {timeout_minutes} 分钟。")
+    files = [
+        Path(str(item.get("file_path")))
+        for item in (detail.get("files") or [])
+        if isinstance(item, dict) and item.get("file_path")
+    ]
+    videos = [path for path in files if path.is_file() and path.suffix.lower() in DIRECT_SUFFIXES]
+    if not videos:
+        raise JobError("wxclient_failed", f"任务 #{task_id} 完成，但没有找到落盘的媒体文件。")
+    verified = [(path, verify_media(path)) for path in videos]
+    good = [item for item in verified if item[1].get("ok")]
+    if not good:
+        raise JobError(
+            "verification_failed",
+            f"任务 #{task_id} 的文件未通过媒体检查：{verified[0][1].get('reason', 'unknown')}。",
+        )
+    total = sum(item[0].stat().st_size for item in good)
+    elapsed = time.monotonic() - started
+    return {
+        "status": "verified",
+        "platform": "WeChat Channels",
+        "source_url": safe_url(url),
+        "output_path": str(good[0][0].resolve()),
+        "output_paths": [str(item[0].resolve()) for item in good],
+        "bytes": total,
+        "elapsed_seconds": round(elapsed, 3),
+        "average_mbps": round((total * 8 / 1_000_000) / max(elapsed, 0.001), 3),
+        "engine": "wx_channels_download",
+        "resolver": "wxclient",
+        "task_id": task_id,
+        "reused": False,
+        "metadata": metadata,
+        "verification": good[0][1],
+    }
 
 
 def resolve_wechat(
@@ -743,6 +948,7 @@ def probe_command(args: argparse.Namespace) -> dict[str, Any]:
         result["metadata"] = feed_metadata(data)
         result["media_url_available"] = bool(feed_video_url(data))
         result["authorization_available"] = bool(resolve_cookie())
+        result["wxclient_available"] = wxclient_available()
         if not result["media_url_available"]:
             result["status"] = "authorization_required" if not resolve_cookie() else "resolver_pending"
     elif kind == "unknown":
@@ -780,12 +986,34 @@ def download_command(args: argparse.Namespace) -> dict[str, Any]:
     resolver = "direct_url"
     media_url = url
     if kind == "wechat":
+        via = getattr(args, "via", "auto")
+        if via == "wxclient":
+            result = wxclient_download(url, output_dir, quiet=args.json)
+            result["context_id"] = context_id()
+            return result
         eprint("正在解析视频号分享链接…", args.json)
-        media_url, metadata, resolver = resolve_wechat(
-            url,
-            worker_url=args.worker_url,
-            allow_public_resolver=args.allow_public_resolver,
-        )
+        try:
+            media_url, metadata, resolver = resolve_wechat(
+                url,
+                worker_url=args.worker_url,
+                allow_public_resolver=args.allow_public_resolver,
+            )
+        except JobError as exc:
+            if via != "auto" or exc.code not in {
+                "resolver_failed",
+                "authorization_required",
+                "authorization_failed",
+            }:
+                raise
+            if not wxclient_available():
+                exc.next_action = (
+                    (exc.next_action + "\n") if exc.next_action else ""
+                ) + "或改走微信客户端取流：" + wxclient_start_hint()
+                raise
+            result = wxclient_download(url, output_dir, quiet=args.json)
+            result["context_id"] = context_id()
+            result["fallback_from"] = exc.code
+            return result
         eprint("已取得媒体地址，开始传输…", args.json)
     title = args.filename or metadata.get("title") or Path(urllib.parse.urlparse(media_url).path).stem or "media"
     target, reused = choose_target(destination_path(output_dir, title, media_url), args.overwrite)
@@ -870,6 +1098,80 @@ def doctor_command(args: argparse.Namespace) -> dict[str, Any]:
             "commit": commit,
             "expected_commit": MEDIACRAWLER_COMMIT,
         },
+        "wxclient": {
+            "binary": str(wxclient_binary()),
+            "installed": wxclient_binary().is_file(),
+            "version": WXCLIENT_VERSION,
+            "api": WXCLIENT_API,
+            "running": wxclient_available(),
+        },
+    }
+
+
+def setup_wxclient_command(args: argparse.Namespace) -> dict[str, Any]:
+    """Download the pinned wx_channels_download release, verify its checksum and prepare a workdir."""
+    if sys.platform != "darwin":
+        raise JobError("unsupported_platform", "当前仅为 macOS 准备了微信客户端取流路径。")
+    arch = "arm64" if os.uname().machine == "arm64" else "x86_64"
+    version = WXCLIENT_VERSION
+    number = version.lstrip("v")
+    asset = f"wx_video_download_{version}_darwin_{arch}.zip"
+    checksums = f"wx_video_download_{version}_checksums.txt"
+    base = f"https://github.com/{WXCLIENT_REPOSITORY}/releases/download/{version}/"
+    dist = wxclient_root() / "dist"
+    dist.mkdir(parents=True, exist_ok=True)
+    if not shutil.which("curl"):
+        raise JobError("dependency_missing", "缺少 curl，无法下载发行包。")
+    for name in (asset, checksums):
+        target = dist / name
+        if target.is_file() and name == asset and target.stat().st_size > 0:
+            continue
+        completed = subprocess.run(
+            ["curl", "-sSL", "--fail", "-o", str(target), base + name],
+            check=False,
+        )
+        if completed.returncode != 0:
+            raise JobError("download_failed", f"下载 {name} 失败（curl 退出码 {completed.returncode}）。")
+    expected = ""
+    for line in (dist / checksums).read_text(encoding="utf-8").splitlines():
+        parts = line.split()
+        if len(parts) == 2 and parts[1] == asset:
+            expected = parts[0]
+    digest = hashlib.sha256((dist / asset).read_bytes()).hexdigest()
+    if not expected or digest != expected:
+        raise JobError(
+            "verification_failed",
+            f"{asset} 的 SHA256 与官方 checksums 不一致，已拒绝解压。",
+            f"删除 {dist / asset} 后重试。",
+        )
+    install = wxclient_root() / version
+    install.mkdir(parents=True, exist_ok=True)
+    if not wxclient_binary().is_file():
+        completed = subprocess.run(["unzip", "-o", "-q", str(dist / asset), "-d", str(install)], check=False)
+        if completed.returncode != 0:
+            raise JobError("download_failed", "解压发行包失败。")
+    wxclient_binary().chmod(0o755)
+    workdir = wxclient_workdir()
+    workdir.mkdir(parents=True, exist_ok=True)
+    downloads = wxclient_root() / "downloads"
+    downloads.mkdir(parents=True, exist_ok=True)
+    config = workdir / "config.yaml"
+    if not config.is_file() or args.reset_config:
+        template = (install / "config.yaml").read_text(encoding="utf-8")
+        template = template.replace('dir: "%UserDownloads%"', f'dir: "{downloads}"', 1)
+        template = template.replace('filepath: "%CWD%/data.db"', f'filepath: "{workdir / "data.db"}"', 1)
+        config.write_text(template, encoding="utf-8")
+    return {
+        "status": "ready",
+        "context_id": context_id(),
+        "version": version,
+        "binary": str(wxclient_binary()),
+        "sha256": digest,
+        "workdir": str(workdir),
+        "config": str(config),
+        "default_download_dir": str(downloads),
+        "start": wxclient_start_hint(),
+        "note": "启动需要管理员权限：安装代理根证书并设置系统代理，请由用户在终端执行。",
     }
 
 
@@ -919,6 +1221,12 @@ def build_parser() -> argparse.ArgumentParser:
     download.add_argument("--connections", type=int, default=8)
     download.add_argument("--worker-url", default="")
     download.add_argument("--allow-public-resolver", action="store_true")
+    download.add_argument(
+        "--via",
+        choices=("auto", "yuanbao", "wxclient"),
+        default="auto",
+        help="视频号取流方式：auto 先元宝后本机微信客户端；yuanbao 只走元宝；wxclient 只走微信客户端",
+    )
     download.add_argument("--mediacrawler-root", default="")
     download.add_argument("--overwrite", action="store_true")
     download.add_argument("--json-report", default="")
@@ -928,6 +1236,12 @@ def build_parser() -> argparse.ArgumentParser:
     setup.add_argument("--accept-noncommercial-license", action="store_true")
     setup.add_argument("--mediacrawler-root", default="")
     setup.add_argument("--json", action="store_true")
+
+    wxclient = subparsers.add_parser(
+        "setup-wxclient", help="Download and verify the pinned wx_channels_download release (macOS)"
+    )
+    wxclient.add_argument("--reset-config", action="store_true")
+    wxclient.add_argument("--json", action="store_true")
 
     test = subparsers.add_parser("self-test", help="Run deterministic offline checks")
     test.add_argument("--json", action="store_true")
@@ -947,6 +1261,8 @@ def main() -> int:
             result = download_command(args)
         elif args.command == "setup-mediacrawler":
             result = setup_mediacrawler(args)
+        elif args.command == "setup-wxclient":
+            result = setup_wxclient_command(args)
         else:
             result = self_test_command()
         write_json(report_path, result)

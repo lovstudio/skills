@@ -3,6 +3,7 @@
 | Input | Resolver | Login/session | Download path | Notes |
 | --- | --- | --- | --- | --- |
 | `weixin.qq.com/sph/...` | Tencent Yuanbao + WeChat Channels API | one-time Yuanbao web login | aria2/curl from `finder.video.qq.com` | Public preview alone exposes metadata/cover, not the video stream. |
+| `weixin.qq.com/sph/...` (publisher blocks out-of-WeChat parsing) | Local `wx_channels_download` proxy + logged-in WeChat desktop client | WeChat desktop login; proxy started by the user with admin rights | Upstream task API on `127.0.0.1:2022`, files land in the requested output dir | Used when Yuanbao authenticates but returns an empty export id; `--via wxclient` forces it. macOS only for now. |
 | Xiaohongshu | MediaCrawler `xhs` detail | QR, cookie or upstream cache | MediaCrawler media saver | Single specified post; comments disabled. |
 | Douyin | MediaCrawler `dy` detail | QR, cookie or upstream cache | MediaCrawler media saver | H.264 URL preferred by upstream. |
 | Kuaishou | MediaCrawler `ks` detail | QR, cookie or upstream cache | MediaCrawler media saver | Single specified work. |
@@ -19,6 +20,7 @@
 3. Explicit custom `--worker-url`.
 4. Public resolver only with `--allow-public-resolver`.
 5. Public preview metadata probe and an `authorization_required` result.
+6. Local WeChat client capture (`--via auto` fallback or `--via wxclient`) when the Yuanbao path returns `resolver_failed` and `wx_channels_download` is online at `127.0.0.1:2022`.
 
 Never print or persist a Cookie in the Profile or JSON report. A stale credential is a recoverable authorization failure, not a reason to silently send the link to a third party.
 
