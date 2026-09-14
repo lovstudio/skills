@@ -38,6 +38,7 @@ from pathlib import Path
 
 import yaml
 
+from catalog_entries import is_installable, is_internal
 from skill_display_names import apply_catalog_names
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -66,9 +67,6 @@ def load_skills() -> list[dict]:
     return [s for s in data["skills"] if not s.get("test") and not is_internal(s)]
 
 
-def is_internal(skill: dict) -> bool:
-    """Lovstudio staff-only entry: listed for staff, never mirrored publicly."""
-    return (skill.get("pricing") or {}).get("visibility") == "internal"
 
 
 def free_skills(skills: list[dict]) -> list[dict]:
@@ -81,7 +79,7 @@ def encrypted_skills(skills: list[dict]) -> list[dict]:
 
 def installable_skill_names(skills: list[dict]) -> set[str]:
     """Names that SHOULD have a directory under ./skills/."""
-    return {s["name"] for s in free_skills(skills) + encrypted_skills(skills)}
+    return {s["name"] for s in skills if is_installable(s)}
 
 
 def clone_shallow(repo: str, dest: Path) -> None:

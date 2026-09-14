@@ -19,6 +19,9 @@ from pathlib import Path
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from catalog_entries import is_installable  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 YAML_PATH = ROOT / "skills.yaml"
 MIRROR_ROOT = ROOT / "skills"
@@ -55,7 +58,7 @@ def expected_runtime_names(catalog: dict[str, dict]) -> tuple[dict[str, str], li
     errors: list[str] = []
     for name, skill in catalog.items():
         skill_md = MIRROR_ROOT / name / "SKILL.md"
-        installable = not skill.get("paid") or bool(skill.get("encrypted_bundle"))
+        installable = is_installable(skill)
         if not skill_md.exists():
             if installable and not skill.get("test"):
                 errors.append(f"{name}: installable catalog entry has no mirrored SKILL.md")

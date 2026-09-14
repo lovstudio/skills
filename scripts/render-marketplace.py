@@ -31,6 +31,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from catalog_entries import is_internal  # noqa: E402
 from validate_deps import validate  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -50,7 +51,7 @@ def load_installable_skills() -> tuple[list[dict], list[dict]]:
     # this repo is public: never advertise them here.
     all_skills = [
         s for s in data["skills"]
-        if not s.get("test") and (s.get("pricing") or {}).get("visibility") != "internal"
+        if not s.get("test") and not is_internal(s)
     ]
     errors = validate(data["skills"])
     if errors:
