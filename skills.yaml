@@ -3970,13 +3970,14 @@ skills:
   public_source: true
   price_credits: 139
   category: General
-  version: 0.4.0
-  updated_at: 2026-08-26 06:15:18+00:00
-  description: Guarded macOS disk cleanup with protected app workspaces, rollback-aware
-    staging, archive migration, and real-capacity verification.
-  tagline_en: Clean up Mac storage without touching protected app workspaces, with
-    guarded migration, rollback, and real-capacity verification.
-  tagline_zh: 按目标容量整理 Mac 磁盘，保护 Screen Studio 等应用工作区，并以可回滚操作和真实可用空间完成验收。
+  version: 0.5.0
+  updated_at: 2026-09-14 03:23:02+00:00
+  description: Guarded macOS disk cleanup with protected app workspaces, referenced build directories
+    left intact, rollback-aware staging, archive migration, and real-capacity verification.
+  tagline_en: Clean up Mac storage without touching protected app workspaces or build directories
+    that installed plugins and extensions still load from, with guarded migration, rollback,
+    and real-capacity verification.
+  tagline_zh: 按目标容量整理 Mac 磁盘，保护应用工作区，跳过仍被已装插件与扩展加载的构建目录，并以可回滚操作和真实可用空间完成验收。
   pricing:
     model: one_time
     visibility: public
@@ -3987,26 +3988,29 @@ skills:
     - 139
     delivery_unit_zh: 公开 Skill 源码与当前版本说明
     delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 按目标容量整理 Mac 磁盘，保护应用工作区，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
-    value_en: Clean up Mac storage while protecting application-managed workspaces,
-      with guarded migration, exact rollback-item purging, and real-capacity verification.
-    anchor_zh: 一次处理通常可省下 30 分钟至半天的排查、整理和回滚往返。
-    anchor_en: A run typically saves 30 minutes to half a day of storage diagnosis,
-      cleanup, and rollback work.
-    basis_zh: 以 139 Credits 一次性解锁完整公开源码交付，价格用于验证真实付费意愿，重点价值是可回读的空间改善、应用工作区保护、误删风险降低和回滚可靠性。
-    basis_en: The complete public-source delivery is unlocked once for 139 Credits
-      to validate paid demand, with value centered on verifiable capacity gains, app-workspace
-      protection, lower deletion risk, and reliable rollback.
-    boundary_zh: 默认只处理明确的可重建产物和用户确认的低频资料；照片、消息、邮件、Git 历史、Screen Studio 录制工作区及其他受保护路径不进入自动清理或迁移。
-    boundary_en: Handles explicit rebuildable artifacts and user-confirmed cold data;
-      photos, messages, mail, Git history, Screen Studio recordings, and other protected
-      paths stay out of cleanup and migration.
-    maintenance_zh: 随 macOS、文件系统、归档卷挂载方式和真实使用反馈变化复评。
-    maintenance_en: Review when macOS, filesystem behavior, archive-volume mounting,
-      or real-use feedback change.
+    value_zh: 按目标容量整理 Mac 磁盘，保护应用工作区与被其它应用加载的构建目录，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
+    value_en: Clean up Mac storage while protecting application-managed workspaces and build
+      directories other apps load from, with guarded migration, exact rollback-item purging,
+      and real-capacity verification.
+    anchor_zh: 一次处理通常可省下 30 分钟至半天的排查、整理和回滚往返；避免一次误删已装集成再省下 0.5 至 2 小时的重建与排查。
+    anchor_en: A run typically saves 30 minutes to half a day of storage diagnosis, cleanup,
+      and rollback work, and avoiding one wrongly removed integration saves another 0.5 to 2
+      hours of rebuild and diagnosis.
+    basis_zh: 以 139 Credits 一次性解锁完整公开源码交付，价格用于验证真实付费意愿，重点价值是可回读的空间改善、应用工作区保护、已装插件与扩展不被静默卸载，以及回滚可靠性。
+    basis_en: The complete public-source delivery is unlocked once for 139 Credits to validate
+      paid demand, with value centered on verifiable capacity gains, app-workspace protection,
+      installed integrations that are never silently uninstalled, and reliable rollback.
+    boundary_zh: 默认只处理明确的可重建产物和用户确认的低频资料；照片、消息、邮件、Git 历史、Screen Studio 录制工作区、被其它应用加载的目录及其他受保护路径不进入自动清理或迁移。访问时间只作参考信号。
+    boundary_en: Handles explicit rebuildable artifacts and user-confirmed cold data; photos,
+      messages, mail, Git history, Screen Studio recordings, directories other apps load from,
+      and other protected paths stay out of cleanup and migration. Access time is a reference
+      signal only.
+    maintenance_zh: 随 macOS、文件系统、归档卷挂载方式、插件宿主与浏览器 profile 结构以及真实使用反馈变化复评。
+    maintenance_en: Review when macOS, filesystem behavior, archive-volume mounting, plugin-host
+      or browser profile layouts, or real-use feedback change.
     confidence: case-backed
-    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化，或支持成本明显变化时复评。
-    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
+    review_trigger_zh: 0.5.0 发布满 30 天、累计 100 次付费兑换、版本变化，或支持成本明显变化时复评。
+    review_trigger_en: Review after 30 days from the 0.5.0 launch, 100 paid redemptions, a version
       change, or a material change in support cost.
     card_path: pricing-cards/clean-mac.md
 - name: media-fetch
