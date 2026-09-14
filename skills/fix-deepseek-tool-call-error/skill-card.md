@@ -1,5 +1,7 @@
 # Codex × DeepSeek 会话急救 · Codex × DeepSeek Thread First Aid · Skill Card
 
+## Description
+
 扫描本地 Codex rollout，定位 DeepSeek（provider=yoda、wire_api=responses）会话里
 `No tool output found for tool call` 400 的事故现场，并给出恢复与预防方案。
 
@@ -77,4 +79,3 @@ global。
 
 付费渠道：无。免费渠道：github 与 lovstudio。当前状态：本地源就绪并可本地安装；
 github 尚未推送；workbuddy、skillpay、lovstudio 均计划中。
-

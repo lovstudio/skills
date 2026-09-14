@@ -22,7 +22,7 @@ metadata:
     - privacy
 ---
 
-# 恋爱指数分析 · Love Index
+# 恋爱指数分析 · Love Index Analysis
 
 调用 ID 是 `lov-do-they-love-me`，用的是英文**单数 they**：指一个性别未知或不必指明的人，
 所以它同时覆盖 he 和 she。单数 they 的动词形式是 **do**，不是 does——`does they` 是语法错误，

@@ -1,4 +1,4 @@
-# lov-do-they-love-me
+# 恋爱指数分析 · Love Index Analysis
 
 ![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 

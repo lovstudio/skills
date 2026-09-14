@@ -1,4 +1,4 @@
-# Skill Card — lov-do-they-love-me
+# 恋爱指数分析 · Love Index Analysis · Skill Card
 
 This human-readable card mirrors `skill-card.yaml`. It is a release record, not
 an implementation note. A reviewer should understand the Skill without opening
