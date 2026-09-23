@@ -2769,7 +2769,7 @@ skills:
     card_path: pricing-cards/repo2docs.md
 - name: wdb-cli
   runtime_name: lov-wdb-cli
-  updated_at: '2026-09-09T22:55:00Z'
+  updated_at: '2026-09-23T13:30:00Z'
   skillpay_product_id: P0806000201803813
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt_Qi
   skillpay_review_product_id: P0806000201871143
@@ -2781,7 +2781,7 @@ skills:
   price_credits: 280
   category: General
   skill_path: ''
-  version: 0.4.0
+  version: 0.5.3
   description: Prepare local WeChat keys, then query isolated DB+WAL copies while
     preserving exact record identity without opening the live database with SQLite
     or SQLCipher.
@@ -2799,18 +2799,19 @@ skills:
     price_range_credits:
     - 280
     - 703
-    delivery_unit_zh: 完整 Skill Kit，含密钥准备、查询、使用说明和原生 scanner 组件
-    delivery_unit_en: Complete Skill Kit with key preparation, querying, usage notes,
-      and native scanner components
+    delivery_unit_zh: 完整 Skill Kit，含密钥准备、查询、图片解码、使用说明和原生 scanner 组件
+    delivery_unit_en: Complete Skill Kit with key preparation, querying, image decoding,
+      usage notes, and native scanner components
     value_zh: 先扫描或捕获本地微信密钥，再按日期、联系人、关键词、朋友圈动态或稳定记录身份读取数据。
     value_en: Scan or capture local WeChat keys, then query by date, contact, keyword,
       Moment, or exact record identity.
     anchor_zh: 自动化替代手工查表和精确定位；节省时间因数据和任务而异，尚无买家统计。
     anchor_en: Automates table inspection and exact record lookup; time savings vary
       and buyer measurements are not yet available.
-    basis_zh: 0.4.0 新增 WDB Pro 密钥获取闭环；20 项测试与 scanner 自检通过，真实登录捕获待验证。
-    basis_en: Version 0.4.0 adds the WDB Pro key-preparation loop; 20 tests and scanner
-      self-test pass, while real login capture remains pending.
+    basis_zh: 0.5.x 在真实机器上完成登录捕获与查询，新增引用回复识别和聊天图片解码；23 项测试通过，买家数据待补，维持现价。
+    basis_en: Version 0.5.x completes real-machine login capture and querying, and adds
+      quoted-reply parsing and chat image decoding; 23 tests pass and buyer data is still
+      pending, so the price holds.
     boundary_zh: 支持 macOS 微信 4.1.10+ 登录捕获与旧版扫描；需 SQLCipher、临时磁盘空间；不跨设备导出。
     boundary_en: Supports macOS WeChat 4.1.10+ login capture and older scans; requires
       SQLCipher and temporary disk space; no cross-device export.
@@ -2818,9 +2819,10 @@ skills:
     maintenance_en: Review when WeChat schemas, SQLCipher environments, or observed
       support costs change.
     confidence: medium
-    review_trigger_zh: 20 名付费用户、100 次成功流程、支持超过 30 分钟、0.4.0 或 2027-02-22；优先补齐运行中稳定性证据。
+    review_trigger_zh: 20 名付费用户、100 次成功流程、支持超过 30 分钟、微信图片或数据库格式变化、0.6.0 或 2027-02-22；优先补齐跨机器成功率。
     review_trigger_en: Review at 20 buyers, 100 successful workflows, support over
-      30 minutes, 0.4.0, or 2027-02-22; prioritize running-WeChat stability evidence.
+      30 minutes, WeChat image or schema changes, 0.6.0, or 2027-02-22; prioritize
+      cross-machine success rates.
     card_path: pricing-cards/wdb-cli.md
   depends_on:
   - branding-consistency

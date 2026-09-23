@@ -1,285 +1,297 @@
 {
   "skill_name": "wdb-cli",
-  "skill_version": "0.4.0",
+  "skill_version": "0.5.3",
   "skill_id": 66,
-  "skill_version_id": 75,
+  "skill_version_id": 78,
   "format_version": 2,
   "cipher": "aes-256-gcm",
   "files": {
     ".gitignore": {
-      "iv": "g86sbFmMoVufrTZf",
-      "tag": "FVuMFfWVwj6xe1sOV13x2Q==",
+      "iv": "xY0bTGAOidkzD5db",
+      "tag": "8x664Ap4sPQtKa0zJ71p/g==",
       "original_checksum": "0ee39de8cd941bdd57ed5d06c882ab7f5db378a762718ccd4e3fc023751d4df4",
       "original_size": 84
     },
     "CHANGELOG.md": {
-      "iv": "am+8kh5jytRPlYeN",
-      "tag": "HJceJbqFeIHO1aToM0ICqw==",
-      "original_checksum": "8c171583d50701b3f797ceb15fe782069e15364ab0df5989f11cb3dcaabd301b",
-      "original_size": 2438
+      "iv": "fg/X86esgLSf/hHq",
+      "tag": "gaTinZC7FMMmo7Zl0une6g==",
+      "original_checksum": "824a9aaa6973070c92ac300493531e63fbc5fb882a736ee9f8a476f8639f28e6",
+      "original_size": 5021
     },
     "LICENSE": {
-      "iv": "5ssKRnp6ks+mgPH6",
-      "tag": "27HSiMqJ89GFrmsBKZObFg==",
+      "iv": "aGG7NxrTy7MxpPFK",
+      "tag": "jp0qL4pcUPHl4fP9KUYOHQ==",
       "original_checksum": "3577ef5e65c0dc01bb54c3059f1e76f99c121cdec08bfc95d18bb7715ec9a64d",
       "original_size": 1072
     },
     "README.md": {
-      "iv": "PEzewU9fTCzsPpgq",
-      "tag": "Ld1hyBHs9fFO1xxbVK7Cpg==",
-      "original_checksum": "969e08d1a4e59c5be8d4c2d5c22f3d1e91468b2c2de7222121d504b2ed380c19",
-      "original_size": 2139
+      "iv": "bDvLKXpeq8RWMZ3L",
+      "tag": "OKYPkNjvUdS1MqF5A1Gm3A==",
+      "original_checksum": "a22f3eecd5b7b4ab44c8fdb4ae36aad2b67c3ff0b976a7ccb9ccacaa216b2a97",
+      "original_size": 2181
     },
     "SKILL.md": {
-      "iv": "pc/1D84PRbrKn81i",
-      "tag": "F6tI5opvKn3+SXuG0Xpc2w==",
-      "original_checksum": "2a86bfdfb7c5d5802af7b3ec795778c721e5644588f83d4ac23bed14718e386f",
-      "original_size": 11563
+      "iv": "KpEoud0grnnwzfq1",
+      "tag": "DiGI7JOmlfZjPae8ck3HeQ==",
+      "original_checksum": "9df0c36b453ce5119a181ea5853464ed7012aa07e1934151918cd10e87f08b8a",
+      "original_size": 15509
     },
     "kit.yaml": {
-      "iv": "se3xQTvhKXKkEPuz",
-      "tag": "Cjuej5fVyyNXq9Snx9LZCw==",
-      "original_checksum": "20bb47177b40b7844a4a2fb765215bc1dcb7b87a04cbcae7b3319baed91562e9",
+      "iv": "HtFKp5MGvuMT3QIn",
+      "tag": "/mYTYmBbXaNAT9fUQh9IKw==",
+      "original_checksum": "1d2c34a36776569d73144f0314e16c203e0e98ccf86ea446d87b6d2c6a90dd11",
       "original_size": 351
     },
     "references/data-contract.md": {
-      "iv": "2kL5693R45CG7Ucy",
-      "tag": "je5EUqCUJMfcAk4zMcQvvA==",
-      "original_checksum": "ca93e300cc2a515e4f2e2e8cc56dc83ae0a158b95b7612be12fb19313eeb86f7",
-      "original_size": 4899
+      "iv": "dSJT9+Zv0TSV1mri",
+      "tag": "e7Wfs9dNq/ua+f1wZRWJxA==",
+      "original_checksum": "b74776f2b7c7a8102aeb5ab06cd00bc776e34563a38f25f99d3fa0c99fbf0e7b",
+      "original_size": 8731
     },
     "references/skill-composition.md": {
-      "iv": "IQ3enckxcgfFGUlV",
-      "tag": "jM53HIbmgvUR3XSg8eXX7w==",
+      "iv": "vGWF7S1//fJzUs4o",
+      "tag": "giKDMcOxBscOeVwsvbF+7g==",
       "original_checksum": "a25ecee0da6586b44b2ab473b445208309ff2b65c47f83f981c57c760dd4b26c",
       "original_size": 1605
     },
+    "scripts/decode_wechat_v4_dat.py": {
+      "iv": "QSa+5OnufIeWK05+",
+      "tag": "0T0W0R21TEoZwWps3AH4cA==",
+      "original_checksum": "4c5d450779b8b81abf74c61a19642f12a7e4d104ab53e92f44f7e70c0925c02b",
+      "original_size": 14593
+    },
     "scripts/test_wdb_cli.py": {
-      "iv": "vcrGKD9AYdgCKzCq",
-      "tag": "5m5khOTt7jutk8NlRQ2pWg==",
-      "original_checksum": "f64a98e30f10432d7a214ba9fcf8173dc782401bfe36daad31fd14cdf95a45c3",
-      "original_size": 17575
+      "iv": "8/Zea6ht0ADYyLSj",
+      "tag": "/y6wi30/iGM4IuyClJNmog==",
+      "original_checksum": "41721b70981cd604bc042f88f7c0fb0dd2f481b80f360ebe4761c099bada3687",
+      "original_size": 24073
     },
     "scripts/validate_skill.py": {
-      "iv": "DENsKXjzlw3nV4nL",
-      "tag": "9RP9blUrhwABmbdhL7/xig==",
+      "iv": "y+eNw4X+qO52PtmZ",
+      "tag": "aigplSSNWvNGv490dz+usw==",
       "original_checksum": "f5420884fe31157d550f6e972d17c8122cc85115849ab7af4f0569c2458584ef",
       "original_size": 11808
     },
     "scripts/wdb_cli.py": {
-      "iv": "TKGxTQr+H1FjU12q",
-      "tag": "HdiV2eTvLTSzLCcexOpmvQ==",
-      "original_checksum": "37208f59bfe73ba03e4f5c0d1577fec7d057fb86e78bf2cab997fd08e76d5613",
-      "original_size": 76234
+      "iv": "IcE+05IlKSV1PYhx",
+      "tag": "p7VFQ6HLY2OTWW1rIfEqew==",
+      "original_checksum": "8cdb10e29ce881a726c282ade0b162f15a437bef3d35c0b2647d49c3c152b8e1",
+      "original_size": 78918
     },
     "skill.yaml": {
-      "iv": "ye9X6bsie5g0zzPp",
-      "tag": "ilsS/yzh13/H+ZxAoNMe/g==",
-      "original_checksum": "5b5eae3e5bda639646df136713992461a16aab4a109cbece355268626e5f2fef",
+      "iv": "AVLSL9x/jPka592q",
+      "tag": "CFhSizfMFeDllHZKmO7Q8A==",
+      "original_checksum": "011ff86a52b86903610a3280f10238e8238e1a92d6d37e20c74ad369e1c510fd",
       "original_size": 1389
     },
     "skills/wdb-init/.gitignore": {
-      "iv": "D4DIgNIp+cOF3Xs9",
-      "tag": "9TsPjO3vkVtVBB3lrjAPGg==",
+      "iv": "hOXPGAP58GHvT2VS",
+      "tag": "v+1RFxmFMWv3PPbnXoY0EA==",
       "original_checksum": "0ee39de8cd941bdd57ed5d06c882ab7f5db378a762718ccd4e3fc023751d4df4",
       "original_size": 84
     },
     "skills/wdb-init/CHANGELOG.md": {
-      "iv": "v3fgaUw7iy3IM+Yy",
-      "tag": "gvD8io6yuifHquhDy//EPw==",
+      "iv": "BZaJynysMC8wXcqN",
+      "tag": "boos/qNp/elcbGzEt9bEXA==",
       "original_checksum": "430faeee88421cfbe7725b9e1e1977d66b3cb8bcf7b5901519ea131b838dc0be",
       "original_size": 241
     },
     "skills/wdb-init/LICENSE": {
-      "iv": "8IUSbEgP0CY5aAJr",
-      "tag": "RKmd+ENDSjo4doht7P/ODw==",
+      "iv": "OnChvf+2VHTFPkKE",
+      "tag": "Ysun9I1Juj47esVlXWE9rg==",
       "original_checksum": "3577ef5e65c0dc01bb54c3059f1e76f99c121cdec08bfc95d18bb7715ec9a64d",
       "original_size": 1072
     },
     "skills/wdb-init/README.md": {
-      "iv": "TreWrPVIST2uFxGe",
-      "tag": "OTDQADemhbx25OdJCFlB4w==",
+      "iv": "F5i+Ai8CdjqBNrqN",
+      "tag": "CJGHQUf8Or2k8mOMjBeWww==",
       "original_checksum": "fc149639ecd94314355ee59d97772e445c995cc07c7ada86126b49f74a46a3c3",
       "original_size": 1198
     },
     "skills/wdb-init/SKILL.md": {
-      "iv": "Oo59jPaYauLRPU15",
-      "tag": "gOLyBYcUBGhQYMW44PrBxw==",
+      "iv": "rvotKRgjk9FADRBv",
+      "tag": "h0QCmh1koqZoa8bNizFQ4A==",
       "original_checksum": "e75a16e33fffae08207b939efb0c39cd2a8095699b618e71660bbc58d286ffe2",
       "original_size": 4453
     },
     "skills/wdb-init/assets/LICENSE.wcdb-key-tool": {
-      "iv": "zBATCLzJwYU7NQID",
-      "tag": "++v1rp69VKTNMgzPjtF85w==",
+      "iv": "Xnf4RXGb0nhDsuXD",
+      "tag": "L09cfFgg1ZwOVNfVyiHkww==",
       "original_checksum": "098659c726e64afd1c503227c1f13866a3ae55a533744185d953828f37c54d8e",
       "original_size": 1082
     },
     "skills/wdb-init/assets/LICENSE.wechat-cli": {
-      "iv": "Cj2rzJV6D6MW5oLd",
-      "tag": "eeWHXqUtlbKkA8wwCioqAA==",
+      "iv": "C+FuMkajMfKruPEy",
+      "tag": "G1L38ztrLkgaA5tS5ifL/Q==",
       "original_checksum": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
       "original_size": 11358
     },
     "skills/wdb-init/assets/THIRD_PARTY_NOTICES.md": {
-      "iv": "qlFpmCdnBwLheOAi",
-      "tag": "67ij1cVFN+VPZjh6FkFMtg==",
+      "iv": "UPrtFnl0gZxtPV+R",
+      "tag": "Y6y8zs0e1cAOoTp59OkKIg==",
       "original_checksum": "cc0817808a97f2cd8a5159845850fac52601722d35793872762f457556a9929e",
       "original_size": 714
     },
     "skills/wdb-init/assets/bin/wechat-key-scanner-aarch64-apple-darwin": {
-      "iv": "8CXXv9H4h63JMbxM",
-      "tag": "h9uZIyj7RkfC1ToMxfSPcw==",
+      "iv": "LavYSY3qPwPm5wVg",
+      "tag": "t4dT1FBkC25m3InSJU4X7A==",
       "original_checksum": "50d09cb169d8e7aa320ed2d30108883f6e46951b60d091585ab835f4951b8d88",
       "original_size": 89568
     },
     "skills/wdb-init/assets/bin/wechat-key-scanner-x86_64-apple-darwin": {
-      "iv": "QxfSa7u/Uj6HqUNm",
-      "tag": "RjbP/4PVpTEy6Kyo16GKUg==",
+      "iv": "R56Wto8ntgRpoB8e",
+      "tag": "MlI8F59d0fpvAtoUHHxY+Q==",
       "original_checksum": "66fee3097c57f67274e54c6ed8f674c5d7248619cc4b07968629cf8dac70f398",
       "original_size": 52944
     },
     "skills/wdb-init/assets/scanner-entitlements.plist": {
-      "iv": "e8ItG+oTCQTa1wv/",
-      "tag": "8BV5bwtTRSwiJwaqE/P2dA==",
+      "iv": "jsfJuEE/rAMFAxbe",
+      "tag": "aS57zXOQbYy633cz5UMZtg==",
       "original_checksum": "4890e51c39c937036a85737fa5dedd2a1a59145a33b3f286a7c58cad8cce9837",
       "original_size": 242
     },
     "skills/wdb-init/assets/scanner-self-test-entitlements.plist": {
-      "iv": "PmyZIJJGTrX//87V",
-      "tag": "cBSxnm+dCUJO7StkOm0/lQ==",
+      "iv": "HIJdpQRstsOul78K",
+      "tag": "AxJYN5mM0LVlI0rsfwUzGA==",
       "original_checksum": "bf25194054ef7ebe0c1ea66a1ffd13b80dce7b5e9f5afd85b8670eb2eb434d00",
       "original_size": 245
     },
     "skills/wdb-init/assets/wechat-key-scanner.c": {
-      "iv": "jl9GauZu23bX/7Me",
-      "tag": "E4QQ6jIsUcEW69P1G2IOyg==",
+      "iv": "oezEZx+yGNJg7pAA",
+      "tag": "6RBaaDZGKRref+1u50Cfhw==",
       "original_checksum": "6c457667d4ab0034efadba6424b36e97f8671261652bea953ae01d6024a3484b",
       "original_size": 40438
     },
     "skills/wdb-init/cases/cases.json": {
-      "iv": "pK9fMS5VNuhJ10Dy",
-      "tag": "SA/cJq22nDMfmP1m5PvdXQ==",
+      "iv": "A0A85QEyVzIvdQGe",
+      "tag": "eDbQlC+Mo/ZjIs+/F0GU+Q==",
       "original_checksum": "d9c01df814f5c9f87c91931499de6bb7314b25ccf48c32f36a0c95d1c61bd34d",
       "original_size": 838
     },
     "skills/wdb-init/pricing-card.yaml": {
-      "iv": "Q8aRK6fU2yMviTKY",
-      "tag": "kqPtvjtWzNXyo8SlbokWKw==",
+      "iv": "s4rqpdNXOwSeyq9F",
+      "tag": "4u//30rb28SW57tKiUGZeg==",
       "original_checksum": "e1cc81b7808cb8cbb2f6519de5f8ddf73d776164fa4a6985bbdfe158e218375a",
       "original_size": 579
     },
     "skills/wdb-init/references/scanner-protocol.md": {
-      "iv": "DpjEp9birEkQ/3qd",
-      "tag": "UU2p013S20uDojrxEqQI6A==",
+      "iv": "pDtTu9/JaWauI3Xs",
+      "tag": "a/K4aI8oZ6gQXkn2Kusm1w==",
       "original_checksum": "f513bb527900d0d1c84a10b2a61245e8604d0c853bf4178431e811aa20ed9379",
       "original_size": 1429
     },
     "skills/wdb-init/references/skill-card-standard.md": {
-      "iv": "7sbyOsKQjz6X3rSy",
-      "tag": "9B9TeduJ1fruNflH0OiiAg==",
+      "iv": "TuO/LkDWlLzuKtrs",
+      "tag": "oFqp7WEhz4jKIrwsUcXedw==",
       "original_checksum": "bf07e7e49921707b89c8e9b562d49669b710839fcba99be1729767a2daba9a26",
       "original_size": 660
     },
     "skills/wdb-init/references/skill-composition.md": {
-      "iv": "4B6k803x7NbaQl4q",
-      "tag": "GsTl1iSkC93KU5jm0n/zvg==",
+      "iv": "F8mM/hhsdSUkygpq",
+      "tag": "4ZlhO/DC1Ryg4feZWiOb9w==",
       "original_checksum": "8b41ae15d27e80d63207b315703c315e62c111c337a4803c06c0cbbc88979165",
       "original_size": 1151
     },
     "skills/wdb-init/references/user-profile.md": {
-      "iv": "U6yod0Cv2OdUHLQ6",
-      "tag": "eMMD2Tpg5vNsVNR7OGBHuA==",
+      "iv": "k4IdFSMTd8gy0E26",
+      "tag": "hZywYNZHJL1MX16jJ4RqhQ==",
       "original_checksum": "763b6558feae12fd90cc59917938b8e9c57a8aa161173e7249da82209362904c",
       "original_size": 2779
     },
     "skills/wdb-init/scripts/profile_store.py": {
-      "iv": "+EygIo4rGO6nQhCB",
-      "tag": "g7D+NarEw+j+fsu6yfwTDA==",
+      "iv": "WbuFjsSycfG+eQYV",
+      "tag": "qCOUcbKUPbThQFWP0/V/oA==",
       "original_checksum": "f1184f9ac4630691b5d8f6af90ed3c4171d1a2bb14769642249e8ea73658fb0e",
       "original_size": 8521
     },
     "skills/wdb-init/scripts/test_wdb_init.py": {
-      "iv": "S10fqzf2ivin8EOU",
-      "tag": "fUqqW70HrWohktfjBcKzOg==",
+      "iv": "/hDYpJAE6tDIGy7T",
+      "tag": "iLTRzMnwhGe0uL7IYR71SA==",
       "original_checksum": "d20beb34a864035b95ff9d27712c166110a10f67d4f515b375c112a1efab27c8",
       "original_size": 3058
     },
     "skills/wdb-init/scripts/validate_skill.py": {
-      "iv": "Vh5g+rkSBmCXQ4r4",
-      "tag": "g6N22CYjGq904mfN5uZ/Fg==",
+      "iv": "T5fH49eEysD7yJuZ",
+      "tag": "uGzNxorXmFwGLARk6oDAKA==",
       "original_checksum": "61cb89a6252b3ad81d500e1608d25f9d2f4e40c80fec06f1dd59b61cbb0716ef",
       "original_size": 26796
     },
     "skills/wdb-init/scripts/wdb_init.py": {
-      "iv": "1dejUDral4URwhFf",
-      "tag": "jqIah8hONpkmHDc0ln/r1A==",
+      "iv": "oDQedKr9t2m8MHdm",
+      "tag": "OEfiK+m/ToozH6r/h1gWfw==",
       "original_checksum": "5fa7aa48248c0b996a5d0c3a73d61dc8555fe59f4f2c514763d21293af682183",
       "original_size": 39337
     },
     "skills/wdb-init/skill-card.md": {
-      "iv": "tIRhocre9fkRbWeg",
-      "tag": "+eN2XX7+Il7RR/5zAyhf7Q==",
+      "iv": "pC5rD1i3bDa06KZK",
+      "tag": "6BGIt6L3jFp5/YN4p7KlLQ==",
       "original_checksum": "636c18bfb27442b658ce360e09a1b3d0c1ef1b6074c70c769046746904bb6f64",
       "original_size": 2265
     },
     "skills/wdb-init/skill-card.yaml": {
-      "iv": "IcnABIEvsYOubIkw",
-      "tag": "Qs5mqr7GlpQBHxjFmWbZZw==",
+      "iv": "eq/MCQHRanDJvz9d",
+      "tag": "mJXNorojlAE4Q/VYg0ffkQ==",
       "original_checksum": "c8184e8077104cac62d8d803f9321f6efd4e9c052d0fc92d967a0df230c26850",
       "original_size": 3152
     },
     "skills/wdb-init/skill.yaml": {
-      "iv": "gsVK1T7PV4ak6NlU",
-      "tag": "AZbihagND+SpNdgYVKz8rg==",
+      "iv": "j0FKv/VRTwMDi6AV",
+      "tag": "cvRaV93vXeJWCYlS4vvtRg==",
       "original_checksum": "969505470c6404b1e22e9ec729f1d2326774a8d22788f40e3d38427bc8ae8613",
       "original_size": 1599
     },
     "skills/wdb-query/README.md": {
-      "iv": "ySOx7DCjrapRgJv7",
-      "tag": "jGeRIgnZZHkksYpWjxh5+w==",
+      "iv": "FYRUdlknNs/or0ZW",
+      "tag": "Vnd4QOTpZxZ6ZYdN2A1Ysg==",
       "original_checksum": "884fb1943590d78eba1ed4f5273da0df99dab453a0e652dd3a13ce54ff5e6b6a",
       "original_size": 4330
     },
     "skills/wdb-query/SKILL.md": {
-      "iv": "h+Ww33oLitXZGsWo",
-      "tag": "ZeyhaqPWBayizLtOFGnF3g==",
-      "original_checksum": "95a2c7ee24c7be5caf8aa69887ce27d1e3df9f7c0f1abafc6505a5501479904e",
-      "original_size": 10096
+      "iv": "JVmCR0/17I8xBUoN",
+      "tag": "2dpqmAuiDp1RcpkWlTFkmQ==",
+      "original_checksum": "0857f10cac740ba58ebe6ca6b0ddb8ee903d53af33056f28f4b7247e26c6ccfa",
+      "original_size": 14005
     },
     "skills/wdb-query/references/data-contract.md": {
-      "iv": "bfKgDUb72thdqPx9",
-      "tag": "g+4Du6P5klBi59Bcb1cCbA==",
-      "original_checksum": "ca93e300cc2a515e4f2e2e8cc56dc83ae0a158b95b7612be12fb19313eeb86f7",
-      "original_size": 4899
+      "iv": "DYCic498aeRA1DYS",
+      "tag": "Qh2WwJsJO4FnyPY3IhSKkQ==",
+      "original_checksum": "58fb36282db413af126f857c6179ebb869f50d30458ae768734f56b4c9d62931",
+      "original_size": 6269
     },
     "skills/wdb-query/references/skill-composition.md": {
-      "iv": "sqGoKan5zJ4Fgwwm",
-      "tag": "DyNPuZ+KDhuAYZW+8KJLzA==",
+      "iv": "5aInzcNnRVKMVHnb",
+      "tag": "W62xQMNenJ7hD1P8l5LXvg==",
       "original_checksum": "ea6217cfcd1006eda1a76e2223026619542b7fd8e36dc81cc200f9e10a1af025",
       "original_size": 1359
     },
+    "skills/wdb-query/scripts/decode_wechat_v4_dat.py": {
+      "iv": "KF08ERDu8MnS4KwX",
+      "tag": "Dra8kBsDejEaJbIDr0M5Mg==",
+      "original_checksum": "4c5d450779b8b81abf74c61a19642f12a7e4d104ab53e92f44f7e70c0925c02b",
+      "original_size": 14593
+    },
     "skills/wdb-query/scripts/test_wdb_cli.py": {
-      "iv": "YvhZW47M+M5SLXye",
-      "tag": "4M0rVx6YKi0Hy2ZiL5szkg==",
-      "original_checksum": "f64a98e30f10432d7a214ba9fcf8173dc782401bfe36daad31fd14cdf95a45c3",
-      "original_size": 17575
+      "iv": "y/rzmyVC9o09fTiS",
+      "tag": "FAcXEvJHg9UckDl+Tr1k4w==",
+      "original_checksum": "41721b70981cd604bc042f88f7c0fb0dd2f481b80f360ebe4761c099bada3687",
+      "original_size": 24073
     },
     "skills/wdb-query/scripts/validate_skill.py": {
-      "iv": "y0wiHkZKpLyJ99Du",
-      "tag": "mJPBJoSld2BhkC7/VnM23Q==",
+      "iv": "9aoocpKEjXdYCLoo",
+      "tag": "CW5nYf5BJlLjaQVam+Mqdg==",
       "original_checksum": "f5420884fe31157d550f6e972d17c8122cc85115849ab7af4f0569c2458584ef",
       "original_size": 11808
     },
     "skills/wdb-query/scripts/wdb_cli.py": {
-      "iv": "T1IGwTB7/jsIhVv0",
-      "tag": "+6HdhaXKT/wwS3dF96tb7A==",
-      "original_checksum": "37208f59bfe73ba03e4f5c0d1577fec7d057fb86e78bf2cab997fd08e76d5613",
-      "original_size": 76234
+      "iv": "pmmFhvCP5XxjOwnn",
+      "tag": "3j0dDRKulOhak0IHlhVttQ==",
+      "original_checksum": "8cdb10e29ce881a726c282ade0b162f15a437bef3d35c0b2647d49c3c152b8e1",
+      "original_size": 78918
     },
     "skills/wdb-query/skill.yaml": {
-      "iv": "Oh5Gbez/o6ZQvb1W",
-      "tag": "MWOEGmiQgWLv7uhqk31yxA==",
-      "original_checksum": "eba24ca5cd35713d3a27649621e3cb5b9dfe58f9b86476eccae465f800002e76",
+      "iv": "2bsuNsmZPkrdTCTb",
+      "tag": "pR99OpuhgmhRy5r+vwgiog==",
+      "original_checksum": "8c3d41995d8d5ed398794da6f7800cefd663c9872f03f3bfeb22de2928983d9e",
       "original_size": 1396
     }
   }
