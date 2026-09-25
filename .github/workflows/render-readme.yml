@@ -63,6 +63,10 @@ jobs:
           github.event_name == 'schedule' ||
           github.event_name == 'push' ||
           inputs.mirror == 'true'
+        env:
+          # Fine-grained token with read access to the private lovstudio/*-skill repos.
+          # Without it private sources fail to clone and keep their last mirror.
+          SKILLS_SOURCE_TOKEN: ${{ secrets.SKILLS_SOURCE_TOKEN }}
         run: python3 scripts/sync-skills.py
 
       - name: Sync runtime Skill names

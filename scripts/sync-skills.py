@@ -25,6 +25,8 @@ Three classes of skill:
 Env:
     SKIP_CLONE=1   # reuse existing ./skills/<name>/ without re-cloning
                    # (useful for local iteration; CI always clones fresh)
+    SKILLS_SOURCE_TOKEN=...     # read token for private per-skill source repos (CI secret)
+    SKILLS_CLONE_PROTOCOL=ssh   # local runs: clone private sources with the user's SSH key
 """
 from __future__ import annotations
 
@@ -82,9 +84,19 @@ def installable_skill_names(skills: list[dict]) -> set[str]:
     return {s["name"] for s in skills if is_installable(s)}
 
 
+def clone_url(repo: str) -> str:
+    # Skill source repos are private by default; public repos still clone anonymously.
+    token = os.environ.get("SKILLS_SOURCE_TOKEN")
+    if token:
+        return f"https://x-access-token:{token}@github.com/{repo}.git"
+    if os.environ.get("SKILLS_CLONE_PROTOCOL") == "ssh":
+        return f"git@github.com:{repo}.git"
+    return f"https://github.com/{repo}.git"
+
+
 def clone_shallow(repo: str, dest: Path) -> None:
     subprocess.check_call(
-        ["git", "clone", "--depth=1", f"https://github.com/{repo}.git", str(dest)],
+        ["git", "clone", "--depth=1", clone_url(repo), str(dest)],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.STDOUT,
     )
