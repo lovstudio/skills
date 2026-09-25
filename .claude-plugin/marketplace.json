@@ -123,7 +123,7 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 26 free + 4 paid (Credits redemption required).",
+      "description": "General — 27 free + 4 paid (Credits redemption required).",
       "category": "General",
       "skills": [
         "./skills/image-translation-errata",
@@ -157,7 +157,8 @@
         "./skills/wxmp-cli",
         "./skills/read-wechat-article",
         "./skills/xhs",
-        "./skills/do-they-love-me"
+        "./skills/do-they-love-me",
+        "./skills/ncm2mp3"
       ],
       "strict": false
     },

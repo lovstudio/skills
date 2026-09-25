@@ -1,0 +1,45 @@
+schema: skill-manifest/v1
+id: lov-ncm2mp3
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-ncm2mp3
+    persist:
+      enabled: true
+      namespace: skills.lov-ncm2mp3
+      records_path: skills.lov-ncm2mp3.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: workspace.output_dir
+        required: false
+        question: 如果有固定的交付目录，请提供路径。
+      - path: skills.lov-ncm2mp3.records.output_format
+        required: false
+        question: 默认输出 mp3，还是无损内容保留原格式（original）？
+      - path: skills.lov-ncm2mp3.records.output_dir
+        required: false
+        question: 转换结果放在源文件旁边，还是固定目录？
+      - path: skills.lov-ncm2mp3.records.download_cover
+        required: false
+        question: NCM 内没有封面时，是否允许联网下载封面？
+  preferences:
+    namespace: lov_ncm2mp3
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+  interaction:
+    ask_missing: true
+    max_questions: 1

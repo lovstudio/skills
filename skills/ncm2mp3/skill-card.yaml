@@ -1,0 +1,112 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 把网易云音乐客户端下载的 .ncm 解密成普通播放器能直接打开的音频，默认输出带标题、歌手、专辑与封面的 MP3，可保留 FLAC 无损；支持文件夹批量处理，自动跳过有效结果、替换损坏结果。
+owner:
+  team: Local skill contributors
+  contact: 本地 Skill 源目录维护者
+license:
+  name: MIT
+  terms: 脚本与指令遵循 MIT；被解密的音频及其版权归原权利人，本 Skill 只用于用户对自己已下载曲目的个人格式转换。
+  url: LICENSE
+use_case:
+  audience: 在网易云音乐下载了歌曲、想在其他播放器、车载或剪辑软件里使用的个人用户
+  scenario: 一个或一批 .ncm 文件无法在网易云以外播放，或之前用其他工具转出的 mp3 是噪声、打不开
+  tasks:
+    - 把单个 .ncm 转成带封面的 MP3
+    - 递归处理整个下载目录，输出到原位置或独立目录
+    - 无损内容保留为 FLAC 并写入标签
+    - 重跑同一目录以修复旧工具转坏的结果
+deployment:
+  geography: global
+  environments:
+    - Local agent runtime with Python 3.9+ (uv recommended)
+    - macOS Finder Quick Action through a downstream wrapper (optional)
+requirements:
+  credentials: none
+  dependencies:
+    - pycryptodome
+    - mutagen
+    - FFmpeg with libmp3lame, required to turn FLAC/M4A/OGG/WAV payloads into MP3 and used to check non-MP3 outputs are complete
+    - PyYAML, only for validate_skill.py
+  runtime:
+    - Python >=3.9
+    - Network access only when a cover must be downloaded; disable with --no-cover-download
+risks:
+  - risk: 解析错位时写出看似正常、实际是噪声的 mp3（旧工具的真实故障）
+    mitigation: 按封面帧长度跳过填充；解密后按文件头识别格式；写出后按实际音频计算时长，与元数据相差超过 2%（0.5 到 3 秒）即丢弃，不落盘。
+  - risk: 覆盖用户已有的同名文件
+    mitigation: 只自动替换无法播放的旧输出；能播放但时长不符的同名文件标为 conflict 并保留；同批次两个输入写同一输出时后者标为 conflict；--force 才覆盖，且只在用户明确要求时使用；源 .ncm 只读。
+  - risk: 下载中断的 .ncm 被当成完整文件输出
+    mitigation: 不信任容器声明的总时长，MP3 按实际字节数与码率、其他格式按 ffmpeg 解复用得到的时长核对，不符即失败。
+  - risk: 中断或并发时留下半成品
+    mitigation: 结果先写同目录的进程专属隐藏文件，校验通过才原子替换；SIGTERM 触发清理并结束 ffmpeg 子进程。
+  - risk: 下载到的封面不是图片或网络缓慢
+    mitigation: 只接受 JPEG/PNG 文件头，单次网络操作 8 秒超时，失败时不写封面但不影响音频；可完全关闭联网。
+  - risk: 被用于批量分发受版权保护的音乐
+    mitigation: 触发条件限定为个人格式转换，分发、上传或售卖请求明确不激活。
+references:
+  - title: Primary instructions
+    path: SKILL.md
+  - title: NCM format and failure table
+    path: references/ncm-format.md
+  - title: Skill group composition
+    path: references/skill-composition.md
+  - title: Real case evidence
+    path: cases/cases.json
+output:
+  types:
+    - 可播放的音频文件
+    - 每文件处理结果与汇总
+  formats:
+    - MP3 with ID3v2.3 tags and front cover
+    - FLAC with Vorbis comments and picture (--format original)
+    - JSON (--json)
+  parameters:
+    - 输出格式 mp3 或 original
+    - 递归与输出目录
+    - 覆盖策略（默认跳过有效、替换损坏；--force）
+    - 是否联网下载封面
+    - ffmpeg 路径与日志文件
+  validation:
+    - 解密后文件头必须是 MP3/FLAC/M4A/OGG/WAV
+    - 写出后按实际音频计算的时长与网易云元数据相差不超过 2%（0.5 到 3 秒）
+    - 原子替换，失败不留下输出
+    - 退出码 1 表示至少一个 failed 或 conflict，2 表示参数或日志路径错误
+  description: 源文件旁（或指定目录）的同名音频，附每文件的格式、时长、封面来源与处理状态。
+ethical_considerations: 只读取用户指定的本地文件，源文件不改动；唯一的网络请求是访问 NCM 元数据里网易云的封面地址，可关闭；不上传、不采集内容；只服务个人格式转换，不协助分发受版权保护的音乐。
+dimensions:
+  - id: correctness
+    label: 解密正确性
+    description: 新旧两种封面帧布局都能得到与独立实现逐字节一致的音频。
+    evidence: 10 个真实 .ncm（7 个带填充、3 个内嵌封面）的音频流 md5 与按 taurusxin 规格独立编写的解码器 10/10 一致，ffmpeg 完整解码 0 错误，时长误差小于 1 毫秒；见 cases/cases.json。
+    score: null
+  - id: safety
+    label: 结果与源文件安全
+    description: 不写出噪声文件，不误覆盖有效文件，中断不留残留。
+    evidence: tests/test_ncm2mp3.py 13 个用例覆盖错位拒绝、头部与音频截断失败不产出、有效跳过、噪声替换、同名可播放文件与截断旧结果标为 conflict、同批次重名不互相覆盖、坏输入报告、dry-run 零写入；两轮对抗审查复现的问题均已修复并回归。
+    score: null
+  - id: compatibility
+    label: 格式兼容
+    description: 支持的负载、元数据形态与输出容器。
+    evidence: 测试覆盖 MP3 与 FLAC 负载、电台 dj 元数据、内嵌 PNG 封面、FLAC 原格式保留与标签；审查阶段合成样本另验证了 M4A、OGG、WAV、5.1 与 24-bit/192k FLAC。
+    score: null
+  - id: efficiency
+    label: 处理速度与内存
+    description: 批量处理的耗时与峰值内存。
+    evidence: 6 个 320k MP3 负载的 .ncm（共 76.1 MB）含 5 次封面下载，总用时 0.75 秒；86 MB FLAC 负载峰值内存 dry-run 30 MB、跳过 31 MB、写出 55 到 57 MB（按 4 MB 分块解密，跳过与预演不解密音频）。
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  display_unit: credits
+  list_price_credits: 0
+  basis: 纯本地工具，没有托管或模型成本；价值在于修正了主流开源实现的封面帧解析缺陷并加入输出校验。
+  boundary: 含解密、格式识别、可选转码、标签封面、批量与修复；不含下载、歌词、剪辑或分发。
+  review_trigger: 出现歌词下载、图形界面、云端批处理或打包成独立 App 的需求时复评。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - MIT source
+  verification: 本地源已验证并安装到本机 Skills 目录；尚未发布到 github、lovstudio、workbuddy、skillpay 任何渠道。

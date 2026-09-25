@@ -1,0 +1,52 @@
+[
+  {
+    "type": "case",
+    "title": "2026-09-25 修复 Finder 快速操作转出的无法播放的 mp3",
+    "description": "用户本机的 NCM to MP3 快速操作基于 ncmdump-py 1.1.6，新下载的歌曲转出的 mp3 全部无法播放，日志却记录成功。定位到封面帧填充未跳过导致流密钥错位 146 字节，按 taurusxin/ncmdump 的读法重写解析并加入输出校验，再把实现收编为本 Skill。",
+    "input": {
+      "items": [
+        "本地网易云下载目录中的 10 个 .ncm，负载均为 320k MP3，单个约 8 到 24 MB。",
+        "其中 7 个 image_len 为 0、封面帧预留 7442 到 7594 字节填充；3 个内嵌 JPEG 封面、无填充。",
+        "旧工具已转出的 6 个 mp3：file 识别为 data，ffprobe 报 Header missing，时长 N/A。"
+      ]
+    },
+    "prompt": "为什么本机的 ncm2mp3 quick action 转录的 mp3 无法播放？请修复。参考 Johnserf-Seed/ncm2mp3。",
+    "output": {
+      "items": [
+        "10/10 转换成功；音频流 md5 与独立实现逐字节一致，ffmpeg 完整解码 0 错误，时长与元数据误差小于 1 毫秒。",
+        "6 个损坏的 mp3 被替换为可播放文件，afplay 实播通过；标题、歌手、专辑与封面写入 ID3v2.3。",
+        "发现参考仓库 Johnserf-Seed/ncm2mp3 0.3.1 与 ncmdump-py 使用同样的过时布局，对这批文件同样会输出噪声。"
+      ]
+    },
+    "status": "verified-local",
+    "evidence": [
+      "references/ncm-format.md 的布局表与“为什么其他实现会输出噪声”",
+      "对照实验：按旧布局从偏移 797 解密得到文件头 dbd4ae26 与 3555 行解码错误，按封面帧从偏移 8367 解密得到 ID3 与 0 错误"
+    ],
+    "media_policy": "歌曲文件留在用户本机，案例只记录统计数字与字段值。"
+  },
+  {
+    "type": "case",
+    "title": "2026-09-25 Skill 命令行的批量、跳过与修复行为",
+    "description": "用本 Skill 的 scripts/ncm2mp3.py 处理真实文件副本，并用合成 NCM 覆盖边界情况。",
+    "input": {
+      "items": [
+        "一个包含子目录的文件夹，内有 6 个真实 .ncm 副本。",
+        "合成样本：带填充与不带填充的封面帧、内嵌 PNG、FLAC 负载、dj 元数据、截断文件、故意错位的文件、预先放置的随机字节同名 mp3。"
+      ]
+    },
+    "prompt": "把这个文件夹里的 ncm 全部转成 mp3，子文件夹也要；之前转坏的顺便修好。",
+    "output": {
+      "items": [
+        "dry-run 列出 6 个计划且零写入；正式运行 6 个 converted，用时 0.75 秒；重跑 6 个 skipped。",
+        "随机字节的同名 mp3 被识别为无法播放并替换，JSON 结果标注 replaces unplayable existing output；能播放的同名文件与截断的旧结果标为 conflict 并保留。",
+        "tests/test_ncm2mp3.py 13 个用例全部通过：错位与截断失败时不产出文件，FLAC 可转 MP3 也可保留原格式并写标签，递归输出保留子目录结构，同批次重名输出不互相覆盖。"
+      ]
+    },
+    "status": "verified-local",
+    "evidence": [
+      "tests/test_ncm2mp3.py"
+    ],
+    "media_policy": "测试音频由 ffmpeg 正弦波生成，不含受版权保护的内容。"
+  }
+]

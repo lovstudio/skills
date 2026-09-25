@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **168 skills** — 151 Free + 17 Paid.
+> **169 skills** — 152 Free + 17 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -66,6 +66,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Knowledge Capture](https://github.com/lovstudio/skills) (`memory-add`) | Save a knowledge note with categories and tags — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Knowledge Finder](https://github.com/lovstudio/skills) (`memory-search`) | Search a personal knowledge base — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Prompt Crafter](https://github.com/lovstudio/skills) (`nano-banana-pro`) | Create a structured image prompt — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [NetEase NCM to MP3](https://github.com/lovstudio/ncm2mp3-skill) (`ncm2mp3`) | Turn NetEase Cloud Music downloads into MP3s that play anywhere, with tags and covers, and repair the noise-only files other converters left behind. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Content Keeper](https://github.com/lovstudio/skills) (`output`) | Save the current content to a file — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Moments Copy](https://github.com/lovstudio/skills) (`output-wechat-moment`) | Format and save a WeChat Moments post — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [My Vocabulary](https://github.com/lovstudio/personal-vocabulary-skill) (`personal-vocabulary`) | One personal vocabulary reused across speech-input apps. |

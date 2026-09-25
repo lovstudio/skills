@@ -1,0 +1,12 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+display_unit: credits
+list_price_credits: 0
+value_anchor: 网易云下载的歌一条命令变成能在任何播放器里放的 MP3，连之前被其他工具转坏的文件也能一次修好
+basis: 纯本地 Python 工具，没有托管或模型成本；核心价值是修正 ncmdump-py 1.1.6 与 ncm2mp3 0.3.1 共有的封面帧解析缺陷，并用文件头与时长门禁保证不写出噪声文件。实测样本为单机 10 个文件，不宣称覆盖所有网易云版本。
+boundary: 含解密、格式识别、可选转码、ID3 或 FLAC 标签与封面、批量递归、损坏结果修复与 JSON 报告；不含歌曲下载、歌词、剪辑、上传或分发。
+review_trigger: 出现歌词下载、图形界面、云端批处理或打包成独立 App 的需求时复评。
+confidence: internal

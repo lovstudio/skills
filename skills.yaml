@@ -7427,3 +7427,52 @@ skills:
     review_trigger_zh: 上游修复该竞态、累计十次外部使用，或 Codex 调整图片与批次行为时复评。
     review_trigger_en: Review once the upstream race is fixed, after ten external uses, or when Codex changes image or batching behaviour.
     card_path: pricing-cards/fix-deepseek-tool-call-error.md
+- name: ncm2mp3
+  runtime_name: lov-ncm2mp3
+  display_name: NetEase NCM to MP3
+  updated_at: 2026-09-25 15:01:27+00:00
+  repo: lovstudio/ncm2mp3-skill
+  name_zh: 网易云 NCM 转 MP3
+  paid: false
+  category: General
+  version: 0.1.0
+  description: Decrypt NetEase Cloud Music .ncm into playable, tagged MP3 or original
+    FLAC; batch folders, repair noise-only conversions, never overwrite playable files.
+  tagline_en: Turn NetEase Cloud Music downloads into MP3s that play anywhere, with
+    tags and covers, and repair the noise-only files other converters left behind.
+  tagline_zh: 把网易云下载的 .ncm 变成任何播放器都能放、带标题封面的 MP3，并修好其他工具转出的杂音文件。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、NCM 解密与校验命令行、格式与故障对照、回归测试
+    delivery_unit_en: Public Skill source, the NCM decrypt-and-verify CLI, the format
+      and failure reference, and regression tests
+    value_zh: 一次运行交付能播放、带标题歌手专辑与封面的音频；解密错位或下载中断的文件会失败而不是输出噪声，用户自己的同名文件不会被覆盖。
+    value_en: One run delivers playable audio with title, artist, album, and cover;
+      misaligned or incomplete files fail instead of producing noise, and the user's
+      own same-name files are never overwritten.
+    anchor_zh: 真实案例中修复了 Quick Action 转出的 6 个无法播放的 mp3，10 个真实文件与独立实现逐字节一致；一次故障通常省下 0.5 至 2 小时的排查。
+    anchor_en: A real case repaired six unplayable MP3s from a Finder Quick Action, and
+      ten real files matched an independent decoder byte for byte; one incident usually
+      saves 0.5 to 2 hours of debugging.
+    basis_zh: 六维加权约 3.0/5；同类免费解密工具众多、源码与算法公开，且解密类工具不宜设付费门槛，因此按免费入口发布，用真实使用积累格式变体样本。
+    basis_en: The six-dimension score is about 3.0/5; free alternatives exist, the source
+      and algorithm are public, and a paywall does not suit a decryption tool, so it
+      ships as a free entry that gathers real format samples.
+    boundary_zh: 只用于个人对自己已下载曲目的格式转换；不下载歌曲、不处理歌词、不做普通音频互转；网易云新格式变体会明确报错而不保证即时支持。
+    boundary_en: For personal format conversion of tracks the user downloaded; no song
+      downloads, lyrics, or general audio conversion; new NetEase format variants fail
+      loudly without a promise of immediate support.
+    maintenance_zh: 纯本地运行，两个 Python 依赖，无服务端与 API 成本；随网易云文件格式变化复评。
+    maintenance_en: Runs locally with two Python dependencies and no hosting or API
+      cost; reassess when the NetEase file format changes.
+    confidence: case-backed
+    review_trigger_zh: 达到 100 次真实安装、出现歌词下载或曲库管理等扩展需求，或网易云格式变化导致重大版本更新时复评。
+    review_trigger_en: Review after 100 real installs, requests for lyrics or library
+      management, or a NetEase format change that forces a major update.
+    card_path: pricing-cards/ncm2mp3.md

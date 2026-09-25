@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **168 个技能** — 151 个免费 + 17 个付费。
+> **169 个技能** — 152 个免费 + 17 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -65,6 +65,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Knowledge Capture](https://github.com/lovstudio/skills) (`memory-add`) | [知识入库](https://github.com/lovstudio/skills) | 将用户指定信息保存为带分类、标签和来源的知识文档及索引 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Knowledge Finder](https://github.com/lovstudio/skills) (`memory-search`) | [知识寻回](https://github.com/lovstudio/skills) | 跨已配置的 memory 与 distill 知识记录检索并返回可追溯结果 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Prompt Crafter](https://github.com/lovstudio/skills) (`nano-banana-pro`) | [图像提示师](https://github.com/lovstudio/skills) | 将图像需求整理为结构清晰、遵循参考素材的生成或编辑提示词 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [NetEase NCM to MP3](https://github.com/lovstudio/ncm2mp3-skill) (`ncm2mp3`) | [网易云 NCM 转 MP3](https://github.com/lovstudio/ncm2mp3-skill) | 把网易云下载的 .ncm 变成任何播放器都能放、带标题封面的 MP3，并修好其他工具转出的杂音文件。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Content Keeper](https://github.com/lovstudio/skills) (`output`) | [内容收纳](https://github.com/lovstudio/skills) | 将已确认内容按指定文件名与文本格式保存并回读校验 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Moments Copy](https://github.com/lovstudio/skills) (`output-wechat-moment`) | [朋友圈文案](https://github.com/lovstudio/skills) | 把已有内容整理成适合朋友圈阅读的纯文本并保存文件 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [My Vocabulary](https://github.com/lovstudio/personal-vocabulary-skill) (`personal-vocabulary`) | [我的词库](https://github.com/lovstudio/personal-vocabulary-skill) | 一份可跨语音输入法复用的个人词汇表。 |
