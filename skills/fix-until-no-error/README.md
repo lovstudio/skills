@@ -1,6 +1,6 @@
 # 验证修复 · Verified Fixes
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
 
 围绕明确验证命令持续定位和修复失败项直到通过或遇到真实阻塞。
 

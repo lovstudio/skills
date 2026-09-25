@@ -1,0 +1,44 @@
+schema: skill-manifest/v1
+id: lov-yolo-mode
+version: 0.2.0
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+    - user
+    - workspace
+    - preferences
+    - skills.lov-yolo-mode
+    persist:
+      enabled: true
+      namespace: skills.lov-yolo-mode
+      records_path: skills.lov-yolo-mode.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+    - path: user.language
+      required: false
+      question: 缺失时沿用当前请求语言。
+    - path: user.timezone
+      required: false
+      question: 缺失时使用宿主时区；无法确定则不推断时间承诺。
+    - path: workspace.output_dir
+      required: false
+      question: 缺失时使用项目允许的输出目录。
+    - path: preferences.unattended
+      required: false
+      question: 缺失时使用本 Skill 的安全默认值。
+    - path: skills.lov-yolo-mode.records.policy
+      required: false
+      question: 缺失时按当前请求与默认非交互约定运行。
+    - path: skills.lov-yolo-mode.records.session_setup
+      required: false
+      question: 缺失时仍执行必要权限预检，不重复询问已有授权。
+  preferences:
+    namespace: lov_yolo_mode
+    fields: []
+  interaction:
+    ask_missing: false
+    max_questions: 0

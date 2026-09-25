@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: 比较规范词库与各 App 实际词条，产出 add/skip/conflict/app_only 同步计划，确认后再执行，默认不覆盖对方已有词条。
 owner:
   team: LovStudio / 手工川工作室

@@ -1,12 +1,13 @@
 # 手机信息图 · Mobile Infographic
 
-![Version](https://img.shields.io/badge/version-0.9.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.18.0-CC785C)
 
 把一段已经有结论的内容，重排成手机上真的读得下去的证据型信息卡：竖版画布、单列阅读路径、
-字号下限与行宽上限、可核查的口径与来源。**默认输出一张 1080 宽、高度自适应的卡片**
-（`--ratio long`），只在用户明确要多张或长卡超过三屏上限时才做系列。
+字号下限与行宽上限、可核查的口径与来源。**输出永远是一张 1080 宽、高度自适应的卡片**
+（`--ratio long`）：内容多就把这张图加长、不拆卡；只有用户明确要求多张时才做系列。
 
-两条硬规则：标题必须是可被反驳的**观点**（不是数字复述），主关系必须**图形化**
+两条硬规则：标题只写这张图的**作用或主题**（判断留给结论行，也不写「要点／速览／一图读完」这类
+放在哪张图上都成立的废话），主关系必须**图形化**
 （三项以上可比数据用 `bar-ranking` 的条形长度，不写流水账）。卡面来源只写
 「来源：群聊记录」这类可披露来源，内部数据库/表名/路径由 `source_hygiene` 拦截；页脚署名可选。
 
@@ -55,7 +56,7 @@ python3 "$SKILL_DIR/scripts/infographic_cli.py" render --input ./cards/card-01.h
 python3 "$SKILL_DIR/scripts/infographic_cli.py" audit --input ./cards/card-01.html --image ./cards/card-01.png --report ./cards/card-01.audit.json --ratio long
 ```
 
-`--ratio` 省略时即 `long`：卡片高度跟着内容走（下限 1.2× 宽，上限三个 `3:4` 屏）。
+`--ratio` 省略时即 `long`：卡片高度跟着内容走（下限 1.2× 宽，不设上限；内容多时用小节分组保持节奏）。
 需要固定比例时显式传 `--ratio 3:4`（微信图文）、`4:5`（信息流）、`9:16`（全屏故事）或 `1:1`（九宫格）。
 
 排位数据用条形榜单：条目按大小画长度，名单与依据写在对应条形下方，不写流水账。
@@ -70,8 +71,7 @@ python3 "$SKILL_DIR/scripts/infographic_cli.py" scaffold \
   --source "来源：群聊记录" --output-dir ./cards
 ```
 
-只有用户明确要求多张、或一张长卡超过 4320px 时才做系列：按 `--series-index 1..N --series-size N`
-逐张 `scaffold`、`render`、`audit`，再按
+只有用户明确要求多张时才做系列：按 `--series-index 1..N --series-size N` 逐张 `scaffold`、`render`、`audit`，再按
 [`references/series-and-export.md`](references/series-and-export.md) 写 `manifest.json`。
 
 真实案例见 [`cases/cases.json`](cases/cases.json)：一次“明确要求三张”的 `3:4` 系列，

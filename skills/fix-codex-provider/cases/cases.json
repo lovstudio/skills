@@ -1,0 +1,24 @@
+[
+  {
+    "type": "case",
+    "title": "yoda provider 未定义，桌面 App 打不开 3097 条历史会话",
+    "description": "2026-09-12，用户要求做一个 fix-codex-provider 能力，并点名修复 codex://threads/01a057eb-9a24-7f70-a79c-8a9b8dac3554（为外滩大会准备发言稿的那条会话）。桌面 App 打开它时报 invalid_config，日志原文是 failed to load configuration: Model provider `yoda` not found。",
+    "input": {
+      "items": [
+        "~/.codex/config.toml：只定义了 [model_providers.custom]",
+        "~/.codex/state_5.sqlite：threads.model_provider 分组 yoda=3097、custom=9、lovbrowser=9、nebula=1、xxx=1",
+        "桌面日志 ~/Library/Logs/com.openai.codex：yoda 出现 13 次 Failed to resume conversation 与 103 处命中",
+        "目标会话：provider=yoda、model=deepseek-v4-flash、未归档、rollout 1.1 MB"
+      ]
+    },
+    "prompt": "fix-codex-provider（codex 由于 provider 不统一无法打开）；& then fix codex://threads/01a057eb-9a24-7f70-a79c-8a9b8dac3554",
+    "output": {
+      "items": [
+        "scripts/codex_provider_doctor.py 输出：yoda 3097 条 thread 的 provider 在配置中缺失；桌面日志 13 次 resume 失败",
+        "修复：备份 ~/.codex/config.toml 到 ~/.codex/provider-repair-backups/20260912T092524/，追加镜像 custom 的 [model_providers.yoda]",
+        "验证：官方 app-server thread/resume 修复前返回 -32600，修复后成功返回该 thread（modelProvider=yoda、status=idle、canAcceptDirectInput=true）",
+        "回读：复跑诊断显示 yoda 已可用，剩余缺失仅 lovbrowser 9 条、nebula 1 条、xxx 1 条"
+      ]
+    }
+  }
+]

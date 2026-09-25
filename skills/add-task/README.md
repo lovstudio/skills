@@ -1,6 +1,6 @@
 # 任务随手记 · Task Capture
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 在当前任务清单中按优先级和位置追加事项并保留已有状态。
 

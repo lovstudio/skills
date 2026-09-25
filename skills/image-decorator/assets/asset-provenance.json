@@ -1,0 +1,14 @@
+{
+  "logo": {
+    "asset": "lovstudio-logo.png",
+    "canonical_source": "Lovstudio - logo - square/Lovstudio-logo.png",
+    "sha256": "2423058661e9bb27a1a620622d9152f57b3862e60d426e4dd15d2b4e529ddfa7",
+    "usage": "Bundled default LovStudio mark for the bottom-right decoration"
+  },
+  "font": {
+    "asset": "NotoSansSC-VariableFont_wght.ttf",
+    "license": "SIL Open Font License 1.1",
+    "license_file": "NotoSansSC-OFL.txt",
+    "sha256": "82387b972ce226190d722d731b1ba5b103106f868b5b266be4f6857b212a856d"
+  }
+}

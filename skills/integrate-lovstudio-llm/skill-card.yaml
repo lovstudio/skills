@@ -1,0 +1,96 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "通过一个可移植的本地 Skill 调用 LovStudio.AI 的文本、音频与 Realtime API，输出结构化文本、转写结果、翻译结果或音频文件。"
+owner:
+  team: "手工川工作室 / LovStudio.AI"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "Skill 客户端代码按 MIT 使用；模型调用、网络流量与上游渠道费用由调用方账户承担。"
+  url: "LICENSE"
+use_case:
+  audience: "需要在 Agent、脚本或应用中统一调用 LovStudio.AI 的开发者与创作者"
+  scenario: "同一套环境配置需要完成聊天、语音转文字、语音翻译、语音合成和实时音频输入"
+  tasks:
+    - "调用 OpenAI-compatible Chat Completions"
+    - "调用音频转写、翻译与语音合成接口"
+    - "通过 Realtime WebSocket 发送 24 kHz PCM16 音频"
+deployment:
+  geography: global
+  environments:
+    - "本地 Agent Skills 目录"
+    - "支持 Python 3.8+ 的开发机或服务端"
+requirements:
+  credentials: "LOVSTUDIO_API_KEY 进程环境变量"
+  dependencies: []
+  runtime:
+    - "Python 3.8+ 标准库"
+    - "可访问配置的 LovStudio API 地址"
+    - "Realtime 音频准备可选使用 ffmpeg"
+risks:
+  - risk: "API 密钥进入命令历史、日志或 Profile"
+    mitigation: "客户端只读取 LOVSTUDIO_API_KEY 环境变量，并在诊断中脱敏。"
+  - risk: "当前账户组未启用指定音频模型"
+    mitigation: "保留 model_not_found 的 context_id，并允许通过环境变量切换模型；Realtime 可作为语音输入回退路径。"
+  - risk: "音频数据包含个人或第三方内容"
+    mitigation: "调用方在发送前确认数据范围，并按上游服务的数据保留与隐私设置管理文件。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "LovStudio API contract"
+    path: "references/api-contract.md"
+output:
+  types:
+    - "chat response"
+    - "transcript or translation"
+    - "speech audio file"
+    - "Realtime text response"
+  formats:
+    - "UTF-8 JSON"
+    - "mp3, wav, opus, aac, flac, or pcm audio"
+  parameters:
+    - "model"
+    - "messages or audio input"
+    - "voice and response format"
+  validation:
+    - "success output includes status and operation"
+    - "failure output includes context_id and source"
+    - "audio output is checked for non-zero size"
+  description: "脚本输出可被 Agent 继续解析；失败时保留可复制诊断信息。"
+ethical_considerations: "仅发送调用方有权处理的文本与音频；对个人语音、会议录音和生成内容遵守适用的隐私、版权、告知与使用政策。"
+dimensions:
+  - id: correctness
+    label: "接口正确性"
+    description: "路由、鉴权、multipart 音频和 Realtime 帧格式遵循 LovStudio 的 OpenAI-compatible 契约。"
+    evidence: "真实 gpt-realtime 会话收到 session.created、session.updated、input_audio_buffer.committed 和 response.done completed。"
+    score: 4
+  - id: effectiveness
+    label: "任务覆盖"
+    description: "一个 Skill 覆盖文本、转写、翻译、语音合成和实时音频输入。"
+    evidence: "源目录包含两个标准库 CLI：HTTP 四路由客户端和 Realtime WebSocket 客户端。"
+    score: 4
+  - id: efficiency
+    label: "诊断效率"
+    description: "错误保持结构化，方便复制 request context 并定位配置或上游模型问题。"
+    evidence: "缺少 HTTP 转写模型时返回 model_not_found，并由客户端生成 context_id；密钥不进入输出。"
+    score: 4
+  - id: portability
+    label: "可移植性"
+    description: "核心客户端只依赖 Python 标准库，配置通过环境变量注入。"
+    evidence: "Skill 可在本地安装链接下运行，无 node_modules、编译产物或用户私有路径。"
+    score: 5
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "免费提供通用客户端与协议适配，价值来自减少重复鉴权、multipart 和 Realtime 帧处理工作。"
+  boundary: "包含本地 Skill、脚本、文档和验证；不包含上游模型费用、API 密钥、云端渠道配置或远程部署。"
+  review_trigger: "当增加云端托管、团队配额、渠道运维或远程发布能力时重新评估定价。"
+  confidence: internal
+distribution:
+  paid:
+    - "workbuddy: planned"
+    - "skillpay: planned"
+  free:
+    - "github: planned"
+    - "lovstudio: local-only"

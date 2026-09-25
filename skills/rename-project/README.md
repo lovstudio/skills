@@ -1,6 +1,6 @@
 # 项目改名 · Project Renamer
 
-![Version](https://img.shields.io/badge/version-2.3.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.3.2-CC785C)
 
 可审计的项目重命名 Skill：先生成计划，再替换普通产品名引用，单独审阅
 CLI 别名、存储命名空间、迁移、Schema 与环境变量等兼容契约；同时覆盖项目

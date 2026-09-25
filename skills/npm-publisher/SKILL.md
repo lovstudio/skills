@@ -6,7 +6,7 @@ license: MIT
 compatibility: "Python 3.9+, git, npm, and a GitHub-hosted Actions runner. Trusted publishing requires a currently supported Node/npm combination; bypass uses a granular NPM_TOKEN."
 metadata:
   author: contributors
-  version: "0.3.0"
+  version: "0.3.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - npm

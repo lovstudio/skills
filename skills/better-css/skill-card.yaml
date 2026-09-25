@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 清理冗余 CSS 并在现有 Tailwind 项目中重构样式
-version: 1.0.1
+version: "1.0.2"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

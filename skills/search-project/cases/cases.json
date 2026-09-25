@@ -1,0 +1,39 @@
+[
+  {
+    "type": "case",
+    "title": "从聊天记录定位 claude-code 泄露源码目录",
+    "description": "用户询问「找到本机 claude code 泄露版本源码的位置」。roots 层只命中了若干 claude 相关项目目录，无法确认哪个是泄露源码；改用 chat 层从 AI 聊天记录回溯，准确定位到专门的研究目录。",
+    "input": {
+      "items": [
+        "查询词: claude code",
+        "本机存在多个 claude 相关项目（mac_open-claude-code / claude-code-manager / claude-mem 等）"
+      ]
+    },
+    "prompt": "找到本机 claude code 泄露版本源码的位置（基于 AI 聊天记录和磁盘搜索）",
+    "output": {
+      "items": [
+        "[chat] ~/lovstudio/research/agent-research/claude-code-source-code（提及于 21e1256e-….jsonl）",
+        "[chat] ~/projects/mac_open-claude-code（提及于同文件）",
+        "定位到含 1884 个 TS 源文件的 src_2026-03-31 目录"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "从 Spotlight 定位 uni-api 项目",
+    "description": "用户输入「uniapi」。分层搜索 roots/cwd/chat/full 均无命中；用 mdfind 按 uni-api / UniAPI 变体兜底，命中 lovpen-web 项目内的 uni-api_lovpen.openapi.json 与 src/types/uni-api.ts。",
+    "input": {
+      "items": [
+        "查询词: uniapi",
+        "自动分层搜索 0 命中"
+      ]
+    },
+    "prompt": "找到本机 uniapi 项目",
+    "output": {
+      "items": [
+        "[spotlight] ~/projects/lovpen-web（uni-api_lovpen.openapi.json + src/types/uni-api.ts）",
+        "git remote: github.com:MarkShawn2020/lovpen-web.git"
+      ]
+    }
+  }
+]

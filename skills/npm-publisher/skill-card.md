@@ -68,7 +68,7 @@ idempotence, source integrity, and trigger routing.
 
 ## Skill Version
 
-0.1.0
+0.3.1
 
 ## Ethical Considerations
 

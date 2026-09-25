@@ -1,6 +1,6 @@
 # 网页填表助手 · Web Form Assistant
 
-![Version](https://img.shields.io/badge/version-1.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-1.2.1-CC785C)
 
 Fill web forms by deep-searching your local knowledge base. Give it a URL, get back a ready-to-paste markdown document.
 

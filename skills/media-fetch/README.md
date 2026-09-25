@@ -1,6 +1,6 @@
 # 影视寻宝 · Media Finder
 
-![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.2-CC785C)
 
 一键完成长视频的检索、版本选择、磁盘预检、多源测速下载、可恢复续传、慢源切换和文件验收。
 

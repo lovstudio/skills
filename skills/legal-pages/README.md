@@ -1,6 +1,6 @@
 # 网站条款助手 · Website Legal Pages
 
-![Version](https://img.shields.io/badge/version-1.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.3-CC785C)
 
 根据真实业务与数据处理事实生成隐私政策和服务条款页面草稿。
 

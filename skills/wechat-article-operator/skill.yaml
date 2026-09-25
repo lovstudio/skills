@@ -1,0 +1,22 @@
+schema: skill-manifest/v1
+id: lov-wechat-article-operator
+version: 0.2.1
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields:
+      - path: identity.id
+        required: false
+        question: "如果当前操作需要显示发布主体，请提供其稳定 ID。"
+      - path: identity.name
+        required: false
+        question: "如果当前操作需要显示发布主体，请提供其名称。"
+  preferences:
+    namespace: wechat_article_operator
+    fields:
+      - path: adapter
+        required: false
+        question: "是否有默认的公众号浏览器适配器？"
+  interaction:
+    ask_missing: true
+    max_questions: 1

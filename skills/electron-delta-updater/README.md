@@ -1,12 +1,12 @@
 # Electron 增量更新 · Electron Delta Updates
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 为 Electron 应用建立并验证可恢复的增量自动更新流程。
 
 ## 本地安装
 
-将目录链接到本地 Agent Skills 目录，链接名为 `sgc-electron-delta-updater`。安装后可直接说“给这个 Electron App 加增量自动更新”。
+将目录链接到本地 Agent Skills 目录，链接名为 `lov-electron-delta-updater`。安装后可直接说“给这个 Electron App 加增量自动更新”。
 
 ## 使用
 

@@ -1,6 +1,6 @@
 # Skill 定价师 · Skill Pricer
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 
 为一个或多个 Agent Skill 生成有依据、可解释、可复评的 Skill Pricing Card，包含建议价、价格带、价值说明、渠道策略和证据缺口。
 

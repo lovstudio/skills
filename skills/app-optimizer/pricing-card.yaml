@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "一次完整交付覆盖真实运行时审计、规模扇出定位、跨平台生命周期建模、安全回收设计和冻结工作负载验收。"
+basis: "Skill 源码、三个嵌入模块、跨平台 adapter 矩阵、只读证据报告器、fail-closed 回收策略和 Yoda/Electron 案例免费提供。"
+boundary: "包含本地方法、脚本、模板与案例；不包含托管 telemetry、远程运维、目标项目商业实施、生产数据保管、SLA 或未经授权的进程终止和持久删除。"
+review_trigger: "累计至少三个不同 platform family 的完整真实案例，或新增托管采集、持续性能回归与带响应时限的实施服务时复评。"
+confidence: single-platform-case-backed

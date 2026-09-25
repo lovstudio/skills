@@ -12,9 +12,11 @@ license: MIT
 compatibility: >
   No external dependencies. Supports .docx (via pandoc), .md, and .txt input files.
   Requires pandoc for docx conversion (`brew install pandoc`).
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.1.0"
+  version: "1.1.1"
   tags: translation, review, chinese, english, proofreading
 ---
 

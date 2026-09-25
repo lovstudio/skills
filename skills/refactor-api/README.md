@@ -1,6 +1,6 @@
 # API 精修 · API Refiner
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
 
 识别后端接口重复并在保持调用契约的前提下实施重构。
 

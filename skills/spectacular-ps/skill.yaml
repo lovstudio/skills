@@ -1,0 +1,51 @@
+schema: skill-manifest/v1
+id: lov-spectacular-ps
+version: 0.1.0
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+    - user
+    - brand
+    - workspace
+    - preferences
+    - skills.lov-spectacular-ps
+    persist:
+      enabled: true
+      namespace: skills.lov-spectacular-ps
+      records_path: skills.lov-spectacular-ps.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+    - path: user.language
+      required: false
+      question: 希望使用哪种语言输出？
+    - path: user.timezone
+      required: false
+      question: 需要哪个时区处理交付日期？
+    - path: workspace.output_dir
+      required: false
+      question: 成片保存到哪里？
+    - path: skills.lov-spectacular-ps.records.aspect_ratio
+      required: false
+      question: 是否有长期默认画幅？
+    - path: skills.lov-spectacular-ps.records.framing
+      required: false
+      question: 是否有长期构图偏好？
+    - path: skills.lov-spectacular-ps.records.color_style
+      required: false
+      question: 是否有长期调色偏好？
+  preferences:
+    namespace: lov_spectacular_ps
+    fields:
+    - path: user.language
+      required: false
+      question: 希望使用哪种语言输出？
+    - path: user.timezone
+      required: false
+      question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

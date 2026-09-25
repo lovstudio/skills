@@ -1,0 +1,47 @@
+[
+  {
+    "type": "case",
+    "title": "Create an atomic Codeex plugin development Skill",
+    "description": "The Codeex repository already had independently discoverable Lovinsp and Daemonize plugins, atomic desired-state file replacement, staged webview builds, and managed restart status. The task was to turn that real contract into a reusable Skill without confusing it with Codex marketplace plugins.",
+    "input": {
+      "items": [
+        "Current Codeex plugin loader and desired-state implementation",
+        "Existing Lovinsp webview-transform plugin",
+        "Existing Daemonize before-launch plugin",
+        "User request for lov-codeex-creator with atomic install and uninstall"
+      ]
+    },
+    "prompt": "非常棒，基于此，应创建一个 skill lov-codeex-creator，用于插件化地开发 codeex 插件，实现原子化地安装与卸载",
+    "output": {
+      "items": [
+        "Portable lov-codeex-creator Skill source",
+        "scripts/codeex_plugin.py staged scaffold and lifecycle CLI",
+        "references/plugin-contract.md and references/atomic-lifecycle.md",
+        "cases/evidence/lifecycle-report.json with real contract exercise results",
+        "Local three-layer Skill installation"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "Iterate a native Prompt Config plugin without stale-runtime claims",
+    "description": "A Prompt Config plugin needed to sit beside the model selector, reuse the native popover and dropdown icon, expose authenticated prompt APIs, and show developer/user/project configuration state. Renderer restarts initially left a transitive backend module stale in the long-lived launcher service.",
+    "input": {
+      "items": [
+        "Packaged model-selector DOM and native SVG",
+        "Prompt Config transformWebview and handleControlRequest hooks",
+        "Long-lived launcher service plus managed Electron runtime",
+        "User corrections about placement, popover reuse, status icon, and chevron parity"
+      ]
+    },
+    "prompt": "优化 lov-codeex-creator 以让以后的 Codeex 插件开发过程更丝滑。",
+    "output": {
+      "items": [
+        "handleControlRequest scaffolding and validation",
+        "Renderer/runtime/launcher reload matrix",
+        "Native DOM and SVG reuse rules",
+        "Packaged CDP and authenticated API readback requirements"
+      ]
+    }
+  }
+]

@@ -1,0 +1,81 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "基于已批准契约实现唯一业务核心与类型化 SDK，为所有分发 adapter 提供同一调用边界。"
+owner:
+  team: "LovStudio"
+  contact: "Skill source maintainers"
+license:
+  name: MIT
+  terms: "允许使用、修改与再分发；目标项目遵循自身许可证。"
+  url: "../../../LICENSE"
+use_case:
+  audience: "使用 lov-atom-feature-dev 的产品与工程团队"
+  scenario: "完整 atom feature 管线中的 Atom Core SDK 阶段"
+  tasks:
+    - "实现共享 SDK 并验证真实包入口"
+deployment:
+  geography: global
+  environments:
+    - "local target repository"
+requirements:
+  credentials: "none for this module"
+  dependencies:
+    - "root atom feature manifest"
+  runtime:
+    - "target project toolchain"
+risks:
+  - risk: "adapter 中残留业务规则会导致跨形态漂移。"
+    mitigation: "把默认值、校验和状态迁移集中到 SDK，并用共享向量验证。"
+references:
+  - title: "Module instructions"
+    path: "SKILL.md"
+output:
+  types:
+    - "SDK 制品、公开类型、错误映射与测试证据"
+  formats:
+    - "source code or structured files"
+    - "verification report"
+  parameters:
+    - "target repository"
+    - "approved atom feature manifest"
+  validation:
+    - "module workflow evidence"
+    - "root manifest validation"
+  description: "SDK 制品、公开类型、错误映射与测试证据"
+ethical_considerations: "保护秘密和用户 Profile，不虚构案例、分数、运行或发布状态。"
+dimensions:
+  - id: core-purity
+    label: "边界"
+    description: "模块是否只拥有声明的原子结果。"
+    evidence: "Module instructions define the ownership boundary; runtime score awaits a target-project case."
+    score: null
+  - id: public-contract
+    label: "正确性"
+    description: "制品是否遵守共享 contract 与目标项目真实技术栈。"
+    evidence: "The root acceptance matrix defines verification; no target-project score is claimed."
+    score: null
+  - id: runtime-evidence
+    label: "证据"
+    description: "状态是否由可回读制品、命令或运行结果支持。"
+    evidence: "The module requires artifact-level evidence before verified status."
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "作为自包含 Atom Feature Kit 的内嵌模块免费提供。"
+  boundary: "只包含本模块工作流，不包含外部发布、托管或定制服务。"
+  review_trigger: "根 Kit 商业模式或维护成本发生变化时复评。"
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-planned
+    - channel: skillpay
+      status: not-planned
+  free:
+    - channel: github
+      status: bundled-local-only
+    - channel: lovstudio
+      status: bundled-local-only
+

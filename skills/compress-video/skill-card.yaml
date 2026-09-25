@@ -1,0 +1,102 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 把指定视频压到尽可能小且肉眼看不出明显损失的 MP4，默认保留原文件；支持质量档、目标体积、VMAF 画质门禁与替换原文件模式。
+owner:
+  team: Local skill contributors
+  contact: 本地 Skill 源目录维护者
+license:
+  name: MIT
+  terms: 脚本与指令遵循 MIT；被压缩的视频及其内容权利保持原归属。
+  url: LICENSE
+use_case:
+  audience: 需要把课程实录、屏幕录制、相机素材压到可分享体积的创作者与团队
+  scenario: 一个或多个视频体积过大，要压小后发微信、上传平台、归档或替换原文件
+  tasks:
+    - 按默认档把视频压到尽可能小
+    - 按目标体积两遍编码
+    - 用 VMAF 门禁保证画质不掉太多
+    - 替换原文件并把原件送入废纸篓
+deployment:
+  geography: global
+  environments:
+    - Local agent runtime with FFmpeg (libx265); macOS for VideoToolbox and Trash
+requirements:
+  credentials: none
+  dependencies:
+    - FFmpeg and FFprobe with libx265
+    - libx264, libsvtav1, libvmaf (optional, per flag)
+    - PyYAML, only for validate_skill.py
+  runtime:
+    - Python >=3.9, standard library only
+    - macOS for --fast and Trash-based --replace
+risks:
+  - risk: 压缩后画质损失超出用户预期
+    mitigation: 默认 CRF 28 实测 VMAF 93.5；`--min-vmaf` 自动降 CRF 重编；缩放与降帧只在明确要求或 smallest 档才做。
+  - risk: 替换模式误删原文件
+    mitigation: 默认不替换；`--replace` 先进废纸篓，`--permanent` 才直接删除；时长不一致或输出更大时不动原文件。
+  - risk: 输出损坏或时长缺失
+    mitigation: 输出先写 .part.mp4，ffprobe 复核时长偏差超过 0.5 秒或 1% 即丢弃；失败清理临时文件。
+  - risk: 硬件编码看似同体积但画质差
+    mitigation: 硬件编码仅 `--fast` 开启，文档给出同体积 VMAF 93.5 对 84.6 的实测对照。
+references:
+  - title: Primary instructions
+    path: SKILL.md
+  - title: Encoding guide
+    path: references/encoding-guide.md
+  - title: Real case evidence
+    path: cases/cases.json
+output:
+  types:
+    - 压缩后的 MP4
+    - 压缩统计
+  formats:
+    - MP4 (HEVC / H.264 / AV1)
+    - JSON
+  parameters:
+    - 质量档或 CRF、编码、preset
+    - 长边上限、帧率、音频码率
+    - 目标体积、VMAF 门禁
+    - 输出位置、替换模式
+  validation:
+    - 输出时长与源一致
+    - 输出体积小于源
+    - 可选 VMAF 分数达到门禁
+    - ffprobe 复核编码与分辨率
+  description: 一个可直接分享的 MP4，附源与结果的体积、比例、用时、VMAF 与所用命令。
+ethical_considerations: 只读取用户指定的文件；不上传、不采集内容；替换模式需要用户明确授权且默认可从废纸篓恢复。
+dimensions:
+  - id: compression
+    label: 压缩率
+    description: 默认档在实拍与屏幕录制内容上的体积缩减。
+    evidence: 真实 1080p HEVC 片段 24.7 MB → 2.2 MB（8.9%）；见 cases/cases.json。
+    score: null
+  - id: fidelity
+    label: 画质保真
+    description: 默认档与门禁模式下的 VMAF 表现。
+    evidence: 默认 CRF 28 得 VMAF 93.5；`--min-vmaf` 重编逻辑与测试 test_vmaf_is_measured_when_requested。
+    score: null
+  - id: safety
+    label: 原文件安全
+    description: 默认不动原文件，替换可恢复，异常不丢数据。
+    evidence: tests 覆盖替换模式、输出更大时保留原文件、临时文件清理；move_to_trash 走 Finder 并回退 ~/.Trash。
+    score: null
+  - id: controllability
+    label: 可控性
+    description: 质量档、目标体积、编码与缩放能被直接映射为用户意图。
+    evidence: tests 覆盖 smallest 档 dry-run、h264 + max-edge 缩放、300k 目标体积两遍编码。
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  display_unit: credits
+  list_price_credits: 0
+  basis: 纯本地 FFmpeg 工具，标准库实现，没有托管成本；价值在于把编码参数选择与安全门禁固化。
+  boundary: 含压缩、门禁、VMAF、替换；不含剪辑、字幕、上传或云端转码。
+  review_trigger: 出现云端转码、批量排队服务或图形界面需求时复评。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - MIT source
+  verification: 渠道发布状态由独立 Publisher 记录维护；本地源已验证，尚未发布到任何渠道。

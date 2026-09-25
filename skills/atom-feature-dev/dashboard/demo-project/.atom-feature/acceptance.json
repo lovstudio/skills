@@ -1,0 +1,18 @@
+{
+  "schema": "lovstudio/atom-feature/v1",
+  "vectors": [
+    {
+      "id": "balanced-export",
+      "name": "Balanced export",
+      "input": {"source": "demo.md"},
+      "expected": {"artifact": "demo.pdf", "paper": "A4", "tocDepth": 3, "searchable": true}
+    },
+    {
+      "id": "deep-outline",
+      "name": "Deep outline",
+      "input": {"source": "demo.md", "tocDepth": 5},
+      "expected": {"artifact": "demo.pdf", "paper": "A4", "tocDepth": 5, "searchable": true}
+    }
+  ]
+}
+

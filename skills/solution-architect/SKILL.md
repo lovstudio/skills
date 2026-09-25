@@ -1,6 +1,6 @@
 ---
 name: lov-solution-architect
-version: "0.2.0"
+version: "0.2.2"
 tagline: "把产品或技术需求转成有调研依据、开源优先的可执行解决方案。"
 description: Create research-backed product and technical solution plans from a user's requirement. Use when the user asks for detailed feasibility analysis, technology selection, architecture, implementation roadmap, library/vendor comparison, "解决方案", "技术方案", "产品方案", "选型", "调研分析", or a Skill Publisher.ai / 品牌工作室 branded solution. Prioritize modern popular open-source DIY options over legacy libraries, from-scratch builds, commercial APIs, and commercial products.
 license: MIT
@@ -8,9 +8,11 @@ compatibility: >
   Works in any agent environment with web browsing available for current
   technology, pricing, licensing, and project-health research. Context7 is
   recommended when framework/library documentation is needed.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.2"
   category: business
   tags: solution architecture technical-plan product-plan research technology-selection open-source
 ---

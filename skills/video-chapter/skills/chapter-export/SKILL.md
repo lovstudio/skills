@@ -1,6 +1,8 @@
 ---
 name: lov-video-chapter-export
 description: Package chapter overlays, timestamps, CSV metadata, and project JSON for 剪映/CapCut and other video editors. Use when the user asks for editor integration, transferable chapter assets, or a ready-to-import chapter package.
+depends_on:
+  - lov-branding-consistency
 ---
 
 # 章节打包 · Chapter Export

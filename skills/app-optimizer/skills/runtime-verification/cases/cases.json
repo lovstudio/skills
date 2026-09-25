@@ -1,0 +1,128 @@
+[
+  {
+    "type": "case",
+    "skill_version": "0.2.0",
+    "evidence_schema": "app-runtime-evidence/v1",
+    "title": "Yoda desktop post-fix 扇出与 active-only hydration 部分验收",
+    "description": "在包含修复的 Yoda desktop runtime 上复测周期同步，并把运行时 measurement、代码推导 upper bound、correctness gate 和缺失的用户体验 A/B 分开报告。",
+    "application": "Yoda desktop",
+    "platform_family": "desktop",
+    "runtime": "electron",
+    "input": {
+      "items": [
+        "Yoda v0.18.10 / commit 290fbc48c7 的 patched Electron build",
+        "8-remotes 周期同步 workload",
+        "task inventory：916 条总 records，其中 33 条 active",
+        "项目规定的完整 format、lint、typecheck、test 与 build 门禁"
+      ]
+    },
+    "prompt": "验证周期同步与 active-only hydration 修复：记录 unique Git subprocess，把 hydration 数量只作为 inventory 与代码路径推导的 eligibility 上界，并跑完整门禁；没有正式同负载 inputLatency/RSS A/B 时保持 partially_verified。",
+    "output": {
+      "items": [
+        "8 remotes 的一个 post-fix 周期观察到 15 个 unique Git subprocess",
+        "初始 hydration eligibility 的 code-derived upper bound 从全部 916 条 records 收敛到 33 条 active records；这不是 TaskStore telemetry",
+        "项目完整门禁通过，test suite 共 3,115 tests；该数字仅为 correctness gate",
+        "终态为 partially_verified，并要求补齐同负载 inputLatency、event-loop 与 main/renderer RSS A/B"
+      ],
+      "observations": [
+        {
+          "id": "git-subprocesses-per-sync-after",
+          "stage": "after",
+          "kind": "measurement",
+          "metric": "unique Git subprocesses",
+          "value": 15,
+          "unit": "unique_processes",
+          "provenance": {
+            "build_ref": "Yoda v0.18.10 / 290fbc48c713163f20bd6f956e80e15d00dfa357",
+            "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#git-subprocesses-per-sync",
+            "observed_at": "2026-08-09 post-change runtime window",
+            "workload_id": "yoda-large-project-periodic-sync-v1",
+            "sample_window": "600 samples at 100 ms across 8 remote synchronizations; approximately 4 seconds active",
+            "sample_count": 600,
+            "sampler": "macOS process inventory filtered to Git descendants",
+            "process_boundary": "Git descendants observed during the synchronization cycle"
+          },
+          "note": "Peak concurrency was 5. This runtime count is a measurement, not an acceptance record."
+        }
+      ],
+      "derived_bounds": [
+        {
+          "id": "initial-hydration-eligibility",
+          "kind": "inference",
+          "role": "code_derived_upper_bound",
+          "unit": "task_records_eligible_for_initial_hydration",
+          "before_upper_bound": 916,
+          "after_upper_bound": 33,
+          "derivation": {
+            "inputs": [
+              "inventory: 916 total task records",
+              "inventory: 33 active task records",
+              "before code path: initial hydration considered all records",
+              "after code path: initial hydration considers active records only"
+            ],
+            "formula": "eligible records = all records before; active records after",
+            "assumptions": [
+              "the recorded inventory matches the mounted project used to inspect the two code paths"
+            ]
+          },
+          "comparison": {
+            "quality": "directional",
+            "note": "The inventory and before/after code paths establish directional eligibility bounds, not paired runtime telemetry; the report must suppress an exact delta."
+          },
+          "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#project-task-count",
+          "provenance": {
+            "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#initial-task-hydration-upper-bound",
+            "observed_at": "derived from the 2026-08-09 task inventory and source review",
+            "workload_id": "yoda-large-project-periodic-sync-v1",
+            "before_build_ref": "Yoda pre-290fbc48 runtime",
+            "after_build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+            "sampler": "runtime database inventory plus before/after hydration call-path review"
+          },
+          "note": "This is not resident TaskStore telemetry and must not be reported as a measured 916-to-33 store reduction or an exact percentage delta."
+        }
+      ],
+      "verification_gates": [
+        {
+          "id": "full-repository-validation",
+          "role": "correctness_gate",
+          "status": "passed",
+          "commands": [
+            "format",
+            "lint",
+            "typecheck",
+            "test",
+            "production build"
+          ],
+          "test_count": 3115,
+          "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#verification_gates",
+          "build_ref": "Yoda v0.18.10 / 290fbc48c713163f20bd6f956e80e15d00dfa357",
+          "note": "The count demonstrates regression-gate depth; it is not a runtime performance observation or acceptance."
+        }
+      ],
+      "evidence_gaps": [
+        {
+          "id": "same-workload-user-runtime-ab",
+          "missing": [
+            "inputLatency before/after",
+            "main and renderer RSS before/after"
+          ],
+          "comparability_required": [
+            "same 8-remotes workload",
+            "same build mode",
+            "same sample window",
+            "same sampler"
+          ],
+          "effect": "prevents verified status"
+        }
+      ]
+    },
+    "status": "partially_verified",
+    "boundaries": [
+      "15 unique Git subprocesses is an after runtime measurement; without a comparable measured baseline it does not yield an exact reduction percentage",
+      "916→33 is an active-only hydration implementation bound derived from inventory and code paths, not TaskStore telemetry",
+      "3,115 tests is a correctness gate and does not replace live user-experience A/B",
+      "Yoda is the first calibration case for platform_family=desktop and runtime=electron; it is not evidence for other platform families"
+    ],
+    "next_measurement": "On a stable patched build, replay the same 8-remotes cycle and collect comparable inputLatency, event-loop, and main/renderer RSS before/after windows with the same sampler."
+  }
+]

@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 把重复操作封装成通用 Skill，并按需提供宿主 slash command 适配入口
-version: 4.2.1
+version: "4.2.3"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

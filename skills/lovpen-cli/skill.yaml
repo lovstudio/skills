@@ -1,0 +1,56 @@
+schema: skill-manifest/v1
+id: lovpen-cli
+version: "0.2.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - workspace
+      - preferences
+      - skills.lovpen-cli
+    persist:
+      enabled: true
+      namespace: skills.lovpen-cli
+      records_path: skills.lovpen-cli.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: workspace.project_root
+        required: false
+        question: 如果当前上下文无法定位 Lovpen，请提供项目根目录。
+      - path: skills.lovpen-cli.profile.cli_path
+        required: false
+        question: 如果 lovpen-cli 不在 PATH，请提供可执行文件路径。
+      - path: skills.lovpen-cli.profile.output_dir
+        required: false
+        question: 如果不输出到输入文件旁边，请提供默认输出目录。
+      - path: skills.lovpen-cli.records.default_theme
+        required: false
+        question: 希望默认使用哪个 Lovpen 主题？
+      - path: skills.lovpen-cli.records.default_template_kit
+        required: false
+        question: 希望默认使用哪个 Lovpen 模板套装？
+      - path: skills.lovpen-cli.records.default_highlight
+        required: false
+        question: 希望默认使用哪个代码高亮？
+  preferences:
+    namespace: lovpen_cli
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言报告渲染结果？
+      - path: skills.lovpen-cli.records.default_theme
+        required: false
+        question: 希望默认使用哪个 Lovpen 主题？
+      - path: skills.lovpen-cli.records.default_template_kit
+        required: false
+        question: 希望默认使用哪个 Lovpen 模板套装？
+      - path: skills.lovpen-cli.records.default_highlight
+        required: false
+        question: 希望默认使用哪个代码高亮？
+  interaction:
+    ask_missing: true
+    max_questions: 1

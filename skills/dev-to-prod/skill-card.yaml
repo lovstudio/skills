@@ -1,0 +1,100 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "将开发态项目收敛为可验证的生产构建、签名或本地安装结果，并清晰保留外部发布与本地交付之间的授权边界。"
+owner:
+  team: "LovStudio"
+  contact: "Local Skill source"
+license:
+  name: MIT
+  terms: "Use, adapt, and redistribute under the bundled MIT license."
+  url: "../LICENSE"
+use_case:
+  audience: "Developers preparing a desktop, native, or Web project for a verifiable production build."
+  scenario: "A project runs through development tooling and needs a safe path to a local production artifact before any public release."
+  tasks:
+    - "Distinguish local installation, distributable artifact, and external release authority."
+    - "Audit development and production configuration before making minimal in-scope changes."
+    - "Build and verify the real platform artifact, then hand off release work only when requested."
+deployment:
+  geography: global
+  environments:
+    - "Local agent runtime"
+    - "Developer workstation"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.8+ standard library for the audit helper"
+    - "Target-project build and platform verification tools"
+risks:
+  - risk: "A development server or preview can be mistaken for a production artifact."
+    mitigation: "Require the target production build command and native artifact verification before assigning a verified status."
+  - risk: "Replacing an installed application can discard a usable prior version."
+    mitigation: "Require explicit install authority, verify the target application is not in active use, and move the previous bundle to a recoverable location before replacement."
+  - risk: "A local build can be misrepresented as an external release."
+    mitigation: "Keep remote publication out of scope and hand it to the dedicated release Skills only after explicit authorization."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Production readiness checklist"
+    path: "references/production-readiness.md"
+  - title: "Skill group composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "Production-readiness report"
+    - "Verified local artifact or install evidence"
+    - "Release-handoff summary"
+  formats:
+    - "Markdown"
+    - "JSON"
+    - "Native verification command output"
+  parameters:
+    - "Project root"
+    - "Target delivery scope"
+    - "Platform"
+  validation:
+    - "Target project quality gate"
+    - "Real production build"
+    - "Platform signature or installer checks when applicable"
+    - "Local installation digest comparison when requested"
+  description: "A scoped production-readiness decision backed by actual build and verification evidence, never by a development preview alone."
+ethical_considerations: "The Skill does not expose secrets, upload project data, publish externally without authorization, or claim public availability from a local build."
+dimensions:
+  - id: correctness
+    label: "Artifact integrity"
+    description: "Requires the actual production build and native verification rather than relying on a development server."
+    evidence: "The initial Vmux case completed a signed, notarized macOS bundle check and matched the installed executable digest to the staged artifact."
+    score: "verified in initial local case"
+  - id: effectiveness
+    label: "Scope clarity"
+    description: "Separates local install, distributable artifact, and public release so users receive the requested outcome without unintended publication."
+    evidence: "Workflow blocks external release steps unless explicitly requested and supplies a release-handoff artifact boundary."
+    score: "implemented"
+  - id: efficiency
+    label: "Minimal change path"
+    description: "Uses a small deterministic audit before changing code, then preserves existing development commands and unrelated worktree edits."
+    evidence: "The audit helper reads manifest and configuration metadata without modifying project files."
+    score: "implemented"
+  - id: safety
+    label: "Installation safety"
+    description: "Treats application replacement as a recoverable operation with explicit install authority and digest verification."
+    evidence: "The initial Vmux case moved the old local bundle to a recoverable location before installation."
+    score: "verified in initial local case"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Local production-readiness work is broadly useful and is distributed without a paid entitlement while its scope remains instruction and local verification oriented."
+  boundary: "Includes readiness audit, minimal implementation, local artifact checks, and release handoff. Excludes paid signing services, hosted infrastructure, store submission, and remote publication."
+  review_trigger: "Review if the Skill gains managed cloud execution, paid support obligations, or platform-specific compliance automation."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - local-agent
+  channels:
+    workbuddy: not_published
+    skillpay: not_published
+    github: not_published
+    lovstudio: locally_installed_only

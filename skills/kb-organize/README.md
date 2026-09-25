@@ -1,6 +1,6 @@
 # 知识库管家 · Knowledge Organizer
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 检查并整理知识库索引、重复文档、图片位置和内部引用。
 

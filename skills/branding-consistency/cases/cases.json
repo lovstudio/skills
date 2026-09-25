@@ -42,5 +42,44 @@
       "references/scene-conventions.md states that opening art normally needs no visible Caption when attribution is already handled elsewhere.",
       "references/quality-gate.md classifies component self-reference and production metadata as hard failures."
     ]
+  },
+  {
+    "type": "case",
+    "title": "公众号最终稿不能假设读者参加过审稿对话",
+    "description": "来自 2026-08-31《我调研了市面上所有的去 AI 味 Prompt》真实失败。旧开头把作者与 Agent 的版本历史写进最终文章，读者没有先行上下文。",
+    "input": {
+      "items": [
+        "surface: 微信公众号最终文章",
+        "component: 标题后的导语",
+        "audience: 没有参加作者审稿过程的公开读者",
+        "title: 我调研了市面上所有的去 AI 味 Prompt",
+        "bad opening: 我前一版 benchmark 做错了。"
+      ]
+    },
+    "prompt": "使用 lov-branding-consistency 做 cold-reader test。只允许读者知道标题和导语中已经出现的信息，不把聊天、旧稿或用户反馈当作公开上下文。",
+    "output": {
+      "decision": "重写导语；原句中的‘前一版’没有可见先行词，属于会话历史泄漏。",
+      "text": "我把 5 套公开可复现的去 AI 味 Skill、一句 Prompt 和‘完全不改’放到同一组输入上，跑了 63 次。"
+    },
+    "assertions": {
+      "must_reject": [
+        "我前一版 benchmark 做错了",
+        "按你的要求，我重新写了这篇文章"
+      ],
+      "must_establish": [
+        "评测对象",
+        "对照",
+        "63 次"
+      ],
+      "must_not_assume": [
+        "读者看过旧稿",
+        "读者知道作者与 Agent 的协作过程"
+      ]
+    },
+    "evidence": [
+      "scripts/copy_audit.py --self-test 将原开头固定为 bad fixture。",
+      "references/context-contract.md 定义 reader_start_state 与 artifact_boundary。",
+      "references/quality-gate.md 将无先行词的版本历史列为 hard failure。"
+    ]
   }
 ]

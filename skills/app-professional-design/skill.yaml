@@ -1,0 +1,25 @@
+schema: skill-manifest/v1
+id: lov-app-professional-design
+version: 0.1.1
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields:
+      - path: identity.name
+        required: false
+        question: "如果需要把品牌身份写入应用界面，请提供品牌名称。"
+      - path: brand.tone
+        required: false
+        question: "如果已有品牌语气或审美关键词，请提供它们。"
+  preferences:
+    namespace: app_professional_design
+    fields:
+      - path: design.priorities
+        required: false
+        question: "这次设计更看重哪些体验优先级？"
+      - path: user.language
+        required: false
+        question: "希望使用哪种语言输出？"
+  interaction:
+    ask_missing: true
+    max_questions: 1

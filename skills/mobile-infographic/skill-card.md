@@ -7,7 +7,8 @@ its source.
 ## Description
 
 把已有结论的内容重排成 1080 宽竖屏可读的证据型信息卡，交付可编辑 HTML、2× PNG 与可复核的
-移动可读性审计报告；默认一张 `long` 自适应高度卡，用户在请求里明确要多张时才做三到五张系列。
+移动可读性审计报告；输出永远是一张 `long` 自适应高度卡（可以很长，不拆卡），
+只有用户在请求里明确要多张时才做系列。
 
 ## Owner
 
@@ -54,7 +55,7 @@ global。运行在本地 Agent 会话；没有浏览器时只能使用 `scaffold
 
 ## Skill Output
 
-可编辑 `card.html`（内联 CSS 与 data URL 品牌 Logo）、2× PNG（默认 2160 宽、高度随内容，
+可编辑 `card.html`（内联 CSS 与 data URL 品牌 Logo）、2× PNG（默认 2160 宽、高度随内容且不设上限，
 固定 `3:4` 时为 2160×2880）、`brief.md`、`source.md`、`audit.json`，系列另附 `manifest.json`。
 参数：`ratio` 默认 `long`（高度自适应），可显式改为 `3:4`、`4:5`、`9:16`、`1:1`；`scale` 默认 2；`series-index` 与
 `series-size` 控制页码范围。校验：字号下限、行宽上限、对比度、安全区、裁切与越界、单一结论、

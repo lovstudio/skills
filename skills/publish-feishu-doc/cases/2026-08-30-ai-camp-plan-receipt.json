@@ -1,0 +1,36 @@
+{
+  "schema": "lov-publish-feishu-doc/receipt/v1",
+  "state": "ready",
+  "action": "created_then_moved_to_wiki",
+  "completed_at": "2026-08-30T16:37:53+08:00",
+  "source": {
+    "name": "手工川-第五期策划案-2026-08-30-v0.1.md",
+    "sha256": "22294158363732c332caa6f1c1b6f412094213080117fd8625d15592d69ee71d"
+  },
+  "target": {
+    "space_name": "手工川 AI 创造营 内培资料",
+    "space_id": "7642202677899742410",
+    "title": "手工川 AI 创造营 · 第五期策划案",
+    "url": "https://lovstudio.feishu.cn/wiki/N8FdwJekwiFhZKkTQD3cDn0NnZg",
+    "node_token": "N8FdwJekwiFhZKkTQD3cDn0NnZg",
+    "obj_token": "DWuUdXa1CowV9Bxwfnrcro2jnSh",
+    "obj_type": "docx",
+    "revision_id": 5
+  },
+  "content_verification": {
+    "verified": true,
+    "body_headings": 14,
+    "table_rows": 51,
+    "public_http_links": 4,
+    "blockquotes": 7,
+    "key_text_checks": 7,
+    "relative_link_degradation": "Two local evidence-record links became plain text because their target files were not published."
+  },
+  "permission_verification": {
+    "verified": true,
+    "external_access": true,
+    "link_share_entity": "anyone_readable",
+    "manage_public": true,
+    "anonymous_http_check": "A cookie-free command-line request was redirected to the Feishu login page; no-login anonymous viewing was not claimed."
+  }
+}

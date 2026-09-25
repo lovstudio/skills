@@ -1,6 +1,6 @@
 # 项目换装 · Project Makeover
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 将模板或 fork 改造为新项目，按范围同步品牌、语言和部署设置。
 

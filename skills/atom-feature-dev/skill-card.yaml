@@ -1,0 +1,109 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.2"
+description: "把一个原子功能实现为共享 SDK、多种分发 adapter、Profile Preset、运营配套与可运行的 Atom Workbench。"
+owner:
+  team: "LovStudio"
+  contact: "Skill source maintainers"
+license:
+  name: MIT
+  terms: "允许使用、修改与再分发；目标项目代码仍遵循各自许可证。"
+  url: "../LICENSE"
+use_case:
+  audience: "需要把单点能力开发为可编程、可交互、可被 Agent 调用并可运营的产品与工程团队"
+  scenario: "同一业务能力需要通过 SDK、CLI、REST API、前端和 Agent Skill 分发，同时减少参数追问。"
+  tasks:
+    - "冻结原子 Feature Contract 与真实验收向量"
+    - "实现共享核心及适用的分发 surfaces"
+    - "建立 Profile Preset、Operations 与可运行的真实证据 Workbench"
+deployment:
+  geography: global
+  environments:
+    - "local development"
+    - "target repository runtime"
+requirements:
+  credentials: "none for the Skill; target integrations may require separately managed credentials"
+  dependencies:
+    - "lov-branding-consistency for audience-visible copy"
+  runtime:
+    - "Python 3.8 or newer"
+    - "target project toolchain"
+risks:
+  - risk: "Adapters drift and duplicate business rules."
+    mitigation: "Keep the SDK as the only business core and run shared vectors across surfaces."
+  - risk: "Dashboard status overstates readiness or publication."
+    mitigation: "Require artifact and verification evidence for verified or released states."
+  - risk: "Profile Presets hide stale, private or unsafe defaults."
+    mitigation: "Use schema validation, provenance, explicit overrides and secret locators only."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Atom Feature Contract"
+    path: "references/atom-feature-contract.md"
+  - title: "Acceptance Matrix"
+    path: "references/acceptance-matrix.md"
+  - title: "Companion Dashboard"
+    path: "dashboard/README.md"
+output:
+  types:
+    - "atom feature control manifest"
+    - "shared SDK and adapters"
+    - "Profile Preset experience"
+    - "operations matrix and runnable Atom Workbench"
+  formats:
+    - "JSON"
+    - "source code"
+    - "Markdown"
+    - "runtime evidence"
+  parameters:
+    - "target project"
+    - "feature id and user outcome"
+    - "applicable surfaces and operational requirements"
+  validation:
+    - "manifest schema validation"
+    - "loopback HTTP workspace and manifest-declared surface-run selftest"
+    - "headless Chrome desktop run and 390px responsive verification"
+    - "file URL preview without failed resource requests or console errors"
+    - "target repository quality gates"
+    - "shared acceptance vector across at least two applicable surfaces"
+  description: "A complete atom-feature implementation, runnable local workbench and evidence bundle, not a generic architecture plan."
+ethical_considerations: "Do not persist secrets, fabricate users or metrics, publish without authorization, or expose personal Profile data in logs and dashboards."
+dimensions:
+  - id: contract-integrity
+    label: "契约完整性"
+    description: "输入、输出、错误、副作用、Preset 和版本边界是否由同一 contract 管理。"
+    evidence: "The source includes a contract reference and a deterministic manifest validator; target-project scores remain unassigned until a real atom is built."
+    score: null
+  - id: surface-equivalence
+    label: "跨形态一致性"
+    description: "SDK、CLI、API、UI 与 Agent 是否调用同一核心并产生等价业务结果。"
+    evidence: "The acceptance matrix requires one real vector across two applicable surfaces; no runtime score is claimed yet."
+    score: null
+  - id: automation-experience
+    label: "自动化体验"
+    description: "Profile Preset 是否减少追问，同时保留参数来源、校验与显式覆盖。"
+    evidence: "The Profile module defines resolution and fallback tests; a user-facing project run is still required."
+    score: null
+  - id: operational-truth
+    label: "运营状态真实性"
+    description: "Dashboard 是否区分计划、实现、验证、发布和不适用。"
+    evidence: "The helper rejects verified and released states without evidence; the workbench selftest verifies local HTTP readback and a manifest-declared SDK run, while external-channel verification remains out of scope."
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "以开放的工程控制面和可运行 Workbench 验证真实需求与组合方式，降低多形态重复开发和验收成本。"
+  boundary: "包含本地 Skill Kit、manifest helper、Atom Workbench 与实现流程；不包含外部服务费用、托管发布或定制开发工时。"
+  review_trigger: "完成三个真实 atom 案例并获得可量化节省时间或维护成本证据后复评。"
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-planned
+    - channel: skillpay
+      status: not-planned
+  free:
+    - channel: github
+      status: local-only
+    - channel: lovstudio
+      status: local-only

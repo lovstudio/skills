@@ -1,5 +1,7 @@
 # 影视寻宝 · Media Finder · Skill Card
 
+# Description
+
 `lov-media-fetch` turns a natural-language movie or series request into a normalized
 candidate list, an evidence-backed edition choice, a capacity-checked acquisition,
 and a final local media verification. It uses aria2 as the default direct and

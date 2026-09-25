@@ -1,0 +1,127 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "将 Tauri macOS 应用图标的 alpha 可见外框与明确参考归一化，生成完整平台图标集，并用构建输出中的原始 `.icns` 字节匹配证明开发运行时真正加载了新资源。"
+owner:
+  team: "local skill maintainers"
+  contact: "local agent skill source"
+license:
+  name: MIT
+  terms: "可在保留许可与版权声明的前提下使用、修改和分发；输入 Logo、品牌资产和目标项目代码仍受其原始许可与隐私边界约束。"
+  url: "LICENSE"
+use_case:
+  audience: "维护 Tauri macOS 桌面应用并需要校准 Dock 图标视觉尺寸的工程与设计团队"
+  scenario: "目标图标即使画布尺寸相同，仍在 Dock 中显得过大、过小、没有圆角，或资源已替换但开发进程仍显示旧图标。"
+  tasks:
+    - "测量目标与参考 PNG 的 alpha 可见边界和可见比例"
+    - "按参考比例安全地归一化目标 PNG 的视觉外框"
+    - "从同一 canonical source 生成完整 Tauri 图标集并核对配置"
+    - "检查 Cargo 是否监听嵌入的开发模式图标输入"
+    - "用 SHA-256 匹配确认调试构建产物已经嵌入新的 `.icns`"
+    - "在同一 Dock 状态下做克制的最终视觉验收"
+deployment:
+  geography: global
+  environments:
+    - "Portable Agent Skills runtime with Python 3.8+"
+    - "Tauri 2 source tree with a project-provided Tauri CLI"
+    - "macOS for live Dock presentation verification"
+  state: "source_ready_local_validation"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "Pillow>=9.0 for RGBA alpha-bound measurement and PNG normalization"
+    - "PyYAML for Skill source validation"
+    - "Tauri CLI supplied by the target project for platform icon generation"
+  runtime:
+    - "Read access to the Tauri source tree, icon assets, and debug build output"
+    - "An explicit reference icon or an explicitly measured target visible ratio"
+risks:
+  - risk: "相同画布尺寸被误当成相同 Dock 视觉尺寸。"
+    mitigation: "只比较 alpha 可见外框与同一 Dock 截图中的像素包围盒，而不是比较文件的宽高。"
+  - risk: "目标图标是 opaque 方形，归一化后仍没有用户期望的圆角。"
+    mitigation: "先检查角点 alpha；需要圆角时先修正 artwork，再执行缩放，不把自动裁切伪装成视觉设计。"
+  - risk: "开发二进制继续使用旧 `.icns`，导致资源检查与 Dock 表现相矛盾。"
+    mitigation: "要求 `build.rs` 显式跟踪嵌入资源，并以构建输出中原始 `.icns` 的 SHA-256 匹配作为运行时门槛。"
+  - risk: "Dock 缓存、显示缩放或自动隐藏状态造成错误比较。"
+    mitigation: "在相同 Dock 状态下对比；资源与嵌入均匹配后，才将差异归类为系统呈现问题。"
+references:
+  - title: "Controller workflow"
+    path: "SKILL.md"
+  - title: "Tauri runtime icon reference"
+    path: "references/tauri-icon-runtime.md"
+  - title: "Atomic Skill composition map"
+    path: "references/skill-composition.md"
+  - title: "User Profile contract"
+    path: "references/user-profile.md"
+  - title: "Real Tauri Dock calibration case"
+    path: "cases/cases.json"
+output:
+  types:
+    - "icon envelope measurement"
+    - "normalized canonical PNG"
+    - "Tauri asset and build-embedding verification report"
+    - "Dock visual acceptance record"
+  formats:
+    - "JSON"
+    - "PNG"
+    - "ICNS"
+    - "Markdown"
+  parameters:
+    - "reference PNG or target-visible-ratio"
+    - "alpha threshold"
+    - "square output size"
+    - "Tauri icon set and debug build output paths"
+  validation:
+    - "normalized output alpha envelope matches the explicit target ratio within pixel rounding"
+    - "Tauri build configuration and Cargo watch declarations resolve"
+    - "a byte-identical source `.icns` is found in debug build output before claiming runtime embedding"
+    - "live Dock comparison uses the same presentation state or reports the evidence gap"
+  description: "一个可复核的图标尺寸校准结果，明确区分资源已生成、原生运行时已嵌入与 Dock 已视觉验收三种状态。"
+ethical_considerations: "仅处理用户提供或已置于目标项目范围内的图标与构建产物；不上传品牌资产、截图或源代码，不记录本地路径和私人图形内容。所有写入默认新建输出，覆盖已有文件需要显式 `--force`。"
+dimensions:
+  - id: visual-envelope-correctness
+    label: "视觉外框正确性"
+    description: "以 alpha 包围盒和同一 Dock 截图的像素包围盒定义尺寸，而非把 512px 画布误作视觉尺寸。"
+    evidence: "真实 Tauri Dock 案例将目标图标从 68px 的视觉外框校准到约 58px 的参考外框，资源可见边从 480px 缩至 412px。"
+    score: 4
+    score_status: "case_backed"
+  - id: runtime-fidelity
+    label: "运行时一致性"
+    description: "确认调试原生进程编译时间晚于图标更新，并在 Cargo 构建输出中找到与 source `.icns` 完全相同的字节。"
+    evidence: "真实案例中，旧调试二进制早于图标资源；加入图标 watch 后，新构建输出与 source `.icns` 的 SHA-256 相同。"
+    score: 5
+    score_status: "case_backed"
+  - id: safe-output-handling
+    label: "安全输出处理"
+    description: "规范化命令默认拒绝覆盖文件，且只变换明确传入的 raster 输出。"
+    evidence: "CLI 要求新输出路径；覆盖必须传入 `--force`，并以结构化 context_id 返回输入错误。"
+    score: 4
+    score_status: "implemented_and_exercised"
+  - id: reproducibility
+    label: "可复现性"
+    description: "测量、归一化、构建监听检查与嵌入校验均有机器可读输出。"
+    evidence: "Skill 自带 Python CLI、Profile 合同、真实案例、质量门和明确的资源/运行时/Dock 三阶段状态。"
+    score: 4
+    score_status: "implemented_and_exercised"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "免费提供 alpha 外框测量器、确定性 PNG 归一化器、Tauri build-watch/嵌入校验方法、完整工作流与真实案例。"
+  boundary: "包含本地资源、配置与构建输出检查；不包含原创 Logo 设计、第三方品牌资产授权、远程发布、签名、公证、托管构建或 SLA。"
+  review_trigger: "累计至少三个不同 Tauri/macOS 项目的完整 Dock 实机案例，或增加批量图标资产服务、签名与发布交付时复评。"
+  confidence: "single-real-case-backed"
+distribution:
+  paid:
+    - channel: "workbuddy"
+      state: "not_prepared"
+      note: "当前只有免费本地 Skill，没有付费 SKU 或上架产物。"
+    - channel: "skillpay"
+      state: "not_prepared"
+      note: "当前只有免费本地 Skill，没有付费 SKU 或上架产物。"
+  free:
+    - channel: "lovstudio"
+      state: "local_ready"
+      note: "本地源码、安装链接与验证脚本已就绪，尚未对外发布。"
+    - channel: "github"
+      state: "source_ready_not_published"
+      note: "源码结构可公开，当前未创建或推送独立远程仓库。"

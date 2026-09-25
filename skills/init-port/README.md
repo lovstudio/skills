@@ -1,6 +1,6 @@
 # 端口初始化 · Port Setup
 
-![Version](https://img.shields.io/badge/version-1.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.2-CC785C)
 
 为项目选择稳定开发端口并更新实际框架启动配置。
 

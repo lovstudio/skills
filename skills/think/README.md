@@ -1,6 +1,6 @@
 # 深度思考 · Deep Thinking
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 围绕复杂问题比较方案、验证假设并给出有依据的决策建议。
 

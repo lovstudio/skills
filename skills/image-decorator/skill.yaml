@@ -1,0 +1,49 @@
+schema: skill-manifest/v1
+id: lov-image-decorator
+version: "0.2.3"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-image-decorator
+    persist:
+      enabled: true
+      namespace: skills.lov-image-decorator
+      records_path: skills.lov-image-decorator.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果需要覆盖默认品牌，请提供品牌名称。
+      - path: brand.logo
+        aliases:
+          - identity.logo
+        required: false
+        question: 如果需要覆盖内置 Logo，请提供本地品牌 Logo 路径。
+      - path: skills.lov-image-decorator.records.default_caption
+        required: false
+        question: 希望长期使用哪个默认 caption？
+      - path: skills.lov-image-decorator.records.logo_path
+        required: false
+        question: 希望长期使用哪个本地 Logo？
+  preferences:
+    namespace: lov_image_decorator
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言报告结果？
+      - path: skills.lov-image-decorator.records.default_format
+        required: false
+        question: 希望默认输出 PNG、JPEG 还是 WebP？
+  interaction:
+    ask_missing: true
+    max_questions: 1

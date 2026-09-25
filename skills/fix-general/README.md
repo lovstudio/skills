@@ -1,6 +1,6 @@
 # 故障诊疗 · Troubleshooter
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 根据报错和复现证据定位根因、实施修复并验证原路径。
 

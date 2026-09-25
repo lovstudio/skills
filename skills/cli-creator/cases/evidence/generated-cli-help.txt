@@ -1,0 +1,23 @@
+usage: lov-cli-skill-creator [-h] [--version] [--json]
+                             [--project-root PROJECT_ROOT]
+                             {doctor,info,capabilities,create,validate} ...
+
+Create and validate portable Agent Skills through Skill Creator's real local
+scripts.
+
+positional arguments:
+  {doctor,info,capabilities,create,validate}
+    doctor              Check the project root and real backend dependency
+    info                Show project and harness identity
+    capabilities        List built-in and project-specific commands
+    create              Create a portable Skill source with the real
+                        init_skill.py backend.
+    validate            Validate a Skill source with the real
+                        validate_skill.py backend.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --json                Emit one machine-readable JSON object
+  --project-root PROJECT_ROOT
+                        Override the configured target project root

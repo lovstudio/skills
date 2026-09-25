@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replace fragile image-only card generation with repeatable DOM layout, editable copy, and audited high-resolution export."
+basis: "The deterministic local renderer and one bundled preset are an open foundation that can be reused without a service account or cloud cost."
+boundary: "Includes local input validation, one editorial card preset, self-contained HTML, PNG export, and layout audit. Excludes research, copywriting, image generation, hosting, community features, and platform publishing."
+review_trigger: "Review access and pricing only if managed cloud rendering, licensed premium presets, asset hosting, or collaborative publishing is added."
+confidence: internal

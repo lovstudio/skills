@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-fix-until-no-error
-version: 1.0.1
+version: 1.0.3
 runtime: skill-runtime/v1
 context:
   profile:

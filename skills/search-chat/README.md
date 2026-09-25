@@ -1,6 +1,6 @@
 # 会话寻踪 · Chat Finder
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 
 从本机 Ataru 记忆索引里召回过去的 AI 会话上下文，返回可定位的命中与原文片段。
 

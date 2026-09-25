@@ -1,0 +1,24 @@
+{
+  "title": "二分查找",
+  "inputLabel": "SORTED 2 5 8 12 16 23 38 / TARGET 23",
+  "insight": "每次比较都能排除一半元素，所以查找代价是 O(log n)。",
+  "layout": "sequence",
+  "code": ["取中间位置", "与目标比较", "目标更大则排除左半", "目标更小则排除右半", "命中或区间为空"],
+  "metricLabel": "已比较",
+  "nodes": [
+    { "id": "n0", "label": "2",  "caption": "00", "x": 4,  "y": 50 },
+    { "id": "n1", "label": "5",  "caption": "01", "x": 20, "y": 50 },
+    { "id": "n2", "label": "8",  "caption": "02", "x": 36, "y": 50 },
+    { "id": "n3", "label": "12", "caption": "03", "x": 52, "y": 50 },
+    { "id": "n4", "label": "16", "caption": "04", "x": 68, "y": 50 },
+    { "id": "n5", "label": "23", "caption": "05", "x": 84, "y": 50 },
+    { "id": "n6", "label": "38", "caption": "06", "x": 100, "y": 50 }
+  ],
+  "edges": [],
+  "frames": [
+    { "active": ["n3"], "settled": [], "note": "目标 23。先看正中间的元素 12。", "codeLine": 0 },
+    { "active": ["n3", "n5"], "settled": [], "note": "23 比 12 更大，左半边整段排除。", "codeLine": 2 },
+    { "active": ["n5"], "settled": ["n4", "n5"], "note": "在剩下的 16 与 23 里取中间 16，仍然偏小，再排除 16 这一侧。", "codeLine": 2 },
+    { "active": ["n5"], "settled": ["n4", "n5"], "note": "命中 23。只用了 3 次比较。", "codeLine": 4 }
+  ]
+}

@@ -8,7 +8,7 @@ license: MIT
 compatibility: 支持 Agent Skills 的宿主；Python 3.8+ 与 PyYAML 用于 Profile 和校验。业务工具要求见工作流。
 metadata:
   author: contributors
-  version: 1.0.1
+  version: 1.0.3
   content_class: microcopy
   card_standard: lovstudio/skill-card/v1
   tags:

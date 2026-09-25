@@ -1,0 +1,74 @@
+{
+  "schema": "lovstudio/atom-feature/v1",
+  "version": "0.2.0",
+  "feature": {
+    "id": "markdown-to-pdf",
+    "title": "Markdown to PDF",
+    "summary": "把 Markdown 与 Profile Preset 转成带目录、可搜索的 PDF，并让每个 surface 返回同一业务结果。",
+    "status": "planned"
+  },
+  "contracts": {
+    "feature": ".atom-feature/contract.schema.json",
+    "profiles": ".atom-feature/profiles.schema.json",
+    "acceptance": ".atom-feature/acceptance.json"
+  },
+  "surfaces": {
+    "sdk": {
+      "status": "implemented",
+      "artifact": "sdk.py",
+      "contract": ".atom-feature/contract.schema.json",
+      "command": ["python3", "sdk.py"],
+      "verification": [],
+      "reason": null
+    },
+    "cli": {
+      "status": "implemented",
+      "artifact": "sdk.py",
+      "contract": ".atom-feature/contract.schema.json",
+      "command": ["python3", "sdk.py"],
+      "verification": [],
+      "reason": null
+    },
+    "api": {
+      "status": "planned",
+      "artifact": null,
+      "contract": ".atom-feature/contract.schema.json",
+      "command": null,
+      "verification": [],
+      "reason": null
+    },
+    "ui": {
+      "status": "planned",
+      "artifact": null,
+      "contract": ".atom-feature/contract.schema.json",
+      "command": null,
+      "verification": [],
+      "reason": null
+    },
+    "agent": {
+      "status": "planned",
+      "artifact": null,
+      "contract": ".atom-feature/contract.schema.json",
+      "command": null,
+      "verification": [],
+      "reason": null
+    }
+  },
+  "operations": {
+    "docs": {"status": "implemented", "artifact": "docs.md", "verification": [], "reason": null},
+    "tests": {"status": "implemented", "artifact": "sdk.py", "verification": [], "reason": null},
+    "seo": {"status": "not-applicable", "artifact": null, "verification": [], "reason": "Local export feature"},
+    "geo": {"status": "not-applicable", "artifact": null, "verification": [], "reason": "No public discovery surface"},
+    "auth": {"status": "not-applicable", "artifact": null, "verification": [], "reason": "Single-user local workflow"},
+    "payment": {"status": "not-applicable", "artifact": null, "verification": [], "reason": "No commercial entitlement"},
+    "analytics": {"status": "planned", "artifact": null, "verification": [], "reason": null},
+    "support": {"status": "planned", "artifact": null, "verification": [], "reason": null}
+  },
+  "dashboard": {
+    "status": "implemented",
+    "artifact": "dashboard-entry.json",
+    "route": "http://127.0.0.1:6174/",
+    "verification": []
+  }
+}
+

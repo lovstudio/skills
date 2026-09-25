@@ -1,0 +1,19 @@
+schema: skill-manifest/v1
+id: lov-skill-distiller
+version: 0.4.1
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields: []
+  preferences:
+    namespace: skill_distiller
+    fields:
+      - path: user.language
+        required: false
+        question: "蓝图和验收说明使用哪种语言？"
+      - path: evidence_level
+        required: false
+        question: "经验蒸馏时默认需要多完整的证据？"
+  interaction:
+    ask_missing: true
+    max_questions: 1

@@ -3447,7 +3447,7 @@ skills:
       change in support cost.
     card_path: pricing-cards/app-generator.md
 - name: electron-delta-updater
-  runtime_name: sgc-electron-delta-updater
+  runtime_name: lov-electron-delta-updater
   display_name: Electron Delta Updates
   updated_at: 2026-08-23 17:04:16+00:00
   skillpay_product_id: P0806000200846070
@@ -3493,7 +3493,7 @@ skills:
       change in support cost.
     card_path: pricing-cards/electron-delta-updater.md
 - name: electron-app-relaunch
-  runtime_name: sgc-electron-app-relaunch
+  runtime_name: lov-electron-app-relaunch
   display_name: Desktop App Relaunch
   updated_at: 2026-08-23 17:04:16+00:00
   skillpay_product_id: P0806000200847229
@@ -3539,7 +3539,7 @@ skills:
       change in support cost.
     card_path: pricing-cards/electron-app-relaunch.md
 - name: install-ai
-  runtime_name: sgc-install-ai
+  runtime_name: lov-install-ai
   display_name: AI Integrator
   updated_at: 2026-08-23 17:04:16+00:00
   skillpay_product_id: P0806000200843464
@@ -3587,7 +3587,7 @@ skills:
       change in support cost.
     card_path: pricing-cards/install-ai.md
 - name: skill-distiller
-  runtime_name: sgc-skill-distiller
+  runtime_name: lov-skill-distiller
   display_name: Skill Alchemist
   updated_at: 2026-08-23 17:04:16+00:00
   skillpay_product_id: P0806000200866866
@@ -4928,8 +4928,8 @@ skills:
 - name: better-css
   runtime_name: lov-better-css
   display_name: CSS Polish
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/better-css-skill
   name_zh: CSS 精修
   paid: false
   category: Dev Tools
@@ -4939,7 +4939,6 @@ skills:
   tagline_zh: 清理冗余 CSS 并在现有 Tailwind 项目中重构样式
   depends_on:
   - branding-consistency
-  skill_path: skills/better-css
   pricing:
     model: free_entry
     visibility: public
@@ -4965,8 +4964,8 @@ skills:
 - name: better-github-desc
   runtime_name: lov-better-github-desc
   display_name: GitHub Repository Description Optimization
-  updated_at: '2026-09-07T10:34:30Z'
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/better-github-desc-skill
   name_zh: GitHub 仓库简介优化
   paid: false
   category: Dev Tools
@@ -4976,7 +4975,6 @@ skills:
   tagline_zh: 依据 README 更新 GitHub 仓库描述、主题标签及已核实的官网链接
   depends_on:
   - branding-consistency
-  skill_path: skills/better-github-desc
   pricing:
     model: free_entry
     visibility: public
@@ -5002,8 +5000,8 @@ skills:
 - name: better-project-structure
   runtime_name: lov-better-project-structure
   display_name: Project Organizer
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/better-project-structure-skill
   name_zh: 项目整理师
   paid: false
   category: Dev Tools
@@ -5013,7 +5011,6 @@ skills:
   tagline_zh: 分析任意语言项目的目录职责并渐进调整文件结构和引用
   depends_on:
   - branding-consistency
-  skill_path: skills/better-project-structure
   pricing:
     model: free_entry
     visibility: public
@@ -5039,8 +5036,8 @@ skills:
 - name: better-readme
   runtime_name: lov-better-readme
   display_name: README Polish
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/better-readme-skill
   name_zh: README 精修
   paid: false
   category: Dev Tools
@@ -5050,7 +5047,6 @@ skills:
   tagline_zh: 依据项目代码完善 README、安装说明、使用示例与真实品牌资产
   depends_on:
   - branding-consistency
-  skill_path: skills/better-readme
   pricing:
     model: free_entry
     visibility: public
@@ -5076,8 +5072,8 @@ skills:
 - name: better-seo
   runtime_name: lov-better-seo
   display_name: Next.js SEO Assistant
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/better-seo-skill
   name_zh: Next.js SEO 助手
   paid: false
   category: Dev Tools
@@ -5087,7 +5083,6 @@ skills:
   tagline_zh: 检查 Next.js 页面元数据、索引规则、站点地图与分享展示
   depends_on:
   - branding-consistency
-  skill_path: skills/better-seo
   pricing:
     model: free_entry
     visibility: public
@@ -5113,8 +5108,8 @@ skills:
 - name: better-statusline
   runtime_name: lov-better-statusline
   display_name: Status Line Studio
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/better-statusline-skill
   name_zh: 状态栏工坊
   paid: false
   category: Dev Tools
@@ -5124,7 +5119,6 @@ skills:
   tagline_zh: 配置并备份 Agent 状态栏，支持列出历史版本和恢复
   depends_on:
   - branding-consistency
-  skill_path: skills/better-statusline
   pricing:
     model: free_entry
     visibility: public
@@ -5150,8 +5144,8 @@ skills:
 - name: brainstorm
   runtime_name: lov-brainstorm
   display_name: Requirements Compass
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/brainstorm-skill
   name_zh: 需求梳理
   paid: false
   category: General
@@ -5161,7 +5155,6 @@ skills:
   tagline_zh: 通过证据和聚焦追问明确需求、约束、取舍及验收条件
   depends_on:
   - branding-consistency
-  skill_path: skills/brainstorm
   pricing:
     model: free_entry
     visibility: public
@@ -5187,8 +5180,8 @@ skills:
 - name: checkpoint-list
   runtime_name: lov-checkpoint-list
   display_name: Checkpoint History
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/checkpoint-list-skill
   name_zh: 检查点回看
   paid: false
   category: Dev Tools
@@ -5198,7 +5191,6 @@ skills:
   tagline_zh: 汇总 Git 与项目日志中的检查点、时间范围和演进记录
   depends_on:
   - branding-consistency
-  skill_path: skills/checkpoint-list
   pricing:
     model: free_entry
     visibility: public
@@ -5224,8 +5216,8 @@ skills:
 - name: checkpoint
   runtime_name: lov-checkpoint
   display_name: Project Checkpoint
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/checkpoint-skill
   name_zh: 项目存档
   paid: false
   category: Dev Tools
@@ -5235,7 +5227,6 @@ skills:
   tagline_zh: 根据当前 Git 差异和历史记录保存项目里程碑及后续事项
   depends_on:
   - branding-consistency
-  skill_path: skills/checkpoint
   pricing:
     model: free_entry
     visibility: public
@@ -5261,8 +5252,8 @@ skills:
 - name: clone-rebrand
   runtime_name: lov-clone-rebrand
   display_name: Project Makeover
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/clone-rebrand-skill
   name_zh: 项目换装
   paid: false
   category: Dev Tools
@@ -5272,7 +5263,6 @@ skills:
   tagline_zh: 将模板或 fork 改造为新项目，按范围同步品牌、语言和部署设置
   depends_on:
   - branding-consistency
-  skill_path: skills/clone-rebrand
   pricing:
     model: free_entry
     visibility: public
@@ -5298,8 +5288,8 @@ skills:
 - name: daily-post
   runtime_name: lov-daily-post
   display_name: Dev Diary
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/daily-post-skill
   name_zh: 开发日记
   paid: false
   category: General
@@ -5309,7 +5299,6 @@ skills:
   tagline_zh: 将近期真实项目更新写成面向读者的简短日更文案
   depends_on:
   - branding-consistency
-  skill_path: skills/daily-post
   pricing:
     model: free_entry
     visibility: public
@@ -5335,8 +5324,8 @@ skills:
 - name: dev-research
   runtime_name: lov-dev-research
   display_name: Tech Selection Advisor
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/dev-research-skill
   name_zh: 技术选型顾问
   paid: false
   category: Dev Tools
@@ -5346,7 +5335,6 @@ skills:
   tagline_zh: 根据软件需求比较复用策略并输出有来源的技术选型与研发计划
   depends_on:
   - branding-consistency
-  skill_path: skills/dev-research
   pricing:
     model: free_entry
     visibility: public
@@ -5372,8 +5360,8 @@ skills:
 - name: distill-to-system
   runtime_name: lov-distill-to-system
   display_name: Lessons to Rules
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/distill-to-system-skill
   name_zh: 经验入规
   paid: false
   category: Dev Tools
@@ -5383,7 +5371,6 @@ skills:
   tagline_zh: 把有证据的可复用经验写入最合适的项目或共享 Agent 规范
   depends_on:
   - branding-consistency
-  skill_path: skills/distill-to-system
   pricing:
     model: free_entry
     visibility: public
@@ -5409,8 +5396,8 @@ skills:
 - name: distill
   runtime_name: lov-distill
   display_name: Lesson Distiller
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/distill-skill
   name_zh: 经验萃取
   paid: false
   category: Dev Tools
@@ -5420,7 +5407,6 @@ skills:
   tagline_zh: 将真实解决过程整理为可复用经验文档并维护知识索引
   depends_on:
   - branding-consistency
-  skill_path: skills/distill
   pricing:
     model: free_entry
     visibility: public
@@ -5446,8 +5432,8 @@ skills:
 - name: fix-broken-links
   runtime_name: lov-fix-broken-links
   display_name: Link Fixer
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/fix-broken-links-skill
   name_zh: 链接修补匠
   paid: false
   category: Dev Tools
@@ -5457,7 +5443,6 @@ skills:
   tagline_zh: 核对项目路由及页面链接，修复失效目标并保留有效导航
   depends_on:
   - branding-consistency
-  skill_path: skills/fix-broken-links
   pricing:
     model: free_entry
     visibility: public
@@ -5483,8 +5468,8 @@ skills:
 - name: fix-by-add-log
   runtime_name: lov-fix-by-add-log
   display_name: Log Detective
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/fix-by-add-log-skill
   name_zh: 日志侦探
   paid: false
   category: Dev Tools
@@ -5494,7 +5479,6 @@ skills:
   tagline_zh: 针对难复现问题增加最少的诊断日志并用实际输出定位根因
   depends_on:
   - branding-consistency
-  skill_path: skills/fix-by-add-log
   pricing:
     model: free_entry
     visibility: public
@@ -5520,8 +5504,8 @@ skills:
 - name: fix-general
   runtime_name: lov-fix-general
   display_name: Troubleshooter
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/fix-general-skill
   name_zh: 故障诊疗
   paid: false
   category: Dev Tools
@@ -5531,7 +5515,6 @@ skills:
   tagline_zh: 根据报错和复现证据定位根因、实施修复并验证原路径
   depends_on:
   - branding-consistency
-  skill_path: skills/fix-general
   pricing:
     model: free_entry
     visibility: public
@@ -5557,8 +5540,8 @@ skills:
 - name: fix-until-no-error
   runtime_name: lov-fix-until-no-error
   display_name: Verified Fixes
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/fix-until-no-error-skill
   name_zh: 验证修复
   paid: false
   category: Dev Tools
@@ -5568,7 +5551,6 @@ skills:
   tagline_zh: 围绕明确验证命令持续定位和修复失败项直到通过或遇到真实阻塞
   depends_on:
   - branding-consistency
-  skill_path: skills/fix-until-no-error
   pricing:
     model: free_entry
     visibility: public
@@ -5594,8 +5576,8 @@ skills:
 - name: gen-logo
   runtime_name: lov-gen-logo
   display_name: Logo Studio
-  updated_at: 2026-09-07 09:44:42+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/gen-logo-skill
   name_zh: Logo 工坊
   paid: false
   category: Dev Tools
@@ -5605,7 +5587,6 @@ skills:
   tagline_zh: 根据项目用途制作版本化 Logo 草稿及应用图标，并按确认范围接入
   depends_on:
   - branding-consistency
-  skill_path: skills/gen-logo
   pricing:
     model: free_entry
     visibility: public
@@ -5631,8 +5612,8 @@ skills:
 - name: gen-project-name
   runtime_name: lov-gen-project-name
   display_name: Project Namer
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/gen-project-name-skill
   name_zh: 项目起名师
   paid: false
   category: Dev Tools
@@ -5642,7 +5623,6 @@ skills:
   tagline_zh: 根据项目用途提供可用于文件夹与仓库的名称及定位说明
   depends_on:
   - branding-consistency
-  skill_path: skills/gen-project-name
   pricing:
     model: free_entry
     visibility: public
@@ -5668,8 +5648,8 @@ skills:
 - name: git-commit-with-context
   runtime_name: lov-git-commit-with-context
   display_name: Context Commit
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/git-commit-with-context-skill
   name_zh: 会话提交
   paid: false
   category: Dev Tools
@@ -5679,7 +5659,6 @@ skills:
   tagline_zh: 结合会话意图与实际 Git 差异生成并执行范围准确的提交
   depends_on:
   - branding-consistency
-  skill_path: skills/git-commit-with-context
   pricing:
     model: free_entry
     visibility: public
@@ -5705,8 +5684,8 @@ skills:
 - name: help-cmd
   runtime_name: lov-help-cmd
   display_name: Command Helper
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/help-cmd-skill
   name_zh: 命令助手
   paid: false
   category: Dev Tools
@@ -5716,7 +5695,6 @@ skills:
   tagline_zh: 把操作目标转换为适合当前系统和 shell 的可执行命令说明
   depends_on:
   - branding-consistency
-  skill_path: skills/help-cmd
   pricing:
     model: free_entry
     visibility: public
@@ -5742,8 +5720,8 @@ skills:
 - name: i18n-check-i18n
   runtime_name: lov-i18n-check-i18n
   display_name: I18n Inspector
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/i18n-check-i18n-skill
   name_zh: 国际化巡检
   paid: false
   category: Dev Tools
@@ -5753,7 +5731,6 @@ skills:
   tagline_zh: 检查并修复用户可见文案硬编码、缺失翻译键及语言配置
   depends_on:
   - branding-consistency
-  skill_path: skills/i18n-check-i18n
   pricing:
     model: free_entry
     visibility: public
@@ -5779,8 +5756,8 @@ skills:
 - name: illustrate
   runtime_name: lov-illustrate
   display_name: Document Visuals
-  updated_at: 2026-09-07 09:44:42+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/illustrate-skill
   name_zh: 图解文档
   paid: false
   category: Dev Tools
@@ -5790,7 +5767,6 @@ skills:
   tagline_zh: 依据文档内容选择真实素材、图表或生成图并校验插入位置
   depends_on:
   - branding-consistency
-  skill_path: skills/illustrate
   pricing:
     model: free_entry
     visibility: public
@@ -5816,8 +5792,8 @@ skills:
 - name: init-auth
   runtime_name: lov-init-auth
   display_name: Supabase Auth Setup
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/init-auth-skill
   name_zh: Supabase 登录接入
   paid: false
   category: Dev Tools
@@ -5827,7 +5803,6 @@ skills:
   tagline_zh: 为 React 应用接入 Supabase 登录、账户恢复及桌面浏览器 OAuth
   depends_on:
   - branding-consistency
-  skill_path: skills/init-auth
   pricing:
     model: free_entry
     visibility: public
@@ -5853,8 +5828,8 @@ skills:
 - name: init-port
   runtime_name: lov-init-port
   display_name: Port Setup
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/init-port-skill
   name_zh: 端口初始化
   paid: false
   category: Dev Tools
@@ -5864,7 +5839,6 @@ skills:
   tagline_zh: 为项目选择稳定开发端口并更新实际框架启动配置
   depends_on:
   - branding-consistency
-  skill_path: skills/init-port
   pricing:
     model: free_entry
     visibility: public
@@ -5890,8 +5864,8 @@ skills:
 - name: install-design
   runtime_name: lov-install-design
   display_name: Design System Setup
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/install-design-skill
   name_zh: 设计系统接入
   paid: false
   category: Dev Tools
@@ -5901,7 +5875,6 @@ skills:
   tagline_zh: 将项目品牌设计规范映射到已有前端样式与组件系统
   depends_on:
   - branding-consistency
-  skill_path: skills/install-design
   pricing:
     model: free_entry
     visibility: public
@@ -5927,8 +5900,8 @@ skills:
 - name: install-shadcn-ui
   runtime_name: lov-install-shadcn-ui
   display_name: shadcn/ui Setup
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/install-shadcn-ui-skill
   name_zh: shadcn/ui 接入
   paid: false
   category: Dev Tools
@@ -5938,7 +5911,6 @@ skills:
   tagline_zh: 安装并按项目品牌配置 shadcn/ui，保留现有主题和组件修改
   depends_on:
   - branding-consistency
-  skill_path: skills/install-shadcn-ui
   pricing:
     model: free_entry
     visibility: public
@@ -5964,8 +5936,8 @@ skills:
 - name: install-tauri-logo
   runtime_name: lov-install-tauri-logo
   display_name: Tauri Icon Setup
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/install-tauri-logo-skill
   name_zh: Tauri 图标助手
   paid: false
   category: Dev Tools
@@ -5975,7 +5947,6 @@ skills:
   tagline_zh: 把已确认 Logo 接入 Tauri 包图标和托盘并核验生成资源
   depends_on:
   - branding-consistency
-  skill_path: skills/install-tauri-logo
   pricing:
     model: free_entry
     visibility: public
@@ -6001,8 +5972,8 @@ skills:
 - name: install-web-logo
   runtime_name: lov-install-web-logo
   display_name: Website Logo Setup
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/install-web-logo-skill
   name_zh: 网站 Logo 助手
   paid: false
   category: Dev Tools
@@ -6012,7 +5983,6 @@ skills:
   tagline_zh: 将正式 Logo 接入 favicon、PWA manifest、网页头部和相关组件
   depends_on:
   - branding-consistency
-  skill_path: skills/install-web-logo
   pricing:
     model: free_entry
     visibility: public
@@ -6038,8 +6008,8 @@ skills:
 - name: install-zenmux-api
   runtime_name: lov-install-zenmux-api
   display_name: ZenMux Setup
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/install-zenmux-api-skill
   name_zh: ZenMux 接入
   paid: false
   category: Dev Tools
@@ -6049,7 +6019,6 @@ skills:
   tagline_zh: 为应用接入 ZenMux 服务端代理，隔离密钥并验证请求链路
   depends_on:
   - branding-consistency
-  skill_path: skills/install-zenmux-api
   pricing:
     model: free_entry
     visibility: public
@@ -6075,8 +6044,8 @@ skills:
 - name: kb-organize
   runtime_name: lov-kb-organize
   display_name: Knowledge Organizer
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/kb-organize-skill
   name_zh: 知识库管家
   paid: false
   category: General
@@ -6086,7 +6055,6 @@ skills:
   tagline_zh: 检查并整理知识库索引、重复文档、图片位置和内部引用
   depends_on:
   - branding-consistency
-  skill_path: skills/kb-organize
   pricing:
     model: free_entry
     visibility: public
@@ -6112,8 +6080,8 @@ skills:
 - name: kill-emoji
   runtime_name: lov-kill-emoji
   display_name: Emoji Makeover
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/kill-emoji-skill
   name_zh: Emoji 换装
   paid: false
   category: Dev Tools
@@ -6123,7 +6091,6 @@ skills:
   tagline_zh: 将界面中不合适的 emoji 替换为语义一致的图标或简洁文案
   depends_on:
   - branding-consistency
-  skill_path: skills/kill-emoji
   pricing:
     model: free_entry
     visibility: public
@@ -6149,8 +6116,8 @@ skills:
 - name: legal-pages
   runtime_name: lov-legal-pages
   display_name: Website Legal Pages
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/legal-pages-skill
   name_zh: 网站条款助手
   paid: false
   category: Dev Tools
@@ -6160,7 +6127,6 @@ skills:
   tagline_zh: 根据真实业务与数据处理事实生成隐私政策和服务条款页面草稿
   depends_on:
   - branding-consistency
-  skill_path: skills/legal-pages
   pricing:
     model: free_entry
     visibility: public
@@ -6186,8 +6152,8 @@ skills:
 - name: memory-add
   runtime_name: lov-memory-add
   display_name: Knowledge Capture
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/memory-add-skill
   name_zh: 知识入库
   paid: false
   category: General
@@ -6197,7 +6163,6 @@ skills:
   tagline_zh: 将用户指定信息保存为带分类、标签和来源的知识文档及索引
   depends_on:
   - branding-consistency
-  skill_path: skills/memory-add
   pricing:
     model: free_entry
     visibility: public
@@ -6223,8 +6188,8 @@ skills:
 - name: memory-search
   runtime_name: lov-memory-search
   display_name: Knowledge Finder
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/memory-search-skill
   name_zh: 知识寻回
   paid: false
   category: General
@@ -6234,7 +6199,6 @@ skills:
   tagline_zh: 跨已配置的 memory 与 distill 知识记录检索并返回可追溯结果
   depends_on:
   - branding-consistency
-  skill_path: skills/memory-search
   pricing:
     model: free_entry
     visibility: public
@@ -6260,8 +6224,8 @@ skills:
 - name: meta-command
   runtime_name: lov-meta-command
   display_name: Workflow Studio
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/meta-command-skill
   name_zh: 流程工坊
   paid: false
   category: Dev Tools
@@ -6271,7 +6235,6 @@ skills:
   tagline_zh: 把重复操作封装成通用 Skill，并按需提供宿主 slash command 适配入口
   depends_on:
   - branding-consistency
-  skill_path: skills/meta-command
   pricing:
     model: free_entry
     visibility: public
@@ -6297,8 +6260,8 @@ skills:
 - name: nano-banana-pro
   runtime_name: lov-nano-banana-pro
   display_name: Image Prompt Crafter
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/nano-banana-pro-skill
   name_zh: 图像提示师
   paid: false
   category: General
@@ -6308,7 +6271,6 @@ skills:
   tagline_zh: 将图像需求整理为结构清晰、遵循参考素材的生成或编辑提示词
   depends_on:
   - branding-consistency
-  skill_path: skills/nano-banana-pro
   pricing:
     model: free_entry
     visibility: public
@@ -6334,8 +6296,8 @@ skills:
 - name: obsidian-ensure-dev-sync
   runtime_name: lov-obsidian-ensure-dev-sync
   display_name: Obsidian Dev Sync
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/obsidian-ensure-dev-sync-skill
   name_zh: Obsidian 开发同步
   paid: false
   category: Dev Tools
@@ -6345,7 +6307,6 @@ skills:
   tagline_zh: 诊断并修复插件构建、Vault 同步及热重载链路
   depends_on:
   - branding-consistency
-  skill_path: skills/obsidian-ensure-dev-sync
   pricing:
     model: free_entry
     visibility: public
@@ -6371,8 +6332,8 @@ skills:
 - name: output-wechat-moment
   runtime_name: lov-output-wechat-moment
   display_name: WeChat Moments Copy
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/output-wechat-moment-skill
   name_zh: 朋友圈文案
   paid: false
   category: General
@@ -6382,7 +6343,6 @@ skills:
   tagline_zh: 把已有内容整理成适合朋友圈阅读的纯文本并保存文件
   depends_on:
   - branding-consistency
-  skill_path: skills/output-wechat-moment
   pricing:
     model: free_entry
     visibility: public
@@ -6408,8 +6368,8 @@ skills:
 - name: output
   runtime_name: lov-output
   display_name: Content Keeper
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/output-skill
   name_zh: 内容收纳
   paid: false
   category: General
@@ -6419,7 +6379,6 @@ skills:
   tagline_zh: 将已确认内容按指定文件名与文本格式保存并回读校验
   depends_on:
   - branding-consistency
-  skill_path: skills/output
   pricing:
     model: free_entry
     visibility: public
@@ -6445,8 +6404,8 @@ skills:
 - name: refactor-api
   runtime_name: lov-refactor-api
   display_name: API Refiner
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/refactor-api-skill
   name_zh: API 精修
   paid: false
   category: Dev Tools
@@ -6456,7 +6415,6 @@ skills:
   tagline_zh: 识别后端接口重复并在保持调用契约的前提下实施重构
   depends_on:
   - branding-consistency
-  skill_path: skills/refactor-api
   pricing:
     model: free_entry
     visibility: public
@@ -6482,8 +6440,8 @@ skills:
 - name: refactor-modular
   runtime_name: lov-refactor-modular
   display_name: Module Refactorer
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/refactor-modular-skill
   name_zh: 模块拆分师
   paid: false
   category: Dev Tools
@@ -6493,7 +6451,6 @@ skills:
   tagline_zh: 按职责拆分长文件并保持公共接口、依赖和行为一致
   depends_on:
   - branding-consistency
-  skill_path: skills/refactor-modular
   pricing:
     model: free_entry
     visibility: public
@@ -6519,8 +6476,8 @@ skills:
 - name: rename-project
   runtime_name: lov-rename-project
   display_name: Project Renamer
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/rename-project-skill
   name_zh: 项目改名
   paid: false
   category: Dev Tools
@@ -6530,7 +6487,6 @@ skills:
   tagline_zh: 在保留兼容键与运行连续性的前提下重命名项目、路径和仓库
   depends_on:
   - branding-consistency
-  skill_path: skills/rename-project
   pricing:
     model: free_entry
     visibility: public
@@ -6556,8 +6512,8 @@ skills:
 - name: repo-takeover
   runtime_name: lov-repo-takeover
   display_name: Repository Takeover
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/repo-takeover-skill
   name_zh: 仓库接手
   paid: false
   category: Dev Tools
@@ -6567,7 +6523,6 @@ skills:
   tagline_zh: 将已有 clone 连接到用户自己的 GitHub 仓库并保留来源与历史
   depends_on:
   - branding-consistency
-  skill_path: skills/repo-takeover
   pricing:
     model: free_entry
     visibility: public
@@ -6593,8 +6548,8 @@ skills:
 - name: version-management-manual
   runtime_name: lov-version-management-manual
   display_name: Version Review
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/version-management-manual-skill
   name_zh: 版本审阅
   paid: false
   category: Dev Tools
@@ -6604,7 +6559,6 @@ skills:
   tagline_zh: 生成 changeset 草稿并提供编辑入口，审阅后验证版本计划
   depends_on:
   - branding-consistency
-  skill_path: skills/version-management-manual
   pricing:
     model: free_entry
     visibility: public
@@ -6630,8 +6584,8 @@ skills:
 - name: version-management
   runtime_name: lov-version-management
   display_name: Version Keeper
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/version-management-skill
   name_zh: 版本管家
   paid: false
   category: Dev Tools
@@ -6641,7 +6595,6 @@ skills:
   tagline_zh: 根据实际包变更生成 changeset，并按请求更新版本与 CHANGELOG
   depends_on:
   - branding-consistency
-  skill_path: skills/version-management
   pricing:
     model: free_entry
     visibility: public
@@ -6703,8 +6656,8 @@ skills:
 - name: five
   runtime_name: lov-five
   display_name: Five-Unit Replies
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/five-skill
   name_zh: 五字答
   paid: false
   category: General
@@ -6714,7 +6667,6 @@ skills:
   tagline_zh: 在明确要求时使用五单位以内的简短回复，并支持随时恢复正常
   depends_on:
   - branding-consistency
-  skill_path: skills/five
   pricing:
     model: free_entry
     visibility: public
@@ -6740,8 +6692,8 @@ skills:
 - name: add-task
   runtime_name: lov-add-task
   display_name: Task Capture
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/add-task-skill
   name_zh: 任务随手记
   paid: false
   category: Dev Tools
@@ -6751,7 +6703,6 @@ skills:
   tagline_zh: 在当前任务清单中按优先级和位置追加事项并保留已有状态
   depends_on:
   - branding-consistency
-  skill_path: skills/add-task
   pricing:
     model: free_entry
     visibility: public
@@ -6777,8 +6728,8 @@ skills:
 - name: think
   runtime_name: lov-think
   display_name: Deep Thinking
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/think-skill
   name_zh: 深度思考
   paid: false
   category: General
@@ -6788,7 +6739,6 @@ skills:
   tagline_zh: 围绕复杂问题比较方案、验证假设并给出有依据的决策建议
   depends_on:
   - branding-consistency
-  skill_path: skills/think
   pricing:
     model: free_entry
     visibility: public
@@ -6814,8 +6764,8 @@ skills:
 - name: code-review
   runtime_name: lov-code-review
   display_name: Code Reviewer
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/code-review-skill
   name_zh: 代码审阅官
   paid: false
   category: Dev Tools
@@ -6825,7 +6775,6 @@ skills:
   tagline_zh: 审查实际差异中的正确性、安全和维护风险并给出可定位意见
   depends_on:
   - branding-consistency
-  skill_path: skills/code-review
   pricing:
     model: free_entry
     visibility: public
@@ -6851,8 +6800,8 @@ skills:
 - name: architecture-documentation
   runtime_name: lov-architecture-documentation
   display_name: Architecture Atlas
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/architecture-documentation-skill
   name_zh: 架构图谱
   paid: false
   category: Dev Tools
@@ -6862,7 +6811,6 @@ skills:
   tagline_zh: 从项目实际实现生成架构视图、接口说明与决策记录草稿
   depends_on:
   - branding-consistency
-  skill_path: skills/architecture-documentation
   pricing:
     model: free_entry
     visibility: public
@@ -6888,8 +6836,8 @@ skills:
 - name: agent-instructions
   runtime_name: lov-agent-instructions
   display_name: Agent Guide Keeper
-  updated_at: 2026-09-07 09:40:45+00:00
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/agent-instructions-skill
   name_zh: Agent 规范管家
   paid: false
   category: Dev Tools
@@ -6899,7 +6847,6 @@ skills:
   tagline_zh: 诊断或完善项目 Agent 指令文件，适配不同宿主并保留真实工程约定
   depends_on:
   - branding-consistency
-  skill_path: skills/agent-instructions
   pricing:
     model: free_entry
     visibility: public
@@ -6925,8 +6872,8 @@ skills:
 - name: add-tool
   runtime_name: lov-add-tool
   display_name: Web Tool Studio
-  updated_at: '2026-09-07T09:48:03Z'
-  repo: lovstudio/skills
+  updated_at: 2026-09-25 16:28:27+00:00
+  repo: lovstudio/add-tool-skill
   name_zh: 小工具工坊
   paid: false
   category: Dev Tools
@@ -6936,7 +6883,6 @@ skills:
   tagline_zh: 为现有网站新增可用的在线工具，并接入多语言、工具目录、站点地图和必要的成本提示
   depends_on:
   - branding-consistency
-  skill_path: skills/add-tool
   pricing:
     model: free_entry
     visibility: public
@@ -7476,3 +7422,1769 @@ skills:
     review_trigger_en: Review after 100 real installs, requests for lyrics or library
       management, or a NetEase format change that forces a major update.
     card_path: pricing-cards/ncm2mp3.md
+- name: algo-viz-creator
+  runtime_name: lov-algo-viz-creator
+  display_name: Algorithm Theater
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/algo-viz-creator-skill
+  name_zh: 算法演示台
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Turn an algorithm or data-flow concept into a self-contained, step-by-step
+    interactive HTML visualization.
+  tagline_en: Turn an algorithm or data-flow concept into a self-contained, step-by-step interactive
+    HTML visualization.
+  tagline_zh: 为算法、数据结构或信息流程生成「逐步演示」的可交互可视化
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 为算法、数据结构或信息流程生成「逐步演示」的可交互可视化
+    value_en: Turn an algorithm or data-flow concept into a self-contained, step-by-step interactive
+      HTML visualization.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: align-wechat-uiux
+  runtime_name: lov-align-wechat-uiux
+  display_name: WeChat Experience Alignment
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/align-wechat-uiux-skill
+  name_zh: 微信体验校准
+  paid: false
+  category: Dev Tools
+  version: 0.2.1
+  description: Diagnose and fix semantic and UI/UX gaps between a product and official WeChat
+    messaging, chats, contacts and Moments.
+  tagline_en: Diagnose and fix semantic and UI/UX gaps between a product and official WeChat
+    messaging, chats, contacts and Moments.
+  tagline_zh: 系统诊断并修复产品与微信官方在消息、会话、联系人、朋友圈及交互上的语义和UIUX偏差
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 系统诊断并修复产品与微信官方在消息、会话、联系人、朋友圈及交互上的语义和UIUX偏差
+    value_en: Diagnose and fix semantic and UI/UX gaps between a product and official WeChat
+      messaging, chats, contacts and Moments.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: anti-wechat-ai-check
+  runtime_name: lov-anti-wechat-ai-check
+  display_name: Writing Pattern Scan (Legacy)
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/anti-wechat-ai-check-skill
+  name_zh: 文风扫描（旧入口）
+  paid: false
+  category: Content Creation
+  version: 1.1.1
+  description: Legacy entry that scans Chinese text for surface writing patterns; new work
+    routes to lov-human-writing.
+  tagline_en: Legacy entry that scans Chinese text for surface writing patterns; new work
+    routes to lov-human-writing.
+  tagline_zh: 兼容旧命令的中文表层模式扫描器，只定位套话、句段均匀和过渡词等可观察特征，不判断作者身份或平台风险
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 兼容旧命令的中文表层模式扫描器，只定位套话、句段均匀和过渡词等可观察特征，不判断作者身份或平台风险
+    value_en: Legacy entry that scans Chinese text for surface writing patterns; new work
+      routes to lov-human-writing.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: api-creator
+  runtime_name: lov-api-creator
+  display_name: Gateway Studio
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/api-creator-skill
+  name_zh: 网关工坊
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Add an app's gateway endpoints to the uni-api FastAPI backend and a unified
+    client layer in uni-app.
+  tagline_en: Add an app's gateway endpoints to the uni-api FastAPI backend and a unified
+    client layer in uni-app.
+  tagline_zh: 当开发某个app需要API网关能力时，在uni-api（FastAPI聚合网关）后端新增该app的网关端点与分组，并在uni-app前端封装统一调用层
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 当开发某个app需要API网关能力时，在uni-api（FastAPI聚合网关）后端新增该app的网关端点与分组，并在uni-app前端封装统一调用层
+    value_en: Add an app's gateway endpoints to the uni-api FastAPI backend and a unified
+      client layer in uni-app.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: app-delta-updater
+  runtime_name: lov-app-delta-updater
+  display_name: App Update Assistant
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/app-delta-updater-skill
+  name_zh: 应用更新助手
+  paid: false
+  category: Dev Tools
+  version: 0.2.1
+  description: Design, implement and verify auto-updates for Tauri and Electron apps, separating
+    signed full packages from true deltas.
+  tagline_en: Design, implement and verify auto-updates for Tauri and Electron apps, separating
+    signed full packages from true deltas.
+  tagline_zh: 为Tauri与Electron桌面应用设计、实现并验证自动更新，区分签名完整包与真实增量包
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 为Tauri与Electron桌面应用设计、实现并验证自动更新，区分签名完整包与真实增量包
+    value_en: Design, implement and verify auto-updates for Tauri and Electron apps, separating
+      signed full packages from true deltas.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: app-optimizer
+  runtime_name: lov-app-optimizer
+  display_name: App Performance Doctor
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/app-optimizer-skill
+  name_zh: 应用性能医生
+  paid: false
+  category: Dev Tools
+  version: 0.2.1
+  description: Fix jank, power drain, memory growth and resource leaks in interactive apps
+    using real runtime evidence.
+  tagline_en: Fix jank, power drain, memory growth and resource leaks in interactive apps
+    using real runtime evidence.
+  tagline_zh: 用真实运行时证据系统优化交互式应用的卡顿、耗电、内存增长、后台风暴与资源泄漏，覆盖Electron、Tauri、原生桌面、iOS、Android、ReactNa
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 用真实运行时证据系统优化交互式应用的卡顿、耗电、内存增长、后台风暴与资源泄漏，覆盖Electron、Tauri、原生桌面、iOS、Android、ReactNa
+    value_en: Fix jank, power drain, memory growth and resource leaks in interactive apps
+      using real runtime evidence.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: app-professional-design
+  runtime_name: lov-app-professional-design
+  display_name: Performance Architect
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/app-professional-design-skill
+  name_zh: 性能架构师
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Diagnose and ship commercial-grade performance architecture for desktop, web
+    and mobile apps.
+  tagline_en: Diagnose and ship commercial-grade performance architecture for desktop, web
+    and mobile apps.
+  tagline_zh: 为桌面、Web与移动应用诊断并落地商业级性能架构，覆盖启动初始化、前后端职责、增量数据桥、缓存失效和受控并发；当用户说“按商业产品优化这个应用”“页面切换又重新
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 为桌面、Web与移动应用诊断并落地商业级性能架构，覆盖启动初始化、前后端职责、增量数据桥、缓存失效和受控并发；当用户说“按商业产品优化这个应用”“页面切换又重新
+    value_en: Diagnose and ship commercial-grade performance architecture for desktop, web
+      and mobile apps.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: app-release
+  runtime_name: lov-app-release
+  display_name: App Release Pilot
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/app-release-skill
+  name_zh: 应用发版助手
+  paid: false
+  category: Dev Tools
+  version: 1.0.1
+  description: 'Run a verifiable multi-channel app release: versions, signed iOS/Android builds,
+    GitHub, website, stores and live readback.'
+  tagline_en: 'Run a verifiable multi-channel app release: versions, signed iOS/Android builds,
+    GitHub, website, stores and live readback.'
+  tagline_zh: 执行一次可验证的多渠道应用发版：统一版本与文档，构建并签名iOS/Android，发布GitHub与官网，提交商店并回读线上状态
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 执行一次可验证的多渠道应用发版：统一版本与文档，构建并签名iOS/Android，发布GitHub与官网，提交商店并回读线上状态
+    value_en: 'Run a verifiable multi-channel app release: versions, signed iOS/Android builds,
+      GitHub, website, stores and live readback.'
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: atom-feature-dev
+  runtime_name: lov-atom-feature-dev
+  display_name: Feature Studio
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/atom-feature-dev-skill
+  name_zh: 功能工坊
+  paid: false
+  category: Dev Tools
+  version: 0.2.2
+  description: Implement one atomic feature as SDK, CLI, REST API, frontend, profile preset
+    and Agent Skill, verified from one dashboard.
+  tagline_en: Implement one atomic feature as SDK, CLI, REST API, frontend, profile preset
+    and Agent Skill, verified from one dashboard.
+  tagline_zh: 把一个原子功能实现为共享SDK、CLI、RESTAPI、前端、ProfilePreset与AgentSkill，并用统一Dashboard验证各形态一致性
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把一个原子功能实现为共享SDK、CLI、RESTAPI、前端、ProfilePreset与AgentSkill，并用统一Dashboard验证各形态一致性
+    value_en: Implement one atomic feature as SDK, CLI, REST API, frontend, profile preset
+      and Agent Skill, verified from one dashboard.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: cli-creator
+  runtime_name: lov-cli-creator
+  display_name: CLI Studio
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/cli-creator-skill
+  name_zh: CLI 工坊
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Turn a local project into an installable, tested CLI with JSON output backed
+    by the real backend.
+  tagline_en: Turn a local project into an installable, tested CLI with JSON output backed
+    by the real backend.
+  tagline_zh: 把本地项目或当前目录转换为可安装、可测试、支持JSON的真实后端CLI；当用户说“给这个项目做CLI”“把应用变成命令行”或“buildaCLIforthisp
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把本地项目或当前目录转换为可安装、可测试、支持JSON的真实后端CLI；当用户说“给这个项目做CLI”“把应用变成命令行”或“buildaCLIforthisp
+    value_en: Turn a local project into an installable, tested CLI with JSON output backed
+      by the real backend.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: codeex-creator
+  runtime_name: lov-codeex-creator
+  display_name: Codeex Plugin Studio
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/codeex-creator-skill
+  name_zh: Codeex 插件工坊
+  paid: false
+  category: Dev Tools
+  version: 0.2.1
+  description: Create, validate and iterate local runtime plugins for Codeex, including hooks,
+    native UI reuse and atomic install.
+  tagline_en: Create, validate and iterate local runtime plugins for Codeex, including hooks,
+    native UI reuse and atomic install.
+  tagline_zh: 为Codeex创建、验证和迭代本地运行时插件，覆盖renderer、launch、controlhooks、原生UI复用、分层重载与原子安装卸载
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 为Codeex创建、验证和迭代本地运行时插件，覆盖renderer、launch、controlhooks、原生UI复用、分层重载与原子安装卸载
+    value_en: Create, validate and iterate local runtime plugins for Codeex, including hooks,
+      native UI reuse and atomic install.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: codex-thread-usage
+  runtime_name: lov-codex-thread-usage
+  display_name: Codex Usage Ledger
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/codex-thread-usage-skill
+  name_zh: Codex 用量账本
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Account token usage for a whole Codex thread and its latest snapshot from a
+    deeplink or thread UUID.
+  tagline_en: Account token usage for a whole Codex thread and its latest snapshot from a
+    deeplink or thread UUID.
+  tagline_zh: 从本地Codexdeeplink或threadUUID核算整个线程与最新快照的tokenusage
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 从本地Codexdeeplink或threadUUID核算整个线程与最新快照的tokenusage
+    value_en: Account token usage for a whole Codex thread and its latest snapshot from a
+      deeplink or thread UUID.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: compress-video
+  runtime_name: lov-compress-video
+  display_name: Video Shrink
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/compress-video-skill
+  name_zh: 视频瘦身
+  paid: false
+  category: Video Creation
+  version: 0.1.0
+  description: Shrink a video as far as possible without visible quality loss, with quality
+    presets, size targets and VMAF gates.
+  tagline_en: Shrink a video as far as possible without visible quality loss, with quality
+    presets, size targets and VMAF gates.
+  tagline_zh: 把指定视频压到尽可能小且画质不明显下降：默认HEVCCRF28保留分辨率，可选质量档、目标体积、VMAF画质门禁与替换原文件模式
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把指定视频压到尽可能小且画质不明显下降：默认HEVCCRF28保留分辨率，可选质量档、目标体积、VMAF画质门禁与替换原文件模式
+    value_en: Shrink a video as far as possible without visible quality loss, with quality
+      presets, size targets and VMAF gates.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: dev-blog
+  runtime_name: lov-dev-blog
+  display_name: Dev Journal
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/dev-blog-skill
+  name_zh: 研发手记
+  paid: false
+  category: Content Creation
+  version: 0.5.1
+  description: Summarize the current development context and its visuals into a Chinese blog
+    post and publish it to the website blog.
+  tagline_en: Summarize the current development context and its visuals into a Chinese blog
+    post and publish it to the website blog.
+  tagline_zh: OwntheSkillPublisherwebsiteblogpublishingcontract.Summarizethecurrentdevelopment
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: OwntheSkillPublisherwebsiteblogpublishingcontract.Summarizethecurrentdevelopment
+    value_en: Summarize the current development context and its visuals into a Chinese blog
+      post and publish it to the website blog.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: dev-to-prod
+  runtime_name: lov-dev-to-prod
+  display_name: Production Readiness
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/dev-to-prod-skill
+  name_zh: 生产就绪助手
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Converge a development project into a verified production build and local installation.
+  tagline_en: Converge a development project into a verified production build and local installation.
+  tagline_zh: 将开发态项目收敛为可验证的生产构建与本地安装成果：
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 将开发态项目收敛为可验证的生产构建与本地安装成果：
+    value_en: Converge a development project into a verified production build and local installation.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: dsh-search-or-create-plugin
+  runtime_name: dsh-search-or-create-plugin
+  display_name: Plugin Advisor
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/dsh-search-or-create-plugin-skill
+  name_zh: 插件选型顾问
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Search the DSH plugin gateway for the best fit for a goal, then use it or design
+    a new plugin.
+  tagline_en: Search the DSH plugin gateway for the best fit for a goal, then use it or design
+    a new plugin.
+  tagline_zh: Searchtheplugingateway,analyzewhichDSHpluginbestfitsagoal,thenuseitordesignanewp
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: Searchtheplugingateway,analyzewhichDSHpluginbestfitsagoal,thenuseitordesignanewp
+    value_en: Search the DSH plugin gateway for the best fit for a goal, then use it or design
+      a new plugin.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: dsh-search-plugin
+  runtime_name: dsh-search-plugin
+  display_name: Plugin Radar
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/dsh-search-plugin-skill
+  name_zh: 插件雷达
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Search the public dshfind plugin gateway and return ranked, evidence-tagged
+    DSH plugins.
+  tagline_en: Search the public dshfind plugin gateway and return ranked, evidence-tagged
+    DSH plugins.
+  tagline_zh: Searchthepublicdshfindplugingatewayandreturnranked,evidence-taggedDSHpluginsmatc
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: Searchthepublicdshfindplugingatewayandreturnranked,evidence-taggedDSHpluginsmatc
+    value_en: Search the public dshfind plugin gateway and return ranked, evidence-tagged
+      DSH plugins.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: find-ebook
+  runtime_name: find-ebook
+  display_name: Ebook Finder
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/find-ebook-skill
+  name_zh: 电子书寻宝
+  paid: false
+  category: General
+  version: 0.1.1
+  description: Find legally licensed ebook sources and access paths for a given book through
+    due-diligence search.
+  tagline_en: Find legally licensed ebook sources and access paths for a given book through
+    due-diligence search.
+  tagline_zh: 用尽调式检索寻找指定书籍的合法授权电子书资源和获取路径，优先确认中文译本、非扫描电子版、GitHub/GitBook明确授权仓库、PDF、EPUB、MOBI、K
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 用尽调式检索寻找指定书籍的合法授权电子书资源和获取路径，优先确认中文译本、非扫描电子版、GitHub/GitBook明确授权仓库、PDF、EPUB、MOBI、K
+    value_en: Find legally licensed ebook sources and access paths for a given book through
+      due-diligence search.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: fix-codex-provider
+  runtime_name: lov-fix-codex-provider
+  display_name: Codex Provider Repair
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/fix-codex-provider-skill
+  name_zh: Codex Provider 修复
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: Fix Codex failing to open by aligning persisted thread providers with config.toml,
+    with read-only evidence and backups.
+  tagline_en: Fix Codex failing to open by aligning persisted thread providers with config.toml,
+    with read-only evidence and backups.
+  tagline_zh: 修复Codex打不开：把thread里持久化的provider（yoda、custom等）与config.toml实际定义对齐，先只读取证，再带备份重打标签
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 修复Codex打不开：把thread里持久化的provider（yoda、custom等）与config.toml实际定义对齐，先只读取证，再带备份重打标签
+    value_en: Fix Codex failing to open by aligning persisted thread providers with config.toml,
+      with read-only evidence and backups.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: frontend-select-with-search
+  runtime_name: lov-frontend-select-with-search
+  display_name: Searchable Select
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/frontend-select-with-search-skill
+  name_zh: 搜索下拉框
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Upgrade selects with more than five options into searchable, scrollable, keyboard-accessible
+    components.
+  tagline_en: Upgrade selects with more than five options into searchable, scrollable, keyboard-accessible
+    components.
+  tagline_zh: 把超过5个候选项的Select升级为可搜索、可滚动且键盘可访问的兼容组件，并验证Dialog/Portal中的真实滚轮事件；当用户说“下拉选项太多要搜索”“候选
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把超过5个候选项的Select升级为可搜索、可滚动且键盘可访问的兼容组件，并验证Dialog/Portal中的真实滚轮事件；当用户说“下拉选项太多要搜索”“候选
+    value_en: Upgrade selects with more than five options into searchable, scrollable, keyboard-accessible
+      components.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: gen-card
+  runtime_name: lov-gen-card
+  display_name: Knowledge Card Studio
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/gen-card-skill
+  name_zh: 知识卡片工坊
+  paid: false
+  category: Design
+  version: 0.2.1
+  description: Lay out structured content and diagrams as copyable, downloadable knowledge
+    cards in HTML and 2x PNG.
+  tagline_en: Lay out structured content and diagrams as copyable, downloadable knowledge
+    cards in HTML and 2x PNG.
+  tagline_zh: 把结构化内容与独立示意图排成可复制、可下载的高清知识卡片，输出自包含HTML和2×PNG
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把结构化内容与独立示意图排成可复制、可下载的高清知识卡片，输出自包含HTML和2×PNG
+    value_en: Lay out structured content and diagrams as copyable, downloadable knowledge
+      cards in HTML and 2x PNG.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: harness-issue
+  runtime_name: lov-harness-issue
+  display_name: Product Problem Solver
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/harness-issue-skill
+  name_zh: 需求解题师
+  paid: false
+  category: Business
+  version: 0.1.0
+  description: Think through upcoming product requirements from the user's perspective when
+    an issue or vague request comes in.
+  tagline_en: Think through upcoming product requirements from the user's perspective when
+    an issue or vague request comes in.
+  tagline_zh: 从用户角度深度、全面思考接下来的产品需求
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 从用户角度深度、全面思考接下来的产品需求
+    value_en: Think through upcoming product requirements from the user's perspective when
+      an issue or vague request comes in.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: html2pptx
+  runtime_name: lov-html2pptx
+  display_name: HTML to Slides
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/html2pptx-skill
+  name_zh: 网页转幻灯
+  paid: false
+  category: Office Automation
+  version: 0.1.2
+  description: Convert HTML into a high-fidelity PPTX deck with a real browser engine.
+  tagline_en: Convert HTML into a high-fidelity PPTX deck with a real browser engine.
+  tagline_zh: ConvertHTMLintoahigh-fidelityPPTXdeckusingarealbrowserengine(Playwright/Chromium
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: ConvertHTMLintoahigh-fidelityPPTXdeckusingarealbrowserengine(Playwright/Chromium
+    value_en: Convert HTML into a high-fidelity PPTX deck with a real browser engine.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: image-decorator
+  runtime_name: lov-image-decorator
+  display_name: Image Finishing
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/image-decorator-skill
+  name_zh: 图片装帧
+  paid: false
+  category: Design
+  version: 0.2.3
+  description: Add a caption bar and brand logo to PNG, JPEG or WebP images with framed or
+    frameless layouts.
+  tagline_en: Add a caption bar and brand logo to PNG, JPEG or WebP images with framed or
+    frameless layouts.
+  tagline_zh: 为现有PNG、JPEG或WebP增加底部caption与右下品牌Logo，并按艺术图片或软件截图选择带框、无框版式
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 为现有PNG、JPEG或WebP增加底部caption与右下品牌Logo，并按艺术图片或软件截图选择带框、无框版式
+    value_en: Add a caption bar and brand logo to PNG, JPEG or WebP images with framed or
+      frameless layouts.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: integrate-agent-uiux
+  runtime_name: lov-integrate-agent-uiux
+  display_name: Agent Chat UI
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/integrate-agent-uiux-skill
+  name_zh: Agent 对话界面
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Integrate agent conversations, tool activity, status, Markdown and composer
+    into React or React Native apps.
+  tagline_en: Integrate agent conversations, tool activity, status, Markdown and composer
+    into React or React Native apps.
+  tagline_zh: 把Agent对话记录、工具过程、状态、Markdown与输入区集成进ReactNative或React应用；触发语包括“接入AI对话UI”与"integrate
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把Agent对话记录、工具过程、状态、Markdown与输入区集成进ReactNative或React应用；触发语包括“接入AI对话UI”与"integrate
+    value_en: Integrate agent conversations, tool activity, status, Markdown and composer
+      into React or React Native apps.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: integrate-lovstudio-llm
+  runtime_name: lov-integrate-lovstudio-llm-skill
+  display_name: Multimodal API Setup
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/integrate-lovstudio-llm-skill
+  name_zh: 多模态 API 接入
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Use the LovStudio.AI OpenAI-compatible API for chat, speech-to-text, translation,
+    TTS and realtime audio.
+  tagline_en: Use the LovStudio.AI OpenAI-compatible API for chat, speech-to-text, translation,
+    TTS and realtime audio.
+  tagline_zh: 通过LovStudio.AI的OpenAI-compatibleAPI完成文本对话、语音转文字、语音翻译、语音合成与Realtime音频会话；用户说“接入Lov
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 通过LovStudio.AI的OpenAI-compatibleAPI完成文本对话、语音转文字、语音翻译、语音合成与Realtime音频会话；用户说“接入Lov
+    value_en: Use the LovStudio.AI OpenAI-compatible API for chat, speech-to-text, translation,
+      TTS and realtime audio.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: integrate-modern-screenshot
+  runtime_name: lov-integrate-modern-screenshot
+  display_name: Web Capture Export
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/integrate-modern-screenshot-skill
+  name_zh: 网页截图导出
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Add one-click PNG export of a page's main content with modern-screenshot, matching
+    on-screen rendering at 2x.
+  tagline_en: Add one-click PNG export of a page's main content with modern-screenshot, matching
+    on-screen rendering at 2x.
+  tagline_zh: 给任意HTML/网页集成modern-screenshot，一键导出主体内容为PNG，截图与屏幕渲染一致（文字不换行）、2x适合网络传播；触发语包括“给网页加截
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 给任意HTML/网页集成modern-screenshot，一键导出主体内容为PNG，截图与屏幕渲染一致（文字不换行）、2x适合网络传播；触发语包括“给网页加截
+    value_en: Add one-click PNG export of a page's main content with modern-screenshot, matching
+      on-screen rendering at 2x.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: list-videos
+  runtime_name: lov-list-videos
+  display_name: Video Inventory
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/list-videos-skill
+  name_zh: 视频清单
+  paid: false
+  category: General
+  version: 0.1.0
+  description: List every video file in a folder or across volumes in seconds with an incremental
+    cache and optional ffprobe details.
+  tagline_en: List every video file in a folder or across volumes in seconds with an incremental
+    cache and optional ffprobe details.
+  tagline_zh: 用增量缓存扫描指定目录或全局（主目录与外接卷），秒级列出全部视频文件及大小、修改时间，可选ffprobe补时长、分辨率与编码
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 用增量缓存扫描指定目录或全局（主目录与外接卷），秒级列出全部视频文件及大小、修改时间，可选ffprobe补时长、分辨率与编码
+    value_en: List every video file in a folder or across volumes in seconds with an incremental
+      cache and optional ffprobe details.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: plane-cli
+  runtime_name: lov-plane-cli
+  display_name: Plane Assistant
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/plane-cli-skill
+  name_zh: Plane 助手
+  paid: false
+  category: Office Automation
+  version: 0.1.0
+  description: 'Read and write a Plane project-management instance from the command line:
+    projects, work items, cycles and comments.'
+  tagline_en: 'Read and write a Plane project-management instance from the command line: projects,
+    work items, cycles and comments.'
+  tagline_zh: 用命令行读写Plane项目管理实例：查项目、工作项、周期、模块、状态、标签，创建和更新工作项与评论
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 用命令行读写Plane项目管理实例：查项目、工作项、周期、模块、状态、标签，创建和更新工作项与评论
+    value_en: 'Read and write a Plane project-management instance from the command line: projects,
+      work items, cycles and comments.'
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: product-onepage
+  runtime_name: lov-product-onepage
+  display_name: Product OnePage
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/product-onepage-skill
+  name_zh: 产品一页纸
+  paid: false
+  category: Business
+  version: 0.1.0
+  description: Turn a product brief, URL, repository or notes into a one-page product overview.
+  tagline_en: Turn a product brief, URL, repository or notes into a one-page product overview.
+  tagline_zh: Turnaproductbrief,currentconversation,URL,repository,Markdown,screenshots,orrese
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: Turnaproductbrief,currentconversation,URL,repository,Markdown,screenshots,orrese
+    value_en: Turn a product brief, URL, repository or notes into a one-page product overview.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: lovpen-add-wechat-channel-comp
+  runtime_name: lov-lovpen-add-wechat-channel-comp
+  display_name: WeChat Channels Embed
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/lovpen-add-wechat-channel-comp-skill
+  name_zh: 视频号组件
+  paid: false
+  category: Content Creation
+  version: 0.1.2
+  description: Normalize WeChat Channels DOM or Lovpen DSL into embeddable Markdown and native
+    HTML components.
+  tagline_en: Normalize WeChat Channels DOM or Lovpen DSL into embeddable Markdown and native
+    HTML components.
+  tagline_zh: 把微信视频号DOM或LovpenDSL规范化并写入Markdown、原生HTML
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把微信视频号DOM或LovpenDSL规范化并写入Markdown、原生HTML
+    value_en: Normalize WeChat Channels DOM or Lovpen DSL into embeddable Markdown and native
+      HTML components.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: lovpen-cli
+  runtime_name: lovpen-cli
+  display_name: WeChat Typesetter
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/lovpen-cli-skill
+  name_zh: 公众号排版
+  paid: false
+  category: Content Creation
+  version: 0.2.1
+  description: Render Markdown into WeChat-ready inline HTML with the verified lovpen-cli,
+    matching the Lovpen copy chain.
+  tagline_en: Render Markdown into WeChat-ready inline HTML with the verified lovpen-cli,
+    matching the Lovpen copy chain.
+  tagline_zh: 调用已验证的lovpen-cli，把Markdown渲染成与Lovpen微信公众号复制链一致的内联HTML，或显式生成独立HTML，并返回资源解析、文件大小和S
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 调用已验证的lovpen-cli，把Markdown渲染成与Lovpen微信公众号复制链一致的内联HTML，或显式生成独立HTML，并返回资源解析、文件大小和S
+    value_en: Render Markdown into WeChat-ready inline HTML with the verified lovpen-cli,
+      matching the Lovpen copy chain.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: normalize-tauri-app-icon
+  runtime_name: lov-normalize-tauri-app-icon
+  display_name: Tauri Icon Alignment
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/normalize-tauri-app-icon-skill
+  name_zh: Tauri 图标校准
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Calibrate the visible frame, corner safe area and runtime embedding of a Tauri
+    macOS Dock icon.
+  tagline_en: Calibrate the visible frame, corner safe area and runtime embedding of a Tauri
+    macOS Dock icon.
+  tagline_zh: 校准TaurimacOSDock图标的可见外框、圆角安全区与运行时嵌入链路
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 校准TaurimacOSDock图标的可见外框、圆角安全区与运行时嵌入链路
+    value_en: Calibrate the visible frame, corner safe area and runtime embedding of a Tauri
+      macOS Dock icon.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: output-for-article
+  runtime_name: lov-output-for-article
+  display_name: Article Output (Legacy)
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/output-for-article-skill
+  name_zh: 文章输出（旧入口）
+  paid: false
+  category: Content Creation
+  version: 1.2.1
+  description: Legacy entry for article file output; new work routes to the lov-article-creator
+    package-output pipeline.
+  tagline_en: Legacy entry for article file output; new work routes to the lov-article-creator
+    package-output pipeline.
+  tagline_zh: 文章文件输出的旧兼容入口；不再独立执行或拥有规则，新任务统一路由到lov-article-creator的package-output管线
+  depends_on:
+  - article-creator
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 文章文件输出的旧兼容入口；不再独立执行或拥有规则，新任务统一路由到lov-article-creator的package-output管线
+    value_en: Legacy entry for article file output; new work routes to the lov-article-creator
+      package-output pipeline.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: paid-add-cloud
+  runtime_name: lov-paid-add-cloud
+  display_name: Cloud Addition Test
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/paid-add-cloud-skill
+  name_zh: 云端加法测试
+  paid: false
+  category: Meta
+  version: 0.1.1
+  description: Compute a sum through a server-side cloud function; end-to-end test for the
+    cloud-executed paid Skill protocol.
+  tagline_en: Compute a sum through a server-side cloud function; end-to-end test for the
+    cloud-executed paid Skill protocol.
+  tagline_zh: Computethesumofnumbersviaaserver-sidecloudfunction.End-to-endtestforthecloud-spl
+  test: true
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: Computethesumofnumbersviaaserver-sidecloudfunction.End-to-endtestforthecloud-spl
+    value_en: Compute a sum through a server-side cloud function; end-to-end test for the
+      cloud-executed paid Skill protocol.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: publish-feishu-doc
+  runtime_name: lov-publish-feishu-doc
+  display_name: Feishu Doc Sync
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/publish-feishu-doc-skill
+  name_zh: 飞书文档同步
+  paid: false
+  category: Office Automation
+  version: 0.1.1
+  description: Sync local Markdown faithfully into a Feishu wiki document and read back content,
+    location and permissions.
+  tagline_en: Sync local Markdown faithfully into a Feishu wiki document and read back content,
+    location and permissions.
+  tagline_zh: 将本地Markdown忠实同步为指定飞书知识库文档，处理新建或更新、链接可见范围，并回读正文、节点位置与权限
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 将本地Markdown忠实同步为指定飞书知识库文档，处理新建或更新、链接可见范围，并回读正文、节点位置与权限
+    value_en: Sync local Markdown faithfully into a Feishu wiki document and read back content,
+      location and permissions.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: read-codex-session
+  runtime_name: lov-read-codex-session
+  display_name: Codex Session Reader
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/read-codex-session-skill
+  name_zh: Codex 会话阅读
+  paid: false
+  category: Dev Tools
+  version: 0.1.1
+  description: Read turn summaries, status, tool activity and results of a local Codex task
+    or thread.
+  tagline_en: Read turn summaries, status, tool activity and results of a local Codex task
+    or thread.
+  tagline_zh: 读取本地Codextask/thread的回合摘要、状态、工具活动与完成结果
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 读取本地Codextask/thread的回合摘要、状态、工具活动与完成结果
+    value_en: Read turn summaries, status, tool activity and results of a local Codex task
+      or thread.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: repost-wechat-article
+  runtime_name: lov-repost-wechat-article
+  display_name: Article Repost (Legacy)
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/repost-wechat-article-skill
+  name_zh: 文章转载（旧入口）
+  paid: false
+  category: Content Creation
+  version: 0.2.1
+  description: Legacy entry for faithful WeChat article reposts; new work routes to the lov-article-creator
+    repost pipeline.
+  tagline_en: Legacy entry for faithful WeChat article reposts; new work routes to the lov-article-creator
+    repost pipeline.
+  tagline_zh: 忠实转载公众号文章的旧兼容入口；不再独立执行或拥有规则，新任务统一路由到lov-article-creator的repost管线
+  depends_on:
+  - article-creator
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 忠实转载公众号文章的旧兼容入口；不再独立执行或拥有规则，新任务统一路由到lov-article-creator的repost管线
+    value_en: Legacy entry for faithful WeChat article reposts; new work routes to the lov-article-creator
+      repost pipeline.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: search-project
+  runtime_name: lov-search-project
+  display_name: Project Finder
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/search-project-skill
+  name_zh: 项目寻踪
+  paid: false
+  category: Dev Tools
+  version: 0.2.1
+  description: Locate a project or source folder on this machine in layers and return candidate
+    paths with evidence.
+  tagline_en: Locate a project or source folder on this machine in layers and return candidate
+    paths with evidence.
+  tagline_zh: 分层定位本机项目/源码目录：项目根优先，其次当前文件夹、AI聊天记录，最后全盘兜底，返回候选路径与证据
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 分层定位本机项目/源码目录：项目根优先，其次当前文件夹、AI聊天记录，最后全盘兜底，返回候选路径与证据
+    value_en: Locate a project or source folder on this machine in layers and return candidate
+      paths with evidence.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: share-session
+  runtime_name: lov-share-session
+  display_name: Session Sharing
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/share-session-skill
+  name_zh: 会话分享
+  paid: false
+  category: General
+  version: 0.5.0
+  description: Turn an agent session into a free or Credits-unlocked LovStudio web page.
+  tagline_en: Turn an agent session into a free or Credits-unlocked LovStudio web page.
+  tagline_zh: 把Agent会话转成免费公开或按Credits解锁的LovStudio在线页
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把Agent会话转成免费公开或按Credits解锁的LovStudio在线页
+    value_en: Turn an agent session into a free or Credits-unlocked LovStudio web page.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: skill-namer
+  runtime_name: lov-skill-namer
+  display_name: Skill Naming Master
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/skill-namer-skill
+  name_zh: Skill 命名大师
+  paid: false
+  category: Meta
+  version: 0.1.0
+  description: Name, rename and review one Skill or a whole set, producing accurate, short
+    and consistent Chinese and English names.
+  tagline_en: Name, rename and review one Skill or a whole set, producing accurate, short
+    and consistent Chinese and English names.
+  tagline_zh: 为单个或整组Skill起名、改名与审名；从真实能力和已认可范例出发，给出准确、简短、优雅、一致的中英文名称与命名清单
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 为单个或整组Skill起名、改名与审名；从真实能力和已认可范例出发，给出准确、简短、优雅、一致的中英文名称与命名清单
+    value_en: Name, rename and review one Skill or a whole set, producing accurate, short
+      and consistent Chinese and English names.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: skill-visualizer
+  runtime_name: lov-skill-visualizer
+  display_name: Skill Lens
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/skill-visualizer-skill
+  name_zh: Skill 透视镜
+  paid: false
+  category: Meta
+  version: 0.6.1
+  description: Render a local Agent Skill as a scenario-first one-page trust review, runtime
+    map and JSON model.
+  tagline_en: Render a local Agent Skill as a scenario-first one-page trust review, runtime
+    map and JSON model.
+  tagline_zh: 把本地AgentSkill目录或SKILL.md解析成场景先行的一页式信任审阅、内部运行图和JSON模型；先说明什么时候非它不可，再连续展示输入、内部转化、交付
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把本地AgentSkill目录或SKILL.md解析成场景先行的一页式信任审阅、内部运行图和JSON模型；先说明什么时候非它不可，再连续展示输入、内部转化、交付
+    value_en: Render a local Agent Skill as a scenario-first one-page trust review, runtime
+      map and JSON model.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: spectacular-ps
+  runtime_name: lov-spectacular-ps
+  display_name: Spectacular Portraits
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/spectacular-ps-skill
+  name_zh: 人像大片
+  paid: false
+  category: Design
+  version: 0.1.0
+  description: Retouch travel or outdoor photos into striking environmental portraits that
+    keep the person's features.
+  tagline_en: Retouch travel or outdoor photos into striking environmental portraits that
+    keep the person's features.
+  tagline_zh: 将旅行或户外照片修成保留本人特征的环境人像大片，兼顾微信头像裁切，按需附真实对比图与复刻Prompt
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 将旅行或户外照片修成保留本人特征的环境人像大片，兼顾微信头像裁切，按需附真实对比图与复刻Prompt
+    value_en: Retouch travel or outdoor photos into striking environmental portraits that
+      keep the person's features.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: table2image
+  runtime_name: lov-table2image
+  display_name: Table to Image
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/table2image-skill
+  name_zh: 表格成图
+  paid: false
+  category: Office Automation
+  version: 0.1.2
+  description: Render Markdown tables into accessible PNG images, optionally with Mable layout
+    presets.
+  tagline_en: Render Markdown tables into accessible PNG images, optionally with Mable layout
+    presets.
+  tagline_zh: 将Markdown表格与可选Mable布局型号或参数渲染为可访问的PNG地址，也可下载本地图片
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 将Markdown表格与可选Mable布局型号或参数渲染为可访问的PNG地址，也可下载本地图片
+    value_en: Render Markdown tables into accessible PNG images, optionally with Mable layout
+      presets.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: upload-image
+  runtime_name: lov-upload-image
+  display_name: Image Uploader
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/upload-image-skill
+  name_zh: 图片上云
+  paid: false
+  category: General
+  version: 0.1.1
+  description: Upload local images with the user's existing PicGo setup and optionally rewrite
+    Markdown image links.
+  tagline_en: Upload local images with the user's existing PicGo setup and optionally rewrite
+    Markdown image links.
+  tagline_zh: 复用用户现有PicGo配置上传一张或多张本地图片并返回网址，也可批量把Markdown内的本地图片引用改成在线地址
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 复用用户现有PicGo配置上传一张或多张本地图片并返回网址，也可批量把Markdown内的本地图片引用改成在线地址
+    value_en: Upload local images with the user's existing PicGo setup and optionally rewrite
+      Markdown image links.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: voice2srt
+  runtime_name: lov-voice2srt
+  display_name: Voice to Subtitles
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/voice2srt-skill
+  name_zh: 语音成字幕
+  paid: false
+  category: Video Creation
+  version: 0.1.1
+  description: Transcribe recordings, podcasts or videos into editable SRT, JSON and text
+    with vocabulary boosting and cost preview.
+  tagline_en: Transcribe recordings, podcasts or videos into editable SRT, JSON and text with
+    vocabulary boosting and cost preview.
+  tagline_zh: 把录音、播客或视频转成可剪辑的SRT、JSON与纯文本，复用OpenLess或lov-personal-vocabulary词库增强专有名词，并在付费云端ASR
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 把录音、播客或视频转成可剪辑的SRT、JSON与纯文本，复用OpenLess或lov-personal-vocabulary词库增强专有名词，并在付费云端ASR
+    value_en: Transcribe recordings, podcasts or videos into editable SRT, JSON and text with
+      vocabulary boosting and cost preview.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: wechat-article-branding
+  runtime_name: lov-wechat-article-branding-skill
+  display_name: Article Branding (Legacy)
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/wechat-article-branding-skill
+  name_zh: 文章品牌化（旧入口）
+  paid: false
+  category: Content Creation
+  version: 0.11.1
+  description: Legacy entry for WeChat article branding; new work routes to the lov-article-creator
+    brand pipeline.
+  tagline_en: Legacy entry for WeChat article branding; new work routes to the lov-article-creator
+    brand pipeline.
+  tagline_zh: 公众号文章品牌化的旧兼容入口；不再独立执行或拥有规则，新任务统一路由到lov-article-creator的brand管线
+  depends_on:
+  - article-creator
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 公众号文章品牌化的旧兼容入口；不再独立执行或拥有规则，新任务统一路由到lov-article-creator的brand管线
+    value_en: Legacy entry for WeChat article branding; new work routes to the lov-article-creator
+      brand pipeline.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: wechat-article-operator
+  runtime_name: lov-wechat-article-operator
+  display_name: WeChat Draft Operator (Legacy)
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/wechat-article-operator-skill
+  name_zh: 公众号草稿操作（旧入口）
+  paid: false
+  category: Content Creation
+  version: 0.2.1
+  description: Legacy entry for existing WeChat drafts; new work routes to lov-publish-wechat-article.
+  tagline_en: Legacy entry for existing WeChat drafts; new work routes to lov-publish-wechat-article.
+  tagline_zh: 公众号已有草稿操作的旧兼容入口；不再独立执行或拥有规则，新任务统一路由到lov-publish-wechat-article的existing-draft管线
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 公众号已有草稿操作的旧兼容入口；不再独立执行或拥有规则，新任务统一路由到lov-publish-wechat-article的existing-draft管线
+    value_en: Legacy entry for existing WeChat drafts; new work routes to lov-publish-wechat-article.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: xbti-creator
+  runtime_name: lov-xbti-creator
+  display_name: XBTI Studio
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/xbti-creator-skill
+  name_zh: XBTI 工坊
+  paid: false
+  category: General
+  version: 1.0.2
+  description: Create a complete custom BTI personality test based on the XBTI architecture.
+  tagline_en: Create a complete custom BTI personality test based on the XBTI architecture.
+  tagline_zh: CreateacompletecustomBTIpersonalitytest(likeLBTI,FBTI,etc.)basedontheXBTIarchite
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: CreateacompletecustomBTIpersonalitytest(likeLBTI,FBTI,etc.)basedontheXBTIarchite
+    value_en: Create a complete custom BTI personality test based on the XBTI architecture.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: yolo-mode
+  runtime_name: lov-yolo-mode
+  display_name: YOLO Mode
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/yolo-mode-skill
+  name_zh: YOLO 模式
+  paid: false
+  category: Meta
+  version: 0.2.0
+  description: Prepare permissions within host rules, then complete a task autonomously from
+    presets without asking questions.
+  tagline_en: Prepare permissions within host rules, then complete a task autonomously from
+    presets without asking questions.
+  tagline_zh: 开启YOLO模式，先检查当前session并通过宿主允许的接口准备必要权限，再按预设和偏好自主完成任务，不主动提问
+  depends_on:
+  - branding-consistency
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: 开启YOLO模式，先检查当前session并通过宿主允许的接口准备必要权限，再按预设和偏好自主完成任务，不主动提问
+    value_en: Prepare permissions within host rules, then complete a task autonomously from
+      presets without asking questions.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: zsh-alias
+  runtime_name: lov-zsh-alias
+  display_name: Shell Shortcuts
+  updated_at: '2026-09-25 16:28:27+00:00'
+  repo: lovstudio/zsh-alias-skill
+  name_zh: 终端快捷指令
+  paid: false
+  category: Dev Tools
+  version: 0.2.1
+  description: Add a zsh alias or function to ~/.zshrc idempotently and safely.
+  tagline_en: Add a zsh alias or function to ~/.zshrc idempotently and safely.
+  tagline_zh: Addazshalias/functiontotheuser's~/.zshrc,idempotentlyandsafely.SupportsbothASCII
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与使用合同
+    delivery_unit_en: Public Skill source and usage contract
+    value_zh: Addazshalias/functiontotheuser's~/.zshrc,idempotentlyandsafely.SupportsbothASCII
+    value_en: Add a zsh alias or function to ~/.zshrc idempotently and safely.
+    basis_zh: 免费入口；尚无业务运行数据，按真实使用复评。
+    basis_en: Free entry; no business run data yet, reviewed against real use.
+    boundary_zh: 不含第三方服务费用、账户或人工代运营。
+    boundary_en: Excludes third-party usage charges, accounts and managed services.
+    confidence: entry
+    review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
+    review_trigger_en: Review after ten business uses or a material maintenance change.

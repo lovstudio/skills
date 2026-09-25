@@ -1,0 +1,27 @@
+{
+  "schema": "lov-codeex-creator/exercise/v1",
+  "generatedAt": "2026-08-26T04:16:42+00:00",
+  "pluginId": "daemonize",
+  "hooks": [
+    "beforeLaunch"
+  ],
+  "checks": {
+    "sourceManifestValid": true,
+    "sourceHooksDetected": true,
+    "scaffoldCommittedByRename": true,
+    "scaffoldDuplicateRejected": true,
+    "scaffoldStagingClean": true,
+    "scaffoldControlHookDetected": true,
+    "firstInstallObserved": true,
+    "duplicateInstallIdempotent": true,
+    "firstUninstallObserved": true,
+    "duplicateUninstallIdempotent": true,
+    "unknownPluginRejected": true,
+    "failedMutationPreservedState": true,
+    "stateFilePrivateMode": true
+  },
+  "passed": true,
+  "liveStateMutated": false,
+  "activeRuntimeVerified": false,
+  "note": "Desired-state lifecycle used an isolated state file; runtime activation requires separate smoke evidence."
+}

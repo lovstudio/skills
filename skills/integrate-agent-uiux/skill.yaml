@@ -1,0 +1,55 @@
+schema: skill-manifest/v1
+id: lov-integrate-agent-uiux
+version: "0.1.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-integrate-agent-uiux
+    persist:
+      enabled: true
+      namespace: skills.lov-integrate-agent-uiux
+      records_path: skills.lov-integrate-agent-uiux.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        aliases:
+          - identity.language
+        required: false
+        question: 希望组件文案使用哪种语言？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 目标应用使用哪个品牌名称？
+      - path: brand.tone
+        required: false
+        question: 目标应用已有怎样的品牌语气或视觉关键词？
+      - path: workspace.project_roots
+        required: false
+        question: 需要接入对话组件的项目在哪里？
+      - path: skills.lov-integrate-agent-uiux.records.preferred_stack
+        required: false
+        question: 是否有长期偏好的前端技术栈？
+      - path: skills.lov-integrate-agent-uiux.records.component_dir
+        required: false
+        question: 是否有长期固定的 Agent UI 组件目录？
+  preferences:
+    namespace: lov_integrate_agent_uiux
+    fields:
+      - path: user.language
+        required: false
+        question: 希望组件文案使用哪种语言？
+      - path: preferences.accessibility_level
+        required: false
+        question: 是否有额外的无障碍验收要求？
+  interaction:
+    ask_missing: true
+    max_questions: 1

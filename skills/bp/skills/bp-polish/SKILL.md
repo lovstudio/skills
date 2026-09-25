@@ -7,6 +7,8 @@ description: >
   facts separate from assumptions. Trigger on "润色 BP", "审稿商业计划书", "PPT 不专业",
   "逐页检查", "改图表", "BP review", "polish pitch deck", or "audit investor deck".
 license: MIT
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
   version: "0.2.0"

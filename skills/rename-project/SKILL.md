@@ -15,7 +15,7 @@ depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 2.3.1
+  version: 2.3.2
   tags:
   - project-maintenance
   - rename

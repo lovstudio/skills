@@ -1,0 +1,51 @@
+[
+  {
+    "type": "case",
+    "title": "Visualize the local lov-skill-creator runtime contract",
+    "description": "The user supplied the canonical local Skill Creator instructions and asked for a reusable way to understand and trust a Skill. The extractor separated external activation from eight internal steps, preserved line-bound actions and criteria, identified deterministic scripts and validation assets, and produced a restrained zh-first standalone trust brief whose use case, transformation, outcome, and trust boundary are readable without interacting with Mermaid.",
+    "input": {
+      "items": [
+        "Local lov-skill-creator source at version 4.3.0",
+        "Its top-level SKILL.md, linked references, scripts, and runtime manifest"
+      ]
+    },
+    "prompt": "给定一个本地 skill，或者该 skill 的路径，然后要能生成整个 skill 运行逻辑的可视化图，也许可以考虑 Mermaid 的格式。",
+    "output": {
+      "items": [
+        "cases/artifacts/skill-creator-logic.html",
+        "cases/artifacts/skill-creator-logic.md",
+        "cases/artifacts/skill-creator-logic.json"
+      ],
+      "observed": {
+        "activation_examples": 2,
+        "non_trigger_examples": 2,
+        "workflow_steps": 8,
+        "conditional_rules": 1,
+        "kit_modules": 0,
+        "kit_pipelines": 0,
+        "linked_resources": 10,
+        "missing_resources": 0,
+        "steps_with_support": 6,
+        "steps_with_checks": 3,
+        "observed_artifacts": 0,
+        "diagnostics": 1
+      }
+    },
+    "evidence": {
+      "markdown_sha256": "352b8231c512277ddaa1e09c73bf88d0fb841ebce9ab770502a52715dd9ccbe3",
+      "json_sha256": "dc4c3283cb630d4b323d388734f672462087cc2800da8a5c0b430abbb804e1c2",
+      "html_sha256": "6b213652db6bb76b6f168e09e5debaa54a4e13c2c6d1c3b59b0b4ed18ae6e4d0",
+      "presentation_mode": "scenario_first_single_scroll",
+      "embedded_mermaid_views": 2,
+      "primary_node_selectors": 0,
+      "primary_zoom_controls": 0,
+      "primary_action_buttons": 0,
+      "external_routing_in_runtime_source": false,
+      "technical_evidence_open_by_default": false,
+      "browser_validation_status": "not_run_for_0.6.0_because_file_url_was_blocked_by_browser_policy",
+      "strict_exit_code": 0,
+      "remaining_diagnostic": "Three packaged historical or test files are inventoried as unlinked; no declared runtime resource is missing."
+    },
+    "cover": "cases/artifacts/skill-creator-logic.html"
+  }
+]

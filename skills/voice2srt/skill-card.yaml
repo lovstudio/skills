@@ -1,0 +1,107 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "把录音、播客或视频转成可直接进入剪辑流程的 SRT、cue JSON 与纯文本，兼容 OpenLess 和 lov-personal-vocabulary 词库，并在云端识别前提供成本门禁与脱敏报告。"
+owner:
+  team: "LovStudio Skills"
+  contact: "LovStudio Skills catalog"
+license:
+  name: MIT
+  terms: "用户保留输入媒体与转写结果的权利；API 使用受对应 provider 条款约束。"
+  url: "LICENSE"
+use_case:
+  audience: "需要给访谈、录屏、播客或自媒体视频生成可剪辑字幕的创作者与编辑。"
+  scenario: "输入本地音视频和可选个人词库，经成本确认后调用支持时间戳的云端 ASR，输出可审计字幕包。"
+  tasks:
+    - "从音频或视频生成 UTF-8 SRT、JSON 与纯文本"
+    - "复用 OpenLess 或 canonical vocabulary 热词"
+    - "在付费调用前估算成本并在输出中记录 provider/model"
+    - "验证 cue 时间戳、重叠、媒体边界和 SRT 可解析性"
+deployment:
+  geography: global
+  environments:
+    - "macOS, Linux, or Windows with Python 3.9+"
+    - "FFmpeg and FFprobe"
+requirements:
+  credentials: "DashScope or Volcengine ASR credential; secrets remain runtime-only."
+  dependencies:
+    - "Python standard library"
+    - "FFmpeg and FFprobe"
+    - "Optional whisper-cli and ggml model for local fallback"
+  runtime:
+    - "Network access to the selected provider"
+    - "Optional vocabulary JSON or text file"
+risks:
+  - risk: "音频会发送给所选云端 ASR，可能包含私人对话、屏幕录制原声或未发布内容。"
+    mitigation: "调用前报告 provider；要求用户有权处理媒体；凭据不落盘，输出只保存在用户指定目录。"
+  - risk: "热词过多或权重过强会诱导错误替换。"
+    mitigation: "默认过滤禁用项和重复项，最多 80 个，即时热词使用权重 5；用真实文本抽查而非把传参当成功证据。"
+  - risk: "分段边界可能造成重复、空洞或 cue 重叠。"
+    mitigation: "按绝对偏移合并，去除近邻重复，修整重叠，并执行时间轴 validator 与 FFmpeg parser smoke test。"
+  - risk: "API 能力、价格、限额或地区 endpoint 会变化。"
+    mitigation: "provider 合同独立记录；每次先 dry-run，允许覆盖 endpoint、model 与单价，错误保留可复制诊断。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Provider contracts"
+    path: "references/provider-contracts.md"
+  - title: "Skill composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "subtitle package"
+  formats:
+    - "UTF-8 SRT"
+    - "lov-voice2srt/transcript/v1 JSON"
+    - "UTF-8 plain text"
+    - "lov-voice2srt/report/v1 JSON"
+  parameters:
+    - "provider, model, endpoint, language, vocabulary, chunk seconds, price per second"
+  validation:
+    - "No invalid or overlapping cues"
+    - "Final cue stays within media duration tolerance"
+    - "Credentials are absent from reports and raw artifact names"
+    - "SRT parses through FFmpeg to WebVTT"
+  description: "A portable text subtitle plus structured cues and a provenance/cost/validation report; raw provider responses remain local for troubleshooting."
+ethical_considerations: "Only transcribe media the user is authorized to process. Tell the user which provider receives the audio, never persist credentials, and do not claim hotword accuracy without inspecting the returned text."
+dimensions:
+  - id: correctness
+    label: "时间轴正确性"
+    description: "每条 cue 有有效起止时间、按顺序排列且不越出媒体边界。"
+    evidence: "test_voice2srt.py、report.json validation 与 FFmpeg SRT parser smoke test。"
+    score: 4
+  - id: effectiveness
+    label: "专有词有效性"
+    description: "个人词库真正进入支持热词的 ASR 请求，并以目标术语命中率复查。"
+    evidence: "OpenLess/canonical vocabulary unit tests 与第三期 OpenLess 真实案例对比。"
+    score: 4
+  - id: efficiency
+    label: "运行效率"
+    description: "长视频按 provider 能力选择一次性极速接口或 240 秒分段，避免实时等长播放。"
+    evidence: "report.json 的 duration、chunk_count、elapsed_seconds 与 provider/model。"
+    score: 4
+  - id: privacy
+    label: "凭据与隐私"
+    description: "密钥仅从环境变量或显式 Keychain 授权读取，不写进 Skill、raw response 或报告。"
+    evidence: "credential resolver、报告固定脱敏字段和仓库 secret scan。"
+    score: 4
+  - id: interoperability
+    label: "词库互操作"
+    description: "同一 CLI 接收 OpenLess 数组、canonical entries 和文本词表。"
+    evidence: "test_openless_and_canonical_vocabulary_shapes 单元测试。"
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Skill 源码与本地工作流免费；云端 ASR 费用由用户自己的 provider 账户承担。"
+  boundary: "包含音频预处理、热词适配、ASR 调用、SRT/JSON/TXT 和校验；不包含词库管理、视频剪辑、字幕美术或媒体发布。"
+  review_trigger: "加入本地高精度模型、更多 provider、批量队列或托管凭据服务时复评。"
+  confidence: internal
+distribution:
+  paid: []
+  free: []
+  local:
+    - agents
+  planned:
+    - github
+    - lovstudio

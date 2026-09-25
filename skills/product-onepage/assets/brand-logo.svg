@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 163.3" role="img" aria-label="Skill Publisher.AI">
+  <style>.mark{fill:#EB6637}.word{fill:#EB6637;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:68px;font-weight:500;letter-spacing:-.5px}</style>
+  <g transform="translate(38,0)">
+    <path class="mark" d="M0 31.4v56.7c0 14.5 11.7 26.2 26.2 26.2V57.6C26.2 43.2 14.5 31.4 0 31.4z"/>
+    <path class="mark" d="M32.7 48.9v56.7c0 14.5 11.7 26.2 26.2 26.2V75.1c0-14.5-11.7-26.2-26.2-26.2z"/>
+    <path class="mark" d="M65.5 39.9v52.4c14.5 0 26.2-11.7 26.2-26.2 0-14.5-11.7-26.2-26.2-26.2z"/>
+    <text class="word" x="116" y="108">Skill Publisher</text>
+  </g>
+</svg>

@@ -1,0 +1,632 @@
+{
+  "schema": "app-runtime-report/v1",
+  "input_schema": "app-runtime-evidence/v1",
+  "title": "Yoda long-running Electron runtime optimization",
+  "status": "partially_verified",
+  "scope": {
+    "application": "Yoda desktop",
+    "platform_family": "desktop",
+    "runtime": "Electron on macOS",
+    "adapters": "macos, electron, node-chromium, pty, tmux, git-worktree, sqlite",
+    "workload": "large project mount, periodic pull-request synchronization, session context refresh and resource inventory",
+    "workload_id": "yoda-large-project-periodic-sync-v1",
+    "case_version": "v0.18.10 / implementation commit 290fbc48c7",
+    "legacy_source": "lov-electron-runtime-optimizer@0.1.0",
+    "safety_boundary": "No blind tmux kill or unknown worktree deletion was used to demonstrate improvement"
+  },
+  "summary": {
+    "observations": 20,
+    "evidence_by_kind": {
+      "code_fact": 5,
+      "inference": 4,
+      "measurement": 11
+    },
+    "resources": 6,
+    "resource_verdicts": {
+      "candidate": 2,
+      "protect": 4
+    },
+    "comparable_deltas": 4,
+    "directional_comparisons": 4,
+    "hypotheses": 5
+  },
+  "observations": [
+    {
+      "id": "project-task-count",
+      "stage": "context",
+      "kind": "measurement",
+      "value": 916,
+      "unit": "tasks",
+      "source": "runtime database inventory",
+      "note": "The largest mounted project contained 33 active and 883 archived task rows.",
+      "provenance": {
+        "source_ref": "Yoda read-only DB aggregate grouped by archived_at",
+        "build_ref": "pre-290fbc48 runtime",
+        "observed_at": "2026-08-09 audit snapshot",
+        "workload_id": "yoda-large-project-periodic-sync-v1"
+      }
+    },
+    {
+      "id": "initial-task-hydration-upper-bound",
+      "stage": "before",
+      "kind": "inference",
+      "value": 916,
+      "unit": "records",
+      "source": "old getTasks hydration path combined with the task inventory",
+      "note": "Code-derived upper bound: the old mount path returned active and archived rows; this is not direct MobX heap telemetry.",
+      "provenance": {
+        "source_ref": "pre-290fbc48 getTasks.ts and TaskManagerStore mount path",
+        "build_ref": "pre-290fbc48 runtime",
+        "derivation": {
+          "formula": "active task rows + archived task rows",
+          "inputs": {
+            "active_rows": 33,
+            "archived_rows": 883
+          },
+          "assumptions": [
+            "each returned row was eligible for initial TaskStore hydration"
+          ]
+        }
+      }
+    },
+    {
+      "id": "initial-task-hydration-upper-bound",
+      "stage": "after",
+      "kind": "inference",
+      "value": 33,
+      "unit": "records",
+      "source": "active-only mount query combined with the same task inventory",
+      "note": "Code-derived upper bound after the patch; archived tasks remain available through lazy loading and point lookup.",
+      "provenance": {
+        "source_ref": "290fbc48 getTasks.ts and TaskManagerStore active-only mount path",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+        "derivation": {
+          "formula": "active task rows",
+          "inputs": {
+            "active_rows": 33
+          },
+          "assumptions": [
+            "the Archived surface was not opened during initial mount"
+          ]
+        }
+      },
+      "comparison": {
+        "quality": "directional",
+        "note": "The bounds come from code and row counts, not paired renderer heap instrumentation."
+      }
+    },
+    {
+      "id": "pr-ipc-per-refresh-wave",
+      "stage": "before",
+      "kind": "inference",
+      "value": 916,
+      "unit": "calls",
+      "source": "task count multiplied by the per-task refresh loop",
+      "note": "One matching repository completion event scheduled one PR RPC per loaded task.",
+      "provenance": {
+        "source_ref": "pre-290fbc48 task-manager.ts PR completion handler",
+        "build_ref": "pre-290fbc48 runtime",
+        "derivation": {
+          "formula": "loaded_task_count × one getPullRequestsForTask call",
+          "inputs": {
+            "loaded_task_count": 916,
+            "calls_per_task": 1
+          },
+          "assumptions": [
+            "all 916 returned task rows reached the handler"
+          ]
+        }
+      }
+    },
+    {
+      "id": "pr-ipc-per-refresh-wave",
+      "stage": "after",
+      "kind": "code_fact",
+      "value": 1,
+      "unit": "calls",
+      "source": "project-level batch PR query and single-flight refresh",
+      "note": "One refresh wave issues one project batch RPC and updates an in-memory branch index.",
+      "provenance": {
+        "source_ref": "290fbc48 TaskManagerStore and getPullRequestsForProjectTasks implementation",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357"
+      },
+      "comparison": {
+        "quality": "directional",
+        "note": "The before value is a scale inference; the report suppresses an exact percentage."
+      }
+    },
+    {
+      "id": "git-subprocesses-per-sync",
+      "stage": "before",
+      "kind": "inference",
+      "value": 1832,
+      "unit": "processes",
+      "source": "per-task RPC fan-out multiplied by two remote reads",
+      "note": "Derived work for one project refresh; overlapping repository completion events could add more work.",
+      "provenance": {
+        "source_ref": "pre-290fbc48 PR query and repository remote-resolution call chain",
+        "build_ref": "pre-290fbc48 runtime",
+        "derivation": {
+          "formula": "916 per-task RPCs × 2 git remote reads",
+          "inputs": {
+            "per_task_rpcs": 916,
+            "git_remote_reads_per_rpc": 2
+          },
+          "assumptions": [
+            "each remote read spawns one Git subprocess",
+            "one completion wave is considered"
+          ]
+        }
+      }
+    },
+    {
+      "id": "git-subprocesses-per-sync",
+      "stage": "after",
+      "kind": "measurement",
+      "value": 15,
+      "unit": "processes",
+      "source": "high-frequency process sampling during the next eight-remote cycle",
+      "note": "Fifteen unique Git subprocesses were observed; peak concurrency was five and the cycle lasted about four seconds.",
+      "provenance": {
+        "source_ref": "postfix runtime process sampler",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+        "observed_at": "2026-08-09 post-change runtime window",
+        "sample_window": "600 samples at 100 ms across 8 remote synchronizations; approximately 4 seconds active",
+        "sampler": "macOS process inventory filtered to Git descendants",
+        "workload_id": "yoda-large-project-periodic-sync-v1"
+      },
+      "comparison": {
+        "quality": "directional",
+        "note": "The after value is observed while the before value is inferred, so exact delta is not claimed."
+      }
+    },
+    {
+      "id": "session-context-payload",
+      "stage": "before",
+      "kind": "measurement",
+      "value": 391000,
+      "unit": "bytes",
+      "source": "full session-context RPC sample",
+      "note": "The old polling route also constructed instruction, Skill and dynamic-tool context.",
+      "provenance": {
+        "source_ref": "pre-change full session context request sample",
+        "build_ref": "pre-290fbc48 runtime",
+        "observed_at": "2026-08-09 audit snapshot",
+        "workload_id": "yoda-visible-session-context-v1"
+      }
+    },
+    {
+      "id": "session-context-payload",
+      "stage": "after",
+      "kind": "measurement",
+      "value": 37600,
+      "unit": "bytes",
+      "source": "lightweight conversation RPC sample",
+      "note": "Prompts and messages are fetched without full instruction or Skill scanning.",
+      "provenance": {
+        "source_ref": "post-change lightweight conversation request sample",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+        "observed_at": "2026-08-09 post-change request sample",
+        "workload_id": "yoda-visible-session-context-v1"
+      },
+      "comparison": {
+        "quality": "directional",
+        "note": "The endpoints return different payload shapes and were not captured as a strict paired timing trial."
+      }
+    },
+    {
+      "id": "full-session-context-latency",
+      "stage": "before",
+      "kind": "measurement",
+      "value": 202,
+      "unit": "milliseconds",
+      "source": "full context request timing",
+      "note": "One old-route request sample; not a percentile distribution.",
+      "provenance": {
+        "source_ref": "pre-change full session context timing",
+        "build_ref": "pre-290fbc48 runtime",
+        "observed_at": "2026-08-09 audit snapshot",
+        "workload_id": "yoda-visible-session-context-v1"
+      }
+    },
+    {
+      "id": "lightweight-context-cache-hit",
+      "stage": "after",
+      "kind": "measurement",
+      "value": 2.5,
+      "unit": "milliseconds",
+      "source": "lightweight context cache-hit timing",
+      "note": "One cache-hit sample; it is not paired directly with the full-context request.",
+      "provenance": {
+        "source_ref": "post-change lightweight context cache-hit timing",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+        "observed_at": "2026-08-09 post-change request sample",
+        "workload_id": "yoda-visible-session-context-v1"
+      }
+    },
+    {
+      "id": "runtime-metadata-payload",
+      "stage": "after",
+      "kind": "measurement",
+      "value": 67,
+      "unit": "bytes",
+      "source": "lightweight runtime metadata RPC sample",
+      "note": "One sample completed in about two milliseconds.",
+      "provenance": {
+        "source_ref": "post-change runtime metadata request sample",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+        "observed_at": "2026-08-09 post-change request sample",
+        "workload_id": "yoda-visible-session-context-v1"
+      }
+    },
+    {
+      "id": "tmux-sessions-preserved",
+      "stage": "before",
+      "kind": "measurement",
+      "value": 61,
+      "unit": "sessions",
+      "source": "application-owned tmux server inventory",
+      "note": "One session was attached; the snapshot covered 341 descendant processes and about 3.7 GiB aggregate RSS proxy.",
+      "provenance": {
+        "source_ref": "tmux -L yoda list-panes inventory and descendant process graph",
+        "build_ref": "pre-290fbc48 runtime",
+        "observed_at": "2026-08-09 reclamation audit snapshot",
+        "workload_id": "yoda-resource-inventory-v1"
+      }
+    },
+    {
+      "id": "tmux-sessions-preserved",
+      "stage": "after",
+      "kind": "measurement",
+      "value": 61,
+      "unit": "sessions",
+      "source": "post-change inventory before any explicit cleanup",
+      "note": "The implementation was validated without terminating the user's existing sessions.",
+      "provenance": {
+        "source_ref": "post-change tmux -L yoda inventory",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+        "observed_at": "2026-08-09 post-change reclamation audit",
+        "workload_id": "yoda-resource-inventory-v1"
+      },
+      "comparison": {
+        "quality": "paired",
+        "note": "The same application-owned server and inventory definition were used around the change."
+      }
+    },
+    {
+      "id": "unknown-worktree-entries-preserved",
+      "stage": "before",
+      "kind": "measurement",
+      "value": 307,
+      "unit": "directories",
+      "source": "filesystem membership compared with Git registration",
+      "note": "The pool had about 337 first-level entries and 30 Git-registered worktrees.",
+      "provenance": {
+        "source_ref": "read-only worktree pool membership and git worktree list",
+        "build_ref": "pre-290fbc48 runtime",
+        "observed_at": "2026-08-09 worktree audit snapshot",
+        "workload_id": "yoda-resource-inventory-v1"
+      }
+    },
+    {
+      "id": "unknown-worktree-entries-preserved",
+      "stage": "after",
+      "kind": "measurement",
+      "value": 307,
+      "unit": "directories",
+      "source": "post-change read-only inventory",
+      "note": "Unknown entries remained inventory-only and never entered the automatic cleanup loop.",
+      "provenance": {
+        "source_ref": "post-change worktree inventory snapshot",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+        "observed_at": "2026-08-09 post-change worktree audit",
+        "workload_id": "yoda-resource-inventory-v1"
+      },
+      "comparison": {
+        "quality": "paired",
+        "note": "The same directory membership definition was used; zero deletion is the safety result."
+      }
+    },
+    {
+      "id": "terminal-scrollback-default",
+      "stage": "before",
+      "kind": "code_fact",
+      "value": 200000,
+      "unit": "lines",
+      "source": "terminal configuration before the bounded lifecycle change",
+      "note": "The configured retained history limit was 200,000 lines.",
+      "provenance": {
+        "source_ref": "pre-290fbc48 terminal scrollback configuration",
+        "build_ref": "pre-290fbc48 source"
+      }
+    },
+    {
+      "id": "terminal-scrollback-default",
+      "stage": "after",
+      "kind": "code_fact",
+      "value": 50000,
+      "unit": "lines",
+      "source": "bounded terminal configuration",
+      "note": "The default retained buffer is capped while history remains available.",
+      "provenance": {
+        "source_ref": "290fbc48 terminal scrollback configuration",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357"
+      },
+      "comparison": {
+        "quality": "implementation_bound",
+        "note": "This is an exact configuration bound, not a measured RSS reduction."
+      }
+    },
+    {
+      "id": "hot-xterm-limit",
+      "stage": "before",
+      "kind": "code_fact",
+      "value": 4,
+      "unit": "terminals",
+      "source": "renderer terminal lifecycle configuration",
+      "note": "Up to four xterm instances could remain hot.",
+      "provenance": {
+        "source_ref": "pre-290fbc48 renderer terminal lifecycle configuration",
+        "build_ref": "pre-290fbc48 source"
+      }
+    },
+    {
+      "id": "hot-xterm-limit",
+      "stage": "after",
+      "kind": "code_fact",
+      "value": 2,
+      "unit": "terminals",
+      "source": "renderer terminal lifecycle configuration",
+      "note": "The hot instance budget is capped at two.",
+      "provenance": {
+        "source_ref": "290fbc48 renderer terminal lifecycle configuration",
+        "build_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357"
+      },
+      "comparison": {
+        "quality": "implementation_bound",
+        "note": "This is an exact configuration bound, not a measured memory reduction."
+      }
+    }
+  ],
+  "deltas": [
+    {
+      "id": "git-subprocesses-per-sync",
+      "unit": "processes",
+      "before": 1832.0,
+      "after": 15.0,
+      "delta": null,
+      "percent_change": null,
+      "comparison_quality": "directional_evidence",
+      "comparison_note": "The after value is observed while the before value is inferred, so exact delta is not claimed."
+    },
+    {
+      "id": "hot-xterm-limit",
+      "unit": "terminals",
+      "before": 4.0,
+      "after": 2.0,
+      "delta": -2.0,
+      "percent_change": -50.0,
+      "comparison_quality": "implementation_bound",
+      "comparison_note": "This is an exact configuration bound, not a measured memory reduction."
+    },
+    {
+      "id": "initial-task-hydration-upper-bound",
+      "unit": "records",
+      "before": 916.0,
+      "after": 33.0,
+      "delta": null,
+      "percent_change": null,
+      "comparison_quality": "directional_evidence",
+      "comparison_note": "The bounds come from code and row counts, not paired renderer heap instrumentation."
+    },
+    {
+      "id": "pr-ipc-per-refresh-wave",
+      "unit": "calls",
+      "before": 916.0,
+      "after": 1.0,
+      "delta": null,
+      "percent_change": null,
+      "comparison_quality": "directional_evidence",
+      "comparison_note": "The before value is a scale inference; the report suppresses an exact percentage."
+    },
+    {
+      "id": "session-context-payload",
+      "unit": "bytes",
+      "before": 391000.0,
+      "after": 37600.0,
+      "delta": null,
+      "percent_change": null,
+      "comparison_quality": "directional_evidence",
+      "comparison_note": "The endpoints return different payload shapes and were not captured as a strict paired timing trial."
+    },
+    {
+      "id": "terminal-scrollback-default",
+      "unit": "lines",
+      "before": 200000.0,
+      "after": 50000.0,
+      "delta": -150000.0,
+      "percent_change": -75.0,
+      "comparison_quality": "implementation_bound",
+      "comparison_note": "This is an exact configuration bound, not a measured RSS reduction."
+    },
+    {
+      "id": "tmux-sessions-preserved",
+      "unit": "sessions",
+      "before": 61.0,
+      "after": 61.0,
+      "delta": 0.0,
+      "percent_change": 0.0,
+      "comparison_quality": "paired_observation",
+      "comparison_note": "The same application-owned server and inventory definition were used around the change."
+    },
+    {
+      "id": "unknown-worktree-entries-preserved",
+      "unit": "directories",
+      "before": 307.0,
+      "after": 307.0,
+      "delta": 0.0,
+      "percent_change": 0.0,
+      "comparison_quality": "paired_observation",
+      "comparison_note": "The same directory membership definition was used; zero deletion is the safety result."
+    }
+  ],
+  "resources": [
+    {
+      "id": "representative-working-conversation",
+      "kind": "agent_session",
+      "policy": "idle_resumable",
+      "owner_state": "active",
+      "activity_state": "working",
+      "verdict": "protect",
+      "reasons": [
+        "activity_working"
+      ]
+    },
+    {
+      "id": "representative-idle-resumable-conversation",
+      "kind": "agent_session",
+      "policy": "idle_resumable",
+      "owner_state": "active",
+      "activity_state": "idle",
+      "verdict": "candidate",
+      "reasons": [
+        "all_required_proofs_present"
+      ]
+    },
+    {
+      "id": "representative-attached-tmux",
+      "kind": "tmux",
+      "policy": "idle_resumable",
+      "owner_state": "active",
+      "activity_state": "idle",
+      "verdict": "protect",
+      "reasons": [
+        "attached_or_subscribed"
+      ]
+    },
+    {
+      "id": "representative-dirty-unreferenced-worktree",
+      "kind": "worktree",
+      "policy": "orphan_only",
+      "owner_state": "missing",
+      "activity_state": "idle",
+      "verdict": "protect",
+      "reasons": [
+        "dirty"
+      ]
+    },
+    {
+      "id": "representative-clean-orphaned-worktree",
+      "kind": "worktree",
+      "policy": "orphan_only",
+      "owner_state": "missing",
+      "activity_state": "idle",
+      "verdict": "candidate",
+      "reasons": [
+        "all_required_proofs_present"
+      ]
+    },
+    {
+      "id": "representative-unregistered-directory",
+      "kind": "directory",
+      "policy": "inventory_only",
+      "owner_state": "unknown",
+      "activity_state": "unknown",
+      "verdict": "protect",
+      "reasons": [
+        "inventory_only_policy",
+        "owner_unknown",
+        "activity_unknown",
+        "identity_unknown",
+        "evidence_missing",
+        "retention_unknown",
+        "dirty_unknown"
+      ]
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "eager-archived-hydration",
+      "statement": "Mounting archived and active task rows together raised the initial hydration bound and amplified task-scale reactions.",
+      "supports": [
+        "project-task-count",
+        "initial-task-hydration-upper-bound"
+      ],
+      "falsifier": "The old renderer loads only active rows during mount and resolves archived deep links through point lookup.",
+      "priority": "P0"
+    },
+    {
+      "id": "full-context-polling",
+      "statement": "A UI polling path repeatedly requested substantially more session context than visible surfaces needed.",
+      "supports": [
+        "session-context-payload",
+        "full-session-context-latency",
+        "lightweight-context-cache-hit"
+      ],
+      "falsifier": "Runtime traces show the full context route is reached only by an explicit detail action.",
+      "priority": "P0"
+    },
+    {
+      "id": "historical-session-revival",
+      "statement": "Provisioning tasks restarted historical conversations, preventing idle-session sweeps from creating a stable low-resource state.",
+      "supports": [
+        "tmux-sessions-preserved"
+      ],
+      "falsifier": "Startup traces from the old build show only pending work or already-live canonical sessions are started.",
+      "priority": "P0"
+    },
+    {
+      "id": "per-task-pr-refresh",
+      "statement": "A repository synchronization completion event amplified into task-count-scale IPC, Git and database work.",
+      "supports": [
+        "project-task-count",
+        "pr-ipc-per-refresh-wave",
+        "git-subprocesses-per-sync"
+      ],
+      "falsifier": "A trace of the old build shows a bounded project-level query and no per-task repository reads.",
+      "priority": "P0"
+    },
+    {
+      "id": "unknown-worktree-cleanup-risk",
+      "statement": "Filesystem directories absent from Git registration cannot be assigned safely from their names and must remain inventory-only.",
+      "supports": [
+        "unknown-worktree-entries-preserved"
+      ],
+      "falsifier": "Every directory carries independently verified product ownership, clean state and no live cwd references.",
+      "priority": "P0"
+    }
+  ],
+  "verification_gates": [
+    {
+      "name": "Yoda release correctness gates",
+      "status": "passed",
+      "source_ref": "v0.18.10 release run and commit 290fbc48",
+      "note": "591 test files and 3,115 tests passed with format, lint, typecheck and production build; this is a correctness/release gate, not a performance threshold."
+    },
+    {
+      "name": "Reclamation race coverage",
+      "status": "passed",
+      "source_ref": "290fbc48 tmux-reclamation and worktree guard tests",
+      "note": "Focused tests cover fail-closed status, ABA identity, registration/consumer, dirty and unknown resource guards."
+    },
+    {
+      "name": "Production bulk cleanup and on-demand resume trial",
+      "status": "not_run",
+      "source_ref": "Yoda reclamation case boundary",
+      "note": "No destructive bulk cleanup was performed on the 61 existing sessions or 307 unknown directories."
+    }
+  ],
+  "evidence_gaps": [
+    "No controlled packaged-build A/B for input latency, long-task count, event-loop p95/p99, energy, or RSS under the same workload.",
+    "The session payload and latency samples compare different API shapes and single samples; they support direction, not an exact performance percentage.",
+    "The initial task hydration values are code-derived upper bounds rather than direct MobX resident-object telemetry.",
+    "Safe reclamation implementation and race tests landed, but production bulk cleanup plus end-to-end on-demand resume was intentionally not exercised."
+  ],
+  "warnings": [
+    "git-subprocesses-per-sync: comparison quality is directional_evidence; exact delta suppressed",
+    "initial-task-hydration-upper-bound: comparison quality is directional_evidence; exact delta suppressed",
+    "pr-ipc-per-refresh-wave: comparison quality is directional_evidence; exact delta suppressed",
+    "session-context-payload: comparison quality is directional_evidence; exact delta suppressed"
+  ],
+  "safety": "read_only_plan; no process termination or file deletion performed"
+}

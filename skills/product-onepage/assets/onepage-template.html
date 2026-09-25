@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} — {{BRAND_NAME}}</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --brand-primary: {{BRAND_PRIMARY}};
+      --brand-accent: {{BRAND_ACCENT}};
+      --ink: {{BRAND_INK}};
+      --muted: {{BRAND_MUTED}};
+      --paper: {{BRAND_PAPER}};
+      --surface: color-mix(in srgb, var(--paper) 91%, white);
+      --rule: color-mix(in srgb, var(--ink) 16%, transparent);
+      --font: {{FONT_FAMILY}};
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: #d9d7d2;
+      font-family: var(--font);
+      color: var(--ink);
+    }
+
+    body {
+      display: grid;
+      place-items: start center;
+    }
+
+    .onepage {
+      position: relative;
+      isolation: isolate;
+      width: {{WIDTH}}px;
+      height: {{HEIGHT}}px;
+      overflow: hidden;
+      padding: 4.75% 5.9% 3.8%;
+      display: grid;
+      grid-template-rows: .62fr 2.82fr 4.42fr 2.30fr .54fr;
+      gap: 1.35%;
+      background:
+        linear-gradient(90deg, transparent 49.92%, color-mix(in srgb, var(--ink) 4%, transparent) 50%, transparent 50.08%),
+        radial-gradient(circle at 88% 8%, color-mix(in srgb, var(--brand-accent) 16%, transparent), transparent 28%),
+        var(--paper);
+    }
+
+    .onepage::before {
+      content: "";
+      position: absolute;
+      inset: 2.2%;
+      border: 1px solid var(--rule);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .onepage[data-style="bold-launch"] {
+      --surface: var(--brand-primary);
+      background: var(--brand-accent);
+    }
+
+    .onepage[data-style="premium-minimal"] {
+      background: color-mix(in srgb, var(--paper) 96%, white);
+    }
+
+    .onepage[data-style="technical-grid"] {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(var(--rule) 1px, transparent 1px),
+        linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--rule);
+      min-width: 0;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .brand-lockup img {
+      display: block;
+      width: min(25%, 230px);
+      min-width: 150px;
+      max-height: 48px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .edition {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .edition::before {
+      content: "";
+      width: 28px;
+      height: 4px;
+      background: var(--brand-accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(220px, .72fr);
+      gap: 4.5%;
+      align-items: end;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .hero__copy {
+      min-width: 0;
+      align-self: center;
+    }
+
+    .category {
+      margin: 0 0 12px;
+      color: var(--brand-accent);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .headline {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(44px, 5.25vw, 68px);
+      line-height: 1.025;
+      letter-spacing: -.045em;
+      font-weight: 870;
+      text-wrap: balance;
+    }
+
+    .tagline {
+      max-width: 720px;
+      margin: 15px 0 0;
+      font-size: 20px;
+      line-height: 1.48;
+      color: var(--muted);
+    }
+
+    .hero__action {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      padding-left: 26px;
+      border-left: 1px solid var(--rule);
+    }
+
+    .action-kicker {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .primary-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: 100%;
+      min-height: 64px;
+      padding: 0 22px;
+      color: white;
+      background: var(--brand-primary);
+      border: 1px solid color-mix(in srgb, var(--brand-primary) 88%, black);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .primary-cta::after {
+      content: "↗";
+      color: var(--brand-accent);
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .product-stage {
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, .72fr);
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      box-shadow: 0 22px 70px color-mix(in srgb, var(--ink) 10%, transparent);
+    }
+
+    .product-stage::after {
+      content: "";
+      position: absolute;
+      right: -10%;
+      bottom: -38%;
+      width: 48%;
+      aspect-ratio: 1;
+      border: 50px solid color-mix(in srgb, var(--brand-accent) 14%, transparent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .product-visual {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      border-right: 1px solid var(--rule);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--brand-primary) 96%, black), var(--brand-primary));
+    }
+
+    .product-visual img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .concept-stage {
+      position: absolute;
+      inset: 9%;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 9%;
+      color: white;
+    }
+
+    .concept-stage__bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgb(255 255 255 / .25);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .concept-stage__body {
+      display: grid;
+      grid-template-columns: .64fr 1.36fr;
+      gap: 7%;
+      align-items: stretch;
+    }
+
+    .concept-stage__index {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 12%;
+      color: var(--brand-accent);
+      font-size: 96px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      border: 1px solid rgb(255 255 255 / .2);
+    }
+
+    .concept-stage__flow {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .concept-stage__step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 0 18px;
+      border-bottom: 1px solid rgb(255 255 255 / .18);
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .concept-stage__step span {
+      color: var(--brand-accent);
+      font-size: 13px;
+      letter-spacing: .08em;
+    }
+
+    .feature-rail {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-content: center;
+      padding: 7% 7.5%;
+    }
+
+    .feature-rail__label {
+      margin: 0 0 20px;
+      color: var(--brand-accent);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .features {
+      display: grid;
+      gap: 0;
+    }
+
+    .feature {
+      padding: 16px 0 17px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .feature:last-child { border-bottom: 1px solid var(--rule); }
+
+    .feature h2 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+    }
+
+    .feature p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.48;
+    }
+
+    .trust-action {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.38fr) minmax(270px, .62fr);
+      gap: 4.5%;
+      align-items: stretch;
+    }
+
+    .proofs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .proof {
+      min-width: 0;
+      padding: 22px 24px 18px 0;
+    }
+
+    .proof + .proof {
+      padding-left: 24px;
+      border-left: 1px solid var(--rule);
+    }
+
+    .proof__claim {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.18;
+      font-weight: 850;
+      letter-spacing: -.03em;
+    }
+
+    .proof__detail {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.52;
+    }
+
+    .proof__source {
+      display: inline-block;
+      margin-top: 15px;
+      color: var(--brand-accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .1em;
+    }
+
+    .action-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      color: white;
+      background: var(--brand-primary);
+    }
+
+    .action-panel__eyebrow {
+      margin: 0;
+      color: color-mix(in srgb, white 62%, var(--brand-accent));
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .action-panel__label {
+      margin: 0;
+      font-size: 27px;
+      line-height: 1.18;
+      font-weight: 850;
+      letter-spacing: -.03em;
+    }
+
+    .action-panel__url {
+      overflow-wrap: anywhere;
+      color: var(--brand-accent);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .source-note, .generation-note { margin: 0; }
+
+    .generation-note {
+      max-width: 340px;
+      text-align: right;
+    }
+
+    .onepage[data-aspect="16:9"] .concept-stage {
+      inset: 5%;
+      gap: 4%;
+    }
+
+    .onepage[data-aspect="16:9"] .concept-stage__body {
+      grid-template-columns: .5fr 1.5fr;
+      gap: 5%;
+    }
+
+    .onepage[data-aspect="16:9"] .concept-stage__index {
+      padding-top: 8%;
+      font-size: 62px;
+    }
+
+    .onepage[data-aspect="16:9"] .concept-stage__flow {
+      gap: 4px;
+    }
+
+    .onepage[data-aspect="16:9"] .concept-stage__step {
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      padding: 0 10px;
+      font-size: 14px;
+    }
+
+    .onepage[data-aspect="16:9"] .feature-rail {
+      padding: 4% 7%;
+    }
+
+    .onepage[data-aspect="16:9"] .feature-rail__label {
+      margin-bottom: 8px;
+      font-size: 11px;
+    }
+
+    .onepage[data-aspect="16:9"] .feature {
+      padding: 7px 0 8px;
+    }
+
+    .onepage[data-aspect="16:9"] .feature h2 {
+      font-size: 16px;
+    }
+
+    .onepage[data-aspect="16:9"] .feature p {
+      margin-top: 3px;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    @media print {
+      html, body { background: transparent; }
+      .onepage { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <main
+    class="onepage"
+    data-layout="{{LAYOUT}}"
+    data-style="{{STYLE}}"
+    data-aspect="{{ASPECT}}"
+    data-width="{{WIDTH}}"
+    data-height="{{HEIGHT}}"
+  >
+    <header class="topline" data-region="header" data-audit-container>
+      <div class="brand-lockup" data-role="brand">
+        <img src="{{LOGO_DATA_URL}}" alt="{{BRAND_NAME}}">
+      </div>
+      <div class="edition">Product OnePage · {{ASPECT}}</div>
+    </header>
+
+    <section class="hero" data-region="hero" data-audit-container>
+      <div class="hero__copy">
+        <p class="category" data-role="category" data-audit="category">{{CATEGORY}}</p>
+        <h1 class="headline" data-role="headline" data-audit="headline">{{TITLE}}</h1>
+        <p class="tagline" data-role="support" data-audit="support">{{TAGLINE}}</p>
+      </div>
+      <div class="hero__action">
+        <p class="action-kicker">一个明确的产品主张，一条真实可达的下一步。</p>
+        <a class="primary-cta" data-role="cta" data-primary-cta href="{{CTA_URL}}">{{CTA_LABEL}}</a>
+      </div>
+    </section>
+
+    <section
+      class="product-stage"
+      data-region="product"
+      data-role="product-stage"
+      data-audit-container
+      data-authenticity="{{PRODUCT_AUTHENTICITY}}"
+    >
+      <div class="product-visual">{{PRODUCT_VISUAL}}</div>
+      <div class="feature-rail">
+        <p class="feature-rail__label">How it becomes real</p>
+        <div class="features">{{FEATURES_HTML}}</div>
+      </div>
+    </section>
+
+    <section class="trust-action" data-region="proof" data-audit-container>
+      <div class="proofs">{{PROOFS_HTML}}</div>
+      <aside class="action-panel" data-region="action">
+        <p class="action-panel__eyebrow">Next step</p>
+        <p class="action-panel__label">{{CTA_LABEL}}</p>
+        <span class="action-panel__url">{{CTA_URL_TEXT}}</span>
+      </aside>
+    </section>
+
+    <footer class="footer" data-region="footer">
+      <p class="source-note" data-role="source" data-audit="source">{{SOURCE_NOTE}}</p>
+      <p class="generation-note" data-audit="attribution">{{COPYRIGHT}}</p>
+    </footer>
+  </main>
+  <script>window.__PRODUCT_ONEPAGE_READY__ = true;</script>
+</body>
+</html>

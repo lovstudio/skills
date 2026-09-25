@@ -1,6 +1,6 @@
 # 相机素材管家 · Camera Media Keeper
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 将相机存储卡完整转存到 SSD，保留目录和关联文件，并通过 SHA-256 回读确认复制结果。
 

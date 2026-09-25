@@ -11,9 +11,11 @@ compatibility: >
   macOS: uses Palatino, Songti SC, Menlo (pre-installed).
   Linux: uses DejaVu/Liberation/FreeFont/Noto, Noto CJK, Droid Sans Fallback,
   DejaVu Sans Mono, and Noto Emoji when available.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.5.0"
+  version: "1.5.2"
   tags:
     - markdown
     - pdf
@@ -53,63 +55,62 @@ python md2pdf/scripts/md2pdf.py \
   --input report.md \
   --output report.pdf \
   --title "My Report" \
-  --author "Author Name" \
-  --theme warm-academic
+  --author "Author Name"
 ```
 
-All parameters except `--input` are optional — sensible defaults are applied.
+All parameters except `--input` are optional. When no theme is supplied, the
+renderer selects one from the document's content and structure.
 
-## Pre-Conversion Options (MANDATORY)
+## Configuration Resolution (MANDATORY)
 
-**IMPORTANT: You MUST use the `AskUserQuestion` tool to ask these questions BEFORE
-running the conversion. Do NOT list options as plain text — use the tool so the user
-gets a proper interactive prompt. Ask all options in a SINGLE `AskUserQuestion` call.**
+Do not present a full configuration form before every conversion. Resolve each
+setting independently in this order:
 
-Use `AskUserQuestion` with the following template. The tone should be friendly and
-concise — like a design assistant, not a config form:
+1. the user's explicit instruction in the current request, then CLI arguments or document frontmatter;
+2. the user's last explicitly confirmed value from the `lov_any2pdf` preference namespace;
+3. a content-aware decision for the theme, or the documented safe default for non-visual settings.
 
-```
-开始转 PDF！先帮你确认几个选项 👇
+Proceed without asking when this resolves the conversion. Ask at most one concise
+question only when an unresolved choice would materially change the result, such
+as a missing local asset path or permission to generate a new image. Do not ask the
+user to choose from every theme unless they explicitly request the theme catalog.
 
-━━━ 📐 设计风格 ━━━
- a) 暖学术    — 陶土色调，温润典雅，适合人文/社科报告
- b) 经典论文  — 棕色调，灵感源自 LaTeX classicthesis，适合学术论文
- c) Tufte     — 极简留白，深红点缀，适合数据叙事/技术写作
- d) 期刊蓝    — 藏蓝严谨，灵感源自 IEEE，适合正式发表风格
- e) 精装书    — 咖啡色调，书卷气，适合长篇专著/技术书
- f) 中国红    — 朱红配暖纸，适合中文正式报告/白皮书
- g) 水墨      — 纯灰黑，素雅克制，适合文学/设计类内容
- h) GitHub    — 蓝白极简，程序员熟悉的风格
- i) Nord 冰霜 — 蓝灰北欧风，清爽现代
- j) 海洋      — 青绿色调，清新自然
- k) LaTeX 清爽 — pandoc+XeLaTeX 原生排版，无封面无装饰，干净学术风（需装 pandoc+texlive）
- l) 咨询深蓝  — 深海军蓝色块 + 白底 + 大写左对齐标题，麦肯锡 / BCG / Deloitte 研究报告风格
- m) 宋黑阅读  — 宋体正文、黑体层级、舒展行距与适宽打开，适合中文长报告和密集表格
+After the user explicitly confirms or changes a reusable parameter, record that
+value as the latest preference. Reuse it next time when the user is silent. Never
+persist an inferred value as though the user confirmed it, and honor requests to
+reset or ignore saved preferences.
 
-━━━ 🖼 扉页图片（封面之后的全页插图） ━━━
- 1) 跳过
- 2) 我提供本地图片路径
- 3) AI 根据内容自动生成一张
+Reusable parameters include theme, cover/TOC, page size, frontispiece mode,
+watermark text and geometry, image-cover mode, back-cover mode/banner, disclaimer,
+copyright, header, and footer. Revalidate saved file paths before use; if an asset
+no longer exists, ask for a replacement instead of silently substituting one.
 
-━━━ 💧 水印 ━━━
- 1) 不加
- 2) 自定义文字（如 "DRAFT"、"内部资料"）
-    可选调整：字号(默认52)、透明度(0-1)、角度(默认35°)、间距
+### Content-Aware Theme Decision
 
-━━━ 📇 封底物料（名片/二维码/品牌） ━━━
- 1) 跳过
- 2) 我提供图片
- 3) 纯文字信息
+When neither the current request nor the saved preferences specify a theme, read
+the title, opening, headings, document length, code blocks, tables, imagery, and
+publishing context, then select the theme that best serves the article. The
+following are decision cues, not a fixed keyword router:
 
-示例回复："a, 扉页跳过, 水印:仅供学习参考, 封底图片:/path/qr.png"
-直接说人话就行，不用记编号 😄
-```
+| Content character | Good starting theme |
+|-------------------|---------------------|
+| Long Chinese prose, knowledge notes, dense tables | `songti-reading` |
+| Strategy, business, market, or research report | `consulting-navy` |
+| Academic paper with abstract/method/results/references | `ieee-journal` or `classic-thesis` |
+| Code-heavy technical guide or API documentation | `github-light` |
+| Data narrative with charts and metrics | `tufte` |
+| Literary, art, photography, or design essay | `ink-wash` |
+| Formal Chinese policy or institutional document | `chinese-red` |
+| Neutral English prose or print-first document | `paper-classic` |
+
+`warm-academic` remains available when its tone genuinely fits the article, but it
+is never the default merely because the user omitted a style.
 
 ### Mapping User Choices to CLI Args
 
 | Choice | CLI arg |
 |--------|---------|
-| Design style a-m | `--theme` with value from table below (k uses pandoc engine) |
+| Design style | `--theme` with value from table below (`latex-clean` uses pandoc engine) |
 | Frontispiece local | `--frontispiece <path>` |
 | Frontispiece AI | Generate image first, then `--frontispiece /tmp/frontispiece.png` |
 | Watermark text | `--watermark "文字"` |
@@ -120,21 +121,21 @@ concise — like a design assistant, not a config form:
 
 ### Theme Name Mapping
 
-| Choice | `--theme` value | Inspiration |
-|--------|----------------|-------------|
-| a) 暖学术 | `warm-academic` | Skill Publisher design system |
-| b) 经典论文 | `classic-thesis` | LaTeX classicthesis |
-| c) Tufte | `tufte` | Edward Tufte's books |
-| d) 期刊蓝 | `ieee-journal` | IEEE journal format |
-| e) 精装书 | `elegant-book` | LaTeX ElegantBook |
-| f) 中国红 | `chinese-red` | Chinese formal documents |
-| g) 水墨 | `ink-wash` | 水墨画 / ink wash painting |
-| h) GitHub | `github-light` | GitHub Markdown style |
-| i) Nord | `nord-frost` | Nord color scheme |
-| j) 海洋 | `ocean-breeze` | — |
-| k) LaTeX 清爽 | `latex-clean` | pandoc+XeLaTeX 原生排版，无封面 |
-| l) 咨询深蓝 | `consulting-navy` | McKinsey / BCG / Deloitte deep-research report |
-| m) 宋黑阅读 | `songti-reading` | 中文出版物常见的宋体正文 + 黑体标题层级 |
+| Style | `--theme` value | Inspiration |
+|-------|----------------|-------------|
+| 暖学术 | `warm-academic` | Warm editorial-academic palette |
+| 经典论文 | `classic-thesis` | LaTeX classicthesis |
+| Tufte | `tufte` | Edward Tufte's books |
+| 期刊蓝 | `ieee-journal` | IEEE journal format |
+| 精装书 | `elegant-book` | LaTeX ElegantBook |
+| 中国红 | `chinese-red` | Chinese formal documents |
+| 水墨 | `ink-wash` | 水墨画 / ink wash painting |
+| GitHub | `github-light` | GitHub Markdown style |
+| Nord | `nord-frost` | Nord color scheme |
+| 海洋 | `ocean-breeze` | Clean teal editorial palette |
+| LaTeX 清爽 | `latex-clean` | pandoc+XeLaTeX 原生排版，无封面 |
+| 咨询深蓝 | `consulting-navy` | Consulting research reports |
+| 宋黑阅读 | `songti-reading` | 中文出版物常见的宋体正文 + 黑体标题层级 |
 
 ### Handling AI-Generated Frontispiece
 
@@ -239,7 +240,7 @@ arguments take precedence over frontmatter values.
 | `--date` | `date` | Today | Date string |
 | `--version` | `version` | `""` | Version string for cover |
 | `--watermark` | `watermark` | `""` | Watermark text (empty = none) |
-| `--theme` | `theme` | `warm-academic` | Color theme name |
+| `--theme` | `theme` | content-aware `auto` | Color theme name; explicit and saved preferences take precedence |
 | `--theme-file` | — | `""` | Custom theme JSON file path |
 | `--cover` | `cover` | `true` | Generate cover page |
 | `--toc` | `toc` | `true` | Generate table of contents |
@@ -265,7 +266,9 @@ arguments take precedence over frontmatter values.
 ## Themes
 
 Available: `songti-reading`, `warm-academic`, `nord-frost`, `github-light`,
-`solarized-light`, `paper-classic`, `ocean-breeze`, `consulting-navy`.
+`solarized-light`, `paper-classic`, `ocean-breeze`, `monokai-warm`,
+`dracula-soft`, `tufte`, `classic-thesis`, `ieee-journal`, `elegant-book`,
+`chinese-red`, `ink-wash`, and `consulting-navy`.
 
 Each theme defines: page background, ink color, accent color, faded text, border, code background, watermark tint.
 

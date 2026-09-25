@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.4.0"
+version: "0.4.1"
 description: >
   诊断活动行活动的分类与标签配置，找出在分类导航页不可见的根因（Category=0 未分类），
   提供基于 3800+ 个活动真实数据的标签替换建议，并在用户修复后回读排名变化。

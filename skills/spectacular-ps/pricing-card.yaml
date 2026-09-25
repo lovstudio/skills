@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: 0.1.0
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 把经过真实用户迭代的身份保真与环境构图方法做成可复用流程。
+basis: 本地指令、模板、Profile 与对比 CLI 不提供托管算力，作为免费源包使用。
+boundary: 包含修图指导、质量门禁和本地对比排版；不含图像服务费用、人工修图服务、Photoshop 许可证或成片真实性担保。
+review_trigger: 增加托管生成服务、独家素材或人工服务时重新评估；当前不设付费门槛。
+confidence: internal

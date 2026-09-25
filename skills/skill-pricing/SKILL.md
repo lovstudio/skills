@@ -3,9 +3,11 @@ name: lov-skill-pricing
 description: >
   为一个或多个 Agent Skill 生成可解释的 Skill Pricing Card：结合创作者时间与维护成本、用户价值、稀缺性、购买信心和生态潜力，输出建议价、价格区间、渠道策略及证据缺口；触发语包括“给这个 Skill 定价”和 “price this Skill”。
 license: MIT
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.1"
+  version: "0.2.2"
   tags:
     - pricing
     - skill-commerce

@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: 0.1.0
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 复用单个与批量 Skill 命名方法，减少重名、错误覆盖和风格偏离。
+basis: 指令与脚本公开可复用，无托管服务成本；仅有历史任务与本地回放证据，暂不据此对外定价收费。
+boundary: 包含名称建议、可追溯清单与离线结构审计；不含宿主模型费用、商标法律检索、定制人工服务或代发布。
+review_trigger: 加入托管同步、人工命名咨询，或积累独立用户成效证据后复评。
+confidence: internal

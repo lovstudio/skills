@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: "按计划打开备案权威页面，比较上一条状态并追加台账；无变化时静默，状态变化、登录阻塞、补充材料或完成门满足时再通知。"
 owner:
   team: LovStudio

@@ -1,0 +1,55 @@
+schema: skill-manifest/v1
+id: lov-gen-card
+version: "0.2.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-gen-card
+    persist:
+      enabled: true
+      namespace: skills.lov-gen-card
+      records_path: skills.lov-gen-card.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 卡片正文希望使用哪种语言？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 卡片是否需要显示品牌名称？
+      - path: brand.site
+        required: false
+        question: 卡片底部是否需要显示品牌网站？
+      - path: brand.logo
+        aliases:
+          - identity.logo
+        required: false
+        question: 卡片是否需要显示品牌 Logo？
+      - path: skills.lov-gen-card.records.series_name
+        required: false
+        question: 是否有需要长期复用的卡片系列名称？
+      - path: skills.lov-gen-card.records.series_subtitle
+        required: false
+        question: 是否有需要长期复用的卡片系列副标题？
+  preferences:
+    namespace: lov_gen_card
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: skills.lov-gen-card.records.default_scale
+        required: false
+        question: 是否需要长期复用一个默认 PNG 倍率？
+  interaction:
+    ask_missing: true
+    max_questions: 1

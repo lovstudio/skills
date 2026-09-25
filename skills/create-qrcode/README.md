@@ -1,6 +1,6 @@
 # 二维码工坊 · QR Studio
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 把网址、文本或其他 UTF-8 内容生成可扫码验证的二维码 PNG，并跨 session 复用用户
 自己的配色、圆角、尺寸、纠错和海报偏好。默认只有码本体，不带 header、footer、

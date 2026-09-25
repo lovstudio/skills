@@ -1,0 +1,39 @@
+schema: skill-manifest/v1
+id: lov-app-delta-updater
+version: "0.2.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-app-delta-updater
+    persist:
+      enabled: true
+      namespace: skills.lov-app-delta-updater
+      records_path: skills.lov-app-delta-updater.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望用哪种语言呈现更新界面与报告？
+      - path: user.timezone
+        required: false
+        question: 发布与回读时间使用哪个时区？
+  preferences:
+    namespace: lov_app_delta_updater
+    fields:
+      - path: update_channel
+        required: false
+        question: 是否有默认稳定版或预览版更新渠道？
+      - path: delta_policy
+        required: false
+        question: 完整包是否可以作为增量更新失败时的回退？
+  interaction:
+    ask_missing: true
+    max_questions: 1

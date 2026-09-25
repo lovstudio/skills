@@ -1,0 +1,50 @@
+[
+  {
+    "type": "case",
+    "title": "给《手工川 DSH 剪辑成本审计》HTML 加一键导出 PNG",
+    "description": "用户有一个静态数据可视化报表（KPI + SVG 时间线 + 对数条形图 + 明细表），希望加一个导出按钮，把主体内容变成可分享的高分辨率 PNG，且截图与屏幕渲染一致、文字不换行。",
+    "input": {
+      "items": [
+        "用户请求：网页支持基于 modern-screenshot 实现主体内容截图，分辨率适合网络传播",
+        "输入 HTML：output/articles/手工川-dsh-clip-cost-mobile-2026-08-20.html（含内联 SVG 时间线、flex 柱状图、nowrap 表格、CSS 变量明暗主题）"
+      ]
+    },
+    "prompt": "使用 lov-skill-creator 创建并本地安装 lov-integrate-modern-screenshot，把「给网页加截图导出」封装为可复用 skill，补齐真实案例、组合分析、Profile 契约和验证。",
+    "output": {
+      "items": [
+        "scripts/integrate_screenshot.py（integrate / verify / self-test 三个子命令）",
+        "assets/modern-screenshot.js（v4.5.1 内联库，28 KB）",
+        "references/integration-contract.md 与 references/acceptance-checklist.md",
+        "真实页面端到端验证：OK out=1520x2998 node=760x1499 expect=1520x2998"
+      ]
+    },
+    "evidence": {
+      "status": "local_source_created",
+      "limitations": "仅记录本地集成与 headless Chrome 验证；未宣称第三方生产页面上线或人工设计评分。"
+    }
+  },
+  {
+    "type": "case",
+    "title": "为 Art System Card 包豪斯卡片集成 2x PNG 导出",
+    "description": "用户要求把艺术风格卡从低分辨率位图排版升级为 DOM 排版，仅保留 AI 示意图为图片，并支持网页一键导出高分辨率 PNG。",
+    "input": {
+      "items": [
+        "输入 HTML：art.lovstudio.ai/index.source.html（900 × 1350 固定卡牌，含名称、完整示意图、背景、Midjourney Prompt、星级基本信息与小型品牌 Logo）",
+        "截图主体：.art-card；固定宽度 900px；缩放倍数 2"
+      ]
+    },
+    "prompt": "使用 lov-integrate-modern-screenshot 为 Art System Card 第一张包豪斯卡接入与浏览器一致的 PNG 导出，并先验证母版效果再扩展其余 41 张。",
+    "output": {
+      "items": [
+        "art.lovstudio.ai/index.html（modern-screenshot v4.5.1 自包含运行时与导出按钮）",
+        "art.lovstudio.ai/exports/art-system-card-01-bauhaus.png（1800 × 2700 PNG）",
+        "端到端验证：OK out=1800x2700 node=900x1350 expect=1800x2700",
+        "同源 HTTP 导出验证：示意图与 SVG Logo 均进入最终 PNG"
+      ]
+    },
+    "evidence": {
+      "status": "local_prototype_exported",
+      "limitations": "只完成并验证第 01 张包豪斯母版；art.lovstudio.ai 尚未部署，其余 41 张尚未批量生成。"
+    }
+  }
+]

@@ -1,6 +1,6 @@
 # Skill 炼金师 · Skill Alchemist
 
-![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.1-CC785C)
 
 将已经验证过的项目经验蒸馏成可实现的 Agent Skill 蓝图，而不是停留在复盘或机会清单。
 
@@ -8,7 +8,7 @@
 
 ```bash
 ln -s "$(pwd)/skill-distiller-skill" \
-  "$HOME/.codex/skills/sgc-skill-distiller"
+  "$HOME/.codex/skills/lov-skill-distiller"
 ```
 
 ## 使用
@@ -24,7 +24,7 @@ python3 scripts/collect-source-evidence.py /path/to/project \
   --output skill-distillation-evidence.md
 ```
 
-输出的蓝图经确认后，使用 `sgc-skill-creator` 实现并本地安装。
+输出的蓝图经确认后，使用 `lov-skill-creator` 实现并本地安装。
 
 ## 质量门
 

@@ -1,0 +1,49 @@
+from __future__ import annotations
+
+import json
+import os
+import subprocess
+import sys
+import unittest
+from pathlib import Path
+
+
+HARNESS_ROOT = Path(__file__).resolve().parents[1]
+ENV = os.environ.copy()
+ENV["PYTHONPATH"] = str(HARNESS_ROOT / "src")
+MODULE = [sys.executable, "-m", "__PACKAGE_NAME__"]
+
+
+class CoreContractTests(unittest.TestCase):
+    def run_cli(self, *args: str) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(
+            [*MODULE, *args],
+            cwd=Path(__file__).resolve().parent,
+            env=ENV,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+
+    def test_help(self) -> None:
+        result = self.run_cli("--help")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("doctor", result.stdout)
+        self.assertIn("capabilities", result.stdout)
+
+    def test_capabilities_json(self) -> None:
+        result = self.run_cli("--json", "capabilities")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        payload = json.loads(result.stdout)
+        self.assertTrue(payload["ok"])
+        self.assertGreaterEqual(len(payload["data"]["commands"]), 1)
+
+    def test_doctor_json(self) -> None:
+        result = self.run_cli("--json", "doctor")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        payload = json.loads(result.stdout)
+        self.assertTrue(payload["data"]["ready"])
+
+
+if __name__ == "__main__":
+    unittest.main()

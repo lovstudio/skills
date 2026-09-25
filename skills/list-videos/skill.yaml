@@ -1,0 +1,65 @@
+schema: skill-manifest/v1
+id: lov-list-videos
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-list-videos
+    persist:
+      enabled: true
+      namespace: skills.lov-list-videos
+      records_path: skills.lov-list-videos.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要用户身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: workspace.root
+        required: false
+        question: 如果有固定的工作区根目录，请提供路径。
+      - path: skills.lov-list-videos.records.default_scope
+        required: false
+        question: 不指定目录时默认扫当前目录还是全局（current / global）？
+      - path: skills.lov-list-videos.records.global_roots
+        required: false
+        question: 全局扫描要覆盖哪些根目录？留空则用主目录加外接卷。
+      - path: skills.lov-list-videos.records.extra_excludes
+        required: false
+        question: 有没有需要长期跳过的目录名或路径？
+      - path: skills.lov-list-videos.records.extra_extensions
+        required: false
+        question: 有没有需要额外识别为视频的扩展名？
+      - path: skills.lov-list-videos.records.default_format
+        required: false
+        question: 默认用哪种输出格式（table / json / paths / csv）？
+      - path: skills.lov-list-videos.records.default_sort
+        required: false
+        question: 默认按什么排序（mtime / size / path / name / duration）？
+  preferences:
+    namespace: lov_list_videos
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

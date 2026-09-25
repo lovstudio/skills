@@ -69,8 +69,9 @@ RATIOS: dict[str, tuple[int, int]] = {
     "long": (1080, 0),
 }
 
-# `long` grows with the content; three 3:4 screens is the documented ceiling.
-LONG_MAX_HEIGHT = 1440 * 3
+# A single `long` card has no height ceiling: more content keeps extending the same card.
+# The 3:4 screen height is only used to report how many screens a card spans.
+SCREEN_3_4_HEIGHT = 1440
 
 SAFE_AREA = {"x": 88, "top": 96, "bottom": 96, "gap": 40}
 
@@ -536,13 +537,16 @@ MEASURE_JS = r"""
 
   const overflow = [];
   const bars = [];
+  const charts = Array.from(card.querySelectorAll('.chart'));
   card.querySelectorAll('.bar-row').forEach((row) => {
     const value = row.querySelector('.bar-value');
     const label = row.querySelector('.bar-label');
     const parsed = value ? parseFloat(value.textContent) : NaN;
+    const chart = row.closest('.chart');
     bars.push({
       label: label ? label.textContent.trim().slice(0, 40) : '',
       value: Number.isFinite(parsed) ? parsed : null,
+      group: chart ? charts.indexOf(chart) : -1,
     });
   });
 
@@ -646,7 +650,7 @@ MEASURE_JS = r"""
     attribution: attribution ? attribution.textContent.trim() : '',
     page_mark: pageMark ? pageMark.textContent.trim() : '',
     visible_text_length: card.innerText.replace(/\s+/g, '').length,
-    title: (card.querySelector('[data-claim]') || {}).innerText || '',
+    title: (card.querySelector('[data-role="title"]') || {}).innerText || '',
   };
 }
 """
@@ -658,6 +662,16 @@ def open_card_page(page, html_path: Path, width: int, height: int, scale: int) -
     page.wait_for_timeout(120)
     page.evaluate("() => document.fonts && document.fonts.ready")
     page.wait_for_timeout(60)
+
+
+def snap_to_device_pixels(value: float, scale: int) -> float:
+    """Snap a CSS length onto the device-pixel grid.
+
+    A `long` card ends on a fractional height; an element screenshot rounds that box up
+    to a whole CSS pixel, which then misses round(height × scale) by up to one CSS pixel.
+    Capturing an explicitly snapped clip keeps the bitmap exactly at the audited size.
+    """
+    return round(value * scale) / scale
 
 
 def cmd_render(args: argparse.Namespace) -> int:
@@ -686,13 +700,17 @@ def cmd_render(args: argparse.Namespace) -> int:
             raise SystemExit("no [data-card] element to capture")
         page.set_viewport_size({"width": args.width, "height": int(box["height"]) + 40})
         page.wait_for_timeout(60)
-        page.locator("[data-card]").screenshot(path=str(output))
+        clip = {
+            key: snap_to_device_pixels(box[key], args.scale)
+            for key in ("x", "y", "width", "height")
+        }
+        page.screenshot(path=str(output), clip=clip)
         browser.close()
 
     width_px, height_px = png_size(output)
     expected = (int(round(box["width"] * args.scale)), int(round(box["height"] * args.scale)))
-    # A `long` card has a fractional height: the element box and the captured bitmap can
-    # differ by one device pixel, so allow 1px and flag anything larger.
+    # The clip is snapped to the device-pixel grid, so the bitmap should match exactly;
+    # keep a 1px guard for browser rounding.
     ok = all(abs(actual - want) <= 1 for actual, want in zip((width_px, height_px), expected))
     report = {
         "status": "rendered" if ok else "size_mismatch",
@@ -753,21 +771,31 @@ def audit_measurements(m: dict[str, Any], ratio_expected: tuple[int, int] | None
                   f"PNG {image_px[0]}×{image_px[1]}，期望 {expected[0]}×{expected[1]}（scale {scale}，容差 1px）")
 
     if canvas["ratio"] == "long":
-        add_issue(checks, "long_height", "warning", canvas["h"] <= LONG_MAX_HEIGHT,
-                  f"长卡高度 {round(canvas['h'])}px（上限 {LONG_MAX_HEIGHT}px，即三个 3:4 屏；"
-                  "超出应先拆卡或删减）")
+        screens = canvas["h"] / SCREEN_3_4_HEIGHT
+        add_issue(checks, "long_height", "warning", True,
+                  f"长卡高度 {round(canvas['h'])}px（约 {screens:.1f} 个 3:4 屏）：单卡不设高度上限，"
+                  "内容多就继续加长同一张图，用章节小节维持阅读节奏")
 
     bars = [bar for bar in m.get("bars", []) if bar.get("value") is not None]
-    if len(bars) > 1:
-        ordered = all(
-            bars[index]["value"] >= bars[index + 1]["value"]
-            for index in range(len(bars) - 1)
-        )
-        add_issue(checks, "bar_order", "error", ordered,
-                  "条形按数值倒序排列" if ordered else
-                  "条形未按数值倒序："
-                  + " → ".join(f"{bar['label']} {bar['value']:g}" for bar in bars[:6])
-                  + "（排位图必须从大到小，读者靠长度和顺序同时读）")
+    unparsed = [bar for bar in m.get("bars", []) if bar.get("value") is None]
+    add_issue(checks, "bar_value", "error", not unparsed,
+              "条形数值可解析" if not unparsed else
+              "条形数值无法解析：" + "; ".join(f"「{bar['label']}」" for bar in unparsed[:4])
+              + "（数值必须以数字开头，例如「10 起」；单位写在数字后面）")
+    groups: dict[Any, list[dict[str, Any]]] = {}
+    for bar in bars:
+        groups.setdefault(bar.get("group", 0), []).append(bar)
+    out_of_order = [
+        group for group in groups.values()
+        if any(group[index]["value"] < group[index + 1]["value"]
+               for index in range(len(group) - 1))
+    ]
+    add_issue(checks, "bar_order", "error", not out_of_order,
+              f"条形按数值倒序排列（{len(groups)} 个分组各自排序）" if not out_of_order else
+              "条形未按数值倒序："
+              + "; ".join(" → ".join(f"{bar['label']} {bar['value']:g}" for bar in group[:6])
+                          for group in out_of_order[:3])
+              + "（每个分组内部都要从大到小，读者靠长度和顺序同时读）")
 
     tiny = [
         entry for entry in m["text_entries"]
@@ -842,8 +870,8 @@ def audit_measurements(m: dict[str, Any], ratio_expected: tuple[int, int] | None
                   for item in m["safe_violations"][:4]
               ))
 
-    add_issue(checks, "single_claim", "critical", counts["claims"] == 1,
-              f"data-claim 数量 {counts['claims']}（必须为 1）")
+    add_issue(checks, "single_claim", "critical", counts["claims"] <= 1,
+              f"data-claim 数量 {counts['claims']}（最多 1；不写作者总结时可以没有）")
 
     add_issue(checks, "evidence_linkage", "error",
               counts["sources"] >= 1 and counts["encodings"] == counts["encodings_linked"],
@@ -859,13 +887,23 @@ def audit_measurements(m: dict[str, Any], ratio_expected: tuple[int, int] | None
               if footer_ok else f"Logo={logo}")
 
     title_text = (m.get("title") or "").strip()
-    has_number = bool(re.search(r"\d", title_text))
-    judgment_cues = ("应该", "必须", "值得", "才是", "不是", "而是", "其实", "真正",
-                     "反而", "意味着", "只能", "更", "最", "成了", "正在", "决定")
-    add_issue(checks, "title_is_thesis", "warning",
-              not has_number or any(cue in title_text for cue in judgment_cues),
-              "标题是判断句" if not has_number or any(cue in title_text for cue in judgment_cues)
-              else f"标题像事实陈述「{title_text[:24]}」：信息图标题应给出观点或主题，数字留给图表")
+    # 标题只写这张图的作用或主题；这里只保证它不是纯数字/符号或空标题。
+    title_units = 0.0
+    for char in title_text:
+        if not char.strip():
+            continue
+        title_units += 1.0 if ord(char) > 0x2E80 else 0.55
+    add_issue(checks, "title_is_subject", "warning", title_units >= 4,
+              "标题写清了这张图的作用或主题" if title_units >= 4 else
+              f"标题「{title_text[:24]}」缺少主题信息：只写数字或符号不算标题，"
+              "作用或主题要写清楚")
+    filler = ("一图读完", "一图看懂", "一图读懂", "一图速览", "要点全览", "要点速览",
+              "速览", "全览", "干货", "必读", "建议收藏")
+    filler_hits = [word for word in filler if word in title_text]
+    add_issue(checks, "title_filler", "warning", not filler_hits,
+              "标题没有通用废话" if not filler_hits else
+              f"标题含通用废话「{'、'.join(filler_hits)}」：这类词放在任何信息图上都成立，"
+              "要么改成具体主题，要么写清给谁看、回答什么问题")
 
     sensitive = ("db_storage", "sqlcipher", ".db", "wxid_", "/Users/", "~/Library", "Msg_")
     leaked = [entry for entry in m["text_entries"]

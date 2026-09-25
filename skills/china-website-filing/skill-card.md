@@ -45,7 +45,7 @@ Markdown 准备/状态/验收报告与追加式 Markdown 台账；CLI 同时输�
 
 ## Skill Version
 
-0.1.0
+0.2.1
 
 ## Ethical Considerations
 

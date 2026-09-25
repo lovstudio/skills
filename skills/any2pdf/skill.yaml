@@ -1,12 +1,28 @@
 schema: skill-manifest/v1
 id: lov-any2pdf
-version: "1.5.0"
+version: "1.5.2"
 runtime: skill-runtime/v1
 context:
   profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+    - user
+    - brand
+    - preferences
+    - skills.lov-any2pdf
+    persist:
+      enabled: true
+      namespace: skills.lov-any2pdf
+      records_path: skills.lov-any2pdf.records
+      write_policy: direct-user-statement
+      atomic: true
     fields:
     - path: identity.name
-      required: true
+      aliases:
+      - user.name
+      - brand.name
+      required: false
       question: 如果本次输出需要品牌身份，请提供品牌名称。
     - path: identity.logo
       required: false
@@ -23,6 +39,63 @@ context:
     - path: user.timezone
       required: false
       question: 需要使用哪个时区处理日期和时间？
+    - path: render.theme
+      required: false
+      question: 是否要固定使用某个 PDF 主题？留空时会按文章内容自主选择。
+    - path: render.cover
+      required: false
+      question: 是否默认生成封面？
+    - path: render.toc
+      required: false
+      question: 是否默认生成目录？
+    - path: render.page_size
+      required: false
+      question: 默认使用 A4 还是 Letter？
+    - path: render.frontispiece_mode
+      required: false
+      question: 扉页图片默认跳过、复用本地图片，还是按内容生成？
+    - path: render.frontispiece_path
+      required: false
+      question: 如果复用本地扉页图片，请提供路径。
+    - path: render.watermark_text
+      required: false
+      question: 默认水印文字是什么？留空表示不加水印。
+    - path: render.watermark_size
+      required: false
+      question: 默认水印字号是多少？
+    - path: render.watermark_opacity
+      required: false
+      question: 默认水印透明度是多少？
+    - path: render.watermark_angle
+      required: false
+      question: 默认水印角度是多少？
+    - path: render.watermark_spacing_x
+      required: false
+      question: 默认水印横向间距是多少？
+    - path: render.watermark_spacing_y
+      required: false
+      question: 默认水印纵向间距是多少？
+    - path: render.image_cover
+      required: false
+      question: 是否默认把扉页图片作为满版封面？
+    - path: render.back_cover_mode
+      required: false
+      question: 封底默认跳过、使用图片，还是使用纯文字？
+    - path: render.banner_path
+      required: false
+      question: 如果复用封底图片，请提供路径。
+    - path: render.disclaimer
+      required: false
+      question: 默认封底声明是什么？
+    - path: render.copyright
+      required: false
+      question: 默认版权信息是什么？
+    - path: render.header_title
+      required: false
+      question: 默认页眉标题是什么？
+    - path: render.footer_left
+      required: false
+      question: 默认页脚左侧文字是什么？
   interaction:
     ask_missing: true
     max_questions: 1

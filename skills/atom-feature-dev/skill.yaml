@@ -1,0 +1,64 @@
+schema: skill-manifest/v1
+id: lov-atom-feature-dev
+version: "0.2.2"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-atom-feature-dev
+    persist:
+      enabled: true
+      namespace: skills.lov-atom-feature-dev
+      records_path: skills.lov-atom-feature-dev.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要用户身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要品牌身份，请提供品牌名称。
+      - path: brand.site
+        required: false
+        question: 如果需要品牌官网，请提供地址。
+      - path: brand.tone
+        required: false
+        question: 如果已有品牌语气或审美关键词，请提供它们。
+      - path: workspace.project_roots
+        required: false
+        question: 如果当前目录不是目标项目，请提供目标项目路径。
+      - path: skills.lov-atom-feature-dev.records.default_surfaces
+        required: false
+        question: 哪些分发形态需要作为长期默认值？
+      - path: skills.lov-atom-feature-dev.records.profile_strategy
+        required: false
+        question: 是否已有需要长期沿用的 Profile Preset 规则？
+  preferences:
+    namespace: lov_atom_feature_dev
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

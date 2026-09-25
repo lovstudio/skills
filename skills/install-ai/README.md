@@ -1,12 +1,12 @@
 # AI 接入助手 · AI Integrator
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 为 App 快速加入可上线的 AI 功能，并在本地 Agent Client、MaaS 和混合模式之间选择合适通道。
 
 ## 本地安装
 
-将目录链接到本地 Agent Skills 目录，链接名为 `sgc-install-ai`。首次执行会从当前项目和共享 profile 推断模型偏好；显式项目需求覆盖已保存偏好。
+将目录链接到本地 Agent Skills 目录，链接名为 `lov-install-ai`。首次执行会从当前项目、个人配置和显式需求解析模型偏好；显式项目需求覆盖已保存偏好。
 
 ## 使用
 

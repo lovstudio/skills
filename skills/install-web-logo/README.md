@@ -1,6 +1,6 @@
 # 网站 Logo 助手 · Website Logo Setup
 
-![Version](https://img.shields.io/badge/version-1.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.2.3-CC785C)
 
 将正式 Logo 接入 favicon、PWA manifest、网页头部和相关组件。
 

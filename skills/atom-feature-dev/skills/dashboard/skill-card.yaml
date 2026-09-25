@@ -1,0 +1,86 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.2"
+description: "提供可运行 Atom Workbench，读取真实 manifest、Profile、surface 运行结果与运营证据，完成切换、执行、对比和 Review。"
+owner:
+  team: "LovStudio"
+  contact: "Skill source maintainers"
+license:
+  name: MIT
+  terms: "允许使用、修改与再分发；目标项目遵循自身许可证。"
+  url: "../../../LICENSE"
+use_case:
+  audience: "使用 lov-atom-feature-dev 的产品与工程团队"
+  scenario: "完整 atom feature 管线中的 Atom Feature Dashboard 阶段"
+  tasks:
+    - "实现 atom index、Run、Compare 与 Evidence"
+deployment:
+  geography: global
+  environments:
+    - "local target repository"
+requirements:
+  credentials: "none for this module"
+  dependencies:
+    - "root atom feature manifest"
+  runtime:
+    - "Python 3.8 or newer"
+    - "target project toolchain"
+risks:
+  - risk: "手填状态会让面板把实现或构建误报为验证和发布。"
+    mitigation: "状态只来自 manifest、测试报告和运行回读，verified 与 released 需要证据。"
+references:
+  - title: "Module instructions"
+    path: "SKILL.md"
+  - title: "Companion Dashboard"
+    path: "../../dashboard/README.md"
+output:
+  types:
+    - "可运行 Dashboard route、loopback bridge、data adapter、组件与真实交互证据"
+  formats:
+    - "source code or structured files"
+    - "verification report"
+  parameters:
+    - "target repository"
+    - "approved atom feature manifest"
+  validation:
+    - "module workflow evidence"
+    - "root manifest validation"
+    - "HTTP workspace and surface-run selftest"
+    - "headless Chrome desktop run and 390px responsive verification"
+    - "file URL preview without failed resource requests or console errors"
+  description: "可运行 Atom Workbench、受限本地 bridge 与真实交互证据"
+ethical_considerations: "保护秘密和用户 Profile，不虚构案例、分数、运行或发布状态。"
+dimensions:
+  - id: state-truth
+    label: "边界"
+    description: "模块是否只拥有声明的原子结果。"
+    evidence: "Module instructions define the ownership boundary; runtime score awaits a target-project case."
+    score: null
+  - id: debug-usability
+    label: "正确性"
+    description: "制品是否遵守共享 contract 与目标项目真实技术栈。"
+    evidence: "The bundled HTTP selftest and headless Chrome check verify workspace rendering, a manifest-declared SDK command, exit 0, and a 390px layout without horizontal overflow; target-project UI evidence remains separate."
+    score: null
+  - id: profile-visibility
+    label: "证据"
+    description: "状态是否由可回读制品、命令或运行结果支持。"
+    evidence: "The module requires artifact-level evidence before verified status."
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "作为自包含 Atom Feature Kit 的内嵌模块免费提供。"
+  boundary: "只包含本模块工作流，不包含外部发布、托管或定制服务。"
+  review_trigger: "根 Kit 商业模式或维护成本发生变化时复评。"
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-planned
+    - channel: skillpay
+      status: not-planned
+  free:
+    - channel: github
+      status: bundled-local-only
+    - channel: lovstudio
+      status: bundled-local-only

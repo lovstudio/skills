@@ -1,0 +1,24 @@
+[
+  {
+    "type": "case",
+    "title": "将第五期活动策划案同步为可通过链接阅读的飞书知识库文档",
+    "description": "把本地 Markdown 策划案写入指定飞书知识空间，修正在线标题，迁入 Wiki，并分别回读正文、节点位置和公开权限。",
+    "input": {
+      "items": [
+        "手工川-第五期策划案-2026-08-30-v0.1.md",
+        "目标知识空间：手工川 AI 创造营 内培资料",
+        "目标链接权限：anyone_readable"
+      ]
+    },
+    "prompt": "创建 lov-publish-feishu-doc，并将本策划案同步到我们的手工川 AI 创造营知识库，允许所有获得链接的人查看。",
+    "output": {
+      "items": [
+        "Wiki 文档：https://lovstudio.feishu.cn/wiki/N8FdwJekwiFhZKkTQD3cDn0NnZg",
+        "节点回读确认 space_id=7642202677899742410、obj_type=docx、标题正确",
+        "正文回读确认 14 个正文标题、51 行表格、4 个公开网址、7 段引用及附录关键文本均保留",
+        "权限回读确认 external_access=true、link_share_entity=anyone_readable",
+        "未登录命令行访问被引导至飞书登录页，因此不额外声称无需登录匿名访问"
+      ]
+    }
+  }
+]

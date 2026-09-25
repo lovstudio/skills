@@ -1,0 +1,20 @@
+[
+  {
+    "type": "case",
+    "title": "把当前 Claude Code 会话转成公开 Lovstudio 分享链接",
+    "description": "在 Yoda 工作树里跑完一次 skill 创建会话后，把整段 Agent 对话转成一条可公开打开的 Lovstudio 页面 URL，并烘焙 concise 显示档。",
+    "input": {
+      "items": [
+        "自动探测当前会话 transcript: $HOME/.claude/projects/-Users-mark-lovstudio-coding-yoda--worktrees-5sdbv/0bf8fde9-2287-4748-ad46-e92b6f5d16ff.jsonl",
+        "会话包含 user 与 assistant 两类记录，共 37 条有效对话块"
+      ]
+    },
+    "prompt": "把这个 session 转成一条可公开分享的 Lovstudio 链接，显示档用 concise。",
+    "output": {
+      "items": [
+        "返回形如 https://lovstudio.ai/yoda/session/yss_xxx?detail=concise 的分享 URL",
+        "上传 payload 通过 yodaSessionShareUploadSchema 严格校验，role/format/timestamp 满足服务端约束"
+      ]
+    }
+  }
+]

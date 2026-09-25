@@ -1,6 +1,6 @@
 # 知识入库 · Knowledge Capture
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 将用户指定信息保存为带分类、标签和来源的知识文档及索引。
 

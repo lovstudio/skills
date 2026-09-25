@@ -1,0 +1,21 @@
+[
+  {
+    "type": "case",
+    "title": "Vmux development workspace to locally installed notarized macOS app",
+    "description": "A Tauri and React desktop service-control project needed to move from a development workspace to a locally installed macOS application without creating any external release. The result had to include a real production build, native tests, signing and notarization checks, and a recoverable replacement of the previously installed app.",
+    "input": {
+      "items": [
+        "A Tauri 2, React, TypeScript, and Vite desktop project with its existing local application bundle not running.",
+        "A request to install the current verified changes locally while keeping external publication out of scope."
+      ]
+    },
+    "prompt": "Install the current Vmux build into local Applications, verify the production artifact, and do not publish it externally.",
+    "output": {
+      "items": [
+        "A version 0.1.1 macOS application bundle created by the Tauri production build.",
+        "Eighteen native tests passed; the bundle passed codesign, Gatekeeper, and notarization stapling checks.",
+        "The installed executable digest matched the staged production bundle, while the previous local application was retained in a recoverable location."
+      ]
+    }
+  }
+]

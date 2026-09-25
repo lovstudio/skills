@@ -14,7 +14,7 @@ compatibility: >-
   canonical source.
 metadata:
   author: Lovstudio
-  version: "0.3.1"
+  version: "0.3.2"
   tags:
     - dsh-plugin
     - publisher

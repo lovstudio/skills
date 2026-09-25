@@ -1,0 +1,186 @@
+[
+  {
+    "type": "case",
+    "version": "0.2.0",
+    "evidence_schema": "app-runtime-evidence/v1",
+    "title": "Yoda 桌面端周期同步扇出审计",
+    "platform_family": "desktop",
+    "runtime": "electron",
+    "adapter_set": [
+      "electron-process-tree",
+      "renderer-event-path",
+      "runtime-database-inventory",
+      "tmux-server-inventory",
+      "high-frequency-process-sampler"
+    ],
+    "description": "Yoda 是 App Runtime Audit 的首个校准案例。在不终止会话或删除资源的前提下，把长运行卡顿与 task inventory、完成事件、task 级 IPC、Git remote 读取和 tmux 资源图连接起来；案例数字不作为其他客户端的默认预算或门槛。",
+    "input": {
+      "items": [
+        "实际运行的 Yoda desktop build 与历史源码调用链",
+        "最大已挂载项目的一次 task records 现场 inventory",
+        "canonical tmux server 的一次 session 现场 inventory",
+        "一次周期同步完成事件及其 task 级处理路径",
+        "补丁后下一次 8-remotes 同步的高频进程采样"
+      ]
+    },
+    "prompt": "审计 Yoda 桌面端越用越卡的放大链，固定 platform_family=desktop、runtime=electron，区分有边界的现场 inventory、源码事实、近似推导和后续测量，画出 task、terminal、tmux、process 与 worktree 的资源关系；不要执行清理，也不要把 Yoda 数字泛化成阈值。",
+    "output": {
+      "items": [
+        "资源图：project → task → terminal/session → PTY/tmux → process，以及 repository → worktree",
+        "有边界的现场 inventory：最大已挂载项目 916 条 task records；canonical tmux server 61 个 sessions",
+        "近似模型：916 task records × 每 task 1 次 IPC ≈ 916 IPC",
+        "近似模型：约 916 RPC × 每 RPC 2 次 Git remote 读取 ≈ 1,832 Git subprocess work items",
+        "后续测量：8-remotes 同步约 4 秒内 600 samples，观察到 15 个 unique Git subprocess，peak concurrency 5"
+      ],
+      "evidence": [
+        {
+          "id": "yoda-project-task-inventory",
+          "stage": "context",
+          "kind": "measurement",
+          "value": 916,
+          "unit": "task_records",
+          "statement": "最大已挂载项目的一次只读 inventory 包含 916 条 task records，其中 33 active、883 archived。",
+          "provenance": {
+            "build_ref": "Yoda pre-290fbc48 runtime",
+            "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#project-task-count",
+            "observed_at": "2026-08-09 audit snapshot",
+            "workload_id": "yoda-large-project-periodic-sync-v1",
+            "sample_window": "single read-only aggregate of the largest mounted project",
+            "sampler": "runtime database inventory grouped by archived_at"
+          },
+          "boundary": "Largest mounted project only; this is not a count for every Yoda project or a runtime-store measurement."
+        },
+        {
+          "id": "yoda-tmux-session-inventory",
+          "stage": "context",
+          "kind": "measurement",
+          "value": 61,
+          "unit": "sessions",
+          "statement": "canonical tmux server 的一次只读 inventory 包含 61 个 sessions。",
+          "provenance": {
+            "build_ref": "Yoda pre-290fbc48 runtime",
+            "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#tmux-sessions-preserved",
+            "observed_at": "2026-08-09 reclamation audit snapshot",
+            "workload_id": "yoda-resource-inventory-v1",
+            "sample_window": "single read-only server snapshot",
+            "sampler": "tmux -L yoda list-panes inventory and descendant process graph"
+          },
+          "boundary": "Session count only; it does not classify any session as leaked, idle, orphaned or reclaimable."
+        },
+        {
+          "id": "yoda-per-task-refresh-path",
+          "stage": "before",
+          "kind": "code_fact",
+          "statement": "历史完成事件沿 resident-task 路径逐项处理，并进入 task 级 remote read。",
+          "provenance": {
+            "build_ref": "Yoda pre-change source path; exact baseline commit was not retained",
+            "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#pr-ipc-per-refresh-wave",
+            "observed_at": "source review during the historical Yoda audit",
+            "workload_id": "repository-sync-completion-refresh",
+            "sample_window": "not applicable to source inspection",
+            "sampler": "source call-path review"
+          }
+        },
+        {
+          "id": "yoda-ipc-per-refresh-inference",
+          "stage": "before",
+          "kind": "inference",
+          "value": 916,
+          "unit": "approximate_calls",
+          "statement": "约 916 IPC 来自 task inventory 与历史逐项刷新路径的乘法模型，不是直接 trace 计数。",
+          "provenance": {
+            "build_ref": "Yoda pre-change source path; exact baseline commit was not retained",
+            "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#pr-ipc-per-refresh-wave",
+            "observed_at": "derived during the historical Yoda audit",
+            "workload_id": "one-repository-sync-completion-refresh",
+            "sample_window": "one modeled completion event",
+            "sampler": "source-derived fan-out model"
+          },
+          "derivation": {
+            "inputs": [
+              "916 task records from yoda-project-task-inventory",
+              "one task-level IPC per resident-task path from yoda-per-task-refresh-path"
+            ],
+            "formula": "916 task records × 1 IPC per task path ≈ 916 IPC",
+            "assumptions": [
+              "all inventoried task records were resident consumers for the modeled event",
+              "the modeled completion event matched the project and scheduled one refresh per consumer"
+            ],
+            "rounding": "directional approximation",
+            "falsifier": "A trace of the pre-change build shows a bounded project-level request or fewer task-level calls."
+          }
+        },
+        {
+          "id": "yoda-git-subprocess-work-inference",
+          "stage": "before",
+          "kind": "inference",
+          "value": 1832,
+          "unit": "approximate_work_items",
+          "statement": "约 1,832 Git subprocess work items 来自两层源码乘法模型，不是直接进程 trace 计数。",
+          "provenance": {
+            "build_ref": "Yoda pre-change source path; exact baseline commit was not retained",
+            "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#git-subprocesses-per-sync",
+            "observed_at": "derived during the historical Yoda audit",
+            "workload_id": "one-repository-sync-completion-refresh",
+            "sample_window": "one modeled completion event",
+            "sampler": "source-derived fan-out model"
+          },
+          "derivation": {
+            "inputs": [
+              "approximately 916 modeled task-level RPCs",
+              "two repeated Git remote reads per modeled RPC"
+            ],
+            "formula": "approximately 916 RPCs × 2 Git remote reads ≈ 1,832 subprocess work items",
+            "assumptions": [
+              "each modeled RPC reaches both historical remote-read call sites",
+              "overlapping completion events and cache effects are excluded from the estimate"
+            ],
+            "rounding": "directional approximation",
+            "falsifier": "A pre-change process trace or command instrumentation observes bounded work that does not scale with task count."
+          }
+        },
+        {
+          "id": "yoda-post-change-unique-git-subprocesses",
+          "stage": "after",
+          "kind": "measurement",
+          "value": 15,
+          "unit": "unique_subprocesses",
+          "statement": "补丁后的下一次 8-remotes 同步观察到 15 个 unique Git subprocess，peak concurrency 为 5。",
+          "provenance": {
+            "build_ref": "Yoda v0.18.10 / commit 290fbc48c713163f20bd6f956e80e15d00dfa357",
+            "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json#git-subprocesses-per-sync",
+            "observed_at": "2026-08-09 post-change runtime window",
+            "workload_id": "yoda-large-project-periodic-sync-v1",
+            "sample_window": "600 samples at 100 ms across 8 remote synchronizations; approximately 4 seconds active",
+            "sampler": "macOS process inventory filtered to Git descendants"
+          },
+          "comparison": {
+            "against": "yoda-git-subprocess-work-inference",
+            "quality": "directional",
+            "note": "The baseline is inferred work items while the later value is a unique runtime process count under a post-change workload; the report must suppress an exact delta."
+          },
+          "threshold_context": {
+            "threshold": null,
+            "threshold_source": "No Yoda product threshold was declared for this audit measurement."
+          }
+        }
+      ],
+      "threshold_policy": {
+        "portable_default": null,
+        "statement": "Yoda case values calibrate evidence semantics only. Every target App must declare its own workload, sampler, SLO and threshold."
+      }
+    },
+    "status": "diagnosed",
+    "allowed_terminal_states": [
+      "diagnosed",
+      "blocked"
+    ],
+    "boundaries": [
+      "没有把 61 个 tmux sessions 自动判为泄漏、孤儿或可回收资源",
+      "没有执行 kill、worktree remove、缓存重置或递归目录删除",
+      "916/61 是 2026-08-09 的有边界 inventory；保留了审计日期但没有墙钟时刻",
+      "约 916/1,832 是 inference；15 是后续 measurement，不能计算精确 delta 或百分比",
+      "Yoda 的任何数字都不是 Electron、桌面端或其他客户端的通用 threshold"
+    ]
+  }
+]

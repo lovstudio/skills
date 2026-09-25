@@ -1,0 +1,52 @@
+{
+  "schema": "lov-repost-wechat-article/case-evidence-v1",
+  "caseId": "schuang-shanghai-2026-forward",
+  "observedAt": "2026-08-31T02:24:56Z",
+  "source": {
+    "title": "S创上海2026全嘉宾Loading…100%",
+    "account": "S创Slush",
+    "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTg1OTg4NA==&mid=2247504398&idx=1&sn=43d9b9b2a499dbfbc32497c613014407&chksm=ced4849db435e460ddedc41f1e5b6910505fb1f6fefa12b63040d88a602c070089a08ce96963",
+    "normalizedVisibleTextSha256": "df3dc7abecf32482f9e18d11adaca46cf30c4b99aa14ee01da97072f3c07c7b0",
+    "normalizedVisibleTextChars": 2091,
+    "imageCount": 14
+  },
+  "edition": {
+    "articleSha256": "5f2cbd1638eeae1dbf83703300c97dd39471767f60648a07d9d874f4eeb31b81",
+    "lovpenHtmlSha256": "caecbc18252f57455aa2c78f0f2c61656191874c7a3e86713a6084c8e34add0e",
+    "addedBlocks": [
+      "opening-hero",
+      "publisher-intro",
+      "source-attribution",
+      "publisher-outro",
+      "brand-endcap"
+    ],
+    "copyrightMode": "reprint",
+    "originalClaimed": false
+  },
+  "remote": {
+    "state": "draft_created",
+    "published": false,
+    "imageCount": 15,
+    "contentBytes": 468038,
+    "contentSha256": "e767e2c224996524a5c126ffe7b80ca2fb7325bfc9ce65576fb6a41219ab7d9c",
+    "receiptSha256": "8f70115f46a3b51be892db3f2b92df86b40e2fefe13566cf3f9fa3135ae1264b",
+    "remoteFidelityVerified": true,
+    "sourceTextMatched": true,
+    "wechatSanitization": {
+      "removedAnchorWrappers": 1,
+      "removedPositionProperties": 1,
+      "otherUnexpectedChanges": 0
+    }
+  },
+  "operationalLearning": {
+    "duplicateDraftRiskObserved": true,
+    "cause": "首轮草稿在 mediaId 写入收据前进入远端保真失败，无法精确清理未验收草稿。",
+    "gate": "取得 mediaId 后立即持久化诊断状态；远端审计失败时不再次 draft/add。"
+  },
+  "privacy": {
+    "privateChatContentIncluded": false,
+    "contactIdentifiersIncluded": false,
+    "credentialValuesIncluded": false
+  }
+}
+

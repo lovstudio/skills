@@ -1,6 +1,6 @@
 # Tauri 图标助手 · Tauri Icon Setup
 
-![Version](https://img.shields.io/badge/version-4.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-4.1.2-CC785C)
 
 把已确认 Logo 接入 Tauri 包图标和托盘并核验生成资源。
 

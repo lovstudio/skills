@@ -1,6 +1,6 @@
 # 代码审阅官 · Code Reviewer
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 审查实际差异中的正确性、安全和维护风险并给出可定位意见。
 

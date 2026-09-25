@@ -1,6 +1,6 @@
 # 图解文档 · Document Visuals
 
-![Version](https://img.shields.io/badge/version-2.6.2-CC785C)
+![Version](https://img.shields.io/badge/version-2.6.3-CC785C)
 
 > 为md文档智能添加插图，提升可读性
 

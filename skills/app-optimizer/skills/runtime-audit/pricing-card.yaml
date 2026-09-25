@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "用跨桌面、移动端与 Web 的证据分层、资源图和扇出公式减少错误归因与无效性能改造。"
+basis: "核心审计方法、组合式 adapter 选择、共享证据契约和本地标准库脚本以免费源码形式提供。"
+boundary: "包含 kit 内只读审计、报告规范和本地证据归一化；不包含生产访问、专有 profiler、项目专属 adapter 实现、补丁实施、托管服务或性能保证。"
+review_trigger: "增加托管采样、专有平台 adapter、现场实施、付费 SKU 或承诺响应时效时重新评估价格与渠道。"
+confidence: evidence-backed-local

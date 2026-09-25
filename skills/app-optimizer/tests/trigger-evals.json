@@ -1,0 +1,50 @@
+{
+  "schema": "lov-trigger-evals/v1",
+  "note": "Repository-owned manual routing fixture; Skill Creator validates hygiene but does not execute semantic trigger routing.",
+  "cases": [
+    {
+      "input": "这个 Electron 软件越用越卡，帮我查 IPC、PTY、tmux、Agent session 和 worktree 为什么不释放。",
+      "expected": {"activate": true, "pipeline": "optimize-runtime", "platform_family": "desktop"}
+    },
+    {
+      "input": "iPhone 真机列表滚动掉帧、切后台后耗电，请固定 release build 和脚本做 Instruments 前后对照。",
+      "expected": {"activate": true, "pipeline": "optimize-runtime", "platform_family": "mobile"}
+    },
+    {
+      "input": "Our React Native Android app keeps waking in the background. Audit JS/native bridge work, WorkManager, process death and restore on a real device.",
+      "expected": {"activate": true, "pipeline": "optimize-runtime", "platform_family": "cross-platform-mobile"}
+    },
+    {
+      "input": "只读分析这个 Tauri 客户端的 WebView、Rust core 和 sidecar CPU 峰值，先不要改代码。",
+      "expected": {"activate": true, "pipeline": "audit-only", "platform_family": "desktop"}
+    },
+    {
+      "input": "The PWA patch is ready. Verify long tasks, worker requests, BFCache restore and hidden-tab polling against the frozen Chrome workload.",
+      "expected": {"activate": true, "pipeline": "verify-change", "platform_family": "web-pwa"}
+    },
+    {
+      "input": "Review this resumable cache and external session reclamation design for ABA races and fail-open cleanup.",
+      "expected": {"activate": true, "pipeline": "review-reclamation", "platform_family": "generic"}
+    },
+    {
+      "input": "把首页按钮换成蓝色。",
+      "expected": {"activate": false, "reason": "ordinary UI change without a runtime performance objective"}
+    },
+    {
+      "input": "只跑一次 Lighthouse 并把图片压小。",
+      "expected": {"activate": false, "reason": "narrow web audit and asset task, not app runtime optimization"}
+    },
+    {
+      "input": "优化数据库服务器和 CDN 成本，不涉及客户端。",
+      "expected": {"activate": false, "reason": "server and infrastructure optimization is out of scope"}
+    },
+    {
+      "input": "马上强杀所有进程并递归删除全部缓存和 worktree。",
+      "expected": {"activate": false, "reason": "destructive cleanup requires a dedicated precisely authorized workflow"}
+    },
+    {
+      "input": "优化一下代码。",
+      "expected": {"activate": false, "reason": "no concrete app symptom or reproducible workload"}
+    }
+  ]
+}

@@ -1,9 +1,11 @@
 ---
 name: lov-video-chapter
 description: Turn SRT/VTT subtitles and source videos into 3–5 semantic chapters, an editable React chapter-bar project, a transparent ProRes overlay, a burned-in MP4, and editor-ready packages. Use for subtitle chaptering, video segmentation, chapter progress bars, 剪映/CapCut chapter overlays, video chapter rendering, or requests such as “基于字幕进行视频分段”, “生成章节进度条”, “把章节条压进视频”, and “create video chapters from subtitles”.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: lovstudio-contributors
-  version: "0.3.0"
+  version: "0.3.1"
   tags: video chapters subtitle editing rendering
 ---
 

@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.2.0"
+version: "0.3.1"
 description: "从真实发布场景出发，把受众、品牌角色、组件惯例和信息可见性转成可直接使用的公众号、网站、App、策划案与海报文案，并识别应当删除的多余文字。"
 owner:
   team: "LovStudio"

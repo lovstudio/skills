@@ -1,6 +1,6 @@
 # 技术选型顾问 · Tech Selection Advisor
 
-![Version](https://img.shields.io/badge/version-2.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.0.2-CC785C)
 
 根据软件需求比较复用策略并输出有来源的技术选型与研发计划。
 

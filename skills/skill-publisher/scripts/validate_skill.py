@@ -27,6 +27,7 @@ SOURCE_FRONTMATTER_KEYS = {
     "license",
     "compatibility",
     "allowed-tools",
+    "depends_on",
     "metadata",
 }
 WORKBUDDY_FRONTMATTER_KEYS = {
@@ -174,6 +175,17 @@ def validate_frontmatter(
         errors.append(f"{path}: body is empty")
 
     if target == "source":
+        dependencies = data.get("depends_on", [])
+        if not isinstance(dependencies, list):
+            errors.append(f"{path}: depends_on must be a list")
+        else:
+            for dependency in dependencies:
+                if not isinstance(dependency, str) or not NAME_RE.fullmatch(
+                    dependency
+                ):
+                    errors.append(
+                        f"{path}: depends_on entries must be kebab-case Skill IDs"
+                    )
         metadata = data.get("metadata")
         if not isinstance(metadata, dict):
             errors.append(f"{path}: metadata must be a mapping")

@@ -1,0 +1,61 @@
+[
+  {
+    "type": "case",
+    "title": "Convert a real WeChat Channels editor component into Lovpen Markdown and native HTML",
+    "description": "A user supplied a full editor-generated mp-common-videosnap component and asked for a compact DSL that Lovpen could store and later restore. A redacted semantic fixture was derived from that real input for the portable Skill source, then rendered into marked Markdown and HTML documents. The original local input was also exercised without being copied into the Skill.",
+    "input": {
+      "source": "cases/fixtures/wechat-channel-component.html",
+      "provenance": "Redacted semantic fixture derived from the user-provided 78757-byte component DOM",
+      "format": "UTF-8 HTML",
+      "bytes": 499,
+      "sha256": "8f6d848b09256c159a3ac808d77c960802d46d84630f557a10819fcb3bab477c",
+      "characteristics": [
+        "one mp-common-videosnap",
+        "all 11 native WeChat attributes",
+        "Chinese nickname and description",
+        "HTTP cover and avatar URLs"
+      ]
+    },
+    "prompt": "给定这个视频号组件 DOM，生成可写入 Markdown 的 Lovpen DSL，同时生成可写入 HTML 的原生视频号组件，并验证标记前后内容不变。",
+    "output": {
+      "markdown_artifact": "cases/outputs/article-with-channel.md",
+      "markdown_file_bytes": 399,
+      "markdown_file_sha256": "1fe03560e38deff8a435da8612cbf1c86cc84e50f4db2a7f33e0f83beb3830ea",
+      "canonical_dsl_bytes": 289,
+      "canonical_dsl_sha256": "ea351ffe2f113d52d777be1691e1ae3fca4272ca105ee9b7562c6e9f97304bec",
+      "html_artifact": "cases/outputs/article-with-channel.html",
+      "html_file_bytes": 1608,
+      "html_file_sha256": "0041e9c8da1b2f0268c7066abb5c411a36cf5d1c04e58ce1d36f7ab8bab17745",
+      "native_fragment_bytes": 1357,
+      "native_fragment_sha256": "8820e96fe049c8f73fdc5c4bf251646905362d0e196662f91783b80250904f92",
+      "postconditions": [
+        "one canonical Lovpen directive in the Markdown artifact",
+        "one native mp-common-videosnap in the HTML artifact",
+        "11 key WeChat attributes preserved",
+        "declarative Shadow DOM template present",
+        "insertion marker removed exactly once",
+        "surrounding Markdown and HTML content preserved"
+      ]
+    },
+    "evidence": {
+      "full_user_component_bytes": 78757,
+      "full_user_component_dsl_bytes": 962,
+      "full_user_component_dsl_sha256": "6d8163255e54e1956aca8fb0d946913dafbc5c6495db099021cff17059edc376",
+      "full_user_component_native_html_bytes": 2558,
+      "full_user_component_native_html_sha256": "bf13cbc564098967d406131b78d09824979baba67f030f4c2608e9473217c2a3",
+      "focused_tests": "6 of 6 passed",
+      "real_full_dom_to_dsl": "passed",
+      "skill_creator_validation": "passed",
+      "lovpen_downstream_render": {
+        "renderer_mode": "wechat-browser-copy",
+        "clipboard_source": "packages/shared/src/wechat-clipboard.ts#extractWechatClipboardHTML",
+        "bytes": 4859,
+        "sha256": "2ebfa9ec825734ddc2b093b78bbcedcffe36915f2fa856ebed077d459ef9d8c2",
+        "native_component_count": 1,
+        "shadow_template_count": 1
+      }
+    },
+    "cover": [],
+    "gallery": []
+  }
+]

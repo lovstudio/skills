@@ -3,6 +3,24 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.5.3] - 2026-09-12
+
+### Added
+
+- UI 规则：所有面向用户的报错文本必须可选中、完整换行并提供一键复制，即使应用全局禁用了文本选择。来自 Lovshrink 视频库探测报错被截断且不可复制的反馈。
+
+## [0.5.2] - 2026-09-07
+
+### Added
+
+- 统一展示名为「应用工坊」，保持调用 ID 与能力契约。
+
+## [0.5.1] - 2026-09-06
+
+### Fixed
+
+- declare required Skill integrations with existing conditional workflow boundaries
+
 ## [0.5.0] - 2026-08-25
 
 ### Added

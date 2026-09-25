@@ -1,11 +1,13 @@
 ---
-name: sgc-skill-distiller
+name: lov-skill-distiller
 description: >
   Use when 用户要将项目经验、故障复盘和已验证流程蒸馏为可创建的 Agent Skill 蓝图，明确用户结果、触发边界、私有信息边界与验收方式；触发词包括“把经验蒸馏成 skill”与 “distill experience into a skill”。
 license: MIT
+depends_on:
+  - lov-branding-consistency
 metadata:
-  author: lovstudio
-  version: "0.4.0"
+  author: contributors
+  version: "0.4.1"
   tags:
     - distillation
     - skill-blueprint
@@ -17,7 +19,7 @@ metadata:
 
 # Skill 炼金师 · Skill Alchemist
 
-这不是泛泛寻找机会，而是把已经发生过的工作蒸馏成稳定、可移植且可验收的能力契约。最终产物是 **Skill 蓝图**：它足以交给 `sgc-skill-creator` 落地，却不泄漏人名、项目代号、私有路径、密钥或聊天背景。
+这不是泛泛寻找机会，而是把已经发生过的工作蒸馏成稳定、可移植且可验收的能力契约。最终产物是 **Skill 蓝图**：它足以交给 `lov-skill-creator` 落地，却不泄漏人名、项目代号、私有路径、密钥或聊天背景。
 
 ## Triggers
 
@@ -29,9 +31,9 @@ metadata:
 
 ### Do not activate when
 
-- 用户已明确要实现某一个 Skill：交给 `sgc-skill-creator`。
-- 用户要优化、修订或升级已有 Skill：交给 `sgc-skill-optimizer`。
-- 用户只要保存一条项目约定到系统提示词或项目说明：交给 `sgc-distill-to-system`。
+- 用户已明确要实现某一个 Skill：交给 `lov-skill-creator`。
+- 用户要优化、修订或升级已有 Skill：交给 `lov-skill-optimizer`。
+- 用户只要保存一条项目约定到系统提示词或项目说明：交给 `lov-distill-to-system`。
 
 ## Workflow (MANDATORY)
 
@@ -90,12 +92,29 @@ Git 历史只是线索。补充用户提供的复盘、验收记录、失败日�
 
 ### Step 5: 交接实现
 
-用户选择“创建”的蓝图后，交给 `sgc-skill-creator`：它负责实现、校验和本地安装。用户要求上架时，再交给 `sgc-skill-publisher`。
+用户选择“创建”的蓝图后，交给 `lov-skill-creator`：它负责实现、校验和本地安装。用户要求上架时，再交给 `lov-skill-publisher`。
 
 ## Dependencies
 
 - Python 3.8+（仅标准库）
 - Git（可选，用于仓库历史证据）
+
+## Runtime context
+
+运行前读取同目录 `skill.yaml`，由宿主的 `skill-runtime` 按“当前请求、项目上下文、个人配置、品牌 Profile、安全默认值”的顺序注入，只使用 manifest 声明的字段。
+
+- 缺少 `required: true` 字段时，按 `questions` 向用户提出一个聚焦问题；回答只用于本次运行，除非用户明确要求保存。
+- Profile 只用于公开品牌事实；个人配置只用于决策，不自动写入产物或源码。
+- 调试报错提供可复制的 `context_id`、字段路径和来源，不输出秘密、完整私人路径或原始内容。
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
+
 
 ## 通用反馈闭环
 

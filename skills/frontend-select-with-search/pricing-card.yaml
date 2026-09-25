@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "减少逐页面改造 Select 的重复成本，并避免搜索已完成但弹窗滚动仍失效的隐蔽回归。"
+basis: "当前交付是可移植的开源指令与验收方法，没有托管服务、专有数据或持续运营成本，因此本地使用免费。"
+boundary: "包含 Select 清单、阈值搜索、兼容性、键盘可访问性、Dialog 与 Portal 滚动锁修复及真实交互验证；不包含完整视觉重设计、后端全文检索、组件库安装或远程发布。"
+review_trigger: "若未来加入多框架自动代码迁移器、持续维护的组件适配器或托管式大数据远程搜索服务，则重新评估价格与访问方式。"
+confidence: verified-local-case

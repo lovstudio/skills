@@ -1,0 +1,106 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "Integrates reusable, accessible Agent transcript and composer components into an existing React Native/Expo or React application, with a normalized data adapter and verifiable recovery behavior."
+owner:
+  team: "LovStudio contributors"
+  contact: "Maintainers of the local Skill source"
+license:
+  name: MIT
+  terms: "The Skill instructions, scripts, and original templates are reusable under MIT; host applications retain their own licenses and third-party obligations."
+  url: "LICENSE"
+use_case:
+  audience: "Teams adding AI Agent conversations to an existing mobile or Web product"
+  scenario: "The host already has or will supply an Agent transport, but needs consistent transcript, tool progress, status, interaction, Markdown, composer, and retry UX."
+  tasks:
+    - "Audit the host stack and existing design conventions"
+    - "Normalize provider/session data behind one display contract"
+    - "Scaffold React Native or React components and integrate them into a real screen"
+    - "Verify message states, accessibility, retry safety, and host quality gates"
+deployment:
+  geography: global
+  environments:
+    - "Local Agent Skill runtime"
+    - "React Native or Expo target application"
+    - "React Web target application"
+requirements:
+  credentials: "none for the Skill; the host transport may require its own credentials"
+  dependencies: []
+  runtime:
+    - "Python 3.8 or newer for deterministic audit and scaffolding"
+    - "React Native/Expo or React with TypeScript in the target project"
+risks:
+  - risk: "A provider-specific payload may be rendered directly and leak internal orchestration metadata."
+    mitigation: "Require a normalized adapter and strip internal metadata before display while preserving authorized raw records outside the UI."
+  - risk: "Retrying an unconfirmed send may duplicate a user turn."
+    mitigation: "Use a stable client request ID, preserve the draft, and clear it only after confirmed success."
+  - risk: "Scaffolding could overwrite established host components or visual conventions."
+    mitigation: "Audit first, refuse occupied targets by default, and bind semantic theme tokens rather than hard-coded branding."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Integration contract"
+    path: "references/integration-contract.md"
+  - title: "Yoda mobile reference patterns"
+    path: "references/yoda-mobile-patterns.md"
+  - title: "Acceptance checklist"
+    path: "references/acceptance-checklist.md"
+output:
+  types:
+    - "Agent conversation component source"
+    - "Normalized host adapter"
+    - "Integration verification report"
+  formats:
+    - "TypeScript and TSX"
+    - "CSS for React Web"
+    - "JSON audit output"
+  parameters:
+    - "target project path"
+    - "detected or explicit stack"
+    - "component directory"
+    - "host theme and localized copy"
+  validation:
+    - "Structural component verification"
+    - "Host format, lint, typecheck, tests, and build"
+    - "Real conversation-state exercise"
+  description: "A controlled Agent conversation surface with platform-neutral contracts and host-owned transport."
+ethical_considerations: "Do not expose secrets, hidden prompts, internal memory metadata, private file paths, or untrusted HTML. Preserve user drafts on recoverable failures and honor accessibility, localization, privacy, copyright, and host data-retention rules."
+dimensions:
+  - id: semantic-coverage
+    label: "Agent semantic coverage"
+    description: "Covers the roles, phases, tool states, interactions, session states, attachments, and retry identity needed by a real Agent conversation."
+    evidence: "assets/common/types.ts, assets/common/model.ts, references/integration-contract.md, and scripts/agent_uiux.py self-test"
+    score: null
+  - id: platform-portability
+    label: "Platform portability"
+    description: "Keeps shared data logic independent while providing React Native and React Web rendering variants."
+    evidence: "assets/common, assets/react-native, assets/react, plus automatic stack detection in scripts/agent_uiux.py"
+    score: null
+  - id: recovery-safety
+    label: "Recovery and send safety"
+    description: "Preserves drafts, prevents duplicate in-flight sends, and requires stable request identity and copyable diagnostics."
+    evidence: "references/integration-contract.md, references/acceptance-checklist.md, and controlled AgentComposer callbacks"
+    score: null
+  - id: accessibility
+    label: "Accessible interaction baseline"
+    description: "Defines semantic roles, accessible labels, state text, selectable output, keyboard/focus behavior, and touch-target requirements."
+    evidence: "platform component templates and references/acceptance-checklist.md"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The initial local source is free to maximize reuse and gather verified integration evidence across host stacks."
+  boundary: "Includes local instructions, audit/scaffold/verify CLI, React Native and React templates, contracts, and checklists; excludes provider backend implementation, bespoke product design, publication, and ongoing support."
+  review_trigger: "Revisit when verified integrations support additional frameworks, maintained package releases, or paid implementation/support guarantees."
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not_published
+    - channel: skillpay
+      status: not_published
+  free:
+    - channel: github
+      status: not_published
+    - channel: lovstudio
+      status: local_only

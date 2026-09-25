@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.2.1"
 description: "按权威页面协助完成中国大陆网站的备案准备、ICP、备案后域名切换、公安联网备案与持续巡检，并保留人工提交门和追加式证据台账。"
 owner:
   team: LovStudio

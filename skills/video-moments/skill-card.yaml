@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.3.0"
+version: "0.3.1"
 description: 从视频筛选值得分享的真实现场照片，保真美化并统一成组交付。
 owner:
   team: Local skill contributors

@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-better-readme
-version: 2.9.1
+version: 2.9.3
 runtime: skill-runtime/v1
 context:
   profile:

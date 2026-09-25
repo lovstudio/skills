@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.0"
+  version: "0.3.1"
   content_class: microcopy
   card_standard: lovstudio/skill-card/v1
   tags:

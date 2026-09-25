@@ -1,0 +1,19 @@
+name: api-creator
+display_name: "uni-api 网关能力集成"
+version: "0.1.0"
+entrypoint: lov-api-creator
+modules:
+  - id: backend
+    skill: lov-backend
+    path: skills/backend
+  - id: frontend
+    skill: lov-frontend
+    path: skills/frontend
+pipelines:
+  backend:
+    - backend
+  frontend:
+    - frontend
+  full:
+    - backend
+    - frontend

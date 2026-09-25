@@ -3,7 +3,7 @@ name: praise-before-work
 description: 落实用户“每次帮我肝活之前先夸夸我”的个人协作偏好。新任务开工前，先明确、具体地赞美用户，再开展工作。显式调用本 Skill 时，即使用户只说“你好”也要给出能明显感受到的夸奖；普通进度更新不重复。
 metadata:
   author: LovStudio
-  version: "0.2.0"
+  version: "0.2.1"
   tags:
     - encouragement
     - collaboration

@@ -1,0 +1,95 @@
+schema: lovstudio/skill-card/v1
+version: "0.5.0"
+description: >
+  把一个 Agent 会话转成免费公开或付费解锁的 LovStudio 分享页 URL。读转录、按
+  yodaSessionShareUpload 严格结构归一化、取 Lovstudio token、POST 到
+  /api/yoda/session-shares，返回可分享链接。
+owner:
+  team: Lovstudio
+  contact: https://lovstudio.ai
+license:
+  name: MIT
+  terms: 可自由使用与分发；上传到 Lovstudio 的会话内容遵循 Lovstudio 服务条款。
+  url: ../LICENSE
+use_case:
+  audience: 需要分享 Agent 对话，或为已验收 Skill 案例提供付费完整过程的用户。
+  scenario: 用户完成一段会话后，需要免费公开链接；或由 lov-skill-add-case 生成按目标 Skill 售价 1/10 解锁的证据页。
+  tasks:
+    - 读取自动探测到的当前会话或显式 transcript 文件
+    - 归一化为合法 yodaSessionShareUpload 结构
+    - 登录 Lovstudio 并上传，返回并复制分享 URL
+    - 在付费模式校验目标 Skill 与 case ID，并回传服务端权威 Credits 价格
+deployment:
+  geography: global
+  environments:
+    - 任何有 Python 3.10+ 的本地环境（macOS / Linux）
+requirements:
+  credentials: 需要 Lovstudio 账号；首次运行走 device-flow 授权，后续复用本地缓存的 refresh token。
+  dependencies: []
+  runtime:
+    - Python 3.10+
+    - 标准库 urllib / json / argparse / pathlib / re / gzip
+risks:
+  - risk: "把一次同意误解为无限外发，或把站立授权误缩成每次重复确认。"
+    mitigation: "只在用户明确保存的 trigger、target、payload、destination 与 limits 全部匹配时复用站立授权；其他情况仍要求当前确认。"
+  - risk: 上传失败或命中 Cloudflare/TLS 指纹拦截。
+    mitigation: 请求始终带浏览器风格 User-Agent 与 Accept 头；报错保留服务器原始 message 与 HTTP status。
+  - risk: 会话含敏感信息被公开。
+    mitigation: 默认显示档 concise；内容级剥离被折叠进 user 消息的宿主上下文，残留时阻断上传，并自动脱敏主目录、明显 token、Authorization 和私钥。
+  - risk: 付费附件通过公开 Storage URL 绕过购买校验。
+    mitigation: 付费模式拒绝附件，直到附件交付也具备服务端授权代理。
+  - risk: 严格 schema 校验失败导致 400。
+    mitigation: 脚本先归一化到严格结构再上传；报错指明 invalid_session_share 并保留上下文。
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Skill Card standard"
+    path: "references/skill-card-standard.md"
+output:
+  types:
+    - 一条 Lovstudio 分享页 URL
+  formats:
+    - text
+  parameters:
+    - --detail 控制显示档（hidden/concise/detailed/verbose），默认 concise
+    - --file / --session-id 控制输入会话来源
+    - --base-url / --token / --profile-path 控制端点与授权来源
+    - --paid-skill / --case-id / --json 创建案例付费 Session
+  validation:
+    - 返回的 URL 可打开且显示对应 conversation 内容
+    - payload 通过 yodaSessionShareUploadSchema 严格校验
+    - 付费价格只接受服务端响应，且等于目标 Skill 上传时售价的 1/10 向上取整
+  description: 返回一个可直接复制的 https URL，可选中烘焙 ?detail= 显示档。
+ethical_considerations: >
+  只上传用户明确选择的会话内容；默认隐藏中间推理与工具正文。access token 与 refresh
+  token 只存本机 gitignore 文件，不写入 durable profile records。不要把含密钥/
+  密码的会话公开或付费分享。
+dimensions:
+  - id: correctness
+    label: 结构正确性
+    description: 输出的 payload 与服务器 strict schema 完全一致，分享页正常渲染。
+    evidence: 用真实 Codex 多段 JSONL dry-run 检查用户正文与宿主上下文；测试覆盖 Codex 归一化、user-role 注入剥离、异常残留阻断和 401 刷新重试。
+    score: verified
+  - id: effectiveness
+    label: 端到端有效
+    description: 用户拿到 URL 后能打开并看到完整对话。
+    evidence: 真实 Codex 会话已成功上传并由服务端返回公开 URL；本轮独立页面回读被安全策略阻止，仍需人工打开确认正文。
+    score: partial
+  - id: efficiency
+    label: 一次成型
+    description: 单命令完成读取、归一化、授权、上传；无需用户手动转换格式。
+    evidence: 自动探测当前会话，显式文件与时区归一化均在单次 python 进程内完成。
+    score: verified
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 价值在于一键把本地会话变可公开在线页，复用 Lovstudio 已有托管；无独有模型或授权成本。
+  boundary: 不负责托管存储策略、显示档前端渲染、内容审核或撤回；那些属于 Lovstudio 服务本身。
+  review_trigger: 当 Lovstudio 分享端点或 display-level 语义变更，或出现 400 invalid_session_share 高发时复评。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

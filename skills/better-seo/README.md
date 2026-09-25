@@ -1,6 +1,6 @@
 # Next.js SEO 助手 · Next.js SEO Assistant
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
 
 检查 Next.js 页面元数据、索引规则、站点地图与分享展示。
 

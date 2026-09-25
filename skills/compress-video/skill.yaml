@@ -1,0 +1,71 @@
+schema: skill-manifest/v1
+id: lov-compress-video
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-compress-video
+    persist:
+      enabled: true
+      namespace: skills.lov-compress-video
+      records_path: skills.lov-compress-video.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要用户身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: workspace.output_dir
+        required: false
+        question: 如果有固定的交付目录，请提供路径。
+      - path: skills.lov-compress-video.records.default_quality
+        required: false
+        question: 默认质量档用 smallest、small、balanced 还是 high？
+      - path: skills.lov-compress-video.records.default_codec
+        required: false
+        question: 默认编码用 hevc、h264 还是 av1？
+      - path: skills.lov-compress-video.records.default_preset
+        required: false
+        question: 有没有固定的 x264/x265 preset 偏好？
+      - path: skills.lov-compress-video.records.audio_bitrate
+        required: false
+        question: 有没有固定的音频码率偏好（kbit/s）？
+      - path: skills.lov-compress-video.records.max_edge
+        required: false
+        question: 是否希望默认把长边限制到某个像素值？
+      - path: skills.lov-compress-video.records.min_vmaf
+        required: false
+        question: 是否希望每次都用 VMAF 门禁，分数线是多少？
+      - path: skills.lov-compress-video.records.output_dir
+        required: false
+        question: 压缩结果是放原文件旁边还是固定目录？
+      - path: skills.lov-compress-video.records.replace_original
+        required: false
+        question: 是否希望默认替换原文件（原文件进废纸篓）？
+  preferences:
+    namespace: lov_compress_video
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

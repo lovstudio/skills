@@ -1,0 +1,98 @@
+[
+  {
+    "type": "case",
+    "id": "yoda-electron-long-running-runtime-governance",
+    "ordinal": 1,
+    "title": "Yoda：Electron 长时运行降载与安全生命周期治理",
+    "description": "App Optimizer 的第一个完整案例。在大量历史任务、PTY/tmux 会话和 worktree 累积的真实桌面应用中，定位查询扇出、过度 hydration、重复常驻和生命周期泄漏，实施批量查询、懒加载、自适应采样与 fail-closed 回收协议。案例数字只属于这个 workload，不外推到其他平台。",
+    "platform": {
+      "family": "desktop",
+      "runtime": "Electron",
+      "host": "macOS",
+      "adapters": ["macos", "electron", "node-chromium", "pty", "tmux", "git-worktree", "sqlite"],
+      "legacy_source": "lov-electron-runtime-optimizer@0.1.0"
+    },
+    "input": {
+      "items": [
+        "用户反馈输入、侧栏滚动和长时间运行后明显卡顿",
+        "只读 DB 快照记录 916 个任务，其中 33 个活动任务、883 个归档任务",
+        "现场快照记录 61 个应用自有 tmux session、341 个后代进程，aggregate RSS proxy 约 3.7 GiB",
+        "worktree 池约 337 个一级条目、约 4.5 GB；30 个 Git 登记，307 个来源未知"
+      ],
+      "constraints": [
+        "working、awaiting-input、可见、正在注册或证据不足的会话必须保留",
+        "dirty、仍被任务引用、被 cwd 使用或 Git 状态不明的 worktree 必须保留",
+        "不得用盲删证明性能改善；先盘点，动作前重读 owner、lease 与实例指纹"
+      ]
+    },
+    "prompt": "继续优化长时运行性能，重点设计 PTY、tmux、worktree 和 Agent session 的回收策略；保护活跃或无法确认的资源，并完成实现、测试和真实运行时回读。",
+    "output": {
+      "status": "partially_verified",
+      "items": [
+        "逐任务 PR 查询改为项目级批量查询、branch 索引与 single-flight 尾随刷新",
+        "活动任务初始加载，归档任务按需加载，深链与跨窗口事件使用批量点查",
+        "完整 session context 轮询改为共享轻量 conversation/runtime metadata 查询",
+        "Agent session 只在 pending、canonical live 或显式恢复时启动，并限制并发",
+        "tmux 回收使用 owner、durable idle、consumer/registration、两次 O(N) inventory 与原子实例指纹核验",
+        "worktree 增加未知目录只读 inventory、dirty/cwd/owner 二次核验和失败关闭删除顺序",
+        "资源采样按可见性使用 TTL、自适应刷新和 detail cache"
+      ],
+      "runtime_evidence": [
+        {
+          "metric": "PR 同步扇出",
+          "before": "推导：916 个已加载任务 × 每任务 1 次 PR RPC；每 RPC 约 2 次 Git remote 读取，因此约 916 IPC / 1,832 Git 子进程工作",
+          "after": "600 次、100 ms 间隔的进程样本覆盖 8 个 remote 的新周期，观察到 15 个唯一 Git 子进程，峰值并发 5，活跃约 4 秒",
+          "status": "directional_inference_vs_measurement"
+        },
+        {
+          "metric": "会话上下文载荷",
+          "before": "完整结果单样本约 391,000 bytes；旧路径单次 timing 样本约 202 ms",
+          "after": "轻量结果单样本约 37,600 bytes，缓存命中单样本约 2.5 ms；runtime metadata 约 67 bytes",
+          "status": "directional_different_endpoint_shapes"
+        },
+        {
+          "metric": "初始任务 hydration 上限",
+          "before": "源码与 DB 行数推导上限 916 records（33 active + 883 archived）",
+          "after": "源码与同一 DB 行数推导上限 33 active records，归档记录改为按需加载",
+          "status": "code_derived_upper_bound_not_resident_heap_measurement"
+        }
+      ],
+      "reclamation": {
+        "status": "implemented_not_runtime_verified",
+        "implementation_ref": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+        "source_refs": [
+          "src/main/core/pty/tmux-reclamation.ts",
+          "src/main/core/pty/tmux-reclamation.test.ts",
+          "src/main/core/projects/worktrees/worktree-cwd-guard.ts",
+          "src/main/core/projects/worktrees/worktree-cwd-guard.test.ts",
+          "src/main/core/projects/worktrees/unregistered-worktree-inventory.ts",
+          "src/main/core/projects/worktrees/unregistered-worktree-inventory.test.ts"
+        ],
+        "boundary": "Implementation and race tests landed, but no production bulk cleanup or full on-demand resume trial was run."
+      },
+      "safety_results": [
+        "验证窗口中 61 个既有 tmux session 保持不变，未用破坏性清理制造效果",
+        "307 个来源未知的 worktree 目录仍为 inventory-only",
+        "dirty、attached、working、awaiting-input、registration/consumer active 和 identity changed 均为保护条件"
+      ],
+      "correctness_gates": [
+        "实现提交 290fbc48c7：117 个文件，+10,041/-1,061",
+        "v0.18.10 发布门禁覆盖 591 个测试文件、3,115 项测试，以及 format、lint、typecheck 和生产构建",
+        "这些是正确性与发布证据，不等同于性能 acceptance threshold"
+      ],
+      "boundaries": [
+        "用户反馈效果显著属于主观体验，不等于受控 A/B",
+        "没有正式包同负载 input latency、long task、event-loop p95/p99、energy 与 RSS 的完整配对后测",
+        "活跃任务窗口仍可能有短 CPU 峰值，案例不声称彻底消除卡顿",
+        "其他平台目前是 adapter 设计与触发覆盖，尚无可冒充实测的第二个真实案例"
+      ],
+      "evidence": [
+        "cases/evidence/yoda-runtime-evidence.json",
+        "cases/evidence/yoda-runtime-report.json",
+        "cases/evidence/yoda-runtime-report.md",
+        "https://github.com/lovstudio/yoda/commit/290fbc48c713163f20bd6f956e80e15d00dfa357",
+        "https://github.com/lovstudio/yoda/releases/tag/v0.18.10"
+      ]
+    }
+  }
+]

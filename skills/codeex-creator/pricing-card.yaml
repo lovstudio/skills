@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Reduces repeated contract discovery and prevents unsafe source deletion, direct state edits, and false active-state claims during Codeex plugin development."
+basis: "The initial release is local-first, contains no hosted service, and benefits from broad review as the Codeex contract evolves."
+boundary: "Includes plugin scaffolding, renderer/launch/control hook validation, native UI and reload-boundary guidance, isolated desired-state exercise, Profile binding, and trust evidence. Excludes custom plugin implementation labor, signing credentials, remote publication, support SLA, and unattended production restart."
+review_trigger: "Reassess access and price if the offering adds hosted compatibility testing, maintained upstream-version matrices, commercial support, or a managed plugin catalog."
+confidence: internal

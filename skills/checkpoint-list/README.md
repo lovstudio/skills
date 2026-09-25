@@ -1,6 +1,6 @@
 # 检查点回看 · Checkpoint History
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 汇总 Git 与项目日志中的检查点、时间范围和演进记录。
 

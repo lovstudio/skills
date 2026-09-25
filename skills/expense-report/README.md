@@ -1,6 +1,6 @@
 # 报销管家 · Expense Assistant
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 Invoice images / text → categorized Excel expense report.
 

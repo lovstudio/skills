@@ -1,0 +1,51 @@
+name: wechat-article-branding-skill
+display_name: "微信公众号文章品牌化"
+version: "0.11.0"
+entrypoint: lov-wechat-article-branding-skill
+runtime: skill-runtime/v1
+profile:
+  manifest: skill.yaml
+  extension: lov-wechat-article-branding-skill
+modules:
+  - id: article-access
+    skill: lov-wechat-branding-article-access
+    path: skills/article-access
+  - id: content-intelligence
+    skill: lov-wechat-branding-content-intelligence
+    path: skills/content-intelligence
+  - id: cover-direction
+    skill: lov-wechat-branding-cover-direction
+    path: skills/cover-direction
+  - id: cover-composition
+    skill: lov-wechat-branding-cover-composition
+    path: skills/cover-composition
+  - id: brand-application
+    skill: lov-wechat-branding-brand-application
+    path: skills/brand-application
+  - id: quality-gate
+    skill: lov-wechat-branding-quality-gate
+    path: skills/quality-gate
+pipelines:
+  full:
+    - article-access
+    - content-intelligence
+    - cover-direction
+    - cover-composition
+    - brand-application
+    - quality-gate
+  content:
+    - article-access
+    - content-intelligence
+    - quality-gate
+  cover:
+    - article-access
+    - cover-direction
+    - cover-composition
+    - quality-gate
+  brand:
+    - article-access
+    - brand-application
+    - quality-gate
+  audit:
+    - article-access
+    - quality-gate

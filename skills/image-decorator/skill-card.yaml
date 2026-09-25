@@ -1,0 +1,106 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.3"
+description: "Decorates artwork or screenshots with a material-appropriate frame treatment, bottom caption bar, and verified bottom-right brand Logo."
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "The CLI is MIT licensed. Users remain responsible for rights to input images and supplied brand assets; bundled Noto Sans SC uses SIL OFL 1.1."
+  url: "LICENSE"
+use_case:
+  audience: "Writers, editors, designers, developers, and publishing agents"
+  scenario: "Apply a consistent caption and brand treatment to an existing PNG, JPEG, or WebP without opening a design editor."
+  tasks:
+    - "Preserve an existing image while appending an editorial caption zone"
+    - "Use a borderless caption treatment for screenshots with existing interface boundaries"
+    - "Remove transparent screenshot-tool shadow margins without cropping opaque UI content"
+    - "Use an explicit, Profile, or fallback caption"
+    - "Place a verified raster brand Logo at the bottom right"
+deployment:
+  geography: global
+  environments:
+    - "Local macOS, Linux, or Windows agent runtime with Python and Pillow"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "Python 3.9+"
+    - "Pillow 9+"
+  runtime:
+    - "Local filesystem access to the input and output image"
+risks:
+  - risk: "A user may decorate an image or Logo they do not have permission to use."
+    mitigation: "The Skill does not acquire media and requires the caller to control rights and attribution."
+  - risk: "A long caption may become unreadable or overflow on a narrow image."
+    mitigation: "The CLI measures text, wraps it, reduces type within a guarded range, and fails instead of truncating silently."
+  - risk: "A Profile Logo path may be stale or incompatible."
+    mitigation: "Only readable local raster files are accepted; otherwise the verified bundled Logo is used."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Style contract"
+    path: "references/style-contract.md"
+  - title: "Asset provenance"
+    path: "assets/asset-provenance.json"
+output:
+  types:
+    - "Decorated local image"
+    - "JSON verification receipt"
+  formats:
+    - "PNG"
+    - "JPEG"
+    - "WebP"
+    - "JSON"
+  parameters:
+    - "Input image, style, optional caption, optional local Logo, output path, layout sizes, palette, quality, and Profile path"
+  validation:
+    - "Output does not overwrite input"
+    - "Image dimensions match the JSON receipt"
+    - "Caption text is not silently truncated"
+    - "Output byte count and SHA-256 are read back from disk"
+  description: "A source-preserving image with decoration added outside the original image area."
+ethical_considerations: "Do not remove attribution, imply false endorsement, obscure required provenance, or decorate media whose copyright or privacy status is unknown."
+dimensions:
+  - id: content-preservation
+    label: "Content preservation"
+    description: "The original image is neither cropped nor stretched; decoration is appended outside it."
+    evidence: "tests/test_decorate_image.py and cases/assets/case-result.json"
+    score: null
+    status: verified
+  - id: caption-integrity
+    label: "Caption integrity"
+    description: "Explicit, Profile, and fallback captions have defined precedence and are never silently truncated."
+    evidence: "scripts/decorate_image.py, tests/test_decorate_image.py, and references/style-contract.md"
+    score: null
+    status: verified
+  - id: brand-provenance
+    label: "Brand provenance"
+    description: "The default Logo is copied from the canonical LovStudio brand asset and tracked by SHA-256."
+    evidence: "assets/asset-provenance.json"
+    score: null
+    status: verified
+  - id: output-verification
+    label: "Output verification"
+    description: "Every successful run reports dimensions, bytes, and SHA-256 after writing the output."
+    evidence: "cases/assets/case-result.json"
+    score: null
+    status: verified
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Local deterministic transform with no paid API or managed service."
+  boundary: "Single-image decoration only; no generation, hosting, publishing, or batch service."
+  review_trigger: "Revisit if hosted rendering, collaboration, batch queues, or managed brand kits are added."
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not_published
+    - channel: skillpay
+      status: not_published
+  free:
+    - channel: github
+      status: not_published
+    - channel: lovstudio
+      status: not_published

@@ -1,0 +1,51 @@
+schema: skill-manifest/v1
+id: lov-cli-creator
+version: "0.1.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-cli-creator
+    persist:
+      enabled: true
+      namespace: skills.lov-cli-creator
+      records_path: skills.lov-cli-creator.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: workspace.project_root
+        required: false
+        question: 如果不使用当前目录，请提供目标项目路径。
+      - path: skills.lov-cli-creator.profile.output_dir
+        required: false
+        question: 如果不输出到项目内的 agent-harness，请提供输出目录。
+      - path: skills.lov-cli-creator.records.command_prefix
+        required: false
+        question: 如果已有长期使用的 CLI 命令前缀，请提供它。
+  preferences:
+    namespace: lov_cli_creator
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: skills.lov-cli-creator.records.command_prefix
+        required: false
+        question: 希望生成的命令使用哪个长期前缀？
+  interaction:
+    ask_missing: true
+    max_questions: 1

@@ -1,0 +1,9 @@
+PASS: 8 interaction validation regression cases.
+PASS: .agents new entry resolves to source; old entry removed.
+PASS: .codex new entry resolves to source; old entry removed.
+PASS: .claude new entry resolves to source; old entry removed.
+PASS: preferences migrated and read back; legacy namespace preserved.
+PASS: version agreement, portable source and artifact hygiene.
+PASSED: source validation (.)
+Session permission evidence: already_ready per live host declaration; no permission mutation performed.
+Not tested: session permission hot-switching, slash-menu registration, overnight execution or cross-host runtime.

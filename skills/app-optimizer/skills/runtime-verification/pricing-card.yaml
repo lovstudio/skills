@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "用真实 build/device/browser、宿主生命周期、可比性契约和诚实终态减少客户端 App 的虚假性能完成声明。"
+basis: "跨 Electron、Tauri、native desktop、iOS、Android、React Native、Flutter、Web 与 PWA 的核心验收方法、共享证据契约和本地脚本以免费源码形式提供。"
+boundary: "包含验收设计、证据归一化和本地报告；不包含持续生产监控、托管 CI、设备实验室、远端权限、代付设备服务或性能 SLA。"
+review_trigger: "增加托管基准设施、持续遥测、真机设备池、浏览器矩阵、企业报告或商业性能承诺时重新评估价格与渠道。"
+confidence: evidence-backed-local

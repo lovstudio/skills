@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把在 uni-api 内按约定新增 app 网关端点的步骤固化，减少对照仓库模式与 AGENTS.md 坑位的手工排查。"
+basis: "随 lov-api-creator Kit 免费分发，内部提效。"
+boundary: "生成代码需落在 uni-api 既有约定内；不包含上游 API 调用成本与密钥；不含远程部署。"
+review_trigger: "覆盖更多网关形态或后端框架时重估。"
+confidence: internal

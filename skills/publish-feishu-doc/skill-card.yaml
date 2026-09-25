@@ -1,0 +1,91 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "Publishes local Markdown to a specified Feishu/Lark Wiki and verifies content fidelity, node placement, and link visibility through fresh remote reads."
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "Use and modify under the included MIT License."
+  url: "../LICENSE"
+use_case:
+  audience: "Teams and creators who maintain source Markdown and publish verified copies to Feishu knowledge bases."
+  scenario: "A local proposal must become a Wiki document with an explicit share tier and observable remote evidence."
+  tasks:
+    - "Resolve the exact target knowledge space and same-title conflict."
+    - "Create or update a Wiki document from Markdown without rewriting its substance."
+    - "Read back content, hierarchy and public permission settings before reporting completion."
+deployment:
+  geography: global
+  environments:
+    - "Local agent runtime with lark-cli and an authorized Feishu user profile"
+requirements:
+  credentials: "Feishu user authorization managed by lark-cli; never stored in the Skill source or receipt."
+  dependencies:
+    - "lark-cli"
+    - "lov-branding-consistency"
+  runtime:
+    - "Python 3.8+"
+risks:
+  - risk: "A document may be placed in the wrong Wiki or duplicated."
+    mitigation: "Require exact space resolution and an explicit same-title conflict strategy."
+  - risk: "Public-link changes may expose content beyond the intended audience."
+    mitigation: "Map only explicit visibility language, check manage-public authority, patch the underlying docx token, and fresh-read the result."
+  - risk: "A successful API call may still lose or normalize content."
+    mitigation: "Fetch the complete remote Markdown and verify headings, tables, links, quotations and appendix evidence."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Skill composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "Verified Feishu Wiki document"
+    - "Publication receipt"
+  formats:
+    - "Feishu Docx"
+    - "JSON evidence"
+  parameters:
+    - "Markdown source"
+    - "Wiki target"
+    - "same-title conflict policy"
+    - "link access tier"
+  validation:
+    - "Fresh Wiki node read"
+    - "Fresh document content fetch"
+    - "Fresh public-permission read"
+  description: "Returns a canonical Wiki link and evidence that source content, target location, and requested visibility are all observable remotely."
+ethical_considerations: "Do not publish private context or credentials. Internet-readable settings require the user's explicit selection of that exact access tier."
+dimensions:
+  - id: source_fidelity
+    label: "Source fidelity"
+    description: "Reader-visible Markdown content survives Feishu normalization without substantive loss."
+    evidence: "Remote fetch is compared against preflight heading, table, link, quotation and key-text evidence."
+    score: verified
+  - id: target_accuracy
+    label: "Target accuracy"
+    description: "The document is attached to the intended knowledge space or parent node without accidental duplicates."
+    evidence: "Fresh node-get returns the expected space, parent, title and underlying object."
+    score: verified
+  - id: permission_accuracy
+    label: "Permission accuracy"
+    description: "The requested link visibility is applied to the correct underlying document."
+    evidence: "Fresh permission-get-setting returns the requested fields after patch."
+    score: verified
+  - id: status_integrity
+    label: "Status integrity"
+    description: "Creation, content verification, permission application and ready state remain distinct."
+    evidence: "The receipt reports exact state and never equates an API success with final publication acceptance."
+    score: verified
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Free local orchestration over the user's own Feishu authorization."
+  boundary: "Single-document publication and verification; no bulk migration or tenant-policy administration."
+  review_trigger: "Managed hosting, enterprise batch workflows, or commercial distribution."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - local

@@ -1,6 +1,6 @@
 # 流程工坊 · Workflow Studio
 
-![Version](https://img.shields.io/badge/version-4.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-4.2.3-CC785C)
 
 把重复操作封装成通用 Skill，并按需提供宿主 slash command 适配入口。
 

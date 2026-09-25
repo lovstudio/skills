@@ -8,7 +8,7 @@ compatibility: >
   qBittorrent 5.x Web API is an optional discovery, BitTorrent-management, and seeding adapter.
 metadata:
   author: contributors
-  version: "0.4.0"
+  version: "0.4.2"
   tags:
     - media-discovery
     - release-selection

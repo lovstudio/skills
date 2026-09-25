@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.2] - 2026-09-07
+
+### Added
+
+- 统一展示名为「会话寻踪」，保持调用 ID 与能力契约。
+
 ## [0.2.1] - 2026-08-31
 
 - 修正 LovStudio 统一目录安装命令，按 runtime 名 `lov-search-chat` 选择 Skill。

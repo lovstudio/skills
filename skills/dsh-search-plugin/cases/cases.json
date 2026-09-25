@@ -1,0 +1,35 @@
+[
+  {
+    "type": "case",
+    "title": "为纯文本模型检索视觉能力插件",
+    "description": "用户需要给 DSH 智能体补图片问答能力，先用搜索确认有没有成熟插件可用。实测网关 q=vision 返回 343 个结果，按分数与等级排序后给出带证据的候选清单。",
+    "input": {
+      "items": ["用户目标：为纯文本模型加视觉能力，读取图片做问答"]
+    },
+    "prompt": "dsh-search-plugin：查找 vision 相关 DSH 插件，按分数排序，标注安装方式与风险。",
+    "output": {
+      "items": [
+        "Anionex/dsh-vision-toolkit，score 94，grade S，stars 837，npm 可装，is_risky false",
+        "liustack/modlens，score 85，grade S，stars 3717，npm 可装",
+        "ysr666/dsh-vision-router，score 67，grade B，stars 1006，npm 可装",
+        "附 data_version 溯源与仓库链接，2026-08-27 实测"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "记忆类插件建议词检索",
+    "description": "用户只想知道有哪些记忆插件候选，用 suggest 端点做轻量建议检索。实测返回 10 条建议，前两名均为 featured。",
+    "input": {
+      "items": ["用户目标：需要记忆类插件"]
+    },
+    "prompt": "dsh-search-plugin：用 suggest 检索 memory。",
+    "output": {
+      "items": [
+        "omdsh-dev/dsh-mnemon，stars 251，featured true",
+        "huiliyi37/dsh-tianshu-tui，stars 239，featured true",
+        "共 10 条建议，2026-08-27 实测"
+      ]
+    }
+  }
+]

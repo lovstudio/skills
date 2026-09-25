@@ -1,6 +1,6 @@
 # 项目存档 · Project Checkpoint
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 根据当前 Git 差异和历史记录保存项目里程碑及后续事项。
 

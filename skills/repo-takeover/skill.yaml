@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-repo-takeover
-version: 1.0.1
+version: 1.0.2
 runtime: skill-runtime/v1
 context:
   profile:

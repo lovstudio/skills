@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 把有证据的可复用经验写入最合适的项目或共享 Agent 规范
-version: 1.0.1
+version: "1.0.2"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

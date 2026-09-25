@@ -1,0 +1,33 @@
+{
+  "title": "拓扑排序（Kahn 算法）",
+  "inputLabel": "DIRECTED ACYCLIC GRAPH / A→C→E→F, B→D→F",
+  "insight": "每次拿走零入度节点，就等于完成所有前置依赖。",
+  "layout": "network",
+  "code": ["统计每个节点入度", "零入度节点入队", "输出队首并移除出边", "新零入度节点入队", "队列为空时结束"],
+  "metricLabel": "已输出",
+  "nodes": [
+    { "id": "A", "label": "A", "x": 12, "y": 24 },
+    { "id": "B", "label": "B", "x": 12, "y": 74 },
+    { "id": "C", "label": "C", "x": 40, "y": 18 },
+    { "id": "D", "label": "D", "x": 40, "y": 78 },
+    { "id": "E", "label": "E", "x": 68, "y": 28 },
+    { "id": "F", "label": "F", "x": 88, "y": 62 }
+  ],
+  "edges": [
+    { "id": "A-C", "from": "A", "to": "C", "directed": true },
+    { "id": "B-C", "from": "B", "to": "C", "directed": true },
+    { "id": "B-D", "from": "B", "to": "D", "directed": true },
+    { "id": "C-E", "from": "C", "to": "E", "directed": true },
+    { "id": "D-F", "from": "D", "to": "F", "directed": true },
+    { "id": "E-F", "from": "E", "to": "F", "directed": true }
+  ],
+  "frames": [
+    { "active": ["A", "B"], "settled": [], "note": "入度为 0 的 A、B 先进入队列。", "codeLine": 1 },
+    { "active": ["A", "C"], "settled": ["A"], "settledEdges": ["A-C"], "note": "A 输出并移除出边，释放新的零入度节点 C。", "codeLine": 2 },
+    { "active": ["B", "D"], "settled": ["A", "B"], "settledEdges": ["A-C", "B-D"], "note": "B 输出并移除出边，D 的入度归零。", "codeLine": 2 },
+    { "active": ["C", "E"], "settled": ["A", "B", "C"], "settledEdges": ["A-C", "B-D", "C-E"], "note": "C 输出，E 的入度归零。", "codeLine": 2 },
+    { "active": ["D", "F"], "settled": ["A", "B", "C", "D"], "settledEdges": ["A-C", "B-D", "C-E", "D-F"], "note": "D 输出，F 的入度归零。", "codeLine": 2 },
+    { "active": ["E", "F"], "settled": ["A", "B", "C", "D", "E"], "settledEdges": ["A-C", "B-D", "C-E", "D-F", "E-F"], "note": "E 输出。", "codeLine": 2 },
+    { "active": [], "settled": ["A", "B", "C", "D", "E", "F"], "note": "拓扑序列：A → B → C → D → E → F。", "codeLine": 4 }
+  ]
+}

@@ -1,6 +1,6 @@
 # 模块拆分师 · Module Refactorer
 
-![Version](https://img.shields.io/badge/version-1.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.2.3-CC785C)
 
 按职责拆分长文件并保持公共接口、依赖和行为一致。
 

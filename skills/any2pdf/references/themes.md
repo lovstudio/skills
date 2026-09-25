@@ -20,6 +20,11 @@ THEME = {
 
 ## Available Themes
 
+There is no universal visual default. When the user has not supplied a theme and
+has no saved preference, choose from the article's subject, structure, length,
+and publishing context. Direct CLI use performs a deterministic content-aware
+selection. `warm-academic` is one available preset, not the fallback.
+
 ### songti-reading
 Warm-white canvas with muted ink blue. Uses Songti SC Regular for Chinese body text,
 Palatino for Latin prose, sans-serif Chinese for headings/emphasis, and Menlo for code.
@@ -30,7 +35,7 @@ opening view are optimized for long Chinese reports and dense audit tables.
  "accent":"#315A78","accent_light":"#7891A6","border":"#E0E4E5"}
 ```
 
-### warm-academic (default)
+### warm-academic
 Warm ivory canvas with terracotta accents. Inspired by academic papers on aged paper.
 Best for: Chinese technical reports, research papers, documentation.
 ```python

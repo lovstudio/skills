@@ -12,9 +12,11 @@ description: >
 license: MIT
 compatibility: >
   Pure instructions — no dependencies. Works with any Claude model.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.1.0"
+  version: "1.1.1"
   tags: thesis academic writing MBA polish 论文 润色
 ---
 

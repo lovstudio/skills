@@ -15,9 +15,11 @@ compatibility: >
   in any browser via its built-in download button. macOS uses sips for cropping,
   other platforms need Pillow. All identity/brand/output values come from CLI
   flags — no personal paths are hard-coded.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: business-card, design, branding, png, html
 ---
 

@@ -1,0 +1,11 @@
+{
+  "image_url": "http://127.0.0.1:8000/mable/images/af25bd1b36ea39a656d4f0a73575b0a9e0be5f685f53bd7b3755e31b459636e8.png",
+  "format": "png",
+  "width": 1520,
+  "height": 432,
+  "layout_width": 760,
+  "model": "Asge8oUog7I",
+  "bytes": 66191,
+  "output_path": "cases/mable-api-surface.png",
+  "verification_scope": "Local Mable API with temporary PostgreSQL"
+}

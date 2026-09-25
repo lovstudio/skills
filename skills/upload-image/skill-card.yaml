@@ -1,0 +1,107 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "Uploads local images through the user's configured PicGo backend and returns public URLs, or safely rewrites local image references in a Markdown copy."
+owner:
+  team: "LovStudio Skills maintainers"
+  contact: "Source repository maintainers"
+license:
+  name: MIT
+  terms: "The Skill source is MIT licensed. Users remain responsible for image rights, image-host terms, storage costs, and public exposure."
+  url: "LICENSE"
+use_case:
+  audience: "Writers, developers, documentation agents, and publishing workflows that already use PicGo."
+  scenario: "Convert one or more existing local images into public URLs, or make a Markdown document portable by replacing its local image references."
+  tasks:
+    - "Upload local image paths and return ordered URL mappings."
+    - "Preflight, deduplicate, upload, and rewrite Markdown image references."
+    - "Optionally verify that returned URLs respond over HTTP."
+deployment:
+  geography: global
+  environments:
+    - "Local agent runtime with network access and a user-configured PicGo backend."
+requirements:
+  credentials: "Image-host credentials remain inside PicGo. An optional PicGo Server secret is supplied through an environment variable only."
+  dependencies:
+    - "Python 3.8 or newer"
+    - "PicGo GUI/Core Server API or PicGo-Core CLI"
+  runtime:
+    - "Filesystem read access to requested images and write access to the Markdown output directory."
+    - "Network access to the configured image host and optional URL verification target."
+risks:
+  - risk: "A private or copyrighted local image can become publicly reachable."
+    mitigation: "Upload only user-authorized inputs; never discover and upload unrelated files automatically."
+  - risk: "Remote objects may remain when URL verification or a later local write fails."
+    mitigation: "Validate all local inputs before upload, write Markdown only after success, and report that remote rollback is not available."
+  - risk: "An in-place Markdown edit can overwrite valuable content."
+    mitigation: "Default to a new file; require explicit in-place mode and create a backup unless explicitly disabled."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "PicGo integration"
+    path: "references/picgo-integration.md"
+  - title: "Markdown coverage"
+    path: "references/markdown-coverage.md"
+  - title: "Verified cases"
+    path: "cases/cases.json"
+output:
+  types:
+    - "Public image URL"
+    - "Ordered JSON upload mapping"
+    - "Rewritten Markdown document"
+  formats:
+    - "Plain URL text"
+    - "UTF-8 JSON"
+    - "UTF-8 Markdown"
+  parameters:
+    - "backend, server URL, PicGo CLI path, timeout, URL verification"
+    - "new output path or explicit in-place mode with backup policy"
+  validation:
+    - "Every PicGo result is an absolute HTTP or HTTPS URL and count matches input."
+    - "Optional HTTP verification returns a successful response."
+    - "Markdown writes occur atomically after complete upload mapping."
+  description: "The user receives either a directly reusable URL mapping or a Markdown file whose supported local image references now use those URLs."
+ethical_considerations: "The Skill does not inspect PicGo credentials and does not infer permission to publish private, personal, secret, or third-party images. Users control retention and deletion on their configured image host."
+dimensions:
+  - id: correctness
+    label: "URL and rewrite correctness"
+    description: "Input order, deduplication, supported Markdown references, and returned URL structure are validated."
+    evidence: "Six deterministic tests passed, including PicGo 3 JSON parsing, output safety, mock PicGo order mapping, missing-file preflight, code exclusion, references, HTML, and Obsidian rewriting."
+    score: null
+    score_status: "verified-not-scored"
+  - id: effectiveness
+    label: "Real PicGo effectiveness"
+    description: "The workflow must work through an existing GUI PicGo Server rather than only through mocks."
+    evidence: "Two real uploads through PicGo Server returned public CDN URLs; both URL checks returned HTTP 200, and the Markdown case rewrote two references after one deduplicated upload."
+    score: null
+    score_status: "verified-not-scored"
+  - id: safety
+    label: "Local document safety"
+    description: "Inputs are preflighted before remote mutation and original Markdown is protected by default."
+    evidence: "The CLI defaults to a new `.uploaded.md` file, refuses occupied outputs, uses atomic replace, and backs up explicit in-place edits."
+    score: null
+    score_status: "verified-not-scored"
+  - id: portability
+    label: "Runtime portability"
+    description: "The implementation avoids image-host SDK coupling and uses standard Python interfaces."
+    evidence: "The CLI uses only Python standard library code and supports PicGo Server on any platform plus PicGo-Core CLI fallback."
+    score: null
+    score_status: "verified-not-scored"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "A thin local orchestration layer over the user's existing open-source PicGo setup; no hosted service or bundled storage is provided."
+  boundary: "Includes local upload orchestration, Markdown rewriting, verification, and diagnostics; excludes image-host accounts, storage, billing, deletion, and destination publication."
+  review_trigger: "Revisit if a hosted upload service, managed credentials, proprietary storage, or supported commercial distribution is added."
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-published
+    - channel: skillpay
+      status: not-published
+  free:
+    - channel: github
+      status: not-published
+    - channel: lovstudio
+      status: local-installed

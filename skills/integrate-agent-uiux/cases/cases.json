@@ -1,0 +1,29 @@
+[
+  {
+    "type": "case",
+    "title": "从 Yoda 移动端对话记录提炼可复用 Agent UI 集成 Skill",
+    "description": "用户希望参考现有移动端 AI 对话聊天记录显示，生成一套可在其他应用快速集成的 UI 组件。案例仅记录已完成的 Skill、组件模板和验证，不虚构尚未发生的第三方应用上线。",
+    "input": {
+      "items": [
+        "用户请求：创建 lov-integrate-agent-uiux，参考移动端 AI 对话记录显示",
+        "Yoda mobile session detail and transcript rendering source",
+        "Yoda shared mobile transcript, display, interaction, and input contracts"
+      ]
+    },
+    "prompt": "使用 lov-skill-creator 创建并本地安装 lov-integrate-agent-uiux，提炼移动端 Agent 对话 UI 为可移植组件，补齐真实案例、组合分析、Profile 契约和验证。",
+    "output": {
+      "items": [
+        "SKILL.md workflow and routing contract",
+        "assets/common shared Agent UI data model",
+        "assets/react-native reusable conversation components",
+        "assets/react reusable conversation components",
+        "scripts/agent_uiux.py audit, scaffold, verify, and self-test CLI",
+        "references/integration-contract.md and references/acceptance-checklist.md"
+      ]
+    },
+    "evidence": {
+      "status": "local_source_created",
+      "limitations": "No external host app or real-device integration is claimed by this case."
+    }
+  }
+]

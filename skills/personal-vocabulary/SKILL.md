@@ -5,7 +5,7 @@ description: >
 license: MIT
 metadata:
   author: LovStudio / 手工川工作室
-  version: "0.2.0"
+  version: "0.2.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - vocabulary

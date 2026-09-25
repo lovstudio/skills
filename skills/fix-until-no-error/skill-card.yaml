@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 围绕明确验证命令持续定位和修复失败项直到通过或遇到真实阻塞
-version: 1.0.1
+version: "1.0.3"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

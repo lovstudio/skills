@@ -1,6 +1,6 @@
 # 会话提交 · Context Commit
 
-![Version](https://img.shields.io/badge/version-1.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.3-CC785C)
 
 结合会话意图与实际 Git 差异生成并执行范围准确的提交。
 

@@ -6,7 +6,7 @@ description: >
 license: MIT
 metadata:
   author: lovstudio
-  version: "0.2.1"
+  version: "0.2.2"
   card_standard: lovstudio/skill-card/v1
   tags:
     - ataru

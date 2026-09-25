@@ -1,6 +1,6 @@
 # 界面设计师 · Interface Designer
 
-![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
 
 手工川工作室维护的前端设计 Skill：把需求、真实内容和现有代码变成有辨识度、
 交互一致、支持图片音视频的可用界面。

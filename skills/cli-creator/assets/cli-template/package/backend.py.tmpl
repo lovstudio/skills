@@ -1,0 +1,169 @@
+"""Real-backend subprocess bridge for the generated CLI."""
+
+from __future__ import annotations
+
+import json
+import os
+import shutil
+import subprocess
+import sys
+import time
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
+
+class BackendError(RuntimeError):
+    def __init__(self, code: str, message: str, exit_code: int, hint: str = "") -> None:
+        super().__init__(message)
+        self.code = code
+        self.exit_code = exit_code
+        self.hint = hint
+
+
+def load_spec() -> Dict[str, Any]:
+    path = Path(__file__).with_name("cli_spec.json")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def harness_root() -> Path:
+    return Path(__file__).resolve().parents[2]
+
+
+def project_root(spec: Dict[str, Any], explicit: Optional[str] = None) -> Path:
+    configured = explicit or os.environ.get("LOV_CLI_PROJECT_ROOT")
+    if configured:
+        return Path(configured).expanduser().resolve()
+    relative = spec["project"]["root_relative"]
+    return (harness_root() / relative).resolve()
+
+
+def backend_executable(spec: Dict[str, Any], root: Path) -> Optional[str]:
+    executable = spec.get("backend", {}).get("executable")
+    if not executable:
+        return None
+    if executable == "$PYTHON":
+        return sys.executable
+    if "/" in executable or "\\" in executable:
+        candidate = Path(executable)
+        if not candidate.is_absolute():
+            candidate = root / candidate
+        return str(candidate) if candidate.exists() else None
+    return shutil.which(executable)
+
+
+def doctor(spec: Dict[str, Any], explicit_root: Optional[str] = None) -> Dict[str, Any]:
+    root = project_root(spec, explicit_root)
+    executable = backend_executable(spec, root)
+    required = bool(spec.get("backend", {}).get("executable"))
+    checks = {
+        "project_root": {"ok": root.is_dir(), "path": str(root)},
+        "backend": {
+            "ok": executable is not None or not required,
+            "name": spec.get("backend", {}).get("name", "project backend"),
+            "resolved": executable,
+        },
+    }
+    return {"ready": all(item["ok"] for item in checks.values()), "checks": checks}
+
+
+def _parameter_values(command: Dict[str, Any], values: Dict[str, Any]) -> List[str]:
+    argv: List[str] = []
+    for parameter in command.get("parameters", []):
+        name = parameter["name"].replace("-", "_")
+        value = values.get(name)
+        kind = parameter["kind"]
+        backend_flag = parameter.get("backend_flag")
+        if kind == "flag":
+            if value:
+                argv.append(backend_flag or parameter.get("flags", [f"--{parameter['name']}"])[0])
+            continue
+        if value is None:
+            continue
+        items = value if isinstance(value, list) else [value]
+        for item in items:
+            if backend_flag:
+                argv.append(backend_flag)
+            argv.append(str(item))
+    return argv
+
+
+def _fixed_argv(command: Dict[str, Any], root: Path) -> List[str]:
+    argv: List[str] = []
+    for item in command.get("argv", []):
+        if item == "$PYTHON":
+            argv.append(sys.executable)
+        elif item == "$PROJECT_ROOT":
+            argv.append(str(root))
+        else:
+            argv.append(item)
+    return argv
+
+
+def run_command(
+    spec: Dict[str, Any],
+    command: Dict[str, Any],
+    values: Dict[str, Any],
+    explicit_root: Optional[str] = None,
+) -> Dict[str, Any]:
+    if spec.get("backend", {}).get("kind") != "subprocess":
+        raise BackendError(
+            "custom_backend_required",
+            "This command requires a completed custom backend adapter.",
+            3,
+            "Implement the adapter in backend.py before marking the harness ready.",
+        )
+    root = project_root(spec, explicit_root)
+    if not root.is_dir():
+        raise BackendError(
+            "project_not_found",
+            "The configured project root does not exist.",
+            3,
+            "Set LOV_CLI_PROJECT_ROOT or pass --project-root.",
+        )
+    argv = _fixed_argv(command, root) + _parameter_values(command, values)
+    if not argv:
+        raise BackendError("invalid_command", "Command argv is empty.", 2)
+    timeout = int(spec.get("backend", {}).get("timeout_seconds", 120))
+    started = time.monotonic()
+    try:
+        completed = subprocess.run(
+            argv,
+            cwd=str(root),
+            capture_output=True,
+            text=True,
+            shell=False,
+            timeout=timeout,
+            check=False,
+        )
+    except FileNotFoundError as exc:
+        raise BackendError(
+            "backend_missing",
+            f"Backend executable was not found: {argv[0]}",
+            3,
+            spec.get("backend", {}).get("install", "Install the required backend."),
+        ) from exc
+    except subprocess.TimeoutExpired as exc:
+        raise BackendError(
+            "backend_timeout",
+            f"Backend exceeded the {timeout}s timeout.",
+            4,
+            "Inspect the project runtime and retry with a bounded workload.",
+        ) from exc
+    duration_ms = round((time.monotonic() - started) * 1000)
+    result = {
+        "exit_code": completed.returncode,
+        "stdout": completed.stdout,
+        "stderr": completed.stderr,
+        "postconditions": command.get("postconditions", []),
+    }
+    if completed.returncode != 0:
+        error = BackendError(
+            "backend_failed",
+            f"Project backend returned exit code {completed.returncode}.",
+            4,
+            "Run doctor and inspect the returned stderr.",
+        )
+        error.result = result
+        raise error
+    result["duration_ms"] = duration_ms
+    return result

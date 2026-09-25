@@ -1,0 +1,138 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.1"
+description: "把交互式应用的卡顿、耗电、内存增长与后台资源泄漏转化为可复查的跨平台运行时证据、工作量削减方案和安全生命周期协议；覆盖 Electron、Tauri、原生桌面、iOS、Android、React Native、Flutter 与 Web/PWA。"
+owner:
+  team: "LovStudio / 手工川工作室"
+  contact: "LovStudio local skill maintainers"
+license:
+  name: MIT
+  terms: "可在保留许可与版权声明的前提下使用、修改和分发；目标项目的代码、日志、trace 和用户数据仍受其原有许可与隐私边界约束。"
+  url: "LICENSE"
+use_case:
+  audience: "维护交互式桌面、移动端、跨平台或 Web/PWA 客户端的工程团队"
+  scenario: "应用越用越卡、掉帧、耗电、内存增长或后台工作持续放大，需要用真实构建与可重放工作负载定位根因，并在不丢用户状态的前提下治理生命周期"
+  tasks:
+    - "核对真实构建、设备/浏览器和运行边界，冻结可比较工作负载"
+    - "同时采集用户体验、运行时资源、内部工作量和规模四类证据"
+    - "定位 hydration、IPC/bridge、DB/fs/network/render/subprocess 与轮询的规模扇出"
+    - "实施停止无效工作、批量去重、有界预算和生命周期调度"
+    - "按 owner、activity、lease、resume 和 fingerprint 设计安全回收"
+    - "在目标平台真实运行时复测，并报告正确性门、残余热点和 evidence gaps"
+deployment:
+  geography: global
+  environments:
+    - "Portable Agent Skills runtime with Python 3.9+"
+    - "Electron、Tauri 或原生桌面源码与实际 release/package runtime"
+    - "iOS/Android/React Native/Flutter 的真实设备与 release/profile build"
+    - "Web/PWA 的固定浏览器实验环境及可选 field/RUM 数据"
+  state: "source_ready_local_validation"
+requirements:
+  credentials: "默认无；远程项目或 telemetry 只复用目标环境已有授权，凭据不进入报告或 Profile。"
+  dependencies:
+    - "Python 3.9+ standard library for evidence_report.py"
+    - "PyYAML for source validation"
+    - "目标平台 profiler、设备、浏览器或 telemetry adapter"
+  runtime:
+    - "可读取目标源码、实际运行时和项目测试命令"
+    - "可定义并重放至少一个具体性能工作负载"
+    - "执行外部回收或持久删除需要精确用户授权"
+risks:
+  - risk: "不同构建、设备、浏览器、数据、网络或采样器被误写成严格 A/B。"
+    mitigation: "前测即冻结 comparison contract；不匹配时只保留方向性证据并禁止精确百分比。"
+  - risk: "平台生命周期被错误类比，例如把移动端 suspend 或 Service Worker 终止当成桌面 kill。"
+    mitigation: "强制选择 host/runtime adapter，并分别验证后台、process death、BFCache、tab discard、resume 与 restore。"
+  - risk: "过期快照可能误杀刚恢复、刚注册或同名重建的资源。"
+    mitigation: "两次批量 inventory 后，在动作前重读 live lease，并用实例指纹或原子条件操作阻止 ABA。"
+  - risk: "未知或 dirty 资源可能含用户数据。"
+    mitigation: "未知资源只进入 inventory；persistent_delete 永不作为自动优化，任一证据缺失即保护。"
+  - risk: "采样器、全系统扫描或 debug instrumentation 自身制造负载。"
+    mitigation: "记录采样开销，使用 TTL、可见性门控、byte budget、共享 cache 和有界并发。"
+references:
+  - title: "Controller workflow"
+    path: "SKILL.md"
+  - title: "Evidence schema and report contract"
+    path: "references/evidence-contract.md"
+  - title: "Cross-platform runtime playbook"
+    path: "references/runtime-playbook.md"
+  - title: "Platform adapter matrix"
+    path: "references/platform-adapters.md"
+  - title: "Conservative reclamation policy"
+    path: "references/reclamation-policy.md"
+  - title: "Yoda Electron case"
+    path: "cases/cases.json"
+output:
+  types:
+    - "app runtime evidence ledger and frozen comparison contract"
+    - "runtime/work ownership graph and ranked falsifiable hypotheses"
+    - "bounded optimization implementation or reviewed design"
+    - "resource protection/candidate matrix"
+    - "before/after verification report with correctness gates and evidence gaps"
+  formats:
+    - "Markdown"
+    - "app-runtime-report/v1 JSON"
+    - "project source changes and tests when authorized"
+  parameters:
+    - "pipeline: optimize-runtime | audit-only | review-reclamation | verify-change"
+    - "platform adapter: desktop | mobile | cross-platform | web-pwa plus runtime/resource adapters"
+    - "mode: read-only by default; implementation or cleanup only when authorized"
+  validation:
+    - "every causal claim identifies measurement, code_fact, inference or acceptance evidence with provenance"
+    - "before/after comparisons preserve the frozen workload or declare directional quality"
+    - "cleanup candidates pass owner, activity, lease, cwd/dirty where applicable, identity and evidence guards"
+    - "target-platform real runtime and repository-required correctness gates are reported separately"
+  description: "A concise outcome backed by machine-readable evidence, platform-specific runtime verification and explicit safety boundaries."
+ethical_considerations: "仅收集性能定位所需的最小现场信息；不复制凭据、私人内容或设备标识。诊断默认只读，未知状态解释为保护；外部终止与持久删除不能超出用户授权或平台政策。"
+dimensions:
+  - id: diagnostic-rigor
+    label: "诊断证据完整度"
+    description: "区分现场测量、源码事实、推导和阈值验收，并为高优先级假设提供可证伪条件。"
+    evidence: "Yoda 案例把约 916 IPC / 1,832 Git 子进程的源码推导与 600 次采样得到的 15 个唯一 Git 子进程分开，禁止计算伪精确百分比。"
+    score: 5
+    score_status: "case_backed"
+  - id: performance-effectiveness
+    label: "运行时降载能力"
+    description: "优先停止无效工作，再批量去重、限制预算并按生命周期调度，同时追踪用户体验和内部工作量。"
+    evidence: "Yoda 实现将 PR 查询改为项目批量、归档任务改为按需 hydration、上下文轮询改为轻量共享查询；但缺正式包同负载 UX/RSS 完整 A/B。"
+    score: 4
+    score_status: "case_backed_with_runtime_gap"
+  - id: reclamation-safety
+    label: "生命周期与回收安全性"
+    description: "所有外部回收具备 owner、activity、lease、resume、fingerprint、二次核验与失败关闭语义。"
+    evidence: "Yoda 的实现与竞态测试保护 working/attached/dirty/unknown/identity-changed；61 个旧 tmux 和 307 个未知目录未被盲清，但生产批量 resume trial 未执行。"
+    score: 4
+    score_status: "implemented_not_runtime_verified"
+  - id: validation-depth
+    label: "验收深度"
+    description: "区分正确性门与性能阈值，并要求目标平台真实运行时和冻结工作负载。"
+    evidence: "Yoda 有 3,115 项测试与发布 build、真实 PR 周期子进程复测；仍缺 input latency、long task、energy 和 RSS 的完整配对后测。"
+    score: 4
+    score_status: "partially_verified"
+  - id: portability
+    label: "跨平台可迁移性"
+    description: "核心合同独立于框架，host、runtime/framework 与 resource 差异通过 adapter 接入。"
+    evidence: "已定义 Electron、Tauri、原生桌面、iOS、Android、React Native、Flutter、Web/PWA 的测量和生命周期边界；当前只有 Yoda/Electron 完整案例。"
+    score: 3
+    score_status: "design_backed_single_platform_case"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "源码、三阶段工作流、跨平台 adapter 矩阵、证据报告脚本、安全回收策略与 Yoda 完整案例共同交付。"
+  boundary: "免费版本包含本地审计、设计、证据归一化与验证方法；不包含托管 telemetry、目标项目专属商业实施、生产数据保管、远程运维或 SLA。"
+  review_trigger: "积累至少三个不同 platform family 的完整真实案例，或增加托管采集/持续回归/带响应时限的实施服务时复评。"
+  confidence: "single-platform-case-backed"
+distribution:
+  paid:
+    - channel: "workbuddy"
+      state: "not_prepared"
+      note: "当前只有免费本地 Kit，没有付费 SKU、商品或发布产物。"
+    - channel: "skillpay"
+      state: "not_prepared"
+      note: "当前只有免费本地 Kit，没有付费 SKU、商品或发布产物。"
+  free:
+    - channel: "lovstudio"
+      state: "local_ready"
+      note: "源码与本地安装已准备，尚未对外发布。"
+    - channel: "github"
+      state: "source_ready_not_published"
+      note: "源码结构可公开，当前未创建或推送独立远程仓库。"

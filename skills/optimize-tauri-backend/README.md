@@ -1,6 +1,6 @@
 # Tauri 后端调优 · Tauri Backend Tuner
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 Optimize Tauri 2 backend architecture, command surfaces, IPC streams, and Rust
 development ergonomics.

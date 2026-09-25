@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "减少桌面应用更新链路中因签名、feed、安装状态和发布误判导致的返工与失败发布。"
+basis: "核心方法基于公开的桌面框架更新机制，并通过真实 Tauri 项目实现验证，作为免费工程基础能力提供。"
+boundary: "包含架构识别、运行时实现、发布产物契约、静态审计与验证流程；不包含代付开发者账号、证书、公证服务或托管差分 CDN。"
+review_trigger: "当 Skill 增加托管差分服务、持续发布监控或商业签名基础设施时重新评估。"
+confidence: verified-local

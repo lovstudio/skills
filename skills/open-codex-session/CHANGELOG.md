@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.2] - 2026-09-07
+
+### Added
+
+- 统一展示名为「Codex 任务直达」，保持调用 ID 与能力契约。
+
 ## 0.1.1
 
 - 修正 LovStudio 统一目录安装命令，按 runtime 名 `lov-open-codex-session` 选择 Skill。

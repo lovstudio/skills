@@ -1,0 +1,32 @@
+{
+  "schema": "skill-naming-review/v1",
+  "scope_ids": [
+    "lov-skill-namer"
+  ],
+  "rows": [
+    {
+      "id": "lov-skill-namer",
+      "before": {
+        "name_zh": "",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Skill 命名大师",
+        "display_name": "Skill Naming Master"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "Skill 命名大师"
+      },
+      "evidence": [
+        "provenance.md#当前自身命名",
+        "../../SKILL.md"
+      ],
+      "reason": "保留用户指定的命名大师角色，以 Skill 限定真实服务对象；英文自然对应，短调用标识与显示名分离。"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # 知识寻回 · Knowledge Finder
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 跨已配置的 memory 与 distill 知识记录检索并返回可追溯结果。
 

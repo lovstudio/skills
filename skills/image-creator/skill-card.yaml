@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 按用途生成图像、制作可编辑图文布局或整理图像提示词
-version: 0.3.1
+version: "0.3.3"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

@@ -1,0 +1,47 @@
+{
+  "template": "art-system-card",
+  "language": "zh-CN",
+  "series": {
+    "name": "Art System Card",
+    "subtitle": "艺术风格图鉴"
+  },
+  "number": "01",
+  "category": "秩序与克制",
+  "title": "Bauhaus",
+  "subtitle": "包豪斯",
+  "visual": {
+    "path": "assets/bauhaus-visual.jpg",
+    "alt": "包豪斯视觉语言示意：基础几何、红黄蓝、黑白与现代家具构成的室内场景",
+    "caption_left": "AI-generated visual study",
+    "caption_right": "形态示意，并非历史作品"
+  },
+  "background": "1919 年诞生于德国的现代设计学校，试图重新连接艺术、工艺与工业生产。它不是一种固定装饰，而是一套让形式回应功能、材料与规模化制造的方法。",
+  "prompt": "[SUBJECT], Bauhaus visual system, primary geometric forms, asymmetric grid, red, cobalt blue, mustard yellow, black and warm white, functional composition, crisp edges, generous negative space, editorial poster, subtle paper texture --ar 4:3 --stylize 150 --chaos 6 --no text, letters, logo, watermark",
+  "scenarios": [
+    "品牌系统",
+    "编辑设计",
+    "UI 骨架",
+    "展览视觉"
+  ],
+  "ratings": [
+    {
+      "label": "流行度",
+      "score": 4,
+      "note": "广泛认知"
+    },
+    {
+      "label": "品味度",
+      "score": 5,
+      "note": "专业经典"
+    }
+  ],
+  "brand": {
+    "name": "LovStudio",
+    "site": "https://lovstudio.ai"
+  },
+  "theme": {
+    "accent": "#d84b35",
+    "accent_2": "#15569a",
+    "accent_3": "#eabf20"
+  }
+}

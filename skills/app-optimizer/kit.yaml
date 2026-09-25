@@ -1,0 +1,32 @@
+name: app-optimizer
+display_name: "App Optimizer"
+version: "0.2.0"
+entrypoint: lov-app-optimizer
+modules:
+  - id: runtime-audit
+    skill: lov-runtime-audit
+    path: skills/runtime-audit
+    input: "symptom, platform adapter, actual runtime identity, reproducible workload, scale, read-only sampling access"
+    output: "evidence ledger, ownership graph, ranked and falsifiable bottleneck hypotheses"
+  - id: reclamation-engineering
+    skill: lov-reclamation-engineering
+    path: skills/reclamation-engineering
+    input: "evidence ledger, platform lifecycle model, resource ownership model, authorization boundary"
+    output: "lifecycle policy, protected/candidate decision matrix, tested implementation seams"
+  - id: runtime-verification
+    skill: lov-runtime-verification
+    path: skills/runtime-verification
+    input: "frozen comparison contract, patch or policy, real runtime or device, acceptance thresholds"
+    output: "before/after report, safety checks, residual-hotspot verdict"
+pipelines:
+  optimize-runtime:
+    - runtime-audit
+    - reclamation-engineering
+    - runtime-verification
+  audit-only:
+    - runtime-audit
+  review-reclamation:
+    - reclamation-engineering
+    - runtime-verification
+  verify-change:
+    - runtime-verification

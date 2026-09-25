@@ -1,0 +1,63 @@
+from __future__ import annotations
+
+import json
+import shutil
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+
+
+HARNESS_ROOT = Path(__file__).resolve().parents[1]
+SPEC = json.loads((HARNESS_ROOT / "lov-cli.json").read_text(encoding="utf-8"))
+
+
+def installed_cli() -> str:
+    resolved = shutil.which("__COMMAND_NAME__")
+    if not resolved:
+        raise RuntimeError(
+            "__COMMAND_NAME__ is not installed. Run: python3 -m pip install -e ."
+        )
+    return resolved
+
+
+class InstalledCommandE2ETests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.cli = installed_cli()
+
+    def run_cli(self, *args: str) -> subprocess.CompletedProcess[str]:
+        with tempfile.TemporaryDirectory(prefix="lov-cli-e2e-") as neutral:
+            return subprocess.run(
+                [self.cli, *args],
+                cwd=neutral,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+    def test_installed_doctor(self) -> None:
+        result = self.run_cli("--json", "doctor")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertTrue(json.loads(result.stdout)["data"]["ready"])
+
+    def test_real_read_only_domain_command(self) -> None:
+        candidates = [
+            command
+            for command in SPEC["commands"]
+            if not command.get("mutates")
+            and not any(parameter.get("required") for parameter in command.get("parameters", []))
+        ]
+        self.assertTrue(
+            candidates,
+            "Add a real read-only command with no required inputs, or replace this test with a real workflow.",
+        )
+        result = self.run_cli("--json", candidates[0]["name"])
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        payload = json.loads(result.stdout)
+        self.assertTrue(payload["ok"])
+        self.assertEqual(payload["data"]["exit_code"], 0)
+
+
+if __name__ == "__main__":
+    unittest.main()

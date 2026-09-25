@@ -3,9 +3,11 @@ name: lov-image-translation-errata
 description: >
   核对截图中的原文与机翻，生成保留错误痕迹、给出正确译文且尽量维持原布局的勘误图；用于“图片翻译勘误”“指出机翻错误”和 create an in-image translation errata。
 license: MIT
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: lovstudio-contributors
-  version: "0.2.0"
+  version: "0.2.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - translation

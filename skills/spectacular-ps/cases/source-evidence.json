@@ -1,0 +1,53 @@
+{
+  "source_url": "https://chatgpt.com/share/6ab38700-6d34-83ec-90c9-989ecd2d7f5a",
+  "source_title": "制作微信头像",
+  "retrieved_on": "2026-09-23",
+  "verification_scope": "Share-page text, execution prompts and image identifiers read back; image pixels not downloaded or independently re-inspected.",
+  "events": [
+    {
+      "role": "user",
+      "kind": "initial_request",
+      "text": "P 成适合做微信头像",
+      "image_reference": "sediment://file_000000001e5082119faf3f73190dc7fa?shared_conversation_id=6ab38700-6d34-83ec-90c9-989ecd2d7f5a"
+    },
+    {
+      "role": "assistant",
+      "kind": "rejected_prompt",
+      "text": "编辑用户刚上传的雪山人物照片，制作一张可以直接使用的微信头像，输出单张1:1正方形高清照片。\nUse case: identity-preserve. Input image 1 is the edit target, not just style inspiration.\n以原片为基础进行真实摄影后期与构图重裁，不要重新设计人物。严格保持同一个人的脸型、五官比例、嘴角表情、肤色、墨镜、黑色帽子及头灯、黑色户外服和背包肩带，保留原来的头部角度和张开双臂的身体姿态。最重要的是一眼看出是原照片本人，不要换脸、瘦脸或美颜网红化。\n构图：紧凑自然的胸部以上近景，人物头部居中略偏上，帽顶有约8%留白，头部连帽子约占画面高度35%，肩膀及上胸填充画面下半部，伸开的手臂自然延伸到画幅之外，无需把双手和全身硬塞进画面。脸部和帽子处于中间安全区，兼容方形与圆形头像裁切，小缩略图也能辨认。\n保留原照片真实雪山山体、深蓝天空和少量彩色经幡作为环境背景，按肖像构图自然重裁，雪山仍有辨识度，经幡主要在底部点缀，适度降低背景细节对比并做轻微自然景深处理，避免杂乱抢脸。保持真实户外阳光方向，适度提亮脸部阴影，保留皮肤纹理和明暗立体感，黑色服装有细节，雪白不过曝，颜色通透自然，克制的旅行人像摄影质感。\n不添加文字、边框、贴纸、水印、徽章或新道具，不卡通化，不改变年龄，不过度磨皮，不做夸张HDR。只输出一张完成的方形头像，不要拼图或前后对比。",
+      "image_reference": "sediment://file_0000000099f08211a229d48c67a3792c?shared_conversation_id=6ab38700-6d34-83ec-90c9-989ecd2d7f5a"
+    },
+    {
+      "role": "user",
+      "kind": "revision_request",
+      "text": "感觉没有人家这张帅",
+      "style_reference": "sediment://file_0000000069648211a0db002f7216225e?shared_conversation_id=6ab38700-6d34-83ec-90c9-989ecd2d7f5a"
+    },
+    {
+      "role": "assistant",
+      "kind": "executed_revision_prompt",
+      "text": "Create a revised square WeChat avatar by EDITING the ORIGINAL uploaded photo of the man wearing BLACK outdoor clothing, black beanie with headlamp, sunglasses, white backpack straps, standing arms outstretched in front of snowy mountains and prayer flags. There are 3 recent images: the original full-body black-clothed man is the EDIT TARGET and identity source; the previously generated close-up avatar is an unsuccessful composition, do NOT reuse that tight crop; the latest photo showing a YELLOW-jacket climber kneeling before a glacier is ONLY a mood and composition reference, do NOT copy that person, outfit or pose.\nUser says previous edit is less cool than reference. Make a sophisticated cinematic expedition portrait with a powerful mountain setting, much wider environmental framing than previous headshot. Output ONE 1:1 square photographic image. Preserve original man's actual face, facial structure, expression, sunglasses, black beanie and headlamp, black jacket, white backpack straps, natural body proportions and arms-spread pose. No face beautification or identity changes. Use original image as the photographic foundation.\nComposition: man centered in lower half, head near 48% of image height, show head down to thighs or knees, arms outstretched across lower-middle frame and hands visible where natural; mountains dominate upper half with monumental scale and strong detailed ridges. Subject clearly readable as a bold black silhouette with subtly illuminated face and edges; ensure face and torso survive circular avatar crop. Avoid an oversized headshot. Retain the recognizable ORIGINAL snow-covered mountain ridge and original setting rather than transplanting the reference glacier. Tasteful dramatic cool slate-blue shadows, restrained contrast, clean white snow, subtle cloud atmosphere high over peaks, natural photographic lighting. Prayer flags occupy only the lower portion as muted red ochre blue accents: substantially reduce distracting rainbow saturation and clutter while maintaining their authentic presence. Make mountain and human scale relationship feel adventurous and confident, as in the latest reference, without unrealistic fantasy effects. Natural premium outdoor editorial photograph, not illustration, not HDR, not plastic AI skin. No text, watermarks, borders, collage, or added props. Deliver one finished square avatar."
+    },
+    {
+      "role": "assistant",
+      "kind": "selected_result",
+      "text": "这版拉远了构图、压低经幡杂色，并强化雪山与云雾，更接近参考图的户外大片感。**背景做了艺术化处理**，人物保留你的张臂姿态。",
+      "image_reference": "sediment://file_00000000bb5c8211bff77c76b46a002f?shared_conversation_id=6ab38700-6d34-83ec-90c9-989ecd2d7f5a"
+    },
+    {
+      "role": "user",
+      "kind": "approval_and_followup",
+      "text": "可以，这个挺好的，请生成对比图与可复刻prompt"
+    },
+    {
+      "role": "assistant",
+      "kind": "historical_comparison",
+      "image_reference": "sediment://file_00000000e4548211b2819d38bcab017b?shared_conversation_id=6ab38700-6d34-83ec-90c9-989ecd2d7f5a",
+      "method": "generative layout; not pixel-verified"
+    },
+    {
+      "role": "assistant",
+      "kind": "reproduction_prompt",
+      "text": "对比图已生成。**上传原图，再粘贴下面的 Prompt**；若同时附上满意的成片作为风格参考，会更容易接近这次效果。\n\n```text\n请将我上传的人像照片编辑成一张 1:1 正方形微信头像，风格为写实、有电影感的高山探险摄影。\n\n【人物保留】\n严格保留原人物身份：脸型、五官比例、表情、肤色、墨镜、黑色帽子与头灯、黑色户外服、白色背包肩带。\n保留张开双臂的姿态和自然身体比例。\n不要换脸、瘦脸、过度磨皮或改变年龄。\n\n【构图】\n采用环境人像构图，人物位于画面中央偏下，展示头部至大腿或膝部，双臂自然展开。\n头部大致位于画面高度的 45%–50% 处。\n雪山占据上半部，突出山体的巨大尺度与人物的舒展姿态。\n面部与躯干保留在中心安全区，兼顾圆形头像裁切。\n\n【背景处理】\n以原照片的雪山为基础，保留主要山脊辨识度，允许艺术化强化山体纵深、山谷与岩壁层次。\n在山间和峰顶加入自然云雾，形成前后空间感，避免云雾遮住脸。\n减少前景经幡的密集感，将其集中在画面底部，露出适量岩石与积雪。\n降低经幡饱和度，保留少量红、赭黄、蓝色作为点缀。\n\n【光影与调色】\n采用冷灰蓝色阴影、干净的雪白和自然肤色。\n增强山体的明暗层次，但避免过度锐化和夸张 HDR。\n人物面部适度提亮，黑色衣服保留材质细节。\n人物与背景光线方向一致，边缘融合自然，避免抠图感。\n\n【目标效果】\n整体开阔、冷峻、有力量，呈现高品质户外摄影质感。\n如果提供了参考成片，只借鉴其构图、调色与氛围，人物身份以原图为准。\n\n输出一张高清正方形成片，不加文字、边框、水印或额外道具。\n```\n\n这套提示词复刻的是**风格与处理方向**，无法保证每次像素一致；其中云雾、山体纵深和前景属于艺术化改动。"
+    }
+  ]
+}

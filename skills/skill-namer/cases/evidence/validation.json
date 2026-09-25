@@ -1,0 +1,100 @@
+{
+  "date": "2026-09-07",
+  "version": "0.1.0",
+  "source_validation": "passed",
+  "audit_regressions": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v",
+    "tests": 11,
+    "result": "passed"
+  },
+  "historical_replay": {
+    "file": "catalog-audit.json",
+    "rows": 156,
+    "result": "passed",
+    "scope": "structure and approved spellings only"
+  },
+  "self_naming": {
+    "file": "self-naming-audit.json",
+    "result": "passed"
+  },
+  "contract_walkthrough": {
+    "method": "manual instruction walkthrough in the current task; not an independent agent evaluation",
+    "trigger": "Give this skill a name: skill naming master",
+    "trigger_result": "routed to skill naming and preserved the requested Chinese name",
+    "non_triggers": [
+      {
+        "request": "Name a general project",
+        "result": "route to project naming"
+      },
+      {
+        "request": "Only publish an already named Skill",
+        "result": "route to publisher"
+      },
+      {
+        "request": "Is this name appropriate?",
+        "result": "review only; no file changes or publication"
+      }
+    ]
+  },
+  "branding_gate": {
+    "method": "manual review using lov-branding-consistency context, conventions and quality gate",
+    "surface": "Skill catalog card and local Skill picker",
+    "audience": "Skill creators and maintainers",
+    "name": "Skill Naming Master",
+    "result": "passed",
+    "notes": "Capability-specific object and user-chosen role; no studio prefix, unsupported service claim, or process commentary in the visible name.",
+    "copy_audit": {
+      "result": "passed",
+      "findings": 0,
+      "method": "copy_audit.py website title"
+    }
+  },
+  "installations": {
+    "shared_source": "verified",
+    "codex": "verified",
+    "claude": "verified",
+    "brand_dependency": "available"
+  },
+  "limitations": [
+    "No independent aesthetic or memorability measurement.",
+    "Historical publishing belongs to the earlier task.",
+    "New Skill has not been published to remote channels."
+  ],
+  "lint": {
+    "counts": {
+      "error": 0,
+      "warn": 1,
+      "info": 2
+    },
+    "reviewed_findings": [
+      {
+        "code": "README_NO_INSTALL",
+        "reason": "README provides a real local symlink installation; the generic linter recognizes only remote CLI patterns. No remote repository is claimed."
+      },
+      {
+        "code": "BODY_NO_ASKUSER",
+        "reason": "Only missing purpose triggers a host-native clarification; no specific unavailable question tool is required."
+      },
+      {
+        "code": "LOCAL_USER_PATH",
+        "reason": "Inherited source validator recognizes generic home-path patterns; the Skill has no private runtime path dependency."
+      }
+    ]
+  },
+  "strict_yaml": {
+    "result": "passed",
+    "files": [
+      "pricing-card.yaml",
+      "skill-card.yaml",
+      "skill.yaml",
+      "agents/openai.yaml",
+      "SKILL.md frontmatter"
+    ]
+  },
+  "display_and_identity": {
+    "result": "passed",
+    "name_zh": "Skill 命名大师",
+    "display_name": "Skill Naming Master",
+    "id": "lov-skill-namer"
+  }
+}

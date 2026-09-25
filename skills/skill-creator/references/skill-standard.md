@@ -8,6 +8,18 @@ and channel packaging belong to `lov-skill-publisher`.
 - Local source directory: `<name>-skill`.
 - Frontmatter and installed directory: `lov-<name>`.
 - Names use lowercase letters, numbers, and single hyphens.
+- Display names prioritize accuracy, brevity, elegance and consistency, guided
+  by the user's approved examples. Favor short, memorable product names; role
+  names and clear metaphors are valid alongside functional names. Examples
+  include “BP 大师”, “写书专家”, “人人字幕” and “官网小能手”. Do not impose an
+  object–action template or a blacklist of promotional-sounding words.
+- Omit creator/studio brand prefixes. Preserve task-defining platform names,
+  such as GitHub or 微信. Compare recognition and distinction among neighboring
+  Skills; Chinese and English names should be natural and describe the same scope.
+- Display names and compatibility identifiers are separate. Improve existing
+  labels without silently renaming IDs, repositories, paths or Profile keys.
+- Verify display name, description, workflow and corresponding README/Card
+  titles together. A short but misleading name does not pass the naming gate.
 - Source top-level fields are `name`, `description`, `license`, `compatibility`,
   `allowed-tools`, `depends_on`, and `metadata`; version and tags live in
   `metadata`.

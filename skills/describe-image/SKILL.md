@@ -2,9 +2,11 @@
 name: lov-describe-image
 description: 给纯文本模型"看图"：调用智谱 GLM-4V-Flash（免费）把图片转成文字描述。当用户要求描述/识别/读取图片，或任务里出现图片文件（截图/图表/照片）而当前模型无法直接看图时，优先调用本 skill。需要图片磁盘路径，可附带具体问题。
 license: MIT
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: mark
-  version: "0.2.0"
+  version: "0.2.1"
   tags:
     - vision
     - image

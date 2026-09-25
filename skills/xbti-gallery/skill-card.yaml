@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 从已核实的社区地址或仓库列出可访问的 XBTI 人格测试案例
-version: 1.0.3
+version: "1.0.5"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

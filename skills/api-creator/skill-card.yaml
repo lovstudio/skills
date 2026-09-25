@@ -1,0 +1,90 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: >
+  当开发某个 app 需要 API 网关能力时，本 Skill 在 uni-api（FastAPI 聚合网关）后端为该 app 创建
+  网关端点并接入 /docs 分组，同时在对应 uni-app 前端封装统一调用层，让 app 通过网关访问聚合 API。
+owner:
+  team: "手工川工作室"
+  contact: "shawninjuly@gmail.com"
+license:
+  name: MIT
+  terms: "源码可自由使用、修改与分发；保留版权声明。"
+  url: "../LICENSE"
+use_case:
+  audience: "使用 uni-api 作为聚合网关并开发 DCloud uni-app 前端的开发者"
+  scenario: "开发某个 app 时，该 app 需要 API 网关能力（聚合上游 API、统一鉴权与错误处理），要求集成进 uni-api 后端并在 uni-app 前端封装调用层。"
+  tasks:
+    - "在 uni-api 后端为 app 新增网关端点并接入 /docs 分组"
+    - "在 uni-app 前端封装统一网关调用层"
+deployment:
+  geography: global
+  environments:
+    - "uni-api FastAPI 后端仓库"
+    - "DCloud uni-app 前端仓库"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "可访问的 uni-api（FastAPI）仓库，遵循仓库 AGENTS.md 运行前提"
+    - "DCloud uni-app 项目（含 pages.json 与 manifest.json）"
+risks:
+  - risk: "改动破坏 uni-api 启动（.env 缺字段、OSSClient 启动失败等）"
+    mitigation: "先读仓库 AGENTS.md 满足运行前提，验收时用 python import main 确认不破坏启动"
+  - risk: "后端端点与前端封装契约不一致"
+    mitigation: "以 backend 产出的网关端点清单作为 frontend 输入，逐条核对导出函数"
+  - risk: "前端错误提示不含上下文，难以排查"
+    mitigation: "统一错误结构携带 context_id 与请求信息，报错 UI 支持复制"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Backend module"
+    path: "skills/backend/SKILL.md"
+  - title: "Frontend module"
+    path: "skills/frontend/SKILL.md"
+output:
+  types:
+    - "后端网关端点（FastAPI router + 分组配置）"
+    - "前端 api/ 调用层（request 封装 + 端点模块）"
+  formats:
+    - "Python（FastAPI）"
+    - "TypeScript / JavaScript（uni-app）"
+  parameters:
+    - "app 名称"
+    - "需要网关化的上游能力"
+    - "前端项目路径与 baseURL"
+  validation:
+    - "后端 python import main 通过，openapi 出现新 tag"
+    - "前端页面可 import 端点函数并完成一次真实调用"
+  description: "交付网关端点清单与可用的前端 api/ 模块及用法示例"
+ethical_considerations: >
+  本 Skill 生成网关代码不涉及内容生成；应避免在源码中硬编码密钥，上游密钥只存环境变量与 .env。
+  不采集用户隐私，不绕过任何平台访问限制。
+dimensions:
+  - id: correctness
+    label: "端点与约定正确性"
+    description: "新增网关端点遵循 uni-api 既有 router / app_groups / settings 约定，不破坏启动与 /docs。"
+    evidence: "生成代码按仓库既有模式（router/llm.py、config/app_groups.py）对齐；验收跑 python import main。"
+    score: null
+  - id: effectiveness
+    label: "契约一致性"
+    description: "后端端点清单与前端 api/ 导出函数逐条对应，页面 import 即可调用。"
+    evidence: "以网关端点清单作为 frontend 输入并逐条核对导出函数。"
+    score: null
+  - id: efficiency
+    label: "封装复用效率"
+    description: "前端调用收敛到统一 request 封装，避免页面重复处理 token 与错误。"
+    evidence: "错误处理 / token 注入 / baseURL 集中在 api/request.ts 与 api/config.ts。"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "内部开发提效 skill，随手工川工作室公开分发，免费。"
+  boundary: "生成代码需落在 uni-api 与 uni-app 约定内；不包含上游 API 的调用成本与密钥。"
+  review_trigger: "当 Skill Kit 覆盖更多网关形态或前端框架，且维护成本显著上升时重估。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

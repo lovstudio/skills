@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate a portable local LovStudio Skill source directory."""
+"""Validate a portable local Skill source directory."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ except ImportError:
     raise SystemExit(2)
 
 
-FRONTMATTER_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
+FRONTMATTER_KEYS = {"name", "description", "license", "allowed-tools", "depends_on", "metadata"}
 TEXT_SUFFIXES = {".md", ".json", ".yaml", ".yml", ".txt", ".svg", ".py"}
 JUNK_NAMES = {"__pycache__", ".DS_Store"}
 JUNK_SUFFIXES = {".pyc", ".pyo"}
@@ -225,6 +225,35 @@ def validate_local_references(root: Path, errors: list[str]) -> None:
                 errors.append(f"{path}: missing required resource '${variable}/{target}'")
 
 
+def validate_runtime_manifest(root: Path, root_data: dict[str, Any], errors: list[str]) -> None:
+    manifest = root / "skill.yaml"
+    if not manifest.is_file():
+        errors.append(f"{manifest}: runtime manifest is required")
+        return
+    data = load_yaml(manifest, errors)
+    if data is None:
+        return
+    if data.get("schema") != "skill-manifest/v1":
+        errors.append(f"{manifest}: schema must be skill-manifest/v1")
+    if compact_text(data.get("id")) != compact_text(root_data.get("name")):
+        errors.append(f"{manifest}: id must match the root SKILL.md name")
+    if compact_text(data.get("version")) != compact_text(root_data.get("metadata", {}).get("version")):
+        errors.append(f"{manifest}: version must match the root SKILL.md metadata.version")
+    if data.get("runtime") != "skill-runtime/v1":
+        errors.append(f"{manifest}: runtime must be skill-runtime/v1")
+    context = data.get("context")
+    if not isinstance(context, dict):
+        errors.append(f"{manifest}: context must be an object")
+        return
+    for source in ("profile", "preferences"):
+        block = context.get(source)
+        if not isinstance(block, dict) or not isinstance(block.get("fields"), list):
+            errors.append(f"{manifest}: context.{source}.fields must be a list")
+    interaction = context.get("interaction")
+    if not isinstance(interaction, dict) or not isinstance(interaction.get("ask_missing"), bool):
+        errors.append(f"{manifest}: context.interaction.ask_missing must be boolean")
+
+
 def validate_hygiene(root: Path, errors: list[str]) -> None:
     private_path = re.compile(r"(?:/Users/[^/\s]+/|[A-Za-z]:\\\\Users\\\\[^\\\s]+\\\\)")
     for path in root.rglob("*"):
@@ -262,6 +291,8 @@ def validate_source(root: Path, errors: list[str]) -> None:
     if len(names) != len(parsed):
         errors.append(f"{root}: every embedded Skill must have a unique name")
     validate_kit(root, names, errors)
+    if parsed:
+        validate_runtime_manifest(root, parsed[0][1], errors)
 
     readme = root / "README.md"
     if not readme.is_file():

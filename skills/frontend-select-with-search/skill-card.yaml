@@ -1,0 +1,108 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "将超过阈值的前端 Select 升级为可搜索、可滚动且键盘可访问的兼容组件，并用真实滚轮事件验证 Dialog 与 Portal 场景。"
+owner:
+  team: "LovStudio contributors"
+  contact: "source repository maintainers"
+license:
+  name: MIT
+  terms: "允许使用、复制、修改和分发；保留版权与许可声明，不提供适销性或特定用途保证。"
+  url: "LICENSE"
+use_case:
+  audience: "维护 HTML、React、Vue、Svelte 或组件系统的前端工程师与代码 Agent"
+  scenario: "项目中多个 Select 的候选项会增长，或者 Dialog 内的可搜索候选列表受 Portal 与滚动锁影响。"
+  tasks:
+    - "盘点共享 Select 与所有调用面并验证 5/6 项边界"
+    - "实现本地搜索、值兼容、键盘和无结果状态"
+    - "修复长列表在普通页面与模态弹层中的真实滚动"
+    - "运行项目质量门并报告可复核交互证据"
+deployment:
+  geography: global
+  environments:
+    - "local agent runtime with repository access"
+    - "private or public frontend project workspace"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "target project's existing frontend toolchain"
+    - "browser interaction tooling for real wheel verification"
+    - "Python 3.8 and PyYAML for Profile and local Skill validation"
+risks:
+  - risk: "自定义组合框破坏原生 Select 的受控值、表单提交或校验语义。"
+    mitigation: "先声明兼容契约，保留小列表原生分支，并覆盖受控、非受控、required、name、reset 和动态选项测试。"
+  - risk: "列表有 overflow 样式但滚轮被外层 Dialog 滚动锁拦截。"
+    mitigation: "检查 Modal 与 Portal 的允许滚动层，用真实滚轮测量 scrollTop 变化并在滚动后完成一次选择。"
+  - risk: "搜索可用但键盘、焦点或辅助技术关系不完整。"
+    mitigation: "使用一致的 Combobox/Listbox 模式，验证方向键、Enter、Escape、焦点恢复、禁用项和重复控件。"
+  - risk: "对超大远程数据集执行本地全量过滤导致性能或隐私问题。"
+    mitigation: "识别远程数据边界；需要时把检索、取消和错误状态交给项目数据层，不上传本地标签。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Searchable Select playbook"
+    path: "references/select-search-playbook.md"
+  - title: "Real user case"
+    path: "cases/cases.json"
+output:
+  types:
+    - "frontend source-code patch"
+    - "Select inventory and compatibility contract"
+    - "interaction verification report"
+  formats:
+    - "project-native HTML, JavaScript, TypeScript or component files"
+    - "concise Markdown evidence summary"
+  parameters:
+    - "search threshold, default 5"
+    - "single or multiple selection mode"
+    - "option source and modal host"
+    - "project-specific test and build commands"
+  validation:
+    - "5 options stay native and 6 options become searchable"
+    - "real wheel or trackpad input changes listbox scrollTop"
+    - "selection works after scrolling and keyboard navigation works"
+    - "project typecheck, tests, lint or build pass in proportion to risk"
+  description: "A repository-scoped implementation with explicit threshold behavior, preserved form semantics, accessible interaction, and real modal-scroll evidence."
+ethical_considerations: "默认在本地处理候选标签，不把项目数据发送到远程服务；保留现有许可与归属，不伪造浏览器、触控、辅助技术或构建验证结果。"
+dimensions:
+  - id: threshold-coverage
+    label: "阈值覆盖"
+    description: "小列表保持原生，超过 5 项后统一进入搜索分支，动态候选项也按同一规则重算。"
+    evidence: "真实案例验证了 5 项原生以及 6、16、17 项可搜索边界。"
+    score: verified-case
+  - id: scroll-correctness
+    label: "滚动正确性"
+    description: "长列表在 Dialog 与 Portal 组合下响应真实滚轮，而不是只具有 overflow 样式。"
+    evidence: "真实滚轮使 clientHeight 240、scrollHeight 588 的列表 scrollTop 从 0 变为 348，随后选中成功。"
+    score: verified-case
+  - id: interaction-compatibility
+    label: "交互兼容性"
+    description: "搜索、键盘选择、受控值与父弹窗状态共同保持可用。"
+    evidence: "中文过滤和 Enter 选择通过；滚动后选择恢复父弹窗，TypeScript 与 Vite 构建通过。"
+    score: verified-case
+  - id: portability
+    label: "可移植性"
+    description: "工作流复用项目现有组件系统，不绑定专有路径、品牌值或单一框架。"
+    evidence: "Skill 为 instruction-only，依赖声明为空，框架差异与 Modal/Portal 策略在 playbook 中按契约处理。"
+    score: reviewed
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "可移植指令和验收方法没有托管或专有服务成本，当前本地使用免费。"
+  boundary: "包含 Select 搜索、滚动、兼容性和验证；不包含后端检索、整体视觉重设计、组件库安装或发布。"
+  review_trigger: "加入自动迁移器、持续适配服务或托管远程检索后复评。"
+  confidence: verified-local-case
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-planned
+    - channel: skillpay
+      status: not-planned
+  free:
+    - channel: local
+      status: installed
+    - channel: github
+      status: not-published
+    - channel: lovstudio
+      status: not-published

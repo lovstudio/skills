@@ -1,6 +1,6 @@
 # 经验萃取 · Lesson Distiller
 
-![Version](https://img.shields.io/badge/version-3.7.1-CC785C)
+![Version](https://img.shields.io/badge/version-3.7.2-CC785C)
 
 将真实解决过程整理为可复用经验文档并维护知识索引。
 

@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>算法可视化</title>
+<style>
+  :root {
+    --paper: #F9F9F7;
+    --card: #FFFFFF;
+    --ink: #181818;
+    --muted: #8A857A;
+    --line: #E4E0D5;
+    --accent: #CC785C;
+    --accent-soft: #F5E4DC;
+    --sage: #6E8B7B;
+    --amber: #E6A94A;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  .page { max-width: 1080px; margin: 0 auto; padding: 32px 24px 48px; }
+
+  /* ---------- header ---------- */
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    letter-spacing: .01em;
+  }
+  .insight {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0;
+  }
+  .insight b { color: var(--accent); font-weight: 600; }
+
+  /* ---------- layout ---------- */
+  .main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 20px;
+    margin-top: 22px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .main { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- stage ---------- */
+  .stage-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+  .stage {
+    position: relative;
+    height: 440px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background:
+      radial-gradient(circle at 1px 1px, #EFEBE1 1px, transparent 0);
+    background-size: 22px 22px;
+    overflow: hidden;
+  }
+  @media (max-width: 640px) { .stage { height: 320px; } }
+
+  /* edges */
+  .edge-layer { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .edge-layer line { stroke: #C9C2B4; stroke-width: 1.6; transition: stroke .18s ease, stroke-width .18s ease; }
+  .edge-layer text {
+    font-family: var(--mono); font-size: 11px; fill: var(--muted);
+    paint-order: stroke; stroke: var(--card); stroke-width: 5px; text-anchor: middle;
+  }
+  .edge-layer line.is-active { stroke: var(--accent); stroke-width: 3; filter: drop-shadow(0 0 6px rgba(204,120,92,.5)); }
+  .edge-layer line.is-settled { stroke: var(--sage); stroke-width: 2.4; }
+  .edge-layer line.is-rejected { stroke: #C9A79E; stroke-width: 1.6; stroke-dasharray: 5 5; }
+
+  /* nodes */
+  .node {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    min-width: 56px; min-height: 56px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 3px;
+    padding: 6px 10px;
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    transition: background .18s ease, border-color .18s ease, box-shadow .18s ease, color .18s ease;
+    z-index: 2;
+  }
+  .node strong { font-family: var(--mono); font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .node small { color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: .04em; }
+  .node.is-settled { border-color: var(--sage); background: #EDF2EE; }
+  .node.is-active {
+    background: var(--accent); border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(204,120,92,.18), 0 6px 18px rgba(204,120,92,.28);
+    color: #fff; z-index: 3;
+  }
+  .node.is-active small { color: rgba(255,255,255,.75); }
+
+  /* bars */
+  .bars { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 8px; padding: 20px; }
+  .bar-wrap { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 4px; min-width: 0; }
+  .bar {
+    width: 100%; max-width: 56px;
+    border-radius: 5px 5px 0 0;
+    background: #D8D2C4;
+    transition: height .2s ease, background .18s ease, box-shadow .18s ease;
+  }
+  .bar-wrap small { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+  .bar.is-active { background: var(--accent); box-shadow: 0 0 0 3px rgba(204,120,92,.18); }
+  .bar.is-settled { background: var(--sage); }
+
+  /* note */
+  .note-bar {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-top: 14px; padding: 14px 16px;
+    background: var(--accent-soft);
+    border: 1px solid #EFCFC0;
+    border-radius: 8px;
+  }
+  .step-badge {
+    flex: none;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+    color: #9A4E33;
+    background: #fff;
+    border: 1px solid #EFCFC0;
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-top: 1px;
+    white-space: nowrap;
+  }
+  .note-text { margin: 0; font-size: 15px; color: var(--ink); }
+
+  /* ---------- toolbar ---------- */
+  .toolbar {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 14px; padding: 10px 12px;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  }
+  .tb-btn {
+    width: 36px; height: 36px; flex: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line); border-radius: 8px; background: #fff;
+    color: var(--ink); cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .tb-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+  .tb-btn:disabled { opacity: .38; cursor: default; }
+  .tb-play {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent); border: none; color: #fff; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: transform .12s ease, background .15s ease;
+  }
+  .tb-play:hover { background: #B5644A; transform: scale(1.04); }
+  .progress { flex: 1 1 auto; margin: 0 8px; min-width: 0; }
+  .progress-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .progress-meta strong { color: var(--ink); font-weight: 600; }
+  .track { height: 6px; background: var(--line); border-radius: 999px; position: relative; cursor: pointer; }
+  .track i {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--accent); border-radius: 999px; width: 0%;
+    transition: width .15s linear;
+  }
+  .speed {
+    font-family: var(--mono); font-size: 12px;
+    padding: 7px 8px; border: 1px solid var(--line); border-radius: 8px; background: #fff;
+    color: var(--ink); cursor: pointer;
+  }
+
+  /* ---------- side panel ---------- */
+  .side { display: flex; flex-direction: column; gap: 14px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px;
+  }
+  .card-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .card p { margin: 0; font-size: 13.5px; color: var(--ink); }
+  .card p b { color: var(--accent); }
+
+  ol.code { margin: 0; padding: 0; list-style: none; counter-reset: line; }
+  ol.code li {
+    counter-increment: line;
+    display: flex; gap: 10px; align-items: baseline;
+    padding: 4px 8px; border-radius: 6px;
+    font-family: var(--mono); font-size: 12px; color: var(--muted);
+    transition: background .15s ease, color .15s ease;
+  }
+  ol.code li::before { content: counter(line, decimal-leading-zero); font-size: 10px; color: #BDB6A8; }
+  ol.code li.is-active { background: var(--accent-soft); color: #9A4E33; font-weight: 600; }
+  ol.code li.is-active::before { color: var(--accent); }
+
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .metric { background: #F5F2EA; border-radius: 8px; padding: 10px 12px; }
+  .metric span { display: block; font-size: 11px; color: var(--muted); }
+  .metric strong { font-family: var(--mono); font-size: 20px; font-weight: 600; }
+
+  .hint { font-size: 11px; color: #B3AC9F; margin-top: 12px; text-align: center; font-family: var(--mono); }
+  .hint kbd { font-family: var(--mono); background: #fff; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 1px 6px; }
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="kicker" id="kicker"></div>
+  <h1 id="title">算法可视化</h1>
+  <p class="insight" id="insight"></p>
+
+  <div class="main">
+    <section class="stage-card">
+      <div class="stage" id="stage"></div>
+      <div class="note-bar">
+        <span class="step-badge" id="stepBadge">STEP 01 / 01</span>
+        <p class="note-text" id="noteText"></p>
+      </div>
+      <div class="toolbar">
+        <button class="tb-btn" id="restartBtn" title="回到起点 (R)"></button>
+        <button class="tb-btn" id="prevBtn" title="上一步 (←)"></button>
+        <button class="tb-play" id="playBtn" title="播放/暂停 (Space)"></button>
+        <button class="tb-btn" id="nextBtn" title="下一步 (→)"></button>
+        <div class="progress">
+          <div class="progress-meta"><span id="frameLabel">1 / 1</span><strong id="pctLabel">100%</strong></div>
+          <div class="track" id="track"><i id="trackFill"></i></div>
+        </div>
+        <select class="speed" id="speedSel" title="播放速度 (1/2/3)">
+          <option value="1100">慢</option>
+          <option value="720" selected>中</option>
+          <option value="360">快</option>
+        </select>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="card">
+        <div class="card-label">关键直觉</div>
+        <p id="insightCard"></p>
+      </div>
+      <div class="card">
+        <div class="card-label">算法在想什么</div>
+        <ol class="code" id="codeList"></ol>
+      </div>
+      <div class="card">
+        <div class="card-label">进度</div>
+        <div class="metrics">
+          <div class="metric"><span id="metricLabel">已完成</span><strong id="metricValue">0</strong></div>
+          <div class="metric"><span>当前帧</span><strong id="frameValue">1</strong></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="hint"><kbd>Space</kbd> 播放/暂停 &nbsp;<kbd>←</kbd><kbd>→</kbd> 逐帧 &nbsp;<kbd>R</kbd> 回到起点 &nbsp;<kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> 调速</div>
+</main>
+
+<script>
+const MODEL = __MODEL_JSON__;
+
+const ICONS = {
+  restart: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36"/><path d="M3 4v5h5"/></svg>',
+  prev: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
+  next: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
+  play: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+  pause: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>'
+};
+
+document.getElementById('restartBtn').innerHTML = ICONS.restart;
+document.getElementById('prevBtn').innerHTML = ICONS.prev;
+document.getElementById('nextBtn').innerHTML = ICONS.next;
+
+const stage = document.getElementById('stage');
+let edgesSvg = null;
+let nodeEls = [];
+let barEls = [];
+let lineEls = [];
+let edgeLabelEls = [];
+
+// ---------- build stage per layout ----------
+function buildStage() {
+  const model = MODEL;
+  document.title = model.title || '算法可视化';
+  document.getElementById('title').textContent = model.title || '';
+  document.getElementById('kicker').textContent = model.inputLabel || '';
+  const insight = model.insight || '';
+  document.getElementById('insight').innerHTML = insight ? '<b>关键直觉：</b>' + escapeHtml(insight) : '';
+  document.getElementById('insightCard').innerHTML = insight ? escapeHtml(insight) : '—';
+  document.getElementById('metricLabel').textContent = model.metricLabel || '已完成';
+
+  // code list
+  const codeList = document.getElementById('codeList');
+  codeList.innerHTML = '';
+  (model.code || []).forEach(function (line) {
+    const li = document.createElement('li');
+    li.textContent = line;
+    codeList.appendChild(li);
+  });
+
+  stage.innerHTML = '';
+
+  if (model.layout === 'bars') {
+    buildBars();
+  } else {
+    buildNodes();
+    if (model.layout === 'network' && model.edges && model.edges.length) buildEdges();
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+
+function buildNodes() {
+  const model = MODEL;
+  nodeEls = (model.nodes || []).map(function (n) {
+    const el = document.createElement('div');
+    el.className = 'node';
+    el.style.left = n.x + '%';
+    el.style.top = n.y + '%';
+    const strong = document.createElement('strong');
+    strong.textContent = n.label;
+    el.appendChild(strong);
+    if (n.caption) {
+      const small = document.createElement('small');
+      small.textContent = n.caption;
+      el.appendChild(small);
+    }
+    stage.appendChild(el);
+    return { el: el, strong: strong, id: n.id };
+  });
+}
+
+function buildEdges() {
+  edgesSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  edgesSvg.setAttribute('class', 'edge-layer');
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  ['idle', 'active', 'settled', 'rejected'].forEach(function (state) {
+    const colors = { idle: '#C9C2B4', active: '#CC785C', settled: '#6E8B7B', rejected: '#C9A79E' };
+    const m = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+    m.setAttribute('id', 'arrow-' + state);
+    m.setAttribute('markerWidth', '8'); m.setAttribute('markerHeight', '8');
+    m.setAttribute('refX', '7'); m.setAttribute('refY', '4');
+    m.setAttribute('orient', 'auto-start-reverse');
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', 'M0 0 L8 4 L0 8 z');
+    p.setAttribute('fill', colors[state]);
+    m.appendChild(p);
+    defs.appendChild(m);
+  });
+  edgesSvg.appendChild(defs);
+
+  const model = MODEL;
+  lineEls = [];
+  edgeLabelEls = [];
+  model.edges.forEach(function (e) {
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    edgesSvg.appendChild(line);
+    lineEls.push({ el: line, id: e.id, directed: !!e.directed });
+    if (e.label) {
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.textContent = e.label;
+      edgesSvg.appendChild(t);
+      edgeLabelEls.push({ el: t, id: e.id });
+    }
+  });
+  stage.appendChild(edgesSvg);
+}
+
+function buildBars() {
+  const model = MODEL;
+  let max = 1;
+  model.frames.forEach(function (f) {
+    (f.values || []).forEach(function (v) {
+      const n = Number(v);
+      if (isFinite(n) && n > max) max = n;
+    });
+  });
+  const first = model.frames[0];
+  const n = first.values.length;
+  barEls = [];
+  const wrap = document.createElement('div');
+  wrap.className = 'bars';
+  for (let i = 0; i < n; i++) {
+    const bw = document.createElement('div');
+    bw.className = 'bar-wrap';
+    const b = document.createElement('div');
+    b.className = 'bar';
+    const lab = document.createElement('small');
+    bw.appendChild(b);
+    bw.appendChild(lab);
+    wrap.appendChild(bw);
+    barEls.push({ bar: b, label: lab, index: i });
+  }
+  stage.appendChild(wrap);
+  window.__barMax = max;
+  window.__barWrap = wrap;
+}
+
+// ---------- edge pixel positioning ----------
+function layoutEdges() {
+  if (!edgesSvg) return;
+  const rect = stage.getBoundingClientRect();
+  const nodeById = {};
+  nodeEls.forEach(function (nd) { nodeById[nd.id] = nd; });
+  MODEL.edges.forEach(function (e, i) {
+    const a = nodeById[e.from], b = nodeById[e.to];
+    if (!a || !b) return;
+    const x1 = a.el.offsetLeft + a.el.offsetWidth / 2;
+    const y1 = a.el.offsetTop + a.el.offsetHeight / 2;
+    const x2 = b.el.offsetLeft + b.el.offsetWidth / 2;
+    const y2 = b.el.offsetTop + b.el.offsetHeight / 2;
+    const dx = x2 - x1, dy = y2 - y1;
+    const len = Math.hypot(dx, dy) || 1;
+    const inset = Math.min(len / 2 - 4, 26);
+    const nx = dx / len, ny = dy / len;
+    const sx = x1 + nx * inset, sy = y1 + ny * inset;
+    const ex = x2 - nx * inset, ey = y2 - ny * inset;
+    lineEls[i].el.setAttribute('x1', sx);
+    lineEls[i].el.setAttribute('y1', sy);
+    lineEls[i].el.setAttribute('x2', ex);
+    lineEls[i].el.setAttribute('y2', ey);
+    if (edgeLabelEls[i]) {
+      edgeLabelEls[i].el.setAttribute('x', (x1 + x2) / 2);
+      edgeLabelEls[i].el.setAttribute('y', (y1 + y2) / 2);
+    }
+  });
+}
+
+// ---------- playback state ----------
+let index = 0;
+let playing = false;
+let timer = null;
+const total = MODEL.frames.length;
+const speedSel = document.getElementById('speedSel');
+const playBtn = document.getElementById('playBtn');
+const track = document.getElementById('track');
+const trackFill = document.getElementById('trackFill');
+const codeItems = Array.prototype.slice.call(document.querySelectorAll('#codeList li'));
+
+function render() {
+  const frame = MODEL.frames[index];
+  const model = MODEL;
+
+  if (model.layout === 'bars') {
+    const max = window.__barMax || 1;
+    barEls.forEach(function (bw) {
+      const v = Number(frame.values[bw.index]);
+      bw.bar.style.height = (isFinite(v) && v > 0) ? (v / max) * 88 + '%' : '2%';
+      bw.label.textContent = isFinite(v) ? String(v) : '—';
+      bw.bar.className = 'bar' +
+        (frame.active.indexOf(bw.index) >= 0 ? ' is-active' : '') +
+        (frame.settled.indexOf(bw.index) >= 0 ? ' is-settled' : '');
+    });
+  } else {
+    const active = new Set(frame.active || []);
+    const settled = new Set(frame.settled || []);
+    nodeEls.forEach(function (nd) {
+      nd.strong.textContent = (frame.values && frame.values[nd.id] !== undefined) ? frame.values[nd.id] : nd.label;
+      nd.el.className = 'node' + (active.has(nd.id) ? ' is-active' : '') + (settled.has(nd.id) ? ' is-settled' : '');
+    });
+    if (lineEls.length) {
+      const aEdges = new Set(frame.activeEdges || []);
+      const sEdges = new Set(frame.settledEdges || []);
+      const rEdges = new Set(frame.rejectedEdges || []);
+      lineEls.forEach(function (le) {
+        let state = 'idle';
+        if (aEdges.has(le.id)) state = 'active';
+        else if (sEdges.has(le.id)) state = 'settled';
+        else if (rEdges.has(le.id)) state = 'rejected';
+        le.el.setAttribute('class', 'is-' + state);
+        if (le.directed) le.el.setAttribute('marker-end', 'url(#arrow-' + state + ')');
+      });
+    }
+  }
+
+  document.getElementById('noteText').textContent = frame.note || '';
+  document.getElementById('stepBadge').textContent =
+    'STEP ' + String(index + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+  document.getElementById('frameLabel').textContent = (index + 1) + ' / ' + total;
+  document.getElementById('pctLabel').textContent = Math.round((index / Math.max(1, total - 1)) * 100) + '%';
+  document.getElementById('metricValue').textContent = (frame.settled || []).length;
+  document.getElementById('frameValue').textContent = index + 1;
+  trackFill.style.width = (total > 1 ? (index / (total - 1)) * 100 : 100) + '%';
+
+  codeItems.forEach(function (li, i) {
+    li.classList.toggle('is-active', i === frame.codeLine);
+  });
+
+  playBtn.innerHTML = playing ? ICONS.pause : ICONS.play;
+  playBtn.title = playing ? '暂停 (Space)' : '播放 (Space)';
+  document.getElementById('prevBtn').disabled = index === 0;
+  document.getElementById('nextBtn').disabled = index >= total - 1;
+}
+
+function goTo(n) {
+  index = Math.max(0, Math.min(total - 1, n));
+  render();
+}
+
+function stop() {
+  playing = false;
+  if (timer) { clearTimeout(timer); timer = null; }
+  render();
+}
+
+function toggle() {
+  if (index >= total - 1) { goTo(0); return; }
+  playing = !playing;
+  if (playing) tick();
+  else stop();
+}
+
+function tick() {
+  if (!playing) return;
+  if (index >= total - 1) { playing = false; render(); return; }
+  goTo(index + 1);
+  timer = setTimeout(tick, Number(speedSel.value));
+}
+
+document.getElementById('restartBtn').addEventListener('click', function () { stop(); goTo(0); });
+document.getElementById('prevBtn').addEventListener('click', function () { stop(); goTo(index - 1); });
+document.getElementById('nextBtn').addEventListener('click', function () { stop(); goTo(index + 1); });
+playBtn.addEventListener('click', toggle);
+speedSel.addEventListener('change', function () { if (playing) { clearTimeout(timer); timer = setTimeout(tick, Number(speedSel.value)); } });
+
+track.addEventListener('click', function (ev) {
+  const rect = track.getBoundingClientRect();
+  const ratio = Math.max(0, Math.min(1, (ev.clientX - rect.left) / rect.width));
+  stop();
+  goTo(Math.round(ratio * (total - 1)));
+});
+
+window.addEventListener('keydown', function (ev) {
+  const t = ev.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'SELECT' || t.tagName === 'TEXTAREA' || t.tagName === 'BUTTON')) return;
+  if (ev.code === 'Space') { ev.preventDefault(); toggle(); }
+  else if (ev.code === 'ArrowLeft') { ev.preventDefault(); stop(); goTo(index - 1); }
+  else if (ev.code === 'ArrowRight') { ev.preventDefault(); stop(); goTo(index + 1); }
+  else if (ev.key === 'r' || ev.key === 'R') { stop(); goTo(0); }
+  else if (ev.key === '1') speedSel.value = '1100';
+  else if (ev.key === '2') speedSel.value = '720';
+  else if (ev.key === '3') speedSel.value = '360';
+});
+
+window.addEventListener('resize', function () { layoutEdges(); });
+
+// init
+buildStage();
+if (edgesSvg) { requestAnimationFrame(layoutEdges); setTimeout(layoutEdges, 60); }
+goTo(0);
+</script>
+</body>
+</html>

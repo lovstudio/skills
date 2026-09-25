@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "一条命令把一个算法变成可逐步播放的演示页，节省手写渲染与交互的时间。"
+basis: "教学与演示工具，作为 Lovstudio 学习产品线（手工川图解算法）的开源能力对外提供；校验器与构建器为确定性脚本，无持续性服务成本。"
+boundary: "包含帧模型规范、校验器、构建器与演示引擎模板。不包含专属定制可视化、把可视化接入特定应用的集成工作、以及非引擎覆盖布局（如网格寻路）的手写定制。"
+review_trigger: "当产出进入商业培训课程、需要 SLA 支持，或需要专属可视化定制服务时重新评估。"
+confidence: internal

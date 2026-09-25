@@ -1,0 +1,89 @@
+[
+  {
+    "type": "case",
+    "id": "yoda-safe-runtime-reclamation",
+    "skill_version": "0.2.0",
+    "case_ordinal": 1,
+    "platform_family": "desktop",
+    "runtime": "electron",
+    "adapters": ["macos", "electron", "node-chromium", "pty", "tmux", "git-worktree", "sqlite"],
+    "title": "Yoda fail-closed 资源回收与 worktree 保护",
+    "description": "为 Yoda 的 PTY/tmux、Agent session 与 Git worktree 建立所有权和两阶段回收协议，阻止未知状态误删、同名重建 ABA 与未提交工作丢失；该 Electron 首案仅校准 desktop adapter，不外推到其他客户端。",
+    "input": {
+      "items": [
+        "Yoda task/project durable owner 与 runtime registration 关系",
+        "session/tmux activity、attachment、consumer 与 identity 状态",
+        "worktree registration、dirty、cwd-in-use 与 owner reference 状态",
+        "授权限于实现、测试和 dry-run，不授权生产批量清理"
+      ]
+    },
+    "prompt": "实现保守回收协议：任何未知或失败都 fail closed；用 fingerprint 和二次核验阻止 ABA；dirty、dirty unknown、cwd-in-use 和 unregistered worktree 不得自动删除；不要用盲删证明效果。",
+    "output": {
+      "items": [
+        "owner/lease/activity/resume/fingerprint/dependency-order 生命周期表",
+        "universal blocker 优先的 protect/candidate 决策矩阵",
+        "两次 bounded inventory、最终 O(1) fingerprint 检查、bounded cleanup 与 single-flight 实现",
+        "覆盖 provider failure、activity transition、ABA、concurrent cleanup、dirty/unregistered/live-cwd worktree 的测试"
+      ],
+      "evidence": [
+        {
+          "kind": "code_fact",
+          "statement": "Tmux cleanup performs batched owner/provider revalidation and rejects changed fingerprints before bounded termination.",
+          "source_ref": "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/pty/tmux-reclamation.ts"
+        },
+        {
+          "kind": "code_fact",
+          "statement": "Focused tests cover provider failure, active-owner transitions, ABA replacements and concurrent cleanup single-flight.",
+          "source_ref": "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/pty/tmux-reclamation.test.ts"
+        },
+        {
+          "kind": "code_fact",
+          "statement": "Worktree removal rejects dirty, unregistered, live-cwd and changed-owner paths; unknown directories remain read-only inventory.",
+          "source_refs": [
+            "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/projects/worktrees/worktree-service.ts",
+            "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/projects/worktrees/worktree-service.test.ts",
+            "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/projects/worktrees/worktree-cwd-guard.ts",
+            "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/projects/worktrees/worktree-cwd-guard.test.ts",
+            "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/projects/worktrees/unregistered-worktree-inventory.ts",
+            "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/projects/worktrees/unregistered-worktree-inventory.test.ts"
+          ]
+        },
+        {
+          "kind": "code_fact",
+          "statement": "Task runtime teardown precedes detached-session sweeping and returns retryable failures when confirmation is incomplete.",
+          "source_refs": [
+            "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/tasks/task-runtime-reclamation.ts",
+            "https://github.com/lovstudio/yoda/blob/290fbc48c713163f20bd6f956e80e15d00dfa357/src/main/core/tasks/task-runtime-reclamation.test.ts"
+          ]
+        }
+      ],
+      "verification_gates": [
+        {
+          "role": "correctness_gate",
+          "status": "reported_pass",
+          "test_count": 3115,
+          "additional_gates": ["format", "lint", "typecheck", "production build"],
+          "source_ref": "$KIT_DIR/cases/evidence/yoda-runtime-evidence.json",
+          "boundary": "Correctness evidence only; not live reclamation or resume acceptance."
+        }
+      ]
+    },
+    "implementation": {
+      "commit": "290fbc48c713163f20bd6f956e80e15d00dfa357",
+      "commit_url": "https://github.com/lovstudio/yoda/commit/290fbc48c713163f20bd6f956e80e15d00dfa357"
+    },
+    "status": "implemented_not_runtime_verified",
+    "status_basis": {
+      "implementation": "commit_backed",
+      "focused_tests": "source_backed",
+      "production_destructive_run": "not_performed",
+      "live_teardown_resume": "not_measured"
+    },
+    "boundaries": [
+      "没有执行生产批量 kill",
+      "没有执行 blind Git worktree remove 或递归目录删除",
+      "3,115 tests 属于 correctness gate，不是 runtime acceptance",
+      "需要在真实同类资源上验证 teardown 后的 on-demand resume"
+    ]
+  }
+]

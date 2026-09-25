@@ -6,7 +6,7 @@ description: >
 license: MIT
 metadata:
   author: lovstudio
-  version: "0.2.0"
+  version: "0.2.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - ataru
@@ -21,7 +21,7 @@ metadata:
 
 把本机 AI 会话历史的 Ataru 索引带到 searchable 状态，并把结果作为一份可判断
 的 JSON 报告交回：现在能不能检索、还差多少、这次做了什么。检索本身属于
-`lov-ataru-search`。
+`lov-search-chat`。
 
 ## Triggers
 
@@ -33,7 +33,7 @@ metadata:
 
 ### Do not activate when
 
-- 用户要的是「找出上次怎么解决某个问题」这类检索结果 —— 交给 `lov-ataru-search`，
+- 用户要的是「找出上次怎么解决某个问题」这类检索结果 —— 交给 `lov-search-chat`，
   它会自己确认索引状态并在未就绪时指回本 Skill。
 - 用户在讨论 Ataru 的界面、发布或代码改动 —— 那是产品开发任务，不是索引运维。
 
@@ -51,7 +51,7 @@ Ataru 可执行文件路径。首次解析成功、或用户直接说出该路�
 ## Skill Group Composition
 
 见 [`references/skill-composition.md`](references/skill-composition.md)。本源码是
-独立 Single Skill，与 `lov-ataru-search` 之间只有制品级交接（索引状态），没有
+独立 Single Skill，与 `lov-search-chat` 之间只有制品级交接（索引状态），没有
 隐藏的 sibling 依赖。
 
 ## Workflow (MANDATORY)

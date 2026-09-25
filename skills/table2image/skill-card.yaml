@@ -1,0 +1,95 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.2"
+description: "Convert a standard Markdown table and optional Mable layout into a hosted PNG URL, with optional verified local download."
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "Skill source is MIT licensed. API availability, retention, and service limits are governed separately by the selected Mable endpoint."
+  url: "LICENSE"
+use_case:
+  audience: "Writers, editors, agents, developers, and product teams that need readable table images for mobile or publishing surfaces."
+  scenario: "Render a Markdown comparison, checklist, API surface, or structured summary into a reusable hosted PNG without recreating the Mable layout algorithm locally."
+  tasks:
+    - "Validate a Markdown table and optional model or layout JSON."
+    - "Call POST /mable/images and return the service response."
+    - "Optionally download and verify the resulting PNG."
+deployment:
+  geography: global
+  environments:
+    - "Any agent environment with Python 3.9 or newer and network access to a Mable API."
+requirements:
+  credentials: "LovStudio Access Token or sk_live_ API Key; provide it through MABLE_API_TOKEN or --token and never persist it in the Skill Profile."
+  dependencies: []
+  runtime:
+    - "Python 3.9 or newer."
+    - "A reachable Mable API endpoint."
+risks:
+  - risk: "A table may contain private or regulated data that should not be sent to a hosted renderer."
+    mitigation: "Inspect the table before sending it and use an approved self-hosted API base when the content cannot leave its environment."
+  - risk: "The configured endpoint may be unavailable, undeployed, or return a non-PNG response."
+    mitigation: "Preserve HTTP diagnostics, validate required JSON fields, and verify content type plus PNG signature before writing a local file."
+  - risk: "Client-side copies of layout defaults can drift from the Mable service."
+    mitigation: "Omit layout when defaults are wanted and pass model or layout through without duplicating the server algorithm."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Mable API contract"
+    path: "references/api-contract.md"
+  - title: "Composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "Hosted table image"
+    - "Optional local image"
+    - "Render metadata"
+  formats:
+    - "PNG URL"
+    - "PNG file"
+    - "JSON console response"
+  parameters:
+    - "Markdown table"
+    - "Optional 11-character model or layout JSON"
+    - "Optional caption, pixel ratio, API base, and output path"
+  validation:
+    - "Required response-field and PNG-format checks"
+    - "PNG content-type and signature checks for local downloads"
+    - "Real POST then GET case against the local Mable service"
+  description: "The primary result is the exact image URL returned by Mable, accompanied by dimensions and the resolved layout model."
+ethical_considerations: "Do not send private, confidential, or regulated table content to an unapproved hosted endpoint. Preserve source accuracy and do not imply that layout improves the truth of the data."
+dimensions:
+  - id: contract_fidelity
+    label: "API contract fidelity"
+    description: "The client sends only documented table and layout fields and requires the declared response shape."
+    evidence: "Unit tests inspect the POST payload; the real case returned image_url, format, width, height, layout_width, and model."
+    score: null
+  - id: render_integrity
+    label: "Render integrity"
+    description: "Downloaded output is a real PNG with service-declared dimensions."
+    evidence: "The real case produced a visually inspected 1520 by 432 image of 66191 bytes with verified PNG content type and signature."
+    score: null
+  - id: diagnostic_quality
+    label: "Diagnostic quality"
+    description: "Invalid input and network failures remain distinguishable and actionable."
+    evidence: "Focused tests reject non-table input; HTTP handling preserves status codes and bounded server response details."
+    score: null
+  - id: portability
+    label: "Portable client"
+    description: "The transport layer runs without browser, local font, or sibling Skill requirements."
+    evidence: "The CLI uses only the Python standard library and resolves API configuration from flags, environment, or the shared Profile."
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The local transport, validation, and download client are provided as a reusable open foundation."
+  boundary: "The Skill and CLI are free; every successful hosted Mable image generation costs 3 LovStudio Credits."
+  review_trigger: "Review access and pricing if the hosted API changes its 3-Credit generation price, storage, premium layouts, or service-level guarantees."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - "local-install: verified"
+    - "github: not published"
+    - "lovstudio: not published"

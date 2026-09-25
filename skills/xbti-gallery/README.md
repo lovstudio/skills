@@ -1,6 +1,6 @@
 # XBTI 图鉴 · XBTI Gallery
 
-![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.5-CC785C)
 
 从已核实的社区地址或仓库列出可访问的 XBTI 人格测试案例。
 

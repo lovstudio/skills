@@ -1,0 +1,140 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.1"
+description: "在真实 desktop build、移动真机或实际浏览器中复现同一工作负载，把内部工作量、运行时/体验指标、宿主生命周期、回归门和残余风险组成诚实的客户端 App 验收。"
+owner:
+  team: "LovStudio / 手工川工作室"
+  contact: "Source distribution maintainers"
+license:
+  name: MIT
+  terms: "允许在 MIT License 下使用、修改和再分发；性能结果只对记录的 build、设备/浏览器、数据规模、工作负载与采样口径负责。"
+  url: "../../LICENSE"
+use_case:
+  audience: "需要验收 Electron、Tauri、原生桌面、iOS、Android、React Native、Flutter、Web 或 PWA 运行时修复的工程师与发布负责人"
+  scenario: "补丁和门禁已经存在，需要在实际 build/device/browser 及相关宿主生命周期中判断结论是 verified、partially verified，还是尚未完成 live 验收"
+  tasks:
+    - "冻结 platform、host、workload、scale、metric、sampler、lifecycle seam 与 acceptance threshold"
+    - "运行完整门禁并确认实际 patched artifact、device/browser 与 deployment identity"
+    - "复测内部工作量、用户/运行时指标、宿主恢复语义与残余热点"
+deployment:
+  geography: global
+  environments:
+    - "实际 Electron、Tauri 或 macOS/Windows/Linux native desktop build"
+    - "安装目标签名产物的物理 iOS/Android 设备，含 React Native 或 Flutter host"
+    - "加载实际 deployment 的指定真实浏览器或 PWA standalone 环境"
+requirements:
+  credentials: "默认不需要；生产 deployment、远程环境或设备服务由使用者提供最小权限"
+  dependencies:
+    - "App Optimizer Kit shared resources resolved from $KIT_DIR"
+    - "Python 3.9+ for evidence normalization and profile access"
+    - "Target repository validation, build, install or deployment commands"
+  runtime:
+    - "actual patched build on the claimed desktop/device/browser host"
+    - "comparable baseline, workload, scale, sampler and host lifecycle"
+risks:
+  - risk: "不同 build、设备/浏览器、数据规模、热状态或采样窗口产生不可比 A/B。"
+    mitigation: "采样前冻结 identity、workload、scale、build mode、window、sampler 与 cache/thermal/network 条件；不满足时只作 contextual evidence。"
+  - risk: "把测试、构建、安装成功或内部调用数下降误写成用户体验已经改善。"
+    mitigation: "分开报告 verification gates、internal work、runtime/user metric，并要求同事件因果配对。"
+  - risk: "把 inventory 与代码路径推导的 upper bound 当成 TaskStore、内存或进程 telemetry，并计算漂亮百分比。"
+    mitigation: "将其标为 code-derived upper bound，并使用 comparison.quality=directional；不把它当成 telemetry 或精确下降率。"
+  - risk: "只在 simulator、emulator 或 headless browser 验证，却声称覆盖物理设备或真实浏览器生命周期。"
+    mitigation: "模拟环境只作补充门禁；verified 必须绑定声明的实际 build/device/browser 与相关生命周期。"
+  - risk: "优化破坏 deep link、前后台恢复、进程重建、service worker 更新或离线数据。"
+    mitigation: "把平台相关 host lifecycle、resume/restore 和数据保护列为独立回归门。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Runtime audit and verification playbook"
+    path: "../../references/runtime-playbook.md"
+  - title: "Runtime evidence contract"
+    path: "../../references/evidence-contract.md"
+  - title: "Platform adapters"
+    path: "../../references/platform-adapters.md"
+  - title: "Yoda runtime verification case"
+    path: "cases/cases.json"
+output:
+  types:
+    - "cross-platform before/after acceptance report"
+    - "correctness, build, install and deployment gate record"
+    - "host lifecycle and resume verification"
+    - "residual-hotspot verdict"
+  formats:
+    - "Markdown"
+    - "app-runtime-evidence/v1 JSON"
+  parameters:
+    - "platform family, runtime/framework, host and build identity"
+    - "workload, scale, sample window, metric provenance and thresholds"
+    - "repository gates and platform lifecycle safety invariants"
+  validation:
+    - "Only comparable runtime measurements produce numeric deltas"
+    - "Internal work reduction is paired with a runtime or user metric"
+    - "Correctness gates remain separate from performance observations"
+    - "Terminal status matches the strongest complete build/device/browser evidence"
+  description: "交付带 provenance、不可比项、宿主生命周期结果、残余热点和下一项判别性测量的验收包，不用门禁数量代替 live runtime 证据。"
+ethical_considerations: "不篡改采样口径、不选择性隐藏失败、不把局部收益包装成整体性能承诺；采样设备、浏览器或用户环境时只收集最小指标并遵守访问授权。"
+dimensions:
+  - id: target-fidelity
+    label: "真实目标保真度"
+    description: "证据是否绑定声明的实际 build、物理设备或浏览器，以及正确的 framework/native host 边界。"
+    evidence: "首案明确标记 platform_family=desktop、runtime=electron；它只校准 Yoda desktop，不冒充 iOS、Android、Tauri、Flutter 或 Web/PWA 证据。"
+    score: null
+    score_status: case_backed
+  - id: comparability
+    label: "对照可比性"
+    description: "before/after 是否共享 workload、scale、build/host mode、window、sampler、unit 与 boundary。"
+    evidence: "Yoda 案例明确缺少同负载 inputLatency/RSS A/B，因此整体终态不能升级为 verified。"
+    score: null
+    score_status: case_backed
+  - id: evidence-fidelity
+    label: "证据语义保真"
+    description: "measurement、implementation bound、correctness gate 和 evidence gap 是否保持独立。"
+    evidence: "15 unique Git subprocess 是 runtime measurement；916→33 仅是 active-only hydration 的 code-derived upper bound；3,115 tests 仅是 correctness gate。"
+    score: null
+    score_status: case_backed
+  - id: lifecycle-coverage
+    label: "宿主生命周期覆盖"
+    description: "验收是否重放与修复相关的 window、前后台、进程重建、浏览器/page/worker 或更新恢复 seam。"
+    evidence: "Skill contract 为 desktop、mobile 与 web 分别定义实际宿主门；Yoda 首案未提供跨平台覆盖，因此不据此给出平台泛化分数。"
+    score: null
+    score_status: method_defined
+  - id: verdict-honesty
+    label: "结论诚实度"
+    description: "终态是否受最弱关键证据约束，并公开不可比项与下一步。"
+    evidence: "Yoda 的扇出与 hydration 只有方向性支持；由于体验 A/B 缺失，结论保持 partially_verified。"
+    score: null
+    score_status: case_backed
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "以开放的跨平台比较契约和终态规则减少虚假性能完成声明。"
+  boundary: "包含验收设计、共享证据归一化和本地报告方法；不包含持续生产监控、设备实验室、托管 CI 或性能 SLA。"
+  review_trigger: "增加托管基准设施、持续遥测、真机设备池或商业性能承诺时重新评估。"
+  confidence: evidence-backed-local
+distribution:
+  paid:
+    - channel: workbuddy
+      channel_class: paid_capable_marketplace
+      offer_model: free
+      state: not_prepared
+      paid_sku: null
+      artifact: null
+      note: "No paid SKU or channel artifact has been prepared."
+    - channel: skillpay
+      channel_class: paid_capable_marketplace
+      offer_model: free
+      state: not_prepared
+      paid_sku: null
+      artifact: null
+      note: "No paid SKU or channel artifact has been prepared."
+  free:
+    - channel: github
+      channel_class: source_repository
+      offer_model: free
+      state: source_ready_not_published
+      note: "Source bundle is ready locally; repository publication is not claimed."
+    - channel: lovstudio
+      channel_class: source_catalog
+      offer_model: free
+      state: local_ready
+      note: "Local LovStudio source bundle is ready; external publication is not claimed."

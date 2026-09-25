@@ -1,0 +1,96 @@
+{
+  "schema_version": "1",
+  "case_id": "chat-pat-custom-suffix",
+  "surface": "chat.timeline",
+  "platform": "WeChat desktop, reference version recorded with the case",
+  "status": "modeled",
+  "evidence": {
+    "official_reference": [
+      "Centered weak-gray timeline text with no avatar and no message bubble"
+    ],
+    "product_observation": [
+      "Structured pat event is routed to a generic rich-message card"
+    ],
+    "raw_record": [
+      "Outer app message type is 62 and contains a direct patinfo block with a custom suffix"
+    ],
+    "implementation": [
+      "Message parser, canonical system presentation, chat row, export formatter"
+    ]
+  },
+  "semantic_contract": {
+    "storage_types": [
+      "database application-message container",
+      "direct app type 62"
+    ],
+    "canonical_type": "system.pat",
+    "participants": [
+      "Resolve actor and target independently from the visible title"
+    ],
+    "content_source": "direct app title with structured patinfo as classifier evidence",
+    "identity_fields": [
+      "database",
+      "table",
+      "rowid"
+    ],
+    "raw_invariants": [
+      "direct type 62",
+      "direct patinfo block",
+      "visible title identifies a pat event"
+    ],
+    "downstream_consumers": [
+      "chat",
+      "search",
+      "copy",
+      "export",
+      "diagnostics"
+    ]
+  },
+  "experience_contract": {
+    "required": [
+      "centered timeline placement",
+      "weak secondary text",
+      "inline native emoji rendering"
+    ],
+    "forbidden": [
+      "sender avatar",
+      "sender label",
+      "message bubble",
+      "rich-message footer"
+    ],
+    "responsive": [
+      "centered and wrapped without horizontal overflow at the narrowest supported width"
+    ],
+    "accessibility": [
+      "readable text remains present in the accessibility tree"
+    ],
+    "error_and_debug": [
+      "raw structure remains available through engineering diagnostics without entering visible copy"
+    ]
+  },
+  "verification": {
+    "parser_checks": [
+      "positive type-62 patinfo fixture",
+      "ordinary application message negative fixture"
+    ],
+    "consumer_checks": [
+      "chat and export use the same system presentation"
+    ],
+    "visual_checks": [
+      "compare avatar, bubble, alignment, text color, wrapping, and emoji baseline"
+    ],
+    "runtime_checks": [
+      "open the deterministic fixture or exact record in the integrated desktop app"
+    ],
+    "quality_commands": [
+      "focused parser tests",
+      "relevant package tests",
+      "typecheck",
+      "lint",
+      "production build"
+    ],
+    "integration_checks": [
+      "repeat relevant verification from the integrated main tree"
+    ]
+  }
+}

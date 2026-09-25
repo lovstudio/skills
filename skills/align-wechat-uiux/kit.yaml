@@ -1,0 +1,35 @@
+name: align-wechat-uiux
+display_name: "Align WeChat UIUX"
+version: "0.2.0"
+entrypoint: lov-align-wechat-uiux
+runtime: skill-runtime/v1
+profile:
+  manifest: skill.yaml
+modules:
+  - id: wechat-evidence
+    skill: lov-wechat-evidence
+    path: skills/wechat-evidence
+  - id: wechat-semantics
+    skill: lov-wechat-semantics
+    path: skills/wechat-semantics
+  - id: wechat-ui-parity
+    skill: lov-wechat-ui-parity
+    path: skills/wechat-ui-parity
+  - id: wechat-parity-validation
+    skill: lov-wechat-parity-validation
+    path: skills/wechat-parity-validation
+pipelines:
+  fix-parity:
+    - wechat-evidence
+    - wechat-semantics
+    - wechat-ui-parity
+    - wechat-parity-validation
+  audit-parity:
+    - wechat-evidence
+    - wechat-semantics
+    - wechat-parity-validation
+  model-semantics:
+    - wechat-evidence
+    - wechat-semantics
+  verify-parity:
+    - wechat-parity-validation

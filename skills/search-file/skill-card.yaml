@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: 从本机 AI 对话记录追溯图片、文档和其他交付文件，返回仍然存在的候选路径、来源会话、证据片段与存储耐久度。
 owner:
   team: lovstudio

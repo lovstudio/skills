@@ -1,6 +1,6 @@
 # 文件寻踪 · File Finder
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 从本机 AI 对话中追溯图片、文档和其他交付文件，返回仍然存在的路径、来源会话与
 存储层级，优先推荐项目归档或下载目录中的耐久副本。

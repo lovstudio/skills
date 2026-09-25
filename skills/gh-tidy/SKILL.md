@@ -13,7 +13,7 @@ compatibility: >
   Requires gh CLI authenticated. Works on any GitHub repo.
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: github tidy cleanup issues pr branches hygiene
 ---
 

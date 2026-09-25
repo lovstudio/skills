@@ -12,7 +12,7 @@ depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 8.7.1
+  version: 8.7.3
   tags:
   - release
   - cicd

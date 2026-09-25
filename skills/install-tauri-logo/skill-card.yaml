@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 把已确认 Logo 接入 Tauri 包图标和托盘并核验生成资源
-version: 4.1.1
+version: "4.1.2"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

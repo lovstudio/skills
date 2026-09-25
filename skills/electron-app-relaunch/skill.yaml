@@ -1,0 +1,16 @@
+schema: skill-manifest/v1
+id: lov-electron-app-relaunch
+version: 0.3.1
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields: []
+  preferences:
+    namespace: electron_app_relaunch
+    fields:
+      - path: relaunch_strategy
+        required: false
+        question: "Electron/Tauri 应用重启时是否有固定的交互、进程所有权或恢复偏好？"
+  interaction:
+    ask_missing: true
+    max_questions: 1

@@ -1,0 +1,20 @@
+[
+  {
+    "type": "case",
+    "title": "LovStudio Realtime 中文语音输入验证",
+    "description": "用户要求把 LovStudio LLM 接入 Skill，并覆盖语音转文字等 API；先用真实中文 PCM16 音频验证 Realtime 输入和文字响应链路。",
+    "input": {
+      "request": "接入 LovStudio LLM，包括语音转文字等 API",
+      "audio": "本地生成的 24 kHz mono PCM16 中文语音：你好，这是 Lovstudio LLM 的实时语音测试。"
+    },
+    "prompt": "请准确识别并仅用文本逐字复述语音内容，不要问候，不要添加解释。",
+    "output": {
+      "status": "response.done completed",
+      "response": "好的，我明白了。您刚才说的是：你好，这是LoveStudioLLM的实时语音课。",
+      "chat": "Lovstudio cloud API OK",
+      "speech": "gpt-4o-mini-tts 返回 56064 字节 MP3",
+      "http_transcription": "whisper-1 返回 model_not_found，并带有 context_id",
+      "evidence": "云端 wss 路由和本地 127.0.0.1 路由均收到 session.created、session.updated、input_audio_buffer.committed 与 response.done。"
+    }
+  }
+]

@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.2.1"
 description: "A local developer credential ledger that manages multiple platforms, accounts, and rotating API Keys, then safely selects and projects one Key per environment target without displaying secret values."
 owner:
   team: "LovStudio Skills contributors"

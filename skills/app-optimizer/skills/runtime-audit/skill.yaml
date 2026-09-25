@@ -1,0 +1,86 @@
+schema: skill-manifest/v1
+id: lov-runtime-audit
+version: "0.2.1"
+runtime: skill-runtime/v1
+invocation: kit_only
+evidence_schema: app-runtime-evidence/v1
+shared_dependencies:
+  - "$KIT_DIR/kit.yaml"
+  - "$KIT_DIR/references/evidence-contract.md"
+  - "$KIT_DIR/references/runtime-playbook.md"
+  - "$KIT_DIR/references/platform-adapters.md"
+  - "$KIT_DIR/scripts/evidence_report.py"
+  - "$KIT_DIR/scripts/profile_store.py"
+adapter_matrix:
+  platform_families:
+    - desktop
+    - mobile
+    - web
+  runtimes:
+    - electron
+    - tauri
+    - native-desktop
+    - native-ios
+    - native-android
+    - react-native
+    - flutter
+    - browser
+    - pwa
+    - hybrid
+  composition: "Select only adapters supported by the target app; unsupported signals stay unknown."
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-runtime-audit
+    persist:
+      enabled: true
+      namespace: skills.lov-runtime-audit
+      records_path: skills.lov-runtime-audit.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出审计报告？
+      - path: user.timezone
+        required: false
+        question: 运行时采样与事件关联使用哪个时区？
+      - path: workspace.project_roots
+        required: false
+        question: 需要审计哪个客户端 App、部署或源码根目录？
+      - path: skills.lov-runtime-audit.records.default_platform_family
+        required: false
+        question: 是否有希望跨会话沿用的默认 platform_family？
+      - path: skills.lov-runtime-audit.records.default_runtime
+        required: false
+        question: 是否有希望跨会话沿用的默认 runtime adapter？
+      - path: skills.lov-runtime-audit.records.sampling_window
+        required: false
+        question: 是否已有需要长期沿用的采样窗口与 cadence？
+      - path: skills.lov-runtime-audit.records.acceptance_budget
+        required: false
+        question: 是否已有需要长期沿用的性能预算？
+  preferences:
+    namespace: lov_runtime_audit
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出审计报告？
+      - path: performance.report_detail
+        required: false
+        question: 审计报告需要摘要版还是完整证据版？
+      - path: performance.sampling_window
+        required: false
+        question: 是否有默认采样窗口与 cadence？
+      - path: performance.runtime_adapters
+        required: false
+        question: 是否有该 App 已验证可用的 runtime adapters？
+  interaction:
+    ask_missing: true
+    max_questions: 1

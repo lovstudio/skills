@@ -1,6 +1,6 @@
 # 日志侦探 · Log Detective
 
-![Version](https://img.shields.io/badge/version-1.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.3-CC785C)
 
 针对难复现问题增加最少的诊断日志并用实际输出定位根因。
 

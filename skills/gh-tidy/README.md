@@ -1,6 +1,6 @@
 # GitHub 整理师 · GitHub Organizer
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 Interactive GitHub repo triage — clean up issues, PRs, stale branches, and orphan labels in one pass.
 

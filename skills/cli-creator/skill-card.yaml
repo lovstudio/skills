@@ -1,0 +1,109 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "Turns a local project or the current working directory into an installable, tested, JSON-capable CLI backed by the project's real runtime."
+owner:
+  team: "LovStudio Skills contributors"
+  contact: "Local source maintainers"
+license:
+  name: MIT
+  terms: "The Skill source is reusable under MIT; target project licenses and backend terms remain authoritative."
+  url: "LICENSE"
+use_case:
+  audience: "Developers and agents that need reliable command-line access to an existing project"
+  scenario: "Analyze a local repository, map real callable surfaces, generate a typed CLI harness, install it locally, and verify it through real workflows."
+  tasks:
+    - "Inspect project architecture and callable backend surfaces"
+    - "Design and generate a human-readable plus JSON command contract"
+    - "Install and validate the CLI through the real project backend"
+deployment:
+  geography: global
+  environments:
+    - "Local developer workstation"
+    - "Repository worktree"
+    - "Isolated Python virtual environment"
+requirements:
+  credentials: "none for the Skill; a target backend may require user-supplied credentials that are never persisted by this source"
+  dependencies:
+    - "Python 3.9 or newer"
+    - "Target project's real executable, API, protocol, library, or renderer"
+  runtime:
+    - "Local filesystem access to the target project"
+    - "Permission to create the selected harness output directory"
+risks:
+  - risk: "A generated wrapper can drift from the target backend or silently reimplement behavior."
+    mitigation: "Prefer the real callable boundary and require installed-command E2E tests plus postcondition readback."
+  - risk: "Mutation commands can damage project state when parameters or save behavior are wrong."
+    mitigation: "Use typed argv arrays, inspect before mutation, preserve unrelated work, support dry-run where meaningful, and verify resulting state."
+  - risk: "Credentials or private paths can leak into generated source or diagnostics."
+    mitigation: "Keep secrets out of plans, argv echoes, logs, Profile records, and reusable evidence; use runtime configuration."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "CLI contract"
+    path: "references/cli-contract.md"
+  - title: "Upstream research"
+    path: "references/upstream-research.md"
+  - title: "Verified case result"
+    path: "cases/evidence/skill-creator-result.json"
+output:
+  types:
+    - "Installable CLI harness"
+    - "Project analysis report"
+    - "CLI plan and machine-readable contract"
+    - "Unit and real E2E tests"
+  formats:
+    - "Python source and PEP 621 package metadata"
+    - "JSON"
+    - "Markdown"
+    - "Plain-text command help"
+  parameters:
+    - "Optional local project path, defaulting to invocation working directory"
+    - "Optional output directory, defaulting to agent-harness inside the project"
+    - "Optional command and package names declared by the analyzed plan"
+  validation:
+    - "Skill helper test suite passes"
+    - "Generated command installs and resolves from PATH"
+    - "doctor, info, capabilities, and domain commands emit valid JSON"
+    - "Real backend workflow and output postconditions pass"
+  description: "A locally ready CLI, not a remote package publication or marketplace listing."
+ethical_considerations: "Only expose operations the user is authorized to perform. Respect the target project's license, privacy boundary, and safety controls; do not turn unavailable private internals into a copied substitute implementation."
+dimensions:
+  - id: backend-fidelity
+    label: "Real backend fidelity"
+    description: "Commands invoke the target project's maintained scripts, API, protocol, or renderer rather than a toy replacement."
+    evidence: "The verified Skill Creator case called its real init_skill.py and validate_skill.py scripts and read resulting files back."
+    score: verified
+  - id: agent-usability
+    label: "Agent usability"
+    description: "The generated command provides introspection, stable JSON envelopes, typed inputs, and actionable nonzero errors."
+    evidence: "The case help and capabilities evidence shows doctor, info, capabilities, create, validate, and global JSON output."
+    score: verified
+  - id: end-to-end-correctness
+    label: "End-to-end correctness"
+    description: "Source invocation, installed-command execution, real domain workflows, and output readback all pass."
+    evidence: "Five helper tests, five generated-CLI tests, and five final CLI validation checks passed in the recorded case."
+    score: verified
+  - id: portability
+    label: "Portable defaults"
+    description: "Project path defaults to the invocation directory and generated source avoids user-specific hard-coded paths."
+    evidence: "The source validator checks private paths; portable case evidence records relative project identity and an isolated venv install."
+    score: verified
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The reusable local generator, templates, validators, and reference methodology are open for adoption and auditing."
+  boundary: "Includes local analysis, generation, installation guidance, and validation; excludes backend licenses, hosted services, and publication channels."
+  review_trigger: "Review if proprietary hosted adapters, managed generation, or guaranteed maintenance becomes part of the product."
+  confidence: verified-local
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-prepared
+    - channel: skillpay
+      status: not-prepared
+  free:
+    - channel: github
+      status: not-published
+    - channel: lovstudio
+      status: local-only

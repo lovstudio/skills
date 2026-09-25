@@ -1,0 +1,34 @@
+schema: skill-manifest/v1
+id: lov-wechat-article-branding-skill
+version: 0.11.1
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields:
+      - path: identity.id
+        required: true
+        question: "请提供发布主体的稳定 ID。"
+      - path: identity.name
+        required: true
+        question: "请提供发布主体名称，可同时提供中英文版本。"
+      - path: identity.logo
+        required: true
+        question: "请提供发布主体官方 Logo 的路径或 URL。"
+      - path: brand.site
+        required: false
+        question: "如果品牌尾注需要官网链接，请提供官网地址。"
+  preferences:
+    namespace: wechat_article_branding
+    fields:
+      - path: default_pipeline
+        required: false
+        question: "公众号文章默认使用完整、内容、封面、品牌还是审计管线？"
+      - path: opening_hero.enabled
+        required: false
+        question: "是否默认生成正文首屏图？"
+      - path: cover_prompt.enabled
+        required: false
+        question: "采用生成式封面时，是否把清理后的封面 Prompt 写入文章？"
+  interaction:
+    ask_missing: true
+    max_questions: 1

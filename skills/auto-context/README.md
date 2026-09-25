@@ -1,6 +1,6 @@
 # 上下文哨兵 · Context Sentinel
 
-![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.2-CC785C)
 
 Context operator for Claude Code sessions — not just a health check.
 
@@ -10,6 +10,8 @@ Three capability layers, routed by action sensitivity:
 
 - **Auto-execute**: writes project memory when it spots unpersisted
   feedback/preferences; updates `MEMORY.md` index.
+- **Standing authorization**: preserves an explicitly stated reusable default
+  with its trigger, action, payload, destination, limits, and revocation path.
 - **Confirm-first**: edits the configured global instructions file or project `CLAUDE.md`
   with a shown diff and explicit "yes" before applying.
 - **Suggest-only**: harness commands like `/fork`, `/compact`, `/btw` —
@@ -43,6 +45,7 @@ which registers the `UserPromptSubmit` hook.
 /lov-auto-context 记到全局                      # edit configured global instructions with confirm
 /lov-auto-context 记到项目                      # edit project CLAUDE.md with confirm
 /lov-auto-context 记住 X                        # write project memory
+/lov-auto-context 以后调用 X 默认同意 Y          # record scoped standing authorization
 /lov-auto-context 该分叉了吗                    # evaluate + suggest /fork
 ```
 

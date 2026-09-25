@@ -1,0 +1,79 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: >
+  在 uni-api（FastAPI 聚合网关）项目内为某个 app 新增网关能力：新建业务 package 与 router，
+  注册进 router/__init__.py，并把 tag 分组加入 config/app_groups.py，让该 app 通过 uni-api
+  网关调用聚合后的上游 API。
+owner:
+  team: "手工川工作室"
+  contact: "shawninjuly@gmail.com"
+license:
+  name: MIT
+  terms: "源码可自由使用、修改与分发；保留版权声明。"
+  url: "../../LICENSE"
+use_case:
+  audience: "以 uni-api 为聚合网关的后端开发者"
+  scenario: "需要为某个 app 暴露一组后端网关端点并接入 /docs 分组。"
+  tasks:
+    - "在 uni-api 内新增 app 的网关 router 与业务 package"
+    - "注册进 router/__init__.py 并配置 config/app_groups.py 分组"
+deployment:
+  geography: global
+  environments:
+    - "uni-api FastAPI 后端仓库"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "uni-api 仓库，遵循 AGENTS.md 运行前提"
+risks:
+  - risk: "改动破坏 uni-api 启动"
+    mitigation: "先读仓库 AGENTS.md，验收 python import main 确认不破坏启动"
+  - risk: "端点在 /docs 分组中缺失"
+    mitigation: "把 tag 加入 config/app_groups.py 并核对 openapi 出现新 tag"
+references:
+  - title: "Backend module instructions"
+    path: "SKILL.md"
+  - title: "uni-api patterns"
+    path: "references/uni-api-patterns.md"
+output:
+  types:
+    - "FastAPI router 与分组配置"
+  formats:
+    - "Python（FastAPI）"
+  parameters:
+    - "app 名称"
+    - "需要网关化的上游能力"
+  validation:
+    - "python import main 通过，openapi 出现新 tag"
+  description: "交付网关端点清单（method + path + 说明）"
+ethical_considerations: "不硬编码密钥，上游密钥只存环境变量与 .env；不绕过任何平台访问限制。"
+dimensions:
+  - id: correctness
+    label: "约定正确性"
+    description: "新增代码遵循 uni-api 既有 router / app_groups / settings 约定。"
+    evidence: "与仓库现有 router/llm.py、config/app_groups.py 模式对齐，验收 import 通过。"
+    score: null
+  - id: effectiveness
+    label: "端点可调用"
+    description: "网关端点可被前端经 baseURL 调用，错误结构统一。"
+    evidence: "使用 standard_error_handler 统一错误，端点清单交付下游。"
+    score: null
+  - id: maintainability
+    label: "可维护性"
+    description: "能力按 packages 与 router 分层，改动局部化。"
+    evidence: "业务逻辑在 packages，路由只做转发，减少耦合。"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "随 lov-api-creator Kit 免费分发，内部提效。"
+  boundary: "不包含上游 API 调用成本与密钥；不含远程部署。"
+  review_trigger: "覆盖更多网关形态或后端框架时重估。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

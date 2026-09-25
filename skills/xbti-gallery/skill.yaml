@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-xbti-gallery
-version: 1.0.3
+version: 1.0.5
 runtime: skill-runtime/v1
 context:
   profile:

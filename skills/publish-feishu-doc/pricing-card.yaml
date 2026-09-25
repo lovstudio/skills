@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Avoid duplicate Wiki pages, silent formatting loss, wrong-space publication, and unverified public sharing."
+basis: "Free local workflow built on the user's own Feishu account and lark-cli installation."
+boundary: "Includes one Markdown-to-Wiki create or update flow, content/location/permission readback, and a receipt; excludes prose creation, bulk migrations, member administration, and tenant-policy changes."
+review_trigger: "Revisit if the Skill adds managed hosting, batch migration, enterprise permission policy automation, or paid platform distribution."
+confidence: internal

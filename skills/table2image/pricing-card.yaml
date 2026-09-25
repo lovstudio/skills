@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.1"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Turn a Markdown table into a reusable hosted PNG with layout passthrough, stable metadata, download verification, and actionable errors."
+basis: "The portable local transport, validation, and download client are provided as an open foundation; no local proprietary renderer is distributed."
+boundary: "The Skill instructions and Python client are free. The hosted Mable POST /mable/images endpoint requires LovStudio authentication and charges 3 Credits for every successful generation."
+review_trigger: "Review access and pricing if the Mable API changes its 3-Credit generation price, retention, premium layouts, collaboration, or service-level guarantees."
+confidence: internal

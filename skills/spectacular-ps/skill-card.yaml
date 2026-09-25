@@ -1,0 +1,119 @@
+schema: lovstudio/skill-card/v1
+version: 0.1.0
+display_name:
+  zh: 人像大片
+  en: Spectacular Portraits
+description: 从旅行/户外照片制作身份保真的环境人像，支持头像构图、参考风格隔离、真实对比和复刻 Prompt。
+owner:
+  team: contributors
+  contact: 通过当前宿主向本地源码维护者反馈
+license:
+  name: MIT
+  terms: 代码和指令采用 MIT；用户照片与第三方参考图不因此获得再分发许可。
+  url: LICENSE
+use_case:
+  audience: 希望把现有旅行人像修成照片或头像的用户
+  scenario: 有原图，可选提供风格参考，强调人物和环境的关系。
+  tasks:
+  - 身份保真的环境人像编辑
+  - 头像景别与安全区检查
+  - 真实对比排版与 Prompt 交付
+deployment:
+  geography: global
+  environments:
+  - 具有原生看图与图像编辑能力的 Agent
+  - 可选本地 Python 对比工具
+requirements:
+  credentials: Skill 不读取凭据；原生图像服务由宿主提供授权。
+  dependencies:
+  - lov-branding-consistency
+  runtime:
+  - 原生图像查看与编辑
+  - Python 3.9+
+  - Pillow（可选对比）
+  - PyYAML（源校验）
+risks:
+- risk: 生成式编辑可能漂移脸部或配件。
+  mitigation: 以原图为身份来源，逐轮检查全图、脸部及缩略图。
+- risk: 参考图内容被误移植或场景艺术化被误称纪实。
+  mitigation: 明确输入角色，默认保持场景事实，只改已授权元素并披露。
+- risk: 生成式对比重绘原图，造成虚假改进证据。
+  mitigation: 真实文件拼接，回读尺寸与哈希，不使用重绘 BEFORE 面板。
+- risk: 公开原图或示例暴露人物与地点。
+  mitigation: 不自动发布照片或持久化身份信息，公开案例另行授权。
+references:
+- title: 主工作流
+  path: SKILL.md
+- title: 真实案例与边界
+  path: references/source-notes.md
+- title: 原始分享页
+  url: https://chatgpt.com/share/6ab38700-6d34-83ec-90c9-989ecd2d7f5a
+output:
+  types:
+  - 环境人像成片
+  - 可选真实对比
+  - 可选复刻 Prompt
+  formats:
+  - PNG
+  - JPEG
+  - TXT
+  - JSON
+  parameters:
+  - 画幅与用途
+  - 图片角色
+  - 身份保留项
+  - 允许改动范围
+  - 构图和调色
+  validation:
+  - 实际回读照片
+  - 身份/场景/手部检查
+  - 头像圆形与缩略图检查
+  - 对比来源、尺寸和哈希核对
+  description: 默认单张无字成片；对比图与 Prompt 按请求提供。
+ethical_considerations: 保护肖像和参考素材，不自动公开、识别人名或保存脸部信息。披露艺术化环境改动，不把生成图当作事实证据。
+dimensions:
+- id: identity-and-reference
+  label: 身份与参考隔离
+  description: 原图供给人物事实，参考图仅供给构图光影。
+  evidence: cases/source-evidence.json 中 executed_revision_prompt 明确黑衣原图、失败近景和黄衣参考的角色。
+  score: null
+  assessment: prompt-contract-observed; pixels not re-inspected
+- id: environmental-composition
+  label: 环境构图
+  description: 先纠正紧近景带来的环境尺度损失，再控制杂色和光影。
+  evidence: cases/source-evidence.json 中 revision_request、selected_result、approval_and_followup
+    形成真实迭代链。
+  score: null
+  assessment: historical-user-acceptance; no numeric benchmark
+- id: comparison-integrity
+  label: 对比真实性
+  description: 直接读取真实文件，完整等高排版并回报尺寸和来源哈希。
+  evidence: scripts/compare_images.py 与 cases/verification.json 记录本地执行检查；未将合成测试图冒充用户照片。
+  score: null
+  assessment: deterministic-cli-checks
+- id: reproducibility
+  label: 复刻可追溯性
+  description: 保存实际 Prompt、原图/参考角色与艺术化范围，不承诺像素重现。
+  evidence: cases/mountain-reproduction-prompt.txt 从源对话逐字提取，核验记录在 cases/verification.json。
+  score: null
+  assessment: text-extraction-verified
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 本地指令、模板、Profile 与对比 CLI 不提供托管算力，作为免费源包使用。
+  boundary: 包含修图指导、质量门禁和本地对比排版；不含图像服务费用、人工修图服务、Photoshop 许可证或成片真实性担保。
+  review_trigger: 增加托管生成服务、独家素材或人工服务时重新评估；当前不设付费门槛。
+  confidence: internal
+distribution:
+  paid:
+  - channel: workbuddy
+    status: not_published
+  - channel: skillpay
+    status: not_published
+  free:
+  - channel: github
+    status: not_published
+  - channel: lovstudio
+    status: not_published
+evidence_scope: 历史案例文字和用户确认已核验；本次未下载人像或执行新一轮图像生成。

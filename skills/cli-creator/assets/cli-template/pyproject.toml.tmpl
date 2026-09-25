@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "__DISTRIBUTION_NAME__"
+version = "__VERSION__"
+description = "__DESCRIPTION_TOML__"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = __DEPENDENCIES_TOML__
+
+[project.scripts]
+__COMMAND_NAME__ = "__PACKAGE_NAME__.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+__PACKAGE_NAME__ = ["cli_spec.json"]

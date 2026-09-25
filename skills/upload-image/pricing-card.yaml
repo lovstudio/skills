@@ -1,0 +1,15 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Saves repeated manual PicGo uploads and error-prone Markdown path replacement while preserving the user's existing image-host setup."
+basis: "Free local orchestration over open-source PicGo; the Skill provides no hosted compute, storage, managed account, or credential service."
+boundary: "Includes direct and batch local image upload, Markdown preflight and rewrite, PicGo diagnostics, structured output, and optional URL checks. Excludes image creation, image-host setup or billing, remote deletion, CMS publication, and platform-specific media IDs."
+review_trigger: "Re-evaluate only if hosted storage, managed credentials, proprietary processing, support commitments, or a paid distribution channel is introduced."
+confidence: internal
+distribution_review:
+  workbuddy: not-published
+  skillpay: not-published
+  github: not-published
+  lovstudio: local-installed

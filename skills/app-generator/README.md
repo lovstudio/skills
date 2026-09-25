@@ -1,6 +1,6 @@
 # 应用工坊 · App Studio
 
-![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.3-CC785C)
 
 Generate or standardize Skill Publisher apps, choosing web-only, PWA, Tauri,
 or native macOS case-by-case. It supports Finder Quick Actions as signed Action

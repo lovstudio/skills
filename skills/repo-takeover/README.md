@@ -1,6 +1,6 @@
 # 仓库接手 · Repository Takeover
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 将已有 clone 连接到用户自己的 GitHub 仓库并保留来源与历史。
 

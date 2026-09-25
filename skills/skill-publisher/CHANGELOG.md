@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.7.6] - 2026-09-11
+
+### Fixed
+
+- verify installs in project mode so dev symlinks survive
+- publishing.md: run the catalog install command with --project from a throwaway directory
+- record the ~/.agents/skills symlink-clobber failure mode and the payload checks that follow
+
+## [0.7.5] - 2026-09-07
+
+### Added
+
+- 统一展示名为「Skill 发布助手」，保持调用 ID 与能力契约。
+
+## [0.7.4] - 2026-09-06
+
+### Fixed
+
+- move mandatory pricing dependency to canonical top-level depends_on
+
+## [0.7.3] - 2026-08-30
+
+- Accept and validate canonical top-level `depends_on` declarations during source publication.
+
 ## [0.7.2] - 2026-08-27
 
 ### Fixed

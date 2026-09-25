@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: "从公开网页、X 链接、status ID 与截图中发现并恢复可核验的 X/Twitter 帖子，交付逐字正文、来源分级、截图哈希和未恢复清单。"
 owner:
   team: "LovStudio Skills"

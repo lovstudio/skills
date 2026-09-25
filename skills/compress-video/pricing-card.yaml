@@ -1,0 +1,12 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+display_unit: credits
+list_price_credits: 0
+value_anchor: 一条命令把视频压到十分之一体积而画质分仍在 90 以上，并且原文件默认安全
+basis: 纯本地 FFmpeg 工具，标准库实现，没有托管或模型成本；实测 1080p 片段 24.7 MB → 2.2 MB、VMAF 93.5，但只有单机样本，不宣称通用压缩比。
+boundary: 含参数选择、编码、两遍目标体积、VMAF 门禁、替换安全与统计回读；不含剪辑、字幕、上传或云端转码。
+review_trigger: 出现云端转码、批量排队服务、图形界面或与发布流程打包的需求时复评。
+confidence: internal

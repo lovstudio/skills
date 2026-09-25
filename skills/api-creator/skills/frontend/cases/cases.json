@@ -1,0 +1,22 @@
+[
+  {
+    "type": "case",
+    "title": "在 uni-app 前端封装网关调用层",
+    "description": "用户在开发某个 app 时需要在 uni-app 前端封装网关调用层以对接后端网关；本案例记录驱动 Skill Kit 创建的真实需求，端到端执行证据待首个真实 app 跑通后回填。",
+    "input": {
+      "items": [
+        "后端网关端点清单（来自 lov-backend）",
+        "DCloud uni-app 项目路径与 baseURL"
+      ]
+    },
+    "prompt": "给 uni-app 前端封装网关请求层 / 前端对接网关",
+    "output": {
+      "items": [
+        "api/request.ts 统一 request 封装",
+        "按端点清单生成的模块化 API 文件",
+        "页面调用示例与一次真实调用验证",
+        "端到端执行案例与 evidence 待首个真实 app 跑通后回填"
+      ]
+    }
+  }
+]

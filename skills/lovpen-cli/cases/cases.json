@@ -1,0 +1,49 @@
+[
+  {
+    "type": "case",
+    "title": "Render the Lovpen README with the Typora kit as verified WeChat-copy HTML",
+    "description": "A neutral-cwd installed-command run resolved the UI's Typora Newsprint kit, executed Lovpen's shared preview and clipboard sources in Chromium, and verified the inline artifact.",
+    "input": {
+      "source": "Lovpen repository README.md",
+      "format": "UTF-8 Markdown",
+      "characteristics": [
+        "headings and lists",
+        "links and images",
+        "shell and configuration code blocks"
+      ]
+    },
+    "prompt": "/lovpen-cli 把 README.md 用 Typora Newsprint 套装渲染为与微信公众号复制一致的 HTML，并返回 JSON 完整性证据。",
+    "output": {
+      "artifact": "lovpen-cli-acceptance-wechat.html",
+      "format": "WeChat inline HTML",
+      "renderer_source": "packages/frontend/src/services/standaloneRenderer.ts",
+      "renderer_mode": "wechat-browser-copy",
+      "clipboard_source": "packages/shared/src/wechat-clipboard.ts#extractWechatClipboardHTML",
+      "template_kit": "typora-newsprint",
+      "theme": "typora-newsprint",
+      "highlight": "github",
+      "bytes": 173311,
+      "sha256": "85d00a183b88e4c59506f2279aa8629780011b1cf43f1dce4875032e7fd1a4d6",
+      "postconditions": [
+        "output reopened as a regular file",
+        "Lovpen article root present",
+        "inline computed styles present",
+        "stylesheet tags absent",
+        "Typora kit resolved atomically to typora-newsprint and github",
+        "syntax-highlighted code present",
+        "reported bytes and SHA-256 matched the file"
+      ]
+    },
+    "evidence": {
+      "cli_tests": "14 of 14 passed",
+      "source_help": "passed",
+      "source_capabilities_json": "passed",
+      "source_doctor_json": "passed",
+      "installed_command_neutral_cwd": "passed",
+      "skill_creator_validation": "passed",
+      "project_check": "4 of 4 Turbo tasks successful"
+    },
+    "cover": [],
+    "gallery": []
+  }
+]

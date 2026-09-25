@@ -1,0 +1,22 @@
+schema: skill-manifest/v1
+id: lov-install-ai
+version: 0.2.1
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields: []
+  preferences:
+    namespace: install_ai
+    fields:
+      - path: route_order
+        required: false
+        question: "是否有默认的 AI 运行路线顺序？"
+      - path: model_intent
+        required: false
+        question: "默认更看重速度、均衡、推理、视觉还是创意？"
+      - path: ui_default
+        required: false
+        question: "AI 功能默认是否需要用户界面？"
+  interaction:
+    ask_missing: true
+    max_questions: 1

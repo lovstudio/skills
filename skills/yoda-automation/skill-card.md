@@ -42,7 +42,7 @@ Yoda 自动化记录与 JSON 核验结果，包含计划、时区、下次运行
 
 ## Skill Version
 
-0.1.0
+0.2.1
 
 ## Ethical Considerations
 

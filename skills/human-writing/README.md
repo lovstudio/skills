@@ -1,22 +1,25 @@
 # 文稿润色师 · Text Editor
 
-![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 
 先确认哪些问题、判断、取舍和未决处真正属于作者，再审整篇如何组织因果、反例与
 结尾，最后才量出 30 项中文表层指标并复测。目标是保住作者性，不是逃过检测。
 
-## 为什么不是又一个「去 AI 味」提示词
+## 验收依据
 
-同类方案给的是模式清单（该删哪些套话）或手工阈值（过渡词密度 < 15%）。它们
-都无法回答同一个问题：**这次改写到底有没有生效，有没有把别的地方改坏。**
+指标可以复算，文风仍需审读。句长、段长、套话统计全部通过的稿件，也可能充满
+教学铺垫、抽象提醒和重复总结。`measure.py` 的 overall 只表示表层统计状态，
+publication_readiness 固定为 not_assessed。
 
-因为执行改写和评判改写是同一个模型，自评分不构成独立证据。
+`discourse_gate.py` 扫描部分可观察句式，要求审读全部标题和段落，并校验记录与最终
+正文散列。无命中不自动通过。审读理由可复核，但程序不证明这些判断一定正确。
+具体命令及记录格式见 [篇章审读](references/workflows/discourse-audit.md)。
 
-表层改写的验收仍使用确定性度量。一次真实的改写记录（`cases/cases.json`
+一次真实的改写记录（`cases/cases.json`
 case-01）：
 
 ```
-总判定 fail -> pass      压力分 18 -> 3      越界项 8 -> 1
+表层统计 fail -> pass      压力分 18 -> 3      越界项 8 -> 1
 
 句长变异系数 CV          0.452 -> 0.657   fail -> pass
 段落长度变异系数         0.22  -> 0.818   fail -> pass

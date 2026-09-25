@@ -1,0 +1,4 @@
+interface:
+  display_name: "需求解题师"
+  short_description: "Turn a reported issue into user-centered product requirements and a bounded execution plan."
+  default_prompt: "Use lov-harness-issue to think through this issue from the user's perspective, infer hidden product requirements, define scope, and produce acceptance criteria before implementation."

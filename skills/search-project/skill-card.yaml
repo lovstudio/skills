@@ -1,0 +1,80 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.1"
+description: >
+  分层定位本机项目/源码目录：按 项目根目录 → 当前文件夹 → AI 聊天记录 → 全盘
+  的顺序递进搜索，返回候选绝对路径与每层命中证据，供用户确认或继续深入。
+owner:
+  team: lovstudio
+  contact: lovstudio
+license:
+  name: MIT
+  terms: 免费使用，注明来源；不包含任何 Anthropic 私有源码。
+  url: "../LICENSE"
+use_case:
+  audience: 需要在本机多个目录间快速定位某个项目/源码的开发者
+  scenario: 用户忘记项目放在哪、或想确认本机是否存在某个源码副本
+  tasks:
+    - 给定项目名/关键词/特征描述，定位候选目录
+    - 从 AI 聊天记录中回溯项目路径
+    - 全盘兜底搜索确认是否存在
+deployment:
+  geography: global
+  environments:
+    - macOS
+requirements:
+  credentials: none
+  dependencies: []
+  runtime:
+    - Python 3.8+
+risks:
+  - risk: 全盘搜索命中的同名无关目录被误认为目标项目
+    mitigation: 候选按 score 排序并标注命中层，full 层明确提示「可能存在同名无关目录」，由用户确认
+  - risk: 聊天记录搜索耗时或量大
+    mitigation: 默认只扫 .claude/projects 与 .gemini 下的 jsonl，有 ripgrep 时快扫，每文件限流
+references:
+  - title: Primary Skill instructions
+    path: SKILL.md
+output:
+  types:
+    - 候选项目绝对路径列表
+  formats:
+    - JSON（CLI --json）
+    - 结构化文本结论（含命中层与证据）
+  parameters:
+    - query（项目名/关键词/特征描述）
+    - scope（auto|roots|cwd|chat|full）
+  validation:
+    - 候选路径需真实存在（CLI 已过滤）
+    - 结论需标注命中层与证据来源
+  description: 返回候选路径、命中层、匹配分数与证据；不修改任何文件。
+ethical_considerations: >
+  仅在本机文件系统与用户自己的 AI 聊天记录内搜索，不访问远程仓库、不扫描
+  他人文件。对聊天记录只做关键词与路径提取，不输出敏感对话内容。
+dimensions:
+  - id: correctness
+    label: 定位准确率
+    description: 命中的目录是否确实是用户要找的项目
+    evidence: 真实案例：查询 "claude code" 从聊天记录准确定位到 claude-code-source-code 目录
+    score: 5
+  - id: effectiveness
+    label: 递进策略有效性
+    description: 四层搜索能否在找到结果时尽早停止、避免不必要深度扫描
+    evidence: auto 模式下 roots 层命中即停；chat 层带证据文件标注
+    score: 5
+  - id: efficiency
+    label: 搜索耗时
+    description: 常用场景（roots/cwd）应在秒级返回
+    evidence: roots/cwd 层扫描仅迭代有限深度；chat 层有 ripgrep 加速与文件数上限
+    score: 4
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 纯本地文件搜索能力，无外部服务成本，作为开发工具免费分发
+  boundary: 不含远程仓库搜索、不含代码内容理解（仅定位路径）
+  review_trigger: 当加入网络搜索或需要付费数据源时重新定价
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - local

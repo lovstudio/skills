@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.4.1"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 一键把本地 Agent 会话变成免费公开或付费解锁的 LovStudio 在线链接。
+basis: 复用 Lovstudio 已有 hosted session-shares 端点与渲染页，无独有模型或授权成本，故免费。
+boundary: 只负责读取转录、归一化、授权与上传；托管、显示档前端渲染、撤回与审核归 Lovstudio 服务本身。
+review_trigger: 当分享端点 schema、display-level 语义或授权链变更，或出现 400 invalid_session_share 高发时复评。
+confidence: internal

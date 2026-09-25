@@ -1,0 +1,55 @@
+schema: skill-manifest/v1
+id: lov-upload-image
+version: "0.1.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - workspace
+      - preferences
+      - skills.lov-upload-image
+    persist:
+      enabled: true
+      namespace: skills.lov-upload-image
+      records_path: skills.lov-upload-image.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: skills.lov-upload-image.records.server_url
+        aliases:
+          - preferences.picgo_server_url
+        required: false
+        question: 如果不使用默认地址，请提供 PicGo Server URL。
+      - path: skills.lov-upload-image.records.backend
+        aliases:
+          - preferences.picgo_backend
+        required: false
+        question: 如果已指定长期默认，请提供 PicGo 后端类型。
+      - path: skills.lov-upload-image.records.markdown_write_mode
+        aliases:
+          - preferences.markdown_image_write_mode
+        required: false
+        question: Markdown 默认生成新文件还是原位改写？
+      - path: user.language
+        aliases:
+          - identity.language
+        required: false
+        question: 希望使用哪种语言输出？
+  preferences:
+    namespace: lov_upload_image
+    fields:
+      - path: preferences.picgo_server_url
+        required: false
+        question: 如果不使用默认地址，请提供 PicGo Server URL。
+      - path: preferences.picgo_backend
+        required: false
+        question: 希望优先使用 PicGo Server 还是 CLI？
+      - path: preferences.markdown_image_write_mode
+        required: false
+        question: Markdown 默认生成新文件还是原位改写？
+  interaction:
+    ask_missing: false
+    max_questions: 1

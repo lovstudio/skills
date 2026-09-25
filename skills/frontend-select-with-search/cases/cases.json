@@ -1,0 +1,30 @@
+[
+  {
+    "type": "case",
+    "title": "GTDV 创建弹窗中的可搜索 Select 与滚动锁修复",
+    "description": "一个 React 与 TypeScript 应用需要让所有候选项超过 5 个的 Select 支持搜索；初版搜索生效后，用户继续发现 Dialog 内的长候选列表无法通过滚轮滚动。",
+    "input": {
+      "items": [
+        "共享 Select 包装器及其 option 子元素",
+        "10 个 Select 调用面，包含 5、6、16 和 17 个候选项的边界",
+        "Radix Dialog 内通过 Radix Popover Portal 渲染的长候选列表"
+      ]
+    },
+    "prompt": "所有的 select 组件，如果选项超过 5 个，就要支持搜索；但候选项无法滚动。",
+    "output": {
+      "items": [
+        "5 项 Select 保持原生，6 项及以上自动使用可搜索组合框",
+        "中文关键词过滤与 Enter 选中通过，隐藏原生 Select 保留 value 和 onChange 契约",
+        "定位到 Dialog 滚动锁把外置 Popover Portal 当作背景内容，并通过 Popover 模态滚动层修复",
+        "真实滚轮使 588px 内容、240px 可视区的列表 scrollTop 从 0 变为 348，滚动后可正常选中候选项",
+        "TypeScript 与 Vite 生产构建通过，验证过程取消创建且未写入任务数据"
+      ]
+    },
+    "evidence": {
+      "search_boundaries": "5 项保留原生；6、16、17 项启用搜索",
+      "scroll_measurement": "clientHeight 240, scrollHeight 588, scrollTop 0 to 348 after a real wheel gesture",
+      "post_scroll_selection": "滚动后选择候选项成功，父创建弹窗保持可用",
+      "build": "pnpm build passed with tsc and Vite"
+    }
+  }
+]

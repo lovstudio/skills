@@ -1,0 +1,8 @@
+- Plane 的 429（error_code 5900）来自 ApiKeyRateThrottle，缓存键是 api_key:<token> 即按 token 计而非按 IP，换 IP 无效；自托管默认 60/minute，由 API_KEY_RATE_LIMIT 环境变量控制（2026-09-09, 124aa59）
+- 面向未知实例批量写入时仍需节流并对 429 指数退避，因为限流阈值由对方部署决定；只有确认自托管已调高 API_KEY_RATE_LIMIT 才能全速跑（2026-09-09, 124aa59）
+- 批量写入 work item 必须带 external_source 与稳定 external_id，回读时按 external_id 跳过已存在项，限流中断后才能原地续传而不产生重复（2026-09-09, 34bc9e6）
+- API v1 没有 list-workspaces 端点，/api/v1/users/me/ 只返回 UserLite（id/email/display_name）不含 slug；workspace slug 只能由用户提供或用 ego-browser 复用登录态从 Web UI 的 /<slug>/ 路径读取（2026-09-09, 34bc9e6）
+- Plane 内部 API（/api/workspaces/、/api/users/me/workspaces/）只认 session cookie，带 X-API-Key 一律 401，不要用它们兜底取 slug（2026-09-09, 34bc9e6）
+- 工作项正文字段是 description_html 而非纯文本，写入前需 HTML 转义并按行包 <p>（2026-09-09, 34bc9e6）
+- create-project 必填 identifier（≤12 字符）与 name，priority 枚举只接受 urgent/high/medium/low/none（2026-09-09, 34bc9e6）
+- 用 JXA 全量导出 Apple Reminders 未完成事项耗时超过 120s，必须后台执行；按 list 批量取 name()/body()/dueDate() 数组比逐条属性访问快一个量级（2026-09-09, 34bc9e6）

@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.6.4] - 2026-09-25
+
+### Added
+
+- 合并本地提交与未提交改动到上游 4.6.0 之上
+- 本地改动：统一展示名为「Skill 工坊」，保持调用 ID 与能力契约。
+- 本地改动：Use approved product naming styles without imposing object-action labels
+- 本地改动：require accurate concise and consistent Skill names
+- 本地改动：verify name, description, workflow and neighboring capability distinctions before completion
+
 ## [4.6.0] - 2026-09-07
 
 - Support raw, nested, archived and partially migrated slash commands.

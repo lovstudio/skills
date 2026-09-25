@@ -1,0 +1,782 @@
+[
+  {
+    "id": "frontend-design",
+    "description": "Build content-led interfaces with consistent controls, GSAP motion, working multimedia, and traceable acceptance evidence.",
+    "tagline_zh": "把真实内容和现有代码落实为有辨识度、交互一致、媒体可用的界面，并留下验收证据。"
+  },
+  {
+    "id": "env-management",
+    "description": "Manage multiple platforms, accounts, and rotating API Keys with lifecycle evidence, guarded zsh or user-session projection, audits, and a redacted local Dashboard.",
+    "tagline_zh": "用平台、账号与 Key 账本管理轮换和有效期，为每个环境目标只选择一个生效 Key，并保持 Dashboard 全程脱敏。"
+  },
+  {
+    "id": "image-translation-errata",
+    "description": "Verify source text and an existing machine translation, then produce a layout-preserving errata image with visible rejected wording and corrected copy.",
+    "tagline_zh": "保留错误机翻的证据，用校样式删改给出正确译文，同时尽量不动原图布局。"
+  },
+  {
+    "id": "image-creator",
+    "description": "Create an image, designed graphic, or image prompt",
+    "tagline_zh": "按用途生成图像、制作可编辑图文布局或整理图像提示词"
+  },
+  {
+    "id": "create-qrcode",
+    "description": "Create scan-verified QR code PNGs with saved user preferences, privacy-safe receipts, and optional poster styling; default to the bare QR code with no header or footer unless explicitly requested.",
+    "tagline_zh": "复用已保存偏好生成可扫码二维码；默认只输出码本体，明确需要时才加海报框架。"
+  },
+  {
+    "id": "maintain-partners",
+    "description": "Maintain a website's partners section — scrape brand logos from homepages, normalize them, and wire them into the site across multiple locales in one shot.",
+    "tagline_zh": "一键抓取品牌 logo、标准化处理并接入官网 partners 区块，多语言全覆盖。"
+  },
+  {
+    "id": "fill-form",
+    "description": "Fill Word form templates (.docx). Auto-detects table fields, CJK font support.",
+    "tagline_zh": "自动填写 Word 表单模板，字段识别 + 中英文排版一气呵成。"
+  },
+  {
+    "id": "fill-web-form",
+    "description": "Fill web forms from local knowledge base. Fetch URL → deep-search KB → generate markdown doc.",
+    "tagline_zh": "用你本地的知识库来应答网页表单，一轮检索一轮生成，草稿即交付。"
+  },
+  {
+    "id": "any2pdf",
+    "description": "Markdown → publication-quality PDF with CJK/Latin typography, code, tables, images, and 16 themes.",
+    "tagline_zh": "把 Markdown 排成出版级 PDF，支持中英混排、代码与表格；新增宋黑阅读，共 16 套主题。"
+  },
+  {
+    "id": "any2docx",
+    "description": "Convert Markdown documents to professionally styled DOCX (Word) files with python-docx.",
+    "tagline_zh": "把 Markdown 转成排版规范的 Word 文档，可以直接发给甲方。"
+  },
+  {
+    "id": "any2deck",
+    "description": "Content → slide deck images with 16 visual styles, PPTX/PDF export, branding overlay.",
+    "tagline_zh": "把任意内容变成带设计感的幻灯片，16 种风格可选，导出 PPTX / PDF。"
+  },
+  {
+    "id": "pdf2png",
+    "description": "PDF → single vertically concatenated PNG. Uses macOS CoreGraphics, ~20x faster than pdftoppm.",
+    "tagline_zh": "把 PDF 拼成一张长图 PNG，在 macOS 上快到几乎瞬间出图。"
+  },
+  {
+    "id": "png2svg",
+    "description": "PNG → high-quality SVG conversion with background removal and spline curves.",
+    "tagline_zh": "把 PNG 矢量化为高质量 SVG，自动抠背景、曲线平滑。"
+  },
+  {
+    "id": "bp",
+    "description": "Orchestrate a complete investor BP workflow or combine only the modules needed for outline, PPTX/PDF production, and professional polishing.",
+    "tagline_zh": "可组合的投资人 BP 工具包：大纲、PPT 制作、审稿润色既能单独使用，也能串成完整流程。"
+  },
+  {
+    "id": "bp-outline",
+    "description": "Turn project files, metrics, interviews, and prior materials into a source-backed investor brief, evidence ledger, and 12–15 slide BP outline.",
+    "tagline_zh": "先把项目材料变成证据账本和投资人看得懂的 12–15 页大纲，再决定是否制作 PPT。"
+  },
+  {
+    "id": "bp-deck",
+    "description": "Turn an approved investor BP outline into a styled slide deck with professional charts, branding, PPTX/PDF export, and a full-deck preview.",
+    "tagline_zh": "把已经确认的 BP 大纲做成风格统一、图表专业的 PPTX、PDF 和全稿预览。"
+  },
+  {
+    "id": "bp-polish",
+    "description": "Audit and improve an existing BP outline, PPTX, PDF, or slide set across investment logic, evidence, copy, charts, and visual quality.",
+    "tagline_zh": "给已有 BP 做投资逻辑、证据、文字、图表和视觉体检，输出评分报告与逐页修改，不为好看改事实。"
+  },
+  {
+    "id": "proposal",
+    "description": "Business proposal with architecture, budget & PDF / 完整商业提案",
+    "tagline_zh": "把项目简述一键变成可交付的商业提案，方案、报价、排版全配齐。"
+  },
+  {
+    "id": "solution-architect",
+    "description": "Create research-backed product and technical solution plans from a user's requirement. Use for feasibility analysis, technology selection, architecture, implementation roadmap, library/vendor comparison, \"解决方案\", \"技术方案\", \"产品方案\", \"选型\", or \"调研分析\".",
+    "tagline_zh": "把产品或技术需求转成有调研依据、开源优先的可执行解决方案。"
+  },
+  {
+    "id": "review-doc",
+    "description": "Review and annotate documents/contracts — output annotated docx with comments",
+    "tagline_zh": "审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。"
+  },
+  {
+    "id": "contract-review-pro",
+    "description": "Professional contract review with four-layer methodology (entity verification, basic, business, legal), structured comments with risk levels, contract summary, consolidated opinion, and Mermaid business flowchart.",
+    "tagline_zh": "专业级合同审阅 — 四层方法论（主体核验 + 基础 + 业务 + 法务），结构化批注含风险等级，附合同摘要、综合意见与业务流程图。"
+  },
+  {
+    "id": "expense-report",
+    "description": "Invoice images/text → categorized Excel expense report",
+    "tagline_zh": "发票图片或文字一键整理成分类报销 Excel，业务招待、差旅、办公自动归类。"
+  },
+  {
+    "id": "event-poster",
+    "description": "Generate event and exhibition posters via HTML + Playwright / 活动与展览海报生成",
+    "tagline_zh": "把活动信息一键变成高质感海报，可直接分享或用于线下展览。"
+  },
+  {
+    "id": "visual-clone",
+    "description": "Extract design DNA from reference images / 提取设计要素生成复刻指令",
+    "tagline_zh": "从参考图中提取设计要素，生成可复刻同款风格的指令。"
+  },
+  {
+    "id": "find-logo",
+    "description": "Fetch a brand/product logo from public sources (Clearbit, og:image, favicon), score candidates (prefer wide-aspect + transparent), and archive into ~/.lovstudio/logo-collection/.",
+    "tagline_zh": "按品牌名或网址抓取 logo，自动评分择优（偏好长条形 + 透明底），统一归档到本地，方便网站/PPT/海报罗列。"
+  },
+  {
+    "id": "branding-consistency",
+    "description": "Build audience, brand-role, component-convention, and information-visibility gates for user-facing copy across publishing and product surfaces.",
+    "tagline_zh": "从受众、品牌角色、组件惯例和真实发布语境审校可见文案，并允许删除多余文字。"
+  },
+  {
+    "id": "human-writing",
+    "description": "Improve Chinese drafts with an authorship ledger, discourse audit, evidence-constrained rewriting, and 30 deterministic surface metrics without claiming AI detection.",
+    "tagline_zh": "先保住作者真实判断，再修篇章结构，最后用 30 项中文指标定位并复测表层问题。"
+  },
+  {
+    "id": "writing-style",
+    "description": "Turn verified facts, notes, and drafts into first-person Chinese content using a personal voice calibrated from 19 real samples, with fact-preserving rewrite and diagnosis.",
+    "tagline_zh": "用 19 篇真实样本校准的个人声音完成新写、保真改写与诊断，并经过作者性、篇章、表层和品牌语境门禁。"
+  },
+  {
+    "id": "article-creator",
+    "description": "Turn source material, drafts, or partner articles into a complete WeChat article package with fact-grounded writing, branded covers, a 4:3 body hero, source traceability, and quality reports.",
+    "tagline_zh": "从材料、旧稿或来源文章生成完整公众号文章包，并完成写作、品牌、双比例视觉、转载保真与质量验收。"
+  },
+  {
+    "id": "publish-wechat-article",
+    "description": "Read, minimally edit, create, verify, and publish WeChat Official Account drafts with branded-cover requirements, WeChat-copy HTML, remote readback, and explicit publication states.",
+    "tagline_zh": "统一读取、局部编辑、创建、回读与发布公众号文章，并严格区分草稿、提交发布和正式上线。"
+  },
+  {
+    "id": "document-illustrator",
+    "description": "为文档原地插入 AI 配图。全局规划插入点，并行生成，异步插回原文。",
+    "tagline_zh": "给长文原地配图，先规划插入点再并行出图，最后自动插回原文。"
+  },
+  {
+    "id": "deep-research",
+    "description": "Use when the user needs multi-source research with citation tracking, evidence persistence, structured reports, or verified open-source solution landscapes across GitHub and other relevant forges.",
+    "tagline_zh": "生成带引用、证据和主张校验的深度研究报告，并收集分享 GitHub 等平台的已核验开源方案。"
+  },
+  {
+    "id": "write-professional-book",
+    "description": "Write multi-chapter books (technical, tutorial, monograph) / 逐章写书，支持多种风格",
+    "tagline_zh": "从大纲开始，逐章写出一本完整的书，技术、教程、专著多种风格。"
+  },
+  {
+    "id": "wxmp-cracker",
+    "description": "微信公众号文章抓取",
+    "tagline_zh": "把微信公众号的文章批量归档成可再利用的整洁文本。"
+  },
+  {
+    "id": "event-curator",
+    "description": "Generate a complete professional event plan from guest background material. Takes guest bio / CV / intro copy as input, runs a multi-turn clarification dialog (activity type, audience, duration, tone), and outputs a cohesive plan with title + promo copy, minute-level rundown, tiered host question set, and gift / takeaway suggestions.\n",
+    "tagline_zh": "从嘉宾履历一键生成可交付的活动策划案 — 主题文案、分钟级 rundown、主持人问题卡、伴手礼。"
+  },
+  {
+    "id": "thesis-polish",
+    "description": "MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。",
+    "tagline_zh": "MBA 论文全维度润色，对标国优标准，打磨语言、结构、论证与创新四个面。"
+  },
+  {
+    "id": "translation-review",
+    "description": "Chinese-to-English translation review. Compares source & translation across 6 dimensions.",
+    "tagline_zh": "中译英译文审阅，从六个维度逐条对照原文，找出问题并给出改写建议。"
+  },
+  {
+    "id": "style-clone",
+    "description": "Analyzes sample articles to extract an 8-dimension writing style profile, then rewrites any target article in that exact style. Trigger on: \"分析文风\", \"模仿文风\", \"克隆写作风格\", \"用XX的风格改写\", \"style clone\", \"rewrite in this style\".\n",
+    "tagline_zh": "从样本文章中提取文风画像，再把任意内容改写成该文风。"
+  },
+  {
+    "id": "hanzi-lens",
+    "description": "Explain one Chinese character through verified readings, form analysis, historical lexicography, classical usage, semantic modeling, and an audited professional infographic.",
+    "tagline_zh": "用证据看懂一个汉字：读音、字形、字书、经典语境与专业信息图。"
+  },
+  {
+    "id": "fact-check",
+    "description": "Verify factual claims through due-diligence style research, primary-source checking, source labels, and confidence-aware conclusions.",
+    "tagline_zh": "用尽调思路确认事实：查一手资料、找反例、标证据等级，给出置信度和下一步。"
+  },
+  {
+    "id": "professional-portrait",
+    "description": "Turn one photo into a polished professional portrait while preserving identity, natural skin texture, and believable photographic detail.",
+    "tagline_zh": "把一张普通人像修成干净、自然、仍然像本人的职业形象照。"
+  },
+  {
+    "id": "riso-portrait",
+    "description": "Redraw an authorized single-person photo as an identity-preserving Riso avatar with gpt-image-2, then verify facial identity, anatomy, accessories, scene facts, and circular cropping.",
+    "tagline_zh": "把一张照片重绘成仍然像本人的 Riso 头像，并检查五官、手指、物件与圆形裁切。"
+  },
+  {
+    "id": "rich-export",
+    "description": "Export rich content to self-contained HTML, HTML folders, Markdown, DOCX, PDF, and ZIP packages with format-aware media handling.",
+    "tagline_zh": "一份富媒体内容，同时交付网页、可编辑文档、打印版和归档包。"
+  },
+  {
+    "id": "professional-infographic",
+    "description": "Create evidence-led professional infographics, including capital journeys, with editable HTML/SVG, high-resolution PNG, source linkage, brand attribution, and strict QA.",
+    "tagline_zh": "把复杂材料或投资路径重构为一条可回溯的视觉论证，从进入、分阶段退出到最终判断。"
+  },
+  {
+    "id": "oh-my-landingpage",
+    "description": "Product-specific landing page system from brand truth through narrative, visual direction, implementation, and production review.",
+    "tagline_zh": "从产品与品牌事实出发，独立推导适合当前产品的叙事与视觉，并完成实现、响应式和生产回读。"
+  },
+  {
+    "id": "business-card",
+    "description": "Generate an editorial 2:1 business card as high-res PNG + interactive HTML / 编辑式电子名片生成",
+    "tagline_zh": "把任何人的姓名、头衔、金句一键变成精美的编辑式名片，输出高清 PNG 与可点击下载的 HTML。"
+  },
+  {
+    "id": "academic-translator",
+    "description": "Translate English academic PDFs into Chinese while preserving figures, equations, page flow, and navigation.",
+    "tagline_zh": "将英文论文译为中文，优先保留图表、公式、页码对应与目录跳转。 — 售价 70 Credits"
+  },
+  {
+    "id": "paper-translator",
+    "description": "Translate English academic PDFs into Simplified Chinese while preserving page correspondence, bilingual layouts, figures, and formulas.",
+    "tagline_zh": "将英文论文译为中文 PDF，支持同页数、对照页与段落双语，并在保版式路线中保留图表和公式。 — 售价 70 Credits"
+  },
+  {
+    "id": "video-chapter",
+    "description": "Plan semantic chapters from SRT/VTT subtitles, refine boundaries and styles in React Studio, render transparent ProRes overlays or burned MP4s, and export editor-ready packages.\n",
+    "tagline_zh": "从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。"
+  },
+  {
+    "id": "media-creator",
+    "description": "Turn screen recordings into review-first video deliveries with editable-subtitle MKV, approved platform files, rendered covers for every required slot, protected source audio, and QC evidence.",
+    "tagline_zh": "先交可编辑字幕 MKV，再交批准后的平台成片与各槽位真实封面，并保留原声和质检证据。"
+  },
+  {
+    "id": "media-publisher",
+    "description": "Publish videos to WeChat Channels or Bilibili with media preflight, frozen user-edited descriptions, cover gates, final confirmation, and post-submit status readback.",
+    "tagline_zh": "发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。"
+  },
+  {
+    "id": "publish-wechat-channels",
+    "description": "Publish WeChat Channels videos through the visible assistant web flow with preflight, field readback, and status verification.",
+    "tagline_zh": "通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。"
+  },
+  {
+    "id": "mobile-adapt",
+    "description": "Scan and fix mobile adaptation issues — overflow, safe area, 100vh, responsive layout, multi-level navigation, touch targets. Trigger on: \"mobile adapt\", \"移动端适配\", \"手机适配\", \"responsive optimization\", \"fix mobile overflow\".\n",
+    "tagline_zh": "扫描并修复 Web 项目的移动端适配问题——溢出、安全区、视口单位、响应式布局和多级导航。"
+  },
+  {
+    "id": "repo2docs",
+    "description": "Turn any folder of source material — a code repo, a pile of articles, a mixed knowledge dump with images — into a polished Fumadocs site, reading one unit at a time and incrementally refining the structure, then deploy to {product-id}.lovstudio.ai/docs. Trigger on: \"generate docs\", \"build a docs site\", \"fumadocs\", \"为项目生成文档\", \"把文件夹做成文档站\", \"整理成知识库网站\".\n",
+    "tagline_zh": "把任意文件夹（代码、文章、图片）增量编纂成精美的 Fumadocs 文档站，并部署到 {id}.lovstudio.ai/docs。"
+  },
+  {
+    "id": "wdb-cli",
+    "description": "Use existing keys or decrypted databases to query local WeChat data with WDB Pro managed-key discovery and exact row identity.",
+    "tagline_zh": "自动发现 WDB Pro 管理密钥，精准读取聊天、联系人、朋友圈、结构与稳定记录。"
+  },
+  {
+    "id": "skill-creator",
+    "description": "Create, migrate, validate and install portable Agent Skills",
+    "tagline_zh": "创建、迁移、验证并安装通用 Skill 与自包含 Skill Kit"
+  },
+  {
+    "id": "skill-add-case",
+    "description": "Prepare accepted Skill results for website import or signed-in Agent submission, with consent, final images, safe retries and public verification.",
+    "tagline_zh": "登录即可把满意的 Skill 结果分享成案例，支持手动导入或 Agent 投稿。"
+  },
+  {
+    "id": "skill-optimizer",
+    "description": "Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG entry.",
+    "tagline_zh": "一键体检并修复现有技能，自动升版本号并追加 CHANGELOG。"
+  },
+  {
+    "id": "auto-context",
+    "description": "Context hygiene checker. Suggests /fork or /btw when context is polluted.",
+    "tagline_zh": "监测 Claude Code 上下文是否被污染，适时提示你 /fork 或 /btw。"
+  },
+  {
+    "id": "cc-migrate-session",
+    "description": "Migrate Claude Code sessions when a project folder moves",
+    "tagline_zh": "项目目录搬家后，让 Claude Code 的历史会话还能正常 `--resume`。"
+  },
+  {
+    "id": "deploy-to-vercel",
+    "description": "Deploy frontend to Vercel with auto Cloudflare DNS + custom domain setup.",
+    "tagline_zh": "一键把前端部署到 Vercel，自动配好 Cloudflare DNS 和自定义域名。"
+  },
+  {
+    "id": "finder-action",
+    "description": "Create a Finder context menu action",
+    "tagline_zh": "创建 macOS Finder 文件快捷操作或目录背景菜单扩展"
+  },
+  {
+    "id": "gh-access",
+    "description": "Grant / revoke / list collaborator access on private GitHub repos by username or email. Read-only by default.",
+    "tagline_zh": "一条命令给私有 GitHub 仓库加减协作者权限，或盘点现有访问清单。"
+  },
+  {
+    "id": "gh-contribute",
+    "description": "Contribute clean, professional PRs to upstream GitHub repos — fork, branch, commit, push, open PR, with smart splitting.",
+    "tagline_zh": "给任意上游 GitHub 仓库提一份干净的 PR——fork、分支、推送、开 PR 一站搞定。"
+  },
+  {
+    "id": "gh-tidy",
+    "description": "Triage & clean up GitHub issues, PRs, branches, and labels in one pass.",
+    "tagline_zh": "一次过清理 GitHub 上的 issue、PR、分支和标签，让仓库重新整洁。"
+  },
+  {
+    "id": "install-tanstack-query",
+    "description": "Initialize or refactor a frontend project to use TanStack Query as the unified server-state layer.",
+    "tagline_zh": "初始化 TanStack Query，并把分散的请求状态收敛到统一 query keys 和 hooks。"
+  },
+  {
+    "id": "release-via-cicd",
+    "description": "Set up or run a verified CI/CD release",
+    "tagline_zh": "配置或运行现有项目发布流水线，并回读产物与真实上线状态"
+  },
+  {
+    "id": "optimize-tauri-backend",
+    "description": "Optimize Tauri backend architecture, command surfaces, IPC streams, and Rust development ergonomics.",
+    "tagline_zh": "优化 Tauri 后端结构、命令边界和长 IPC 生命周期，降低 Rust 重启带来的开发摩擦。"
+  },
+  {
+    "id": "app-generator",
+    "description": "Generate or standardize Lovstudio apps, choosing web-only, PWA, or Tauri desktop case-by-case with React/Vite or Next.js, brand, UI, data, deploy/release, and lovinsp.",
+    "tagline_zh": "按需求生成 Lovstudio 级 web、PWA 或 Tauri App，内置品牌、UI、数据层、部署/发布和开发辅助。"
+  },
+  {
+    "id": "electron-delta-updater",
+    "description": "Build and verify Electron delta updates with Sparkle, appcasts, signing, and release evidence.",
+    "tagline_zh": "为 Electron 应用建立可验证的增量自动更新，覆盖 Sparkle、appcast、签名与真实安装验证。"
+  },
+  {
+    "id": "electron-app-relaunch",
+    "description": "Implement verified full Electron app relaunch across menus, development, and update handoff.",
+    "tagline_zh": "为 Electron 实现真正的完整应用重启，并清晰区分界面刷新与更新交接。"
+  },
+  {
+    "id": "install-ai",
+    "description": "Add production-ready AI features with Agent Client, MaaS routing, model intent, and optional UI.",
+    "tagline_zh": "为 App 初始化可上线的 AI 功能，支持 Agent Client、MaaS、模型偏好和配套 UI。"
+  },
+  {
+    "id": "skill-distiller",
+    "description": "Distill proven project experience into reusable, testable Agent Skill blueprints.",
+    "tagline_zh": "将项目经验蒸馏为边界清晰、可创建且可验收的 Skill 蓝图。"
+  },
+  {
+    "id": "skill-pricing",
+    "description": "Generate an evidence-backed Skill Pricing Card with a recommended price, range, channel strategy, and evidence gaps.",
+    "tagline_zh": "从成本、价值、信心度与渠道适配出发，生成可解释的 Skill Pricing Card。"
+  },
+  {
+    "id": "media-crawler",
+    "description": "Resolve and download authorized media links from WeChat Channels and other supported social platforms with a verifiable report.",
+    "tagline_zh": "将有权保存的视频号等社交媒体链接变成可验证的本地媒体文件与诊断报告。"
+  },
+  {
+    "id": "skill-publisher",
+    "description": "Publish or submit a validated Skill, defaulting to the LovStudio official website with automatic pricing and using other channels only when explicitly requested.",
+    "tagline_zh": "每次发布先自动定价，默认上架 LovStudio 官网，仅在明确要求时扩展到其他渠道。"
+  },
+  {
+    "id": "obsidian-reset-cache",
+    "description": "重置 Obsidian 缓存，解决卡在 Loading cache 的问题。",
+    "tagline_zh": "Obsidian 卡在 Loading cache 时，一键重置缓存救场。"
+  },
+  {
+    "id": "project-port",
+    "description": "Generate stable unique dev port (3000–8999) from project name.",
+    "tagline_zh": "给每个项目分配一个稳定且唯一的开发端口，彻底告别端口撞车。"
+  },
+  {
+    "id": "clash-tun-doctor",
+    "description": "Diagnose and reversibly repair application connectivity failures caused by Clash Verge Rev TUN rules, stale runtime state, proxy timeouts, or unusable IPv6 paths.",
+    "tagline_zh": "从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。"
+  },
+  {
+    "id": "subtitle-freedom",
+    "description": "Create learner-friendly English subtitles using the selected profile as a minimum difficulty floor, with higher-level glosses, evidence-based ASS art cards, and optional renderer-compatible ASS/PGS sidecars without re-encoding the video.",
+    "tagline_zh": "以用户选定级别为最低难度线生成英语学习字幕，覆盖更高难度表达，并可选生成不剧透人物卡片与不烧录视频的 ASS/PGS 水印外置字幕。"
+  },
+  {
+    "id": "clean-mac",
+    "description": "Guarded macOS disk cleanup with protected app workspaces, rollback-aware staging, archive migration, and real-capacity verification.",
+    "tagline_zh": "按目标容量整理 Mac 磁盘，保护 Screen Studio 等应用工作区，并以可回滚操作和真实可用空间完成验收。"
+  },
+  {
+    "id": "media-fetch",
+    "description": "Find, compare, and download long-form media with edition evidence, capacity preflight, qBittorrent and aria2 failover, and ffprobe verification.",
+    "tagline_zh": "检索并选择合适版本，qBittorrent 与 aria2 续传兜底，最后验收本地媒体与字幕状态。"
+  },
+  {
+    "id": "china-website-filing",
+    "description": "Guide mainland China website filing from readiness and ICP review through post-approval domain cutover, public security filing, compliance display, and evidence-backed monitoring.",
+    "tagline_zh": "把中国大陆网站从备案准备推进到 ICP、域名上线、公安联网备案与合规巡检，并保留权威证据链。"
+  },
+  {
+    "id": "yoda-automation",
+    "description": "Turn one-off and recurring Yoda tasks into verified native automations with timezone, schedule, run-evidence, deduplication, and completion-stop checks.",
+    "tagline_zh": "把一次性提醒和周期跟进变成可核验的 Yoda 原生自动化，带时区、运行证据、去重与完成后停用。"
+  },
+  {
+    "id": "ataru-indexing",
+    "description": "Check and build the local Ataru session-memory index before retrieval: status gating, idempotent incremental catch-up, concurrent-build waiting, and semantic-index cost preview.",
+    "tagline_zh": "在检索之前，先确认本机的 AI 会话记忆真的可被搜索。"
+  },
+  {
+    "id": "search-chat",
+    "description": "Recall past AI session context from the local Ataru memory index: keyword search with locatable Turn/Session hits and source-window read-back by stable ID.",
+    "tagline_zh": "把你和 AI 已经想清楚的事找回来，并读回它原本的上下文。"
+  },
+  {
+    "id": "open-codex-session",
+    "description": "Open an exact Codex desktop task from a thread UUID, deeplink, or confirmed session ID, then verify that the host actually navigated.",
+    "tagline_zh": "给出 thread ID 或刚确认的 session，让 Codex 直接打开准确任务。"
+  },
+  {
+    "id": "integrate-lovinsp",
+    "description": "Integrate Lovinsp in a frontend project",
+    "tagline_zh": "为现有前端项目幂等接入 Lovinsp 并验证点击定位源码能力"
+  },
+  {
+    "id": "dsh-plugin-creator",
+    "description": "Create a @deepseek-ai/dsh-* plugin package end-to-end: pick the extension point or capability seam, scaffold the package, implement the tool/hook/service, and run the repo gates.",
+    "tagline_zh": "端到端开发 DSH 插件：选扩展点、搭脚手架、实现并通过仓库门槛。"
+  },
+  {
+    "id": "dsh-plugin-publisher",
+    "description": "Publish a validated DSH plugin package (@deepseek-ai/dsh-* or @lovstudio/dsh-*) to npm, git, or tarball channels and verify it loads in the DeepSeek Harness.",
+    "tagline_zh": "把已验证的 DSH 插件发布到 npm/git/tarball 渠道，并逐一核验可加载。"
+  },
+  {
+    "id": "describe-image",
+    "description": "Give text-only models vision: send an image file to a free vision model (GLM-4V-Flash) and relay its description back as text.",
+    "tagline_zh": "给纯文本模型\"看图\"：用免费视觉模型把任意图片转成文字描述。"
+  },
+  {
+    "id": "personal-vocabulary",
+    "description": "Maintain a personal dictation vocabulary shared across speech-input apps; dedupe, sync to OpenLess and Typeless.",
+    "tagline_zh": "一份可跨语音输入法复用的个人词汇表。"
+  },
+  {
+    "id": "npm-publisher",
+    "description": "Automate npm package publishing via GitHub Actions OIDC trusted publishing or a local granular NPM_TOKEN, without repeated login",
+    "tagline_zh": "自动发布 npm 包，无需重复登录——OIDC trusted publishing 或本地 NPM_TOKEN。"
+  },
+  {
+    "id": "typeless-prompt",
+    "description": "Clean dictated or ASR text into concise, logically structured, send-ready prompts while preserving the final intent and removing filler, repetition, and superseded corrections.",
+    "tagline_zh": "消解口癖、重复和改口，把口述草稿整理成逻辑清楚、排版舒展、可直接发送的正文。"
+  },
+  {
+    "id": "cli2anything",
+    "description": "Turn authorized observed APIs into verified OpenAPI, API graph, JavaScript SDK, Swagger, or task-focused CLI bundles.",
+    "tagline_zh": "把已授权观察到的网站 API 变成可验证的 OpenAPI、SDK、Swagger 与任务型 CLI。"
+  },
+  {
+    "id": "search-twitter",
+    "description": "Recover public X/Twitter posts from known IDs, web archives, embedded cards and screenshots while preserving verbatim text, provenance and unrecovered gaps.",
+    "tagline_zh": "恢复 X/Twitter 逐字正文与截图证据，并明确列出仍无法证明的缺口。"
+  },
+  {
+    "id": "search-file",
+    "description": "Find local files from earlier AI conversations with session evidence and durability ranking.",
+    "tagline_zh": "从历史 AI 对话找回仍然存在的文件，并用会话证据与存储耐久度排序。"
+  },
+  {
+    "id": "publish-event-onto-hdx",
+    "description": "Diagnose and safely edit a published Huodongxing (活动行) event: read category/tag state, check category-page visibility and ranking, replace detail-body images, and guard against the back-office save that silently wipes the category.",
+    "tagline_zh": "一次看清活动行活动为什么在分类页找不到，以及改哪个字段、用哪种排序能被看见。"
+  },
+  {
+    "id": "migrate-camera-media",
+    "description": "Offload camera cards on macOS with USB diagnostics, resumable whole-card copying, SHA-256 readback, media sampling, and explicitly authorized cleanup.",
+    "tagline_zh": "把相机素材完整转存到 SSD，逐文件校验，并留下可复查的转存报告。"
+  },
+  {
+    "id": "praise-before-work",
+    "description": "Give explicit, context-grounded encouragement before starting a task, including greetings when invoked explicitly.",
+    "tagline_zh": "开工前先收到一段具体的夸奖，再开始处理任务。"
+  },
+  {
+    "id": "video-moments",
+    "description": "Select faithful photo moments from event videos, restore S-Log3 and Rec.709 color, and deliver bright, traceable photo sets.",
+    "tagline_zh": "从课程和活动视频挑选真实瞬间，完成色彩还原与统一提亮，交付可回溯的照片组。"
+  },
+  {
+    "id": "better-css",
+    "description": "Refactor CSS and Tailwind styles",
+    "tagline_zh": "清理冗余 CSS 并在现有 Tailwind 项目中重构样式"
+  },
+  {
+    "id": "better-github-desc",
+    "description": "Update a GitHub repository description from its README",
+    "tagline_zh": "依据 README 更新 GitHub 仓库描述、主题标签及已核实的官网链接"
+  },
+  {
+    "id": "better-project-structure",
+    "description": "Improve a project directory structure",
+    "tagline_zh": "分析任意语言项目的目录职责并渐进调整文件结构和引用"
+  },
+  {
+    "id": "better-readme",
+    "description": "Create or improve a project README",
+    "tagline_zh": "依据项目代码完善 README、安装说明、使用示例与真实品牌资产"
+  },
+  {
+    "id": "better-seo",
+    "description": "Review and improve Next.js SEO",
+    "tagline_zh": "检查 Next.js 页面元数据、索引规则、站点地图与分享展示"
+  },
+  {
+    "id": "better-statusline",
+    "description": "Update an agent status line with rollback",
+    "tagline_zh": "配置并备份 Agent 状态栏，支持列出历史版本和恢复"
+  },
+  {
+    "id": "brainstorm",
+    "description": "Help clarify requirements through brainstorming",
+    "tagline_zh": "通过证据和聚焦追问明确需求、约束、取舍及验收条件"
+  },
+  {
+    "id": "checkpoint-list",
+    "description": "List a project checkpoint history",
+    "tagline_zh": "汇总 Git 与项目日志中的检查点、时间范围和演进记录"
+  },
+  {
+    "id": "checkpoint",
+    "description": "Create a project checkpoint",
+    "tagline_zh": "根据当前 Git 差异和历史记录保存项目里程碑及后续事项"
+  },
+  {
+    "id": "clone-rebrand",
+    "description": "Create a project from a template and rebrand it",
+    "tagline_zh": "将模板或 fork 改造为新项目，按范围同步品牌、语言和部署设置"
+  },
+  {
+    "id": "daily-post",
+    "description": "Write a daily project update from real changes",
+    "tagline_zh": "将近期真实项目更新写成面向读者的简短日更文案"
+  },
+  {
+    "id": "dev-research",
+    "description": "Research a development plan and technology choices",
+    "tagline_zh": "根据软件需求比较复用策略并输出有来源的技术选型与研发计划"
+  },
+  {
+    "id": "distill-to-system",
+    "description": "Persist a reusable lesson in agent instructions",
+    "tagline_zh": "把有证据的可复用经验写入最合适的项目或共享 Agent 规范"
+  },
+  {
+    "id": "distill",
+    "description": "Distill a solved problem into reusable knowledge",
+    "tagline_zh": "将真实解决过程整理为可复用经验文档并维护知识索引"
+  },
+  {
+    "id": "fix-broken-links",
+    "description": "Find and fix broken links in a project",
+    "tagline_zh": "核对项目路由及页面链接，修复失效目标并保留有效导航"
+  },
+  {
+    "id": "fix-by-add-log",
+    "description": "Debug a problem with targeted logging",
+    "tagline_zh": "针对难复现问题增加最少的诊断日志并用实际输出定位根因"
+  },
+  {
+    "id": "fix-general",
+    "description": "Diagnose and fix a software error",
+    "tagline_zh": "根据报错和复现证据定位根因、实施修复并验证原路径"
+  },
+  {
+    "id": "fix-until-no-error",
+    "description": "Fix errors until the specified checks pass",
+    "tagline_zh": "围绕明确验证命令持续定位和修复失败项直到通过或遇到真实阻塞"
+  },
+  {
+    "id": "gen-logo",
+    "description": "Create a logo and application icon",
+    "tagline_zh": "根据项目用途制作版本化 Logo 草稿及应用图标，并按确认范围接入"
+  },
+  {
+    "id": "gen-project-name",
+    "description": "Generate a project name from its purpose",
+    "tagline_zh": "根据项目用途提供可用于文件夹与仓库的名称及定位说明"
+  },
+  {
+    "id": "git-commit-with-context",
+    "description": "Create a Git commit for the current task changes",
+    "tagline_zh": "结合会话意图与实际 Git 差异生成并执行范围准确的提交"
+  },
+  {
+    "id": "help-cmd",
+    "description": "Create a command line for a task",
+    "tagline_zh": "把操作目标转换为适合当前系统和 shell 的可执行命令说明"
+  },
+  {
+    "id": "i18n-check-i18n",
+    "description": "Review and fix frontend internationalization",
+    "tagline_zh": "检查并修复用户可见文案硬编码、缺失翻译键及语言配置"
+  },
+  {
+    "id": "illustrate",
+    "description": "Illustrate a document with evidence and relevant images",
+    "tagline_zh": "依据文档内容选择真实素材、图表或生成图并校验插入位置"
+  },
+  {
+    "id": "init-auth",
+    "description": "Add Supabase authentication to a React application",
+    "tagline_zh": "为 React 应用接入 Supabase 登录、账户恢复及桌面浏览器 OAuth"
+  },
+  {
+    "id": "init-port",
+    "description": "Configure a stable development port",
+    "tagline_zh": "为项目选择稳定开发端口并更新实际框架启动配置"
+  },
+  {
+    "id": "install-design",
+    "description": "Install a project design system",
+    "tagline_zh": "将项目品牌设计规范映射到已有前端样式与组件系统"
+  },
+  {
+    "id": "install-shadcn-ui",
+    "description": "Install and configure shadcn/ui for a project",
+    "tagline_zh": "安装并按项目品牌配置 shadcn/ui，保留现有主题和组件修改"
+  },
+  {
+    "id": "install-tauri-logo",
+    "description": "Install a logo in a Tauri application",
+    "tagline_zh": "把已确认 Logo 接入 Tauri 包图标和托盘并核验生成资源"
+  },
+  {
+    "id": "install-web-logo",
+    "description": "Install a web logo and favicon set",
+    "tagline_zh": "将正式 Logo 接入 favicon、PWA manifest、网页头部和相关组件"
+  },
+  {
+    "id": "install-zenmux-api",
+    "description": "Integrate the ZenMux API through a secure backend",
+    "tagline_zh": "为应用接入 ZenMux 服务端代理，隔离密钥并验证请求链路"
+  },
+  {
+    "id": "kb-organize",
+    "description": "Organize a knowledge base and its references",
+    "tagline_zh": "检查并整理知识库索引、重复文档、图片位置和内部引用"
+  },
+  {
+    "id": "kill-emoji",
+    "description": "Replace interface emoji with appropriate icons",
+    "tagline_zh": "将界面中不合适的 emoji 替换为语义一致的图标或简洁文案"
+  },
+  {
+    "id": "legal-pages",
+    "description": "Draft website privacy and terms pages",
+    "tagline_zh": "根据真实业务与数据处理事实生成隐私政策和服务条款页面草稿"
+  },
+  {
+    "id": "memory-add",
+    "description": "Save a knowledge note with categories and tags",
+    "tagline_zh": "将用户指定信息保存为带分类、标签和来源的知识文档及索引"
+  },
+  {
+    "id": "memory-search",
+    "description": "Search a personal knowledge base",
+    "tagline_zh": "跨已配置的 memory 与 distill 知识记录检索并返回可追溯结果"
+  },
+  {
+    "id": "meta-command",
+    "description": "Turn a repeated command workflow into a portable skill",
+    "tagline_zh": "把重复操作封装成通用 Skill，并按需提供宿主 slash command 适配入口"
+  },
+  {
+    "id": "nano-banana-pro",
+    "description": "Create a structured image prompt",
+    "tagline_zh": "将图像需求整理为结构清晰、遵循参考素材的生成或编辑提示词"
+  },
+  {
+    "id": "obsidian-ensure-dev-sync",
+    "description": "Fix an Obsidian plugin development sync chain",
+    "tagline_zh": "诊断并修复插件构建、Vault 同步及热重载链路"
+  },
+  {
+    "id": "output-wechat-moment",
+    "description": "Format and save a WeChat Moments post",
+    "tagline_zh": "把已有内容整理成适合朋友圈阅读的纯文本并保存文件"
+  },
+  {
+    "id": "output",
+    "description": "Save the current content to a file",
+    "tagline_zh": "将已确认内容按指定文件名与文本格式保存并回读校验"
+  },
+  {
+    "id": "refactor-api",
+    "description": "Refactor redundant backend APIs",
+    "tagline_zh": "识别后端接口重复并在保持调用契约的前提下实施重构"
+  },
+  {
+    "id": "refactor-modular",
+    "description": "Refactor a large file into cohesive modules",
+    "tagline_zh": "按职责拆分长文件并保持公共接口、依赖和行为一致"
+  },
+  {
+    "id": "rename-project",
+    "description": "Rename a project and preserve compatibility",
+    "tagline_zh": "在保留兼容键与运行连续性的前提下重命名项目、路径和仓库"
+  },
+  {
+    "id": "repo-takeover",
+    "description": "Publish a cloned repository under your account",
+    "tagline_zh": "将已有 clone 连接到用户自己的 GitHub 仓库并保留来源与历史"
+  },
+  {
+    "id": "version-management-manual",
+    "description": "Create a changeset for manual review",
+    "tagline_zh": "生成 changeset 草稿并提供编辑入口，审阅后验证版本计划"
+  },
+  {
+    "id": "version-management",
+    "description": "Manage package versions with Changesets",
+    "tagline_zh": "根据实际包变更生成 changeset，并按请求更新版本与 CHANGELOG"
+  },
+  {
+    "id": "xbti-gallery",
+    "description": "Browse a gallery of XBTI personality tests",
+    "tagline_zh": "从已核实的社区地址或仓库列出可访问的 XBTI 人格测试案例"
+  },
+  {
+    "id": "five",
+    "description": "Use a five-unit concise reply mode",
+    "tagline_zh": "在明确要求时使用五单位以内的简短回复，并支持随时恢复正常"
+  },
+  {
+    "id": "add-task",
+    "description": "Add an item to the current task list",
+    "tagline_zh": "在当前任务清单中按优先级和位置追加事项并保留已有状态"
+  },
+  {
+    "id": "think",
+    "description": "Analyze a complex decision and its tradeoffs",
+    "tagline_zh": "围绕复杂问题比较方案、验证假设并给出有依据的决策建议"
+  },
+  {
+    "id": "code-review",
+    "description": "Review a code change for actionable defects",
+    "tagline_zh": "审查实际差异中的正确性、安全和维护风险并给出可定位意见"
+  },
+  {
+    "id": "architecture-documentation",
+    "description": "Create architecture documentation from a codebase",
+    "tagline_zh": "从项目实际实现生成架构视图、接口说明与决策记录草稿"
+  },
+  {
+    "id": "agent-instructions",
+    "description": "Review or improve project agent instructions",
+    "tagline_zh": "诊断或完善项目 Agent 指令文件，适配不同宿主并保留真实工程约定"
+  },
+  {
+    "id": "add-tool",
+    "description": "Add an online tool to an existing website",
+    "tagline_zh": "为现有网站新增可用的在线工具，并接入多语言、工具目录、站点地图和必要的成本提示"
+  }
+]

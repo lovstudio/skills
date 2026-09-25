@@ -1,0 +1,164 @@
+"""Generated command-line interface for __PROJECT_NAME__."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import sys
+from typing import Any, Dict, List, Optional
+
+from . import __version__
+from .backend import BackendError, doctor, load_spec, project_root, run_command
+
+
+TYPE_MAP = {"string": str, "path": str, "int": int, "float": float}
+
+
+def _context_id(code: str, message: str) -> str:
+    digest = hashlib.sha256(f"{code}|{message}".encode("utf-8")).hexdigest()[:8]
+    return f"cli-{digest}"
+
+
+def _parser(spec: Dict[str, Any]) -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog=spec["command"], description=spec["description"])
+    parser.add_argument("--version", action="version", version=__version__)
+    parser.add_argument("--json", dest="json_output", action="store_true", help="Emit one machine-readable JSON object")
+    parser.add_argument("--project-root", help="Override the configured target project root")
+    subparsers = parser.add_subparsers(dest="command")
+
+    subparsers.add_parser("doctor", help="Check the project root and real backend dependency")
+    subparsers.add_parser("info", help="Show project and harness identity")
+    subparsers.add_parser("capabilities", help="List built-in and project-specific commands")
+
+    for command in spec.get("commands", []):
+        child = subparsers.add_parser(command["name"], help=command["description"], description=command["description"])
+        for parameter in command.get("parameters", []):
+            _add_parameter(child, parameter)
+    return parser
+
+
+def _add_parameter(parser: argparse.ArgumentParser, parameter: Dict[str, Any]) -> None:
+    name = parameter["name"]
+    kind = parameter["kind"]
+    kwargs: Dict[str, Any] = {"help": parameter.get("description", "")}
+    if kind == "flag":
+        kwargs["action"] = "store_true"
+        parser.add_argument(*parameter["flags"], dest=name.replace("-", "_"), **kwargs)
+        return
+    kwargs["type"] = TYPE_MAP[parameter.get("type", "string")]
+    if "choices" in parameter:
+        kwargs["choices"] = parameter["choices"]
+    if parameter.get("repeatable"):
+        kwargs["action"] = "append"
+    if kind == "positional":
+        if not parameter.get("required", False):
+            kwargs["nargs"] = "?"
+        if "default" in parameter:
+            kwargs["default"] = parameter["default"]
+        parser.add_argument(name.replace("-", "_"), **kwargs)
+        return
+    if "default" in parameter:
+        kwargs["default"] = parameter["default"]
+    kwargs["required"] = bool(parameter.get("required", False))
+    parser.add_argument(*parameter["flags"], dest=name.replace("-", "_"), **kwargs)
+
+
+def _command_spec(spec: Dict[str, Any], name: str) -> Dict[str, Any]:
+    for command in spec.get("commands", []):
+        if command["name"] == name:
+            return command
+    raise KeyError(name)
+
+
+def _capabilities(spec: Dict[str, Any]) -> Dict[str, Any]:
+    builtins = [
+        {"name": "doctor", "mutates": False},
+        {"name": "info", "mutates": False},
+        {"name": "capabilities", "mutates": False},
+    ]
+    return {"builtins": builtins, "commands": spec.get("commands", [])}
+
+
+def _success(command: str, data: Any, json_output: bool) -> int:
+    if json_output:
+        print(json.dumps({"ok": True, "command": command, "data": data}, ensure_ascii=False))
+    elif command in {"doctor", "info", "capabilities"}:
+        print(json.dumps(data, ensure_ascii=False, indent=2))
+    elif isinstance(data, dict):
+        stdout = data.get("stdout", "")
+        stderr = data.get("stderr", "")
+        if stdout:
+            print(stdout, end="" if stdout.endswith("\n") else "\n")
+        if stderr:
+            print(stderr, file=sys.stderr, end="" if stderr.endswith("\n") else "\n")
+        if not stdout and not stderr:
+            print("OK")
+    return 0
+
+
+def _failure(command: str, error: BackendError, json_output: bool) -> int:
+    payload = {
+        "ok": False,
+        "command": command,
+        "error": {
+            "code": error.code,
+            "message": str(error),
+            "context_id": _context_id(error.code, str(error)),
+            "hint": error.hint,
+        },
+    }
+    result = getattr(error, "result", None)
+    if result:
+        payload["data"] = result
+    stream = sys.stdout if json_output else sys.stderr
+    if json_output:
+        print(json.dumps(payload, ensure_ascii=False), file=stream)
+    else:
+        print(f"ERROR [{payload['error']['context_id']}]: {error}", file=stream)
+        if error.hint:
+            print(f"Hint: {error.hint}", file=stream)
+    return error.exit_code
+
+
+def main(argv: Optional[List[str]] = None) -> int:
+    spec = load_spec()
+    parser = _parser(spec)
+    raw = sys.argv[1:] if argv is None else argv
+    if not raw:
+        parser.print_help()
+        return 0
+    args = parser.parse_args(raw)
+    command = args.command or "help"
+    try:
+        if command == "doctor":
+            data = doctor(spec, args.project_root)
+            if not data["ready"]:
+                raise BackendError(
+                    "dependency_check_failed",
+                    "Project root or backend dependency is unavailable.",
+                    3,
+                    spec.get("backend", {}).get("install", "Check the target project."),
+                )
+        elif command == "info":
+            data = {
+                "name": spec["name"],
+                "command": spec["command"],
+                "version": spec["version"],
+                "status": spec["status"],
+                "project_root": str(project_root(spec, args.project_root)),
+                "backend": spec["backend"],
+            }
+        elif command == "capabilities":
+            data = _capabilities(spec)
+        else:
+            command_spec = _command_spec(spec, command)
+            values = vars(args).copy()
+            data = run_command(spec, command_spec, values, args.project_root)
+        return _success(command, data, args.json_output)
+    except BackendError as exc:
+        return _failure(command, exc, args.json_output)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

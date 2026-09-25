@@ -1,0 +1,58 @@
+schema: skill-manifest/v1
+id: dsh-search-or-create-plugin
+version: "0.1.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.dsh-search-or-create-plugin
+    persist:
+      enabled: true
+      namespace: skills.dsh-search-or-create-plugin
+      records_path: skills.dsh-search-or-create-plugin.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要用户身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出决策报告？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: workspace.output_dir
+        aliases:
+          - workspace.output_dir
+        required: false
+        question: 新插件方案与检索 JSON 保存到哪个目录？
+      - path: skills.dsh-search-or-create-plugin.records.gateway_base_url
+        required: false
+        question: dshfind 网关地址是否使用默认 https://api.dshfind.com？
+      - path: skills.dsh-search-or-create-plugin.records.min_grade
+        required: false
+        question: 候选插件的最低等级要求是什么（S/A/B/C，默认不设限）？
+      - path: skills.dsh-search-or-create-plugin.records.install_preference
+        required: false
+        question: 是否有安装方式偏好（npm / git / release / 不限）？
+  preferences:
+    namespace: dsh_search_or_create_plugin
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

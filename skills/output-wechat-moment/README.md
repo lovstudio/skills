@@ -1,6 +1,6 @@
 # 朋友圈文案 · WeChat Moments Copy
 
-![Version](https://img.shields.io/badge/version-1.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.3-CC785C)
 
 把已有内容整理成适合朋友圈阅读的纯文本并保存文件。
 

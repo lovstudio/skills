@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.1"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "减少 SDK、CLI、API、UI 与 Agent 各自复制业务逻辑、重复确认参数和手工判断状态的开发维护成本，并用 Workbench 集中调试。"
+basis: "首版需要通过真实 atom 案例验证方法与工具，采用免费本地 Skill Kit 便于建立可回读证据。"
+boundary: "包含本地创建、实现编排、manifest helper、Profile 与可运行 Atom Workbench；不含第三方费用、远端发布、托管和定制工程报价。"
+review_trigger: "完成三个真实 atom 案例，获得跨 surface 缺陷下降或开发维护时长证据，并确认持续维护负担后复评。"
+confidence: internal

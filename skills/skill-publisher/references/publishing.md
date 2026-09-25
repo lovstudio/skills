@@ -122,3 +122,23 @@ return HTTP 200, the visible version plus marker to match the release, and the
 exact catalog install command to pass from a clean isolated directory. For paid
 delivery, verify with an already-owned test account so the run proves source
 selection without a duplicate purchase.
+
+### Install verification must not touch the maintainer's install root
+
+`npx lovstudio skills add <name>` installs **globally** by default and writes a real
+copy into `~/.agents/skills/<name>/`. On a maintainer machine that path is often a
+symlink into the development checkout, so a default install silently replaces the
+symlink (and any dependency it pulls) with a copy of the released version.
+
+Verify with the project-local mode from a throwaway directory instead:
+
+```bash
+tmp=$(mktemp -d /tmp/skill-install-XXXX) && cd "$tmp" \
+  && npx -y lovstudio skills add NAME --project \
+  && grep -m1 'version' "./.agents/skills/lov-NAME/skill.yaml"
+```
+
+Then confirm the delivered payload, not just the exit code: the version matches the
+release, a release-specific file exists, and the skill's own CLI or script starts.
+If the receipt shows `→ ~/.agents/skills/...`, stop and restore the previous state
+from a backup before continuing.

@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "一次交付覆盖视觉外框量化、可逆 PNG 归一化、完整 Tauri 图标生成、开发模式嵌入证明和 Dock 视觉验收。"
+basis: "Skill 的 Python CLI、运行时参考、构建监听检查、嵌入 SHA-256 校验和真实 Dock 校准案例免费提供。"
+boundary: "包含本地测量、资源生成指导和验证；不包含原创品牌设计、第三方素材授权、签名、公证、发布、托管构建、远程运维或 SLA。"
+review_trigger: "累计至少三个不同项目的 Dock 实机案例，或新增批量设计交付、签名发布和持续视觉回归服务时复评。"
+confidence: single-real-case-backed

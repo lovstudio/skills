@@ -1,0 +1,53 @@
+[
+  {
+    "type": "case",
+    "title": "Skill 目录命名风格统一",
+    "description": "从真实批量命名任务沉淀方法。历史发布已完成；本 Skill 创建后只对保留的目录结果进行离线回放，不把旧发布归因于新 Skill。",
+    "execution_kind": "historical-distillation",
+    "input": {
+      "items": [
+        "用户要求所有 Skills 的名称准确、简短、优雅、一致，并参考其认可的产品名。",
+        "官网 156 项命名前后名称与原始能力简介摘录。"
+      ]
+    },
+    "prompt": "所有的 skills 都应该参考这种风格集体更新同步",
+    "output": {
+      "items": [
+        "156 项历史命名清单，其中 138 项中文名称改变，其余保留。",
+        "保留 PDF大师、汉字镜、BP 大师等认可原文，并保留 GitHub 仓库简介优化。",
+        "离线结构回放证据单独存档，未重复发布。"
+      ]
+    },
+    "evidence": [
+      "evidence/provenance.md",
+      "evidence/catalog-review.json",
+      "evidence/catalog-capabilities.json",
+      "evidence/catalog-audit.json"
+    ]
+  },
+  {
+    "type": "case",
+    "title": "Skill 命名大师自身起名",
+    "description": "按当前真实需求建立新 Skill 的中英文显示名与稳定调用标识，保留用户指定的中文产品名。",
+    "execution_kind": "current-task",
+    "input": {
+      "items": [
+        "用户要求基于上述命名方法，再创一个 skill 命名大师。",
+        "能力范围：单个与整组 Skill 双语命名、认可值保护、结构审计及修改流程交接。"
+      ]
+    },
+    "prompt": "基于此，应该再创一个 skill 命名大师",
+    "output": {
+      "items": [
+        "中文：Skill 命名大师。",
+        "英文：Skill Naming Master，属于编辑建议。",
+        "调用标识：lov-skill-namer；本地版本 0.1.0。"
+      ]
+    },
+    "evidence": [
+      "evidence/self-naming-review.json",
+      "evidence/self-naming-audit.json",
+      "evidence/validation.json"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把「给网页加一个与屏幕渲染一致的 PNG 导出按钮」从每次手写内联，收敛为一条可复用的确定性 CLI 与验证步骤。"
+basis: "初始本地源免费，优先在真实页面上验证契约，再考虑任何商业打包。"
+boundary: "包含本地指令、integrate/verify CLI、内联 modern-screenshot 资产、契约与验收清单；不含目标页面制作、视觉设计、远程发布与持续支持。"
+review_trigger: "积累多类真实页面集成证据、引入维护版本或付费支持/升级保证后复评。"
+confidence: internal

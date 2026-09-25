@@ -1,6 +1,6 @@
 # 视频章节师 · Video Chapters
 
-![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 从字幕理解章节内容，在 React 剪辑台中调整切点和样式，再生成透明章节条、烧录成片或剪映素材包。

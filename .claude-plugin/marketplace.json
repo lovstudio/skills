@@ -11,7 +11,7 @@
     {
       "name": "design",
       "source": "./",
-      "description": "Design — 7 free + 4 paid (Credits redemption required).",
+      "description": "Design — 10 free + 4 paid (Credits redemption required).",
       "category": "Design",
       "skills": [
         "./skills/frontend-design",
@@ -25,14 +25,17 @@
         "./skills/professional-infographic",
         "./skills/mobile-infographic",
         "./skills/oh-my-landingpage",
-        "./skills/business-card"
+        "./skills/business-card",
+        "./skills/gen-card",
+        "./skills/image-decorator",
+        "./skills/spectacular-ps"
       ],
       "strict": false
     },
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 81 free skills bundled together.",
+      "description": "Dev Tools — 104 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/env-management",
@@ -116,14 +119,37 @@
         "./skills/check-balance",
         "./skills/organize-storage",
         "./skills/fix-codex-session",
-        "./skills/fix-deepseek-tool-call-error"
+        "./skills/fix-deepseek-tool-call-error",
+        "./skills/algo-viz-creator",
+        "./skills/align-wechat-uiux",
+        "./skills/api-creator",
+        "./skills/app-delta-updater",
+        "./skills/app-optimizer",
+        "./skills/app-professional-design",
+        "./skills/app-release",
+        "./skills/atom-feature-dev",
+        "./skills/cli-creator",
+        "./skills/codeex-creator",
+        "./skills/codex-thread-usage",
+        "./skills/dev-to-prod",
+        "./skills/dsh-search-or-create-plugin",
+        "./skills/dsh-search-plugin",
+        "./skills/fix-codex-provider",
+        "./skills/frontend-select-with-search",
+        "./skills/integrate-agent-uiux",
+        "./skills/integrate-lovstudio-llm",
+        "./skills/integrate-modern-screenshot",
+        "./skills/normalize-tauri-app-icon",
+        "./skills/read-codex-session",
+        "./skills/search-project",
+        "./skills/zsh-alias"
       ],
       "strict": false
     },
     {
       "name": "general",
       "source": "./",
-      "description": "General — 27 free + 4 paid (Credits redemption required).",
+      "description": "General — 32 free + 4 paid (Credits redemption required).",
       "category": "General",
       "skills": [
         "./skills/image-translation-errata",
@@ -158,14 +184,19 @@
         "./skills/read-wechat-article",
         "./skills/xhs",
         "./skills/do-they-love-me",
-        "./skills/ncm2mp3"
+        "./skills/ncm2mp3",
+        "./skills/find-ebook",
+        "./skills/list-videos",
+        "./skills/share-session",
+        "./skills/upload-image",
+        "./skills/xbti-creator"
       ],
       "strict": false
     },
     {
       "name": "office-automation",
       "source": "./",
-      "description": "Office Automation — 9 free skills bundled together.",
+      "description": "Office Automation — 13 free skills bundled together.",
       "category": "Office Automation",
       "skills": [
         "./skills/fill-form",
@@ -176,14 +207,19 @@
         "./skills/pdf2png",
         "./skills/png2svg",
         "./skills/rich-export",
-        "./skills/yoda-automation"
+        "./skills/yoda-automation",
+        "./skills/html2pptx",
+        "./skills/branding-consistency",
+        "./skills/plane-cli",
+        "./skills/publish-feishu-doc",
+        "./skills/table2image"
       ],
       "strict": false
     },
     {
       "name": "business",
       "source": "./",
-      "description": "Business — 9 free + 2 paid (Credits redemption required).",
+      "description": "Business — 11 free + 2 paid (Credits redemption required).",
       "category": "Business",
       "skills": [
         "./skills/bp",
@@ -197,14 +233,17 @@
         "./skills/contract-review-pro",
         "./skills/expense-report",
         "./skills/event-curator",
-        "./skills/publish-event-onto-hdx"
+        "./skills/publish-event-onto-hdx",
+        "./skills/harness-issue",
+        "./skills/branding-consistency",
+        "./skills/product-onepage"
       ],
       "strict": false
     },
     {
       "name": "content-creation",
       "source": "./",
-      "description": "Content Creation — 7 free + 2 paid (Credits redemption required).",
+      "description": "Content Creation — 15 free + 2 paid (Credits redemption required).",
       "category": "Content Creation",
       "skills": [
         "./skills/branding-consistency",
@@ -217,7 +256,17 @@
         "./skills/deep-research",
         "./skills/write-professional-book",
         "./skills/wxmp-cracker",
-        "./skills/style-clone"
+        "./skills/style-clone",
+        "./skills/anti-wechat-ai-check",
+        "./skills/dev-blog",
+        "./skills/lovpen-add-wechat-channel-comp",
+        "./skills/lovpen-cli",
+        "./skills/output-for-article",
+        "./skills/article-creator",
+        "./skills/illustrate",
+        "./skills/repost-wechat-article",
+        "./skills/wechat-article-branding",
+        "./skills/wechat-article-operator"
       ],
       "strict": false
     },
@@ -236,7 +285,7 @@
     {
       "name": "video-creation",
       "source": "./",
-      "description": "Video Creation — 6 free skills bundled together.",
+      "description": "Video Creation — 8 free skills bundled together.",
       "category": "Video Creation",
       "skills": [
         "./skills/video-chapter",
@@ -245,21 +294,26 @@
         "./skills/publish-wechat-channels",
         "./skills/migrate-camera-media",
         "./skills/video-moments",
-        "./skills/media-preprocessor"
+        "./skills/media-preprocessor",
+        "./skills/compress-video",
+        "./skills/voice2srt"
       ],
       "strict": false
     },
     {
       "name": "meta",
       "source": "./",
-      "description": "Meta — 4 free skills bundled together.",
+      "description": "Meta — 7 free skills bundled together.",
       "category": "Meta",
       "skills": [
         "./skills/skill-creator",
         "./skills/branding-consistency",
         "./skills/skill-add-case",
         "./skills/skill-optimizer",
-        "./skills/feedback-loop"
+        "./skills/feedback-loop",
+        "./skills/skill-namer",
+        "./skills/skill-visualizer",
+        "./skills/yolo-mode"
       ],
       "strict": false
     }

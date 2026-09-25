@@ -1,0 +1,47 @@
+# __COMMAND_NAME__
+
+__DESCRIPTION__
+
+This harness was generated for **__PROJECT_NAME__** and calls its real backend.
+
+## Install locally
+
+```bash
+python3 -m pip install -e .
+__COMMAND_NAME__ --help
+```
+
+If a Python 3.9 venv still bundles pip older than 21.3, use the local editable
+fallback after installing the declared backend requirements:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 setup.py develop
+```
+
+The target project defaults to the relative path recorded in `lov-cli.json`.
+Set `LOV_CLI_PROJECT_ROOT` or pass global `--project-root` when the project has
+moved.
+
+## Agent usage
+
+```bash
+__COMMAND_NAME__ --json doctor
+__COMMAND_NAME__ --json capabilities
+```
+
+Put global `--json` before the subcommand. Success emits one JSON object with
+`ok: true`; failure exits nonzero and emits a stable diagnostic envelope.
+
+## Project commands
+
+See `CLI_SPEC.md` and `__COMMAND_NAME__ --help` for the generated command surface.
+
+## Test
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+Complete the real workflow and results sections in `TEST.md` before setting
+`status` in `lov-cli.json` to `ready`.

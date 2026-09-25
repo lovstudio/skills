@@ -11,7 +11,7 @@ description: >
 license: MIT
 metadata:
   author: contributors
-  version: "0.3.0"
+  version: "0.3.1"
   tags: clash mihomo tun network diagnostics wechat macos
 ---
 

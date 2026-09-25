@@ -8,6 +8,8 @@ description: >
   Trigger on "把 BP 大纲做成 PPT", "选择 BP 风格", "生成融资 PPT", "重做第几页",
   "BP deck", "pitch deck design", "render investor slides", or "export BP PDF".
 license: MIT
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
   version: "0.2.0"

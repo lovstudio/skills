@@ -1,6 +1,6 @@
 # 版本管家 · Version Keeper
 
-![Version](https://img.shields.io/badge/version-2.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.0.2-CC785C)
 
 根据实际包变更生成 changeset，并按请求更新版本与 CHANGELOG。
 

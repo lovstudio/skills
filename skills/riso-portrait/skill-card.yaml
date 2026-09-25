@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.2.1"
 description: "Redraws an authorized single-person photo as an identity-preserving Riso avatar with gpt-image-2, then checks facial identity, anatomy, accessories and circular cropping before delivery."
 owner:
   team: "LovStudio"

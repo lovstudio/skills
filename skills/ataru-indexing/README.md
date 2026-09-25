@@ -1,6 +1,6 @@
 # Ataru 索引 · Ataru Indexing
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 把本机 Ataru 会话记忆索引带到可检索状态，并交回一份能直接判断的 JSON 报告。
 
@@ -46,7 +46,7 @@ build，并对每个候选先跑一次 `--version`：低于 0.41.3 的旧版不�
 ## 原子组合
 
 见 [`references/skill-composition.md`](references/skill-composition.md)。本源码是
-独立 Single Skill；与 `lov-ataru-search` 只有制品级交接。
+独立 Single Skill；与 `lov-search-chat` 只有制品级交接。
 
 ## 可信度卡与用户案例
 

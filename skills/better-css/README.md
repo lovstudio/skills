@@ -1,6 +1,6 @@
 # CSS 精修 · CSS Polish
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 清理冗余 CSS 并在现有 Tailwind 项目中重构样式。
 

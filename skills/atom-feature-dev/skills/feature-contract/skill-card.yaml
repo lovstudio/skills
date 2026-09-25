@@ -1,0 +1,81 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "把真实用户任务冻结为原子业务契约、参数与 Profile Preset schema、错误、副作用和验收向量。"
+owner:
+  team: "LovStudio"
+  contact: "Skill source maintainers"
+license:
+  name: MIT
+  terms: "允许使用、修改与再分发；目标项目遵循自身许可证。"
+  url: "../../../LICENSE"
+use_case:
+  audience: "使用 lov-atom-feature-dev 的产品与工程团队"
+  scenario: "完整 atom feature 管线中的 Atom Feature Contract 阶段"
+  tasks:
+    - "定义原子边界并输出可版本化 contract"
+deployment:
+  geography: global
+  environments:
+    - "local target repository"
+requirements:
+  credentials: "none for this module"
+  dependencies:
+    - "root atom feature manifest"
+  runtime:
+    - "target project toolchain"
+risks:
+  - risk: "契约过宽会把多个独立结果耦合在一起。"
+    mitigation: "用单一用户结果、独立权限和验收边界拆分 atom。"
+references:
+  - title: "Module instructions"
+    path: "SKILL.md"
+output:
+  types:
+    - "manifest、contract schema、profile schema 与 acceptance vectors"
+  formats:
+    - "source code or structured files"
+    - "verification report"
+  parameters:
+    - "target repository"
+    - "approved atom feature manifest"
+  validation:
+    - "module workflow evidence"
+    - "root manifest validation"
+  description: "manifest、contract schema、profile schema 与 acceptance vectors"
+ethical_considerations: "保护秘密和用户 Profile，不虚构案例、分数、运行或发布状态。"
+dimensions:
+  - id: atomic-boundary
+    label: "边界"
+    description: "模块是否只拥有声明的原子结果。"
+    evidence: "Module instructions define the ownership boundary; runtime score awaits a target-project case."
+    score: null
+  - id: schema-completeness
+    label: "正确性"
+    description: "制品是否遵守共享 contract 与目标项目真实技术栈。"
+    evidence: "The root acceptance matrix defines verification; no target-project score is claimed."
+    score: null
+  - id: evidence-quality
+    label: "证据"
+    description: "状态是否由可回读制品、命令或运行结果支持。"
+    evidence: "The module requires artifact-level evidence before verified status."
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "作为自包含 Atom Feature Kit 的内嵌模块免费提供。"
+  boundary: "只包含本模块工作流，不包含外部发布、托管或定制服务。"
+  review_trigger: "根 Kit 商业模式或维护成本发生变化时复评。"
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-planned
+    - channel: skillpay
+      status: not-planned
+  free:
+    - channel: github
+      status: bundled-local-only
+    - channel: lovstudio
+      status: bundled-local-only
+

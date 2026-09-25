@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "One deterministic gateway query replaces ad-hoc curl and guesswork, with ranked evidence and provenance the agent can cite."
+basis: "The gateway is public and read-only; this skill adds a deterministic CLI client and an evidence discipline at no marginal cost, so it stays free."
+boundary: "Included: keyword, filter, suggest, and detail search with provenance. Excluded: installation, usage, plugin creation, and publishing, which belong to other skills."
+review_trigger: "Revisit when the gateway API contract changes, when search quality regresses, or when paid distribution is requested."
+confidence: internal

@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 核对项目路由及页面链接，修复失效目标并保留有效导航
-version: 1.0.1
+version: "1.0.2"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

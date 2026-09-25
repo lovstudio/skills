@@ -1,6 +1,6 @@
 # 自动发版 · Release Pilot
 
-![Version](https://img.shields.io/badge/version-8.7.1-CC785C)
+![Version](https://img.shields.io/badge/version-8.7.3-CC785C)
 
 配置或运行现有项目发布流水线，并回读产物与真实上线状态。
 

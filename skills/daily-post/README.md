@@ -1,6 +1,6 @@
 # 开发日记 · Dev Diary
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
 
 将近期真实项目更新写成面向读者的简短日更文案。
 

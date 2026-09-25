@@ -1,0 +1,46 @@
+[
+  {
+    "type": "case",
+    "title": "离开电脑时的一键无人值守 Skill",
+    "description": "真实创建请求产出当前任务级非交互执行 Skill；验收范围为本地源码、配置、校验与安装，不是整夜运行。",
+    "input": {
+      "items": [
+        "cases/request.md",
+        "本地相关 Skill 的实际工作流与用户既有运行规则"
+      ]
+    },
+    "prompt": "创建可一键启用的无人值守 Skill：按默认值、预设与偏好推断，不主动提问，授权受阻不等待用户交互。",
+    "output": {
+      "items": [
+        "SKILL.md",
+        "skill.yaml",
+        "references/noninteractive.md",
+        "references/run-record.md",
+        "cases/behavior-review.md",
+        "cases/validation.txt"
+      ],
+      "scope": "真实产出为规则包；行为演练为人工语义检查，宿主审批和休眠存活未实测。"
+    }
+  },
+  {
+    "type": "case",
+    "title": "更名 YOLO 模式并检查当前 session 权限",
+    "description": "用户要求更名并启用当前 session 必要权限；宿主实时声明当前任务所需文件与命令权限已具备。",
+    "input": {
+      "items": [
+        "cases/request.md",
+        "宿主实时权限声明及当前工具目录"
+      ]
+    },
+    "prompt": "改为 /lov-yolo-mode，强制准备当前 session 的 YOLO 模式与所有必要权限。",
+    "output": {
+      "items": [
+        "SKILL.md",
+        "references/session-permissions.md",
+        "cases/session-permissions.md",
+        "cases/validation.txt"
+      ],
+      "status": "本地更名与安装；权限 already_ready，未发生 session 设置变更。"
+    }
+  }
+]

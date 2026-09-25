@@ -1,0 +1,16 @@
+schema: skill-manifest/v1
+id: lov-electron-delta-updater
+version: 0.2.1
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields: []
+  preferences:
+    namespace: electron_delta_updater
+    fields:
+      - path: update_channel
+        required: false
+        question: "是否有默认的更新渠道或发布分支？"
+  interaction:
+    ask_missing: true
+    max_questions: 1

@@ -1,0 +1,129 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.1"
+description: "把具体客户端 App 的 listener、任务、worker、缓存、native handle 与外部资源治理成服从宿主生命周期、fail-closed、可恢复并能阻止 ABA 的所有权协议。"
+owner:
+  team: "LovStudio / 手工川工作室"
+  contact: "Source distribution maintainers"
+license:
+  name: MIT
+  terms: "允许在 MIT License 下使用、修改和再分发；执行终止、驱逐或删除仍需目标 App 所有者的明确授权。"
+  url: "../../LICENSE"
+use_case:
+  audience: "负责 desktop、mobile、hybrid 或 Web/PWA 客户端生命周期与资源所有权的工程师"
+  scenario: "具体 App 的 scoped 或 external resource 需要释放、休眠或回收，同时必须保护 active、unknown、attached、dirty、in-use 或身份变化实例"
+  tasks:
+    - "建模 App/scene/page/runtime/resource 的 scope、owner、lease、activity、resume 与 fingerprint"
+    - "选择 scope_release、hibernate、cache_evict 或 external_reclaim，并实现两阶段安全协议"
+    - "建立 dry-run、保护矩阵、宿主生命周期测试、竞态测试与执行授权门"
+deployment:
+  geography: global
+  environments:
+    - "Electron、Tauri 或 native desktop 客户端"
+    - "iOS、Android、React Native 或 Flutter 客户端"
+    - "Web/PWA 与受控 browser lifecycle 环境"
+requirements:
+  invocation: kit_only
+  credentials: "设计与 dry-run 默认不需要；远端或生产动作必须使用最小权限并取得精确目标授权"
+  dependencies:
+    - "$KIT_DIR shared policies and evidence helper"
+    - "Python 3.9+ for shared evidence and profile helpers"
+    - "App-specific host lifecycle, runtime adapters and tests"
+  runtime:
+    - "concrete App/build, host, runtime/framework and lifecycle event"
+    - "durable owner, authoritative activity, lease, identity and recovery state"
+risks:
+  - risk: "把 host suspension、timeout、空产物或未知 owner 当成 idle，导致活跃资源被释放。"
+    mitigation: "按平台 adapter 解释生命周期；缺失、畸形、超时、unsupported 和 unknown 均不得升级为 destructive candidate。"
+  - risk: "同名资源在两次检查间重建，旧候选资格误用于新实例。"
+    mitigation: "保存 fingerprint，执行二次 inventory 与 O(1) 最终检查，并使用原 fingerprint 做条件动作。"
+  - risk: "filesystem、worktree 或 persistent data 清理丢失用户内容。"
+    mitigation: "dirty、dirty unknown、cwd in use 与 unregistered 保持 protect；persistent_delete 使用独立产品流程。"
+  - risk: "资源释放后被 hydration、worker scheduler 或 Service Worker 立即重建。"
+    mitigation: "先修正 creation/hydration seam，再启用回收，并验证 background、resume 与 process-death 流程。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Conservative reclamation policy"
+    path: "../../references/reclamation-policy.md"
+  - title: "App runtime evidence contract"
+    path: "../../references/evidence-contract.md"
+  - title: "Platform adapter matrix"
+    path: "../../references/platform-adapters.md"
+  - title: "Yoda reclamation case"
+    path: "cases/cases.json"
+  - title: "Yoda implementation commit"
+    url: "https://github.com/lovstudio/yoda/commit/290fbc48c713163f20bd6f956e80e15d00dfa357"
+output:
+  types:
+    - "App resource lifecycle specification"
+    - "protect/candidate decision matrix"
+    - "host-aware implementation and race tests"
+    - "dry-run inventory and verification status"
+  formats:
+    - "Markdown"
+    - "app-runtime-evidence/v1 JSON"
+    - "project-native source and tests when implementation is requested"
+  parameters:
+    - "App/build, host, runtime/framework and lifecycle event"
+    - "action level, owner, lease, activity, identity and recovery state"
+    - "authorization mode, grace period and adapter capability"
+  validation:
+    - "Host lifecycle and universal blockers are applied before reclamation"
+    - "ABA, provider failure and concurrent cleanup tests cover external actions"
+    - "No blind process termination, persistent deletion or directory removal is emitted by the helper"
+  description: "交付可评审、可 dry-run、可恢复的 App 生命周期协议；只有真实 teardown/resume 验收完成后才升级为 verified。"
+ethical_considerations: "优先保护用户工作和可恢复身份。未经精确授权不终止、不驱逐持久状态、不删除数据；不从名称猜所有权，状态未知时保留资源。"
+dimensions:
+  - id: host-lifecycle-safety
+    label: "宿主生命周期安全"
+    description: "是否区分 desktop、mobile、hybrid 与 Web/PWA 的 background、suspend、process-death、freeze 和 restore 语义。"
+    evidence: "0.2.0 contract requires a host/runtime adapter and treats unsupported lifecycle evidence as a blocker rather than an idle signal."
+    score: null
+    score_status: design_backed
+  - id: fail-closed-coverage
+    label: "Fail-closed 覆盖"
+    description: "错误、未知、活动和 lease blocker 是否统一保护高风险资源。"
+    evidence: "Yoda commit 290fbc48 implements batched owner/provider revalidation; tmux-reclamation.test.ts covers revalidation failures and active-owner transitions."
+    score: null
+    score_status: implementation_and_test_backed
+  - id: aba-safety
+    label: "ABA 竞态安全"
+    description: "同名重建实例是否会被 fingerprint 与二次核验阻断。"
+    evidence: "Yoda tmux-reclamation.test.ts rejects replacements whose creation/activity fingerprint changes and coalesces concurrent cleanup."
+    score: null
+    score_status: test_backed
+  - id: persistent-data-protection
+    label: "持久数据保护"
+    description: "dirty、unknown、in-use 和 unregistered 资源是否保持不可自动删除。"
+    evidence: "Yoda worktree-service and cwd-guard tests reject dirty, unregistered, live-cwd and changed-branch worktrees; unknown directories remain inventory-only."
+    score: null
+    score_status: implementation_and_test_backed
+  - id: recoverability
+    label: "可恢复性"
+    description: "是否保留 durable identity、明确 resume path 并在宿主生命周期中验证恢复。"
+    evidence: "Yoda task-runtime-reclamation orders teardown and returns retryable failures, but no live teardown-to-resume acceptance was recorded."
+    score: null
+    score_status: implementation_backed_live_gap
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "以开放的跨客户端生命周期协议、保守决策矩阵和 Yoda 实现证据降低误释放与数据损失风险。"
+  boundary: "包含 kit-only 方法、dry-run helper 使用方式和实现指导；不包含付费 SKU、渠道产物、生产执行权限、托管清理或数据恢复保证。"
+  review_trigger: "增加托管执行、生产审批、商业 adapter、渠道商品或恢复承诺时重新评估。"
+  confidence: single-case-implementation-backed
+distribution:
+  paid:
+    - channel: workbuddy
+      state: not_prepared
+      note: "No paid SKU, listing, or channel artifact exists."
+    - channel: skillpay
+      state: not_prepared
+      note: "No paid SKU, product, or channel artifact exists."
+  free:
+    - channel: github
+      state: source_ready_not_published
+      note: "Free source is ready locally; repository publication is not claimed."
+    - channel: lovstudio
+      state: local_ready
+      note: "Free local LovStudio source bundle is ready; external publication is not claimed."

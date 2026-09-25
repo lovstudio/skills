@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 依据项目代码完善 README、安装说明、使用示例与真实品牌资产
-version: 2.9.1
+version: "2.9.3"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

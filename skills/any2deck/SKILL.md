@@ -13,9 +13,11 @@ license: MIT
 compatibility: >
   Requires an image generation skill (e.g. image-gen) and Node.js for PPTX/PDF merge.
   Python 3.8+ for branding overlay. Cross-platform: macOS, Windows, Linux.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.1.0"
+  version: "1.1.1"
   tags: slide deck presentation pptx pdf image generation
 ---
 

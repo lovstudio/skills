@@ -1,6 +1,6 @@
 # 表单小助手 · Form Assistant
 
-![Version](https://img.shields.io/badge/version-1.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-1.2.1-CC785C)
 
 Fill Word document form templates (.docx) with structured data. Auto-detects table-based form fields (label → value cell pairs), supports CJK/Latin mixed text with proper font switching, merged cells, and paragraph-based forms.
 

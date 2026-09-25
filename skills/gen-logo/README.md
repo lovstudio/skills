@@ -1,6 +1,6 @@
 # Logo 工坊 · Logo Studio
 
-![Version](https://img.shields.io/badge/version-5.1.2-blue)
+![Version](https://img.shields.io/badge/version-5.1.3-CC785C)
 
 > 迭代式 Logo 生成，区分透明品牌标志与满铺应用图标，并验证视觉占比
 

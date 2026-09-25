@@ -1,0 +1,60 @@
+[
+  {
+    "type": "case",
+    "id": "tauri-macos-dock-visual-envelope-calibration",
+    "ordinal": 1,
+    "title": "Tauri macOS 应用：Dock 视觉外框与参考图标对齐",
+    "description": "真实本地案例：目标 Tauri 应用的 Dock 图标比参考图标显著偏大，且早期资源调整没有进入已运行的开发二进制。案例将资源 alpha 外框、Tauri 开发模式嵌入路径和 Dock 截图证据分开检查，最终由用户确认对齐。",
+    "platform": {
+      "family": "desktop",
+      "runtime": "Tauri 2",
+      "host": "macOS",
+      "adapters": ["macos", "tauri", "cargo-build-script", "dock"]
+    },
+    "input": {
+      "items": [
+        "三轮同一 Dock 环境的对比截图：参考图标视觉外框约 58px，目标图标约 68px",
+        "目标应用的 SVG canonical source、生成的 PNG/ICNS 图标集和 Tauri bundle 配置",
+        "正在运行的 debug 原生二进制及其 Cargo build 输出"
+      ],
+      "constraints": [
+        "保持既有品牌图形，只调整外框和圆角安全区",
+        "不以源码文件已修改作为 Dock 已更新的结论",
+        "不抢占前台控制来强制展示 Dock"
+      ]
+    },
+    "prompt": "Dock 里面的目标图标仍然比参考图标大；请修复根因并以真实运行状态验证。",
+    "output": {
+      "status": "runtime_embedded_and_user_confirmed",
+      "items": [
+        "目标图标的 alpha 可见边从 480px 缩至 412px，按原 Dock 外框推算约 68px × 412 / 480 = 58.4px",
+        "完整 Tauri 图标集由同一 canonical source 重新生成，圆角透明角点保留",
+        "`build.rs` 显式监听 `.icns` 和默认 PNG，使单独更新图标时也会重建 native dev binary",
+        "新 debug 可执行文件的生成时间晚于图标资源，且 Cargo build 输出中找到与 source `.icns` SHA-256 完全一致的副本",
+        "用户在重新运行后确认 Dock 图标终于对齐"
+      ],
+      "measurements": [
+        {
+          "metric": "reference Dock envelope",
+          "value": "约 58px",
+          "status": "screenshot_measured"
+        },
+        {
+          "metric": "target Dock envelope before embedding fix",
+          "value": "约 68px",
+          "status": "screenshot_measured"
+        },
+        {
+          "metric": "target resource visible envelope",
+          "before": "480/512",
+          "after": "412/512",
+          "status": "resource_measured"
+        }
+      ],
+      "boundaries": [
+        "最终用户确认是同一当前会话中的实机结果，不将单个 Dock/显示缩放结果外推到所有 macOS 配置",
+        "案例不替代发布包、签名、公证或其他平台图标验收"
+      ]
+    }
+  }
+]

@@ -1,0 +1,18 @@
+"""Compatibility entry point for editable installs with pip older than 21.3."""
+
+from setuptools import find_packages, setup
+
+
+setup(
+    name="__DISTRIBUTION_NAME__",
+    version="__VERSION__",
+    description=__DESCRIPTION_PYTHON__,
+    packages=find_packages("src"),
+    package_dir={"": "src"},
+    package_data={"__PACKAGE_NAME__": ["cli_spec.json"]},
+    entry_points={
+        "console_scripts": ["__COMMAND_NAME__=__PACKAGE_NAME__.cli:main"],
+    },
+    install_requires=__DEPENDENCIES_PYTHON__,
+    python_requires=">=3.9",
+)

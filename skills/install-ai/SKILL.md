@@ -1,11 +1,11 @@
 ---
-name: sgc-install-ai
+name: lov-install-ai
 description: >
   为现有或新 App 快速初始化可上线的 AI 功能，可选择本地 Agent Client、MaaS 中转渠道、模型偏好和配套 UI。用户说集成 AI、给 App 加聊天/生成能力、Agent Client、MaaS 或模型选择时使用。
 license: MIT
 metadata:
-  author: lovstudio
-  version: "0.2.0"
+  author: contributors
+  version: "0.2.1"
   tags:
     - ai
     - maas
@@ -81,6 +81,23 @@ This Skill stores only portable preferences such as route order, model intent, l
 
 - A target App with a known frontend and/or server boundary.
 - A compatible local Agent Client bridge, a configured MaaS gateway, or both.
+
+## Runtime context
+
+运行前读取同目录 `skill.yaml`，由宿主的 `skill-runtime` 按“当前请求、项目上下文、个人配置、品牌 Profile、安全默认值”的顺序注入，只使用 manifest 声明的字段。
+
+- 缺少 `required: true` 字段时，按 `questions` 向用户提出一个聚焦问题；回答只用于本次运行，除非用户明确要求保存。
+- Profile 只用于公开品牌事实；个人配置只用于决策，不自动写入产物或源码。
+- 调试报错提供可复制的 `context_id`、字段路径和来源，不输出秘密、完整私人路径或原始内容。
+
+## Runtime context (shared)
+
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+
+- 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
+- `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
+- 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
+
 
 ## 通用反馈闭环
 

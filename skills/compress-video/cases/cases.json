@@ -1,0 +1,53 @@
+[
+  {
+    "type": "case",
+    "title": "2026-09-12 圆桌开场片段用默认档压缩并做 VMAF 门禁",
+    "description": "用户要求做一个把视频压到尽可能小、画质不明显损失、默认保留原文件的 Skill。创建后用一段真实的 1080p HEVC 实拍片段验证默认档，并与 VideoToolbox 硬件编码对照。",
+    "input": {
+      "items": [
+        "本地 MP4：1920x1080 HEVC 30fps，25.6 秒，24.7 MB，视频码率约 7.9 Mbit/s，AAC 158k。",
+        "输出到临时目录，原文件不动。"
+      ]
+    },
+    "prompt": "把这个视频压得尽可能小，但尽量不损失太多画质；VMAF 低于 90 就重编。",
+    "output": {
+      "items": [
+        "默认 libx265 CRF 28 medium，音频转 AAC 96k：24.7 MB → 2.2 MB（8.9%），VMAF 93.5，一次通过门禁，用时 24 秒。",
+        "对照 --fast VideoToolbox q=45：2.2 MB（9.1%），VMAF 84.6，用时 16 秒；据此把软件编码定为默认。",
+        "ffprobe 复核输出为 hevc yuv420p 1920x1080，时长与源一致；原文件保持不变。"
+      ]
+    },
+    "status": "verified-local",
+    "evidence": [
+      "README.md 中的实测表格",
+      "references/encoding-guide.md 硬件编码对照"
+    ],
+    "media_policy": "真实片段留在用户本机，案例只记录统计数字。"
+  },
+  {
+    "type": "case",
+    "title": "2026-09-12 替换模式、目标体积与门禁行为验证",
+    "description": "在 ffmpeg 生成的 1280x720 高码率测试片上验证替换模式、两遍目标体积、缩放与编码切换、输出更大时的保护。",
+    "input": {
+      "items": [
+        "testsrc2 1280x720 30fps 3 秒 H.264 CRF 10 加 440Hz 正弦音频，约数 MB。",
+        "一段 320x240 纯黑 HEVC CRF 45 的极小片段作为“已经够小”的对照。"
+      ]
+    },
+    "prompt": "压完直接替换原文件；另外压到 300k 以内；4K 以上素材压到 640 长边并用 H.264。",
+    "output": {
+      "items": [
+        "默认档输出 clip-compressed.mp4，体积不到源的一半，编码 hevc 1280x720，原文件保留，再次运行拒绝覆盖。",
+        "--replace --permanent：原 replace-me.mov 消失，replace-me.mp4 出现，临时 .part.mp4 已清理。",
+        "--target-size 300k 两遍编码结果不超过 300k 的 110%。",
+        "--max-edge 640 --codec h264：输出 640x360 h264，CRF 25。",
+        "极小 HEVC 源在 --replace 下报 skipped-larger，原文件未被动，无临时文件残留。"
+      ]
+    },
+    "status": "verified-local",
+    "evidence": [
+      "tests/test_compress_video.py"
+    ],
+    "media_policy": "测试片由 ffmpeg 合成，不含真实内容。"
+  }
+]

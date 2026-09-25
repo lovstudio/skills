@@ -2,9 +2,11 @@
 name: lov-rich-export
 description: 将一份面向用户的内容稳定导出为单文件 HTML、带 assets 的 HTML 文件夹、Markdown、DOCX 与 PDF，并按格式正确处理图片、音频、视频和嵌入式交互内容。用于“富媒体导出”“一键导出”“导出 html/pdf/docx/md”“离线网页”“交付包”“给产品接导出能力”等需求，以及需要为产品建立可复用内容导出管线时。
 license: MIT
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.2"
   tags:
     - export
     - html

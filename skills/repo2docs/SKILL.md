@@ -20,9 +20,10 @@ compatibility: >
   example.com base domain are user-configurable.
 depends_on:
   - lov-deploy-to-vercel
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.0"
+  version: "0.3.1"
   tags: docs fumadocs documentation nextjs vercel codebase articles knowledge-base images
 ---
 

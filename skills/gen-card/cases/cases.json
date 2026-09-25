@@ -1,0 +1,25 @@
+[
+  {
+    "type": "case",
+    "title": "Bauhaus Art System Card",
+    "description": "The first validated article card was rebuilt as structured content plus an independent AI visual so title, background, prompt, ratings, and brand stay crisp and editable.",
+    "input": {
+      "items": [
+        "cases/bauhaus-card.json",
+        "cases/assets/bauhaus-visual.jpg"
+      ]
+    },
+    "prompt": "Render the Bauhaus entry as an Art System Card with the supplied 4:3 visual, DOM typography, copyable Midjourney prompt, editorial ratings, shared-profile branding, and a two-times PNG export.",
+    "output": {
+      "items": [
+        "cases/output/bauhaus-card.html",
+        "cases/output/bauhaus-card.png",
+        "1800 by 2700 pixels; zero horizontal and vertical DOM overflow; visual loaded"
+      ]
+    },
+    "cover": "cases/output/bauhaus-card.png",
+    "gallery": [
+      "cases/output/bauhaus-card.png"
+    ]
+  }
+]

@@ -1,6 +1,6 @@
 # 状态栏工坊 · Status Line Studio
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
 
 配置并备份 Agent 状态栏，支持列出历史版本和恢复。
 

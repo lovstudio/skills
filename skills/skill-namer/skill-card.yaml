@@ -1,0 +1,107 @@
+schema: lovstudio/skill-card/v1
+version: 0.1.0
+name_zh: Skill 命名大师
+display_name: Skill Naming Master
+description: 为单个或整组 Skill 生成、评审中英文名称；保留用户认可值，按真实能力和产品风格建立可回读的命名清单。
+owner:
+  team: LovStudio
+  contact: 通过本地源码维护者反馈
+license:
+  name: MIT
+  terms: 允许按 MIT 使用和修改；示例名称不构成商标授权或可注册性声明。
+  url: LICENSE
+use_case:
+  audience: 维护 Skill 产品与目录的创作者和团队
+  scenario: 新 Skill 起名、单项改名或整组风格审查
+  tasks:
+  - 根据真实能力选择中英文显示名
+  - 保留认可值并消除整组命名歧义
+  - 输出逐项命名清单及结构审计
+deployment:
+  geography: global
+  environments:
+  - 支持 Agent Skills 的本地或云端宿主
+requirements:
+  credentials: none
+  dependencies:
+  - lov-branding-consistency
+  runtime:
+  - 命名使用宿主语言能力
+  - Python 3.8+ 用于只读清单审计与 Profile
+  - PyYAML 用于源码校验
+risks:
+- risk: 产品化名称可能掩盖真实能力或夸大范围
+  mitigation: 核对实际输入、工作流和输出；将次要范围放入简介。
+- risk: 批量改名可能误改认可拼写或兼容标识
+  mitigation: 逐字段锁定用户认可值；仅交接显示名，修改阶段验证 ID 不变。
+- risk: 案例结果可能被误当作审美测量或本 Skill 的发布成果
+  mitigation: 区分历史沉淀、当前回放和实际执行；不提供无证据分数或线上声明。
+references:
+- title: 执行合同
+  path: SKILL.md
+- title: 命名判断
+  path: references/naming-style.md
+- title: 案例证据
+  path: cases/cases.json
+output:
+  types:
+  - 中英文显示名
+  - 逐项命名清单
+  - 只读结构审计报告
+  formats:
+  - text
+  - Markdown
+  - JSON
+  parameters:
+  - 能力资料
+  - 旧名称与稳定标识
+  - 风格范例与认可值
+  - 目标语言及完整审查范围
+  validation:
+  - 能力与名称语义核对
+  - 用户认可原文保持
+  - 完整覆盖与重复名称检查
+  - 品牌语境审校
+  description: 单个请求给最佳名称及简短理由；批量结果保留修改、保留、待核实状态及证据。
+ethical_considerations: 不上传私有能力资料，不伪造用户认可、商标可用性或审美分数。命名建议不授予修改标识、发布或下架权限。
+dimensions:
+- id: accuracy
+  label: 准确
+  description: 名称对应真实能力，不扩大范围。
+  evidence: cases/evidence/self-naming-review.json；历史 GitHub 仓库简介命名决策。
+  score: null
+- id: brevity
+  label: 简短
+  description: 保留核心辨识信息，去掉次要说明。
+  evidence: cases/evidence/catalog-review.json 中的新旧名称可对照；无用户记忆测试。
+  score: null
+- id: elegance
+  label: 优雅
+  description: 采用自然的中文表达和英文对应。
+  evidence: 用户明确认可的汉字镜、BP 大师等基准；没有独立审美测量。
+  score: null
+- id: consistency
+  label: 一致
+  description: 整组协调，认可值稳定，能力彼此可辨。
+  evidence: cases/evidence/catalog-audit.json 与 cases/evidence/validation.json；结构通过不等于审美评测。
+  score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 公开命名方法与只读脚本，维护成本较低；现有证据不足以支持专业命名服务溢价。
+  boundary: 含命名建议与结构审计；不含模型费用、商标检索、人工咨询、代修改或代发布。
+  review_trigger: 加入托管目录或专业人工服务，或形成独立用户验证后复评。
+  confidence: internal
+distribution:
+  paid: []
+  free: []
+  channels:
+    workbuddy:
+      status: not_published
+    skillpay:
+      status: not_published
+    github:
+      status: not_published
+    lovstudio:
+      status: not_published

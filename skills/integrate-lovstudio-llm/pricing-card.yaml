@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "减少重复处理鉴权、multipart 音频、语音输出文件和 Realtime WebSocket 帧的开发工作。"
+basis: "免费提供通用客户端、协议说明和本地验证；模型调用费用直接由用户的 LovStudio API 账户承担。"
+boundary: "包含本地 Skill、标准库脚本、文档和诊断；不包含 API 密钥、云端渠道配置、配额或远程部署。"
+review_trigger: "增加云端托管、团队配额、渠道运维或远程发布能力时复评价格和分发状态。"
+confidence: internal

@@ -3,6 +3,16 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [1.5.2] - 2026-09-25
+
+### Added
+
+- 合并本地未提交改动到上游 1.5.0 之上
+- 本地改动：统一展示名为「PDF大师」，保持调用 ID 与能力契约。
+- 本地改动：render CJK text in cover `version` metadata through the mixed-font canvas path
+- 本地改动：generate a text-only back cover when disclaimer or copyright text is supplied without a banner
+- 本地改动：preserve Markdown image syntax shown inside inline code instead of treating it as an image to fetch
+
 ## [1.5.0] - 2026-08-24
 
 ### Added

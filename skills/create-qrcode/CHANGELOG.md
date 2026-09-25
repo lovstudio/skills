@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.2] - 2026-09-07
+
+### Added
+
+- 统一展示名为「二维码工坊」，保持调用 ID 与能力契约。
+
 ## 0.1.1
 
 - Made the bare QR image the explicit default with no header, footer, title, visible payload, or poster frame.

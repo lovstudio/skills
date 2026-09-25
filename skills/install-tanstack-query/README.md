@@ -1,6 +1,6 @@
 # TanStack Query 接入 · TanStack Query Setup
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 Initialize or refactor a frontend project to use TanStack Query as the shared
 server-state layer.

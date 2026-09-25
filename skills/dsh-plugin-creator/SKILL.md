@@ -2,7 +2,7 @@
 name: dsh-plugin-creator
 description: Create a @deepseek-ai/dsh-* plugin package end-to-end — choose the extension point or capability seam, scaffold the package, implement the tool/hook/service, and run the repo gates. 触发：新增插件 / 加工具 / 开发 capability。
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
   tags: [plugin, package, capability-seam, tool, dsh]
 ---
 

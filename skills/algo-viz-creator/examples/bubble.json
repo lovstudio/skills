@@ -1,0 +1,23 @@
+{
+  "title": "冒泡排序",
+  "inputLabel": "UNSORTED 7 2 9 4 5",
+  "insight": "相邻比较把最大的数字逐轮推向右侧。",
+  "layout": "bars",
+  "code": ["从左侧出发", "比较相邻两个数字", "较大的数字向右交换", "锁定本轮终点", "全部有序"],
+  "metricLabel": "已锁定",
+  "frames": [
+    { "values": [7, 2, 9, 4, 5], "active": [0, 1], "settled": [], "note": "比较 7 与 2，7 更大，向右交换。", "codeLine": 1 },
+    { "values": [2, 7, 9, 4, 5], "active": [1, 2], "settled": [], "note": "比较 7 与 9，顺序正确，无需交换。", "codeLine": 1 },
+    { "values": [2, 7, 9, 4, 5], "active": [2, 3], "settled": [], "note": "比较 9 与 4，9 更大，向右交换。", "codeLine": 2 },
+    { "values": [2, 7, 4, 9, 5], "active": [3, 4], "settled": [], "note": "比较 9 与 5，9 更大，向右交换。", "codeLine": 2 },
+    { "values": [2, 7, 4, 5, 9], "active": [], "settled": [4], "note": "9 抵达终点，锁定这一格。", "codeLine": 3 },
+    { "values": [2, 7, 4, 5, 9], "active": [0, 1], "settled": [4], "note": "新一轮从左侧开始：2 与 7 顺序正确。", "codeLine": 1 },
+    { "values": [2, 7, 4, 5, 9], "active": [1, 2], "settled": [4], "note": "7 与 4，7 更大，向右交换。", "codeLine": 2 },
+    { "values": [2, 4, 7, 5, 9], "active": [2, 3], "settled": [4], "note": "7 与 5，7 更大，向右交换。", "codeLine": 2 },
+    { "values": [2, 4, 5, 7, 9], "active": [], "settled": [3, 4], "note": "7 抵达终点，锁定。", "codeLine": 3 },
+    { "values": [2, 4, 5, 7, 9], "active": [0, 1], "settled": [3, 4], "note": "2 与 4 顺序正确，继续。", "codeLine": 1 },
+    { "values": [2, 4, 5, 7, 9], "active": [1, 2], "settled": [3, 4], "note": "4 与 5 顺序正确。", "codeLine": 1 },
+    { "values": [2, 4, 5, 7, 9], "active": [], "settled": [2, 3, 4], "note": "这一轮没有交换，提前结束。", "codeLine": 3 },
+    { "values": [2, 4, 5, 7, 9], "active": [], "settled": [0, 1, 2, 3, 4], "note": "全部有序：2 4 5 7 9。", "codeLine": 4 }
+  ]
+}

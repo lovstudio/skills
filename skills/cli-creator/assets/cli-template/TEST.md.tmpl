@@ -1,0 +1,24 @@
+# Test Plan and Results — __COMMAND_NAME__
+
+## Test inventory plan
+
+- `tests/test_core.py`: built-in help, doctor, capabilities, and JSON envelope.
+- `tests/test_e2e.py`: installed command resolution and one real project workflow.
+
+## Unit test plan
+
+- Verify source invocation from a neutral working directory.
+- Verify project-root override and missing-root diagnostics.
+- Verify every typed parameter maps to the intended backend argv.
+- Verify backend failures return nonzero parseable diagnostics.
+
+## E2E workflow plan
+
+Document a real user workflow using the actual __PROJECT_NAME__ backend. Name the
+created or inspected state, the operations chained, and the programmatic
+postconditions. Missing backend dependencies must fail with install guidance.
+
+## Results
+
+Status: scaffold. Replace this line with the exact test command, named results,
+pass count, duration, artifact paths, and known gaps after execution.

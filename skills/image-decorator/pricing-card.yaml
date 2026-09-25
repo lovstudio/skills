@@ -1,0 +1,15 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.2"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "A repeatable branded image treatment that would otherwise require manual layout in a design editor."
+basis: "The transform runs locally with deterministic open-source code and bundled assets, uses no paid API, and is offered free."
+boundary: "Includes one-image-at-a-time raster decoration, local Profile defaults, three output formats, tests, and bundled LovStudio branding. Excludes image generation, subject editing, batch orchestration, hosting, and publishing."
+review_trigger: "Review pricing only if hosted rendering, batch queues, collaborative brand kits, managed storage, or paid font and asset licensing are added."
+confidence: internal
+distribution:
+  workbuddy: not_published
+  skillpay: not_published
+  github: not_published
+  lovstudio: not_published

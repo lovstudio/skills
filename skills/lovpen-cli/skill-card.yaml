@@ -1,0 +1,115 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.1"
+description: "Routes Markdown formatting requests to the verified Lovpen CLI and returns WeChat-copy or standalone HTML with machine-readable integrity evidence."
+owner:
+  team: "LovStudio contributors"
+  contact: "https://github.com/markshawn2020/lovpen-obsidian"
+license:
+  name: MIT
+  terms: "The Skill instructions and resolver are MIT licensed. Users remain responsible for rights to source documents, linked media, and generated output."
+  url: "LICENSE"
+use_case:
+  audience: "Writers, developers, and agents that need repeatable Lovpen Markdown rendering without operating the graphical editor."
+  scenario: "Inspect Lovpen resources or render UTF-8 Markdown as WeChat-copy inline HTML or a complete themed document through Lovpen's real renderers."
+  tasks:
+    - "Diagnose the Lovpen CLI runtime and project dependencies."
+    - "List real themes, highlights, templates, and template kits."
+    - "Resolve a UI template kit atomically and render Markdown to the requested HTML contract."
+    - "Report file size, SHA-256, renderer/clipboard source, mode, and explicit limitations."
+deployment:
+  geography: global
+  environments:
+    - "Local agent runtime with filesystem and subprocess access"
+    - "macOS or another environment supported by the Lovpen Node workspace"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "lovpen-cli 0.2.0 or a ready Lovpen agent-harness source checkout"
+    - "Python 3.9 or newer"
+    - "Node.js 20 or newer"
+    - "Chrome or Chromium 109 or newer for WeChat format"
+  runtime:
+    - "The resolver calls the CLI with argument arrays and shell evaluation disabled."
+    - "Source-checkout mode requires installed Lovpen workspace dependencies including Vite."
+risks:
+  - risk: "The CLI executable or Lovpen source checkout cannot be resolved."
+    mitigation: "Run the resolver and doctor first; return a stable context_id with explicit CLI and project-root configuration guidance."
+  - risk: "Users may assume UI settings that were not supplied to the CLI are included in the WeChat parity contract."
+    mitigation: "Report format, resolved template kit, settings source, renderer mode, clipboard source, browser, and disabled plugins on every render."
+  - risk: "A render can replace an existing output file."
+    mitigation: "Use an explicit output path, support dry-run, and rely on the CLI's atomic write plus post-write verification."
+  - risk: "Markdown can contain private or copyrighted content."
+    mitigation: "Keep rendering local, avoid logging document contents, and leave publication and rights decisions to the user."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "CLI contract"
+    path: "references/cli-contract.md"
+  - title: "Verified user case"
+    path: "cases/cases.json"
+output:
+  types:
+    - "WeChat-copy inline Lovpen HTML artifact"
+    - "Self-contained Lovpen HTML artifact"
+    - "Resource catalog"
+    - "Runtime diagnostic"
+  formats:
+    - "HTML"
+    - "lov-cli/v1 JSON envelope"
+  parameters:
+    - "Markdown input and HTML output paths"
+    - "WeChat or standalone format"
+    - "Atomic template kit or individual theme, highlight, and HTML template"
+    - "Optional title and author"
+    - "Dry-run and project-root resolution"
+  validation:
+    - "Doctor reports ready project, Node.js, Chromium, and renderer-source checks"
+    - "Render reports a positive byte count and 64-character SHA-256"
+    - "WeChat output contains inline styles and no stylesheet tag; standalone output contains embedded CSS"
+    - "Renderer source, clipboard source, mode, kit, browser, and disabled plugin list remain visible"
+  description: "A verified local rendering result whose artifact identity and WeChat/standalone contract boundary are explicit."
+ethical_considerations: "The Skill does not upload content or credentials. Chromium processes a local temporary page, the Skill limits parity claims to supplied settings, and users remain responsible for source-content and media rights."
+dimensions:
+  - id: contract-correctness
+    label: "CLI contract correctness"
+    description: "Built-ins, JSON envelopes, domain commands, failure diagnostics, and installed invocation behave as documented."
+    evidence: "The underlying CLI passed 14 of 14 unit and installed-command E2E tests plus the lov-cli-creator final validator."
+    score: 1.0
+  - id: backend-fidelity
+    label: "Real backend fidelity"
+    description: "Rendering delegates to Lovpen's maintained standalone renderer and shared Chromium clipboard extractor instead of recreating product behavior in the Skill."
+    evidence: "Acceptance output identified standaloneRenderer.ts, wechat-clipboard.ts#extractWechatClipboardHTML, and wechat-browser-copy."
+    score: 1.0
+  - id: artifact-integrity
+    label: "Artifact integrity"
+    description: "The output is reopened and compared against the CLI's material postconditions."
+    evidence: "The verified WeChat case produced 173,311 bytes and SHA-256 85d00a183b88e4c59506f2279aa8629780011b1cf43f1dce4875032e7fd1a4d6."
+    score: 1.0
+  - id: scope-transparency
+    label: "Render-mode scope transparency"
+    description: "WeChat parity inputs and standalone browser limitations are visible instead of silently conflated."
+    evidence: "Every render result exposes format, renderer_mode, resolved resources, sources, browser, and disabled_preview_plugins."
+    score: 1.0
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The Skill is a local intent and validation layer over an existing open local CLI, with no hosted compute or included paid service."
+  boundary: "Includes routing, portable resolution, diagnostics, resource discovery, WeChat/standalone render execution, and evidence interpretation; excludes the CLI implementation, platform publication, and support guarantees."
+  review_trigger: "Re-evaluate if the Skill bundles a maintained runtime, adds hosted rendering, includes commercial support, or is prepared for a paid marketplace."
+  confidence: verified-local
+distribution:
+  paid:
+    - channel: workbuddy
+      state: not_published
+      offering: not_offered
+    - channel: skillpay
+      state: not_published
+      offering: not_offered
+  free:
+    - channel: github
+      state: not_published
+      evidence: "No remote repository or release was created by this workflow."
+    - channel: lovstudio
+      state: local_installed
+      evidence: "Validated local source with agent-runtime symlink installation."

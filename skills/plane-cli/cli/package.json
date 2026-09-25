@@ -1,0 +1,24 @@
+{
+  "name": "lov-plane-cli",
+  "version": "0.1.0",
+  "description": "Plane REST API v1 命令行（130 个操作，schema 驱动）",
+  "type": "module",
+  "bin": {
+    "lov-plane-cli": "./bin/lov-plane-cli.mjs"
+  },
+  "exports": {
+    ".": "./sdk/index.mjs"
+  },
+  "files": [
+    "bin",
+    "sdk",
+    "openapi.json",
+    "manifest.json",
+    "api-graph.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "private": true
+}

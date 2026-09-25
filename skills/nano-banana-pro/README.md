@@ -1,6 +1,6 @@
 # 图像提示师 · Image Prompt Crafter
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
 
 将图像需求整理为结构清晰、遵循参考素材的生成或编辑提示词。
 

@@ -1,0 +1,15 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replaces manual CLI discovery, flag selection, result interpretation, and artifact integrity checks for repeatable Lovpen Markdown rendering."
+basis: "The Skill is a local intent and validation layer over an existing open local CLI. It adds no hosted compute, paid API, or bundled proprietary runtime, so the local release is free."
+boundary: "Includes routing, CLI resolution, doctor/resources/render orchestration, local Chromium WeChat extraction, safe defaults, JSON interpretation, and integrity reporting. Excludes CLI implementation, content publication, hosted rendering, and support guarantees."
+review_trigger: "Review pricing if a future version bundles a maintained renderer runtime, adds hosted execution or storage, includes commercial support, or enters a paid channel."
+confidence: verified-local
+channel_states:
+  workbuddy: not_published
+  skillpay: not_published
+  github: not_published
+  lovstudio: local_installed

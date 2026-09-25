@@ -1,0 +1,97 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.1"
+description: "Turn structured content and one independent visual into a polished, copyable editorial card with self-contained HTML and a dimension-checked high-resolution PNG."
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "Skill source is MIT licensed. Users remain responsible for rights to supplied images, logos, copy, and fonts."
+  url: "LICENSE"
+use_case:
+  audience: "AI creators, editors, educators, researchers, and community operators building repeatable visual-card series."
+  scenario: "Render an art-style atlas card, concept card, method card, or other concise collection entry from structured content and a local visual."
+  tasks:
+    - "Validate structured card input and local assets."
+    - "Render title, context, prompt, scenarios, ratings, and optional brand as DOM."
+    - "Export self-contained HTML and a 900 by 1350 card at one to four times pixel scale."
+deployment:
+  geography: global
+  environments:
+    - "Local macOS, Linux, or Windows agent with Python 3.9 or newer."
+    - "Chrome or Chromium is required only for automatic PNG export."
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.9 or newer."
+    - "Chrome or Chromium for automatic PNG export."
+    - "One local visual asset per card."
+risks:
+  - risk: "Long copy can make a fixed-height card unreadable or clip content."
+    mitigation: "Guarded text fitting runs before export, and PNG export fails when the DOM still overflows."
+  - risk: "AI visuals may contain text, logos, copied work, or inaccurate historical signals."
+    mitigation: "Keep the visual independent and text-free, label it as a visual study, and require the operator to review rights and accuracy."
+  - risk: "Editorial ratings can be mistaken for objective measurements."
+    mitigation: "The card footer labels ratings as editor ratings and the Skill forbids unsupported statistical claims."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Input contract"
+    path: "references/input-schema.md"
+  - title: "Composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "Editable card master"
+    - "Shareable card image"
+    - "Layout audit"
+  formats:
+    - "Self-contained HTML"
+    - "PNG"
+    - "JSON console audit"
+  parameters:
+    - "Bundled preset: art-system-card"
+    - "Master size: 900 by 1350 CSS pixels"
+    - "PNG scale: one to four; default two"
+  validation:
+    - "Input schema and local asset validation"
+    - "Exact PNG dimension check"
+    - "DOM overflow and visual-loaded audit"
+  description: "The HTML keeps Prompt text selectable and provides copy and download actions; the PNG is the distribution artifact."
+ethical_considerations: "Do not imply that an AI visual is a historical artwork. Avoid name-only imitation of living artists, preserve attribution where required, and use only authorized brand and image assets."
+dimensions:
+  - id: render_integrity
+    label: "Render integrity"
+    description: "The fixed card surface exports at the declared size without clipped DOM content."
+    evidence: "The Bauhaus case exported at 1800 by 2700 with zero horizontal and vertical overflow and a loaded visual."
+    score: 5
+  - id: editability
+    label: "Editability and reuse"
+    description: "Copy and layout remain DOM content instead of pixels baked into the supplied visual."
+    evidence: "The case HTML contains selectable Prompt text, copy and PNG actions, embedded image and logo data, and no external asset reference."
+    score: 5
+  - id: portability
+    label: "Portable delivery"
+    description: "A generated master can be opened and exported without npm, network access, or a sibling Skill."
+    evidence: "Python uses the standard library and embeds the visual, brand asset, CSS, and browser screenshot runtime into one HTML file."
+    score: 5
+  - id: input_safety
+    label: "Input and brand safety"
+    description: "Invalid scores, missing assets, and unresolved private defaults fail before a misleading artifact is delivered."
+    evidence: "Unit tests reject an out-of-range score; shared brand values resolve at runtime and the source contains no private absolute user path."
+    score: 5
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The deterministic local renderer and one bundled preset are provided as an open reusable foundation."
+  boundary: "Includes local structured-card rendering and validation; excludes image generation, research, copywriting, hosting, and platform publishing."
+  review_trigger: "Revisit only if managed cloud rendering, licensed premium templates, or hosted collaboration becomes part of the product."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - "local-install: verified"
+    - "github: not published"
+    - "lovstudio: not published"

@@ -11,7 +11,7 @@ description: 把已有内容整理成适合朋友圈阅读的纯文本并保存�
   Moments post.
 metadata:
   author: contributors
-  version: 1.1.1
+  version: 1.1.3
   tags:
   - wechat
   - moment

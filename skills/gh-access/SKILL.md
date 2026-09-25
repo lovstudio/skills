@@ -18,7 +18,7 @@ compatibility: >
   (for org-owned repos, the caller must be a repo admin or org owner).
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: github collaborator access invite private-repo permissions
 ---
 

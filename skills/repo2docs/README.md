@@ -1,6 +1,6 @@
 # 文档站工坊 · Docs Site Builder
 
-![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
 
 Turn **any folder of source material** — a code repository, a pile of articles, a
 mixed knowledge dump with images — into a professional **Fumadocs** documentation

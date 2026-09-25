@@ -1,6 +1,6 @@
 # Agent 规范管家 · Agent Guide Keeper
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 诊断或完善项目 Agent 指令文件，适配不同宿主并保留真实工程约定。
 

@@ -10,7 +10,7 @@ depends_on:
   - lov-human-writing
 metadata:
   author: LovStudio
-  version: "2.6.0"
+  version: "2.6.2"
   card_standard: lovstudio/skill-card/v1
   content_class: authored-prose
   tags:
@@ -200,9 +200,13 @@ scripts/profile_store.py record --confirm 保存，并报告 canonical Profile �
 
 ### Step 6: Run the required human-writing gate
 
+先读取 [用户负向校准](references/negative-calibration.md)。最新直接反馈优先于历史
+画像；按句子在文中的作用返修，不能只换掉用户指出的词。删去铺垫后，要检查邻段是否
+仍在重复相同的教学、免责声明或总结动作。
+
 新写或改写完成后，把文风稿与 Step 2 的账本交给 `lov-human-writing`：
 
-1. 对所有正文执行作者性与篇章审计；
+1. 对所有正文执行作者性与篇章审计，包括全部标题和段落的编辑旁白检查；
 2. 对 300 字以上中文稿运行其表层度量；
 3. 只修复有原文或账本证据的问题，再复测；
 4. 把已校准个人声音视为受保护输入。指标与真实文风冲突时保留文风并记录理由；
@@ -282,3 +286,8 @@ JSON 输出：
 核心能力为 instruction-first，必需依赖 `lov-human-writing` 完成作者性、篇章与
 表层质量门，并依赖 `lov-branding-consistency` 处理最终受众可见文案的语境与品牌
 适配。Python 3.8+ 用于本地风格审计和 Profile 存储；完整源校验另需 PyYAML。
+
+最终稿按 `lov-human-writing/references/workflows/discourse-audit.md` 生成逐段审读记录，
+再由其 `scripts/discourse_gate.py` 校验。无命中只表示词面扫描未发现靶点；没有语义
+审读记录仍为 `needs_review`。`measure.py` 的 `overall` 只代表表层统计，不能作为
+文章、文风或发布验收结果。正文任何修改都会使旧审读记录失效。

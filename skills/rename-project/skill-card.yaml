@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 在保留兼容键与运行连续性的前提下重命名项目、路径和仓库
-version: 2.3.1
+version: "2.3.2"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

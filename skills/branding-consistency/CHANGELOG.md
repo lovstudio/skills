@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.1] - 2026-09-07
+
+### Added
+
+- 统一展示名为「品牌审校官」，保持调用 ID 与能力契约。
+
+## 0.3.0
+
+- 新增 `artifact_boundary` 与 `reader_start_state`，明确最终成品默认面对零会话上下文读者。
+- 将悬空的“前一版 / 上一稿 / 按你的要求”等协作历史列为 hard failure。
+- 为 `copy_audit.py` 增加本次公众号错误的 cold-reader 回归用例。
+
 ## 0.2.0
 
 - 更名为 `lov-branding-consistency`，明确其为所有读者可见文本的横切品牌门禁。

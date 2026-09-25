@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 为现有网站新增可用的在线工具，并接入多语言、工具目录、站点地图和必要的成本提示
-version: 0.1.0
+version: "0.1.2"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

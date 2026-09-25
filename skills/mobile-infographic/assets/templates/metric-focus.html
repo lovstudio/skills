@@ -30,7 +30,7 @@
   <article class="card" data-card data-template="{{TEMPLATE_ID}}" data-ratio="{{RATIO}}" data-series-index="{{SERIES_INDEX}}" data-series-size="{{SERIES_SIZE}}">
     <header class="card-head">
       <p class="eyebrow" data-role="label" data-skeleton="1">{{EYEBROW}}</p>
-      <h1 class="card-title" data-role="title" data-claim>{{TITLE}}</h1>
+      <h1 class="card-title" data-role="title">{{TITLE}}</h1>
       <div class="rule"></div>
     </header>
     <div class="card-body">
@@ -38,7 +38,7 @@
         <span class="metric-value" data-role="value" data-skeleton="1">0.0</span>
         <span class="metric-unit" data-role="label" data-skeleton="1">单位 · 口径 · 统计周期</span>
       </div>
-      <p class="claim" data-role="claim" data-source-ref="{{SOURCE_ID}}">{{CLAIM}}</p>
+      <p class="claim" data-role="claim" data-source-ref="{{SOURCE_ID}}" data-claim>{{CLAIM}}</p>
       <div class="block">
         <p class="body-text" data-role="body" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">解释这个数字从哪里来、和什么相比，读者应该据此做什么判断。</p>
         <p class="note" data-role="note" data-source-ref="{{SOURCE_ID}}" data-skeleton="1">基数与限定：样本量、时间范围、是否可比。</p>

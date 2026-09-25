@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: "在提交中国大陆网站备案前，核验备案场景、主体与域名实名、接入资源、材料和专项义务风险，输出带来源等级的可执行准备清单。"
 owner:
   team: LovStudio

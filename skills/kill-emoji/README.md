@@ -1,6 +1,6 @@
 # Emoji 换装 · Emoji Makeover
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
 
 将界面中不合适的 emoji 替换为语义一致的图标或简洁文案。
 

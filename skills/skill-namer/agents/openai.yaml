@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill 命名大师"
+  short_description: "为单个或整组 Skill 选择准确、简短、优雅、一致的中英文名称"
+  default_prompt: "使用 $lov-skill-namer，根据真实能力和已认可范例审查这组 Skill 的命名。"

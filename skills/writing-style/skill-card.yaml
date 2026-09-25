@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "2.5.1"
+version: "2.6.2"
 description: "依据经 19 篇真实样本校准的个人中文文风，把事实、笔记或草稿写成工程实战驱动的第一人称深度内容，并支持保真改写、文风诊断与题材适配。"
 owner:
   team: "LovStudio"

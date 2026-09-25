@@ -1,0 +1,83 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "为算法、数据结构或信息流程生成支持逐步播放演示的自包含 HTML 可视化。输入是算法概念或示例数据，输出是带播放/暂停/逐帧/变速与键盘控制的可交互图解。"
+owner:
+  team: "手工川工作室 (Lovstudio)"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "产出的 HTML 与模型可直接用于学习、教学与演示；引用本 Skill 产物时保留来源说明即可。"
+  url: "../LICENSE"
+use_case:
+  audience: "算法学习者、讲师、汇报者"
+  scenario: "需要把一个算法/数据结构/流程变成可逐步播放、配有中文解说的可视化，用于讲课、自学或汇报。"
+  tasks:
+    - "把 KMP、快速排序、Dijkstra、背包等算法建模为逐帧步骤"
+    - "给已有算法项目补一个可交互的单文件演示"
+    - "为教学材料生成一份离线可开的算法图解"
+deployment:
+  geography: global
+  environments:
+    - "本地 python3（validate_viz.py / build_viz.py）"
+    - "产物为浏览器可打开的自包含 HTML（file:// 即可）"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "python3"
+risks:
+  - risk: "帧模型叙事与实际算法逻辑不一致（模型凭想象编写）"
+    mitigation: "要求直接在算法上真实跑一遍再逐帧记录；validate_viz 校验引用一致性。"
+  - risk: "帧数过多导致演示疲惫"
+    mitigation: "校验器对 >60 帧告警，规范建议 5–40 帧并合并细粒度操作。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Step model specification"
+    path: "references/step-model.md"
+  - title: "Demo engine contract"
+    path: "references/demo-guide.md"
+output:
+  types:
+    - "自包含单文件 HTML（含内联 CSS/JS 与数据）"
+    - "帧模型 JSON（中间产物，可复用）"
+  formats:
+    - "text/html"
+    - "application/json"
+  parameters:
+    - "layout: sequence | network | matrix | bars"
+    - "frames: 每帧 active/settled/values/note/codeLine"
+  validation:
+    - "scripts/validate_viz.py 校验 error=0"
+    - "浏览器无控制台报错（headless 冒烟测试）"
+  description: "一份可直接双击打开、支持空格播放/←→逐帧/R 复位的算法逐步图解。"
+ethical_considerations: "产物用于教学与演示，不含私密数据采集。若用户提供真实业务数据，仅在其本人项目内使用；算法逻辑与叙事以公开教科书定义为基准。"
+dimensions:
+  - id: correctness
+    label: "帧逻辑准确性"
+    description: "帧序列是否真实反映算法执行过程，active/settled/values 是否与伪代码对齐。"
+    evidence: "本项目 50 个算法以同范式实现；本 Skill 实测二分查找/拓扑/冒泡三模型 validate 0 error，headless 渲染无报错。"
+    score: verified
+  - id: effectiveness
+    label: "演示体验"
+    description: "统一引擎（播放/逐帧/变速/键盘/解说/伪代码高亮）是否让逐步演示顺畅。"
+    evidence: "引擎复用 TraceLab 交互契约；三布局在 headless Chrome 渲染验证。"
+    score: verified
+  - id: efficiency
+    label: "建模与复用成本"
+    description: "新算法建模是否需要大量重复劳动，能否快速产出。"
+    evidence: "帧模型 JSON + 一条 build 命令产出完整 HTML，无需手写渲染与交互；validate 即时反馈错误。"
+    score: verified
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "教学与演示工具，作为 Lovstudio 学习产品线的开源能力对外提供。"
+  boundary: "含帧模型规范、校验器、构建器与演示引擎模板；不含专属定制可视化服务。"
+  review_trigger: "当产出进入商业培训课程或需要 SLA 支持时重新评估。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

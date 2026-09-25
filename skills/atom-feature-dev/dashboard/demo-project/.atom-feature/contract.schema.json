@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:lovstudio:atom-feature:markdown-to-pdf:contract",
+  "title": "Markdown to PDF",
+  "type": "object",
+  "properties": {
+    "input": {
+      "type": "object",
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "paper": {"type": "string", "enum": ["A4", "Letter"]},
+        "tocDepth": {"type": "integer", "minimum": 1, "maximum": 6},
+        "searchable": {"type": "boolean"}
+      },
+      "required": ["source"]
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "artifact": {"type": "string"},
+        "paper": {"type": "string"},
+        "tocDepth": {"type": "integer"},
+        "searchable": {"type": "boolean"}
+      },
+      "required": ["artifact", "paper", "tocDepth", "searchable"]
+    }
+  },
+  "required": ["input"],
+  "additionalProperties": false
+}
+

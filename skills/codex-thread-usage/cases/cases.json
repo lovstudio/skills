@@ -1,0 +1,30 @@
+[
+  {
+    "type": "case",
+    "title": "Resumed Codex thread whose SQLite snapshot understated history",
+    "description": "A user supplied a local Codex deeplink and asked how to determine its token consumption. The public case redacts the thread UUID but preserves a SHA-256 evidence fingerprint.",
+    "input": {
+      "items": [
+        "Local codex://threads deeplink with UUID redacted",
+        "Thread UUID SHA-256: ac956c1256ab730aaaa88653de1815e50dde3b3ec2782ceb556070d32dcad580",
+        "Codex CLI 0.147.0 local state_5.sqlite and matching rollout JSONL"
+      ]
+    },
+    "prompt": "给定一个本地的 Codex deeplink，如何确定其 token 消耗情况？",
+    "output": {
+      "items": [
+        "Historical processed tokens: 213,343,248",
+        "Input 212,996,439; cached input subset 209,353,307; non-cached input 3,643,132",
+        "Output 346,809; reasoning output subset 106,235",
+        "TUI-style non-cached total 3,989,941",
+        "Latest SQLite snapshot 104,545",
+        "Five monotonic counter segments and four resets"
+      ]
+    },
+    "evidence": {
+      "verified_at": "2026-08-14",
+      "method": "Read-only SQLite lookup plus streaming terminal-snapshot aggregation",
+      "privacy": "Conversation bodies were not emitted; the UUID and local path are redacted in this case."
+    }
+  }
+]

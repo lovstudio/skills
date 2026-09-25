@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "4.6.0"
+  version: "4.6.4"
   content_class: deterministic-output
   tags:
     - skill-creator
@@ -128,6 +128,15 @@ Record these decisions internally:
    class. Authored prose and microcopy automatically enable
    `lov-branding-consistency`; authored prose also generates and routes to
    `references/authorship-integrity.md`.
+8. Choose accurate, brief, elegant and consistent display names, starting from
+   names and style examples the user has approved. Favor memorable product names;
+   functional, result, role and metaphor names are all valid. Do not force every
+   name into an object–action phrase or ban terms such as 大师、专家、神器、小能手.
+   Omit creator/studio brand prefixes while preserving task-defining platform
+   names. Put detailed scope in the description and compare neighboring Skills
+   for recognition and distinction. Chinese and English names describe the same
+   capability, with natural wording in each language. Existing IDs, paths and
+   Profile keys are compatibility contracts; a display-name change preserves them.
 
 Background details, personal names, and competitor observations are context by
 default. Include them in generated products only when they serve the end user.
@@ -337,6 +346,9 @@ Completion requires:
    paid/free channel states.
 8. `references/skill-composition.md` records the inspected Skill group, atomic
    handoffs or overlap decision, and why the result is a Single Skill or Kit.
+9. Display names agree with the description and actual workflow, remain clear
+   without conversation context, and are distinguishable from nearby Skills.
+   Corresponding README, Card and requested catalog display fields agree.
 
 Stop at the local result unless the user also requests publication. When they
 do, invoke `lov-skill-publisher` with the validated source path and requested

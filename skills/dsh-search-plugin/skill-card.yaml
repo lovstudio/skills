@@ -1,0 +1,82 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "Searches the public dshfind plugin gateway and returns a ranked, evidence-tagged list of DSH plugins that match the user goal, with gateway provenance."
+owner:
+  team: Lovstudio
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "Free to use, modify, and redistribute with attribution."
+  url: "../LICENSE"
+use_case:
+  audience: "DSH / DeepSeek Harness users and plugin developers"
+  scenario: "Given a goal or keyword, produce the candidate plugin list with score, grade, install path, and risk evidence before deciding use-or-create."
+  tasks:
+    - "Search the dshfind gateway by keyword, category, grade, language, or tag"
+    - "Fetch plugin detail with localized intro and growth data"
+    - "Rank candidates and cite gateway provenance in the result"
+deployment:
+  geography: global
+  environments:
+    - "Agent runtime with network access to api.dshfind.com"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.8+ (stdlib only)"
+    - "Network access to https://api.dshfind.com"
+risks:
+  - risk: "Gateway data may be stale or incomplete for newly indexed plugins"
+    mitigation: "Always cite data_version and as_of; treat null score or grade as unrated, not as failure"
+  - risk: "Keyword search can miss a well-matching plugin"
+    mitigation: "Retry with synonyms, the category facet, or the catalog and GraphQL endpoints before concluding absence"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Gateway API contract"
+    path: "references/gateway-api.md"
+output:
+  types:
+    - "Ranked candidate list with evidence fields"
+    - "Raw gateway JSON artifact (optional file)"
+  formats:
+    - "Markdown report"
+    - "JSON"
+  parameters:
+    - "keyword or goal"
+    - "optional filters: category, language, grade, tag, min score"
+    - "result count"
+  validation:
+    - "Every claim cites a live response or the saved artifact"
+    - "data_version and as_of reported with results"
+  description: "A ranked plugin list where each candidate carries description, score, grade, stars, install kind, risk flags, and repository link."
+ethical_considerations: "Search results are public catalog data. Do not present third-party plugins as vetted by the user or by Lovstudio; risk flags from the gateway are evidence, not guarantees."
+dimensions:
+  - id: correctness
+    label: 结果准确
+    description: "Matches returned actually cover the goal and carry correct gateway fields"
+    evidence: "Live probes 2026-08-27: q=vision returns Anionex/dsh-vision-toolkit and liustack/modlens; suggest q=memory returns dsh-mnemon"
+    score: null
+  - id: effectiveness
+    label: 覆盖充分
+    description: "Synonyms, facets, and detail lookups surface the best candidates"
+    evidence: "Multi-keyword retry guidance and plugin detail fetch in the workflow"
+    score: null
+  - id: efficiency
+    label: 检索高效
+    description: "One deterministic CLI call returns the ranked list with provenance"
+    evidence: "search_plugin.py queries /v1/plugins and /v1/suggest in one pass, verified live"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The gateway is public and read-only; this skill adds a deterministic client and an evidence discipline at no marginal cost"
+  boundary: "Search and evidence only; installation, creation, and publishing are separate skills"
+  review_trigger: "Revisit when the gateway API changes or when search quality regresses"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

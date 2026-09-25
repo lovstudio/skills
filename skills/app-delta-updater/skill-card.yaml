@@ -1,0 +1,96 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.1"
+description: "为 Tauri 与 Electron 桌面应用交付可恢复、可签名、可回读的自动更新链路，并如实区分完整包与真正的差分更新。"
+owner:
+  team: "Lovstudio.AI"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "允许使用、修改与再分发；目标项目的证书、密钥和第三方平台条款由使用者自行管理。"
+  url: "LICENSE"
+use_case:
+  audience: "维护 Tauri 或 Electron 桌面应用的开发者与发布工程师"
+  scenario: "新增、修复或验证应用内版本检查、更新下载、安装交接、重启和发布产物链路"
+  tasks:
+    - "识别框架和平台更新能力"
+    - "实现有界可重试的更新状态机"
+    - "连接签名产物、feed/manifest 和发布门禁"
+    - "从旧版本真实回读已安装目标版本"
+deployment:
+  geography: global
+  environments:
+    - "本地开发仓库"
+    - "CI/CD 发布环境"
+    - "已签名桌面安装包"
+requirements:
+  credentials: "实现阶段通常不需要；正式发布需要目标项目自己的签名、公证与发布凭据"
+  dependencies: []
+  runtime:
+    - "目标项目的 Tauri 2 或 Electron 工具链"
+    - "Python 3.8+ 仅用于可选静态审计"
+risks:
+  - risk: "把完整包更新误报为增量更新"
+    mitigation: "要求差分产物具备明确源版本、目标版本和实际差分字节证据。"
+  - risk: "发布 manifest 引用未签名、公证前或错误架构产物"
+    mitigation: "在最终签名后生成元数据，并以缺失签名或平台为发布阻断条件。"
+  - risk: "检查超时后界面永久旋转或并发检查互相覆盖"
+    mitigation: "实施单飞、底层超时/取消和可重试错误状态。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Tauri platform contract"
+    path: "references/platform-tauri.md"
+  - title: "Electron platform contract"
+    path: "references/platform-electron.md"
+output:
+  types:
+    - "桌面应用更新实现"
+    - "发布产物与 feed/manifest 契约"
+    - "验证报告"
+  formats:
+    - "源码与配置修改"
+    - "JSON/text 静态审计"
+    - "发布回读证据"
+  parameters:
+    - "目标平台与架构"
+    - "更新渠道"
+    - "完整包或 delta 策略"
+  validation:
+    - "项目类型检查与原生检查通过"
+    - "签名更新产物和元数据逐项对应"
+    - "旧版本安装后回读目标版本"
+  description: "可运行的更新链路及其全量/增量能力边界、发布条件和真实安装证据。"
+ethical_considerations: "不记录或输出私钥、token 与完整私人路径；不夸大差分能力或把上传状态描述成用户已安装。"
+dimensions:
+  - id: capability-honesty
+    label: "能力真实性"
+    description: "准确区分签名完整包、blockmap 和源版本到目标版本的真实 delta。"
+    evidence: "Ataru Tauri 案例明确报告官方 updater 为完整签名包，并保留未来差分扩展边界。"
+    score: null
+  - id: runtime-resilience
+    label: "运行时恢复性"
+    description: "检查、下载、安装和重启均有边界、单飞与失败恢复。"
+    evidence: "真实案例实现单飞检查、15 秒检查超时、下载进度、重试和 context_id 诊断。"
+    score: null
+  - id: release-verification
+    label: "发布可验证性"
+    description: "签名产物、manifest、公开 URL 与安装后版本形成闭环。"
+    evidence: "真实案例加入签名缺失发布拦截、完整 latest.json 生成测试与 Cargo/TypeScript 检查。"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "通用桌面更新工程基础能力，基于公开框架机制与真实项目案例。"
+  boundary: "不包含签名账号、证书、公证费用或托管差分服务。"
+  review_trigger: "加入持续托管、商业签名或差分 CDN 服务时复评。"
+  confidence: verified-local
+distribution:
+  paid: []
+  free:
+    - local
+distribution_status:
+  workbuddy: "not-published"
+  skillpay: "not-published"
+  github: "not-published"
+  lovstudio: "not-published"

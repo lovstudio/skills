@@ -1,0 +1,12 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+display_unit: credits
+list_price_credits: 0
+value_anchor: 把“整台电脑里有哪些视频、多大、多新”从每次几十秒的 find 变成秒级增量查询
+basis: 纯本地只读工具，标准库实现，没有托管或模型成本；实测主目录加外接 SSD 首扫 20.9 秒、增量 2.7 秒，但尚无跨用户样本，不宣称通用节省比例。
+boundary: 含目录与全局扫描、共享增量缓存、过滤排序、ffprobe 元数据与统计回读；不含转码、剪辑、迁移、删除或任何写文件操作。
+review_trigger: 出现托管索引、跨设备同步、图形界面或与清理/迁移流程打包的需求时复评。
+confidence: internal

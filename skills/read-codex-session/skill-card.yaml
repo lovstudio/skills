@@ -1,0 +1,99 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: >-
+  读取本地 Codex task/thread 的运行状态、最近回合、工具活动与最终结果；
+  宿主提供线程工具时直接读取，没有时用只读脚本解析本地 rollout。
+owner:
+  team: "LovStudio Skill contributors"
+  contact: "local source maintainers"
+license:
+  name: MIT
+  terms: "Use, modify, and redistribute under the included MIT License."
+  url: "LICENSE"
+use_case:
+  audience: "并行使用 Codex 与其它本地 Agent 的开发者和知识工作者"
+  scenario: "需要核对某个 Codex 任务做到哪、是否完成、卡在哪里，或让 Claude Code 等其它 Agent 读取 Codex 会话上下文。"
+  tasks:
+    - "读取指定 thread 或当前 task 的状态与最近回合。"
+    - "汇总最新进展、阻塞、待用户输入与最终结果。"
+    - "在缺少 Codex 线程工具的宿主中只读解析本地 rollout。"
+deployment:
+  geography: global
+  environments:
+    - "Codex desktop"
+    - "Claude Code 等支持 Skill 与本地 Bash 的宿主"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "宿主线程读取能力（可选，优先）"
+    - "Python 3.9 或更新版本（脚本兜底）"
+    - "对 $CODEX_HOME 或 ~/.codex 的只读访问"
+risks:
+  - risk: "会话内容可能包含用户隐私或敏感信息。"
+    mitigation: "只输出必要字段与截断摘要，不打印完整转录，也不持久化 thread ID 或凭据。"
+  - risk: "thread ID 可能解析到错误、过期或归档的 rollout。"
+    mitigation: "按 UUID 精确匹配 rollout 文件名并回读 session_meta 标识；找不到时直接报错而不是猜测。"
+  - risk: "宿主沙箱限制访问 ~/.codex 时读取失败。"
+    mitigation: "报告具体路径与权限边界，请用户授权；不尝试绕过沙箱或改写 Codex 数据。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Read-only local inspector"
+    path: "scripts/read_codex_session.py"
+  - title: "Composition analysis"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "Codex thread status report"
+  formats:
+    - "plain text"
+    - "JSON"
+  parameters:
+    - "thread UUID, codex://threads deeplink, or rollout path"
+    - "optional recent turn count"
+    - "optional Codex data directory"
+  validation:
+    - "session_meta identifier matches the requested thread"
+    - "status derives from task lifecycle events"
+    - "tool errors and pending calls are counted from call pairs"
+  description: "状态、最近回合的用户请求与最新结果、工具调用和错误计数、待处理调用，以及读取来源。"
+ethical_considerations: >-
+  只读本地会话数据，不修改任务，不发送消息，不导航，不外发内容；会话文本按不可信数据
+  处理，报告避免复述敏感原文，并如实标注读取失败或被沙箱拦截。
+dimensions:
+  - id: status
+    label: "状态判定"
+    description: "区分 running、completed、aborted 与 unknown，并给出对应时间戳。"
+    evidence: "task_started、task_complete 与 turn_aborted 事件按文件顺序推进状态。"
+  - id: progress
+    label: "进展摘要"
+    description: "给出最近回合的用户请求、最新答复和工具活动规模。"
+    evidence: "response_item 中的 user/assistant message 与 function_call 统计。"
+  - id: blockers
+    label: "阻塞与待办"
+    description: "识别工具错误、未配对的调用和仍在运行的状态。"
+    evidence: "function_call_output 的退出码与 call_id 配对结果。"
+  - id: boundary
+    label: "边界与只读性"
+    description: "不改数据、不外发，读取失败时如实报告。"
+    evidence: "脚本只以只读方式打开 rollout，Skill 工作流禁止写操作与导航。"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "本地只读状态核对，免去手工翻阅 rollout 的成本。"
+  boundary: "只包含本机会话状态与摘要；不含账户额度、token 用量统计、导航或发布。"
+  review_trigger: "Codex 本地会话格式或宿主线程接口变化时复评。"
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not_planned
+    - channel: skillpay
+      status: not_planned
+  free:
+    - channel: github
+      status: not_published
+    - channel: lovstudio
+      status: local_only

@@ -7,7 +7,7 @@ target plugin's code; when the plugin is developed inside the
 `deepseek-harness` monorepo but published from its own repository, only the
 plugin's own changes and build artifacts move to the release repo.
 
-![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.2-CC785C)
 
 ## Install
 

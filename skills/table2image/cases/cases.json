@@ -1,0 +1,25 @@
+[
+  {
+    "type": "case",
+    "title": "Mable API 接口表格图片",
+    "description": "用新建 Skill 将三行 Markdown 接口表格交给真实本地 Mable API，取得内容寻址图片地址并下载、检查最终 PNG。",
+    "input": {
+      "items": [
+        "cases/mable-api-surface.md",
+        "布局型号 Asge8oUog7I"
+      ]
+    },
+    "prompt": "把这张 Mable API 接口表格按型号 Asge8oUog7I 转成图片，返回图片地址并下载 PNG。",
+    "output": {
+      "items": [
+        "cases/mable-api-surface-result.json",
+        "cases/mable-api-surface.png",
+        "1520 by 432 pixels; 66191 bytes; PNG signature and response content type verified"
+      ]
+    },
+    "cover": "cases/mable-api-surface.png",
+    "gallery": [
+      "cases/mable-api-surface.png"
+    ]
+  }
+]

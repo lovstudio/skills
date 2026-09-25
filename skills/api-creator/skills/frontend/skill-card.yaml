@@ -1,0 +1,79 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: >
+  在 DCloud uni-app 前端项目里封装 API 网关调用层：统一 uni.request 封装（baseURL、token 注入、
+  可复制的错误提示、SSE 流式支持），并按网关端点清单生成模块化 API 文件，页面只 import 端点函数。
+owner:
+  team: "手工川工作室"
+  contact: "shawninjuly@gmail.com"
+license:
+  name: MIT
+  terms: "源码可自由使用、修改与分发；保留版权声明。"
+  url: "../../LICENSE"
+use_case:
+  audience: "开发 DCloud uni-app 前端的开发者"
+  scenario: "需要把后端网关的调用收敛到统一封装，页面不直接碰 uni.request。"
+  tasks:
+    - "创建统一 request 封装与 baseURL / token / 错误处理"
+    - "按网关端点清单生成模块化 API 文件"
+deployment:
+  geography: global
+  environments:
+    - "DCloud uni-app 前端项目"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "uni-app 项目（含 pages.json 与 manifest.json）"
+    - "后端网关端点清单（来自 lov-backend）"
+risks:
+  - risk: "错误提示不含上下文，难以排查"
+    mitigation: "统一错误结构携带 context_id 与请求信息，报错 UI 支持复制"
+  - risk: "导出函数与后端端点不一致"
+    mitigation: "按端点清单逐条生成并核对导出函数"
+references:
+  - title: "Frontend module instructions"
+    path: "SKILL.md"
+  - title: "uni-app client patterns"
+    path: "references/uni-app-client-patterns.md"
+output:
+  types:
+    - "api/ 目录（request 封装 + 端点模块）"
+  formats:
+    - "TypeScript / JavaScript"
+  parameters:
+    - "后端网关端点清单"
+    - "baseURL 与 token 存取 key"
+  validation:
+    - "页面可 import 端点函数并完成一次真实调用"
+  description: "交付可用的 api/ 模块与用法示例"
+ethical_considerations: "不采集用户隐私；token 仅存本地 storage，不落日志；不绕过任何平台访问限制。"
+dimensions:
+  - id: correctness
+    label: "封装正确性"
+    description: "request 封装正确处理 baseURL 拼接、token 注入与统一错误。"
+    evidence: "页面 import 端点函数完成一次真实调用验证。"
+    score: null
+  - id: effectiveness
+    label: "契约一致性"
+    description: "导出函数与后端端点清单一一对应。"
+    evidence: "按清单逐条生成并核对。"
+    score: null
+  - id: efficiency
+    label: "复用效率"
+    description: "错误/token/baseURL 收敛到统一封装，页面零重复。"
+    evidence: "集中在 api/request.ts 与 api/config.ts。"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "随 lov-api-creator Kit 免费分发，内部提效。"
+  boundary: "适用于 DCloud uni-app 工程；不包含后端网关端点与上游 API 成本。"
+  review_trigger: "覆盖更多前端框架或网关协议时重估。"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.1"
+version: "0.1.2"
 description: "Generates privacy-preserving, profile-aware QR code PNG files with no header or footer by default, optionally creates a poster, and verifies the exact UTF-8 input."
 owner:
   team: "LovStudio"

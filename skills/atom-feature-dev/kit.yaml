@@ -1,0 +1,45 @@
+name: atom-feature-dev
+display_name: "Atom Feature Development"
+version: "0.2.1"
+entrypoint: lov-atom-feature-dev
+modules:
+  - id: feature-contract
+    skill: lov-atom-feature-contract
+    path: skills/feature-contract
+  - id: core-sdk
+    skill: lov-atom-core-sdk
+    path: skills/core-sdk
+  - id: distribution-surfaces
+    skill: lov-atom-distribution-surfaces
+    path: skills/distribution-surfaces
+  - id: profile-experience
+    skill: lov-atom-profile-experience
+    path: skills/profile-experience
+  - id: operations
+    skill: lov-atom-operations
+    path: skills/operations
+  - id: dashboard
+    skill: lov-atom-dashboard
+    path: skills/dashboard
+pipelines:
+  full:
+    - feature-contract
+    - core-sdk
+    - distribution-surfaces
+    - profile-experience
+    - operations
+    - dashboard
+  surface-first:
+    - feature-contract
+    - distribution-surfaces
+    - profile-experience
+    - dashboard
+  profile-first:
+    - feature-contract
+    - profile-experience
+    - distribution-surfaces
+    - dashboard
+  audit:
+    - feature-contract
+    - operations
+    - dashboard

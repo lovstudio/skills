@@ -1,0 +1,59 @@
+{
+  "date": "2026-09-23",
+  "status": "passed",
+  "checks": [
+    {
+      "check": "CJK filenames, complete contain panels, aspect sizing, PNG readback and source hashes",
+      "status": "passed"
+    },
+    {
+      "check": "existing outputs and input/symlink aliases rejected without changes",
+      "status": "passed"
+    },
+    {
+      "check": "EXIF orientation applied before sizing",
+      "status": "passed"
+    },
+    {
+      "check": "transparency flattened on neutral background",
+      "status": "passed"
+    },
+    {
+      "check": "valid embedded ICC converted and reported",
+      "status": "passed"
+    },
+    {
+      "check": "invalid image, invalid height and corrupt ICC fail without a result",
+      "status": "passed"
+    },
+    {
+      "check": "real reproduction Prompt exactly matches retrieved source text",
+      "status": "passed"
+    }
+  ],
+  "fixture_policy": "Only synthetic local test images were used; no user portrait pixels downloaded or regenerated.",
+  "image_generation": "not-run",
+  "historical_case": "text-and-user-approval-verified; pixels not re-inspected",
+  "manual_routing_review": [
+    {
+      "input": "修成有气势的微信头像，保留本人和姿态",
+      "decision": "activate",
+      "basis": "explicit trigger and original-photo workflow"
+    },
+    {
+      "input": "参考雪山风格但保留海边天气、灯塔、红色外套",
+      "decision": "activate, preserve scene",
+      "basis": "style-only boundary"
+    },
+    {
+      "input": "帮我写申请学校的 PS",
+      "decision": "do-not-activate",
+      "basis": "explicit personal-statement exclusion"
+    },
+    {
+      "input": "制作职业证件照",
+      "decision": "route-to-professional-portrait",
+      "basis": "explicit adjacent-skill boundary"
+    }
+  ]
+}

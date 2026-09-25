@@ -1,0 +1,103 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 列出指定目录或整台电脑里的全部视频文件，带大小、修改时间与可选的时长、分辨率、编码；共享增量目录缓存让重复扫描只花秒级时间。
+owner:
+  team: Local skill contributors
+  contact: 本地 Skill 源目录维护者
+license:
+  name: MIT
+  terms: 脚本与指令遵循 MIT；扫描到的视频文件及其元数据归用户所有，不随 Skill 分发。
+  url: LICENSE
+use_case:
+  audience: 在本机和外接盘上积累大量视频素材的创作者、剪辑者与开发者
+  scenario: 盘点某个项目目录或整台电脑里有哪些视频、多大、多新、什么编码，再决定清理、迁移或交给剪辑与抽帧流程
+  tasks:
+    - 列出目录或全局范围内的所有视频文件
+    - 按大小、时间、扩展名、路径子串过滤并排序
+    - 用 ffprobe 补充时长、分辨率、编码信息
+    - 维护跨范围共享的增量缓存并自动剪枝
+deployment:
+  geography: global
+  environments:
+    - Local agent runtime on macOS or Linux with Python 3.9+
+requirements:
+  credentials: none
+  dependencies:
+    - ffprobe (FFmpeg), only for --probe and --sort duration
+    - PyYAML, only for validate_skill.py
+  runtime:
+    - Python >=3.9, standard library only
+    - macOS Full Disk Access may be required for some ~/Library subfolders
+risks:
+  - risk: 缓存过期导致遗漏原地改写的文件
+    mitigation: 未变目录里的已缓存视频每次仍重新 stat；结构变化靠目录 mtime 捕获；`--full` 可强制重列。
+  - risk: 全局扫描误入系统或应用内部目录，耗时且结果无意义
+    mitigation: 默认跳过 node_modules、Library 缓存类目录、.app/.photoslibrary 等包与隐藏目录，不跟随符号链接；`--no-default-excludes` 需显式开启。
+  - risk: 缓存文件记录了用户的目录结构
+    mitigation: 缓存只在用户 Profile 目录本地保存，权限 0600，不进入 Skill 源与任何发布渠道；`--no-cache` 与 `--clear-cache` 可关闭或删除。
+  - risk: 外接卷上的 `._` AppleDouble 副本被当成视频
+    mitigation: 文件名以 `._` 开头一律跳过，测试覆盖。
+references:
+  - title: Primary instructions
+    path: SKILL.md
+  - title: Cache design
+    path: references/cache-design.md
+  - title: Real case evidence
+    path: cases/cases.json
+output:
+  types:
+    - 视频清单
+    - 扫描统计
+    - 增量缓存文件
+  formats:
+    - table
+    - JSON
+    - paths
+    - CSV
+  parameters:
+    - 根目录或 --global
+    - 排序、过滤、条数限制
+    - 是否 ffprobe 探测
+    - 缓存位置与失效控制
+  validation:
+    - 每次输出附目录访问数、复用数、剪枝数与错误数
+    - 测试覆盖首扫、复用、增删剪枝、原地改写、过滤、隐藏与排除规则、无缓存模式
+    - 真实主目录加外接卷的首扫与增量计时
+  description: 按需过滤排序的视频文件清单，附大小、时间与可选媒体元数据，以及可复核的扫描统计。
+ethical_considerations: 只读扫描，不移动、删除或上传任何文件；缓存和结果都留在本机；不绕过操作系统的磁盘访问权限。
+dimensions:
+  - id: incremental-speed
+    label: 增量速度
+    description: 重复扫描的成本与目录数而非文件数成正比。
+    evidence: 真实主目录加外接 SSD：147,794 目录首扫 20.9 秒，第二次 2.7 秒，复用 147,793 个目录；见 cases/cases.json。
+    score: null
+  - id: correctness
+    label: 结果正确
+    description: 新增、删除、原地改写都能在下一次运行中体现，噪音目录不混入。
+    evidence: tests/test_list_videos.py 七项回归测试全部通过；fixture 含 node_modules、.app、隐藏目录与 `._` 副本。
+    score: null
+  - id: portability
+    label: 可移植
+    description: 不依赖第三方包，缓存位置随 Profile 解析而非硬编码路径。
+    evidence: scripts/list_videos.py 仅标准库；profile_path 与 profile_store.py 同一套解析顺序。
+    score: null
+  - id: metadata-depth
+    label: 元数据深度
+    description: 在需要时能回答编码、分辨率、时长，而不是只有文件名。
+    evidence: --probe 在 fixture 上正确识别 h264 与 hevc、320x240 与时长；探测结果按 size:mtime 缓存。
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  display_unit: credits
+  list_price_credits: 0
+  basis: 纯本地只读工具，标准库实现，没有托管成本；价值在于省去每次全盘 find 的等待。
+  boundary: 含扫描、缓存、过滤、排序与 ffprobe 元数据；不含转码、剪辑、迁移或删除。
+  review_trigger: 出现托管索引、跨设备同步或图形界面需求时复评。
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - MIT source
+  verification: 渠道发布状态由独立 Publisher 记录维护；本地源已验证，尚未发布到任何渠道。

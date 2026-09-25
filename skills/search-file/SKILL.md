@@ -7,7 +7,7 @@ description: >
 license: MIT
 metadata:
   author: lovstudio
-  version: "0.1.0"
+  version: "0.1.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - search

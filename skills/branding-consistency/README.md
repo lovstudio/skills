@@ -1,6 +1,6 @@
 # 品牌审校官 · Brand Editor
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
 
 让公众号、网站、App、策划案、海报等场景中的每一句文案，都从真实受众与品牌角色
 出发；同时隔离读者文案、无障碍文本、归属信息和内部制作说明。

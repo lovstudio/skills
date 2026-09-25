@@ -7,7 +7,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: LovStudio
-  version: "0.1.0"
+  version: "0.1.1"
   tags:
     - camera-media
     - backup

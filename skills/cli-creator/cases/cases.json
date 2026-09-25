@@ -1,0 +1,30 @@
+[
+  {
+    "type": "case",
+    "title": "Generate a real CLI for Skill Creator",
+    "description": "The current skills repository supplied an existing Skill Creator with real create and validate scripts. lov-cli-creator analyzed that source, generated an installable command, invoked it from an isolated environment, created a new temporary Skill source, and validated the original project through its real backend.",
+    "input": {
+      "items": [
+        "Local project: skill-creator-skill",
+        "Existing backends: scripts/init_skill.py and scripts/validate_skill.py",
+        "CLI plan: cases/evidence/skill-creator-plan.json"
+      ]
+    },
+    "prompt": "参考 CLI-Anything，做一个 lov-cli-creator，接收一个项目路径，默认为 Skill 执行所在路径，输出一个 CLI。",
+    "output": {
+      "items": [
+        "Generated command: lov-cli-skill-creator",
+        "Built-ins: doctor, info, capabilities",
+        "Domain commands: create, validate",
+        "Five generated-CLI tests passed and the final CLI validator passed all five checks",
+        "Real create workflow produced and read back a complete Skill scaffold"
+      ]
+    },
+    "evidence": [
+      "cases/evidence/skill-creator-analysis.json",
+      "cases/evidence/skill-creator-plan.json",
+      "cases/evidence/generated-cli-help.txt",
+      "cases/evidence/skill-creator-result.json"
+    ]
+  }
+]

@@ -1,6 +1,6 @@
 # 国际化巡检 · I18n Inspector
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
 
 检查并修复用户可见文案硬编码、缺失翻译键及语言配置。
 

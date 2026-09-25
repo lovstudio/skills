@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replaces repeated project-specific CLI bootstrapping with a real-backend methodology, safe scaffold, install contract, and executable acceptance gate."
+basis: "Free local source keeps the generator auditable and reusable while the target project's own runtime, license, and operating cost remain separate."
+boundary: "Includes project inspection, CLI planning, harness generation, local installation paths, helper tests, and local validation. It excludes custom backend development beyond the current project task, remote hosting, package publication, marketplace uploads, and support guarantees."
+review_trigger: "Reassess when the offering adds proprietary cloud adapters, managed execution, enterprise policy packs, or a maintained hosted distribution service."
+confidence: verified-local

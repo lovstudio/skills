@@ -1,0 +1,3623 @@
+{
+  "schema": "skill-naming-review/v1",
+  "scope_ids": [
+    "frontend-design",
+    "env-management",
+    "image-translation-errata",
+    "image-creator",
+    "create-qrcode",
+    "maintain-partners",
+    "fill-form",
+    "fill-web-form",
+    "any2pdf",
+    "any2docx",
+    "any2deck",
+    "pdf2png",
+    "png2svg",
+    "bp",
+    "bp-outline",
+    "bp-deck",
+    "bp-polish",
+    "proposal",
+    "solution-architect",
+    "review-doc",
+    "contract-review-pro",
+    "expense-report",
+    "event-poster",
+    "visual-clone",
+    "find-logo",
+    "branding-consistency",
+    "human-writing",
+    "writing-style",
+    "article-creator",
+    "publish-wechat-article",
+    "document-illustrator",
+    "deep-research",
+    "write-professional-book",
+    "wxmp-cracker",
+    "event-curator",
+    "thesis-polish",
+    "translation-review",
+    "style-clone",
+    "hanzi-lens",
+    "fact-check",
+    "professional-portrait",
+    "riso-portrait",
+    "rich-export",
+    "professional-infographic",
+    "oh-my-landingpage",
+    "business-card",
+    "academic-translator",
+    "paper-translator",
+    "video-chapter",
+    "media-creator",
+    "media-publisher",
+    "publish-wechat-channels",
+    "mobile-adapt",
+    "repo2docs",
+    "wdb-cli",
+    "skill-creator",
+    "skill-add-case",
+    "skill-optimizer",
+    "auto-context",
+    "cc-migrate-session",
+    "deploy-to-vercel",
+    "finder-action",
+    "gh-access",
+    "gh-contribute",
+    "gh-tidy",
+    "install-tanstack-query",
+    "release-via-cicd",
+    "optimize-tauri-backend",
+    "app-generator",
+    "electron-delta-updater",
+    "electron-app-relaunch",
+    "install-ai",
+    "skill-distiller",
+    "skill-pricing",
+    "media-crawler",
+    "skill-publisher",
+    "obsidian-reset-cache",
+    "project-port",
+    "clash-tun-doctor",
+    "subtitle-freedom",
+    "clean-mac",
+    "media-fetch",
+    "china-website-filing",
+    "yoda-automation",
+    "ataru-indexing",
+    "search-chat",
+    "open-codex-session",
+    "integrate-lovinsp",
+    "dsh-plugin-creator",
+    "dsh-plugin-publisher",
+    "describe-image",
+    "personal-vocabulary",
+    "npm-publisher",
+    "typeless-prompt",
+    "cli2anything",
+    "search-twitter",
+    "search-file",
+    "publish-event-onto-hdx",
+    "migrate-camera-media",
+    "praise-before-work",
+    "video-moments",
+    "better-css",
+    "better-github-desc",
+    "better-project-structure",
+    "better-readme",
+    "better-seo",
+    "better-statusline",
+    "brainstorm",
+    "checkpoint-list",
+    "checkpoint",
+    "clone-rebrand",
+    "daily-post",
+    "dev-research",
+    "distill-to-system",
+    "distill",
+    "fix-broken-links",
+    "fix-by-add-log",
+    "fix-general",
+    "fix-until-no-error",
+    "gen-logo",
+    "gen-project-name",
+    "git-commit-with-context",
+    "help-cmd",
+    "i18n-check-i18n",
+    "illustrate",
+    "init-auth",
+    "init-port",
+    "install-design",
+    "install-shadcn-ui",
+    "install-tauri-logo",
+    "install-web-logo",
+    "install-zenmux-api",
+    "kb-organize",
+    "kill-emoji",
+    "legal-pages",
+    "memory-add",
+    "memory-search",
+    "meta-command",
+    "nano-banana-pro",
+    "obsidian-ensure-dev-sync",
+    "output-wechat-moment",
+    "output",
+    "refactor-api",
+    "refactor-modular",
+    "rename-project",
+    "repo-takeover",
+    "version-management-manual",
+    "version-management",
+    "xbti-gallery",
+    "five",
+    "add-task",
+    "think",
+    "code-review",
+    "architecture-documentation",
+    "agent-instructions",
+    "add-tool"
+  ],
+  "rows": [
+    {
+      "id": "frontend-design",
+      "before": {
+        "name_zh": "前端设计",
+        "display_name": "Frontend Design"
+      },
+      "after": {
+        "name_zh": "界面设计师",
+        "display_name": "Interface Designer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#frontend-design",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "env-management",
+      "before": {
+        "name_zh": "环境凭据账本",
+        "display_name": "Environment Ledger"
+      },
+      "after": {
+        "name_zh": "凭据管家",
+        "display_name": "Credential Keeper"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#env-management",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "image-translation-errata",
+      "before": {
+        "name_zh": "图片翻译勘误",
+        "display_name": "Image Translation Errata"
+      },
+      "after": {
+        "name_zh": "图片译校",
+        "display_name": "Image Translation Review"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#image-translation-errata",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "image-creator",
+      "before": {
+        "name_zh": "图像创作",
+        "display_name": "Image Studio"
+      },
+      "after": {
+        "name_zh": "造图师",
+        "display_name": "Image Maker"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#image-creator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "create-qrcode",
+      "before": {
+        "name_zh": "二维码生成器",
+        "display_name": "QR Code Creator"
+      },
+      "after": {
+        "name_zh": "二维码工坊",
+        "display_name": "QR Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#create-qrcode",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "maintain-partners",
+      "before": {
+        "name_zh": "合作伙伴维护",
+        "display_name": "Partners Maintainer"
+      },
+      "after": {
+        "name_zh": "伙伴名录",
+        "display_name": "Partner Directory"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#maintain-partners",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "fill-form",
+      "before": {
+        "name_zh": "表单代笔",
+        "display_name": "Form Filler"
+      },
+      "after": {
+        "name_zh": "表单小助手",
+        "display_name": "Form Assistant"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#fill-form",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "fill-web-form",
+      "before": {
+        "name_zh": "网页代笔",
+        "display_name": "Web Form Filler"
+      },
+      "after": {
+        "name_zh": "网页填表助手",
+        "display_name": "Web Form Assistant"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#fill-web-form",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "any2pdf",
+      "before": {
+        "name_zh": "万物转 PDF",
+        "display_name": "Any → PDF"
+      },
+      "after": {
+        "name_zh": "PDF大师",
+        "display_name": "PDF Master"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "PDF大师"
+      },
+      "evidence": [
+        "catalog-capabilities.json#any2pdf",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "any2docx",
+      "before": {
+        "name_zh": "万物转 Word",
+        "display_name": "Any → Word"
+      },
+      "after": {
+        "name_zh": "Word 大师",
+        "display_name": "Word Master"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#any2docx",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "any2deck",
+      "before": {
+        "name_zh": "万物转幻灯",
+        "display_name": "Any → Slides"
+      },
+      "after": {
+        "name_zh": "PPT 大师",
+        "display_name": "PPT Master"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "PPT 大师"
+      },
+      "evidence": [
+        "catalog-capabilities.json#any2deck",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "pdf2png",
+      "before": {
+        "name_zh": "PDF 出长图",
+        "display_name": "PDF → Image"
+      },
+      "after": {
+        "name_zh": "PDF 长图",
+        "display_name": "PDF Scroll"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#pdf2png",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "png2svg",
+      "before": {
+        "name_zh": "PNG 矢量化",
+        "display_name": "PNG → SVG"
+      },
+      "after": {
+        "name_zh": "矢量描摹",
+        "display_name": "Vector Tracer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#png2svg",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "bp",
+      "before": {
+        "name_zh": "BP 工具包",
+        "display_name": "BP Skill Kit"
+      },
+      "after": {
+        "name_zh": "BP 工坊",
+        "display_name": "BP Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#bp",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "bp-outline",
+      "before": {
+        "name_zh": "BP 大纲",
+        "display_name": "BP Outline"
+      },
+      "after": {
+        "name_zh": "BP 蓝图",
+        "display_name": "BP Blueprint"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#bp-outline",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "bp-deck",
+      "before": {
+        "name_zh": "BP 幻灯片",
+        "display_name": "BP Deck"
+      },
+      "after": {
+        "name_zh": "BP 大师",
+        "display_name": "BP Master"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "BP 大师"
+      },
+      "evidence": [
+        "catalog-capabilities.json#bp-deck",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "bp-polish",
+      "before": {
+        "name_zh": "BP 审稿润色",
+        "display_name": "BP Polish"
+      },
+      "after": {
+        "name_zh": "BP 精修",
+        "display_name": "BP Polish"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#bp-polish",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "proposal",
+      "before": {
+        "name_zh": "专业需求评估",
+        "display_name": "Proposal Writer"
+      },
+      "after": {
+        "name_zh": "提案专家",
+        "display_name": "Proposal Expert"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#proposal",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "solution-architect",
+      "before": {
+        "name_zh": "解决方案架构师",
+        "display_name": "Solution Architect"
+      },
+      "after": {
+        "name_zh": "方案架构师",
+        "display_name": "Solution Architect"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#solution-architect",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "review-doc",
+      "before": {
+        "name_zh": "合同审阅 · 日常版",
+        "display_name": "Contract Review"
+      },
+      "after": {
+        "name_zh": "合同精修",
+        "display_name": "Contract Polish"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#review-doc",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "contract-review-pro",
+      "before": {
+        "name_zh": "合同审阅 · 专业版",
+        "display_name": "Contract Review Pro"
+      },
+      "after": {
+        "name_zh": "合同批注专家",
+        "display_name": "Contract Reviewer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#contract-review-pro",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "expense-report",
+      "before": {
+        "name_zh": "报销整理",
+        "display_name": "Expense Reporter"
+      },
+      "after": {
+        "name_zh": "报销管家",
+        "display_name": "Expense Assistant"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#expense-report",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "event-poster",
+      "before": {
+        "name_zh": "大师级海报生成",
+        "display_name": "Event Poster"
+      },
+      "after": {
+        "name_zh": "专业海报",
+        "display_name": "Professional Poster"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "专业海报"
+      },
+      "evidence": [
+        "catalog-capabilities.json#event-poster",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "visual-clone",
+      "before": {
+        "name_zh": "像素级海报复刻",
+        "display_name": "Visual Clone"
+      },
+      "after": {
+        "name_zh": "风格采样",
+        "display_name": "Style Sampler"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#visual-clone",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "find-logo",
+      "before": {
+        "name_zh": "Logo 狩猎",
+        "display_name": "Logo Hunter"
+      },
+      "after": {
+        "name_zh": "Logo 雷达",
+        "display_name": "Logo Radar"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#find-logo",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "branding-consistency",
+      "before": {
+        "name_zh": "品牌语境门禁",
+        "display_name": "Branding Consistency"
+      },
+      "after": {
+        "name_zh": "品牌审校官",
+        "display_name": "Brand Editor"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#branding-consistency",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "human-writing",
+      "before": {
+        "name_zh": "中文作者性与反 AI 编辑",
+        "display_name": "Human Writing"
+      },
+      "after": {
+        "name_zh": "文稿润色师",
+        "display_name": "Text Editor"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#human-writing",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "writing-style",
+      "before": {
+        "name_zh": "个人中文文风",
+        "display_name": "Personal Writing Style"
+      },
+      "after": {
+        "name_zh": "我的文风",
+        "display_name": "My Writing Voice"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#writing-style",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "article-creator",
+      "before": {
+        "name_zh": "公众号文章创作系统",
+        "display_name": "WeChat Article Creator"
+      },
+      "after": {
+        "name_zh": "公众号写手",
+        "display_name": "WeChat Writer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#article-creator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "publish-wechat-article",
+      "before": {
+        "name_zh": "微信公众号文章发布器",
+        "display_name": "WeChat Article Publisher"
+      },
+      "after": {
+        "name_zh": "公众号发布助手",
+        "display_name": "WeChat Publisher"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#publish-wechat-article",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "document-illustrator",
+      "before": {
+        "name_zh": "文档配图",
+        "display_name": "Document Illustrator"
+      },
+      "after": {
+        "name_zh": "文档插画师",
+        "display_name": "Document Illustrator"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#document-illustrator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "deep-research",
+      "before": {
+        "name_zh": "深度研究",
+        "display_name": "Deep Research"
+      },
+      "after": {
+        "name_zh": "深度研究",
+        "display_name": "Deep Research"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#deep-research",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "write-professional-book",
+      "before": {
+        "name_zh": "专业写书",
+        "display_name": "Book Writer"
+      },
+      "after": {
+        "name_zh": "写书专家",
+        "display_name": "Book Writing Expert"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "写书专家"
+      },
+      "evidence": [
+        "catalog-capabilities.json#write-professional-book",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "wxmp-cracker",
+      "before": {
+        "name_zh": "公众号神器",
+        "display_name": "WeChat Archiver"
+      },
+      "after": {
+        "name_zh": "公众号神器",
+        "display_name": "WeChat Archiver"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "公众号神器"
+      },
+      "evidence": [
+        "catalog-capabilities.json#wxmp-cracker",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "event-curator",
+      "before": {
+        "name_zh": "活动策展",
+        "display_name": "Event Curator"
+      },
+      "after": {
+        "name_zh": "活动策划师",
+        "display_name": "Event Planner"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#event-curator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "thesis-polish",
+      "before": {
+        "name_zh": "论文润色",
+        "display_name": "Thesis Polish"
+      },
+      "after": {
+        "name_zh": "论文精修",
+        "display_name": "Thesis Polish"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#thesis-polish",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "translation-review",
+      "before": {
+        "name_zh": "译文审阅",
+        "display_name": "Translation Review"
+      },
+      "after": {
+        "name_zh": "译文校对",
+        "display_name": "Translation Review"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#translation-review",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "style-clone",
+      "before": {
+        "name_zh": "文风克隆",
+        "display_name": "Style Clone"
+      },
+      "after": {
+        "name_zh": "文风复刻",
+        "display_name": "Voice Replica"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#style-clone",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "hanzi-lens",
+      "before": {
+        "name_zh": "汉字镜",
+        "display_name": "Hanzi Lens"
+      },
+      "after": {
+        "name_zh": "汉字镜",
+        "display_name": "Hanzi Lens"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "汉字镜"
+      },
+      "evidence": [
+        "catalog-capabilities.json#hanzi-lens",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "fact-check",
+      "before": {
+        "name_zh": "事实校验",
+        "display_name": "Fact Check"
+      },
+      "after": {
+        "name_zh": "事实核查员",
+        "display_name": "Fact Checker"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#fact-check",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "professional-portrait",
+      "before": {
+        "name_zh": "职业形象照",
+        "display_name": "Professional Portrait"
+      },
+      "after": {
+        "name_zh": "职业形象照",
+        "display_name": "Professional Portrait"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#professional-portrait",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "riso-portrait",
+      "before": {
+        "name_zh": "Riso 人像",
+        "display_name": "Riso Portrait"
+      },
+      "after": {
+        "name_zh": "Riso 人像",
+        "display_name": "Riso Portrait"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#riso-portrait",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "rich-export",
+      "before": {
+        "name_zh": "富媒体一键导出",
+        "display_name": "Rich Media Export"
+      },
+      "after": {
+        "name_zh": "富文档导出",
+        "display_name": "Rich Export"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#rich-export",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "professional-infographic",
+      "before": {
+        "name_zh": "专业信息图",
+        "display_name": "Professional Infographic"
+      },
+      "after": {
+        "name_zh": "专业信息图",
+        "display_name": "Professional Infographic"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "专业信息图"
+      },
+      "evidence": [
+        "catalog-capabilities.json#professional-infographic",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "oh-my-landingpage",
+      "before": {
+        "name_zh": "品牌着陆页",
+        "display_name": "Oh My Landing Page"
+      },
+      "after": {
+        "name_zh": "官网小能手",
+        "display_name": "Website Whiz"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "官网小能手"
+      },
+      "evidence": [
+        "catalog-capabilities.json#oh-my-landingpage",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "business-card",
+      "before": {
+        "name_zh": "专业名片生成",
+        "display_name": "Business Card"
+      },
+      "after": {
+        "name_zh": "名片工坊",
+        "display_name": "Business Card Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#business-card",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "academic-translator",
+      "before": {
+        "name_zh": "论文 PDF 超级翻译官",
+        "display_name": "Academic PDF Translator"
+      },
+      "after": {
+        "name_zh": "学术译者",
+        "display_name": "Academic Translator"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#academic-translator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "paper-translator",
+      "before": {
+        "name_zh": "论文超级翻译官",
+        "display_name": "Paper Translator"
+      },
+      "after": {
+        "name_zh": "论文翻译官",
+        "display_name": "Paper Translator"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#paper-translator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "video-chapter",
+      "before": {
+        "name_zh": "视频章节工作台",
+        "display_name": "Video Chapter Skill Kit"
+      },
+      "after": {
+        "name_zh": "视频章节师",
+        "display_name": "Video Chapters"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#video-chapter",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "media-creator",
+      "before": {
+        "name_zh": "媒体创作工作流",
+        "display_name": "Media Creator"
+      },
+      "after": {
+        "name_zh": "视频工坊",
+        "display_name": "Video Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#media-creator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "media-publisher",
+      "before": {
+        "name_zh": "视频发布器",
+        "display_name": "Media Publisher"
+      },
+      "after": {
+        "name_zh": "视频分发助手",
+        "display_name": "Video Publisher"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#media-publisher",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "publish-wechat-channels",
+      "before": {
+        "name_zh": "视频号发布器",
+        "display_name": "WeChat Channels Publisher"
+      },
+      "after": {
+        "name_zh": "视频号发布助手",
+        "display_name": "WeChat Channels Publisher"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#publish-wechat-channels",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "mobile-adapt",
+      "before": {
+        "name_zh": "移动端适配",
+        "display_name": "Mobile Adapt"
+      },
+      "after": {
+        "name_zh": "移动适配师",
+        "display_name": "Mobile Fit"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#mobile-adapt",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "repo2docs",
+      "before": {
+        "name_zh": "文件夹生成文档站",
+        "display_name": "Repo to Docs"
+      },
+      "after": {
+        "name_zh": "文档站工坊",
+        "display_name": "Docs Site Builder"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#repo2docs",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "wdb-cli",
+      "before": {
+        "name_zh": "万能微信秘钥",
+        "display_name": "Universal WeChat Key"
+      },
+      "after": {
+        "name_zh": "万能微信秘钥",
+        "display_name": "Universal WeChat Key"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "万能微信秘钥"
+      },
+      "evidence": [
+        "catalog-capabilities.json#wdb-cli",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "skill-creator",
+      "before": {
+        "name_zh": "Skill 创建与迁移",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Skill 工坊",
+        "display_name": "Skill Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#skill-creator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "skill-add-case",
+      "before": {
+        "name_zh": "Skill 案例收录",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Skill 案例馆",
+        "display_name": "Skill Showcase"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#skill-add-case",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "skill-optimizer",
+      "before": {
+        "name_zh": "技能优化器",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Skill 精修师",
+        "display_name": "Skill Refiner"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#skill-optimizer",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "auto-context",
+      "before": {
+        "name_zh": "上下文体检",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "上下文哨兵",
+        "display_name": "Context Sentinel"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#auto-context",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "cc-migrate-session",
+      "before": {
+        "name_zh": "会话迁移",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "会话搬家",
+        "display_name": "Session Mover"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#cc-migrate-session",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "deploy-to-vercel",
+      "before": {
+        "name_zh": "部署到 Vercel",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Vercel 部署助手",
+        "display_name": "Vercel Deployer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#deploy-to-vercel",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "finder-action",
+      "before": {
+        "name_zh": "Finder 右键动作",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Finder 快捷动作",
+        "display_name": "Finder Actions"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#finder-action",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "gh-access",
+      "before": {
+        "name_zh": "GitHub 协作者管理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "GitHub 协作管家",
+        "display_name": "GitHub Collaborator Manager"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#gh-access",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "gh-contribute",
+      "before": {
+        "name_zh": "GitHub 投稿 PR",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "开源贡献助手",
+        "display_name": "Open Source Contributor"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#gh-contribute",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "gh-tidy",
+      "before": {
+        "name_zh": "GitHub 仓库整理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "GitHub 整理师",
+        "display_name": "GitHub Organizer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#gh-tidy",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "install-tanstack-query",
+      "before": {
+        "name_zh": "TanStack Query 初始化",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "TanStack Query 接入",
+        "display_name": "TanStack Query Setup"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#install-tanstack-query",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "release-via-cicd",
+      "before": {
+        "name_zh": "CI/CD 发布",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "自动发版",
+        "display_name": "Release Pilot"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#release-via-cicd",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "optimize-tauri-backend",
+      "before": {
+        "name_zh": "Tauri 后端优化",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Tauri 后端调优",
+        "display_name": "Tauri Backend Tuner"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#optimize-tauri-backend",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "app-generator",
+      "before": {
+        "name_zh": "App 生成器",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "应用工坊",
+        "display_name": "App Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#app-generator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "electron-delta-updater",
+      "before": {
+        "name_zh": "Electron 增量更新",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Electron 增量更新",
+        "display_name": "Electron Delta Updates"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#electron-delta-updater",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "electron-app-relaunch",
+      "before": {
+        "name_zh": "Electron 应用重启",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "桌面应用重启",
+        "display_name": "Desktop App Relaunch"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#electron-app-relaunch",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "install-ai",
+      "before": {
+        "name_zh": "AI 功能初始化",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "AI 接入助手",
+        "display_name": "AI Integrator"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#install-ai",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "skill-distiller",
+      "before": {
+        "name_zh": "Skill 经验蒸馏",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Skill 炼金师",
+        "display_name": "Skill Alchemist"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#skill-distiller",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "skill-pricing",
+      "before": {
+        "name_zh": "Skill 定价",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Skill 定价师",
+        "display_name": "Skill Pricer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#skill-pricing",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "media-crawler",
+      "before": {
+        "name_zh": "媒体链接下载",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "媒体下载器",
+        "display_name": "Media Downloader"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#media-crawler",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "skill-publisher",
+      "before": {
+        "name_zh": "Skill 发布器",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Skill 发布助手",
+        "display_name": "Skill Publisher"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#skill-publisher",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "obsidian-reset-cache",
+      "before": {
+        "name_zh": "重置 Obsidian 缓存",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Obsidian 缓存清理",
+        "display_name": "Obsidian Cache Reset"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#obsidian-reset-cache",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "project-port",
+      "before": {
+        "name_zh": "项目端口分配",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "端口管家",
+        "display_name": "Port Keeper"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#project-port",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "clash-tun-doctor",
+      "before": {
+        "name_zh": "Clash TUN 网络医生",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Clash 网络医生",
+        "display_name": "Clash Network Doctor"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#clash-tun-doctor",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "subtitle-freedom",
+      "before": {
+        "name_zh": "人人字幕",
+        "display_name": "Subtitle Freedom"
+      },
+      "after": {
+        "name_zh": "人人字幕",
+        "display_name": "Subtitle Freedom"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "人人字幕"
+      },
+      "evidence": [
+        "catalog-capabilities.json#subtitle-freedom",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "clean-mac",
+      "before": {
+        "name_zh": "清理 Mac",
+        "display_name": "Clean Mac"
+      },
+      "after": {
+        "name_zh": "Mac 清理助手",
+        "display_name": "Mac Cleaner"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#clean-mac",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "media-fetch",
+      "before": {
+        "name_zh": "媒体抓取",
+        "display_name": "Media Fetch"
+      },
+      "after": {
+        "name_zh": "影视寻宝",
+        "display_name": "Media Finder"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#media-fetch",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "china-website-filing",
+      "before": {
+        "name_zh": "中国网站备案",
+        "display_name": "China Website Filing"
+      },
+      "after": {
+        "name_zh": "网站备案助手",
+        "display_name": "Website Filing Assistant"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#china-website-filing",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "yoda-automation",
+      "before": {
+        "name_zh": "Yoda 自动化",
+        "display_name": "Yoda Automation"
+      },
+      "after": {
+        "name_zh": "Yoda 自动化",
+        "display_name": "Yoda Automation"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#yoda-automation",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "ataru-indexing",
+      "before": {
+        "name_zh": "Ataru 索引",
+        "display_name": "Ataru Indexing"
+      },
+      "after": {
+        "name_zh": "Ataru 索引",
+        "display_name": "Ataru Indexing"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#ataru-indexing",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "search-chat",
+      "before": {
+        "name_zh": "历史会话检索",
+        "display_name": "Search Chat"
+      },
+      "after": {
+        "name_zh": "会话寻踪",
+        "display_name": "Chat Finder"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#search-chat",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "open-codex-session",
+      "before": {
+        "name_zh": "打开 Codex 会话",
+        "display_name": "Open Codex Session"
+      },
+      "after": {
+        "name_zh": "Codex 任务直达",
+        "display_name": "Codex Task Launcher"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#open-codex-session",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "integrate-lovinsp",
+      "before": {
+        "name_zh": "Lovinsp 接入",
+        "display_name": "Lovinsp Integration"
+      },
+      "after": {
+        "name_zh": "Lovinsp 接入",
+        "display_name": "Lovinsp Setup"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#integrate-lovinsp",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "dsh-plugin-creator",
+      "before": {
+        "name_zh": "DSH 插件开发",
+        "display_name": "DSH Plugin Creator"
+      },
+      "after": {
+        "name_zh": "DSH 插件工坊",
+        "display_name": "DSH Plugin Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#dsh-plugin-creator",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "dsh-plugin-publisher",
+      "before": {
+        "name_zh": "DSH 插件发布",
+        "display_name": "DSH Plugin Publisher"
+      },
+      "after": {
+        "name_zh": "DSH 插件发布",
+        "display_name": "DSH Plugin Publisher"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#dsh-plugin-publisher",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "describe-image",
+      "before": {
+        "name_zh": "图片描述",
+        "display_name": "Describe Image"
+      },
+      "after": {
+        "name_zh": "看图说话",
+        "display_name": "Image Narrator"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#describe-image",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "personal-vocabulary",
+      "before": {
+        "name_zh": "",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "我的词库",
+        "display_name": "My Vocabulary"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#personal-vocabulary",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "npm-publisher",
+      "before": {
+        "name_zh": "npm 发布器",
+        "display_name": "NPM Publisher"
+      },
+      "after": {
+        "name_zh": "npm 发布助手",
+        "display_name": "npm Publisher"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#npm-publisher",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "typeless-prompt",
+      "before": {
+        "name_zh": "手工川工作室 Typeless 复刻版",
+        "display_name": "SGC Typeless Clone"
+      },
+      "after": {
+        "name_zh": "口述成文",
+        "display_name": "Dictation Editor"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#typeless-prompt",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "cli2anything",
+      "before": {
+        "name_zh": "API 万物转换器++",
+        "display_name": "cli2anything++"
+      },
+      "after": {
+        "name_zh": "接口工坊",
+        "display_name": "API Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#cli2anything",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "search-twitter",
+      "before": {
+        "name_zh": "X/Twitter 原帖恢复",
+        "display_name": "X/Twitter Source Recovery"
+      },
+      "after": {
+        "name_zh": "X 原帖寻回",
+        "display_name": "X Post Recovery"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#search-twitter",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "search-file",
+      "before": {
+        "name_zh": "AI 对话文件检索",
+        "display_name": "AI Conversation File Search"
+      },
+      "after": {
+        "name_zh": "文件寻踪",
+        "display_name": "File Finder"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#search-file",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "publish-event-onto-hdx",
+      "before": {
+        "name_zh": "活动行曝光诊断",
+        "display_name": "Huodongxing Event Exposure"
+      },
+      "after": {
+        "name_zh": "活动行诊断",
+        "display_name": "Huodongxing Diagnostics"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#publish-event-onto-hdx",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "migrate-camera-media",
+      "before": {
+        "name_zh": "相机素材迁移",
+        "display_name": "Camera Media Migration"
+      },
+      "after": {
+        "name_zh": "相机素材管家",
+        "display_name": "Camera Media Keeper"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#migrate-camera-media",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "praise-before-work",
+      "before": {
+        "name_zh": "开工前夸夸",
+        "display_name": "Praise Before Work"
+      },
+      "after": {
+        "name_zh": "开工夸夸",
+        "display_name": "A Little Encouragement"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#praise-before-work",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "video-moments",
+      "before": {
+        "name_zh": "视频现场瞬间",
+        "display_name": "Video Moments"
+      },
+      "after": {
+        "name_zh": "精彩定格",
+        "display_name": "Video Stills"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#video-moments",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "better-css",
+      "before": {
+        "name_zh": "CSS 整理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "CSS 精修",
+        "display_name": "CSS Polish"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#better-css",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "better-github-desc",
+      "before": {
+        "name_zh": "GitHub 仓库简介优化",
+        "display_name": "GitHub Repository Description Optimization"
+      },
+      "after": {
+        "name_zh": "GitHub 仓库简介优化",
+        "display_name": "GitHub Repository Description Optimization"
+      },
+      "decision": "retain",
+      "approval": {
+        "name_zh": "user",
+        "display_name": "editorial"
+      },
+      "approved": {
+        "name_zh": "GitHub 仓库简介优化"
+      },
+      "evidence": [
+        "catalog-capabilities.json#better-github-desc",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "better-project-structure",
+      "before": {
+        "name_zh": "项目结构整理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "项目整理师",
+        "display_name": "Project Organizer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#better-project-structure",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "better-readme",
+      "before": {
+        "name_zh": "README 完善",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "README 精修",
+        "display_name": "README Polish"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#better-readme",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "better-seo",
+      "before": {
+        "name_zh": "Next.js SEO",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Next.js SEO 助手",
+        "display_name": "Next.js SEO Assistant"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#better-seo",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "better-statusline",
+      "before": {
+        "name_zh": "状态栏配置",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "状态栏工坊",
+        "display_name": "Status Line Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#better-statusline",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "brainstorm",
+      "before": {
+        "name_zh": "需求梳理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "需求梳理",
+        "display_name": "Requirements Compass"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#brainstorm",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "checkpoint-list",
+      "before": {
+        "name_zh": "检查点历史",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "检查点回看",
+        "display_name": "Checkpoint History"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#checkpoint-list",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "checkpoint",
+      "before": {
+        "name_zh": "项目检查点",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "项目存档",
+        "display_name": "Project Checkpoint"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#checkpoint",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "clone-rebrand",
+      "before": {
+        "name_zh": "模板项目改造",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "项目换装",
+        "display_name": "Project Makeover"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#clone-rebrand",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "daily-post",
+      "before": {
+        "name_zh": "项目日更文案",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "开发日记",
+        "display_name": "Dev Diary"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#daily-post",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "dev-research",
+      "before": {
+        "name_zh": "研发选型调研",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "技术选型顾问",
+        "display_name": "Tech Selection Advisor"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#dev-research",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "distill-to-system",
+      "before": {
+        "name_zh": "经验写入规则",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "经验入规",
+        "display_name": "Lessons to Rules"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#distill-to-system",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "distill",
+      "before": {
+        "name_zh": "经验提炼",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "经验萃取",
+        "display_name": "Lesson Distiller"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#distill",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "fix-broken-links",
+      "before": {
+        "name_zh": "链接修复",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "链接修补匠",
+        "display_name": "Link Fixer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#fix-broken-links",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "fix-by-add-log",
+      "before": {
+        "name_zh": "日志定位问题",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "日志侦探",
+        "display_name": "Log Detective"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#fix-by-add-log",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "fix-general",
+      "before": {
+        "name_zh": "问题诊断修复",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "故障诊疗",
+        "display_name": "Troubleshooter"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#fix-general",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "fix-until-no-error",
+      "before": {
+        "name_zh": "持续修复错误",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "验证修复",
+        "display_name": "Verified Fixes"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#fix-until-no-error",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "gen-logo",
+      "before": {
+        "name_zh": "Logo 创作",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Logo 工坊",
+        "display_name": "Logo Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#gen-logo",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "gen-project-name",
+      "before": {
+        "name_zh": "项目命名",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "项目起名师",
+        "display_name": "Project Namer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#gen-project-name",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "git-commit-with-context",
+      "before": {
+        "name_zh": "按会话提交",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "会话提交",
+        "display_name": "Context Commit"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#git-commit-with-context",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "help-cmd",
+      "before": {
+        "name_zh": "需求转命令",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "命令助手",
+        "display_name": "Command Helper"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#help-cmd",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "i18n-check-i18n",
+      "before": {
+        "name_zh": "前端国际化",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "国际化巡检",
+        "display_name": "I18n Inspector"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#i18n-check-i18n",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "illustrate",
+      "before": {
+        "name_zh": "文档配图",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "图解文档",
+        "display_name": "Document Visuals"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#illustrate",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "init-auth",
+      "before": {
+        "name_zh": "Supabase 身份认证",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Supabase 登录接入",
+        "display_name": "Supabase Auth Setup"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#init-auth",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "init-port",
+      "before": {
+        "name_zh": "项目端口配置",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "端口初始化",
+        "display_name": "Port Setup"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#init-port",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "install-design",
+      "before": {
+        "name_zh": "设计系统接入",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "设计系统接入",
+        "display_name": "Design System Setup"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#install-design",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "install-shadcn-ui",
+      "before": {
+        "name_zh": "shadcn/ui 接入",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "shadcn/ui 接入",
+        "display_name": "shadcn/ui Setup"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#install-shadcn-ui",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "install-tauri-logo",
+      "before": {
+        "name_zh": "Tauri 图标接入",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Tauri 图标助手",
+        "display_name": "Tauri Icon Setup"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#install-tauri-logo",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "install-web-logo",
+      "before": {
+        "name_zh": "网页图标接入",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "网站 Logo 助手",
+        "display_name": "Website Logo Setup"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#install-web-logo",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "install-zenmux-api",
+      "before": {
+        "name_zh": "ZenMux API 接入",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "ZenMux 接入",
+        "display_name": "ZenMux Setup"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#install-zenmux-api",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "kb-organize",
+      "before": {
+        "name_zh": "知识库整理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "知识库管家",
+        "display_name": "Knowledge Organizer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#kb-organize",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "kill-emoji",
+      "before": {
+        "name_zh": "界面符号整理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Emoji 换装",
+        "display_name": "Emoji Makeover"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#kill-emoji",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "legal-pages",
+      "before": {
+        "name_zh": "网站法律页面草稿",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "网站条款助手",
+        "display_name": "Website Legal Pages"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#legal-pages",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "memory-add",
+      "before": {
+        "name_zh": "知识记录",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "知识入库",
+        "display_name": "Knowledge Capture"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#memory-add",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "memory-search",
+      "before": {
+        "name_zh": "知识检索",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "知识寻回",
+        "display_name": "Knowledge Finder"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#memory-search",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "meta-command",
+      "before": {
+        "name_zh": "命令能力封装",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "流程工坊",
+        "display_name": "Workflow Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#meta-command",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "nano-banana-pro",
+      "before": {
+        "name_zh": "图像提示词整理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "图像提示师",
+        "display_name": "Image Prompt Crafter"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#nano-banana-pro",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "obsidian-ensure-dev-sync",
+      "before": {
+        "name_zh": "Obsidian 开发同步",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Obsidian 开发同步",
+        "display_name": "Obsidian Dev Sync"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#obsidian-ensure-dev-sync",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "output-wechat-moment",
+      "before": {
+        "name_zh": "朋友圈文案输出",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "朋友圈文案",
+        "display_name": "WeChat Moments Copy"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#output-wechat-moment",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "output",
+      "before": {
+        "name_zh": "内容保存文件",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "内容收纳",
+        "display_name": "Content Keeper"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#output",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "refactor-api",
+      "before": {
+        "name_zh": "API 冗余整理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "API 精修",
+        "display_name": "API Refiner"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#refactor-api",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "refactor-modular",
+      "before": {
+        "name_zh": "代码模块拆分",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "模块拆分师",
+        "display_name": "Module Refactorer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#refactor-modular",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "rename-project",
+      "before": {
+        "name_zh": "项目重命名",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "项目改名",
+        "display_name": "Project Renamer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#rename-project",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "repo-takeover",
+      "before": {
+        "name_zh": "仓库接管",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "仓库接手",
+        "display_name": "Repository Takeover"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#repo-takeover",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "version-management-manual",
+      "before": {
+        "name_zh": "Changeset 人工审阅",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "版本审阅",
+        "display_name": "Version Review"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#version-management-manual",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "version-management",
+      "before": {
+        "name_zh": "Changesets 版本管理",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "版本管家",
+        "display_name": "Version Keeper"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#version-management",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "xbti-gallery",
+      "before": {
+        "name_zh": "XBTI 案例浏览",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "XBTI 图鉴",
+        "display_name": "XBTI Gallery"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#xbti-gallery",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "five",
+      "before": {
+        "name_zh": "五字简答",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "五字答",
+        "display_name": "Five-Unit Replies"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#five",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "add-task",
+      "before": {
+        "name_zh": "任务清单追加",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "任务随手记",
+        "display_name": "Task Capture"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#add-task",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "think",
+      "before": {
+        "name_zh": "复杂问题分析",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "深度思考",
+        "display_name": "Deep Thinking"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#think",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "code-review",
+      "before": {
+        "name_zh": "代码审查",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "代码审阅官",
+        "display_name": "Code Reviewer"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#code-review",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "architecture-documentation",
+      "before": {
+        "name_zh": "架构文档",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "架构图谱",
+        "display_name": "Architecture Atlas"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#architecture-documentation",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "agent-instructions",
+      "before": {
+        "name_zh": "Agent 项目规范",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "Agent 规范管家",
+        "display_name": "Agent Guide Keeper"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#agent-instructions",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    },
+    {
+      "id": "add-tool",
+      "before": {
+        "name_zh": "在线工具集成",
+        "display_name": ""
+      },
+      "after": {
+        "name_zh": "小工具工坊",
+        "display_name": "Web Tool Studio"
+      },
+      "decision": "rename",
+      "approval": {
+        "name_zh": "editorial",
+        "display_name": "editorial"
+      },
+      "approved": {},
+      "evidence": [
+        "catalog-capabilities.json#add-tool",
+        "provenance.md"
+      ],
+      "reason": "保留历史命名决定；本次回放核对完整覆盖与认可原文，能力语义依据原任务审核。"
+    }
+  ],
+  "author_prefixes": [
+    "手工川｜",
+    "LovStudio｜"
+  ]
+}

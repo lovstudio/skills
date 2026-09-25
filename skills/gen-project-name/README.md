@@ -1,6 +1,6 @@
 # 项目起名师 · Project Namer
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 根据项目用途提供可用于文件夹与仓库的名称及定位说明。
 

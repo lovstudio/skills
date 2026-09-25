@@ -1,0 +1,48 @@
+schema: skill-manifest/v1
+id: lov-integrate-modern-screenshot
+version: "0.1.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-integrate-modern-screenshot
+    persist:
+      enabled: true
+      namespace: skills.lov-integrate-modern-screenshot
+      records_path: skills.lov-integrate-modern-screenshot.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 导出按钮与提示文案使用哪种语言？
+      - path: brand.tone
+        required: false
+        question: 目标页面已有怎样的品牌语气或视觉关键词（用于按钮悬停强调色）？
+      - path: workspace.project_roots
+        required: false
+        question: 需要集成截图能力的网页/项目在哪里？
+      - path: skills.lov-integrate-modern-screenshot.records.default_scale
+        required: false
+        question: 是否有长期偏好的输出缩放倍数（默认 2）？
+      - path: skills.lov-integrate-modern-screenshot.records.default_width
+        required: false
+        question: 是否有长期固定的截图容器宽度（默认 760px）？
+  preferences:
+    namespace: lov_integrate_modern_screenshot
+    fields:
+      - path: user.language
+        required: false
+        question: 导出按钮与提示文案使用哪种语言？
+      - path: preferences.chrome_path
+        required: false
+        question: 端到端验证使用哪个 Chrome/Chromium 可执行文件？
+  interaction:
+    ask_missing: true
+    max_questions: 1

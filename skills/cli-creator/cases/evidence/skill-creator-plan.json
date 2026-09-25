@@ -1,0 +1,90 @@
+{
+  "schema": "lov-cli-plan/v1",
+  "name": "Skill Creator",
+  "command": "lov-cli-skill-creator",
+  "description": "Create and validate portable Agent Skills through Skill Creator's real local scripts.",
+  "python_dependencies": ["PyYAML>=6"],
+  "backend": {
+    "kind": "subprocess",
+    "name": "Skill Creator Python scripts",
+    "executable": "python3",
+    "install": "Install Python 3.9 or newer and PyYAML, then use the real skill-creator-skill source.",
+    "timeout_seconds": 120
+  },
+  "commands": [
+    {
+      "name": "create",
+      "description": "Create a portable Skill source with the real init_skill.py backend.",
+      "mutates": true,
+      "argv": ["$PYTHON", "scripts/init_skill.py"],
+      "parameters": [
+        {
+          "name": "name",
+          "kind": "positional",
+          "type": "string",
+          "required": true,
+          "description": "Short Skill name without lov- or -skill."
+        },
+        {
+          "name": "path",
+          "kind": "option",
+          "flags": ["--path"],
+          "backend_flag": "--path",
+          "type": "path",
+          "required": false,
+          "description": "Parent directory for the generated Skill source."
+        },
+        {
+          "name": "install-dir",
+          "kind": "option",
+          "flags": ["--install-dir"],
+          "backend_flag": "--install-dir",
+          "type": "path",
+          "required": false,
+          "description": "Optional local Agent Skills install directory."
+        },
+        {
+          "name": "kit",
+          "kind": "flag",
+          "flags": ["--kit"],
+          "backend_flag": "--kit",
+          "description": "Create a self-contained Skill Kit."
+        },
+        {
+          "name": "module",
+          "kind": "option",
+          "flags": ["--module"],
+          "backend_flag": "--module",
+          "type": "string",
+          "repeatable": true,
+          "required": false,
+          "description": "Embedded module name; repeat for a Skill Kit."
+        }
+      ],
+      "postconditions": [
+        "Generated source directory exists",
+        "Required Skill trust bundle and Profile contract exist"
+      ]
+    },
+    {
+      "name": "validate",
+      "description": "Validate a Skill source with the real validate_skill.py backend.",
+      "mutates": false,
+      "argv": ["$PYTHON", "scripts/validate_skill.py"],
+      "parameters": [
+        {
+          "name": "path",
+          "kind": "positional",
+          "type": "path",
+          "required": false,
+          "default": ".",
+          "description": "Skill source directory to validate."
+        }
+      ],
+      "postconditions": [
+        "Validator exits zero",
+        "Validator output contains PASSED"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: "在 ICP 通过后安全配置部署、DNS、证书和备案页脚，用真实域名回读验证 HTTPS 与站点内容，并按授权处理旧域名。"
 owner:
   team: LovStudio

@@ -1,0 +1,11 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "建立多形态 adapter 与跨 surface 测试，降低重复设计、实现或验证成本。"
+basis: "作为 lov-atom-feature-dev 自包含 Kit 的内嵌模块免费提供。"
+boundary: "包含本模块说明、Profile 契约与信任卡；不包含外部服务费用、远端发布或定制工时。"
+review_trigger: "根 Kit 定价、真实案例价值或本模块维护负担发生变化时复评。"
+confidence: internal
+

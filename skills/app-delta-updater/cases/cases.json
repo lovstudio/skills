@@ -1,0 +1,23 @@
+[
+  {
+    "type": "case",
+    "title": "为 Ataru 恢复 Tauri 2 自动更新链路",
+    "description": "Ataru 的发布流水线已有更新 manifest 生成脚本，但运行时插件和签名产物配置在界面瘦身后被移除。本案例恢复跨平台签名更新，并明确当前不是差分下载。",
+    "input": {
+      "items": [
+        "Tauri 2 + React 桌面仓库",
+        "已有多平台 GitHub Release workflow 与 latest.json 生成脚本",
+        "用户要求自动发现、下载、安装新版本，并询问增量能力"
+      ]
+    },
+    "prompt": "本 app 虽然是 Tauri，但也请支持自动发现与更新版本能力，如果能支持增量就更好了。",
+    "output": {
+      "items": [
+        "接入 updater/process 运行时插件与 capabilities",
+        "恢复 createUpdaterArtifacts、公钥、Ataru latest.json endpoint 与签名缺失发布拦截",
+        "新增单飞检查、15 秒超时、下载进度、安装交接、重启和可复制 context_id 诊断",
+        "TypeScript 检查、Cargo check 与 5 项更新清单/配置测试通过"
+      ]
+    }
+  }
+]

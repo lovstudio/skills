@@ -1,6 +1,6 @@
 # 架构图谱 · Architecture Atlas
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 从项目实际实现生成架构视图、接口说明与决策记录草稿。
 

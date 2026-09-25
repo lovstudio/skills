@@ -1,0 +1,64 @@
+schema: skill-manifest/v1
+id: lov-skill-visualizer
+version: "0.6.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-skill-visualizer
+    persist:
+      enabled: true
+      namespace: skills.lov-skill-visualizer
+      records_path: skills.lov-skill-visualizer.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要用户身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要品牌身份，请提供品牌名称。
+      - path: brand.site
+        required: false
+        question: 如果需要品牌官网，请提供地址。
+      - path: brand.tone
+        required: false
+        question: 如果已有品牌语气或审美关键词，请提供它们。
+      - path: workspace.output_root
+        required: false
+        question: 如果需要固定输出目录，请提供路径。
+      - path: skills.lov-skill-visualizer.records.output_language
+        required: false
+        question: 运行逻辑报告默认使用中文还是英文？
+      - path: skills.lov-skill-visualizer.records.direction
+        required: false
+        question: Mermaid 默认使用 TB 还是 LR 方向？
+  preferences:
+    namespace: lov_skill_visualizer
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: false
+    max_questions: 1

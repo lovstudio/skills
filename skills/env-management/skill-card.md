@@ -45,7 +45,7 @@ Outputs are redacted JSON inventory, lifecycle and binding records, a mode-`0600
 
 ## Skill Version
 
-0.1.0
+0.2.1
 
 ## Ethical Considerations
 

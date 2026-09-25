@@ -7,6 +7,12 @@
 - Add a shared case collection with many-to-many Skill associations
 - Prepare one case for all participating Skills; verify all linked pages and preserve legacy case identity during migration
 
+## [0.4.2] - 2026-09-07
+
+### Added
+
+- 统一展示名为「Skill 案例馆」，保持调用 ID 与能力契约。
+
 ## [0.4.1] - 2026-09-07
 
 ### Fixed

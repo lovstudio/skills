@@ -1,0 +1,24 @@
+[
+  {
+    "type": "case",
+    "title": "第三期 OpenLess：13 分钟录屏在 49 秒内生成可剪辑字幕",
+    "description": "为一段 798.144 秒的中文产品实测录屏生成带时间戳字幕，同时复用 38 个个人词库词条，并保留本地 Whisper 结果作为专有词抽查基线。",
+    "input": {
+      "items": [
+        "一段 798.144 秒的 H.264/AAC 产品实测录屏",
+        "38 个启用词条的 OpenLess 兼容个人词库",
+        "用户明确接受本次约 0.18 元的云端识别预计费用"
+      ]
+    },
+    "prompt": "参考 OpenLess 的模型和热词配置，把第三期录屏转成可直接进入剪辑流程的 SRT；复用 lov-personal-vocabulary 词库，并与已有 Whisper 字幕抽查专有词。",
+    "output": {
+      "items": [
+        "DashScope qwen-audio-3.0-asr-flash 按 240 秒切成 4 段并行识别",
+        "49.257 秒完成识别，约为素材时长的 16.2 倍速，预计费用 0.1756 元",
+        "从 provider 的累计 SSE 结果重建出 206 条 cue，0 条非法时间戳、0 处重叠",
+        "输出 UTF-8 SRT、结构化 transcript JSON、纯文本、脱敏 report 和本地 raw 响应",
+        "SRT 已通过 FFmpeg 转 WebVTT parser smoke test；最终专有名词仍按屏幕内容和 Whisper 基线人工复核"
+      ]
+    }
+  }
+]

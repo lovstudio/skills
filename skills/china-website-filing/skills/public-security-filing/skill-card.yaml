@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: "为已取得 ICP 并开放的网站准备和提交公安联网备案，核验主体、网站与接入信息，跟进属地审核并独立处理安全评估分支。"
 owner:
   team: LovStudio

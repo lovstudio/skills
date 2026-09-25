@@ -1,6 +1,8 @@
 ---
 name: lov-video-chapter-render
 description: Render a chapter project as a transparent ProRes 4444 overlay or burn it into the source video with FFmpeg. Use when the user asks to generate, export, render, encode, or press a chapter progress bar into video.
+depends_on:
+  - lov-branding-consistency
 ---
 
 # 章节渲染 · Chapter Render

@@ -1,0 +1,52 @@
+schema: skill-manifest/v1
+id: lov-app-optimizer
+version: "0.2.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-app-optimizer
+      - skills.lov-electron-runtime-optimizer
+    persist:
+      enabled: true
+      namespace: skills.lov-app-optimizer
+      records_path: skills.lov-app-optimizer.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出性能报告？
+      - path: user.timezone
+        required: false
+        question: 运行时采样与事件关联使用哪个时区？
+      - path: workspace.project_roots
+        required: false
+        question: 需要审计哪些项目根目录？
+      - path: skills.lov-app-optimizer.records.acceptance_budget
+        required: false
+        question: 是否已有需要长期沿用的性能验收预算？
+  preferences:
+    namespace: lov_app_optimizer
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出性能报告？
+      - path: performance.report_detail
+        required: false
+        question: 性能报告需要简版还是完整证据版？
+      - path: performance.reclamation_mode
+        required: false
+        question: 默认只做 dry-run，还是在明确授权后允许执行安全回收？
+      - path: performance.platform_adapter
+        required: false
+        question: 是否有希望长期优先使用的平台测量 adapter？
+  interaction:
+    ask_missing: true
+    max_questions: 1

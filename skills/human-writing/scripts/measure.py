@@ -645,7 +645,7 @@ def report_text(payload: dict, show_loc: bool) -> str:
                 out.append(f"    - {where}: {it['snippet']}")
     out.append("\n" + "=" * 68)
     ref = payload["pressure_reference"]
-    out.append(f"总判定: {MARK[payload['overall']]}   "
+    out.append(f"表层统计: {MARK[payload['overall']]}   "
                f"压力分 {payload['pressure']}"
                f"（真人基准 p75={ref['human_p75']} / p90={ref['human_p90']}）")
     out.append(f"  未通过 {len(payload['failing_keys'])} 项 / 警告 "
@@ -675,6 +675,8 @@ def build_payload(text: str, profile: str, baseline: Optional[dict]) -> dict:
         baseline and (baseline.get("pressure_reference") or {}).get("p75") is not None)
     return {
         "schema": SCHEMA,
+        "scope": "surface_metrics_only",
+        "publication_readiness": "not_assessed",
         "profile": profile,
         "profile_label": PROFILES.get(profile, {}).get("label", profile),
         "baseline_provenance": (baseline or {}).get("provenance", "empirical-default"),
@@ -711,7 +713,7 @@ def compare(new: dict, old: dict) -> str:
         flag = "" if sa == sb else f"  {sa} -> {sb}"
         out.append(f"  {LABELS.get(k, k):<32} {a} -> {b}{flag}")
     out.append("-" * 68)
-    out.append(f"  总判定 {old.get('overall')} -> {new.get('overall')}")
+    out.append(f"  表层统计 {old.get('overall')} -> {new.get('overall')}")
     out.append(f"  未通过项 {len(old.get('failing_keys', []))} -> {len(new.get('failing_keys', []))}")
     out.append("=" * 68)
     return "\n".join(out)

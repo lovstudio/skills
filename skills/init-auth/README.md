@@ -1,6 +1,6 @@
 # Supabase 登录接入 · Supabase Auth Setup
 
-![Version](https://img.shields.io/badge/version-1.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.2.3-CC785C)
 
 为 React 应用接入 Supabase 登录、账户恢复及桌面浏览器 OAuth。
 

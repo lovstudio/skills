@@ -1,6 +1,6 @@
 # 开工夸夸 · A Little Encouragement
 
-![Version](https://img.shields.io/badge/version-0.2.0-blue)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 让 AI 在开工前先给你一段明确、具体的夸奖，再直接开展工作。
 

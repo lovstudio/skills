@@ -1,0 +1,38 @@
+[
+  {
+    "type": "case",
+    "id": "mountain-avatar-shared-conversation",
+    "title": "雪山张臂人像从紧近景改为环境头像",
+    "description": "真实用户先要求微信头像，否定紧近景后提供参考，接受环境人像修正版并要求对比与复刻 Prompt。",
+    "input": {
+      "items": [
+        "黑衣张臂雪山原照片",
+        "黄衣登山者构图风格参考",
+        "用户对近景版本的具体反馈"
+      ],
+      "source": "https://chatgpt.com/share/6ab38700-6d34-83ec-90c9-989ecd2d7f5a",
+      "evidence": "cases/source-evidence.json"
+    },
+    "prompt": "P 成适合做微信头像；修正意见：感觉没有人家这张帅；后续要求：可以，这个挺好的，请生成对比图与可复刻prompt",
+    "executed_prompt_evidence": "cases/source-evidence.json#executed_revision_prompt",
+    "output": {
+      "items": [
+        "历史选定雪山环境人像成片引用",
+        "cases/mountain-reproduction-prompt.txt"
+      ],
+      "image_reference": "sediment://file_00000000bb5c8211bff77c76b46a002f?shared_conversation_id=6ab38700-6d34-83ec-90c9-989ecd2d7f5a"
+    },
+    "verification": {
+      "status": "source-text-and-user-approval-verified",
+      "date": "2026-09-23",
+      "method": "读取分享页用户话语、工具 Prompt、成片引用及后续确认顺序；逐字提取复刻 Prompt。",
+      "pixel_review": "not-repeated-locally",
+      "local_generation": "not-run",
+      "historical_comparison": "generative-layout-not-exact",
+      "evidence": [
+        "cases/source-evidence.json",
+        "cases/mountain-reproduction-prompt.txt"
+      ]
+    }
+  }
+]

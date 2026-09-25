@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 为 React 应用接入 Supabase 登录、账户恢复及桌面浏览器 OAuth
-version: 1.2.1
+version: "1.2.3"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

@@ -1,0 +1,1462 @@
+{
+  "coverage": {
+    "activation_examples": 2,
+    "conditional_rules": 1,
+    "kit_modules": 0,
+    "kit_pipelines": 0,
+    "linked_resources": 10,
+    "missing_resources": 0,
+    "non_trigger_examples": 2,
+    "observed_artifacts": 0,
+    "reference_depth": 2,
+    "steps_with_checks": 3,
+    "steps_with_support": 6,
+    "workflow_steps": 8
+  },
+  "dependencies": [],
+  "diagnostics": [
+    {
+      "code": "unlinked_packaged_files",
+      "level": "info",
+      "message": "Packaged files not referenced by SKILL.md or linked docs: references/skill-standard.md, references/user-config.md, scripts/test_profile_contract.py"
+    }
+  ],
+  "kit": {},
+  "resource_edges": [
+    {
+      "line": 73,
+      "source": "SKILL.md",
+      "target": "scripts/profile_store.py"
+    },
+    {
+      "line": 121,
+      "source": "SKILL.md",
+      "target": "references/skill-composition.md"
+    },
+    {
+      "line": 162,
+      "source": "SKILL.md",
+      "target": "scripts/profile_store.py"
+    },
+    {
+      "line": 174,
+      "source": "SKILL.md",
+      "target": "references/user-profile.md"
+    },
+    {
+      "line": 175,
+      "source": "SKILL.md",
+      "target": "scripts/profile_store.py"
+    },
+    {
+      "line": 178,
+      "source": "SKILL.md",
+      "target": "references/skill-composition.md"
+    },
+    {
+      "line": 190,
+      "source": "SKILL.md",
+      "target": "scripts/init_skill.py"
+    },
+    {
+      "line": 197,
+      "source": "SKILL.md",
+      "target": "scripts/init_skill.py"
+    },
+    {
+      "line": 230,
+      "source": "SKILL.md",
+      "target": "references/cloud-split.md"
+    },
+    {
+      "line": 260,
+      "source": "SKILL.md",
+      "target": "scripts/validate_skill.py"
+    },
+    {
+      "line": 275,
+      "source": "SKILL.md",
+      "target": "references/skill-composition.md"
+    },
+    {
+      "line": 305,
+      "source": "SKILL.md",
+      "target": "references/templates.md"
+    },
+    {
+      "line": 306,
+      "source": "SKILL.md",
+      "target": "references/skill-card-standard.md"
+    },
+    {
+      "line": 307,
+      "source": "SKILL.md",
+      "target": "references/user-profile.md"
+    },
+    {
+      "line": 308,
+      "source": "SKILL.md",
+      "target": "references/migration.md"
+    },
+    {
+      "line": 312,
+      "source": "SKILL.md",
+      "target": "skill.yaml"
+    },
+    {
+      "line": 315,
+      "source": "SKILL.md",
+      "target": "scripts/profile_store.py"
+    },
+    {
+      "line": 33,
+      "source": "references/migration.md",
+      "target": "scripts/validate_skill.py"
+    },
+    {
+      "line": 3,
+      "source": "references/templates.md",
+      "target": "scripts/init_skill.py"
+    },
+    {
+      "line": 33,
+      "source": "references/templates.md",
+      "target": "scripts/init_skill.py"
+    },
+    {
+      "line": 39,
+      "source": "references/templates.md",
+      "target": "scripts/init_skill.py"
+    },
+    {
+      "line": 47,
+      "source": "references/templates.md",
+      "target": "references/user-profile.md"
+    },
+    {
+      "line": 47,
+      "source": "references/templates.md",
+      "target": "scripts/profile_store.py"
+    },
+    {
+      "line": 55,
+      "source": "references/templates.md",
+      "target": "scripts/validate_skill.py"
+    },
+    {
+      "line": 63,
+      "source": "references/templates.md",
+      "target": "references/skill-composition.md"
+    },
+    {
+      "line": 40,
+      "source": "references/user-profile.md",
+      "target": "scripts/profile_store.py"
+    },
+    {
+      "line": 58,
+      "source": "references/user-profile.md",
+      "target": "scripts/profile_store.py"
+    }
+  ],
+  "resources": [
+    {
+      "exists": true,
+      "kind": "source",
+      "linked": false,
+      "path": "CHANGELOG.md",
+      "sources": []
+    },
+    {
+      "exists": true,
+      "kind": "source",
+      "linked": false,
+      "path": "README.md",
+      "sources": []
+    },
+    {
+      "exists": true,
+      "kind": "reference",
+      "linked": true,
+      "path": "references/cloud-split.md",
+      "sources": [
+        {
+          "end": 230,
+          "file": "SKILL.md",
+          "start": 230
+        }
+      ]
+    },
+    {
+      "exists": true,
+      "kind": "reference",
+      "linked": true,
+      "path": "references/migration.md",
+      "sources": [
+        {
+          "end": 308,
+          "file": "SKILL.md",
+          "start": 308
+        }
+      ]
+    },
+    {
+      "exists": true,
+      "kind": "reference",
+      "linked": true,
+      "path": "references/skill-card-standard.md",
+      "sources": [
+        {
+          "end": 306,
+          "file": "SKILL.md",
+          "start": 306
+        }
+      ]
+    },
+    {
+      "exists": true,
+      "kind": "reference",
+      "linked": true,
+      "path": "references/skill-composition.md",
+      "sources": [
+        {
+          "end": 121,
+          "file": "SKILL.md",
+          "start": 121
+        },
+        {
+          "end": 178,
+          "file": "SKILL.md",
+          "start": 178
+        },
+        {
+          "end": 275,
+          "file": "SKILL.md",
+          "start": 275
+        },
+        {
+          "end": 63,
+          "file": "references/templates.md",
+          "start": 63
+        }
+      ]
+    },
+    {
+      "exists": true,
+      "kind": "reference",
+      "linked": false,
+      "path": "references/skill-standard.md",
+      "sources": []
+    },
+    {
+      "exists": true,
+      "kind": "reference",
+      "linked": true,
+      "path": "references/templates.md",
+      "sources": [
+        {
+          "end": 305,
+          "file": "SKILL.md",
+          "start": 305
+        }
+      ]
+    },
+    {
+      "exists": true,
+      "kind": "reference",
+      "linked": false,
+      "path": "references/user-config.md",
+      "sources": []
+    },
+    {
+      "exists": true,
+      "kind": "reference",
+      "linked": true,
+      "path": "references/user-profile.md",
+      "sources": [
+        {
+          "end": 174,
+          "file": "SKILL.md",
+          "start": 174
+        },
+        {
+          "end": 307,
+          "file": "SKILL.md",
+          "start": 307
+        },
+        {
+          "end": 47,
+          "file": "references/templates.md",
+          "start": 47
+        }
+      ]
+    },
+    {
+      "exists": true,
+      "kind": "script",
+      "linked": true,
+      "path": "scripts/init_skill.py",
+      "sources": [
+        {
+          "end": 190,
+          "file": "SKILL.md",
+          "start": 190
+        },
+        {
+          "end": 197,
+          "file": "SKILL.md",
+          "start": 197
+        },
+        {
+          "end": 3,
+          "file": "references/templates.md",
+          "start": 3
+        },
+        {
+          "end": 33,
+          "file": "references/templates.md",
+          "start": 33
+        },
+        {
+          "end": 39,
+          "file": "references/templates.md",
+          "start": 39
+        }
+      ]
+    },
+    {
+      "exists": true,
+      "kind": "script",
+      "linked": true,
+      "path": "scripts/profile_store.py",
+      "sources": [
+        {
+          "end": 73,
+          "file": "SKILL.md",
+          "start": 73
+        },
+        {
+          "end": 162,
+          "file": "SKILL.md",
+          "start": 162
+        },
+        {
+          "end": 175,
+          "file": "SKILL.md",
+          "start": 175
+        },
+        {
+          "end": 315,
+          "file": "SKILL.md",
+          "start": 315
+        },
+        {
+          "end": 40,
+          "file": "references/user-profile.md",
+          "start": 40
+        },
+        {
+          "end": 58,
+          "file": "references/user-profile.md",
+          "start": 58
+        },
+        {
+          "end": 47,
+          "file": "references/templates.md",
+          "start": 47
+        }
+      ]
+    },
+    {
+      "exists": true,
+      "kind": "script",
+      "linked": false,
+      "path": "scripts/test_profile_contract.py",
+      "sources": []
+    },
+    {
+      "exists": true,
+      "kind": "script",
+      "linked": true,
+      "path": "scripts/validate_skill.py",
+      "sources": [
+        {
+          "end": 260,
+          "file": "SKILL.md",
+          "start": 260
+        },
+        {
+          "end": 55,
+          "file": "references/templates.md",
+          "start": 55
+        },
+        {
+          "end": 33,
+          "file": "references/migration.md",
+          "start": 33
+        }
+      ]
+    },
+    {
+      "exists": true,
+      "kind": "runtime-manifest",
+      "linked": true,
+      "path": "skill.yaml",
+      "sources": [
+        {
+          "end": 312,
+          "file": "SKILL.md",
+          "start": 312
+        }
+      ]
+    }
+  ],
+  "routing": {
+    "activate": [
+      {
+        "source": {
+          "end": 31,
+          "file": "SKILL.md",
+          "start": 31
+        },
+        "text": "用户要“创建 skill”“封装成 skill”“生成 Skill Kit”或优化 Skill 生成机制。"
+      },
+      {
+        "source": {
+          "end": 32,
+          "file": "SKILL.md",
+          "start": 32
+        },
+        "text": "The user asks to create, scaffold, validate, or locally install an Agent Skill."
+      }
+    ],
+    "do_not_activate": [
+      {
+        "source": {
+          "end": 36,
+          "file": "SKILL.md",
+          "start": 36
+        },
+        "text": "用户只是在调用现有 Skill 完成业务任务。"
+      },
+      {
+        "source": {
+          "end": 37,
+          "file": "SKILL.md",
+          "start": 37
+        },
+        "text": "用户要发布远程仓库、上架目录、生成平台发行包或上传 Skill；交给 lov-skill-publisher。"
+      }
+    ]
+  },
+  "runtime_context": {
+    "profile_schema": "user-profile/v1",
+    "reads": [
+      "user",
+      "brand",
+      "workspace",
+      "preferences",
+      "skills.lov-skill-creator"
+    ],
+    "runtime": "skill-runtime/v1"
+  },
+  "schema": "lovstudio/skill-logic/v1",
+  "skill": {
+    "description": "创建、验证并安装本地 Skill Publisher Skill 或 Skill Kit，并为每个新 Skill 固化真实案例、维度地图、定价依据和分发状态；当用户说“创建 skill”、\"create a skill\" 或 \"scaffold skill kit\" 时使用。",
+    "name": "lov-skill-creator",
+    "source": "SKILL.md",
+    "version": "4.3.0"
+  },
+  "trust": {
+    "implementation": {
+      "mode": "deterministic",
+      "runtime_scripts": [
+        "scripts/init_skill.py",
+        "scripts/profile_store.py"
+      ]
+    },
+    "routing_scope": "external_activation_boundary",
+    "scope": "internal_runtime",
+    "support": {
+      "module_quality_gates": 0,
+      "module_workflows": 0,
+      "steps_with_modules_or_resources": 6
+    },
+    "traceability": {
+      "source_bound_steps": 8,
+      "total_steps": 8
+    },
+    "verdict": "declared_not_observed",
+    "verification": {
+      "effect_evidence": "not_observed",
+      "observed_artifacts": [],
+      "steps_with_declared_checks": 3,
+      "validation_assets": [
+        "scripts/test_profile_contract.py",
+        "scripts/validate_skill.py"
+      ]
+    }
+  },
+  "workflow": {
+    "steps": [
+      {
+        "assurance": {
+          "authored_detail_count": 8,
+          "declared_output_count": 0,
+          "declared_verification_count": 0,
+          "deterministic_resources": [],
+          "effect_evidence": "not_observed",
+          "execution_mode": "agent_instruction",
+          "source_bound": true,
+          "support_level": "declaration_only"
+        },
+        "conditions": [],
+        "details": [
+          {
+            "kind": "guardrail",
+            "source": {
+              "end": 86,
+              "file": "SKILL.md",
+              "start": 84
+            },
+            "text": "Use the request, memory, repository, and supplied examples before asking anything. Ask one question at a time only when a missing answer changes the user-visible outcome. Never ask users to choose technical machinery."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 88,
+              "file": "SKILL.md",
+              "start": 88
+            },
+            "text": "Record these decisions internally:"
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 90,
+              "file": "SKILL.md",
+              "start": 90
+            },
+            "text": "Problem, supported input, and concrete output."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 91,
+              "file": "SKILL.md",
+              "start": 91
+            },
+            "text": "Two or three realistic examples and Chinese plus English trigger phrases."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 92,
+              "file": "SKILL.md",
+              "start": 92
+            },
+            "text": "Internal context versus content that belongs in the final user-facing result."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 93,
+              "file": "SKILL.md",
+              "start": 93
+            },
+            "text": "Public layer versus protected logic, prompts, keys, rules, or data."
+          },
+          {
+            "kind": "guardrail",
+            "source": {
+              "end": 95,
+              "file": "SKILL.md",
+              "start": 94
+            },
+            "text": "The first real user case: input, minimum prompt/brief, output, and evidence assets. Do not manufacture a case or score to make the card look complete."
+          },
+          {
+            "kind": "guardrail",
+            "source": {
+              "end": 98,
+              "file": "SKILL.md",
+              "start": 97
+            },
+            "text": "Background details, personal names, and competitor observations are context by default. Include them in generated products only when they serve the end user."
+          }
+        ],
+        "id": "step_001",
+        "module_ids": [],
+        "number": "1",
+        "pipeline_ids": [],
+        "resources": [],
+        "source": {
+          "end": 99,
+          "file": "SKILL.md",
+          "start": 82
+        },
+        "summary": "Use the request, memory, repository, and supplied examples before asking",
+        "title": "Infer the product shape"
+      },
+      {
+        "assurance": {
+          "authored_detail_count": 7,
+          "declared_output_count": 0,
+          "declared_verification_count": 0,
+          "deterministic_resources": [],
+          "effect_evidence": "not_observed",
+          "execution_mode": "agent_instruction",
+          "source_bound": true,
+          "support_level": "declaration_only"
+        },
+        "conditions": [],
+        "details": [
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 102,
+              "file": "SKILL.md",
+              "start": 102
+            },
+            "text": "Choose automatically and briefly state the result:"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 104,
+              "file": "SKILL.md",
+              "start": 104
+            },
+            "text": "Cloud handler — sensitive proprietary logic must stay off the user's disk."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 106,
+              "file": "SKILL.md",
+              "start": 105
+            },
+            "text": "Instruction-only — judgment, research, conversation, or generation has no useful deterministic local transform."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 108,
+              "file": "SKILL.md",
+              "start": 107
+            },
+            "text": "Python CLI — repeatable parsing, conversion, validation, packaging, or file generation benefits from deterministic execution."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 109,
+              "file": "SKILL.md",
+              "start": 109
+            },
+            "text": "Single Skill — one outcome, or several modes sharing the same context."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 111,
+              "file": "SKILL.md",
+              "start": 110
+            },
+            "text": "Skill Kit — two or more independently useful stages with their own input/output contracts are composed through named pipelines."
+          },
+          {
+            "kind": "guardrail",
+            "source": {
+              "end": 114,
+              "file": "SKILL.md",
+              "start": 113
+            },
+            "text": "Scripts alone do not justify a Kit. Prefer Single when modularity is marginal. For a Kit, list module IDs and named pipeline order before scaffolding."
+          }
+        ],
+        "id": "step_002",
+        "module_ids": [],
+        "number": "2",
+        "pipeline_ids": [],
+        "resources": [],
+        "source": {
+          "end": 115,
+          "file": "SKILL.md",
+          "start": 100
+        },
+        "summary": "Choose automatically and briefly state the result:",
+        "title": "Infer implementation and composition"
+      },
+      {
+        "assurance": {
+          "authored_detail_count": 8,
+          "declared_output_count": 0,
+          "declared_verification_count": 1,
+          "deterministic_resources": [],
+          "effect_evidence": "not_observed",
+          "execution_mode": "agent_instruction",
+          "source_bound": true,
+          "support_level": "resource"
+        },
+        "conditions": [],
+        "details": [
+          {
+            "kind": "verification",
+            "source": {
+              "end": 121,
+              "file": "SKILL.md",
+              "start": 118
+            },
+            "text": "Before scaffolding, inspect the local Skill source root and installed Skill catalog for related capabilities, using their routing descriptions and actual input/output contracts rather than names alone. Record the outcome in references/skill-composition.md for every generated Skill."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 123,
+              "file": "SKILL.md",
+              "start": 123
+            },
+            "text": "Classify each relevant Skill as one of:"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 125,
+              "file": "SKILL.md",
+              "start": 125
+            },
+            "text": "upstream atom — independently produces an approved input for this Skill;"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 126,
+              "file": "SKILL.md",
+              "start": 126
+            },
+            "text": "core atom — this new Skill owns the requested user-visible outcome;"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 127,
+              "file": "SKILL.md",
+              "start": 127
+            },
+            "text": "downstream atom — independently consumes the verified output;"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 129,
+              "file": "SKILL.md",
+              "start": 128
+            },
+            "text": "overlap — owns the same outcome and should be extended or selected instead of duplicated; or"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 130,
+              "file": "SKILL.md",
+              "start": 130
+            },
+            "text": "not composed — adjacent in topic but adds no meaningful handoff."
+          },
+          {
+            "kind": "guardrail",
+            "source": {
+              "end": 138,
+              "file": "SKILL.md",
+              "start": 132
+            },
+            "text": "For each proposed handoff, state the concrete artifact or contract, the invocation boundary, and who owns the final acceptance criterion. Do not create an external sibling dependency merely because another Skill is related. If multiple stages are required for one user-visible outcome, embed them as a self-contained Skill Kit; otherwise keep the new Skill standalone and describe optional handoffs explicitly. A no-composition conclusion is valid only after the nearby group was inspected."
+          }
+        ],
+        "id": "step_003",
+        "module_ids": [],
+        "number": "2.5",
+        "pipeline_ids": [],
+        "resources": [
+          "references/skill-composition.md"
+        ],
+        "source": {
+          "end": 139,
+          "file": "SKILL.md",
+          "start": 116
+        },
+        "summary": "Before scaffolding, inspect the local Skill source root and installed Skill",
+        "title": "Analyze the nearby Skill group before creating a new one"
+      },
+      {
+        "assurance": {
+          "authored_detail_count": 13,
+          "declared_output_count": 0,
+          "declared_verification_count": 1,
+          "deterministic_resources": [
+            "scripts/profile_store.py"
+          ],
+          "effect_evidence": "not_observed",
+          "execution_mode": "deterministic_script",
+          "source_bound": true,
+          "support_level": "resource"
+        },
+        "conditions": [
+          {
+            "action": "run the generated scripts/profile_store.py record ... --confirm command and report the canonical saved path. Inferred values stay in the current request context.",
+            "source": {
+              "end": 163,
+              "file": "SKILL.md",
+              "start": 160
+            },
+            "text": "When the user directly states a value intended for future sessions"
+          }
+        ],
+        "details": [
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 144,
+              "file": "SKILL.md",
+              "start": 142
+            },
+            "text": "Every new Skill receives a skill.yaml declaration for user-profile/v1, even when its first invocation has no missing configuration. This is the cross-session connection point for:"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 146,
+              "file": "SKILL.md",
+              "start": 146
+            },
+            "text": "user identity, language, timezone, and working defaults;"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 147,
+              "file": "SKILL.md",
+              "start": 147
+            },
+            "text": "brand name, website, logo, tone, profile, and design guidance;"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 148,
+              "file": "SKILL.md",
+              "start": 148
+            },
+            "text": "workspace/project roots and output locations;"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 149,
+              "file": "SKILL.md",
+              "start": 149
+            },
+            "text": "Skill-specific defaults and durable records."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 153,
+              "file": "SKILL.md",
+              "start": 151
+            },
+            "text": "The generated contract reads the shared Profile and writes direct user statements into skills.<skill_id>.records (or the shared user / brand scope when the value is explicitly global). It uses this precedence:"
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 155,
+              "file": "SKILL.md",
+              "start": 155
+            },
+            "text": "Explicit CLI flags or current request."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 156,
+              "file": "SKILL.md",
+              "start": 156
+            },
+            "text": "Environment variables."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 157,
+              "file": "SKILL.md",
+              "start": 157
+            },
+            "text": "Shared profile JSON."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 158,
+              "file": "SKILL.md",
+              "start": 158
+            },
+            "text": "Safe inferred defaults."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 159,
+              "file": "SKILL.md",
+              "start": 159
+            },
+            "text": "Ask once for only the remaining user-facing values."
+          },
+          {
+            "kind": "verification",
+            "source": {
+              "end": 163,
+              "file": "SKILL.md",
+              "start": 161
+            },
+            "text": "When the user directly states a value intended for future sessions, run the generated scripts/profile_store.py record ... --confirm command and report the canonical saved path. Inferred values stay in the current request context."
+          },
+          {
+            "kind": "guardrail",
+            "source": {
+              "end": 166,
+              "file": "SKILL.md",
+              "start": 165
+            },
+            "text": "Every generated Skill remains portable. Never introduce an author-only or Skill Publisher-only branch; different users supply different profile values."
+          }
+        ],
+        "id": "step_004",
+        "module_ids": [],
+        "number": "3",
+        "pipeline_ids": [],
+        "resources": [
+          "scripts/profile_store.py",
+          "skill.yaml"
+        ],
+        "source": {
+          "end": 167,
+          "file": "SKILL.md",
+          "start": 140
+        },
+        "summary": "Every new Skill receives a skill.yaml declaration for user-profile/v1, even",
+        "title": "Declare the user Profile contract — always"
+      },
+      {
+        "assurance": {
+          "authored_detail_count": 8,
+          "declared_output_count": 0,
+          "declared_verification_count": 0,
+          "deterministic_resources": [
+            "scripts/profile_store.py"
+          ],
+          "effect_evidence": "not_observed",
+          "execution_mode": "deterministic_script",
+          "source_bound": true,
+          "support_level": "resource"
+        },
+        "conditions": [],
+        "details": [
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 170,
+              "file": "SKILL.md",
+              "start": 170
+            },
+            "text": "Deterministic operations → scripts/ as standalone argparse CLIs."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 171,
+              "file": "SKILL.md",
+              "start": 171
+            },
+            "text": "Domain knowledge → references/."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 172,
+              "file": "SKILL.md",
+              "start": 172
+            },
+            "text": "Reused output files, templates, fonts, or icons → assets/."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 173,
+              "file": "SKILL.md",
+              "start": 173
+            },
+            "text": "Independently triggerable stages → embedded skills/ plus kit.yaml."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 175,
+              "file": "SKILL.md",
+              "start": 174
+            },
+            "text": "User Profile contract → skill.yaml, references/user-profile.md, and the standalone scripts/profile_store.py reader/writer; this is always generated."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 177,
+              "file": "SKILL.md",
+              "start": 176
+            },
+            "text": "Skill trust evidence → skill-card.yaml, skill-card.md, cases/cases.json, and pricing-card.yaml."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 180,
+              "file": "SKILL.md",
+              "start": 178
+            },
+            "text": "Skill group decision → references/skill-composition.md, including nearby Skills inspected, atomic handoffs, overlap decisions, and the final Single-versus-Kit rationale."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 183,
+              "file": "SKILL.md",
+              "start": 182
+            },
+            "text": "Python scripts must be standalone files without package scaffolding. Treat CJK text handling as a core requirement for document and content workflows."
+          }
+        ],
+        "id": "step_005",
+        "module_ids": [],
+        "number": "4",
+        "pipeline_ids": [],
+        "resources": [
+          "cases/cases.json",
+          "kit.yaml",
+          "pricing-card.yaml",
+          "references/skill-composition.md",
+          "references/user-profile.md",
+          "scripts/profile_store.py",
+          "skill-card.md",
+          "skill-card.yaml",
+          "skill.yaml"
+        ],
+        "source": {
+          "end": 184,
+          "file": "SKILL.md",
+          "start": 168
+        },
+        "summary": "Deterministic operations → scripts/ as standalone argparse CLIs.",
+        "title": "Plan contents"
+      },
+      {
+        "assurance": {
+          "authored_detail_count": 12,
+          "declared_output_count": 0,
+          "declared_verification_count": 1,
+          "deterministic_resources": [
+            "scripts/init_skill.py"
+          ],
+          "effect_evidence": "not_observed",
+          "execution_mode": "deterministic_script",
+          "source_bound": true,
+          "support_level": "resource"
+        },
+        "conditions": [],
+        "details": [
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 187,
+              "file": "SKILL.md",
+              "start": 187
+            },
+            "text": "Single Skill:"
+          },
+          {
+            "kind": "command",
+            "source": {
+              "end": 190,
+              "file": "SKILL.md",
+              "start": 190
+            },
+            "text": "python3 \"$SKILL_DIR/scripts/init_skill.py\" <name> \\"
+          },
+          {
+            "kind": "command",
+            "source": {
+              "end": 191,
+              "file": "SKILL.md",
+              "start": 191
+            },
+            "text": "--install-dir \"$SKILL_SKILLS_INSTALL_DIR\""
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 194,
+              "file": "SKILL.md",
+              "start": 194
+            },
+            "text": "Skill Kit:"
+          },
+          {
+            "kind": "command",
+            "source": {
+              "end": 197,
+              "file": "SKILL.md",
+              "start": 197
+            },
+            "text": "python3 \"$SKILL_DIR/scripts/init_skill.py\" <name> \\"
+          },
+          {
+            "kind": "command",
+            "source": {
+              "end": 198,
+              "file": "SKILL.md",
+              "start": 198
+            },
+            "text": "--kit \\"
+          },
+          {
+            "kind": "command",
+            "source": {
+              "end": 199,
+              "file": "SKILL.md",
+              "start": 199
+            },
+            "text": "--module <module-a> \\"
+          },
+          {
+            "kind": "command",
+            "source": {
+              "end": 200,
+              "file": "SKILL.md",
+              "start": 200
+            },
+            "text": "--module <module-b> \\"
+          },
+          {
+            "kind": "command",
+            "source": {
+              "end": 201,
+              "file": "SKILL.md",
+              "start": 201
+            },
+            "text": "--install-dir \"$SKILL_SKILLS_INSTALL_DIR\""
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 206,
+              "file": "SKILL.md",
+              "start": 204
+            },
+            "text": "Resolve the install directory from an explicit flag, environment variable, shared profile, or the active agent runtime. If it remains unknown, ask once. The initializer must reject an occupied install target instead of overwriting it."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 228,
+              "file": "SKILL.md",
+              "start": 208
+            },
+            "text": "> Tool pit: init_skill.py 只把 /.claude/skills/lov-{name} 建为指向真源的 > 绝对 symlink；要符合 Lovstudio 三层链约定，需再补中间层 > /.agents/skills/lov-{name}（绝对指向真源）并把 install 改成相对 > ../../.agents/skills/lov-{name}，readlink -f 才会解析到真源 > （2026-08-20, ab88955）。 > > Tool pit: skills 仓库 working tree 常驻大量未提交改动（其他 skill 的 WIP、 > 子模块指针），git add -A / git commit -a 会把它们卷进提交；提交前先 > git status，只 git add <目标 skill 目录>（2026-08-20, 99c10a0）。 > > Tool pit: validate_skill.py 对 description 按「compact 后文本」计 50–200 > 字符，中英混排极易超 200；先写短版过校验再展开正文（2026-08-20, 009afde）。 > > Tool pit: 卡片/案例文件里 dict[str, list[str]] 这类花括号字面量会被 > contains_placeholder 的 \\{[^}]+\\} 误判为占位符；skill-card / cases / > pricing 文件一律避免花括号写法（2026-08-20, 009afde）。 > > Tool pit: /lovstudio/coding/skills/skill-creator-skill 是嵌套独立 git > 仓库（自带 .git），父仓库 /lovstudio/coding/skills 把它当单个未跟踪目录， > 从父仓库 git add 内部文件不会生效；改 skill-creator 源要在其自身仓库内提交 > （2026-08-20, c09a0a1）。"
+          },
+          {
+            "kind": "verification",
+            "source": {
+              "end": 233,
+              "file": "SKILL.md",
+              "start": 230
+            },
+            "text": "For cloud-split implementations, read references/cloud-split.md completely before coding. Keep real logic in the configured cloud handler, return minimal symbolic payloads, render symbols locally, and complete its mandatory preflight audit. Cloud deployment itself is an external publication step when applicable."
+          }
+        ],
+        "id": "step_006",
+        "module_ids": [],
+        "number": "5",
+        "pipeline_ids": [],
+        "resources": [
+          "references/cloud-split.md",
+          "scripts/init_skill.py"
+        ],
+        "source": {
+          "end": 234,
+          "file": "SKILL.md",
+          "start": 185
+        },
+        "summary": "Single Skill:",
+        "title": "Initialize locally"
+      },
+      {
+        "assurance": {
+          "authored_detail_count": 11,
+          "declared_output_count": 1,
+          "declared_verification_count": 0,
+          "deterministic_resources": [],
+          "effect_evidence": "not_observed",
+          "execution_mode": "agent_instruction",
+          "source_bound": true,
+          "support_level": "resource"
+        },
+        "conditions": [],
+        "details": [
+          {
+            "kind": "output",
+            "source": {
+              "end": 237,
+              "file": "SKILL.md",
+              "start": 237
+            },
+            "text": "Write the source as instructions for an agent, not as notes about this chat:"
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 240,
+              "file": "SKILL.md",
+              "start": 239
+            },
+            "text": "description is the routing contract: outcome, inputs, and natural Chinese plus English triggers in 50–200 characters."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 241,
+              "file": "SKILL.md",
+              "start": 241
+            },
+            "text": "Add ## Triggers, activation examples, and adjacent non-trigger conditions."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 242,
+              "file": "SKILL.md",
+              "start": 242
+            },
+            "text": "Keep SKILL.md below 500 lines; move detail to relevant references."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 243,
+              "file": "SKILL.md",
+              "start": 243
+            },
+            "text": "Put compatibility, version, tags, and dependencies under metadata."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 245,
+              "file": "SKILL.md",
+              "start": 244
+            },
+            "text": "Keep the NVIDIA-compatible required card fields intact, then add LovStudio's user case, dimension map, pricing basis, and distribution fields."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 247,
+              "file": "SKILL.md",
+              "start": 246
+            },
+            "text": "Keep external Skills optional unless they are embedded Kit modules; expose artifact-level handoffs instead of hidden cross-Skill coupling."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 248,
+              "file": "SKILL.md",
+              "start": 248
+            },
+            "text": "Use AskUserQuestion only for unresolved user-facing product decisions."
+          },
+          {
+            "kind": "guardrail",
+            "source": {
+              "end": 249,
+              "file": "SKILL.md",
+              "start": 249
+            },
+            "text": "Never hard-code private paths or personal brand data in reusable source."
+          },
+          {
+            "kind": "guardrail",
+            "source": {
+              "end": 252,
+              "file": "SKILL.md",
+              "start": 250
+            },
+            "text": "Fill missing visual/content assets with clearly appropriate generated material when the workflow permits; ask for originals only when authenticity materially affects the result."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 255,
+              "file": "SKILL.md",
+              "start": 254
+            },
+            "text": "Human-facing README.md includes a matching version badge, local installation, the Profile contract, examples, dependencies, and quality gate."
+          }
+        ],
+        "id": "step_007",
+        "module_ids": [],
+        "number": "6",
+        "pipeline_ids": [],
+        "resources": [
+          "README.md",
+          "SKILL.md"
+        ],
+        "source": {
+          "end": 256,
+          "file": "SKILL.md",
+          "start": 235
+        },
+        "summary": "Write the source as instructions for an agent, not as notes about this chat:",
+        "title": "Implement"
+      },
+      {
+        "assurance": {
+          "authored_detail_count": 11,
+          "declared_output_count": 0,
+          "declared_verification_count": 0,
+          "deterministic_resources": [],
+          "effect_evidence": "not_observed",
+          "execution_mode": "agent_instruction",
+          "source_bound": true,
+          "support_level": "resource"
+        },
+        "conditions": [],
+        "details": [
+          {
+            "kind": "command",
+            "source": {
+              "end": 260,
+              "file": "SKILL.md",
+              "start": 260
+            },
+            "text": "python3 scripts/validate_skill.py ."
+          },
+          {
+            "kind": "instruction",
+            "source": {
+              "end": 263,
+              "file": "SKILL.md",
+              "start": 263
+            },
+            "text": "Completion requires:"
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 265,
+              "file": "SKILL.md",
+              "start": 265
+            },
+            "text": "Validation passes with standard YAML."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 266,
+              "file": "SKILL.md",
+              "start": 266
+            },
+            "text": "Every module, local reference, script, and asset resolves."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 268,
+              "file": "SKILL.md",
+              "start": 267
+            },
+            "text": "No unresolved placeholders, private absolute paths, cache files, or compiled Python artifacts remain."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 269,
+              "file": "SKILL.md",
+              "start": 269
+            },
+            "text": "The local install path resolves to this source directory."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 270,
+              "file": "SKILL.md",
+              "start": 270
+            },
+            "text": "A documented activation phrase works and a non-trigger stays outside scope."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 271,
+              "file": "SKILL.md",
+              "start": 271
+            },
+            "text": "Every Skill Kit module and at least one named pipeline are exercised."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 274,
+              "file": "SKILL.md",
+              "start": 272
+            },
+            "text": "Every new Skill has at least one verified Input → Prompt → Output case, three or more named dimensions with evidence, a pricing basis, and explicit paid/free channel states."
+          },
+          {
+            "kind": "criterion",
+            "source": {
+              "end": 276,
+              "file": "SKILL.md",
+              "start": 275
+            },
+            "text": "references/skill-composition.md records the inspected Skill group, atomic handoffs or overlap decision, and why the result is a Single Skill or Kit."
+          },
+          {
+            "kind": "guardrail",
+            "source": {
+              "end": 280,
+              "file": "SKILL.md",
+              "start": 278
+            },
+            "text": "Stop at the local result unless the user also requests publication. When they do, invoke lov-skill-publisher with the validated source path and requested channels; do not duplicate publishing logic in this Skill."
+          }
+        ],
+        "id": "step_008",
+        "module_ids": [],
+        "number": "7",
+        "pipeline_ids": [],
+        "resources": [
+          "references/skill-composition.md",
+          "scripts/validate_skill.py"
+        ],
+        "source": {
+          "end": 281,
+          "file": "SKILL.md",
+          "start": 257
+        },
+        "summary": "python3 scripts/validate_skill.py .",
+        "title": "Validate and install"
+      }
+    ]
+  }
+}

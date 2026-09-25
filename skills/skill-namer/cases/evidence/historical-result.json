@@ -1,0 +1,30 @@
+{
+  "kind": "historical-evidence",
+  "date": "2026-09-07",
+  "summary": {
+    "source_entries": 251,
+    "unique_ids": 246,
+    "changed_sources": 245,
+    "retained_sources": 6,
+    "active_installations_named": 529,
+    "disabled_installations_named": 3,
+    "public_catalog_entries": 156,
+    "changed_chinese_names": 138,
+    "live_details_verified": 156,
+    "isolated_installs_verified": 3,
+    "ci": "success",
+    "state": "display_names_published_and_verified",
+    "publication": {
+      "pr": "https://github.com/lovstudio/skills/pull/42",
+      "merge_commit": "a09848edc01f0a73a728dae09f68b350d47a9326",
+      "verified_main_commit": "f3e229a58be0cd75c33048045ba0587e9774b855",
+      "public_names_verified": 156,
+      "ci_url": "https://github.com/lovstudio/skills/actions/runs/34115626117",
+      "ci_state": "success",
+      "post_ci_changed_paths": [],
+      "runtime_fix_pr": "https://github.com/lovstudio/skills/pull/43",
+      "runtime_fix_merge_commit": "f3e229a58be0cd75c33048045ba0587e9774b855",
+      "runtime_fix_verified": true
+    }
+  }
+}

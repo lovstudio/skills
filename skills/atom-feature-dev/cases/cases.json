@@ -1,0 +1,68 @@
+[
+  {
+    "type": "case",
+    "title": "把多形态原子功能构想固化为可执行 Skill Kit",
+    "description": "用户明确提出 SDK、CLI、REST API、前端、Agent Skill、Profile Preset、文档、测试、SEO、GEO、用户、支付和 Dashboard 的完整协作需求。本案例只记录已生成和验证的 Skill 源，不把尚未实施的目标项目写成完成。",
+    "input": {
+      "items": [
+        "用户对 atom feature 生产、分发、运营闭环的完整需求",
+        "现有 skill-creator、app-generator、cli-creator、api-creator 和 Agent UI 能力边界"
+      ]
+    },
+    "prompt": "创建 lov-atom-feature-dev：以原子 feature 为单位，把 SDK、CLI、API、前端、Agent Skill、Profile 和 Dashboard 组合成完整开发与运营闭环。",
+    "output": {
+      "items": [
+        "SKILL.md",
+        "kit.yaml",
+        "references/atom-feature-contract.md",
+        "references/acceptance-matrix.md",
+        "scripts/atom_feature.py",
+        "skills/dashboard/SKILL.md"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "为 Atom Feature Kit 实现 ADE 式 Companion Dashboard",
+    "description": "用户进一步要求配套一个类似 ADE 的 Dashboard。本案例记录已实现并通过本地 HTTP selftest 与 headless Chrome 验收的 Atom Workbench：能回读 workspace、Contract、Profile、surface 和 evidence，能在显式授权后执行 manifest 声明的 SDK command，并在 390px 宽度无水平溢出。它不声称已接入外部目标项目、托管服务或第三方 Agent runtime。",
+    "input": {
+      "items": [
+        "用户提出的 ADE 式工作区交互模型",
+        "Atom Feature Contract、Profile Preset 与 evidence gate",
+        "只读默认、执行与写入显式授权的本地安全边界"
+      ]
+    },
+    "prompt": "应该配套一个 dashboard，类似 ADE（AI Development Editor）。",
+    "output": {
+      "items": [
+        "dashboard/index.html",
+        "dashboard/styles.css",
+        "dashboard/app.js",
+        "scripts/atom_dashboard.py",
+        "dashboard/demo-project/.atom-feature/manifest.json",
+        "dashboard/demo-project/sdk.py"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "修复 Atom Workbench 的 file URL 入口",
+    "description": "用户直接打开 dashboard/index.html 后报告 styles.css、app.js 的 ERR_FILE_NOT_FOUND 与 file origin 错误。根因是站点根路径资源和 bridge API 只适用于 HTTP。修复后资源使用相对路径，file URL 加载明确标注的只读 Demo 快照；headless Chrome 验证无失败请求、无 console error，Run 会给出 bridge 启动方式而不伪造执行。",
+    "input": {
+      "items": [
+        "styles.css 与 app.js 在 file URL 下解析到文件系统根目录",
+        "file origin 不能调用相对 HTTP API",
+        "真实项目执行必须继续经过受限 loopback bridge"
+      ]
+    },
+    "prompt": "styles.css 和 app.js ERR_FILE_NOT_FOUND，file URL 被浏览器作为 unique origin 拦截。",
+    "output": {
+      "items": [
+        "dashboard/index.html",
+        "dashboard/demo-workspace.js",
+        "dashboard/app.js",
+        "dashboard/README.md"
+      ]
+    }
+  }
+]

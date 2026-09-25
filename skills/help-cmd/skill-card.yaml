@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 把操作目标转换为适合当前系统和 shell 的可执行命令说明
-version: 0.1.1
+version: "0.1.3"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

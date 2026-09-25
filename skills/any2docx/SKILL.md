@@ -16,9 +16,11 @@ compatibility: >
   Requires Python 3.8+ and python-docx (`pip install python-docx`).
   Cross-platform: macOS, Windows, Linux.
   CJK fonts: macOS uses Songti SC, Windows uses SimSun, Linux uses Noto Serif CJK SC.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.4.0"
+  version: "0.4.1"
   tags: markdown docx word cjk python-docx typesetting
 ---
 

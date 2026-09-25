@@ -1,6 +1,6 @@
 # ZenMux 接入 · ZenMux Setup
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 为应用接入 ZenMux 服务端代理，隔离密钥并验证请求链路。
 

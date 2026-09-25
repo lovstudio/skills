@@ -14,9 +14,11 @@ license: MIT
 compatibility: >
   Requires Python 3.8+ and openpyxl (`pip install openpyxl`).
   Cross-platform: macOS, Windows, Linux.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: invoice expense report reimbursement excel categorize
 ---
 

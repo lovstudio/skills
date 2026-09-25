@@ -1,0 +1,23 @@
+[
+  {
+    "type": "case",
+    "title": "为某 app 在 uni-api 内集成网关能力并封装 uni-app 调用层",
+    "description": "用户在开发某个 app 时需要 API 网关能力，要求集成进 uni-api 项目并在 uni-app 前端封装调用层。本案例记录驱动本 Skill 创建的真实需求与初始输入；端到端执行证据待首个真实 app 跑通后回填。",
+    "input": {
+      "items": [
+        "用户需求：开发某个 app 需要网关能力，集成到 uni-api 项目内",
+        "目标仓库：uni-api（FastAPI 聚合网关，含 router、packages、config/app_groups.py）",
+        "目标前端：DCloud uni-app 项目"
+      ]
+    },
+    "prompt": "当我在开发某个 app 需要一个网关能力的时候，我希望集成到我的 uni-app 项目内来",
+    "output": {
+      "items": [
+        "生成 lov-api-creator Skill Kit（backend 与 frontend 两模块，full 流水线）",
+        "backend 产物：uni-api 内 app 的网关端点与 /docs 分组",
+        "frontend 产物：uni-app 内 api/ 调用层（request 封装 + 端点模块）",
+        "端到端执行案例与 evidence 待首个真实 app 跑通后回填"
+      ]
+    }
+  }
+]

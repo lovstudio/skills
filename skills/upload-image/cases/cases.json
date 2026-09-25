@@ -1,0 +1,49 @@
+[
+  {
+    "type": "case",
+    "title": "Upload one local PicGo asset and return a verified URL",
+    "description": "A real PNG bundled with the installed PicGo application was uploaded through the running PicGo GUI Server using its selected Qiniu configuration.",
+    "input": {
+      "items": [
+        "PicGo public UI asset named upload.png",
+        "Running PicGo Server at the default loopback address"
+      ]
+    },
+    "prompt": "Upload this local image through the existing PicGo configuration, return structured JSON, and verify the returned URL.",
+    "output": {
+      "items": [
+        "One ordered input-to-URL mapping",
+        "http://cdn.cs-magic.cn/picgo/2026/08/25/upload-2c306a.png?imageslim%7CimageMogr2/format/jpeg/size-limit/1000k!",
+        "HTTP verification status 200"
+      ]
+    },
+    "gallery": [
+      "http://cdn.cs-magic.cn/picgo/2026/08/25/upload-2c306a.png?imageslim%7CimageMogr2/format/jpeg/size-limit/1000k!"
+    ]
+  },
+  {
+    "type": "case",
+    "title": "Deduplicate and rewrite local images in Markdown",
+    "description": "One local PNG appeared twice in a Markdown fixture, once as Markdown and once as HTML. A remote image and an image-like inline code sample were also present as preservation controls.",
+    "input": {
+      "items": [
+        "UTF-8 Markdown fixture with two references to upload-dark.png",
+        "One existing remote image URL",
+        "One inline-code image example"
+      ]
+    },
+    "prompt": "Upload every real local image reference with PicGo, avoid duplicate uploads, create a new Markdown file, preserve remote links and code, and verify returned URLs.",
+    "output": {
+      "items": [
+        "Two local references rewritten",
+        "One unique file uploaded",
+        "Remote link and inline code preserved",
+        "http://cdn.cs-magic.cn/picgo/2026/08/25/upload-dark-94fdc9.png?imageslim%7CimageMogr2/format/jpeg/size-limit/1000k!",
+        "HTTP verification status 200"
+      ]
+    },
+    "gallery": [
+      "http://cdn.cs-magic.cn/picgo/2026/08/25/upload-dark-94fdc9.png?imageslim%7CimageMogr2/format/jpeg/size-limit/1000k!"
+    ]
+  }
+]

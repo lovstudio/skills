@@ -6,7 +6,7 @@ license: MIT
 compatibility: "Portable Agent Skills format. Core workflow is instruction-first; Python 3.8+ supports optional copy audits, Profile storage, and dependency validation."
 metadata:
   author: LovStudio
-  version: "0.2.0"
+  version: "0.3.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - branding-consistency
@@ -98,7 +98,7 @@ metadata:
 
 ### Step 1: Build a private context contract
 
-在内部解析九项，不默认展示：
+在内部解析十一项，不默认展示：
 
 1. `surface`：公众号、网站、App、策划案、海报、邮件、社交媒体或其他；
 2. `component`：标题、Caption、按钮、提示、Hero、正文、CTA、表单、脚注等；
@@ -109,8 +109,16 @@ metadata:
 7. `tone`：由品牌 Profile 与情境共同决定，不从通用“专业感”猜口号；
 8. `constraints`：字符、层级、屏幕、平台语法、法务、无障碍与可验证事实；
 9. `visibility`：哪些事实给读者，哪些只留在制作链。
+10. `artifact_boundary`：当前交付是最终成品、内部审稿、修改说明还是聊天回复；不同
+    artifact 的上下文不得串用。
+11. `reader_start_state`：目标读者打开成品时已经知道什么。只能来自成品标题、前文、
+    邻接界面或真实公共常识，不能来自聊天记录、旧稿、用户反馈或 Agent 工作过程。
 
 普通任务不要把这份 contract 当作前言输出。它用于决策，不是用户制品。
+
+可独立传播的文章、网页、海报、邮件或报告默认使用
+`reader_start_state = zero-session-context`。除非成品内部已经建立明确先行词，不得直接
+使用“前一版”“上一稿”“刚才”“按你的要求”“我们之前”等依赖会话历史的表达。
 
 ### Step 2: Decide whether copy should exist
 
@@ -131,7 +139,7 @@ metadata:
 - **Accessibility text**：描述图片或控件本身，不承担营销和制作说明。
 - **Attribution**：作者、作品、日期、来源、版权等必要归属。
 - **Production metadata**：正文首图、官方 Logo、生成方式、导出规格、审批状态、
-  文件名、组件名与实现说明；默认不出现在读者文案。
+  文件名、组件名、旧稿轮次、用户反馈、聊天过程与实现说明；默认不出现在读者文案。
 
 Alt、Caption、设计标注和正文不是同一个字段，不得把一段内部描述复制到所有位置。
 
@@ -149,6 +157,10 @@ Alt、Caption、设计标注和正文不是同一个字段，不得把一段内�
 把文案放回真实邻接环境再检查：上一行、下一行、图片、按钮、页面标题、平台 author
 字段和移动端宽度。脱离组件单看“挺好”的句子，放回界面后可能重复、抢层级或像
 设计交付说明。
+
+对可独立传播的长文额外执行 `cold-reader test`：只给审阅者标题和开头 300 字，不提供
+聊天记录、任务说明和旧稿。如果审阅者必须追问“哪一版”“谁刚才说过”“这次相对
+哪次”，就是 hard failure；先删掉内部历史，或在成品内补足读者真正需要的前因。
 
 可对短文案运行辅助审计：
 
@@ -169,6 +181,8 @@ Alt、Caption、设计标注和正文不是同一个字段，不得把一段内�
 6. 语气是否来自品牌与场景，而不是“专业、温暖、高级”等空洞形容词？
 7. 是否符合此组件的真实长度、句法、标点和行动后果？
 8. 删除后是否更好？如果是，删除。
+9. 冷读者是否能仅凭当前成品解析所有版本、人物、事件和指代？
+10. 是否把作者与 Agent 的协作过程误写成了文章叙事？
 
 任何一项失败都先修复，再交付。
 

@@ -1,6 +1,6 @@
 # Codex 任务直达 · Codex Task Launcher
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 用稳定的 Codex thread ID 或 deeplink，把当前 Codex 主窗口直接切换到目标任务。
 

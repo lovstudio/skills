@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把「uni-api 后端建网关 + uni-app 前端封装调用层」两步集成压缩为一个 Skill Kit 流水线，省去逐个仓库对照约定的手工工作。"
+basis: "内部开发提效 skill，随手工川工作室公开分发，免费使用。"
+boundary: "生成代码需落在 uni-api 与 uni-app 既有约定内；不包含上游 API 的调用成本与密钥；不含远程部署与发布。"
+review_trigger: "当 Skill Kit 覆盖更多网关形态或前端框架、维护成本显著上升时重估。"
+confidence: internal

@@ -1,6 +1,6 @@
 # Skill 发布助手 · Skill Publisher
 
-![Version](https://img.shields.io/badge/version-0.7.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.7.6-CC785C)
 
 把已经验证并安装在本地的 Skill 发布到一个或多个独立渠道。发布前默认调用 `lov-skill-pricing` 自动生成或刷新可解释定价，再把同一价格契约适配到各渠道，同时保持平台元数据和发行产物不污染源代码。
 

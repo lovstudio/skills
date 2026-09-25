@@ -1,0 +1,55 @@
+[
+  {
+    "type": "case",
+    "title": "2026-09-12 主目录加外接 SSD 的全局视频盘点与增量复扫",
+    "description": "用户要求创建一个能查找所有视频文件、带增量缓存的 Skill，缓存放在 Skill 通用的 Profile 位置。创建后在真实机器上做了两次全局扫描以验证首扫与增量的差距。",
+    "input": {
+      "items": [
+        "macOS 主目录 /Users/<user> 与已挂载外接卷 /Volumes/T7-red。",
+        "默认排除规则生效：node_modules、Library 缓存类目录、.app/.photoslibrary 包、隐藏目录、符号链接、._ 副本。",
+        "缓存路径由 Profile 解析为 ~/.lovstudio/skills/lov-list-videos/cache.json。"
+      ]
+    },
+    "prompt": "创建一个能够查找所有视频文件的 skill；默认扫指定文件夹，也可以指定全局；建立缓存文件支持增量检索，缓存保存在 profile 所在的通用位置。",
+    "output": {
+      "items": [
+        "首次 --global：访问 147,794 个目录，索引 50,884 个视频，用时 20.9 秒（scan 20.0 秒）。",
+        "第二次 --global：复用 147,793 个目录、重列 1 个，用时 2.7 秒（scan 1.45 秒，其余为读写 29 MB 缓存）。",
+        "--limit 20 --sort mtime 的 JSON 输出含 roots、matched、shown、total_bytes、videos 与 scan 统计，errors 为 0。",
+        "缓存文件权限 0600，保存在 Profile 同级目录，未进入 Skill 源。"
+      ]
+    },
+    "status": "verified-local",
+    "evidence": [
+      "README.md 中的实测表格",
+      "skill-card.yaml dimensions.incremental-speed"
+    ],
+    "media_policy": "真实路径与视频清单留在用户本机，案例只记录统计数字。"
+  },
+  {
+    "type": "case",
+    "title": "2026-09-12 单目录扫描、结构变化与 ffprobe 探测的行为验证",
+    "description": "在含 h264 mp4、hevc mov、._ 副本、node_modules 与隐藏目录的 fixture 上验证增量逻辑，并在真实 ~/Movies 上做首扫与复扫。",
+    "input": {
+      "items": [
+        "fixture：a/clip1.mp4（H.264）、a/b/clip2.mov（HEVC）、a/b/._clip2.mov、node_modules/x/ignored.mp4、.hidden/hidden.mp4、a/readme.txt。",
+        "真实目录 ~/Movies：5 个目录、1 个 24.7 MB 的 mp4。"
+      ]
+    },
+    "prompt": "列出这个文件夹里所有的视频文件，再加上时长、分辨率和编码。",
+    "output": {
+      "items": [
+        "首扫只列出 clip1.mp4 与 clip2.mov，跳过 ._ 副本、node_modules 与隐藏目录；第二次 3 个目录全部复用。",
+        "新增 gone/deep/tmp.mp4 后立即出现；删除 gone 后下一次运行剪枝 2 个目录，缓存中不再残留。",
+        "向 clip3.mp4 原地追加数据后，父目录 mtime 未变，清单中的大小仍更新为 25.0K。",
+        "--probe 正确给出 h264 / hevc、320x240、2.0 s / 1.0 s；--hidden 后 hidden.mp4 出现。",
+        "~/Movies 首扫 0.089 秒、复扫 0.101 秒，复用 5/5 个目录。"
+      ]
+    },
+    "status": "verified-local",
+    "evidence": [
+      "tests/test_list_videos.py"
+    ],
+    "media_policy": "fixture 由 ffmpeg testsrc 生成，不含真实内容。"
+  }
+]

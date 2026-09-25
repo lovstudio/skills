@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "counts": {
+    "scope": 1,
+    "reviewed": 1,
+    "rename": 1,
+    "retain": 0,
+    "review": 0
+  },
+  "errors": [],
+  "warnings": []
+}

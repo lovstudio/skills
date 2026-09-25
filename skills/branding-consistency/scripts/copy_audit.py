@@ -27,6 +27,11 @@ PATTERNS = [
         "检测到 Agent 汇报口吻；只交付目标场景需要的成品。",
     ),
     (
+        "session_context_leak",
+        re.compile(r"(?:^|[。！？!?\n])\s*(?:我|我们)?(?:前一版|上一版|前一稿|上一稿)|(?:按你的要求|你之前说|我们(?:刚才|之前)讨论过)"),
+        "检测到依赖聊天或旧稿的悬空上下文；独立成品应删除协作历史，或在正文内用具体对象重新建立前因。",
+    ),
+    (
         "empty_self_praise",
         re.compile(r"专业(?:级)?|高端|高级感|精心设计|用心打造|重磅来袭"),
         "检测到缺少证据的自我评价；用事实、结果或具体差异替代。",
@@ -94,6 +99,20 @@ def self_test() -> int:
         raise AssertionError(f"missing findings: {sorted(expected - actual)}")
     if not good_result["ok"]:
         raise AssertionError(f"good example failed: {good_result['findings']}")
+    cold_reader_bad = audit("我前一版 benchmark 做错了。", "wechat", "body")
+    cold_reader_good = audit(
+        "我把 5 套公开 Skill 和两个对照放到同一组输入上，跑了 63 次。",
+        "wechat",
+        "body",
+    )
+    if "session_context_leak" not in {
+        item["id"] for item in cold_reader_bad["findings"]
+    }:
+        raise AssertionError("cold-reader regression was not detected")
+    if not cold_reader_good["ok"]:
+        raise AssertionError(
+            f"cold-reader good example failed: {cold_reader_good['findings']}"
+        )
     production_matches = {
         item["match"] for item in bad_result["findings"] if item["id"] == "production_metadata"
     }

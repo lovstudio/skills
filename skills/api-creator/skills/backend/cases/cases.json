@@ -1,0 +1,22 @@
+[
+  {
+    "type": "case",
+    "title": "为某 app 在 uni-api 内新增网关端点",
+    "description": "用户在开发某个 app 时需要在 uni-api 聚合网关内为该 app 新增网关能力；本案例记录驱动 Skill Kit 创建的真实需求，端到端执行证据待首个真实 app 跑通后回填。",
+    "input": {
+      "items": [
+        "app 名称与需要网关化的上游能力",
+        "目标仓库 uni-api（router、packages、config/app_groups.py）"
+      ]
+    },
+    "prompt": "给 uni-api 加一个 app 的网关能力 / 后端加聚合接口",
+    "output": {
+      "items": [
+        "router/__init__.py 注册新 router",
+        "config/app_groups.py 增加分组",
+        "网关端点清单（method + path + 说明）",
+        "端到端执行案例与 evidence 待首个真实 app 跑通后回填"
+      ]
+    }
+  }
+]

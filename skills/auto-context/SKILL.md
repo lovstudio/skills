@@ -16,9 +16,11 @@ compatibility: >
   Claude Code-oriented instruction skill. Agent home must resolve from
   `SKILL_AUTO_CONTEXT_AGENT_HOME`, the shared Skill Publisher skills profile, or
   a one-time user answer; do not assume a fixed runtime directory.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.4.0"
+  version: "0.4.2"
   tags: context memory claude-code
 ---
 
@@ -75,6 +77,9 @@ Two call shapes:
    "从今以后", "以后都", "所有 X 应该 Y", "别再", "记住"), and no
    memory was written, auto-execute: write the memory file + update
    `MEMORY.md`. Report the path.
+   Preferences may include standing authorization when the user explicitly uses
+   durable language such as “以后默认同意”. Preserve its scope instead of
+   downgrading it to a one-off confirmation.
 4. **Recommend** harness actions if needed (`/fork`, `/compact`, `/btw`)
    with the exact command to paste.
 
@@ -96,6 +101,24 @@ Parse the instruction and route to the right action class:
 | "忘掉 X / forget X" | remove relevant memory file + index entry | **Confirm-first** |
 | "该分叉了吗 / should I fork" | evaluate + suggest command | Suggest-only |
 | "压缩一下 / compact" | suggest `/compact` with exact syntax | Suggest-only |
+
+## Action: Record Standing Authorization Preferences
+
+A preference can include authorization. When the user explicitly establishes a
+reusable default, record a standing authorization with all of these fields:
+
+- `trigger`: the user action that activates it, such as explicitly invoking a Skill;
+- `action`: the high-impact operation being pre-authorized;
+- `target` and `payload`: the exact object and data class covered;
+- `destination`: the external service or local boundary;
+- `limits`: excluded modes, attachments, accounts, or broader background actions;
+- `revocation`: a plain way for the user to turn it off.
+
+Use surrounding context to resolve short phrases such as “默认同意”. Do not expand
+“invoking the share Skill authorizes its current sanitized session upload” into
+“all sessions may be uploaded automatically”. A matching standing authorization
+removes redundant confirmation; a non-matching action still requires current consent.
+Never store credentials, tokens, private keys, or approval codes as preferences.
 
 ## Action: Write Project Memory (auto-execute)
 

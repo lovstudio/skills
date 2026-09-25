@@ -1,0 +1,40 @@
+[
+  {
+    "type": "case",
+    "title": "把二分查找做成逐步演示（sequence 布局）",
+    "description": "以「手工川图解算法」项目 src/lib/algorithms.ts 中 makeBinarySearchSteps 的实现模式为输入，验证本 Skill 能把算法建模为逐帧序列并产出可播放的独立 HTML。",
+    "input": {
+      "items": [
+        "项目 src/lib/algorithms.ts 的 makeBinarySearchSteps 二分查找实现（SearchStep 模式：left/right/middle/found/note）",
+        "示例数组 2 5 8 12 16 23 38，目标 23"
+      ]
+    },
+    "prompt": "把二分查找做成逐步演示的可视化",
+    "output": {
+      "items": [
+        "examples/binary-search.json（4 帧帧模型）",
+        "build_viz.py 产出的 binary-search.html（自包含演示页）",
+        "validate_viz.py 0 error / 0 warning；headless Chrome 渲染无报错，7 节点 + STEP 01/04 + 解说文本可见"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "把拓扑排序与冒泡排序做成演示（network / bars 布局）",
+    "description": "同一技能分别覆盖网络布局（有向边 + 箭头 + settledEdges 高亮）与柱状图布局（排序值数组快照），验证引擎三种布局统一可用。",
+    "input": {
+      "items": [
+        "项目 src/lib/algorithms.ts 的 makeSortSteps 冒泡排序模式（SortStep：values/active/sorted/note）",
+        "项目 src/lib/traceAlgorithms.ts 的 makeTopological 拓扑排序模式（TraceDefinition：nodes/edges/frames/settledEdges）"
+      ]
+    },
+    "prompt": "用图讲清拓扑排序；把冒泡排序做成动画",
+    "output": {
+      "items": [
+        "examples/topological.json → build 产物 topological.html（7 帧，edge-layer 渲染 6 条有向边，marker-end 箭头可见）",
+        "examples/bubble.json → build 产物 bubble.html（13 帧，5 根柱子，active/settled 高亮，柱高随帧变化）",
+        "两者 validate 均 0 error"
+      ]
+    }
+  }
+]

@@ -1,0 +1,55 @@
+schema: skill-manifest/v1
+id: lov-reclamation-engineering
+version: "0.2.1"
+runtime: skill-runtime/v1
+invocation: kit_only
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-reclamation-engineering
+    persist:
+      enabled: true
+      namespace: skills.lov-reclamation-engineering
+      records_path: skills.lov-reclamation-engineering.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出回收方案与安全审查？
+      - path: workspace.project_roots
+        required: false
+        question: 生命周期治理涉及哪个具体客户端 App？
+      - path: workspace.platform_targets
+        required: false
+        question: App 运行在哪些 host、runtime 或 framework 上？
+      - path: skills.lov-reclamation-engineering.records.default_policy
+        required: false
+        question: 是否有需要长期沿用的 inventory_only、orphan_only 或 idle_resumable 政策？
+      - path: skills.lov-reclamation-engineering.records.default_action_level
+        required: false
+        question: 是否有需要长期沿用的 scope_release、hibernate、cache_evict 或 external_reclaim 默认级别？
+      - path: skills.lov-reclamation-engineering.records.grace_period
+        required: false
+        question: 是否有需要长期沿用的二次核验 grace period？
+  preferences:
+    namespace: lov_reclamation_engineering
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出回收方案与安全审查？
+      - path: performance.reclamation_mode
+        required: false
+        question: 默认只做设计审查还是 dry-run？
+      - path: performance.report_detail
+        required: false
+        question: 需要摘要矩阵还是完整证据报告？
+  interaction:
+    ask_missing: true
+    max_questions: 1

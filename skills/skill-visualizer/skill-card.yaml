@@ -1,0 +1,114 @@
+schema: lovstudio/skill-card/v1
+version: "0.6.1"
+description: "Transforms a local Agent Skill into a scenario-first, single-scroll trust brief that explains when to use it, how it transforms inputs, what it delivers, and what remains unproven."
+owner:
+  team: "LovStudio Skill maintainers"
+  contact: "Repository maintainers"
+license:
+  name: MIT
+  terms: "Use, modify, and redistribute under the MIT License; retain the license notice."
+  url: "LICENSE"
+use_case:
+  audience: "Skill authors, reviewers, maintainers, and catalog operators"
+  scenario: "Understand and review the declared runtime logic of one local Skill before optimization, publication, or handoff."
+  tasks:
+    - "Resolve a Skill directory or SKILL.md input"
+    - "Separate external activation routing from internal Skill execution"
+    - "Extract ordered workflow, authored step detail, conditions, Profile context, dependencies, Kit declarations, module sub-workflows, quality gates, and local resources"
+    - "Turn the selected workflow into a fixed Before → transformation → After narrative"
+    - "Explain when the Skill is a better fit than narrower alternatives and when not to use it"
+    - "Separate declarations, supporting capability, acceptance rules, observed artifacts, and unproven runtime effect"
+    - "Generate Mermaid Markdown, JSON, source-line evidence, trust coverage, and diagnostics"
+deployment:
+  geography: global
+  environments:
+    - "Local Agent Skill runtime"
+    - "Developer command line"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "PyYAML"
+    - "Vendored Mermaid 11.12.2 browser runtime"
+  runtime:
+    - "Python 3.8 or newer"
+risks:
+  - risk: "Static extraction can omit logic that the target author left implicit in prose, code, or remote tools."
+    mitigation: "Report only declared logic, preserve source spans, expose coverage counts, and keep diagnostics visible."
+  - risk: "A recursive reference could point outside the Skill or disclose a canonical local path."
+    mitigation: "Reject resources outside the resolved Skill root and store only Skill-relative paths in outputs."
+  - risk: "A syntactically valid Mermaid graph may be mistaken for proof that the target Skill actually succeeds."
+    mitigation: "State that the target is not executed and separate structural extraction from runtime verification."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Logic model contract"
+    path: "references/logic-model.md"
+  - title: "Real visualization case"
+    path: "cases/artifacts/skill-creator-logic.md"
+  - title: "Standalone HTML case"
+    path: "cases/artifacts/skill-creator-logic.html"
+output:
+  types:
+    - "Standalone review page"
+    - "Runtime logic report"
+    - "Machine-readable logic model"
+  formats:
+    - "Self-contained offline HTML with rendered Mermaid SVG"
+    - "Markdown with Mermaid"
+    - "JSON using lovstudio/skill-logic/v1"
+  parameters:
+    - "Diagram direction TB or LR"
+    - "Language auto, zh, or en"
+    - "Linked Markdown reference depth zero through five"
+  validation:
+    - "Focused Python unittest suite"
+    - "Strict extraction against a real local Skill"
+    - "Browser gate requiring an SVG for every secondary Mermaid view"
+    - "Assertion that the primary path has no node selection, zoom, tabs, or evidence workspace"
+    - "Assertion that host activation routing is absent from the internal graph"
+    - "Computed-style assertion that collapsed technical evidence is not visible"
+    - "Desktop and mobile browser screenshot review"
+    - "Chinese display and unchanged source-model assertions"
+    - "Source bundle validation"
+  description: "A restrained, self-contained trust brief makes the use case and complete transformation legible before exposing Mermaid, source, capability, quality gates, and effect gaps as secondary evidence."
+ethical_considerations: "Analyze only local Skill material in user scope, do not execute target code, keep outputs path-relative, and do not present inferred behavior as authored fact."
+dimensions:
+  - id: correctness
+    label: "Extraction correctness"
+    description: "Routing, ordered steps, conditions, dependencies, and resources match explicit source declarations."
+    evidence: "Focused unit fixture plus the real Skill Creator report and JSON artifacts."
+    score: null
+    status: "verified-with-current-cases"
+  - id: effectiveness
+    label: "Trust insight"
+    description: "A reviewer can explain when the Skill is necessary, how its internal stages transform the input, and which effect claims remain unproven."
+    evidence: "The real case leads with a concrete scenario, exposes the full selected pipeline without interaction, and preserves source, module, quality-gate, and effect-gap evidence below it."
+    score: null
+    status: "verified-with-current-cases"
+  - id: efficiency
+    label: "Local repeatability"
+    description: "The same source and flags deterministically produce the same report and JSON model without network access."
+    evidence: "Standalone CLI, vendored Mermaid runtime, offline HTML, Playwright browser gate, and standard-library unittest runner."
+    score: null
+    status: "verified-with-current-cases"
+  - id: honesty
+    label: "Boundary honesty"
+    description: "Static extraction gaps remain visible instead of being replaced by fabricated logic."
+    evidence: "Diagnostics, coverage counts, missing-resource checks, and the documented static-analysis boundary."
+    score: null
+    status: "verified-with-current-cases"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Free local developer infrastructure with no hosted compute or proprietary data."
+  boundary: "Includes static extraction, internal/external scope separation, scenario-first linear explanation, Kit sub-workflows and quality gates, restrained zh-first standalone HTML, Mermaid and JSON artifacts; excludes target execution, step-bound effect capture, repair, hosted rendering, and publication."
+  review_trigger: "Revisit only when hosted collaboration, proprietary analysis, or managed rendering is introduced."
+  confidence: evidence-backed-local
+distribution:
+  paid:
+    - "workbuddy: not_published"
+    - "skillpay: not_published"
+  free:
+    - "github: not_published"
+    - "lovstudio: local_install_verified"

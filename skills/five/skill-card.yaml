@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 在明确要求时使用五单位以内的简短回复，并支持随时恢复正常
-version: 0.1.0
+version: "0.1.1"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

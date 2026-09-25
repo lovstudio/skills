@@ -1,0 +1,851 @@
+{
+  "target": "localhost",
+  "scope": "plane-rest-api-v1",
+  "rootOperationId": "get_current_user",
+  "nodes": [
+    {
+      "operationId": "create_user_asset_upload",
+      "includedEndpoint": "POST /api/v1/assets/user-assets/",
+      "tag": "Assets",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_user_asset",
+      "includedEndpoint": "PATCH /api/v1/assets/user-assets/{asset_id}/",
+      "tag": "Assets",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_user_asset",
+      "includedEndpoint": "DELETE /api/v1/assets/user-assets/{asset_id}/",
+      "tag": "Assets",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_current_user",
+      "includedEndpoint": "GET /api/v1/users/me/",
+      "tag": "Users",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_generic_asset_upload",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/assets/",
+      "tag": "Assets",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_generic_asset",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/assets/{asset_id}/",
+      "tag": "Assets",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "update_generic_asset",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/assets/{asset_id}/",
+      "tag": "Assets",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "workspaces_invitations_list",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/invitations/",
+      "tag": "workspaces",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "workspaces_invitations_create",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/invitations/",
+      "tag": "workspaces",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "workspaces_invitations_retrieve",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/invitations/{pk}/",
+      "tag": "workspaces",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "workspaces_invitations_partial_update",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/invitations/{pk}/",
+      "tag": "workspaces",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "workspaces_invitations_destroy",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/invitations/{pk}/",
+      "tag": "workspaces",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_workspace_work_item",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/issues/{project_identifier}-{issue_identifier}/",
+      "tag": "Work Items",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "search_work_items",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/issues/search/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_workspace_members",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/members/",
+      "tag": "Members",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "get_workspace_members_lite",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/members-lite/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_projects",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/",
+      "tag": "Projects",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_project",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/",
+      "tag": "Projects",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_projects_lite",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects-lite/",
+      "tag": "Projects",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_project",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{pk}/",
+      "tag": "Projects",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_project",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{pk}/",
+      "tag": "Projects",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_project",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{pk}/",
+      "tag": "Projects",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "archive_project",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/archive/",
+      "tag": "Projects",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "unarchive_project",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/archive/",
+      "tag": "Projects",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_archived_cycles",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/archived-cycles/",
+      "tag": "Cycles",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "unarchive_cycle",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/archived-cycles/{cycle_id}/unarchive/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_archived_modules",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/archived-modules/",
+      "tag": "Modules",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "unarchive_module",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/archived-modules/{pk}/unarchive/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_cycles",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/cycles/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "create_cycle",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/cycles/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_cycles_lite",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/cycles-lite/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "archive_cycle",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/archive/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_cycle_work_items",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/cycle-issues/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "add_cycle_work_items",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/cycle-issues/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_cycle_work_item",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/cycle-issues/{issue_id}/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_cycle_work_item",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/cycle-issues/{issue_id}/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "transfer_cycle_work_items",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/transfer-issues/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_cycle",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/cycles/{pk}/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_cycle",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/cycles/{pk}/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_cycle",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/cycles/{pk}/",
+      "tag": "Cycles",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_intake_work_items_list",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/",
+      "tag": "Intake",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_intake_work_item",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/",
+      "tag": "Intake",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_intake_work_item",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/{issue_id}/",
+      "tag": "Intake",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_intake_work_item",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/{issue_id}/",
+      "tag": "Intake",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_intake_work_item",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/{issue_id}/",
+      "tag": "Intake",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_items",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "create_work_item",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/issues/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_item_activities",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/activities/",
+      "tag": "Work Item Activity",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "retrieve_work_item_activity",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/activities/{pk}/",
+      "tag": "Work Item Activity",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_item_comments",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/",
+      "tag": "Work Item Comments",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_work_item_comment",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/",
+      "tag": "Work Item Comments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_work_item_comment",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/{pk}/",
+      "tag": "Work Item Comments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_work_item_comment",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/{pk}/",
+      "tag": "Work Item Comments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_work_item_comment",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/{pk}/",
+      "tag": "Work Item Comments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_item_attachments",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/",
+      "tag": "Work Item Attachments",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_work_item_attachment",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/",
+      "tag": "Work Item Attachments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_work_item_attachment",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/{pk}/",
+      "tag": "Work Item Attachments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "upload_work_item_attachment",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/{pk}/",
+      "tag": "Work Item Attachments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_work_item_attachment",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/{pk}/",
+      "tag": "Work Item Attachments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_item_links",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/",
+      "tag": "Work Item Links",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_work_item_link",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/",
+      "tag": "Work Item Links",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_work_item_link",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/{pk}/",
+      "tag": "Work Item Links",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_issue_link",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/{pk}/",
+      "tag": "Work Item Links",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_work_item_link",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/{pk}/",
+      "tag": "Work Item Links",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_work_item",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/issues/{pk}/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_work_item",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/issues/{pk}/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_work_item",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/issues/{pk}/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_labels",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/labels/",
+      "tag": "Labels",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_label",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/labels/",
+      "tag": "Labels",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_labels",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/labels/{pk}/",
+      "tag": "Labels",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_label",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/labels/{pk}/",
+      "tag": "Labels",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_label",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/labels/{pk}/",
+      "tag": "Labels",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_project_members",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/members/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "create_project_member",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/members/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_project_member",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/members/{pk}/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_project_member",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/members/{pk}/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_project_member",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/members/{pk}/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_modules",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/modules/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "create_module",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/modules/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_modules_lite",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/modules-lite/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_module_work_items",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/modules/{module_id}/module-issues/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "add_module_work_items",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/modules/{module_id}/module-issues/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_module_work_item",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/modules/{module_id}/module-issues/{issue_id}/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_module",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/modules/{pk}/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_module",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/modules/{pk}/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_module",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/modules/{pk}/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "archive_module",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/modules/{pk}/archive/",
+      "tag": "Modules",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_project_members_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/project-members/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "create_project_member_2",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/project-members/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_project_members_lite",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/project-members-lite/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_project_member_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/project-members/{pk}/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_project_member_2",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/project-members/{pk}/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_project_member_2",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/project-members/{pk}/",
+      "tag": "Members",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_states",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/states/",
+      "tag": "States",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_state",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/states/",
+      "tag": "States",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_state",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/states/{state_id}/",
+      "tag": "States",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_state",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/states/{state_id}/",
+      "tag": "States",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_state",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/states/{state_id}/",
+      "tag": "States",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "workspaces_projects_summary_retrieve",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/summary/",
+      "tag": "workspaces",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_items_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "create_work_item_2",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/work-items/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_item_activities_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/activities/",
+      "tag": "Work Item Activity",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_work_item_activity_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/activities/{pk}/",
+      "tag": "Work Item Activity",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_item_attachments_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/",
+      "tag": "Work Item Attachments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "create_work_item_attachment_2",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/",
+      "tag": "Work Item Attachments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_work_item_attachment_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/{pk}/",
+      "tag": "Work Item Attachments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "upload_work_item_attachment_2",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/{pk}/",
+      "tag": "Work Item Attachments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_work_item_attachment_2",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/{pk}/",
+      "tag": "Work Item Attachments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_item_comments_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/",
+      "tag": "Work Item Comments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "create_work_item_comment_2",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/",
+      "tag": "Work Item Comments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_work_item_comment_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/{pk}/",
+      "tag": "Work Item Comments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_work_item_comment_2",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/{pk}/",
+      "tag": "Work Item Comments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_work_item_comment_2",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/{pk}/",
+      "tag": "Work Item Comments",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_item_links_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/",
+      "tag": "Work Item Links",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "create_work_item_link_2",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/",
+      "tag": "Work Item Links",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_work_item_link_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/{pk}/",
+      "tag": "Work Item Links",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_issue_link_2",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/{pk}/",
+      "tag": "Work Item Links",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_work_item_link_2",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/{pk}/",
+      "tag": "Work Item Links",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_work_item_relations",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/relations/",
+      "tag": "Work Item Relations",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_work_item_relation",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/relations/",
+      "tag": "Work Item Relations",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_work_item_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{pk}/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_work_item_2",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{pk}/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_work_item_2",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/projects/{project_id}/work-items/{pk}/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "list_stickies",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/stickies/",
+      "tag": "Stickies",
+      "observation": "live-probe-401-403"
+    },
+    {
+      "operationId": "create_sticky",
+      "includedEndpoint": "POST /api/v1/workspaces/{slug}/stickies/",
+      "tag": "Stickies",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "retrieve_sticky",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/stickies/{pk}/",
+      "tag": "Stickies",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "update_sticky",
+      "includedEndpoint": "PATCH /api/v1/workspaces/{slug}/stickies/{pk}/",
+      "tag": "Stickies",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "delete_sticky",
+      "includedEndpoint": "DELETE /api/v1/workspaces/{slug}/stickies/{pk}/",
+      "tag": "Stickies",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "get_workspace_work_item_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/work-items/{project_identifier}-{issue_identifier}/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    },
+    {
+      "operationId": "search_work_items_2",
+      "includedEndpoint": "GET /api/v1/workspaces/{slug}/work-items/search/",
+      "tag": "Work Items",
+      "observation": "vendor-generated-schema"
+    }
+  ],
+  "edges": [
+    {
+      "from": "get_current_user",
+      "to": "list_projects",
+      "sourceSelector": "$.workspace slug 由用户自行提供或从 Plane UI 读取",
+      "description": "确认凭据有效后进入工作区"
+    },
+    {
+      "from": "list_projects",
+      "to": "list_work_items",
+      "sourceSelector": "$.results[].id → {project_id}",
+      "description": "项目 id driving 后续所有项目级资源"
+    },
+    {
+      "from": "list_projects",
+      "to": "list_states",
+      "sourceSelector": "$.results[].id → {project_id}",
+      "description": "创建工作项前取状态字典"
+    },
+    {
+      "from": "list_projects",
+      "to": "list_labels",
+      "sourceSelector": "$.results[].id → {project_id}",
+      "description": "创建工作项前取标签字典"
+    },
+    {
+      "from": "list_states",
+      "to": "create_work_item",
+      "sourceSelector": "$.results[].id → body.state",
+      "description": "状态 id 作为写入字段"
+    },
+    {
+      "from": "list_labels",
+      "to": "create_work_item",
+      "sourceSelector": "$.results[].id → body.labels[]",
+      "description": "标签 id 作为写入字段"
+    },
+    {
+      "from": "list_work_items",
+      "to": "list_work_item_comments",
+      "sourceSelector": "$.results[].id → {issue_id}",
+      "description": "工作项 id 进入评论/附件/链接/活动"
+    },
+    {
+      "from": "list_work_items",
+      "to": "list_work_item_links",
+      "sourceSelector": "$.results[].id → {issue_id}"
+    },
+    {
+      "from": "list_work_items",
+      "to": "list_work_item_activities",
+      "sourceSelector": "$.results[].id → {issue_id}"
+    },
+    {
+      "from": "list_projects",
+      "to": "list_cycles",
+      "sourceSelector": "$.results[].id → {project_id}"
+    },
+    {
+      "from": "list_projects",
+      "to": "list_modules",
+      "sourceSelector": "$.results[].id → {project_id}"
+    }
+  ]
+}

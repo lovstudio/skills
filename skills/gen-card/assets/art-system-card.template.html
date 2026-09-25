@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="@@LANG@@">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="@@DESCRIPTION@@">
+  <title>@@PAGE_TITLE@@</title>
+  <style>
+    :root {
+      --paper: #f2eee5;
+      --surface: #fffdf8;
+      --surface-2: #f5f0e6;
+      --ink: #191918;
+      --ink-soft: #615d54;
+      --ink-faint: #938c7d;
+      --line: #d8d0c2;
+      --accent: @@ACCENT@@;
+      --accent-2: @@ACCENT_2@@;
+      --accent-3: @@ACCENT_3@@;
+      --copy-size: 21px;
+      --prompt-size: 18px;
+      --title-size: 68px;
+      --title-secondary-size: 31px;
+      --content-gap: 15px;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--paper); }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 48px 20px 80px;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(25,25,24,.027) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(25,25,24,.027) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    }
+    .stage { display: grid; place-items: center; }
+    #capture { width: 900px; height: 1350px; overflow: hidden; font-size: 0; line-height: 0; }
+    .card {
+      position: relative;
+      isolation: isolate;
+      width: 900px;
+      height: 1350px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 50px 56px 38px;
+      background: var(--surface);
+      border: 1px solid #cfc7b9;
+      font-size: 16px;
+      line-height: normal;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent) 0 33.333%, var(--accent-2) 33.333% 66.666%, var(--accent-3) 66.666%);
+    }
+    .card.is-multi-rating { padding-top: 42px; padding-bottom: 32px; }
+    .card.is-multi-rating .series-row { min-height: 35px; padding-bottom: 9px; }
+    .card.is-multi-rating .title-block {
+      padding-top: 16px;
+      padding-bottom: 14px;
+    }
+    .card.is-multi-rating .content-stack { gap: 12px; padding-top: 14px; }
+    .card.is-multi-rating .card-footer { margin-top: 11px; padding-top: 10px; }
+    .card.is-multi-rating figure { width: 90%; margin-inline: auto; }
+    .series-row {
+      flex: 0 0 auto;
+      min-height: 39px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+    .series-name {
+      display: flex;
+      align-items: baseline;
+      gap: 13px;
+      min-width: 0;
+      white-space: nowrap;
+      font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .series-name span {
+      color: var(--ink-faint);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .06em;
+    }
+    .card-number {
+      color: var(--ink-soft);
+      font-family: "Avenir Next Condensed", "SFMono-Regular", monospace;
+      font-size: 20px;
+      font-weight: 650;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: .08em;
+    }
+    .title-block {
+      flex: 0 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      align-items: end;
+      gap: 28px;
+      padding: 25px 0 23px;
+    }
+    h1 {
+      margin: 0;
+      font-family: "Avenir Next Condensed", "Helvetica Neue", sans-serif;
+      font-size: var(--title-size);
+      font-weight: 650;
+      line-height: .94;
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .title-secondary {
+      margin: 0 0 4px;
+      color: var(--ink-soft);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: var(--title-secondary-size);
+      font-weight: 600;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+    .title-block.is-long {
+      grid-template-columns: minmax(0,1fr);
+      align-items: start;
+      gap: 7px;
+      padding-top: 21px;
+      padding-bottom: 20px;
+    }
+    .title-block.is-long h1 { line-height: .98; }
+    .title-block.is-long .title-secondary { margin: 0; letter-spacing: .06em; }
+    figure { flex: 0 0 auto; margin: 0; padding: 0; }
+    .visual-study {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: contain;
+      background: #e8e1d4;
+      border: 1px solid #cfc7b9;
+    }
+    figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: 8px;
+      color: var(--ink-faint);
+      font-size: 10px;
+      line-height: 1.35;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .content-stack {
+      min-height: 0;
+      flex: 1 1 auto;
+      display: grid;
+      align-content: start;
+      gap: var(--content-gap);
+      padding-top: 19px;
+    }
+    .section {
+      display: grid;
+      grid-template-columns: 118px minmax(0,1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .section-label {
+      margin: 2px 0 0;
+      color: var(--accent);
+      font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.2;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    .section-label span {
+      display: block;
+      margin-top: 4px;
+      color: var(--ink-faint);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+    }
+    .background-copy {
+      margin: 0;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: var(--copy-size);
+      line-height: 1.58;
+      letter-spacing: .015em;
+    }
+    .prompt-box {
+      margin: 0;
+      padding: 14px 18px 15px;
+      color: #272622;
+      background: var(--surface-2);
+      border-left: 4px solid var(--accent-2);
+      font-family: "SFMono-Regular", "Menlo", monospace;
+      font-size: var(--prompt-size);
+      line-height: 1.48;
+      letter-spacing: -.012em;
+      overflow-wrap: anywhere;
+      user-select: text;
+    }
+    .prompt-box strong { color: var(--accent); font-weight: 700; }
+    .basic-info {
+      display: grid;
+      grid-template-columns: minmax(0,1.55fr) .72fr .72fr;
+      gap: 24px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .basic-info.is-multi-rating {
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      column-gap: 12px;
+      row-gap: 13px;
+    }
+    .basic-info.is-multi-rating .info-item:first-child { grid-column: 1 / -1; }
+    .basic-info.is-multi-rating .info-key {
+      margin-bottom: 6px;
+      font-size: 10px;
+      letter-spacing: .045em;
+      white-space: nowrap;
+    }
+    .basic-info.is-multi-rating .stars { font-size: 15px; letter-spacing: 0; }
+    .info-item { min-width: 0; }
+    .info-key {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--ink-faint);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .info-value { color: var(--ink); font-size: 15px; font-weight: 600; line-height: 1.45; }
+    .stars {
+      display: block;
+      color: var(--accent);
+      font-family: "Avenir Next", sans-serif;
+      font-size: 17px;
+      line-height: 1;
+      letter-spacing: .03em;
+      white-space: nowrap;
+    }
+    .rating-note { display: block; margin-top: 5px; color: var(--ink-soft); font-size: 12px; white-space: nowrap; }
+    .card-footer {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      min-height: 45px;
+      margin-top: 17px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .site-mark {
+      color: var(--ink-faint);
+      font-family: "Avenir Next Condensed", "Avenir Next", sans-serif;
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .brand-logo { display: block; width: 60px; max-height: 30px; object-fit: contain; object-position: right bottom; }
+    .brand-wordmark { color: var(--ink-soft); font-size: 12px; font-weight: 750; letter-spacing: .08em; }
+    .actions {
+      width: 900px;
+      margin: 22px auto 0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .actions button {
+      appearance: none;
+      border: 1px solid #cfc7b9;
+      border-radius: 999px;
+      padding: 10px 17px;
+      color: var(--ink);
+      background: var(--surface);
+      font: 650 13px/1 "Avenir Next", "PingFang SC", sans-serif;
+      cursor: pointer;
+    }
+    .actions button:hover { border-color: var(--accent); color: var(--accent); }
+    .actions button.primary { color: #fff; background: var(--ink); border-color: var(--ink); }
+    #card-audit { display: none; }
+    @media (max-width: 940px) {
+      body { overflow-x: auto; padding-inline: 12px; }
+      .stage, .actions { transform-origin: top center; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage" aria-label="@@SERIES_NAME@@ 预览">
+    <div id="capture">
+      <article class="card@@CARD_CLASS@@" data-card-number="@@NUMBER@@" aria-labelledby="card-title">
+        <header class="series-row">
+          <div class="series-name">@@SERIES_NAME@@ <span>@@SERIES_SUBTITLE@@</span></div>
+          <div class="card-number">@@NUMBER@@</div>
+        </header>
+        <div class="title-block@@TITLE_CLASS@@">
+          <h1 id="card-title">@@TITLE@@</h1>
+          <p class="title-secondary">@@SUBTITLE@@</p>
+        </div>
+        <figure>
+          <img class="visual-study" src="@@VISUAL_URL@@" alt="@@VISUAL_ALT@@">
+          <figcaption><span>@@CAPTION_LEFT@@</span><span>@@CAPTION_RIGHT@@</span></figcaption>
+        </figure>
+        <div class="content-stack">
+          <section class="section">
+            <h2 class="section-label">@@BACKGROUND_LABEL@@ <span>@@BACKGROUND_LABEL_SECONDARY@@</span></h2>
+            <p class="background-copy">@@BACKGROUND@@</p>
+          </section>
+          <section class="section">
+            <h2 class="section-label">@@PROMPT_LABEL@@ <span>@@PROMPT_LABEL_SECONDARY@@</span></h2>
+            <p class="prompt-box">@@PROMPT@@</p>
+          </section>
+          <section class="section">
+            <h2 class="section-label">@@PROFILE_LABEL@@ <span>@@PROFILE_LABEL_SECONDARY@@</span></h2>
+            <div class="basic-info@@BASIC_INFO_CLASS@@">
+              <div class="info-item">
+                <span class="info-key">@@SCENARIO_LABEL@@</span>
+                <span class="info-value">@@SCENARIOS@@</span>
+              </div>
+              @@RATINGS@@
+            </div>
+          </section>
+        </div>
+        <footer class="card-footer">
+          <span class="site-mark">@@SITE_MARK@@</span>
+          @@LOGO@@
+        </footer>
+      </article>
+    </div>
+  </main>
+  <div class="actions" aria-label="卡片操作">
+    <button type="button" id="copy-prompt">复制 Prompt</button>
+    <button type="button" class="primary" id="download-card">下载 PNG</button>
+  </div>
+  <output id="card-audit"></output>
+  <script>@@MODERN_SCREENSHOT@@</script>
+  <script>
+    (function () {
+      var promptText = @@PROMPT_JSON@@;
+      var downloadName = @@DOWNLOAD_NAME_JSON@@;
+      var scale = @@EXPORT_SCALE@@;
+      var card = document.querySelector('.card');
+      var title = card.querySelector('h1');
+      var secondary = card.querySelector('.title-secondary');
+      var content = card.querySelector('.content-stack');
+      var visual = card.querySelector('.visual-study');
+
+      function fitCard() {
+        var titleSize = card.querySelector('.title-block').classList.contains('is-long') ? 52 : 68;
+        var secondarySize = 31;
+        var copySize = 21;
+        var promptSize = 18;
+        var gap = 15;
+        card.style.setProperty('--title-size', titleSize + 'px');
+        while (title.scrollWidth > title.clientWidth + 1 && titleSize > 31) {
+          titleSize -= 1;
+          card.style.setProperty('--title-size', titleSize + 'px');
+        }
+        while (secondary.scrollWidth > secondary.clientWidth + 1 && secondarySize > 19) {
+          secondarySize -= 1;
+          card.style.setProperty('--title-secondary-size', secondarySize + 'px');
+        }
+        while (content.scrollHeight > content.clientHeight + 1 && promptSize > 14) {
+          promptSize -= .5;
+          copySize = Math.max(16, copySize - .35);
+          gap = Math.max(9, gap - .5);
+          card.style.setProperty('--prompt-size', promptSize + 'px');
+          card.style.setProperty('--copy-size', copySize + 'px');
+          card.style.setProperty('--content-gap', gap + 'px');
+        }
+        var internalBlocks = card.querySelectorAll('.series-row, .title-block, figure, .content-stack, .card-footer');
+        var internalOverflowY = Array.prototype.reduce.call(internalBlocks, function (maximum, node) {
+          return Math.max(maximum, node.scrollHeight - node.clientHeight);
+        }, 0);
+        var internalClipY = Array.prototype.reduce.call(internalBlocks, function (maximum, node) {
+          var bounds = node.getBoundingClientRect();
+          return Array.prototype.reduce.call(node.children, function (childMaximum, child) {
+            var childBounds = child.getBoundingClientRect();
+            return Math.max(
+              childMaximum,
+              bounds.top - childBounds.top,
+              childBounds.bottom - bounds.bottom
+            );
+          }, maximum);
+        }, 0);
+        var audit = {
+          width: Math.round(card.getBoundingClientRect().width),
+          height: Math.round(card.getBoundingClientRect().height),
+          overflowX: Math.max(0, card.scrollWidth - card.clientWidth),
+          overflowY: Math.max(0, card.scrollHeight - card.clientHeight),
+          internalOverflowY: Math.max(0, internalOverflowY),
+          internalClipY: Math.max(0, Math.ceil(internalClipY)),
+          visualReady: visual.complete && visual.naturalWidth > 0,
+          titleSize: titleSize,
+          copySize: copySize,
+          promptSize: promptSize
+        };
+        card.dataset.audit = JSON.stringify(audit);
+        document.getElementById('card-audit').textContent = JSON.stringify(audit);
+        window.__CARD_READY__ = true;
+      }
+
+      function ready() {
+        var fonts = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+        return fonts.then(function () {
+          return new Promise(function (resolve) {
+            if (visual.complete) { fitCard(); resolve(); }
+            else visual.addEventListener('load', function () { fitCard(); resolve(); }, { once: true });
+          });
+        });
+      }
+
+      document.getElementById('copy-prompt').addEventListener('click', function () {
+        navigator.clipboard.writeText(promptText).then(function () {
+          document.getElementById('copy-prompt').textContent = '已复制';
+        });
+      });
+      document.getElementById('download-card').addEventListener('click', function () {
+        modernScreenshot.domToPng(document.getElementById('capture'), {
+          width: 900, height: 1350, scale: scale, backgroundColor: '#fffdf8'
+        }).then(function (url) {
+          var anchor = document.createElement('a');
+          anchor.href = url;
+          anchor.download = downloadName;
+          anchor.click();
+        });
+      });
+      window.__CARD_READY_PROMISE__ = ready();
+    })();
+  </script>
+</body>
+</html>

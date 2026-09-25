@@ -1,0 +1,102 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: >-
+  Resolve a local Codex deeplink or thread UUID and report reset-aware historical
+  token usage, the latest SQLite snapshot, token subsets, and evidence quality.
+owner:
+  team: "LovStudio Skill contributors"
+  contact: "local source maintainers"
+license:
+  name: MIT
+  terms: "Use, modify, and redistribute under the included MIT License."
+  url: "LICENSE"
+use_case:
+  audience: "Codex users and local developer-tool maintainers"
+  scenario: "A user has a local codex://threads deeplink and needs auditable per-thread token statistics."
+  tasks:
+    - "Parse a deeplink or raw UUID without opening the task."
+    - "Locate the matching read-only SQLite row and rollout JSONL."
+    - "Reconstruct historical usage across cumulative-counter resets."
+deployment:
+  geography: global
+  environments:
+    - "Local macOS, Linux, or Windows environment with Codex data"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.9 or newer"
+    - "Read access to local Codex state and rollout files"
+risks:
+  - risk: "SQLite tokens_used can represent only the latest in-memory cumulative segment."
+    mitigation: "Scan rollout token_count events and sum only terminal snapshots of detected segments."
+  - risk: "TokenCountEvent can include estimated or replayed values."
+    mitigation: "Expose quality, estimated segment count, raw response evidence, and method instead of claiming invoice accuracy."
+  - risk: "A report could reveal local transcript paths or message content."
+    mitigation: "Stream only event envelopes and token fields, abbreviate paths under CODEX_HOME, and never emit message bodies."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Token semantics and evidence"
+    path: "references/token-semantics.md"
+  - title: "Composition analysis"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "thread token usage report"
+  formats:
+    - "plain text"
+    - "JSON"
+  parameters:
+    - "Codex deeplink or thread UUID"
+    - "optional Codex data directory"
+    - "optional segment detail flag"
+  validation:
+    - "rollout session ID matches the input thread ID"
+    - "cached input and reasoning output remain subsets"
+    - "only terminal cumulative snapshots are summed"
+  description: "Historical and latest token statistics with reset count, source path alias, and uncertainty warnings."
+ethical_considerations: >-
+  The Skill is local and read-only. It minimizes exposure by never printing
+  conversation bodies and does not turn token counts into unsupported billing,
+  productivity, or quality judgments.
+dimensions:
+  - id: correctness
+    label: "Reset-aware correctness"
+    description: "Avoids summing repeated cumulative events and distinguishes the latest snapshot from full history."
+    evidence: "Verified case produced five segments and reconciled each terminal snapshot to 213,343,248 total tokens."
+    score: "verified"
+  - id: transparency
+    label: "Metric transparency"
+    description: "Explains cached input, reasoning output, TUI-style totals, quality, and known limits."
+    evidence: "Text and JSON outputs expose component fields, method, quality, resets, warnings, and segment details."
+    score: "verified"
+  - id: privacy
+    label: "Local privacy"
+    description: "Reads only token-bearing envelopes and avoids emitting message bodies or full private paths."
+    evidence: "The CLI parser never accesses response message text and renders rollout locations relative to CODEX_HOME."
+    score: "verified"
+  - id: portability
+    label: "Portable runtime"
+    description: "Uses only Python standard-library modules and detects available SQLite columns."
+    evidence: "Unit tests run without jq, sqlite3 CLI, credentials, or network access."
+    score: "verified"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "A small local diagnostic removes error-prone manual JSONL and SQLite aggregation."
+  boundary: "Includes local report generation; excludes account quotas, model pricing, invoice reconstruction, and publication."
+  review_trigger: "Revisit if Codex replaces local rollout token events or a maintained public thread-usage API becomes authoritative."
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not_planned
+    - channel: skillpay
+      status: not_planned
+  free:
+    - channel: github
+      status: not_published
+    - channel: lovstudio
+      status: local_only

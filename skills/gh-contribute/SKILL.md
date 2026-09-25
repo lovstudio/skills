@@ -12,7 +12,7 @@ compatibility: >
   Targets GitHub repositories only. Cross-platform: macOS, Windows, Linux.
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: [github, pr, contribute, fork, open-source]
 ---
 

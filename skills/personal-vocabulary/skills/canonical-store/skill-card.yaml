@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: 维护规范个人词汇表 vocabulary.json 的结构与读写，支持按 phrase 去重合并与导入导出。
 owner:
   team: LovStudio / 手工川工作室

@@ -1,0 +1,64 @@
+{
+  "schema": "lov-cli-project-analysis/v1",
+  "status": "inspected",
+  "context_id": "cli-faf68694",
+  "project": {
+    "name": "skill-creator-skill",
+    "root": ".",
+    "kinds": [
+      "agent-skill"
+    ]
+  },
+  "inventory": {
+    "file_count": 17,
+    "truncated": false,
+    "max_files": 20000,
+    "languages": {
+      "Python": 4
+    },
+    "manifests": [
+      {
+        "path": "SKILL.md",
+        "ecosystem": "agent-skill"
+      },
+      {
+        "path": "skill.yaml",
+        "ecosystem": "agent-skill"
+      }
+    ],
+    "instruction_files": [],
+    "readmes": [
+      "README.md"
+    ]
+  },
+  "callable_surfaces": {
+    "package_bins": {},
+    "package_scripts": {},
+    "cli_candidates": [
+      {
+        "path": "scripts/init_skill.py",
+        "signal": "argparse"
+      },
+      {
+        "path": "scripts/profile_store.py",
+        "signal": "argparse"
+      },
+      {
+        "path": "scripts/validate_skill.py",
+        "signal": "argparse"
+      }
+    ],
+    "backend_candidates": [
+      {
+        "path": "scripts/test_profile_contract.py",
+        "signal": "subprocess"
+      }
+    ]
+  },
+  "next_checks": [
+    "Read project instructions and primary README files.",
+    "Trace one real user workflow from entry point to verified postcondition.",
+    "Choose the narrowest real backend boundary; do not reimplement the product.",
+    "Design doctor, info, capabilities, and at least one domain command."
+  ]
+}

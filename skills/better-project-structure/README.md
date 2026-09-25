@@ -1,6 +1,6 @@
 # 项目整理师 · Project Organizer
 
-![Version](https://img.shields.io/badge/version-2.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.0.2-CC785C)
 
 分析任意语言项目的目录职责并渐进调整文件结构和引用。
 

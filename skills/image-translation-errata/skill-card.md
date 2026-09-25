@@ -61,7 +61,7 @@ and character-fidelity gates.
 
 ## Skill Version
 
-0.1.0
+0.2.1
 
 ## Ethical Considerations
 

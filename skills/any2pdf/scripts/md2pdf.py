@@ -478,6 +478,71 @@ THEMES = {
     },
 }
 
+
+def select_theme_from_content(md_text, title=""):
+    """Choose a deterministic fallback theme from document semantics and structure.
+
+    This is deliberately a fallback, not a replacement for an explicit CLI or
+    frontmatter choice.  The Skill layer may make a richer semantic decision;
+    direct CLI use still gets a content-aware result instead of one fixed look.
+    """
+    text = f"{title}\n{md_text}".lower()
+    cjk_count = sum(1 for ch in text if _is_cjk(ch))
+    visible_count = sum(1 for ch in text if not ch.isspace()) or 1
+    code_blocks = len(re.findall(r"^\s*```", md_text, re.MULTILINE)) // 2
+    table_rows = len(re.findall(r"^\s*\|.*\|\s*$", md_text, re.MULTILINE))
+
+    keyword_groups = {
+        "consulting-navy": (
+            "战略", "商业计划", "行业研究", "市场研究", "调研报告", "咨询报告",
+            "经营分析", "可行性", "尽职调查", "白皮书", "executive summary",
+            "market analysis", "business plan", "strategy",
+        ),
+        "ieee-journal": (
+            "摘要", "关键词", "研究方法", "实验结果", "参考文献", "文献综述",
+            "abstract", "methodology", "results", "references", "bibliography",
+        ),
+        "github-light": (
+            "api", "sdk", "cli", "github", "python", "typescript", "javascript",
+            "架构", "源代码", "代码示例", "部署", "调试", "repository",
+        ),
+        "tufte": (
+            "数据分析", "指标", "统计", "增长率", "转化率", "样本", "图表",
+            "data analysis", "metrics", "dataset", "statistics",
+        ),
+        "ink-wash": (
+            "散文", "诗歌", "文学", "艺术", "美学", "随笔", "摄影", "画作",
+            "poetry", "literature", "art criticism", "visual essay",
+        ),
+        "chinese-red": (
+            "政策解读", "工作报告", "公文", "政府", "实施方案", "指导意见",
+        ),
+    }
+
+    def contains_keyword(keyword):
+        if keyword.isascii():
+            pattern = rf"(?<![a-z0-9_]){re.escape(keyword)}(?![a-z0-9_])"
+            return re.search(pattern, text) is not None
+        return keyword in text
+
+    scores = {
+        theme: sum(2 for keyword in keywords if contains_keyword(keyword))
+        for theme, keywords in keyword_groups.items()
+    }
+    scores["github-light"] += min(code_blocks, 4) * 2
+    scores["tufte"] += min(table_rows // 3, 4)
+
+    # Strong semantic signals win. Stable insertion order resolves ties.
+    selected, score = max(scores.items(), key=lambda item: item[1])
+    if score >= 2:
+        return selected
+
+    # Long Chinese prose and dense tables benefit most from the reading preset.
+    if cjk_count / visible_count >= 0.15 or cjk_count >= 600 or table_rows >= 8:
+        return "songti-reading"
+    return "paper-classic"
+
+
 def load_theme(name, theme_file=None):
     if theme_file and os.path.exists(theme_file):
         with open(theme_file) as f:
@@ -485,8 +550,8 @@ def load_theme(name, theme_file=None):
     elif name in THEMES:
         t = THEMES[name]
     else:
-        print(f"Unknown theme '{name}', falling back to warm-academic", file=sys.stderr)
-        t = THEMES["warm-academic"]
+        print(f"Unknown theme '{name}', falling back to paper-classic", file=sys.stderr)
+        t = THEMES["paper-classic"]
     # Merge layout with defaults
     layout = dict(_DEFAULT_LAYOUT)
     layout.update(t.get("layout", {}))
@@ -739,6 +804,19 @@ def md_inline(text, accent_hex="#4F46E5", force_cjk_bold=False):
 
 _MD_IMAGE_RE = re.compile(r'!\[([^\]]*)\]\(([^)]+)\)')
 
+
+def _markdown_image_matches(line):
+    """Return Markdown image matches that are not inside inline-code spans."""
+    code_ranges = [m.span() for m in re.finditer(r'(`+).*?\1', line)]
+    return [
+        match for match in _MD_IMAGE_RE.finditer(line)
+        if not any(start <= match.start() < end for start, end in code_ranges)
+    ]
+
+
+def _has_markdown_image(line):
+    return bool(_markdown_image_matches(line))
+
 # ═══════════════════════════════════════════════════════════════════════
 # CUSTOM FLOWABLES
 # ═══════════════════════════════════════════════════════════════════════
@@ -978,8 +1056,8 @@ class PDFBuilder:
 
         ver = self.cfg.get("version", "")
         if ver:
-            c.setFillColor(T["accent"]); c.setFont("Sans", 13)
-            c.drawCentredString(cx, btm - 30, ver)
+            c.setFillColor(T["accent"])
+            _draw_mixed(c, cx, btm - 30, ver, 13, anchor="center")
 
         rule_y = btm - 52
         c.setStrokeColor(T["accent"]); c.setLineWidth(1.5)
@@ -1029,8 +1107,8 @@ class PDFBuilder:
 
         ver = self.cfg.get("version", "")
         if ver:
-            c.setFillColor(T["accent"]); c.setFont("Sans", 12)
-            c.drawString(lx, btm - 28, ver)
+            c.setFillColor(T["accent"])
+            _draw_mixed(c, lx, btm - 28, ver, 12, anchor="left")
 
         # Accent underline
         c.setStrokeColor(T["accent"]); c.setLineWidth(2)
@@ -1076,8 +1154,8 @@ class PDFBuilder:
 
         ver = self.cfg.get("version", "")
         if ver:
-            c.setFillColor(T["ink_faded"]); c.setFont("Sans", 10)
-            c.drawCentredString(cx, btm - 60, ver)
+            c.setFillColor(T["ink_faded"])
+            _draw_mixed(c, cx, btm - 60, ver, 10, anchor="center")
 
         # Simple thin rule
         c.setStrokeColor(T["border"]); c.setLineWidth(0.3)
@@ -1462,7 +1540,7 @@ class PDFBuilder:
 
     def _append_image_line(self, story, line):
         pos = 0
-        for m in _MD_IMAGE_RE.finditer(line):
+        for m in _markdown_image_matches(line):
             before = line[pos:m.start()].strip()
             if before:
                 story.append(Paragraph(md_inline(before, self.accent_hex), self.ST['body']))
@@ -1849,7 +1927,7 @@ class PDFBuilder:
                 i += 1; continue
 
             # Standalone or inline markdown images
-            if _MD_IMAGE_RE.search(stripped):
+            if _has_markdown_image(stripped):
                 self._append_image_line(story, stripped)
                 i += 1; continue
 
@@ -1893,7 +1971,7 @@ class PDFBuilder:
                 l = lines[i].strip()
                 if not l or l.startswith('#') or l.startswith('```') or l.startswith('|') or \
                    l.startswith('- ') or l.startswith('* ') or l.startswith('> ') or re.match(r'^\d+\.\s', l) or \
-                   l.startswith("$$") or l.startswith("\\[") or _MD_IMAGE_RE.search(l) or \
+                   l.startswith("$$") or l.startswith("\\[") or _has_markdown_image(l) or \
                    re.match(r'^<a\s[^>]*>\s*</a>$', l):
                     break
                 plines.append(l); i += 1
@@ -1950,6 +2028,7 @@ class PDFBuilder:
         story = []
         has_frontis = self.cfg.get("frontispiece") and os.path.exists(self.cfg["frontispiece"])
         has_banner = self.cfg.get("banner") and os.path.exists(self.cfg["banner"])
+        has_backcover = bool(has_banner or self.cfg.get("disclaimer") or self.cfg.get("copyright"))
         has_toc = self.cfg.get("toc", True) and toc
 
         # Cover page
@@ -2033,7 +2112,7 @@ class PDFBuilder:
         story.extend(story_content)
 
         # Back cover
-        if has_banner:
+        if has_backcover:
             templates.append(PageTemplate(id='backcover', frames=[full_frame], onPage=self._backcover_page))
             story.append(NextPageTemplate('backcover'))
             story.append(PageBreak())
@@ -2103,7 +2182,7 @@ def main():
     parser.add_argument("--date", default=None, help="Date string")
     parser.add_argument("--version", default=None, help="Version string on cover")
     parser.add_argument("--watermark", default=None, help="Watermark text (empty = none)")
-    parser.add_argument("--theme", default=None, help="Theme name")
+    parser.add_argument("--theme", default=None, help="Theme name (default: auto-select from content)")
     parser.add_argument("--theme-file", default=None, help="Custom theme JSON file path")
     parser.add_argument("--cover", default=None, type=lambda x: x.lower() != 'false', help="Generate cover page")
     parser.add_argument("--toc", default=None, type=lambda x: x.lower() != 'false', help="Generate TOC")
@@ -2140,7 +2219,12 @@ def main():
         m = re.search(r'^# (.+)$', md_text, re.MULTILINE)
         title = m.group(1).strip() if m else "Document"
 
-    theme_name = args.theme or fm_get(frontmatter, "theme", default="warm-academic")
+    requested_theme = args.theme if args.theme is not None else fm_get(frontmatter, "theme")
+    if not requested_theme or str(requested_theme).strip().lower() == "auto":
+        theme_name = select_theme_from_content(md_text, title)
+        print(f"Auto-selected theme '{theme_name}' from document content", file=sys.stderr)
+    else:
+        theme_name = str(requested_theme).strip()
     theme = load_theme(theme_name, args.theme_file)
     a = theme['accent']
     accent_hex = f"#{int(a.red*255):02x}{int(a.green*255):02x}{int(a.blue*255):02x}" \

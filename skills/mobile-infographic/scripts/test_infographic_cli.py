@@ -54,7 +54,7 @@ def good_measurement(**overrides):
         "attribution": "Powered by · lovstudio.ai/skills/mobile-infographic",
         "page_mark": "1/3",
         "visible_text_length": 120,
-        "title": "标题",
+        "title": "信息图主题示例",
     }
     measurement.update(overrides)
     return measurement
@@ -77,6 +77,10 @@ class CanvasMathTests(unittest.TestCase):
         asset = cli.SKILL_ROOT / "cases" / "assets" / "harness-action-guide-01.png"
         self.assertEqual(cli.png_size(asset), (2160, 2880))
 
+    def test_device_pixel_snapping_keeps_capture_exact(self):
+        for value in (4188.0469, 1440.0, 1234.567, 5738.999):
+            snapped = cli.snap_to_device_pixels(value, 2)
+            self.assertEqual(round(snapped * 2), round(value * 2), value)
 
 class TemplateAssemblyTests(unittest.TestCase):
     def test_every_template_renders_without_leftover_tokens(self):
@@ -99,6 +103,8 @@ class TemplateAssemblyTests(unittest.TestCase):
             self.assertIn('data-ratio="3:4"', html)
             self.assertIn('data-series-size="3"', html)
             self.assertEqual(html.count("data-claim"), 1, template)
+            self.assertRegex(html, r'class="claim"[^>]*data-claim')
+            self.assertNotRegex(html, r'card-title[^>]*data-claim')
             self.assertIn("data:image/png;base64,", html)
 
     def test_long_ratio_leaves_height_to_content(self):
@@ -289,6 +295,12 @@ class AuditScoringTests(unittest.TestCase):
         checks = self.audit(measurement)
         self.assertEqual(checks["single_claim"]["status"], "fail")
 
+    def test_no_claim_line_is_allowed(self):
+        measurement = good_measurement()
+        measurement["counts"]["claims"] = 0
+        checks = self.audit(measurement)
+        self.assertEqual(checks["single_claim"]["status"], "pass")
+
     def test_unlinked_encoding_fails_evidence_linkage(self):
         measurement = good_measurement()
         measurement["counts"]["encodings"] = 3
@@ -302,6 +314,53 @@ class AuditScoringTests(unittest.TestCase):
         measurement["page_mark"] = "1/2"
         checks = self.audit(measurement)
         self.assertEqual(checks["series_page"]["status"], "fail")
+
+    def test_long_card_has_no_height_ceiling(self):
+        measurement = good_measurement()
+        measurement["canvas"]["ratio"] = "long"
+        measurement["canvas"]["h"] = 9600
+        checks, context = cli.audit_measurements(measurement, cli.RATIOS["long"], None, 2)
+        by_id = {check["id"]: check for check in checks}
+        self.assertEqual(by_id["long_height"]["status"], "pass")
+        self.assertIn("9600", by_id["long_height"]["detail"])
+        self.assertEqual(context["canvas_px"]["height"], 9600)
+
+    def test_bar_order_is_checked_per_chart_group(self):
+        measurement = good_measurement(bars=[
+            {"label": "监控", "value": 10, "group": 0},
+            {"label": "影响行动", "value": 9, "group": 0},
+            {"label": "阿里", "value": 15100, "group": 1},
+            {"label": "Moonshot", "value": 2300, "group": 1},
+        ])
+        checks = self.audit(measurement)
+        self.assertEqual(checks["bar_order"]["status"], "pass")
+
+    def test_bar_order_fails_inside_one_group(self):
+        measurement = good_measurement(bars=[
+            {"label": "监控", "value": 9, "group": 0},
+            {"label": "影响行动", "value": 10, "group": 0},
+        ])
+        checks = self.audit(measurement)
+        self.assertEqual(checks["bar_order"]["status"], "fail")
+
+    def test_unparsed_bar_value_fails(self):
+        measurement = good_measurement(bars=[
+            {"label": "监控", "value": None, "group": 0},
+        ])
+        checks = self.audit(measurement)
+        self.assertEqual(checks["bar_value"]["status"], "fail")
+
+    def test_bare_number_title_fails(self):
+        checks = self.audit(good_measurement(title="44 起"))
+        self.assertEqual(checks["title_is_subject"]["status"], "fail")
+
+    def test_subject_title_passes(self):
+        checks = self.audit(good_measurement(title="七类 AI 滥用与蒸馏指控"))
+        self.assertEqual(checks["title_is_subject"]["status"], "pass")
+
+    def test_filler_title_fails(self):
+        checks = self.audit(good_measurement(title="七类 AI 滥用要点速览"))
+        self.assertEqual(checks["title_filler"]["status"], "fail")
 
     def test_image_size_mismatch_fails(self):
         checks = self.audit(good_measurement(), image_px=(1080, 1440))

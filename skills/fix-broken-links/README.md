@@ -1,6 +1,6 @@
 # 链接修补匠 · Link Fixer
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 核对项目路由及页面链接，修复失效目标并保留有效导航。
 

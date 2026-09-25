@@ -1,6 +1,6 @@
 # 内容收纳 · Content Keeper
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
 
 将已确认内容按指定文件名与文本格式保存并回读校验。
 

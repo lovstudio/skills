@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.6.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replaces manual Skill contract tracing with a scenario-first brief that makes the use case, internal transformation, deliverables, supporting evidence, and unproven effects immediately legible."
+basis: "Free local developer infrastructure encourages inspectable Skill contracts and supplies no hosted compute, proprietary data, or managed rendering."
+boundary: "Includes local static extraction, internal/external scope separation, a read-only linear narrative, Kit sub-workflows and quality gates, restrained zh-first standalone HTML, secondary Mermaid evidence, JSON trust models, diagnostics, tests, and documentation; excludes target execution, step-bound effect capture, semantic repair, hosted rendering, and publication."
+review_trigger: "Review access and price only if a hosted collaboration service, proprietary semantic analysis, or managed visual rendering is added."
+confidence: evidence-backed-local

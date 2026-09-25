@@ -1,0 +1,140 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.1"
+invocation: kit_only
+description: "为 Electron、Tauri、原生移动端、React Native、Flutter、Web/PWA 等客户端组合只读 adapters，建立可复查基线、资源图与扇出模型，并严格分层测量、源码事实、推断和验收。"
+owner:
+  team: "LovStudio / 手工川工作室"
+  contact: "Source distribution maintainers"
+license:
+  name: MIT
+  terms: "允许在 MIT License 下使用、修改和再分发；运行时日志、设备数据和用户数据仍由使用者负责授权与最小化处理。"
+  url: "../../LICENSE"
+use_case:
+  audience: "维护桌面、移动端、跨平台或 Web/PWA 客户端的工程师、性能负责人和代码审查者"
+  scenario: "客户端随运行时间、实体规模、生命周期或后台事件变慢，需要先获得可证伪根因再实施修复"
+  tasks:
+    - "核对实际 build/deploy/device/browser 身份与采样窗口"
+    - "按 platform_family 与 runtime 组合 process、frame、bridge、network、storage 和 lifecycle adapters"
+    - "构建 ownership graph、事件扇出公式与带 provenance/falsifier 的证据账本"
+  supported_targets:
+    - platform_family: desktop
+      runtimes: [electron, tauri, native-desktop, hybrid]
+    - platform_family: mobile
+      runtimes: [native-ios, native-android, react-native, flutter, hybrid]
+    - platform_family: web
+      runtimes: [browser, pwa, hybrid]
+deployment:
+  geography: global
+  environments:
+    - "本地 macOS、Linux 或 Windows 客户端诊断环境"
+    - "已连接真实 iOS/Android 设备或受控设备实验室"
+    - "可固定 deploy ref、浏览器和 profile 的 Web/PWA 诊断环境"
+requirements:
+  credentials: "默认不需要；远程、真机或生产采样由使用者提供最小只读权限"
+  dependencies:
+    - "App Optimizer Kit; invocation is kit_only"
+    - "Python 3.9+ for shared deterministic evidence reports"
+    - "$KIT_DIR/references/platform-adapters.md and other shared kit contracts"
+  runtime:
+    - "实际 client build/deploy/device/browser identity"
+    - "目标 source checkout and reproducible workload"
+    - "At least one authoritative target-specific runtime adapter"
+risks:
+  - risk: "把某个平台的 proxy 或 adapter 结果当作另一个平台的直接测量。"
+    mitigation: "先声明 platform_family、runtime、adapter 与不可见信号；unsupported values 保持 unknown。"
+  - risk: "把派生调用数写成直接测量，造成虚假精度和错误根因。"
+    mitigation: "按 evidence contract 区分 measurement、code_fact、inference、acceptance，并为推断保留 derivation 和 falsifier。"
+  - risk: "采样到错误 build、设备、浏览器 profile、部署或不可比工作负载。"
+    mitigation: "先固定 build/source、实际 runtime identity、workload ID、sampler 和窗口；无法关联时输出 blocked 或 historical。"
+  - risk: "诊断报告泄露凭据、设备标识、私有路径或用户内容。"
+    mitigation: "只记录最小运行时元数据，遮蔽 secrets，不把原始内容或现场标识写入 Profile。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "App runtime evidence contract"
+    path: "../../references/evidence-contract.md"
+  - title: "Platform adapter catalog"
+    path: "../../references/platform-adapters.md"
+  - title: "Runtime audit and verification playbook"
+    path: "../../references/runtime-playbook.md"
+  - title: "Yoda first calibration case"
+    path: "cases/cases.json"
+output:
+  types:
+    - "app runtime audit dossier"
+    - "evidence ledger"
+    - "resource ownership graph"
+    - "ranked and falsifiable bottleneck hypotheses"
+  formats:
+    - "Markdown"
+    - "app-runtime-evidence/v1 JSON"
+  parameters:
+    - "platform_family, runtime, adapter set and runtime identity"
+    - "build/source refs, observed_at, workload ID, sample window and sampler"
+    - "metric boundaries, units, derivations, comparison quality and falsifiers"
+  validation:
+    - "Every measured number has bounded provenance; every inference has a derivation and falsifier"
+    - "Derived-vs-observed comparisons use comparison.quality=directional and report no numeric delta"
+    - "Product thresholds come from the target SLO, never from the Yoda calibration"
+    - "Audit performs no termination, deletion, reset or unauthorized restart"
+  terminal_states:
+    - diagnosed
+    - blocked
+  description: "交付可传给实现、回收或 verification 模块的 app-runtime-evidence/v1 证据包；审计终态只允许 diagnosed 或 blocked。"
+ethical_considerations: "采用只读和最小数据原则；未经授权不采集用户内容、不连接远端、不重启应用、不终止会话、不删除资源，并诚实标注 proxy、推断与证据缺口。"
+dimensions:
+  - id: platform-portability
+    label: "平台可迁移性"
+    description: "是否把通用证据流程与目标平台 adapter 分开，并支持桌面、移动端和 Web 的组合 runtime。"
+    evidence: "v0.2.0 先声明 platform_family/runtime，再按需组合 process、frame、bridge、network、storage 与 lifecycle adapters；缺失信号保持 unknown。"
+    score: null
+    score_status: method_defined_single_case
+  - id: evidence-fidelity
+    label: "证据保真度"
+    description: "测量、源码事实、推断和验收是否保持不同语义、边界与 provenance。"
+    evidence: "Yoda 首案把有边界的 916-task/61-tmux inventory、约 916 IPC/约 1,832 subprocess 推导和后续 15 unique subprocess 测量分开，禁止精确 delta。"
+    score: null
+    score_status: case_backed
+  - id: amplification-coverage
+    label: "扇出覆盖度"
+    description: "是否把事件、owner、resident entity、surface/subscriber 与逐项工作连成可核对公式。"
+    evidence: "通用模型为 event frequency × owners × resident entities × surfaces/subscribers × per-entity work；Yoda 只作为 Electron 首案校准。"
+    score: null
+    score_status: method_defined_single_case
+  - id: diagnostic-safety
+    label: "诊断安全性"
+    description: "审计是否保持只读，并在身份、adapter 或证据不足时停止升级结论。"
+    evidence: "终态仅 diagnosed/blocked；案例不执行 kill、目录删除、缓存重置或未经授权的 build 切换。"
+    score: null
+    score_status: case_backed
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "以开放方法、组合式 adapters 和可复查证据契约降低跨平台客户端性能误判成本。"
+  boundary: "包含 kit 内审计流程、报告规范和共享脚本；不包含生产访问、专有 profiler、项目 adapter 实现、现场实施或性能保证。"
+  review_trigger: "增加托管采样、专有平台 adapter、付费 SKU 或承诺响应时效时重新评估。"
+  confidence: evidence-backed-local
+distribution:
+  paid:
+    - channel: workbuddy
+      channel_class: paid_capable_marketplace
+      offer_model: free
+      state: not_prepared
+      note: "No paid SKU or WorkBuddy distribution artifact has been prepared."
+    - channel: skillpay
+      channel_class: paid_capable_marketplace
+      offer_model: free
+      state: not_prepared
+      note: "No paid SKU or SkillPay distribution artifact has been prepared."
+  free:
+    - channel: github
+      channel_class: source_repository
+      offer_model: free
+      state: source_ready_not_published
+      note: "Source is ready locally; repository publication is not claimed."
+    - channel: lovstudio
+      channel_class: first_party_catalog
+      offer_model: free
+      state: local_ready
+      note: "Local LovStudio source bundle is ready; external publication is not claimed."

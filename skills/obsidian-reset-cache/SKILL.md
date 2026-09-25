@@ -12,7 +12,7 @@ compatibility: >
   macOS only. Obsidian stores cache in ~/Library/Application Support/obsidian/.
 metadata:
   author: contributors
-  version: "1.1.0"
+  version: "1.1.1"
   tags: obsidian, cache, troubleshooting
 ---
 

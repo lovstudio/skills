@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replace manual SQLite lookup and error-prone cumulative JSONL arithmetic with one auditable local command."
+basis: "Free local diagnostic built entirely on user-owned files and the Python standard library."
+boundary: "Includes deeplink parsing and per-thread token reports; excludes account quota, model-price lookup, invoices, and publication."
+review_trigger: "Review if Codex changes the local event schema, removes rollout files, or exposes a stable authoritative usage API."
+confidence: internal

@@ -1,0 +1,4 @@
+interface:
+  display_name: "人像大片"
+  short_description: "保留本人和姿态，用环境构图与光影修出旅行人像大片，支持对比图与复刻 Prompt"
+  default_prompt: "使用 $lov-spectacular-ps 把这张照片修成有气势的环境人像，保留本人、衣服和姿态，附真实对比图与可复刻 Prompt。"

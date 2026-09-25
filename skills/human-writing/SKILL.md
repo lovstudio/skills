@@ -10,7 +10,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.3.1"
+  version: "0.4.0"
   card_standard: lovstudio/skill-card/v1
   content_class: authored-prose
   tags:
@@ -158,7 +158,11 @@ using `--confirm`, followed by a concise saved-path report.
 4. `closure_pressure`：结尾是否重复总结、升华或强行行动号召；
 5. `reader_inference_budget`：是否把每层意义都替读者解释完；
 6. `structural_asymmetry`：章节是否被强行配平；
-7. `author_decision_trace`：关键删留与结构选择是否有材料依据。
+7. `author_decision_trace`：关键删留与结构选择是否有材料依据；
+8. `editorial_scaffolding`：是否用分类、预告、提醒或总结旁白替代实际内容。
+
+逐段审读与文本散列绑定的记录格式、扫描和校验命令见篇章工作流；所有交付稿必做，
+即使表层指标全部通过。通用规则在此维护，作者专属负向校准由文风 Skill 传入。
 
 这些维度是编辑问题，不是身份特征。不要为了“像人”增加无关支线、时间跳跃、
 开放结尾或故意不完整；材料本来简单时，清楚和线性可以是正确选择。
@@ -176,7 +180,7 @@ python3 "$SKILL_DIR/scripts/measure.py" -i draft.md -p wechat
 
 按结论先行汇报，三件事，不要贴原始表格：
 
-1. 总判定与压力分（例：`fail`，压力分 11，真人基准 p75=7 / p90=9）。
+1. 表层统计状态与压力分；明确它没有验收篇章或文风，不称为文章总判定。
 2. 越界的指标，按可改性排序——套话和结构类立刻可改，节奏类要重写句子。
 3. 篇章问题与引擎靶点句。二者分别是结构改写和局部改写的直接输入。
 
@@ -192,19 +196,19 @@ python3 "$SKILL_DIR/scripts/measure.py" -i draft.md -p wechat
 
 | 越界指标 | 改法 |
 |---|---|
-| `sent_len_cv` / `max_uniform_run` 偏低 | 拆长句、并短句，制造长短交替；不要均匀化 |
+| `sent_len_cv` / `max_uniform_run` 偏低 | 检查是否确有重复节奏；按语义拆并，无问题可保留 |
 | `short_sent_ratio` 偏低 | 把关键判断单独成句 |
 | `para_len_cv` / `solo_para_ratio` 偏低 | 转折处、强调处用一句成段 |
 | `hard_phrase_per_1k` / `soft_phrase_per_1k` | 删套话，换成具体的事（「随着 AI 发展」→「ChatGPT 发布那周」） |
 | `transition_density` 偏高 | 删「首先/其次/此外/综上所述」，靠内容自身接续 |
 | `idiom4_per_1k` / `tail_nominal_per_1k` | 删四字格与「体现了/彰显了」式结尾 |
 | `neg_parallel_per_1k` | 拆「不是…而是…」排比 |
-| `rule_of_three_per_1k` 偏高 | 三项并列改成两项或四项，或直接叙述 |
+| `rule_of_three_per_1k` 偏高 | 仅在并列内容空泛或重复时删改，不为躲指标凑项数 |
 | `inline_heading_ratio` / `bullet_ratio` / `bold_per_1k` 偏高 | 列表改回段落散文，删装饰性加粗 |
 | `heading_per_1k` 偏高 | 合并碎标题 |
-| `digit_per_1k` / `concrete_anchor_count` 偏低 | 补具体时间、金额、版本、数量 |
-| `first_person_per_1k` 偏低 | 补第一人称经历与判断（`neutral`/`thesis` 档不适用） |
-| `hedge_per_1k` 偏高 | 删「可能/或许/一定程度上」，把话说定 |
+| `digit_per_1k` / `concrete_anchor_count` 偏低 | 回查材料是否遗漏必要细节；没有来源则保留现状 |
+| `first_person_per_1k` 偏低 | 只恢复材料中已有且必要的作者经历，不补造或硬塞“我” |
+| `hedge_per_1k` 偏高 | 检查限定是否有证据需要；保留真实不确定性 |
 | `de_ratio` 偏高 | 拆「的」字长定语 |
 | `lone_dash_per_1k` | 单破折号 `—` 改中文双破折号 `——` |
 | `quote_style_mixed` | 统一到一套引号 |
@@ -230,8 +234,8 @@ python3 "$SKILL_DIR/scripts/measure.py" -i draft-v2.md -p wechat \
 先重跑篇章审计，确认问题被修复且没有丢失作者判断、反例和不确定性；再运行
 `--compare` 输出逐项的旧值 → 新值与状态迁移。表层验收标准：目标指标状态改善，
 且**没有把别的指标推出界**——去套话时压过头会让 `hedge_per_1k` 或
-`short_sent_ratio` 反向越界。压力分没降就说明改写没生效，重来 Step 4，不要
-把未改善的结果当成完成。
+`short_sent_ratio` 反向越界。压力分不用于证明语义改写是否生效；有理由的指标偏离可以保留，不能为降分
+破坏事实、节奏或作者声音。最终须校验逐段审读记录，未完成时不得宣称文风通过。
 
 ### Step 8: 交付
 

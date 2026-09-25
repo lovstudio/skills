@@ -1,0 +1,15 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.1"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replaces manual extraction of large editor DOM, repeated attribute copying, custom-element reconstruction, and risky document insertion with one verified local command."
+basis: "The renderer is a deterministic Python standard-library transform with no hosted compute, storage, paid API, or bundled proprietary service, so the local release is free."
+boundary: "Includes one-component DOM or DSL parsing, field validation, canonical Markdown, native HTML, exact-marker atomic insertion, JSON evidence, and focused tests. Excludes WeChat preview-link fetching, full-article styling, remote draft operations, publication, media hosting, and playback guarantees."
+review_trigger: "Review pricing if a future version adds hosted preview extraction, media URL refresh, batch migration, managed publication, storage, service guarantees, or commercial support."
+confidence: verified-local
+channel_states:
+  workbuddy: not_published
+  skillpay: not_published
+  github: not_published
+  lovstudio: local_installed

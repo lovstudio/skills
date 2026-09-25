@@ -1,0 +1,21 @@
+[
+  {
+    "type": "case",
+    "title": "在 Atom Feature Kit 中固化 Atom Operations 模块",
+    "description": "用户要求创建覆盖 SDK、CLI、API、前端、Agent Skill、Profile、运营和 Dashboard 的完整 Skill。本案例记录本模块已生成的真实源文件，不把尚未运行的目标项目写成完成。",
+    "input": {
+      "items": [
+        "用户的 atom feature 完整开发需求",
+        "根 Kit 的模块与 manifest 契约"
+      ]
+    },
+    "prompt": "创建 lov-atom-feature-dev，并把 Atom Operations 作为独立可验收模块。",
+    "output": {
+      "items": [
+        "skills/operations/SKILL.md",
+        "skills/operations/references/authorship-integrity.md"
+      ]
+    }
+  }
+]
+

@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "A repeatable production-readiness workflow reduces the risk of confusing a local development preview with a verified distributable artifact."
+basis: "The Skill is free for local agent use because it packages reusable engineering guidance and a small local audit helper rather than a hosted service."
+boundary: "Includes local audit, production build verification, and explicit local-install steps. Excludes external publication, cloud execution, app-store submission, credential provisioning, and paid platform services."
+review_trigger: "Reassess if managed release automation, hosted evidence storage, compliance workflows, or support commitments are added."
+confidence: internal

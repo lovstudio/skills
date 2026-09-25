@@ -29,9 +29,10 @@ compatibility: >
   for existing local setups.
 depends_on:
   - lov-find-logo
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.10.0"
+  version: "0.10.1"
   tags: [skill-publisher, web, branding, i18n]
 ---
 

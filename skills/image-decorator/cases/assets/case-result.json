@@ -1,0 +1,29 @@
+{
+  "case": "DSH 深度文章艺术封面装饰",
+  "input": {
+    "path": "input-artwork.jpg",
+    "width": 1600,
+    "height": 1194,
+    "sha256": "32b580423c1f7c1b8ad71a6f103a09cd8dba955ea1e6c56a769c9438cc677cf6"
+  },
+  "explicit_caption_output": {
+    "path": "output-artwork-decorated.png",
+    "width": 1658,
+    "height": 1404,
+    "caption_source": "explicit",
+    "logo_source": "bundled",
+    "bytes": 2637984,
+    "sha256": "3bd403b173b804bc7f6b2fdc82b815b5c314bbc17cc063503723591b95d4612b"
+  },
+  "fallback_caption_output": {
+    "path": "output-artwork-decorated-fallback.png",
+    "width": 1658,
+    "height": 1404,
+    "caption_source": "fallback",
+    "logo_source": "bundled",
+    "bytes": 2627127,
+    "sha256": "4ca4cc4c2e199d8305bca4d355b335c1d5e7e2ae55ffe7aa6c367276f7d6245b"
+  },
+  "style": "editorial-caption",
+  "visual_check": "verified: original image is complete, caption is readable at Medium 500, outer frame and rounded corners are even, and the LovStudio mark is aligned at the bottom right"
+}

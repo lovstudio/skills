@@ -1,0 +1,60 @@
+[
+  {
+    "type": "case",
+    "title": "在 Atom Feature Kit 中固化 Atom Feature Dashboard 模块",
+    "description": "用户要求创建覆盖 SDK、CLI、API、前端、Agent Skill、Profile、运营和 Dashboard 的完整 Skill。本案例记录本模块已生成的真实源文件，不把尚未运行的目标项目写成完成。",
+    "input": {
+      "items": [
+        "用户的 atom feature 完整开发需求",
+        "根 Kit 的模块与 manifest 契约"
+      ]
+    },
+    "prompt": "创建 lov-atom-feature-dev，并把 Atom Feature Dashboard 作为独立可验收模块。",
+    "output": {
+      "items": [
+        "skills/dashboard/SKILL.md",
+        "references/dashboard-spec.md"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "实现并验证 ADE 式 Atom Workbench",
+    "description": "用户要求为 atom feature 配套类似 ADE 的 Dashboard。实现包含 atom workspace、Contract、Run、Compare、Review、Profile inspector、Agent brief 和 Console，并通过临时 loopback HTTP server 回读 workspace、静态入口及 manifest-declared SDK run；headless Chrome 验证桌面执行 exit 0，390px 布局无水平溢出。外部目标项目和手动交互验收仍需单独完成。",
+    "input": {
+      "items": [
+        "ADE 式项目工作区与 Agent 操作台思路",
+        "根 Kit manifest、acceptance vector 与 Profile Preset 契约"
+      ]
+    },
+    "prompt": "为 lov-atom-feature-dev 配套一个类似 ADE 的 dashboard。",
+    "output": {
+      "items": [
+        "dashboard/index.html",
+        "dashboard/styles.css",
+        "dashboard/app.js",
+        "scripts/atom_dashboard.py",
+        "dashboard/demo-project/.atom-feature/manifest.json"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "让 Workbench 同时支持 HTTP 与 file URL 入口",
+    "description": "用户报告直接打开 index.html 时根路径资源找不到，且 file origin 无法连接 API。入口改用相对资源；file URL 只读取内置 Demo 快照并明确禁用执行，HTTP 入口继续读取真实 workspace。headless Chrome 回归确认 file URL 无请求或控制台错误。",
+    "input": {
+      "items": [
+        "浏览器 ERR_FILE_NOT_FOUND 与 unique file origin 诊断",
+        "Dashboard 真实 bridge 与只读预览的信任边界"
+      ]
+    },
+    "prompt": "修复直接打开 Atom Workbench index.html 时的 CSS、JS 和 file origin 错误。",
+    "output": {
+      "items": [
+        "dashboard/index.html",
+        "dashboard/demo-workspace.js",
+        "dashboard/app.js"
+      ]
+    }
+  }
+]

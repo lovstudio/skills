@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replaces repeated design and implementation of transcript roles, tool progress, Markdown, interaction, composer, retry, and accessibility baselines."
+basis: "Free for the initial local release so multiple real host integrations can validate the contract before any commercial packaging."
+boundary: "Includes local instructions, CLI, React Native and React templates, shared contracts, and acceptance guidance. Excludes provider backend integration, bespoke branding, remote publishing, and ongoing support."
+review_trigger: "Review after at least three verified host integrations, an additional maintained framework adapter, or introduction of support and upgrade guarantees."
+confidence: internal

@@ -1,0 +1,102 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "对比 Codex 配置中已定义的 provider 与会话里持久化的 provider，定位桌面 App 会话打不开的 invalid_config 故障，并给出补定义或带备份重打标签的修复路径。"
+owner:
+  team: LovStudio
+  contact: mark@lovstudio.ai
+license:
+  name: MIT
+  terms: "本地诊断与修复；写操作必须先备份并显式确认；不含远程发布。"
+  url: "../LICENSE"
+use_case:
+  audience: "同时使用 Codex 桌面 App 与 Yoda 等集成入口的重度用户与小团队"
+  scenario: "Yoda 建的历史会话在桌面 App 里打不开，报 Model provider 找不到"
+  tasks:
+    - "盘点本机 thread 索引与配置的 provider 差异"
+    - "在补定义与重打标签之间选择影响面更小的修复"
+    - "执行修复并回读、可回滚"
+deployment:
+  geography: global
+  environments:
+    - "macOS 上的本地 Codex 目录与桌面 App 日志"
+    - "其他平台需要显式传入 --desktop-log-root 或忽略该证据源"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.8+ 标准库"
+    - "可读的 ~/.codex 配置、state_5.sqlite、logs_2.sqlite"
+    - "可选：~/Library/Logs/com.openai.codex 桌面日志"
+risks:
+  - risk: "在桌面 App 运行中写入索引库，造成锁竞争或写入被覆盖"
+    mitigation: "检测到 Codex 或 app-server 进程时拒绝写入，除非显式 --force"
+  - risk: "把仍在使用的共享 provider 桶改名，破坏集成方的历史过滤"
+    mitigation: "对 yoda、custom 这类稳定桶优先补定义，重打标签只用于已退役 provider"
+  - risk: "只改索引不改 rollout，下次恢复被 session_meta 旧值覆盖"
+    mitigation: "默认同时改写 rollout 首行，并抽样回读索引与 rollout 一致性"
+  - risk: "误把密钥写进交付物"
+    mitigation: "脚本从不读取或打印凭据值；生成的配置片段只给 env_key 或占位符"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "机制与真实证据"
+    path: "references/mechanism.md"
+  - title: "修复手册"
+    path: "references/repair.md"
+output:
+  types:
+    - "只读诊断报告"
+    - "修复计划与命令"
+    - "备份与回滚记录"
+  formats:
+    - "终端表格"
+    - "JSON"
+  parameters:
+    - "--codex-home 指定 Codex 目录"
+    - "--logs-days 控制日志窗口"
+    - "--fix-retag TARGET 重打标签，需 --yes"
+    - "--restore BACKUP_DIR 回滚，需 --yes"
+  validation:
+    - "7 个端到端单元测试通过，覆盖目录构造、缺失判定、重打标签、仅活跃范围、回滚与拒绝未知目标"
+    - "对真实 state_5.sqlite 冷副本执行修复与回滚成功，真实目录未被写入"
+  description: "报告按 provider 分组列出 thread 数量与最近使用时间，并给出桌面日志中的 resume 失败次数。"
+ethical_considerations: "只在本机读取配置、索引与会话日志；不打印凭据值；写操作先备份并需要显式确认；诊断报告可能包含会话标题，外发前应检查。"
+dimensions:
+  - id: correctness
+    label: "取证正确性"
+    description: "判定是否与真实配置、索引与日志一致"
+    evidence: "在本机命中 yoda 3097 条、custom 9 条等分组，与 sqlite3 与日志人工复核一致"
+    score: 4
+  - id: effectiveness
+    label: "修复有效性"
+    description: "能否让目标会话重新可打开"
+    evidence: "补定义 yoda 后，官方 app-server thread/resume 由 -32600 变为成功返回目标 thread"
+    score: 4
+  - id: safety
+    label: "可回滚性"
+    description: "写操作是否可撤销、是否默认只读"
+    evidence: "写入前备份索引库与 rollout 首行，--yes 之前只打印计划；沙箱回滚验证通过"
+    score: 4
+  - id: efficiency
+    label: "扫描效率"
+    description: "常规只读诊断耗时"
+    evidence: "3117 条 thread 与 30 天日志窗口的完整只读诊断约 4 秒"
+    score: 3
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "纯本地诊断与可回滚修复，无外部服务成本；价值在于避免反复重开会话与丢失历史上下文"
+  boundary: "包含 provider 差异取证、修复计划、重打标签与回滚；不含修复 Codex 或 Yoda 产品代码，也不含远程发布"
+  review_trigger: "Codex 改变 provider 解析或会话索引结构后复评"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio
+  states:
+    workbuddy: "计划中"
+    skillpay: "计划中"
+    github: "本地源就绪，尚未推送"
+    lovstudio: "尚未上架"

@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把音视频预处理、个人词库热词适配、带时间戳 ASR、成本门禁和字幕校验整合成一次可复用运行。"
+basis: "Skill 源码和本地工作流免费；用户使用自己的 DashScope 或 Volcengine 账户承担实际 API 费用。"
+boundary: "包含 SRT/JSON/TXT/report；不包含个人词库维护、视频剪辑、字幕美术、媒体托管或发布。"
+review_trigger: "加入本地高精度模型、更多 provider、批量队列、托管凭据或商业 SLA 时复评。"
+confidence: internal

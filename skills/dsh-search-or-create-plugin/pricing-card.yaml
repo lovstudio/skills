@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "One decision instead of a research rabbit hole: evidence-cited verdicts tell the user whether an existing plugin covers the goal, and if not, what to build and on what base."
+basis: "The gateway is public and read-only, and the analysis is an evidence discipline, so this skill stays free."
+boundary: "Included: search, fit analysis, decision report, and the new-plugin brief. Excluded: package authoring (dsh-plugin-creator) and publishing (dsh-plugin-publisher)."
+review_trigger: "Revisit when the gateway API changes, when verdict quality regresses, or when paid distribution is requested."
+confidence: internal

@@ -1,6 +1,6 @@
 # 精彩定格 · Video Stills
 
-![Version](https://img.shields.io/badge/version-0.3.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
 
 给定视频，挑出适合发朋友圈的真实现场瞬间，提取最佳帧，统一美化并交付成组照片。适合线下课程、沙龙、工作坊与活动记录。
 

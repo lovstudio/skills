@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.3.1"
 description: "Audits a new or existing npm package, plans publication through one of two equal auth modes — GitHub Actions OIDC trusted publishing or a local granular NPM_TOKEN (bypass) — handles the one-time bootstrap boundary, and verifies the exact released version from the npm registry."
 owner:
   team: "LovStudio contributors"

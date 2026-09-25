@@ -14,9 +14,10 @@ compatibility: >
   environment variables, or the shared Skill Publisher user profile.
 depends_on:
   - lov-professional-infographic
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: hanzi chinese-character etymology lexicography infographic cjk unicode
 ---
 

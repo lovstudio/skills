@@ -1,0 +1,13 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 秒级定位本机任意项目/源码目录，避免在多个工作区里凭记忆翻找
+basis: 纯本地文件系统与用户自有聊天记录搜索，无外部 API/存储成本；作为
+  Lovstudio 开发工具链一部分免费分发，价值在省时而非变现。
+boundary: 免费包含本地四层搜索与候选路径返回；不包含远程仓库搜索、代码内容
+  理解、文件内容摘要等增值能力。聊天记录层只提取路径，不搬运对话正文。
+review_trigger: 若加入云端搜索、远程仓库索引或需付费数据源时重新评估定价；
+  或用户反馈定位准确率不足需要投入更多维护时复盘。
+confidence: internal

@@ -1,6 +1,6 @@
 # Skill 工坊 · Skill Studio
 
-![Version](https://img.shields.io/badge/version-4.6.0-CC785C)
+![Version](https://img.shields.io/badge/version-4.6.4-CC785C)
 
 ## Skill 群组原子组合
 

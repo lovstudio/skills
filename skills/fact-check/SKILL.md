@@ -12,9 +12,11 @@ compatibility: >
   Instruction-only skill. Requires web/search access when the claim depends on
   current, external, niche, or source-attributed facts. No local runtime
   dependencies.
+depends_on:
+  - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: fact-check verification research due-diligence source-check
 ---
 

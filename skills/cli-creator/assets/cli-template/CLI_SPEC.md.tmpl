@@ -1,0 +1,29 @@
+# CLI Contract — __COMMAND_NAME__
+
+## Project
+
+- Name: __PROJECT_NAME__
+- Backend: __BACKEND_NAME__
+- Console command: `__COMMAND_NAME__`
+- Package: `__PACKAGE_NAME__`
+
+## Built-in commands
+
+- `doctor` checks the project root and backend runtime.
+- `info` reports project and harness identity.
+- `capabilities` returns the complete machine-readable command inventory.
+
+## Project-specific commands
+
+__COMMAND_TABLE__
+
+## JSON and exit behavior
+
+Use global `--json` before the command. Exit code 0 means success; 2 is usage or
+contract failure; 3 is a missing runtime/project dependency; 4 is backend or
+postcondition failure; 5 is an unsafe/conflicting state.
+
+## Backend boundary
+
+The CLI must call the project's real executable, API, protocol, or native
+renderer. Generated fixed argv prefixes are executed with `shell=False`.

@@ -1,0 +1,36 @@
+[
+  {
+    "type": "case",
+    "title": "视觉问答需求判定为 MATCH 并采用",
+    "description": "用户想让纯文本 DSH 智能体具备图片问答能力。检索 q=vision 返回 343 个结果，按五维适配度分析后 Anionex/dsh-vision-toolkit 覆盖图片问答且无风险、npm 可装，判定 MATCH 并给出采用路径。",
+    "input": {
+      "items": ["用户目标：为纯文本模型加视觉能力，读取图片做问答", "约束：希望 npm 可安装"]
+    },
+    "prompt": "dsh-search-or-create-plugin：这个需求有现成插件吗？够用就给出使用方式。",
+    "output": {
+      "items": [
+        "MATCH 结论：Anionex/dsh-vision-toolkit，score 94，grade S，stars 837，install kind npm，is_risky false",
+        "备选：liustack/modlens，score 85，grade S，stars 3717，npm 可装",
+        "采用路径：npm 安装其包并挂载到 DSH；验收：粘贴图片可问答",
+        "2026-08-27 实测网关"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "RSS 抓取加飞书推送判定为 NO-MATCH 并产出新建方案",
+    "description": "用户需要定时抓取 RSS 更新并推送到飞书群。检索 q=rss（16 个结果）与 q=feishu（86 个结果）后，无单一插件同时覆盖抓取与推送：RSS 侧 STARDUSTLC666/dsh-rss 未评分，飞书侧 omdsh-dev/dsh-lark 只做消息，判定 NO-MATCH，产出基于最近开源实现的新插件方案。",
+    "input": {
+      "items": ["用户目标：定时抓取 RSS 更新并自动推送到飞书群"]
+    },
+    "prompt": "dsh-search-or-create-plugin：有没有现成插件能满足 RSS 抓取加飞书推送？没有就给出新建方案。",
+    "output": {
+      "items": [
+        "NO-MATCH 结论：无单一插件同时覆盖 RSS 抓取与飞书推送",
+        "候选证据：STARDUSTLC666/dsh-rss（npm，score null 未评分），omdsh-dev/dsh-lark（score 67，grade B），xmanrui/dsh-im（score 73，grade A）",
+        "新建方案 new-plugin-brief-rss-feishu.md：以 dsh-rss 为抓取基座、dsh-lark 为推送基座，缺口为定时调度与飞书 webhook 集成",
+        "2026-08-27 实测网关"
+      ]
+    }
+  }
+]

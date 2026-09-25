@@ -12,9 +12,16 @@ compatibility: >
   Configurable Academic branded apps. Every generated or standardized frontend app
   must run `lov-integrate-lovinsp`. New apps must generate a target-specific logo
   through `lov-gen-logo`; Tauri apps must run the Tauri icon pipeline from that logo.
+depends_on:
+  - lov-branding-consistency
+  - lov-integrate-lovinsp
+  - lov-gen-logo
+  - lov-install-shadcn-ui
+  - lov-install-tanstack-query
+  - lov-install-tauri-logo
 metadata:
   author: contributors
-  version: "0.5.0"
+  version: "0.5.3"
   tags:
     - skill-publisher
     - app-generator
@@ -335,6 +342,10 @@ Rules:
   when the user asked for an app.
 - Use shadcn/ui controls, lucide icons, compact panels, predictable navigation,
   and no nested cards.
+- Every user-facing error (probe/tool failures, job errors, banners) must be
+  selectable, wrap in full, and offer a one-click copy action, even when the
+  app disables text selection globally. Truncated, unselectable red text is a
+  defect.
 - First screen should be the real product workflow.
 
 When shadcn/ui is needed, use the existing `lov-install-shadcn-ui` skill
@@ -464,6 +475,12 @@ Run `python3 "$SKILL_DIR/scripts/audit_app_project.py" --help`; Finder Quick Act
 audits must pass `--native-integration finder-quick-action` explicitly.
 
 ## Dependencies
+
+The declared Skill dependencies must be available when their existing workflow
+branch applies: Lovinsp for browser-rendered UI, logo generation for new apps or
+missing logos, shadcn/ui when selected, TanStack Query for server state, and Tauri
+icons for Tauri apps. Declaration does not make every branch mandatory. The
+preferred `lov-project-port` handoff remains optional.
 
 ```bash
 python3 "$SKILL_DIR/scripts/audit_app_project.py" --help

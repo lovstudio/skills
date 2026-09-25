@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>Atom Workbench</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="loading" class="loading-screen" role="status" aria-live="polite">
+      <div class="loading-mark"><span></span><span></span><span></span></div>
+      <p>正在连接 Atom 工作区</p>
+    </div>
+
+    <div id="app" class="workbench" hidden>
+      <aside class="rail" aria-label="Atom 导航">
+        <div class="brand-lockup">
+          <div class="brand-glyph" aria-hidden="true">A</div>
+          <div>
+            <strong>Atom</strong>
+            <span>Workbench</span>
+          </div>
+        </div>
+
+        <div class="rail-section">
+          <p class="rail-label">Workspace</p>
+          <button class="workspace-card is-active" type="button" aria-current="page">
+            <span class="workspace-monogram" id="workspace-monogram">AF</span>
+            <span>
+              <strong id="workspace-name">Feature</strong>
+              <small id="workspace-state">Connecting</small>
+            </span>
+          </button>
+        </div>
+
+        <nav class="rail-section" aria-label="开发阶段">
+          <p class="rail-label">Development flow</p>
+          <div id="phase-list" class="phase-list"></div>
+        </nav>
+
+        <div class="rail-footer">
+          <div class="connection-state">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span id="connection-label">Local bridge</span>
+          </div>
+          <kbd>⌘ K</kbd>
+        </div>
+      </aside>
+
+      <section class="shell">
+        <header class="topbar">
+          <div class="breadcrumb">
+            <span id="crumb-workspace">workspace</span>
+            <span aria-hidden="true">/</span>
+            <strong id="feature-title">Atom feature</strong>
+            <span id="feature-status" class="status-badge status-planned">planned</span>
+          </div>
+          <div class="topbar-actions">
+            <button id="refresh-button" class="button button-quiet" type="button">刷新</button>
+            <button id="run-primary" class="button button-primary" type="button">
+              运行测试向量
+              <kbd>⌘ ↵</kbd>
+            </button>
+          </div>
+        </header>
+
+        <div class="workspace-grid">
+          <main class="stage">
+            <div class="stage-head">
+              <div>
+                <p class="eyebrow">Agentic Development Dashboard</p>
+                <h1 id="stage-title">Feature overview</h1>
+              </div>
+              <div id="surface-switcher" class="surface-switcher" aria-label="Surface 选择"></div>
+            </div>
+
+            <div class="tabs" role="tablist" aria-label="工作区视图">
+              <button class="tab is-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
+              <button class="tab" role="tab" aria-selected="false" data-tab="contract">Contract</button>
+              <button class="tab" role="tab" aria-selected="false" data-tab="run">Run</button>
+              <button class="tab" role="tab" aria-selected="false" data-tab="compare">Compare</button>
+              <button class="tab" role="tab" aria-selected="false" data-tab="evidence">Review</button>
+            </div>
+
+            <div id="stage-content" class="stage-content" tabindex="-1"></div>
+          </main>
+
+          <aside class="inspector" aria-label="Profile 与 Agent">
+            <div class="inspector-section">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Context</p>
+                  <h2>Profile Preset</h2>
+                </div>
+                <span id="preset-source" class="source-tag">profile</span>
+              </div>
+              <label class="field-label" for="profile-select">当前预设</label>
+              <select id="profile-select" class="select-control"></select>
+              <div id="profile-values" class="profile-values"></div>
+            </div>
+
+            <div class="inspector-section agent-section">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Direction</p>
+                  <h2>Agent brief</h2>
+                </div>
+                <span class="source-tag source-agent">live</span>
+              </div>
+              <textarea id="agent-brief" class="agent-brief" rows="11" spellcheck="false"></textarea>
+              <div class="agent-actions">
+                <button id="copy-brief" class="button button-quiet" type="button">复制 brief</button>
+                <span>当前上下文自动生成</span>
+              </div>
+            </div>
+          </aside>
+
+          <section class="console" aria-label="运行控制台">
+            <div class="console-head">
+              <div class="console-tabs">
+                <button class="console-tab is-active" type="button">Console</button>
+                <button class="console-tab" type="button">Evidence</button>
+              </div>
+              <div class="console-actions">
+                <span id="console-meta">等待运行</span>
+                <button id="clear-console" type="button" aria-label="清空控制台">清空</button>
+              </div>
+            </div>
+            <pre id="console-output" aria-live="polite"><span class="console-muted">选择一个 surface 和测试向量，然后运行。</span></pre>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <div id="toast-region" class="toast-region" aria-live="polite"></div>
+    <script src="./demo-workspace.js" defer></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

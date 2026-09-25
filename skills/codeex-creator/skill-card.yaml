@@ -1,0 +1,122 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.1"
+description: "Creates and validates independent Codeex runtime plugins with staged renderer hooks, launch hooks, authenticated control routes, native UI matching, and explicit reload-boundary evidence."
+owner:
+  team: "LovStudio Codeex contributors"
+  contact: "Codeex maintainers"
+license:
+  name: MIT
+  terms: "The Skill source and local CLI may be used, modified, and redistributed under the MIT license; target application and plugin dependencies retain their own terms."
+  url: "LICENSE"
+use_case:
+  audience: "Developers and agents extending Codeex without forking unrelated plugin behavior into the host."
+  scenario: "Turn a capability brief or existing Codeex modification into a self-contained runtime plugin with reversible lifecycle evidence."
+  tasks:
+    - "Audit the current Codeex plugin hook and state contract."
+    - "Create or update a plugin manifest and ESM entry without crossing plugin boundaries."
+    - "Match official Codeex UI from packaged DOM and select the correct runtime or launcher reload boundary."
+    - "Validate, install, uninstall, and exercise rollback using isolated desired state before runtime activation."
+deployment:
+  geography: global
+  environments:
+    - "Local Codeex source repositories"
+    - "Isolated Codeex smoke profiles"
+    - "Managed production Codeex wrappers after explicit authorization"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "A compatible Codeex repository"
+  runtime:
+    - "Python 3.8 or newer"
+    - "Node.js 24 or newer"
+risks:
+  - risk: "A plugin can corrupt or hide official Codex UI when it mutates live DOM outside its owned panel."
+    mitigation: "Require staged renderer transforms, official-tab recovery checks, and installed-versus-active runtime evidence."
+  - risk: "A custom icon or popover can visibly drift from the neighboring native control."
+    mitigation: "Inspect and reuse packaged native DOM, SVG, tokens, geometry, and motion before implementing a fallback."
+  - risk: "Restarting Electron can leave a long-lived launcher service using stale transitive backend modules."
+    mitigation: "Classify control-route changes, reload the launcher service, and perform authenticated production API readback."
+  - risk: "Calling a desired-state write active can hide a failed build or pending restart."
+    mitigation: "Report source present, installed, prepared, active, and verified as separate states."
+  - risk: "Uninstall logic can become destructive if it removes source or user data."
+    mitigation: "Uninstall only disables the plugin; source deletion is an explicit separate maintenance action."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Codeex plugin contract"
+    path: "references/plugin-contract.md"
+  - title: "Atomic lifecycle"
+    path: "references/atomic-lifecycle.md"
+  - title: "Development loop"
+    path: "references/development-loop.md"
+  - title: "Lifecycle exercise evidence"
+    path: "cases/evidence/lifecycle-report.json"
+output:
+  types:
+    - "Codeex runtime plugin source"
+    - "Desired-state lifecycle result"
+    - "Runtime verification and rollback report"
+  formats:
+    - "plugin.json"
+    - "ES module source"
+    - "JSON evidence"
+    - "Concise human handoff"
+  parameters:
+    - "plugin ID"
+    - "Codeex project root"
+    - "webview or before-launch hook"
+    - "declared permissions"
+    - "optional isolated state file"
+  validation:
+    - "Manifest and entry containment validation"
+    - "Node ESM syntax check"
+    - "Staged-source occupied-target rejection"
+    - "Idempotent isolated install and uninstall"
+    - "Unknown-plugin failure preserves readable state"
+    - "Codeex management card discovery and install/uninstall round-trip"
+    - "Control-route hook detection and launcher-service reload boundary"
+    - "Packaged native icon, geometry, color, and one-mount comparison"
+  description: "A self-contained plugin plus explicit desired, prepared, active, verified, and rollback evidence."
+ethical_considerations: "Do not conceal permissions, persist credentials, inject surveillance, bypass host authorization, or describe unverified activation as complete. Respect upstream Codex and third-party license terms."
+dimensions:
+  - id: contract-correctness
+    label: "Contract correctness"
+    description: "Manifest, entry containment, hooks, permissions, and state transitions match the audited Codeex loader."
+    evidence: "cases/evidence/lifecycle-report.json records validation, hook detection, install, uninstall, and unknown-ID rejection."
+    score: 1.0
+  - id: lifecycle-reversibility
+    label: "Lifecycle reversibility"
+    description: "Source staging and desired-state changes can be reversed without deleting plugin source or mutating the live profile during exercise."
+    evidence: "The lifecycle report confirms duplicate operations are idempotent, failed mutation preserves state, and liveStateMutated is false."
+    score: 1.0
+  - id: routing-clarity
+    label: "Routing clarity"
+    description: "Codeex runtime plugins remain distinct from Codex marketplace plugins, Lovinsp integration, and generic app relaunch."
+    evidence: "references/skill-composition.md records inspected contracts, artifact handoffs, overlap decisions, and Single Skill rationale."
+    score: 1.0
+  - id: reload-fidelity
+    label: "Reload fidelity"
+    description: "Renderer, runtime process, and launcher/control-service changes are verified through their actual activation boundaries."
+    evidence: "references/development-loop.md records the reload matrix and packaged readback requirements; the lifecycle exercise detects control hooks."
+    score: 1.0
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Local-first developer infrastructure benefits from review and reuse; no hosted service or proprietary backend is included."
+  boundary: "Includes instructions, portable CLI, contract references, local validation, and isolated lifecycle evidence; excludes plugin implementation labor, signing credentials, publication, and unattended production restart."
+  review_trigger: "Review if a hosted validation service, maintained compatibility matrix, or supported commercial plugin catalog is added."
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not-published
+    - channel: skillpay
+      status: not-published
+  free:
+    - channel: github
+      status: not-published
+    - channel: lovstudio
+      status: not-published
+    - channel: local
+      status: installed-and-verified

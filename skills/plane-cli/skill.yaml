@@ -1,0 +1,27 @@
+schema: skill-manifest/v1
+id: lov-plane-cli
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - workspace
+      - preferences
+      - skills.lov-plane-cli
+    persist:
+      enabled: true
+      namespace: skills.lov-plane-cli
+      records_path: skills.lov-plane-cli.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: skills.lov-plane-cli.records.base_url
+        required: false
+        question: Plane 实例地址是什么？
+      - path: skills.lov-plane-cli.records.workspace_slug
+        required: false
+        question: 默认使用哪个 workspace slug？
+entrypoint: SKILL.md

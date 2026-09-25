@@ -1,0 +1,4 @@
+interface:
+  display_name: "产品一页纸"
+  short_description: "把真实产品价值做成可编辑、可转化的一页宣发海报"
+  default_prompt: "使用 $lov-product-onepage 把当前产品资料制作成一张可编辑、可转化的 OnePage 宣发海报。"

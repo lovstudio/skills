@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: "在接入商与工信部链路中协助填写、提交和跟进 ICP 备案，明确实名同步、材料补充、短信核验、管局审核和服务备案号。"
 owner:
   team: LovStudio

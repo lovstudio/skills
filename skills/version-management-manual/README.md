@@ -1,6 +1,6 @@
 # 版本审阅 · Version Review
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
 
 生成 changeset 草稿并提供编辑入口，审阅后验证版本计划。
 

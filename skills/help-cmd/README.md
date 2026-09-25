@@ -1,6 +1,6 @@
 # 命令助手 · Command Helper
 
-![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
 
 把操作目标转换为适合当前系统和 shell 的可执行命令说明。
 

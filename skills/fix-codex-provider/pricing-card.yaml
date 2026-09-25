@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "一次 provider 不统一会让整批历史会话打不开；本机一次就有 3097 条 thread 受影响、13 次 resume 失败被记录在案"
+basis: "纯本地只读诊断与可回滚修复，无外部 API 成本；免费分发能让同类环境的用户先止损"
+boundary: "包含 provider 差异取证、补定义建议、重打标签、备份与回滚；不含修复 Codex 或 Yoda 产品代码，也不含远程发布"
+review_trigger: "Codex 更改 provider 解析、会话索引结构或桌面日志格式后复评"
+confidence: internal

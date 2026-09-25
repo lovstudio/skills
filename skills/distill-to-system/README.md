@@ -1,6 +1,6 @@
 # 经验入规 · Lessons to Rules
 
-![Version](https://img.shields.io/badge/version-1.0.1-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
 
 把有证据的可复用经验写入最合适的项目或共享 Agent 规范。
 

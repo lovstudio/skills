@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 配置并备份 Agent 状态栏，支持列出历史版本和恢复
-version: 1.0.1
+version: "1.0.3"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

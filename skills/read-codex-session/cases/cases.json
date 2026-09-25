@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Claude Code 读取本地 Codex 会话",
+    "description": "在 Claude Code 中调用本 Skill；宿主没有 Codex 线程工具时，改用只读脚本解析本地 rollout，返回状态与最近回合。",
+    "input": "codex://threads/<thread-uuid>",
+    "prompt": "用 lov-read-codex-session 读取这个 Codex thread，告诉我它做到哪了。",
+    "output": "Status: completed；随后给出最近回合的用户请求摘要、最新结果、工具调用与错误计数，并标注读取来源为本地 rollout。",
+    "evidence": "在 Claude Code 2.1.266 中实测：Skill 可加载，并能通过 scripts/read_codex_session.py 读回真实 thread 状态。"
+  },
+  {
+    "title": "Codex 宿主直接读取任务状态",
+    "description": "在 Codex desktop 中直接使用宿主线程工具读取当前 task 或指定 thread。",
+    "input": "当前 task 或 thread UUID",
+    "prompt": "查看这个任务做到哪了，有没有卡住。",
+    "output": "运行状态、最新进展、阻塞、是否需要用户输入与最终结果，并区分 running、needs-attention、completed 与 failed。",
+    "evidence": "Codex desktop thread inspection capability"
+  }
+]

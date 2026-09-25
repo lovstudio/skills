@@ -1,0 +1,85 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "Searches the dshfind gateway, analyzes which DSH plugin best fits a goal, then either adopts the best match with a usage path or produces a new-plugin brief based on the closest open source."
+owner:
+  team: Lovstudio
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "Free to use, modify, and redistribute with attribution."
+  url: "../LICENSE"
+use_case:
+  audience: "DSH / DeepSeek Harness users who need a capability and want one decision: use an existing plugin or build a new one"
+  scenario: "Given a goal plus constraints, return a verdict per candidate (MATCH / PARTIAL / NO-MATCH) with gateway-field evidence, then the chosen path."
+  tasks:
+    - "Search the gateway for candidate plugins"
+    - "Score candidates on coverage, maturity, health, integration, and provenance"
+    - "Adopt the best match with a usage path, or write a new-plugin brief and hand it to dsh-plugin-creator"
+deployment:
+  geography: global
+  environments:
+    - "Agent runtime with network access to api.dshfind.com"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.8+ (stdlib only)"
+    - "Network access to https://api.dshfind.com"
+risks:
+  - risk: "Verdicts rely on gateway metadata that can be stale or null for new plugins"
+    mitigation: "Every verdict cites gateway fields from the current run; unrated plugins fall back to stars, pushed_at, and install evidence"
+  - risk: "A missing keyword match can be mistaken for absence"
+    mitigation: "Retry with synonyms and facets before concluding NO-MATCH; report evidence gaps explicitly"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Fit analysis rubric"
+    path: "references/fit-analysis.md"
+  - title: "Gateway API contract"
+    path: "references/gateway-api.md"
+output:
+  types:
+    - "Decision report with per-candidate verdicts and evidence"
+    - "Usage path for the adopted plugin"
+    - "New-plugin brief file for the create path"
+  formats:
+    - "Markdown report"
+    - "Markdown brief file"
+    - "JSON search artifact"
+  parameters:
+    - "goal with core verbs and objects"
+    - "optional constraints: grade floor, install preference, language"
+  validation:
+    - "Every verdict cites gateway fields fetched in this run or the saved artifact"
+    - "Usage paths derive from install fields and the repository README"
+  description: "A decision report: per-candidate MATCH / PARTIAL / NO-MATCH with evidence, plus the adopted usage path or a new-plugin brief based on the closest open source."
+ethical_considerations: "Do not claim a plugin covers a capability without gateway or repository evidence; do not present community plugins as vetted. The new-plugin brief must not copy proprietary logic from the base implementations."
+dimensions:
+  - id: decision_soundness
+    label: 决策可靠
+    description: "Verdicts are evidence-cited and reproducible from gateway fields"
+    evidence: "Live probe 2026-08-27: q=vision yields MATCH on Anionex/dsh-vision-toolkit with score 94, grade S, npm install"
+    score: null
+  - id: capability_coverage
+    label: 能力覆盖评估
+    description: "Coverage judged from description, tags, and localized intro against the goal's core verbs"
+    evidence: "fit-analysis.md dimension 1; case B shows no single plugin covers RSS ingestion plus Feishu delivery"
+    score: null
+  - id: integration_feasibility
+    label: 集成可行
+    description: "Usage path derived from install kind, package name, and npm_published state"
+    evidence: "fit-analysis.md dimension 4; verified install fields for npm and not-installable candidates"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The gateway is public and read-only; the analysis is an evidence discipline, so the skill stays free"
+  boundary: "Included: search, fit analysis, decision, and the new-plugin brief. Excluded: package authoring (dsh-plugin-creator) and publishing (dsh-plugin-publisher)"
+  review_trigger: "Revisit when the gateway API changes, when verdict quality regresses, or when paid distribution is requested"
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

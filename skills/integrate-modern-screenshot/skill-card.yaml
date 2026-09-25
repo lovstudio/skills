@@ -1,0 +1,100 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.1"
+description: "给任意静态 HTML 网页注入一个自包含的 modern-screenshot 导出按钮，一键导出主体内容为 PNG，并保证截图与屏幕渲染一致（文字不换行）、2x 分辨率适合网络传播。"
+owner:
+  team: "LovStudio contributors"
+  contact: "Maintainers of the local Skill source"
+license:
+  name: MIT
+  terms: "Skill 指令、脚本与注入模板按 MIT 复用；内联的 modern-screenshot 库按其自身 MIT 许可；目标页面保留其原有许可与第三方义务。"
+  url: "../LICENSE"
+use_case:
+  audience: "需要把 HTML 报表、数据看板、落地页等网页一键导出为分享图片的个人或团队"
+  scenario: "页面已是静态 HTML，希望加一个导出按钮，点击即生成与屏幕一致的高分辨率 PNG，用于网络传播。"
+  tasks:
+    - "识别主体内容边界与页面设计令牌"
+    - "注入 #capture 容器、浮动导出按钮与自包含截图逻辑"
+    - "用 headless Chrome 端到端验证截图尺寸与渲染一致"
+deployment:
+  geography: global
+  environments:
+    - "Local Agent Skill runtime"
+    - "任意静态 HTML 页面（file:// 或任意静态服务器）"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.8 或更新，仅用标准库"
+    - "端到端验证需 headless Chrome/Chromium"
+risks:
+  - risk: "目标页面文字在导出图中被错误换行（foreignObject 宽度测量偏差）"
+    mitigation: "显式传入 scrollWidth/Height，用 headless Chrome 断言输出尺寸精确等于节点尺寸 × scale"
+  - risk: "暗色页面导出为白底或按钮不可读"
+    mitigation: "背景取 body 计算色；按钮颜色用 var(--x, fallback) 适配主题"
+  - risk: "内联第三方库引入未知依赖或体积"
+    mitigation: "固定 modern-screenshot 版本并内联于 assets，离线可用，不含 </script> 字样"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Integration contract"
+    path: "references/integration-contract.md"
+  - title: "Acceptance checklist"
+    path: "references/acceptance-checklist.md"
+output:
+  types:
+    - "带导出按钮的 HTML"
+    - "端到端验证报告"
+  formats:
+    - "HTML（内联 JS/CSS）"
+    - "PNG（截图产物）"
+    - "CLI 文本输出"
+  parameters:
+    - "目标 HTML 路径"
+    - "主体内容 selector"
+    - "截图宽度与缩放倍数"
+    - "下载文件名"
+  validation:
+    - "headless Chrome 尺寸一致性断言"
+    - "验收清单逐项核对"
+  description: "一个自包含的网页导出按钮，加一次即可反复导出与屏幕一致的 PNG。"
+ethical_considerations: "不注入跟踪、不采集用户数据、不上传内容；截图仅在本机浏览器内完成。导出内容归属目标页面作者，需遵守其版权与分享边界。"
+dimensions:
+  - id: rendering-fidelity
+    label: "渲染一致性"
+    description: "截图与浏览器实际渲染一致，表格/nowrap/内联 SVG/CSS 变量均不重排、不换行。"
+    evidence: "scripts/integrate_screenshot.py 显式 width/height，verify 断言 out == node × scale"
+    score: null
+  - id: resolution
+    label: "传播分辨率"
+    description: "2x 输出（默认 1520px 宽）适合网络传播，宽度可调。"
+    evidence: "SHOT_JS 的 scale 参数与 --scale/--width CLI 选项"
+    score: null
+  - id: portability
+    label: "可移植自包含"
+    description: "modern-screenshot 内联、无 CDN、无构建步骤，离线可用。"
+    evidence: "assets/modern-screenshot.js 内联注入，references/integration-contract.md 的 Library 小节"
+    score: null
+  - id: diagnostics
+    label: "失败可诊断"
+    description: "截图失败给出可复制错误提示，携带 error.stack。"
+    evidence: "SHOT_JS 的 .shot-err / #shot-err-copy 逻辑"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "初始本地源免费，最大化复用并收集真实页面集成证据。"
+  boundary: "包含本地指令、integrate/verify CLI、modern-screenshot 内联资产、契约与验收清单；不含目标页面制作、视觉设计、远程发布与持续支持。"
+  review_trigger: "当积累多类真实页面集成证据、需要维护的版本发布或付费支持时复评。"
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not_published
+    - channel: skillpay
+      status: not_published
+  free:
+    - channel: github
+      status: not_published
+    - channel: lovstudio
+      status: local_only

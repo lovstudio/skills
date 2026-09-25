@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>html2pptx · example deck</title>
+<style>
+  /* === Reset & base === */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Segoe UI", sans-serif;
+    color: #181818;
+    background: #F9F9F7;
+  }
+
+  /* === Slide frame ===
+     Each .slide is rendered as ONE pptx page.
+     Keep dimensions in sync with --size flag (default 1920x1080). */
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    padding: 96px 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    page-break-after: always;
+    overflow: hidden;
+  }
+
+  /* === Variants === */
+  .slide.cover {
+    background: linear-gradient(135deg, #181818 0%, #2a2a2a 100%);
+    color: #F9F9F7;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  .slide.cover .eyebrow {
+    color: #4F46E5; font-size: 40px; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 32px;
+  }
+  .slide.cover h1 {
+    font-size: 160px; font-weight: 800; line-height: 1.05;
+    margin: 0 0 24px;
+  }
+  .slide.cover p { font-size: 40px; color: rgba(249,249,247,0.8); margin: 0; }
+
+  .slide.section {
+    background: #4F46E5; color: #F9F9F7;
+    align-items: center; justify-content: center; text-align: center;
+  }
+  .slide.section .num {
+    font-size: 32px; letter-spacing: 0.4em; opacity: 0.7; margin-bottom: 24px;
+  }
+  .slide.section h2 { font-size: 140px; font-weight: 800; margin: 0; }
+
+  .slide.body h2 {
+    font-size: 88px; color: #4F46E5; margin: 0 0 56px; font-weight: 700;
+  }
+  .slide.body p { font-size: 36px; line-height: 1.6; max-width: 1500px; }
+  .slide.body ul { font-size: 36px; line-height: 1.7; padding-left: 1.2em; }
+  .slide.body li { margin-bottom: 16px; }
+
+  .slide.metrics {
+    background: #181818; color: #F9F9F7;
+  }
+  .slide.metrics h2 { font-size: 72px; margin: 0 0 64px; color: #4F46E5; }
+  .slide.metrics .row { display: flex; gap: 64px; }
+  .slide.metrics .stat .num {
+    font-size: 200px; font-weight: 800; color: #4F46E5; line-height: 1;
+  }
+  .slide.metrics .stat .label {
+    font-size: 32px; color: rgba(249,249,247,0.7); margin-top: 16px;
+  }
+
+  .slide.end {
+    background: #F9F9F7; color: #181818;
+    align-items: center; justify-content: center; text-align: center;
+  }
+  .slide.end h2 { font-size: 180px; margin: 0; font-weight: 800; }
+  .slide.end p { font-size: 40px; color: #4F46E5; margin: 32px 0 0; }
+</style>
+</head>
+<body>
+
+<section class="slide cover">
+  <div class="eyebrow">html2pptx · demo</div>
+  <h1>用 HTML<br>写 PPT。</h1>
+  <p>Playwright 渲染 · python-pptx 打包 · 像素级保真</p>
+</section>
+
+<section class="slide section">
+  <div class="num">01</div>
+  <h2>核心概念</h2>
+</section>
+
+<section class="slide body">
+  <h2>每个 .slide 元素 = 一页幻灯片</h2>
+  <ul>
+    <li>用真实浏览器渲染，CSS Grid / Flex / Webfont 全部支持</li>
+    <li>1920×1080 视口，2× DPR，输出即印即用</li>
+    <li>JavaScript 也跑得动，但导出前等待 networkidle</li>
+    <li>无须学习模板语法，会写网页就会做 PPT</li>
+  </ul>
+</section>
+
+<section class="slide metrics">
+  <h2>速度参考</h2>
+  <div class="row">
+    <div class="stat"><div class="num">~1s</div><div class="label">每页渲染耗时</div></div>
+    <div class="stat"><div class="num">10+</div><div class="label">页可并发</div></div>
+    <div class="stat"><div class="num">∞</div><div class="label">设计自由度</div></div>
+  </div>
+</section>
+
+<section class="slide end">
+  <h2>开始写吧。</h2>
+  <p>edit_html.py · live preview · 一键导出</p>
+</section>
+
+</body>
+</html>

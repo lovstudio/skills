@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: 定义 OpenLess、Typeless 等语音输入法词汇表的读写映射；本地 JSON 直接读写，API 走用户凭据只读探测。
 owner:
   team: LovStudio / 手工川工作室

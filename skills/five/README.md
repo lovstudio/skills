@@ -1,6 +1,6 @@
 # 五字答 · Five-Unit Replies
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 在明确要求时使用五单位以内的简短回复，并支持随时恢复正常。
 

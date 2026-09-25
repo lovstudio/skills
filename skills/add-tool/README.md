@@ -1,6 +1,6 @@
 # 小工具工坊 · Web Tool Studio
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
 
 为现有网站新增可用的在线工具，并接入多语言、工具目录、站点地图和必要的成本提示。
 

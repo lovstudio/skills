@@ -1,0 +1,22 @@
+schema: skill-manifest/v1
+id: lov-app-release
+version: 1.0.1
+runtime: skill-runtime/v1
+context:
+  profile:
+    fields:
+      - path: identity.name
+        required: false
+        question: "请提供需要出现在发布资料中的应用名称。"
+  preferences:
+    namespace: app_release
+    fields:
+      - path: preferred_channels
+        required: false
+        question: "是否有默认发布渠道或平台顺序？"
+      - path: user.language
+        required: false
+        question: "希望使用哪种语言输出发布报告？"
+  interaction:
+    ask_missing: true
+    max_questions: 1

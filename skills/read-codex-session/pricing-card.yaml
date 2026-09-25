@@ -1,0 +1,8 @@
+schema: lovstudio/pricing-card/v1
+model: free
+currency: CNY
+list_price_cny: 0
+basis: "本地只读 task 状态核对"
+boundary: "不修改任务、不发送消息、不统计账户额度"
+review_trigger: "宿主线程读取接口变化时"
+confidence: internal

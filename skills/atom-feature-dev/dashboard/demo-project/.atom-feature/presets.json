@@ -1,0 +1,16 @@
+{
+  "active": "balanced",
+  "presets": [
+    {
+      "id": "balanced",
+      "name": "Balanced",
+      "values": {"paper": "A4", "tocDepth": 3, "searchable": true}
+    },
+    {
+      "id": "print-letter",
+      "name": "Print · Letter",
+      "values": {"paper": "Letter", "tocDepth": 2, "searchable": true}
+    }
+  ]
+}
+

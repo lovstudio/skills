@@ -18,7 +18,7 @@ compatibility: >
   built-in image tool. No Python dependency is required.
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: portrait headshot retouch identity-preserve photo-editing
 ---
 

@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.2.1"
 description: "将 Yoda 的一次性或周期自动化配置为可核验的计划，并提供时区、cron、下次运行、运行记录和停用证据。"
 owner:
   team: "LovStudio"

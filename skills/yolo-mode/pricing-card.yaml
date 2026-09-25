@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: 0.2.0
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 减少离开电脑后的澄清等待，保留可恢复的执行进度。
+basis: 指令型本地工具，无自营云端执行服务；免费提供规则和配置。
+boundary: 包括规则、Profile 与本地校验；模型、宿主、第三方调用成本由用户现有服务承担。
+review_trigger: 引入托管运行服务或独立维护成本时重新评估；不自动收费。
+confidence: internal

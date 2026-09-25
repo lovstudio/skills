@@ -1,0 +1,52 @@
+{
+  "schema": "lov-cli-case-result/v1",
+  "date": "2026-08-24",
+  "input_project": "skill-creator-skill",
+  "generated_command": "lov-cli-skill-creator",
+  "backend": "Skill Creator's real init_skill.py and validate_skill.py scripts",
+  "installation": {
+    "environment": "isolated Python 3.9 venv",
+    "method": "declared requirements plus setuptools editable fallback for bundled pip 21.2.4",
+    "resolved_command": true
+  },
+  "verification": {
+    "helper_tests": {
+      "passed": 5,
+      "failed": 0
+    },
+    "generated_cli_tests": {
+      "passed": 5,
+      "failed": 0,
+      "duration_seconds": 0.69
+    },
+    "cli_validation_checks": [
+      "source-help",
+      "source-capabilities-json",
+      "source-doctor-json",
+      "installed-command-neutral-cwd",
+      "tests:5"
+    ],
+    "read_workflow": {
+      "command": "validate",
+      "result": "PASSED: source validation (.)"
+    },
+    "mutation_workflow": {
+      "command": "create cli-case-probe --path TEMP_PARENT",
+      "result": "created cli-case-probe-skill",
+      "verified_files": [
+        "SKILL.md",
+        "README.md",
+        "skill.yaml",
+        "skill-card.yaml",
+        "skill-card.md",
+        "pricing-card.yaml",
+        "cases/cases.json",
+        "references/skill-composition.md",
+        "references/user-profile.md",
+        "scripts/profile_store.py",
+        "scripts/validate_skill.py"
+      ]
+    }
+  },
+  "status": "verified-local"
+}

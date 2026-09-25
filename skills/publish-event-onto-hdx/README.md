@@ -1,6 +1,6 @@
 # 活动行诊断 · Huodongxing Diagnostics
 
-![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.1-CC785C)
 
 诊断活动行活动的分类与标签配置，找出分类页不可见的根因；替换活动详情正文配图；
 并在任何后台保存后守住「分类被静默清空」这一平台级陷阱。

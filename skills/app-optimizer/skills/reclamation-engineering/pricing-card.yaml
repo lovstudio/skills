@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "用跨客户端生命周期建模、fail-closed 决策、ABA 防护和持久数据保护降低误释放与恢复成本。"
+basis: "核心 kit-only 协议、测试矩阵、共享 dry-run 方法和 Yoda 实现证据以免费源码形式提供。"
+boundary: "包含设计审查、实现指导和只读计划报告；不存在付费 SKU 或渠道产物，也不包含生产执行权限、托管清理或数据恢复保证。"
+review_trigger: "增加托管执行、生产审批、商业 adapter、渠道商品或恢复承诺时重新评估价格与渠道。"
+confidence: single-case-implementation-backed
