@@ -13,7 +13,7 @@ references:
 - cases/cases.json
 - references/skill-composition.md
 output: 创建 macOS Finder 文件快捷操作或目录背景菜单扩展
-version: 0.4.1
+version: "0.4.3"
 ethical_considerations: 保留来源、用户授权和秘密边界，不虚构案例或外部完成状态。
 dimensions:
 - id: portability

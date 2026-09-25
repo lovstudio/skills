@@ -4,7 +4,7 @@
 
 - lov-skill-creator：命令迁移与通用结构；不拥有本业务结果。
 - lov-branding-consistency：用户可见文案审校。
-- lov-skill-publisher：已验证 Skill 的官网分发。
+- lov-skill-publisher（安装别名 `lov-skill-publish`）：已验证 Skill 的官网分发。
 
 ## Atomic Handoffs
 

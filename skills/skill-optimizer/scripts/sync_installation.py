@@ -44,7 +44,9 @@ def payload_files(directory: Path) -> dict[str, Path]:
 
 def distribution_payload(source: Path) -> Path:
     public = source / "public"
-    if (source / "src" / "SKILL.md").exists() and (public / "SKILL.md").exists():
+    if (source / "src" / "SKILL.md").exists():
+        if not (public / "SKILL.md").exists():
+            raise ValueError("paid source has no installable public/SKILL.md payload")
         return public
     return source
 
@@ -103,7 +105,7 @@ def sync_target(source: Path, target: Path, apply: bool, prune: bool, canonical_
     target_is_symlink = target.is_symlink()
     if target_is_symlink:
         resolved = target.resolve()
-        state = "synced" if resolved in {source, canonical_source} else "drifted"
+        state = "synced" if resolved == source and source.is_dir() else "drifted"
         return {
             "path": str(target),
             "kind": "symlink",
@@ -115,9 +117,9 @@ def sync_target(source: Path, target: Path, apply: bool, prune: bool, canonical_
     if target.resolve() == source:
         raise ValueError(f"target resolves to source: {target}")
 
-    target.mkdir(parents=True, exist_ok=True)
     before = compare(source, target)
     if apply:
+        target.mkdir(parents=True, exist_ok=True)
         copy_files(source, target, before["missing"] + before["changed"])
         if prune:
             remove_extra_files(target, before["extra"])
@@ -148,9 +150,8 @@ def main() -> None:
     canonical_source = Path(args.source).expanduser().resolve()
     if not canonical_source.is_dir():
         parser.error(f"source directory not found: {canonical_source}")
-    source = distribution_payload(canonical_source)
-
     try:
+        source = distribution_payload(canonical_source)
         targets = [Path(value).expanduser() for value in args.target]
         result = {
             "source": str(canonical_source),

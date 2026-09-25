@@ -1,6 +1,6 @@
 # Finder 快捷动作 · Finder Actions
 
-![Version](https://img.shields.io/badge/version-0.4.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.3-CC785C)
 
 创建 macOS Finder 文件快捷操作或目录背景菜单扩展。
 

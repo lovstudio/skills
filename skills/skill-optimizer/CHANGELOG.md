@@ -3,6 +3,40 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.13.3] - 2026-09-25
+
+### Fixed
+
+- inspect_layout.py 将已归档的 general/dev 分拆 catalog 本地检出标为 `legacy`，不再计入 `catalog_state` 与 `sync_state`；通过 `--catalog-root` 显式传入时仍按普通 catalog 比较。
+- 新增回归测试覆盖 legacy 标记与显式传入两种情况；SKILL.md、README 与报告模板同步说明。
+
+## [0.13.2] - 2026-09-07
+
+### Added
+
+- 统一展示名为「Skill 精修师」，保持调用 ID 与能力契约。
+
+## [0.13.1] - 2026-09-07
+
+### Fixed
+
+- Respect approved product names, memorable role names and brand-prefix boundaries
+
+## [0.13.0] - 2026-09-07
+
+### Added
+
+- add capability-based Skill naming review
+- review display names for accuracy, brevity, elegance and consistency while preserving compatibility identifiers
+
+## [0.12.0] - 2026-09-06
+
+### Added
+
+- add read-only collection inventory with explicit canonical candidates
+- discover installation aliases and distinguish broken links and wrong payload targets
+- keep sync plans side-effect free and reject missing paid public payloads
+
 ## [0.11.1] - 2026-08-31
 
 ### Fixed

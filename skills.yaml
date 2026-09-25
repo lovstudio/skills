@@ -2914,14 +2914,14 @@ skills:
 - name: skill-optimizer
   runtime_name: lov-skill-optimizer
   display_name: Skill Refiner
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-09-25 14:27:23+00:00
   skillpay_product_id: P0806000200846065
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsb
   repo: lovstudio/skill-optimizer-skill
   name_zh: Skill 精修师
   paid: false
   category: Meta
-  version: 0.10.0
+  version: 0.13.3
   description: Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG
     entry.
   tagline_en: Audit an existing skill, auto-fix issues, and bump its version in one
@@ -3097,14 +3097,14 @@ skills:
 - name: finder-action
   runtime_name: lov-finder-action
   display_name: Finder Actions
-  updated_at: 2026-09-07 09:40:45+00:00
+  updated_at: 2026-09-25 14:27:23+00:00
   skillpay_product_id: P0806000200847223
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP0
   repo: lovstudio/finder-action-skill
   name_zh: Finder 快捷动作
   paid: false
   category: Dev Tools
-  version: 0.4.1
+  version: 0.4.3
   description: Create a Finder context menu action
   tagline_en: Create a Finder context menu action
   tagline_zh: 创建 macOS Finder 文件快捷操作或目录背景菜单扩展

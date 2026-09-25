@@ -6,7 +6,7 @@ description: >
   Audit and optimize one or more existing Agent Skills from a canonical source
   path, then bump semver, update README/SKILL.md/skill.yaml/CHANGELOG.md, and
   verify installed copies and catalog synchronization. Checks frontmatter,
-  trigger quality, CLI hygiene, naming, portability, version drift, dirty
+  trigger quality, CLI hygiene, accurate and concise naming, portability, version drift, dirty
   worktrees, shared Skill feedback policy, and compatibility contracts. Use when the user asks to optimize,
   refine, audit, polish, or update a Skill, or mentions "优化 skill", "skill
   审计", "刷一遍 skill", "skill-optimizer", or "update skill changelog".
@@ -20,7 +20,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.11.1"
+  version: "0.13.3"
   tags: meta skill-maintenance versioning changelog lint portability sync
 ---
 
@@ -32,6 +32,27 @@ generic lint pass. When several Skills are named in one request, process them
 in the order named and emit a separate result block for each Skill.
 
 ## Target and source resolution
+
+For a collection audit, generate a read-only inventory first:
+
+```bash
+python3 scripts/inspect_layout.py --all --root /absolute/path/to/skills --json
+```
+
+The inventory groups actual frontmatter IDs across source candidates, discovers
+installation aliases by identity or resolved target, and records full payload
+digests separately from catalog state. `canonical_candidate` is an inference
+from a unique source or unique linked payload, never authorization to overwrite
+another source. Ambiguous IDs stay unresolved. Generated output, templates and
+paid `src`/`public` variants are not independent source entries; Kit modules are.
+Lifecycle is `disabled` only for a disabled specification and otherwise remains
+`unclassified` until its owner supplies a product decision.
+
+Treat `wrong_target`, `broken_link`, unavailable digests and non-versioned
+sources explicitly. A symlink is synchronized only when it resolves to the
+selected installable payload; a paid repository root is not its public payload.
+Missing public payloads must never fall back to distributing plaintext source.
+Collection audit does not synchronize, delete, publish or rewrite any target.
 
 Prefer an explicit canonical path whenever the Skill is outside a conventional
 skills repository:
@@ -130,6 +151,15 @@ transcripts, source data, legal text, identifiers, or code without permission.
 
 ### Step 3: Apply focused fixes
 
+For naming feedback or a collection naming audit, first read
+[Skill naming review](references/skill-naming.md). Start from user-approved names
+and style examples, then review real capabilities and neighboring Skills for
+accuracy, brevity, memorability, elegance and consistency. Preserve product
+personality instead of forcing functional labels or banning role words.
+Record both changed and retained names. Distinguish
+display fields from compatibility identifiers, and do not infer permission to
+rename IDs, repositories or Profile keys from a display-name correction.
+
 Edit only the canonical source. Keep the Skill's public trigger surface,
 compatibility aliases, storage contracts, and user-facing semantics explicit.
 Use progressive disclosure when SKILL.md grows beyond roughly 500 lines. Add a
@@ -194,9 +224,11 @@ matching Skill payload digest is `synced`.
 `AGENT_SKILLS_DIR`, `CLAUDE_SKILLS_DIR`, `CODEX_SKILLS_DIR`, `SKILLS_DIR`,
 plus the host's agent-managed fallback roots. It also checks explicit
 `--install-root` and `--catalog-root` values plus the nearby unified
-`lovstudio-skills` catalog and legacy general/dev catalog names. Use an
-environment variable or explicit flag when the installation root is outside
-the conventional layout.
+`lovstudio-skills` catalog. Nearby checkouts named after the archived
+general/dev split catalogs are reported as `legacy` and excluded from
+`catalog_state`; pass one with `--catalog-root` only to compare it on purpose.
+Use an environment variable or explicit flag when the installation root is
+outside the conventional layout.
 
 For a non-symlink installation copy, first run a read-only sync plan. Paid
 repositories automatically use their `public/` payload:
@@ -260,7 +292,7 @@ source:    <canonical path> (<clean|dirty>)
 distribution:
   - <path>: <synced|drifted|not_discovered>
 catalog:
-  - <path>: <synced|partial|not_discovered>
+  - <path>: <synced|partial|not_discovered|legacy>
 fixes:
   - <bullet 1>
   - <bullet 2>
@@ -286,10 +318,17 @@ python3 scripts/lint_skill.py --path PATH [--json]
 python3 scripts/lint_skill.py --all --root PATH [--json]
 python3 scripts/bump_version.py --path PATH --type patch|minor|major -m MESSAGE
 python3 scripts/inspect_layout.py --path PATH [--install-root PATH] [--catalog-root PATH] [--json]
+python3 scripts/inspect_layout.py --all --root PATH [--install-root PATH] [--catalog-root PATH] --json
 python3 scripts/sync_installation.py --source PATH --target PATH [--apply] [--prune] [--json]
 ```
 
 All bundled tools use Python's standard library only.
+
+Layout and synchronization regression checks:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
+```
 
 ## 通用反馈闭环
 

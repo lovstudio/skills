@@ -11,7 +11,7 @@ depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 0.4.1
+  version: 0.4.3
   tags:
   - macos
   - finder
@@ -52,7 +52,7 @@ metadata:
 
 1. 根据是否需要选中文件选择 Automator Quick Action 或 Finder Sync Extension；解析动作名称、文件类型、实际处理逻辑与目标目录。
 
-2. Quick Action 使用按参数接收的脚本与 workflow plist，工具路径从实际安装解析，处理中文、空格、多选和同名输出；参考 references/automator-template.xml 并核验当前系统字段。
+2. Quick Action 使用按参数接收的脚本（`inputMethod=1`，`"$@"`）与 workflow plist，工具路径从实际安装解析，处理中文、空格、多选和同名输出；按下文「Quick Action 安装」从 [document.wflow 模板](references/automator-template.xml) 与 [Info.plist 模板](references/automator-info-template.xml) 生成，并核验当前系统字段。
 
 3. Finder Extension 使用实际 Xcode 工具链、独立 bundle ID、必要沙盒权限和精确监控目录，菜单 action 明确 target；按当前 Apple 文档核实能力，不要求整个磁盘临时例外权限。
 
@@ -63,6 +63,35 @@ metadata:
 6. 不强制 killall Finder、打开 Automator 或切换应用前台；需用户启用扩展的步骤准确说明。实际菜单触发只有完成观察后才标验证。
 
 7. 保留现有 workflow 与应用，明确安装位置和回退路径；不覆盖同名菜单动作。
+
+## Quick Action 安装
+
+`document.wflow` 模板只含一个 Run Shell Script action：`inputMethod=1`、`shell=/bin/bash`，
+输入 `com.apple.Automator.fileSystemObject`，`workflowTypeIdentifier=com.apple.Automator.servicesMenu`，
+`presentationMode=15`，输出 `com.apple.Automator.nothing`。脚本占位 `SHELL_SCRIPT`、菜单名占位
+`ACTION_NAME` 一律用 `plutil` 写入（自动处理 XML 转义），不手工拼接 XML。`SKILL_DIR` 指本 Skill 根目录。
+
+```bash
+NAME="动作名称"                                    # 菜单显示名，同时是 workflow 包名
+DEST="$HOME/Library/Services/$NAME.workflow"
+[ -e "$DEST" ] && { echo "同名 workflow 已存在：$DEST" >&2; exit 1; }
+bash -n action.sh                                  # 已写好的处理脚本
+STAGE="$(mktemp -d)/$NAME.workflow"; mkdir -p "$STAGE/Contents"
+cp "$SKILL_DIR/references/automator-template.xml" "$STAGE/Contents/document.wflow"
+cp "$SKILL_DIR/references/automator-info-template.xml" "$STAGE/Contents/Info.plist"
+plutil -replace actions.0.action.ActionParameters.COMMAND_STRING -string "$(cat action.sh)" "$STAGE/Contents/document.wflow"
+plutil -replace NSServices.0.NSMenuItem.default -string "$NAME" "$STAGE/Contents/Info.plist"
+plutil -replace NSServices.0.NSSendFileTypes -json '["com.adobe.pdf"]' "$STAGE/Contents/Info.plist"  # 按目标 UTI；文件与文件夹通用保留 public.item
+plutil -lint "$STAGE/Contents/document.wflow" "$STAGE/Contents/Info.plist"
+diff <(plutil -extract actions.0.action.ActionParameters.COMMAND_STRING raw -o - "$STAGE/Contents/document.wflow") action.sh
+mv -n "$STAGE" "$DEST"
+/System/Library/CoreServices/pbs -update
+```
+
+- 同名 workflow 已存在时停止，换名或询问用户；不覆盖、不合并。lint 或 diff 失败时只丢弃 staging 目录。
+- 不执行 `killall Finder`，不自动打开 Automator。菜单未出现时，按当前系统版本核实后请用户在系统设置中检查该服务的启用状态，或由用户自行在 Automator 打开并保存一次。
+- 回退路径：把 `$DEST` 移到废纸篓（`mv "$DEST" ~/.Trash/`）后再次运行 `pbs -update`。
+- 报告安装路径与回退命令；实际右键触发经观察后才标记已验证。
 
 ## Composition
 
