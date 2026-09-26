@@ -3982,5 +3982,46 @@
       "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
       "submittedAt": "2026-09-12T12:01:47.777Z"
     }
+  },
+  {
+    "id": "wechat-network-analysis-10k-contacts",
+    "type": "case",
+    "skillIds": [
+      "wdb-cli",
+      "wdb-networkx-analysis"
+    ],
+    "title": "万人通讯录的微信人脉网络分析",
+    "description": "真实用户在自己的电脑上分析本人微信：8,663 位好友、2,944 个群。目标是参照 NetworkX 示例库把适用的分析跑一遍，并得到一份能直接阅读的报告。案例只保留汇总数字，不含任何好友名、群名或账号。",
+    "input": {
+      "items": [
+        "本机微信 4.x 数据，已用 lov-wdb-cli 完成密钥准备",
+        "export_network.py 导出的 network.json：8,663 位好友、2,944 个群、30,582 条入群关系，消息统计起点 2025-10-05，导出耗时 135 秒"
+      ]
+    },
+    "prompt": "参考 Network analysis theory（NetworkX 示例库），把 networkx 能跑的分析跑一遍，最后出一个我的微信好友和群聊的分析报告。",
+    "output": {
+      "items": [
+        "本地 HTML 报告：14 个章节、8 张图表、8 条主要发现，明暗主题均可阅读",
+        "results.json：17 类分析全部完成，errors 与 skipped 均为空，分析耗时约 262 秒",
+        "关键结论（汇总）：98.5% 的节点在同一连通块，好友平均相隔 2.3 层群；介数最高的 5 个节点都是用户担任群主的群；私聊条数与结构中心性的秩相关仅 0.04–0.32；核心圈 177 人内部 Girvan–Newman 最佳模块度 0.008；1,885 位好友只靠一个群相连",
+        "隐私核验：network.json、results.json 与报告中 wxid、数据库路径、表名计数均为 0"
+      ]
+    },
+    "cover": "cases/assets/wechat-network-analysis-10k-contacts/1.png",
+    "gallery": [
+      "cases/assets/wechat-network-analysis-10k-contacts/2.png"
+    ],
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-09-26",
+      "method": "用户在浏览器中回读报告的 14 个章节与 8 张图表；泛化后的 Skill 脚本与首次探索性分析在 10 个关键指标上完全一致；Burt 约束度与有效规模的稀疏实现与 networkx 逐节点结果误差小于 1e-15。两张配图由同一份 results.json 重新渲染为 PNG，数值与报告图表一致。",
+      "privacy": "只公开汇总数字：不含好友名、群名、微信账号、本机路径或数据库表名；两张配图只有坐标轴、分组标签与计数。完整报告含第三方真实名称，仅保留在用户本机，不随案例上传。",
+      "artifact_type": "other"
+    },
+    "submission": {
+      "fingerprint": "d75805beb93af909575cf6bd81d8fc04e00a71d1d315adab0b36bed817cc751b",
+      "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
+      "submittedAt": "2026-09-26T12:07:22.212Z"
+    }
   }
 ]
