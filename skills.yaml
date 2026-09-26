@@ -2788,6 +2788,8 @@ skills:
   tagline_en: Prepare local WeChat keys, then read isolated database copies with exact
     record identity.
   tagline_zh: 先为本机微信准备密钥，再通过隔离副本读取数据并保留精确记录身份。
+  related:
+  - wdb-networkx-analysis
   distribution:
     workbuddy: review
     skillpay: review
@@ -9188,3 +9190,55 @@ skills:
     confidence: entry
     review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
     review_trigger_en: Review after ten business uses or a material maintenance change.
+- name: wdb-networkx-analysis
+  runtime_name: lov-wdb-networkx-analysis
+  updated_at: '2026-09-26T12:00:00Z'
+  display_name: WeChat Network Analysis
+  repo: lovstudio/wdb-networkx-analysis-skill
+  name_zh: 微信人脉网络分析
+  paid: true
+  encrypted_bundle: true
+  price_credits: 268
+  category: General
+  skill_path: ''
+  version: 0.1.0
+  description: Analyze local WeChat friends and group chats as a network with NetworkX
+    and generate a local HTML report.
+  tagline_en: See your WeChat friends and groups as one network — hubs, bridges, core
+    circle and single-thread ties in a local report.
+  tagline_zh: 把微信好友和群聊看成一张网：枢纽、桥、核心圈与单线关系，一份本地报告讲清楚。
+  related:
+  - wdb-cli
+  pricing:
+    model: one_time
+    visibility: public
+    list_price_credits: 268
+    launch_price_credits: 268
+    price_range_credits:
+    - 268
+    - 423
+    delivery_unit_zh: 单个 Skill：只读导出、17 类网络分析、8 张图表、本地 HTML 报告与演示网络
+    delivery_unit_en: Single Skill with read-only export, 17 network analyses, 8 charts,
+      a local HTML report, and a demo network
+    value_zh: 看清谁是枢纽和桥、哪些人处在核心圈、关系网能切出哪些结构社区、哪些关系只挂在一个群上。
+    value_en: See who the hubs and bridges are, who sits in your core circle, which
+      structural communities exist, and which ties hang on a single group.
+    anchor_zh: 替代数小时到数天的数据导出、建模与编码；节省时间因数据与经验而异，尚无买家统计。
+    anchor_en: Replaces hours to days of data export, modeling, and coding; time savings
+      vary and buyer measurements are not yet available.
+    basis_zh: 在 8,663 位好友、2,944 个群的真实通讯录上完成全流程，结果可复现；作者定价，首发入口价。
+    basis_en: Completed end to end on a real address book with 8,663 friends and 2,944
+      groups with reproducible results; creator-set entry price.
+    boundary_zh: 需 macOS 本机微信 4.x、已完成密钥准备的万能微信秘钥与 Python 3.10+；报告只在本机生成，不含云端运行或人工解读。
+    boundary_en: Requires macOS WeChat 4.x, Universal WeChat Key with keys prepared,
+      and Python 3.10+; reports stay local, with no cloud runs or human interpretation.
+    maintenance_zh: 随微信本地库结构、分析库版本和真实支持成本变化复评。
+    maintenance_en: Review when WeChat schemas, analysis library versions, or observed
+      support costs change.
+    confidence: medium-low
+    review_trigger_zh: 首批 20 位买家或 2026-12-31；微信库结构变化或分析库主版本升级时复评。
+    review_trigger_en: Review at the first 20 buyers or 2026-12-31, or when WeChat schemas
+      or the analysis library major version change.
+    card_path: pricing-cards/wdb-networkx-analysis.md
+  depends_on:
+  - branding-consistency

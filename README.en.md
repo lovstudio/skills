@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **219 skills** — 202 Free + 17 Paid.
+> **220 skills** — 202 Free + 18 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -81,7 +81,8 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Deep Thinking](https://github.com/lovstudio/think-skill) (`think`) | Analyze a complex decision and its tradeoffs — requires: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Dictation Editor](https://github.com/lovstudio/typeless-prompt-skill) (`typeless-prompt`) | Turn rough dictation into concise, structured, send-ready text without answering or executing it. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Uploader](https://github.com/lovstudio/upload-image-skill) (`upload-image`) | Upload local images with the user's existing PicGo setup and optionally rewrite Markdown image links. |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Universal WeChat Key](https://github.com/lovstudio/wdb-cli-skill) (`wdb-cli`) | Prepare local WeChat keys, then read isolated database copies with exact record identity. — requires: `branding-consistency` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Universal WeChat Key](https://github.com/lovstudio/wdb-cli-skill) (`wdb-cli`) | Prepare local WeChat keys, then read isolated database copies with exact record identity. — requires: `branding-consistency`; related: `wdb-networkx-analysis` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [WeChat Network Analysis](https://github.com/lovstudio/wdb-networkx-analysis-skill) (`wdb-networkx-analysis`) | See your WeChat friends and groups as one network — hubs, bridges, core circle and single-thread ties in a local report. — requires: `branding-consistency`; related: `wdb-cli` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Weitan CLI](https://github.com/lovstudio/wxmp-cli-skill) (`wxmp-cli`) | Find cached WeChat articles and export them in four formats, with a complete CLI runtime included. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [XBTI Studio](https://github.com/lovstudio/xbti-creator-skill) (`xbti-creator`) | Create a complete custom BTI personality test based on the XBTI architecture. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Xiaohongshu Researcher](https://github.com/lovstudio/xhs-skill) (`xhs`) | Research a Xiaohongshu topic and get a source-backed report, not just another search result. — requires: `branding-consistency` |
