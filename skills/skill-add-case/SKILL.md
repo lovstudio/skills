@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: LovStudio contributors
-  version: "0.5.0"
+  version: "0.5.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - skill-case
@@ -116,6 +116,11 @@ editor's optimization; the helper never silently changes approved artwork.
 An absent ID is generated deterministically and saved. Output files are created
 exclusively to protect existing drafts. Keep the same file and ID for retries.
 
+When the case comes from a record in a Skill's own `cases/cases.json`, use one ID
+for both: reuse the record's `id`, or add the published case ID to that record in
+its own repository after publication. Skill pages also read that file, and hide
+it only when its `id` equals a related shared case; otherwise the case renders twice.
+
 Session is optional. `--session-url` links an existing public LovStudio Session
 voluntarily shared by its owner; the server verifies ownership and access.
 The API rejects paid Sessions, embedded `session` objects, prices and transcripts.
@@ -164,7 +169,9 @@ legacy `--replace-existing` flag to bypass website immutability.
 `published` confirms a source commit. `cacheRefreshed` is separate; neither proves
 rendering. Read the returned case URL and collection and every related Skill page without authentication.
 Check visible title, Input → Prompt → Output, all final images and optional public
-Session. Serialized scripts are not rendered evidence.
+Session. Serialized scripts are not rendered evidence. Each related Skill page must
+render the case exactly once; a second card means a Skill-owned source record lacks
+the shared ID (Step 2).
 
 When source JSON is publicly readable, resolve its verified URL from the catalog:
 

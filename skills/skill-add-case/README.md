@@ -1,6 +1,6 @@
 # Skill 案例馆 · Skill Showcase
 
-![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.1-CC785C)
 
 把一次已确认满意的结果收录到全站案例集，并关联实际参与的所有 Skill。用户可以导入网页后手动发布，
 也可以授权 Agent 直接投稿；普通 LovStudio 账号即可使用，无需 GitHub 权限。
