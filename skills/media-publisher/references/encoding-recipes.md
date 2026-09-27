@@ -4,9 +4,11 @@
 
 上传进度到 100%、平台在服务端转码阶段返回失败文案（例如「视频转码失败，调整视频导出参数后重试」）时使用。这类失败不发生在上传期，只有整包传完、服务端尝试转码后才暴露，所以长视频的代价是数小时。
 
-先确认这是服务端转码拒绝，而不是硬限制拦截：文件大小与时长都在当前页面显示的限制内，预检也没有 `errors`。若预检有 `errors`，按 [平台约束](wechat-channels/platform-constraints.md) 处理，不要走本文流程。
+先确认这是服务端转码拒绝，而不是硬限制拦截：文件大小与时长都在当前页面显示的限制内，预检也没有 `errors`。若预检有 `errors`，按对应平台约束（[视频号](wechat-channels/platform-constraints.md) / [B 站](bilibili/platform-constraints.md)）处理，不要走本文流程。
 
-## 观测到的一次拒绝与修复
+本文的证据全部来自视频号。B 站没有码率上限、会重新转码每条投稿，预检也不对 B 站报 `video_bitrate_high`：B 站直接上传渲染母版，不预先重压，也不把视频号的 10 Mbps 当作目标；只有 B 站页面真的返回转码失败时才进入本文流程。
+
+## 观测到的一次拒绝与修复（视频号）
 
 2026-08-15 记录，样本量为 1，作为经验线索而非已证明的因果律：
 
@@ -19,7 +21,7 @@
 | 预检结果 | 仅一条 `video_bitrate_high` | `status=pass`，`warnings` 为空 |
 | 平台结果 | 转码失败 | 通过并发布 |
 
-两版之间同时变化了码率、文件体积和封装，无法单独归因到码率。可确定的是：预检唯一标记的偏离项就是 `video_bitrate_high`，把它消除后同一素材通过。因此把「建议项」当作长视频的实际门槛处理，比事后重传划算。
+两版之间同时变化了码率、文件体积和封装，无法单独归因到码率。可确定的是：预检唯一标记的偏离项就是 `video_bitrate_high`，把它消除后同一素材通过。因此视频号长视频把「建议项」当作实际门槛处理，比事后重传划算；这条结论不外推到 B 站。
 
 ## 先测码率，再定预算
 
@@ -92,8 +94,8 @@ ffprobe -v error -show_entries \
   format=duration,size,bit_rate:stream=codec_name,width,height,bit_rate,r_frame_rate \
   -of json <输出视频>
 
-# 3. 重跑预检，要求 warnings 为空
-python3 <本 Skill 目录>/scripts/check_video.py <输出视频> --json
+# 3. 按目标平台重跑预检，要求 warnings 为空
+python3 <本 Skill 目录>/scripts/check_video.py <输出视频> --platform <目标平台> --json
 ```
 
 时长要和源片逐秒对齐（容器时基差异带来的毫秒级偏移可接受）。预检还有 `warnings` 就不要上传，本文的全部意义就是不再把警告留到服务端去发现。

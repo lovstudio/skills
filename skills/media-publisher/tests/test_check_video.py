@@ -112,6 +112,103 @@ class ValidateProbeTests(unittest.TestCase):
             },
         )
 
+    def test_wechat_channels_warns_on_high_bitrate(self):
+        probe = valid_probe()
+        probe["streams"][0]["bit_rate"] = "20000000"
+
+        result = check_video.validate_probe(
+            Path("master.mp4"),
+            probe,
+            size_bytes=500 * 1024 ** 2,
+            platform="wechat-channels",
+        )
+
+        self.assertEqual(
+            {item["code"] for item in result["warnings"]},
+            {"video_bitrate_high"},
+        )
+        self.assertEqual(result["notes"], [])
+
+    def test_bilibili_has_no_bitrate_cap(self):
+        # 2026-09-27 实际母版：20 Mbps、2.08 GB、13:47，曾因误报被重压到 9 Mbps。
+        probe = valid_probe()
+        probe["format"]["duration"] = "827.0"
+        probe["streams"][0]["bit_rate"] = "20000000"
+
+        result = check_video.validate_probe(
+            Path("master.mp4"),
+            probe,
+            size_bytes=2_080_000_000,
+            platform="bilibili",
+        )
+
+        self.assertTrue(result["valid"])
+        self.assertEqual(result["warnings"], [])
+        self.assertEqual(
+            {item["code"] for item in result["notes"]},
+            {"video_bitrate_no_platform_cap"},
+        )
+        self.assertEqual(result["media"]["video_bitrate_bps"], 20_000_000)
+
+    def test_bilibili_unknown_bitrate_is_not_a_warning(self):
+        probe = valid_probe()
+        del probe["streams"][0]["bit_rate"]
+
+        result = check_video.validate_probe(
+            Path("master.mp4"),
+            probe,
+            size_bytes=500 * 1024 ** 2,
+            platform="bilibili",
+        )
+
+        self.assertEqual(result["warnings"], [])
+        self.assertIsNone(result["media"]["video_bitrate_bps"])
+
+    def test_bilibili_accepts_mov_and_mkv(self):
+        cases = {
+            "master.mov": "mov,mp4,m4a,3gp,3g2,mj2",
+            "master.mkv": "matroska,webm",
+        }
+        for filename, format_name in cases.items():
+            with self.subTest(filename=filename):
+                probe = valid_probe()
+                probe["format"]["format_name"] = format_name
+
+                result = check_video.validate_probe(
+                    Path(filename),
+                    probe,
+                    size_bytes=500 * 1024 ** 2,
+                    platform="bilibili",
+                )
+
+                self.assertEqual(result["warnings"], [])
+
+    def test_container_recommendation_is_platform_specific(self):
+        probe = valid_probe()
+        probe["format"]["format_name"] = "matroska,webm"
+
+        wechat = check_video.validate_probe(
+            Path("master.mkv"),
+            probe,
+            size_bytes=500 * 1024 ** 2,
+            platform="wechat-channels",
+        )
+        bilibili = check_video.validate_probe(
+            Path("master.webm"),
+            probe,
+            size_bytes=500 * 1024 ** 2,
+            platform="bilibili",
+        )
+
+        self.assertEqual(
+            {item["code"] for item in wechat["warnings"]},
+            {"container_not_mp4"},
+        )
+        self.assertEqual(
+            {item["code"] for item in bilibili["warnings"]},
+            {"container_not_recommended"},
+        )
+
     def test_live_page_limit_overrides(self):
         probe = copy.deepcopy(valid_probe())
         probe["format"]["duration"] = str(3 * 3600)

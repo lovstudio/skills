@@ -3,6 +3,20 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.9.2] - 2026-09-27
+
+### Fixed
+
+- `check_video.py` 的码率建议改为按平台判定：视频号保留 ≤10 Mbps 的 `video_bitrate_high` / `video_bitrate_unknown` 警告；B 站投稿页没有码率上限且会重新转码，不再报码率警告。
+- 长视频或大文件把预检警告当门槛、先重压再上传的例外限定为视频号；B 站直接上传渲染母版，只有页面真的返回转码失败才进入重压方案。
+- 容器建议按平台判定：视频号仍只推荐 MP4（`container_not_mp4`）；B 站按投稿页推荐接受 MP4 / MOV / MKV，其他容器报 `container_not_recommended`。
+- 重压后的复检命令显式传 `--platform`，避免 B 站成片按视频号口径复检。
+
+### Added
+
+- 预检 JSON 新增 info 级 `notes`，人读输出显示为「提示」；B 站输出 `video_bitrate_no_platform_cap`。
+- B 站约束记录 2026-09-27 投稿页原文（只限大小与时长，粉丝 ≥1000 账号 64G，无码率要求），以及 20 Mbps / 2.08 GB / 13:47 母版被误重压到 9 Mbps 的教训。
+
 ## [0.9.1] - 2026-09-06
 
 ### Fixed

@@ -287,3 +287,24 @@ wrapper active；再点击第二个 inactive wrapper / canvas，回读其 class 
   成功页或提交态后立刻停止点击，只进入回读。
 - 只有检查 `elementFromPoint` 后确认真实遮挡、且一次点击没有触发任何提交态时，才把「立即投稿」
   与封面确认弹窗交给用户。不要无条件手动交接，也不要隐藏遮挡层或盲目重复点击。
+
+## `Input.insertText` 进得了 DOM，进不了 Vue 模型（2026-09-09 EP.01 实测）
+
+创建合集弹窗里用 CDP `Input.insertText` 打字，`input.value` 读回是对的（`川言川语`），
+但计数器**下一轮**读仍是 `0/20`——不是「读得太早」那个坑，是 Vue 的 `v-model` 压根没更新，
+点「创建并加入」会当成空标题。换成本文开头那段原生 setter + `InputEvent(inputType)` 序列，
+下一轮计数器立刻变 `4/20`。
+
+判据：`insertText` 之后**隔一轮**再读计数器，还是 0 就换原生 setter，不要反复重打。
+反过来，标题字段是唯一必须用真键盘的（见上文「标题字段是例外」）——两个字段的正确写法
+恰好相反，不要互相套用。
+
+## 封面：空封面时入口是 `.add-text`，不是 `.edit-text`
+
+`.cover-main .edit-text` 只存在于**已有封面**的状态。首次投稿时封面是空的，DOM 里是
+`.cover-slot > .cover-empty`，可点的叶子节点文本是「添加封面」、类名 `.add-text`。
+按 `.edit-text` 找会直接抛「no .edit-text」，而这不是时机问题，等多久都不会出现。
+
+`captureScreenshot` 在封面编辑器里出全白图（已知），验收改成把两个 wrapper 的 canvas
+各自 `toDataURL` 落盘再看图：4:3 传完再点 16:9 wrapper，回读 class 变 `active` 之后传第二张，
+最后两张 canvas 都截图确认——本期确认 4:3 没有被第二次上传覆盖。

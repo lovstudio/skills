@@ -8,7 +8,9 @@
     python3 check_video.py 片子.mp4 --platform bilibili --expected-orientation horizontal --json
 
 `--max-gb` / `--max-hours` 仍可覆盖，用于页面显示了灰度放宽时（视频号 20 GiB / 8 小时）。
-建议项（编码、分辨率、码率、帧率、音频）两个平台共用，都只报 warning。目标项目已经
+建议项（编码、分辨率、帧率、音频）两个平台共用，都只报 warning。容器和码率按平台取：
+视频号建议 MP4、≤ 10 Mbps；B 站投稿页推荐 MP4 / MOV / MKV，没有码率上限且会对每条投稿
+重新转码，码率只在 `notes` 里给一条 info 提示，不报 warning，不要为它重压。目标项目已经
 声明横竖版时，用 `--expected-orientation` 把选错成片变成硬错误；文件名明确属于另一个平台时
 默认也会失败，只有用户明确要求跨平台复用时才传 `--allow-cross-platform-name`。
 """
@@ -43,6 +45,12 @@ PLATFORMS: Dict[str, Dict[str, Any]] = {
         "max_gb": DEFAULT_MAX_GB,
         "max_hours": DEFAULT_MAX_HOURS,
         "min_duration_seconds": MIN_DURATION_SECONDS,
+        # 官方前端 chunk-common 的码率建议；长视频超出时实测会被服务端转码拒绝，
+        # 见 references/encoding-recipes.md。
+        "max_video_bitrate": RECOMMENDED_MAX_VIDEO_BITRATE,
+        # 推荐容器：扩展名 → ffprobe format_name 里应出现的 demuxer 名。
+        "containers": {".mp4": "mp4"},
+        "container_issue": "container_not_mp4",
         # 官方前端 chunk-common 常量；enablePost20gVideo 开启时为 20 GiB / 8 小时，
         # 只有页面明确显示放宽文案时才用 --max-gb 20 --max-hours 8 覆盖。
         "source": "视频号助手官方前端常量（2026-08-11 读取）",
@@ -55,7 +63,13 @@ PLATFORMS: Dict[str, Dict[str, Any]] = {
         "max_hours": 10.0,
         # B 站未在页面上给出最短时长，这里取 1 秒作为「不是空文件」的下限，未实测。
         "min_duration_seconds": 1.0,
-        "source": "投稿页原文「视频大小16G以内，时长10小时以内」（2026-08-18 读取）",
+        # 投稿页只写大小与时长，没有码率上限（2026-09-27 读取）。平台会重新转码每条投稿，
+        # 高码率母版是更好的转码源，所以这里不设码率建议。
+        "max_video_bitrate": None,
+        # 同一页面推荐 MP4 / MOV / MKV（2026-09-27 读取）。
+        "containers": {".mp4": "mp4", ".mov": "mov", ".mkv": "matroska"},
+        "container_issue": "container_not_recommended",
+        "source":"投稿页原文「视频大小16G以内，时长10小时以内」（2026-08-18 读取，2026-09-27 复核）",
     },
 }
 
@@ -196,6 +210,7 @@ def validate_probe(
 
     errors: List[Dict[str, str]] = []
     warnings: List[Dict[str, str]] = []
+    notes: List[Dict[str, str]] = []
     max_bytes = int(max_gb * GIB)
     max_duration = max_hours * 3600.0
 
@@ -266,12 +281,27 @@ def validate_probe(
             warnings.append(_issue("video_codec_not_h264", "建议使用 H.264 视频编码"))
 
         bitrate_number = _number(video.get("bit_rate"))
-        if bitrate_number is None:
-            warnings.append(_issue("video_bitrate_unknown", "未读取到视频码率，请确认不超过 10 Mbps"))
-        else:
+        if bitrate_number is not None:
             video_bitrate = int(bitrate_number)
-            if video_bitrate > RECOMMENDED_MAX_VIDEO_BITRATE:
-                warnings.append(_issue("video_bitrate_high", "建议视频码率不超过 10 Mbps"))
+        max_bitrate = spec["max_video_bitrate"]
+        if max_bitrate is None:
+            notes.append(
+                _issue(
+                    "video_bitrate_no_platform_cap",
+                    f"{spec['label']} 没有上传码率上限且会重新转码，直接上传渲染母版，不要为码率重压",
+                )
+            )
+        elif video_bitrate is None:
+            warnings.append(
+                _issue(
+                    "video_bitrate_unknown",
+                    f"未读取到视频码率，请确认不超过 {max_bitrate / 1_000_000:g} Mbps",
+                )
+            )
+        elif video_bitrate > max_bitrate:
+            warnings.append(
+                _issue("video_bitrate_high", f"建议视频码率不超过 {max_bitrate / 1_000_000:g} Mbps")
+            )
 
         fps = _fraction(video.get("avg_frame_rate"))
         if fps in (None, 0):
@@ -283,8 +313,11 @@ def validate_probe(
             warnings.append(_issue("frame_rate_high", "建议帧率不超过 60 fps"))
 
     format_name = str(format_info.get("format_name") or "").lower()
-    if path.suffix.lower() != ".mp4" or "mp4" not in format_name.split(","):
-        warnings.append(_issue("container_not_mp4", "建议使用 MP4 容器"))
+    containers = spec["containers"]
+    demuxer = containers.get(path.suffix.lower())
+    if demuxer is None or demuxer not in format_name.split(","):
+        names = " / ".join(suffix[1:].upper() for suffix in containers)
+        warnings.append(_issue(spec["container_issue"], f"建议使用 {names} 容器"))
 
     audio_codec: Optional[str] = None
     audio_bitrate: Optional[int] = None
@@ -364,6 +397,7 @@ def validate_probe(
         "media": media,
         "errors": errors,
         "warnings": warnings,
+        "notes": notes,
     }
 
 
@@ -408,6 +442,7 @@ def _failure_result(
         "media": {},
         "errors": [_issue("probe_failed", message)],
         "warnings": [],
+        "notes": [],
     }
 
 
@@ -498,6 +533,9 @@ def format_human(result: Dict[str, Any]) -> str:
     if result["warnings"]:
         lines.append("建议警告：")
         lines.extend(f"- [{item['code']}] {item['message']}" for item in result["warnings"])
+    if result.get("notes"):
+        lines.append("提示：")
+        lines.extend(f"- [{item['code']}] {item['message']}" for item in result["notes"])
     lines.append("只读检查：未写入、转码或替换源视频。")
     return "\n".join(lines)
 

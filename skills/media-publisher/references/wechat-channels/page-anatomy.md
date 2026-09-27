@@ -228,3 +228,32 @@ const im = /* 浮层内的 img */; ({ nw: im.naturalWidth, nh: im.naturalHeight 
 - 话题标签前要留一个空行：正文设置完后，在第一个 `span.topic` 前 `insertBefore(document.createElement('br'), firstTopic)`，否则话题和上一行黏在一起（读 `innerText` 末尾几行确认有空行）。
 - 正文里的 `#` 会被平台识别成话题标签：模板里「#公众号：手工川、官网：https://…」整串会被当成一个 topic。模板的「#公众号」要写成纯文本「公众号」，真话题只用 `#话题` 按钮生成。
 - 加话题的 caret 收尾（`range.selectNodeContents(ed); collapse(false)` 后点 `#话题` 再 `typeText`）会把正文末尾的空行吞掉，所以「话题前空行」靠事后 insertBefore 补，别指望加话题流程自己留空行。
+
+## 合集下拉：列表自己会滚，`scrollIntoView` 会把下拉关掉（2026-09-09 EP.01 实测）
+
+`.option-list-wrap` 实测高 220px，6 个 `.option-item` × 40px = 240px，最后一项**只露出 20px**。
+坑有三个，都表现为「点了没反应」或「点到别的东西」：
+
+- 直接按第一次读到的 rect 点最后一项，y 会落在 wrap 下沿之外，实际命中的是下面的
+  「创建新合集」——于是又弹一次创建弹窗，而不是选中。
+- 对目标 `.option-item` 调 `scrollIntoView` 会滚动祖先（页面），下拉当场关闭；紧接着的
+  `getBoundingClientRect()` 全部返回 `top === bottom` 的塌陷值（实测 6 项全是 384/384），
+  看起来像「元素在同一个位置」，其实是列表已经不在了。
+- 只能滚列表**自己**：同一个 `js()` 里 `wrap.scrollTop = wrap.scrollHeight` 之后再读 rect，
+  并对「目标行完全落在 wrap 内」下断言，然后用 CDP 真鼠标点。
+
+```js
+const t = await js(`(() => {
+  const sr = document.querySelector('wujie-app').shadowRoot
+  const wrap = [...sr.querySelectorAll('.option-list-wrap')].find(e => e.getBoundingClientRect().width > 50)
+  wrap.scrollTop = wrap.scrollHeight                       // 只滚列表，不碰页面
+  const el = [...wrap.querySelectorAll('.option-item')].find(e => e.innerText.trim().startsWith(NAME))
+  const r = el.getBoundingClientRect(), w = wrap.getBoundingClientRect()
+  return { x: Math.round(r.left + 60), y: Math.round(r.top + r.height/2),
+           inside: r.top >= w.top - 1 && r.bottom <= w.bottom + 1 }
+})()`)
+if (!t.inside) throw new Error('目标行仍在可视列表外，不点')
+```
+
+**新建合集不等于已选中**：`创建` 成功后只弹「已创建合集」，`.post-album-display` 仍是
+「选择合集」。必须关掉提示、重开下拉、再选一次，并回读 `.post-album-display` 的文本。
