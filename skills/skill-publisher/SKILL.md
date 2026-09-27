@@ -14,7 +14,7 @@ depends_on:
   - lov-skill-pricing
 metadata:
   author: contributors
-  version: "0.7.6"
+  version: "0.7.7"
   tags:
     - skill-publisher
     - release

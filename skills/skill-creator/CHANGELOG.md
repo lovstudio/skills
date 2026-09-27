@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.6.5] - 2026-09-28
+
+### Fixed
+
+- accept the lovstudio CLI install preflight key in frontmatter
+- validate_skill.py allows top-level dependencies and checks each entry is {name, check, install} (optional companion hint, not depends_on)
+
 ## [4.6.4] - 2026-09-25
 
 ### Added

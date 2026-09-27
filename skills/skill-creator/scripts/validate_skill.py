@@ -27,6 +27,9 @@ FRONTMATTER_KEYS = {
     "compatibility",
     "allowed-tools",
     "depends_on",
+    # lovstudio CLI install preflight: [{name, check, install}], hinted on install,
+    # installed only with --with-deps (optional companions, unlike depends_on).
+    "dependencies",
     "metadata",
 }
 TEXT_SUFFIXES = {".md", ".json", ".yaml", ".yml", ".txt", ".svg", ".py"}
@@ -129,6 +132,20 @@ def validate_skill_file(path: Path, errors: list[str]) -> dict[str, Any] | None:
         isinstance(item, str) and NAME_RE.fullmatch(item) for item in depends_on
     ):
         errors.append(f"{path}: depends_on must be a list of exact Skill names")
+
+    preflight = data.get("dependencies", [])
+    if not isinstance(preflight, list) or not all(
+        isinstance(item, dict)
+        and compact_text(item.get("name"))
+        and isinstance(item.get("check"), str) and item["check"].strip()
+        and isinstance(item.get("install"), str) and item["install"].strip()
+        and set(item) <= {"name", "check", "install"}
+        for item in preflight
+    ):
+        errors.append(
+            f"{path}: dependencies must be a list of {{name, check, install}} entries "
+            "(the lovstudio CLI install preflight)"
+        )
 
     metadata = data.get("metadata")
     if not isinstance(metadata, dict):

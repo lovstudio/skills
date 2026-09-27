@@ -28,6 +28,9 @@ SOURCE_FRONTMATTER_KEYS = {
     "compatibility",
     "allowed-tools",
     "depends_on",
+    # lovstudio CLI install preflight: [{name, check, install}], hinted on install,
+    # installed only with --with-deps (optional companions, unlike depends_on).
+    "dependencies",
     "metadata",
 }
 WORKBUDDY_FRONTMATTER_KEYS = {
@@ -186,6 +189,21 @@ def validate_frontmatter(
                     errors.append(
                         f"{path}: depends_on entries must be kebab-case Skill IDs"
                     )
+        preflight = data.get("dependencies", [])
+        if not isinstance(preflight, list) or not all(
+            isinstance(item, dict)
+            and compact_text(item.get("name"))
+            and isinstance(item.get("check"), str)
+            and item["check"].strip()
+            and isinstance(item.get("install"), str)
+            and item["install"].strip()
+            and set(item) <= {"name", "check", "install"}
+            for item in preflight
+        ):
+            errors.append(
+                f"{path}: dependencies must be a list of {{name, check, install}} "
+                "entries (the lovstudio CLI install preflight)"
+            )
         metadata = data.get("metadata")
         if not isinstance(metadata, dict):
             errors.append(f"{path}: metadata must be a mapping")

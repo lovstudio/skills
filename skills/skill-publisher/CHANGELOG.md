@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.7] - 2026-09-28
+
+### Fixed
+
+- accept the lovstudio CLI install preflight key in source frontmatter
+- validate_skill.py source target allows top-level dependencies and checks each entry is {name, check, install}; needed so lov-media-creator 0.20.0 can be published
+
 ## [0.7.6] - 2026-09-11
 
 ### Fixed
