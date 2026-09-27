@@ -2576,7 +2576,7 @@ skills:
     card_path: pricing-cards/media-creator.md
 - name: media-publisher
   runtime_name: lov-media-publisher
-  updated_at: 2026-09-06 01:01:14+00:00
+  updated_at: 2026-09-27 13:32:13+00:00
   display_name: Video Publisher
   repo: lovstudio/media-publisher-skill
   name_zh: 视频分发助手
@@ -2584,7 +2584,7 @@ skills:
   category: Video Creation
   depends_on:
   - branding-consistency
-  version: 0.9.1
+  version: 0.9.2
   description: Publish videos to WeChat Channels or Bilibili with media preflight,
     frozen user-edited descriptions, cover gates, final confirmation, and post-submit
     status readback.
