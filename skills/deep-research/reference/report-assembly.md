@@ -36,6 +36,10 @@ mkdir -p ~/Documents/[folder_name]
 # Path: [folder]/research_report_[YYYYMMDD]_[slug].md
 ```
 
+### Phase 8.1b: Figure Plan
+
+Before drafting, load [rich-media.md](./rich-media.md) and write a figure list next to the outline: for each finding, the visual that best carries its evidence (first-hand photo, chart from cited numbers, diagram, map). Collect user-supplied photos and project data first, then generate charts and diagrams into `figures/`. Mode minimums: quick 1, standard 3, deep 5, ultradeep 8.
+
 ### Phase 8.2: Section Generation Loop
 
 **Pattern:** Generate section -> Write/Edit to file -> Move to next section
@@ -86,6 +90,7 @@ Source identity is stable across edits and continuation. Display numbers are der
 
 4. **Finding 1-N** (600-2,000 words each)
    - Tool: Edit(file, append Finding N)
+   - Place the finding's figures next to the paragraphs they support, each with alt text and a numbered caption line
    - Track citations
    - Progress: "Finding N complete"
 

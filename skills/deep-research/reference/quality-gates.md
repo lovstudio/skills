@@ -59,6 +59,17 @@ python scripts/validate_open_source_solutions.py \
 - Attempt 2: Manual review + correction
 - After 2 failures: STOP, report issues, ask user
 
+### Rich Media Gate
+
+Every standard+ report must carry figures (quick ≥1, standard ≥3, deep ≥5, ultradeep ≥8). `validate_report.py` errors on zero figures or missing local figure files and warns on low counts, remote images and missing captions. Before delivery also confirm:
+
+- [ ] Figures are evidence: first-hand visuals, charts built from cited numbers, or diagrams that add no new facts
+- [ ] Every figure has alt text and a numbered caption with a source line (citation numbers, capture date, or licence)
+- [ ] Photos are EXIF-stripped and privacy-checked; third-party images are licensed for reuse or replaced by links
+- [ ] The rendered HTML/PDF was inspected once: images present, captions aligned, CJK glyphs intact
+
+See [rich-media.md](./rich-media.md).
+
 ### Decision Guide Gate
 
 For comparison, product selection, procurement, architecture choice, or adoption research:
@@ -207,6 +218,7 @@ Before considering section complete:
 - Credibility assessment
 - Limitations section
 - Methodology documented
+- Figures meeting the mode minimum, captioned and sourced
 - No placeholders
 
 **Priority:** Thoroughness over speed. Quality > speed.

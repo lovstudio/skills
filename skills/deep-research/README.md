@@ -1,6 +1,6 @@
 # 深度研究 · Deep Research
 
-![Version](https://img.shields.io/badge/version-2.5.3-CC785C)
+![Version](https://img.shields.io/badge/version-2.6.1-CC785C)
 
 Enterprise-grade research engine for Claude Code. Produces citation-backed reports with source credibility scoring, multi-provider search, and automated validation.
 
@@ -54,13 +54,15 @@ Key features:
 - **Multi-persona red teaming**: Skeptical Practitioner, Adversarial Reviewer, Implementation Engineer (Deep/UltraDeep)
 - **Disk-persisted citations**: `sources.json` survives context compaction and continuation agents
 - **Open-source solution landscape**: implementation research searches GitHub and other relevant forges, inspects code-level evidence, and publishes a reusable linked repository catalog
+- **Rich media**: first-hand photos, charts built from cited numbers, structure/process/timeline diagrams and maps, each captioned and sourced (quick ≥1, standard ≥3, deep ≥5, ultradeep ≥8 figures)
 
 ## Output
 
 Reports saved to `~/Documents/[Topic]_Research_[Date]/`:
 - Markdown (primary source of truth)
 - `open_source_solutions.jsonl` for applicable software/tooling research
-- HTML (McKinsey-style, auto-opened in browser)
+- `figures/` with EXIF-stripped photos, charts and diagrams referenced from the Markdown
+- HTML (McKinsey-style, self-contained with embedded figures, auto-opened in browser)
 - PDF (professional print via WeasyPrint)
 
 Reports >18K words auto-continue via recursive agent spawning with context preservation.
@@ -72,7 +74,8 @@ Reports >18K words auto-continue via recursive agent spawning with context prese
 - Findings 600-2,000 words each, prose-first (>=80%)
 - Full bibliography with URLs, no placeholders
 - GitHub plus other relevant forge coverage and a shareable repository comparison for implementation/tooling topics
-- Automated validation: `validate_report.py` (9 checks) + `verify_citations.py` (DOI/URL/hallucination detection)
+- Captioned, sourced figures meeting the mode minimum
+- Automated validation: `validate_report.py` (10 checks, including figures) + `verify_citations.py` (DOI/URL/hallucination detection)
 - Validation loop: validate &rarr; fix &rarr; retry (max 3 cycles)
 
 ## Search Tools
@@ -94,8 +97,11 @@ deep-research/
 │   ├── quality-gates.md              # Validation standards
 │   ├── open-source-solutions.md       # Forge discovery and shareable repository landscape
 │   ├── html-generation.md            # McKinsey HTML conversion
+│   ├── rich-media.md                 # Figures, photos, maps, diagrams
 │   ├── continuation.md               # Auto-continuation protocol
 │   └── weasyprint_guidelines.md      # PDF generation
+├── references/
+│   └── skill-composition.md          # Nearby Skills, handoffs, composition decision
 ├── templates/
 │   ├── report_template.md            # Report structure template
 │   └── mckinsey_report_template.html # HTML report template
@@ -116,6 +122,9 @@ deep-research/
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.6.1 | 2026-10-01 | Pass the shared Skill validator: concise description with explicit Triggers, tag list, `lov-dev-blog` in `depends_on`, shared `user-profile/v1` Profile contract, composition record |
+| 2.6.0 | 2026-10-01 | Rich media contract: required figures by mode, `rich-media.md`, figure rendering with `--embed-images`, Figures validation check |
+| 2.5.3 | 2026-09-07 | Unified display name 「深度研究」 |
 | 2.5.2 | 2026-08-30 | Add early branching decision guides for comparison and solution-selection reports |
 | 2.5.1 | 2026-08-30 | Render direct HTTP(S) repository links as clickable anchors inside report tables and prose |
 | 2.5.0 | 2026-08-30 | Verified open-source forge discovery, code-level evidence, shareable repository registry, and multilingual validation parity |

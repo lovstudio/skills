@@ -1,14 +1,32 @@
 schema: skill-manifest/v1
 id: deep-research
-version: "2.5.3"
+version: "2.6.1"
 runtime: skill-runtime/v1
 context:
   profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+    - user
+    - brand
+    - workspace
+    - preferences
+    - skills.deep-research
+    persist:
+      enabled: true
+      namespace: skills.deep-research
+      records_path: skills.deep-research.records
+      write_policy: direct-user-statement
+      atomic: true
     fields:
     - path: identity.name
+      aliases:
+      - brand.name
       required: true
       question: 如果本次输出需要品牌身份，请提供品牌名称。
     - path: identity.logo
+      aliases:
+      - brand.logo
       required: false
       question: 如果需要使用品牌 Logo，请提供 Logo 地址或文件路径。
     - path: brand.tone

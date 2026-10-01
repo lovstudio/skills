@@ -5,17 +5,26 @@ Properly converts markdown sections to HTML while preserving structure and forma
 """
 
 import argparse
+import base64
+import html as html_lib
+import mimetypes
 import re
-from typing import Tuple
+from typing import Optional, Tuple
 from pathlib import Path
 
 
-def convert_markdown_to_html(markdown_text: str) -> Tuple[str, str]:
+def convert_markdown_to_html(
+    markdown_text: str,
+    base_dir: Optional[Path] = None,
+    embed_images: bool = False,
+) -> Tuple[str, str]:
     """
     Convert markdown to HTML in two parts: content and bibliography
 
     Args:
         markdown_text: Full markdown report text
+        base_dir: Directory that relative figure paths resolve against
+        embed_images: Inline local figures as data URIs for self-contained HTML
 
     Returns:
         Tuple of (content_html, bibliography_html)
@@ -27,7 +36,7 @@ def convert_markdown_to_html(markdown_text: str) -> Tuple[str, str]:
     bibliography_md = parts[1] if len(parts) > 1 else ""
 
     # Convert content (everything except bibliography)
-    content_html = _convert_content_section(content_md)
+    content_html = _convert_content_section(content_md, base_dir, embed_images)
 
     # Convert bibliography separately
     bibliography_html = _convert_bibliography_section(bibliography_md)
@@ -35,7 +44,11 @@ def convert_markdown_to_html(markdown_text: str) -> Tuple[str, str]:
     return content_html, bibliography_html
 
 
-def _convert_content_section(markdown: str) -> str:
+def _convert_content_section(
+    markdown: str,
+    base_dir: Optional[Path] = None,
+    embed_images: bool = False,
+) -> str:
     """Convert main content sections to HTML"""
     html = markdown
 
@@ -80,6 +93,10 @@ def _convert_content_section(markdown: str) -> str:
         flags=re.MULTILINE
     )
 
+    # Convert figures (image line + optional caption line) before inline
+    # emphasis, so captions written as *图 N：...* are not split apart.
+    html = _convert_figures(html, base_dir, embed_images)
+
     # Convert **bold** text
     html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
 
@@ -119,6 +136,61 @@ def _convert_content_section(markdown: str) -> str:
         )
 
     return html
+
+
+FIGURE_LINE = re.compile(r'^!\[([^\]]*)\]\(([^)\s]+)\)\s*$')
+CAPTION_LINE = re.compile(r'^\*?((?:图|表|Figure|Fig\.|Table)\s*\d+[^\n]*?)\*?\s*$')
+
+
+def _is_safe_image_src(src: str) -> bool:
+    """Allow relative paths and https URLs; reject javascript:, data:, file: and the like."""
+    if src.startswith('https://'):
+        return True
+    return not re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:', src) and not src.startswith('//')
+
+
+def _embed_src(src: str, base_dir: Optional[Path]) -> str:
+    """Return a data URI for a local figure, or the original src when it cannot be read."""
+    if base_dir is None or src.startswith('https://'):
+        return src
+    path = (base_dir / src).resolve()
+    if not path.is_file():
+        return src
+    mime = mimetypes.guess_type(path.name)[0] or 'application/octet-stream'
+    data = base64.b64encode(path.read_bytes()).decode('ascii')
+    return f'data:{mime};base64,{data}'
+
+
+def _convert_figures(html: str, base_dir: Optional[Path] = None, embed_images: bool = False) -> str:
+    """Turn a standalone image line plus an optional caption line into <figure>."""
+    lines = html.split('\n')
+    result = []
+    i = 0
+    while i < len(lines):
+        match = FIGURE_LINE.match(lines[i].strip())
+        if not match or not _is_safe_image_src(match.group(2)):
+            result.append(lines[i])
+            i += 1
+            continue
+        alt, src = match.group(1), match.group(2)
+        caption = ''
+        j = i + 1
+        while j < len(lines) and not lines[j].strip() and j - i <= 2:
+            j += 1
+        if j < len(lines):
+            cap = CAPTION_LINE.match(lines[j].strip())
+            if cap:
+                caption = cap.group(1).strip()
+                i = j
+        if embed_images:
+            src = _embed_src(src, base_dir)
+        caption_html = f'<figcaption>{html_lib.escape(caption or alt)}</figcaption>' if (caption or alt) else ''
+        result.append(
+            f'<figure class="report-figure"><img src="{html_lib.escape(src, quote=True)}" '
+            f'alt="{html_lib.escape(alt, quote=True)}" loading="lazy">{caption_html}</figure>'
+        )
+        i += 1
+    return '\n'.join(result)
 
 
 def _convert_inline_links(html: str) -> str:
@@ -273,6 +345,7 @@ def _convert_paragraphs(html: str) -> str:
            stripped.startswith('</') or \
            '<h' in stripped or '<div' in stripped or '<ul' in stripped or \
            '<ol' in stripped or '<li' in stripped or '<table' in stripped or \
+           '<figure' in stripped or \
            '</div>' in stripped or '</ul>' in stripped or '</ol>' in stripped:
             if in_paragraph:
                 result.append('</p>')
@@ -323,6 +396,11 @@ def main():
     """Convert a report and print the content and bibliography fragments."""
     parser = argparse.ArgumentParser(description="Convert a research Markdown report to HTML fragments")
     parser.add_argument("markdown_file", type=Path, help="Path to the Markdown report")
+    parser.add_argument(
+        "--embed-images",
+        action="store_true",
+        help="Inline local figures as data URIs so the HTML is self-contained",
+    )
     args = parser.parse_args()
 
     md_file = args.markdown_file
@@ -330,7 +408,9 @@ def main():
         parser.error(f"file not found: {md_file}")
 
     markdown_text = md_file.read_text()
-    content_html, bib_html = convert_markdown_to_html(markdown_text)
+    content_html, bib_html = convert_markdown_to_html(
+        markdown_text, base_dir=md_file.parent, embed_images=args.embed_images
+    )
 
     print("=== CONTENT HTML ===")
     print(content_html[:1000])

@@ -75,6 +75,7 @@ class ReportValidator:
             ("Word Count", self._check_word_count),
             ("Source Count", self._check_source_count),
             ("Broken Links", self._check_broken_references),
+            ("Figures", self._check_figures),
         ]
 
         for check_name, check_func in checks:
@@ -320,6 +321,59 @@ class ReportValidator:
             self.errors.append(f"Broken internal links: {', '.join(broken)}")
             return False
 
+        return True
+
+    # Minimum figures by research mode; quick reports may stay text-light.
+    FIGURE_MINIMUM = {"quick": 1, "standard": 3, "deep": 5, "ultradeep": 8}
+    FIGURE_RE = re.compile(r'^!\[([^\]]*)\]\(([^)\s]+)\)\s*$', re.MULTILINE)
+    CAPTION_RE = re.compile(r'^\*?(?:图|表|Figure|Fig\.|Table)\s*\d+')
+
+    def _report_mode(self) -> str:
+        match = re.search(r'^mode:\s*["\']?(\w+)', self.content, re.MULTILINE)
+        return match.group(1).lower() if match else "standard"
+
+    def _check_figures(self) -> bool:
+        """Check rich media: figure count by mode, local files exist, captions present."""
+        body = re.split(r'^##\s*(?:Bibliography|References|参考文献)', self.content, maxsplit=1, flags=re.MULTILINE)[0]
+        figures = list(self.FIGURE_RE.finditer(body))
+        mode = self._report_mode()
+        minimum = self.FIGURE_MINIMUM.get(mode, 3)
+
+        if not figures:
+            if mode == "quick":
+                self.warnings.append("No figures found; add at least one chart, diagram, map or photo")
+                return True
+            self.errors.append(
+                f"No figures found in a {mode} report; see reference/rich-media.md (minimum {minimum})"
+            )
+            return False
+
+        if len(figures) < minimum:
+            self.warnings.append(f"Only {len(figures)} figures for {mode} mode (recommended: >={minimum})")
+
+        lines = body.split('\n')
+        missing, remote, uncaptioned = [], [], []
+        for fig in figures:
+            src = fig.group(2)
+            if src.startswith('http://') or src.startswith('https://'):
+                remote.append(src)
+            elif not src.startswith('data:'):
+                if not (self.report_path.parent / src).exists():
+                    missing.append(src)
+            line_no = body[:fig.start()].count('\n')
+            following = [l.strip() for l in lines[line_no + 1:line_no + 3] if l.strip()]
+            if not following or not self.CAPTION_RE.match(following[0]):
+                uncaptioned.append(src)
+
+        if remote:
+            self.warnings.append(
+                f"{len(remote)} remote images; download licensed images locally or link out instead of hotlinking"
+            )
+        if uncaptioned:
+            self.warnings.append(f"{len(uncaptioned)} figures lack a numbered caption line (e.g. *图 1：...*)")
+        if missing:
+            self.errors.append(f"Missing figure files: {', '.join(missing[:5])}")
+            return False
         return True
 
     def _print_summary(self):

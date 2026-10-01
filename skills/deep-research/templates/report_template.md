@@ -150,6 +150,9 @@ CITATION TRACKING (CRITICAL):
 - Address nuances or exceptions
 ]
 
+![Alt text describing what the figure shows](figures/fig{NN}-{slug}.png)
+*图 1：[Takeaway sentence]. 来源：[N][M]（本报告据此绘制）/ 实地拍摄，[date] / [licence and author].*
+
 **Key Evidence:**
 - Data point 1 from Source A [1]
 - Data point 2 from Source B [2]

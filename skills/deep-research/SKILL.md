@@ -1,16 +1,25 @@
 ---
 name: deep-research
-description: Use when the user needs multi-source research with citation tracking, evidence persistence, structured report generation, or an implementation landscape that includes GitHub and other open-source forges. Triggers on "deep research", "comprehensive analysis", "research report", "compare X vs Y", "analyze trends", "state of the art", "open-source solutions", or "开源方案". Not for simple lookups, debugging, or questions answerable with 1-2 searches.
+description: Multi-source deep research with citations, evidence and reports. Use for comprehensive analysis, X vs Y, trends, state of the art, open-source solutions or 开源方案; not simple lookups or debugging.
 license: MIT
 compatibility: Requires Python 3.8+ for bundled scripts. search-cli and forge APIs are optional; use available web search and public repository metadata as fallbacks. The public name remains deep-research for compatibility with existing installations and dependency IDs.
 depends_on:
   - lov-branding-consistency
+  - lov-dev-blog
 metadata:
   author: lovstudio
-  version: "2.5.3"
-  tags: deep-research citations evidence open-source github gitlab gitee reports
-  dependencies:
-    - lov-dev-blog
+  version: "2.6.1"
+  tags:
+    - deep-research
+    - citations
+    - evidence
+    - open-source
+    - github
+    - gitlab
+    - gitee
+    - reports
+    - figures
+    - rich-media
 ---
 
 # 深度研究 · Deep Research
@@ -20,6 +29,20 @@ metadata:
 Deliver citation-tracked research reports through a structured pipeline with evidence persistence, source identity management, claim-level verification, and progressive context management.
 
 **Autonomy Principle:** Operate independently. Infer assumptions from context. Only stop for critical errors or incomprehensible queries. Surface high-materiality assumptions explicitly in the Introduction and Methodology rather than silently defaulting.
+
+## Triggers
+
+### Activate when
+
+- The user needs multi-source research with citation tracking, evidence persistence, and structured report generation: "deep research", "comprehensive analysis", "research report".
+- The user asks to "compare X vs Y", "analyze trends", or review the "state of the art", including technology comparisons, market analysis, and multi-perspective investigation.
+- The user needs an implementation landscape that includes GitHub and other open-source forges: "open-source solutions" or "开源方案".
+
+### Do not activate when
+
+- Simple lookups or questions answerable with 1-2 searches; use web search directly.
+- Debugging; use the standard tools.
+- Quick time-sensitive queries.
 
 ## Dependencies
 
@@ -77,6 +100,7 @@ Mode Selection
 5. **Implementation/tooling research:** Load [open-source-solutions.md](./reference/open-source-solutions.md)
 6. **Comparison/selection/adoption research:** Load [decision-guides.md](./reference/decision-guides.md)
 7. **Long reports (>18K words):** Load [continuation.md](./reference/continuation.md)
+8. **Figures, photos, maps and diagrams (every standard+ report):** Load [rich-media.md](./reference/rich-media.md) before Phase 8 and plan the figure list together with the outline
 
 **Templates:**
 - Report structure: [report_template.md](./templates/report_template.md)
@@ -85,7 +109,7 @@ Mode Selection
 **Scripts:**
 - `python scripts/validate_report.py --report [path]`
 - `python scripts/verify_citations.py --report [path]`
-- `python scripts/md_to_html.py [markdown_path]`
+- `python scripts/md_to_html.py [markdown_path] --embed-images`
 - `python scripts/validate_open_source_solutions.py --artifact [open_source_solutions.jsonl] --report [report.md] --strict`
 - `python scripts/validate_decision_guide.py --report [report.md] --strict`
 
@@ -119,6 +143,7 @@ Mode Selection
 - Main Analysis (4-8 findings, 600-2,000 words each, cited)
 - Decision Guide (required for comparison, selection, procurement, architecture-choice, or adoption reports; place before detailed findings)
 - Open-Source Solutions Landscape (required when the topic concerns software, tooling, automation, implementation, or deployable solutions)
+- Figures (required for standard+ modes: quick ≥1, standard ≥3, deep ≥5, ultradeep ≥8): first-hand photos, charts from cited numbers, structure/process/timeline diagrams and maps, each with alt text and a numbered, sourced caption; see [rich-media.md](./reference/rich-media.md)
 - Synthesis & Insights (patterns, implications)
 - Limitations & Caveats
 - Recommendations
@@ -131,8 +156,9 @@ Mode Selection
 - `evidence.jsonl` — append-only evidence store with quotes and locators
 - `claims.jsonl` — atomic claim ledger with support status
 - `run_manifest.json` — query, mode, assumptions, provider config
+- `figures/` — figure files referenced by relative path from the Markdown report (photos EXIF-stripped)
 - `open_source_solutions.jsonl` — canonical repository registry for applicable implementation/tooling research; one verified repository per line
-- HTML (McKinsey style, auto-opened)
+- HTML (McKinsey style, self-contained with embedded figures, auto-opened)
 - PDF (professional print, auto-opened)
 
 **Quality standards:**
@@ -141,20 +167,15 @@ Mode Selection
 - Claim-support verification mandatory: no unsupported factual claims pass delivery
 - Applicable comparison/selection reports must turn decisive constraints into a branching decision flow with explicit terminal recommendations and a textual fallback; score tables alone do not pass
 - Applicable implementation/tooling reports must search GitHub plus other relevant forges, inspect repository evidence beyond README claims, publish a linked comparison table, and persist `open_source_solutions.jsonl`; an explicit no-results record is required when no repository qualifies
+- Rich media: include as many evidence-bearing visuals as the evidence allows; prefer first-hand visuals and charts built from cited numbers; never hotlink or embed unlicensed third-party images; never present AI imagery as real
 - No placeholders, no fabricated citations
 - Prose-first (>=80%), bullets sparingly
 
 ---
 
-## When to Use / NOT Use
-
-**Use:** Comprehensive analysis, technology comparisons, state-of-the-art reviews, multi-perspective investigation, market analysis.
-
-**Do NOT use:** Simple lookups, debugging, 1-2 search answers, quick time-sensitive queries.
-
 ## Runtime context (shared)
 
-运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。
+运行前读取本 Skill 包的 `skill.yaml`，由宿主提供 `skill-runtime/v1` 上下文。字段解析顺序为：当前请求、项目上下文、个人 Preferences、品牌 Profile、通用默认值。Profile 来自共享的 `user-profile/v1`，本 Skill 的长期记录只写入 `skills.deep-research.records`。
 
 - 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
 - `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。

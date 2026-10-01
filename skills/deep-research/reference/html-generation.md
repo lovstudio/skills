@@ -25,7 +25,7 @@ Extract 3-4 key quantitative findings for dashboard display at top.
 Use Python script:
 ```bash
 cd ~/.claude/skills/deep-research
-python scripts/md_to_html.py [markdown_report_path]
+python scripts/md_to_html.py [markdown_report_path] --embed-images
 ```
 
 **Script outputs two parts:**
@@ -40,6 +40,7 @@ python scripts/md_to_html.py [markdown_report_path]
 - Paragraphs: Text wrapped in `<p>` tags
 - Bold/italic: `**text**` -> `<strong>`, `*text*` -> `<em>`
 - Citations: [N] preserved for tooltip conversion
+- Figures: a standalone `![alt](figures/{name}.png)` line plus an italic `*图 N：...*` caption line becomes `<figure class="report-figure">`; `--embed-images` inlines local files as data URIs so the HTML stays self-contained. Style figures at max-width 100% with `break-inside: avoid` for print
 
 ### Step 4: Add Citation Tooltips (Optional)
 
