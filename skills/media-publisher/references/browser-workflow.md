@@ -1,9 +1,10 @@
 # 浏览器工作流（ego-browser，跨平台）
 
-本文只写**两个平台都成立**的部分：helper 签名、控制权规则、任务空间生命周期、
+本文只写**各平台都成立**的部分：helper 签名、控制权规则、任务空间生命周期、
 以及发布流程的六个阶段骨架。平台各自的 DOM 结构与写值方式在
-[视频号创建页结构](wechat-channels/page-anatomy.md) 和
-[B 站投稿页结构](bilibili/page-anatomy.md) 里，不要互相套用。
+[视频号创建页结构](wechat-channels/page-anatomy.md)、
+[B 站投稿页结构](bilibili/page-anatomy.md) 和
+[小红书发布页结构](xiaohongshu/page-anatomy.md) 里，不要互相套用。
 
 ## 操作原则
 
@@ -45,7 +46,13 @@ heredoc 按 **ES module** 解析：`require` 报 "Cannot determine intended modu
 判断依据是控制权状态本身，不是页面长什么样。用户可能正在同一标签页里手工检查封面或核对文案，此时代理的任何点击都会落在用户的操作中途。
 
 **代理侧的中断按同一规则处理**：任何命令报 `The user has taken control of this task space` 是硬停，
-不重试、不 `takeOverTaskSpace()`。
+不重试、不 `takeOverTaskSpace()`。浏览器权限请求同理：2026-10-01 小红书提交视频后弹出定位
+权限，ego-browser 报 `A browser permission prompt for location access has appeared. The user now
+controls this task space` 并自动交出控制权。告诉用户按隐私优先处理（默认拒绝），等用户说继续再接手。
+
+`waitForAgentControl(task.id)` 实测 600 秒超时会抛错退出，这不代表用户放弃，也不代表可以自己接手：
+只看命令报错原因（不读页面、不截图、不 `takeOverTaskSpace()`），然后重新 `waitForAgentControl(task.id)`，
+或等用户在对话里说「继续」。
 
 按用户的常驻要求，交出控制权时同步做四件事：
 
@@ -71,6 +78,7 @@ EOF
 | --- | --- |
 | 微信视频号 | `https://channels.weixin.qq.com/platform/post/create` |
 | Bilibili | `https://member.bilibili.com/platform/upload/video/frame` |
+| 小红书 | `https://creator.xiaohongshu.com/publish/publish?source=official` |
 
 ## 页面阶段
 
@@ -101,16 +109,18 @@ EOF
 ### 3. 发布信息与封面
 
 - 按 [发布门禁清单](publish-gates.md) 逐项回读该平台字段表里的每一项。
-- 写值方式**按平台走**，两边完全不同：视频号的描述是 contenteditable、话题必须由平台按钮生成；
-  B 站的输入框要用原生 setter，简介是 Quill。照各自的 page-anatomy 写。
+- 写值方式**按平台走**，各平台完全不同：视频号的描述是 contenteditable、话题必须由平台按钮生成；
+  B 站的输入框要用原生 setter，简介是 Quill；小红书正文是 tiptap，话题从 `#` 候选点选。照各自的 page-anatomy 写。
 - 封面槽位数按页面实测，不写死；每个槽独立验安全区。B 站的 16:9 槽必须用公开接口的 `pic` 回读。
 - 原创/声明类复选框要读真实 `checked` 属性，不能合并成一次点击假设。
 
 ### 4. 提交分支
 
-- `draft`：定位「保存草稿」主语义动作，提交后进入草稿列表。
+- `draft`：定位「保存草稿」主语义动作，提交后进入草稿列表。小红书的「暂存离开」与「发布」同在封闭 shadow 宿主里，
+  草稿流程未实测，先走终稿确认或交用户点。
 - `schedule`：打开定时区，读取页面时区与时间控件；确认完整年月日时分后提交。
-- `publish`：定位主提交动作（视频号「发表」/ B 站「立即投稿」），提交前输出完整字段表；全部必填项通过且用户确认终稿后仅提交一次。点击后按钮加载或页面跳转即记录为已尝试提交。
+- `publish`：定位主提交动作（视频号「发表」/ B 站「立即投稿」/ 小红书「发布」，后者在封闭 shadow 的
+  `XHS-PUBLISH-BTN` 里，只能按现拍截图坐标点，见小红书 page-anatomy），提交前输出完整字段表；全部必填项通过且用户确认终稿后仅提交一次。点击后按钮加载或页面跳转即记录为已尝试提交。
 - `status`：跳过上传/编辑，仅进入内容列表用于回读并刷新验证。
 
 ### 5. 回读与防重

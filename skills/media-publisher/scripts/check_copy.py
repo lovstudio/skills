@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""发布文案的离线预检（微信视频号 / Bilibili）。
+"""发布文案的离线预检（微信视频号 / Bilibili / 小红书）。
 
 存在的理由只有一个：这些限制全都能在本地算出来，但只有点下去才会被平台告知。
 观测到的代价是每撞一次就要一个页面往返（填入 → 失焦 → 读校验提示 → 改写）。
 
-两个平台的规则**几乎没有交集**，所以一律按 `--platform` 取：
+各平台的规则**几乎没有交集**，所以一律按 `--platform` 取：
 
     python3 check_copy.py --platform wechat-channels --short-title "…" --json
     python3 check_copy.py --platform bilibili --title "…" --topic 架构设计 --json
+    python3 check_copy.py --platform xiaohongshu --title "…" --description "…" --topic 南头古城 --json
 
 视频号的规则来自平台自己的报错原文，不是推断：
 
@@ -29,6 +30,12 @@ error——把没验证过的推断当硬门禁，会拦下平台其实接受的
 B 站的标签有一类拒绝无法在本地判定：部分名字被划给话题体系，toast 原文
 「当前tag为话题专用，不允许自定义添加」。这里只能挡下已实测被拒的名单，新名字
 仍要在页面上读 toast。
+
+小红书的正文上限 1000 字来自发布页计数器 `n /1000`（实测）；标题 20 字是平台公开
+规则，实测没有撞到线。话题要在正文里输入 `#` 后从联想列表选，列表里没有的名字会
+变成「新建话题」，离线判断不了，所以只给 info 提示；正文里直接写的 `#xxx` 不会成为话题，
+报 warn。合集上限未实测，传 `--collection` 会报 warn 级的 `collection_limit_unknown`，
+去页面上读输入框 maxLength / 计数器，不阻断预检。
 
 退出码 0 表示没有 error（warning 不阻断），1 表示存在 error，2 表示没给字段。
 """
@@ -89,6 +96,13 @@ PLATFORMS: dict[str, dict[str, Any]] = {
         "topic_max": None,
         "topic_soft_max": 5,  # 平台未给硬数字，经验值
         "topic_refused": (),
+        # 描述里的 `#话题` 纯文本不会被解析成话题标签，必须走工具栏按钮生成。
+        "inline_hashtag_not_topic": True,
+        "inline_hashtag_message": (
+            "描述文本里出现 {count} 处 `#…`：平台不会把纯文本解析成话题，"
+            "必须点编辑区工具栏「#话题」按钮让平台生成标签节点。"
+            "若这些就是本次话题，改用 --topic 传入并在页面上逐个生成"
+        ),
         "source": "平台报错原文与创建页计数器（2026-08-17 读取）",
     },
     "bilibili": {
@@ -103,7 +117,38 @@ PLATFORMS: dict[str, dict[str, Any]] = {
         "topic_max": 10,
         "topic_soft_max": None,
         "topic_refused": BILIBILI_TOPIC_ONLY_TAGS,
+        # 标签是独立字段，简介里的 # 只是普通文字，不需要提醒。
+        "inline_hashtag_not_topic": False,
         "source": "投稿页计数器与 maxLength 实测（2026-08-18 读取）",
+    },
+    "xiaohongshu": {
+        "label": "小红书",
+        "short_title_max": None,
+        # 平台公开规则，实测没有撞到线；页面计数器未核对，所以报错不写成「n/20」。
+        "title_max": 20,
+        "title_basis": "平台公开规则，未实测撞线",
+        # 发布页计数器「n /1000」（2026-10-01 实测读取）。
+        "description_max": 1000,
+        # 合集上限未实测：两个阶段都给 None，check_collection 报 warn 级的
+        # collection_limit_unknown，提示去页面上读，不用猜的数字放行，也不把预检卡死。
+        "collection_max": {"create": None, "edit": None},
+        "collection_immutable": None,  # 未知
+        "topic_label": "话题",
+        # 话题数量上限未知，页面没有给数字，也未实测；不设硬上限和经验值。
+        "topic_max": None,
+        "topic_soft_max": None,
+        "topic_refused": (),
+        "topic_notice": (
+            "小红书话题要在正文输入 # 后从联想列表里选；列表里没有的名字会变成「新建话题」，"
+            "离线无法判断是否已存在——填完读一次页面上的话题节点"
+        ),
+        # 粘贴进正文的 `#xxx` 纯文本不会变成话题节点。
+        "inline_hashtag_not_topic": True,
+        "inline_hashtag_message": (
+            "正文里的 {samples} 不会自动成为话题；"
+            "话题请用 --topic 并在页面从 # 联想列表点选，正文去掉行内 #"
+        ),
+        "source": "小红书创作服务平台发布页计数器（2026-10-01 读取）；标题 20 字为平台公开规则",
     },
 }
 
@@ -188,7 +233,7 @@ def check_short_title(text: str, spec: dict[str, Any]) -> list[dict]:
 
 
 def check_title(text: str, spec: dict[str, Any]) -> list[dict]:
-    """B 站稿件标题：只有长度上限，没有观测到字符集限制。"""
+    """B 站 / 小红书标题：只有长度上限，没有观测到字符集限制。"""
     limit = spec["title_max"]
     if limit is None:
         return _unsupported("稿件标题", spec)
@@ -202,11 +247,12 @@ def check_title(text: str, spec: dict[str, Any]) -> list[dict]:
 
     n = len(text)
     if n > limit:
+        basis = spec.get("title_basis") or f"页面计数器 n/{limit}"
         return [{
             "level": "error",
             "code": "title_too_long",
             "message": (
-                f"稿件标题 {n} 字，超过 {limit} 字上限（页面计数器 n/{limit}）；"
+                f"稿件标题 {n} 字，超过 {limit} 字上限（{basis}）；"
                 f"需删 {n - limit} 字"
             ),
             "actual": n,
@@ -227,6 +273,23 @@ def check_collection(
     name: str, spec: dict[str, Any], stage: str
 ) -> list[dict]:
     """合集标题。上限按 `stage`（创建 / 编辑）取，两者不一定相同。"""
+    if all(v is None for v in spec["collection_max"].values()):
+        # 平台的合集上限整个没实测过（小红书）：这不是文案的错，改文案也修不好，
+        # 所以只报 warn，让人去页面读真实上限，不能把预检卡成 fail。
+        if not name.strip():
+            return [{
+                "level": "error",
+                "code": "collection_empty",
+                "message": "合集标题为空",
+            }]
+        return [{
+            "level": "warn",
+            "code": "collection_limit_unknown",
+            "message": f"{spec['label']}合集标题上限未实测，去页面读输入框 maxLength / 计数器",
+            "actual": len(name),
+            "stage": stage,
+        }]
+
     limit = spec["collection_max"].get(stage)
     if limit is None:
         return [{
@@ -306,17 +369,16 @@ def check_description(text: str, spec: dict[str, Any]) -> list[dict]:
             "limit": limit,
         })
 
-    # 视频号：描述里的 `#话题` 纯文本不会被解析成话题标签，必须走工具栏按钮生成。
-    if spec["short_title_max"] is not None:
+    # 视频号 / 小红书：描述里的 `#话题` 纯文本不会变成话题节点，平台各有生成入口。
+    if spec["inline_hashtag_not_topic"]:
         inline = re.findall(r"#[^\s#]+", text)
         if inline:
+            samples = "、".join(inline[:3]) + (" 等" if len(inline) > 3 else "")
             findings.append({
                 "level": "warn",
                 "code": "description_inline_hashtag",
-                "message": (
-                    f"描述文本里出现 {len(inline)} 处 `#…`：平台不会把纯文本解析成话题，"
-                    "必须点编辑区工具栏「#话题」按钮让平台生成标签节点。"
-                    "若这些就是本次话题，改用 --topic 传入并在页面上逐个生成"
+                "message": spec["inline_hashtag_message"].format(
+                    count=len(inline), samples=samples
                 ),
                 "samples": inline[:5],
             })
@@ -397,6 +459,14 @@ def check_topics(topics: list[str], spec: dict[str, Any]) -> list[dict]:
             ),
         })
 
+    notice = spec.get("topic_notice")
+    if notice:
+        findings.append({
+            "level": "info",
+            "code": "topic_pick_from_suggestions",
+            "message": notice,
+        })
+
     return findings
 
 
@@ -406,16 +476,21 @@ def check_topics(topics: list[str], spec: dict[str, Any]) -> list[dict]:
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        description="发布文案离线预检（视频号 / B 站）",
+        description=(
+            "发布文案离线预检（视频号 / B 站 / 小红书）。"
+            "例：check_copy.py --platform xiaohongshu --title … --description … --topic 南头古城 --json"
+        ),
     )
     p.add_argument("--platform", choices=sorted(PLATFORMS), default=DEFAULT_PLATFORM,
                    help=f"目标平台，决定全部限制（默认 {DEFAULT_PLATFORM}）")
     p.add_argument("--short-title", default=None,
                    help="视频号短标题，≤16 字且禁用逗号")
-    p.add_argument("--title", default=None, help="B 站稿件标题，≤80 字")
-    p.add_argument("--description", default=None, help="描述 / 简介全文")
+    p.add_argument("--title", default=None,
+                   help="稿件标题：B 站 ≤80 字，小红书 ≤20 字")
+    p.add_argument("--description", default=None,
+                   help="描述 / 简介 / 正文全文（B 站 ≤2000 字，小红书 ≤1000 字）")
     p.add_argument("--topic", action="append", default=[], dest="topics",
-                   help="一个话题（视频号）或标签（B 站），可重复传入；带不带 # 都可以")
+                   help="一个话题（视频号 / 小红书）或标签（B 站），可重复传入；带不带 # 都可以")
     p.add_argument("--collection", default=None, help="合集标题")
     p.add_argument("--collection-stage", choices=("create", "edit"), default="create",
                    help="合集标题要过哪个表单的上限（默认 create，更严）")

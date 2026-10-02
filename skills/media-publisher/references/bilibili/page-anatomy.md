@@ -142,7 +142,8 @@ skill 正文里「原创权益弹窗」那套写法是**视频号**的，B 站�
 `indexOf === -1`。用户要求"原创要勾选"时，实际能做的操作是把推荐标签列表（标题正下方
 「推荐标签：」那一行）里的 `原创` chip 点进正式标签，跟其他 `.hot-tag-item` 一样的坑
 （真鼠标 + 视口内坐标）。不要因为找不到「原创声明」字样就报告缺失或去改创作声明
-（那个是 AIGC 内容标注，字段默认「内容无需标注」，跟原创无关，别混）。
+（那个是 AIGC 内容标注，字段默认「内容无需标注」，跟原创无关，别混；2026-10-01 观测到
+创作声明下拉里另有非必选的授权声明，如「内容为转载」「内容为自制：未经作者允许，禁止转载」，默认不动）。
 
 ## 上传页有两个 `accept=.mp4` 的 file input
 
@@ -287,6 +288,41 @@ wrapper active；再点击第二个 inactive wrapper / canvas，回读其 class 
   成功页或提交态后立刻停止点击，只进入回读。
 - 只有检查 `elementFromPoint` 后确认真实遮挡、且一次点击没有触发任何提交态时，才把「立即投稿」
   与封面确认弹窗交给用户。不要无条件手动交接，也不要隐藏遮挡层或盲目重复点击。
+
+## 创作声明是 `bcc-select`，下拉有展开动画（2026-10-01 实测）
+
+「创作声明」字段默认「内容无需标注」，选项是隐藏的 `li.bcc-option`（`ul.bcc-select-option-list`），
+观测到：内容无需标注 / 含AI生成内容 / 含虚构演绎内容 / 内容含营销信息 / 个人观点，仅供参考 /
+内容为转载，下方另有非必选的授权声明（如「内容为自制：未经作者允许，禁止转载」）。页面提示
+「添加创作声明后该文案会在视频播放时展示，添加后不可再次编辑」——选错代价高，默认保持
+「内容无需标注」。
+
+操作：从目标 `li.bcc-option` 向上找 `class` 恰为 `bcc-select` 的祖先，真鼠标点它的输入区展开；
+**等动画结束再读选项 rect**——展开过程中读到的各项 `y` 会重叠（实测两项都是 401），照它点会落在
+别的选项上。确认 `document.elementFromPoint(x, y)` 命中目标 `li` 的文字后再真鼠标点击，读回
+所属 `bcc-select` 内 `input.value`。
+
+## 改标题后分区会被重新猜（2026-10-01 实测）
+
+上传后平台先按文件名猜分区（观测「游戏」），写完标题后又被改成「vlog」。分区要在标题写完之后
+选，并在提交前的全表回读里再读一次 `.video-human-type p.select-item-cont`。
+
+## 审核期间的回读（2026-10-01 实测）
+
+本次点「立即投稿」后**没有**出现「封面制作」确认弹窗，直接落到「稿件投递成功」页；两种情况都要
+兼容，出现成功页后只做回读。稿件「审核中」时公开 `x/web-interface/view` 返回 `-404 啥都木有`，
+不是失败。此时用带登录态的创作中心接口：
+
+```js
+await js(`fetch('https://member.bilibili.com/x/web/archives?status=is_pubing%2Cpubed%2Cnot_pubed&pn=1&ps=10&coop=1',
+  { credentials: 'include' }).then(r => r.json())
+  .then(d => d.data.arc_audits.map(a => ({ bvid: a.Archive.bvid, title: a.Archive.title,
+    state_desc: a.Archive.state_desc, tag: a.Archive.tag, cover: a.Archive.cover })))`)
+```
+
+按标题找唯一条目，`state_desc` 原文写进状态（「审核中」→ `platform_pending`）；下载 `cover`
+目视核对是否为批准的 16:9 封面。`/x/tag/archive/tags?bvid=` 审核期间已可回读。公开 title / desc /
+pic 过审后再补读。账号用 `api.bilibili.com/x/web-interface/nav`（带登录态）读 `uname` / `mid` 逐字核对。
 
 ## `Input.insertText` 进得了 DOM，进不了 Vue 模型（2026-09-09 EP.01 实测）
 

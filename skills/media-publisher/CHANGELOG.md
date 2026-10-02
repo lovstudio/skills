@@ -3,6 +3,20 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.10.0] - 2026-10-01
+
+### Added
+
+- add Xiaohongshu (小红书) video-note publishing
+- 新增 --platform xiaohongshu：上传页限制 20GB / 4 小时、推荐 MP4 / MOV、无码率要求；标题 20 / 正文 1000 字预检
+- 新增 references/xiaohongshu/page-anatomy.md 与 platform-constraints.md：tiptap 正文、# 候选话题、原创声明两步、地点搜索、封闭 shadow 的 XHS-PUBLISH-BTN、笔记管理状态回读，未实测项逐条标注
+- 小红书不进默认队列：只说「发小红书」时只发小红书；继承终稿时标题按 20 字重派生、正文去掉行内话题，成片仍走平台成片映射门禁
+- 小红书的 draft / schedule 在证实前也先确认终稿（暂存离开与发布同在一个封闭 shadow 宿主）
+- 生成内容标注默认不勾（作者 2026-10-01 偏好）：三平台保持无需标注，确认含生成素材时在终稿确认里提示由用户当次决定，平台强制标识不移除
+- 文件名平台标识：长标识子串匹配、短标识（xhs / rednote / b站）字母边界匹配，新增中文标识，修复长标识漏检
+- check_copy：小红书正文行内 # 提醒；合集上限未知时报 warn collection_limit_unknown 而非阻断
+- 视频号视频标注选项更新为 7 项；B 站补创作声明下拉动画坑、改标题后分区被重猜、审核期间经创作中心接口回读
+
 ## [0.9.2] - 2026-09-27
 
 ### Fixed

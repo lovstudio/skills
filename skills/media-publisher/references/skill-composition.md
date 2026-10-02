@@ -1,6 +1,6 @@
 # 组合决策
 
-本 Skill 由 `lov-publish-wechat-channels` 升级而来，2026-08-18 扩成双平台。这里记录它和
+本 Skill 由 `lov-publish-wechat-channels` 升级而来，2026-08-18 扩成双平台，2026-10-01 加入小红书。这里记录它和
 相邻 Skill 的边界，以及为什么选了当前形态。
 
 ## Nearby Skills Inspected
@@ -10,6 +10,7 @@
 | `lov-publish-wechat-channels` | 只发微信视频号 | 本 Skill 的前身，已标记 deprecated 并指向这里 |
 | `lov-publish-wechat-article` | 发微信公众号图文 | 不重叠：图文接口与视频后台是两套东西 |
 | `lov-media-creator` | 剪辑、渲染、封面与系列规范 | 上游：它产出成片和封面，本 Skill 只负责把文件送上平台 |
+| `baoyu-xhs-images` | 生成小红书图文卡片 | 不重叠：本 Skill 只发小红书**视频笔记**，图文卡片的生成与图文笔记发布不在范围内 |
 
 系列名的两个形态（全称 / 短名）由 `lov-media-creator` 的 series-template 定义，本 Skill 只
 执行「默认全称、降级必须有实证」这条判据，不自行改名。
@@ -30,7 +31,7 @@
 - **封面合成**属于 creator；本 Skill 只验安全区与槽位对应关系。B 站 16:9 槽需要一张竖版
   素材横过来时，合成配方记在 B 站约束文档里，执行仍走 creator。
 - **浏览器自动化**的 helper 签名坑、控制权规则、任务空间生命周期全部集中在
-  `references/browser-workflow.md`，不在两份 page-anatomy 里重复。
+  `references/browser-workflow.md`，不在各平台的 page-anatomy 里重复。
 
 ## Composition Decision
 

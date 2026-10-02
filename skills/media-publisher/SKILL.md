@@ -1,9 +1,9 @@
 ---
 name: lov-media-publisher
 description: >-
-  通过已登录的创作者后台发布本地视频到微信视频号或 Bilibili，并以媒体预检、描述来源冻结、
+  通过已登录的创作者后台发布本地视频到微信视频号、Bilibili 或小红书，并以媒体预检、描述来源冻结、
   字段回读、封面安全区、终稿确认与列表回读为门禁。Use when users ask to publish, draft,
-  schedule, or check a video post, including 发视频号、发 B 站、投稿、上传成片。
+  schedule, or check a video post, including 发视频号、发 B 站、发小红书、投稿、上传成片。
 license: MIT
 compatibility: >-
   只读预检需要 Python 3.8+ 与 ffprobe；全部网页交互走 ego-browser 的 task space
@@ -13,10 +13,11 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.9.2"
+  version: "0.10.0"
   tags:
     - wechat-channels
     - bilibili
+    - xiaohongshu
     - video-publishing
     - browser-automation
 ---
@@ -38,25 +39,38 @@ metadata:
   视频号出现阻塞时先处理并报告具体阻塞，不自行跳过它、提前改发 B 站。
 - 素材、账号或必要字段缺失时，先按本 Skill 的输入和预检流程自行查明；只有确实无法解决
   的具体缺项才询问，不把缺项重新解释成平台选择问题。平台限制、DOM 写法和状态分别核验。
+- **小红书不在默认队列里**：只说「发小红书」时队列为 `[xiaohongshu]`；「发布，也发小红书」时
+  默认队列后接小红书；用户给了顺序就按用户的。同期内容继承已冻结终稿的表达核心，按平台做最小
+  适配（标题 ≤20 字重派生、正文去掉行内 `#话题`、话题走页面候选），改写处列入终稿确认；成片仍按
+  下文「平台成片映射门禁」取小红书对应文件，用户明确同意复用别的平台文件才加 `--allow-cross-platform-name`。
 
 | 平台 | `--platform` | 入口 | 结构 | 页面细节 | 平台约束 |
 | --- | --- | --- | --- | --- | --- |
 | 微信视频号 | `wechat-channels` | `https://channels.weixin.qq.com/platform/post/create` | wujie 微前端 + shadow DOM | [创建页结构](references/wechat-channels/page-anatomy.md) | [视频号约束](references/wechat-channels/platform-constraints.md) |
 | Bilibili | `bilibili` | `https://member.bilibili.com/platform/upload/video/frame` | 普通 Vue 应用 | [投稿页结构](references/bilibili/page-anatomy.md) | [B 站约束](references/bilibili/platform-constraints.md) |
+| 小红书 | `xiaohongshu` | `https://creator.xiaohongshu.com/publish/publish?source=official` | Vue + tiptap 正文 + 封闭 shadow 的发布按钮 | [发布页结构](references/xiaohongshu/page-anatomy.md) | [小红书约束](references/xiaohongshu/platform-constraints.md) |
 
-四条会反复咬人的平台差异，先记住再动手：
+几条会反复咬人的平台差异，先记住再动手：
 
 - **可逆性不同**：视频号发布后不可撤改；B 站稿件投出后可 `?type=edit&bvid=` 改标题、
-  简介、标签、封面、合集，但**改完必须重新点「立即投稿」**。终稿确认门禁两边都走，
-  只是报告口径要跟着变，不要把 B 站的错发渲染成灾难。
+  简介、标签、封面、合集，但**改完必须重新点「立即投稿」**。终稿确认门禁三个平台都走，
+  只是报告口径要跟着变，不要把 B 站的错发渲染成灾难。小红书笔记发布后能否改视频、标题、
+  正文**尚未实测**，在证实之前按视频号的不可逆口径处理与报告。
 - **硬限制差一个数量级**：视频号 4 GiB / 2 小时，B 站 16 GB / 10 小时。拿一边的默认值
   去卡另一边就会得到假结论，所以脚本一律显式传 `--platform`。码率和容器同理：≤ 10 Mbps、
   MP4 是视频号的建议；B 站没有码率上限，推荐 MP4 / MOV / MKV，且会重新转码每条投稿，
-  直接传渲染母版。
+  直接传渲染母版。小红书上传页写的是「4 小时以内、最大 20GB、推荐 mp4、mov」，同样没有
+  码率要求，直接传已批准成片。
 - **写值方式完全不同**：视频号的描述是 contenteditable、话题必须由平台按钮生成；
-  B 站的输入框要用原生 setter，简介是 Quill 实例。不要互相套用。
-- **控件类名一律从 page-anatomy 抄，不许猜**：两边都是自研组件库（视频号 wujie +
-  shadow DOM，B 站 `data-v-*` scoped CSS）。套 antd 或通用猜测（`.ant-select-*`、
+  B 站的输入框要用原生 setter，简介是 Quill 实例；小红书标题用真点击 + `Input.insertText`，
+  正文是 tiptap / ProseMirror，话题必须从 `#` 候选里**按名称全等**点选成 `a.tiptap-topic` 节点。
+  不要互相套用。
+- **小红书的发布按钮读不到文字**：「暂存离开」「发布」都在封闭 shadow root 的自定义元素
+  `XHS-PUBLISH-BTN` 里，按文字查找一律落空。点击前现拍截图并核对视口尺寸，断言
+  `elementFromPoint(x, y).tagName === 'XHS-PUBLISH-BTN'` 后只点一次；这个断言分不清「暂存离开」
+  与「发布」，左右只能看刚拍的截图。
+- **控件类名一律从 page-anatomy 抄，不许猜**：几个平台都是自研组件库（视频号 wujie +
+  shadow DOM，B 站 `data-v-*` scoped CSS，小红书 `d-*` 组件 + tiptap）。套 antd 或通用猜测（`.ant-select-*`、
   `[role="combobox"]`、`.choose-btn`、`.category-item`）一个都命中不了，而且**查不到
   不报错**，表现为「点了没反应」，极易被误读成时机未到而空等几轮。**填任何字段前
   先打开该平台的 page-anatomy 对一遍选择器表**——2026-08-18 EP.03 就是跳过这一步，
@@ -84,7 +98,7 @@ python3 $SKILL_DIR/scripts/check_video.py PLATFORM_MP4 \
   B 站本身支持竖版，但项目已批准横版时传入竖版必须失败。
 - 用户可在提交前改选平台文件或明确覆盖画幅；任何覆盖都要重跑预检并写进终稿字段表。
 
-两个平台共用的部分只有：[浏览器工作流](references/browser-workflow.md)（helper 签名、
+各平台共用的部分只有：[浏览器工作流](references/browser-workflow.md)（helper 签名、
 控制权、任务空间生命周期）、[发布门禁清单](references/publish-gates.md)、
 [重压方案](references/encoding-recipes.md)、[视频描述结构](references/description-template.md)。
 
@@ -92,7 +106,7 @@ python3 $SKILL_DIR/scripts/check_video.py PLATFORM_MP4 \
 
 ### Activate when
 
-- 用户要求把本地视频发布到微信视频号或 B 站，或保存成草稿。
+- 用户要求把本地视频发布到微信视频号、B 站或小红书（视频笔记），或保存成草稿。
 - 用户要求安排定时发布、核验发布状态，或 publish a video to Bilibili / video channels。
 - 用户要求基于本会话上一版内容重发同一个本地视频。
 
@@ -101,6 +115,7 @@ python3 $SKILL_DIR/scripts/check_video.py PLATFORM_MP4 \
 - 用户只要求发布微信公众号文章或调用公众号接口。
 - 用户只要求本地媒体预检或转码，不涉及平台页面发布。
 - 用户要求剪辑、渲染或生成视频素材本身（那是 `lov-media-creator` 的职责）。
+- 用户要做小红书图文笔记或图文卡片（卡片生成用 `baoyu-xhs-images`）。
 
 ## 读取输入
 
@@ -145,7 +160,7 @@ gold reference，同时也是后续平台的表达策略来源：保留它的钩
 的 `maxLength`，两者不一定相同（B 站创建弹窗 20 字但编辑表单 50 字，先建短名再改名即可）。
 只有两个表单都装不下时才用短名，并在报告里说明。
 
-### 提交前必须由用户确认终稿（`publish` 硬门禁，两平台都适用）
+### 提交前必须由用户确认终稿（`publish` 硬门禁，各平台都适用）
 
 `publish` 不是「字段齐了就发」。所有必填项 `pass` 之后，状态先进 `awaiting_confirmation`，
 把终稿交给用户过目，得到明确同意才点主提交按钮。用户说过「发吧」「可以」属于**启动**
@@ -175,6 +190,8 @@ gold reference，同时也是后续平台的表达策略来源：保留它的钩
 `手工`/`生活记录` 之类的标签。用户只批准过原始文案，没批准过这些改写。
 
 `draft` / `schedule` / `status` 不要求终稿确认：草稿可改，定时在到点前可撤，`status` 只读。
+例外：小红书的「暂存离开」与「发布」同在一个封闭 shadow 宿主里，草稿和定时流程也都未实测，
+在证实前小红书的 `draft` / `schedule` 同样先走终稿确认，或把那一下交给用户点。
 
 ### 发布完整性门禁
 
@@ -198,9 +215,13 @@ gold reference，同时也是后续平台的表达策略来源：保留它的钩
 **封面槽位数按页面实测，不写死。** 视频号 2026-08-17 实测创建页只有一个槽（标签
 「个人主页和分享卡片(3:4)」），两个预览由同一张 3:4 裁出；B 站有两个**互相独立**的槽
 （4:3 首页推荐 / 16:9 个人空间），而列表、空间和信息流用的都是 16:9 那个——只传 4:3
-等于没传。读到几个槽就传几张，并在报告里说明未用到的备用件。
+等于没传。小红书只有「设置封面」一处，默认取视频第一帧；悬停才出现的「编辑封面」入口
+2026-10-01 两次 CDP 点击都没打开编辑器，上传路径**尚未实测**——第一帧就是批准封面时
+可接受默认值，否则把封面文件绝对路径交给用户手动上传，不要猜点法。读到几个槽就传几张，
+并在报告里说明未用到的备用件。
 
-**封面存在不等于合格。** 对页面上实际存在的每一个槽逐个打开编辑器，通过截图或效果
+**封面存在不等于合格。** 小红书编辑器打不开，改用「封面预览」现拍截图确认标题完整。其余平台
+对页面上实际存在的每一个槽逐个打开编辑器，通过截图或效果
 预览确认标题主体位于该槽的裁切安全区内。B 站的 16:9 槽尤其不能凭弹窗内预览判定，
 唯一可信验证是投稿后拉一次公开接口读 `pic`（做法见
 [B 站投稿页结构](references/bilibili/page-anatomy.md)「封面是两个独立的槽」）。
@@ -219,7 +240,9 @@ gold reference，同时也是后续平台的表达策略来源：保留它的钩
 「用户没明说就不勾」的被动逻辑，每期都要用户提醒。原创是创作者账号的常驻权益，不是
 需要用户重申才启用的选项。勾选原创时**必须完成原创权益弹窗中的须知/条款勾选**，并在
 弹窗关闭后读取主复选框的真实 `checked=true`，不能只凭视觉样式或点击动作判断。终稿
-确认时把「原创：已勾选」列入字段表，让用户看到而不是默认隐藏。
+确认时把「原创：已勾选」列入字段表，让用户看到而不是默认隐藏。B 站没有独立原创控件，
+用推荐标签里的「原创」chip；小红书是「原创声明」开关 + 须知弹窗两步（勾「我已阅读并同意」
+再点「声明原创」），同样默认开启并回读开关的 `checked` 状态。
 
 合集：先读取页面实际选中值与现有候选；创建新合集仍需用户明确同意，因为视频号合集创建后
 不可改名。用户已在接管期间选择合集，或明确说“合集已勾选并已发布”时，不再询问、不清空、
@@ -237,10 +260,12 @@ agent 展示了旧版描述，用户已自行改好。
 仍引用本地 `publish-copy.md` 或 agent 旧草稿。用户编辑后不要再调用描述区的清空、`fill`、
 `execCommand` 或 Quill `setText()`。
 
-**生成内容标注必须依据素材来源，不能依据视频话题。** 讲解 AI 产品、演示 AI 案例，以及使用
-AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成素材。先核对用户对素材来源的明确
-说明与可验证的制作证据，不臆测屏幕演示片段的来源；按
-[素材来源与生成内容标注](references/publish-gates.md#素材来源与生成内容标注)记录依据并回读字段。
+**生成内容标注默认不勾。** 视频号「视频标注」、B 站「创作声明」、小红书「内容类型声明」
+里的「含AI生成内容」类选项，按作者 2026-10-01 的常驻要求原则上不选，保持「无需标注 /
+内容无需标注 / 未添加」，只有用户在当次任务里明确要求标注时才选。来源证据显示含生成素材
+（TTS 旁白、AI 配乐或封面等）时，在终稿确认里写明「含生成素材，按偏好未标注」，由用户当次决定。平台自身强制添加的标识不得移除；话题与素材来源的分开判断、依据记录
+与字段回读仍按 [素材来源与生成内容标注](references/publish-gates.md#素材来源与生成内容标注)
+执行。注意 B 站创作声明「添加后不可再次编辑」且会在播放时展示，选错代价高。
 
 广告、可见范围、位置、分区、类型和评论属于会改变发布语义的选项：用户明确提出
 时执行，未提出时保持平台默认。位置若由平台自动带入，也要在提交前回读并列入字段表。
@@ -267,11 +292,13 @@ AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成�
 ## 执行流程
 
 1. 对 `draft` / `schedule` / `publish`，先读该平台的 platform-constraints，再运行只读视频预检
-   （**必须带 `--platform`**，两个平台的硬限制差一个数量级）：
+   （**必须带 `--platform`**，各平台的硬限制差一个数量级）：
 
    ```bash
    python3 $SKILL_DIR/scripts/check_video.py <视频路径> --platform wechat-channels --json
    python3 $SKILL_DIR/scripts/check_video.py <视频路径> --platform bilibili \
+     --expected-orientation "$EXPECTED_ORIENTATION" --json
+   python3 $SKILL_DIR/scripts/check_video.py <视频路径> --platform xiaohongshu \
      --expected-orientation "$EXPECTED_ORIENTATION" --json
    ```
 
@@ -306,6 +333,11 @@ AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成�
      --title "如何快速上手一个新项目" --description "$(cat 简介.txt)" \
      --topic 架构设计 --topic 开源 \
      --collection "手工川与你一起学 DeepSeek Harness" --collection-stage edit --json
+
+   # 小红书：标题 20 / 正文 1000；话题能否命中已有话题只能在页面候选里看
+   python3 $SKILL_DIR/scripts/check_copy.py --platform xiaohongshu \
+     --title "国庆72小时 玩转南头古城" --description "$(cat 正文.txt)" \
+     --topic 南头古城 --topic 深圳 --json
    ```
 
    `status: fail` 时先改文案再开浏览器。它只覆盖能离线判定的部分，**通过不等于平台一定
@@ -331,7 +363,8 @@ AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成�
 4. 先 `snapshotText()` 再定位账号、账号状态与页面可见控件；每次关键操作后回读快照。
 5. 若出现登录二维码或账号选择，`handOffTaskSpace(task.id)` 交给用户，待用户返回后再续接，
    不代填凭据、也不绕过登录。视频号本机微信已登录时优先点「快捷登录」，不要为了扫码
-   多做一次交接。交出控制权后只能通过 `waitForAgentControl(task.id)` 等待归还，**任何情况
+   多做一次交接；快捷登录点一次没进创建页就交接，不连续盲点。小红书只有短信验证码和扫码，
+   没有免扫路径，未登录时直接交接，绝不代填手机号或验证码。交出控制权后只能通过 `waitForAgentControl(task.id)` 等待归还，**任何情况
    下都不得自行 `takeOverTaskSpace()`**——包括只想读一次快照、或页面看起来已经就绪时。
    交出时先展示素材清单，再发系统通知并语音播报
    （`$SKILL_DIR/scripts/notify_user.py --tts-provider auto`），然后在后台轮询控制权状态，不要停下来
@@ -342,13 +375,16 @@ AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成�
    `required / source / expected / actual / result`。接手页面先读取描述；页面已有非空描述且
    与 agent 上次写入值不同，`source=user-edited`，当场冻结，不进入描述写入分支。
    通用项：账号、标题、描述、话题/标签、封面（按页面实际槽位数逐槽一行）、合集、定时。
-   视频号加：短标题、位置、原创、视频标注、评论、可见范围。B 站加：分区、类型、
-   已核验章节的可点击时间轴、16:9 封面的 `pic` 回读结果。字段表全文见
+   视频号加：短标题、位置、原创、视频标注、评论、可见范围。B 站加：分区、创作声明、原创 chip、
+   已核验章节的可点击时间轴、16:9 封面的 `pic` 回读结果。小红书加：原创声明、内容类型声明、
+   地点、可见范围、「封面预览」截图结论。字段表全文见
    [发布门禁清单](references/publish-gates.md)。
    账号、目标动作及所需输入均明确后，把状态记为 `prepared`。
 8. `status` 直接打开内容管理列表并跳到第 12 步。其他动作通过**主上传区**关联的文件输入
-   提交原视频——两个平台都存在多个 `accept` 相同的 file input，必须按平台文档里的判据
-   锚定，不能取第一个。观察到上传进度后记为 `uploading`；进度 100% 后仍等待转码、缩略图
+   提交原视频——视频号和 B 站都存在多个 `accept` 相同的 file input，必须按平台文档里的判据
+   锚定，不能取第一个；小红书上传页只有一个 `input.upload-input`，仍要断言唯一后再提交。
+   小红书提交视频后可能立刻弹出浏览器定位权限请求，ego-browser 会自动把控制权交给用户：
+   这是硬停，请用户处理（默认建议拒绝，地点可以按名称搜索），等用户说继续再接手。观察到上传进度后记为 `uploading`；进度 100% 后仍等待转码、缩略图
    或素材解析，记为 `processing`。上传开始后，只要字段区已经挂载且连续两次回读稳定，就并行
    填写不依赖素材解析的标题、描述、话题、合集、原创和标注；不要为了等待上传完成把这些字段
    串行化。每次写入仍须遵守描述冻结规则。素材解析完成后统一重读一次，发现平台重渲染清空时
@@ -369,6 +405,12 @@ AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成�
      `MM:SS 章节名` 列表并写进简介；下一轮逐条回读全部时间码和标题，缺一条都不能提交。
      封面右侧「首页推荐 / 个人空间」按钮只切换效果预览；真正上传槽是包住 `#editor_4_3` /
      `#editor_16_9` 的 canvas wrapper，必须逐槽回读 `active`、上传并截图，且关闭双比例同步。
+     改完标题后重读分区——平台会按新标题重新猜分区（观测：游戏 → vlog）。`bcc-select` 下拉
+     有展开动画，动画中读到的选项 rect 会重叠，等动画结束再读并用 `elementFromPoint` 确认命中。
+   - **小红书**：标题真点击 + `Input.insertText`，≥1 秒后复读；正文写进 `.tiptap.ProseMirror`；话题
+     只点 `#` 候选里名称全等的项，按 `a.tiptap-topic[data-topic]` 的 name 集合验收，「新建话题」列为
+     改写；原创声明走开关 + 须知弹窗两步；地点按名称搜索、只选全等项；只统计可见的错误节点。
+     片段与边界条件见 [小红书发布页结构](references/xiaohongshu/page-anatomy.md)。
    每个与描述无关的写操作后都要断言冻结描述逐字未变。任何必填字段未持久化、用户描述被改动
    或校验仍有警告时，停在提交前。
 10. **`publish` 在此停下等用户确认终稿**：一次 `js()` 读完整个字段表，跑 `notify_user.py`
@@ -378,10 +420,13 @@ AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成�
     立即冻结用户给出的实际文本，停止所有表单写入，直接进入内容列表只读回读；回读前保留上个
     已证实状态，并另记 `user_reported_published=true`。
 11. 按目标动作进入对应分支：
-    - `draft`：选「保存草稿」语义动作，确认完成后进入草稿列表并重载。
+    - `draft`：选「保存草稿」语义动作，确认完成后进入草稿列表并重载。小红书的「暂存离开」与
+      「发布」同宿主且草稿位置未实测，按上文例外先确认终稿或交用户点。
     - `schedule`：启用定时发布，核对页面时区、日期和时间，确认提交后进入内容列表并重载。
     - `publish`：所有必填项 `pass` 且用户已确认终稿后，点主提交动作（视频号「发表」/
-      B 站「立即投稿」），**只提交一次**，再进入内容列表并重载。未得到确认时不要点击，
+      B 站「立即投稿」/ 小红书「发布」），**只提交一次**，再进入内容列表并重载。小红书的按钮在
+      封闭 shadow 的 `XHS-PUBLISH-BTN` 里，按最新截图坐标 + `elementFromPoint` 标签名断言后真鼠标点一次；
+      跳到 `/publish/success` 只说明已尝试提交。未得到确认时不要点击，
       也不要因为等待而改用 `draft` 绕过。主提交按钮常落在视口外（视频号观测 y=726 / 视口高
       727，B 站观测 y=1380 / 视口高 731），坐标点击会静默丢；先 `scrollIntoView` 再**按新
       rect** 操作，点完回读页面状态确认真的生效。B 站先做一次语义/直接点击；仅在确认真实遮挡且
@@ -393,6 +438,12 @@ AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成�
     回读 `view.data.title`、`view.data.desc`、`view.data.pic` 与
     `x/tag/archive/tags.data[].tag_name`；前三项逐字/目视核对冻结终稿，公开 tags 按集合验收，
     不能从简介里是否出现 `#` 推断。公开字段缺失时只编辑同一 BV 并重投一次，不创建重复稿件。
+    B 站稿件「审核中」时公开 `view` 接口返回 -404，属正常：先用创作中心
+    `member.bilibili.com/x/web/archives`（带登录态）读 `bvid / state_desc / cover / tag`，并下载
+    `cover` 目视核对 16:9；标签接口审核期间已可回读；公开 title / desc / pic 留到过审后补读。
+    小红书在 `https://creator.xiaohongshu.com/new/note-manager` 重载后按标题、时长、发布时间找
+    唯一条目：「审核中」→ `platform_pending`，「未通过」→ `publish_failed`，只有在「已发布」
+    分页里出现才算 `published`。
 
 ## 状态契约
 
@@ -431,7 +482,7 @@ AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成�
 - **控件查不到不代表控件不存在**：视频号的表单在 `<wujie-app>` 的 shadow root 里，
   `document.querySelector` 一律返回空且不报错，容易被读成「还没渲染完」而白等几轮；文件输入
   连 shadow root 都查不到，只有 `DOM.getDocument({ pierce: true })` 能看见。B 站没有这个问题，
-  但换成了「Vue 不吃合成事件」。各自的定位表与可复用探针在两份 page-anatomy 里。
+  但换成了「Vue 不吃合成事件」。各自的定位表与可复用探针在各平台的 page-anatomy 里。
 - **视频号的弹窗是预渲染的，按可见性过滤而非存在性**：约 35 个弹窗全部在 DOM 里，只靠尺寸
   隐藏。读 `.weui-desktop-dialog` 的 `innerText` 会拿到与当前状态无关的文案（观测实例：上传
   封面后读到「将此次编辑保留?」，屏幕上并无此弹窗），据此点按钮就是点空。用
@@ -449,6 +500,7 @@ AI 辅助剪辑、字幕或调色，都不能单独证明成片含生成/合成�
   明确撤销。收尾必须使用 `completeTaskSpace(task.id, { keep: true })` 并检查返回的 `done`。
 - 最终回报平台、目标动作、账号、最后状态、平台状态原文、列表回读证据、警告和未完成项。
   只有满足状态契约时才使用 `draft_saved` / `scheduled` / `platform_pending` / `published` /
-  `publish_failed`。B 站的报告要额外说明稿件仍可编辑，视频号的不要这么说。
+  `publish_failed`。B 站的报告要额外说明稿件仍可编辑；视频号不要这么说；小红书的可编辑性
+  未实测，也不要这么说。
 
 与相邻 Skill 的分工与不做什么，见 [组合决策](references/skill-composition.md)。

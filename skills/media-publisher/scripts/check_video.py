@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
-"""Read-only ffprobe preflight for videos uploaded to WeChat Channels or Bilibili.
+"""Read-only ffprobe preflight for videos uploaded to WeChat Channels, Bilibili or Xiaohongshu.
 
 平台的硬限制差一个数量级，用错一边就会得到假结论：一条 491 MB / 18m45s 的片子
 在视频号接近上限，在 B 站是小件。所以文件大小、时长和最短时长都按 `--platform` 取。
 
     python3 check_video.py 片子.mp4 --platform wechat-channels --json
     python3 check_video.py 片子.mp4 --platform bilibili --expected-orientation horizontal --json
+    python3 check_video.py 片子.mp4 --platform xiaohongshu --expected-orientation vertical --json
 
 `--max-gb` / `--max-hours` 仍可覆盖，用于页面显示了灰度放宽时（视频号 20 GiB / 8 小时）。
-建议项（编码、分辨率、帧率、音频）两个平台共用，都只报 warning。容器和码率按平台取：
+建议项（编码、分辨率、帧率、音频）各平台共用，都只报 warning。容器和码率按平台取：
 视频号建议 MP4、≤ 10 Mbps；B 站投稿页推荐 MP4 / MOV / MKV，没有码率上限且会对每条投稿
-重新转码，码率只在 `notes` 里给一条 info 提示，不报 warning，不要为它重压。目标项目已经
-声明横竖版时，用 `--expected-orientation` 把选错成片变成硬错误；文件名明确属于另一个平台时
-默认也会失败，只有用户明确要求跨平台复用时才传 `--allow-cross-platform-name`。
+重新转码，码率只在 `notes` 里给一条 info 提示，不报 warning，不要为它重压；小红书上传页
+推荐 MP4 / MOV，同样没有码率上限，处理方式与 B 站相同。目标项目已经声明横竖版时，用
+`--expected-orientation` 把选错成片变成硬错误；文件名明确属于另一个平台时默认也会失败
+（长标识和中文标识按子串匹配，`mybilibili`、`B站` 都会命中；短标识 xhs / rednote / b站
+按 ASCII 字母边界匹配，`colorednotes` 不会被当成 rednote），只有用户明确要求
+跨平台复用时才传 `--allow-cross-platform-name`。
 """
 
 from __future__ import annotations
@@ -20,10 +24,11 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 
 GIB = 1024 ** 3
@@ -71,13 +76,54 @@ PLATFORMS: Dict[str, Dict[str, Any]] = {
         "container_issue": "container_not_recommended",
         "source":"投稿页原文「视频大小16G以内，时长10小时以内」（2026-08-18 读取，2026-09-27 复核）",
     },
+    "xiaohongshu": {
+        "label": "小红书",
+        # 上传页原文「最大20GB」。与 B 站「16G」同一口径：按十进制 20 GB = 18.63 GiB，
+        # 向下取到 18.6 GiB，宁可早一步拦下，也不要传到 99% 才被服务端拒。
+        "max_gb": 18.6,
+        # 上传页写明时长上限 4 小时（2026-10-01 读取）。
+        "max_hours": 4.0,
+        # 上传页没有写最短时长。与 B 站一样取 1 秒作为「不是空文件」的下限，不是平台规则，未实测。
+        "min_duration_seconds": 1.0,
+        # 上传页没有码率上限（2026-10-01 读取），按 B 站同样处理：不报码率 warning，只给 info。
+        "max_video_bitrate": None,
+        "bitrate_note": (
+            "小红书 上传页没有写码率上限，直接上传渲染母版，不要为码率重压；"
+            "只有体积或时长超限时才需要重新编码"
+        ),
+        # 上传页原文「推荐使用mp4、mov」；MKV 等其他容器只报建议警告。
+        "containers": {".mp4": "mp4", ".mov": "mov"},
+        "container_issue": "container_not_recommended",
+        # 上传页没有写宽高比要求，与 B 站一样只走全局 MIN/MAX_ASPECT_RATIO（1:3 至 3:1）兜底。
+        "source": "小红书创作服务平台上传页原文（2026-10-01 读取）",
+    },
 }
 
 DEFAULT_PLATFORM = "wechat-channels"
 ORIENTATIONS = ("horizontal", "vertical", "square")
-PLATFORM_FILENAME_TOKENS = {
-    "wechat-channels": ("wechat-channels", "wechat_channels"),
-    "bilibili": ("bilibili",),
+# 文件名里的平台标识：(标识, 是否要求 ASCII 字母边界)。匹配前整个文件名先 casefold，
+# 所以 "B站"、"BiliBili" 都能命中。
+# - 长标识和中文标识不会被普通单词误含，按子串匹配：`ep02-bilibiliHD`、`mybilibili`、
+#   `wechat-channelsv2` 都要拦下，加边界反而会放过它们。
+# - 短标识 "xhs" / "rednote" / "b站" 容易被普通单词误含（`boxhs`、`colorednotes`、
+#   `web站点`），只在 ASCII 字母边界上算命中，见 _has_platform_token。
+PLATFORM_FILENAME_TOKENS: Dict[str, Tuple[Tuple[str, bool], ...]] = {
+    "wechat-channels": (
+        ("wechat-channels", False),
+        ("wechat_channels", False),
+        ("视频号", False),
+    ),
+    "bilibili": (
+        ("bilibili", False),
+        ("哔哩哔哩", False),
+        ("b站", True),
+    ),
+    "xiaohongshu": (
+        ("xiaohongshu", False),
+        ("小红书", False),
+        ("xhs", True),
+        ("rednote", True),
+    ),
 }
 
 
@@ -139,13 +185,40 @@ def _orientation(width: Optional[int], height: Optional[int]) -> Optional[str]:
     return "square"
 
 
+def _is_ascii_letter(ch: str) -> bool:
+    return "a" <= ch <= "z"
+
+
+def _has_platform_token(filename: str, token: str, boundary: bool) -> bool:
+    """`filename` 已 casefold。`boundary=False` 时就是子串匹配。
+
+    `boundary=True` 时，标识以 ASCII 字母开头 / 结尾的那一侧不能再紧挨 ASCII 字母；
+    分隔符、数字和中文都算边界：`宣传片-xhs-v1`、`xhs1080p`、`竖版xhs`、`ep02B站` 命中，
+    `colorednotes`、`boxhs`、`web站点` 不命中。只看字母而不看数字，是为了让 `ep02xhs`
+    这类版本号紧贴标识的命名仍能被拦下；中文一侧不设边界，`B站final` 照样命中。
+    """
+
+    token = token.casefold()
+    if not boundary:
+        return token in filename
+    left = r"(?<![a-z])" if _is_ascii_letter(token[0]) else ""
+    right = r"(?![a-z])" if _is_ascii_letter(token[-1]) else ""
+    return re.search(left + re.escape(token) + right, filename) is not None
+
+
 def _foreign_platform_token(path: Path, platform: str) -> Optional[str]:
+    """返回文件名里第一个属于**其他**平台的标识。
+
+    目标平台自己的标识直接跳过，永远不会让文件拦下自己；但文件名同时带着自己和别家的
+    标识（如 `ep02-bilibili-视频号版.mp4` 投 B 站）时，别家的标识照样命中。
+    """
+
     filename = path.name.casefold()
     for candidate, tokens in PLATFORM_FILENAME_TOKENS.items():
         if candidate == platform:
             continue
-        for token in tokens:
-            if token.casefold() in filename:
+        for token, boundary in tokens:
+            if _has_platform_token(filename, token, boundary):
                 return token
     return None
 
@@ -288,7 +361,8 @@ def validate_probe(
             notes.append(
                 _issue(
                     "video_bitrate_no_platform_cap",
-                    f"{spec['label']} 没有上传码率上限且会重新转码，直接上传渲染母版，不要为码率重压",
+                    spec.get("bitrate_note")
+                    or f"{spec['label']} 没有上传码率上限且会重新转码，直接上传渲染母版，不要为码率重压",
                 )
             )
         elif video_bitrate is None:
@@ -317,7 +391,9 @@ def validate_probe(
     demuxer = containers.get(path.suffix.lower())
     if demuxer is None or demuxer not in format_name.split(","):
         names = " / ".join(suffix[1:].upper() for suffix in containers)
-        warnings.append(_issue(spec["container_issue"], f"建议使用 {names} 容器"))
+        warnings.append(
+            _issue(spec["container_issue"], f"{spec['label']} 建议使用 {names} 容器")
+        )
 
     audio_codec: Optional[str] = None
     audio_bitrate: Optional[int] = None
@@ -541,7 +617,12 @@ def format_human(result: Dict[str, Any]) -> str:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="只读检查待发布视频（视频号 / B 站）")
+    parser = argparse.ArgumentParser(
+        description=(
+            "只读检查待发布视频（视频号 / B 站 / 小红书）。"
+            "例：check_video.py 片子.mp4 --platform xiaohongshu --expected-orientation vertical --json"
+        )
+    )
     parser.add_argument("video", type=Path, help="本地视频文件")
     parser.add_argument(
         "--platform",
