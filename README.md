@@ -29,7 +29,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 
 - [`skills.yaml`](skills.yaml) — 机器可读清单。每个技能包含两类描述：`description` 是给 Agent 看的英文触发文案，由 CI 自动从各自 GitHub 仓库 description 同步；`tagline_en` / `tagline_zh` 是给人看的中英文一句话简介，由维护者手工填写，也就是下方表格里展示的那一列。
 - [`README.md`](README.md) / [`README.en.md`](README.en.md) — 由清单自动渲染生成。
-- [`skills/`](skills) — 面向安装器的同步镜像。免费技能从各自独立仓库同步而来，付费技能只放可公开分发的加密包或占位内容；真正的源码和历史仍以各自 skill repo 为准。
+- [`skills/`](skills) — 安装器和 lovstudio.ai 技能页读取的公开镜像。免费技能从各自独立仓库同步而来，源码仓库默认私有，这里就是免费技能的公开副本；付费技能只放可公开分发的加密包或占位内容；源码历史仍以各自 skill repo 为准。
 
 标记为 ![Free](https://img.shields.io/badge/Free-green) 的技能可以直接安装和使用。标记为 ![Paid](https://img.shields.io/badge/Paid-blueviolet) 的技能需要登录并用 Credits 兑换；安装器只下载加密包，兑换成功后才会按账户权益解密使用。购买或咨询请扫码关注公众号 **手工川**：
 

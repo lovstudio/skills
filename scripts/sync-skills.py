@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Mirror skill repos into ./skills/<name>/ for `npx skills add` discovery.
 
-Three classes of skill:
+Four classes of skill:
 
   1. Free skills (paid: false)
-     → Shallow-clone public repo → rsync into ./skills/<name>/
+     → Shallow-clone the source repo (private by default; see Env)
+       → rsync into ./skills/<name>/
      → Fully pruned and re-synced each run.
+     → This mirror is the public copy: the installer and the lovstudio.ai
+       detail pages read private-source free skills from here, so it must
+       carry the whole skill directory, not just SKILL.md.
 
   2. Paid skills WITHOUT encrypted_bundle
      → Skipped entirely. They show up in the README index for visibility
@@ -297,7 +301,7 @@ def mirror_one(skill: dict, skip_clone: bool) -> None:
         try:
             clone_shallow(repo, clone_dir)
         except subprocess.CalledProcessError:
-            print(f"  ✗ {name}: clone failed (private? renamed?), skipping", file=sys.stderr)
+            print(f"  ✗ {name}: clone failed (no read access to private source? renamed?), keeping existing mirror", file=sys.stderr)
             return
         skill_root = clone_dir / skill.get("skill_path", "")
         if not (skill_root / "SKILL.md").exists():
