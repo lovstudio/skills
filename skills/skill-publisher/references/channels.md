@@ -18,8 +18,8 @@ Before implementing or executing a new adapter, establish:
    commercial fields.
 5. The `lov-skill-pricing` Pricing Card that supplies the shared public price,
    billing model, free/paid funnel, confidence, evidence gaps, and review trigger.
-6. Delivery mode: free source, protected encrypted bundle, or explicitly public
-   paid source. Paid catalog visibility by itself is not an installable delivery.
+6. Delivery mode: free source, or a paid Skill downloaded by its owners from
+   lovstudio.ai. Paid Skills are never encrypted; payment only gates the download.
 7. Entitlement behavior: explicit Skill grants are fixed, while scopes named
    `global` or `all` dynamically cover every currently listed Skill and must not
    be expanded into a snapshot of current IDs.

@@ -14,7 +14,7 @@ depends_on:
   - lov-skill-pricing
 metadata:
   author: contributors
-  version: "0.7.7"
+  version: "0.8.0"
   tags:
     - skill-publisher
     - release
@@ -138,7 +138,8 @@ all-channel or multi-platform request.
 For each selected channel, resolve only required fields:
 
 - public/private visibility and free/paid catalog status where supported;
-- paid delivery mode: protected encrypted bundle or explicitly public source;
+- for paid Skills: a private source repo, the `v{version}` tag, and `skill_path`
+  when SKILL.md is not at the repository root;
 - organization, account, catalog, or output location;
 - platform metadata, icon, examples, and source locator;
 - requested version versus current source version.
@@ -157,9 +158,10 @@ successful multi-channel release.
 Read `references/publishing.md` completely. Execute the source repository,
 release, catalog, cache refresh, and live verification workflow. Publication is
 complete only when the expected version and release-specific content are visible
-on the live detail page and the catalog's exact install command succeeds through
-the declared delivery mode. A paid catalog entry without either a verified
-encrypted bundle or explicit `public_source: true` is blocked, not published.
+on the live detail page and the catalog's exact install command succeeds. Paid
+Skills are not encrypted: paying only controls who can download them, so a paid
+entry is published when its private repo carries the catalog version's tag and an
+owning account can install it as plain files.
 When a catalog refresh adds or delists a Skill, verify that dynamic `global`/`all`
 licenses immediately gain or lose catalog access without granting or spending
 Credits. This entitlement check is part of publication, not a later migration.

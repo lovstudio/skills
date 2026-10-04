@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.8.0] - 2026-10-04
+
+### Changed
+
+- Paid Skills are no longer encrypted: payment only gates the download. The paid delivery contract now requires a private source repo tagged `v{version}` and catalog metadata (`repo`, `version`, `skill_path`) instead of an encrypted bundle or `public_source`; installs download the tagged source from lovstudio.ai as plain files.
+
 ## [0.7.7] - 2026-09-28
 
 ### Fixed
