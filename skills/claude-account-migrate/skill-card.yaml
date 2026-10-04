@@ -1,0 +1,100 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: >-
+  After a user signs in to the Claude desktop app with a different account, copy
+  the old account's Code-tab and Cowork sessions into the current account so they
+  appear in the sidebar and can be resumed, flag title-only sessions whose
+  transcripts were already cleaned up, and raise transcript retention so migrated
+  Cowork sessions are not deleted by the 30-day default.
+owner:
+  team: "LovStudio Skill contributors"
+  contact: "local source maintainers"
+license:
+  name: MIT
+  terms: "Use, modify, and redistribute under the included MIT License."
+  url: "LICENSE"
+use_case:
+  audience: "Claude desktop users who changed accounts and want to keep working in their old sessions"
+  scenario: "The old account is retired; its local sessions must be usable under the new account without signing back in."
+  tasks:
+    - "List every local account with session counts, date ranges, and transcript health."
+    - "Plan and apply an additive copy of Code and Cowork sessions into the current account."
+    - "Detect title-only sessions and skip them unless the user wants the titles."
+    - "Set cleanupPeriodDays inside Cowork sessions so their transcripts are kept."
+deployment:
+  geography: global
+  environments:
+    - "Local machine running the Claude desktop app (verified on macOS)"
+requirements:
+  credentials: "none"
+  dependencies: []
+  runtime:
+    - "Python 3.9+ standard library"
+    - "Read and write access to the user's Claude desktop data directory"
+risks:
+  - risk: "The desktop storage layout is undocumented and may change in an app update."
+    mitigation: "Plan mode is the default; the copy is additive and never modifies the source, so a wrong layout produces an unused copy rather than data loss. Re-check the storage reference after updates."
+  - risk: "Migrated Cowork sessions whose working folder is inside the source account folder still write outputs there."
+    mitigation: "The plan reports these sessions and instructs the user to keep the source folder."
+  - risk: "Title-only sessions clutter the sidebar and cannot be resumed."
+    mitigation: "Orphans are detected by transcript presence and skipped by default."
+  - risk: "Old transcripts are deleted by the 30-day default retention."
+    mitigation: "The tool warns about the CLI setting and writes cleanupPeriodDays into every copied Cowork session."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Claude desktop session storage"
+    path: "references/desktop-storage.md"
+output:
+  types:
+    - "Copied session entries and folders under the target account"
+    - "Plan or apply report"
+  formats:
+    - "Plain-text report"
+    - "JSON report with --json"
+  parameters:
+    - "--from, --to, --from-org, --to-org"
+    - "--include-orphans, --no-code, --no-cowork"
+    - "--retention-days, --apply"
+  validation:
+    - "Re-running the plan reports nothing left to copy."
+    - "Existing target files are byte-identical before and after apply."
+    - "No file under the source account changes."
+    - "The desktop app lists a migrated session."
+  description: "A local, idempotent copy whose result is visible in the Claude desktop sidebar, plus a report of what was copied, skipped, and still at risk."
+ethical_considerations: "Operates only on the local user's own files. It never reads or moves credentials, tokens, or Keychain items, and never sends data off the machine. Reports avoid printing emails unless they can be attributed unambiguously."
+dimensions:
+  - id: correctness
+    label: "Safe copy"
+    description: "Copies without overwriting target files or touching the source account."
+    evidence: "Fixture test: a conflicting target file kept its content, the source gained no files, the archive index received only copied IDs, and a second plan reported zero to copy."
+    score: null
+  - id: effectiveness
+    label: "Sessions usable after switching"
+    description: "Migrated sessions appear in the current account's sidebar and keep their transcripts."
+    evidence: "Real case 2026-10-04: 231 Code and 77 Cowork entries copied; the app listed migrated sessions without a restart and rebuilt archived state from 139 isArchived flags."
+    score: null
+  - id: retention
+    label: "Transcript protection"
+    description: "Finds sessions that already lost their transcript and prevents further loss."
+    evidence: "Real case: 102 of 108 sessions from one old account had no transcript (6 never had one); retention was raised on 77 Cowork sessions and a follow-up plan reported 0 pending."
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Free local utility on user-owned files with no external service."
+  boundary: "Includes scan, plan, apply, and retention protection for local desktop sessions; excludes server-side claude.ai data, scheduled tasks, and transcript recovery."
+  review_trigger: "Revisit if Claude ships an official account migration or changes its session storage layout."
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not_planned
+    - channel: skillpay
+      status: not_planned
+  free:
+    - channel: github
+      status: not_published
+    - channel: lovstudio
+      status: local_only

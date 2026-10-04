@@ -35,7 +35,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 104 free skills bundled together.",
+      "description": "Dev Tools — 105 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/env-management",
@@ -142,7 +142,8 @@
         "./skills/normalize-tauri-app-icon",
         "./skills/read-codex-session",
         "./skills/search-project",
-        "./skills/zsh-alias"
+        "./skills/zsh-alias",
+        "./skills/claude-account-migrate"
       ],
       "strict": false
     },

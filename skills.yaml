@@ -9246,3 +9246,38 @@ skills:
     card_path: pricing-cards/wdb-networkx-analysis.md
   depends_on:
   - branding-consistency
+- name: claude-account-migrate
+  runtime_name: lov-claude-account-migrate
+  display_name: Claude Account Mover
+  repo: lovstudio/claude-account-migrate-skill
+  name_zh: Claude 换号搬家
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: "Move Claude desktop Code and Cowork sessions from a retired account to the current one, skip title-only orphans, and protect transcript retention."
+  tagline_en: Switch Claude accounts and keep working in your old sessions.
+  tagline_zh: 换了 Claude 账号，旧账号的会话照样能点开继续。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 换号后把旧账号的 Code 与 Cowork 会话搬到当前账号，跳过只剩标题的会话，并防止对话记录被自动清理。
+    value_en: After switching accounts, move old Code and Cowork sessions into the current account, skip title-only sessions, and keep transcripts from being cleaned up.
+    anchor_zh: 一次迁移通常省下 1 至 3 小时的存储结构排查与手工复制，并让数百个旧会话重新可用。
+    anchor_en: A migration typically saves 1 to 3 hours of storage investigation and manual copying and makes hundreds of old sessions usable again.
+    basis_zh: 换号时的一次性需求，使用频率低且源码公开，作为免费入口积累真实迁移证据。
+    basis_en: A one-time need at account switch with low frequency and public source; shipped free to gather real migration evidence.
+    boundary_zh: 只处理本机桌面版会话；不含 claude.ai 网页聊天、Projects、connector 授权、云端会话和定时任务，也无法恢复已被清理的对话记录。
+    boundary_en: Local desktop sessions only; excludes claude.ai chats, Projects, connector authorizations, cloud sessions, scheduled tasks, and recovery of deleted transcripts.
+    maintenance_zh: 随 Claude 桌面版会话存储结构与真实迁移反馈变化复评。
+    maintenance_en: Review when the Claude desktop session storage layout or real migration feedback changes.
+    confidence: entry
+    review_trigger_zh: 累计 10 次真实迁移、桌面版存储结构变化或官方推出账号迁移时复评。
+    review_trigger_en: Review after 10 real migrations, a desktop storage layout change, or an official account migration feature.
+    card_path: pricing-cards/claude-account-migrate.md

@@ -1,0 +1,25 @@
+[
+  {
+    "type": "case",
+    "title": "Retiring two old Claude accounts without losing desktop sessions",
+    "description": "A user signed in to the Claude desktop app with a new account and wanted to keep using sessions from two retired accounts. Account names and session titles are redacted; counts come from the verified run on 2026-10-04.",
+    "input": {
+      "items": [
+        "Current account with 1 Code session",
+        "Old account A: 123 Code sessions (122 with transcripts, 50 archived)",
+        "Old account B: 108 Code sessions from April with no transcripts left, and 77 Cowork sessions from January to June with transcripts inside their folders",
+        "Claude Code cleanupPeriodDays already set to 3650; Cowork sessions without their own setting"
+      ]
+    },
+    "prompt": "我希望就基于我的新账号，之前账号不用了，但数据与 session 要用",
+    "output": {
+      "items": [
+        "Account A: 123 Code entries copied into the current account; the app listed them without a restart",
+        "Account B: 108 Code entries copied and identified as title-only orphans (102 lost transcripts to earlier 30-day cleanup, 6 never had one); the tool now skips such orphans by default",
+        "Account B: 77 Cowork sessions copied with folders; 13 still write outputs to the source folder, which was kept",
+        "cleanupPeriodDays 3650 written into all 77 migrated Cowork sessions; a follow-up plan reported 0 pending",
+        "Archived state preserved: the app rebuilt its archive index from 139 isArchived flags"
+      ]
+    }
+  }
+]

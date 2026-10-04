@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **220 个技能** — 202 个免费 + 18 个付费。
+> **221 个技能** — 203 个免费 + 18 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -179,6 +179,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Checkpoint](https://github.com/lovstudio/checkpoint-skill) (`checkpoint`) | [项目存档](https://github.com/lovstudio/checkpoint-skill) | 根据当前 Git 差异和历史记录保存项目里程碑及后续事项 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Checkpoint History](https://github.com/lovstudio/checkpoint-list-skill) (`checkpoint-list`) | [检查点回看](https://github.com/lovstudio/checkpoint-list-skill) | 汇总 Git 与项目日志中的检查点、时间范围和演进记录 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | [Clash 网络医生](https://github.com/lovstudio/clash-tun-doctor-skill) | 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。 — 相关: `env-management` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Claude Account Mover](https://github.com/lovstudio/claude-account-migrate-skill) (`claude-account-migrate`) | [Claude 换号搬家](https://github.com/lovstudio/claude-account-migrate-skill) | 换了 Claude 账号，旧账号的会话照样能点开继续。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [CLI Studio](https://github.com/lovstudio/cli-creator-skill) (`cli-creator`) | [CLI 工坊](https://github.com/lovstudio/cli-creator-skill) | 把本地项目或当前目录转换为可安装、可测试、支持JSON的真实后端CLI；当用户说“给这个项目做CLI”“把应用变成命令行”或“buildaCLIforthisp |
 | ![Free](https://img.shields.io/badge/Free-green) | [API Studio](https://github.com/lovstudio/cli2anything-skill) (`cli2anything`) | [接口工坊](https://github.com/lovstudio/cli2anything-skill) | 把已授权观察到的网站 API 变成可验证的 OpenAPI、SDK、Swagger 与任务型 CLI。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Makeover](https://github.com/lovstudio/clone-rebrand-skill) (`clone-rebrand`) | [项目换装](https://github.com/lovstudio/clone-rebrand-skill) | 将模板或 fork 改造为新项目，按范围同步品牌、语言和部署设置 — 依赖: `branding-consistency` |

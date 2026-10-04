@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Keep months of local Claude sessions usable after an account change, instead of signing back in or losing them."
+basis: "Free local utility built on user-owned files and the Python standard library."
+boundary: "Includes scan, plan, additive apply, orphan detection, and Cowork retention protection; excludes claude.ai chats, Projects, connectors, cloud sessions, scheduled tasks, and recovery of deleted transcripts."
+review_trigger: "Revisit if Claude ships an official account migration or changes its session storage layout."
+confidence: internal
