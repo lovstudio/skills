@@ -1,4 +1,4 @@
-# Skill Card — Claude 换号搬家 · Claude Account Mover
+# Claude 换号搬家 · Claude Account Mover · Skill Card
 
 This human-readable card mirrors `skill-card.yaml`. It is a release record, not
 an implementation note.
