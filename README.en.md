@@ -30,7 +30,7 @@ This repo contains:
 
 - [`skills.yaml`](skills.yaml) — machine-readable manifest. Each skill has a terse `description` (Agent-facing trigger copy, CI-synced from the GitHub repo description) plus hand-maintained `tagline_en` / `tagline_zh` (the human-friendly one-liners you see in the table below).
 - [`README.md`](README.md) / [`README.en.md`](README.en.md) — auto-rendered from the manifest.
-- [`skills/`](skills) — installer-facing mirrors of the free skills, synced from their own repos. Paid skill sources live in private repos and never enter this one.
+- [`skills/`](skills) — public mirrors of the free skills, synced from their own repos and read by the installer and the lovstudio.ai skill pages. Those source repos are private by default, so this is the public copy of each free skill. Paid skill sources live in private repos and never enter this one.
 
 Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run directly. Skills marked ![Paid](https://img.shields.io/badge/Paid-blueviolet) require sign-in and a Credits redemption; only an account that owns the skill (or holds a license for it) can download it, and the installed copy is plain files with no encryption. To purchase or ask questions, scan the QR code to follow the **手工川 (ShougongChuan)** WeChat official account:
 
