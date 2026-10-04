@@ -253,9 +253,9 @@ skills:
 - name: paid-add
   display_name: Paid Add (PoC)
   repo: lovstudio/paid-add-skill
+  skill_path: src
   name_zh: 付费加法
   paid: true
-  encrypted_bundle: true
   test: true
   category: General
   version: 0.1.1
@@ -918,14 +918,14 @@ skills:
   updated_at: 2026-08-23 17:04:16+00:00
   display_name: Proposal Expert
   repo: lovstudio/proposal-skill
+  skill_path: src
   name_zh: 提案专家
   paid: true
   category: Business
   description: Business proposal with architecture, budget & PDF / 完整商业提案
   tagline_en: Turn a project brief into a complete, client-ready business proposal.
   tagline_zh: 把项目简述一键变成可交付的商业提案，方案、报价、排版全配齐。
-  encrypted_bundle: true
-  version: 1.1.0
+  version: 1.1.1
   skillpay_product_id: P0806000200844922
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-Z
   price_credits: 703
@@ -1149,17 +1149,17 @@ skills:
   updated_at: 2026-08-23 17:04:16+00:00
   display_name: Professional Poster
   repo: lovstudio/event-poster-skill
+  skill_path: src
   name_zh: 专业海报
   paid: true
   category: Design
-  version: 0.5.0
+  version: 0.6.3
   description: Generate event and exhibition posters via HTML + Playwright / 活动与展览海报生成
   tagline_en: Turn an event brief into a polished poster, ready to share or print
     for exhibitions.
   tagline_zh: 把活动信息一键变成高质感海报，可直接分享或用于线下展览。
   related:
   - publish-event-onto-hdx
-  encrypted_bundle: true
   skillpay_product_id: P0806000200844925
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQK
   price_credits: 703
@@ -1201,10 +1201,9 @@ skills:
   repo: lovstudio/visual-clone-skill
   name_zh: 风格采样
   paid: true
-  encrypted_bundle: true
   category: Design
   skill_path: ''
-  version: 1.1.0
+  version: 1.1.1
   description: Extract design DNA from reference images / 提取设计要素生成复刻指令
   tagline_en: Extract the design DNA of a reference image so you can recreate the
     look.
@@ -1444,10 +1443,9 @@ skills:
   repo: lovstudio/article-creator-skill
   name_zh: 天才写手
   paid: true
-  public_source: true
   price_credits: 280
   category: Content Creation
-  version: 0.7.0
+  version: 0.8.1
   description: Create, rewrite, brand, or faithfully repost complete WeChat article
     packages with body-figure decisions, branded dual-ratio covers, and traceable
     quality evidence.
@@ -1647,6 +1645,7 @@ skills:
   updated_at: 2026-08-23 17:04:16+00:00
   display_name: Book Writing Expert
   repo: lovstudio/write-professional-book-skill
+  skill_path: src
   name_zh: 写书专家
   paid: true
   category: Content Creation
@@ -1654,8 +1653,7 @@ skills:
   tagline_en: Write a full multi-chapter book — technical, tutorial, or monograph
     — from an outline.
   tagline_zh: 从大纲开始，逐章写出一本完整的书，技术、教程、专著多种风格。
-  encrypted_bundle: true
-  version: 0.4.0
+  version: 0.4.2
   skillpay_product_id: P0806000200846058
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQQ
   price_credits: 703
@@ -1696,14 +1694,14 @@ skills:
   updated_at: 2026-08-23 17:04:16+00:00
   display_name: WeChat Archiver
   repo: lovstudio/wxmp-cracker-skill
+  skill_path: src
   name_zh: 公众号神器
   paid: true
   category: Content Creation
-  version: 0.4.0
+  version: 0.4.1
   description: 微信公众号文章抓取
   tagline_en: Archive WeChat Official Account articles into clean, reusable text.
   tagline_zh: 把微信公众号的文章批量归档成可再利用的整洁文本。
-  encrypted_bundle: true
   skillpay_product_id: P0806000200847217
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQO
   price_credits: 703
@@ -1743,10 +1741,11 @@ skills:
   updated_at: 2026-08-23 17:04:16+00:00
   display_name: Event Planner
   repo: lovstudio/event-curator-skill
+  skill_path: src
   name_zh: 活动策划师
   paid: true
   category: Business
-  version: 0.2.0
+  version: 0.2.1
   description: 'Generate a complete professional event plan from guest background
     material. Takes guest bio / CV / intro copy as input, runs a multi-turn clarification
     dialog (activity type, audience, duration, tone), and outputs a cohesive plan
@@ -1759,7 +1758,6 @@ skills:
   tagline_zh: 从嘉宾履历一键生成可交付的活动策划案 — 主题文案、分钟级 rundown、主持人问题卡、伴手礼。
   related:
   - publish-event-onto-hdx
-  encrypted_bundle: true
   skillpay_product_id: P0806000200846056
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQc
   price_credits: 703
@@ -2188,11 +2186,10 @@ skills:
   repo: lovstudio/professional-infographic-skill
   name_zh: 专业信息图
   paid: true
-  encrypted_bundle: true
   price_credits: 139
   featured: true
   category: Design
-  version: 0.5.0
+  version: 0.5.3
   description: Create evidence-led professional infographics, including capital journeys,
     with editable HTML/SVG, high-resolution PNG, source linkage, brand attribution,
     and strict QA.
@@ -2283,11 +2280,10 @@ skills:
   repo: lovstudio/oh-my-landingpage-skill
   name_zh: 官网小能手
   paid: true
-  encrypted_bundle: true
   price_credits: 14
   category: Design
   skill_path: ''
-  version: 0.4.0
+  version: 0.4.1
   description: Product-specific landing page system from brand truth through narrative,
     visual direction, implementation, and production review.
   tagline_en: Turn product truth into a distinctive landing page, with brand, story,
@@ -2386,11 +2382,10 @@ skills:
   repo: lovstudio/academic-translator-skill
   name_zh: 学术译者
   paid: true
-  encrypted_bundle: true
   price_credits: 70
   category: Academic
   skill_path: ''
-  version: 0.2.0
+  version: 0.2.1
   description: Translate English academic PDFs into Chinese while preserving figures,
     equations, page flow, and navigation.
   tagline_en: Translate English papers into Chinese while preserving figures, equations,
@@ -2436,7 +2431,7 @@ skills:
   price_credits: 70
   category: Academic
   skill_path: ''
-  version: 0.2.0
+  version: 0.2.1
   description: Translate English academic PDFs into Simplified Chinese while preserving
     page correspondence, bilingual layouts, figures, and formulas.
   tagline_en: Translate academic PDFs into Chinese with matched pages, bilingual layouts,
@@ -2533,10 +2528,9 @@ skills:
   repo: lovstudio/media-creator-skill
   name_zh: 天才剪辑师
   paid: true
-  public_source: true
   price_credits: 1394
   category: Video Creation
-  version: 0.13.3
+  version: 0.22.0
   description: Turn screen recordings into review-first video deliveries with editable-subtitle
     MKV, approved platform files, rendered covers for every required slot, protected
     source audio, and QC evidence.
@@ -2781,11 +2775,10 @@ skills:
   repo: lovstudio/wdb-cli-skill
   name_zh: 万能微信秘钥
   paid: true
-  encrypted_bundle: true
   price_credits: 280
   category: General
   skill_path: ''
-  version: 0.5.3
+  version: 0.5.4
   description: Prepare local WeChat keys, then query isolated DB+WAL copies while
     preserving exact record identity without opening the live database with SQLite
     or SQLCipher.
@@ -3924,7 +3917,7 @@ skills:
   paid: true
   price_credits: 14
   category: General
-  version: 1.3.0
+  version: 1.3.1
   updated_at: 2026-08-23 17:04:16+00:00
   description: Create learner-friendly English subtitles using the selected profile
     as a minimum difficulty floor, with higher-level glosses, evidence-based ASS art
@@ -3936,7 +3929,6 @@ skills:
   distribution:
     workbuddy: review
     skillpay: review
-  encrypted_bundle: true
   skill_path: ''
   pricing:
     model: one_time
@@ -3975,10 +3967,9 @@ skills:
   repo: lovstudio/macos-disk-optimizer-skill
   name_zh: Mac 清理助手
   paid: true
-  public_source: true
   price_credits: 139
   category: General
-  version: 0.5.0
+  version: 0.6.0
   updated_at: 2026-09-14 03:23:02+00:00
   description: Guarded macOS disk cleanup with protected app workspaces, referenced build directories
     left intact, rollback-aware staging, archive migration, and real-capacity verification.
@@ -4558,11 +4549,10 @@ skills:
   repo: lovstudio/typeless-prompt-skill
   name_zh: 口述成文
   paid: true
-  encrypted_bundle: true
   skill_path: ''
   price_credits: 14
   category: General
-  version: 0.2.0
+  version: 0.2.2
   description: Clean dictated or ASR text into concise, logically structured, send-ready
     prompts while preserving the final intent and removing filler, repetition, and
     superseded corrections.
@@ -6947,10 +6937,9 @@ skills:
   repo: lovstudio/wxmp-cli-skill
   name_zh: 微探命令行
   paid: true
-  encrypted_bundle: true
   price_credits: 690
   category: General
-  version: 0.1.1
+  version: 0.1.2
   description: Search, read and export cached WeChat official-account articles with
     Weitan CLI.
   tagline_en: Find cached WeChat articles and export them in four formats, with a
@@ -9201,7 +9190,6 @@ skills:
   repo: lovstudio/wdb-networkx-analysis-skill
   name_zh: 微信人脉网络分析
   paid: true
-  encrypted_bundle: true
   price_credits: 268
   category: General
   skill_path: ''

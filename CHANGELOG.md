@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 — 2026-10-04
+
+- Paid Skills are no longer encrypted: paying only controls who can download a Skill. Remove the 14 encrypted bundles from `skills/`, the `encrypted_bundle` / `public_source` fields, and `scripts/republish-paid.sh`; lovstudio.ai now serves owners a download of the private source repo.
+- `validate_deps.py` rejects the retired delivery fields and requires a source repo for paid entries; mirror, marketplace and CDN builds cover free Skills only.
+- Paid entries declare `skill_path: src` where the Skill lives in a subdirectory, and their versions now track each source repo's current release.
+
 ## 1.0.2 — 2026-09-07
 
 - Make runtime-name synchronization independent of display-field order and repair repeated runtime_name keys without changing IDs or other catalog metadata.

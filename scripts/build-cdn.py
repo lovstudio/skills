@@ -102,7 +102,7 @@ def load_skills(root: Path, include_test: bool) -> list[dict[str, Any]]:
 
 
 def is_installable(skill: dict[str, Any]) -> bool:
-    return (not skill.get("paid")) or bool(skill.get("encrypted_bundle"))
+    return not skill.get("paid")
 
 
 def safe_segment(value: str) -> str:
@@ -167,7 +167,6 @@ def package_manifest(
         "generated_at": generated_at,
         "entrypoint": "SKILL.md",
         "paid": bool(skill.get("paid")),
-        "encrypted_bundle": bool(skill.get("encrypted_bundle")),
         "source": {
             "repo": skill.get("repo"),
             "skill_path": skill.get("skill_path", ""),
@@ -208,8 +207,6 @@ def make_package(
     files, skipped_symlinks = iter_skill_files(skill_dir, excludes)
     if not any(p.name == "SKILL.md" and p.parent == skill_dir for p in files):
         raise RuntimeError(f"{skill['name']}: SKILL.md missing from {skill_dir}")
-    if skill.get("encrypted_bundle") and not (skill_dir / "MANIFEST.enc.json").exists():
-        raise RuntimeError(f"{skill['name']}: encrypted_bundle=true but MANIFEST.enc.json is missing")
 
     manifest, package_files = package_manifest(
         generated_at=generated_at,
@@ -350,7 +347,6 @@ def build_registry(
                 "category": skill.get("category"),
                 "version": version,
                 "paid": bool(skill.get("paid")),
-                "encrypted_bundle": bool(skill.get("encrypted_bundle")),
                 "featured": bool(skill.get("featured")),
                 "recommended_by": skill.get("recommended_by"),
                 "description": skill.get("description"),
