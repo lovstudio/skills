@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "4.6.5"
+  version: "4.6.6"
   content_class: deterministic-output
   tags:
     - skill-creator

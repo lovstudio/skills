@@ -30,9 +30,9 @@ This repo contains:
 
 - [`skills.yaml`](skills.yaml) — machine-readable manifest. Each skill has a terse `description` (Agent-facing trigger copy, CI-synced from the GitHub repo description) plus hand-maintained `tagline_en` / `tagline_zh` (the human-friendly one-liners you see in the table below).
 - [`README.md`](README.md) / [`README.en.md`](README.en.md) — auto-rendered from the manifest.
-- [`skills/`](skills) — public mirrors read by the installer and the lovstudio.ai skill pages. Free skills are synced from their own repos, which are private by default, so this is the public copy of each free skill; paid skills only expose public encrypted bundles or placeholders. Source history still lives in each skill's own repo.
+- [`skills/`](skills) — public mirrors of the free skills, synced from their own repos and read by the installer and the lovstudio.ai skill pages. Those source repos are private by default, so this is the public copy of each free skill. Paid skill sources live in private repos and never enter this one.
 
-Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run directly. Skills marked ![Paid](https://img.shields.io/badge/Paid-blueviolet) require sign-in and a Credits redemption; the installer downloads only an encrypted bundle, which is decrypted for an account with the entitlement. To purchase or ask questions, scan the QR code to follow the **手工川 (ShougongChuan)** WeChat official account:
+Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run directly. Skills marked ![Paid](https://img.shields.io/badge/Paid-blueviolet) require sign-in and a Credits redemption; only an account that owns the skill (or holds a license for it) can download it, and the installed copy is plain files with no encryption. To purchase or ask questions, scan the QR code to follow the **手工川 (ShougongChuan)** WeChat official account:
 
 <p align="center">
   <img src="assets/shougongchuan-banner.jpg" alt="Follow 手工川 on WeChat for paid skills" width="720">
@@ -297,7 +297,7 @@ npx lovstudio skills add proposal
 ```
 
 Free skills install directly. Paid skills complete sign-in and Credits redemption before downloading
-the encrypted bundle; add `-y` in CI or other non-interactive environments.
+their source from lovstudio.ai; add `-y` in CI or other non-interactive environments.
 
 Browse and install via [agentskills.io](https://agentskills.io) for a one-click experience.
 
@@ -307,7 +307,7 @@ Browse and install via [agentskills.io](https://agentskills.io) for a one-click 
 lovstudio/skills (this repo)         ← unified Lovstudio skills ecosystem index
 ├── README.md                        ← primary top-level index (简体中文, default)
 ├── README.en.md                     ← English index
-└── skills/<name>/                    ← free mirror or encrypted paid bundle
+└── skills/<name>/                    ← free skill mirror
 
 lovstudio/<name>-skill               ← regular skill source repo
 ├── SKILL.md                         ← skill definition (frontmatter + docs)

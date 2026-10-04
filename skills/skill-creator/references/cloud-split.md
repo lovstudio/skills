@@ -8,8 +8,8 @@ client that only orchestrates calls.
 
 | Signal | Use cloud-split? |
 |---|---|
-| Pure workflow/template, no secrets | No → use `encrypted` |
-| Trivial algorithm, low margin | No → `encrypted` + accept L2 leakage |
+| Pure workflow/template, no secrets | No → ship as a normal paid Skill (gated download) |
+| Trivial algorithm, low margin | No → normal paid Skill; buyers get the source |
 | Flagship skill, high margin | **Yes** |
 | Contains API keys / credentials | **Yes** (must) |
 | Carefully tuned prompt engineering | **Yes** |
@@ -20,8 +20,8 @@ implementation would hurt, cloud-split. Otherwise don't pay the complexity tax.
 
 ## Why this works
 
-Encrypted skills decrypt to stdout → Claude reads → the plaintext is logged to
-`~/.claude/projects/*.jsonl` forever. Anyone with file access can grep it.
+A normal paid Skill is downloaded by its owner and installed as plain files:
+payment controls who can download it, not who can read it afterwards.
 
 Cloud-split never puts the implementation on the user's disk. The client only
 sees:
@@ -310,7 +310,7 @@ Given user input `<describe shape>`:
 
 ## Why the thin client
 
-Unlike encrypted skills, cloud-split skills keep the real implementation on
+Unlike normal paid skills, cloud-split skills keep the real implementation on
 the server. This thin SKILL.md is only the transport layer.
 ```
 
@@ -341,7 +341,7 @@ Expected: JSON output on stdout. Error on stderr for auth/entitlement issues.
 - **User's API latency budget**: each call is ~200-500ms HTTP round-trip. For
   interactive skills, batch where possible.
 - **Offline usage**: cloud-split skills don't work offline. If offline is
-  critical, you're stuck with encrypted + accepting L2 leakage.
+  critical, ship it as a normal paid Skill and accept that buyers get the source.
 
 ## Reference implementations
 

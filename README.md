@@ -29,9 +29,9 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 
 - [`skills.yaml`](skills.yaml) — 机器可读清单。每个技能包含两类描述：`description` 是给 Agent 看的英文触发文案，由 CI 自动从各自 GitHub 仓库 description 同步；`tagline_en` / `tagline_zh` 是给人看的中英文一句话简介，由维护者手工填写，也就是下方表格里展示的那一列。
 - [`README.md`](README.md) / [`README.en.md`](README.en.md) — 由清单自动渲染生成。
-- [`skills/`](skills) — 安装器和 lovstudio.ai 技能页读取的公开镜像。免费技能从各自独立仓库同步而来，源码仓库默认私有，这里就是免费技能的公开副本；付费技能只放可公开分发的加密包或占位内容；源码历史仍以各自 skill repo 为准。
+- [`skills/`](skills) — 只包含免费技能的公开镜像，从各自独立仓库同步而来，供安装器和 lovstudio.ai 技能页读取。源码仓库默认私有，这里就是免费技能的公开副本。付费技能的源码在私有仓库，不进入本仓库。
 
-标记为 ![Free](https://img.shields.io/badge/Free-green) 的技能可以直接安装和使用。标记为 ![Paid](https://img.shields.io/badge/Paid-blueviolet) 的技能需要登录并用 Credits 兑换；安装器只下载加密包，兑换成功后才会按账户权益解密使用。购买或咨询请扫码关注公众号 **手工川**：
+标记为 ![Free](https://img.shields.io/badge/Free-green) 的技能可以直接安装和使用。标记为 ![Paid](https://img.shields.io/badge/Paid-blueviolet) 的技能需要登录并用 Credits 兑换；兑换或持有对应 license 的账号才能下载，装好后就是普通文件，没有加密。购买或咨询请扫码关注公众号 **手工川**：
 
 <p align="center">
   <img src="assets/shougongchuan-banner.jpg" alt="关注公众号「手工川」获取付费技能" width="720">
@@ -295,7 +295,7 @@ npx lovstudio skills add skills
 npx lovstudio skills add proposal
 ```
 
-免费技能会直接安装。付费技能会先完成登录与 Credits 兑换，再下载加密包；非交互环境请追加
+免费技能会直接安装。付费技能会先完成登录与 Credits 兑换，再从 lovstudio.ai 下载源码安装；非交互环境请追加
 `-y`，例如 `npx lovstudio skills add proposal -y`。
 
 通过 [agentskills.io](https://agentskills.io) 可浏览并一键安装。
@@ -306,7 +306,7 @@ npx lovstudio skills add proposal
 lovstudio/skills (本仓库)            ← Lovstudio 技能生态统一总索引
 ├── README.md                        ← 中文版总索引（默认）
 ├── README.en.md                     ← English index
-└── skills/<name>/                    ← 免费镜像或付费加密分发包
+└── skills/<name>/                    ← 免费技能镜像
 
 lovstudio/<name>-skill               ← 常规技能的独立源码仓库
 ├── SKILL.md                         ← 技能定义（frontmatter + 文档）

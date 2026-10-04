@@ -6,7 +6,7 @@ Guidance for Claude Code when working in this repo.
 
 The **central index** for Lovstudio skills. The source of truth for each skill is its own repo at `github.com/lovstudio/{name}-skill`; new source repos are **private by default**, free and paid alike. Locally, skills are developed under `~/lovstudio/coding/skills/{name}-skill/`.
 
-This index repo also carries a **read-only mirror** of every free, non-internal skill under `./skills/<name>/` and encrypted distribution bundles for paid skills. The mirror is the public copy of each free skill and has two consumers:
+This index repo also carries a **read-only mirror** of every free, non-internal skill under `./skills/<name>/`. Paid skills are never mirrored: their source repos are private and lovstudio.ai hands out a download only to accounts that own them. The mirror is the public copy of each free skill and has two consumers:
 
 - **Installer** — the `npx skills add lovstudio/skills` discovery flow (used internally by the `lovstudio` CLI) finds every skill in a single clone; that flow only resolves local paths in `.claude-plugin/marketplace.json`, not external `github` sources.
 - **Website** — lovstudio.ai renders a free skill's detail page and cases from its source repo when that repo is publicly readable, and otherwise falls back to `lovstudio/skills/main/skills/<name>/` (`SKILL.md`, `README.md`, `skill-card.yaml`, with relative images and links resolved inside the mirror).
@@ -19,7 +19,7 @@ For a free skill with a private source, the mirror is therefore its only public 
 .
 ├── README.md / README.en.md          # Human-readable catalog (CI-rendered between SKILLS:START/END)
 ├── skills.yaml                       # Machine-readable manifest — SOURCE OF TRUTH
-├── skills/<name>/                    # Free mirrors or encrypted paid bundles (generated distribution content)
+├── skills/<name>/                    # Free mirrors (generated distribution content)
 ├── .claude-plugin/marketplace.json   # Claude Code marketplace manifest (auto-rendered)
 ├── scripts/sync-skills.py            # Mirrors each free repo into ./skills/<name>/ (shallow clone + rsync)
 ├── scripts/sync-runtime-names.py      # Syncs runtime_name from mirrored SKILL.md frontmatter
@@ -30,11 +30,11 @@ For a free skill with a private source, the mirror is therefore its only public 
 └── .github/workflows/                # render-readme.yml runs sync → render-marketplace → render-readme
 ```
 
-**Edit `skills.yaml`, not the README table or marketplace.json.** Free mirrors and paid bundles under `skills/` are distribution outputs. CI regenerates the catalog and free mirrors on push and nightly. You can preview locally with `SKILLS_CLONE_PROTOCOL=ssh python3 scripts/sync-skills.py && python3 scripts/render-marketplace.py && python3 scripts/render-readme.py` (SSH lets the sync clone private sources with your own key).
+**Edit `skills.yaml`, not the README table or marketplace.json.** Free mirrors under `skills/` are distribution outputs. CI regenerates the catalog and free mirrors on push and nightly. You can preview locally with `SKILLS_CLONE_PROTOCOL=ssh python3 scripts/sync-skills.py && python3 scripts/render-marketplace.py && python3 scripts/render-readme.py` (SSH lets the sync clone private sources with your own key).
 
 ## Source Visibility and the Mirror
 
-- **Private by default.** Create every new `lovstudio/{name}-skill` source repo as private, free or paid. A free skill never needs a public source to be installed or shown on the website: both read it from `skills/<name>/`. The only entries that need a public source are paid skills with `public_source: true`, which install straight from their own repo and have no mirror.
+- **Private by default.** Create every new `lovstudio/{name}-skill` source repo as private, free or paid. A free skill never needs a public source to be installed or shown on the website: both read it from `skills/<name>/`. Paid skills never need one either: they are not mirrored, and lovstudio.ai serves owners a download of the private source.
 - **`pricing.visibility` is not repo visibility.** In `skills.yaml`, `public` / `internal` decides whether the catalog lists and mirrors an entry (internal entries are never mirrored); it says nothing about the source repo's GitHub visibility.
 - **Private sources need read access.** `scripts/sync-skills.py` clones with `SKILLS_SOURCE_TOKEN` in CI and with `SKILLS_CLONE_PROTOCOL=ssh` locally. When you add a private source, make sure that token can read it.
 - **Keep the mirror complete.** Every free, non-internal entry in `skills.yaml` must have a full copy of its skill directory under `skills/<name>/` on `main`: `SKILL.md`, `README.md`, `skill-card.yaml` when the source has one, and the images and references they link to. The website falls back to this copy, so a gap there is a 404 or a broken image for visitors. Don't hand-delete mirrored files or add `RSYNC_EXCLUDES` patterns that drop content the docs link to.
@@ -52,7 +52,7 @@ npx lovstudio skills add <paid-name>                                # paid: sign
 
 `npx lovstudio` (the `lovstudio` npm package, lovstudio-cli repo) is a thin wrapper:
 - `lovstudio skills add` resolves the unified `lovstudio/skills` catalog, gates paid entries through account sign-in and Credits redemption, then shells out to the underlying Skills installer.
-- Paid bundles remain encrypted on disk; the helper requests a decryption key only after the account entitlement is verified.
+- Paid Skills are not encrypted. After ownership is confirmed (Credits purchase or a license bound to the account), the CLI asks `lovstudio.ai/api/skills/download` for a short-lived archive of the private source repo and installs it as plain files. Paying controls who can download, nothing else.
 
 Both underlying CLIs still work and remain the actual implementation. **Do not advertise them in user-facing docs** — only `npx lovstudio` should appear in READMEs, SKILL.md, marketplace blurbs, blog posts, agentskills.io listings, etc.
 
@@ -68,7 +68,7 @@ skills:
   - name: any2pdf                       # skill short name (no prefix)
     runtime_name: lov-any2pdf           # exact SKILL.md frontmatter name used by installers/runtimes
     repo: lovstudio/any2pdf-skill       # GitHub repo (always lovstudio/{name}-skill)
-    paid: false                         # true = purchase required (independent of source-repo visibility)
+    paid: false                         # true = purchase-gated download from lovstudio.ai, never mirrored here
     category: "Document Conversion"     # display category
     version: "0.7.1"                    # from SKILL.md (optional, CI-synced)
     description: "Markdown → …"         # Agent-facing trigger copy (English, terse). CI-synced from GitHub repo description.
@@ -85,8 +85,7 @@ skills:
   creator/studio prefixes. Runtime IDs, installation slugs and paths remain
   separate. `sync-skills.py` applies these labels to mirrored display surfaces;
   `module-display-names.yaml` supplies names for embedded modules without
-  creating standalone catalog listings. Do not edit encrypted bytes for a
-  display-name update.
+  creating standalone catalog listings.
 - **`description`** — read by Claude Code / Agents to decide when to trigger the skill.
   Keep it professional, English, and terse (Agents have a skills-token budget).
   CI pulls this from each skill's GitHub repo description nightly (`GH_SYNC=1`) — so the repo
@@ -114,7 +113,7 @@ skills:
 3. Open a PR against this repo appending an entry to `skills.yaml`. **Don't touch the README table** — CI regenerates it from the manifest.
 4. After the catalog CI run on `main`, confirm `skills/<name>/` holds the complete skill directory (free skills), since the website renders private-source free skills from it.
 
-For **paid** skills: set `paid: true`; the source repo stays private unless the entry uses `public_source: true`.
+For **paid** skills: set `paid: true`. The source repo stays private, nothing is mirrored here, and step 4 does not apply.
 
 ## Historical Context
 

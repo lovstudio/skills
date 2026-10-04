@@ -11,20 +11,16 @@
     {
       "name": "design",
       "source": "./",
-      "description": "Design — 10 free + 4 paid (Credits redemption required).",
+      "description": "Design — 10 free skills bundled together.",
       "category": "Design",
       "skills": [
         "./skills/frontend-design",
         "./skills/branding-consistency",
         "./skills/maintain-partners",
         "./skills/find-logo",
-        "./skills/event-poster",
-        "./skills/visual-clone",
         "./skills/professional-portrait",
         "./skills/riso-portrait",
-        "./skills/professional-infographic",
         "./skills/mobile-infographic",
-        "./skills/oh-my-landingpage",
         "./skills/business-card",
         "./skills/gen-card",
         "./skills/image-decorator",
@@ -150,7 +146,7 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 32 free + 5 paid (Credits redemption required).",
+      "description": "General — 32 free skills bundled together.",
       "category": "General",
       "skills": [
         "./skills/image-translation-errata",
@@ -160,14 +156,11 @@
         "./skills/hanzi-lens",
         "./skills/professional-infographic",
         "./skills/fact-check",
-        "./skills/wdb-cli",
         "./skills/media-crawler",
-        "./skills/subtitle-freedom",
         "./skills/media-fetch",
         "./skills/china-website-filing",
         "./skills/describe-image",
         "./skills/personal-vocabulary",
-        "./skills/typeless-prompt",
         "./skills/search-twitter",
         "./skills/search-file",
         "./skills/praise-before-work",
@@ -181,7 +174,6 @@
         "./skills/output",
         "./skills/five",
         "./skills/think",
-        "./skills/wxmp-cli",
         "./skills/read-wechat-article",
         "./skills/xhs",
         "./skills/do-they-love-me",
@@ -190,8 +182,7 @@
         "./skills/list-videos",
         "./skills/share-session",
         "./skills/upload-image",
-        "./skills/xbti-creator",
-        "./skills/wdb-networkx-analysis"
+        "./skills/xbti-creator"
       ],
       "strict": false
     },
@@ -221,7 +212,7 @@
     {
       "name": "business",
       "source": "./",
-      "description": "Business — 11 free + 2 paid (Credits redemption required).",
+      "description": "Business — 11 free skills bundled together.",
       "category": "Business",
       "skills": [
         "./skills/bp",
@@ -229,12 +220,10 @@
         "./skills/bp-deck",
         "./skills/any2deck",
         "./skills/bp-polish",
-        "./skills/proposal",
         "./skills/solution-architect",
         "./skills/review-doc",
         "./skills/contract-review-pro",
         "./skills/expense-report",
-        "./skills/event-curator",
         "./skills/publish-event-onto-hdx",
         "./skills/harness-issue",
         "./skills/branding-consistency",
@@ -245,7 +234,7 @@
     {
       "name": "content-creation",
       "source": "./",
-      "description": "Content Creation — 15 free + 2 paid (Credits redemption required).",
+      "description": "Content Creation — 15 free skills bundled together.",
       "category": "Content Creation",
       "skills": [
         "./skills/branding-consistency",
@@ -256,8 +245,6 @@
         "./skills/document-illustrator",
         "./skills/image-creator",
         "./skills/deep-research",
-        "./skills/write-professional-book",
-        "./skills/wxmp-cracker",
         "./skills/style-clone",
         "./skills/anti-wechat-ai-check",
         "./skills/dev-blog",
@@ -275,12 +262,11 @@
     {
       "name": "academic",
       "source": "./",
-      "description": "Academic — 2 free + 1 paid (Credits redemption required).",
+      "description": "Academic — 2 free skills bundled together.",
       "category": "Academic",
       "skills": [
         "./skills/thesis-polish",
-        "./skills/translation-review",
-        "./skills/academic-translator"
+        "./skills/translation-review"
       ],
       "strict": false
     },

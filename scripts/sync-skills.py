@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Mirror skill repos into ./skills/<name>/ for `npx skills add` discovery.
 
-Four classes of skill:
+Three classes of skill:
 
   1. Free skills (paid: false)
      → Shallow-clone the source repo (private by default; see Env)
@@ -11,18 +11,11 @@ Four classes of skill:
        detail pages read private-source free skills from here, so it must
        carry the whole skill directory, not just SKILL.md.
 
-  2. Paid skills WITHOUT encrypted_bundle
-     → Skipped entirely. They show up in the README index for visibility
-       but can't be installed via `npx skills add`.
+  2. Paid skills (paid: true)
+     → Never mirrored. Their source repos are private; lovstudio.ai hands out
+       a download only to accounts that own the Skill.
 
-  3. Paid skills WITH encrypted_bundle: true
-     → ./skills/<name>/ is hand-maintained (committed directly: placeholder
-       SKILL.md + SKILL.md.enc + MANIFEST.enc.json + scripts/*.enc).
-     → The sync script protects these dirs from prune and does NOT clone.
-     → Publisher workflow: run pack-skill.py in the upstream skill repo,
-       copy dist/* here, commit.
-
-  4. Internal skills (pricing.visibility: internal)
+  3. Internal skills (pricing.visibility: internal)
      → Never mirrored. Their source would otherwise land in this public repo,
        which would make the website's staff-only gate cosmetic.
 
@@ -77,10 +70,6 @@ def load_skills() -> list[dict]:
 
 def free_skills(skills: list[dict]) -> list[dict]:
     return [s for s in skills if not s.get("paid") and not is_internal(s)]
-
-
-def encrypted_skills(skills: list[dict]) -> list[dict]:
-    return [s for s in skills if s.get("paid") and s.get("encrypted_bundle")]
 
 
 def installable_skill_names(skills: list[dict]) -> set[str]:
@@ -270,8 +259,7 @@ unified catalog:      lovstudio/skills
 def prune_stale(installable_names: set[str]) -> None:
     """Remove ./skills/<name>/ dirs for skills no longer installable.
 
-    A skill is "installable" if it's free OR it's a paid skill with
-    encrypted_bundle:true; internal skills are never installable. Anything
+    Only free, non-internal skills are installable from the mirror. Anything
     else in ./skills/ is stale.
     """
     if not MIRROR_ROOT.exists():
@@ -323,27 +311,11 @@ def main() -> int:
     skip_clone = os.environ.get("SKIP_CLONE") == "1"
     all_skills = load_skills()
     frees = free_skills(all_skills)
-    encs  = encrypted_skills(all_skills)
-    print(
-        f"Syncing {len(frees)} free + {len(encs)} encrypted-paid skills "
-        f"into {MIRROR_ROOT.relative_to(ROOT)}/"
-    )
+    print(f"Syncing {len(frees)} free skills into {MIRROR_ROOT.relative_to(ROOT)}/")
     MIRROR_ROOT.mkdir(exist_ok=True)
     prune_stale(installable_skill_names(all_skills))
     for s in frees:
         mirror_one(s, skip_clone)
-    # Encrypted paid skills are hand-committed — just verify they're present.
-    for s in encs:
-        dest = MIRROR_ROOT / s["name"]
-        manifest = dest / "MANIFEST.enc.json"
-        if manifest.exists():
-            print(f"  ✓ {s['name']} (encrypted bundle)")
-        else:
-            print(
-                f"  ⚠ {s['name']}: encrypted_bundle:true but no MANIFEST.enc.json "
-                f"at {dest.relative_to(ROOT)}/ — did you forget to commit dist/?",
-                file=sys.stderr,
-            )
     # Display metadata belongs to this catalog and must survive upstream re-sync.
     module_path = ROOT / 'module-display-names.yaml'
     module_names = yaml.safe_load(module_path.read_text()) if module_path.exists() else {}

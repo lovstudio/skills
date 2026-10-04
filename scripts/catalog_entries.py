@@ -17,10 +17,8 @@ def is_internal(skill: dict) -> bool:
 def is_installable(skill: dict) -> bool:
     """Whether the catalog owes this entry a payload under `./skills/<name>/`.
 
-    Free entries ship a plaintext mirror and paid entries ship an encrypted
-    bundle. Internal entries ship neither, and a public-source paid entry
-    installs straight from its own repository, so neither has a mirror to read.
+    Only free entries ship a mirror. Paid sources stay private and are handed
+    out by lovstudio.ai to accounts that own them; internal entries are never
+    published.
     """
-    if is_internal(skill):
-        return False
-    return not skill.get("paid") or bool(skill.get("encrypted_bundle"))
+    return not skill.get("paid") and not is_internal(skill)

@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.6.6] - 2026-10-04
+
+### Changed
+
+- cloud-split guidance: paid Skills are no longer encrypted, so the non-cloud option is a normal paid Skill whose owners download plain source.
+
 ## [4.6.5] - 2026-09-28
 
 ### Fixed

@@ -64,16 +64,13 @@ def validate(skills: list[dict]) -> list[str]:
     for s in skills:
         name = s["name"]
         pricing = s.get("pricing") or {}
-        public_source = s.get("public_source")
-        if public_source is not None and not isinstance(public_source, bool):
-            errors.append(f"{name}.public_source: must be a boolean")
-        if public_source:
-            if not s.get("paid"):
-                errors.append(f"{name}.public_source: only paid Skills may declare public-source delivery")
-            if s.get("encrypted_bundle"):
-                errors.append(f"{name}: public_source and encrypted_bundle are mutually exclusive")
-            if not isinstance(s.get("repo"), str) or not s["repo"].strip():
-                errors.append(f"{name}.public_source: repo is required")
+        # Paid Skills are private sources behind an entitlement-gated download;
+        # the old per-entry delivery modes no longer exist.
+        for key in ("encrypted_bundle", "public_source"):
+            if key in s:
+                errors.append(f"{name}.{key}: retired; paid Skills are delivered by lovstudio.ai after purchase")
+        if s.get("paid") and (not isinstance(s.get("repo"), str) or not s["repo"].strip()):
+            errors.append(f"{name}.repo: paid Skills need their private source repository")
         for key in FIAT_PRICE_KEYS.intersection(s):
             errors.append(f"{name}.{key}: public product prices must use Credits")
         for key in FIAT_PRICE_KEYS.intersection(pricing):

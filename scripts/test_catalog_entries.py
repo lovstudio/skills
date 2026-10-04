@@ -16,8 +16,7 @@ def load(filename, module_name):
 
 INTERNAL = {"name": "staff-tool", "pricing": {"visibility": "internal"}}
 FREE = {"name": "free-tool"}
-PAID_ENCRYPTED = {"name": "paid-bundle", "paid": True, "encrypted_bundle": True}
-PAID_PUBLIC_SOURCE = {"name": "paid-open", "paid": True, "public_source": True}
+PAID = {"name": "paid-tool", "paid": True, "repo": "lovstudio/paid-tool-skill"}
 
 
 class ClassificationTest(unittest.TestCase):
@@ -30,12 +29,9 @@ class ClassificationTest(unittest.TestCase):
         entry = {"name": "lovstudio-web", "paid": False, "pricing": {"visibility": "internal"}}
         self.assertFalse(catalog_entries.is_installable(entry))
 
-    def test_free_and_encrypted_paid_entries_are_installable(self):
+    def test_only_free_entries_are_mirrored(self):
         self.assertTrue(catalog_entries.is_installable(FREE))
-        self.assertTrue(catalog_entries.is_installable(PAID_ENCRYPTED))
-
-    def test_public_source_paid_entry_has_no_mirror(self):
-        self.assertFalse(catalog_entries.is_installable(PAID_PUBLIC_SOURCE))
+        self.assertFalse(catalog_entries.is_installable(PAID))
 
     def test_entry_without_pricing_block_is_not_internal(self):
         self.assertFalse(catalog_entries.is_internal(FREE))
@@ -47,7 +43,7 @@ class NoMirrorDemandedForInternalTest(unittest.TestCase):
 
     def test_internal_entry_reports_no_error(self):
         runtime = load("sync-runtime-names.py", "runtime_names_for_internal")
-        catalog = {"staff-tool": INTERNAL, "paid-open": PAID_PUBLIC_SOURCE}
+        catalog = {"staff-tool": INTERNAL, "paid-tool": PAID}
         names, errors = runtime.expected_runtime_names(catalog)
         self.assertEqual(errors, [])
         self.assertEqual(names, {})
@@ -78,3 +74,16 @@ class SharedDefinitionTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RetiredDeliveryFieldsTest(unittest.TestCase):
+    def test_encrypted_and_public_source_fields_are_rejected(self):
+        validate_deps = load("validate_deps.py", "validate_deps_retired")
+        for key in ("encrypted_bundle", "public_source"):
+            errors = validate_deps.validate([{**PAID, key: True}])
+            self.assertTrue(any(f".{key}: retired" in e for e in errors), errors)
+
+    def test_paid_entry_requires_a_source_repository(self):
+        validate_deps = load("validate_deps.py", "validate_deps_repo")
+        errors = validate_deps.validate([{"name": "paid-tool", "paid": True}])
+        self.assertTrue(any("paid-tool.repo" in e for e in errors), errors)

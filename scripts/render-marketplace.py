@@ -10,8 +10,8 @@ a useful tree of categories.
 
 Tradeoff: Claude Code's native `/plugin install <name>@lovstudio` now
 installs an entire category at a time. `npx lovstudio skills add` is our
-primary install path; paid entries are included only after they have an
-encrypted bundle and still require account entitlement at runtime.
+primary install path; paid entries are never listed here because their
+sources are private and download only for accounts that own them.
 
 Each skill's SKILL.md lives at ./skills/<skill-name>/. Plugins point at
 those paths via the `skills` array and use strict:false so Claude Code
@@ -43,7 +43,7 @@ OWNER = {"name": "Lovstudio", "email": "shawninjuly@gmail.com"}
 
 
 def load_installable_skills() -> tuple[list[dict], list[dict]]:
-    """Return (installable, all). Installable = free + encrypted-paid.
+    """Return (installable, all). Installable = free entries with a mirror.
     All is needed to resolve depends_on targets that may themselves be either class."""
     with YAML_PATH.open() as f:
         data = yaml.safe_load(f)
@@ -58,10 +58,7 @@ def load_installable_skills() -> tuple[list[dict], list[dict]]:
         for e in errors:
             print(f"  - {e}", file=sys.stderr)
         raise SystemExit("skills.yaml dependency validation failed")
-    installable = [
-        s for s in all_skills
-        if not s.get("paid") or s.get("encrypted_bundle")
-    ]
+    installable = [s for s in all_skills if not s.get("paid")]
     return installable, all_skills
 
 
