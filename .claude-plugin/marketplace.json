@@ -31,7 +31,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 105 free skills bundled together.",
+      "description": "Dev Tools — 106 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/env-management",
@@ -58,6 +58,7 @@
         "./skills/obsidian-reset-cache",
         "./skills/project-port",
         "./skills/clash-tun-doctor",
+        "./skills/iproyal-raylink",
         "./skills/ataru-indexing",
         "./skills/search-chat",
         "./skills/open-codex-session",

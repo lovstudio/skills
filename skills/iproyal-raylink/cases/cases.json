@@ -1,0 +1,23 @@
+[
+  {
+    "type": "case",
+    "title": "IPRoyal 单独配置连不上，接入 RayLink 后 AI 网站固定出口",
+    "description": "A mainland user had a RayLink subscription and an IPRoyal ISP static IP in Clash Verge Rev 2.5.7 on macOS. A standalone IPRoyal profile failed intermittently; the same proxy chained inside the RayLink profile worked. The chain step was turned into this Skill and replayed on a fresh-user sandbox and on the user's customized profile.",
+    "input": {
+      "items": [
+        "Clash Verge Rev 2.5.7 data directory with a RayLink subscription (groups RayLink 代理, AI 网站代理, TCP 稳定)",
+        "IPRoyal ISP dashboard string host:port:username:password supplied through IPROYAL_PROXY",
+        "Two script states: Clash Verge stock template, and an existing custom script"
+      ]
+    },
+    "prompt": "目前 raylink 里的 iproyal 可以连接，但 iproyal 直接作为配置不可以，为何，请修复；之后：把 iproyal 加入 raylink 这一步做成 skill，以在其他用户电脑上用",
+    "output": {
+      "items": [
+        "Diagnosis: direct IPRoyal is plaintext; GFW resets plus about 90 s port blackholing and 30–50% proxy refusals (SOCKS5 0x02 / HTTP 403); chained path 12/12",
+        "apply: stock script replaced, custom script wrapped; mihomo -t passed for both final configs",
+        "verify on a real mihomo 1.19.32 core: pass true, chained delay 322–333 ms, chatgpt.com trace IP equal to the IPRoyal address",
+        "remove restored the custom script byte-for-byte; rollback restored the newest backup"
+      ]
+    }
+  }
+]

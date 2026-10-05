@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **221 skills** — 203 Free + 18 Paid.
+> **222 skills** — 204 Free + 18 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -179,7 +179,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Check Balance](https://github.com/lovstudio/check-balance-skill) (`check-balance`) | See how much quota your accounts across multiple platforms (cc, codex, ds and more) have left, and when each limit resets. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Checkpoint](https://github.com/lovstudio/checkpoint-skill) (`checkpoint`) | Create a project checkpoint — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Checkpoint History](https://github.com/lovstudio/checkpoint-list-skill) (`checkpoint-list`) | List a project checkpoint history — requires: `branding-consistency` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | Diagnose Clash TUN failures from runtime evidence, apply reversible fixes, and verify the real application path. — related: `env-management` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | Diagnose Clash TUN failures from runtime evidence, apply reversible fixes, and verify the real application path. — related: `env-management`, `iproyal-raylink` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Claude Account Mover](https://github.com/lovstudio/claude-account-migrate-skill) (`claude-account-migrate`) | Switch Claude accounts and keep working in your old sessions. |
 | ![Free](https://img.shields.io/badge/Free-green) | [CLI Studio](https://github.com/lovstudio/cli-creator-skill) (`cli-creator`) | Turn a local project into an installable, tested CLI with JSON output backed by the real backend. |
 | ![Free](https://img.shields.io/badge/Free-green) | [API Studio](https://github.com/lovstudio/cli2anything-skill) (`cli2anything`) | Turn authorized observed APIs into verified contracts, SDKs, Swagger, and task-focused CLIs. |
@@ -230,6 +230,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Lovinsp Setup](https://github.com/lovstudio/integrate-lovinsp-skill) (`integrate-lovinsp`) | Integrate Lovinsp in a frontend project, including plain JS Vite DOM annotation — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Multimodal API Setup](https://github.com/lovstudio/integrate-lovstudio-llm-skill) (`integrate-lovstudio-llm`) | Use the LovStudio.AI OpenAI-compatible API for chat, speech-to-text, translation, TTS and realtime audio. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Web Capture Export](https://github.com/lovstudio/integrate-modern-screenshot-skill) (`integrate-modern-screenshot`) | Add one-click PNG export of a page's main content with modern-screenshot, matching on-screen rendering at 2x. |
+| ![Free](https://img.shields.io/badge/Free-green) | [IPRoyal Chain Exit](https://github.com/lovstudio/iproyal-raylink-skill) (`iproyal-raylink`) | Route AI sites through your IPRoyal static IP, carried by an encrypted RayLink node, verified on the running core and fully reversible. — related: `clash-tun-doctor` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Emoji Makeover](https://github.com/lovstudio/kill-emoji-skill) (`kill-emoji`) | Replace interface emoji with appropriate icons — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Website Legal Pages](https://github.com/lovstudio/legal-pages-skill) (`legal-pages`) | Draft website privacy and terms pages — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Workflow Studio](https://github.com/lovstudio/meta-command-skill) (`meta-command`) | Turn a repeated command workflow into a portable skill — requires: `branding-consistency` |

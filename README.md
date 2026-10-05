@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **221 个技能** — 203 个免费 + 18 个付费。
+> **222 个技能** — 204 个免费 + 18 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -178,7 +178,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Check Balance](https://github.com/lovstudio/check-balance-skill) (`check-balance`) | [额度体检](https://github.com/lovstudio/check-balance-skill) | 这个 skill 可以看到你多个平台（例如 cc、codex、ds 等）的账号的用量，以及什么时候重置。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Checkpoint](https://github.com/lovstudio/checkpoint-skill) (`checkpoint`) | [项目存档](https://github.com/lovstudio/checkpoint-skill) | 根据当前 Git 差异和历史记录保存项目里程碑及后续事项 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Checkpoint History](https://github.com/lovstudio/checkpoint-list-skill) (`checkpoint-list`) | [检查点回看](https://github.com/lovstudio/checkpoint-list-skill) | 汇总 Git 与项目日志中的检查点、时间范围和演进记录 — 依赖: `branding-consistency` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | [Clash 网络医生](https://github.com/lovstudio/clash-tun-doctor-skill) | 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。 — 相关: `env-management` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | [Clash 网络医生](https://github.com/lovstudio/clash-tun-doctor-skill) | 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。 — 相关: `env-management`, `iproyal-raylink` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Claude Account Mover](https://github.com/lovstudio/claude-account-migrate-skill) (`claude-account-migrate`) | [Claude 换号搬家](https://github.com/lovstudio/claude-account-migrate-skill) | 换了 Claude 账号，旧账号的会话照样能点开继续。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [CLI Studio](https://github.com/lovstudio/cli-creator-skill) (`cli-creator`) | [CLI 工坊](https://github.com/lovstudio/cli-creator-skill) | 把本地项目或当前目录转换为可安装、可测试、支持JSON的真实后端CLI；当用户说“给这个项目做CLI”“把应用变成命令行”或“buildaCLIforthisp |
 | ![Free](https://img.shields.io/badge/Free-green) | [API Studio](https://github.com/lovstudio/cli2anything-skill) (`cli2anything`) | [接口工坊](https://github.com/lovstudio/cli2anything-skill) | 把已授权观察到的网站 API 变成可验证的 OpenAPI、SDK、Swagger 与任务型 CLI。 |
@@ -229,6 +229,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Lovinsp Setup](https://github.com/lovstudio/integrate-lovinsp-skill) (`integrate-lovinsp`) | [Lovinsp 接入](https://github.com/lovstudio/integrate-lovinsp-skill) | 为现有前端项目幂等接入 Lovinsp（含无框架 Vite DOM 标注）并验证点击定位源码能力 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Multimodal API Setup](https://github.com/lovstudio/integrate-lovstudio-llm-skill) (`integrate-lovstudio-llm`) | [多模态 API 接入](https://github.com/lovstudio/integrate-lovstudio-llm-skill) | 通过LovStudio.AI的OpenAI-compatibleAPI完成文本对话、语音转文字、语音翻译、语音合成与Realtime音频会话；用户说“接入Lov |
 | ![Free](https://img.shields.io/badge/Free-green) | [Web Capture Export](https://github.com/lovstudio/integrate-modern-screenshot-skill) (`integrate-modern-screenshot`) | [网页截图导出](https://github.com/lovstudio/integrate-modern-screenshot-skill) | 给任意HTML/网页集成modern-screenshot，一键导出主体内容为PNG，截图与屏幕渲染一致（文字不换行）、2x适合网络传播；触发语包括“给网页加截 |
+| ![Free](https://img.shields.io/badge/Free-green) | [IPRoyal Chain Exit](https://github.com/lovstudio/iproyal-raylink-skill) (`iproyal-raylink`) | [IPRoyal 链式出口](https://github.com/lovstudio/iproyal-raylink-skill) | 把 IPRoyal 静态 IP 挂到 RayLink 加密节点后面，让 AI 网站稳定走固定出口，可验证、可回滚。 — 相关: `clash-tun-doctor` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Emoji Makeover](https://github.com/lovstudio/kill-emoji-skill) (`kill-emoji`) | [Emoji 换装](https://github.com/lovstudio/kill-emoji-skill) | 将界面中不合适的 emoji 替换为语义一致的图标或简洁文案 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Website Legal Pages](https://github.com/lovstudio/legal-pages-skill) (`legal-pages`) | [网站条款助手](https://github.com/lovstudio/legal-pages-skill) | 根据真实业务与数据处理事实生成隐私政策和服务条款页面草稿 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Workflow Studio](https://github.com/lovstudio/meta-command-skill) (`meta-command`) | [流程工坊](https://github.com/lovstudio/meta-command-skill) | 把重复操作封装成通用 Skill，并按需提供宿主 slash command 适配入口 — 依赖: `branding-consistency` |

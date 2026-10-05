@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replaces hours of debugging why a standalone IPRoyal profile fails from mainland China"
+basis: "Narrow configuration automation on top of subscriptions the user already pays for; free keeps it easy to share with other RayLink users"
+boundary: "Includes detect, apply, verify, remove and rollback for one RayLink profile; excludes proxy purchase, RayLink server changes and non-RayLink carriers"
+review_trigger: "Revisit if multi-carrier failover or RayLink server automation is added"
+confidence: internal

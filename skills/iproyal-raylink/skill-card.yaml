@@ -1,0 +1,91 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "Chains an IPRoyal ISP static residential proxy behind an encrypted RayLink group in Clash Verge Rev, exposes it as an exit for AI sites, verifies the exit IP on the running core, and supports remove and rollback."
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "MIT for the Skill source. IPRoyal, RayLink and Clash Verge Rev are third-party products under their own terms; users must hold their own subscriptions and comply with IPRoyal's acceptable use policy."
+  url: "../LICENSE"
+use_case:
+  audience: "Mainland China users of Clash Verge Rev who have a RayLink subscription and an IPRoyal ISP proxy"
+  scenario: "A standalone IPRoyal profile fails or is intermittent; the user wants AI sites to leave through the fixed IPRoyal IP reliably"
+  tasks:
+    - "Detect the RayLink profile and current script state"
+    - "Write a managed, idempotent script block with dialer-proxy chaining"
+    - "Reload Clash Verge and select the exit for AI sites"
+    - "Verify chained delay and AI trace IP; remove or roll back"
+deployment:
+  geography: global
+  environments:
+    - "macOS (automatic restart)"
+    - "Windows and Linux (manual restart)"
+requirements:
+  credentials: "IPRoyal proxy string supplied by the user through an environment variable or file; never stored in the Profile or printed"
+  dependencies: []
+  runtime:
+    - "Python 3.8+ standard library"
+    - "Clash Verge Rev 2.0+ with the mihomo core"
+    - "Optional: PyYAML, node"
+risks:
+  - risk: "Overwriting a user's custom Clash Verge script"
+    mitigation: "Refuses custom scripts unless --wrap-existing; dry run by default; timestamped backup; remove restores the original main byte-for-byte"
+  - risk: "Leaking IPRoyal credentials"
+    mitigation: "Read only from env or file; output masks user and password; script file written with mode 600; credentials excluded from Profile records"
+  - risk: "Proxy loop when a carrier group can reach the exit"
+    mitigation: "CLI rejects carrier in the exposed list; the block skips any group reachable from the carrier"
+  - risk: "Routing all traffic through IPRoyal unintentionally"
+    mitigation: "Only --select groups (default AI 网站代理) lead with the exit; other exposed groups just list it"
+  - risk: "Carrier blocked on some networks (merchant Wi-Fi blocking RayLink ports)"
+    mitigation: "verify reports chain failure explicitly; troubleshooting documents the server-side 443 remedy"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Why a carrier is required, and troubleshooting"
+    path: "references/why-chain.md"
+output:
+  types:
+    - "Clash Verge profile script with a managed block"
+    - "Backup directory with manifest"
+    - "Verification report"
+  formats:
+    - "JavaScript"
+    - "JSON"
+  parameters:
+    - "--carrier, --expose, --select, --type, --name, --exit-group, --wrap-existing, --restart, --apply"
+  validation:
+    - "node --check before writing when node exists"
+    - "verify: exit group loaded, chained delay test succeeds, trace IP equals the IPRoyal address"
+  description: "A reloaded Clash Verge runtime where AI 网站代理 uses IPRoyal 出口, carried by a RayLink TCP group, with a pass/fail verification report."
+ethical_considerations: "Intended for users configuring their own subscriptions on their own devices. It does not bypass organizational policy, buy services, or share credentials. Users remain responsible for IPRoyal's terms and local regulations."
+dimensions:
+  - id: correctness
+    label: "Exit correctness"
+    description: "AI traffic leaves through the IPRoyal address via the RayLink carrier"
+    evidence: "Sandbox runs on a real mihomo 1.19.32 core: verify pass, trace IP equal to the IPRoyal address, chained delay 322–333 ms; mihomo -t passed for both script states"
+    score: null
+  - id: reversibility
+    label: "Safety and reversibility"
+    description: "Dry run by default, backups on every write, clean removal"
+    evidence: "remove restored a wrapped custom script byte-for-byte; rollback restored the newest backup; custom scripts refused without --wrap-existing"
+    score: null
+  - id: portability
+    label: "Portability"
+    description: "Runs on other users' machines without extra packages or private paths"
+    evidence: "Standard library only; platform data-dir resolution; Unix socket and TCP controller discovery; RayLink profile auto-detection by group names"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Narrow configuration automation for an existing paid setup; value is saved debugging time rather than new capability"
+  boundary: "Includes detection, apply, verify, remove and rollback for one RayLink profile; excludes buying proxies, server-side RayLink changes and non-RayLink carriers"
+  review_trigger: "Revisit if it grows multi-carrier failover or server-side RayLink automation"
+  confidence: internal
+distribution:
+  status: local-only
+  paid: []
+  free:
+    - github
+    - lovstudio

@@ -3877,6 +3877,7 @@ skills:
   tagline_zh: 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。
   related:
   - env-management
+  - iproyal-raylink
   pricing:
     model: free_entry
     visibility: public
@@ -3907,6 +3908,52 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material
       change in support cost.
     card_path: pricing-cards/clash-tun-doctor.md
+- name: iproyal-raylink
+  runtime_name: lov-iproyal-raylink
+  display_name: IPRoyal Chain Exit
+  updated_at: 2026-10-05 17:49:31+00:00
+  repo: lovstudio/iproyal-raylink-skill
+  name_zh: IPRoyal 链式出口
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: Chain an IPRoyal ISP static IP behind RayLink in Clash Verge Rev so AI
+    sites exit via the fixed IP; dry-run, verify, remove and rollback.
+  tagline_en: Route AI sites through your IPRoyal static IP, carried by an encrypted
+    RayLink node, verified on the running core and fully reversible.
+  tagline_zh: 把 IPRoyal 静态 IP 挂到 RayLink 加密节点后面，让 AI 网站稳定走固定出口，可验证、可回滚。
+  related:
+  - clash-tun-doctor
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码与当前版本说明
+    delivery_unit_en: Public Skill source and current-version notes
+    value_zh: 把 IPRoyal 静态 IP 挂到 RayLink 加密节点后面，让 AI 网站稳定走固定出口，可验证、可回滚。
+    value_en: Route AI sites through an IPRoyal static IP carried by an encrypted RayLink
+      node, verified on the running core and reversible.
+    anchor_zh: 省去排查“IPRoyal 单独配置为何连不上”的半天到一天，以及手工改脚本、重启、验证的往返。
+    anchor_en: Saves half a day to a day of debugging why a standalone IPRoyal profile
+      fails, plus manual script edits, restarts and checks.
+    basis_zh: 建立在用户已付费的订阅之上的小型配置自动化，免费以便分享给其他 RayLink 用户并积累使用证据。
+    basis_en: Small configuration automation on top of subscriptions users already pay
+      for; free to share with other RayLink users and gather usage evidence.
+    boundary_zh: 只处理一个 RayLink 配置的接入、验证、移除与回滚；不含购买代理、RayLink 服务端改造或其他机场承载。
+    boundary_en: Covers attach, verify, remove and rollback for one RayLink profile;
+      excludes buying proxies, RayLink server changes and non-RayLink carriers.
+    maintenance_zh: 随 Clash Verge Rev、mihomo 与 RayLink 订阅结构变化复评。
+    maintenance_en: Review when Clash Verge Rev, mihomo or the RayLink subscription structure
+      changes.
+    confidence: entry
+    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
+    review_trigger_en: Review after a version change, 10 real uses, or a material
+      change in support cost.
+    card_path: pricing-cards/iproyal-raylink.md
 - name: subtitle-freedom
   runtime_name: lov-subtitle-freedom
   skillpay_product_id: P0806000201813011
