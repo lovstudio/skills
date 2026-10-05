@@ -9241,7 +9241,7 @@ skills:
   name_zh: Claude 换号搬家
   paid: false
   category: Dev Tools
-  version: 0.1.0
+  version: 0.1.1
   description: "Move Claude desktop Code and Cowork sessions from a retired account to the current one, skip title-only orphans, and protect transcript retention."
   tagline_en: Switch Claude accounts and keep working in your old sessions.
   tagline_zh: 换了 Claude 账号，旧账号的会话照样能点开继续。
