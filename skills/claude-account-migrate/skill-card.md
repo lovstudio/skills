@@ -57,7 +57,7 @@ files are unchanged, the source is untouched, and the app lists a migrated sessi
 
 ## Skill Version
 
-0.1.0
+0.1.1
 
 ## Ethical Considerations
 

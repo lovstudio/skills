@@ -7,7 +7,7 @@ license: MIT
 compatibility: "Python 3.9+ standard library. Verified with the Claude desktop app on macOS; other platforms need --data-dir."
 metadata:
   author: skill-publisher
-  version: "0.1.0"
+  version: "0.1.1"
   card_standard: lovstudio/skill-card/v1
   content_class: deterministic-output
   display_name_zh: "Claude 换号搬家"
@@ -75,7 +75,8 @@ Read `references/skill-composition.md` before routing to an adjacent capability.
 
 ```bash
 export SKILL_DIR="${SKILL_DIR:-<installed lov-claude-account-migrate directory>}"
-CAM="python3 $SKILL_DIR/scripts/claude_account_migrate.py"
+# A function, not a string variable: zsh does not word-split an unquoted $CAM.
+CAM() { python3 "$SKILL_DIR/scripts/claude_account_migrate.py" "$@"; }
 ```
 
 The script defaults to the macOS desktop data directory and to `$CLAUDE_CONFIG_DIR`
@@ -85,7 +86,7 @@ or the home `.claude` directory for transcripts. On other platforms pass
 ### Step 1: Scan accounts (read-only)
 
 ```bash
-$CAM scan
+CAM scan
 ```
 
 Report per account: whether it is current, the activity date range, Code session
@@ -97,7 +98,7 @@ the source account remains ambiguous.
 ### Step 2: Plan the migration (read-only)
 
 ```bash
-$CAM migrate --from <old account uuid | prefix | email>
+CAM migrate --from <old account uuid | prefix | email>
 ```
 
 `--to` defaults to the desktop app's current account. Explain the plan in plain
@@ -109,7 +110,7 @@ be opened or resumed; copy them only when the user wants the titles, using
 ### Step 3: Apply
 
 ```bash
-$CAM migrate --from <old account> --apply
+CAM migrate --from <old account> --apply
 ```
 
 The copy is additive: existing target files are never overwritten, the source
@@ -137,8 +138,8 @@ account the user wants to keep.
   Cowork session. For Cowork sessions that already belong to an account:
 
 ```bash
-$CAM retention --account current          # plan
-$CAM retention --account current --apply  # write
+CAM retention --account current          # plan
+CAM retention --account current --apply  # write
 ```
 
 ### Step 6: Report

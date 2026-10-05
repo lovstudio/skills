@@ -1,6 +1,6 @@
 # Claude 换号搬家 · Claude Account Mover
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 换了 Claude 桌面版账号后，把旧账号的 Code 会话和 Cowork 会话复制到当前账号，
 在侧边栏里直接点开继续；顺带找出已经丢失对话记录的空壳会话，并把 Cowork 会话
