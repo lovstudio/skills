@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **222 skills** — 204 Free + 18 Paid.
+> **223 skills** — 204 Free + 19 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -262,9 +262,10 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Shell Shortcuts](https://github.com/lovstudio/zsh-alias-skill) (`zsh-alias`) | Add a zsh alias or function to ~/.zshrc idempotently and safely. |
 | **Video Creation** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Shrink](https://github.com/lovstudio/compress-video-skill) (`compress-video`) | Shrink a video as far as possible without visible quality loss, with quality presets, size targets and VMAF gates. |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Video Studio](https://github.com/lovstudio/media-creator-skill) (`media-creator`) | Turn recordings and Screen Studio projects into reviewable video, then deliver approved horizontal and vertical videos, covers, and quality reports. — requires: `branding-consistency`; related: `media-publisher` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Motion Atlas](https://github.com/lovstudio/film-atlas-skill) (`film-atlas`) | Turn a topic into a no-footage motion-design film, one visual language per chapter, delivered in horizontal and vertical with covers and QC. — requires: `branding-consistency`; related: `media-creator`, `media-publisher` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Video Studio](https://github.com/lovstudio/media-creator-skill) (`media-creator`) | Turn recordings and Screen Studio projects into reviewable video, then deliver approved horizontal and vertical videos, covers, and quality reports. — requires: `branding-consistency`; related: `media-publisher`, `film-atlas` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Prep](https://github.com/lovstudio/media-preprocessor-skill) (`media-preprocessor`) | Enhance long recordings and organize useful segments with verified source timecodes. — requires: `branding-consistency` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Video Publisher](https://github.com/lovstudio/media-publisher-skill) (`media-publisher`) | Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates. — requires: `branding-consistency`; related: `media-creator` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Video Publisher](https://github.com/lovstudio/media-publisher-skill) (`media-publisher`) | Preserve the user's final copy while publishing to WeChat Channels or Bilibili with cover, confirmation, and status gates. — requires: `branding-consistency`; related: `film-atlas`, `media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Camera Media Keeper](https://github.com/lovstudio/migrate-camera-media-skill) (`migrate-camera-media`) | Transfer camera media to SSD, verify every file, and keep an auditable copy report. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Channels Publisher](https://github.com/lovstudio/publish-wechat-channels-skill) (`publish-wechat-channels`) | Publish WeChat Channels videos with preflight, field readback, and status verification. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Chapters](https://github.com/lovstudio/video-chapter-skill) (`video-chapter`) | Plan chapters, tune the progress bar in React Studio, then export an overlay, final video, or editor package. |
