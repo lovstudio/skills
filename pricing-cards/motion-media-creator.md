@@ -1,6 +1,6 @@
 # 动态图志 · Pricing Card
 
-版本：0.9.0（目录 ID `motion-media-creator`、调用 ID `lov-motion-media-creator`；0.9.0 前为 `film-atlas` / `lov-film-atlas`）。建议价与首发价：1,394 Credits；当前价格带：1,394–2,099 Credits。LovStudio 官网一次性购买，源码私有，购买后按版本下载完整文件。
+版本：0.9.1（目录 ID `motion-media-creator`、调用 ID `lov-motion-media-creator`；0.9.0 前为 `film-atlas` / `lov-film-atlas`）。建议价与首发价：1,394 Credits；当前价格带：1,394–2,099 Credits。LovStudio 官网一次性购买，源码私有，购买后按版本下载完整文件。
 
 无实拍，把一个主题沿时间、地图、图鉴、工序或尺度分章，做成每章一种视觉、带旁白（TTS 或真人原声）与大字幕的动态设计短片，16:9 成片（可加 9:16）、16:9 / 4:3 / 3:4 三比例封面与质检一次交付。适合没有实拍素材、想用动态设计讲清一段历史或一个主题的创作者与品牌。
 

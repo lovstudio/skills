@@ -2530,7 +2530,7 @@ skills:
   paid: true
   price_credits: 1394
   category: Video Creation
-  version: 0.9.0
+  version: 0.9.1
   description: "Motion Atlas: no-footage motion-design films told chapter by chapter
     along one axis (time, map, catalogue, process, scale), with chapter cards and
     progress HUD, TTS or own-voice narration with large (optionally bilingual) subtitles,
