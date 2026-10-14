@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **223 skills** — 204 Free + 19 Paid.
+> **224 skills** — 204 Free + 20 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -261,6 +261,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [XBTI Gallery](https://github.com/lovstudio/xbti-gallery-skill) (`xbti-gallery`) | Browse a gallery of XBTI personality tests — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Shell Shortcuts](https://github.com/lovstudio/zsh-alias-skill) (`zsh-alias`) | Add a zsh alias or function to ~/.zshrc idempotently and safely. |
 | **Video Creation** | | |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [3D Motion Atlas](https://github.com/lovstudio/3d-motion-media-creator-skill) (`3d-motion-media-creator`) | Create chapter-based 3D process, product breakdown and scale films alongside clearly labeled real-world references. — requires: `branding-consistency`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Shrink](https://github.com/lovstudio/compress-video-skill) (`compress-video`) | Shrink a video as far as possible without visible quality loss, with quality presets, size targets and VMAF gates. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Video Studio](https://github.com/lovstudio/media-creator-skill) (`media-creator`) | Turn recordings and Screen Studio projects into reviewable video, then deliver approved horizontal and vertical videos, covers, and quality reports. — requires: `branding-consistency`; related: `media-publisher`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Prep](https://github.com/lovstudio/media-preprocessor-skill) (`media-preprocessor`) | Enhance long recordings and organize useful segments with verified source timecodes. — requires: `branding-consistency` |
