@@ -9374,3 +9374,31 @@ skills:
     review_trigger_zh: 累计 10 次真实迁移、桌面版存储结构变化或官方推出账号迁移时复评。
     review_trigger_en: Review after 10 real migrations, a desktop storage layout change, or an official account migration feature.
     card_path: pricing-cards/claude-account-migrate.md
+- name: 3d-motion-media-creator
+  runtime_name: lov-3d-motion-media-creator
+  display_name: 3D Motion Atlas
+  repo: lovstudio/3d-motion-media-creator-skill
+  name_zh: 三维图志
+  paid: true
+  category: Video Creation
+  version: 0.1.1
+  updated_at: '2026-10-14'
+  description: '三维图志 · 3D Motion Atlas: product-film 3D chapters with three.js/R3F in Remotion, on top
+    of lov-motion-media-creator''s narration, music, covers and delivery pipeline.'
+  tagline_en: Create chapter-based 3D process, product breakdown and scale films alongside clearly labeled
+    real-world references.
+  tagline_zh: 没有实拍也能把工序、产品构造与尺度做成三维分章短片，示意画面与真实资料清楚并置。
+  depends_on:
+  - branding-consistency
+  - motion-media-creator
+  pricing:
+    model: vip_membership
+    visibility: public
+    delivery_unit_zh: VIP Membership 全套 Skill 权益中的三维片型，与动态图志基座一起使用，不单独售卖。
+    delivery_unit_en: The 3D film format in the complete VIP Membership Skill bundle; use with Motion
+      Atlas, with no separate purchase.
+    basis_zh: 随现行 VIP Membership 提供，不设单项价格。
+    basis_en: Included in the existing VIP Membership, with no individual Skill price.
+    boundary_zh: 包含三维起步层、场景工具库、风格语法、渲染与授权规则；不含 GPU、第三方服务费用或人工代制作。
+    boundary_en: Includes the 3D starter layer, scene kit, style, rendering and licensing rules; excludes
+      GPU, third-party service fees and managed production.

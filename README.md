@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **223 个技能** — 204 个免费 + 19 个付费。
+> **224 个技能** — 204 个免费 + 20 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -260,6 +260,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [XBTI Gallery](https://github.com/lovstudio/xbti-gallery-skill) (`xbti-gallery`) | [XBTI 图鉴](https://github.com/lovstudio/xbti-gallery-skill) | 从已核实的社区地址或仓库列出可访问的 XBTI 人格测试案例 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Shell Shortcuts](https://github.com/lovstudio/zsh-alias-skill) (`zsh-alias`) | [终端快捷指令](https://github.com/lovstudio/zsh-alias-skill) | Addazshalias/functiontotheuser's~/.zshrc,idempotentlyandsafely.SupportsbothASCII |
 | **Video Creation** | | | |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [3D Motion Atlas](https://github.com/lovstudio/3d-motion-media-creator-skill) (`3d-motion-media-creator`) | [三维图志](https://github.com/lovstudio/3d-motion-media-creator-skill) | 没有实拍也能把工序、产品构造与尺度做成三维分章短片，示意画面与真实资料清楚并置。 — 依赖: `branding-consistency`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Shrink](https://github.com/lovstudio/compress-video-skill) (`compress-video`) | [视频瘦身](https://github.com/lovstudio/compress-video-skill) | 把指定视频压到尽可能小且画质不明显下降：默认HEVCCRF28保留分辨率，可选质量档、目标体积、VMAF画质门禁与替换原文件模式 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Video Studio](https://github.com/lovstudio/media-creator-skill) (`media-creator`) | [天才剪辑师](https://github.com/lovstudio/media-creator-skill) | 把录屏和 Screen Studio 源工程整理为可审校视频，以批准字幕生成横竖版成片、封面和质检报告。 — 依赖: `branding-consistency`; 相关: `media-publisher`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Prep](https://github.com/lovstudio/media-preprocessor-skill) (`media-preprocessor`) | [视频素材精整](https://github.com/lovstudio/media-preprocessor-skill) | 把长实录提亮、按内容整理，交付可剪素材与源时间码。 — 依赖: `branding-consistency` |
