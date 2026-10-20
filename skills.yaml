@@ -1653,7 +1653,7 @@ skills:
   tagline_en: Write a full multi-chapter book — technical, tutorial, or monograph
     — from an outline.
   tagline_zh: 从大纲开始，逐章写出一本完整的书，技术、教程、专著多种风格。
-  version: 0.4.2
+  version: 0.6.0
   skillpay_product_id: P0806000200846058
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQQ
   price_credits: 703
@@ -1665,29 +1665,21 @@ skills:
     price_range_credits:
     - 703
     - 1394
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the
-      current version
-    value_zh: 从大纲开始，逐章写出一本完整的书，技术、教程、专著多种风格。
-    value_en: Write a full multi-chapter book — technical, tutorial, or monograph
-      — from an outline.
-    anchor_zh: 一次交付通常可省下 1 小时至一天的研究、编排、配图或发布准备。
-    anchor_en: A run typically saves one hour to a day of research, editing, illustration,
-      or publishing preparation.
-    basis_zh: 按能继续编辑、发布或复用的内容成品定价，重点是流程完整和证据可追溯。
-    basis_en: Priced around content that can be edited, published, or reused, with
-      emphasis on a complete workflow and traceable evidence.
-    boundary_zh: 结果质量取决于素材、事实和品牌约束；平台账号、第三方模型和发布操作按实际条件处理。
-    boundary_en: Quality depends on source material, facts, and brand constraints;
-      platform accounts, third-party models, and publishing operations follow actual
-      conditions.
-    maintenance_zh: 随平台规则、内容格式、模型和素材库变化复评。
-    maintenance_en: Review when platform rules, content formats, models, or asset
-      libraries change.
+    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的排版脚本、模板与使用说明
+    delivery_unit_en: "One complete Skill with the current version's build scripts, templates, and usage notes"
+    value_zh: 从大纲开始逐章写完一本书，并排出 PDF 定稿与可编辑的 DOCX 书稿。
+    value_en: Write a full multi-chapter book from an outline and deliver a typeset PDF plus an editable DOCX manuscript.
+    anchor_zh: 省下自己搭建中文书籍排版管线、反复对齐长书前后文的时间；一本 327 页的成书从大纲到 PDF 与 DOCX 定稿约 18 小时。
+    anchor_en: Saves building a Chinese book typesetting pipeline and re-aligning a long manuscript; a 327-page book went from outline to final PDF and DOCX in about 18 hours.
+    basis_zh: 按能直接交付的整本书稿与排版结果定价，排版规则来自真实成书的逐页验收。
+    basis_en: Priced on a finished, typeset manuscript; the typesetting rules come from page-by-page review of a real book.
+    boundary_zh: 书的质量取决于选题、素材与事实核验；构建需要 pandoc、xelatex 和 Python 依赖，默认使用 macOS 自带字体。
+    boundary_en: Book quality depends on the topic, sources, and fact-checking; builds need pandoc, xelatex, and Python packages, with macOS system fonts by default.
+    maintenance_zh: 随 pandoc、TeX、Word 格式变化和新书验收中发现的排版问题更新。
+    maintenance_en: Updated as pandoc, TeX, and Word formats change and as new books surface typesetting issues.
     confidence: medium
-    review_trigger_zh: 版本变化、连续 10 次真实使用或支持成本明显变化时复评。
-    review_trigger_en: Review after a version change, 10 real uses, or a material
-      change in support cost.
+    review_trigger_zh: 其他用户完成 3 本书、10 次付费安装、0.7.0 版本、平均支持超过 30 分钟或到 2027-04-20 时复评。
+    review_trigger_en: Review after 3 books finished by other users, 10 paid installs, version 0.7.0, average support above 30 minutes, or 2027-04-20.
     card_path: pricing-cards/write-professional-book.md
 - name: wxmp-cracker
   runtime_name: lov-wxmp-cracker
