@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **224 个技能** — 204 个免费 + 20 个付费。
+> **225 个技能** — 204 个免费 + 21 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -262,11 +262,12 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | **Video Creation** | | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [3D Motion Atlas](https://github.com/lovstudio/3d-motion-media-creator-skill) (`3d-motion-media-creator`) | [三维图志](https://github.com/lovstudio/3d-motion-media-creator-skill) | 没有实拍也能把工序、产品构造与尺度做成三维分章短片，示意画面与真实资料清楚并置。 — 依赖: `branding-consistency`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Shrink](https://github.com/lovstudio/compress-video-skill) (`compress-video`) | [视频瘦身](https://github.com/lovstudio/compress-video-skill) | 把指定视频压到尽可能小且画质不明显下降：默认HEVCCRF28保留分辨率，可选质量档、目标体积、VMAF画质门禁与替换原文件模式 |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Video Studio](https://github.com/lovstudio/media-creator-skill) (`media-creator`) | [天才剪辑师](https://github.com/lovstudio/media-creator-skill) | 把录屏和 Screen Studio 源工程整理为可审校视频，以批准字幕生成横竖版成片、封面和质检报告。 — 依赖: `branding-consistency`; 相关: `media-publisher`, `motion-media-creator` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Interview Short](https://github.com/lovstudio/interview-media-creator-skill) (`interview-media-creator`) | [采访短片](https://github.com/lovstudio/interview-media-creator-skill) | 把一场手机采访剪成 2–4 分钟的视频号竖版短片：被访者原话冷开场、5 章重排、提问卡与大字幕、人名条、配乐与封面 A/B 一次交付。 — 依赖: `branding-consistency`; 相关: `media-creator`, `media-publisher`, `motion-media-creator` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Video Studio](https://github.com/lovstudio/media-creator-skill) (`media-creator`) | [天才剪辑师](https://github.com/lovstudio/media-creator-skill) | 把录屏和 Screen Studio 源工程整理为可审校视频，以批准字幕生成横竖版成片、封面和质检报告。 — 依赖: `branding-consistency`; 相关: `interview-media-creator`, `media-publisher`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Prep](https://github.com/lovstudio/media-preprocessor-skill) (`media-preprocessor`) | [视频素材精整](https://github.com/lovstudio/media-preprocessor-skill) | 把长实录提亮、按内容整理，交付可剪素材与源时间码。 — 依赖: `branding-consistency` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Video Publisher](https://github.com/lovstudio/media-publisher-skill) (`media-publisher`) | [视频分发助手](https://github.com/lovstudio/media-publisher-skill) | 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。 — 依赖: `branding-consistency`; 相关: `motion-media-creator`, `media-creator` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Video Publisher](https://github.com/lovstudio/media-publisher-skill) (`media-publisher`) | [视频分发助手](https://github.com/lovstudio/media-publisher-skill) | 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。 — 依赖: `branding-consistency`; 相关: `interview-media-creator`, `media-creator`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Camera Media Keeper](https://github.com/lovstudio/migrate-camera-media-skill) (`migrate-camera-media`) | [相机素材管家](https://github.com/lovstudio/migrate-camera-media-skill) | 把相机素材完整转存到 SSD，逐文件校验，并留下可复查的转存报告。 — 依赖: `branding-consistency` |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Motion Atlas](https://github.com/lovstudio/motion-media-creator-skill) (`motion-media-creator`) | [动态图志](https://github.com/lovstudio/motion-media-creator-skill) | 无实拍，把一个主题沿时间、地图、图鉴、工序或尺度分章，做成每章一种视觉、带旁白与大字幕的动态设计短片，16:9 成片、三比例封面与质检一次交付。 — 依赖: `branding-consistency`; 相关: `media-creator`, `media-publisher` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Motion Atlas](https://github.com/lovstudio/motion-media-creator-skill) (`motion-media-creator`) | [动态图志](https://github.com/lovstudio/motion-media-creator-skill) | 无实拍，把一个主题沿时间、地图、图鉴、工序或尺度分章，做成每章一种视觉、带旁白与大字幕的动态设计短片，16:9 成片、三比例封面与质检一次交付。 — 依赖: `branding-consistency`; 相关: `interview-media-creator`, `media-creator`, `media-publisher` |
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Channels Publisher](https://github.com/lovstudio/publish-wechat-channels-skill) (`publish-wechat-channels`) | [视频号发布助手](https://github.com/lovstudio/publish-wechat-channels-skill) | 通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Chapters](https://github.com/lovstudio/video-chapter-skill) (`video-chapter`) | [视频章节师](https://github.com/lovstudio/video-chapter-skill) | 从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Stills](https://github.com/lovstudio/video-moments-skill) (`video-moments`) | [精彩定格](https://github.com/lovstudio/video-moments-skill) | 从课程和活动视频挑选真实瞬间，完成色彩还原与统一提亮，交付可回溯的照片组。 — 依赖: `branding-consistency` |

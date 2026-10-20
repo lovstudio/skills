@@ -2514,6 +2514,7 @@ skills:
   depends_on:
   - branding-consistency
   related:
+  - interview-media-creator
   - media-creator
   - media-publisher
   display_name: Motion Atlas
@@ -2565,11 +2566,63 @@ skills:
     review_trigger_en: Review after 30 launch days, 10 real uses, a major version change,
       or a material change in per-buyer support cost.
     card_path: pricing-cards/motion-media-creator.md
+- name: interview-media-creator
+  runtime_name: lov-interview-media-creator
+  depends_on:
+  - branding-consistency
+  related:
+  - media-creator
+  - media-publisher
+  - motion-media-creator
+  display_name: Interview Short
+  repo: lovstudio/interview-media-creator-skill
+  name_zh: 采访短片
+  paid: true
+  category: Video Creation
+  version: 0.2.0
+  description: "Interview Short: edit a phone interview into a 2–4 min vertical WeChat
+    Channels short with a cold open from the interviewee's own words, ~5 chapters,
+    question cards, captions, name tag, generated score, A/B covers, QC and delivery
+    report."
+  tagline_en: Turn one phone interview into a 2–4 minute vertical short that opens on
+    the guest's own words, with chapters, question cards, captions, music and A/B covers.
+  tagline_zh: 把一场手机采访剪成 2–4 分钟的视频号竖版短片：被访者原话冷开场、5 章重排、提问卡与大字幕、人名条、配乐与封面 A/B 一次交付。
+  pricing:
+    model: vip_membership
+    visibility: public
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的片型语法、流水线门禁、可直接起步的工程模板与真实案例
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with the current
+      film grammar, pipeline gates, a ready-to-run starter project, and real cases
+    value_zh: 把一场手机采访剪成 2–4 分钟的视频号竖版短片，原话冷开场、分章、提问卡与大字幕、配乐、封面与质检一次交付。
+    value_en: Turn one phone interview into a 2–4 minute vertical short with a cold
+      open from the guest's own words, chapters, captions, music, covers and QC.
+    anchor_zh: 一条当天可发的采访短片：省去转写对时、剪口核验、包装组件与混音门禁的摸索；外包同类短视频剪辑通常按条计价。
+    anchor_en: A same-day interview short without working out transcription timing,
+      cut checks, packaging components and mix gates from scratch; outsourced edits
+      of this kind are usually priced per video.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits；必需依赖天才剪辑师同在会员权益中。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Its required
+      dependency, Video Studio, is included in the same membership. Membership pricing
+      follows the current plan.
+    boundary_zh: 覆盖素材盘点、双模型转写与剪口核验、导演阐述、字幕与包装、配乐与混音门禁、封面 A/B 与交付质检；AI 配乐等第三方服务费用、字体商用授权、人工代剪与代发布另计。
+    boundary_en: Covers footage inventory, two-model transcription and cut checks, a
+      director's statement, captions and packaging, music and mix gates, A/B covers,
+      and delivery QC; third-party AI music fees, font licensing, manual editing,
+      and publishing are separate.
+    maintenance_zh: 随 Remotion 主版本、天才剪辑师共享契约、平台交付规范与真实使用反馈复评。
+    maintenance_en: Review when Remotion major versions, the Video Studio shared contract,
+      platform delivery rules, or real-use feedback change.
+    confidence: low
+    review_trigger_zh: 会员权益范围调整、10 次真实使用、版本大改或依赖契约变化时复评。
+    review_trigger_en: Review when membership scope changes, after 10 real uses, a
+      major version change, or a change in the dependency contract.
+    card_path: pricing-cards/interview-media-creator.md
 - name: media-creator
   runtime_name: lov-media-creator
   depends_on:
   - branding-consistency
   related:
+  - interview-media-creator
   - media-publisher
   - motion-media-creator
   updated_at: '2026-09-07T15:04:06Z'
@@ -2630,8 +2683,9 @@ skills:
   depends_on:
   - branding-consistency
   related:
-  - motion-media-creator
+  - interview-media-creator
   - media-creator
+  - motion-media-creator
   version: 0.9.2
   description: Publish videos to WeChat Channels or Bilibili with media preflight,
     frozen user-edited descriptions, cover gates, final confirmation, and post-submit
