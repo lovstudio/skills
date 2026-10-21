@@ -2570,6 +2570,7 @@ skills:
   runtime_name: lov-interview-media-creator
   depends_on:
   - branding-consistency
+  - media-creator
   related:
   - media-creator
   - media-publisher
@@ -2579,7 +2580,7 @@ skills:
   name_zh: 采访短片
   paid: true
   category: Video Creation
-  version: 0.2.0
+  version: 0.2.1
   description: "Interview Short: edit a phone interview into a 2–4 min vertical WeChat
     Channels short with a cold open from the interviewee's own words, ~5 chapters,
     question cards, captions, name tag, generated score, A/B covers, QC and delivery
