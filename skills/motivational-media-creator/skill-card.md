@@ -1,4 +1,4 @@
-# 励志视频 · Motivational Film
+# 励志视频 · Motivational Film · Skill Card
 
 ## Description
 品牌原创励志片型：真实困境、一个有理由的选择、完整口播、分镜声音设计和权利可查的制作包。
