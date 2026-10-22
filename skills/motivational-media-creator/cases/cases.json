@@ -1,0 +1,25 @@
+[
+  {
+    "type": "case",
+    "title": "从频道研究委托建立品牌励志视频能力",
+    "description": "2026-10-22真实创建任务。公开下载受阻后获用户明确授权，补齐8条原片和英文VTT，完整解码、时间码图像取证与字幕/混音分析后修订Skill。",
+    "input": {
+      "items": [
+        "用户指定参考频道 https://www.youtube.com/@TheMiro0r",
+        "用户要求品牌专用励志视频Skill；品牌名称存Profile，不烘焙进通用逻辑"
+      ]
+    },
+    "prompt": "下载参考频道主要视频、分析创作手法并制作品牌专用励志视频Skill；衍生84秒拟拍演示用于检查工作流，不冒充用户亲历。",
+    "output": {
+      "items": [
+        "SKILL.md",
+        "references/reference-study.md",
+        "references/research-protocol.md",
+        "cases/original-demo/production.json",
+        "cases/original-demo/script.md",
+        "cases/original-demo/README.md"
+      ]
+    },
+    "status": "8条原片与英文VTT已取得并核验；32张接触表已实际查看；本地Skill据此修订。未连续全片观看或主观听音；84秒演示未拍摄、未渲染、未发布。"
+  }
+]

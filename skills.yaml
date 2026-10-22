@@ -2517,6 +2517,7 @@ skills:
   - interview-media-creator
   - media-creator
   - media-publisher
+  - motivational-media-creator
   display_name: Motion Atlas
   repo: lovstudio/motion-media-creator-skill
   name_zh: 动态图志
@@ -2626,6 +2627,7 @@ skills:
   - interview-media-creator
   - media-publisher
   - motion-media-creator
+  - motivational-media-creator
   updated_at: '2026-09-07T15:04:06Z'
   display_name: Video Studio
   repo: lovstudio/media-creator-skill
@@ -2687,6 +2689,7 @@ skills:
   - interview-media-creator
   - media-creator
   - motion-media-creator
+  - motivational-media-creator
   version: 0.9.2
   description: Publish videos to WeChat Channels or Bilibili with media preflight,
     frozen user-edited descriptions, cover gates, final confirmation, and post-submit
@@ -9449,3 +9452,52 @@ skills:
     boundary_zh: 包含三维起步层、场景工具库、风格语法、渲染与授权规则；不含 GPU、第三方服务费用或人工代制作。
     boundary_en: Includes the 3D starter layer, scene kit, style, rendering and licensing rules; excludes
       GPU, third-party service fees and managed production.
+- name: motivational-media-creator
+  runtime_name: lov-motivational-media-creator
+  display_name: Motivational Film
+  name_zh: 励志视频
+  repo: lovstudio/motivational-media-creator-skill
+  paid: false
+  category: Video Creation
+  version: 0.2.1
+  updated_at: '2026-10-22T07:02:10.829565Z'
+  description: Create original motivational-video production packages from brand briefs and verified evidence,
+    with narration, storyboards, sound design and rights checks.
+  tagline_en: Use Shougongchuan's creative standards to turn verified situations into original narration,
+    storyboards, sound design and a rights-checkable production package, not an automatically rendered
+    film.
+  tagline_zh: 按手工川的创作标准，把真实困境与选择整理成原创口播、分镜、声音设计及权利可查的制作包；不含自动拍摄、渲染、素材授权或平台发布。
+  depends_on:
+  - branding-consistency
+  related:
+  - media-creator
+  - motion-media-creator
+  - media-publisher
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    stable_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本Skill包，含工作流、模板、拟拍示例与结构检查；不是模型额度或托管服务。
+    delivery_unit_en: The current Skill package with workflow, templates, a planned-film example and structural
+      checks; not model credits or a hosted service.
+    anchor_zh: 把命题、口播、分镜、声音与素材权利状态整理成可交接制作包；实际省时仍待用户验证。
+    anchor_en: Organize the premise, narration, storyboard, sound and rights status into a handoff-ready
+      production package; actual time savings remain unmeasured.
+    basis_zh: 已有真实原片研究和制作包正负例，无独立用户收益、成片效果或付费意愿证据；当前作为0 Credits免费入口。
+    basis_en: Real reference research and production-contract tests support a free entry, but independent
+      user outcomes, finished-film results and willingness to pay are not yet established.
+    boundary_zh: 需要用户真实事实、品牌brief及批准素材；不含拍摄、配音、素材/音乐/Logo授权、模型费用、渲染托管、代发布或一对一定制。
+    boundary_en: Requires verified facts, a brand brief and approved assets; excludes filming, voiceover,
+      asset/music/logo licensing, model fees, hosted rendering, publishing and one-to-one customization.
+    maintenance_zh: 按宿主、素材权利规则、制作合同和真实使用反馈复评；不承诺响应时限或永久升级。
+    maintenance_en: Review host compatibility, rights rules, the production contract and real-use feedback;
+      no response-time or perpetual-upgrade commitment.
+    confidence: entry
+    review_trigger_zh: 2026-11-21或累计5位独立使用者完成制作包后复评；正价或支持范围变更另行确认。
+    review_trigger_en: Review on 2026-11-21 or after five independent users finish production packages;
+      any paid price or support-scope change requires a separate decision.
+    card_path: pricing-cards/motivational-media-creator.md

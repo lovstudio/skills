@@ -1,0 +1,274 @@
+CASE: draft-positive
+EXPECTED_EXIT: 0
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/draft-positive.json
+STDOUT:
+{
+  "valid": true,
+  "status": "draft",
+  "duration_seconds": 84,
+  "used_asset_count": 11,
+  "errors": [],
+  "warnings": [
+    "assets.visual-01: not release-cleared/available (planned/planned)",
+    "assets.visual-02: not release-cleared/available (planned/planned)",
+    "assets.visual-03: not release-cleared/available (planned/planned)",
+    "assets.visual-04: not release-cleared/available (planned/planned)",
+    "assets.visual-05: not release-cleared/available (planned/planned)",
+    "assets.visual-06: not release-cleared/available (planned/planned)",
+    "assets.visual-07: not release-cleared/available (planned/planned)",
+    "assets.visual-08: not release-cleared/available (planned/planned)",
+    "assets.narration-recording: not release-cleared/available (planned/planned)",
+    "assets.music-bed: not release-cleared/available (unknown/planned)",
+    "assets.brand-logo: not release-cleared/available (planned/planned)",
+    "qc.qc-voice: pending — 尚未新录，需实读计时；不得通过过快语速硬塞84秒。",
+    "qc.qc-rights: pending — 所有镜头与旁白未生产，音乐未许可，官方横向 Logo 尚未从 Profile 取得并核对批准记录；不能发布。",
+    "qc.qc-render: pending — 尚未渲染；需逐字校字幕、查裁切/交互遮挡与逐平台响度；本包不是已完成视频。",
+    "draft: this package is a production plan, not a rendered or publishable video"
+  ],
+  "exit_status": 0
+}
+STDERR:
+
+EXIT_STATUS: 0
+
+CASE: negative-gap
+EXPECTED_EXIT: 1
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/negative-gap.json
+STDOUT:
+{
+  "valid": false,
+  "status": "draft",
+  "duration_seconds": 84,
+  "used_asset_count": 11,
+  "errors": [
+    "timeline.shot-02: gap or overlap; expected start 6",
+    "timeline.shot-02: referenced segment extends outside shot: voice-02",
+    "timeline.shot-02: referenced segment extends outside shot: music-02"
+  ],
+  "warnings": [
+    "assets.visual-01: not release-cleared/available (planned/planned)",
+    "assets.visual-02: not release-cleared/available (planned/planned)",
+    "assets.visual-03: not release-cleared/available (planned/planned)",
+    "assets.visual-04: not release-cleared/available (planned/planned)",
+    "assets.visual-05: not release-cleared/available (planned/planned)",
+    "assets.visual-06: not release-cleared/available (planned/planned)",
+    "assets.visual-07: not release-cleared/available (planned/planned)",
+    "assets.visual-08: not release-cleared/available (planned/planned)",
+    "assets.narration-recording: not release-cleared/available (planned/planned)",
+    "assets.music-bed: not release-cleared/available (unknown/planned)",
+    "assets.brand-logo: not release-cleared/available (planned/planned)",
+    "qc.qc-voice: pending — 尚未新录，需实读计时；不得通过过快语速硬塞84秒。",
+    "qc.qc-rights: pending — 所有镜头与旁白未生产，音乐未许可，官方横向 Logo 尚未从 Profile 取得并核对批准记录；不能发布。",
+    "qc.qc-render: pending — 尚未渲染；需逐字校字幕、查裁切/交互遮挡与逐平台响度；本包不是已完成视频。",
+    "draft: this package is a production plan, not a rendered or publishable video"
+  ],
+  "exit_status": 1
+}
+STDERR:
+
+EXIT_STATUS: 1
+
+CASE: negative-unknown-ready
+EXPECTED_EXIT: 1
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/negative-unknown-ready.json
+STDOUT:
+{
+  "valid": false,
+  "status": "ready",
+  "duration_seconds": 84,
+  "used_asset_count": 11,
+  "errors": [
+    "assets.music-bed: not release-cleared/available (unknown/available)"
+  ],
+  "warnings": [],
+  "exit_status": 1
+}
+STDERR:
+
+EXIT_STATUS: 1
+
+CASE: synthetic-ready-positive
+EXPECTED_EXIT: 0
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/synthetic-ready-positive.json
+STDOUT:
+{
+  "valid": true,
+  "status": "ready",
+  "duration_seconds": 84,
+  "used_asset_count": 11,
+  "errors": [],
+  "warnings": [],
+  "exit_status": 0
+}
+STDERR:
+
+EXIT_STATUS: 0
+
+CASE: negative-ready-no-logo
+EXPECTED_EXIT: 1
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/negative-ready-no-logo.json
+STDOUT:
+{
+  "valid": false,
+  "status": "ready",
+  "duration_seconds": 84,
+  "used_asset_count": 10,
+  "errors": [
+    "brand_logo: branded final requires official brand-logo used in timeline"
+  ],
+  "warnings": [],
+  "exit_status": 1
+}
+STDERR:
+
+EXIT_STATUS: 1
+
+CASE: negative-ready-unused-logo
+EXPECTED_EXIT: 1
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/negative-ready-unused-logo.json
+STDOUT:
+{
+  "valid": false,
+  "status": "ready",
+  "duration_seconds": 84,
+  "used_asset_count": 10,
+  "errors": [
+    "brand_logo: branded final requires official brand-logo used in timeline"
+  ],
+  "warnings": [
+    "assets.brand-logo: not used in timeline"
+  ],
+  "exit_status": 1
+}
+STDERR:
+
+EXIT_STATUS: 1
+
+CASE: negative-ready-generated-logo
+EXPECTED_EXIT: 1
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/negative-ready-generated-logo.json
+STDOUT:
+{
+  "valid": false,
+  "status": "ready",
+  "duration_seconds": 84,
+  "used_asset_count": 11,
+  "errors": [
+    "brand_logo: requires a brand-provided official image/graphic, not text or generated substitute"
+  ],
+  "warnings": [],
+  "exit_status": 1
+}
+STDERR:
+
+EXIT_STATUS: 1
+
+CASE: internal-draft-no-logo-positive
+EXPECTED_EXIT: 0
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/internal-draft-no-logo-positive.json
+STDOUT:
+{
+  "valid": true,
+  "status": "draft",
+  "duration_seconds": 84,
+  "used_asset_count": 10,
+  "errors": [],
+  "warnings": [
+    "draft: this package is a production plan, not a rendered or publishable video"
+  ],
+  "exit_status": 0
+}
+STDERR:
+
+EXIT_STATUS: 0
+
+CASE: negative-missing-asset
+EXPECTED_EXIT: 1
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/negative-missing-asset.json
+STDOUT:
+{
+  "valid": false,
+  "status": "draft",
+  "duration_seconds": 84,
+  "used_asset_count": 12,
+  "errors": [
+    "timeline.shot-01: unknown asset missing-asset"
+  ],
+  "warnings": [
+    "assets.visual-01: not release-cleared/available (planned/planned)",
+    "assets.visual-02: not release-cleared/available (planned/planned)",
+    "assets.visual-03: not release-cleared/available (planned/planned)",
+    "assets.visual-04: not release-cleared/available (planned/planned)",
+    "assets.visual-05: not release-cleared/available (planned/planned)",
+    "assets.visual-06: not release-cleared/available (planned/planned)",
+    "assets.visual-07: not release-cleared/available (planned/planned)",
+    "assets.visual-08: not release-cleared/available (planned/planned)",
+    "assets.narration-recording: not release-cleared/available (planned/planned)",
+    "assets.music-bed: not release-cleared/available (unknown/planned)",
+    "assets.brand-logo: not release-cleared/available (planned/planned)",
+    "qc.qc-voice: pending — 尚未新录，需实读计时；不得通过过快语速硬塞84秒。",
+    "qc.qc-rights: pending — 所有镜头与旁白未生产，音乐未许可，官方横向 Logo 尚未从 Profile 取得并核对批准记录；不能发布。",
+    "qc.qc-render: pending — 尚未渲染；需逐字校字幕、查裁切/交互遮挡与逐平台响度；本包不是已完成视频。",
+    "draft: this package is a production plan, not a rendered or publishable video"
+  ],
+  "exit_status": 1
+}
+STDERR:
+
+EXIT_STATUS: 1
+
+CASE: negative-no-cjk
+EXPECTED_EXIT: 1
+COMMAND: python3 scripts/validate_production.py cases/original-demo/.validation-run-lvv4knq1/negative-no-cjk.json
+STDOUT:
+{
+  "valid": false,
+  "status": "draft",
+  "duration_seconds": 84,
+  "used_asset_count": 11,
+  "errors": [
+    "narration.voice-02: Chinese narration requires CJK text"
+  ],
+  "warnings": [
+    "assets.visual-01: not release-cleared/available (planned/planned)",
+    "assets.visual-02: not release-cleared/available (planned/planned)",
+    "assets.visual-03: not release-cleared/available (planned/planned)",
+    "assets.visual-04: not release-cleared/available (planned/planned)",
+    "assets.visual-05: not release-cleared/available (planned/planned)",
+    "assets.visual-06: not release-cleared/available (planned/planned)",
+    "assets.visual-07: not release-cleared/available (planned/planned)",
+    "assets.visual-08: not release-cleared/available (planned/planned)",
+    "assets.narration-recording: not release-cleared/available (planned/planned)",
+    "assets.music-bed: not release-cleared/available (unknown/planned)",
+    "assets.brand-logo: not release-cleared/available (planned/planned)",
+    "qc.qc-voice: pending — 尚未新录，需实读计时；不得通过过快语速硬塞84秒。",
+    "qc.qc-rights: pending — 所有镜头与旁白未生产，音乐未许可，官方横向 Logo 尚未从 Profile 取得并核对批准记录；不能发布。",
+    "qc.qc-render: pending — 尚未渲染；需逐字校字幕、查裁切/交互遮挡与逐平台响度；本包不是已完成视频。",
+    "draft: this package is a production plan, not a rendered or publishable video"
+  ],
+  "exit_status": 1
+}
+STDERR:
+
+EXIT_STATUS: 1
+
+CASE: help
+COMMAND: python3 scripts/validate_production.py --help
+STDOUT:
+usage: validate_production.py [-h] [--schema SCHEMA] production
+
+Validate production JSON, timeline and rights readiness. Draft warnings do not
+authorize publication.
+
+positional arguments:
+  production       UTF-8 production JSON file
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --schema SCHEMA  explicit production schema (default: bundled schema)
+STDERR:
+
+EXIT_STATUS: 0
+
+OVERALL: PASS
+Note: all ready cases use synthetic declarations to check the contract; no clearance or render was actually performed.
