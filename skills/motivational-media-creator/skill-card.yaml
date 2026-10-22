@@ -1,0 +1,111 @@
+schema: lovstudio/skill-card/v1
+version: 0.2.1
+display_name: 励志视频 · Motivational Film
+description: 从品牌brief与可信事实生成原创励志视频制作包，包括完整口播、逐段分镜、声音设计、权利账本和结构验收；不等同已渲染视频。
+owner:
+  team: 本地Skill维护者
+  contact: 通过源目录维护记录反馈
+license:
+  name: MIT
+  terms: 仅涵盖本Skill原创指令与代码，不授予参考视频、声音、音乐、Logo或第三方媒体使用权。
+  url: LICENSE
+use_case:
+  audience: 品牌创作者、独立开发者与剪辑协作者
+  scenario: 从具体困难出发，制作不羞辱、不夸大、不虚构亲历的原创励志短片。
+  tasks:
+  - 原创口播与分镜
+  - 品牌与权利边界检查
+  - 制作包和执行器交接
+deployment:
+  geography: global
+  environments:
+  - 本地Agent Skills宿主
+  - Python 3.8+标准库CLI
+requirements:
+  credentials: 核心流程无；参考获取仅在当次明确授权范围复用既有会话，不存储或展示cookies
+  dependencies:
+  - lov-branding-consistency
+  runtime:
+  - Python 3.8+
+  - PyYAML用于源校验；媒体获取与渲染另按任务配置
+risks:
+- risk: 把来源metadata误写为实看结论
+  mitigation: 证据分级A/B/C/H；无原片不报告镜头或听感实测。
+- risk: 版权或声纹/品牌冒用
+  mitigation: 原创新录、逐素材权利账本；ready状态阻止未清权素材。
+- risk: 编造个人逆袭或羞辱处境
+  mitigation: 作者证据账本、公开许可、非羞辱和非过劳门禁。
+- risk: 制作包被误称已成片
+  mitigation: draft/ready/实际渲染/发布分层，结构检查不替代媒体QC。
+references:
+- title: 主指令
+  path: SKILL.md
+- title: 真实案例
+  path: cases/original-demo/README.md
+- title: 参考证据状态
+  path: references/reference-study.md
+output:
+  types:
+  - 制作包
+  - 研究状态
+  - 验收报告
+  formats:
+  - Markdown
+  - JSON
+  parameters:
+  - 品牌brief
+  - 真实事实与公开授权
+  - 观众处境/行动
+  - 时长/画幅/素材
+  validation:
+  - Skill源校验
+  - 制作包正例及负例
+  - 品牌语义审查
+  description: 交付可以继续拍摄和剪辑的结构化草稿；待录、待拍、待许可清楚列出。
+ethical_considerations: 不搬运、不声纹仿冒、不自动公开私生活；不以意志归因疾病、贫穷、创伤，不承诺成功或鼓励过劳。
+dimensions:
+- id: evidence
+  label: 来源诚实
+  description: metadata、作者描述、实看片段与推断分开。
+  evidence: references/reference-study.md；8条原片/英文VTT与完整解码、32张实看接触表；未连续全片观看或主观听音。
+  score: null
+  score_status: 无用户评分
+- id: production
+  label: 可制作性
+  description: 时间线、素材引用、帧边界与制作任务可检查。
+  evidence: cases/original-demo/production.json；scripts/validate_production.py
+  score: null
+  score_status: 结构验收不等于实拍或实际口播计时
+- id: brand
+  label: 品牌与作者边界
+  description: 通过本地Profile绑定品牌，读者文案与内部记录分离。
+  evidence: skill.yaml；references/brand-adaptation.md；cases/original-demo/script.md
+  score: null
+  score_status: 已语义审阅，未有用户验收评分
+- id: rights
+  label: 权利安全
+  description: 草稿显示未取得素材，ready阻断未清权项。
+  evidence: cases/original-demo/production.json及负例检查记录
+  score: null
+  score_status: 素材未取得，不声称已清权
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 当前为本地自用能力，免费交付指令、参考协议与标准库校验。
+  boundary: 不含拍摄、配音、音乐/素材授权、模型额度、渲染托管和平台发布服务。
+  review_trigger: 增加付费服务或公开分发前重新确认成本、权利和用户授权。
+  confidence: internal
+distribution:
+  paid: []
+  free: []
+  channels:
+  - channel: workbuddy
+    status: not_published
+  - channel: skillpay
+    status: not_published
+  - channel: github
+    status: not_published
+  - channel: lovstudio
+    status: not_published
+  local: installed; final realpath and validation recorded externally

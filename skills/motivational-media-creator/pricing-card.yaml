@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: 0.2.1
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 将原创励志片型思考收敛为可拍且可核验的制作包。
+basis: 当前为本地自用能力，免费交付指令、参考协议与标准库校验。
+boundary: 不含拍摄、配音、音乐/素材授权、模型额度、渲染托管和平台发布服务。
+review_trigger: 增加付费服务或公开分发前重新确认成本、权利和用户授权。
+confidence: internal

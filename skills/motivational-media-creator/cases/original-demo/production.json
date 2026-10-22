@@ -1,0 +1,716 @@
+{
+  "schema_version": "1.0",
+  "status": "draft",
+  "execution_status": "planned-not-rendered",
+  "rights_review_status": "pending",
+  "project": {
+    "id": "first-runnable-version",
+    "title": "先完成一个能跑的小版本",
+    "brand": "手工川",
+    "audience": "卡在开始的独立创作者",
+    "language": "zh-CN",
+    "duration_seconds": 84,
+    "fps": 30,
+    "concept": "从停留在宏大计划，转向一个可验收的小动作；讲述者是先行一步的同行者，不是保证成功的导师。",
+    "fiction_status": "demonstration-not-lived-experience",
+    "author_voice": "事实先于金句，温和而具体；不羞辱、不唯成功论、不过劳，不虚构第一人称经历。"
+  },
+  "hooks": [
+    {
+      "id": "hook-1",
+      "text": "如果你一直卡在开始，今天先别做完整的作品。",
+      "reason": "先承接卡住的处境，再给出降低范围的反向指令。"
+    },
+    {
+      "id": "hook-2",
+      "text": "今天能不能先交出一个不够漂亮、但真的能用的小版本？",
+      "reason": "问题式邀请，强调能用；语气需避免反问式施压。"
+    },
+    {
+      "id": "hook-3",
+      "text": "把“我要做个好作品”，改成“让一件小事跑通”。",
+      "reason": "直接展示任务重写，但比处境型开头略抽象。"
+    }
+  ],
+  "selected_hook_id": "hook-1",
+  "selection_reason": "先让卡在开始的人感到被理解；紧接着说明缩小范围，不用攻击或胜负刺激。不是基于已发生的留存测试。",
+  "narration_full_text": "如果你一直卡在开始，今天先别做完整的作品。\n打开那个放了很久的文件。别补计划，先写下：这个版本，只需要让谁完成哪一件小事？\n想做一期视频，就先录清楚三句话。想做一个工具，就先让最简单的输入，得到一个看得见的结果。\n然后把范围缩到今天能试一次。封面可以普通，功能可以少。先留住那条从开始走到结束的路。\n你会发现一个具体的问题：这一句说不清，这个按钮没有反应。它不舒服，但终于可以动手改了。\n做完一次，先停下来。喝口水，走两步。明天再选一个最影响使用的问题，只改这一处。\n这不是承诺你一定成功。小版本也会失败。但它能把“我到底行不行”，换成“下一步改哪里”。\n现在，给今天的版本写一条验收标准。把它跑一遍。先让一个小小的结果，真实地发生。",
+  "narration": [
+    {
+      "id": "voice-01",
+      "start_seconds": 0,
+      "end_seconds": 6,
+      "asset_id": "narration-recording",
+      "text": "如果你一直卡在开始，今天先别做完整的作品。",
+      "delivery": "平静直说，末尾留半秒。"
+    },
+    {
+      "id": "voice-02",
+      "start_seconds": 6,
+      "end_seconds": 15,
+      "asset_id": "narration-recording",
+      "text": "打开那个放了很久的文件。别补计划，先写下：这个版本，只需要让谁完成哪一件小事？",
+      "delivery": "像陪对方打开文件，不用训话。"
+    },
+    {
+      "id": "voice-03",
+      "start_seconds": 15,
+      "end_seconds": 26,
+      "asset_id": "narration-recording",
+      "text": "想做一期视频，就先录清楚三句话。想做一个工具，就先让最简单的输入，得到一个看得见的结果。",
+      "delivery": "节奏略加快，两个例子清楚分隔。"
+    },
+    {
+      "id": "voice-04",
+      "start_seconds": 26,
+      "end_seconds": 38,
+      "asset_id": "narration-recording",
+      "text": "然后把范围缩到今天能试一次。封面可以普通，功能可以少。先留住那条从开始走到结束的路。",
+      "delivery": "降低音量，强调“能试一次”。"
+    },
+    {
+      "id": "voice-05",
+      "start_seconds": 38,
+      "end_seconds": 50,
+      "asset_id": "narration-recording",
+      "text": "你会发现一个具体的问题：这一句说不清，这个按钮没有反应。它不舒服，但终于可以动手改了。",
+      "delivery": "承认不舒服，不把问题戏剧化。"
+    },
+    {
+      "id": "voice-06",
+      "start_seconds": 50,
+      "end_seconds": 62,
+      "asset_id": "narration-recording",
+      "text": "做完一次，先停下来。喝口水，走两步。明天再选一个最影响使用的问题，只改这一处。",
+      "delivery": "留出呼吸，允许动作与停顿。"
+    },
+    {
+      "id": "voice-07",
+      "start_seconds": 62,
+      "end_seconds": 74,
+      "asset_id": "narration-recording",
+      "text": "这不是承诺你一定成功。小版本也会失败。但它能把“我到底行不行”，换成“下一步改哪里”。",
+      "delivery": "放慢“不保证成功”，不做胜利式拔高。"
+    },
+    {
+      "id": "voice-08",
+      "start_seconds": 74,
+      "end_seconds": 84,
+      "asset_id": "narration-recording",
+      "text": "现在，给今天的版本写一条验收标准。把它跑一遍。先让一个小小的结果，真实地发生。",
+      "delivery": "轻而确定，最后两秒不再补口号。"
+    }
+  ],
+  "timeline": [
+    {
+      "id": "shot-01",
+      "start_seconds": 0,
+      "end_seconds": 6,
+      "duration_seconds": 6,
+      "start_frame": 0,
+      "end_frame": 180,
+      "visual": "自摄俯拍：空白编辑器旁放一张写满计划的纸，手把纸翻到背面。不要借用他人软件账号或私人信息。",
+      "camera": "固定俯拍，手进入画面。",
+      "transition": "按动作或语义切换；不从参考频道复用镜头。",
+      "on_screen_text": "先别做完整的作品",
+      "asset_ids": [
+        "visual-01",
+        "narration-recording",
+        "music-bed"
+      ],
+      "narration_ids": [
+        "voice-01"
+      ],
+      "audio_cue_ids": [
+        "music-01"
+      ],
+      "vertical_composition": "主体与关键文字置于画面中央可裁区；手部动作不落在底部交互区。",
+      "horizontal_composition": "桌面留出左右呼吸，关键操作位于中央，不横向填满小字。"
+    },
+    {
+      "id": "shot-02",
+      "start_seconds": 6,
+      "end_seconds": 15,
+      "duration_seconds": 9,
+      "start_frame": 180,
+      "end_frame": 450,
+      "visual": "录制新建的演示文件，键入“让一位读者看懂下一步”，窗口只显示虚构的演示内容。",
+      "camera": "固定屏幕录制，慢推入文字。",
+      "transition": "按动作或语义切换；不从参考频道复用镜头。",
+      "on_screen_text": "一个版本，只帮一个人做一件小事",
+      "asset_ids": [
+        "visual-02",
+        "narration-recording",
+        "music-bed"
+      ],
+      "narration_ids": [
+        "voice-02"
+      ],
+      "audio_cue_ids": [
+        "music-02"
+      ],
+      "vertical_composition": "主体与关键文字置于画面中央可裁区；手部动作不落在底部交互区。",
+      "horizontal_composition": "桌面留出左右呼吸，关键操作位于中央，不横向填满小字。"
+    },
+    {
+      "id": "shot-03",
+      "start_seconds": 15,
+      "end_seconds": 26,
+      "duration_seconds": 11,
+      "start_frame": 450,
+      "end_frame": 780,
+      "visual": "两组自摄画面：手机录音三句；一个演示按钮把“开始”变成“已完成一次”。不要暗示商业产品成绩。",
+      "camera": "两次动作硬切，不做炫技转场。",
+      "transition": "按动作或语义切换；不从参考频道复用镜头。",
+      "on_screen_text": "三句话 / 一次输入 / 一个结果",
+      "asset_ids": [
+        "visual-03",
+        "narration-recording",
+        "music-bed"
+      ],
+      "narration_ids": [
+        "voice-03"
+      ],
+      "audio_cue_ids": [
+        "music-03"
+      ],
+      "vertical_composition": "主体与关键文字置于画面中央可裁区；手部动作不落在底部交互区。",
+      "horizontal_composition": "桌面留出左右呼吸，关键操作位于中央，不横向填满小字。"
+    },
+    {
+      "id": "shot-04",
+      "start_seconds": 26,
+      "end_seconds": 38,
+      "duration_seconds": 12,
+      "start_frame": 780,
+      "end_frame": 1140,
+      "visual": "手写划掉三个可选功能，保留一条“输入→结果”的线；切到完整播放一次的短录音波形。",
+      "camera": "近景手写，短切波形。",
+      "transition": "按动作或语义切换；不从参考频道复用镜头。",
+      "on_screen_text": "留住：开始 → 结束",
+      "asset_ids": [
+        "visual-04",
+        "narration-recording",
+        "music-bed"
+      ],
+      "narration_ids": [
+        "voice-04"
+      ],
+      "audio_cue_ids": [
+        "music-04"
+      ],
+      "vertical_composition": "主体与关键文字置于画面中央可裁区；手部动作不落在底部交互区。",
+      "horizontal_composition": "桌面留出左右呼吸，关键操作位于中央，不横向填满小字。"
+    },
+    {
+      "id": "shot-05",
+      "start_seconds": 38,
+      "end_seconds": 50,
+      "duration_seconds": 12,
+      "start_frame": 1140,
+      "end_frame": 1500,
+      "visual": "演示界面一次可控报错，手指圈出一个问题，再修正一个字。错误是摆拍演示，不冒充真实失败日志。",
+      "camera": "屏幕近景，随后手部特写。",
+      "transition": "按动作或语义切换；不从参考频道复用镜头。",
+      "on_screen_text": "问题具体了，就有地方下手",
+      "asset_ids": [
+        "visual-05",
+        "narration-recording",
+        "music-bed"
+      ],
+      "narration_ids": [
+        "voice-05"
+      ],
+      "audio_cue_ids": [
+        "music-05"
+      ],
+      "vertical_composition": "主体与关键文字置于画面中央可裁区；手部动作不落在底部交互区。",
+      "horizontal_composition": "桌面留出左右呼吸，关键操作位于中央，不横向填满小字。"
+    },
+    {
+      "id": "shot-06",
+      "start_seconds": 50,
+      "end_seconds": 62,
+      "duration_seconds": 12,
+      "start_frame": 1500,
+      "end_frame": 1860,
+      "visual": "放下鼠标，喝水；镜头离开桌面，短暂看向窗外自然光。保留真实房间声，不加入胜利奖杯。",
+      "camera": "中近景转窗外空镜。",
+      "transition": "按动作或语义切换；不从参考频道复用镜头。",
+      "on_screen_text": "做完一次，先休息",
+      "asset_ids": [
+        "visual-06",
+        "narration-recording",
+        "music-bed"
+      ],
+      "narration_ids": [
+        "voice-06"
+      ],
+      "audio_cue_ids": [
+        "music-06"
+      ],
+      "vertical_composition": "主体与关键文字置于画面中央可裁区；手部动作不落在底部交互区。",
+      "horizontal_composition": "桌面留出左右呼吸，关键操作位于中央，不横向填满小字。"
+    },
+    {
+      "id": "shot-07",
+      "start_seconds": 62,
+      "end_seconds": 74,
+      "duration_seconds": 12,
+      "start_frame": 1860,
+      "end_frame": 2220,
+      "visual": "回到桌面，纸上两个问题依次入画，划去“我行不行”，圈住“下一步改哪里”。",
+      "camera": "俯拍纸面，保持文字可读。",
+      "transition": "按动作或语义切换；不从参考频道复用镜头。",
+      "on_screen_text": "不保证成功，先知道下一步",
+      "asset_ids": [
+        "visual-07",
+        "narration-recording",
+        "music-bed"
+      ],
+      "narration_ids": [
+        "voice-07"
+      ],
+      "audio_cue_ids": [
+        "music-07"
+      ],
+      "vertical_composition": "主体与关键文字置于画面中央可裁区；手部动作不落在底部交互区。",
+      "horizontal_composition": "桌面留出左右呼吸，关键操作位于中央，不横向填满小字。"
+    },
+    {
+      "id": "shot-08",
+      "start_seconds": 74,
+      "end_seconds": 84,
+      "duration_seconds": 10,
+      "start_frame": 2220,
+      "end_frame": 2520,
+      "visual": "写下“按钮点击后显示结果”，点击演示按钮，显示“已完成一次”；结果停留两秒。从 Profile brand.logo 解析已批准的官方横向 Logo，保持原始比例显示；未提供则不显示归属，并在内部素材清单标记“待提供”。不得用文字品牌名替代 Logo。",
+      "camera": "固定中近景，结果出现后稳住。",
+      "transition": "按动作或语义切换；不从参考频道复用镜头。",
+      "on_screen_text": "写一条标准，跑一遍",
+      "asset_ids": [
+        "visual-08",
+        "narration-recording",
+        "music-bed",
+        "brand-logo"
+      ],
+      "narration_ids": [
+        "voice-08"
+      ],
+      "audio_cue_ids": [
+        "music-08"
+      ],
+      "vertical_composition": "主体与关键文字置于画面中央可裁区；手部动作不落在底部交互区。",
+      "horizontal_composition": "桌面留出左右呼吸，关键操作位于中央，不横向填满小字。"
+    }
+  ],
+  "emotion_curve": [
+    {
+      "shot_id": "shot-01",
+      "intensity": 3,
+      "emotion": "被理解",
+      "function": "承认困境"
+    },
+    {
+      "shot_id": "shot-02",
+      "intensity": 4,
+      "emotion": "聚焦",
+      "function": "选定一个受众与动作"
+    },
+    {
+      "shot_id": "shot-03",
+      "intensity": 5,
+      "emotion": "可做",
+      "function": "给出两种低门槛范例"
+    },
+    {
+      "shot_id": "shot-04",
+      "intensity": 5,
+      "emotion": "减负",
+      "function": "砍掉额外要求"
+    },
+    {
+      "shot_id": "shot-05",
+      "intensity": 6,
+      "emotion": "面对问题",
+      "function": "把评价转成可改的问题"
+    },
+    {
+      "shot_id": "shot-06",
+      "intensity": 3,
+      "emotion": "松弛",
+      "function": "阻断过劳暗示"
+    },
+    {
+      "shot_id": "shot-07",
+      "intensity": 5,
+      "emotion": "有边界的希望",
+      "function": "说明边界而非许诺"
+    },
+    {
+      "shot_id": "shot-08",
+      "intensity": 4,
+      "emotion": "完成一次",
+      "function": "落到可验收动作"
+    }
+  ],
+  "audio_cues": [
+    {
+      "id": "music-01",
+      "start_seconds": 0,
+      "end_seconds": 6,
+      "asset_id": "music-bed",
+      "kind": "music",
+      "cue": "0–1秒保持环境声，1秒后低强度氛围层淡入。",
+      "mix": "选曲未取得许可；当前只定义声音意图，禁止作为可发布成片使用。正式录音后旁白优先，音乐低于人声，逐平台实测响度与真峰值。"
+    },
+    {
+      "id": "music-02",
+      "start_seconds": 6,
+      "end_seconds": 15,
+      "asset_id": "music-bed",
+      "kind": "music",
+      "cue": "维持稀疏脉冲，不加入鼓点堆叠。",
+      "mix": "选曲未取得许可；当前只定义声音意图，禁止作为可发布成片使用。正式录音后旁白优先，音乐低于人声，逐平台实测响度与真峰值。"
+    },
+    {
+      "id": "music-03",
+      "start_seconds": 15,
+      "end_seconds": 26,
+      "asset_id": "music-bed",
+      "kind": "music",
+      "cue": "加入一层轻敲击，推动具体动作。",
+      "mix": "选曲未取得许可；当前只定义声音意图，禁止作为可发布成片使用。正式录音后旁白优先，音乐低于人声，逐平台实测响度与真峰值。"
+    },
+    {
+      "id": "music-04",
+      "start_seconds": 26,
+      "end_seconds": 38,
+      "asset_id": "music-bed",
+      "kind": "music",
+      "cue": "保持，不在每个切点做轰鸣。",
+      "mix": "选曲未取得许可；当前只定义声音意图，禁止作为可发布成片使用。正式录音后旁白优先，音乐低于人声，逐平台实测响度与真峰值。"
+    },
+    {
+      "id": "music-05",
+      "start_seconds": 38,
+      "end_seconds": 50,
+      "asset_id": "music-bed",
+      "kind": "music",
+      "cue": "短收音乐一拍，让可控报错声可辨。",
+      "mix": "选曲未取得许可；当前只定义声音意图，禁止作为可发布成片使用。正式录音后旁白优先，音乐低于人声，逐平台实测响度与真峰值。"
+    },
+    {
+      "id": "music-06",
+      "start_seconds": 50,
+      "end_seconds": 62,
+      "asset_id": "music-bed",
+      "kind": "music",
+      "cue": "减去节奏层，留轻空气感。",
+      "mix": "选曲未取得许可；当前只定义声音意图，禁止作为可发布成片使用。正式录音后旁白优先，音乐低于人声，逐平台实测响度与真峰值。"
+    },
+    {
+      "id": "music-07",
+      "start_seconds": 62,
+      "end_seconds": 74,
+      "asset_id": "music-bed",
+      "kind": "music",
+      "cue": "恢复低强度脉冲，不做史诗高潮。",
+      "mix": "选曲未取得许可；当前只定义声音意图，禁止作为可发布成片使用。正式录音后旁白优先，音乐低于人声，逐平台实测响度与真峰值。"
+    },
+    {
+      "id": "music-08",
+      "start_seconds": 74,
+      "end_seconds": 84,
+      "asset_id": "music-bed",
+      "kind": "music",
+      "cue": "末句后渐弱，84秒到静音。",
+      "mix": "选曲未取得许可；当前只定义声音意图，禁止作为可发布成片使用。正式录音后旁白优先，音乐低于人声，逐平台实测响度与真峰值。"
+    }
+  ],
+  "formats": [
+    {
+      "id": "vertical",
+      "ratio": "9:16",
+      "width": 1080,
+      "height": 1920,
+      "safe_title": {
+        "left": 0.1,
+        "top": 0.12,
+        "width": 0.72,
+        "height": 0.18
+      },
+      "safe_subtitle": {
+        "left": 0.1,
+        "top": 0.62,
+        "width": 0.72,
+        "height": 0.16
+      },
+      "composition_rule": "关键主体在中央裁区；字幕不贴底，避开右侧交互栏；手写文字另做竖版重构，不只裁横版。",
+      "platform_check": "这些是保守的项目工作区，不是平台永久规范；发布前以目标平台当日预览检查右侧按钮与底部文案遮挡。"
+    },
+    {
+      "id": "horizontal",
+      "ratio": "16:9",
+      "width": 1920,
+      "height": 1080,
+      "safe_title": {
+        "left": 0.1,
+        "top": 0.1,
+        "width": 0.8,
+        "height": 0.18
+      },
+      "safe_subtitle": {
+        "left": 0.15,
+        "top": 0.7,
+        "width": 0.7,
+        "height": 0.15
+      },
+      "composition_rule": "屏幕操作可放中央，两侧保留环境；字幕最多两行，不能遮住演示按钮与验收文字。",
+      "platform_check": "在实际播放器、小屏和静音状态回读；安全区为本项目设计值，非官方平台承诺。"
+    }
+  ],
+  "titles": [
+    {
+      "text": "先完成一个能跑的小版本",
+      "angle": "具体动作，和片内验收动作一致。"
+    },
+    {
+      "text": "卡在开始时，把作品缩小一点",
+      "angle": "处境型，不暗示速成或保证收益。"
+    }
+  ],
+  "cover": {
+    "text": "先跑通一次",
+    "visual": "自摄桌面近景，一张写有“一次输入→一个结果”的纸；四到六个汉字为视觉中心，保留纸张与手的真实细节。",
+    "avoid": "不借用频道肖像、缩略图、商标或成绩数字；不用豪车、肌肉或奖杯替代创作者的具体行动。"
+  },
+  "assets": [
+    {
+      "id": "visual-01",
+      "kind": "video",
+      "origin": "self-shot",
+      "description": "自摄俯拍：空白编辑器旁放一张写满计划的纸，手把纸翻到背面。不要借用他人软件账号或私人信息。",
+      "rights_id": "rights-self-shot",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅为待拍镜头计划；完成清权前不用于发布。"
+    },
+    {
+      "id": "visual-02",
+      "kind": "video",
+      "origin": "self-shot",
+      "description": "录制新建的演示文件，键入“让一位读者看懂下一步”，窗口只显示虚构的演示内容。",
+      "rights_id": "rights-self-shot",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅为待拍镜头计划；完成清权前不用于发布。"
+    },
+    {
+      "id": "visual-03",
+      "kind": "video",
+      "origin": "self-shot",
+      "description": "两组自摄画面：手机录音三句；一个演示按钮把“开始”变成“已完成一次”。不要暗示商业产品成绩。",
+      "rights_id": "rights-self-shot",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅为待拍镜头计划；完成清权前不用于发布。"
+    },
+    {
+      "id": "visual-04",
+      "kind": "video",
+      "origin": "self-shot",
+      "description": "手写划掉三个可选功能，保留一条“输入→结果”的线；切到完整播放一次的短录音波形。",
+      "rights_id": "rights-self-shot",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅为待拍镜头计划；完成清权前不用于发布。"
+    },
+    {
+      "id": "visual-05",
+      "kind": "video",
+      "origin": "self-shot",
+      "description": "演示界面一次可控报错，手指圈出一个问题，再修正一个字。错误是摆拍演示，不冒充真实失败日志。",
+      "rights_id": "rights-self-shot",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅为待拍镜头计划；完成清权前不用于发布。"
+    },
+    {
+      "id": "visual-06",
+      "kind": "video",
+      "origin": "self-shot",
+      "description": "放下鼠标，喝水；镜头离开桌面，短暂看向窗外自然光。保留真实房间声，不加入胜利奖杯。",
+      "rights_id": "rights-self-shot",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅为待拍镜头计划；完成清权前不用于发布。"
+    },
+    {
+      "id": "visual-07",
+      "kind": "video",
+      "origin": "self-shot",
+      "description": "回到桌面，纸上两个问题依次入画，划去“我行不行”，圈住“下一步改哪里”。",
+      "rights_id": "rights-self-shot",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅为待拍镜头计划；完成清权前不用于发布。"
+    },
+    {
+      "id": "visual-08",
+      "kind": "video",
+      "origin": "self-shot",
+      "description": "写下“按钮点击后显示结果”，点击演示按钮，显示“已完成一次”；结果停留两秒。从 Profile brand.logo 解析已批准的官方横向 Logo，保持原始比例显示；未提供则不显示归属，并在内部素材清单标记“待提供”。不得用文字品牌名替代 Logo。",
+      "rights_id": "rights-self-shot",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅为待拍镜头计划；完成清权前不用于发布。"
+    },
+    {
+      "id": "narration-recording",
+      "kind": "audio",
+      "origin": "original-recording",
+      "description": "按本包原创脚本新录中文旁白，讲述方式自然，不模仿任何讲者。",
+      "rights_id": "rights-narration",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "待录制与授权确认后用于本片。"
+    },
+    {
+      "id": "music-bed",
+      "kind": "audio",
+      "origin": "planned-music",
+      "description": "稀疏、克制的氛围音乐意图，尚未指定或下载曲目。",
+      "rights_id": "rights-music",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅作选曲brief；当前不可使用于公开发布。"
+    },
+    {
+      "id": "brand-logo",
+      "kind": "image",
+      "origin": "brand-provided",
+      "description": "从 Profile brand.logo 解析已批准的官方横向 Logo，保持原始比例显示；未提供则不显示归属，并在内部素材清单标记“待提供”。不得用文字品牌名替代 Logo。",
+      "rights_id": "rights-brand-logo",
+      "availability": "planned",
+      "locator": "",
+      "use_scope": "仅供获准品牌归属使用；从运行时 Profile 解析，不将官方 Logo 复制进可分发 Skill。当前待提供，不显示替代文字或自制标识。"
+    }
+  ],
+  "rights_ledger": [
+    {
+      "id": "rights-self-shot",
+      "status": "planned",
+      "owner": "拟由制作者自行拍摄并持有画面权利",
+      "license_basis": "计划自摄；录制前检查场地、人物同意、屏幕与商标信息。",
+      "evidence": "尚未拍摄，权利证明未形成。",
+      "evidence_status": "pending",
+      "restrictions": "不得把公开可见或自行下载误认为获得使用许可。",
+      "release_action": "补充原始文件、拍摄日期与参与者同意；审核后改为cleared。"
+    },
+    {
+      "id": "rights-narration",
+      "status": "planned",
+      "owner": "拟由获授权的真实讲述者新录",
+      "license_basis": "原创演示脚本；不模仿原频道讲者声音。",
+      "evidence": "尚未录音；讲述者授权待归档。",
+      "evidence_status": "pending",
+      "restrictions": "未经同意不得克隆声音，不虚构手工川亲历。",
+      "release_action": "完成新录、归档本人同意与原始音频后审核。"
+    },
+    {
+      "id": "rights-music",
+      "status": "unknown",
+      "owner": "尚未选择具体音乐与权利人",
+      "license_basis": "待取得覆盖目标平台与商业使用范围的音乐许可；也可改为无音乐版本。",
+      "evidence": "没有音乐文件，没有许可凭证。",
+      "evidence_status": "unverified",
+      "restrictions": "不可搬用参考频道音乐；未清权时不得进入发布成片。",
+      "release_action": "选定可授权曲目并保存许可凭证，或删除全部音乐cue并改用自录环境声。"
+    },
+    {
+      "id": "rights-brand-logo",
+      "status": "planned",
+      "owner": "品牌权利人",
+      "license_basis": "待从 Profile brand.logo 取得已批准的官方横向 Logo，并确认本项目品牌归属使用范围。",
+      "evidence": "尚未解析或取得 Logo；使用许可与批准记录待核对。",
+      "evidence_status": "pending",
+      "restrictions": "不重绘、不裁形、不拉伸、不用文字替代，不将官方 Logo 文件打入可分发 Skill。",
+      "release_action": "运行时读取 Profile brand.logo，核对官方文件、授权范围与批准记录后归档并在时间线清晰显示；缺少时仅保留内部文字计划draft，阻止ready/rendered-reviewed，不得移除Logo引用绕过必需品牌归属。"
+    }
+  ],
+  "evidence_ledger": [
+    {
+      "id": "evidence-demo",
+      "kind": "design-record",
+      "status": "verified",
+      "description": "本制作包是可检查的原创脚本与分镜演示，不是已发生的个人经历或已验证的效果。",
+      "source": "本包narration、timeline与project.fiction_status。"
+    }
+  ],
+  "claims": [
+    {
+      "kind": "demonstration",
+      "text": "小版本、报错和按钮均为计划拍摄的演示，不是手工川的实际经历或商业成绩。",
+      "evidence_id": "evidence-demo"
+    }
+  ],
+  "qc": [
+    {
+      "id": "qc-original",
+      "check": "原创与人称边界",
+      "status": "pass",
+      "evidence": "全部文字为本次原创演示；未引用或改写参考频道台词；未声称手工川已经经历这些事件。"
+    },
+    {
+      "id": "qc-structure",
+      "check": "时间线与音画引用",
+      "status": "pass",
+      "evidence": "设计为84秒、30fps、2520帧；逐段引用口播、音乐意图与待拍资产，实际由validator复核。"
+    },
+    {
+      "id": "qc-voice",
+      "check": "口播可懂度与实际时长",
+      "status": "pending",
+      "evidence": "尚未新录，需实读计时；不得通过过快语速硬塞84秒。"
+    },
+    {
+      "id": "qc-rights",
+      "check": "画面、旁白与音乐清权",
+      "status": "pending",
+      "evidence": "所有镜头与旁白未生产，音乐未许可，官方横向 Logo 尚未从 Profile 取得并核对批准记录；不能发布。"
+    },
+    {
+      "id": "qc-render",
+      "check": "横竖版安全区与平台回读",
+      "status": "pending",
+      "evidence": "尚未渲染；需逐字校字幕、查裁切/交互遮挡与逐平台响度；本包不是已完成视频。"
+    }
+  ],
+  "ab_test": {
+    "status": "not-run",
+    "hypothesis": "对卡在开始的受众，处境型标题可能比动作型标题带来更多合格观看；仅为待检验假设。",
+    "variant_a": "标题：先完成一个能跑的小版本。视频、封面和发布条件保持一致。",
+    "variant_b": "标题：卡在开始时，把作品缩小一点。视频、封面和发布条件保持一致。",
+    "single_variable": "只改变标题，不同时改变开头、封面或音乐。",
+    "primary_metric": "平台可得的完整观看率，分母与平台定义记录在实验表。",
+    "secondary_metrics": [
+      "前3秒留存（平台若提供）",
+      "平均观看时长",
+      "表达具体行动意图的评论占比，人工编码且注明样本数"
+    ],
+    "allocation": "优先使用平台原生随机实验；不可随机时按相近时段顺序观察，记录流量差异，明确不能作因果结论。",
+    "decision_rule": "预先记录观察窗口7天与每版至少300次有效播放的探索性下限；不足则不判胜。达到下限后报告各版样本数、差异与区间，不仅凭点估计。该下限不是统计功效保证；需正式结论时按基准率和最小有意义差异另算样本量。",
+    "observed_results": "尚未执行，无效果结论。",
+    "next_actions": [
+      "先完成实读、清权与双版预览，再决定是否启动实验。",
+      "如样本不足，保留原始数据延长观察或停止，不宣布“爆款方法”。"
+    ]
+  },
+  "release_notes": [
+    "这是原创的制作计划，不是视频成片。",
+    "本例最初在公开下载0/8受限阶段独立写成，不作为当时已学习原片的证据。0.2.0已补齐8条原片与时间码取样研究，见reference-study；不倒写本例创作来源，不复用其台词、片段、声音、音乐或视觉身份。",
+    "未取得音乐许可时，删去音乐并以新录环境声替代后重新校验，不把draft检查通过视为发布许可。",
+    "片尾只使用 Profile brand.logo 提供并批准的官方横向 Logo；未提供时不显示归属，内部标待提供；不以文字品牌名替代 Logo，不把官方文件装入 Skill。"
+  ]
+}
