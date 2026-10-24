@@ -1,4 +1,4 @@
-# 老张心理风格短视频 · Skill Card
+# 老张心理风格短视频 · Laozhang Psychology Style Video · Skill Card
 
 ## Description
 
