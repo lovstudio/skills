@@ -1,0 +1,285 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "style-profile.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "style_id": {
+      "const": "lov-laozhang-style-media-creator"
+    },
+    "display_name": {
+      "const": "老张心理风格短视频"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^0\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "enum": [
+        "ready",
+        "ready_with_limits"
+      ]
+    },
+    "training_sample_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "holdout_sample_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sample_id": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "title": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "duration_seconds": {
+            "type": "number"
+          },
+          "partition": {
+            "enum": [
+              "train",
+              "holdout"
+            ]
+          }
+        },
+        "required": [
+          "sample_id",
+          "rank",
+          "title",
+          "source_url",
+          "sha256",
+          "duration_seconds",
+          "partition"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 2
+    },
+    "dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "enum": [
+              "thinking",
+              "narrative",
+              "language",
+              "delivery",
+              "visual",
+              "subtitles",
+              "editing_audio",
+              "coupling"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "summary"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "dimension": {
+            "enum": [
+              "thinking",
+              "narrative",
+              "language",
+              "delivery",
+              "visual",
+              "subtitles",
+              "editing_audio",
+              "coupling"
+            ]
+          },
+          "observation": {
+            "type": "string"
+          },
+          "instruction": {
+            "type": "string"
+          },
+          "strength": {
+            "enum": [
+              "required",
+              "preferred",
+              "optional"
+            ]
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "support_sample_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "support_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "eligible_sample_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "confidence": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "scope": {
+            "type": "string"
+          },
+          "exceptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "validation": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string"
+              },
+              "criterion": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "method",
+              "criterion"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "dimension",
+          "observation",
+          "instruction",
+          "strength",
+          "evidence_ids",
+          "support_sample_ids",
+          "support_count",
+          "eligible_sample_count",
+          "confidence",
+          "scope",
+          "exceptions",
+          "validation"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 16
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "narrative_templates": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "minItems": 4
+    },
+    "layout_templates": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "minItems": 3
+    },
+    "audio_visual_triggers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "minItems": 3
+    },
+    "guardrails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 5
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "provenance": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "style_id",
+    "display_name",
+    "version",
+    "status",
+    "training_sample_ids",
+    "holdout_sample_ids",
+    "samples",
+    "dimensions",
+    "rules",
+    "metrics",
+    "narrative_templates",
+    "layout_templates",
+    "audio_visual_triggers",
+    "guardrails",
+    "limits",
+    "provenance"
+  ],
+  "additionalProperties": false
+}

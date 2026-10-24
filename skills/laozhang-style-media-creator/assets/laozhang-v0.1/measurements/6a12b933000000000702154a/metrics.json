@@ -1,0 +1,210 @@
+{
+  "sample_id": "6a12b933000000000702154a",
+  "rank": 9,
+  "title": "孙杨，一个内在世界随时要崩塌的世界冠军",
+  "duration_seconds": 345.116735,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "30/1",
+  "scene_detection": {
+    "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+    "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+    "cut_times_seconds": [
+      1.366667,
+      4.7,
+      8.066667,
+      10.3,
+      11.766667,
+      27.2,
+      29.333333,
+      31.1,
+      31.666667,
+      33.566667,
+      60.133333,
+      82.3,
+      82.566667,
+      84.9,
+      85.033333,
+      85.9,
+      92.7,
+      93.866667,
+      95.433333,
+      97.933333,
+      99.6,
+      100.8,
+      101.866667,
+      104.833333,
+      120.7,
+      121.733333,
+      126.766667,
+      131.7,
+      133.7,
+      137.533333,
+      148.9,
+      154.633333,
+      157.766667,
+      168.933333,
+      179.7,
+      189.266667,
+      189.7,
+      198.533333,
+      199.333333,
+      201.9,
+      210.466667,
+      213.433333,
+      222.266667,
+      227.133333,
+      229.233333,
+      232.033333,
+      234.433333,
+      235.433333,
+      249.433333,
+      250.933333,
+      251.633333,
+      274.266667,
+      277.2,
+      279.7,
+      293.3,
+      298.4,
+      299.466667,
+      307.066667,
+      331.933333,
+      334.5,
+      344.933333
+    ],
+    "cut_count": 61,
+    "detected_segment_duration_percentiles": {
+      "10": 0.8067,
+      "50": 2.6833,
+      "90": 13.96
+    }
+  },
+  "audio": {
+    "integrated_lufs": "-18.95",
+    "true_peak_dbtp": "0.38",
+    "loudness_range_lu": "5.00",
+    "silence_threshold_db": -35,
+    "silences": [
+      {
+        "start": 13.551247,
+        "end": 13.804807,
+        "duration": 0.2536
+      },
+      {
+        "start": 14.092449,
+        "end": 14.454444,
+        "duration": 0.362
+      },
+      {
+        "start": 14.931927,
+        "end": 15.327075,
+        "duration": 0.3951
+      },
+      {
+        "start": 17.425578,
+        "end": 17.929116,
+        "duration": 0.5035
+      },
+      {
+        "start": 18.041247,
+        "end": 18.328685,
+        "duration": 0.2874
+      },
+      {
+        "start": 21.77059,
+        "end": 21.977937,
+        "duration": 0.2073
+      },
+      {
+        "start": 26.368753,
+        "end": 26.748254,
+        "duration": 0.3795
+      },
+      {
+        "start": 33.671565,
+        "end": 33.935147,
+        "duration": 0.2636
+      },
+      {
+        "start": 251.412222,
+        "end": 251.638095,
+        "duration": 0.2259
+      },
+      {
+        "start": 344.814512,
+        "end": 345.116735,
+        "duration": 0.3022
+      }
+    ],
+    "silence_seconds": 3.1801,
+    "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  },
+  "frames": [
+    {
+      "time_seconds": 0.5,
+      "image": "frame-0000.500.jpg"
+    },
+    {
+      "time_seconds": 3,
+      "image": "frame-0003.000.jpg"
+    },
+    {
+      "time_seconds": 10,
+      "image": "frame-0010.000.jpg"
+    },
+    {
+      "time_seconds": 20,
+      "image": "frame-0020.000.jpg"
+    },
+    {
+      "time_seconds": 34.512,
+      "image": "frame-0034.512.jpg"
+    },
+    {
+      "time_seconds": 86.279,
+      "image": "frame-0086.279.jpg"
+    },
+    {
+      "time_seconds": 138.047,
+      "image": "frame-0138.047.jpg"
+    },
+    {
+      "time_seconds": 189.814,
+      "image": "frame-0189.814.jpg"
+    },
+    {
+      "time_seconds": 241.582,
+      "image": "frame-0241.582.jpg"
+    },
+    {
+      "time_seconds": 293.349,
+      "image": "frame-0293.349.jpg"
+    },
+    {
+      "time_seconds": 327.861,
+      "image": "frame-0327.861.jpg"
+    },
+    {
+      "time_seconds": 344.117,
+      "image": "frame-0344.117.jpg"
+    }
+  ],
+  "audio_sample_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 138.046694,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 276.093388,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ]
+}

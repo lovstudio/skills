@@ -1,0 +1,468 @@
+[
+  {
+    "sample_id": "6abf912a000000001b0305b4",
+    "rank": 1,
+    "annotation_method": "current host full transcript and timestamped frame review; not a clinical fact assessment",
+    "phases": [
+      {
+        "start_seconds": 0,
+        "end_seconds": 27.526,
+        "role": "highlight"
+      },
+      {
+        "start_seconds": 27.526,
+        "end_seconds": 79.02,
+        "role": "context"
+      },
+      {
+        "start_seconds": 79.02,
+        "end_seconds": 148.318,
+        "role": "mechanism_1"
+      },
+      {
+        "start_seconds": 148.318,
+        "end_seconds": 285.932,
+        "role": "mechanism_2"
+      },
+      {
+        "start_seconds": 285.932,
+        "end_seconds": 394.831,
+        "role": "mechanism_3"
+      },
+      {
+        "start_seconds": 394.831,
+        "end_seconds": 479.41,
+        "role": "mechanism_4"
+      },
+      {
+        "start_seconds": 479.41,
+        "end_seconds": 512.865,
+        "role": "generalize"
+      },
+      {
+        "start_seconds": 512.865,
+        "end_seconds": 550.52,
+        "role": "boundaries"
+      },
+      {
+        "start_seconds": 550.52,
+        "end_seconds": 569.816236,
+        "role": "optional_service_cta"
+      }
+    ],
+    "nontransferable": [
+      "source author identity",
+      "unverified claims about real people",
+      "service promises",
+      "unlicensed source imagery/music"
+    ],
+    "uncertainties": [
+      "ASR proper nouns can differ from visible captions",
+      "semantic boundaries are analyst annotations, not objective camera cut times"
+    ]
+  },
+  {
+    "sample_id": "6ab4292f0000000014003d92",
+    "rank": 2,
+    "annotation_method": "current host full transcript and timestamped frame review; not a clinical fact assessment",
+    "phases": [
+      {
+        "start_seconds": 0,
+        "end_seconds": 9.852,
+        "role": "highlight"
+      },
+      {
+        "start_seconds": 9.852,
+        "end_seconds": 31.627,
+        "role": "context"
+      },
+      {
+        "start_seconds": 31.627,
+        "end_seconds": 75.987,
+        "role": "detail"
+      },
+      {
+        "start_seconds": 75.987,
+        "end_seconds": 174.01,
+        "role": "pattern_1"
+      },
+      {
+        "start_seconds": 174.01,
+        "end_seconds": 328.962,
+        "role": "pattern_2"
+      },
+      {
+        "start_seconds": 328.962,
+        "end_seconds": 375.388,
+        "role": "mechanism"
+      },
+      {
+        "start_seconds": 375.388,
+        "end_seconds": 398.735,
+        "role": "viewer_boundary"
+      },
+      {
+        "start_seconds": 398.735,
+        "end_seconds": 436.245,
+        "role": "reprise"
+      },
+      {
+        "start_seconds": 436.245,
+        "end_seconds": 455.157551,
+        "role": "source_outro"
+      }
+    ],
+    "nontransferable": [
+      "source author identity",
+      "unverified claims about real people",
+      "service promises",
+      "unlicensed source imagery/music"
+    ],
+    "uncertainties": [
+      "ASR proper nouns can differ from visible captions",
+      "semantic boundaries are analyst annotations, not objective camera cut times"
+    ]
+  },
+  {
+    "sample_id": "6aaa8d79000000002901bb33",
+    "rank": 3,
+    "annotation_method": "current host full transcript and timestamped frame review; not a clinical fact assessment",
+    "phases": [
+      {
+        "start_seconds": 0,
+        "end_seconds": 42.075,
+        "role": "definition_and_promise"
+      },
+      {
+        "start_seconds": 42.075,
+        "end_seconds": 129.93,
+        "role": "analogy"
+      },
+      {
+        "start_seconds": 129.93,
+        "end_seconds": 188.584,
+        "role": "distinction"
+      },
+      {
+        "start_seconds": 188.584,
+        "end_seconds": 296.022,
+        "role": "case_evidence"
+      },
+      {
+        "start_seconds": 296.022,
+        "end_seconds": 319.591,
+        "role": "reframe"
+      },
+      {
+        "start_seconds": 319.591,
+        "end_seconds": 408.538,
+        "role": "practice"
+      },
+      {
+        "start_seconds": 408.538,
+        "end_seconds": 428.262,
+        "role": "optional_service_cta"
+      },
+      {
+        "start_seconds": 428.262,
+        "end_seconds": 501.544,
+        "role": "objection"
+      },
+      {
+        "start_seconds": 501.544,
+        "end_seconds": 525.744762,
+        "role": "closing_analogy"
+      }
+    ],
+    "nontransferable": [
+      "source author identity",
+      "unverified claims about real people",
+      "service promises",
+      "unlicensed source imagery/music"
+    ],
+    "uncertainties": [
+      "ASR proper nouns can differ from visible captions",
+      "semantic boundaries are analyst annotations, not objective camera cut times"
+    ]
+  },
+  {
+    "sample_id": "6aa2915d0000000025034163",
+    "rank": 4,
+    "annotation_method": "current host full transcript and timestamped frame review; not a clinical fact assessment",
+    "phases": [
+      {
+        "start_seconds": 0,
+        "end_seconds": 36.431,
+        "role": "context_and_angle"
+      },
+      {
+        "start_seconds": 36.431,
+        "end_seconds": 123.769,
+        "role": "mechanism_a"
+      },
+      {
+        "start_seconds": 123.769,
+        "end_seconds": 245.907,
+        "role": "detail_interpretation"
+      },
+      {
+        "start_seconds": 245.907,
+        "end_seconds": 367.76,
+        "role": "mechanism_b"
+      },
+      {
+        "start_seconds": 367.76,
+        "end_seconds": 488.484,
+        "role": "generalize"
+      },
+      {
+        "start_seconds": 488.484,
+        "end_seconds": 510.026304,
+        "role": "agency"
+      }
+    ],
+    "nontransferable": [
+      "source author identity",
+      "unverified claims about real people",
+      "service promises",
+      "unlicensed source imagery/music"
+    ],
+    "uncertainties": [
+      "ASR proper nouns can differ from visible captions",
+      "semantic boundaries are analyst annotations, not objective camera cut times"
+    ]
+  },
+  {
+    "sample_id": "6a8eb2d800000000200363a9",
+    "rank": 5,
+    "annotation_method": "current host full transcript and timestamped frame review; not a clinical fact assessment",
+    "phases": [
+      {
+        "start_seconds": 0,
+        "end_seconds": 42.315,
+        "role": "concept"
+      },
+      {
+        "start_seconds": 42.315,
+        "end_seconds": 188.886,
+        "role": "distinction"
+      },
+      {
+        "start_seconds": 188.886,
+        "end_seconds": 227.28,
+        "role": "generalize"
+      },
+      {
+        "start_seconds": 227.28,
+        "end_seconds": 348.632,
+        "role": "case_analysis"
+      },
+      {
+        "start_seconds": 348.632,
+        "end_seconds": 398.04,
+        "role": "origin_hypothesis"
+      },
+      {
+        "start_seconds": 398.04,
+        "end_seconds": 414.744,
+        "role": "optional_service_cta"
+      },
+      {
+        "start_seconds": 414.744,
+        "end_seconds": 444.752,
+        "role": "tradeoff"
+      },
+      {
+        "start_seconds": 444.752,
+        "end_seconds": 486.713469,
+        "role": "objection_and_integration"
+      }
+    ],
+    "nontransferable": [
+      "source author identity",
+      "unverified claims about real people",
+      "service promises",
+      "unlicensed source imagery/music"
+    ],
+    "uncertainties": [
+      "ASR proper nouns can differ from visible captions",
+      "semantic boundaries are analyst annotations, not objective camera cut times"
+    ]
+  },
+  {
+    "sample_id": "6a7879970000000026035790",
+    "rank": 6,
+    "annotation_method": "current host full transcript and timestamped frame review; not a clinical fact assessment",
+    "phases": [
+      {
+        "start_seconds": 0,
+        "end_seconds": 34.4,
+        "role": "followup_and_position"
+      },
+      {
+        "start_seconds": 34.4,
+        "end_seconds": 67.71,
+        "role": "opportunity"
+      },
+      {
+        "start_seconds": 67.71,
+        "end_seconds": 138.738,
+        "role": "strategy_a"
+      },
+      {
+        "start_seconds": 138.738,
+        "end_seconds": 251,
+        "role": "strategy_b"
+      },
+      {
+        "start_seconds": 251,
+        "end_seconds": 266.374,
+        "role": "generalize"
+      },
+      {
+        "start_seconds": 266.374,
+        "end_seconds": 302.489,
+        "role": "action"
+      },
+      {
+        "start_seconds": 302.489,
+        "end_seconds": 318.9,
+        "role": "dialogue_example"
+      },
+      {
+        "start_seconds": 318.9,
+        "end_seconds": 321.526712,
+        "role": "identity_signature"
+      }
+    ],
+    "nontransferable": [
+      "source author identity",
+      "unverified claims about real people",
+      "service promises",
+      "unlicensed source imagery/music"
+    ],
+    "uncertainties": [
+      "ASR proper nouns can differ from visible captions",
+      "semantic boundaries are analyst annotations, not objective camera cut times"
+    ]
+  },
+  {
+    "sample_id": "6a68970e000000000401f3f7",
+    "rank": 7,
+    "annotation_method": "current host full transcript and timestamped frame review; not a clinical fact assessment",
+    "phases": [
+      {
+        "start_seconds": 0,
+        "end_seconds": 39.04,
+        "role": "highlight"
+      },
+      {
+        "start_seconds": 39.04,
+        "end_seconds": 74.778,
+        "role": "context"
+      },
+      {
+        "start_seconds": 74.778,
+        "end_seconds": 123.591,
+        "role": "behavior"
+      },
+      {
+        "start_seconds": 123.591,
+        "end_seconds": 222.204,
+        "role": "belief_a"
+      },
+      {
+        "start_seconds": 222.204,
+        "end_seconds": 278.1,
+        "role": "origin_hypothesis"
+      },
+      {
+        "start_seconds": 278.1,
+        "end_seconds": 396.631,
+        "role": "belief_b"
+      },
+      {
+        "start_seconds": 396.631,
+        "end_seconds": 499.02,
+        "role": "analogy_and_tradeoff"
+      },
+      {
+        "start_seconds": 499.02,
+        "end_seconds": 520.274,
+        "role": "alternative"
+      },
+      {
+        "start_seconds": 520.274,
+        "end_seconds": 524.514104,
+        "role": "next_episode_cta"
+      }
+    ],
+    "nontransferable": [
+      "source author identity",
+      "unverified claims about real people",
+      "service promises",
+      "unlicensed source imagery/music"
+    ],
+    "uncertainties": [
+      "ASR proper nouns can differ from visible captions",
+      "semantic boundaries are analyst annotations, not objective camera cut times"
+    ]
+  },
+  {
+    "sample_id": "6a1ac97b00000000350322e7",
+    "rank": 8,
+    "annotation_method": "current host full transcript and timestamped frame review; not a clinical fact assessment",
+    "phases": [
+      {
+        "start_seconds": 0,
+        "end_seconds": 41.615,
+        "role": "counterintuitive_identification"
+      },
+      {
+        "start_seconds": 41.615,
+        "end_seconds": 153.14,
+        "role": "checklist"
+      },
+      {
+        "start_seconds": 153.14,
+        "end_seconds": 241.703,
+        "role": "mechanism"
+      },
+      {
+        "start_seconds": 241.703,
+        "end_seconds": 286.458,
+        "role": "work_link"
+      },
+      {
+        "start_seconds": 286.458,
+        "end_seconds": 337.906,
+        "role": "relationship_pattern"
+      },
+      {
+        "start_seconds": 337.906,
+        "end_seconds": 351.409,
+        "role": "optional_service_cta"
+      },
+      {
+        "start_seconds": 351.409,
+        "end_seconds": 409.452,
+        "role": "choice"
+      },
+      {
+        "start_seconds": 409.452,
+        "end_seconds": 420.118639,
+        "role": "series_cta"
+      }
+    ],
+    "nontransferable": [
+      "source author identity",
+      "unverified claims about real people",
+      "service promises",
+      "unlicensed source imagery/music"
+    ],
+    "uncertainties": [
+      "ASR proper nouns can differ from visible captions",
+      "semantic boundaries are analyst annotations, not objective camera cut times"
+    ]
+  }
+]

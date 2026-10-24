@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "brief.schema.json",
+  "type": "object",
+  "properties": {
+    "topic": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string"
+    },
+    "duration_seconds": {
+      "type": "number",
+      "minimum": 15,
+      "maximum": 3600
+    },
+    "scenario_type": {
+      "enum": [
+        "factual",
+        "fictional_demo"
+      ]
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "source"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "actor_voice": {
+      "enum": [
+        "own",
+        "authorized",
+        "not_provided"
+      ]
+    },
+    "available_assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "rights": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "path",
+          "rights"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "cta": {
+      "enum": [
+        "none",
+        "service",
+        "followup"
+      ]
+    }
+  },
+  "required": [
+    "topic",
+    "audience",
+    "duration_seconds",
+    "scenario_type",
+    "facts",
+    "actor_voice",
+    "available_assets",
+    "cta"
+  ],
+  "additionalProperties": false
+}

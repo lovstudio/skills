@@ -1,0 +1,138 @@
+{
+  "sample_id": "6ab4292f0000000014003d92",
+  "rank": 2,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 182.06302040000003,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 364.12604080000006,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7275,
+    "completion_tokens": 1769,
+    "total_tokens": 9044,
+    "cost": 0.03224,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.03224,
+      "upstream_inference_prompt_cost": 0.01455,
+      "upstream_inference_completions_cost": 0.01769
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 75.45,
+  "observations": {
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "测量：三段采样均为单一女性中文普通话口播。主观估计：声线清晰偏沉稳；原视频0.0-15.0s语气相对平缓，在约5.2s转述“妈妈没那么爱我”时音量压低、语速放慢，前后有短暂停顿；182.06-197.06s语速显著加快，语气急促，在转述问句时声调上扬，并在“最心虚”“最害怕”等词上加重音；364.13-379.13s前半段在“太焦虑”“太想”处有明显重音，后半段语速回落至平稳叙述节奏。",
+          "confidence": "high",
+          "evidence": "0.0-15.0s, 182.06-197.06s, 364.13-379.13s",
+          "scope": "sampled",
+          "reproduction_instruction": "使用清晰女声录制口播，前段保持平缓并在引述短句时压低音量停顿，中段加快语速并强化关键词重音，后段从强调语气过渡回平稳语速。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "测量：人声全程处于绝对前景，干燥清晰。主观估计：背景中存在极微弱的底噪或极低音量的器乐铺底，几乎不可辨认具体旋律，完全不干扰人声。",
+          "confidence": "medium",
+          "evidence": "0.0-15.0s, 182.06-197.06s, 364.13-379.13s",
+          "scope": "sampled",
+          "reproduction_instruction": "人声干声居中置顶，不加或仅加极低音量的环境底声，确保人声绝对清晰。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "测量：竖屏画幅（9:16）。主画面为长发女性近景（胸部以上），人物居中偏下，着白色短袖；背景右侧为棕色褶皱窗帘，左侧可见米色抱枕一角。主观估计：室内正面柔光照明，肤色明亮，整体色调偏暖米色；0.50s、3.00s、10.00s画面四周带有轻微暗角效果。",
+          "confidence": "high",
+          "evidence": "0.50s, 3.00s, 10.00s, 45.52s, 113.79s, 250.34s, 318.61s, 386.88s, 432.40s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用9:16竖屏固定机位拍摄人物胸部以上近景，背景布置暖色窗帘与抱枕，使用正面柔光，片头画面可添加四周暗角。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "测量：画面中下部居中位置有单行字幕。常规叙述字幕为白色填充配黑色描边/阴影（如3.00s“反反复复的确认了很多次”、113.79s“是在借由关心的外衣”、386.88s“原来是父母”）；带双引号的短句字幕为浅黄色填充配黑色粗描边（如10.00s““妈妈爱她””、250.34s““也不需要妈妈了””）。主观估计：字号中等偏大，带衬线特征（不猜测具体字体名称）。",
+          "confidence": "high",
+          "evidence": "0.50s, 3.00s, 10.00s, 20.00s, 45.52s, 113.79s, 182.06s, 250.34s, 318.61s, 386.88s, 432.40s",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面中下部居中放置单行衬线风格字幕，普通台词用白字黑边，引号内重点台词改用浅黄字黑边。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "测量：0.50s、3.00s、10.00s在主讲人画面右侧或上方叠加了半透明/抠像的其他人物面部及擦泪画面图层；20.00s与454.16s为横屏综艺片段居中放置，上下留有大面积纯黑遮幅（20.00s片段自带粉色小字与左上角角标）；182.06s为上下分屏结构，上半部嵌入带节目花字（“张家齐”“不合格的妈妈”）的车内视频画面，下半部为主讲人画面。",
+          "confidence": "high",
+          "evidence": "0.50s, 3.00s, 10.00s, 20.00s, 182.06s, 454.16s",
+          "scope": "sampled",
+          "reproduction_instruction": "在片头口播画面上叠加半透明人物特写图层；插播外部横屏素材时采用上下黑边居中或置顶半屏分屏展示。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "测量：从提供的12张抽帧可证实画面存在三种视觉形态的切换：主讲人单人带疊加图层（0.50s-10.00s）、外部视频素材全屏加黑边或半屏分屏展示（20.00s、182.06s、454.16s）、主讲人单人纯净口播画面（45.52s、113.79s、250.34s-432.40s）。主讲人在不同帧中的手势与头部姿态有明显变化。精确切点数量与转场方式unknown。",
+          "confidence": "high",
+          "evidence": "0.50s-454.16s",
+          "scope": "sampled",
+          "reproduction_instruction": "以单人口播为主线，期间穿插全屏（带上下黑边）或上半屏的外部视频片段。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "测量：原视频0.0-15.0s音频与0.50s、3.00s、10.00s画面时间重叠，0.50s字幕“我知道张家齐”、3.00s字幕“反反复复的确认了很多次”、10.00s字幕““妈妈爱她””与对应时刻的口播语音完全同步；182.06s画面处于第二段音频起点（182.06s），该帧字幕“可以自洽”与音频約183s处的“自洽”对应；第三段音频（364.13-379.13s）区间内无对应抽帧，声画对应关系unknown。",
+          "confidence": "high",
+          "evidence": "0.50s, 3.00s, 10.00s, 182.06s",
+          "scope": "sampled",
+          "reproduction_instruction": "保持口播语音与画面下方字幕严格同步，在讲述具体人物状态时同步叠化或切入相关人物画面。"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "测量：音频仅包含3段各15秒的采样（共45秒），画面仅有12张离散时间点的静态帧及4张高清帧，原视频其余绝大部分时间段的声画内容、精确剪辑切点、完整BGM曲目及动态运镜均无法证实（unknown）。",
+          "confidence": "high",
+          "evidence": "unknown",
+          "scope": "sampled",
+          "reproduction_instruction": "仅依据已证实的采样特征进行局部形式复现，不对未采样区间做硬性规定。"
+        }
+      ]
+    }
+  }
+}

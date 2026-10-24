@@ -274,7 +274,7 @@
     {
       "name": "video-creation",
       "source": "./",
-      "description": "Video Creation — 9 free skills bundled together.",
+      "description": "Video Creation — 10 free skills bundled together.",
       "category": "Video Creation",
       "skills": [
         "./skills/video-chapter",
@@ -286,7 +286,8 @@
         "./skills/media-preprocessor",
         "./skills/compress-video",
         "./skills/voice2srt",
-        "./skills/motivational-media-creator"
+        "./skills/motivational-media-creator",
+        "./skills/laozhang-style-media-creator"
       ],
       "strict": false
     },

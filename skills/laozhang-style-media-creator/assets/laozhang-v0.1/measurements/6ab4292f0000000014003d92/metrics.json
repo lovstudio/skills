@@ -1,0 +1,202 @@
+{
+  "sample_id": "6ab4292f0000000014003d92",
+  "rank": 2,
+  "title": "只想收获「好妈妈」的成功果实，但不想努力",
+  "duration_seconds": 455.157551,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "10239000/341351",
+  "scene_detection": {
+    "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+    "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+    "cut_times_seconds": [
+      12.833333,
+      20.966667,
+      25.0,
+      27.2,
+      29.166667,
+      31.833333,
+      33.9,
+      39.566667,
+      49.5,
+      56.4,
+      64.517,
+      68.350333,
+      70.883667,
+      88.850333,
+      90.683667,
+      92.783667,
+      94.617,
+      98.050333,
+      100.650333,
+      107.450333,
+      110.817,
+      118.883667,
+      124.350333,
+      137.817,
+      138.883667,
+      164.483667,
+      173.450333,
+      176.783667,
+      179.950333,
+      180.334,
+      183.367333,
+      185.834,
+      186.867333,
+      188.567333,
+      195.367333,
+      196.367333,
+      200.067333,
+      205.400667,
+      215.500667,
+      245.634333,
+      271.701,
+      277.134333,
+      280.567667,
+      282.867667,
+      284.067667,
+      288.734333,
+      291.867667,
+      292.901,
+      305.417333,
+      306.750667,
+      307.950667,
+      337.884,
+      349.250667,
+      352.050667,
+      354.684,
+      362.251,
+      372.117667,
+      448.101333
+    ],
+    "cut_count": 58,
+    "detected_segment_duration_percentiles": {
+      "10": 1.2,
+      "50": 3.7,
+      "90": 14.3667
+    }
+  },
+  "audio": {
+    "integrated_lufs": "-15.95",
+    "true_peak_dbtp": "1.05",
+    "loudness_range_lu": "6.00",
+    "silence_threshold_db": -35,
+    "silences": [
+      {
+        "start": 110.037687,
+        "end": 110.341338,
+        "duration": 0.3037
+      },
+      {
+        "start": 118.596871,
+        "end": 118.824308,
+        "duration": 0.2274
+      },
+      {
+        "start": 164.310249,
+        "end": 164.532608,
+        "duration": 0.2224
+      },
+      {
+        "start": 173.293152,
+        "end": 173.511088,
+        "duration": 0.2179
+      },
+      {
+        "start": 266.215125,
+        "end": 266.44551,
+        "duration": 0.2304
+      },
+      {
+        "start": 267.128322,
+        "end": 267.442676,
+        "duration": 0.3144
+      },
+      {
+        "start": 268.445397,
+        "end": 268.685601,
+        "duration": 0.2402
+      },
+      {
+        "start": 356.625125,
+        "end": 356.880522,
+        "duration": 0.2554
+      },
+      {
+        "start": 426.975193,
+        "end": 427.23907,
+        "duration": 0.2639
+      }
+    ],
+    "silence_seconds": 2.2757,
+    "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  },
+  "frames": [
+    {
+      "time_seconds": 0.5,
+      "image": "frame-0000.500.jpg"
+    },
+    {
+      "time_seconds": 3,
+      "image": "frame-0003.000.jpg"
+    },
+    {
+      "time_seconds": 10,
+      "image": "frame-0010.000.jpg"
+    },
+    {
+      "time_seconds": 20,
+      "image": "frame-0020.000.jpg"
+    },
+    {
+      "time_seconds": 45.516,
+      "image": "frame-0045.516.jpg"
+    },
+    {
+      "time_seconds": 113.789,
+      "image": "frame-0113.789.jpg"
+    },
+    {
+      "time_seconds": 182.063,
+      "image": "frame-0182.063.jpg"
+    },
+    {
+      "time_seconds": 250.337,
+      "image": "frame-0250.337.jpg"
+    },
+    {
+      "time_seconds": 318.61,
+      "image": "frame-0318.610.jpg"
+    },
+    {
+      "time_seconds": 386.884,
+      "image": "frame-0386.884.jpg"
+    },
+    {
+      "time_seconds": 432.4,
+      "image": "frame-0432.400.jpg"
+    },
+    {
+      "time_seconds": 454.158,
+      "image": "frame-0454.158.jpg"
+    }
+  ],
+  "audio_sample_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 182.06302040000003,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 364.12604080000006,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ]
+}
