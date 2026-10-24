@@ -1,0 +1,1382 @@
+{
+  "schema_version": "0.1.0",
+  "style_id": "lov-laozhang-style-media-creator",
+  "display_name": "老张心理风格短视频",
+  "version": "0.1.0",
+  "status": "ready_with_limits",
+  "training_sample_ids": [
+    "6abf912a000000001b0305b4",
+    "6ab4292f0000000014003d92",
+    "6aaa8d79000000002901bb33",
+    "6aa2915d0000000025034163",
+    "6a8eb2d800000000200363a9",
+    "6a7879970000000026035790",
+    "6a68970e000000000401f3f7",
+    "6a1ac97b00000000350322e7"
+  ],
+  "holdout_sample_ids": [
+    "6a12b933000000000702154a",
+    "69e5f169000000002301014b"
+  ],
+  "samples": [
+    {
+      "sample_id": "6abf912a000000001b0305b4",
+      "rank": 1,
+      "title": "一个「低认知父母」的超典型认知模式",
+      "source_url": "https://www.xiaohongshu.com/explore/6abf912a000000001b0305b4",
+      "sha256": "ac6748ea171ef38b09076ac91bee02272e4fe286414c0682426c9ac276a9ebb7",
+      "duration_seconds": 569.816236,
+      "partition": "train"
+    },
+    {
+      "sample_id": "6ab4292f0000000014003d92",
+      "rank": 2,
+      "title": "只想收获「好妈妈」的成功果实，但不想努力",
+      "source_url": "https://www.xiaohongshu.com/explore/6ab4292f0000000014003d92",
+      "sha256": "912435b2dc68ea5ec6ead0185cc9ed46beeda1007de5a1cdded59426d6647c97",
+      "duration_seconds": 455.157551,
+      "partition": "train"
+    },
+    {
+      "sample_id": "6aaa8d79000000002901bb33",
+      "rank": 3,
+      "title": "这个时代，所有人都应该掌握这种能力",
+      "source_url": "https://www.xiaohongshu.com/explore/6aaa8d79000000002901bb33",
+      "sha256": "d5262975e3cf10358c3463f7724b2acfbf64a849af8f62cddce42ec8a5d18ec6",
+      "duration_seconds": 525.744762,
+      "partition": "train"
+    },
+    {
+      "sample_id": "6aa2915d0000000025034163",
+      "rank": 4,
+      "title": "感情中总是遇人不淑的女生，都应该看懂这个",
+      "source_url": "https://www.xiaohongshu.com/explore/6aa2915d0000000025034163",
+      "sha256": "c06c0f376bc8c0b7a5b13dbd2e29b92fcb584b61de3e6e10e4a1b3a894515900",
+      "duration_seconds": 510.026304,
+      "partition": "train"
+    },
+    {
+      "sample_id": "6a8eb2d800000000200363a9",
+      "rank": 5,
+      "title": "蓝盈莹积极阳光的背面，是一场「自我霸凌」",
+      "source_url": "https://www.xiaohongshu.com/explore/6a8eb2d800000000200363a9",
+      "sha256": "ef254e2a809598a1c16abb138753026a640fddf86e94fefd229d36e84d93cff1",
+      "duration_seconds": 486.713469,
+      "partition": "train"
+    },
+    {
+      "sample_id": "6a7879970000000026035790",
+      "rank": 6,
+      "title": "冉莹颖怎么扭转口碑，提升商业价值？",
+      "source_url": "https://www.xiaohongshu.com/explore/6a7879970000000026035790",
+      "sha256": "f7721dbc08d5b9775d768dc02e2debd7bb665936a2e268f2d2152e1989119ce7",
+      "duration_seconds": 321.526712,
+      "partition": "train"
+    },
+    {
+      "sample_id": "6a68970e000000000401f3f7",
+      "rank": 7,
+      "title": "冉莹颖的匮乏，源自两套底层信念",
+      "source_url": "https://www.xiaohongshu.com/explore/6a68970e000000000401f3f7",
+      "sha256": "8772e9f8de91e7f07775fc42b1ad70e6a90e7953cc05bc5d79059500ba3b3d7b",
+      "duration_seconds": 524.514104,
+      "partition": "train"
+    },
+    {
+      "sample_id": "6a1ac97b00000000350322e7",
+      "rank": 8,
+      "title": "这种人看起来事业有成，但其实是个巨婴",
+      "source_url": "https://www.xiaohongshu.com/explore/6a1ac97b00000000350322e7",
+      "sha256": "32acd545070563ac612f5f9a9acc83df73a7bf90c917ca552dff6692d775a46e",
+      "duration_seconds": 420.118639,
+      "partition": "train"
+    },
+    {
+      "sample_id": "6a12b933000000000702154a",
+      "rank": 9,
+      "title": "孙杨，一个内在世界随时要崩塌的世界冠军",
+      "source_url": "https://www.xiaohongshu.com/explore/6a12b933000000000702154a",
+      "sha256": "afc6b0b210337fce858fb273499ff45fd379d1adbdc5bac710108432fff4e7fe",
+      "duration_seconds": 345.116735,
+      "partition": "holdout"
+    },
+    {
+      "sample_id": "69e5f169000000002301014b",
+      "rank": 10,
+      "title": "他俩要是离了，真就遇不上更适合彼此的人了",
+      "source_url": "https://www.xiaohongshu.com/explore/69e5f169000000002301014b",
+      "sha256": "75fc90d7cb598a9849ecdeb913df45f7514d830a93ee46462ea42acd9c747c42",
+      "duration_seconds": 407.267846,
+      "partition": "holdout"
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "thinking",
+      "summary": "行为→机制假设→自我理解与选择"
+    },
+    {
+      "id": "narrative",
+      "summary": "案例/概念/识别/后续策略四种变体"
+    },
+    {
+      "id": "language",
+      "summary": "口语解释、对照、因果桥梁、代入与具象类比"
+    },
+    {
+      "id": "delivery",
+      "summary": "高文本密度，解释性清晰人声；采样听感不等同全片"
+    },
+    {
+      "id": "visual",
+      "summary": "室内直面镜头，横竖版和卡片变体分开"
+    },
+    {
+      "id": "subtitles",
+      "summary": "短分句、高对比、克制的暖色重点"
+    },
+    {
+      "id": "editing_audio",
+      "summary": "语义驱动切换、人声优先、安全母带"
+    },
+    {
+      "id": "coupling",
+      "summary": "按语义和最终口播时间线组织字幕与证据画面"
+    }
+  ],
+  "rules": [
+    {
+      "id": "thinking.mechanism",
+      "dimension": "thinking",
+      "observation": "训练样本反复从可见行为/常见观念转向认知、需求、恐惧或信念的解释。",
+      "instruction": "给出可核查的具体行为，再提出一种机制解释；区分观察与假设，不把读心或诊断当事实。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0001",
+        "E0002",
+        "E0003",
+        "E0004",
+        "E0005",
+        "E0006",
+        "E0007",
+        "E0008"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "给出可核查的具体行为，再提出一种机制解释；区分观察与假设，不把读心或诊断当事实。"
+      }
+    },
+    {
+      "id": "thinking.agency",
+      "dimension": "thinking",
+      "observation": "解释后反复回到自我理解、主动行动或选择，而不止于评判他人。",
+      "instruction": "让观众知道能观察什么、能选择什么；保留边界与多因素解释。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0009",
+        "E0010",
+        "E0011",
+        "E0012",
+        "E0013",
+        "E0014",
+        "E0015",
+        "E0016"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "让观众知道能观察什么、能选择什么；保留边界与多因素解释。"
+      }
+    },
+    {
+      "id": "thinking.understand_not_excuse",
+      "dimension": "thinking",
+      "observation": "案例拆解中存在理解动机但不等于原谅、站队或单纯宣泄的区分。",
+      "instruction": "共情可以和边界并存；解释原因不能替伤害免责，也不要责备受害者。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0017",
+        "E0018",
+        "E0019",
+        "E0020"
+      ],
+      "support_sample_ids": [
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6aa2915d0000000025034163",
+        "6ab4292f0000000014003d92"
+      ],
+      "support_count": 4,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [
+        "概念教学不必强插站队声明。"
+      ],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "共情可以和边界并存；解释原因不能替伤害免责，也不要责备受害者。"
+      }
+    },
+    {
+      "id": "narrative.direct_open",
+      "dimension": "narrative",
+      "observation": "概念/识别型样本直接给能力定义或反常识识别，不先寒暄。",
+      "instruction": "开头用一句可辨认的判断或冲突承诺本片要解释什么，不加空泛自我介绍。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0021",
+        "E0022",
+        "E0023"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a8eb2d800000000200363a9",
+        "6aaa8d79000000002901bb33"
+      ],
+      "support_count": 3,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [
+        "案例型可先给语境；续集型可以简短承接前一期。"
+      ],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "开头用一句可辨认的判断或冲突承诺本片要解释什么，不加空泛自我介绍。"
+      }
+    },
+    {
+      "id": "narrative.highlight_reprise",
+      "dimension": "narrative",
+      "observation": "样本1、2、7把后段论述高光前置，正文中再出现相应表达。",
+      "instruction": "仅在确有强概括句时前置高光，随后建立背景；不要把所有视频都剪成重复开场。",
+      "strength": "optional",
+      "evidence_ids": [
+        "E0024",
+        "E0025",
+        "E0026"
+      ],
+      "support_sample_ids": [
+        "6a68970e000000000401f3f7",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 3,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [
+        "样本3、4、5、6、8没有同样的前置高光重述结构。"
+      ],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "仅在确有强概括句时前置高光，随后建立背景；不要把所有视频都剪成重复开场。"
+      }
+    },
+    {
+      "id": "narrative.concrete_application",
+      "dimension": "narrative",
+      "observation": "不同片型以生活情境、角色代入或具体练习把抽象机制落地。",
+      "instruction": "至少给出一个与新选题有关的具体情境、解释或行动示范；禁止从旧片搬事实。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0027",
+        "E0028",
+        "E0029",
+        "E0030",
+        "E0031",
+        "E0032",
+        "E0033",
+        "E0034"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "至少给出一个与新选题有关的具体情境、解释或行动示范；禁止从旧片搬事实。"
+      }
+    },
+    {
+      "id": "narrative.optional_cta",
+      "dimension": "narrative",
+      "observation": "部分样本含服务引导，但位置既有片尾也有中段；并非所有样本都带服务引导。",
+      "instruction": "只有用户明确给出合规服务、身份和CTA需求才加入服务段；没有授权时以观众选择或开放问题收尾。",
+      "strength": "optional",
+      "evidence_ids": [
+        "E0035",
+        "E0036",
+        "E0037",
+        "E0038"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a8eb2d800000000200363a9",
+        "6aaa8d79000000002901bb33",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 4,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [
+        "样本2为人物祝愿收束；样本4为自我整合；样本6为身份签名；样本7为下集预告。"
+      ],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "只有用户明确给出合规服务、身份和CTA需求才加入服务段；没有授权时以观众选择或开放问题收尾。"
+      }
+    },
+    {
+      "id": "language.contrast",
+      "dimension": "language",
+      "observation": "八个训练样本均含否定旧解释、转向新解释的对照表达。",
+      "instruction": "用对照澄清真正差别，但不让每段都套“不是A而是B”。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0039",
+        "E0040",
+        "E0041",
+        "E0042",
+        "E0043",
+        "E0044",
+        "E0045",
+        "E0046"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "用对照澄清真正差别，但不让每段都套“不是A而是B”。"
+      }
+    },
+    {
+      "id": "language.causal_bridges",
+      "dimension": "language",
+      "observation": "八个训练样本都以口语因果连接词推进解释。",
+      "instruction": "交代推理桥梁：可观察事实支持什么、还有什么替代解释；“所以”不能替代证据。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0047",
+        "E0048",
+        "E0049",
+        "E0050",
+        "E0051",
+        "E0052",
+        "E0053",
+        "E0054"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "交代推理桥梁：可观察事实支持什么、还有什么替代解释；“所以”不能替代证据。"
+      }
+    },
+    {
+      "id": "language.dialogue",
+      "dimension": "language",
+      "observation": "八个样本均以“你/我们”等称呼、设问或代入句与观众建立对话。",
+      "instruction": "面向一个具体听众说话，交替使用解释、提问、代入；不做旁观者式抽象论文。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0055",
+        "E0056",
+        "E0057",
+        "E0058",
+        "E0059",
+        "E0060",
+        "E0061",
+        "E0062"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "面向一个具体听众说话，交替使用解释、提问、代入；不做旁观者式抽象论文。"
+      }
+    },
+    {
+      "id": "language.metaphor",
+      "dimension": "language",
+      "observation": "抽象关系借助工具、支点、海绵、代码、监督者、操盘手、勋章、容器等具象对象解释。",
+      "instruction": "选择一个贴合事实的具体类比，解释相似点与边界；不要生搬来源比喻。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0063",
+        "E0064",
+        "E0065",
+        "E0066",
+        "E0067",
+        "E0068",
+        "E0069",
+        "E0070"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "选择一个贴合事实的具体类比，解释相似点与边界；不要生搬来源比喻。"
+      }
+    },
+    {
+      "id": "delivery.capacity",
+      "dimension": "delivery",
+      "observation": "整片ASR文本单位密度较高，且样本之间有差异；数值是整体口播密度，不是每秒强制语速。",
+      "instruction": "按画像语速分布规划字数，关键句留停顿；新主题信息复杂时明确放慢并记录偏离。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0071",
+        "E0072",
+        "E0073",
+        "E0074",
+        "E0075",
+        "E0076",
+        "E0077",
+        "E0078"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "按画像语速分布规划字数，关键句留停顿；新主题信息复杂时明确放慢并记录偏离。"
+      }
+    },
+    {
+      "id": "delivery.emphasis",
+      "dimension": "delivery",
+      "observation": "抽样听感呈解释性、清晰的人声，重音和语速随论述变化；仅据45秒/片抽样。",
+      "instruction": "使用用户自己的声音，解释段清晰连贯；结论词重读、转述和反问改变节奏，不模仿声纹。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0079",
+        "E0080",
+        "E0081",
+        "E0082",
+        "E0083",
+        "E0084",
+        "E0085",
+        "E0086"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "medium",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [
+        "音色、情绪和停顿为抽样解释，不是全片测量或身份特征。"
+      ],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "使用用户自己的声音，解释段清晰连贯；结论词重读、转述和反问改变节奏，不模仿声纹。"
+      }
+    },
+    {
+      "id": "visual.speaker_anchor",
+      "dimension": "visual",
+      "observation": "八个样本抽帧均以室内、直面镜头、上半身人物作为解释主线。",
+      "instruction": "以用户自身出镜为主线，采用清晰近景、可见手势、自然室内背景和柔和面光；不复制具体房间或原作者外貌。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0087",
+        "E0088",
+        "E0089",
+        "E0090",
+        "E0091",
+        "E0092",
+        "E0093",
+        "E0094"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "以用户自身出镜为主线，采用清晰近景、可见手势、自然室内背景和柔和面光；不复制具体房间或原作者外貌。"
+      }
+    },
+    {
+      "id": "visual.portrait_default",
+      "dimension": "visual",
+      "observation": "训练集7条为9:16、1条为16:9，画幅并非唯一固定。",
+      "instruction": "短视频默认9:16；横版采用独立布局，不能把竖版坐标原样用于横版。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0095",
+        "E0096",
+        "E0097",
+        "E0098",
+        "E0099",
+        "E0100",
+        "E0101"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92"
+      ],
+      "support_count": 7,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [
+        "样本1为横版，带顶部章节栏与底部底框字幕。"
+      ],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "短视频默认9:16；横版采用独立布局，不能把竖版坐标原样用于横版。"
+      }
+    },
+    {
+      "id": "visual.evidence_insert",
+      "dimension": "visual",
+      "observation": "7个训练样本抽帧能看到人物照片、节目片段或其他证据画面；样本8抽帧未见同样插入。",
+      "instruction": "仅在解释具体对象、行为或引述时插入已授权证据；可全屏切入或叠图，不把装饰图当证据。",
+      "strength": "optional",
+      "evidence_ids": [
+        "E0102",
+        "E0103",
+        "E0104",
+        "E0105",
+        "E0106",
+        "E0107",
+        "E0108"
+      ],
+      "support_sample_ids": [
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 7,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [
+        "证据不足或没有授权素材时保留出镜，不伪造截图。"
+      ],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "仅在解释具体对象、行为或引述时插入已授权证据；可全屏切入或叠图，不把装饰图当证据。"
+      }
+    },
+    {
+      "id": "subtitles.clause",
+      "dimension": "subtitles",
+      "observation": "抽帧中主字幕通常是短分句，居中一到两行，强调读者可即时读完。",
+      "instruction": "按语义短分句排字幕，不把整段稿塞屏；居中、高对比、一至两行，并保持口播原文一致。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0109",
+        "E0110",
+        "E0111",
+        "E0112",
+        "E0113",
+        "E0114",
+        "E0115",
+        "E0116"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "按语义短分句排字幕，不把整段稿塞屏；居中、高对比、一至两行，并保持口播原文一致。"
+      }
+    },
+    {
+      "id": "subtitles.highlight",
+      "dimension": "subtitles",
+      "observation": "部分竖版样本对少数关键词或引述用浅黄/金黄/橙色突出，不是整屏彩色。",
+      "instruction": "每个语义单元仅突出必要关键词，白色正文配克制暖色强调；精确字体未知时标注近似替代。",
+      "strength": "optional",
+      "evidence_ids": [
+        "E0117",
+        "E0118",
+        "E0119",
+        "E0120",
+        "E0121",
+        "E0122"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92"
+      ],
+      "support_count": 6,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [
+        "横版样本1用半透明深色底框；样本5字幕与品牌卡另成变体。"
+      ],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "每个语义单元仅突出必要关键词，白色正文配克制暖色强调；精确字体未知时标注近似替代。"
+      }
+    },
+    {
+      "id": "editing_audio.semantic_cuts",
+      "dimension": "editing_audio",
+      "observation": "全片硬场景变化检测数量差异很大，不能推导统一“每几秒必切”。",
+      "instruction": "以论证推进、引用证据和语义转折触发切换；不为追求快节奏机械加转场。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0123",
+        "E0124",
+        "E0125",
+        "E0126",
+        "E0127",
+        "E0128",
+        "E0129",
+        "E0130"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "以论证推进、引用证据和语义转折触发切换；不为追求快节奏机械加转场。"
+      }
+    },
+    {
+      "id": "editing_audio.voice_foreground",
+      "dimension": "editing_audio",
+      "observation": "抽样听感以人声为主；音乐有无和细节只能限于采样区间解释。",
+      "instruction": "优先清晰人声；无明确授权音乐时不加音乐。有音乐则不遮挡口播，不能把抽样未闻写成全片无BGM。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0131",
+        "E0132",
+        "E0133",
+        "E0134",
+        "E0135",
+        "E0136",
+        "E0137",
+        "E0138"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "medium",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "优先清晰人声；无明确授权音乐时不加音乐。有音乐则不遮挡口播，不能把抽样未闻写成全片无BGM。"
+      }
+    },
+    {
+      "id": "editing_audio.safe_master",
+      "dimension": "editing_audio",
+      "observation": "源片整轨响度和真峰值各异，部分真峰值高于0dBTP；来源参数不是安全交付模板。",
+      "instruction": "测量并记录最终响度；默认参考-16 LUFS-I、True Peak不高于-1dBTP，保留平台覆盖和有意偏离，不复制来源过峰。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0139",
+        "E0140",
+        "E0141",
+        "E0142",
+        "E0143",
+        "E0144",
+        "E0145",
+        "E0146"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "high",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "测量并记录最终响度；默认参考-16 LUFS-I、True Peak不高于-1dBTP，保留平台覆盖和有意偏离，不复制来源过峰。"
+      }
+    },
+    {
+      "id": "coupling.words_to_captions",
+      "dimension": "coupling",
+      "observation": "带时间音频抽样和对应帧可见字幕随口播分句出现，跨模态对应只对采样片段成立。",
+      "instruction": "从最终口播时间线生成字幕；验证文字、时序和强调词一致，不能拿整片摘要替代对齐。",
+      "strength": "preferred",
+      "evidence_ids": [
+        "E0147",
+        "E0148",
+        "E0149",
+        "E0150",
+        "E0151",
+        "E0152",
+        "E0153",
+        "E0154"
+      ],
+      "support_sample_ids": [
+        "6a1ac97b00000000350322e7",
+        "6a68970e000000000401f3f7",
+        "6a7879970000000026035790",
+        "6a8eb2d800000000200363a9",
+        "6aa2915d0000000025034163",
+        "6aaa8d79000000002901bb33",
+        "6ab4292f0000000014003d92",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 8,
+      "eligible_sample_count": 8,
+      "confidence": "medium",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "从最终口播时间线生成字幕；验证文字、时序和强调词一致，不能拿整片摘要替代对齐。"
+      }
+    },
+    {
+      "id": "coupling.reference_on_mention",
+      "dimension": "coupling",
+      "observation": "案例叙述中插入与当时所讲对象/行为相关的图片或片段。",
+      "instruction": "提及有证据的具体人物或行为时切入对应已授权素材；没有素材则用明确标为示意的图，不假装实拍证据。",
+      "strength": "optional",
+      "evidence_ids": [
+        "E0155",
+        "E0156",
+        "E0157"
+      ],
+      "support_sample_ids": [
+        "6a68970e000000000401f3f7",
+        "6aa2915d0000000025034163",
+        "6abf912a000000001b0305b4"
+      ],
+      "support_count": 3,
+      "eligible_sample_count": 8,
+      "confidence": "medium",
+      "scope": "适用于本风格生成；遵循事实和身份边界",
+      "exceptions": [],
+      "validation": {
+        "method": "semantic review with timestamp evidence",
+        "criterion": "提及有证据的具体人物或行为时切入对应已授权素材；没有素材则用明确标为示意的图，不假装实拍证据。"
+      }
+    }
+  ],
+  "metrics": {
+    "duration_seconds": {
+      "units": "seconds",
+      "sample_count": 8,
+      "p10": 390.5411,
+      "median": 498.3699,
+      "p90": 538.9662,
+      "min": 321.5267,
+      "max": 569.8162,
+      "method": "8 training source files, FFprobe"
+    },
+    "overall_speech_density": {
+      "units": "Han-character/Latin-word/numeric-group units per minute",
+      "sample_count": 8,
+      "p10": 372.5581,
+      "median": 388.975,
+      "p90": 423.1634,
+      "min": 371.016,
+      "max": 427.824,
+      "method": "whole file ASR text units / full source duration; includes quotes and pauses"
+    },
+    "sentence_length": {
+      "units": "spoken units",
+      "sample_count": 720,
+      "p10": 15.0,
+      "median": 31.0,
+      "p90": 60.0,
+      "min": 1.0,
+      "max": 168.0,
+      "method": "Tingwu ASR sentence segmentation, not subtitle segmentation"
+    },
+    "integrated_loudness": {
+      "units": "LUFS-I",
+      "sample_count": 8,
+      "p10": -17.783,
+      "median": -15.085,
+      "p90": -11.97,
+      "min": -18.98,
+      "max": -10.64,
+      "method": "FFmpeg loudnorm full mixed track"
+    },
+    "true_peak": {
+      "units": "dBTP",
+      "sample_count": 8,
+      "p10": 0.349,
+      "median": 0.875,
+      "p90": 2.126,
+      "min": 0.3,
+      "max": 2.84,
+      "method": "FFmpeg loudnorm full mixed track"
+    },
+    "hard_visual_changes_per_min": {
+      "units": "changes/minute",
+      "sample_count": 8,
+      "p10": 1.8975,
+      "median": 4.4166,
+      "p90": 9.2854,
+      "min": 1.1095,
+      "max": 9.3305,
+      "method": "FFmpeg scene threshold .23, resized 320px; not exhaustive jump cuts"
+    },
+    "lexical_counts": {
+      "6abf912a000000001b0305b4": {
+        "本质": 3,
+        "底层": 5,
+        "其实": 8,
+        "所以": 15,
+        "但是": 4,
+        "比如": 0,
+        "你看": 6,
+        "我们": 9,
+        "你": 24,
+        "不是": 6,
+        "而是": 1,
+        "为什么": 3,
+        "认知": 12,
+        "信念": 0,
+        "感受": 12
+      },
+      "6ab4292f0000000014003d92": {
+        "本质": 0,
+        "底层": 1,
+        "其实": 2,
+        "所以": 10,
+        "但是": 8,
+        "比如": 0,
+        "你看": 7,
+        "我们": 3,
+        "你": 25,
+        "不是": 7,
+        "而是": 2,
+        "为什么": 0,
+        "认知": 0,
+        "信念": 0,
+        "感受": 2
+      },
+      "6aaa8d79000000002901bb33": {
+        "本质": 0,
+        "底层": 1,
+        "其实": 6,
+        "所以": 9,
+        "但是": 13,
+        "比如": 1,
+        "你看": 1,
+        "我们": 2,
+        "你": 58,
+        "不是": 8,
+        "而是": 1,
+        "为什么": 0,
+        "认知": 2,
+        "信念": 0,
+        "感受": 15
+      },
+      "6aa2915d0000000025034163": {
+        "本质": 2,
+        "底层": 7,
+        "其实": 18,
+        "所以": 14,
+        "但是": 10,
+        "比如": 1,
+        "你看": 3,
+        "我们": 11,
+        "你": 11,
+        "不是": 7,
+        "而是": 2,
+        "为什么": 1,
+        "认知": 0,
+        "信念": 1,
+        "感受": 2
+      },
+      "6a8eb2d800000000200363a9": {
+        "本质": 3,
+        "底层": 3,
+        "其实": 10,
+        "所以": 7,
+        "但是": 19,
+        "比如": 5,
+        "你看": 4,
+        "我们": 11,
+        "你": 29,
+        "不是": 8,
+        "而是": 2,
+        "为什么": 3,
+        "认知": 1,
+        "信念": 0,
+        "感受": 12
+      },
+      "6a7879970000000026035790": {
+        "本质": 0,
+        "底层": 2,
+        "其实": 3,
+        "所以": 5,
+        "但是": 11,
+        "比如": 1,
+        "你看": 5,
+        "我们": 8,
+        "你": 29,
+        "不是": 3,
+        "而是": 1,
+        "为什么": 0,
+        "认知": 0,
+        "信念": 1,
+        "感受": 0
+      },
+      "6a68970e000000000401f3f7": {
+        "本质": 1,
+        "底层": 5,
+        "其实": 30,
+        "所以": 13,
+        "但是": 17,
+        "比如": 2,
+        "你看": 12,
+        "我们": 17,
+        "你": 31,
+        "不是": 8,
+        "而是": 2,
+        "为什么": 4,
+        "认知": 2,
+        "信念": 3,
+        "感受": 3
+      },
+      "6a1ac97b00000000350322e7": {
+        "本质": 0,
+        "底层": 2,
+        "其实": 6,
+        "所以": 8,
+        "但是": 11,
+        "比如": 2,
+        "你看": 2,
+        "我们": 8,
+        "你": 50,
+        "不是": 6,
+        "而是": 2,
+        "为什么": 2,
+        "认知": 2,
+        "信念": 1,
+        "感受": 5
+      }
+    },
+    "portrait_caption_box_samples": {
+      "coordinate_system": "top-left normalized [0,1]",
+      "count": 102,
+      "text_height": {
+        "units": "fraction of frame height",
+        "sample_count": 102,
+        "p10": 0.0281,
+        "median": 0.0437,
+        "p90": 0.0598,
+        "min": 0.0141,
+        "max": 0.0719,
+        "method": "Vision OCR boxes in y .5-.8, sampled only"
+      },
+      "text_top_y": {
+        "units": "fraction of frame height",
+        "sample_count": 102,
+        "p10": 0.5984,
+        "median": 0.6629,
+        "p90": 0.7545,
+        "min": 0.5234,
+        "max": 0.7828,
+        "method": "includes source clip captions; estimate, not one universal subtitle baseline"
+      }
+    }
+  },
+  "narrative_templates": [
+    {
+      "id": "case_mechanism",
+      "applies_to": "有可核查行为证据的案例评论",
+      "stages": [
+        {
+          "role": "hook_or_context",
+          "share": 0.1
+        },
+        {
+          "role": "observable_details",
+          "share": 0.2
+        },
+        {
+          "role": "mechanism_and_alternatives",
+          "share": 0.45
+        },
+        {
+          "role": "viewer_choice",
+          "share": 0.25
+        }
+      ],
+      "source_ranks": [
+        1,
+        2,
+        4,
+        7
+      ],
+      "note": "比例是用于新片的编辑建议，不是对所有原片逐段比例的测量。"
+    },
+    {
+      "id": "concept_practice",
+      "applies_to": "概念澄清与训练型选题",
+      "stages": [
+        {
+          "role": "claim",
+          "share": 0.08
+        },
+        {
+          "role": "distinction_and_analogy",
+          "share": 0.27
+        },
+        {
+          "role": "case_or_demo",
+          "share": 0.2
+        },
+        {
+          "role": "practice_and_objection",
+          "share": 0.35
+        },
+        {
+          "role": "agency",
+          "share": 0.1
+        }
+      ],
+      "source_ranks": [
+        3,
+        5
+      ],
+      "note": "实践不是医疗处方；不照搬来源中的效果保证。"
+    },
+    {
+      "id": "identification_choices",
+      "applies_to": "从生活表现识别一种互动模式",
+      "stages": [
+        {
+          "role": "counterintuitive_hook",
+          "share": 0.1
+        },
+        {
+          "role": "observable_signals",
+          "share": 0.25
+        },
+        {
+          "role": "mechanism_and_counterexamples",
+          "share": 0.35
+        },
+        {
+          "role": "choice_and_boundary",
+          "share": 0.3
+        }
+      ],
+      "source_ranks": [
+        8
+      ],
+      "note": "不要把特征清单当诊断量表。"
+    },
+    {
+      "id": "strategy_followup",
+      "applies_to": "已有背景，重点给出可行替代做法",
+      "stages": [
+        {
+          "role": "brief_context",
+          "share": 0.1
+        },
+        {
+          "role": "tradeoff",
+          "share": 0.15
+        },
+        {
+          "role": "strategy_and_roleplay",
+          "share": 0.55
+        },
+        {
+          "role": "concrete_action",
+          "share": 0.2
+        }
+      ],
+      "source_ranks": [
+        6
+      ],
+      "note": "独立可理解，不依赖观众看过上集。"
+    }
+  ],
+  "layout_templates": [
+    {
+      "id": "portrait_plain",
+      "aspect_ratio": "9:16",
+      "source_ranks": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "speaker": "固定机位上半身近景，主讲为主线，面光清晰",
+      "subtitle": "居中短分句，一到两行；白色+深色描边/阴影；少量暖色关键词",
+      "coordinates": "top-left normalized",
+      "font": "exact font unknown; serif-like and sans-serif-like variants observed",
+      "evidence_scope": "sampled frames"
+    },
+    {
+      "id": "portrait_cream_card",
+      "aspect_ratio": "9:16",
+      "source_ranks": [
+        5
+      ],
+      "speaker": "纯口播与奶油色外框卡片交替",
+      "subtitle": "正文简洁，品牌/CTA卡只在用户明确授权身份和服务时采用",
+      "font": "exact font unknown",
+      "evidence_scope": "sampled frames"
+    },
+    {
+      "id": "landscape_chapters",
+      "aspect_ratio": "16:9",
+      "source_ranks": [
+        1
+      ],
+      "speaker": "横版近景与证据画面交替",
+      "subtitle": "底部居中浅色字、半透明深色底框",
+      "chapter_bar": "顶部多格章节导航，只是本变体，不强制竖版套用",
+      "font": "exact font unknown",
+      "evidence_scope": "sampled frames"
+    }
+  ],
+  "audio_visual_triggers": [
+    {
+      "trigger": "新的可核查案例人物/行为被提及",
+      "action": "切入对应授权证据，否则保持出镜或明确示意",
+      "rule_id": "coupling.reference_on_mention"
+    },
+    {
+      "trigger": "关键概念或对照结论进入口播",
+      "action": "字幕中少量暖色关键词强调，不另加无关花字",
+      "rule_id": "subtitles.highlight"
+    },
+    {
+      "trigger": "进入案例引用或返回解释",
+      "action": "在同一口播时间线上选择画外音覆盖或明确原声引用，字幕与音轨权威一致",
+      "rule_id": "coupling.words_to_captions"
+    }
+  ],
+  "guardrails": [
+    "No face or voice identity cloning by default",
+    "No fabricated qualifications, clients or firsthand experiences",
+    "No unverified private-life assertions or mind-reading about real people",
+    "No clinical diagnosis or guaranteed treatment effects",
+    "No source footage, photo or music reuse without rights",
+    "Source author service CTA is not the user CTA",
+    "No forced fixed cut interval",
+    "Source over-peak audio is not a mastering target",
+    "Style fidelity is not a measured effectiveness or human preference score"
+  ],
+  "limits": [
+    {
+      "id": "sample_scope",
+      "dimension": "delivery/editing_audio/coupling",
+      "detail": "Audio perception uses three 15-second excerpts per source; visual review uses 12 frames plus four clear frames per source. Whole-file numerical measurements are separate."
+    },
+    {
+      "id": "font_unknown",
+      "dimension": "subtitles",
+      "detail": "Exact typefaces, editing software and source project parameters cannot be verified from raster frames; use declared approximations."
+    },
+    {
+      "id": "clinical_claims",
+      "dimension": "thinking",
+      "detail": "The source videos include speculative psychological claims and service language; the profile records rhetoric, not clinical validity."
+    },
+    {
+      "id": "human_acceptance",
+      "dimension": "all",
+      "detail": "No human blinded style test or user approval of generated content has occurred. Do not invent a similarity score."
+    }
+  ],
+  "provenance": {
+    "sample_date": "2026-10-24",
+    "training_count": 8,
+    "holdout_count": 2,
+    "asr_provider": "Tingwu, 10 completed tasks",
+    "text_annotation": "current host reviewed full training transcripts; independent model narrative analysis supplementary",
+    "visual_annotation": "current host inspected 96 training frames and macOS Vision OCR",
+    "audio_perception": "Google Gemini 4 Argon through OpenRouter, sampled audio and frames",
+    "numerical_measurements": "FFmpeg full-file scene/silence/loudness; FFprobe; ASR-derived speech density; Vision OCR sampled boxes",
+    "supplementary_narrative_api": "OpenRouter returned truncated JSON; not used as evidence. Canonical phases were annotated from full transcripts by the current host.",
+    "split_file_sha256": "5db84fa59dc5e03b9cbb13a4983667ecf92bef150dd5860583649dec5e4aef2b",
+    "status_notes": "Qualitative model descriptions are interpretations even when the model labels them measurements; use numerical pipeline outputs for measured values."
+  }
+}

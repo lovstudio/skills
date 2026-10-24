@@ -1,0 +1,126 @@
+{
+  "sample_id": "6aaa8d79000000002901bb33",
+  "rank": 3,
+  "title": "这个时代，所有人都应该掌握这种能力",
+  "duration_seconds": 525.744762,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "23622000/788599",
+  "scene_detection": {
+    "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+    "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+    "cut_times_seconds": [
+      41.2,
+      65.700333,
+      84.067,
+      137.533333,
+      144.666667,
+      148.966667,
+      187.999667,
+      202.799667,
+      205.266333,
+      210.166333,
+      219.266333,
+      254.966667,
+      275.1,
+      295.033333,
+      296.933333,
+      297.433333,
+      297.466667,
+      424.099,
+      456.432333,
+      460.299,
+      516.499333,
+      524.799333
+    ],
+    "cut_count": 22,
+    "detected_segment_duration_percentiles": {
+      "10": 1.1363,
+      "50": 14.8,
+      "90": 51.0131
+    }
+  },
+  "audio": {
+    "integrated_lufs": "-15.17",
+    "true_peak_dbtp": "1.82",
+    "loudness_range_lu": "4.40",
+    "silence_threshold_db": -35,
+    "silences": [
+      {
+        "start": 525.08907,
+        "end": 525.744762,
+        "duration": 0.6557
+      }
+    ],
+    "silence_seconds": 0.6557,
+    "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  },
+  "frames": [
+    {
+      "time_seconds": 0.5,
+      "image": "frame-0000.500.jpg"
+    },
+    {
+      "time_seconds": 3,
+      "image": "frame-0003.000.jpg"
+    },
+    {
+      "time_seconds": 10,
+      "image": "frame-0010.000.jpg"
+    },
+    {
+      "time_seconds": 20,
+      "image": "frame-0020.000.jpg"
+    },
+    {
+      "time_seconds": 52.574,
+      "image": "frame-0052.574.jpg"
+    },
+    {
+      "time_seconds": 131.436,
+      "image": "frame-0131.436.jpg"
+    },
+    {
+      "time_seconds": 210.298,
+      "image": "frame-0210.298.jpg"
+    },
+    {
+      "time_seconds": 289.16,
+      "image": "frame-0289.160.jpg"
+    },
+    {
+      "time_seconds": 368.021,
+      "image": "frame-0368.021.jpg"
+    },
+    {
+      "time_seconds": 446.883,
+      "image": "frame-0446.883.jpg"
+    },
+    {
+      "time_seconds": 499.458,
+      "image": "frame-0499.458.jpg"
+    },
+    {
+      "time_seconds": 524.745,
+      "image": "frame-0524.745.jpg"
+    }
+  ],
+  "audio_sample_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 210.29790480000003,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 420.59580960000005,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+schema: lovstudio/skill-card/v1
+version: 0.1.0
+description: 老张心理风格短视频：带时间证据的参考风格协议，以及新选题的口播、分镜和剪辑计划。
+owner:
+  team: Local skill contributors
+  contact: 本地维护者，通过宿主会话反馈；未创建公开支持渠道
+license:
+  name: MIT
+  terms: 代码与原创协议MIT；原视频、人物、音乐与截图权利不转授。
+  url: LICENSE
+use_case:
+  audience: 需要基于已授权参考视频创作新内容的作者与AI工作流
+  scenario: 从参考风格到新选题制作方案，保留证据与边界
+  tasks:
+  - 提取八维风格
+  - 选择叙事与布局变体
+  - 生成原创新选题脚本和时间线
+  - 检查证据、结构和事实边界
+deployment:
+  geography: local-first
+  environments:
+  - 兼容AGENTS/Skills的本地AI宿主
+requirements:
+  credentials: 日常生成不需固定云账号；重分析服务的凭据只从进程环境读取
+  dependencies:
+  - lov-branding-consistency
+  runtime:
+  - Python 3.9+
+  - jsonschema and PyYAML for validation
+  - FFmpeg/OpenCV/numpy/Pillow for optional reanalysis
+risks:
+- risk: 把心理风格误当临床事实或对真人读心
+  mitigation: 观察与机制假设分开，不照搬未经证实的诊断和疗效承诺
+- risk: 侵犯原片或人物身份权利
+  mitigation: 无默认声纹/人脸克隆；附图只作本地分析，制作另核授权
+- risk: 把抽样观察或自动通过当全部成片验收
+  mitigation: 记录抽样范围和未知，区分计划、渲染、听审、人工认可和发布
+references:
+- title: Skill instructions
+  path: SKILL.md
+- title: Style profile
+  path: assets/laozhang-v0.1/style-profile.json
+output:
+  types:
+  - style profile
+  - script
+  - storyboard
+  - edit plan
+  - review
+  formats:
+  - JSON
+  - JSONL
+  - Markdown
+  parameters:
+  - 新选题
+  - 事实来源
+  - 目标时长与画幅
+  - 已授权素材
+  validation:
+  - Schema与交叉引用
+  - 时间轴/字幕/事实ID
+  - 留出观察与新选题案例
+  description: 实际交付的脚本与制作方案不等于已制作视频。
+ethical_considerations: 不冒充原作者、不捏造亲历/资质、不编真实人物隐私、不把风格推断当临床结论，不自动发布。
+dimensions:
+- id: traceability
+  label: 证据可追溯
+  description: 规则引用训练样本及真实时间戳，分子分母可重算
+  evidence: assets/laozhang-v0.1/evidence.jsonl
+  score: null
+- id: executability
+  label: 计划可执行
+  description: 新选题包含连续时间轴、字幕、镜头、声音、事实与规则引用
+  evidence: cases/new-topic/edit-plan.json
+  score: null
+- id: generalization
+  label: 留出与例外
+  description: 2条留出仅用于固定画像的观察检验，未宣称人类风格认可
+  evidence: assets/laozhang-v0.1/holdout-report.json
+  score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 本地交付可移植创作协议和测量/验证脚本，不收取Skill使用费。
+  boundary: 外部模型、ASR、拍摄、配音、音乐授权、渲染及发布费用不包含。
+  review_trigger: 改变交付范围或商业服务时重新评估，当前不做付费发布。
+  confidence: internal
+distribution:
+  paid: []
+  free: []
+  channels:
+    github: not_requested
+    lovstudio: not_requested
+    workbuddy: not_requested
+    skillpay: not_requested
+  local: installed after verification

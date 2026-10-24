@@ -1,0 +1,174 @@
+{
+  "sample_id": "6a8eb2d800000000200363a9",
+  "rank": 5,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 194.6853876,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 389.3707752,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7174,
+    "completion_tokens": 2129,
+    "total_tokens": 9303,
+    "cost": 0.035638,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.035638,
+      "upstream_inference_prompt_cost": 0.014348,
+      "upstream_inference_completions_cost": 0.02129
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 84.0,
+  "observations": {
+    "sample_id": "6a8eb2d800000000200363a9",
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "测量显示全样本为单一青年女性声线，咬字清晰；主观估计整体语速偏快且节奏平稳，呈讲解与论述语气。",
+          "confidence": "high",
+          "evidence": "原视频 0.00s-15.00s, 194.69s-209.69s, 389.37s-404.37s",
+          "scope": "sampled",
+          "reproduction_instruction": "使用单一女声，以偏快且均匀的语速进行条理化讲解。"
+        },
+        {
+          "description": "在核心概念词汇与转折词上存在明显重音强调，例如“观察性自我”、“压倒”、“两套并行”（0.00s-15.00s），“感受性自我”、“一定”、“更加稀缺”（194.69s-209.69s），以及“但是”、“自我攻击”、“根本就动不起来”（389.37s-404.37s）；列举词组（如“大哭啊大笑啊大吵大闹啊”）时语速局部加快。",
+          "confidence": "high",
+          "evidence": "原视频 0.00s-15.00s, 194.69s-209.69s, 389.37s-404.37s",
+          "scope": "sampled",
+          "reproduction_instruction": "在概念名词、转折词和程度副词上加重读音，列举并列短语时加快连读节奏。"
+        },
+        {
+          "description": "句间停顿极短促，换气紧凑，未见长停顿。",
+          "confidence": "high",
+          "evidence": "原视频 0.00s-15.00s, 194.69s-209.69s, 389.37s-404.37s",
+          "scope": "sampled",
+          "reproduction_instruction": "后期剪辑或录制时保持句间紧凑衔接，减少气口停顿时间。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "测量显示人声始终处于绝对前景，音量清晰突出；背景中存在极微弱的轻柔器乐铺底（疑似钢琴或环境轻音乐），但因混音电平极低，无法辨认具体曲目名称。",
+          "confidence": "high",
+          "evidence": "原视频 0.00s-15.00s, 194.69s-209.69s, 389.37s-404.37s",
+          "scope": "sampled",
+          "reproduction_instruction": "将人声置于混音最前端，背景音乐音量压低至仅起微弱环境填充作用。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "测量显示画面为竖屏画幅（约9:16）；主讲人机位大多为中近景（腰部或臀部以上），人物居中正面朝向镜头，佩戴领夹麦；背景为室内环境，左后方有白色窗帘及顶部暖色灯带，右后方为贴有红色条幅的白色柜门；人物面部受均匀柔和的正面光源照明。",
+          "confidence": "high",
+          "evidence": "原视频 0.50s, 3.00s, 10.00s, 20.00s, 121.68s, 267.69s, 340.70s, 462.38s, 485.71s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用竖屏中近景固定机位居中拍摄主讲人，正面补光，背景保留暖光灯带与室内陈设。"
+        },
+        {
+          "description": "部分帧展示主讲人画面四周加上宽幅米白色边框，主画面缩小居中；另有帧（121.68s）在全屏人像四周叠加了明显的黑色暗角效果。",
+          "confidence": "high",
+          "evidence": "原视频 121.68s, 194.69s, 413.71s",
+          "scope": "sampled",
+          "reproduction_instruction": "在特定片段将主画面缩小并置于米白色背景框中，或在全屏画面四周添加黑色暗角滤镜。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "主讲画面中下部居中位置呈现实体单行中文字幕，为白色无衬线字体，带有细黑色描边与轻微阴影，字号适中。",
+          "confidence": "high",
+          "evidence": "原视频 0.50s, 3.00s, 10.00s, 20.00s, 48.67s, 121.68s, 194.69s, 267.69s, 340.70s, 462.38s, 485.71s",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面中下部居中位置添加单行白色黑边字幕，随语音同步更新。"
+        },
+        {
+          "description": "在带米白色边框的画面顶部居中位置，有单行固定标题文字“心理事 找老张”，为黄色字体配黑色描边及外发光阴影，相对字号大于底部字幕。",
+          "confidence": "high",
+          "evidence": "原视频 194.69s, 413.71s",
+          "scope": "sampled",
+          "reproduction_instruction": "在米白色边框顶部居中放置黄色黑边的栏目名称标题。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "0.50s在画面左侧中部叠加一张女性半身抠像贴图（带白色描边）；3.00s在保留左侧抠像的同时，于画面右侧中部新增另一张女性半身抠像贴图。",
+          "confidence": "high",
+          "evidence": "原视频 0.50s, 3.00s",
+          "scope": "sampled",
+          "reproduction_instruction": "在提及特定人物特征时，于主讲人两侧叠加带白边的人物半身抠图。"
+        },
+        {
+          "description": "48.67s画面切换为米白色全屏背景，中间嵌入一段横屏访谈视频片段（画面右下角有水印，左下方有原片自带灰底白字小字幕）。",
+          "confidence": "high",
+          "evidence": "原视频 48.67s",
+          "scope": "sampled",
+          "reproduction_instruction": "插入横屏第三方视频素材，上下留白填充米白色背景。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "抽样帧证实的视觉变化包括：0.50s与3.00s相较于10.00s存在画面裁切放大（景别更近）；48.67s切换为外部横屏视频素材；121.68s添加了暗角特效；194.69s与413.71s切换为带米白色外框和顶部黄色标题的版式。无法凭12帧推断全片精确切点数量与切换频率。",
+          "confidence": "high",
+          "evidence": "原视频 0.50s, 3.00s, 10.00s, 48.67s, 121.68s, 194.69s, 413.71s",
+          "scope": "sampled",
+          "reproduction_instruction": "通过推拉景别（数码缩放）、切换带框版式、添加暗角滤镜及穿插外部视频素材来丰富视觉层次。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "在时间完全对应的样本区间内，0.50s字幕“蓝盈莹是一个还蛮典型的”与音频开头语音一致且同步出现人物贴图；3.00s字幕“压倒「体验性自我」的人”与语音一致且同步增加右侧人物贴图；10.00s字幕“能够让那些本能的东西”与语音同步且人物手势变化；194.69s字幕“去练习那个体验性自我”与第二段音频开头（194.69s）的语音完全对应。其余抽样帧不在音频采样区间内，视听对应关系为unknown。",
+          "confidence": "high",
+          "evidence": "原视频 0.50s, 3.00s, 10.00s, 194.69s",
+          "scope": "sampled",
+          "reproduction_instruction": "确保字幕及人物抠像贴图的弹出时间与人声台词的关键节点严格对齐。"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "音频仅包含3段各15秒的抽样，画面仅为12张离散抽样帧与4张清晰帧，未覆盖全片连续时间轴；因此无法得知未采样区间的台词内容、音乐变化、精确剪辑切点数及完整叙事结构，亦无法测量精确字体名称。",
+          "confidence": "high",
+          "evidence": "全样本限制说明",
+          "scope": "sampled",
+          "reproduction_instruction": "unknown"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "sample_id": "6a8eb2d800000000200363a9",
+  "rank": 5,
+  "title": "蓝盈莹积极阳光的背面，是一场「自我霸凌」",
+  "duration_seconds": 486.713469,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "30/1",
+  "scene_detection": {
+    "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+    "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+    "cut_times_seconds": [
+      44.266667,
+      51.066667,
+      188.633333,
+      200.166667,
+      230.466667,
+      245.233333,
+      400.433333,
+      414.533333,
+      486.066667
+    ],
+    "cut_count": 9,
+    "detected_segment_duration_percentiles": {
+      "10": 6.1847,
+      "50": 22.5333,
+      "90": 139.33
+    }
+  },
+  "audio": {
+    "integrated_lufs": "-17.27",
+    "true_peak_dbtp": "0.30",
+    "loudness_range_lu": "4.50",
+    "silence_threshold_db": -35,
+    "silences": [
+      {
+        "start": 94.5178,
+        "end": 94.739433,
+        "duration": 0.2216
+      },
+      {
+        "start": 95.05381,
+        "end": 95.291156,
+        "duration": 0.2373
+      },
+      {
+        "start": 127.88322,
+        "end": 128.083401,
+        "duration": 0.2002
+      },
+      {
+        "start": 128.083424,
+        "end": 128.475601,
+        "duration": 0.3922
+      }
+    ],
+    "silence_seconds": 1.0513,
+    "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  },
+  "frames": [
+    {
+      "time_seconds": 0.5,
+      "image": "frame-0000.500.jpg"
+    },
+    {
+      "time_seconds": 3,
+      "image": "frame-0003.000.jpg"
+    },
+    {
+      "time_seconds": 10,
+      "image": "frame-0010.000.jpg"
+    },
+    {
+      "time_seconds": 20,
+      "image": "frame-0020.000.jpg"
+    },
+    {
+      "time_seconds": 48.671,
+      "image": "frame-0048.671.jpg"
+    },
+    {
+      "time_seconds": 121.678,
+      "image": "frame-0121.678.jpg"
+    },
+    {
+      "time_seconds": 194.685,
+      "image": "frame-0194.685.jpg"
+    },
+    {
+      "time_seconds": 267.692,
+      "image": "frame-0267.692.jpg"
+    },
+    {
+      "time_seconds": 340.699,
+      "image": "frame-0340.699.jpg"
+    },
+    {
+      "time_seconds": 413.706,
+      "image": "frame-0413.706.jpg"
+    },
+    {
+      "time_seconds": 462.378,
+      "image": "frame-0462.378.jpg"
+    },
+    {
+      "time_seconds": 485.713,
+      "image": "frame-0485.713.jpg"
+    }
+  ],
+  "audio_sample_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 194.6853876,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 389.3707752,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "sample_id": "6a68970e000000000401f3f7",
+  "rank": 7,
+  "title": "冉莹颖的匮乏，源自两套底层信念",
+  "duration_seconds": 524.514104,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "30/1",
+  "scene_detection": {
+    "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+    "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+    "cut_times_seconds": [
+      15.6,
+      22.766667,
+      23.766667,
+      24.733333,
+      29.0,
+      31.933333,
+      33.566667,
+      36.833333,
+      47.2,
+      81.866667,
+      83.333333,
+      89.1,
+      93.133333,
+      97.366667,
+      99.1,
+      99.966667,
+      111.0,
+      111.233333,
+      113.033333,
+      155.5,
+      160.0,
+      163.066667,
+      169.0,
+      189.266667,
+      194.033333,
+      195.733333,
+      198.966667,
+      204.933333,
+      207.333333,
+      235.733333,
+      254.666667,
+      263.266667,
+      279.266667,
+      281.5,
+      293.8,
+      315.866667,
+      320.833333,
+      340.6,
+      352.6,
+      383.633333,
+      433.466667,
+      446.266667,
+      448.1,
+      455.5,
+      462.166667,
+      474.6,
+      480.133333,
+      513.833333,
+      519.666667,
+      522.4,
+      524.466667
+    ],
+    "cut_count": 51,
+    "detected_segment_duration_percentiles": {
+      "10": 1.4833,
+      "50": 5.65,
+      "90": 27.7667
+    }
+  },
+  "audio": {
+    "integrated_lufs": "-15.00",
+    "true_peak_dbtp": "0.70",
+    "loudness_range_lu": "5.30",
+    "silence_threshold_db": -35,
+    "silences": [],
+    "silence_seconds": 0,
+    "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  },
+  "frames": [
+    {
+      "time_seconds": 0.5,
+      "image": "frame-0000.500.jpg"
+    },
+    {
+      "time_seconds": 3,
+      "image": "frame-0003.000.jpg"
+    },
+    {
+      "time_seconds": 10,
+      "image": "frame-0010.000.jpg"
+    },
+    {
+      "time_seconds": 20,
+      "image": "frame-0020.000.jpg"
+    },
+    {
+      "time_seconds": 52.451,
+      "image": "frame-0052.451.jpg"
+    },
+    {
+      "time_seconds": 131.129,
+      "image": "frame-0131.129.jpg"
+    },
+    {
+      "time_seconds": 209.806,
+      "image": "frame-0209.806.jpg"
+    },
+    {
+      "time_seconds": 288.483,
+      "image": "frame-0288.483.jpg"
+    },
+    {
+      "time_seconds": 367.16,
+      "image": "frame-0367.160.jpg"
+    },
+    {
+      "time_seconds": 445.837,
+      "image": "frame-0445.837.jpg"
+    },
+    {
+      "time_seconds": 498.288,
+      "image": "frame-0498.288.jpg"
+    },
+    {
+      "time_seconds": 523.514,
+      "image": "frame-0523.514.jpg"
+    }
+  ],
+  "audio_sample_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 209.8056416,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 419.6112832,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "sample_id": "6a7879970000000026035790",
+  "rank": 6,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 128.6106848,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 257.2213696,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7175,
+    "completion_tokens": 2160,
+    "total_tokens": 9335,
+    "cost": 0.03595,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.03595,
+      "upstream_inference_prompt_cost": 0.01435,
+      "upstream_inference_completions_cost": 0.0216
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 79.83,
+  "observations": {
+    "sample_id": "6a7879970000000026035790",
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "主观估计：发音人为中音区女声，声线清晰平稳。测量与听觉证实：在原视频0.0至15.0秒区间，语速较快且连贯，在約6.2秒（讲完“如何破局”后）和8.5秒（讲完“围剿女性”后）有明显可听停顿；在“恰恰相反”、“非常共情”、“但是”等词上有明显重音与音量提升。",
+          "confidence": "high",
+          "evidence": "0.0s-15.0s",
+          "scope": "sampled",
+          "reproduction_instruction": "使用清晰平稳的女声录制口播，保持较快语速，在转折词（如“恰恰相反”、“但是”）处加重读音，并在短句句尾留出约0.3至0.5秒的清晰停顿。"
+        },
+        {
+          "description": "测量与听觉证实：在原视频128.61秒至143.61秒区间，语气呈分析与强调态，在“我必须我得强”、“可以”、“但是不能踩”等词句上有明显重音和语速放缓以作强调。",
+          "confidence": "high",
+          "evidence": "128.61s-143.61s",
+          "scope": "sampled",
+          "reproduction_instruction": "在阐述核心观点时，对肯定词与否定词施加明显的重音，并在重音词前后微幅放慢语速。"
+        },
+        {
+          "description": "测量与听觉证实：在原视频257.22秒至272.22秒区间，语气坚定，在“这才是真的强者”、“脆弱和恐惧”、“第一步”等处有明显重音；在“所以”之后（约267.5秒）有可听停顿。",
+          "confidence": "high",
+          "evidence": "257.22s-272.22s",
+          "scope": "sampled",
+          "reproduction_instruction": "在总结性段落采用坚定的语气，在逻辑连词“所以”后作短暂气口停顿，随后加重核心名词的读音。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "测量与听觉证实：三个音频采样区间内均可听到持续的轻柔纯音乐背景（以钢琴或键盘音色为主），人声始终处于绝对前景，背景音乐音量较低，处于背景层，不掩盖人声。",
+          "confidence": "high",
+          "evidence": "0.0s-15.0s, 128.61s-143.61s, 257.22s-272.22s",
+          "scope": "sampled",
+          "reproduction_instruction": "在人声轨下方铺设一条轻柔的纯音乐伴奏轨，将音乐音量控制在人声之下，确保人声清晰突出。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "测量：画面为竖屏画幅（9:16）。在主讲人出镜帧中，景别为近景（胸部以上），人物位于画面中央偏下至顶部区域；人物身穿暗红色无袖上衣，领口夹有黑色方形领夹麦克风。背景为浅色竖条纹窗帘，顶部有暖黄色灯带照明。面部光线明亮均匀，画面四周边缘有轻微暗角。",
+          "confidence": "high",
+          "evidence": "0.50s, 10.00s, 20.00s, 32.15s, 128.61s, 176.84s, 225.07s, 305.45s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用9:16竖屏拍摄，机位正面平视，取人物胸部以上近景居中构图；背景布置浅色窗帘与顶部暖光灯带，人物正面补光，领口佩戴无线领夹麦。"
+        },
+        {
+          "description": "测量：在插入素材帧中，画面上下方为大面积纯黑色背景，中间区域放置横向画幅的外部视频或图像素材。",
+          "confidence": "high",
+          "evidence": "3.00s, 80.38s, 273.30s",
+          "scope": "sampled",
+          "reproduction_instruction": "在9:16竖屏黑色底图中央居中嵌入16:9或横向比例的视频/图片素材，上下留黑边。"
+        },
+        {
+          "description": "测量：在320.53秒帧中，纯黑色背景上方中央为一个圆形遮罩，内部显示主讲人头部特写画面。",
+          "confidence": "high",
+          "evidence": "320.53s",
+          "scope": "sampled",
+          "reproduction_instruction": "将主讲人画面添加圆形蒙版置于纯黑背景的偏上方中央位置。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "测量：画面中下部固定位置显示单行中文字幕。主体文字为白色无衬线体，带有黑色描边或阴影；在部分帧中，特定关键词（如3.00秒的“剖析”、“性格”，20.00秒的“情绪宣泄”，128.61秒的“底层心理”，176.84秒的“愿意做饭的”，273.30秒的“新的选择”）被高亮为橙色且字号略大于同行白色文字。",
+          "confidence": "high",
+          "evidence": "0.50s, 3.00s, 10.00s, 20.00s, 32.15s, 80.38s, 128.61s, 176.84s, 225.07s, 273.30s, 305.45s",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面中下部添加单行居中字幕，默认使用白色黑边字体，将句中重点词汇替换为橙色并微幅放大字号。"
+        },
+        {
+          "description": "测量：在320.53秒帧中，字幕位于圆形头像下方，带有浅粉橙色矩形背景底框，文字为“和人生教练”，其中“和”为白色，“人生教练”为橙色且字号略大。",
+          "confidence": "high",
+          "evidence": "320.53s",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面中下部添加带浅色实心矩形底框的单行字幕，并对重点词作橙色放大处理。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "测量：在3.00秒、80.38秒、273.30秒帧的横向嵌入素材内部，左下方带有原素材自带的黄橙色笔刷底纹人名条“冉莹颖”及灰色半透明底条字幕（如“然后我爸喜欢养鸽子”、“亏了很多钱”、“他有一笔钱”）；80.38秒素材左上角带有“资料来源于网络”小字。",
+          "confidence": "high",
+          "evidence": "3.00s, 80.38s, 273.30s",
+          "scope": "sampled",
+          "reproduction_instruction": "直接引用带有原节目包装字幕和人名条的外部视频片段居中放置。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "测量：采样帧证实视频在主讲人正面近景画面（如0.50s、10.00s、32.15s、128.61s、225.07s、305.45s）与居中嵌入的外部素材黑底画面（如3.00s、80.38s、273.30s）之间进行了画面切换，并在尾段（320.53s）切换为黑底圆形头像遮罩画面。",
+          "confidence": "high",
+          "evidence": "0.50s, 3.00s, 10.00s, 80.38s, 128.61s, 225.07s, 273.30s, 305.45s, 320.53s",
+          "scope": "sampled",
+          "reproduction_instruction": "以主讲人口播画面为主线，在提及具体人物或事件时切入全屏黑底居中横屏素材画面，结尾处切入黑底圆形遮罩画面。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "测量：原视频0.50秒帧字幕“好啊那我们上一期讲了”、3.00秒帧字幕“然后剖析了她的性格”、10.00秒帧字幕“恰恰相反”、128.61秒帧字幕“就是她的底层心理就是”，与对应时间点的音频人声台词完全同步对应；10.00秒主讲人说话重音时伴随左手抬起手势。",
+          "confidence": "high",
+          "evidence": "0.50s, 3.00s, 10.00s, 128.61s",
+          "scope": "sampled",
+          "reproduction_instruction": "保持人声口播、手势动作与底部字幕严格同步，在3.00秒讲到相关人物性格时切入对应人物的画面素材，同时保持主讲人声音不中断（画外音）。"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "音频仅提供3段各15秒的采样（共45秒），且画面仅提供12张离散时间点的静态帧，无法得知未采样区间的语音内容、BGM变化、精确剪辑切点数量及完整叙事结构。",
+          "confidence": "high",
+          "evidence": "unknown",
+          "scope": "sampled",
+          "reproduction_instruction": "仅依据已确认的采样特征进行局部形式复现，不对未采样区间做任何推断。"
+        }
+      ]
+    }
+  }
+}

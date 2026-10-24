@@ -1,0 +1,159 @@
+{
+  "sample_id": "6aa2915d0000000025034163",
+  "rank": 4,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 204.0105216,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 408.0210432,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7174,
+    "completion_tokens": 1965,
+    "total_tokens": 9139,
+    "cost": 0.033998,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.033998,
+      "upstream_inference_prompt_cost": 0.014348,
+      "upstream_inference_completions_cost": 0.01965
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 78.09,
+  "observations": {
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "主观估计：可听见单一女性说话声线，音调适中偏平稳，语气为持续性陈述与解说。测量：三段15秒采样内均保持连续口播，语速较快且均匀。",
+          "confidence": "high",
+          "evidence": "原视频0.0s-15.0s, 204.01s-219.01s, 408.02s-423.02s",
+          "scope": "sampled",
+          "reproduction_instruction": "使用单一女声进行连续、语速较快的平实陈述录音。"
+        },
+        {
+          "description": "测量：在原视频216.5s-219.01s（对应采样27.5s-30.0s）列举词语（如“安稳感、归属感”）及416.0s-423.02s（对应采样38.0s-45.0s）短句衔接处存在清晰的可听停顿与词组重音。",
+          "confidence": "high",
+          "evidence": "原视频216.5s-219.01s, 416.0s-423.02s",
+          "scope": "sampled",
+          "reproduction_instruction": "在并列名词和排比短句之间留出约0.2-0.4秒的短促停顿，并加重核心词汇读音。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "测量：三段音频采样中均未检测到可辨认的背景音乐（BGM），人声处于绝对前景，背景极安静，无明显环境底噪。",
+          "confidence": "high",
+          "evidence": "原视频0.0s-15.0s, 204.01s-219.01s, 408.02s-423.02s",
+          "scope": "sampled",
+          "reproduction_instruction": "录制纯干声人声轨，不添加背景音乐轨道，保持高信噪比。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "测量：画幅为竖屏（9:16）。主画面为单一长发女性近景（胸部以上），人物位于画面中央；身穿深棕色短袖上衣。背景为室内环境，顶部可见黑色金属框玻璃或镜面隔断及射灯，后方可见浅米色墙面与柜体。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 20.00s, 127.51s, 204.01s, 484.52s, 509.03s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用9:16竖屏固定机位拍摄人物正面近景，背景置于现代室内暖灰/米色调空间，人物居中。"
+        },
+        {
+          "description": "主观估计：主画面光线柔和均匀，人物面部受正面柔光照明，整体色彩偏暖灰与深棕色调。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-509.03s（全部采样帧）",
+          "scope": "sampled",
+          "reproduction_instruction": "在人物正前方布置柔光光源，结合室内顶光，维持暖白平衡。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "测量：画面中下部固定位置呈现单行横排白字黑边字幕，居中对齐，字体相对大小适中（单行约6至12个汉字宽度）。可见文字包括：“景甜跟孙宇晨的这个事”(0.50s)、“都已经逐渐淡忘了”(3.00s)、“也就是景甜”(10.00s)、“一段亲密关系的发生”(20.00s)、“心理学是要看到”(51.00s)、“我们来看磨指甲这个动作啊”(127.51s)、“感官层面”(204.01s)、“她其实是没有形成一个”(280.51s)、“脆弱的这个部分之后”(357.02s)、“是不会带给她稳定的连结感”(433.52s)、“那种爱”(484.52s)、“圆满和安稳”(509.03s)。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-509.03s（全部12张采样帧）",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面垂直方向约65%-70%高度处居中叠加单行白色无衬线/黑体类字幕，添加黑色外描边与轻微阴影。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "测量：在部分采样帧中，画面中上部或右下角叠加了外部图像/视频截图贴图，具体包括：3.00s处中上部横向并列两张人物照片；10.00s处右下角叠加单人抠图贴图；51.00s、280.51s、357.02s、433.52s处画面中上部叠加横向矩形视频片段/截图（覆盖主讲人面部，仅露出额头与下方手部/躯干），其中357.02s含左上角“壹心理”角标及内嵌小字幕，433.52s含左下角“SOHU-ENT.”字样与蓝色相机图形贴纸。",
+          "confidence": "high",
+          "evidence": "原视频3.00s, 10.00s, 51.00s, 280.51s, 357.02s, 433.52s",
+          "scope": "sampled",
+          "reproduction_instruction": "在主画面之上、字幕之上的区域（约画面垂直25%-60%处）居中叠加16:9或方形外部素材图层，或在右下角叠加抠像贴纸。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "测量：主机位保持固定景别与角度不变，画面变化主要体现为主讲人手势姿态的变化（如0.50s托腮、127.51s双手交握、204.01s单手指点、280.51s抬手）以及视觉贴图图层的出现与消失（如0.50s无贴图、3.00s出现双人图、10.00s变为右下角贴图、20.00s无贴图）。无法仅凭12帧推断具体切点时间。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-509.03s",
+          "scope": "sampled",
+          "reproduction_instruction": "保持A-roll口播机位固定，随讲述进程在轨道上方间歇性切入B-roll图片或视频截图图层。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "测量：在原视频0.0s-15.0s区间内，音频口播内容与0.50s（“景甜跟孙宇晨的这个事”）、3.00s（“都已经逐渐淡忘了”）、10.00s（“也就是景甜”）帧中的字幕文字完全同步对应，且3.00s和10.00s的贴图出现时间与口播提及对象的时间一致。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 3.00s, 10.00s及0.0s-15.0s音频",
+          "scope": "sampled",
+          "reproduction_instruction": "将字幕轨与口播人声严格对齐，并在提及特定人物关键词时同步弹出对应人物图片。"
+        },
+        {
+          "description": "测量：原视频204.01s帧字幕“感官层面”位于第二段音频采样起始点（204.01s）附近，但音频采样15.0s处直接从“来吸引一个男人”开始，未包含“感官层面”四字的完整发音；第三段音频（408.02s-423.02s）区间内无对应时间戳的视频采样帧，其声画耦合情况为unknown。",
+          "confidence": "high",
+          "evidence": "原视频204.01s, 408.02s-423.02s",
+          "scope": "sampled",
+          "reproduction_instruction": "仅在有音画同时采样的区间验证同步性，未重叠区间标记为unknown。"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "测量：分析受限于仅3段各15秒的音频采样（共45秒）及12张离散视频抽帧，无法获知未采样区间的音频变化、精确剪辑切点数量、B-roll片段是否为动态视频以及完整叙事结构。",
+          "confidence": "high",
+          "evidence": "全局采样限制",
+          "scope": "sampled",
+          "reproduction_instruction": "说明抽样数据边界，不对帧间空白及未采样音频做外推。"
+        }
+      ]
+    }
+  }
+}

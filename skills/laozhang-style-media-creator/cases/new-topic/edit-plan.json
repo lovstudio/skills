@@ -1,0 +1,746 @@
+{
+  "schema_version": "0.1.0",
+  "style_id": "lov-laozhang-style-media-creator",
+  "profile_version": "0.1.0",
+  "topic": "总替别人的情绪负责，为什么越体贴越累？",
+  "duration_seconds": 96,
+  "aspect_ratio": "9:16",
+  "actor_identity": "own",
+  "render_status": "not_requested",
+  "sections": [
+    {
+      "id": "S01",
+      "start_seconds": 0.0,
+      "end_seconds": 8.0,
+      "role": "hook",
+      "purpose": "让观众辨认自己的即时反应",
+      "voiceover": "你有没有发现，有时候你不是在和一个人相处，而是在不停地监测他的心情。他少回一个字，你就开始检查自己哪里做错了。",
+      "fact_ids": [
+        "F3"
+      ],
+      "style_rule_ids": [
+        "narrative.direct_open",
+        "language.dialogue",
+        "language.contrast"
+      ],
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "subtitles": [
+        {
+          "start_seconds": 0.0,
+          "end_seconds": 0.93,
+          "lines": [
+            "你有没有发现，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 0.93,
+          "end_seconds": 2.945,
+          "lines": [
+            "有时候你不是在和一个人相处，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 2.945,
+          "end_seconds": 4.805,
+          "lines": [
+            "而是在不停地监测他的心情。"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 4.805,
+          "end_seconds": 5.735,
+          "lines": [
+            "他少回一个字，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 5.735,
+          "end_seconds": 7.75,
+          "lines": [
+            "你就开始检查自己哪里做错了。"
+          ],
+          "emphasis": []
+        }
+      ],
+      "audio": {
+        "delivery": "清晰解释性口播；对照词重读，转折前短暂停顿。使用自己的音色，不克隆参考声纹。",
+        "pause_after_seconds": 0.25,
+        "bgm": "none; no licensed music supplied"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "id": "S02",
+      "start_seconds": 8.0,
+      "end_seconds": 20.0,
+      "role": "fictional_scene",
+      "purpose": "用明确虚构情境建立可观察行为",
+      "voiceover": "举个虚构的例子。阿宁约朋友见面，对方回了一句，今天先不聊了。她立刻把聊天记录翻了三遍，想是不是自己太烦了，又补了好几句道歉。可对方还没有说明原因，她已经开始替这段关系收拾残局。",
+      "fact_ids": [
+        "F1",
+        "F2"
+      ],
+      "style_rule_ids": [
+        "narrative.concrete_application",
+        "thinking.mechanism",
+        "visual.evidence_insert"
+      ],
+      "camera": {
+        "type": "talking_head_with_demo_card",
+        "instruction": "口播为底，叠加新制作的对话示意卡；醒目标注虚构演示，不使用或伪造真实聊天截图。"
+      },
+      "subtitles": [
+        {
+          "start_seconds": 8.0,
+          "end_seconds": 10.0823,
+          "lines": [
+            "举个虚构的例子。阿宁约朋友见面，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 10.0823,
+          "end_seconds": 11.8671,
+          "lines": [
+            "对方回了一句，今天先不聊了。"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 11.8671,
+          "end_seconds": 13.6519,
+          "lines": [
+            "她立刻把聊天记录翻了三遍，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 13.6519,
+          "end_seconds": 14.9905,
+          "lines": [
+            "想是不是自己太烦了，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 14.9905,
+          "end_seconds": 16.1804,
+          "lines": [
+            "又补了好几句道歉。"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 16.1804,
+          "end_seconds": 17.6677,
+          "lines": [
+            "可对方还没有说明原因，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 17.6677,
+          "end_seconds": 19.75,
+          "lines": [
+            "她已经开始替这段关系收拾残局。"
+          ],
+          "emphasis": []
+        }
+      ],
+      "audio": {
+        "delivery": "清晰解释性口播；对照词重读，转折前短暂停顿。使用自己的音色，不克隆参考声纹。",
+        "pause_after_seconds": 0.25,
+        "bgm": "none; no licensed music supplied"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "id": "S03",
+      "start_seconds": 20.0,
+      "end_seconds": 34.4,
+      "role": "mechanism",
+      "purpose": "将行为连接到一个有边界的解释",
+      "voiceover": "这可能不只是体贴，而是你把维持关系的责任，全都放到了自己身上。只要你不高兴，我就得做点什么。只要我把你安顿好了，这段关系才算安全。于是，对方的每一次情绪变化，都像一张突然递过来的考卷，而你不能不交。",
+      "fact_ids": [
+        "F3"
+      ],
+      "style_rule_ids": [
+        "thinking.mechanism",
+        "language.metaphor",
+        "language.contrast"
+      ],
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "subtitles": [
+        {
+          "start_seconds": 20.0,
+          "end_seconds": 21.2864,
+          "lines": [
+            "这可能不只是体贴，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 21.2864,
+          "end_seconds": 23.0551,
+          "lines": [
+            "而是你把维持关系的责任，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 23.0551,
+          "end_seconds": 25.467,
+          "lines": [
+            "全都放到了自己身上。只要你不高兴，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 25.467,
+          "end_seconds": 26.5926,
+          "lines": [
+            "我就得做点什么。"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 26.5926,
+          "end_seconds": 28.0398,
+          "lines": [
+            "只要我把你安顿好了，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 28.0398,
+          "end_seconds": 29.6477,
+          "lines": [
+            "这段关系才算安全。于是，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 29.6477,
+          "end_seconds": 31.2557,
+          "lines": [
+            "对方的每一次情绪变化，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 31.2557,
+          "end_seconds": 33.1852,
+          "lines": [
+            "都像一张突然递过来的考卷，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 33.1852,
+          "end_seconds": 34.15,
+          "lines": [
+            "而你不能不交。"
+          ],
+          "emphasis": []
+        }
+      ],
+      "audio": {
+        "delivery": "清晰解释性口播；对照词重读，转折前短暂停顿。使用自己的音色，不克隆参考声纹。",
+        "pause_after_seconds": 0.25,
+        "bgm": "none; no licensed music supplied"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "id": "S04",
+      "start_seconds": 34.4,
+      "end_seconds": 46.4,
+      "role": "alternative",
+      "purpose": "保留反例，阻断读心式结论",
+      "voiceover": "但我们先停一下。回复很短，是你看到的事实；他讨厌我，是你加上的解释。对方可能只是忙，也可能确实有情绪，也可能暂时不想说。现在的信息不够，就先不要替他把答案写完，更不必立刻给自己判错。",
+      "fact_ids": [
+        "F2",
+        "F3"
+      ],
+      "style_rule_ids": [
+        "language.causal_bridges",
+        "thinking.understand_not_excuse",
+        "thinking.agency"
+      ],
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "subtitles": [
+        {
+          "start_seconds": 34.4,
+          "end_seconds": 36.0156,
+          "lines": [
+            "但我们先停一下。回复很短，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 36.0156,
+          "end_seconds": 37.6313,
+          "lines": [
+            "是你看到的事实；他讨厌我，"
+          ],
+          "emphasis": [
+            "事实"
+          ]
+        },
+        {
+          "start_seconds": 37.6313,
+          "end_seconds": 39.6875,
+          "lines": [
+            "是你加上的解释。对方可能只是忙，"
+          ],
+          "emphasis": [
+            "解释"
+          ]
+        },
+        {
+          "start_seconds": 39.6875,
+          "end_seconds": 40.8625,
+          "lines": [
+            "也可能确实有情绪，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 40.8625,
+          "end_seconds": 43.0656,
+          "lines": [
+            "也可能暂时不想说。现在的信息不够，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 43.0656,
+          "end_seconds": 44.6812,
+          "lines": [
+            "就先不要替他把答案写完，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 44.6812,
+          "end_seconds": 46.15,
+          "lines": [
+            "更不必立刻给自己判错。"
+          ],
+          "emphasis": []
+        }
+      ],
+      "audio": {
+        "delivery": "清晰解释性口播；对照词重读，转折前短暂停顿。使用自己的音色，不克隆参考声纹。",
+        "pause_after_seconds": 0.25,
+        "bgm": "none; no licensed music supplied"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "id": "S05",
+      "start_seconds": 46.4,
+      "end_seconds": 59.2,
+      "role": "distinction",
+      "purpose": "区分关心与替他人承担全部情绪",
+      "voiceover": "关心和负责到底有什么不同？关心是，我愿意听你说，也愿意询问我能做什么。过度负责则是，你还没开口，我就已经认定这件事跟我有关，认定我必须把你变开心。前者是在靠近一个人，后者却让自己一直站在被评判的位置。",
+      "fact_ids": [
+        "F3"
+      ],
+      "style_rule_ids": [
+        "language.dialogue",
+        "language.contrast",
+        "thinking.agency"
+      ],
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "subtitles": [
+        {
+          "start_seconds": 46.4,
+          "end_seconds": 48.4917,
+          "lines": [
+            "关心和负责到底有什么不同？关心是，"
+          ],
+          "emphasis": [
+            "关心"
+          ]
+        },
+        {
+          "start_seconds": 48.4917,
+          "end_seconds": 49.3283,
+          "lines": [
+            "我愿意听你说，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 49.3283,
+          "end_seconds": 50.7228,
+          "lines": [
+            "也愿意询问我能做什么。"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 50.7228,
+          "end_seconds": 52.2567,
+          "lines": [
+            "过度负责则是，你还没开口，"
+          ],
+          "emphasis": [
+            "过度负责"
+          ]
+        },
+        {
+          "start_seconds": 52.2567,
+          "end_seconds": 54.0694,
+          "lines": [
+            "我就已经认定这件事跟我有关，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 54.0694,
+          "end_seconds": 55.4639,
+          "lines": [
+            "认定我必须把你变开心。"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 55.4639,
+          "end_seconds": 56.7189,
+          "lines": [
+            "前者是在靠近一个人，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 56.7189,
+          "end_seconds": 58.8106,
+          "lines": [
+            "后者却让自己一直站在被评判的位"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 58.8106,
+          "end_seconds": 58.95,
+          "lines": [
+            "置。"
+          ],
+          "emphasis": []
+        }
+      ],
+      "audio": {
+        "delivery": "清晰解释性口播；对照词重读，转折前短暂停顿。使用自己的音色，不克隆参考声纹。",
+        "pause_after_seconds": 0.25,
+        "bgm": "none; no licensed music supplied"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "id": "S06",
+      "start_seconds": 59.2,
+      "end_seconds": 76.8,
+      "role": "practice",
+      "purpose": "给出可执行的三个区分",
+      "voiceover": "下一次再遇到这样的时刻，可以先做一个很小的区分。第一句，只说事实，他今天回复得比平时少。第二句，说出自己的感受，我有点不安。第三句，再决定行动，我可以问一句你现在方便聊吗，也可以先去做自己的事。注意，是做选择，不是逼自己立刻变得毫不在意。",
+      "fact_ids": [
+        "F2",
+        "F3"
+      ],
+      "style_rule_ids": [
+        "narrative.concrete_application",
+        "thinking.agency",
+        "language.causal_bridges"
+      ],
+      "camera": {
+        "type": "talking_head_with_text",
+        "instruction": "说到事实、感受、行动时依次呈现对应短词，勿一次放满所有步骤。"
+      },
+      "subtitles": [
+        {
+          "start_seconds": 59.2,
+          "end_seconds": 61.0351,
+          "lines": [
+            "下一次再遇到这样的时刻，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 61.0351,
+          "end_seconds": 63.3707,
+          "lines": [
+            "可以先做一个很小的区分。第一句，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 63.3707,
+          "end_seconds": 65.7062,
+          "lines": [
+            "只说事实，他今天回复得比平时少。"
+          ],
+          "emphasis": [
+            "事实"
+          ]
+        },
+        {
+          "start_seconds": 65.7062,
+          "end_seconds": 68.2087,
+          "lines": [
+            "第二句，说出自己的感受，我有点不安。"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 68.2087,
+          "end_seconds": 69.5433,
+          "lines": [
+            "第三句，再决定行动，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 69.5433,
+          "end_seconds": 71.712,
+          "lines": [
+            "我可以问一句你现在方便聊吗，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 71.712,
+          "end_seconds": 73.7139,
+          "lines": [
+            "也可以先去做自己的事。注意，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 73.7139,
+          "end_seconds": 74.3812,
+          "lines": [
+            "是做选择，"
+          ],
+          "emphasis": [
+            "做选择",
+            "选择"
+          ]
+        },
+        {
+          "start_seconds": 74.3812,
+          "end_seconds": 76.55,
+          "lines": [
+            "不是逼自己立刻变得毫不在意。"
+          ],
+          "emphasis": []
+        }
+      ],
+      "audio": {
+        "delivery": "清晰解释性口播；对照词重读，转折前短暂停顿。使用自己的音色，不克隆参考声纹。",
+        "pause_after_seconds": 0.25,
+        "bgm": "none; no licensed music supplied"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "id": "S07",
+      "start_seconds": 76.8,
+      "end_seconds": 89.6,
+      "role": "roleplay",
+      "purpose": "用建设性表达替代自动道歉",
+      "voiceover": "如果对方确实不舒服，你可以说，我愿意听你讲，但我现在只能聊十分钟，晚一点我们再继续。这不是冷漠，也不是放弃关系，而是你开始把两个人的感受都放进来了。你可以关心他，同时也不把自己从这段关系里拿掉。",
+      "fact_ids": [
+        "F3"
+      ],
+      "style_rule_ids": [
+        "narrative.concrete_application",
+        "thinking.understand_not_excuse",
+        "language.contrast"
+      ],
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "subtitles": [
+        {
+          "start_seconds": 76.8,
+          "end_seconds": 78.6753,
+          "lines": [
+            "如果对方确实不舒服，你可以说，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 78.6753,
+          "end_seconds": 79.5408,
+          "lines": [
+            "我愿意听你讲，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 79.5408,
+          "end_seconds": 80.9833,
+          "lines": [
+            "但我现在只能聊十分钟，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 80.9833,
+          "end_seconds": 82.8586,
+          "lines": [
+            "晚一点我们再继续。这不是冷漠，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 82.8586,
+          "end_seconds": 83.8684,
+          "lines": [
+            "也不是放弃关系，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 83.8684,
+          "end_seconds": 86.0322,
+          "lines": [
+            "而是你开始把两个人的感受都放进"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 86.0322,
+          "end_seconds": 87.1862,
+          "lines": [
+            "来了。你可以关心他，"
+          ],
+          "emphasis": [
+            "关心"
+          ]
+        },
+        {
+          "start_seconds": 87.1862,
+          "end_seconds": 89.35,
+          "lines": [
+            "同时也不把自己从这段关系里拿掉。"
+          ],
+          "emphasis": []
+        }
+      ],
+      "audio": {
+        "delivery": "清晰解释性口播；对照词重读，转折前短暂停顿。使用自己的音色，不克隆参考声纹。",
+        "pause_after_seconds": 0.25,
+        "bgm": "none; no licensed music supplied"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "id": "S08",
+      "start_seconds": 89.6,
+      "end_seconds": 96.0,
+      "role": "agency",
+      "purpose": "温和收束，不加未授权服务引导",
+      "voiceover": "真正值得练习的，不是让所有人都满意，而是别人有情绪的时候，你依然知道，自己也在这里，也有选择。",
+      "fact_ids": [
+        "F3"
+      ],
+      "style_rule_ids": [
+        "thinking.agency",
+        "language.contrast",
+        "delivery.emphasis"
+      ],
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "subtitles": [
+        {
+          "start_seconds": 89.6,
+          "end_seconds": 90.65,
+          "lines": [
+            "真正值得练习的，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 90.65,
+          "end_seconds": 92.0,
+          "lines": [
+            "不是让所有人都满意，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 92.0,
+          "end_seconds": 94.25,
+          "lines": [
+            "而是别人有情绪的时候，你依然知道，"
+          ],
+          "emphasis": []
+        },
+        {
+          "start_seconds": 94.25,
+          "end_seconds": 95.75,
+          "lines": [
+            "自己也在这里，也有选择。"
+          ],
+          "emphasis": [
+            "选择"
+          ]
+        }
+      ],
+      "audio": {
+        "delivery": "清晰解释性口播；对照词重读，转折前短暂停顿。使用自己的音色，不克隆参考声纹。",
+        "pause_after_seconds": 0.25,
+        "bgm": "none; no licensed music supplied"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    }
+  ],
+  "asset_requirements": [
+    {
+      "id": "own-talking-head",
+      "type": "new_recording",
+      "status": "to_record",
+      "rights": "self-owned or authorized",
+      "instruction": "依96秒脚本拍摄自己的口播，保留自然手势与可懂气口。"
+    },
+    {
+      "id": "fictional-chat-card",
+      "type": "new_graphic",
+      "status": "to_create",
+      "rights": "original",
+      "instruction": "仅制作明确标为虚构演示的对话卡，不借用来源影视人物或截图。"
+    }
+  ],
+  "intentional_deviations": [
+    "由5至10分钟参考片缩为96秒，按功能压缩，文本密度落在训练样本P10–P90范围内。",
+    "不加原作者服务CTA、资质、来访经历或疗效承诺。",
+    "无已授权音乐，保持人声优先，不填占位音乐。",
+    "不复制来源可能过峰的音频母带。"
+  ],
+  "unresolved": [
+    "尚未拍摄用户口播，不是已渲染视频。",
+    "声音听感、字幕实际可读性和成片节奏待录制渲染后复核。"
+  ]
+}

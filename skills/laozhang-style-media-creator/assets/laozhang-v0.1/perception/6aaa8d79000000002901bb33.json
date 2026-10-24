@@ -1,0 +1,139 @@
+{
+  "sample_id": "6aaa8d79000000002901bb33",
+  "rank": 3,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 210.29790480000003,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 420.59580960000005,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7273,
+    "completion_tokens": 1372,
+    "total_tokens": 8645,
+    "cost": 0.028266,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.028266,
+      "upstream_inference_prompt_cost": 0.014546,
+      "upstream_inference_completions_cost": 0.01372
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 81.58,
+  "observations": {
+    "sample_id": "6aaa8d79000000002901bb33",
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "主观估计：主讲人为清晰女声，语气坚定、说教感强。在核心词（如‘情绪复原力’、‘变化太快了’、‘不是的’）上加重重音。排比列举时语速加快，设问后有明显停顿。测量：第二段采样后半段（原视频约219秒至225秒）切入另一名女性声音，语速较快，音色与主讲人不同。",
+          "confidence": "high",
+          "evidence": "原视频0.00-15.00s, 210.30-225.30s, 420.60-435.60s",
+          "scope": "sampled",
+          "reproduction_instruction": "使用清晰坚定的女声录制，关键词加重音，排比句加速，自问自答间留出停顿；中间穿插第三方原声片段。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "测量与主观估计：主讲人语段下方铺有极低音量的舒缓器乐背景音乐（疑似钢琴或合成器垫音），人声完全主导且清晰前置；在插入的第三方采访音频片段中，背景音乐不明显或被原片环境音替代。",
+          "confidence": "medium",
+          "evidence": "原视频0.00-15.00s, 210.30-225.30s, 420.60-435.60s",
+          "scope": "sampled",
+          "reproduction_instruction": "人声轨置顶并保持高清晰度，背景音乐轨压低至仅起微弱氛围填充作用。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "测量：9:16竖屏画幅。主场景为中近景至特写，一名长发穿白衣女性居中偏下，背景为室内黑框玻璃隔断、窗帘及浅色沙发。主观估计：面部受正面柔光照明，室顶有暖色筒灯，整体色调偏暖白。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 3.00s, 10.00s, 20.00s, 52.57s, 131.44s, 210.30s, 368.02s, 446.88s, 499.46s, 524.75s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用竖屏固定机位拍摄室内人物中近景，人物居中，正面补柔光，背景保持日常家居纵深。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "测量：主画面中下部居中显示单行中文字幕，白字配半透明深色矩形底框及轻微暗色阴影（如‘从现在开始啊’、‘一种能力’、‘就是’等）；部分帧中重点词放大并改为黄色（如368.02s‘感受’、499.46s‘接纳’）；524.75s无字幕。289.16s插入画面中下部为三行无底框白字（1行中文+2行英文）。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-524.75s采样帧",
+          "scope": "sampled",
+          "reproduction_instruction": "主讲画面添加居中单行白字字幕并垫半透明黑底，重点词汇放大标黄；引用素材保留原片双语白字。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "测量：原视频289.16s处出现外部采访视频片段画面，上下有黑色遮幅，右上角带有白色‘MEET NOW 对话 PEOPLE'S DAILY’字样标识。",
+          "confidence": "high",
+          "evidence": "原视频289.16s",
+          "scope": "sampled",
+          "reproduction_instruction": "在叙事举例处插入带原台标和上下黑边的第三方采访视频片段。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "测量：主画面在特写（如3.00s）与中近景（如131.44s、446.88s）之间存在景别缩放变化；在210.30s至368.02s之间（具体可见289.16s）切入了另一名穿黑衣女性的采访画面，随后切回主讲人画面。",
+          "confidence": "high",
+          "evidence": "原视频3.00s, 131.44s, 210.30s, 289.16s, 368.02s, 446.88s",
+          "scope": "sampled",
+          "reproduction_instruction": "对单机位口播素材进行数码推拉以改变景别，并在提及案例时切入全屏B-roll素材。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "测量：原视频0.50s画面字幕‘从现在开始啊’、3.00s字幕‘一种能力’、10.00s字幕‘都不足够’与第一段音频采样中的口播内容和时间严格同步；210.30s画面人物状态与第二段音频开头讲述案例的起点同步。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 3.00s, 10.00s, 210.30s及对应音频段",
+          "scope": "sampled",
+          "reproduction_instruction": "保持口播音轨、人物口型与画面底部的逐句字幕严格对齐。"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "测量限制：音频仅包含3个15秒片段，画面仅为12张离散抽帧，无法获知未采样区间的完整内容、精确剪辑切点数量及289.16s画面对应的具体音频表现。",
+          "confidence": "high",
+          "evidence": "unknown",
+          "scope": "sampled",
+          "reproduction_instruction": "仅依据已证实的采样特征进行局部复现，不推演全片完整结构。"
+        }
+      ]
+    }
+  }
+}

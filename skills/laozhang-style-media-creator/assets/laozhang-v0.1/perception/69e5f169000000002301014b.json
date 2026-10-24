@@ -1,0 +1,139 @@
+{
+  "sample_id": "69e5f169000000002301014b",
+  "rank": 10,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 162.9071384,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 325.8142768,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7262,
+    "completion_tokens": 1520,
+    "total_tokens": 8782,
+    "cost": 0.029724,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.029724,
+      "upstream_inference_prompt_cost": 0.014524,
+      "upstream_inference_completions_cost": 0.0152
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 75.78,
+  "observations": {
+    "sample_id": "69e5f169000000002301014b",
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "主观估计：中高频段女性声线，咬字清晰，语气笃定且具评述感。语速在第二段采样（原片162.91-177.91s）明显加快，句间气口极短，疑似经过剪辑压缩。测量：第一段“越惨”、“全能感”、“力量感”及第三段“另一方面”、“但是”有明显音量与音高重音；原片171.5s左右“好啊，那我们继续说”处有简短话题转换停顿。",
+          "confidence": "high",
+          "evidence": "0.0-15.0s, 162.91-177.91s, 325.81-340.81s",
+          "scope": "sampled",
+          "reproduction_instruction": "使用清晰坚定的评述语气录音，重点词汇加重读音，后期剪辑紧密切除句间停顿以提升第二段语速感。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "测量与主观估计：三段音频采样中人声完全主导且居于最前景，未听见明显的背景音乐（BGM），或背景音乐极微弱无法辨认旋律与乐器。",
+          "confidence": "high",
+          "evidence": "0.0-15.0s, 162.91-177.91s, 325.81-340.81s",
+          "scope": "sampled",
+          "reproduction_instruction": "仅保留干燥清晰的主讲人声轨，不添加背景音乐或将BGM压至不可听见的极低电平。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "测量：竖屏画幅（约9:16）。主画面为单人近景（胸部以上），人物居中正对镜头，穿白色长袖上衣。背景为室内浅米色窗帘与左侧浅色墙面（左上角有方形墙面面板）。主观估计：正面柔光照明，人物面部明亮均匀，整体呈暖黄色调。",
+          "confidence": "high",
+          "evidence": "0.50s, 10.00s, 20.00s, 40.73s, 162.91s, 224.00s, 285.09s, 346.18s, 386.90s, 406.27s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用9:16竖屏固定机位拍摄人物胸部以上居中近景，背景选暖色调窗帘，正面布置柔光灯。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "测量：画面中下部固定位置显示1至2行居中对齐字幕。字号中等偏大，基础为白色字配黑色描边与阴影，部分重点词（如“惨”、“拯救和照顾”、“享受”、“更多的掌控权”、“受害者”、“地下的、隐蔽的”、“控制—退缩”、“看见”）高亮为黄色字配黑色描边。无法确定精确字体名称（主观估计为有衬线或粗宋/楷体风格）。",
+          "confidence": "high",
+          "evidence": "0.50s-406.27s (全部12帧)",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面中下部添加居中字幕，最多两行，设为白字黑边，将核心词汇手动改为黄字黑边。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "测量：在主画面之上叠加了外部视频截图或片段（画中画）。3.00s处居中偏上叠加一竖版画面（内含黄字“张婉婷在线征婚：要么富豪，要么好用？”及小字“您看您是什么情况呢”）；101.82s处居中叠加一横版节目画面（左上角残存“制”字角标，下部含名牌“张婉婷”与白底黑字“我以为他会此生”）。",
+          "confidence": "high",
+          "evidence": "3.00s, 101.82s",
+          "scope": "sampled",
+          "reproduction_instruction": "在主讲人画面中央偏上位置叠加引用素材的截图或视频片段，保留原素材自带的字幕与花字，主视频字幕仍置于底层最上方可见。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "测量：可证实存在图层叠加变化（0.50s无叠加，3.00s出现竖版画中画，10.00s消失；101.82s出现横版画中画，162.91s消失）。各采样帧之间主讲人手势与头部姿态有明显变化。因仅提供离散抽帧，切点数量与转场方式为unknown。",
+          "confidence": "high",
+          "evidence": "0.50s, 3.00s, 10.00s, 101.82s, 162.91s",
+          "scope": "sampled",
+          "reproduction_instruction": "在主讲人轨道上方新建覆叠轨，按对应话语节点插入外部素材图片或视频段。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "测量：第一段音频与前3帧时间完全对应且声画同步。0.50s字幕“宋宁峰他越惨”对应音频0.0-1.5s语音；3.00s字幕“张婉婷的拯救和照顾的心态”及叠加画面对应音频2.5-4.8s语音；10.00s字幕“她会非常享受”对应音频9.5-11.0s语音。162.91s帧字幕“那她就会拥有更多的掌控权和话语权”对应第二段音频起始处（样本15.0s）的尾音“权”。其余帧不在音频采样区间内，耦合情况为unknown。",
+          "confidence": "high",
+          "evidence": "0.50s, 3.00s, 10.00s, 162.91s",
+          "scope": "sampled",
+          "reproduction_instruction": "确保字幕及画中画素材与主讲人语音逐字同步出现。"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "测量：音频仅包含45秒（3段×15秒）采样，视频仅提供12张离散时间点静态帧（及4张局部高清图）。未采样区间的声画内容、精确剪辑切点、完整动态运动、精确字体名称及全片叙事结构均无法证实（unknown）。",
+          "confidence": "high",
+          "evidence": "0.0-406.27s",
+          "scope": "sampled",
+          "reproduction_instruction": "仅依据已提供的采样帧和音频段进行形式复刻，不预设未采样部分的具体画面与剪辑节奏。"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "sample_id": "6a1ac97b00000000350322e7",
+  "rank": 8,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 168.0474556,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 336.0949112,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7174,
+    "completion_tokens": 1697,
+    "total_tokens": 8871,
+    "cost": 0.031318,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.031318,
+      "upstream_inference_prompt_cost": 0.014348,
+      "upstream_inference_completions_cost": 0.01697
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 86.07,
+  "observations": {
+    "sample_id": "6a1ac97b00000000350322e7",
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "测量：3段共45秒采样均为单一女性声线连续口播。主观估计：中音区，音色清亮，语气果断且具分析感，语速较快且密集。",
+          "confidence": "high",
+          "evidence": "原视频0.00-15.00s, 168.05-183.05s, 336.09-351.09s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用清晰果断的女声进行快节奏连续口播。"
+        },
+        {
+          "description": "测量与主观估计：存在明显词汇重音，如原视频0.00-15.00s强调“真正的巨婴男”、“逃避问题”、“真正有毒”；168.05-183.05s强调“我的感受”、“婴儿期”、“中心”、“但是”；336.09-351.09s强调“为什么”、“先看懂自己”、“专业的心理学工具”。句间换气停顿极短。",
+          "confidence": "high",
+          "evidence": "原视频0.00-15.00s, 168.05-183.05s, 336.09-351.09s",
+          "scope": "sampled",
+          "reproduction_instruction": "在核心概念与转折词上加重音量与咬字，压缩句间停顿以维持紧凑感。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "测量：人声处于绝对前景且干燥清晰。主观估计：背景中存在极微弱的铺底音乐（疑似轻柔钢琴或环境音），音量极低，具体曲目不可辨认，完全不干扰人声。",
+          "confidence": "medium",
+          "evidence": "原视频0.00-15.00s, 168.05-183.05s, 336.09-351.09s",
+          "scope": "sampled",
+          "reproduction_instruction": "人声置顶并保持高清晰度，将背景音乐压低至几乎不可闻的铺底水平。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "测量：竖屏画幅（约9:16），固定机位近景（腰部以上入画），单人居中。人物穿白色内搭与灰色开衫。背景左侧为带暖色顶光灯带的竖百叶窗帘，右侧为浅色柜体与玻璃隔断。面部受正面柔光照明，整体呈暖白色调。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-419.12s全部12帧及4张清晰帧",
+          "scope": "sampled",
+          "reproduction_instruction": "使用竖屏近景固定机位居中拍摄，正面补柔光，背景保留暖光窗帘以营造室内环境。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "测量：画面中下部胸口位置有居中字幕，呈1至2行排布，带黑色描边及外发光阴影。大部分文字为白色，部分关键词高亮为黄色（如0.50s“巨婴男”、42.01s“表现”、231.06s“作对”、294.08s“人格面具”、399.11s“更大的”、419.12s“掌控感”）。精确字体unknown。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 3.00s, 10.00s, 20.00s, 42.01s, 105.03s, 168.05s, 231.06s, 294.08s, 357.10s, 399.11s, 419.12s",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面中下部添加带黑色描边阴影的居中衬线体字幕，单行或双行显示，将核心词设为黄色高亮。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "测量：所有抽样帧中均未见贴图、截图、色条或画中画等附加视觉图形。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-419.12s全部抽样帧",
+          "scope": "sampled",
+          "reproduction_instruction": "保持纯净实拍画面，不添加任何贴纸或图层元素。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "测量：12张抽样帧显示机位、景别、背景、服装完全一致，仅人物头部朝向、视线、口型与手势姿态发生变化（如105.03s、168.05s、399.11s双手抬起比划）。因仅提供离散静帧，具体切点数与跳剪情况unknown。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-419.12s全部抽样帧",
+          "scope": "sampled",
+          "reproduction_instruction": "全程保持单一固定机位与景别，依靠人物手势与神态变化丰富画面。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "测量：原视频0.50s帧字幕“真正的巨婴男”、3.00s“跟家里啃老”、10.00s“大部分都不会选择那种人的”，与第一段音频（0.00-15.00s）对应秒数的台词完全吻合；168.05s帧字幕“婴儿他只能通过”与第二段音频起点（168.05s）台词“…通过我的感受”紧密衔接。其余帧不在音频采样区间内，视听对应关系unknown。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 3.00s, 10.00s, 168.05s及对应音频段",
+          "scope": "sampled",
+          "reproduction_instruction": "将口播台词与画面字幕严格按时间轴同步对齐。"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "测量：音频仅覆盖原视频3个15秒片段（共45秒），画面仅提供12张联系表缩略帧和4张清晰静帧，未覆盖全片连续画面与其余音频，故无法得知全片完整剪辑节奏、切点数量及未采样区间的视听变化。",
+          "confidence": "high",
+          "evidence": "附件音频映射与图像列表",
+          "scope": "sampled",
+          "reproduction_instruction": "仅基于已确认的采样特征进行复刻，不对未采样区间做推测。"
+        }
+      ]
+    }
+  }
+}

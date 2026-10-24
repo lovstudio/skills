@@ -1,0 +1,122 @@
+{
+  "status": "host_reviewed_not_human_approved",
+  "authorship": {
+    "fictional_demo_explicit": true,
+    "firsthand_claims_invented": false,
+    "reference_author_identity_used": false,
+    "clinical_diagnosis_or_effect_promise": false,
+    "counterexplanations_preserved": true
+  },
+  "style": {
+    "selected_variant": "concept_practice + case_mechanism adaptation",
+    "overall_units_per_min": 386.875,
+    "within_training_speech_density_p10_p90": true,
+    "reference_strengths": [
+      "concrete scenario",
+      "mechanism as a hypothesis",
+      "contrast and oral dialogue",
+      "return to viewer agency",
+      "semantic caption/emphasis triggers"
+    ],
+    "intentional_deviations": [
+      "由5至10分钟参考片缩为96秒，按功能压缩，文本密度落在训练样本P10–P90范围内。",
+      "不加原作者服务CTA、资质、来访经历或疗效承诺。",
+      "无已授权音乐，保持人声优先，不填占位音乐。",
+      "不复制来源可能过峰的音频母带。"
+    ]
+  },
+  "source_overlap_checks": [
+    {
+      "sample_id": "6abf912a000000001b0305b4",
+      "max_contiguous_shared_units": 5
+    },
+    {
+      "sample_id": "6ab4292f0000000014003d92",
+      "max_contiguous_shared_units": 5
+    },
+    {
+      "sample_id": "6aaa8d79000000002901bb33",
+      "max_contiguous_shared_units": 4
+    },
+    {
+      "sample_id": "6aa2915d0000000025034163",
+      "max_contiguous_shared_units": 5
+    },
+    {
+      "sample_id": "6a8eb2d800000000200363a9",
+      "max_contiguous_shared_units": 3
+    },
+    {
+      "sample_id": "6a7879970000000026035790",
+      "max_contiguous_shared_units": 3
+    },
+    {
+      "sample_id": "6a68970e000000000401f3f7",
+      "max_contiguous_shared_units": 6
+    },
+    {
+      "sample_id": "6a1ac97b00000000350322e7",
+      "max_contiguous_shared_units": 6
+    }
+  ],
+  "overlap_note": "Contiguous text comparison is a diagnostic, not a copyright clearance or semantic originality guarantee.",
+  "human_blind_test": false,
+  "user_approved": false,
+  "rendered": false,
+  "remaining_checks": [
+    "recorded voice timing",
+    "actual caption readability",
+    "full rendered playback and human style judgement"
+  ],
+  "deterministic_validation": {
+    "status": "passed",
+    "duration_seconds": 96.0,
+    "sections": 8,
+    "spoken_units": 619,
+    "overall_units_per_min": 386.875,
+    "checks": [
+      {
+        "section": "S01",
+        "units": 50,
+        "units_per_min": 375.0
+      },
+      {
+        "section": "S02",
+        "units": 79,
+        "units_per_min": 395.0
+      },
+      {
+        "section": "S03",
+        "units": 88,
+        "units_per_min": 366.67
+      },
+      {
+        "section": "S04",
+        "units": 80,
+        "units_per_min": 400.0
+      },
+      {
+        "section": "S05",
+        "units": 90,
+        "units_per_min": 421.87
+      },
+      {
+        "section": "S06",
+        "units": 104,
+        "units_per_min": 354.55
+      },
+      {
+        "section": "S07",
+        "units": 87,
+        "units_per_min": 407.81
+      },
+      {
+        "section": "S08",
+        "units": 41,
+        "units_per_min": 384.37
+      }
+    ],
+    "render_status": "not_requested",
+    "human_style_review": "not implied by deterministic validation"
+  }
+}

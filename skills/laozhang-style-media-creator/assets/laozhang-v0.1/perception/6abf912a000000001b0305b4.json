@@ -1,0 +1,160 @@
+{
+  "sample_id": "6abf912a000000001b0305b4",
+  "rank": 1,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 227.92649440000002,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 455.85298880000005,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7274,
+    "completion_tokens": 2044,
+    "total_tokens": 9318,
+    "cost": 0.034988,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.034988,
+      "upstream_inference_prompt_cost": 0.014548,
+      "upstream_inference_completions_cost": 0.02044
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 70.63,
+  "observations": {
+    "sample_id": "6abf912a000000001b0305b4",
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "测量：全程为单一青年女性声线，普通话吐字清晰，句间停顿极短（约0.1-0.3秒）。主观估计：语气笃定、偏分析论述感，整体语速较快且平稳，在排比列举时（如原视频9-14秒）语速进一步加快，在核心概念词（如“个体感受”“主观能动性”“顶嘴”“自怜”）上有明显重音。",
+          "confidence": "high",
+          "evidence": "原视频0.0-15.0s, 227.93-242.93s, 455.85-470.85s",
+          "scope": "sampled",
+          "reproduction_instruction": "使用清晰的中高频女声，保持快语速和极短的气口，采用论述性语气，在核心概念词上加重音，排比句式处加快连读。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "测量：人声处于绝对前景，音量稳定且干声清晰；背景中未检测到可辨认的音乐旋律或伴奏（unknown/无BGM）。主观估计：信噪比高，室内混响极小。",
+          "confidence": "high",
+          "evidence": "原视频0.0-15.0s, 227.93-242.93s, 455.85-470.85s",
+          "scope": "sampled",
+          "reproduction_instruction": "仅保留清晰的近距离人声录音，不添加背景音乐或将BGM压至不可听见。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "测量：16:9横屏画幅。主讲人镜头为近景（胸部以上），人物居中正对镜头；背景为室内卧室（左后方可见床铺与床头柜，后方为玻璃推拉门，右侧为灰色窗帘与透光纱帘）。主观估计：面部受正面柔光照明，肤色明亮，整体色调偏暖棕与米灰。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 3.00s, 20.00s, 227.93s, 313.40s, 398.87s, 484.34s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用16:9横屏固定机位拍摄室内近景，人物居中，背景为现代卧室，正面补柔光，整体呈暖灰棕色系。"
+        },
+        {
+          "description": "测量：穿插多段外部节目素材画面，包括单人特写/近景（10.00s, 56.98s, 541.33s）及左右分屏画面（142.45s左窄右宽）。568.82s为全黑画面。",
+          "confidence": "high",
+          "evidence": "原视频10.00s, 56.98s, 142.45s, 541.33s, 568.82s",
+          "scope": "sampled",
+          "reproduction_instruction": "在主讲画面间切入全屏影视/综艺片段（含单人近景和分屏镜头），片尾切黑屏。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "测量：画面下方居中位置有单行主字幕，置于圆角深棕灰色半透明底框内，字色为浅米黄色，无明显描边，字号中等偏大。3.00s处可见“「个体感受」这个概念的”，142.45s处可见“要维护她冠军妈妈的那个身份”，313.40s处可见“这是一种非常强烈的「无能感」”，484.34s处可见“随着孩子的成长而动态的进化”。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-541.33s各采样帧",
+          "scope": "sampled",
+          "reproduction_instruction": "在底部居中生成单行浅米黄色无衬线字幕，配深棕灰色圆角矩形底框。"
+        },
+        {
+          "description": "测量：142.45s引用素材底部自带节目花字字幕，左下方粉紫斜角名牌写有白色“思文”，右侧横条内为粉边白字“她俩没有在一根线上说话”。",
+          "confidence": "high",
+          "evidence": "原视频142.45s",
+          "scope": "sampled",
+          "reproduction_instruction": "保留引用素材原有的综艺花字与姓名条。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "测量：画面最顶部全程（除黑屏外）横贯一条半透明浅灰白色章节导航栏，由竖向虚线分隔为6格，深灰色文字依次为：“引言”、“生存模式：工具化的孩子”（双行）、“思维惰性”、“唯一标尺：自我感受”、“管理者位置”、“重建自我 不是重建关系”（双行）。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-541.33s各采样帧",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面顶端固定叠加6等分半透明灰白进度/章节栏，填入对应深灰色章节标题。"
+        },
+        {
+          "description": "测量：引用素材帧（10.00s, 142.45s, 541.33s）右下角带有橙白配色的“芒果TV”台标水印。",
+          "confidence": "high",
+          "evidence": "原视频10.00s, 142.45s, 541.33s",
+          "scope": "sampled",
+          "reproduction_instruction": "引用外部视频素材时保留其右下角平台角标。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "测量：从12张采样帧可证实画面在主讲人固定机位镜头（0.50s, 3.00s, 20.00s, 227.93s, 313.40s, 398.87s, 484.34s）与外部综艺节目画面（10.00s, 56.98s, 142.45s, 541.33s）之间进行了多次切换，并在568.82s切换为黑场。未提供连续视频流，精确切点数与转场方式unknown。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-568.82s联系表",
+          "scope": "sampled",
+          "reproduction_instruction": "采用A-roll（主讲人口播）与B-roll（相关综艺画面）交替剪辑的结构，顶部导航栏和主字幕跨镜头持续保留。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "测量：原视频0.50s帧字幕“在生存优先的家庭里”与音频0.0-1.5s语音一致；3.00s帧字幕“「个体感受」这个概念的”与音频2.2-3.8s语音一致，且主讲人口型处于发声状态；10.00s帧字幕“对她来说”与音频9.5-10.2s语音一致，此时画面已切为被讨论人物的B-roll镜头，口播作为画外音继续；227.93s帧字幕“底层都是一个人的主观能动性”与第二段音频起点（原视频227.93s）语音一致。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 3.00s, 10.00s, 227.93s及对应音频段",
+          "scope": "sampled",
+          "reproduction_instruction": "保持口播语音与底部圆角框字幕严格同步；当切入B-roll人物画面时，保持主讲人音频不断（J-cut/L-cut或画外音覆盖）。"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "测量：仅可访问45秒拼接音频（分属3个15秒区间）及12张离散时间点截图（含4张高清帧），无法得知其余时间段的音画内容、精确剪辑切点、B-roll是否有原声插入以及顶部进度条是否有动态高亮变化（在采样帧中均未见明显高亮变化，或仅3.00s/10.00s左一格略亮）。",
+          "confidence": "high",
+          "evidence": "全样本",
+          "scope": "sampled",
+          "reproduction_instruction": "仅基于已确认的采样特征进行局部复现，不推断全片完整叙事与未采样区间的视听变化。"
+        }
+      ]
+    }
+  }
+}

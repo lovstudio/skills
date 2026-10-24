@@ -1,0 +1,454 @@
+{
+  "status": "completed_with_exceptions",
+  "profile_version": "0.1.0",
+  "frozen_profile_sha256": "5afc3535b994a3eb836aed99414526eb06a4c19ca491ed97c5e67c0177dd98ab",
+  "method": "fixed-profile held-out transcript/frame review and deterministic numeric comparison; sampled multi-modal observations supplementary",
+  "holdout_count": 2,
+  "profile_changed_after_holdout": false,
+  "human_blind_test": false,
+  "similarity_score": null,
+  "findings": [
+    "Both holdouts fit case-mechanism plus optional opening-reprise variants.",
+    "Holdout 9 is shorter and has denser hard visual changes than training P10-P90; do not force a fixed duration or cut interval.",
+    "Closing audience action is not universal; holdout 9 closes with a metaphor. Treat agency as explanatory direction, not a mandatory final checklist.",
+    "No claim that clinical assertions are verified, or that automatic checks prove human-perceived equivalence."
+  ],
+  "samples": [
+    {
+      "sample_id": "6a12b933000000000702154a",
+      "rank": 9,
+      "semantic_observations": [
+        {
+          "rule": "thinking.mechanism",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 81.633,
+            "end_seconds": 91.068,
+            "quote": "本质",
+            "source_excerpt": "你看他每一个看似很勇的很爷们儿的行为，什么抢着当导游，抢着扛行李，抢着安排一切，包括他跟易立静里面的那些聊天，其实本质上都是在寻求证明。"
+          }
+        },
+        {
+          "rule": "thinking.agency",
+          "result": "partial",
+          "evidence": {
+            "start_seconds": 17.961,
+            "end_seconds": 26.194,
+            "quote": "自嘲",
+            "source_excerpt": "你看既肯定了痘痘，也抬高了自己，还能把这个马迪的话给接住，用自嘲完成自信的转化，能说出这种话的人，内心才是稳定的。"
+          },
+          "note": "样本9给替代表达而非面向观众行动；样本10以看清模式收束。不能强制每片以行动清单结束。"
+        },
+        {
+          "rule": "narrative.highlight_reprise",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 0.0,
+            "end_seconds": 3.888,
+            "quote": "你会发现他的世界里面",
+            "source_excerpt": "你会发现他的世界里面不能够有任何可能会被解读为我不够好。"
+          },
+          "note": "开头高光在后段重现，兼容画像可选变体，不据此把它改成必选。"
+        },
+        {
+          "rule": "narrative.concrete_application",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 3.889,
+            "end_seconds": 17.719,
+            "quote": "大可以说",
+            "source_excerpt": "我其实是有脆弱的部分，我其实需要改正的那个部分的那个东西的他的自尊感非常低，以及马迪说的那句说你配不上痘痘，就是孙杨如果说他是一个高自尊的人，他大可以说，你说对了，我们痘痘这么好，还真不是一般人能配得上的。"
+          }
+        },
+        {
+          "rule": "narrative.optional_cta",
+          "result": "optional_absent",
+          "evidence": {
+            "start_seconds": 339.313,
+            "end_seconds": 345.1,
+            "quote": "飓风",
+            "source_excerpt": "一个觉得自己可能随时会崩塌的人，那他就会把每一阵风都当成飓风。"
+          },
+          "note": "没有服务CTA不算失败；有也不转授身份或效果承诺。"
+        },
+        {
+          "rule": "language.contrast",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 3.889,
+            "end_seconds": 17.719,
+            "quote": "不是",
+            "source_excerpt": "我其实是有脆弱的部分，我其实需要改正的那个部分的那个东西的他的自尊感非常低，以及马迪说的那句说你配不上痘痘，就是孙杨如果说他是一个高自尊的人，他大可以说，你说对了，我们痘痘这么好，还真不是一般人能配得上的。"
+          }
+        },
+        {
+          "rule": "language.causal_bridges",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 53.12,
+            "end_seconds": 58.785,
+            "quote": "所以",
+            "source_excerpt": "所以说初期是非常不容易识别的那这个问题我们下一期来细说，女生真的都要好好看一看。"
+          }
+        },
+        {
+          "rule": "language.dialogue",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 17.961,
+            "end_seconds": 26.194,
+            "quote": "你看",
+            "source_excerpt": "你看既肯定了痘痘，也抬高了自己，还能把这个马迪的话给接住，用自嘲完成自信的转化，能说出这种话的人，内心才是稳定的。"
+          }
+        },
+        {
+          "rule": "language.metaphor",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 71.726,
+            "end_seconds": 75.301,
+            "quote": "工具",
+            "source_excerpt": "在他的世界里其他人都不是独立的人，而是服务于我的工具。"
+          }
+        },
+        {
+          "rule": "visual.speaker_anchor",
+          "result": "observed_in_samples",
+          "evidence": {
+            "time_seconds": 0.5,
+            "file": "measurements/6a12b933000000000702154a/frame-0000.500.jpg"
+          }
+        },
+        {
+          "rule": "visual.portrait_default",
+          "result": "observed",
+          "evidence": {
+            "width": 720,
+            "height": 1280
+          }
+        },
+        {
+          "rule": "visual.evidence_insert",
+          "result": "observed_in_samples",
+          "evidence": {
+            "time_seconds": 3,
+            "file": "measurements/6a12b933000000000702154a/frame-0003.000.jpg"
+          }
+        },
+        {
+          "rule": "subtitles.clause",
+          "result": "observed_in_samples",
+          "evidence": {
+            "time_seconds": 10,
+            "file": "measurements/6a12b933000000000702154a/frame-0010.000.jpg"
+          }
+        },
+        {
+          "rule": "subtitles.highlight",
+          "result": "observed_in_samples",
+          "evidence": {
+            "time_seconds": 20,
+            "file": "measurements/6a12b933000000000702154a/frame-0020.000.jpg"
+          }
+        },
+        {
+          "rule": "editing_audio.semantic_cuts",
+          "result": "compatible_not_exhaustively_verified",
+          "evidence": {
+            "hard_visual_change_count": 61
+          },
+          "note": "具有引用画面交替；未把所有切点逐一判为有意义。"
+        },
+        {
+          "rule": "editing_audio.safe_master",
+          "result": "not_applicable_to_reference_matching",
+          "evidence": {
+            "source_true_peak_dbtp": "0.38"
+          },
+          "note": "安全输出规则不要求原片遵守；原片过峰不被复现。"
+        },
+        {
+          "rule": "delivery.emphasis",
+          "result": "sampled_model_interpretation",
+          "evidence": {
+            "file": "perception/6a12b933000000000702154a.json",
+            "field": "voice_delivery"
+          }
+        },
+        {
+          "rule": "editing_audio.voice_foreground",
+          "result": "sampled_model_interpretation",
+          "evidence": {
+            "file": "perception/6a12b933000000000702154a.json",
+            "field": "bgm_and_mix"
+          }
+        },
+        {
+          "rule": "coupling.words_to_captions",
+          "result": "sampled_model_interpretation",
+          "evidence": {
+            "file": "perception/6a12b933000000000702154a.json",
+            "field": "audio_visual_coupling"
+          }
+        }
+      ],
+      "numeric_checks": [
+        {
+          "metric": "duration_seconds",
+          "value": 345.1167,
+          "training_p10": 390.5411,
+          "training_p90": 538.9662,
+          "within_training_p10_p90": false,
+          "interpretation": "diagnostic range, not an automatic style pass/fail"
+        },
+        {
+          "metric": "overall_speech_density",
+          "value": 392.389,
+          "training_p10": 372.5581,
+          "training_p90": 423.1634,
+          "within_training_p10_p90": true,
+          "interpretation": "diagnostic range, not an automatic style pass/fail"
+        },
+        {
+          "metric": "integrated_loudness",
+          "value": -18.95,
+          "training_p10": -17.783,
+          "training_p90": -11.97,
+          "within_training_p10_p90": false,
+          "interpretation": "diagnostic range, not an automatic style pass/fail"
+        },
+        {
+          "metric": "hard_visual_changes_per_min",
+          "value": 10.6051,
+          "training_p10": 1.8975,
+          "training_p90": 9.2854,
+          "within_training_p10_p90": false,
+          "interpretation": "diagnostic range, not an automatic style pass/fail"
+        }
+      ],
+      "unverified": [
+        "human preference",
+        "all-frame editing intention",
+        "all-file auditory perception"
+      ]
+    },
+    {
+      "sample_id": "69e5f169000000002301014b",
+      "rank": 10,
+      "semantic_observations": [
+        {
+          "rule": "thinking.mechanism",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 44.394,
+            "end_seconds": 53.604,
+            "quote": "底层",
+            "source_excerpt": "就是他们两个人的底层究竟是怎么勾连和共生在一起的那首先宋宁峰他的这种性格，其实是我们在生活中非常需要警惕的一种被动攻击性的人。"
+          }
+        },
+        {
+          "rule": "thinking.agency",
+          "result": "partial",
+          "evidence": {
+            "start_seconds": 397.597,
+            "end_seconds": 402.268,
+            "quote": "看清",
+            "source_excerpt": "能够认识到这一点，不是为了追责，而是为了看清那个旧有的模式。"
+          },
+          "note": "样本9给替代表达而非面向观众行动；样本10以看清模式收束。不能强制每片以行动清单结束。"
+        },
+        {
+          "rule": "narrative.highlight_reprise",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 0.0,
+            "end_seconds": 12.279,
+            "quote": "他越惨",
+            "source_excerpt": "宋宁峰，他越惨，就越会激发出张婉婷的拯救和照顾的心态，所以这一次反而是激发出了张婉婷那个全能感的绝佳的机会，他会非常享受或者说沉迷于此刻自己的那个力量感上。"
+          },
+          "note": "开头高光在后段重现，兼容画像可选变体，不据此把它改成必选。"
+        },
+        {
+          "rule": "narrative.concrete_application",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 177.06,
+            "end_seconds": 182.366,
+            "quote": "端个茶",
+            "source_excerpt": "举例子比如说给你端个茶、递个水，顺着你说容忍你的一些小脾气等等之类的。"
+          }
+        },
+        {
+          "rule": "narrative.optional_cta",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 387.424,
+            "end_seconds": 397.593,
+            "quote": "找到我做具体分析",
+            "source_excerpt": "当然了，这并不绝对，人格的形成它通常是伴随着更复杂的家庭系统的那如果你正在与这样的一位男性相处，或者说你自己就有这样的倾向，可以找到我做具体分析。"
+          },
+          "note": "没有服务CTA不算失败；有也不转授身份或效果承诺。"
+        },
+        {
+          "rule": "language.contrast",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 64.226,
+            "end_seconds": 69.359,
+            "quote": "不是",
+            "source_excerpt": "因为大家都说他很好啊，所以那是不是我真的太情绪化了，是不是我要求太多了呀？"
+          }
+        },
+        {
+          "rule": "language.causal_bridges",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 0.0,
+            "end_seconds": 12.279,
+            "quote": "所以",
+            "source_excerpt": "宋宁峰，他越惨，就越会激发出张婉婷的拯救和照顾的心态，所以这一次反而是激发出了张婉婷那个全能感的绝佳的机会，他会非常享受或者说沉迷于此刻自己的那个力量感上。"
+          }
+        },
+        {
+          "rule": "language.dialogue",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 106.964,
+            "end_seconds": 112.664,
+            "quote": "你看",
+            "source_excerpt": "你看这几个女生其实都有这种类似的气质，这个是宋宁峰他潜意识里面精准筛选的一个结果。"
+          }
+        },
+        {
+          "rule": "language.metaphor",
+          "result": "observed",
+          "evidence": {
+            "start_seconds": 112.67,
+            "end_seconds": 118.245,
+            "quote": "舞台",
+            "source_excerpt": "而对于一个拯救者或者说控制者来说，对方的那个无能恰恰就是她能够展现能力的舞台。"
+          }
+        },
+        {
+          "rule": "visual.speaker_anchor",
+          "result": "observed_in_samples",
+          "evidence": {
+            "time_seconds": 0.5,
+            "file": "measurements/69e5f169000000002301014b/frame-0000.500.jpg"
+          }
+        },
+        {
+          "rule": "visual.portrait_default",
+          "result": "observed",
+          "evidence": {
+            "width": 1080,
+            "height": 1920
+          }
+        },
+        {
+          "rule": "visual.evidence_insert",
+          "result": "observed_in_samples",
+          "evidence": {
+            "time_seconds": 3,
+            "file": "measurements/69e5f169000000002301014b/frame-0003.000.jpg"
+          }
+        },
+        {
+          "rule": "subtitles.clause",
+          "result": "observed_in_samples",
+          "evidence": {
+            "time_seconds": 10,
+            "file": "measurements/69e5f169000000002301014b/frame-0010.000.jpg"
+          }
+        },
+        {
+          "rule": "subtitles.highlight",
+          "result": "observed_in_samples",
+          "evidence": {
+            "time_seconds": 20,
+            "file": "measurements/69e5f169000000002301014b/frame-0020.000.jpg"
+          }
+        },
+        {
+          "rule": "editing_audio.semantic_cuts",
+          "result": "compatible_not_exhaustively_verified",
+          "evidence": {
+            "hard_visual_change_count": 56
+          },
+          "note": "具有引用画面交替；未把所有切点逐一判为有意义。"
+        },
+        {
+          "rule": "editing_audio.safe_master",
+          "result": "not_applicable_to_reference_matching",
+          "evidence": {
+            "source_true_peak_dbtp": "0.39"
+          },
+          "note": "安全输出规则不要求原片遵守；原片过峰不被复现。"
+        },
+        {
+          "rule": "delivery.emphasis",
+          "result": "sampled_model_interpretation",
+          "evidence": {
+            "file": "perception/69e5f169000000002301014b.json",
+            "field": "voice_delivery"
+          }
+        },
+        {
+          "rule": "editing_audio.voice_foreground",
+          "result": "sampled_model_interpretation",
+          "evidence": {
+            "file": "perception/69e5f169000000002301014b.json",
+            "field": "bgm_and_mix"
+          }
+        },
+        {
+          "rule": "coupling.words_to_captions",
+          "result": "sampled_model_interpretation",
+          "evidence": {
+            "file": "perception/69e5f169000000002301014b.json",
+            "field": "audio_visual_coupling"
+          }
+        }
+      ],
+      "numeric_checks": [
+        {
+          "metric": "duration_seconds",
+          "value": 407.2678,
+          "training_p10": 390.5411,
+          "training_p90": 538.9662,
+          "within_training_p10_p90": true,
+          "interpretation": "diagnostic range, not an automatic style pass/fail"
+        },
+        {
+          "metric": "overall_speech_density",
+          "value": 392.027,
+          "training_p10": 372.5581,
+          "training_p90": 423.1634,
+          "within_training_p10_p90": true,
+          "interpretation": "diagnostic range, not an automatic style pass/fail"
+        },
+        {
+          "metric": "integrated_loudness",
+          "value": -14.81,
+          "training_p10": -17.783,
+          "training_p90": -11.97,
+          "within_training_p10_p90": true,
+          "interpretation": "diagnostic range, not an automatic style pass/fail"
+        },
+        {
+          "metric": "hard_visual_changes_per_min",
+          "value": 8.2501,
+          "training_p10": 1.8975,
+          "training_p90": 9.2854,
+          "within_training_p10_p90": true,
+          "interpretation": "diagnostic range, not an automatic style pass/fail"
+        }
+      ],
+      "unverified": [
+        "human preference",
+        "all-frame editing intention",
+        "all-file auditory perception"
+      ]
+    }
+  ]
+}

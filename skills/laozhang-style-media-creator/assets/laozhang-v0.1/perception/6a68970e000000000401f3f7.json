@@ -1,0 +1,146 @@
+{
+  "sample_id": "6a68970e000000000401f3f7",
+  "rank": 7,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 209.8056416,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 419.6112832,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7262,
+    "completion_tokens": 1433,
+    "total_tokens": 8695,
+    "cost": 0.028854,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.028854,
+      "upstream_inference_prompt_cost": 0.014524,
+      "upstream_inference_completions_cost": 0.01433
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 79.91,
+  "observations": {
+    "sample_id": "6a68970e000000000401f3f7",
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "成年女性中音区声线，清晰，口播分析语气，偶有戏剧化引用语调。语速较快且平稳，在转折词（如“但是”）和核心概念（如“表彰我的苦难”、“本质”）上有明显重音和短暂换气停顿。",
+          "confidence": "high",
+          "evidence": "原视频0.0s-15.0s, 209.81s-224.81s, 419.61s-434.61s（对应音频采样0.0s-45.0s）",
+          "scope": "sampled",
+          "reproduction_instruction": "使用清晰的女性声线录制口播，保持较快语速，在转折词与核心词处加重语气并做微小的戏剧化停顿。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "未听见明显可辨认的背景音乐，人声处于绝对前景，混音干净，无明显环境底噪。",
+          "confidence": "high",
+          "evidence": "原视频0.0s-15.0s, 209.81s-224.81s, 419.61s-434.61s（对应音频采样0.0s-45.0s）",
+          "scope": "sampled",
+          "reproduction_instruction": "使用领夹麦克风近距离收音，不添加背景音乐或将BGM压至不可听见的极低音量，突出干声。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "竖屏画幅（约9:16）。主画面为女性中近景，人物居中偏下，身穿暗红色无袖上衣，领口夹有黑色无线麦克风。背景为带暖黄色顶部灯带的白色竖百叶帘，右侧有透明玻璃门局部。面部有均匀柔光照明，色彩偏暖。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 20.00s, 52.45s, 367.16s, 445.84s, 523.51s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用9:16竖屏拍摄，人物居中占画面中下部，背景布置暖光灯带与浅色窗帘，正面使用柔光灯补光，佩戴领夹麦。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "主字幕位于画面中下部（胸口位置），单行无衬线体，字号中等，带细黑色描边与轻微阴影。颜色以白色为主，部分强调词或整句变为明黄色（如“功勋章”、“孩子”、“过于防御”）。",
+          "confidence": "high",
+          "evidence": "原视频0.50s-523.51s全采样帧",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面中下部添加单行居中字幕，设置白色字体配黑色细描边，对重点词汇或短句改为黄色高亮。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "画面中部叠加横向视频截图或片段（画中画），遮挡主讲人面部，仅露头顶和下半身。引用画面内含原节目自带的黄色名牌、微小白字字幕及黄色“美团买药”贴片广告。",
+          "confidence": "high",
+          "evidence": "原视频3.00s, 10.00s, 131.13s, 209.81s, 288.48s, 498.29s",
+          "scope": "sampled",
+          "reproduction_instruction": "在竖屏画面正中央轨道叠加16:9或4:3的第三方节目素材，不加边框，直接覆盖在主讲人图层上方，保留主讲人字幕在最顶层。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "在主讲人单人中近景画面与叠加第三方节目素材的复合画面之间进行交替切换；主讲人手势在不同采样帧中持续变化。",
+          "confidence": "high",
+          "evidence": "原视频0.50s切换至3.00s，10.00s切换至20.00s，52.45s切换至131.13s等",
+          "scope": "sampled",
+          "reproduction_instruction": "以主讲人A-roll为底轨，根据讲述内容在对应时间段插入B-roll图像或视频片段覆盖画面中部。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "原视频0.50s与3.00s帧的字幕内容（“一个女性她在不停的说”、“这个家交给他就完了”）与第一段音频采样（0.0s-5.0s）的语音内容严格同步。",
+          "confidence": "high",
+          "evidence": "原视频0.50s, 3.00s及音频采样0.0s-5.0s",
+          "scope": "sampled",
+          "reproduction_instruction": "将口播音轨与画面、顶层字幕严格对齐，并在提及具体案例台词时同步切入对应的画面素材。"
+        },
+        {
+          "description": "原视频209.81s帧处于第二段音频采样起点，但单帧静态画面与音频具体字词的动态耦合关系无法仅凭单帧完全证实，其余非重叠时间段音画对应关系为unknown。",
+          "confidence": "low",
+          "evidence": "原视频209.81s及音频采样15.0s",
+          "scope": "sampled",
+          "reproduction_instruction": "unknown"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "仅提供45秒拼接音频及12张离散视频帧，无法得知未采样区间的完整叙事、精确剪辑切点数量、B-roll素材究竟是静态截图还是动态视频，以及全片是否有偶发音效。",
+          "confidence": "high",
+          "evidence": "全样本限制",
+          "scope": "sampled",
+          "reproduction_instruction": "复现时仅能依据现有采样特征搭建基础视觉与听觉模板，无法还原全片精确剪辑节奏。"
+        }
+      ]
+    }
+  }
+}

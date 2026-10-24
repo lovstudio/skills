@@ -1,0 +1,125 @@
+{
+  "sample_id": "6a1ac97b00000000350322e7",
+  "rank": 8,
+  "title": "这种人看起来事业有成，但其实是个巨婴",
+  "duration_seconds": 420.118639,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "30/1",
+  "scene_detection": {
+    "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+    "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+    "cut_times_seconds": [
+      41.033333,
+      59.3,
+      62.866667,
+      85.033333,
+      89.8,
+      90.1,
+      91.166667,
+      94.366667,
+      113.133333,
+      123.533333,
+      126.366667,
+      129.933333,
+      130.233333,
+      131.3,
+      134.5,
+      144.766667,
+      246.133333,
+      249.966667,
+      256.2,
+      301.9,
+      419.666667
+    ],
+    "cut_count": 21,
+    "detected_segment_duration_percentiles": {
+      "10": 0.5134,
+      "50": 4.3,
+      "90": 45.2333
+    }
+  },
+  "audio": {
+    "integrated_lufs": "-12.54",
+    "true_peak_dbtp": "1.07",
+    "loudness_range_lu": "2.90",
+    "silence_threshold_db": -35,
+    "silences": [
+      {
+        "start": 419.720363,
+        "end": 420.118639,
+        "duration": 0.3983
+      }
+    ],
+    "silence_seconds": 0.3983,
+    "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  },
+  "frames": [
+    {
+      "time_seconds": 0.5,
+      "image": "frame-0000.500.jpg"
+    },
+    {
+      "time_seconds": 3,
+      "image": "frame-0003.000.jpg"
+    },
+    {
+      "time_seconds": 10,
+      "image": "frame-0010.000.jpg"
+    },
+    {
+      "time_seconds": 20,
+      "image": "frame-0020.000.jpg"
+    },
+    {
+      "time_seconds": 42.012,
+      "image": "frame-0042.012.jpg"
+    },
+    {
+      "time_seconds": 105.03,
+      "image": "frame-0105.030.jpg"
+    },
+    {
+      "time_seconds": 168.047,
+      "image": "frame-0168.047.jpg"
+    },
+    {
+      "time_seconds": 231.065,
+      "image": "frame-0231.065.jpg"
+    },
+    {
+      "time_seconds": 294.083,
+      "image": "frame-0294.083.jpg"
+    },
+    {
+      "time_seconds": 357.101,
+      "image": "frame-0357.101.jpg"
+    },
+    {
+      "time_seconds": 399.113,
+      "image": "frame-0399.113.jpg"
+    },
+    {
+      "time_seconds": 419.119,
+      "image": "frame-0419.119.jpg"
+    }
+  ],
+  "audio_sample_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 168.0474556,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 336.0949112,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ]
+}

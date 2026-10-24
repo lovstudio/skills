@@ -1,0 +1,168 @@
+{
+  "sample_id": "6aa2915d0000000025034163",
+  "rank": 4,
+  "title": "感情中总是遇人不淑的女生，都应该看懂这个",
+  "duration_seconds": 510.026304,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "975000/32551",
+  "scene_detection": {
+    "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+    "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+    "cut_times_seconds": [
+      27.133333,
+      70.833667,
+      78.767,
+      83.767,
+      131.0,
+      134.166667,
+      139.4,
+      150.433333,
+      247.366667,
+      248.6,
+      270.4,
+      274.4,
+      358.599667,
+      390.866,
+      409.866,
+      413.632667,
+      419.566,
+      427.765667,
+      488.832333
+    ],
+    "cut_count": 19,
+    "detected_segment_duration_percentiles": {
+      "10": 3.7067,
+      "50": 15.0167,
+      "90": 63.38
+    }
+  },
+  "audio": {
+    "integrated_lufs": "-14.28",
+    "true_peak_dbtp": "0.56",
+    "loudness_range_lu": "3.10",
+    "silence_threshold_db": -35,
+    "silences": [
+      {
+        "start": 86.924059,
+        "end": 87.124059,
+        "duration": 0.2
+      },
+      {
+        "start": 192.257256,
+        "end": 192.512018,
+        "duration": 0.2548
+      },
+      {
+        "start": 218.136168,
+        "end": 218.355896,
+        "duration": 0.2197
+      },
+      {
+        "start": 218.748912,
+        "end": 218.949138,
+        "duration": 0.2002
+      },
+      {
+        "start": 228.713764,
+        "end": 229.06644,
+        "duration": 0.3527
+      },
+      {
+        "start": 229.32102,
+        "end": 229.53737,
+        "duration": 0.2164
+      },
+      {
+        "start": 359.318231,
+        "end": 359.537007,
+        "duration": 0.2188
+      },
+      {
+        "start": 379.298299,
+        "end": 379.511905,
+        "duration": 0.2136
+      },
+      {
+        "start": 395.56254,
+        "end": 395.904535,
+        "duration": 0.342
+      },
+      {
+        "start": 509.560794,
+        "end": 510.026304,
+        "duration": 0.4655
+      }
+    ],
+    "silence_seconds": 2.6837,
+    "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  },
+  "frames": [
+    {
+      "time_seconds": 0.5,
+      "image": "frame-0000.500.jpg"
+    },
+    {
+      "time_seconds": 3,
+      "image": "frame-0003.000.jpg"
+    },
+    {
+      "time_seconds": 10,
+      "image": "frame-0010.000.jpg"
+    },
+    {
+      "time_seconds": 20,
+      "image": "frame-0020.000.jpg"
+    },
+    {
+      "time_seconds": 51.003,
+      "image": "frame-0051.003.jpg"
+    },
+    {
+      "time_seconds": 127.507,
+      "image": "frame-0127.507.jpg"
+    },
+    {
+      "time_seconds": 204.011,
+      "image": "frame-0204.011.jpg"
+    },
+    {
+      "time_seconds": 280.514,
+      "image": "frame-0280.514.jpg"
+    },
+    {
+      "time_seconds": 357.018,
+      "image": "frame-0357.018.jpg"
+    },
+    {
+      "time_seconds": 433.522,
+      "image": "frame-0433.522.jpg"
+    },
+    {
+      "time_seconds": 484.525,
+      "image": "frame-0484.525.jpg"
+    },
+    {
+      "time_seconds": 509.026,
+      "image": "frame-0509.026.jpg"
+    }
+  ],
+  "audio_sample_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 204.0105216,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 408.0210432,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ]
+}

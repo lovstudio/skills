@@ -9501,3 +9501,53 @@ skills:
     review_trigger_en: Review on 2026-11-21 or after five independent users finish production packages;
       any paid price or support-scope change requires a separate decision.
     card_path: pricing-cards/motivational-media-creator.md
+- name: laozhang-style-media-creator
+  runtime_name: lov-laozhang-style-media-creator
+  display_name: Laozhang Psychology Style Video
+  name_zh: 老张心理风格短视频
+  repo: lovstudio/laozhang-style-media-creator-skill
+  paid: false
+  category: Video Creation
+  version: 0.1.0
+  updated_at: '2026-10-24T09:41:50Z'
+  depends_on:
+  - branding-consistency
+  description: Create evidence-grounded narration, storyboards and edit plans from
+    a reference video style profile.
+  tagline_en: Turn a new topic into original narration, storyboards and an edit plan
+    using a traceable reference style, without copying the author's identity.
+  tagline_zh: 用可追溯的参考风格，把新选题写成原创口播、分镜和剪辑计划，不复制原作者身份。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本Skill、冻结风格画像、证据、原创案例及校验脚本
+    delivery_unit_en: Current Skill, frozen style profile, evidence, original case
+      and validation scripts
+    value_zh: 从新选题和事实素材生成可检查的口播、分镜、字幕与剪辑时间线。
+    value_en: Turn a new topic and supplied facts into reviewable narration, storyboards,
+      captions and an edit timeline.
+    anchor_zh: 10条参考样本、8维23条规则、157条时间证据与96秒拟拍案例；尚无用户省时对照。
+    anchor_en: Ten reference samples, eight dimensions, 23 rules, 157 time-grounded
+      evidence items and a 96-second planned case; controlled user time savings remain
+      unmeasured.
+    basis_zh: 沿用现有免费定位，六维加权3.25/5；以原创案例积累反馈，不把自动通过当人工风格验收。
+    basis_en: Preserve the existing free entry at a six-dimension score of 3.25/5
+      and collect feedback through original examples; automated checks are not human
+      style approval.
+    boundary_zh: 不含拍摄、配音、第三方素材或音乐授权、模型额度、渲染和代发布；不克隆身份、声纹或承诺疗效。
+    boundary_en: Excludes filming, voice production, third-party media or music rights,
+      model credits, rendering and posting; no identity or voice cloning or medical
+      promises.
+    maintenance_zh: 随宿主、验证依赖、参考画像与支持范围变化复评，无托管服务或更新时限承诺。
+    maintenance_en: Review when hosts, validation dependencies, the reference profile
+      or support scope change; no hosted service or update SLA is included.
+    confidence: case-backed
+    review_trigger_zh: 累计10次外部完整使用、人工风格评审，或交付范围、依赖、支持成本变化时复评。
+    review_trigger_en: Review after ten completed external uses, a human style evaluation,
+      or material scope, dependency or support-cost changes.
+    card_path: pricing-cards/laozhang-style-media-creator.md

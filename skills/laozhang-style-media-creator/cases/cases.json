@@ -1,0 +1,39 @@
+[
+  {
+    "type": "case",
+    "title": "10条参考视频到可执行风格包",
+    "description": "真实下载素材经全片转写/客观测量、抽样听感与关键帧分析，冻结8/2拆分，输出带证据规则。",
+    "input": {
+      "items": [
+        "assets/laozhang-v0.1/style-profile.json 中10个真实源URL与SHA-256"
+      ]
+    },
+    "prompt": "全搞定，并封装；命名为lov-laozhang-style-media-creator，中文名老张心理风格短视频。",
+    "output": {
+      "items": [
+        "assets/laozhang-v0.1/style-profile.json",
+        "assets/laozhang-v0.1/evidence.jsonl",
+        "assets/laozhang-v0.1/holdout-report.json"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "新选题：为什么越体贴越累",
+    "description": "实际生成96秒、619文本单位、8段和58条字幕的脚本与制作计划。虚构情境，不对应真实人物；尚未拍摄或渲染。",
+    "input": {
+      "items": [
+        "cases/new-topic/brief.json"
+      ]
+    },
+    "prompt": "使用内置风格包，为这个明确标记为虚构演示的新选题生成自己的口播、分镜和时间线，不加入服务CTA或原作者身份。",
+    "output": {
+      "items": [
+        "cases/new-topic/script.md",
+        "cases/new-topic/edit-plan.json",
+        "cases/new-topic/storyboard.json",
+        "cases/new-topic/style-review.json"
+      ]
+    }
+  }
+]

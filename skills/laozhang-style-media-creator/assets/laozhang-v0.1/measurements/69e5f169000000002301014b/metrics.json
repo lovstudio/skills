@@ -1,0 +1,165 @@
+{
+  "sample_id": "69e5f169000000002301014b",
+  "rank": 10,
+  "title": "他俩要是离了，真就遇不上更适合彼此的人了",
+  "duration_seconds": 407.267846,
+  "width": 1080,
+  "height": 1920,
+  "video_codec": "hevc",
+  "frame_rate": "30537500/1018067",
+  "scene_detection": {
+    "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+    "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+    "cut_times_seconds": [
+      2.969633,
+      5.372033,
+      9.576233,
+      16.149467,
+      18.018,
+      23.890533,
+      26.493133,
+      42.575867,
+      45.8458,
+      62.193333,
+      64.36,
+      68.66,
+      81.36,
+      84.026667,
+      94.393333,
+      95.893333,
+      97.426667,
+      123.893333,
+      128.126667,
+      135.693333,
+      138.093333,
+      142.293333,
+      145.66,
+      148.626667,
+      157.393333,
+      175.893333,
+      180.426667,
+      182.66,
+      203.626667,
+      214.66,
+      217.093333,
+      217.526667,
+      226.026667,
+      231.326667,
+      234.66,
+      276.76,
+      283.693333,
+      285.526667,
+      288.726667,
+      292.426667,
+      294.66,
+      298.193333,
+      301.193333,
+      315.393333,
+      323.36,
+      325.093333,
+      325.86,
+      328.393333,
+      331.426667,
+      336.593333,
+      364.66,
+      369.46,
+      375.193333,
+      377.093333,
+      381.526667,
+      406.36
+    ],
+    "cut_count": 56,
+    "detected_segment_duration_percentiles": {
+      "10": 1.7933,
+      "50": 4.2,
+      "90": 17.2085
+    }
+  },
+  "audio": {
+    "integrated_lufs": "-14.81",
+    "true_peak_dbtp": "0.39",
+    "loudness_range_lu": "4.90",
+    "silence_threshold_db": -35,
+    "silences": [
+      {
+        "start": 12.929909,
+        "end": 13.219002,
+        "duration": 0.2891
+      },
+      {
+        "start": 406.586032,
+        "end": 407.267846,
+        "duration": 0.6818
+      }
+    ],
+    "silence_seconds": 0.9709,
+    "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  },
+  "frames": [
+    {
+      "time_seconds": 0.5,
+      "image": "frame-0000.500.jpg"
+    },
+    {
+      "time_seconds": 3,
+      "image": "frame-0003.000.jpg"
+    },
+    {
+      "time_seconds": 10,
+      "image": "frame-0010.000.jpg"
+    },
+    {
+      "time_seconds": 20,
+      "image": "frame-0020.000.jpg"
+    },
+    {
+      "time_seconds": 40.727,
+      "image": "frame-0040.727.jpg"
+    },
+    {
+      "time_seconds": 101.817,
+      "image": "frame-0101.817.jpg"
+    },
+    {
+      "time_seconds": 162.907,
+      "image": "frame-0162.907.jpg"
+    },
+    {
+      "time_seconds": 223.997,
+      "image": "frame-0223.997.jpg"
+    },
+    {
+      "time_seconds": 285.087,
+      "image": "frame-0285.087.jpg"
+    },
+    {
+      "time_seconds": 346.178,
+      "image": "frame-0346.178.jpg"
+    },
+    {
+      "time_seconds": 386.904,
+      "image": "frame-0386.904.jpg"
+    },
+    {
+      "time_seconds": 406.268,
+      "image": "frame-0406.268.jpg"
+    }
+  ],
+  "audio_sample_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 162.9071384,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 325.8142768,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ]
+}

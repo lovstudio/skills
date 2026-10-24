@@ -1,0 +1,146 @@
+{
+  "sample_id": "6a12b933000000000702154a",
+  "rank": 9,
+  "model": "google/gemini-4-argon",
+  "method": "45s audio (three 15s samples), 12-frame contact and four clear frames",
+  "scope": "sampled, not exhaustive",
+  "audio_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 138.046694,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 276.093388,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7260,
+    "completion_tokens": 1584,
+    "total_tokens": 8844,
+    "cost": 0.03036,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 1176,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.03036,
+      "upstream_inference_prompt_cost": 0.01452,
+      "upstream_inference_completions_cost": 0.01584
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "elapsed_seconds": 74.94,
+  "observations": {
+    "sample_id": "6a12b933000000000702154a",
+    "voice_delivery": {
+      "observations": [
+        {
+          "description": "主观估计：单一成年女性声线，普通话清晰，呈分析、评述语气。在特定词句如“非常低”（原视频约0-15s区间）、“不能接受”（约276-291s区间）上有明显重音强调。",
+          "confidence": "high",
+          "evidence": "原视频 0.0-15.0s, 138.05-153.05s, 276.09-291.09s",
+          "scope": "sampled",
+          "reproduction_instruction": "使用清晰女声进行论述性口播，对核心形容词与否定词加重语气。"
+        },
+        {
+          "description": "主观估计：语速随表达内容变化，在模拟他人对话（如“哎，你说对了”、“哎呀，确实啊，我没经验”）时，语气转为口语化模仿，语调上扬或放缓，句前有短促停顿与语气词。",
+          "confidence": "high",
+          "evidence": "原视频 0.0-15.0s, 138.05-153.05s, 276.09-291.09s",
+          "scope": "sampled",
+          "reproduction_instruction": "在正常较快论述语速中，遇到引用或假设对话时先做短暂停顿，再切换为模仿式的口语语调。"
+        }
+      ]
+    },
+    "bgm_and_mix": {
+      "observations": [
+        {
+          "description": "测量与主观估计：存在极低音量的器乐背景音乐（含钢琴音色），完全处于人声下层，人声占绝对主导地位，无明显环境底噪。",
+          "confidence": "high",
+          "evidence": "原视频 0.0-15.0s, 138.05-153.05s, 276.09-291.09s",
+          "scope": "sampled",
+          "reproduction_instruction": "录制近场干声人声作为主轨道，叠加极低音量的轻柔钢琴背景乐，确保不掩盖人声细节。"
+        }
+      ]
+    },
+    "visual_composition": {
+      "observations": [
+        {
+          "description": "测量与主观估计：竖屏画幅（9:16）。单人女性呈胸景居中偏下构图，直视或微偏视镜头。背景为室内白色竖百叶窗帘，顶部有暖黄色隐藏灯带，右侧可见带玻璃门的木质柜体。面部受正面柔和补光，整体色调偏暖白与米灰。",
+          "confidence": "high",
+          "evidence": "原视频 0.50s, 10.00s, 20.00s, 34.51s, 189.81s, 293.35s, 327.86s, 344.12s",
+          "scope": "sampled",
+          "reproduction_instruction": "采用9:16竖屏拍摄，人物居中占画面下半部至中上部，正面柔光照明，背景设置带顶部暖光灯带的白色窗帘。"
+        }
+      ]
+    },
+    "subtitles": {
+      "observations": [
+        {
+          "description": "测量：主字幕位于画面下部（胸部位置），1至2行居中对齐，字号中等偏大。基础样式为白色字配黑色外描边/阴影；部分强调词（如“抬高”、“孙杨”、“傲慢自大”、“飓风”）为黄色字配黑色描边。精确字体unknown。",
+          "confidence": "high",
+          "evidence": "原视频 0.50s-344.12s 全部12个采样帧",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面底部偏上位置添加居中字幕，单行或双行，平时用白字黑边，关键词汇高亮为黄字黑边。"
+        }
+      ]
+    },
+    "graphics": {
+      "observations": [
+        {
+          "description": "测量：在主画面中段叠加横向视频截图/片段（覆盖主讲人面部，仅留额头与下半身）。插入画面自带原片花字、人物名牌（如“孙杨”、“麦琳”）及底部小字号字幕。",
+          "confidence": "high",
+          "evidence": "原视频 3.00s, 86.28s, 138.05s, 241.58s",
+          "scope": "sampled",
+          "reproduction_instruction": "在画面垂直居中位置叠加16:9或4:3的第三方节目画面，宽度占满竖屏，保留上下两端原主讲人画面作为背景底垫。"
+        }
+      ]
+    },
+    "editing_observed": {
+      "observations": [
+        {
+          "description": "测量：画面在纯主讲人镜头与“主讲人底图+中部叠加外部素材”之间切换；无叠加素材时，主讲人头部姿态、视线与手势在不同采样帧间有变化，且3.00s、20.00s、34.51s等帧的窗帘顶部边缘存在暗角/压暗变化。无法凭12帧推断总切点数。",
+          "confidence": "high",
+          "evidence": "原视频 0.50s, 3.00s, 10.00s, 20.00s, 34.51s, 86.28s, 138.05s, 189.81s, 241.58s, 293.35s, 327.86s, 344.12s",
+          "scope": "sampled",
+          "reproduction_instruction": "以主讲人单机位镜头为主线，根据讲述内容在画面中部切入并撤出外部影视素材。"
+        }
+      ]
+    },
+    "audio_visual_coupling": {
+      "observations": [
+        {
+          "description": "测量：原视频0.50s帧字幕“你会发现他的世界里面”、3.00s帧字幕“不能够有任何可能会被解读为”、10.00s帧字幕“以及马頔说的那句说”，以及138.05s帧字幕“包括最开始的那个豆豆”，均与对应时间段音频采样中的口播词完全同步；3.00s和138.05s口播提及相关人物事件时，画面同步叠加对应节目素材。其余帧因不在音频采样区间内，耦合关系为unknown。",
+          "confidence": "high",
+          "evidence": "原视频 0.50s, 3.00s, 10.00s, 138.05s 及音频采样 0.0-15.0s, 138.05-153.05s",
+          "scope": "sampled",
+          "reproduction_instruction": "保持口播语音与底部字幕严格逐句同步，并在提及具体案例时同步切入对应画面素材。"
+        }
+      ]
+    },
+    "limits": {
+      "observations": [
+        {
+          "description": "音频仅采样3段共45秒，画面仅提供12张离散抽帧，无法获知未采样区间的语音、音乐连续性、精确剪辑切点数量及插入素材是静态图还是动态视频。",
+          "confidence": "high",
+          "evidence": "全部附件抽样限制",
+          "scope": "sampled",
+          "reproduction_instruction": "仅依据已确认的采样特征复现局部形式，不对全片节奏与总镜头数做硬性设定。"
+        }
+      ]
+    }
+  }
+}

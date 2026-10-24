@@ -1,0 +1,101 @@
+{
+  "source": "edit-plan.json",
+  "shots": [
+    {
+      "section_id": "S01",
+      "start_seconds": 0.0,
+      "end_seconds": 8.0,
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "section_id": "S02",
+      "start_seconds": 8.0,
+      "end_seconds": 20.0,
+      "camera": {
+        "type": "talking_head_with_demo_card",
+        "instruction": "口播为底，叠加新制作的对话示意卡；醒目标注虚构演示，不使用或伪造真实聊天截图。"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "section_id": "S03",
+      "start_seconds": 20.0,
+      "end_seconds": 34.4,
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "section_id": "S04",
+      "start_seconds": 34.4,
+      "end_seconds": 46.4,
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "section_id": "S05",
+      "start_seconds": 46.4,
+      "end_seconds": 59.2,
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "section_id": "S06",
+      "start_seconds": 59.2,
+      "end_seconds": 76.8,
+      "camera": {
+        "type": "talking_head_with_text",
+        "instruction": "说到事实、感受、行动时依次呈现对应短词，勿一次放满所有步骤。"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "section_id": "S07",
+      "start_seconds": 76.8,
+      "end_seconds": 89.6,
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    },
+    {
+      "section_id": "S08",
+      "start_seconds": 89.6,
+      "end_seconds": 96.0,
+      "camera": {
+        "type": "talking_head",
+        "instruction": "使用自己的出镜，9:16胸部以上近景，柔和面光，保留手势，不复制原作者外貌或房间。"
+      },
+      "visual_trigger": "强调词随对应口播出现，证据/示意画面只在被提及时进入，不机械定时切换。"
+    }
+  ],
+  "asset_requirements": [
+    {
+      "id": "own-talking-head",
+      "type": "new_recording",
+      "status": "to_record",
+      "rights": "self-owned or authorized",
+      "instruction": "依96秒脚本拍摄自己的口播，保留自然手势与可懂气口。"
+    },
+    {
+      "id": "fictional-chat-card",
+      "type": "new_graphic",
+      "status": "to_create",
+      "rights": "original",
+      "instruction": "仅制作明确标为虚构演示的对话卡，不借用来源影视人物或截图。"
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "sample_id": "6abf912a000000001b0305b4",
+  "rank": 1,
+  "title": "一个「低认知父母」的超典型认知模式",
+  "duration_seconds": 569.816236,
+  "width": 1280,
+  "height": 720,
+  "video_codec": "h264",
+  "frame_rate": "51264000/1709399",
+  "scene_detection": {
+    "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+    "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+    "cut_times_seconds": [
+      6.866667,
+      8.7,
+      10.566667,
+      35.833333,
+      37.833333,
+      38.566667,
+      39.233333,
+      40.166667,
+      41.266667,
+      42.033333,
+      44.266667,
+      47.333333,
+      49.233333,
+      53.433333,
+      55.033333,
+      60.133333,
+      62.133,
+      66.466333,
+      97.799667,
+      99.633,
+      101.499667,
+      119.533,
+      122.833333,
+      129.666667,
+      131.7,
+      137.566667,
+      141.466667,
+      143.6,
+      149.9,
+      151.466667,
+      154.9,
+      157.133333,
+      161.0,
+      177.7,
+      192.799667,
+      193.699667,
+      197.033,
+      201.666333,
+      206.166333,
+      263.366667,
+      264.533333,
+      266.166667,
+      274.4,
+      292.433333,
+      296.933333,
+      299.466667,
+      301.099667,
+      320.433,
+      322.699667,
+      324.799667,
+      327.266333,
+      329.633,
+      330.033,
+      330.933,
+      335.866333,
+      338.366333,
+      339.766333,
+      341.566333,
+      344.899667,
+      356.566333,
+      357.666333,
+      358.433,
+      360.333,
+      363.666667,
+      369.7,
+      381.366667,
+      392.3,
+      394.6,
+      423.333,
+      425.199667,
+      430.066333,
+      432.733,
+      438.599667,
+      440.533,
+      443.433,
+      444.566333,
+      446.066333,
+      447.099667,
+      447.999667,
+      460.999667,
+      463.699667,
+      467.533,
+      479.533,
+      536.799667,
+      539.899667,
+      542.299667,
+      543.499667,
+      568.599667
+    ],
+    "cut_count": 88,
+    "detected_segment_duration_percentiles": {
+      "10": 1.0133,
+      "50": 2.5333,
+      "90": 16.9667
+    }
+  },
+  "audio": {
+    "integrated_lufs": "-10.64",
+    "true_peak_dbtp": "2.84",
+    "loudness_range_lu": "4.90",
+    "silence_threshold_db": -35,
+    "silences": [
+      {
+        "start": 27.523628,
+        "end": 27.850249,
+        "duration": 0.3266
+      },
+      {
+        "start": 79.140726,
+        "end": 79.381293,
+        "duration": 0.2406
+      },
+      {
+        "start": 569.605283,
+        "end": 569.816236,
+        "duration": 0.211
+      }
+    ],
+    "silence_seconds": 0.7782,
+    "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  },
+  "frames": [
+    {
+      "time_seconds": 0.5,
+      "image": "frame-0000.500.jpg"
+    },
+    {
+      "time_seconds": 3,
+      "image": "frame-0003.000.jpg"
+    },
+    {
+      "time_seconds": 10,
+      "image": "frame-0010.000.jpg"
+    },
+    {
+      "time_seconds": 20,
+      "image": "frame-0020.000.jpg"
+    },
+    {
+      "time_seconds": 56.982,
+      "image": "frame-0056.982.jpg"
+    },
+    {
+      "time_seconds": 142.454,
+      "image": "frame-0142.454.jpg"
+    },
+    {
+      "time_seconds": 227.926,
+      "image": "frame-0227.926.jpg"
+    },
+    {
+      "time_seconds": 313.399,
+      "image": "frame-0313.399.jpg"
+    },
+    {
+      "time_seconds": 398.871,
+      "image": "frame-0398.871.jpg"
+    },
+    {
+      "time_seconds": 484.344,
+      "image": "frame-0484.344.jpg"
+    },
+    {
+      "time_seconds": 541.325,
+      "image": "frame-0541.325.jpg"
+    },
+    {
+      "time_seconds": 568.816,
+      "image": "frame-0568.816.jpg"
+    }
+  ],
+  "audio_sample_segments": [
+    {
+      "source_start": 0.0,
+      "duration": 15.0,
+      "sample_start": 0.0
+    },
+    {
+      "source_start": 227.92649440000002,
+      "duration": 15.0,
+      "sample_start": 15.0
+    },
+    {
+      "source_start": 455.85298880000005,
+      "duration": 15.0,
+      "sample_start": 30.0
+    }
+  ]
+}
