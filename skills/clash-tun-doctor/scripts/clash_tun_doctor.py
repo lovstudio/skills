@@ -20,6 +20,11 @@ from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
 APP_BUNDLE = "Clash Verge"
 DEFAULT_SOCKET = Path("/tmp/verge/verge-mihomo.sock")
+SERVICE_SOCKET_TEMPLATE = "/var/run/clash-verge-service/users/{uid}/verge-mihomo.sock"
+CORE_PROCESS_RE = re.compile(r"mihomo|clash", re.IGNORECASE)
+EXT_CTL_UNIX_RE = re.compile(
+    r"(?:^|\s)--?ext-ctl-unix(?:=|\s+)(?P<path>.+?)(?=\s+--?[A-Za-z][\w-]*(?:[=\s]|$)|\s*$)"
+)
 CONNECTION_LOG_RE = re.compile(
     r"\[(?:TCP|UDP)\]\s+\S+\((?P<process>[^)]*)\)\s+-->\s+"
     r"(?P<host>[^:\s]+):\d+\s+match\s+(?P<rule>.+?)\s+using\s+(?P<proxy>.+?)\"?$"
@@ -49,7 +54,11 @@ class UnixHTTPConnection(http.client.HTTPConnection):
     def connect(self) -> None:
         sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
         sock.settimeout(self.timeout)
-        sock.connect(self.socket_path)
+        try:
+            sock.connect(self.socket_path)
+        except OSError:
+            sock.close()
+            raise
         self.sock = sock
 
 
@@ -86,12 +95,105 @@ def resolve_data_dir(cli_value: Optional[str]) -> Path:
     raise SystemExit("Cannot auto-detect Clash Verge Rev data directory; pass --data-dir.")
 
 
-def resolve_socket(data_dir: Path, cli_value: Optional[str]) -> Path:
+def parse_ext_ctl_unix(ps_output: str) -> List[Path]:
+    """Extract `-ext-ctl-unix` paths from `ps -o ucomm=,command=` lines of Mihomo cores."""
+    paths: List[Path] = []
+    for line in ps_output.splitlines():
+        parts = line.strip().split(None, 1)
+        if len(parts) != 2 or not CORE_PROCESS_RE.search(parts[0]):
+            continue
+        match = EXT_CTL_UNIX_RE.search(parts[1])
+        if match:
+            paths.append(Path(match.group("path").strip().strip("\"'")))
+    return paths
+
+
+def running_core_sockets() -> List[Path]:
+    try:
+        result = subprocess.run(
+            ["ps", "axww", "-o", "ucomm=,command="],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            universal_newlines=True,
+            check=False,
+        )
+    except OSError:
+        return []
+    return parse_ext_ctl_unix(result.stdout)
+
+
+def generated_controller_socket(data_dir: Path) -> Optional[Path]:
+    match = re.search(
+        r"(?m)^external-controller-unix:[ \t]*['\"]?(?P<path>[^'\"#\n]*?)['\"]?[ \t]*(?:#.*)?$",
+        read_text(data_dir / "clash-verge.yaml"),
+    )
+    if not match or not match.group("path").strip():
+        return None
+    return Path(match.group("path").strip())
+
+
+def socket_candidates(data_dir: Path, cli_value: Optional[str]) -> List[Tuple[str, Path]]:
     if cli_value:
-        return Path(os.path.expandvars(os.path.expanduser(cli_value))).resolve()
-    if DEFAULT_SOCKET.exists():
-        return DEFAULT_SOCKET
-    return data_dir / "mihomo.sock"
+        return [("--socket", Path(os.path.expandvars(os.path.expanduser(cli_value))).resolve())]
+    candidates = [("running core -ext-ctl-unix", path) for path in running_core_sockets()]
+    generated = generated_controller_socket(data_dir)
+    if generated is not None:
+        candidates.append(("clash-verge.yaml external-controller-unix", generated))
+    if hasattr(os, "getuid"):
+        candidates.append(
+            ("Clash Verge service mode", Path(SERVICE_SOCKET_TEMPLATE.format(uid=os.getuid())))
+        )
+    candidates.append(("Clash Verge sidecar default", DEFAULT_SOCKET))
+    candidates.append(("data dir fallback", data_dir / "mihomo.sock"))
+    output: List[Tuple[str, Path]] = []
+    seen: Set[Path] = set()
+    for source, path in candidates:
+        if path not in seen:
+            seen.add(path)
+            output.append((source, path))
+    return output
+
+
+def probe_socket(socket_path: Path) -> Optional[str]:
+    """Return None when the Mihomo controller answers, otherwise the failure reason."""
+    if not socket_path.exists():
+        return "missing"
+    connection = UnixHTTPConnection(socket_path, timeout=2.0)
+    try:
+        connection.request("GET", "/version")
+        response = connection.getresponse()
+        response.read()
+        return None if 200 <= response.status < 300 else f"HTTP {response.status}"
+    except OSError as error:
+        return error.strerror or type(error).__name__
+    finally:
+        connection.close()
+
+
+def find_runtime_socket(
+    data_dir: Path, cli_value: Optional[str]
+) -> Tuple[Optional[Path], List[Dict[str, str]]]:
+    attempts: List[Dict[str, str]] = []
+    for source, path in socket_candidates(data_dir, cli_value):
+        reason = probe_socket(path)
+        if reason is None:
+            return path, attempts
+        attempts.append({"source": source, "path": str(path), "reason": reason})
+    return None, attempts
+
+
+def resolve_socket(data_dir: Path, cli_value: Optional[str]) -> Path:
+    socket_path, attempts = find_runtime_socket(data_dir, cli_value)
+    if socket_path is not None:
+        return socket_path
+    tried = "\n".join(
+        f"  - {item['source']}: {item['path']} ({item['reason']})" for item in attempts
+    )
+    raise SystemExit(
+        "Cannot reach the Mihomo controller Unix socket; runtime state was NOT read.\n"
+        f"Tried:\n{tried}\n"
+        "Start Clash Verge Rev, or pass --socket with the core's -ext-ctl-unix path."
+    )
 
 
 def read_text(path: Path) -> str:
@@ -531,12 +633,14 @@ def backup_files(data_dir: Path, files: Iterable[Path]) -> Path:
     return root
 
 
-def wait_for_runtime(socket_path: Path, timeout: float = 15.0) -> Optional[Dict[str, Any]]:
+def wait_for_runtime(
+    data_dir: Path, cli_socket: Optional[str], timeout: float = 15.0
+) -> Optional[Path]:
     deadline = time.time() + timeout
     while time.time() < deadline:
-        payload = api_json(socket_path, "/configs")
-        if payload is not None:
-            return payload
+        socket_path, _ = find_runtime_socket(data_dir, cli_socket)
+        if socket_path is not None and api_json(socket_path, "/configs") is not None:
+            return socket_path
         time.sleep(0.25)
     return None
 
@@ -657,7 +761,7 @@ def repair_plan(data_dir: Path) -> Tuple[Path, Path, str, str]:
     )
 
 
-def fix_wechat(data_dir: Path, socket_path: Path, apply: bool, restart: bool) -> int:
+def fix_wechat(data_dir: Path, cli_socket: Optional[str], apply: bool, restart: bool) -> int:
     config_path, rules_path, config_new, rules_new = repair_plan(data_dir)
     changes = [
         {"path": str(config_path), "changed": config_new != read_text(config_path), "action": "set global ipv6=false"},
@@ -673,7 +777,22 @@ def fix_wechat(data_dir: Path, socket_path: Path, apply: bool, restart: bool) ->
     rules_path.write_text(rules_new, encoding="utf-8")
     if restart:
         start_clash()
-        wait_for_runtime(socket_path)
+        socket_path = wait_for_runtime(data_dir, cli_socket)
+    else:
+        socket_path, _ = find_runtime_socket(data_dir, cli_socket)
+    if socket_path is None:
+        print(
+            json.dumps(
+                {
+                    "ok": False,
+                    "backup": str(backup),
+                    "reason": "Mihomo runtime is unreachable; final state was not verified.",
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        return 2
     result = diagnose(data_dir, socket_path, "wechat")
     verified = result.get("runtime_ipv6") is False and all(
         rule.get("proxy") == "DIRECT" for rule in result.get("rules", [])[: len(WECHAT_RULES)]
@@ -688,7 +807,13 @@ def latest_backup(data_dir: Path) -> Optional[Path]:
     return candidates[0] if candidates else None
 
 
-def rollback(data_dir: Path, apply: bool, restart: bool, backup_arg: Optional[str]) -> int:
+def rollback(
+    data_dir: Path,
+    cli_socket: Optional[str],
+    apply: bool,
+    restart: bool,
+    backup_arg: Optional[str],
+) -> int:
     root = Path(backup_arg).resolve() if backup_arg else latest_backup(data_dir)
     if root is None:
         raise SystemExit("No clash-tun-doctor backup found.")
@@ -701,13 +826,14 @@ def rollback(data_dir: Path, apply: bool, restart: bool, backup_arg: Optional[st
         shutil.copy2(item["backup"], item["source"])
     if restart:
         start_clash()
-        wait_for_runtime(resolve_socket(data_dir, None))
+        wait_for_runtime(data_dir, cli_socket)
     print(json.dumps({"ok": True, "restored": str(root)}, indent=2))
     return 0
 
 
 def print_human(result: Dict[str, Any]) -> None:
     print(f"Data dir: {result['data_dir']}")
+    print(f"Runtime socket: {result['socket']}")
     print(
         "IPv6: app-config={app} generated={generated} dns={dns} runtime={runtime}".format(
             app=result["app_config_ipv6"],
@@ -785,6 +911,12 @@ def parser() -> argparse.ArgumentParser:
 def main() -> int:
     args = parser().parse_args()
     data_dir = resolve_data_dir(args.data_dir)
+    if args.command == "fix-wechat":
+        return fix_wechat(data_dir, args.socket, args.apply, not args.no_restart)
+    if args.command == "rollback":
+        return rollback(data_dir, args.socket, args.apply, not args.no_restart, args.backup)
+    # Runtime evidence is the point of these commands: fail loudly instead of
+    # reporting an empty runtime when no controller socket answers.
     socket_path = resolve_socket(data_dir, args.socket)
     if args.command == "diagnose":
         result = diagnose(data_dir, socket_path, args.app)
@@ -817,9 +949,7 @@ def main() -> int:
         else:
             print_direct_list(result)
         return 0
-    if args.command == "fix-wechat":
-        return fix_wechat(data_dir, socket_path, args.apply, not args.no_restart)
-    return rollback(data_dir, args.apply, not args.no_restart, args.backup)
+    raise SystemExit(f"Unknown command: {args.command}")
 
 
 if __name__ == "__main__":

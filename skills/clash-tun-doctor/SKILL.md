@@ -9,9 +9,13 @@ description: >
   mentions "Clash TUN 排障", "微信图片发不出去", "朋友圈图片加载慢",
   "修复微信 TUN 网络", or "diagnose Clash TUN app connectivity".
 license: MIT
+compatibility: >
+  Requires macOS with Clash Verge Rev (Mihomo core in sidecar or service mode)
+  and Python 3.8+ standard library. Other platforms need explicit --data-dir
+  and --socket values.
 metadata:
   author: contributors
-  version: "0.3.1"
+  version: "0.4.0"
   tags: clash mihomo tun network diagnostics wechat macos
 ---
 
@@ -28,6 +32,8 @@ failures behind Clash Verge Rev TUN mode.
 - The subscription says `ipv6: false`, but runtime traffic still uses IPv6.
 - Clash logs contain `no route to host`, `context deadline exceeded`, or an
   unexpected rule/strategy for the affected process.
+- A blocked site such as `chatgpt.com` fails through one proxy node while other
+  sites work through the same node.
 
 Do not use this skill for generic subscription acquisition, node purchasing,
 or bypassing organizational network policy.
@@ -64,6 +70,19 @@ Report concrete evidence from all available layers:
 - Generated `clash-verge.yaml` top-level and DNS IPv6 values.
 - Runtime `/configs`, `/rules`, and `/connections` through Mihomo's Unix socket.
 - Recent service-log failures for the target application.
+
+The runtime socket is auto-detected in this order, and the first one whose
+controller answers wins:
+
+1. `--socket`, when given (no fallback).
+2. `-ext-ctl-unix` of the running Mihomo core process.
+3. `external-controller-unix` in the generated `clash-verge.yaml`.
+4. Service mode: `/var/run/clash-verge-service/users/<uid>/verge-mihomo.sock`.
+5. Sidecar default `/tmp/verge/verge-mihomo.sock`, then `<data-dir>/mihomo.sock`.
+
+`diagnose` and `direct-list` exit non-zero and list every candidate with its
+failure reason when none answers. Never report runtime IPv6, rules, or
+connections as healthy without a reachable socket.
 
 Treat screenshots and runtime state as truth. A rule saying `DIRECT` does not
 prove the connection succeeded.
@@ -174,7 +193,7 @@ automatically.
 | `fix-wechat` | dry run | Preview or apply the proven WeChat repair. |
 | `rollback` | dry run | Preview or restore the latest repair backup. |
 | `--data-dir PATH` | auto | Clash Verge Rev application data directory. |
-| `--socket PATH` | `<data-dir>/mihomo.sock` fallback | Mihomo controller Unix socket; standard `/tmp/verge/verge-mihomo.sock` is auto-detected. |
+| `--socket PATH` | auto | Mihomo controller Unix socket; see the detection order in Step 1. |
 | `--app NAME` | `wechat` | Application filter used by diagnosis. |
 | `--host HOST` | — | Seed an exact host in a DIRECT list; repeatable. |
 | `--output PATH` | — | Save a Mihomo classical rule-provider YAML list. |

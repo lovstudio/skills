@@ -1,6 +1,6 @@
 # Clash 网络医生 · Clash Network Doctor
 
-![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 
 基于最终运行态、实时连接和日志证据，诊断并修复 Clash Verge Rev TUN 导致的应用联网故障。
 
@@ -80,7 +80,7 @@ python3 "$SKILL_DIR/scripts/clash_tun_doctor.py" rollback --apply
 | 参数 | 默认值 | 说明 |
 |---|---|---|
 | `--data-dir` | 自动发现 | Clash Verge Rev 数据目录。 |
-| `--socket` | 自动发现 | Mihomo 控制器 Unix Socket。 |
+| `--socket` | 自动发现 | Mihomo 控制器 Unix Socket；优先读取运行中内核的 `-ext-ctl-unix`，兼容服务模式，全部连不上时报错退出。 |
 | `--app` | `wechat` | 诊断时使用的应用过滤器。 |
 | `--host` | — | 明确加入清单的域名，可重复传入。 |
 | `--output` | — | 输出 Mihomo classical rule-provider YAML 清单。 |
