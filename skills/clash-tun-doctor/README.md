@@ -1,6 +1,6 @@
 # Clash 网络医生 · Clash Network Doctor
 
-![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
 
 基于最终运行态、实时连接和日志证据，诊断并修复 Clash Verge Rev TUN 导致的应用联网故障。
 
@@ -84,6 +84,7 @@ python3 "$SKILL_DIR/scripts/clash_tun_doctor.py" rollback --apply
 | `--app` | `wechat` | 诊断时使用的应用过滤器。 |
 | `--host` | — | 明确加入清单的域名，可重复传入。 |
 | `--output` | — | 输出 Mihomo classical rule-provider YAML 清单。 |
+| `--live-logs` | 关闭 | 诊断时改为实时采样 Mihomo `/logs` 流（秒数）；服务模式内核日志仅 root 可读时使用，采样期间复现故障。 |
 | `--log-limit` | `4000` | 每段近期轮转日志读取的行数。 |
 | `--apply` | false | 明确授权修改或回滚。 |
 | `--no-reload` | false | 只持久化 DIRECT 清单，不热加载运行态。 |

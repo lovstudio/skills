@@ -15,7 +15,7 @@ compatibility: >
   and --socket values.
 metadata:
   author: contributors
-  version: "0.4.0"
+  version: "0.5.0"
   tags: clash mihomo tun network diagnostics wechat macos
 ---
 
@@ -69,7 +69,24 @@ Report concrete evidence from all available layers:
 - App-level `config.yaml` overrides.
 - Generated `clash-verge.yaml` top-level and DNS IPv6 values.
 - Runtime `/configs`, `/rules`, and `/connections` through Mihomo's Unix socket.
-- Recent service-log failures for the target application.
+- Recent core-log failures for the target application.
+
+Core logs follow the running mode. In owner-scoped service mode (socket under
+`clash-verge-service/users/<uid>/`) Mihomo writes to
+`/Library/Application Support/clash-verge-service/users/<uid>/logs/service_latest.log`
+(`/var/lib/clash-verge-service/...` on Linux), which is root-only; data-dir logs
+then belong to an earlier mode and are ignored. Otherwise the newest of
+`<data-dir>/logs/sidecar`, `<data-dir>/service-logs/service`, and
+`<data-dir>/logs/service` is used. When no log is readable, diagnosis prints
+`Recent logs: UNAVAILABLE` with every location and reason (JSON counts are
+`null`); never read that as "no errors". Collect log evidence instead with:
+
+```bash
+python3 "$SKILL_DIR/scripts/clash_tun_doctor.py" diagnose --app wechat --live-logs 15
+```
+
+Reproduce the failure during the window: `--live-logs` samples Mihomo's live
+`/logs` stream through the controller socket and needs no root.
 
 The runtime socket is auto-detected in this order, and the first one whose
 controller answers wins:
@@ -197,7 +214,8 @@ automatically.
 | `--app NAME` | `wechat` | Application filter used by diagnosis. |
 | `--host HOST` | — | Seed an exact host in a DIRECT list; repeatable. |
 | `--output PATH` | — | Save a Mihomo classical rule-provider YAML list. |
-| `--log-limit N` | `4000` | Recent lines inspected in each rotated service log. |
+| `--live-logs SECONDS` | off | Diagnose from Mihomo's live `/logs` stream instead of log files. |
+| `--log-limit N` | `4000` | Recent lines inspected in each rotated core log. |
 | `--apply` | false | Authorize filesystem changes and restart/restore actions. |
 | `--no-reload` | false | Persist a DIRECT list without runtime hot-load. |
 | `--no-restart` | false | Apply changes without restarting Clash Verge. |

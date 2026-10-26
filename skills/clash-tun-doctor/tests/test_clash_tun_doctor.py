@@ -1,10 +1,13 @@
 import http.server
+import json
+import os
 import shutil
 import socket
 import socketserver
 import sys
 import tempfile
 import threading
+import time
 from pathlib import Path
 import unittest
 from unittest import mock
@@ -42,7 +45,27 @@ class _UnixHTTPServer(socketserver.ThreadingMixIn, socketserver.UnixStreamServer
     daemon_threads = True
 
 
-class SocketDiscoveryTests(unittest.TestCase):
+class _LogStreamHandler(socketserver.StreamRequestHandler):
+    """Mimic Mihomo /logs: chunked JSON lines, then keep the stream open."""
+
+    def handle(self):
+        while self.rfile.readline() not in (b"\r\n", b"\n", b""):
+            pass
+        self.wfile.write(
+            b"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
+            b"Transfer-Encoding: chunked\r\n\r\n"
+        )
+        for payload in (
+            "[TCP] 127.0.0.1:1(WeChat) --> [240e::1]:443 error: connect: no route to host",
+            "[TCP] 127.0.0.1:2(Chrome) --> example.com:443 match Match using PROXY",
+        ):
+            line = json.dumps({"type": "info", "payload": payload}).encode() + b"\n"
+            self.wfile.write(b"%x\r\n%s\r\n" % (len(line), line))
+            self.wfile.flush()
+        time.sleep(3)
+
+
+class _UnixSocketTestCase(unittest.TestCase):
     def setUp(self):
         # AF_UNIX paths are limited to ~104 bytes on macOS; keep the root short.
         self.root = Path(tempfile.mkdtemp(prefix="ctd-", dir="/tmp"))
@@ -50,9 +73,9 @@ class SocketDiscoveryTests(unittest.TestCase):
         self.data_dir = self.root / "data"
         self.data_dir.mkdir()
 
-    def serve(self, name):
+    def serve(self, name, handler=_VersionHandler):
         path = self.root / name
-        server = _UnixHTTPServer(str(path), _VersionHandler)
+        server = _UnixHTTPServer(str(path), handler)
         thread = threading.Thread(target=server.serve_forever, daemon=True)
         thread.start()
         self.addCleanup(server.server_close)
@@ -66,6 +89,8 @@ class SocketDiscoveryTests(unittest.TestCase):
         sock.close()
         return path
 
+
+class SocketDiscoveryTests(_UnixSocketTestCase):
     def test_parse_ext_ctl_unix_reads_service_core_only(self):
         self.assertEqual(
             doctor.parse_ext_ctl_unix(SERVICE_PS_OUTPUT),
@@ -165,6 +190,112 @@ class SocketDiscoveryTests(unittest.TestCase):
         self.assertEqual(result["socket"], str(live))
         self.assertIs(result["runtime_ipv6"], False)
         self.assertEqual(len(result["connections"]), 1)
+
+
+class LogDiscoveryTests(_UnixSocketTestCase):
+    def write_log(self, directory, name, text, mtime=None):
+        directory.mkdir(parents=True, exist_ok=True)
+        path = directory / name
+        path.write_text(text, encoding="utf-8")
+        if mtime is not None:
+            os.utime(path, (mtime, mtime))
+        return path
+
+    def test_owner_scoped_socket_uses_only_service_owner_logs(self):
+        state = self.root / "state"
+        owner_socket = Path("/var/run/clash-verge-service/users/501/verge-mihomo.sock")
+        with mock.patch.object(doctor, "service_state_dir", return_value=state):
+            service = doctor.core_log_dirs(self.data_dir, owner_socket)
+            sidecar = doctor.core_log_dirs(self.data_dir, self.root / "verge-mihomo.sock")
+
+        self.assertEqual(service, [("service-mode core log", state / "users/501/logs", "service")])
+        self.assertEqual(
+            [directory for _label, directory, _prefix in sidecar],
+            [
+                self.data_dir / "logs/sidecar",
+                self.data_dir / "service-logs/service",
+                self.data_dir / "logs/service",
+            ],
+        )
+
+    @unittest.skipIf(hasattr(os, "geteuid") and os.geteuid() == 0, "root bypasses permissions")
+    def test_root_only_service_logs_are_reported_not_counted(self):
+        state = self.root / "state"
+        logs = state / "users/501/logs"
+        self.write_log(logs, "service_latest.log", "[TCP] WeChat no route to host\n")
+        logs.chmod(0)
+        self.addCleanup(logs.chmod, 0o755)
+        # Stale data-dir logs from an earlier sidecar run must not be used instead.
+        self.write_log(self.data_dir / "logs/sidecar", "sidecar_latest.log", "WeChat\n")
+        owner_socket = Path("/var/run/clash-verge-service/users/501/verge-mihomo.sock")
+        with mock.patch.object(doctor, "service_state_dir", return_value=state):
+            result = doctor.log_findings(self.data_dir, owner_socket, "wechat")
+
+        self.assertEqual(result["status"], "unavailable")
+        self.assertIsNone(result["no_route_to_host"])
+        self.assertIsNone(result["matched_lines"])
+        self.assertEqual(result["tried"][0]["path"], str(logs))
+        self.assertEqual(result["tried"][0]["reason"], "Permission denied")
+        self.assertIn("--live-logs", result["hint"])
+        self.assertIn("sudo tail", result["hint"])
+
+    def test_empty_or_missing_log_dirs_are_unavailable(self):
+        (self.data_dir / "service-logs/service").mkdir(parents=True)
+        self.write_log(self.data_dir / "logs/service", "service_latest.log", "")
+        result = doctor.log_findings(self.data_dir, self.root / "x.sock", "wechat")
+
+        self.assertEqual(result["status"], "unavailable")
+        self.assertEqual(
+            [item["reason"] for item in result["tried"]],
+            ["No such file or directory", "no non-empty log files", "no non-empty log files"],
+        )
+
+    def test_newest_log_directory_wins_and_latest_file_comes_first(self):
+        old = time.time() - 86400 * 60
+        self.write_log(self.data_dir / "logs/sidecar", "sidecar_latest.log", "x\n", mtime=old)
+        legacy = self.data_dir / "logs/service"
+        rotated = self.write_log(legacy, "service_2026-10-24.log", "x\n", mtime=old + 10)
+        latest = self.write_log(
+            legacy,
+            "service_latest.log",
+            "[TCP] 127.0.0.1:1(WeChat) --> [240e::1]:443 no route to host\n",
+        )
+        files, _attempts = doctor.find_core_logs(self.data_dir, None)
+        result = doctor.log_findings(self.data_dir, None, "wechat")
+
+        self.assertEqual(files, [latest, rotated])
+        self.assertEqual(result["status"], "ok")
+        self.assertEqual(result["source"], str(latest))
+        self.assertEqual(result["no_route_to_host"], 1)
+        self.assertEqual(result["ipv6_lines"], 1)
+
+    def test_parse_log_stream_handles_chunks_and_truncation(self):
+        lines = [json.dumps({"type": "info", "payload": f"line {n}"}).encode() + b"\n" for n in (1, 2)]
+        raw = (
+            b"HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n"
+            + b"".join(b"%x\r\n%s\r\n" % (len(line), line) for line in lines)
+            + b"40\r\n{\"type\":\"info\",\"pay"
+        )
+        self.assertEqual(doctor.parse_log_stream(raw), ["line 1", "line 2"])
+        self.assertEqual(doctor.parse_log_stream(b""), [])
+        with self.assertRaises(ValueError):
+            doctor.parse_log_stream(b"HTTP/1.1 404 Not Found\r\n\r\n")
+
+    def test_live_logs_sample_the_runtime_stream(self):
+        live = self.serve("logs.sock", _LogStreamHandler)
+        result = doctor.log_findings(self.data_dir, live, "wechat", live_seconds=0.5)
+
+        self.assertEqual(result["status"], "ok")
+        self.assertEqual(result["source"], "live /logs stream, 0.5s")
+        self.assertEqual(result["scanned_lines"], 2)
+        self.assertEqual(result["no_route_to_host"], 1)
+
+    def test_live_logs_failure_is_unavailable(self):
+        result = doctor.log_findings(
+            self.data_dir, self.root / "missing.sock", "wechat", live_seconds=0.2
+        )
+        self.assertEqual(result["status"], "unavailable")
+        self.assertEqual(result["tried"][0]["source"], "live /logs stream")
 
 
 class DirectListTests(unittest.TestCase):

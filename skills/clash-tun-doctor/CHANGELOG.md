@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.0] - 2026-10-25
+
+### Added
+
+- diagnose 按运行模式定位内核日志；读不到时输出 Recent logs: UNAVAILABLE 和每个位置的原因（JSON 计数为 null），不再静默输出 0
+- 服务模式（socket 位于 clash-verge-service/users/<uid>/）只认 /Library/Application Support/clash-verge-service/users/<uid>/logs（Linux 为 /var/lib/...），不再回退到旧模式遗留的 data-dir 日志；其他模式在 logs/sidecar、service-logs/service、logs/service 中取最新一份，并显示来源与修改时间
+- 新增 diagnose --live-logs SECONDS：经控制 socket 实时采样 Mihomo /logs 流，服务模式下无需 root 即可取得日志证据
+- direct-list 共用同一日志发现逻辑；日志不可读时打印 UNAVAILABLE 和原因，JSON 新增 log_issues
+- 新增日志发现、权限拒绝、流解析与实时采样测试
+
 ## [0.4.0] - 2026-10-25
 
 ### Added

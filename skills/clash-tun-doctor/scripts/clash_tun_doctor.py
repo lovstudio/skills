@@ -21,6 +21,9 @@ from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 APP_BUNDLE = "Clash Verge"
 DEFAULT_SOCKET = Path("/tmp/verge/verge-mihomo.sock")
 SERVICE_SOCKET_TEMPLATE = "/var/run/clash-verge-service/users/{uid}/verge-mihomo.sock"
+SERVICE_STATE_DIR_MACOS = Path("/Library/Application Support/clash-verge-service")
+SERVICE_STATE_DIR_LINUX = Path("/var/lib/clash-verge-service")
+SERVICE_OWNER_RE = re.compile(r"/clash-verge-service/users/(?P<owner>[^/]+)/")
 CORE_PROCESS_RE = re.compile(r"mihomo|clash", re.IGNORECASE)
 EXT_CTL_UNIX_RE = re.compile(
     r"(?:^|\s)--?ext-ctl-unix(?:=|\s+)(?P<path>.+?)(?=\s+--?[A-Za-z][\w-]*(?:[=\s]|$)|\s*$)"
@@ -236,50 +239,62 @@ def current_rules_file(data_dir: Path) -> Optional[Path]:
     return candidate if candidate.exists() else None
 
 
-def service_log(data_dir: Path) -> Path:
-    candidates = [
-        data_dir / "service-logs/service/service_latest.log",
-        data_dir / "logs/service/service_latest.log",
-    ]
-    return next((path for path in candidates if path.exists()), candidates[0])
+def service_state_dir() -> Optional[Path]:
+    if sys.platform == "darwin":
+        return SERVICE_STATE_DIR_MACOS
+    if sys.platform.startswith("linux"):
+        return SERVICE_STATE_DIR_LINUX
+    return None
 
 
-def recent_service_logs(data_dir: Path, max_files: int = 8) -> List[Path]:
-    roots = [
-        data_dir / "service-logs/service",
-        data_dir / "logs/service",
+def core_log_dirs(data_dir: Path, socket_path: Optional[Path]) -> List[Tuple[str, Path, str]]:
+    """Return (label, directory, file prefix) for the core logs of the running mode."""
+    owner = SERVICE_OWNER_RE.search(str(socket_path or ""))
+    state_dir = service_state_dir()
+    if owner and state_dir is not None:
+        # Owner-scoped service mode: data-dir logs belong to another mode or run.
+        logs = state_dir / "users" / owner.group("owner") / "logs"
+        return [("service-mode core log", logs, "service")]
+    return [
+        ("sidecar core log", data_dir / "logs/sidecar", "sidecar"),
+        ("legacy service log", data_dir / "service-logs/service", "service"),
+        ("legacy service log", data_dir / "logs/service", "service"),
     ]
-    candidates: List[Path] = []
-    for root in roots:
-        if not root.exists():
+
+
+def find_core_logs(
+    data_dir: Path, socket_path: Optional[Path], max_files: int = 8
+) -> Tuple[List[Path], List[Dict[str, str]]]:
+    """Newest readable core logs (latest file first) plus every failed location."""
+    attempts: List[Dict[str, str]] = []
+    best: List[Path] = []
+    best_mtime = -1.0
+    for label, directory, prefix in core_log_dirs(data_dir, socket_path):
+        try:
+            # os.listdir surfaces EACCES; Path.glob silently yields nothing.
+            names = os.listdir(directory)
+            files = [
+                (directory / name, (directory / name).stat())
+                for name in names
+                if name.startswith(f"{prefix}_") and name.endswith(".log")
+            ]
+        except OSError as error:
+            reason = error.strerror or type(error).__name__
+            attempts.append({"source": label, "path": str(directory), "reason": reason})
             continue
-        latest = root / "service_latest.log"
-        if latest.exists():
-            candidates.append(latest)
-        candidates.extend(
-            sorted(
-                (
-                    path
-                    for path in root.glob("service_*.log")
-                    if path.name != "service_latest.log"
-                ),
-                key=lambda path: path.stat().st_mtime,
-                reverse=True,
+        files = [(path, stat) for path, stat in files if stat.st_size > 0]
+        if not files:
+            attempts.append(
+                {"source": label, "path": str(directory), "reason": "no non-empty log files"}
             )
-        )
-        if candidates:
-            break
-    output: List[Path] = []
-    seen: Set[Path] = set()
-    for path in candidates:
-        resolved = path.resolve()
-        if resolved in seen:
             continue
-        seen.add(resolved)
-        output.append(path)
-        if len(output) >= max_files:
-            break
-    return output
+        latest_name = f"{prefix}_latest.log"
+        files.sort(key=lambda item: (item[0].name != latest_name, -item[1].st_mtime))
+        newest = max(stat.st_mtime for _path, stat in files)
+        if newest > best_mtime:
+            best_mtime = newest
+            best = [path for path, _stat in files[:max_files]]
+    return best, attempts
 
 
 def filtered_connections(payload: Optional[Dict[str, Any]], app: str) -> List[Dict[str, Any]]:
@@ -333,12 +348,127 @@ def recent_log_findings(log_text: str, app: str, limit: int = 4000) -> Dict[str,
     timeouts = [line for line in relevant if "deadline exceeded" in line.lower() or "i/o timeout" in line.lower()]
     ipv6 = [line for line in relevant if re.search(r"\[[0-9a-f:]{3,}\]", line, re.IGNORECASE)]
     return {
+        "scanned_lines": len(lines),
         "matched_lines": len(relevant),
         "no_route_to_host": len(no_route),
         "timeouts": len(timeouts),
         "ipv6_lines": len(ipv6),
         "samples": (no_route + timeouts)[:5],
     }
+
+
+def parse_log_stream(raw: bytes) -> List[str]:
+    """Decode a possibly chunked, possibly truncated Mihomo /logs response into payloads."""
+    if not raw:
+        return []
+    head, _, body = raw.partition(b"\r\n\r\n")
+    status = head.split(b"\r\n", 1)[0]
+    if not re.match(rb"HTTP/1\.[01] 2\d\d", status):
+        raise ValueError(f"unexpected /logs response: {status.decode('latin-1')[:60]}")
+    if b"transfer-encoding: chunked" in head.lower():
+        data = b""
+        while True:
+            size_end = body.find(b"\r\n")
+            if size_end < 0:
+                break
+            try:
+                size = int(body[:size_end].split(b";")[0], 16)
+            except ValueError:
+                break
+            start = size_end + 2
+            if size == 0 or len(body) < start + size:
+                break
+            data += body[start : start + size]
+            body = body[start + size + 2 :]
+        body = data
+    payloads = []
+    for line in body.decode("utf-8", "replace").splitlines():
+        try:
+            item = json.loads(line)
+        except ValueError:
+            continue
+        if isinstance(item, dict) and item.get("payload"):
+            payloads.append(str(item["payload"]))
+    return payloads
+
+
+def stream_runtime_logs(socket_path: Path, seconds: float) -> List[str]:
+    """Sample Mihomo's live /logs stream for a fixed window; raises OSError or ValueError."""
+    sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    raw = b""
+    try:
+        sock.settimeout(2.0)
+        sock.connect(str(socket_path))
+        sock.sendall(b"GET /logs?level=info HTTP/1.1\r\nHost: localhost\r\n\r\n")
+        deadline = time.time() + seconds
+        while time.time() < deadline:
+            sock.settimeout(max(0.05, min(1.0, deadline - time.time())))
+            try:
+                chunk = sock.recv(65536)
+            except socket.timeout:
+                continue
+            if not chunk:
+                break
+            raw += chunk
+    finally:
+        sock.close()
+    return parse_log_stream(raw)
+
+
+def unavailable_logs(attempts: List[Dict[str, str]]) -> Dict[str, Any]:
+    hint = "Rerun diagnose with --live-logs 15 while reproducing the failure."
+    root_only = [item for item in attempts if item["source"] == "service-mode core log"]
+    if root_only:
+        hint += (
+            " Service-mode core logs are root-only; inspect them manually with: "
+            f"sudo tail -n 200 '{root_only[0]['path']}/service_latest.log'"
+        )
+    return {
+        "status": "unavailable",
+        "source": None,
+        "modified": None,
+        "tried": attempts,
+        "hint": hint,
+        "scanned_lines": None,
+        "matched_lines": None,
+        "no_route_to_host": None,
+        "timeouts": None,
+        "ipv6_lines": None,
+        "samples": [],
+    }
+
+
+def log_findings(
+    data_dir: Path, socket_path: Path, app: str, live_seconds: float = 0.0
+) -> Dict[str, Any]:
+    if live_seconds > 0:
+        try:
+            lines = stream_runtime_logs(socket_path, live_seconds)
+        except (OSError, ValueError) as error:
+            reason = getattr(error, "strerror", None) or str(error) or type(error).__name__
+            return unavailable_logs(
+                [{"source": "live /logs stream", "path": str(socket_path), "reason": reason}]
+            )
+        findings = recent_log_findings("\n".join(lines), app)
+        findings.update(status="ok", source=f"live /logs stream, {live_seconds:g}s", modified=None)
+        return findings
+    files, attempts = find_core_logs(data_dir, socket_path, max_files=1)
+    for path in files:
+        try:
+            text = path.read_text(encoding="utf-8", errors="replace")
+            modified = dt.datetime.fromtimestamp(path.stat().st_mtime)
+        except OSError as error:
+            reason = error.strerror or type(error).__name__
+            attempts.append({"source": "core log file", "path": str(path), "reason": reason})
+            break
+        findings = recent_log_findings(text, app)
+        findings.update(
+            status="ok",
+            source=str(path),
+            modified=modified.isoformat(sep=" ", timespec="seconds"),
+        )
+        return findings
+    return unavailable_logs(attempts)
 
 
 def normalize_host(value: str) -> Optional[str]:
@@ -490,10 +620,17 @@ def discover_direct_list(
             proxy,
         )
 
-    log_paths = recent_service_logs(data_dir)
+    log_paths, log_issues = find_core_logs(data_dir, socket_path)
     seen_log_lines: Set[str] = set()
-    for log_path in log_paths:
-        for line in read_text(log_path).splitlines()[-log_limit:]:
+    for log_path in list(log_paths):
+        try:
+            log_text = log_path.read_text(encoding="utf-8", errors="replace")
+        except OSError as error:
+            reason = error.strerror or type(error).__name__
+            log_issues.append({"source": "core log file", "path": str(log_path), "reason": reason})
+            log_paths.remove(log_path)
+            continue
+        for line in log_text.splitlines()[-log_limit:]:
             if line in seen_log_lines:
                 continue
             seen_log_lines.add(line)
@@ -562,6 +699,7 @@ def discover_direct_list(
     return {
         "filter": app,
         "service_logs": [str(path) for path in log_paths],
+        "log_issues": log_issues,
         "rules_file": None if rules_path is None else str(rules_path),
         "items": items,
         "rules": rules,
@@ -572,7 +710,9 @@ def discover_direct_list(
     }
 
 
-def diagnose(data_dir: Path, socket_path: Path, app: str) -> Dict[str, Any]:
+def diagnose(
+    data_dir: Path, socket_path: Path, app: str, live_logs: float = 0.0
+) -> Dict[str, Any]:
     app_config = read_text(data_dir / "config.yaml")
     generated = read_text(data_dir / "clash-verge.yaml")
     runtime = api_json(socket_path, "/configs")
@@ -587,7 +727,7 @@ def diagnose(data_dir: Path, socket_path: Path, app: str) -> Dict[str, Any]:
         "rules": filtered_rules(api_json(socket_path, "/rules"), app),
         "connections": connections,
         "ipv6_destinations": ipv6_destinations,
-        "logs": recent_log_findings(read_text(service_log(data_dir)), app),
+        "logs": log_findings(data_dir, socket_path, app, live_logs),
     }
 
 
@@ -737,6 +877,10 @@ def print_direct_list(result: Dict[str, Any]) -> None:
         print(
             f"- {item['host']} [{status}, {persisted}, evidence={item['occurrences']}]"
         )
+    if not result["service_logs"]:
+        print("Logs: UNAVAILABLE; only runtime connections and --host were used")
+        for issue in result["log_issues"]:
+            print(f"  - {issue['source']}: {issue['path']} ({issue['reason']})")
     print("Rules:")
     for rule in result["rules"]:
         print(f"  {rule}")
@@ -843,11 +987,20 @@ def print_human(result: Dict[str, Any]) -> None:
         )
     )
     print(f"Connections: {len(result['connections'])}; IPv6 destinations: {result['ipv6_destinations']}")
-    print(
-        "Recent logs: no-route={no_route_to_host} timeouts={timeouts} IPv6-lines={ipv6_lines}".format(
-            **result["logs"]
+    logs = result["logs"]
+    if logs["status"] == "ok":
+        where = logs["source"] + (f", modified {logs['modified']}" if logs["modified"] else "")
+        print(
+            "Recent logs ({where}): scanned={scanned_lines} matched={matched_lines} "
+            "no-route={no_route_to_host} timeouts={timeouts} IPv6-lines={ipv6_lines}".format(
+                where=where, **logs
+            )
         )
-    )
+    else:
+        print("Recent logs: UNAVAILABLE (counts not computed)")
+        for item in logs["tried"]:
+            print(f"  - {item['source']}: {item['path']} ({item['reason']})")
+        print(f"  Hint: {logs['hint']}")
     for rule in result["rules"][:12]:
         print(f"Rule: {rule['type']},{rule['payload']} => {rule['proxy']}")
     for sample in result["logs"]["samples"]:
@@ -862,6 +1015,13 @@ def parser() -> argparse.ArgumentParser:
 
     diagnose_parser = subparsers.add_parser("diagnose", help="Read-only evidence collection")
     diagnose_parser.add_argument("--app", default="wechat", help="Application/process/host filter")
+    diagnose_parser.add_argument(
+        "--live-logs",
+        type=float,
+        default=0.0,
+        metavar="SECONDS",
+        help="Sample Mihomo's live /logs stream instead of log files",
+    )
     diagnose_parser.add_argument("--json", action="store_true", help="Emit JSON")
 
     direct_parser = subparsers.add_parser(
@@ -919,7 +1079,7 @@ def main() -> int:
     # reporting an empty runtime when no controller socket answers.
     socket_path = resolve_socket(data_dir, args.socket)
     if args.command == "diagnose":
-        result = diagnose(data_dir, socket_path, args.app)
+        result = diagnose(data_dir, socket_path, args.app, args.live_logs)
         if args.json:
             print(json.dumps(result, ensure_ascii=False, indent=2))
         else:
