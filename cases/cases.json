@@ -4023,5 +4023,48 @@
       "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
       "submittedAt": "2026-09-26T12:07:22.212Z"
     }
+  },
+  {
+    "id": "interview-short-zhao-zhe-2026-10",
+    "type": "case",
+    "skillIds": [
+      "interview-media-creator",
+      "media-creator",
+      "media-publisher"
+    ],
+    "title": "饭局上的两段手机采访，剪成 2 分 48 秒视频号短片",
+    "description": "一场饭局上用 iPhone 竖拍的采访：前 8 分半是被访者对着笔记本和遥控器演示自己写的 AI 插件，最后 2 分钟才是正面自我介绍。Skill 读完两份逐字稿后把自我介绍提到第 1 章，用三句原话做冷开场，重排成 5 章；人声分离压低饭店环境声，手机横持拍下的侧躺画面转正，配两首按内容生成的纯器乐。作者在 Studio 和手机预览审片后选定封面 B，在视频号发表。",
+    "input": {
+      "text": "两段 iPhone 17 Pro 竖拍录像（杜比视界），共 10 分 32 秒：饭桌演示 8 分 31 秒（录制中途追加了第二段），正面自我介绍 2 分 01 秒。被访者佩戴领夹麦，饭店环境声约 −30 dBFS；其中约 36 秒手机横持、画面侧躺。"
+    },
+    "prompt": "/lov-interview-media-creator <采访素材文件夹>\n（处理中途）刚增加 IMG_2395.MOV\n（审片后）不用打码 / 完了直接发",
+    "output": {
+      "items": [
+        "2 分 48 秒竖版成片（1080×1920，30 fps）：三句原话冷开场 → 片名卡 → 5 章（还写代码 / 额度看板 / 60块遥控器 / 实时上下文 / AIBP）→ 行动号召与 Logo 收尾。",
+        "120 条烧录字幕，large-v3 与 turbo 两个模型逐句择优取时；采访者问题用提问卡，另有人名条、地点条和 5 处讲解图形（算式条、两枚印章、数字、箭头）。",
+        "人声分离后混入 25% 原声：抽 12 句测识别错误率，原声 0.26、纯分离 0.28、混合 0.19；两首 Lyria 生成的纯器乐分两段配乐，母带 −16 LUFS / −4.3 dBTP。",
+        "约 36 秒侧躺画面顺时针转正，做成竖版中部横幅，上下用同画面模糊填充。",
+        "3:4 封面 A/B 与 4:3 分享卡；作者选定封面 B，在视频号发表。"
+      ]
+    },
+    "author": "手工川",
+    "cover": "cases/assets/interview-short-zhao-zhe-2026-10/1.jpg",
+    "gallery": [
+      "cases/assets/interview-short-zhao-zhe-2026-10/2.jpg",
+      "cases/assets/interview-short-zhao-zhe-2026-10/3.jpg",
+      "cases/assets/interview-short-zhao-zhe-2026-10/4.jpg"
+    ],
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-10-26",
+      "method": "作者在 Remotion Studio 与手机预览审片，按默认方案选定封面 B，在视频号手动发表（未做平台列表回读）。交付前跑过时间线检查（0 错误）、逐帧二维码扫描（唯一命中为笔记本扬声器网孔，人工判为误检）、响度与真峰值检查、人声可懂度门禁。",
+      "privacy": "被访者面对镜头自我介绍并给出联系方式，成片已由作者公开发表。案例只含已发表的封面和三帧不含屏幕内容与第三人的成片画面；不含聊天记录、本地路径、账号信息与转写全文。",
+      "artifact_type": "visual"
+    },
+    "submission": {
+      "fingerprint": "0275bbcc2c008ac7aac908b453fe8e18486a7bb94bbbabc1291b9e6fa2a8227c",
+      "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
+      "submittedAt": "2026-10-26T19:49:15.532Z"
+    }
   }
 ]
