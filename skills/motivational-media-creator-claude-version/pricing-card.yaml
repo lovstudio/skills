@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 用实测数字回答“这条励志片的节奏哪里不对”，并把结构、人声、权利和事实的门禁变成可复跑的脚本。
+basis: 与另一版本并行比较中的本地自用能力，先免费验证。
+boundary: 不含拍摄、旁白合成、音乐与素材授权、渲染、模型额度与平台发布。
+review_trigger: 用户在两个版本之间做出取舍，或准备公开分发时重新评估。
+confidence: internal

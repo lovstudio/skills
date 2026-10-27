@@ -1,0 +1,121 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+display_name: 励志短片 · Claude 版
+display_name_en: Motivational Film (Claude edition)
+description: >-
+  把一个人或团队真实的倒下与起来做成 2–6 分钟励志短片：按参考片实测的节奏选片型、排节拍、写旁白、
+  写时间线并体检，渲染后再测一遍成片，与参考片区间对照。渲染本身交给用户的剪辑执行器。
+owner:
+  team: 本地 Skill 维护者
+  contact: 通过源目录的维护记录反馈
+license:
+  name: MIT
+  terms: 只涵盖本 Skill 的指令、脚本和由测量得出的数字；不授予参考视频、演讲、音乐、Logo 或任何第三方素材的使用权。
+  url: LICENSE
+use_case:
+  audience: 做品牌片、人物片的创作者与剪辑协作者
+  scenario: 有一个真实的人或团队、一段真实的低谷与回来，想做成有节奏、有出处、不煽过头的短片；或想知道一条已剪好的励志片节奏哪里不对。
+  tasks:
+    - 拆参考片节奏，生成包络
+    - 节拍表、旁白稿与时间线
+    - 时间线体检（结构、人声、音乐、权利、事实、敏感题材）
+    - 成片复测并与参考区间对照
+deployment:
+  geography: global
+  environments:
+    - 本地 Agent Skills 宿主
+    - Python 3.8+ 标准库 CLI 与 FFmpeg
+requirements:
+  credentials: none；下载参考片若需登录，只在用户当次授权范围内复用已有会话，不保存、不展示 cookies
+  dependencies:
+    - lov-branding-consistency
+  runtime:
+    - Python 3.8+
+    - FFmpeg 与 ffprobe
+    - PyYAML（只用于 Skill 校验）
+risks:
+  - risk: 把参考片的演讲、电影或配乐直接拼进新片
+    mitigation: 参考只提供节奏；素材账本逐条记权利；未清权素材的片子最高到 review。
+  - risk: 编造原话、内心独白或因果
+    mitigation: 事实账本与作者性约束；disputed 不进旁白，single-source 软化措辞；体检脚本按 claim id 检查。
+  - risk: 自杀、自伤题材处理不当
+    mitigation: 不写可模仿细节；时间线标记敏感后必须有安全审查与核实过的求助信息，否则体检报错。
+  - risk: 把机器复测当作看过片
+    mitigation: 五个状态分开报告；没人完整看过就写“未经人审”。
+  - risk: 样本小导致区间过窄
+    mitigation: 区间只给警告不判错；支持用自己的参考片重建包络。
+references:
+  - title: 主指令
+    path: SKILL.md
+  - title: 参考片研究
+    path: references/reference-study.md
+  - title: 真实案例：梅西 v1.0 体检
+    path: cases/why-messi-v1.0/README.md
+output:
+  types:
+    - 节奏档案与包络
+    - 节拍表与旁白稿
+    - 时间线与体检报告
+    - 成片复测报告
+  formats:
+    - JSON
+    - Markdown
+  parameters:
+    - 片型 single-arc 或 chorus
+    - 证据账本（素材权利、事实状态）
+    - 参考包络
+    - Profile 偏好（黑底字卡、画幅、交付响度、旁白音色）
+  validation:
+    - check_timeline.py 结构、人声、音乐、权利、事实、敏感题材门禁与 9 个负例
+    - study_reference.py 对 8 条参考片和 1 条真实成片的测量
+    - scripts/validate_skill.py 源校验
+  description: 交付可以直接交给剪辑执行器的时间线和可复跑的测量报告；不含渲染好的视频。
+ethical_considerations: >-
+  不搬运第三方演讲、影视与音乐；不模仿真人声音；不编造亲历或原话；不羞辱观众、不歌颂透支、不承诺成功；
+  涉及自杀或自伤时按安全报道方式处理并附求助信息；可识别的旁人未经同意要裁切或打码。
+dimensions:
+  - id: evidence
+    label: 证据来源
+    description: 节奏规则是否来自对原片的实测，测量与观看、推断是否分开写明。
+    evidence: references/reference-study.md；assets/reference-envelope.json；cases/themiro0r-study/README.md（8/8 测量，9 张联系表实看）
+    score: null
+    score_status: 无用户评分；未连续完整看片
+  - id: gating
+    label: 门禁有效
+    description: 体检脚本能否拦下叠旁白、重复挂歌、争议事实、未清权却标可发布、敏感题材缺求助信息、黑底字卡、节拍顺序错。
+    evidence: 9 个负例（含嵌套重叠）全部按预期报错并退出码 1；模板与梅西 v1.0 时间线通过
+    score: null
+    score_status: 负例为创建时自测
+  - id: diagnosis
+    label: 成片诊断
+    description: 对真实成片的复测能否给出可执行、可解释的结论。
+    evidence: cases/why-messi-v1.0/README.md（LRA 6.7 LU 对参考 ≥10.9，开场过满、峰前无谷）
+    score: null
+    score_status: 机器结论，待真人听感确认
+  - id: authorship
+    label: 作者性与安全
+    description: 旁白不编造、原话有出处、敏感题材按安全方式处理。
+    evidence: references/authorship-integrity.md；references/rights-and-safety.md
+    score: null
+    score_status: 尚无按本 Skill 完整写成的新片
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 与另一版本并行比较中的本地自用能力，先免费验证。
+  boundary: 不含拍摄、旁白合成、音乐与素材授权、渲染、模型额度与平台发布。
+  review_trigger: 用户在两个版本之间做出取舍，或准备公开分发时重新评估。
+  confidence: internal
+distribution:
+  paid: []
+  free: []
+  channels:
+    - channel: workbuddy
+      status: not_published
+    - channel: skillpay
+      status: not_published
+    - channel: github
+      status: not_published
+    - channel: lovstudio
+      status: not_published
+  local: installed

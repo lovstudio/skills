@@ -1,0 +1,47 @@
+[
+  {
+    "type": "case",
+    "title": "从 8 条 TheMiro0r 原片建立励志片节奏包络",
+    "description": "2026-10-25 真实创建任务。对已在用户授权下取得的 8 条原片逐片测量切点、黑场、EBU R128 短时响度与字幕语音覆盖，实际查看 9 张时间码联系表，通读字幕标出节拍，按片型汇成节奏包络，作为本 Skill 全部节奏规则的证据。",
+    "input": {
+      "items": [
+        "8 条原片 MP4 与原生英文 VTT（YouTube @TheMiro0r，ID 见 cases/themiro0r-study/README.md）",
+        "用户命令：基于该研究目录的 media 做 lov-motivational-media-creator-claude-version"
+      ]
+    },
+    "prompt": "/lov-skill-creator 基于 output/research/themiro0r-2026-10-22/media 做 lov-motivational-media-creator-claude-version",
+    "output": {
+      "items": [
+        "assets/reference-envelope.json",
+        "references/reference-study.md",
+        "references/archetypes-and-beats.md",
+        "references/rhythm-and-sound.md",
+        "scripts/study_reference.py",
+        "scripts/build_envelope.py",
+        "cases/themiro0r-study/README.md"
+      ]
+    },
+    "status": "8/8 条已测量；15 张联系表中实际看了 9 张，覆盖全部 8 条；字幕已通读。未连续完整看片，未主观听音。"
+  },
+  {
+    "type": "case",
+    "title": "体检《为什么是梅西》v1.0 的时间线与成片",
+    "description": "创建时的自测，对象是用户已交付、待看片的真实作品。把项目时间线改写成本 Skill 的时间线格式跑体检，再测量成片与单人逆转包络比较。结论：结构与剪辑节奏在区间内，混音动态偏平（LRA 6.7 LU，参考全部 ≥10.9）。只读，未改动该项目。",
+    "input": {
+      "items": [
+        "手工川内容创作仓库 projects/why-messi/work/v10/edit/timeline-draft.json",
+        "成片 手工川-为什么是梅西-横版16x9-2026-10-25-v1.0.mp4（3:52）"
+      ]
+    },
+    "prompt": "用 Claude 版 Skill 体检《为什么是梅西》v1.0：时间线加成片，对照 single-arc 包络，只读不改项目。",
+    "output": {
+      "items": [
+        "cases/why-messi-v1.0/timeline.json",
+        "cases/why-messi-v1.0/check-report.json",
+        "cases/why-messi-v1.0/render-profile.json",
+        "cases/why-messi-v1.0/README.md"
+      ]
+    },
+    "status": "时间线 valid、判为仅审片（34 个素材未清权，与项目 brief 一致）；成片复测 4 项偏出包络。机器测量，未经真人听感确认。"
+  }
+]

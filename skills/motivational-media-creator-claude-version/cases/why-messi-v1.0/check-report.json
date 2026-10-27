@@ -1,0 +1,119 @@
+{
+  "valid": true,
+  "status": "review",
+  "archetype": "single-arc",
+  "errors": [],
+  "warnings": [
+    {
+      "code": "rights",
+      "message": "review-only: uncleared sources M-song1, S-cuatro, S-maradona, S-retire, S01, S03, S05, S06, S08, S08b, S09, S11, S12, S13, S14, S16, S18, S20, S21, S25, S26, S30, S32, S33, S34, S35, S35b, S36, S37, S38, S40, S41, S42, S45"
+    },
+    {
+      "code": "rhythm",
+      "message": "speech.coverage=0.595 is outside the reference band 0.658..0.983"
+    },
+    {
+      "code": "rhythm",
+      "message": "speech.long_breaths=3 is outside the reference band -0.2..2.2"
+    }
+  ],
+  "metrics": {
+    "speech.coverage": 0.595,
+    "speech.coda_s": 9.0,
+    "speech.long_breaths": 3,
+    "breathing_windows": [
+      {
+        "start": 0.0,
+        "length": 3.4
+      },
+      {
+        "start": 7.8,
+        "length": 3.0
+      },
+      {
+        "start": 16.07,
+        "length": 2.13
+      },
+      {
+        "start": 71.13,
+        "length": 4.87
+      },
+      {
+        "start": 115.4,
+        "length": 2.0
+      },
+      {
+        "start": 120.57,
+        "length": 2.43
+      },
+      {
+        "start": 128.9,
+        "length": 10.1
+      },
+      {
+        "start": 142.9,
+        "length": 2.7
+      },
+      {
+        "start": 154.37,
+        "length": 2.33
+      },
+      {
+        "start": 161.13,
+        "length": 4.17
+      },
+      {
+        "start": 171.93,
+        "length": 29.37
+      },
+      {
+        "start": 206.6,
+        "length": 4.27
+      },
+      {
+        "start": 223.0,
+        "length": 9.0
+      }
+    ],
+    "music.sources": 1,
+    "rights.uncleared": [
+      "M-song1",
+      "S-cuatro",
+      "S-maradona",
+      "S-retire",
+      "S01",
+      "S03",
+      "S05",
+      "S06",
+      "S08",
+      "S08b",
+      "S09",
+      "S11",
+      "S12",
+      "S13",
+      "S14",
+      "S16",
+      "S18",
+      "S20",
+      "S21",
+      "S25",
+      "S26",
+      "S30",
+      "S32",
+      "S33",
+      "S34",
+      "S35",
+      "S35b",
+      "S36",
+      "S37",
+      "S38",
+      "S40",
+      "S41",
+      "S42",
+      "S45"
+    ],
+    "arc.peak_position": 0.793,
+    "shots.median_s": 2.83,
+    "duration_s": 232.0
+  }
+}
