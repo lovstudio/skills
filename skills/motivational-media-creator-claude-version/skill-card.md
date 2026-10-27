@@ -1,4 +1,4 @@
-# Skill Card — 励志短片 · Claude 版
+# 励志短片 · Claude 版 · Motivational Film (Claude edition) · Skill Card
 
 `lov-motivational-media-creator-claude-version` · Motivational Film (Claude edition)
 
