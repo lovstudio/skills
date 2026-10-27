@@ -1,0 +1,980 @@
+{
+ "schema": "motivational-timeline/v1",
+ "title": "为什么是梅西 v1.0（改写自项目时间线）",
+ "archetype": "single-arc",
+ "status": "review",
+ "duration_s": 232.0,
+ "beats": [
+  {
+   "id": "b1",
+   "role": "hook",
+   "start": 0.0,
+   "end": 10.0,
+   "note": "开场：告别夜"
+  },
+  {
+   "id": "b2",
+   "role": "setup",
+   "start": 10.0,
+   "end": 48.0,
+   "note": "天才"
+  },
+  {
+   "id": "b3",
+   "role": "setup",
+   "start": 48.0,
+   "end": 62.0,
+   "note": "同一条路线"
+  },
+  {
+   "id": "b4",
+   "role": "wound",
+   "start": 62.0,
+   "end": 104.0,
+   "note": "输"
+  },
+  {
+   "id": "b5",
+   "role": "abyss",
+   "start": 104.0,
+   "end": 111.0,
+   "note": "结束了"
+  },
+  {
+   "id": "b6",
+   "role": "turn",
+   "start": 111.0,
+   "end": 167.0,
+   "note": "回来"
+  },
+  {
+   "id": "b7",
+   "role": "peak",
+   "start": 167.0,
+   "end": 201.0,
+   "note": "这一次没有"
+  },
+  {
+   "id": "b8",
+   "role": "coda",
+   "start": 201.0,
+   "end": 224.0,
+   "note": "回望"
+  },
+  {
+   "id": "b9",
+   "role": "end-card",
+   "start": 224.0,
+   "end": 232.0,
+   "note": "数据卡与 Logo"
+  }
+ ],
+ "voice": [
+  {
+   "id": "n01",
+   "kind": "narration",
+   "start": 3.4,
+   "end": 7.8
+  },
+  {
+   "id": "n02",
+   "kind": "narration",
+   "start": 10.8,
+   "end": 16.067
+  },
+  {
+   "id": "n03",
+   "kind": "narration",
+   "start": 18.2,
+   "end": 23.133
+  },
+  {
+   "id": "n04",
+   "kind": "narration",
+   "start": 23.867,
+   "end": 30.033
+  },
+  {
+   "id": "n05",
+   "kind": "narration",
+   "start": 30.3,
+   "end": 32.033
+  },
+  {
+   "id": "n06",
+   "kind": "narration",
+   "start": 41.2,
+   "end": 44.467
+  },
+  {
+   "id": "n07",
+   "kind": "narration",
+   "start": 60.733,
+   "end": 64.467
+  },
+  {
+   "id": "n08",
+   "kind": "narration",
+   "start": 66.333,
+   "end": 71.133
+  },
+  {
+   "id": "n09",
+   "kind": "narration",
+   "start": 76.0,
+   "end": 81.967
+  },
+  {
+   "id": "n10",
+   "kind": "narration",
+   "start": 94.267,
+   "end": 99.3
+  },
+  {
+   "id": "n11",
+   "kind": "narration",
+   "start": 112.0,
+   "end": 115.4
+  },
+  {
+   "id": "n12",
+   "kind": "narration",
+   "start": 117.4,
+   "end": 120.567
+  },
+  {
+   "id": "n13",
+   "kind": "narration",
+   "start": 123.0,
+   "end": 128.9
+  },
+  {
+   "id": "n14",
+   "kind": "narration",
+   "start": 139.0,
+   "end": 142.9
+  },
+  {
+   "id": "n15",
+   "kind": "narration",
+   "start": 145.6,
+   "end": 150.067
+  },
+  {
+   "id": "n16",
+   "kind": "narration",
+   "start": 156.7,
+   "end": 161.133
+  },
+  {
+   "id": "n17",
+   "kind": "narration",
+   "start": 165.3,
+   "end": 169.433
+  },
+  {
+   "id": "n18",
+   "kind": "narration",
+   "start": 170.733,
+   "end": 171.933
+  },
+  {
+   "id": "n19",
+   "kind": "narration",
+   "start": 201.3,
+   "end": 206.6
+  },
+  {
+   "id": "n20",
+   "kind": "narration",
+   "start": 215.667,
+   "end": 223.0
+  },
+  {
+   "id": "s35b",
+   "kind": "own-words",
+   "start": 32.567,
+   "end": 40.7,
+   "source": "S35b"
+  },
+  {
+   "id": "vhm",
+   "kind": "commentary",
+   "start": 46.4,
+   "end": 58.767,
+   "source": "S33"
+  },
+  {
+   "id": "ser",
+   "kind": "commentary",
+   "start": 58.667,
+   "end": 60.467,
+   "source": "S34"
+  },
+  {
+   "id": "maradona",
+   "kind": "dialogue",
+   "start": 83.4,
+   "end": 94.033,
+   "source": "S-maradona"
+  },
+  {
+   "id": "cuatro",
+   "kind": "own-words",
+   "start": 100.5,
+   "end": 104.633,
+   "source": "S-cuatro"
+  },
+  {
+   "id": "retire",
+   "kind": "own-words",
+   "start": 105.967,
+   "end": 110.767,
+   "source": "S-retire"
+  },
+  {
+   "id": "arenga",
+   "kind": "own-words",
+   "start": 151.333,
+   "end": 154.367,
+   "source": "S30"
+  },
+  {
+   "id": "unity",
+   "kind": "own-words",
+   "start": 210.867,
+   "end": 215.467,
+   "source": "S25"
+  }
+ ],
+ "music": [
+  {
+   "id": "M1",
+   "source": "M-song1",
+   "start": 10.0,
+   "end": 200.6
+  }
+ ],
+ "shots": [
+  {
+   "id": "c01",
+   "source": "S25",
+   "start": 0.0,
+   "end": 5.1
+  },
+  {
+   "id": "c02",
+   "source": "S18",
+   "start": 5.1,
+   "end": 10.0
+  },
+  {
+   "id": "c03",
+   "source": "S01",
+   "start": 10.0,
+   "end": 15.3
+  },
+  {
+   "id": "c04",
+   "source": "S01",
+   "start": 15.3,
+   "end": 18.133333333333333
+  },
+  {
+   "id": "c05",
+   "source": "S03",
+   "start": 18.1333,
+   "end": 20.966666666666665
+  },
+  {
+   "id": "c06",
+   "source": "S03",
+   "start": 20.9667,
+   "end": 23.766666666666666
+  },
+  {
+   "id": "c07",
+   "source": "S36",
+   "start": 23.7667,
+   "end": 26.6
+  },
+  {
+   "id": "c08",
+   "source": "S35",
+   "start": 26.6,
+   "end": 29.433333333333334
+  },
+  {
+   "id": "c09",
+   "source": "S35",
+   "start": 29.4333,
+   "end": 32.7
+  },
+  {
+   "id": "c10",
+   "source": "S35b",
+   "start": 32.7,
+   "end": 37.9
+  },
+  {
+   "id": "c11",
+   "source": "S35",
+   "start": 37.9,
+   "end": 40.733333333333334
+  },
+  {
+   "id": "c12",
+   "source": "S32",
+   "start": 40.7333,
+   "end": 46.36666666666667
+  },
+  {
+   "id": "c13",
+   "source": "S32",
+   "start": 46.3667,
+   "end": 60.5
+  },
+  {
+   "id": "c14",
+   "source": "S37",
+   "start": 60.5,
+   "end": 63.333333333333336
+  },
+  {
+   "id": "c15",
+   "source": "S37",
+   "start": 63.3333,
+   "end": 66.13333333333334
+  },
+  {
+   "id": "c16",
+   "source": "S38",
+   "start": 66.1333,
+   "end": 68.96666666666667
+  },
+  {
+   "id": "c17",
+   "source": "S05",
+   "start": 68.9667,
+   "end": 71.8
+  },
+  {
+   "id": "c18",
+   "source": "S06",
+   "start": 71.8,
+   "end": 80.26666666666667
+  },
+  {
+   "id": "c19",
+   "source": "S06",
+   "start": 80.2667,
+   "end": 83.1
+  },
+  {
+   "id": "c20",
+   "source": "S09",
+   "start": 83.1,
+   "end": 94.4
+  },
+  {
+   "id": "c21",
+   "source": "S08",
+   "start": 94.4,
+   "end": 97.2
+  },
+  {
+   "id": "c22",
+   "source": "S08",
+   "start": 97.2,
+   "end": 100.03333333333333
+  },
+  {
+   "id": "c23",
+   "source": "S37",
+   "start": 100.0333,
+   "end": 105.66666666666667
+  },
+  {
+   "id": "c24",
+   "source": "S08b",
+   "start": 105.6667,
+   "end": 111.33333333333333
+  },
+  {
+   "id": "c25",
+   "source": "S26",
+   "start": 111.3333,
+   "end": 116.96666666666667
+  },
+  {
+   "id": "c26",
+   "source": "S40",
+   "start": 116.9667,
+   "end": 120.76666666666667
+  },
+  {
+   "id": "c27",
+   "source": "S40",
+   "start": 120.7667,
+   "end": 122.63333333333334
+  },
+  {
+   "id": "c28",
+   "source": "S40",
+   "start": 122.6333,
+   "end": 125.46666666666667
+  },
+  {
+   "id": "c29",
+   "source": "S40",
+   "start": 125.4667,
+   "end": 128.26666666666668
+  },
+  {
+   "id": "c30",
+   "source": "S40",
+   "start": 128.2667,
+   "end": 131.1
+  },
+  {
+   "id": "c31",
+   "source": "S40",
+   "start": 131.1,
+   "end": 133.93333333333334
+  },
+  {
+   "id": "c32",
+   "source": "S40",
+   "start": 133.9333,
+   "end": 136.73333333333332
+  },
+  {
+   "id": "c33",
+   "source": "S41",
+   "start": 136.7333,
+   "end": 138.53333333333333
+  },
+  {
+   "id": "c34",
+   "source": "S41",
+   "start": 138.5333,
+   "end": 142.4
+  },
+  {
+   "id": "c35",
+   "source": "S42",
+   "start": 142.4,
+   "end": 145.23333333333332
+  },
+  {
+   "id": "c36",
+   "source": "S11",
+   "start": 145.2333,
+   "end": 148.03333333333333
+  },
+  {
+   "id": "c37",
+   "source": "S11",
+   "start": 148.0333,
+   "end": 150.86666666666667
+  },
+  {
+   "id": "c38",
+   "source": "S30",
+   "start": 150.8667,
+   "end": 155.56666666666666
+  },
+  {
+   "id": "c39",
+   "source": "S11",
+   "start": 155.5667,
+   "end": 159.33333333333334
+  },
+  {
+   "id": "c40",
+   "source": "S11",
+   "start": 159.3333,
+   "end": 162.16666666666666
+  },
+  {
+   "id": "c41",
+   "source": "S45",
+   "start": 162.1667,
+   "end": 167.8
+  },
+  {
+   "id": "c42",
+   "source": "S45",
+   "start": 167.8,
+   "end": 170.63333333333333
+  },
+  {
+   "id": "c43",
+   "source": "S12",
+   "start": 170.6333,
+   "end": 173.46666666666667
+  },
+  {
+   "id": "c44",
+   "source": "S12",
+   "start": 173.4667,
+   "end": 176.3
+  },
+  {
+   "id": "c45",
+   "source": "S12",
+   "start": 176.3,
+   "end": 179.1
+  },
+  {
+   "id": "c46",
+   "source": "S12",
+   "start": 179.1,
+   "end": 181.93333333333334
+  },
+  {
+   "id": "c47",
+   "source": "S13",
+   "start": 181.9333,
+   "end": 184.76666666666668
+  },
+  {
+   "id": "c48",
+   "source": "S13",
+   "start": 184.7667,
+   "end": 186.86666666666667
+  },
+  {
+   "id": "c49",
+   "source": "S13",
+   "start": 186.8667,
+   "end": 190.4
+  },
+  {
+   "id": "c50",
+   "source": "S14",
+   "start": 190.4,
+   "end": 193.23333333333332
+  },
+  {
+   "id": "c51",
+   "source": "S14",
+   "start": 193.2333,
+   "end": 196.06666666666666
+  },
+  {
+   "id": "c52",
+   "source": "S16",
+   "start": 196.0667,
+   "end": 200.6
+  },
+  {
+   "id": "c53",
+   "source": "S20",
+   "start": 200.6,
+   "end": 203.6
+  },
+  {
+   "id": "c54",
+   "source": "S21",
+   "start": 203.6,
+   "end": 207.0
+  },
+  {
+   "id": "c55",
+   "source": "S25",
+   "start": 207.0,
+   "end": 210.6
+  },
+  {
+   "id": "c56",
+   "source": "S25",
+   "start": 210.6,
+   "end": 216.1
+  },
+  {
+   "id": "c57",
+   "source": "S25",
+   "start": 216.1,
+   "end": 220.06666666666666
+  },
+  {
+   "id": "c58",
+   "source": "S25",
+   "start": 220.0667,
+   "end": 224.0
+  },
+  {
+   "id": "c59",
+   "source": "S25",
+   "start": 224.0,
+   "end": 232.0
+  }
+ ],
+ "titles": [
+  {
+   "id": "t01",
+   "kind": "caption",
+   "start": 0.3,
+   "end": 4.9,
+   "text": "2026年10月6日　纪念碑球场",
+   "over": "picture"
+  },
+  {
+   "id": "t02",
+   "kind": "caption",
+   "start": 26.605,
+   "end": 32.703,
+   "text": "2005年8月17日　首秀",
+   "over": "picture"
+  },
+  {
+   "id": "t03",
+   "kind": "caption",
+   "start": 32.703,
+   "end": 37.902,
+   "text": "2019年　他回看那场首秀",
+   "over": "picture"
+  },
+  {
+   "id": "t04",
+   "kind": "caption",
+   "start": 60.495,
+   "end": 66.144,
+   "text": "2007年7月15日　美洲杯决赛",
+   "over": "picture"
+  },
+  {
+   "id": "t05",
+   "kind": "caption",
+   "start": 83.089,
+   "end": 87.589,
+   "text": "2016年6月9日　马拉多纳对贝利说",
+   "over": "picture"
+  },
+  {
+   "id": "t06",
+   "kind": "caption",
+   "start": 94.385,
+   "end": 100.034,
+   "text": "2016年6月26日　美洲杯决赛",
+   "over": "picture"
+  },
+  {
+   "id": "t07",
+   "kind": "caption",
+   "start": 111.331,
+   "end": 116.979,
+   "text": "2016年　恩佐·费尔南德斯",
+   "over": "picture"
+  },
+  {
+   "id": "t08",
+   "kind": "caption",
+   "start": 122.627,
+   "end": 128.276,
+   "text": "2017年10月10日　基多",
+   "over": "picture"
+  },
+  {
+   "id": "t09",
+   "kind": "caption",
+   "start": 150.869,
+   "end": 155.569,
+   "text": "2021年7月10日　决赛前，更衣室",
+   "over": "picture"
+  },
+  {
+   "id": "t10",
+   "kind": "caption",
+   "start": 162.166,
+   "end": 167.815,
+   "text": "2022年　世界杯第一场",
+   "over": "picture"
+  },
+  {
+   "id": "t11",
+   "kind": "caption",
+   "start": 200.6,
+   "end": 207.0,
+   "text": "2026年7月19日　世界杯决赛",
+   "over": "picture"
+  },
+  {
+   "id": "t12",
+   "kind": "caption",
+   "start": 207.0,
+   "end": 210.6,
+   "text": "2026年10月6日　告别夜",
+   "over": "picture"
+  },
+  {
+   "id": "t13",
+   "kind": "caption",
+   "start": 220.05,
+   "end": 224.0,
+   "text": "当年写信的恩佐",
+   "over": "picture"
+  },
+  {
+   "id": "t14",
+   "kind": "end-card",
+   "start": 224.0,
+   "end": 232.0,
+   "text": "阿根廷国家队|208场|126球",
+   "over": "picture"
+  },
+  {
+   "id": "t15",
+   "kind": "end-card",
+   "start": 224.6,
+   "end": 232.0,
+   "text": "音乐　莣情《只要为你活一天》　画面来源见简介",
+   "over": "picture"
+  }
+ ],
+ "sources": [
+  {
+   "id": "M-song1",
+   "verified": true,
+   "kind": "music",
+   "rights": "risk-accepted",
+   "origin": "third-party song, no licence"
+  },
+  {
+   "id": "S-cuatro",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S-maradona",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S-retire",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S01",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S03",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S05",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S06",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S08",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S08b",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S09",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S11",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S12",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S13",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S14",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S16",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S18",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S20",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S21",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S25",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S26",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S30",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S32",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S33",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S34",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S35",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S35b",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S36",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S37",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S38",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S40",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S41",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S42",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  },
+  {
+   "id": "S45",
+   "verified": true,
+   "kind": "third-party-footage",
+   "rights": "risk-accepted",
+   "origin": "third-party match/interview footage, no licence"
+  }
+ ],
+ "claims": [],
+ "sensitive": {
+  "suicide_or_self_harm": false
+ }
+}

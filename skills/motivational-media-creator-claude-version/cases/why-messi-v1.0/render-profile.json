@@ -1,0 +1,238 @@
+{
+  "schema": "motivational-rhythm-profile/v1",
+  "source": "手工川-为什么是梅西-横版16x9-2026-10-25-v1.0.mp4",
+  "duration_s": 232.0,
+  "scene_threshold": 0.28,
+  "shots": {
+    "count": 74,
+    "median_s": 2.82,
+    "mean_s": 3.14,
+    "p10_s": 0.18,
+    "p90_s": 5.67,
+    "avg_shot_by_quarter_s": [
+      3.87,
+      2.76,
+      1.93,
+      5.27
+    ],
+    "q4_over_q1": 1.36
+  },
+  "loudness": {
+    "integrated_lufs": -16.1,
+    "lra_lu": 6.7,
+    "arc": {
+      "short_term_mean_by_decile": [
+        -22.1,
+        -16.8,
+        -17.4,
+        -17.7,
+        -16.9,
+        -15.1,
+        -15.3,
+        -14.6,
+        -14.4,
+        -20.8
+      ],
+      "loudest_10s_start_s": 187,
+      "loudest_10s_position": 0.828,
+      "loudest_10s_lufs": -12.7,
+      "opening_vs_peak_lu": -9.4,
+      "ending_vs_peak_lu": -8.1,
+      "pre_peak_dip_lu": 0.9
+    },
+    "peak_to_long_breath_s": 0.0
+  },
+  "speech": {
+    "coverage": 0.595,
+    "first_speech_s": 3.4,
+    "last_speech_end_s": 223.0,
+    "coda_s": 9.0,
+    "rate_in_speech": {
+      "words_per_minute": 26.5
+    },
+    "breathing_windows": [
+      {
+        "start": 0.0,
+        "end": 3.4,
+        "length": 3.4
+      },
+      {
+        "start": 7.8,
+        "end": 10.8,
+        "length": 3.0
+      },
+      {
+        "start": 16.07,
+        "end": 18.2,
+        "length": 2.13
+      },
+      {
+        "start": 71.13,
+        "end": 76.0,
+        "length": 4.87
+      },
+      {
+        "start": 115.4,
+        "end": 117.4,
+        "length": 2.0
+      },
+      {
+        "start": 120.57,
+        "end": 123.0,
+        "length": 2.43
+      },
+      {
+        "start": 128.9,
+        "end": 139.0,
+        "length": 10.1
+      },
+      {
+        "start": 142.9,
+        "end": 145.6,
+        "length": 2.7
+      },
+      {
+        "start": 154.37,
+        "end": 156.7,
+        "length": 2.33
+      },
+      {
+        "start": 161.13,
+        "end": 165.3,
+        "length": 4.17
+      },
+      {
+        "start": 171.93,
+        "end": 201.3,
+        "length": 29.37
+      },
+      {
+        "start": 206.6,
+        "end": 210.87,
+        "length": 4.27
+      },
+      {
+        "start": 223.0,
+        "end": 232.0,
+        "length": 9.0
+      }
+    ],
+    "long_breaths": 3
+  },
+  "limits": [
+    "Hard cuts only; dissolves and whip transitions are under-counted.",
+    "Black intervals include fades and black text cards; inspect frames to tell them apart.",
+    "Speech metrics depend on transcript timing, not word alignment."
+  ],
+  "comparison": {
+    "archetype": "single-arc",
+    "rows": [
+      {
+        "metric": "duration_s",
+        "value": 232.0,
+        "band": [
+          221.942,
+          272.198
+        ],
+        "status": "inside"
+      },
+      {
+        "metric": "shots.median_s",
+        "value": 2.82,
+        "band": [
+          1.154,
+          3.146
+        ],
+        "status": "inside"
+      },
+      {
+        "metric": "shots.q4_over_q1",
+        "value": 1.36,
+        "band": [
+          -0.038,
+          5.458
+        ],
+        "status": "inside"
+      },
+      {
+        "metric": "loudness.lra_lu",
+        "value": 6.7,
+        "band": [
+          10.61,
+          14.09
+        ],
+        "status": "outside"
+      },
+      {
+        "metric": "arc.peak_position",
+        "value": 0.828,
+        "band": [
+          0.726,
+          0.895
+        ],
+        "status": "inside"
+      },
+      {
+        "metric": "arc.opening_vs_peak_lu",
+        "value": -9.4,
+        "band": [
+          -19.1,
+          -11.9
+        ],
+        "status": "outside"
+      },
+      {
+        "metric": "arc.ending_vs_peak_lu",
+        "value": -8.1,
+        "band": [
+          -15.79,
+          -3.91
+        ],
+        "status": "inside"
+      },
+      {
+        "metric": "arc.pre_peak_dip_lu",
+        "value": 0.9,
+        "band": [
+          0.32,
+          8.48
+        ],
+        "status": "inside"
+      },
+      {
+        "metric": "speech.coverage",
+        "value": 0.595,
+        "band": [
+          0.658,
+          0.983
+        ],
+        "status": "outside"
+      },
+      {
+        "metric": "speech.coda_s",
+        "value": 9.0,
+        "band": [
+          5.12,
+          21.44
+        ],
+        "status": "inside"
+      },
+      {
+        "metric": "speech.long_breaths",
+        "value": 3,
+        "band": [
+          -0.2,
+          2.2
+        ],
+        "status": "outside"
+      }
+    ],
+    "outside": [
+      "loudness.lra_lu",
+      "arc.opening_vs_peak_lu",
+      "speech.coverage",
+      "speech.long_breaths"
+    ]
+  },
+  "transcript_note": "Voice timing exported from the project timeline (narration n01-n20 plus 8 recorded voices); crowd ambience excluded."
+}

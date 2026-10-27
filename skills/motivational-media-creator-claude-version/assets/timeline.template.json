@@ -1,0 +1,45 @@
+{
+  "schema": "motivational-timeline/v1",
+  "title": "片名",
+  "archetype": "single-arc",
+  "status": "draft",
+  "duration_s": 240,
+  "beats": [
+    {"id": "b1", "role": "hook", "start": 0, "end": 15, "note": "主人公一句话的判断", "intensity": 3},
+    {"id": "b2", "role": "setup", "start": 15, "end": 45, "note": "他曾经许下什么", "intensity": 4},
+    {"id": "b3", "role": "wound", "start": 45, "end": 90, "note": "一件一件具体的失去", "intensity": 6},
+    {"id": "b4", "role": "abyss", "start": 90, "end": 105, "note": "最低点，最安静", "intensity": 3},
+    {"id": "b5", "role": "turn", "start": 105, "end": 135, "note": "回头的那个决定，本人原话", "intensity": 5},
+    {"id": "b6", "role": "climb", "start": 135, "end": 170, "note": "加码与再跌一次", "intensity": 7},
+    {"id": "b7", "role": "peak", "start": 170, "end": 205, "note": "决定性时刻；人声停后音乐单独推到最响", "intensity": 10},
+    {"id": "b8", "role": "coda", "start": 205, "end": 232, "note": "安静收尾，一句话", "intensity": 4},
+    {"id": "b9", "role": "end-card", "start": 232, "end": 240, "note": "落款与 Logo", "intensity": 2}
+  ],
+  "voice": [
+    {"id": "q01", "kind": "own-words", "start": 1.0, "end": 9.0, "source": "S01", "text": "本人原话原文", "subtitle": "中文字幕"},
+    {"id": "n01", "kind": "narration", "start": 16.0, "end": 22.0, "text": "旁白原文", "claims": ["B01"]},
+    {"id": "q02", "kind": "own-words", "start": 108.0, "end": 116.0, "source": "S01", "text": "本人原话原文", "subtitle": "中文字幕"},
+    {"id": "c01", "kind": "commentary", "start": 176.0, "end": 186.0, "source": "S02", "text": "现场解说原文", "subtitle": "中文字幕"},
+    {"id": "q03", "kind": "own-words", "start": 214.0, "end": 222.0, "source": "S01", "text": "本人原话原文", "subtitle": "中文字幕"}
+  ],
+  "music": [
+    {"id": "m1", "source": "M01", "start": 12.0, "end": 206.0, "in_s": 0.0, "note": "整首连续；歌内安静段对准 abyss，最满段对准 peak"}
+  ],
+  "shots": [
+    {"id": "c001", "source": "S03", "start": 0.0, "end": 4.0, "in_s": 0.0}
+  ],
+  "titles": [
+    {"id": "t01", "kind": "title", "start": 9.0, "end": 13.0, "text": "片名", "over": "picture"},
+    {"id": "t02", "kind": "end-card", "start": 232.0, "end": 240.0, "text": "落款", "over": "black"}
+  ],
+  "sources": [
+    {"id": "S01", "kind": "interview", "rights": "permitted", "origin": "主人公采访录音（日期、出处）", "verified": true},
+    {"id": "S02", "kind": "archival", "rights": "licensed", "origin": "比赛转播与解说（授权方）", "verified": true},
+    {"id": "S03", "kind": "own-footage", "rights": "owned", "origin": "自拍素材", "verified": true},
+    {"id": "M01", "kind": "music", "rights": "licensed", "origin": "配乐（曲名、作者、授权）", "verified": true}
+  ],
+  "claims": [
+    {"id": "B01", "text": "旁白里说到的一条事实", "source": "一手来源", "status": "verified"}
+  ],
+  "sensitive": {"suicide_or_self_harm": false}
+}

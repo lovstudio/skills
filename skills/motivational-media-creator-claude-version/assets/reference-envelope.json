@@ -1,0 +1,205 @@
+{
+  "schema": "motivational-rhythm-envelope/v1",
+  "label": "TheMiro0r 8 videos (YouTube @TheMiro0r, measured 2026-10-25)",
+  "built": "2026-10-25",
+  "tolerance": 0.1,
+  "note": "Descriptive bands from a small reference set. Outside a band is a prompt to look, not a defect.",
+  "archetypes": {
+    "chorus": {
+      "members": [
+        "26U_seo0a1g",
+        "9z4Kft47kBM",
+        "ZOy0YgUDwDg",
+        "g-jwWYX7Jlo",
+        "mgmVOuLgFB0"
+      ],
+      "bands": {
+        "duration_s": {
+          "observed_min": 302.67,
+          "median": 373.69,
+          "observed_max": 663.37,
+          "min": 266.6,
+          "max": 699.44,
+          "n": 5
+        },
+        "shots.median_s": {
+          "observed_min": 0.8,
+          "median": 1.33,
+          "observed_max": 3.0,
+          "min": 0.58,
+          "max": 3.22,
+          "n": 5
+        },
+        "shots.q4_over_q1": {
+          "observed_min": 0.16,
+          "median": 0.29,
+          "observed_max": 0.51,
+          "min": 0.125,
+          "max": 0.545,
+          "n": 5
+        },
+        "loudness.lra_lu": {
+          "observed_min": 13.0,
+          "median": 16.2,
+          "observed_max": 18.8,
+          "min": 12.42,
+          "max": 19.38,
+          "n": 5
+        },
+        "arc.peak_position": {
+          "observed_min": 0.769,
+          "median": 0.917,
+          "observed_max": 0.982,
+          "min": 0.748,
+          "max": 1.003,
+          "n": 5
+        },
+        "arc.opening_vs_peak_lu": {
+          "observed_min": -25.8,
+          "median": -20.8,
+          "observed_max": -15.3,
+          "min": -26.85,
+          "max": -14.25,
+          "n": 5
+        },
+        "arc.ending_vs_peak_lu": {
+          "observed_min": -13.4,
+          "median": -5.6,
+          "observed_max": -1.9,
+          "min": -14.55,
+          "max": -0.75,
+          "n": 5
+        },
+        "arc.pre_peak_dip_lu": {
+          "observed_min": 4.4,
+          "median": 5.1,
+          "observed_max": 12.2,
+          "min": 3.62,
+          "max": 12.98,
+          "n": 5
+        },
+        "speech.coverage": {
+          "observed_min": 0.663,
+          "median": 0.735,
+          "observed_max": 0.89,
+          "min": 0.64,
+          "max": 0.913,
+          "n": 5
+        },
+        "speech.coda_s": {
+          "observed_min": 2.46,
+          "median": 4.67,
+          "observed_max": 11.93,
+          "min": 1.513,
+          "max": 12.877,
+          "n": 5
+        },
+        "speech.long_breaths": {
+          "observed_min": 1,
+          "median": 3,
+          "observed_max": 6,
+          "min": 0.5,
+          "max": 6.5,
+          "n": 5
+        }
+      }
+    },
+    "single-arc": {
+      "members": [
+        "Se7ulyG5nFA",
+        "V2EfL1j4KYE",
+        "nigWWy-SDhQ"
+      ],
+      "bands": {
+        "duration_s": {
+          "observed_min": 226.13,
+          "median": 247.29,
+          "observed_max": 268.01,
+          "min": 221.942,
+          "max": 272.198,
+          "n": 3
+        },
+        "shots.median_s": {
+          "observed_min": 1.32,
+          "median": 1.44,
+          "observed_max": 2.98,
+          "min": 1.154,
+          "max": 3.146,
+          "n": 3
+        },
+        "shots.q4_over_q1": {
+          "observed_min": 0.42,
+          "median": 0.95,
+          "observed_max": 5.0,
+          "min": -0.038,
+          "max": 5.458,
+          "n": 3
+        },
+        "loudness.lra_lu": {
+          "observed_min": 10.9,
+          "median": 13.0,
+          "observed_max": 13.8,
+          "min": 10.61,
+          "max": 14.09,
+          "n": 3
+        },
+        "arc.peak_position": {
+          "observed_min": 0.74,
+          "median": 0.819,
+          "observed_max": 0.881,
+          "min": 0.726,
+          "max": 0.895,
+          "n": 3
+        },
+        "arc.opening_vs_peak_lu": {
+          "observed_min": -18.5,
+          "median": -17.2,
+          "observed_max": -12.5,
+          "min": -19.1,
+          "max": -11.9,
+          "n": 3
+        },
+        "arc.ending_vs_peak_lu": {
+          "observed_min": -14.8,
+          "median": -14.8,
+          "observed_max": -4.9,
+          "min": -15.79,
+          "max": -3.91,
+          "n": 3
+        },
+        "arc.pre_peak_dip_lu": {
+          "observed_min": 1.0,
+          "median": 2.7,
+          "observed_max": 7.8,
+          "min": 0.32,
+          "max": 8.48,
+          "n": 3
+        },
+        "speech.coverage": {
+          "observed_min": 0.685,
+          "median": 0.893,
+          "observed_max": 0.956,
+          "min": 0.658,
+          "max": 0.983,
+          "n": 3
+        },
+        "speech.coda_s": {
+          "observed_min": 6.48,
+          "median": 16.93,
+          "observed_max": 20.08,
+          "min": 5.12,
+          "max": 21.44,
+          "n": 3
+        },
+        "speech.long_breaths": {
+          "observed_min": 0,
+          "median": 1,
+          "observed_max": 2,
+          "min": -0.2,
+          "max": 2.2,
+          "n": 3
+        }
+      }
+    }
+  }
+}

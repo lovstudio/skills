@@ -9551,3 +9551,54 @@ skills:
     review_trigger_en: Review after ten completed external uses, a human style evaluation,
       or material scope, dependency or support-cost changes.
     card_path: pricing-cards/laozhang-style-media-creator.md
+- name: motivational-media-creator-claude-version
+  runtime_name: lov-motivational-media-creator-claude-version
+  display_name: Motivational Film (Claude edition)
+  name_zh: 励志短片 · Claude 版
+  repo: lovstudio/motivational-media-creator-claude-version-skill
+  paid: false
+  category: Video Creation
+  version: 0.1.0
+  updated_at: '2026-10-27T20:07:46Z'
+  depends_on:
+  - branding-consistency
+  description: "Make motivational short films measured against reference rhythm: archetype,
+    beat sheet, narration, timeline checks and render re-measurement."
+  tagline_en: Turn a real fall-and-rise story into a motivational short whose structure,
+    voice, music and loudness arc are checked against measured reference films before
+    and after rendering.
+  tagline_zh: 按参考片实测的节奏，把一个人或团队真实的倒下与起来做成励志短片，渲染前体检时间线，渲染后复测成片。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本Skill、8条参考片节奏包络与研究、时间线模板、三个检查脚本及两个真实案例
+    delivery_unit_en: Current Skill, a rhythm envelope and study of eight reference
+      films, a timeline template, three check scripts and two real cases
+    value_zh: 渲染前拦下叠旁白、重复挂歌、争议事实与未清权素材；渲染后用实测数字指出节奏与混音哪里偏离参考。
+    value_en: Catch stacked narration, re-mounted music, disputed claims and uncleared
+      media before rendering, then point out with measured numbers where rhythm and
+      mix drift from the references.
+    anchor_zh: 8条参考片逐片测量、9个负例全部拦截、一条真实成片复测得出可执行的混音结论；尚无独立用户省时对照。
+    anchor_en: Eight reference films measured one by one, nine negative cases all
+      blocked, and one real film re-measured into an actionable mix finding; independent
+      user time savings remain unmeasured.
+    basis_zh: 与同一参考集的另一版本并行比较中，先免费；六维加权2.83/5，机器复测不等于人审。
+    basis_en: Free while it is compared with the other version built from the same
+      references; six-dimension score 2.83/5, and machine re-measurement is not human
+      review.
+    boundary_zh: 不含拍摄、配音、渲染、第三方素材或音乐授权、模型额度和代发布；不搬运参考片内容。
+    boundary_en: Excludes filming, voice production, rendering, third-party media or
+      music rights, model credits and posting; reference content is never reused.
+    maintenance_zh: 随FFmpeg、宿主与参考包络变化复评，无托管服务或更新时限承诺。
+    maintenance_en: Review when FFmpeg, hosts or the reference envelope change; no hosted
+      service or update SLA is included.
+    confidence: case-backed
+    review_trigger_zh: 用户在两个版本之间取舍、累计5次外部完整使用或首条人审成片，或交付范围变化时复评。
+    review_trigger_en: Review when one of the two versions is chosen, after five completed
+      external uses or the first human-reviewed film, or when the delivery scope changes.
+    card_path: pricing-cards/motivational-media-creator-claude-version.md

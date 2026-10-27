@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **227 个技能** — 206 个免费 + 21 个付费。
+> **228 个技能** — 207 个免费 + 21 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -270,6 +270,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Camera Media Keeper](https://github.com/lovstudio/migrate-camera-media-skill) (`migrate-camera-media`) | [相机素材管家](https://github.com/lovstudio/migrate-camera-media-skill) | 把相机素材完整转存到 SSD，逐文件校验，并留下可复查的转存报告。 — 依赖: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Motion Atlas](https://github.com/lovstudio/motion-media-creator-skill) (`motion-media-creator`) | [动态图志](https://github.com/lovstudio/motion-media-creator-skill) | 无实拍，把一个主题沿时间、地图、图鉴、工序或尺度分章，做成每章一种视觉、带旁白与大字幕的动态设计短片，16:9 成片、三比例封面与质检一次交付。 — 依赖: `branding-consistency`; 相关: `interview-media-creator`, `media-creator`, `media-publisher`, `motivational-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Motivational Film](https://github.com/lovstudio/motivational-media-creator-skill) (`motivational-media-creator`) | [励志视频](https://github.com/lovstudio/motivational-media-creator-skill) | 按手工川的创作标准，把真实困境与选择整理成原创口播、分镜、声音设计及权利可查的制作包；不含自动拍摄、渲染、素材授权或平台发布。 — 依赖: `branding-consistency`; 相关: `media-creator`, `motion-media-creator`, `media-publisher` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Motivational Film (Claude edition)](https://github.com/lovstudio/motivational-media-creator-claude-version-skill) (`motivational-media-creator-claude-version`) | [励志短片 · Claude 版](https://github.com/lovstudio/motivational-media-creator-claude-version-skill) | 按参考片实测的节奏，把一个人或团队真实的倒下与起来做成励志短片，渲染前体检时间线，渲染后复测成片。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Channels Publisher](https://github.com/lovstudio/publish-wechat-channels-skill) (`publish-wechat-channels`) | [视频号发布助手](https://github.com/lovstudio/publish-wechat-channels-skill) | 通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Chapters](https://github.com/lovstudio/video-chapter-skill) (`video-chapter`) | [视频章节师](https://github.com/lovstudio/video-chapter-skill) | 从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Stills](https://github.com/lovstudio/video-moments-skill) (`video-moments`) | [精彩定格](https://github.com/lovstudio/video-moments-skill) | 从课程和活动视频挑选真实瞬间，完成色彩还原与统一提亮，交付可回溯的照片组。 — 依赖: `branding-consistency` |
