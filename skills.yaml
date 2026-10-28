@@ -2633,7 +2633,7 @@ skills:
   paid: true
   price_credits: 1394
   category: Video Creation
-  version: 0.2.0
+  version: 0.2.1
   description: "Talking-head Short: turn a topic into a vertical AI-tools talking-head
     short — sourced facts, gated script, teleprompter, on-screen evidence and covers;
     after the author records one take, auto-pick the last good read of each line and

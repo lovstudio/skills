@@ -1,6 +1,6 @@
 # 口播短片 · Pricing Card
 
-版本：0.2.0（目录 ID `koubo-media-creator`、调用 ID `lov-koubo-media-creator`）。建议价与首发价：1,394 Credits；当前价格带：1,394–2,099 Credits。
+版本：0.2.1（目录 ID `koubo-media-creator`、调用 ID `lov-koubo-media-creator`）。建议价与首发价：1,394 Credits；当前价格带：1,394–2,099 Credits。
 LovStudio 官网一次性购买，源码私有，购买后按版本下载完整文件。
 
 输入一个主题，得到带出处的事实表、按片型（清单、技巧、实测、锐评、案例）写好并过门禁的口播脚本、提词器与录制清单、上屏证据截图、
