@@ -2573,6 +2573,7 @@ skills:
   - branding-consistency
   - media-creator
   related:
+  - koubo-media-creator
   - media-creator
   - media-publisher
   - motion-media-creator
@@ -2619,6 +2620,68 @@ skills:
     review_trigger_en: Review when membership scope changes, after 10 real uses, a
       major version change, or a change in the dependency contract.
     card_path: pricing-cards/interview-media-creator.md
+- name: koubo-media-creator
+  runtime_name: lov-koubo-media-creator
+  depends_on:
+  - branding-consistency
+  related:
+  - interview-media-creator
+  - media-publisher
+  display_name: Talking-head Short
+  repo: lovstudio/koubo-media-creator-skill
+  name_zh: 口播短片
+  paid: true
+  price_credits: 1394
+  category: Video Creation
+  version: 0.2.0
+  description: "Talking-head Short: turn a topic into a vertical AI-tools talking-head
+    short — sourced facts, gated script, teleprompter, on-screen evidence and covers;
+    after the author records one take, auto-pick the last good read of each line and
+    cut it into a split-screen film with captions, music bed and QC."
+  tagline_en: Give it a topic and get the script, teleprompter, on-screen evidence and
+    covers for a vertical talking-head short; record one take and it cuts the film for
+    you.
+  tagline_zh: 给一个主题，口播稿、提词器、上屏证据与封面全备好；你照提词器录一条，它自动挑出念对的那一遍，剪成上素材下出镜的竖版成片。
+  pricing:
+    model: one_time
+    visibility: public
+    list_price_credits: 1394
+    launch_price_credits: 1394
+    price_range_credits:
+    - 1394
+    - 2099
+    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的片型语法、脚本门禁、提词器、证据截图、录音对齐、竖版起步工程、封面与质检脚本
+    delivery_unit_en: A single Skill delivered in full, with the current film grammar,
+      script gates, teleprompter, evidence capture, recording alignment, a vertical
+      starter project, covers and QC scripts
+    value_zh: 输入一个主题，得到过门禁的口播脚本、提词器、上屏证据与封面；录完一条口播后自动剪成带字幕、红框与配乐的竖版成片。
+    value_en: Turn a topic into a gated talking-head script, teleprompter, on-screen
+      evidence and covers; after one recorded take, get a vertical film with captions,
+      evidence boxes and a music bed.
+    anchor_zh: 每条口播保守可省 3–6 小时的写稿查证、截图分镜、剪辑字幕与封面；外包口播剪辑通常按条计价。
+    anchor_en: Each talking-head video conservatively saves 3–6 hours of scripting
+      and fact-checking, evidence and shot planning, editing, captions and covers; outsourced
+      edits of this kind are usually priced per video.
+    basis_zh: 1,394 Credits 是完整片型方法与起步工程的一次性价格，与同系列视频制作 Skill 一致；目前只有一条占位配音的样片，真人成片案例积累后复评。不是代剪或代制作报价。
+    basis_en: 1,394 Credits is the one-time price for the full film method and starter
+      project, in line with the series' other video Skills; the only case so far is
+      a stand-in-voice preview, and the price is reviewed once real recorded films
+      exist. It is not a quote for editing or production services.
+    boundary_zh: 覆盖选题与事实台账、片型脚本与门禁、提词器、证据截图、录音对齐与切点、竖版成片模板、封面与交付质检；作者需自己出镜，数字人或声音克隆、他人素材授权、TTS 与 AI 配乐等第三方服务费用、字体商用授权、人工代剪与代发布另计。
+    boundary_en: Covers topic and fact ledger, gated scripts, teleprompter, evidence
+      capture, recording alignment and cuts, the vertical film template, covers and
+      delivery QC; the author appears on camera themself. Digital humans or voice
+      cloning, third-party footage rights, TTS and AI music fees, font licensing, manual
+      editing and publishing are not included.
+    maintenance_zh: 随视频渲染与转写工具主版本、平台竖版安全区与交付规范，以及真实使用反馈复评。
+    maintenance_en: Review when the rendering and transcription toolchain changes major
+      versions, when platform safe areas or delivery rules change, or on real-use feedback.
+    confidence: low
+    review_trigger_zh: 第 3 条真人录制成片发布、首发 30 天、10 次真实使用、版本大改或单买家支持成本明显变化时复评。
+    review_trigger_en: Review after the third real recorded film is published, 30 days
+      after launch, 10 real uses, a major version change, or a clear change in per-buyer
+      support cost.
+    card_path: pricing-cards/koubo-media-creator.md
 - name: media-creator
   runtime_name: lov-media-creator
   depends_on:
@@ -2687,6 +2750,7 @@ skills:
   - branding-consistency
   related:
   - interview-media-creator
+  - koubo-media-creator
   - media-creator
   - motion-media-creator
   - motivational-media-creator
