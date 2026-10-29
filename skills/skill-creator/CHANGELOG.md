@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.6.7] - 2026-10-29
+
+### Fixed
+
+- validate_skill.py fails when `skill.yaml`, `skill-card.yaml`, or `pricing-card.yaml` declares a `version` different from `SKILL.md` `metadata.version`, listing every file's value; lov-koubo-media-creator 0.2.0 shipped with `skill.yaml` still at 0.1.0 while the old check passed.
+- SKILL.md states that `metadata.version` is the single version source and all versioned files are bumped together.
+
 ## [4.6.6] - 2026-10-04
 
 ### Changed

@@ -3,6 +3,15 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.13.4] - 2026-10-29
+
+### Fixed
+
+- bump_version.py 把 skill-card.yaml 与 pricing-card.yaml 的顶层 version 纳入版本集合，与 README、SKILL.md、skill.yaml 一起升；卡片未声明 version 时不新增，价格等其他字段不动。此前升版只改三处，导致 56 个 Skill 仓库的 pricing-card 落后、被 skill-publisher 0.8.1 的版本一致性门禁拦下。
+- lint_skill.py 的 VERSION_DRIFT 同时比较两张卡片，与 publisher 门禁口径一致。
+- SKILL.md Step 2/4/7 与 README 写明五处版本源；Step 7 的 git add 示例补上两张卡片，避免改了却没提交。
+- 新增 tests/test_versions.py：升版同步两张卡且保留价格与嵌套 version、无 version 的卡片不新增、lint 报出过期 pricing-card。
+
 ## [0.13.3] - 2026-09-25
 
 ### Fixed

@@ -387,7 +387,7 @@ class Linter:
             )
 
     def check_version_sources(self, fm: dict, skill_rel: str):
-        """Ensure README, SKILL.md and skill.yaml do not advertise different versions."""
+        """Ensure README, SKILL.md, skill.yaml and the cards do not advertise different versions."""
         versions: dict[str, str] = {}
         readme = self.dir / "README.md"
         if readme.exists():
@@ -433,6 +433,11 @@ class Linter:
         manifest = read_manifest_fields(self.dir / "skill.yaml")
         if manifest.get("version"):
             versions["skill.yaml"] = manifest["version"]
+        # A card without a top-level version is fine; a declared one must match.
+        for card in ("skill-card.yaml", "pricing-card.yaml"):
+            card_version = read_manifest_fields(self.dir / card).get("version")
+            if card_version:
+                versions[card] = card_version
         for source, version in versions.items():
             if not SEMVER_RE.match(version):
                 self.add(
@@ -449,8 +454,9 @@ class Linter:
                 "error",
                 "VERSION_DRIFT",
                 f"version sources are inconsistent: {detail}",
-                "Run bump_version.py with --path so README.md, SKILL.md and skill.yaml are updated together",
-                file="README.md/SKILL.md/skill.yaml",
+                "Run bump_version.py with --path so README.md, SKILL.md, skill.yaml, skill-card.yaml "
+                "and pricing-card.yaml are updated together",
+                file="README.md/SKILL.md/skill.yaml/cards",
             )
 
         canonical_version = manifest.get("version") or next(iter(versions.values()), "")

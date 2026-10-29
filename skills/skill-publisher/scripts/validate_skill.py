@@ -44,6 +44,7 @@ WORKBUDDY_FRONTMATTER_KEYS = {
     "git_url",
 }
 SOURCE_LOCATORS = ("clawhub_slug", "skillhub_slug", "git_url")
+VERSIONED_FILES = ("skill.yaml", "skill-card.yaml", "pricing-card.yaml")
 TEXT_SUFFIXES = {".md", ".json", ".yaml", ".yml", ".txt", ".svg", ".py"}
 JUNK_NAMES = {"__pycache__", ".DS_Store"}
 JUNK_SUFFIXES = {".pyc", ".pyo"}
@@ -443,6 +444,36 @@ def validate_readme_version(
         )
 
 
+def validate_version_consistency(
+    skill_root: Path, data: dict[str, Any], errors: list[str]
+) -> None:
+    # The catalog, website and download tag v{version} read different files, so a
+    # stale one ships a manifest version that differs from the published page.
+    metadata = data.get("metadata")
+    expected = (
+        compact_text(metadata.get("version")) if isinstance(metadata, dict) else ""
+    )
+    if not expected:
+        return
+    found = {"SKILL.md": expected}
+    for name in VERSIONED_FILES:
+        path = skill_root / name
+        if not path.is_file():
+            continue
+        file_data = load_yaml(path, errors)
+        if file_data is not None and file_data.get("version") is not None:
+            found[name] = str(file_data["version"]).strip()
+    if any(version != expected for version in found.values()):
+        errors.append(
+            f"{skill_root}: versions must equal SKILL.md metadata.version "
+            f"{expected}; found "
+            + ", ".join(
+                f"{name}={version}" + ("" if version == expected else " (mismatch)")
+                for name, version in found.items()
+            )
+        )
+
+
 def validate_source(
     root: Path,
     errors: list[str],
@@ -471,6 +502,8 @@ def validate_source(
     validate_dependencies(parsed, names, errors, require_self_contained)
     validate_kit(root, names, errors)
     validate_readme_version(root, root_data, errors)
+    for path, data in parsed:
+        validate_version_consistency(path.parent, data, errors)
     validate_todos([root / "SKILL.md", root / "README.md", *skill_files[1:]], errors)
     validate_junk(root, errors)
     validate_private_paths(root, errors)

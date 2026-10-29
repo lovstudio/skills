@@ -51,6 +51,7 @@ CONTENT_CLASSES = {
     "verbatim",
     "deterministic-output",
 }
+VERSIONED_FILES = ("skill.yaml", "skill-card.yaml", "pricing-card.yaml")
 
 
 class ValidationFailure(Exception):
@@ -451,6 +452,35 @@ def validate_card_bundle(skill_root: Path, errors: list[str]) -> None:
             errors.append(f"{pricing_path}: replace unresolved TODO or template placeholders")
 
 
+def validate_version_consistency(
+    skill_root: Path, metadata: Any, errors: list[str]
+) -> None:
+    # The catalog, website and download tag v{version} read different files, so a
+    # stale one ships a manifest version that differs from the published page.
+    expected = compact_text(metadata.get("version")) if isinstance(metadata, dict) else ""
+    if not expected:
+        return
+    found = {"SKILL.md": expected}
+    for name in VERSIONED_FILES:
+        path = skill_root / name
+        if not path.is_file():
+            continue
+        try:
+            data = yaml.safe_load(read_text(path))
+        except yaml.YAMLError:
+            continue  # parse errors are reported by the file's own validator
+        if isinstance(data, dict) and data.get("version") is not None:
+            found[name] = str(data["version"]).strip()
+    if any(version != expected for version in found.values()):
+        errors.append(
+            f"{skill_root}: versions must equal SKILL.md metadata.version {expected}; found "
+            + ", ".join(
+                f"{name}={version}" + ("" if version == expected else " (mismatch)")
+                for name, version in found.items()
+            )
+        )
+
+
 def validate_composition_reference(skill_root: Path, errors: list[str]) -> None:
     path = skill_root / "references" / "skill-composition.md"
     if not path.is_file():
@@ -585,6 +615,7 @@ def validate_source(root: Path, errors: list[str]) -> None:
             validate_card_bundle(path.parent, errors)
         validate_composition_reference(path.parent, errors)
         validate_runtime_manifest(path.parent, compact_text(data.get("name")), errors)
+        validate_version_consistency(path.parent, metadata, errors)
     validate_kit(root, names, errors)
 
     readme = root / "README.md"

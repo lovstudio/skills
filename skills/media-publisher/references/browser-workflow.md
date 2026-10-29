@@ -13,6 +13,8 @@
 - 使用语义交互为主：`openOrReuseTab` / `snapshotText` / `click` / `fillInput` / `uploadFile`；仅在必要时使用 `js` 读取 DOM 或 `pageInfo` 辅助。
 - 语义 ref 只对最近一次快照有效。元素不在视口时先 `DOM.scrollIntoViewIfNeeded` 或滚动后重新截图；不要用页面坐标点击视口外元素。
 - 仅在有明确用户确认时操作 `pressKey('Enter')`；遇到文本输入时默认 `click -> typeText/fillInput` + 失焦回读。
+  例外只有两处，各带前置条件：小红书第一个话题（见[小红书发布页结构](xiaohongshu/page-anatomy.md)「话题」）、
+  B 站自定义标签（见 [B 站投稿页结构](bilibili/page-anatomy.md)「标签」第 4 条）。
 - 避免复用旧句柄、旧 ref、旧 CSS 选择器和旧坐标，页面变化后全部重新识别。
 
 ## helper 签名：传 id，不传 task 对象
@@ -25,12 +27,22 @@
 | `handOffTaskSpace(task)` | 抛 `task space not found: [object Object]` |
 | `handOffTaskSpace(task.id)` | 正常，返回 `{ done: true }` |
 | `waitForAgentControl()` | 抛 `requires a task space name or id` |
-| `waitForAgentControl(task.id)` | 正常阻塞等待 |
+| `waitForAgentControl(task.id)` | 正常阻塞等待；用户归还控制权后 resolve 为 `undefined`（2026-10-02 观测），这个返回本身就是归还信号 |
 | `captureScreenshot({ path: '/tmp/a.png' })` | 抛 `ERR_INVALID_ARG_TYPE`，它把对象当路径 |
 | `captureScreenshot('/tmp/a.png')` | 正常，返回路径字符串 |
 | `screenshot(...)` | `ReferenceError`，helper 名是 `captureScreenshot` |
 | `mouseClick(x, y)` | `ReferenceError`，没有这个 helper。当前运行时可用 `click([x, y])`（2026-09-06 实测），或 `cdp('Input.dispatchMouseEvent', { type: 'mousePressed'/'mouseReleased', x, y, button: 'left', clickCount: 1 })`；坐标必须来自最新浏览器截图或节点 rect |
-| `completeTaskSpace(task, opts)` | 抛 `requires a task space name or id`，和 `handOffTaskSpace` 同坑。写 `completeTaskSpace(task.id, { keep: true })` |
+| `completeTaskSpace(task, opts)` | 抛 `requires a task space name or id`，和 `handOffTaskSpace` 同坑 |
+| `completeTaskSpace(task.id)` | 抛 `completeTaskSpace requires { keep: boolean }`（2026-10-11 实测），第二个参数不能省 |
+| `completeTaskSpace(task.id, { keep: false })` | 正常，返回 `{ done: true }`；用户要求保留页面时改传 `{ keep: true }` |
+| `` await js(`[...nodes].map(...)`) ``（顶层直接返回数组） | 2026-10-12 在 B 站投稿页两次得到 `null`（字符串数组、对象数组各一次），后面一读 `.length` 就抛 `Cannot read properties of null`；同日视频号创建页顶层数组正常返回 |
+| `` await js(`({ list: [...nodes].map(...) })`) `` | B 站投稿页正常，数组在对象里原样拿到 |
+| 页面刚 `location.reload()` 就 `js()` 读 DOM | 视频号列表页 2026-10-12 重载后 6 秒读 DOM，`js()` 挂了十几秒后报 `Runtime.evaluate timed out`（距重载约 21 秒）：页面还在加载，不是脚本错。等一会儿再读，不要当成失败或「没有条目」 |
+
+### js() 返回数组时包成对象
+
+`js()` 要返回数组时，一律包成对象再解构（`const { list } = await js(...)`）。顶层数组在哪些页面会变成 `null`
+没有摸清（2026-10-12 B 站投稿页两次），返回对象的调用在三个平台上都正常。返回字符串、数字这类原始值时没见过问题。
 
 heredoc 按 **ES module** 解析：`require` 报 "Cannot determine intended module format"，
 要读本地文件用 `const { readFileSync } = await import('node:fs')`。
@@ -49,6 +61,10 @@ heredoc 按 **ES module** 解析：`require` 报 "Cannot determine intended modu
 不重试、不 `takeOverTaskSpace()`。浏览器权限请求同理：2026-10-01 小红书提交视频后弹出定位
 权限，ego-browser 报 `A browser permission prompt for location access has appeared. The user now
 controls this task space` 并自动交出控制权。告诉用户按隐私优先处理（默认拒绝），等用户说继续再接手。
+
+`waitForAgentControl(task.id)` 正常返回时值是 `undefined`（2026-10-02 观测）：没有 `{ done: true }`
+之类的对象，不要因此判成失败、也不要再等一轮——resolve 就表示控制权已经回来，接着重新
+`snapshotText()` 再继续。只有抛错才是没等到。
 
 `waitForAgentControl(task.id)` 实测 600 秒超时会抛错退出，这不代表用户放弃，也不代表可以自己接手：
 只看命令报错原因（不读页面、不截图、不 `takeOverTaskSpace()`），然后重新 `waitForAgentControl(task.id)`，
@@ -88,6 +104,8 @@ EOF
 - 登录受阻时，不要改造登录流程，不要手工绕过验证。
 - **视频号：本机微信已登录时优先点「快捷登录」再选账号，不要交接去扫二维码。** 二维码这条路
   多一次交接、还会遇到 `加载失败，点击重试`；快捷登录是同机免扫的。
+- 视频号快捷登录点一次后要多等：2026-10-12 4 秒时还在登录页（登录框转圈），34 秒时已回到创建页。按约 2.5 秒
+  间隔轮询 URL 约 40 秒再判断，等不到再交接，不要点第二次。
 - 只有免扫路径也不可用时才 `handOffTaskSpace(task.id)` 交给用户，并等待用户完成后续。
 - 回到代理可控后，重新 `snapshotText()`，读取导航区/账号展示文本并逐字核对。
 
@@ -120,7 +138,7 @@ EOF
   草稿流程未实测，先走终稿确认或交用户点。
 - `schedule`：打开定时区，读取页面时区与时间控件；确认完整年月日时分后提交。
 - `publish`：定位主提交动作（视频号「发表」/ B 站「立即投稿」/ 小红书「发布」，后者在封闭 shadow 的
-  `XHS-PUBLISH-BTN` 里，只能按现拍截图坐标点，见小红书 page-anatomy），提交前输出完整字段表；全部必填项通过且用户确认终稿后仅提交一次。点击后按钮加载或页面跳转即记录为已尝试提交。
+  `XHS-PUBLISH-BTN` 里，只能按现拍截图坐标点，见小红书 page-anatomy），提交前输出完整字段表；全部必填项通过，且用户确认终稿（或该平台 Profile 为 `auto` 且没有触发退回条件，见 SKILL.md「按 Profile 偏好免终稿确认」）后仅提交一次。点击后按钮加载或页面跳转即记录为已尝试提交。
 - `status`：跳过上传/编辑，仅进入内容列表用于回读并刷新验证。
 
 ### 5. 回读与防重
@@ -152,6 +170,14 @@ const r = el.getBoundingClientRect()
 if (r.y < 0 || r.y + r.height > window.innerHeight) throw new Error('still clipped')
 ```
 
+2026-10-06 修正：上面那段把滚动和读 rect 放在同一轮，视频号上读到的是**滚动中途**的 rect，「发表」
+点空且没有任何提示。坐标点击一律改成：`scrollIntoView({ block: 'center', behavior: 'instant' })` →
+等约 1 秒 → 下一轮 `js()` 重读 rect → 断言 `elementFromPoint(x, y)` 命中目标（shadow DOM 里用
+`shadowRoot.elementFromPoint`）→ 只点一次。视口尺寸也会变：同一天视口约 900×765，比别处记录的
+1496×731 窄，B 站左侧固定导航会盖住表单。每次现读 `innerWidth` / `innerHeight`，不照搬历史坐标。
+平台写法见 [视频号创建页结构](wechat-channels/page-anatomy.md)「「发表」按钮」与
+[B 站投稿页结构](bilibili/page-anatomy.md)「窄视口」。
+
 拿到节点后让元素自己滚动并点击也可以（视频号那边这条路走通过）：
 
 ```js
@@ -162,6 +188,22 @@ await cdp('Runtime.callFunctionOn', {
 ```
 
 点击后必须回读页面状态确认弹窗真的关闭、状态真的改变；按钮存在不等于点到了。
+
+### 横向滚不过去的区域：只为截图临时放宽视口
+
+要看的东西在视口外、而页面横向滚不过去（`document.documentElement.scrollWidth === innerWidth`）时，
+`Page.captureScreenshot` 加 `captureBeyondViewport: true` 和区域 clip 可能只截出底色（2026-10-12 小红书封面预览）。
+这时可以只为截图临时放宽视口：
+
+1. 先记下 `innerWidth / innerHeight / devicePixelRatio`；
+2. `Emulation.setDeviceMetricsOverride` 放宽到能装下目标的宽度，等约 1.5 秒后截图；
+3. 截图放在 `try`、`Emulation.clearDeviceMetricsOverride` 放在 `finally`，截图失败也要恢复；
+4. 恢复后重读视口，与第 1 步的值不一致就停下。
+
+放宽期间只截图，不点击、不写字段；期间读到的坐标全部作废，之后要点的东西在恢复后重新截图、重读 rect。
+页面本身比视口宽、能横向滚动时（B 站投稿页 2026-10-12 页面宽 1324、视口宽 900）不需要放宽，用 `scrollLeft` 或
+`scrollIntoView({ inline: 'center' })` 把目标滚进来。写法见 [小红书发布页结构](xiaohongshu/page-anatomy.md)
+「封面预览在视口外」。
 
 ### 有些控件只吃真鼠标
 
@@ -194,7 +236,7 @@ await cdp('Input.dispatchMouseEvent', { type: 'mouseReleased', x, y, button: 'le
    确认账号与可见的快捷登录按钮。
 2. 从这张最新截图确定按钮中心，以 `click([x, y])` 执行一次浏览器坐标点击；也可使用
    浏览器 CDP 的 `Input.dispatchMouseEvent`。不要照搬历史坐标，不调用系统级鼠标或切换前台应用。
-3. 重新读取快照与页面 URL，确认进入创建页，并逐字核对已登录账号。2026-09-06 本轮按此
+3. 轮询页面 URL 约 40 秒（见上文「登录与账号」），确认进入创建页，并逐字核对已登录账号。2026-09-06 本轮按此
    流程一次点击后进入创建页，回读账号为「手工川」；这是本次证据，不是其他账号的默认值。
 4. 只有当前截图无法确认控件、一次点击后确认仍失败，或页面要求额外用户授权时，才按控制权
    规则 `handOffTaskSpace(task.id)`，说明唯一待完成动作并等待归还；不连续盲点，也不绕过验证。

@@ -4,8 +4,8 @@ category: Meta Skills
 tagline: "Audit an Agent Skill, apply focused fixes, bump semver, and verify every distribution layer."
 description: >
   Audit and optimize one or more existing Agent Skills from a canonical source
-  path, then bump semver, update README/SKILL.md/skill.yaml/CHANGELOG.md, and
-  verify installed copies and catalog synchronization. Checks frontmatter,
+  path, then bump semver on every version surface and CHANGELOG.md, and verify
+  installed copies and catalog synchronization. Checks frontmatter,
   trigger quality, CLI hygiene, accurate and concise naming, portability, version drift, dirty
   worktrees, shared Skill feedback policy, and compatibility contracts. Use when the user asks to optimize,
   refine, audit, polish, or update a Skill, or mentions "优化 skill", "skill
@@ -20,7 +20,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.13.3"
+  version: "0.13.4"
   tags: meta skill-maintenance versioning changelog lint portability sync
 ---
 
@@ -138,8 +138,12 @@ Prioritize findings in this order:
 4. cheap, low-risk `info` findings.
 
 The baseline must include version-source drift between README.md, SKILL.md
-frontmatter, and skill.yaml. Portability findings are high priority for a
-reusable Skill: move personal paths to flags, environment variables, or
+frontmatter, skill.yaml, skill-card.yaml and pricing-card.yaml. A card that
+declares a top-level `version` must equal SKILL.md `metadata.version`; the
+skill-publisher source gate rejects the release otherwise.
+
+Portability findings are high priority for a reusable Skill: move personal
+paths to flags, environment variables, or
 `references/user-config.md`, or mark a genuinely author-only dependency in
 `compatibility`.
 
@@ -177,7 +181,8 @@ The linter checks both root `SKILL.md` repositories and paid/encrypted
 
 - Agent Skills-compatible frontmatter and trigger phrases;
 - README version badge and installation command;
-- `metadata.version`, README badge, and `skill.yaml` version consistency;
+- `metadata.version`, README badge, `skill.yaml`, `skill-card.yaml` and
+  `pricing-card.yaml` version consistency;
 - CLI use of argparse and obvious script hygiene;
 - TODO placeholders and oversized instruction bodies;
 - personal paths, fixed runtime paths, and missing user configuration;
@@ -200,8 +205,11 @@ Choose `patch` for bug, wording, frontmatter, or lint fixes; `minor` for a new
 flag, reference, module, or expanded workflow; `major` for a breaking CLI or
 removed behavior. Stay in `0.x` unless the user explicitly requests otherwise.
 The tool updates README.md, the authored SKILL.md, paid-skill public wrappers,
-skill.yaml, and CHANGELOG.md and refuses to duplicate an existing changelog
-version.
+skill.yaml, skill-card.yaml, pricing-card.yaml and CHANGELOG.md and refuses to
+duplicate an existing changelog version. A card moves only when it already
+declares a top-level `version`; prices and other card fields stay untouched.
+Never hand-edit the version line of one surface: a partial bump is exactly the
+drift the publisher gate rejects.
 
 ### Step 5: Re-lint and inspect layout
 
@@ -267,10 +275,12 @@ path or claim a live-site update from a local source commit.
 
 ### Step 7: Commit and push exact source changes
 
-Inspect `git diff --check`, then stage the listed changed files explicitly:
+Inspect `git diff --check`, then stage explicitly every path in the
+`bump_version.py` `changed` list plus the files you edited (omit a path the
+Skill does not have):
 
 ```bash
-git add -- SKILL.md README.md CHANGELOG.md skill.yaml scripts references
+git add -- SKILL.md README.md CHANGELOG.md skill.yaml skill-card.yaml pricing-card.yaml scripts references
 git diff --cached --name-only
 git commit -m "fix(<skill-name>): <one-line summary>"
 git push origin HEAD

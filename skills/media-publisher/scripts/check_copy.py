@@ -13,6 +13,9 @@
 视频号的规则来自平台自己的报错原文，不是推断：
 
 - 「标题超过16字限制」——填入 34 字的推荐标题时返回。
+- 「标题至少6个字」——2026-10-12 填入 4 字的「背包九讲」时返回；改成 6 字的
+  「背包问题九讲」后提示消失。5 字没有试过，按报错原文取 6 为下限；下限处
+  空格、英文字母怎么计数也没有试过，脚本沿用上限的计法（每个字符算 1）。
 - 「标题包含特殊字符，符号仅支持书名号、引号、冒号、加号、问号、百分号、
   摄氏度，逗号可用空格代替」——填入含中文逗号的 16 字标题时返回。
 
@@ -32,10 +35,19 @@ B 站的标签有一类拒绝无法在本地判定：部分名字被划给话题
 仍要在页面上读 toast。
 
 小红书的正文上限 1000 字来自发布页计数器 `n /1000`（实测）；标题 20 字是平台公开
-规则，实测没有撞到线。话题要在正文里输入 `#` 后从联想列表选，列表里没有的名字会
+规则，2026-10-12 读到标题计数器「4 / 20」，但实测没有撞到线。话题要在正文里输入 `#` 后从联想列表选，列表里没有的名字会
 变成「新建话题」，离线判断不了，所以只给 info 提示；正文里直接写的 `#xxx` 不会成为话题，
 报 warn。合集上限未实测，传 `--collection` 会报 warn 级的 `collection_limit_unknown`，
 去页面上读输入框 maxLength / 计数器，不阻断预检。
+
+小红书话题最多 10 个：2026-10-29 带 12 个话题点「发布」，前端只闪出提示「最多支持添加10个话题」
+（点击后约 0.1 秒出现，很快消失，事后截图里看不到），没有发出发布请求，页面也没有别的变化，看上去就像点击没生效；
+删到 10 个后发布成功。11 个没试过，按提示原文取 10，超了报 error `topics_too_many`。
+
+小红书的正文计数器还会算上话题：2026-10-12 正文两句 32 字，加 7 个话题（名称共 25 字，
+带 `#` 共 32 字）后读到 `71 /1000`。`#`、换行、空格各算几个没拆开核对，所以同时传了
+`--description` 和 `--topic` 时，脚本按「正文（不算换行）+ 话题名（不含 `#`）」估一个下限，超过上限
+报 warn `description_with_topics_over_limit`。下限没超也可能在页面上超，接近上限时以页面为准。
 
 退出码 0 表示没有 error（warning 不阻断），1 表示存在 error，2 表示没给字段。
 """
@@ -79,22 +91,26 @@ CONFIRMED_REJECTED = {
 # 平台限制表
 # ---------------------------------------------------------------------------
 
-# B 站实测被拒的标签名（2026-08-18）。不是字符集问题也不是长度问题，
-# 是平台把这些名字划给了话题体系。名单必然不全，页面 toast 才是权威。
-BILIBILI_TOPIC_ONLY_TAGS = ("DeepSeekHarness", "独立开发者", "插件开发")
+# B 站实测被拒的标签名（前三个 2026-08-18，vibecoding 2026-10-06，后者换 AI编程 被接受）。
+# 不是字符集问题也不是长度问题，是平台把这些名字划给了话题体系。名单必然不全，页面 toast 才是权威。
+BILIBILI_TOPIC_ONLY_TAGS = ("DeepSeekHarness", "独立开发者", "插件开发", "vibecoding")
 
 PLATFORMS: dict[str, dict[str, Any]] = {
     "wechat-channels": {
         "label": "微信视频号",
         # 平台没有独立的「标题」字段，短标题就是那一个。
         "short_title_max": 16,
+        # 「标题至少6个字」（2026-10-12）：4 字被拒、6 字通过，5 字未试。
+        "short_title_min": 6,
         "title_max": None,
         "description_max": None,
         "collection_max": {"create": 10, "edit": None},
         "collection_immutable": True,
         "topic_label": "话题",
         "topic_max": None,
-        "topic_soft_max": 5,  # 平台未给硬数字，经验值
+        # 平台未给硬上限；与 description-template「5–10 个互补且精准」
+        # 及 2026-08-26 用户确认的样本（10 个）对齐。
+        "topic_soft_max": 10,
         "topic_refused": (),
         # 描述里的 `#话题` 纯文本不会被解析成话题标签，必须走工具栏按钮生成。
         "inline_hashtag_not_topic": True,
@@ -103,11 +119,12 @@ PLATFORMS: dict[str, dict[str, Any]] = {
             "必须点编辑区工具栏「#话题」按钮让平台生成标签节点。"
             "若这些就是本次话题，改用 --topic 传入并在页面上逐个生成"
         ),
-        "source": "平台报错原文与创建页计数器（2026-08-17 读取）",
+        "source": "平台报错原文与创建页计数器（2026-08-17 读取；短标题下限 2026-10-12 报错原文）",
     },
     "bilibili": {
         "label": "Bilibili",
         "short_title_max": None,
+        "short_title_min": None,
         "title_max": 80,
         "description_max": 2000,
         # 创建弹窗 maxLength=20，编辑表单 maxLength=50，两者不同且都实测过。
@@ -124,9 +141,11 @@ PLATFORMS: dict[str, dict[str, Any]] = {
     "xiaohongshu": {
         "label": "小红书",
         "short_title_max": None,
-        # 平台公开规则，实测没有撞到线；页面计数器未核对，所以报错不写成「n/20」。
+        "short_title_min": None,
+        # 2026-10-12 读到标题计数器「4 / 20」，上限与公开规则一致；没有撞过线，
+        # 超限时页面怎么提示不知道，所以报错不套 B 站那种「n/80」口径。
         "title_max": 20,
-        "title_basis": "平台公开规则，未实测撞线",
+        "title_basis": "页面计数器「n / 20」，未撞线实测",
         # 发布页计数器「n /1000」（2026-10-01 实测读取）。
         "description_max": 1000,
         # 合集上限未实测：两个阶段都给 None，check_collection 报 warn 级的
@@ -134,8 +153,12 @@ PLATFORMS: dict[str, dict[str, Any]] = {
         "collection_max": {"create": None, "edit": None},
         "collection_immutable": None,  # 未知
         "topic_label": "话题",
-        # 话题数量上限未知，页面没有给数字，也未实测；不设硬上限和经验值。
-        "topic_max": None,
+        # 提示原文「最多支持添加10个话题」（2026-10-29）：12 个被拦下，删到 10 个后发布成功，11 个没试过。
+        "topic_max": 10,
+        "topic_max_note": (
+            "页面原文「最多支持添加10个话题」。超了点「发布」只闪一下这句提示、不发请求，"
+            "看上去像没点上——先删到 10 个，不要连点或交接"
+        ),
         "topic_soft_max": None,
         "topic_refused": (),
         "topic_notice": (
@@ -144,11 +167,13 @@ PLATFORMS: dict[str, dict[str, Any]] = {
         ),
         # 粘贴进正文的 `#xxx` 纯文本不会变成话题节点。
         "inline_hashtag_not_topic": True,
+        # 正文计数器 n /1000 把话题文本也算进去（2026-10-12：32 字正文 + 7 个话题读到 71）。
+        "counter_includes_topics": True,
         "inline_hashtag_message": (
             "正文里的 {samples} 不会自动成为话题；"
             "话题请用 --topic 并在页面从 # 联想列表点选，正文去掉行内 #"
         ),
-        "source": "小红书创作服务平台发布页计数器（2026-10-01 读取）；标题 20 字为平台公开规则",
+        "source": "小红书创作服务平台发布页计数器（正文 2026-10-01、标题 2026-10-12 读取）与发布时的提示原文（话题上限 2026-10-29）",
     },
 }
 
@@ -175,10 +200,11 @@ def _unsupported(field: str, spec: dict[str, Any]) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 def check_short_title(text: str, spec: dict[str, Any]) -> list[dict]:
-    """视频号短标题：长度硬门禁 + 字符集判定。"""
+    """视频号短标题：长度区间硬门禁 + 字符集判定。"""
     limit = spec["short_title_max"]
     if limit is None:
         return _unsupported("短标题", spec)
+    minimum = spec.get("short_title_min")
 
     findings: list[dict] = []
     n = len(text)
@@ -200,6 +226,19 @@ def check_short_title(text: str, spec: dict[str, Any]) -> list[dict]:
             ),
             "actual": n,
             "limit": limit,
+        })
+
+    if minimum is not None and n < minimum:
+        findings.append({
+            "level": "error",
+            "code": "short_title_too_short",
+            "message": (
+                f"短标题 {n} 字，少于平台 {minimum} 字下限"
+                f"（页面原文：标题至少{minimum}个字）；需补 {minimum - n} 字，"
+                "优先用作品全称或补实词，不要用标点凑数"
+            ),
+            "actual": n,
+            "limit": minimum,
         })
 
     for ch in dict.fromkeys(text):  # 去重但保持出现顺序
@@ -386,6 +425,36 @@ def check_description(text: str, spec: dict[str, Any]) -> list[dict]:
     return findings
 
 
+def check_description_with_topics(
+    text: str, topics: list[str], spec: dict[str, Any]
+) -> list[dict]:
+    """计数器含话题的平台（小红书）：按正文 + 话题名估计数下限，超上限报 warn。
+
+    只用能确定会被计入的部分做下限：正文里换行以外的字符，和每个话题的名称（不含 `#`）。
+    `#`、话题之间的空格、段落换行怎么计没有拆开核对，不加进估计，所以这是下限。
+    """
+    limit = spec["description_max"]
+    if not spec.get("counter_includes_topics") or limit is None or not topics:
+        return []
+    names = [t.lstrip("#").strip() for t in topics]
+    topic_chars = sum(len(n) for n in names)
+    body_chars = len(re.sub(r"[\r\n]", "", text))   # 段落换行不计入下限
+    floor = body_chars + topic_chars
+    if floor <= limit:
+        return []
+    return [{
+        "level": "warn",
+        "code": "description_with_topics_over_limit",
+        "message": (
+            f"正文 {body_chars} 字（不算换行），加上 {len(names)} 个话题的名称 {topic_chars} 字后，"
+            f"页面计数器至少 {floor} 字，超过 {limit} 字上限（计数器会算上话题文本，"
+            "`#`、空格和换行另计，这只是下限）。先删正文或减话题，填完以页面计数器为准"
+        ),
+        "estimate_floor": floor,
+        "limit": limit,
+    }]
+
+
 def check_topics(topics: list[str], spec: dict[str, Any]) -> list[dict]:
     label = spec["topic_label"]
     findings: list[dict] = []
@@ -430,10 +499,11 @@ def check_topics(topics: list[str], spec: dict[str, Any]) -> list[dict]:
 
     hard = spec["topic_max"]
     if hard is not None and len(topics) > hard:
+        note = spec.get("topic_max_note")
         findings.append({
             "level": "error",
             "code": "topics_too_many",
-            "message": f"{label} {len(topics)} 个，超过平台 {hard} 个上限",
+            "message": f"{label} {len(topics)} 个，超过平台 {hard} 个上限" + (f"。{note}" if note else ""),
             "actual": len(topics),
             "limit": hard,
         })
@@ -445,7 +515,7 @@ def check_topics(topics: list[str], spec: dict[str, Any]) -> list[dict]:
             "code": "topics_many",
             "message": (
                 f"{label} {len(topics)} 个，超过建议的 {soft} 个。"
-                "这是经验值，平台未在页面上给出硬上限"
+                "这是 description-template 的建议上限，平台未在页面上给出硬上限"
             ),
         })
 
@@ -484,7 +554,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--platform", choices=sorted(PLATFORMS), default=DEFAULT_PLATFORM,
                    help=f"目标平台，决定全部限制（默认 {DEFAULT_PLATFORM}）")
     p.add_argument("--short-title", default=None,
-                   help="视频号短标题，≤16 字且禁用逗号")
+                   help="视频号短标题，6–16 字且禁用逗号")
     p.add_argument("--title", default=None,
                    help="稿件标题：B 站 ≤80 字，小红书 ≤20 字")
     p.add_argument("--description", default=None,
@@ -519,6 +589,12 @@ def main(argv: list[str] | None = None) -> int:
         checked.append(field)
         findings += [{**f, "field": field} for f in run(value)]
 
+    if args.description is not None and args.topics:
+        findings += [
+            {**f, "field": "description"}
+            for f in check_description_with_topics(args.description, args.topics, spec)
+        ]
+
     if not checked:
         print("未传入任何字段；至少给一个 --short-title / --title / "
               "--description / --topic / --collection",
@@ -533,6 +609,7 @@ def main(argv: list[str] | None = None) -> int:
 
     limits = {
         "short_title_max": spec["short_title_max"],
+        "short_title_min": spec["short_title_min"],
         "title_max": spec["title_max"],
         "description_max": spec["description_max"],
         "collection_max": spec["collection_max"],

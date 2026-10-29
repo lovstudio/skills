@@ -14,7 +14,7 @@ depends_on:
   - lov-skill-pricing
 metadata:
   author: contributors
-  version: "0.8.0"
+  version: "0.8.1"
   tags:
     - skill-publisher
     - release
@@ -99,7 +99,10 @@ python3 "$SKILL_DIR/scripts/validate_skill.py" SOURCE --target source
 ```
 
 Check that source has no platform metadata directory or generated release
-artifacts. Record name, version, description, modules, dependencies, git state,
+artifacts. The source target fails when `skill.yaml`, `skill-card.yaml`, or
+`pricing-card.yaml` declares a `version` other than `SKILL.md`
+`metadata.version`; sync the stale file before tagging, because the catalog
+`version` and the `v{version}` download tag follow that value. Record name, version, description, modules, dependencies, git state,
 and whether a remote already exists.
 
 ### Step 2: Auto-price the Skill

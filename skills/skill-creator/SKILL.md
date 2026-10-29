@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "4.6.6"
+  version: "4.6.7"
   content_class: deterministic-output
   tags:
     - skill-creator
@@ -313,6 +313,9 @@ Write the source as instructions for an agent, not as notes about this chat:
 - Keep `SKILL.md` below 500 lines; move detail to relevant references.
 - Put `compatibility` and `depends_on` at the top level. Keep version, tags,
   card standard, and package-only runtime metadata under `metadata`.
+- `metadata.version` is the single version source: `skill.yaml`,
+  `skill-card.yaml`, and `pricing-card.yaml` must carry the same `version`
+  whenever they declare one; bump all of them together.
 - Keep the NVIDIA-compatible required card fields intact, then add LovStudio's
   user case, dimension map, pricing basis, and distribution fields.
 - Keep external Skills optional unless they are embedded Kit modules; expose

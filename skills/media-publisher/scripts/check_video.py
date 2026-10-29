@@ -8,7 +8,8 @@
     python3 check_video.py 片子.mp4 --platform bilibili --expected-orientation horizontal --json
     python3 check_video.py 片子.mp4 --platform xiaohongshu --expected-orientation vertical --json
 
-`--max-gb` / `--max-hours` 仍可覆盖，用于页面显示了灰度放宽时（视频号 20 GiB / 8 小时）。
+`--max-gb` / `--max-hours` 仍可覆盖，用于页面显示了灰度放宽时（视频号页面写「上传时长8小时内，大小不超过20GB」，
+按十进制折成 `--max-gb 18.6 --max-hours 8`）。
 建议项（编码、分辨率、帧率、音频）各平台共用，都只报 warning。容器和码率按平台取：
 视频号建议 MP4、≤ 10 Mbps；B 站投稿页推荐 MP4 / MOV / MKV，没有码率上限且会对每条投稿
 重新转码，码率只在 `notes` 里给一条 info 提示，不报 warning，不要为它重压；小红书上传页
@@ -56,8 +57,9 @@ PLATFORMS: Dict[str, Dict[str, Any]] = {
         # 推荐容器：扩展名 → ffprobe format_name 里应出现的 demuxer 名。
         "containers": {".mp4": "mp4"},
         "container_issue": "container_not_mp4",
-        # 官方前端 chunk-common 常量；enablePost20gVideo 开启时为 20 GiB / 8 小时，
-        # 只有页面明确显示放宽文案时才用 --max-gb 20 --max-hours 8 覆盖。
+        # 官方前端 chunk-common 常量；enablePost20gVideo 开启时为 20 GiB / 8 小时。
+        # 页面放宽文案原文「上传时长8小时内，大小不超过20GB」（2026-10-12），按 B 站、小红书同一口径
+        # 折成十进制下限，用 --max-gb 18.6 --max-hours 8 覆盖。
         "source": "视频号助手官方前端常量（2026-08-11 读取）",
     },
     "bilibili": {

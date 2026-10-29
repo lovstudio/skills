@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1] - 2026-10-29
+
+### Fixed
+
+- validate_skill.py `--target source` fails when `skill.yaml`, `skill-card.yaml`, or `pricing-card.yaml` declares a `version` different from `SKILL.md` `metadata.version`, listing every file's value; lov-koubo-media-creator 0.2.0 was tagged with `skill.yaml` still at 0.1.0 while this gate passed.
+- Step 1 explains the check and why the stale file must be synced before tagging.
+
 ## [0.8.0] - 2026-10-04
 
 ### Changed

@@ -1,9 +1,10 @@
 # Skill 精修师 · Skill Refiner
 
-![Version](https://img.shields.io/badge/version-0.13.3-CC785C)
+![Version](https://img.shields.io/badge/version-0.13.4-CC785C)
 
 自动审计并优化 Agent Skill：按当前对话优先修复问题，统一 README、SKILL.md、
-`skill.yaml` 与 CHANGELOG 版本，然后核对规范源、安装副本和 catalog 的同步状态。
+`skill.yaml`、`skill-card.yaml`、`pricing-card.yaml` 与 CHANGELOG 版本（卡片只改
+`version`，不动价格），然后核对规范源、安装副本和 catalog 的同步状态。
 支持独立 Skill 目录、嵌套仓库和已安装副本，不把未发现的位置当成已同步。
 付费 Skill 仓库会审计 `src/SKILL.md`，同步时只使用 `public/` 加密分发载荷，避免把
 明文规范误装到用户目录。

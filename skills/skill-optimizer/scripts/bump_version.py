@@ -2,8 +2,10 @@
 """
 Bump an Agent Skill's version and append a CHANGELOG entry.
 
-README.md, SKILL.md frontmatter, and skill.yaml are treated as one version set
-and are kept in sync when present. Use --path for a standalone or installed
+README.md, SKILL.md frontmatter, skill.yaml, skill-card.yaml and
+pricing-card.yaml are treated as one version set and are kept in sync when
+present. A card only moves when it already declares a top-level `version`;
+its other fields (such as prices) are never touched. Use --path for a standalone or installed
 skill; no particular repository layout is required.
 
 Usage:
@@ -34,6 +36,8 @@ BADGE_RE = re.compile(
 )
 FM_VERSION_RE = re.compile(r'(?m)^(\s*version:\s*["\']?)(\d+\.\d+\.\d+)(["\']?\s*)$')
 MANIFEST_VERSION_RE = re.compile(r'(?m)^(version:\s*["\']?)(\d+\.\d+\.\d+)(["\']?\s*)$')
+# The catalog, website and publisher gate read these cards' top-level version.
+CARD_FILES = ("skill-card.yaml", "pricing-card.yaml")
 
 
 def canonical_skill_md(skill_dir: Path) -> Path:
@@ -116,11 +120,12 @@ def read_version_sources(skill_dir: Path) -> dict[str, str]:
         if match:
             versions["public/SKILL.md"] = match.group(2)
 
-    manifest = skill_dir / "skill.yaml"
-    if manifest.exists():
-        match = MANIFEST_VERSION_RE.search(manifest.read_text(encoding="utf-8", errors="replace"))
-        if match:
-            versions["skill.yaml"] = match.group(2)
+    for name in ("skill.yaml", *CARD_FILES):
+        path = skill_dir / name
+        if path.exists():
+            match = MANIFEST_VERSION_RE.search(path.read_text(encoding="utf-8", errors="replace"))
+            if match:
+                versions[name] = match.group(2)
     return versions
 
 
@@ -190,8 +195,8 @@ def update_markdown_versions(path: Path, new_version: str, dry: bool) -> bool:
     return new_text != text
 
 
-def update_manifest_version(skill_dir: Path, new_version: str, dry: bool) -> bool:
-    manifest = skill_dir / "skill.yaml"
+def update_manifest_version(skill_dir: Path, new_version: str, dry: bool, name: str = "skill.yaml") -> bool:
+    manifest = skill_dir / name
     if not manifest.exists():
         return False
     text = manifest.read_text(encoding="utf-8")
@@ -299,8 +304,9 @@ def main():
     public_skill = skill_dir / "public" / "SKILL.md"
     if update_markdown_versions(public_skill, new_version, args.dry_run):
         changed.append("public/SKILL.md")
-    if update_manifest_version(skill_dir, new_version, args.dry_run):
-        changed.append("skill.yaml")
+    for name in ("skill.yaml", *CARD_FILES):
+        if update_manifest_version(skill_dir, new_version, args.dry_run, name):
+            changed.append(name)
     update_changelog(skill_dir, new_version, args.message, args.change, kind, args.dry_run)
     changed.append("CHANGELOG.md")
 
