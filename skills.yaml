@@ -2740,7 +2740,7 @@ skills:
     card_path: pricing-cards/media-creator.md
 - name: media-publisher
   runtime_name: lov-media-publisher
-  updated_at: 2026-09-27 13:32:13+00:00
+  updated_at: '2026-10-29T09:21:40Z'
   display_name: Video Publisher
   repo: lovstudio/media-publisher-skill
   name_zh: 视频分发助手
@@ -2754,13 +2754,13 @@ skills:
   - media-creator
   - motion-media-creator
   - motivational-media-creator
-  version: 0.9.2
-  description: Publish videos to WeChat Channels or Bilibili with media preflight,
-    frozen user-edited descriptions, cover gates, final confirmation, and post-submit
-    status readback.
-  tagline_en: Preserve the user's final copy while publishing to WeChat Channels or
-    Bilibili with cover, confirmation, and status gates.
-  tagline_zh: 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。
+  version: 0.15.0
+  description: Publish videos to WeChat Channels, Bilibili, or Xiaohongshu with
+    preflight, frozen user-edited copy, cover gates, final confirmation, and status
+    readback.
+  tagline_en: Preserve the user's final copy while publishing to WeChat Channels,
+    Bilibili, or Xiaohongshu with cover, confirmation, and status gates.
+  tagline_zh: 发布视频号、B 站或小红书时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。
   pricing:
     model: free_entry
     visibility: public
@@ -2771,9 +2771,9 @@ skills:
     - 0
     delivery_unit_zh: 公开 Skill 源码与当前版本说明
     delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 发布视频号或 B 站时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。
-    value_en: Preserve the user's final copy while publishing to WeChat Channels or
-      Bilibili with cover, confirmation, and status gates.
+    value_zh: 发布视频号、B 站或小红书时冻结用户终稿，逐项核验封面与字段，经确认后再提交并回读状态。
+    value_en: Preserve the user's final copy while publishing to WeChat Channels,
+      Bilibili, or Xiaohongshu with cover, confirmation, and status gates.
     anchor_zh: 减少重复填写、封面裁切检查、用户定稿覆盖和重复提交排查；节省时长仍待对照验证。
     anchor_en: Reduce repeated field entry, cover-crop checks, final-copy overwrite,
       and duplicate-submit diagnosis; time savings still need controlled measurement.
@@ -2785,9 +2785,9 @@ skills:
     boundary_en: Requires an already logged-in creator console and local video; account
       access, platform review, network reachability, media rights, and final submit
       confirmation follow actual conditions.
-    maintenance_zh: 随视频号与 B 站页面结构、平台规则、浏览器行为和媒体格式变化复评。
-    maintenance_en: Review when WeChat Channels or Bilibili UI, platform rules, browser
-      behavior, or media formats change.
+    maintenance_zh: 随视频号、B 站与小红书页面结构、平台规则、浏览器行为和媒体格式变化复评。
+    maintenance_en: Review when WeChat Channels, Bilibili, or Xiaohongshu UI, platform
+      rules, browser behavior, or media formats change.
     confidence: entry
     review_trigger_zh: 版本变化、累计 10 次经平台回读的完整发布，或平台页面与支持成本明显变化时复评。
     review_trigger_en: Review after a version change, 10 complete publications verified
