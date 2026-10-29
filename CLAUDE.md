@@ -25,12 +25,15 @@ For a free skill with a private source, the mirror is therefore its only public 
 ├── scripts/sync-runtime-names.py      # Syncs runtime_name from mirrored SKILL.md frontmatter
 ├── scripts/render-marketplace.py     # Regenerates marketplace.json from skills.yaml
 ├── scripts/render-readme.py          # Regenerates README skill table from skills.yaml
+├── scripts/mirror-catalog-cn.py      # CI-only: uploads skills.yaml to the lovstudio.cn OSS mirror
 ├── CHANGELOG.md                      # Index repo history (not per-skill)
 ├── LICENSE                           # MIT (for this index; each skill has its own LICENSE)
-└── .github/workflows/                # render-readme.yml runs sync → render-marketplace → render-readme
+└── .github/workflows/                # render-readme.yml runs sync → render-marketplace → render-readme → mirror-cn
 ```
 
 **Edit `skills.yaml`, not the README table or marketplace.json.** Free mirrors under `skills/` are distribution outputs. CI regenerates the catalog and free mirrors on push and nightly. You can preview locally with `SKILLS_CLONE_PROTOCOL=ssh python3 scripts/sync-skills.py && python3 scripts/render-marketplace.py && python3 scripts/render-readme.py` (SSH lets the sync clone private sources with your own key).
+
+**lovstudio.cn reads the catalog from Aliyun OSS, not GitHub.** The `mirror-cn` job uploads `main`'s `skills.yaml` to `lovstudio-downloads/catalogs/skills.yaml` after every render (push and nightly) and checks the anonymous copy's SHA-256. It assumes an Aliyun RAM role through GitHub OIDC, so no AccessKey is stored here; the role only trusts this repo's `main` and may only put that one object. It needs the repo variables `ALIYUN_CATALOG_MIRROR_ROLE_ARN` and `ALIYUN_GITHUB_OIDC_PROVIDER_ARN` and is skipped without them. Every run re-uploads on purpose: the site treats a mirror whose Last-Modified is older than 48 hours as stale and reads GitHub first. If the job fails at the credentials step after GitHub changes its OIDC certificate chain, add the new fingerprint to the Aliyun OIDC provider (runbook: lovstudio-home `docs/deploy-lovstudio-cn.md`).
 
 ## Source Visibility and the Mirror
 

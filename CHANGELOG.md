@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 — 2026-10-29
+
+- CI mirrors `skills.yaml` to the Aliyun OSS object lovstudio.cn reads (`lovstudio-downloads/catalogs/skills.yaml`) after every catalog push and nightly. The new `mirror-cn` job assumes a RAM role through GitHub OIDC that may only put that object, validates the catalog against the site's rules first, and fails unless the anonymous public copy matches `skills.yaml` by SHA-256. Each run re-uploads so the object's Last-Modified doubles as a heartbeat; the site reads GitHub first once the copy is more than 48 hours old.
+
 ## 1.1.0 — 2026-10-04
 
 - Paid Skills are no longer encrypted: paying only controls who can download a Skill. Remove the 14 encrypted bundles from `skills/`, the `encrypted_bundle` / `public_source` fields, and `scripts/republish-paid.sh`; lovstudio.ai now serves owners a download of the private source repo.
