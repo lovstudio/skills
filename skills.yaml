@@ -2939,7 +2939,7 @@ skills:
     card_path: pricing-cards/repo2docs.md
 - name: wdb-cli
   runtime_name: lov-wdb-cli
-  updated_at: '2026-09-23T13:30:00Z'
+  updated_at: '2026-10-29T17:51:38Z'
   skillpay_product_id: P0806000201803813
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt_Qi
   skillpay_review_product_id: P0806000201871143
@@ -2950,7 +2950,7 @@ skills:
   price_credits: 280
   category: General
   skill_path: ''
-  version: 0.5.4
+  version: 0.6.2
   description: Prepare local WeChat keys, then query isolated DB+WAL copies while
     preserving exact record identity without opening the live database with SQLite
     or SQLCipher.
