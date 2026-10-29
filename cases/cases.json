@@ -4200,6 +4200,7 @@
       "cases/assets/koubo-short-topic-to-short-2026-10/3.jpg",
       "cases/assets/koubo-short-topic-to-short-2026-10/4.jpg"
     ],
+    "video": "https://raw.githubusercontent.com/lovstudio/skills/main/cases/assets/koubo-short-topic-to-short-2026-10/sample.mp4",
     "evidence": {
       "acceptance": "user-confirmed",
       "verified_at": "2026-10-29",
