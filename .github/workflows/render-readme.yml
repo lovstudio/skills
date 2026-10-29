@@ -10,6 +10,7 @@ on:
       - "scripts/sync-skills.py"
       - "scripts/skill_display_names.py"
       - "scripts/sync-runtime-names.py"
+      - "scripts/mirror-catalog-cn.py"
       - "module-display-names.yaml"
       - "README.md"
       - "README.en.md"
@@ -92,3 +93,37 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: auto-sync skills mirror + re-render index"
           git push
+
+  mirror-cn:
+    # lovstudio.cn reads skills.yaml from Aliyun OSS. Upload main's copy after every
+    # render, even when it did not change: the site treats the object's
+    # Last-Modified as this job's heartbeat.
+    needs: render
+    if: ${{ !cancelled() && github.ref == 'refs/heads/main' && vars.ALIYUN_CATALOG_MIRROR_ROLE_ARN != '' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Pick up the commit the render job may have just pushed.
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install pyyaml==6.0.3 alibabacloud-oss-v2==1.4.0
+
+      - name: Assume the catalog mirror role (GitHub OIDC, no stored keys)
+        uses: aliyun/configure-aliyun-credentials-action@1e5248c8d5d93a8781ac344a68e19a43341e79e6 # v1.1.0
+        with:
+          role-to-assume: ${{ vars.ALIYUN_CATALOG_MIRROR_ROLE_ARN }}
+          oidc-provider-arn: ${{ vars.ALIYUN_GITHUB_OIDC_PROVIDER_ARN }}
+          role-session-name: skills-catalog-mirror
+          role-session-expiration: 900
+
+      - name: Upload skills.yaml and verify the public copy
+        run: python3 scripts/mirror-catalog-cn.py --apply
