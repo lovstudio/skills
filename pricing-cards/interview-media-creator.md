@@ -1,6 +1,6 @@
 # 采访短片 · Pricing Card
 
-版本：0.3.0（目录 ID `interview-media-creator`、调用 ID `lov-interview-media-creator`）。包含在 Lovstudio.AI VIP 会员全套权益中，不单独定价、不兑换 Credits；会员价格以当前会员方案为准。源码私有，会员账号按版本下载完整文件。
+版本：0.5.0（目录 ID `interview-media-creator`、调用 ID `lov-interview-media-creator`）。包含在 Lovstudio.AI VIP 会员全套权益中，不单独定价、不兑换 Credits；会员价格以当前会员方案为准。源码私有，会员账号按版本下载完整文件。
 
 把一场手机采访录像（可加聊天记录、本人自述、公众号与现场照片）剪成 2–4 分钟的视频号竖版短片：被访者原话做冷开场，重排成约 5 章，提问卡与回答大字幕分开，人名条、讲解图形、按内容生成的配乐、合影与官方 Logo 收尾，封面 A/B 加一张 4:3 分享卡，审片版、字幕、发布文案与交付报告一次交付。适合活动或拜访中用手机拍了单人采访、想当天发出去的创作者。
 
