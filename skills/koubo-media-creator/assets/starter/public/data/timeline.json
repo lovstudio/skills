@@ -1,0 +1,3 @@
+{"schema": "talking-head-timeline/v1", "fps": 30, "width": 1080, "height": 1920, "durationInFrames": 1, "speechFrames": 0,
+ "presenter": {"kind": "image", "src": "img/placeholder.png", "faceY": 0.33}, "audio": "audio/silence.wav", "watermark": "",
+ "captions": [], "shots": [], "end": {"from": 0, "frames": 1, "name": "", "handle": "", "line": "", "avatar": null, "covers": []}, "title": ""}

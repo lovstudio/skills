@@ -2630,10 +2630,9 @@ skills:
   display_name: Talking-head Short
   repo: lovstudio/koubo-media-creator-skill
   name_zh: 口播短片
-  paid: true
-  price_credits: 1394
+  paid: false
   category: Video Creation
-  version: 0.2.1
+  version: 0.3.1
   description: "Talking-head Short: turn a topic into a vertical AI-tools talking-head
     short — sourced facts, gated script, teleprompter, on-screen evidence and covers;
     after the author records one take, auto-pick the last good read of each line and
@@ -2643,15 +2642,15 @@ skills:
     you.
   tagline_zh: 给一个主题，口播稿、提词器、上屏证据与封面全备好；你照提词器录一条，它自动挑出念对的那一遍，剪成上素材下出镜的竖版成片。
   pricing:
-    model: one_time
+    model: free_entry
     visibility: public
-    list_price_credits: 1394
-    launch_price_credits: 1394
+    list_price_credits: 0
+    launch_price_credits: 0
     price_range_credits:
-    - 1394
-    - 2099
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的片型语法、脚本门禁、提词器、证据截图、录音对齐、竖版起步工程、封面与质检脚本
-    delivery_unit_en: A single Skill delivered in full, with the current film grammar,
+    - 0
+    - 0
+    delivery_unit_zh: 以 MIT 协议开源的完整 Skill，含片型语法、脚本门禁、提词器、证据截图、录音对齐、竖版起步工程、封面与质检脚本
+    delivery_unit_en: The full Skill, open-sourced under MIT, with the film grammar,
       script gates, teleprompter, evidence capture, recording alignment, a vertical
       starter project, covers and QC scripts
     value_zh: 输入一个主题，得到过门禁的口播脚本、提词器、上屏证据与封面；录完一条口播后自动剪成带字幕、红框与配乐的竖版成片。
@@ -2662,25 +2661,25 @@ skills:
     anchor_en: Each talking-head video conservatively saves 3–6 hours of scripting
       and fact-checking, evidence and shot planning, editing, captions and covers; outsourced
       edits of this kind are usually priced per video.
-    basis_zh: 1,394 Credits 是完整片型方法与起步工程的一次性价格，与同系列视频制作 Skill 一致；目前只有一条占位配音的样片，真人成片案例积累后复评。不是代剪或代制作报价。
-    basis_en: 1,394 Credits is the one-time price for the full film method and starter
-      project, in line with the series' other video Skills; the only case so far is
-      a stand-in-voice preview, and the price is reviewed once real recorded films
-      exist. It is not a quote for editing or production services.
-    boundary_zh: 覆盖选题与事实台账、片型脚本与门禁、提词器、证据截图、录音对齐与切点、竖版成片模板、封面与交付质检；作者需自己出镜，数字人或声音克隆、他人素材授权、TTS 与 AI 配乐等第三方服务费用、字体商用授权、人工代剪与代发布另计。
+    basis_zh: 作者于 2026-10-30 决定以 MIT 协议开源、免费提供，价格由作者决定而非评分推导；六维加权 2.73/5，开源后复制与渠道可控性记 0。目前只有一条占位配音的样片。
+    basis_en: The author open-sourced the Skill under MIT on 2026-10-30 and offers it
+      free; the price is the author's decision rather than a score-derived figure. The
+      six-dimension judgment is 2.73/5, with copy and channel control at 0 after open-sourcing.
+      The only case so far is a stand-in-voice preview.
+    boundary_zh: 覆盖选题与事实台账、片型脚本与门禁、提词器、证据截图、录音对齐与切点、竖版成片模板、封面与交付质检；作者需自己出镜，数字人或声音克隆、他人素材授权、TTS 与 AI 配乐等第三方服务费用、字体商用授权、人工代剪与代发布不包含在内。
     boundary_en: Covers topic and fact ledger, gated scripts, teleprompter, evidence
       capture, recording alignment and cuts, the vertical film template, covers and
       delivery QC; the author appears on camera themself. Digital humans or voice
       cloning, third-party footage rights, TTS and AI music fees, font licensing, manual
       editing and publishing are not included.
-    maintenance_zh: 随视频渲染与转写工具主版本、平台竖版安全区与交付规范，以及真实使用反馈复评。
-    maintenance_en: Review when the rendering and transcription toolchain changes major
-      versions, when platform safe areas or delivery rules change, or on real-use feedback.
+    maintenance_zh: 随视频渲染与转写工具主版本、平台竖版安全区与交付规范，以及真实使用反馈维护，不承诺付费支持时效。
+    maintenance_en: Maintained against rendering and transcription toolchain major versions,
+      platform safe areas and delivery rules, and real-use feedback, without a paid support
+      SLA.
     confidence: low
-    review_trigger_zh: 第 3 条真人录制成片发布、首发 30 天、10 次真实使用、版本大改或单买家支持成本明显变化时复评。
-    review_trigger_en: Review after the third real recorded film is published, 30 days
-      after launch, 10 real uses, a major version change, or a clear change in per-buyer
-      support cost.
+    review_trigger_zh: 不再按付费能力复评；版本大改或维护成本明显变化时复查。
+    review_trigger_en: No paid-tier review is planned; revisit on a major version change
+      or a clear rise in maintenance cost.
     card_path: pricing-cards/koubo-media-creator.md
 - name: media-creator
   runtime_name: lov-media-creator

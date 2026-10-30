@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **229 skills** — 207 Free + 22 Paid.
+> **229 skills** — 208 Free + 21 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -264,7 +264,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [3D Motion Atlas](https://github.com/lovstudio/3d-motion-media-creator-skill) (`3d-motion-media-creator`) | Create chapter-based 3D process, product breakdown and scale films alongside clearly labeled real-world references. — requires: `branding-consistency`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Shrink](https://github.com/lovstudio/compress-video-skill) (`compress-video`) | Shrink a video as far as possible without visible quality loss, with quality presets, size targets and VMAF gates. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Interview Short](https://github.com/lovstudio/interview-media-creator-skill) (`interview-media-creator`) | Turn one phone interview into a 2–4 minute vertical short that opens on the guest's own words, with chapters, question cards, captions, music and A/B covers. — requires: `branding-consistency`, `media-creator`; related: `koubo-media-creator`, `media-creator`, `media-publisher`, `motion-media-creator` |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Talking-head Short](https://github.com/lovstudio/koubo-media-creator-skill) (`koubo-media-creator`) | Give it a topic and get the script, teleprompter, on-screen evidence and covers for a vertical talking-head short; record one take and it cuts the film for you. — requires: `branding-consistency`; related: `interview-media-creator`, `media-publisher` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Talking-head Short](https://github.com/lovstudio/koubo-media-creator-skill) (`koubo-media-creator`) | Give it a topic and get the script, teleprompter, on-screen evidence and covers for a vertical talking-head short; record one take and it cuts the film for you. — requires: `branding-consistency`; related: `interview-media-creator`, `media-publisher` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Laozhang Psychology Style Video](https://github.com/lovstudio/laozhang-style-media-creator-skill) (`laozhang-style-media-creator`) | Turn a new topic into original narration, storyboards and an edit plan using a traceable reference style, without copying the author's identity. — requires: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Video Studio](https://github.com/lovstudio/media-creator-skill) (`media-creator`) | Turn recordings and Screen Studio projects into reviewable video, then deliver approved horizontal and vertical videos, covers, and quality reports. — requires: `branding-consistency`; related: `interview-media-creator`, `media-publisher`, `motion-media-creator`, `motivational-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Prep](https://github.com/lovstudio/media-preprocessor-skill) (`media-preprocessor`) | Enhance long recordings and organize useful segments with verified source timecodes. — requires: `branding-consistency` |

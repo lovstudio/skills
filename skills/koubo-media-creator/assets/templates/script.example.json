@@ -1,0 +1,72 @@
+{
+  "schema": "talking-head-script/v1",
+  "topic": "用 Codex 自带的终端同时跑 Claude Code",
+  "format": "tips",
+  "title": "20 秒看懂：在 Codex 里用上 Claude Code",
+  "author": {
+    "name": "作者名",
+    "handle": "账号名",
+    "avatar": "brand/avatar.png",
+    "portrait": "brand/portrait.jpg"
+  },
+  "cover": {
+    "headline": ["Codex里", "用上Claude"],
+    "accent": [1],
+    "tag": "20 秒学会",
+    "expression": "张嘴惊讶，右手食指指向左上方标题",
+    "cutout": "cover/cutout.png",
+    "cards": ["broll/terminal.png"]
+  },
+  "facts": [
+    {
+      "id": "F1",
+      "claim": "Codex 桌面端侧边栏有终端入口",
+      "source": "作者本机实测截图 broll/sidebar.png",
+      "checked": "2026-10-28"
+    }
+  ],
+  "lines": [
+    {
+      "id": "L01",
+      "beat": "hook",
+      "text": "在 Codex 点开侧边栏，选终端，输入 claude。",
+      "layout": "split",
+      "broll": [
+        {
+          "src": "broll/sidebar.png",
+          "boxes": [[0.08, 0.30, 0.40, 0.08]],
+          "focus": [0.0, 0.2, 0.7, 0.5],
+          "capture": { "note": "作者录屏：点开侧边栏 → 终端 → 输入 claude" }
+        }
+      ],
+      "emphasis": ["终端", "claude"],
+      "facts": ["F1"]
+    },
+    {
+      "id": "L02",
+      "beat": "setup",
+      "text": "恭喜你，现在两个 Agent 共用一套文件了。那怎么分工呢？",
+      "layout": "face",
+      "callout": "怎么分工？",
+      "emphasis": ["分工"]
+    },
+    {
+      "id": "L03",
+      "beat": "point",
+      "text": "先让 Codex 从零搭出项目骨架。",
+      "layout": "split",
+      "broll": [{ "src": "broll/scaffold.png", "label": "第一步" }],
+      "emphasis": ["从零"]
+    },
+    {
+      "id": "L04",
+      "beat": "cta",
+      "text": "你学会了吗？",
+      "layout": "face"
+    }
+  ],
+  "end": {
+    "line": "关注我，带你把 AI 用进真实工作流",
+    "covers": []
+  }
+}

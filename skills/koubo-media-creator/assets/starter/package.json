@@ -1,0 +1,22 @@
+{
+  "name": "talking-head-short",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@remotion/bundler": "4.0.517",
+    "@remotion/cli": "4.0.517",
+    "@remotion/renderer": "4.0.517",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.517"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "studio": "remotion studio src/index.ts --no-open --port 3240",
+    "check": "tsc --noEmit"
+  }
+}

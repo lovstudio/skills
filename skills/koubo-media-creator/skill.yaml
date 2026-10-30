@@ -1,0 +1,85 @@
+schema: skill-manifest/v1
+id: lov-koubo-media-creator
+version: "0.3.1"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-koubo-media-creator
+    persist:
+      enabled: true
+      namespace: skills.lov-koubo-media-creator
+      records_path: skills.lov-koubo-media-creator.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要用户身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要品牌身份，请提供品牌名称。
+      - path: brand.site
+        required: false
+        question: 如果需要品牌官网，请提供地址。
+      - path: brand.tone
+        required: false
+        question: 如果已有品牌语气或审美关键词，请提供它们。
+      - path: brand.logo
+        required: false
+        question: 水印、片尾与封面用哪一个官方 Logo 文件（浅色、透明底，适合深色画面）？
+      - path: brand.avatar
+        required: false
+        question: 片尾关注卡用哪张头像？
+      - path: brand.portrait
+        required: false
+        question: 样片占位用哪张形象照（会按原尺寸显示，不放大）？
+      - path: skills.lov-koubo-media-creator.records.handle
+        required: false
+        question: 水印和片尾显示的账号名是什么？
+      - path: skills.lov-koubo-media-creator.records.end_line
+        required: false
+        question: 片尾关注卡上的一句话是什么？
+      - path: skills.lov-koubo-media-creator.records.default_format
+        required: false
+        question: 默认片型是哪一种（list / tips / review / tier / case）？
+      - path: skills.lov-koubo-media-creator.records.asr
+        required: false
+        question: 口播转写默认用哪个 ASR（本机 Whisper，或给出能产出逐字时间戳的云端通道）？
+      - path: skills.lov-koubo-media-creator.records.tts_speaker
+        required: false
+        question: 样片占位配音用哪个音色（Seed-TTS speaker id）？
+      - path: skills.lov-koubo-media-creator.records.naming
+        required: false
+        question: 交付文件按什么规则命名（例如 作者-主题-YYYY-MM-DD-v0.x）？
+      - path: workspace.output_dir
+        required: false
+        question: 每一集的工程目录放在哪里？
+  preferences:
+    namespace: lov_koubo_media_creator
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

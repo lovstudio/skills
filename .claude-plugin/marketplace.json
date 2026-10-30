@@ -274,12 +274,13 @@
     {
       "name": "video-creation",
       "source": "./",
-      "description": "Video Creation — 11 free skills bundled together.",
+      "description": "Video Creation — 12 free skills bundled together.",
       "category": "Video Creation",
       "skills": [
         "./skills/video-chapter",
-        "./skills/media-publisher",
+        "./skills/koubo-media-creator",
         "./skills/branding-consistency",
+        "./skills/media-publisher",
         "./skills/publish-wechat-channels",
         "./skills/migrate-camera-media",
         "./skills/video-moments",

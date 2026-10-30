@@ -1,0 +1,24 @@
+[
+  {
+    "id": "koubo-short-topic-to-short-2026-10",
+    "type": "case",
+    "title": "一个主题跑通口播短片样片（2026-10-28）",
+    "description": "作者给出一位 AI 工具口播博主的主页截图，要求「输入一个主题，基于 Agent，输出符合他风格与质量的短视频」，并选择自己出镜录口播。先从该博主 B 站近 30 条作品、7 条代表作的转写与接触表量出片型语法；再以本 Skill 的发布片为主题，跑通脚本、提词器、证据、对齐、成片、封面与质检。出镜与配音用占位，等待作者录制。",
+    "input": {
+      "items": [
+        "主题：给 Agent 一个主题，它把口播短片的前期全部备好",
+        "作者品牌资产：头像、形象照（391 px）、浅色官方 Logo",
+        "一条含 L03、L09 两处故意念错重读的 Seed-TTS 合成录音（47.3 秒，用于对齐回归）"
+      ]
+    },
+    "prompt": "复刻该博主（输入一个主题，基于 agent，输出符合它风格与质量的短视频）；出镜方式：作者自己录口播。",
+    "output": {
+      "items": [
+        "work/script.json：12 句 tips 片型脚本，check_script 0 ERROR、估时 37 秒、素材覆盖 68%",
+        "deliverables/teleprompter.html、script.md、shotlist.md",
+        "work/takes.json：两处重读均选中后一遍，12 句切点误差 ≤ 0.09 秒",
+        "deliverables/v0.2：40.7 秒 1080×1920 样片、3:4 与 16:9 封面；qc/report-v0.2.json 全部通过（−16.0 LUFS、−1.5 dBTP、吃字率 0%）"
+      ]
+    }
+  }
+]

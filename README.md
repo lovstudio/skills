@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **229 个技能** — 207 个免费 + 22 个付费。
+> **229 个技能** — 208 个免费 + 21 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -263,7 +263,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [3D Motion Atlas](https://github.com/lovstudio/3d-motion-media-creator-skill) (`3d-motion-media-creator`) | [三维图志](https://github.com/lovstudio/3d-motion-media-creator-skill) | 没有实拍也能把工序、产品构造与尺度做成三维分章短片，示意画面与真实资料清楚并置。 — 依赖: `branding-consistency`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Shrink](https://github.com/lovstudio/compress-video-skill) (`compress-video`) | [视频瘦身](https://github.com/lovstudio/compress-video-skill) | 把指定视频压到尽可能小且画质不明显下降：默认HEVCCRF28保留分辨率，可选质量档、目标体积、VMAF画质门禁与替换原文件模式 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Interview Short](https://github.com/lovstudio/interview-media-creator-skill) (`interview-media-creator`) | [采访短片](https://github.com/lovstudio/interview-media-creator-skill) | 把一场手机采访剪成 2–4 分钟的视频号竖版短片：被访者原话冷开场、5 章重排、提问卡与大字幕、人名条、配乐与封面 A/B 一次交付。 — 依赖: `branding-consistency`, `media-creator`; 相关: `koubo-media-creator`, `media-creator`, `media-publisher`, `motion-media-creator` |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Talking-head Short](https://github.com/lovstudio/koubo-media-creator-skill) (`koubo-media-creator`) | [口播短片](https://github.com/lovstudio/koubo-media-creator-skill) | 给一个主题，口播稿、提词器、上屏证据与封面全备好；你照提词器录一条，它自动挑出念对的那一遍，剪成上素材下出镜的竖版成片。 — 依赖: `branding-consistency`; 相关: `interview-media-creator`, `media-publisher` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Talking-head Short](https://github.com/lovstudio/koubo-media-creator-skill) (`koubo-media-creator`) | [口播短片](https://github.com/lovstudio/koubo-media-creator-skill) | 给一个主题，口播稿、提词器、上屏证据与封面全备好；你照提词器录一条，它自动挑出念对的那一遍，剪成上素材下出镜的竖版成片。 — 依赖: `branding-consistency`; 相关: `interview-media-creator`, `media-publisher` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Laozhang Psychology Style Video](https://github.com/lovstudio/laozhang-style-media-creator-skill) (`laozhang-style-media-creator`) | [老张心理风格短视频](https://github.com/lovstudio/laozhang-style-media-creator-skill) | 用可追溯的参考风格，把新选题写成原创口播、分镜和剪辑计划，不复制原作者身份。 — 依赖: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Video Studio](https://github.com/lovstudio/media-creator-skill) (`media-creator`) | [天才剪辑师](https://github.com/lovstudio/media-creator-skill) | 把录屏和 Screen Studio 源工程整理为可审校视频，以批准字幕生成横竖版成片、封面和质检报告。 — 依赖: `branding-consistency`; 相关: `interview-media-creator`, `media-publisher`, `motion-media-creator`, `motivational-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Prep](https://github.com/lovstudio/media-preprocessor-skill) (`media-preprocessor`) | [视频素材精整](https://github.com/lovstudio/media-preprocessor-skill) | 把长实录提亮、按内容整理，交付可剪素材与源时间码。 — 依赖: `branding-consistency` |
