@@ -1,4 +1,4 @@
-# Skill Card — 口播短片 · Talking-head Short（lov-koubo-media-creator）
+# 口播短片 · Talking-head Short · Skill Card
 
 > 版本 0.3.1 · MIT · Lovstudio.AI
 
