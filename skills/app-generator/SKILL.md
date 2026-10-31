@@ -21,7 +21,7 @@ depends_on:
   - lov-install-tauri-logo
 metadata:
   author: lovstudio
-  version: "0.5.5"
+  version: "0.5.6"
   tags:
     - lovstudio
     - app-generator

@@ -1,6 +1,6 @@
 schema: skill-manifest/v1
 id: lov-app-generator
-version: "0.5.5"
+version: "0.5.6"
 runtime: skill-runtime/v1
 context:
   profile:

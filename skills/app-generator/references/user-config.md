@@ -16,9 +16,8 @@ Resolve settings in this order:
 | Variable | Meaning |
 |---|---|
 | `SKILL_APP_GENERATOR_SKILL_DIR` | Installed skill directory |
-| `SKILL_PROFILE_PATH` | Brand asset directory or profile file |
+| `SKILL_PROFILE_PATH` | Shared Lovstudio.AI skills profile JSON, also used to resolve brand assets |
 | `SKILL_DESIGN_GUIDE` | Design guide path |
-| `SKILL_PROFILE_PATH` | Shared Lovstudio.AI skills profile JSON |
 
 The default shared profile is
 `$HOME/.lovstudio/skills/profile.json`. Paths inside it may use `$HOME` and

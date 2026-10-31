@@ -3,6 +3,12 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.5.6] - 2026-10-31
+
+### Fixed
+
+- references/user-config.md 里重复的两行 SKILL_PROFILE_PATH 合并为一行：48d1455 的批量替换把 LOVSTUDIO_SKILLS_BRAND_PROFILE 与 LOVSTUDIO_SKILLS_PROFILE 改成了同一个名字，表里出现两行含义不同的同名变量；合并后写明它指向共享 profile JSON，品牌资产也从中解析
+
 ## [0.5.5] - 2026-10-31
 
 ### Fixed
