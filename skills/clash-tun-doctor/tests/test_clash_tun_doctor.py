@@ -1,6 +1,7 @@
 import http.server
 import json
 import os
+import re
 import shutil
 import socket
 import socketserver
@@ -65,6 +66,59 @@ class _LogStreamHandler(socketserver.StreamRequestHandler):
         time.sleep(3)
 
 
+class _MockMihomo(http.server.BaseHTTPRequestHandler):
+    """Mihomo controller stand-in: /rules reflect the last config it accepted."""
+
+    def reply(self, status, payload=None):
+        body = b"" if payload is None else json.dumps(payload).encode()
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def do_GET(self):
+        state = self.server.state
+        if self.path == "/rules":
+            rules = [
+                {"type": "Domain", "payload": host, "proxy": proxy}
+                for host, proxy in state["rules"]
+            ]
+            self.reply(200, {"rules": rules})
+        elif self.path == "/proxies":
+            self.reply(200, {"proxies": state["proxies"]})
+        else:
+            self.reply(200, {"mode": "rule"})
+
+    def do_PUT(self):
+        state = self.server.state
+        request = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+        state["requests"].append(request)
+        if "path" in request and not request["path"].startswith(state["home"] + os.sep):
+            message = (
+                f"path is not subpath of home directory or SAFE_PATHS: {request['path']} \n"
+                f" allowed paths: [{state['home']}]"
+            )
+            self.reply(400, {"message": message})
+            return
+        if state.get("delay"):
+            time.sleep(state["delay"])  # outlast the client, which has hung up by now
+            return
+        if state.get("reject"):
+            self.reply(400, {"message": state["reject"]})
+            return
+        text = request.get("payload") or Path(request["path"]).read_text(encoding="utf-8")
+        state["rules"] = re.findall(r"(?m)^- DOMAIN,([^,\s]+),(\w+)$", text)
+        state["proxies"]["Auto"]["now"] = "SG"  # unpinned automatic groups re-pick
+        if state.get("reset_choice"):
+            state["proxies"]["Proxy"]["now"] = "DIRECT"
+            state["proxies"]["Pinned"].update(now="JP", fixed="")
+        self.reply(204)
+
+    def log_message(self, *_args):
+        pass
+
+
 class _UnixSocketTestCase(unittest.TestCase):
     def setUp(self):
         # AF_UNIX paths are limited to ~104 bytes on macOS; keep the root short.
@@ -73,9 +127,10 @@ class _UnixSocketTestCase(unittest.TestCase):
         self.data_dir = self.root / "data"
         self.data_dir.mkdir()
 
-    def serve(self, name, handler=_VersionHandler):
+    def serve(self, name, handler=_VersionHandler, state=None):
         path = self.root / name
         server = _UnixHTTPServer(str(path), handler)
+        server.state = state
         thread = threading.Thread(target=server.serve_forever, daemon=True)
         thread.start()
         self.addCleanup(server.server_close)
@@ -412,6 +467,172 @@ class DirectListTests(unittest.TestCase):
             updated.index("DOMAIN,apply-cdn.miracleplus.com,DIRECT"),
             updated.index("MATCH,PROXY"),
         )
+
+    def test_pin_controller_socket_replaces_or_adds_the_line(self):
+        sock = Path("/var/run/clash-verge-service/users/501/verge-mihomo.sock")
+        line = f'external-controller-unix: "{sock}"\n'
+        self.assertEqual(
+            doctor.pin_controller_socket(
+                "mixed-port: 7897\n"
+                "external-controller-unix: '/tmp/verge/verge-mihomo.sock'\n"
+                "rules:\n",
+                sock,
+            ),
+            "mixed-port: 7897\n" + line + "rules:\n",
+        )
+        self.assertEqual(
+            doctor.pin_controller_socket("mixed-port: 7897", sock),
+            "mixed-port: 7897\n" + line,
+        )
+
+
+class ReloadTests(_UnixSocketTestCase):
+    SERVICE_SOCKET = "clash-verge-service/users/501/verge-mihomo.sock"
+    DISCOVERY = {
+        "rules": ["DOMAIN,apply.example.com,DIRECT"],
+        "items": [{"host": "apply.example.com"}],
+    }
+
+    def setUp(self):
+        super().setUp()
+        (self.data_dir / "profiles").mkdir()
+        (self.data_dir / "profiles.yaml").write_text(
+            "current: remote\n"
+            "- uid: remote\n"
+            "  type: remote\n"
+            "  option:\n"
+            "    rules: rules-id\n",
+            encoding="utf-8",
+        )
+        self.rules_file = self.data_dir / "profiles/rules-id.yaml"
+        self.rules_file.write_text("prepend: []\n", encoding="utf-8")
+        self.generated = self.data_dir / "clash-verge.yaml"
+        self.generated.write_text(
+            "mixed-port: 7897\n"
+            "external-controller-unix: /tmp/verge/verge-mihomo.sock\n"
+            "rules:\n"
+            "- MATCH,Proxy\n",
+            encoding="utf-8",
+        )
+
+    def controller(self, name, **options):
+        # By default the core's home is a runtime dir that the data dir is not under.
+        state = {
+            "home": str(self.root / "runtime"),
+            "requests": [],
+            "rules": [],
+            "proxies": {
+                "Proxy": {"type": "Selector", "now": "HK"},
+                "Auto": {"type": "Fallback", "now": "JP", "fixed": ""},
+                "Pinned": {"type": "URLTest", "now": "US", "fixed": "US"},
+            },
+        }
+        state.update(options)
+        (self.root / name).parent.mkdir(parents=True, exist_ok=True)
+        path = self.serve(name, _MockMihomo, state)
+        # main() resolves --socket the same way before applying.
+        return doctor.resolve_socket(self.data_dir, str(path)), state
+
+    def apply(self, socket_path):
+        return doctor.apply_direct_list(
+            self.data_dir, socket_path, self.DISCOVERY, True, cli_socket=str(socket_path)
+        )
+
+    def test_service_mode_reloads_by_payload_on_the_live_socket(self):
+        socket_path, state = self.controller(self.SERVICE_SOCKET)
+        code, result = self.apply(socket_path)
+
+        self.assertEqual(code, 0, result.get("reason"))
+        self.assertEqual([item["method"] for item in result["reload_attempts"]], ["payload"])
+        self.assertEqual(len(state["requests"]), 1)
+        payload = state["requests"][0]["payload"]
+        self.assertIn(f'external-controller-unix: "{socket_path}"\n', payload)
+        self.assertNotIn("/tmp/verge/verge-mihomo.sock", payload)
+        self.assertIn("- DOMAIN,apply.example.com,DIRECT\n", payload)
+        verification = result["verification"]
+        self.assertEqual(verification["socket"], str(socket_path))
+        self.assertEqual(verification["missing_direct_hosts"], [])
+        # The unpinned Fallback re-picked during the reload; that is not a user choice.
+        self.assertEqual(verification["selection_changes"], [])
+        self.assertTrue(result["runtime_verified"])
+        self.assertIn("DOMAIN,apply.example.com,DIRECT", self.rules_file.read_text(encoding="utf-8"))
+        # The data-dir config keeps Clash Verge's own controller path.
+        self.assertIn(
+            "external-controller-unix: /tmp/verge/verge-mihomo.sock\n",
+            self.generated.read_text(encoding="utf-8"),
+        )
+
+    def test_sidecar_reloads_by_path_inside_core_home(self):
+        socket_path, state = self.controller("m.sock", home=str(self.data_dir))
+        code, result = self.apply(socket_path)
+
+        self.assertEqual(code, 0, result.get("reason"))
+        self.assertEqual(state["requests"], [{"path": str(self.generated)}])
+
+    def test_path_outside_safe_paths_falls_back_to_payload(self):
+        socket_path, state = self.controller("m.sock")
+        code, result = self.apply(socket_path)
+
+        self.assertEqual(code, 0, result.get("reason"))
+        refused, loaded = result["reload_attempts"]
+        self.assertEqual((refused["method"], refused["status"]), ("path", 400))
+        self.assertIn("SAFE_PATHS", refused["error"])
+        self.assertIn(str(self.generated), refused["error"])
+        self.assertEqual((loaded["method"], loaded["ok"]), ("payload", True))
+        self.assertEqual(state["requests"][0], {"path": str(self.generated)})
+        self.assertTrue(result["runtime_verified"])
+
+    def test_refused_reload_surfaces_mihomo_error_and_restores_files(self):
+        originals = {
+            path: path.read_text(encoding="utf-8") for path in (self.rules_file, self.generated)
+        }
+        socket_path, _state = self.controller(
+            self.SERVICE_SOCKET, reject="yaml: line 4: did not find expected key"
+        )
+        code, result = self.apply(socket_path)
+
+        self.assertEqual(code, 2)
+        self.assertFalse(result["ok"])
+        self.assertFalse(result["runtime_reloaded"])
+        self.assertEqual(
+            result["reload_attempts"][-1]["error"],
+            "HTTP 400: yaml: line 4: did not find expected key",
+        )
+        self.assertIn("yaml: line 4: did not find expected key", result["reason"])
+        self.assertEqual(sorted(result["restored_files"]), sorted(map(str, originals)))
+        for path, text in originals.items():
+            self.assertEqual(path.read_text(encoding="utf-8"), text)
+        self.assertTrue(Path(result["backup"]).is_dir())
+        self.assertIsNone(result["verification"])
+
+    def test_reload_without_response_reports_transport_error(self):
+        socket_path, _state = self.controller(self.SERVICE_SOCKET, delay=0.5)
+        with mock.patch.object(doctor, "RELOAD_TIMEOUT", 0.1):
+            code, result = self.apply(socket_path)
+
+        self.assertEqual(code, 2)
+        attempt = result["reload_attempts"][-1]
+        self.assertIsNone(attempt["status"])
+        self.assertTrue(attempt["error"].startswith("no HTTP response: "), attempt["error"])
+        self.assertIn("timed out", attempt["error"])
+        self.assertNotIn("apply.example.com", self.rules_file.read_text(encoding="utf-8"))
+
+    def test_lost_group_choice_fails_verification(self):
+        socket_path, _state = self.controller(self.SERVICE_SOCKET, reset_choice=True)
+        code, result = self.apply(socket_path)
+
+        self.assertEqual(code, 2)
+        self.assertTrue(result["runtime_reloaded"])
+        self.assertFalse(result["runtime_verified"])
+        self.assertEqual(
+            result["verification"]["selection_changes"],
+            [
+                {"group": "Pinned", "before": "US", "after": None},
+                {"group": "Proxy", "before": "HK", "after": "DIRECT"},
+            ],
+        )
+        self.assertIn("Group choices changed: Pinned: US -> None, Proxy: HK -> DIRECT.", result["reason"])
+        self.assertEqual(result["restored_files"], [])
 
 
 if __name__ == "__main__":

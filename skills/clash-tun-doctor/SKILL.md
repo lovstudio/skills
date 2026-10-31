@@ -15,7 +15,7 @@ compatibility: >
   and --socket values.
 metadata:
   author: contributors
-  version: "0.5.0"
+  version: "0.6.1"
   tags: clash mihomo tun network diagnostics wechat macos
 ---
 
@@ -157,8 +157,38 @@ python3 "$SKILL_DIR/scripts/clash_tun_doctor.py" direct-list \
 
 This path must merge with existing `prepend` rules, create a timestamped backup,
 update the generated config, hot-load Mihomo through its Unix socket, and verify
-every listed host as an exact `DOMAIN -> DIRECT` runtime rule. Keep Clash Verge
-running throughout this rule-only flow.
+the runtime. Keep Clash Verge running throughout this rule-only flow.
+
+The hot-load is `PUT /configs?force=true` with a 60-second timeout:
+
+- Owner-scoped service mode (socket under `clash-verge-service/users/<uid>/`)
+  sends the generated config as `payload`, with `external-controller-unix`
+  pinned to the live socket. Its core's home is the root-owned `runtime`
+  directory, so Mihomo refuses every user-writable config path with
+  `HTTP 400: path is not subpath of home directory or SAFE_PATHS`.
+- Other modes load `clash-verge.yaml` by `path`; a path refused for
+  `SAFE_PATHS` is retried once as a payload.
+- Never copy configs into the runtime directory, use `sudo`, or restart the
+  core to make a path reload work.
+
+If Mihomo refuses or never answers the reload, the command restores the
+original files, exits 2, and prints Mihomo's raw error in `reason` and
+`reload_attempts[].error`. Quote that error instead of guessing a cause. After
+`no HTTP response: timed out` the core may still finish loading the config, so
+rerun `diagnose` to read the live rules before retrying.
+
+After an accepted reload, the command re-detects the controller socket in the
+Step 1 order, requires every listed host as an exact `DOMAIN -> DIRECT` rule in
+`/rules`, and requires every user choice to survive: each Selector's proxy and
+each pinned (`fixed` non-empty) URLTest/Fallback group. Unpinned URLTest and
+Fallback groups re-pick on every reload and are not compared. Any failure sets
+`ok: false` and lists the problem in `verification.issues`; the files stay
+saved, so report the backup path and offer `rollback --apply` instead of
+claiming success.
+
+Connections opened before the reload keep their old chain until they close.
+Judge the new rules only by connections that appear afterwards (`/connections`
+ids absent before the reload), or restart the affected application first.
 
 For the specialized WeChat IPv6 repair, run:
 

@@ -4032,14 +4032,14 @@ skills:
 - name: clash-tun-doctor
   runtime_name: lov-clash-tun-doctor
   display_name: Clash Network Doctor
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-31 08:27:27+00:00
   skillpay_product_id: P0806000200843452
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP4
   repo: lovstudio/clash-tun-doctor-skill
   name_zh: Clash 网络医生
   paid: false
   category: Dev Tools
-  version: 0.3.1
+  version: 0.6.1
   description: Diagnose and reversibly repair application connectivity failures caused
     by Clash Verge Rev TUN rules, stale runtime state, proxy timeouts, or unusable
     IPv6 paths.

@@ -24,6 +24,8 @@ SERVICE_SOCKET_TEMPLATE = "/var/run/clash-verge-service/users/{uid}/verge-mihomo
 SERVICE_STATE_DIR_MACOS = Path("/Library/Application Support/clash-verge-service")
 SERVICE_STATE_DIR_LINUX = Path("/var/lib/clash-verge-service")
 SERVICE_OWNER_RE = re.compile(r"/clash-verge-service/users/(?P<owner>[^/]+)/")
+# A forced reload re-initializes providers and can outlast the 3 s controller default.
+RELOAD_TIMEOUT = 60.0
 CORE_PROCESS_RE = re.compile(r"mihomo|clash", re.IGNORECASE)
 EXT_CTL_UNIX_RE = re.compile(
     r"(?:^|\s)--?ext-ctl-unix(?:=|\s+)(?P<path>.+?)(?=\s+--?[A-Za-z][\w-]*(?:[=\s]|$)|\s*$)"
@@ -65,6 +67,27 @@ class UnixHTTPConnection(http.client.HTTPConnection):
         self.sock = sock
 
 
+def api_request(
+    socket_path: Path,
+    path: str,
+    method: str = "GET",
+    body: Optional[Dict[str, Any]] = None,
+    timeout: float = 3.0,
+) -> Tuple[Optional[int], str]:
+    """Return (HTTP status, response body); the status is None when no response arrived."""
+    connection = UnixHTTPConnection(socket_path, timeout=timeout)
+    try:
+        payload = None if body is None else json.dumps(body).encode("utf-8")
+        headers = {} if payload is None else {"Content-Type": "application/json"}
+        connection.request(method, path, body=payload, headers=headers)
+        response = connection.getresponse()
+        return response.status, response.read().decode("utf-8", "replace")
+    except (OSError, http.client.HTTPException) as error:
+        return None, getattr(error, "strerror", None) or str(error) or type(error).__name__
+    finally:
+        connection.close()
+
+
 def api_json(
     socket_path: Path,
     path: str,
@@ -73,20 +96,13 @@ def api_json(
 ) -> Optional[Dict[str, Any]]:
     if not socket_path.exists():
         return None
-    connection = UnixHTTPConnection(socket_path)
-    try:
-        payload = None if body is None else json.dumps(body).encode("utf-8")
-        headers = {} if payload is None else {"Content-Type": "application/json"}
-        connection.request(method, path, body=payload, headers=headers)
-        response = connection.getresponse()
-        response_payload = response.read()
-        if not 200 <= response.status < 300:
-            return None
-        return json.loads(response_payload.decode("utf-8")) if response_payload else {}
-    except (OSError, ValueError, json.JSONDecodeError):
+    status, text = api_request(socket_path, path, method, body)
+    if status is None or not 200 <= status < 300:
         return None
-    finally:
-        connection.close()
+    try:
+        return json.loads(text) if text else {}
+    except ValueError:
+        return None
 
 
 def resolve_data_dir(cli_value: Optional[str]) -> Path:
@@ -785,10 +801,13 @@ def wait_for_runtime(
     return None
 
 
-def verify_direct_hosts(socket_path: Path, hosts: Iterable[str], timeout: float = 5.0) -> bool:
+def missing_direct_hosts(
+    socket_path: Path, hosts: Iterable[str], timeout: float = 5.0
+) -> List[str]:
+    """Hosts still lacking an exact DOMAIN -> DIRECT runtime rule when the timeout ends."""
     required = {host.lower() for host in hosts}
     deadline = time.time() + timeout
-    while time.time() < deadline:
+    while True:
         payload = api_json(socket_path, "/rules") or {}
         direct = {
             str(rule.get("payload") or "").lower()
@@ -796,10 +815,118 @@ def verify_direct_hosts(socket_path: Path, hosts: Iterable[str], timeout: float 
             if str(rule.get("type") or "").lower() == "domain"
             and rule.get("proxy") == "DIRECT"
         }
-        if required.issubset(direct):
-            return True
+        missing = sorted(required - direct)
+        if not missing or time.time() >= deadline:
+            return missing
         time.sleep(0.25)
-    return False
+
+
+def group_choices(socket_path: Path) -> Optional[Dict[str, Any]]:
+    """User-made picks (Selector proxies, URLTest/Fallback pins); None if /proxies fails."""
+    payload = api_json(socket_path, "/proxies")
+    if payload is None:
+        return None
+    choices: Dict[str, Any] = {}
+    for name, item in payload.get("proxies", {}).items():
+        if item.get("type") == "Selector":
+            choices[name] = item.get("now")
+        elif item.get("type") in ("URLTest", "Fallback") and item.get("fixed"):
+            # Unpinned automatic groups re-pick on every reload; only a pin is a choice.
+            choices[name] = item.get("fixed")
+    return choices
+
+
+def pin_controller_socket(text: str, socket_path: Path) -> str:
+    """Keep a reloaded core listening on the controller socket it already serves."""
+    line = "external-controller-unix: " + json.dumps(str(socket_path), ensure_ascii=False)
+    pattern = re.compile(r"(?m)^external-controller-unix:.*$")
+    if pattern.search(text):
+        return pattern.sub(lambda _match: line, text, count=1)
+    suffix = "" if text.endswith("\n") else "\n"
+    return text + suffix + line + "\n"
+
+
+def mihomo_message(text: str) -> str:
+    """Mihomo answers API errors as {"message": ...}; otherwise keep the raw body."""
+    try:
+        message = json.loads(text).get("message")
+    except (ValueError, AttributeError):
+        message = None
+    return str(message) if message else text.strip() or "(empty body)"
+
+
+def put_config(socket_path: Path, field: str, value: str) -> Dict[str, Any]:
+    """Send PUT /configs?force=true with {field: value}; field is "path" or "payload"."""
+    status, text = api_request(
+        socket_path, "/configs?force=true", "PUT", {field: value}, timeout=RELOAD_TIMEOUT
+    )
+    ok = status is not None and 200 <= status < 300
+    if ok:
+        error = None
+    elif status is None:
+        error = f"no HTTP response: {text}"
+    else:
+        error = f"HTTP {status}: {mihomo_message(text)}"
+    return {"method": field, "status": status, "ok": ok, "error": error}
+
+
+def reload_generated_config(
+    socket_path: Path, generated_path: Path, generated_text: str
+) -> List[Dict[str, Any]]:
+    """Hot-load the generated config and return every attempt; the last one decides."""
+    payload = pin_controller_socket(generated_text, socket_path)
+    if SERVICE_OWNER_RE.search(str(socket_path)):
+        # The service core's home is its root-owned runtime dir, so Mihomo refuses
+        # any user-writable config path as outside SAFE_PATHS.
+        return [put_config(socket_path, "payload", payload)]
+    attempts = [put_config(socket_path, "path", str(generated_path))]
+    if attempts[0]["status"] == 400 and "SAFE_PATHS" in attempts[0]["error"]:
+        attempts.append(put_config(socket_path, "payload", payload))
+    return attempts
+
+
+def verify_reload(
+    data_dir: Path,
+    cli_socket: Optional[str],
+    socket_before: Path,
+    hosts: Iterable[str],
+    choices_before: Optional[Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Re-detect the controller, then check /rules and group choices after a reload."""
+    socket_after = wait_for_runtime(data_dir, cli_socket)
+    issues: List[str] = []
+    report: Dict[str, Any] = {
+        "socket": None if socket_after is None else str(socket_after),
+        "missing_direct_hosts": None,
+        "selection_changes": None,
+        "issues": issues,
+    }
+    if socket_after is None:
+        issues.append("Mihomo controller did not answer after the reload.")
+        return report
+    if socket_after != socket_before:
+        issues.append(f"Controller socket moved from {socket_before} to {socket_after}.")
+    missing = missing_direct_hosts(socket_after, hosts)
+    report["missing_direct_hosts"] = missing
+    if missing:
+        issues.append("Runtime /rules lack exact DOMAIN -> DIRECT for: " + ", ".join(missing) + ".")
+    choices_after = group_choices(socket_after)
+    if choices_before is None or choices_after is None:
+        issues.append("Could not read /proxies; group choices were not compared.")
+        return report
+    changes = [
+        {"group": group, "before": before, "after": choices_after.get(group)}
+        for group, before in sorted(choices_before.items())
+        if choices_after.get(group) != before
+    ]
+    report["selection_changes"] = changes
+    if changes:
+        issues.append(
+            "Group choices changed: "
+            + ", ".join(f"{item['group']}: {item['before']} -> {item['after']}" for item in changes)
+            + "."
+        )
+    return report
 
 
 def write_direct_list(path_value: str, rules: Iterable[str]) -> Path:
@@ -815,6 +942,7 @@ def apply_direct_list(
     socket_path: Path,
     discovery: Dict[str, Any],
     reload_runtime: bool,
+    cli_socket: Optional[str] = None,
 ) -> Tuple[int, Dict[str, Any]]:
     rules = discovery["rules"]
     if not rules:
@@ -830,42 +958,59 @@ def apply_direct_list(
     if not generated_path.exists():
         raise SystemExit(f"Missing generated Clash config: {generated_path}")
 
-    rules_new = merge_prepend(read_text(rules_path), rules)
-    generated_new = merge_generated_rules(read_text(generated_path), rules)
-    changed_files = []
-    if rules_new != read_text(rules_path):
-        changed_files.append(rules_path)
-    if generated_new != read_text(generated_path):
-        changed_files.append(generated_path)
+    originals = {path: read_text(path) for path in (rules_path, generated_path)}
+    updated = {
+        rules_path: merge_prepend(originals[rules_path], rules),
+        generated_path: merge_generated_rules(originals[generated_path], rules),
+    }
+    changed_files = [path for path in updated if updated[path] != originals[path]]
 
     backup = backup_files(data_dir, changed_files) if changed_files else None
-    if rules_path in changed_files:
-        rules_path.write_text(rules_new, encoding="utf-8")
-    if generated_path in changed_files:
-        generated_path.write_text(generated_new, encoding="utf-8")
+    for path in changed_files:
+        path.write_text(updated[path], encoding="utf-8")
 
-    reloaded: Optional[bool] = None
-    verified: Optional[bool] = None
-    if reload_runtime:
-        reloaded = api_json(
-            socket_path,
-            "/configs?force=true",
-            method="PUT",
-            body={"path": str(generated_path)},
-        ) is not None
-        verified = reloaded and verify_direct_hosts(
-            socket_path,
-            [item["host"] for item in discovery["items"]],
-        )
-
-    result = {
-        "ok": verified if reload_runtime else True,
+    result: Dict[str, Any] = {
+        "ok": True,
+        "reason": None,
         "backup": None if backup is None else str(backup),
         "changed_files": [str(path) for path in changed_files],
-        "runtime_reloaded": reloaded,
-        "runtime_verified": verified,
+        "restored_files": [],
+        "runtime_reloaded": None,
+        "reload_attempts": [],
+        "runtime_verified": None,
+        "verification": None,
         "discovery": discovery,
     }
+    if not reload_runtime:
+        return 0, result
+
+    choices_before = group_choices(socket_path)
+    attempts = reload_generated_config(socket_path, generated_path, updated[generated_path])
+    result["reload_attempts"] = attempts
+    result["runtime_reloaded"] = attempts[-1]["ok"]
+    if not attempts[-1]["ok"]:
+        # Mihomo kept its previous config, so keep the files matching what runs.
+        for path in changed_files:
+            path.write_text(originals[path], encoding="utf-8")
+        result["restored_files"] = list(result["changed_files"])
+        result.update(
+            ok=False,
+            reason=f"Hot-load failed: {attempts[-1]['error']}"
+            + ("; the original files were restored." if changed_files else ""),
+        )
+        return 2, result
+
+    verification = verify_reload(
+        data_dir,
+        cli_socket,
+        socket_path,
+        [item["host"] for item in discovery["items"]],
+        choices_before,
+    )
+    result["verification"] = verification
+    result["runtime_verified"] = not verification["issues"]
+    if verification["issues"]:
+        result.update(ok=False, reason=" ".join(verification["issues"]))
     return (0 if result["ok"] else 2), result
 
 
@@ -1101,6 +1246,7 @@ def main() -> int:
                 socket_path,
                 result,
                 reload_runtime=not args.no_reload,
+                cli_socket=args.socket,
             )
             print(json.dumps(applied, ensure_ascii=False, indent=2))
             return exit_code

@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.6.1] - 2026-10-31
+
+### Changed
+
+- reload 后的分组校验额外比较 fixed 非空的 URLTest/Fallback 组（用户手动固定的节点）；未固定的 URLTest/Fallback 每次 reload 都会自动重选，不参与比较，避免误报。问题文案由 Selector choices changed 改为 Group choices changed
+- SKILL.md 与 troubleshooting 补充：reload 前建立的连接会一直走旧链路直到断开，验证新规则只看 reload 后新出现的 /connections id，或先重启应用
+
+## [0.6.0] - 2026-10-31
+
+### Fixed
+
+- direct-list --apply 在 Clash Verge Rev owner-scoped 服务模式下热加载失败：服务模式内核的 home 是 root 所有的 runtime 目录，按 path 热加载被 Mihomo 以 SAFE_PATHS 拒绝（HTTP 400）。现改为发送 payload（生成配置全文），并把其中的 external-controller-unix 固定为内核正在使用的 socket；其他模式仍按 path 热加载，被 SAFE_PATHS 拒绝时自动改走 payload
+- 热加载失败不再只打印失败：reason 与 reload_attempts[].error 给出 Mihomo 原始报错（或无响应原因），已写入的文件自动还原并以退出码 2 结束，不再停在「已持久化、未生效」状态
+- 热加载改用 60 秒超时，不再受控制接口默认 3 秒超时限制
+
+### Added
+
+- 热加载成功后用 wait_for_runtime 重新探测控制 socket，校验 /rules 中每个 host 都是精确 DOMAIN -> DIRECT，并确认所有 Selector 分组选择不变；任一不满足时 ok=false，问题列在 verification.issues，文件保持已保存
+- apply 结果 JSON 新增 reload_attempts、restored_files、verification 字段，reason 始终存在（成功时为 null）
+- troubleshooting 新增 SAFE_PATHS 400 与 Selector 选择变化两条排障映射
+- 新增 mock 控制器测试：服务模式 payload 热加载与 socket 固定、sidecar 按 path、SAFE_PATHS 回退、报错透出与文件还原、无响应超时、Selector 选择变化
+
 ## [0.5.0] - 2026-10-25
 
 ### Added
