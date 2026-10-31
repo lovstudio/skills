@@ -1,6 +1,6 @@
 # Ataru 索引 · Ataru Indexing
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 
 把本机 Ataru 会话记忆索引带到可检索状态，并交回一份能直接判断的 JSON 报告。
 
@@ -35,9 +35,12 @@ python3 scripts/ataru_index.py ensure --timeout 3600
 python3 scripts/ataru_index.py ensure --force
 ```
 
-`status` 在原始状态之上给出 `needsBuild` / `isBuilding` / `progressPercent`；
-`ensure` 在 `actions` 里说明这次实际做了什么（`already-ready`、`catch-up-build`、
-`waited-for-running-build`、`full-rebuild`）。索引不可用时退出码为 1。
+`status` 在原始状态之上给出 `needsBuild` / `isBuilding` / `progressPercent`，以及
+manifest 与会话文件逐一比对得出的 `indexStale` / `pendingSessions` /
+`removedSessions` / `indexedAt`：`index status` 本身不看磁盘，停更的索引也报
+`ready`。`ensure` 在 `actions` 里说明这次实际做了什么（`already-ready`、
+`catch-up-build`、`waited-for-running-build`、`full-rebuild`），有漂移就跑
+`catch-up-build`。索引不可用时退出码为 1。
 
 二进制解析顺序是 `--bin` → `ATARU_BIN` → PATH → 已安装 App bundle → 本地 dev
 build，并对每个候选先跑一次 `--version`：低于 0.41.3 的旧版不认识 `index status`，

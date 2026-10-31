@@ -1,6 +1,6 @@
 # 伙伴名录 · Partner Directory
 
-![Version](https://img.shields.io/badge/version-0.10.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.10.2-CC785C)
 
 Maintain the Skill Publisher website's "Trusted By" partners section: collect brand
 logos through `lov-find-logo`, normalize to the 80px canvas, append
@@ -22,7 +22,7 @@ brew install librsvg  # for SVG logo sources
 ## Configuration
 
 Set the website repo root with `--repo`, `SKILL_MAINTAIN_PARTNERS_SITE_ROOT`, or the shared
-profile at `${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`.
+profile at `${SKILL_PROFILE_PATH:-$HOME/.lovstudio/skills/profile.json}`.
 `SKILL_WEB_ROOT` and `PARTNERS_SITE_ROOT` remain accepted as legacy aliases.
 
 Set the PARTNERS TSX file with `--partners-file`, `SKILL_MAINTAIN_PARTNERS_FILE`, or profile
@@ -35,10 +35,10 @@ Supported profile keys:
 ```json
 {
   "sites": {
-    "skill-publisher_web": "$HOME/projects/my-site",
+    "lovstudio_web": "$HOME/projects/my-site",
     "partners_file": "app/(main)/(home)/PartnersGrid.tsx"
   },
-  "skill-publisher": {
+  "lovstudio": {
     "web_root": "$HOME/projects/my-site",
     "partners_file": "app/(main)/(home)/PartnersGrid.tsx"
   },
@@ -88,7 +88,7 @@ python3 "$SKILL_ROOT/lov-find-logo/scripts/find_logo.py" \
   --name "Example" --url https://example.com --slug example --json
 
 # Normalize: auto-invert white-on-transparent
-normalize_logo.py --src ~/.skill-publisher/logo-collection/example/logo.png \
+normalize_logo.py --src ~/.lovstudio/logo-collection/example/logo.png \
                   --dst "$WEB_ROOT/public/partners/example/logo.png"
 
 # Add to PARTNERS + i18n

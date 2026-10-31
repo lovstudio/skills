@@ -1,6 +1,6 @@
 # 网页转幻灯 · HTML to Slides
 
-![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
 
 Convert HTML to a high-fidelity PPTX deck via Playwright/Chromium.
 Each `.slide` element becomes one pptx page (rendered as a 1920×1080 retina
@@ -91,8 +91,8 @@ Override with `--split single` or `--selector ".your-class"`.
 
 A ready-to-copy reference deck lives at
 [`references/example.html`](references/example.html). Open it in a browser to
-see the recommended `.slide` pattern and the Skill Publisher Configurable Academic palette
-(`#181818`, `#F9F9F7`, `#4F46E5`).
+see the recommended `.slide` pattern and the Lovstudio.AI Warm Academic palette
+(`#181818`, `#F9F9F7`, `#CC785C`).
 
 ## License
 

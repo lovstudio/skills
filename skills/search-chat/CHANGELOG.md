@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.3] - 2026-10-31
+
+### Fixed
+
+- 修复按行号回读必然失败：read 改按 session read 返回的 line_number 匹配 --around，并以 lineNumber 输出
+- search 与 index-status 比对 manifest 与会话文件：有漂移时给出 indexStale、pendingSessions、removedSessions，warnings 首条为 ATARU_INDEX_STALE，零命中不再与「没找到」混淆；--full 同样携带
+- indexUpdatedAt 改取 manifest 的 indexedAt（上次构建完成时间）；原值是 CLI 读状态的时刻，恒为当前时间
+
 ## [0.2.2] - 2026-09-07
 
 ### Added

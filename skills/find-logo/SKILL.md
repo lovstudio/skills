@@ -14,7 +14,7 @@ compatibility: >
   Cross-platform: macOS, Windows, Linux.
 metadata:
   author: contributors
-  version: "0.3.1"
+  version: "0.3.2"
   tags: [branding, assets, logo, scraping]
 ---
 
@@ -77,7 +77,7 @@ or Wikipedia SVG.
 | `--name` | — | Brand/product name. Used for slug + meta. |
 | `--url` | — | Official URL or bare domain. Overrides the name-based domain guess. |
 | `--slug` | slugified name | Override the directory slug under the archive root. |
-| `--out` | `SKILL_FIND_LOGO_OUTPUT_DIR` or `~/.skill-publisher/logo-collection` | Archive root. |
+| `--out` | `SKILL_FIND_LOGO_OUTPUT_DIR` or `~/.lovstudio/logo-collection` | Archive root. |
 | `--keep-alts` | `2` | How many runner-up candidates to keep as `alt-N.<ext>`. |
 | `--json` | off | Emit a JSON result to stdout (use this when chaining). |
 
@@ -86,7 +86,7 @@ At least one of `--name` or `--url` is required.
 ## Archive Layout
 
 ```
-~/.skill-publisher/logo-collection/
+~/.lovstudio/logo-collection/
 ├── anthropic/
 │   ├── logo.png            # primary (highest score)
 │   ├── alt-1.png           # runner-ups
@@ -118,7 +118,7 @@ Stdlib only (urllib, html.parser, argparse). No `pip install` required.
 
 ## User Configuration
 
-Default archive files live under `~/.skill-publisher/logo-collection/`. Override this
+Default archive files live under `~/.lovstudio/logo-collection/`. Override this
 per run with `--out`, or set `SKILL_FIND_LOGO_OUTPUT_DIR` for the skill.
 
 ## Known Limits

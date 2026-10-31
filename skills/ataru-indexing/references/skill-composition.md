@@ -15,20 +15,23 @@
 ## Atomic Handoffs
 
 - **downstream —— `lov-search-chat`**
-  - 输入制品：一次 `ataru index status` 的结果，`searchAvailable: true`。
-  - 交接边界：本 Skill 负责「索引可被检索」，不负责命中质量与排序。
-  - 验收归属：`lov-search-chat` 自己再确认一次状态，未就绪时报
-    `ATARU_INDEX_NOT_READY` 并指回本 Skill；它不会替用户偷偷构建索引。
+  - 输入制品：一次 `ataru index status` 的结果 `searchAvailable: true`，且 manifest
+    与会话文件之间的漂移已补建（`ensure` 之后剩下的只是构建期间写入的会话）。
+  - 交接边界：本 Skill 负责「索引可被检索且跟得上磁盘」，不负责命中质量与排序。
+  - 验收归属：`lov-search-chat` 自己再确认一次状态并比对漂移，未就绪时报
+    `ATARU_INDEX_NOT_READY` 并指回本 Skill，有漂移时在结果里带 `ATARU_INDEX_STALE`；
+    它不会替用户偷偷构建索引。
 - **upstream** —— 无。索引的输入是用户机器上已存在的会话文件，不需要前置 Skill。
 
 ## Overlap Decisions
 
-`lov-search-chat` 也会读取索引状态，但只读、只用于拒绝一次错误的检索，不构建、
-不重建、不等待。构建这一侧的所有权完整留在本 Skill，两者没有需要合并的重叠。
+`lov-search-chat` 也会读取索引状态、比对漂移，但只读、只用于拒绝或标注一次可能
+出错的检索，不构建、不重建、不等待。构建这一侧的所有权完整留在本 Skill，两者没有需要合并的重叠。
 
 ## Composition Decision
 
 Single Skill。用户要的是两个独立可触发的动作：把索引搞好，以及去检索。它们的
 输入输出契约不同、失败模式不同、耗时相差两个数量级（分钟级构建 vs 秒级查询），
-不属于同一个用户可见结果，因此不做成 Kit。为保持可移植，约一百行的二进制解析
-逻辑在两个 Skill 中各自自带，而不是引入 sibling 依赖。
+不属于同一个用户可见结果，因此不做成 Kit。为保持可移植，约一百行的二进制解析与
+约一百行的 manifest 漂移比对在两个 Skill 中各自自带，而不是引入 sibling 依赖；改动
+其中一段时两边同步修改，保持逐字一致。

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.2] - 2026-10-31
+
+### Fixed
+
+- 修复「报 ready 但已过期」被当成就绪：status / ensure 按 Ataru 的 previous_entry_matches_source 规则比对 manifest 与会话文件，输出 indexStale、pendingSessions、removedSessions、indexedAt；有漂移时 ensure 执行不带 --force 的 catch-up-build
+- needsBuild 改为「不可检索或已过期」；构建后重新比对，剩下的 pendingSessions 是构建期间写入的会话
+- 取数范围与 Ataru 0.41.x 一致：Claude 只取项目顶层 *.jsonl（不含 agent-*），Codex 只取 .jsonl；Ataru 无法归属的 Codex 会话不比 manifest 新时不计入漂移
+
 ## [0.2.1] - 2026-09-25
 
 ### Added

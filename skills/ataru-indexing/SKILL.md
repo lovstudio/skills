@@ -6,7 +6,7 @@ description: >
 license: MIT
 metadata:
   author: lovstudio
-  version: "0.2.1"
+  version: "0.2.2"
   card_standard: lovstudio/skill-card/v1
   tags:
     - ataru
@@ -79,13 +79,26 @@ python3 "$SKILL_DIR/scripts/ataru_index.py" resolve-bin
 python3 "$SKILL_DIR/scripts/ataru_index.py" status
 ```
 
-在原始状态之上，报告直接给出三个判断字段：
+在原始状态之上，报告直接给出这些判断字段：
 
 | 字段 | 含义 |
 | --- | --- |
-| `needsBuild` | 索引不可检索，必须构建 |
+| `needsBuild` | 需要构建：索引不可检索，或 `indexStale` 为真 |
 | `isBuilding` | 另一个进程（通常是桌面端）正在构建，不要抢 |
 | `progressPercent` | 已处理消息占比，用于告诉用户还要等多久 |
+| `indexStale` | manifest 与磁盘上的会话文件对不上，下面两个计数至少一个非零 |
+| `pendingSessions` | 新增或改动、还没进索引的会话文件数 |
+| `removedSessions` | 索引里还有、磁盘上已经没有的会话数 |
+| `indexedAt` | manifest 写入时间，即上次构建完成的时刻；CLI 的 `updatedAt` 只是读状态的时刻 |
+
+`index status` 只汇报 manifest 里存的总数、不看磁盘，停更几个月的索引照样报
+`ready`。所以脚本按 Ataru 自己的 `previous_entry_matches_source` 规则（来源、
+session id、size、mtime 一致且已索引到文件末尾）把每个会话文件和 manifest 条目
+逐一比对，取数范围与 Ataru 0.41.x 相同：`~/.claude/projects/*/*.jsonl`（不含
+`agent-*`）与 `~/.codex/{sessions,archived_sessions}` 下的 `.jsonl`；`.jsonl.zst`
+压缩会话 Ataru 0.41.x 读不了，不计入。Ataru 无法归属到项目的 Codex 会话不写条目、
+每次构建都重试，只要它不比 manifest 新就不算漂移。正在进行的会话一直在追加，少量
+`pendingSessions` 是常态；数量大、`indexedAt` 明显陈旧，就是索引停更了。
 
 `isBuilding` 为真时不要发起构建。构建锁只在进程内生效，跨进程并发构建虽然靠
 「写临时目录再原子替换」兜底，但会白烧一遍全量 CPU。
@@ -96,18 +109,22 @@ python3 "$SKILL_DIR/scripts/ataru_index.py" status
 python3 "$SKILL_DIR/scripts/ataru_index.py" ensure --timeout 3600
 ```
 
-`ensure` 是幂等的：已就绪就直接返回 `already-ready`；有增量就跑
-`catch-up-build`；发现别人在构建就先 `waited-for-running-build`。只有用户明确要求
-「完全重建」时才加 `--force`（`full-rebuild`），因为它会丢弃现有索引重扫全部会话。
+`ensure` 是幂等的：`needsBuild` 为假（可检索且没有漂移）就直接返回
+`already-ready`；不可检索或有漂移就跑一次不带 `--force` 的 `index build`，记为
+`catch-up-build`，Ataru 只重做有变化的会话、删掉已不存在的会话；发现别人在构建就先
+`waited-for-running-build`。构建完会重新比对，这时剩下的 `pendingSessions` 是构建
+期间又写入的会话，通常就是正在进行的那几个，不必再补。只有用户明确要求「完全重建」
+时才加 `--force`（`full-rebuild`），因为它会丢弃现有索引重扫全部会话。
 
 首次全量构建在万级会话的机器上是分钟级操作，默认预算 3600 秒。不要缩短
 `--timeout` 去「快速失败」——超时只会留下一个半成品状态。
 
 ### Step 3: Report, and only then hand off
 
-把 `actions`、`state`、`totalSessions`、`totalMessages`、`indexSizeBytes`
-如实转述给用户。仍然 `state: error` 或 `searchAvailable: false` 时，脚本以退出码 1
-结束，报告里的 `error` 字段就是原因，原样交出。
+把 `actions`、`state`、`totalSessions`、`totalMessages`、`indexSizeBytes`、
+`pendingSessions`、`indexedAt` 如实转述给用户。仍然 `state: error` 或
+`searchAvailable: false` 时，脚本以退出码 1 结束，报告里的 `error` 字段就是原因，
+原样交出。
 
 可选的语义索引另算成本，需要时先估：
 

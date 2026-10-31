@@ -3,6 +3,14 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.10.2] - 2026-10-31
+
+### Fixed
+
+- 恢复 2026-08-09 去品牌化误改的默认 profile 与键名：默认读取 `~/.lovstudio/skills/profile.json`，查 `sites.lovstudio_web`、`lovstudio.web_root`、`lovstudio.partners_file`
+- SKILL.md、README、user-config 的 profile 路径、键名示例与 logo 归档目录 `~/.lovstudio/logo-collection/` 同步恢复为替换前原值（2a6eb19^）
+- 新增 tests/test_profile_resolution.py，覆盖两个脚本的默认 profile 与键名解析
+
 ## [0.10.1] - 2026-09-25
 
 ### Added

@@ -35,6 +35,8 @@ REPO_BUILDS = (
     "src-tauri/target/release/ataru",
     "src-tauri/target/debug/ataru",
 )
+MANIFEST_NAME = "search-index-manifest.json"
+NS_PER_SECOND = 1_000_000_000
 EXIT_OK = 0
 EXIT_FAILED = 1
 EXIT_NO_BINARY = 3
@@ -164,7 +166,115 @@ def run_json(binary: Path, args: list[str], timeout: float = 300.0) -> dict:
         raise AtaruError(f"ATARU_CLI_BAD_JSON: {exc}") from exc
 
 
-def summarize(status: dict) -> dict:
+def data_local_dir() -> Path:
+    """Mirror `dirs::data_local_dir()`, under which Ataru keeps its index."""
+
+    home = Path.home()
+    if sys.platform == "darwin":
+        return home / "Library" / "Application Support"
+    if os.name == "nt":
+        return Path(os.environ.get("LOCALAPPDATA") or home / "AppData" / "Local")
+    xdg = os.environ.get("XDG_DATA_HOME", "")
+    return Path(xdg) if os.path.isabs(xdg) else home / ".local" / "share"
+
+
+def _codex_rollouts(root: str) -> list[str]:
+    try:
+        entries = list(os.scandir(root))
+    except OSError:
+        return []
+    found: list[str] = []
+    for entry in entries:
+        if entry.is_dir():
+            found.extend(_codex_rollouts(entry.path))
+        elif Path(entry.name).suffix == ".jsonl":
+            found.append(entry.path)
+    return found
+
+
+def collect_sources(home: Path) -> list[tuple[str, str, str, int, int]]:
+    """List (path, kind, session id, size, mtime) for every file Ataru indexes.
+
+    Mirrors Ataru 0.41.x: top-level `*.jsonl` in each Claude project except
+    `agent-*` sidechains, and every `*.jsonl` under the Codex session roots.
+    Compressed `.jsonl.zst` rollouts stay out because this line cannot read them.
+    """
+
+    sources = []
+    projects = home / ".claude" / "projects"
+    if projects.exists():
+        for project in os.scandir(projects):
+            if not project.is_dir():
+                continue
+            for entry in os.scandir(project.path):
+                if not entry.name.endswith(".jsonl") or entry.name.startswith("agent-"):
+                    continue
+                stat = entry.stat(follow_symlinks=False)
+                session_id = entry.name[: -len(".jsonl")]
+                mtime = stat.st_mtime_ns // NS_PER_SECOND
+                sources.append((entry.path, "claude", session_id, stat.st_size, mtime))
+    for root in ("sessions", "archived_sessions"):
+        for path in _codex_rollouts(str(home / ".codex" / root)):
+            try:
+                stat = os.stat(path)
+            except OSError:
+                continue
+            stem = Path(path).stem
+            tail = stem[-36:]
+            session_id = tail if len(stem) >= 36 and tail.count("-") == 4 else stem
+            mtime = stat.st_mtime_ns // NS_PER_SECOND
+            sources.append((path, "codex", session_id, stat.st_size, mtime))
+    return sources
+
+
+def index_drift() -> dict:
+    """Count the sessions a non-forced `index build` would still have to touch.
+
+    `index status` only echoes the totals stored in the manifest, so an index
+    that stopped updating months ago still reports `ready`. Each source file is
+    checked against its manifest entry with Ataru's own
+    `previous_entry_matches_source` rule: same kind, session id, size and mtime,
+    and indexed to the end.
+    """
+
+    try:
+        manifest = json.loads(
+            (data_local_dir() / "ataru" / MANIFEST_NAME).read_text(encoding="utf-8")
+        )
+    except (OSError, ValueError):
+        manifest = {}
+    indexed_at = manifest.get("indexedAt")
+    entries = {entry.get("path"): entry for entry in manifest.get("entries") or []}
+    try:
+        sources = collect_sources(Path.home())
+    except OSError as exc:
+        raise AtaruError(f"ATARU_SOURCES_UNREADABLE: {exc}") from exc
+
+    pending = 0
+    for path, kind, session_id, size, mtime in sources:
+        entry = entries.get(path)
+        if entry is None:
+            # Ataru stores no entry for a Codex rollout it cannot tie to a project
+            # and retries it on every build. One no newer than the manifest was
+            # already seen and skipped; counting it would keep the index stale forever.
+            if not (kind == "codex" and indexed_at is not None and mtime <= indexed_at):
+                pending += 1
+        elif (
+            entry.get("sourceKind"), entry.get("sessionId"), entry.get("size"),
+            entry.get("mtime"), entry.get("indexedSize"),
+        ) != (kind, session_id, size, mtime, size):
+            pending += 1
+    current = {source[0] for source in sources}
+    removed = sum(1 for path in entries if path not in current)
+    return {
+        "indexStale": bool(pending or removed),
+        "pendingSessions": pending,
+        "removedSessions": removed,
+        "indexedAt": indexed_at,
+    }
+
+
+def summarize(status: dict, drift: dict) -> dict:
     """Add the decision an agent actually needs on top of the raw status."""
 
     state = status.get("state") or "unknown"
@@ -176,9 +286,12 @@ def summarize(status: dict) -> dict:
         "state": state,
         "mode": status.get("mode"),
         "searchAvailable": searchable,
-        "needsBuild": state in {"idle", "error", "unknown"} or not searchable,
+        "needsBuild": (
+            state in {"idle", "error", "unknown"} or not searchable or drift["indexStale"]
+        ),
         "isBuilding": state == "building",
         "progressPercent": percent,
+        **drift,
         "indexedMessages": status.get("indexedMessages"),
         "totalMessages": total,
         "totalSessions": status.get("totalSessions"),
@@ -194,8 +307,9 @@ def emit(payload: dict) -> None:
 
 def cmd_status(binary: Path, args: argparse.Namespace) -> int:
     status = run_json(binary, ["index", "status"])
-    emit({"binary": str(binary), **summarize(status), "raw": status} if args.raw
-         else {"binary": str(binary), **summarize(status)})
+    view = summarize(status, index_drift())
+    emit({"binary": str(binary), **view, "raw": status} if args.raw
+         else {"binary": str(binary), **view})
     return EXIT_OK
 
 
@@ -223,13 +337,13 @@ def cmd_ensure(binary: Path, args: argparse.Namespace) -> int:
         actions.append("waited-for-running-build")
         status = wait_for_ready(binary, deadline, args.poll)
 
-    view = summarize(status)
+    view = summarize(status, index_drift())
     if view["needsBuild"] or args.force:
         actions.append("full-rebuild" if args.force else "catch-up-build")
         remaining = max(deadline - time.monotonic(), 1.0)
         build_args = ["index", "build"] + (["--force"] if args.force else [])
         status = run_json(binary, build_args, timeout=remaining)
-        view = summarize(status)
+        view = summarize(status, index_drift())
     else:
         actions.append("already-ready")
 

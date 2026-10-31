@@ -15,7 +15,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.5.4"
+  version: "1.5.5"
   tags:
     - markdown
     - pdf
@@ -395,7 +395,6 @@ sudo apt install fonts-dejavu-core fonts-liberation fonts-freefont-ttf fonts-not
 
 ## 维护备注
 
-- 内置 `warm-academic` 主题的 `accent` 实为靛蓝 `#4F46E5`（md2pdf.py:323），与主题名和它自己的 `accent_light: #D99A82` 自相矛盾；要暖色务必用 `--theme-file` 覆盖，别信主题名（2026-09-05, 1c67671）
 - 默认 layout 对每个 H2 强制 `PageBreak`（md2pdf.py:1899），中文大纲类文档会产出大量半空页；在自定义主题的 `layout` 里加 `"continuous_headings": true`（`songti-reading` 用的就是这个）（2026-09-05, 1c67671）
 - 正文里的 ASCII 流程图会按普通文本断词换行；靠调小 `code_size`/`code_leading`（如 10.0→8.6、16.2→14.2）让整行放得下，不要改图（2026-09-05, 1c67671）
 - 实际脚本路径是 `scripts/md2pdf.py`，SKILL.md 正文写的 `md2pdf/scripts/md2pdf.py` 不存在（2026-09-05, 1c67671）

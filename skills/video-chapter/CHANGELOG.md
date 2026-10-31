@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.2] - 2026-10-31
+
+### Fixed
+
+- 恢复 2026-08-09 去品牌化误改的 Studio 文案：色彩面板副标题回到品牌名（按 BRAND-08 写作 `Lovstudio.AI signal`，替换前为 `LovStudio signal`，见 d8c39a1^）
+
 ## [0.3.1] - 2026-09-25
 
 ### Added

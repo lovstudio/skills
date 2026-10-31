@@ -1,6 +1,6 @@
 # 会话寻踪 · Chat Finder
 
-![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.3-CC785C)
 
 从本机 Ataru 记忆索引里召回过去的 AI 会话上下文，返回可定位的命中与原文片段。
 
@@ -46,8 +46,10 @@ python3 scripts/ataru_recall.py read \
 ```
 
 `search` 会先确认索引；未就绪时以 `ATARU_INDEX_NOT_READY` 或 `ATARU_INDEX_BUILDING`
-失败并指向 `lov-ataru-indexing`，而不是返回零结果。命中里的 `projectId` /
-`sessionId` / `messageId` / `lineNumber` 是稳定标识，可直接用于 `read`。
+失败并指向 `lov-ataru-indexing`，而不是返回零结果。索引可检索但与磁盘上的会话文件
+有漂移时，结果带 `indexStale: true`、`pendingSessions`、`removedSessions`，
+`warnings` 首条为 `ATARU_INDEX_STALE`，此时零命中不能当成「没找到」。命中里的
+`projectId` / `sessionId` / `messageId` / `lineNumber` 是稳定标识，可直接用于 `read`。
 
 命令行检索只走关键词模式，语义与 hybrid 排序目前只服务桌面端。在万级会话的真实
 语料上，一次 turn 级检索是数十秒量级。

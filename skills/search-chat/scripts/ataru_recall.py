@@ -36,6 +36,8 @@ REPO_BUILDS = (
     "src-tauri/target/release/ataru",
     "src-tauri/target/debug/ataru",
 )
+MANIFEST_NAME = "search-index-manifest.json"
+NS_PER_SECOND = 1_000_000_000
 EXIT_OK = 0
 EXIT_FAILED = 1
 EXIT_NO_BINARY = 3
@@ -165,6 +167,112 @@ def run_json(binary: Path, args: list[str], timeout: float = 300.0) -> dict:
         raise AtaruError(f"ATARU_CLI_BAD_JSON: {exc}") from exc
 
 
+def data_local_dir() -> Path:
+    """Mirror `dirs::data_local_dir()`, under which Ataru keeps its index."""
+
+    home = Path.home()
+    if sys.platform == "darwin":
+        return home / "Library" / "Application Support"
+    if os.name == "nt":
+        return Path(os.environ.get("LOCALAPPDATA") or home / "AppData" / "Local")
+    xdg = os.environ.get("XDG_DATA_HOME", "")
+    return Path(xdg) if os.path.isabs(xdg) else home / ".local" / "share"
+
+
+def _codex_rollouts(root: str) -> list[str]:
+    try:
+        entries = list(os.scandir(root))
+    except OSError:
+        return []
+    found: list[str] = []
+    for entry in entries:
+        if entry.is_dir():
+            found.extend(_codex_rollouts(entry.path))
+        elif Path(entry.name).suffix == ".jsonl":
+            found.append(entry.path)
+    return found
+
+
+def collect_sources(home: Path) -> list[tuple[str, str, str, int, int]]:
+    """List (path, kind, session id, size, mtime) for every file Ataru indexes.
+
+    Mirrors Ataru 0.41.x: top-level `*.jsonl` in each Claude project except
+    `agent-*` sidechains, and every `*.jsonl` under the Codex session roots.
+    Compressed `.jsonl.zst` rollouts stay out because this line cannot read them.
+    """
+
+    sources = []
+    projects = home / ".claude" / "projects"
+    if projects.exists():
+        for project in os.scandir(projects):
+            if not project.is_dir():
+                continue
+            for entry in os.scandir(project.path):
+                if not entry.name.endswith(".jsonl") or entry.name.startswith("agent-"):
+                    continue
+                stat = entry.stat(follow_symlinks=False)
+                session_id = entry.name[: -len(".jsonl")]
+                mtime = stat.st_mtime_ns // NS_PER_SECOND
+                sources.append((entry.path, "claude", session_id, stat.st_size, mtime))
+    for root in ("sessions", "archived_sessions"):
+        for path in _codex_rollouts(str(home / ".codex" / root)):
+            try:
+                stat = os.stat(path)
+            except OSError:
+                continue
+            stem = Path(path).stem
+            tail = stem[-36:]
+            session_id = tail if len(stem) >= 36 and tail.count("-") == 4 else stem
+            mtime = stat.st_mtime_ns // NS_PER_SECOND
+            sources.append((path, "codex", session_id, stat.st_size, mtime))
+    return sources
+
+
+def index_drift() -> dict:
+    """Count the sessions a non-forced `index build` would still have to touch.
+
+    `index status` only echoes the totals stored in the manifest, so an index
+    that stopped updating months ago still reports `ready`. Each source file is
+    checked against its manifest entry with Ataru's own
+    `previous_entry_matches_source` rule: same kind, session id, size and mtime,
+    and indexed to the end.
+    """
+
+    try:
+        manifest = json.loads(
+            (data_local_dir() / "ataru" / MANIFEST_NAME).read_text(encoding="utf-8")
+        )
+    except (OSError, ValueError):
+        manifest = {}
+    indexed_at = manifest.get("indexedAt")
+    entries = {entry.get("path"): entry for entry in manifest.get("entries") or []}
+    try:
+        sources = collect_sources(Path.home())
+    except OSError as exc:
+        raise AtaruError(f"ATARU_SOURCES_UNREADABLE: {exc}") from exc
+
+    pending = 0
+    for path, kind, session_id, size, mtime in sources:
+        entry = entries.get(path)
+        if entry is None:
+            # Ataru stores no entry for a Codex rollout it cannot tie to a project
+            # and retries it on every build. One no newer than the manifest was
+            # already seen and skipped; counting it would keep the index stale forever.
+            if not (kind == "codex" and indexed_at is not None and mtime <= indexed_at):
+                pending += 1
+        elif (
+            entry.get("sourceKind"), entry.get("sessionId"), entry.get("size"),
+            entry.get("mtime"), entry.get("indexedSize"),
+        ) != (kind, session_id, size, mtime, size):
+            pending += 1
+    current = {source[0] for source in sources}
+    removed = sum(1 for path in entries if path not in current)
+    return {
+        "indexStale": bool(pending or removed),
+        "pendingSessions": pending,
+        "removedSessions": removed,
+        "indexedAt": indexed_at,
+    }
 
 
 def emit(payload: dict) -> None:
@@ -202,6 +310,22 @@ def require_ready_index(binary: Path) -> dict:
     return status
 
 
+def stale_warning(drift: dict) -> str | None:
+    """Say why a miss on a drifted index is not proof that nothing was found."""
+
+    if not drift["indexStale"]:
+        return None
+    built_at = drift["indexedAt"]
+    built = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(built_at)) if built_at else "never"
+    return (
+        f"ATARU_INDEX_STALE: since the index was built ({built}), "
+        f"{drift['pendingSessions']} session files are new or changed and "
+        f"{drift['removedSessions']} indexed sessions are gone from disk. Hits may be "
+        "missing or unreadable; run lov-ataru-indexing (`ataru_index.py ensure`) "
+        "before reporting a miss as not found."
+    )
+
+
 def project_hit(hit: dict, snippet_chars: int) -> dict:
     return {
         "id": hit.get("id"),
@@ -223,14 +347,25 @@ def project_hit(hit: dict, snippet_chars: int) -> dict:
 
 
 def cmd_search(binary: Path, args: argparse.Namespace) -> int:
-    index_status = require_ready_index(binary)
+    require_ready_index(binary)
+    drift = index_drift()
     cli_args = ["search", args.query, "--level", args.level, "--limit", str(args.limit)]
     if args.project_id:
         cli_args += ["--project-id", args.project_id]
     response = run_json(binary, cli_args, timeout=args.timeout)
 
+    warning = stale_warning(drift)
+    warnings = ([warning] if warning else []) + (response.get("warnings") or [])
+    freshness = {
+        # The CLI status `updatedAt` is the moment it was read, so the manifest
+        # time is the only honest "last built" stamp.
+        "indexUpdatedAt": drift["indexedAt"],
+        "indexStale": drift["indexStale"],
+        "pendingSessions": drift["pendingSessions"],
+        "removedSessions": drift["removedSessions"],
+    }
     if args.full:
-        emit(response)
+        emit({**response, **freshness, "warnings": warnings})
         return EXIT_OK
 
     hits = response.get("hits") or []
@@ -243,8 +378,8 @@ def cmd_search(binary: Path, args: argparse.Namespace) -> int:
             "semanticAvailable": response.get("semanticAvailable"),
             "tookMs": response.get("tookMs"),
             "total": response.get("total"),
-            "warnings": response.get("warnings") or [],
-            "indexUpdatedAt": index_status.get("updatedAt"),
+            "warnings": warnings,
+            **freshness,
             "hits": [project_hit(hit, args.snippet_chars) for hit in hits],
         }
     )
@@ -254,11 +389,13 @@ def cmd_search(binary: Path, args: argparse.Namespace) -> int:
 def slice_messages(messages: list[dict], around: str | None, window: int) -> list[dict]:
     if not around:
         return messages if window <= 0 else messages[-window:]
+    # `session read` emits Ataru's message struct as-is (`line_number`), unlike the
+    # camelCase search hits; both count the same transcript lines.
     pivot = next(
         (
             position
             for position, message in enumerate(messages)
-            if message.get("uuid") == around or str(message.get("lineNumber")) == around
+            if message.get("uuid") == around or str(message.get("line_number")) == around
         ),
         None,
     )
@@ -301,7 +438,7 @@ def cmd_read(binary: Path, args: argparse.Namespace) -> int:
             "messages": [
                 {
                     "uuid": message.get("uuid"),
-                    "lineNumber": message.get("lineNumber"),
+                    "lineNumber": message.get("line_number"),
                     "role": message.get("role"),
                     "timestamp": message.get("timestamp"),
                     "content": clip(message.get("content"), args.message_chars),
@@ -314,7 +451,7 @@ def cmd_read(binary: Path, args: argparse.Namespace) -> int:
 
 
 def cmd_index_status(binary: Path, _args: argparse.Namespace) -> int:
-    emit(run_json(binary, ["index", "status"], timeout=120.0))
+    emit({**run_json(binary, ["index", "status"], timeout=120.0), **index_drift()})
     return EXIT_OK
 
 

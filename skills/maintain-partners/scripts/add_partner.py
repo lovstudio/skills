@@ -57,7 +57,7 @@ def resolve_repo(cli_repo: str | None) -> Path:
         os.environ.get("SKILL_PROFILE_PATH")
         or os.environ.get("AGENT_SKILL_PROFILE")
         or os.environ.get("SKILL_SKILL_PROFILE")
-        or str(Path.home() / ".skill-publisher/skills/profile.json")
+        or str(Path.home() / ".lovstudio/skills/profile.json")
     ).expanduser()
     if profile.exists():
         try:
@@ -65,8 +65,8 @@ def resolve_repo(cli_repo: str | None) -> Path:
         except json.JSONDecodeError as exc:
             sys.exit(f"Invalid JSON in {profile}: {exc}")
         for key in (
-            "sites.skill-publisher_web",
-            "skill-publisher.web_root",
+            "sites.lovstudio_web",
+            "lovstudio.web_root",
             "workspace.web_root",
             "workspace.website_root",
         ):
@@ -81,7 +81,7 @@ def resolve_repo(cli_repo: str | None) -> Path:
 
     sys.exit(
         "Website repo not found. Pass --repo, set SKILL_MAINTAIN_PARTNERS_SITE_ROOT, or add "
-        "sites.skill-publisher_web / skill-publisher.web_root / workspace.web_root to "
+        "sites.lovstudio_web / lovstudio.web_root / workspace.web_root to "
         f"{profile}. SKILL_WEB_ROOT and PARTNERS_SITE_ROOT are still accepted as legacy aliases."
     )
 
@@ -110,7 +110,7 @@ def resolve_partners_file(repo: Path, cli_partners_file: str | None) -> Path:
         os.environ.get("SKILL_PROFILE_PATH")
         or os.environ.get("AGENT_SKILL_PROFILE")
         or os.environ.get("SKILL_SKILL_PROFILE")
-        or str(Path.home() / ".skill-publisher/skills/profile.json")
+        or str(Path.home() / ".lovstudio/skills/profile.json")
     ).expanduser()
     if profile.exists():
         try:
@@ -119,7 +119,7 @@ def resolve_partners_file(repo: Path, cli_partners_file: str | None) -> Path:
             sys.exit(f"Invalid JSON in {profile}: {exc}")
         for key in (
             "sites.partners_file",
-            "skill-publisher.partners_file",
+            "lovstudio.partners_file",
             "partners.file",
             "workspace.partners_file",
         ):
@@ -141,7 +141,7 @@ def resolve_partners_file(repo: Path, cli_partners_file: str | None) -> Path:
 
     sys.exit(
         "Partners file not found. Pass --partners-file, set SKILL_MAINTAIN_PARTNERS_FILE, "
-        "or add sites.partners_file / skill-publisher.partners_file to the shared profile. "
+        "or add sites.partners_file / lovstudio.partners_file to the shared profile. "
         "SKILL_PARTNERS_FILE and PARTNERS_FILE are still accepted as legacy aliases."
     )
 

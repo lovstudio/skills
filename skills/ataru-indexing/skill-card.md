@@ -6,8 +6,9 @@ an implementation note.
 ## Description
 
 在无界面环境下把本机 Ataru 会话记忆索引带到可检索状态：解析并版本门控本地 Ataru
-可执行文件，读取索引状态，只在需要时发起增量构建，等待其他进程正在进行的构建，
-最后交回一份带 actions 与规模数据的 JSON 报告。
+可执行文件，读取索引状态并与磁盘上的会话文件比对漂移，只在不可检索或已过期时发起
+增量构建，等待其他进程正在进行的构建，最后交回一份带 actions、漂移与规模数据的
+JSON 报告。
 
 ## Owner
 
@@ -37,6 +38,7 @@ MIT。自由使用、修改与再分发，保留版权与许可声明。本许�
 | 风险 | 缓解 |
 | --- | --- |
 | 旧版 Ataru 把 index 子命令当成桌面启动参数，打开窗口抢走前台且永不返回 | 每个候选先跑 `--version`，低于 0.41.3 直接拒绝并列出被拒候选与版本 |
+| `index status` 只汇报 manifest 总数，停更的索引仍报 `ready`，检索给出假「没找到」 | 按 Ataru 的规则逐一比对 manifest 与会话文件，报告 `indexStale` / `pendingSessions` / `removedSessions`，有漂移即 `catch-up-build` |
 | 构建锁只在进程内生效，可能与桌面端并发构建 | 构建前读状态，`building` 时轮询等待；底层写临时目录再原子替换 |
 | `--force` 丢弃现有索引重扫全部会话，分钟级开销 | 仅在用户明确要求时使用，默认增量，report 区分 full-rebuild 与 catch-up-build |
 | 子命令挂住会阻塞调用方 | 所有调用带超时，超时返回 `ATARU_CLI_TIMEOUT` 与完整命令行 |
@@ -50,12 +52,13 @@ MIT。自由使用、修改与再分发，保留版权与许可声明。本许�
 ## Skill Output
 
 stdout 上的单个 UTF-8 JSON 对象，含 `state`、`searchAvailable`、`needsBuild`、
-`isBuilding`、`progressPercent`、规模统计，以及本次执行的 `actions`。索引不可用时
-退出码 1，无可用二进制退出码 3，超时退出码 4。
+`isBuilding`、`progressPercent`、`indexStale`、`pendingSessions`、`removedSessions`、
+`indexedAt`、规模统计，以及本次执行的 `actions`。索引不可用时退出码 1，无可用二进制
+退出码 3，超时退出码 4。
 
 ## Skill Version
 
-0.2.1
+0.2.2
 
 ## Ethical Considerations
 

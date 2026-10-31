@@ -1,6 +1,6 @@
 # PDF大师 · PDF Master
 
-![Version](https://img.shields.io/badge/version-1.5.4-CC785C)
+![Version](https://img.shields.io/badge/version-1.5.5-CC785C)
 
 Markdown to professionally typeset PDF with [reportlab](https://docs.reportlab.com/). CJK/Latin mixed text, code blocks, tables, images, Obsidian callouts, emoji fallback, formulas, cover pages, TOC, bookmarks, watermarks, and 16 themes.
 

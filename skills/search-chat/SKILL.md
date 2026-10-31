@@ -6,7 +6,7 @@ description: >
 license: MIT
 metadata:
   author: lovstudio
-  version: "0.2.2"
+  version: "0.2.3"
   card_standard: lovstudio/skill-card/v1
   tags:
     - ataru
@@ -72,6 +72,15 @@ python3 "$SKILL_DIR/scripts/ataru_recall.py" index-status
 `ATARU_INDEX_BUILDING` 失败并指向 `lov-ataru-indexing`，**不会**返回零结果——
 「没找到」和「索引没建好」必须是两种可区分的回答。本 Skill 不替用户构建索引。
 
+能检索不等于跟得上磁盘：`index status` 只汇报 manifest 里存的总数，停更几个月的
+索引照样报 `ready`。所以 `index-status` 和 `search` 都按 Ataru 自己的规则把
+manifest 与磁盘上的会话文件逐一比对，给出 `indexStale`、`pendingSessions`（新增或
+改动、还没进索引）与 `removedSessions`（索引里有、磁盘上已删）。`indexStale` 为真时
+`search` 照常返回命中，`warnings` 第一条是 `ATARU_INDEX_STALE`：这时零命中**不能**
+当作「没找到」，先用 `lov-ataru-indexing` 的 `ensure` 补建再重试，或明确告诉用户
+索引已过期。这里给警告而不报错，是因为正在进行的会话（包括发起检索的这一个）一直在
+追加，少量 pending 是常态，报错会让检索几乎永远不可用。
+
 ### Step 1: Choose the level before querying
 
 | level | 一条命中代表 | 什么时候用 |
@@ -93,7 +102,9 @@ python3 "$SKILL_DIR/scripts/ataru_recall.py" search "索引没有更新" \
 ```
 
 命中里的 `projectId` / `sessionId` / `messageId` / `lineNumber` 是稳定标识，可以直接
-喂给下一步。`snippet` 默认截断到 600 字符，需要完整 CLI 响应时加 `--full`。
+喂给下一步。`indexUpdatedAt` 是 manifest 写入时间，即索引上次构建完成的时刻。
+`snippet` 默认截断到 600 字符，需要完整 CLI 响应时加 `--full`，它同样带上述
+新鲜度字段与警告。
 
 命令行检索只走关键词模式：`mode` 与 `requestedMode` 都会是 `keyword`，
 `semanticAvailable` 通常为 false。不要向用户承诺命令行能拿到语义或 hybrid 排序，
@@ -121,8 +132,9 @@ python3 "$SKILL_DIR/scripts/ataru_recall.py" read \
 ### Step 3: Answer with citations, not with impressions
 
 回答里必须带得回原处的东西：会话标题、时间戳，以及必要时的 `sessionId`。截断过的
-正文要说明是截断的。检索没命中就说没命中，并说明用了哪些词和哪个 level ——
-不要用当前上下文的推测去填补历史空白。
+正文要说明是截断的。检索没命中、且 `indexStale` 为 false，才说没命中，并说明用了
+哪些词和哪个 level；`indexStale` 为真时要说「索引已过期，这次没查到」，而不是
+「没有」。不要用当前上下文的推测去填补历史空白。
 
 ## Dependencies
 

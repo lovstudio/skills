@@ -32,7 +32,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.10.1"
+  version: "0.10.2"
   tags: [skill-publisher, web, branding, i18n]
 ---
 
@@ -62,7 +62,7 @@ Use this precedence for the website root:
 1. Explicit `--repo <path>` on `add_partner.py` / `audit_partners.py`.
 2. `SKILL_MAINTAIN_PARTNERS_SITE_ROOT`.
 3. Shared profile JSON at
-   `${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`.
+   `${SKILL_PROFILE_PATH:-$HOME/.lovstudio/skills/profile.json}`.
 
 `SKILL_WEB_ROOT` and `PARTNERS_SITE_ROOT` are accepted as legacy aliases,
 but should not be the public contract for reusable skills.
@@ -71,7 +71,7 @@ Use this precedence for the partners TSX file:
 
 1. Explicit `--partners-file <path>`.
 2. `SKILL_MAINTAIN_PARTNERS_FILE`.
-3. Shared profile keys `sites.partners_file`, `skill-publisher.partners_file`,
+3. Shared profile keys `sites.partners_file`, `lovstudio.partners_file`,
    `partners.file`, or `workspace.partners_file`.
 4. `app/(main)/(home)/PartnersGrid.tsx`, then legacy
    `app/(main)/(home)/WorkshopDispatch.tsx`.
@@ -119,13 +119,13 @@ For details and supported profile keys, read `references/user-config.md`.
      --name "<显示名>" --url <URL> --slug <slug> --json
    ```
    Use the archived primary asset under
-   `~/.skill-publisher/logo-collection/<slug>/logo.<ext>`. If `find_logo.py` returns
+   `~/.lovstudio/logo-collection/<slug>/logo.<ext>`. If `find_logo.py` returns
    no candidates, stop and ask the user for a better official URL / press-kit
    URL, then rerun `find_logo.py`. Do not call a local scraper from this skill.
 3. Visually verify the archived primary asset before normalizing.
 4. If the primary asset is SVG, rasterize it before normalization:
    ```bash
-   rsvg-convert -h 240 ~/.skill-publisher/logo-collection/<slug>/logo.svg \
+   rsvg-convert -h 240 ~/.lovstudio/logo-collection/<slug>/logo.svg \
      -o /tmp/<slug>-raw.png
    ```
    Use the rasterized `/tmp/<slug>-raw.png` as `--src`. For non-SVG sources,

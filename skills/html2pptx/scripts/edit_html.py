@@ -39,7 +39,7 @@ EDITOR_HTML = r"""<!doctype html>
   :root {
     --bg: #F9F9F7;
     --fg: #181818;
-    --primary: #4F46E5;
+    --primary: #CC785C;
     --border: #e2e2dd;
     --muted: #8a8a82;
   }
@@ -357,9 +357,9 @@ def _starter_html() -> str:
   }
   .slide.title { background: #181818; color: #F9F9F7; }
   .slide.title h1 { font-size: 120px; font-weight: 700; margin: 0; }
-  .slide.title p { font-size: 36px; color: #4F46E5; margin: 24px 0 0; }
+  .slide.title p { font-size: 36px; color: #CC785C; margin: 24px 0 0; }
   .slide.body { background: #F9F9F7; color: #181818; }
-  .slide.body h2 { font-size: 80px; margin: 0 0 40px; color: #4F46E5; }
+  .slide.body h2 { font-size: 80px; margin: 0 0 40px; color: #CC785C; }
   .slide.body p  { font-size: 36px; line-height: 1.5; max-width: 1400px; }
 </style>
 </head>
