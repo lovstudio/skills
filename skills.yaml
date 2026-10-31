@@ -1438,7 +1438,7 @@ skills:
     card_path: pricing-cards/writing-style.md
 - name: article-creator
   runtime_name: lov-article-creator
-  updated_at: 2026-10-31T12:29:42Z
+  updated_at: 2026-10-31T12:46:32Z
   display_name: Genius Writer
   repo: lovstudio/article-creator-skill
   name_zh: 天才写手
@@ -1464,9 +1464,8 @@ skills:
     price_range_credits:
     - 280
     - 280
-    delivery_unit_zh: 公开 Skill 源码、公众号文章包工作流、回归测试与当前版本说明
-    delivery_unit_en: Public source, WeChat article-package workflows, regression
-      tests, and current-version notes
+    delivery_unit_zh: 私有仓库中对应版本的完整 Skill 源码（购买后下载）、公众号文章包工作流、回归测试与当前版本说明
+    delivery_unit_en: Full Skill source from the private repository at the released version (downloaded after purchase), WeChat article-package workflows, regression tests, and current-version notes
     value_zh: 把正文写作、模板装配、正文配图、品牌封面、4:3 正文首图、转载保真与发布前验收连接成一个可复测的文章包。
     value_en: Connect writing, template assembly, body figures, branded covers, a
       4:3 hero image, repost fidelity, and pre-publication acceptance into one reproducible
@@ -1474,11 +1473,8 @@ skills:
     anchor_zh: 一次完整任务可替代公众号创作、品牌包装、配图整理、转载整理和发布前验收中的多轮手工拼接。
     anchor_en: One complete task can replace several manual passes across writing,
       branding, figure preparation, repost preparation, and pre-publication review.
-    basis_zh: 以 280 Credits 一次性解锁完整文章包工作流，价格用于验证真实付费意愿；相比免费入口增加正文配图决策、文风散列绑定与更严格质量门，公开源码交付不提供源码保密。
-    basis_en: The complete article-package workflow unlocks once for 280 Credits to
-      validate paid demand; compared with the free entry it adds body-figure decisions,
-      style-review hash binding, and a stricter quality gate, with no source secrecy
-      under public-source delivery.
+    basis_zh: 以 280 Credits 一次性解锁完整文章包工作流，价格用于验证真实付费意愿；相比免费入口增加正文配图决策、文风散列绑定与更严格质量门；源码保存在私有仓库，购买后按版本下载。
+    basis_en: The complete article-package workflow unlocks once for 280 Credits to validate paid demand; compared with the free entry it adds body-figure decisions, style-review hash binding, and a stricter quality gate; the source stays in a private repository and is downloaded at the released version after purchase.
     boundary_zh: 包含本地文章包创建、改写、品牌化、忠实转载、正文配图、双比例视觉与质量报告；不含托管模型调用、素材授权、公众号凭据、代运营或远程发布。
     boundary_en: Includes local package creation, rewriting, branding, faithful reposting,
       body figures, dual-ratio visuals, and quality reports; excludes hosted inference,
@@ -1487,10 +1483,8 @@ skills:
     maintenance_en: Review against WeChat formats, dependency Skills, visual rules,
       benchmarks, and real article-package feedback.
     confidence: medium
-    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化、支持成本明显变化，或从公开源码切换为加密交付时复评。
-    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
-      change, a material support-cost change, or a switch from public source to encrypted
-      delivery.
+    review_trigger_zh: 首发 30 天、100 次付费兑换、下一次版本变化、支持成本明显变化，或交付方式变化时复评。
+    review_trigger_en: Review after 30 launch days, 100 paid redemptions, the next version change, a material support-cost change, or a delivery-mode change.
     card_path: pricing-cards/article-creator.md
 - name: publish-wechat-article
   runtime_name: lov-publish-wechat-article
