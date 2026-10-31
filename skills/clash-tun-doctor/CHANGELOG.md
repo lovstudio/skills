@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.6.2] - 2026-10-31
+
+### Fixed
+
+- CI 自 0a592dc 起每次失败且 0 个 job：validate.yml 调用的 skill-publisher/dev-skills 可复用工作流并不存在。改为在本仓库内运行 lov-skill-creator 的 validate_skill.py（固定到 976fb61）和全部单测
+- README 安装命令改为 npx skills add lov-clash-tun-doctor -g -y，插件市场改为 lovstudio/skills 的 dev-tools@lovstudio，移除已归档的 dev-skills 聚合包与 example.com 占位链接
+
+### Changed
+
+- 补齐 validate_skill.py 要求的 Skill 结构：description 精简到 200 字符内；metadata.tags 改为列表；When to Use 改为 Triggers 并列出非触发条件（获取订阅或购买节点、IPRoyal 链式出口交给 lov-iproyal-raylink、微信内网址拦截）；新增 references/skill-composition.md；skill.yaml 的 context.profile 补全 schema、source、read、persist
+
 ## [0.6.1] - 2026-10-31
 
 ### Changed

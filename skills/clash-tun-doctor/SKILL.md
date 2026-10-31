@@ -1,13 +1,8 @@
 ---
 name: lov-clash-tun-doctor
 description: >
-  Diagnose and repair application connectivity failures caused by Clash Verge
-  Rev TUN routing, rule precedence, stale runtime state, proxy timeouts, or
-  unusable IPv6 paths. Trigger for symptoms such as WeChat images failing to
-  send, Moments images loading slowly, an app hanging after TUN is enabled, or
-  requests unexpectedly matching DIRECT/proxy rules. Also trigger when the user
-  mentions "Clash TUN 排障", "微信图片发不出去", "朋友圈图片加载慢",
-  "修复微信 TUN 网络", or "diagnose Clash TUN app connectivity".
+  诊断并可回滚地修复 Clash Verge Rev TUN 导致的应用联网故障：微信图片发不出、朋友圈加载慢、开 TUN 后卡住、规则误走 DIRECT/代理、代理超时、IPv6 失效。
+  Use when the user mentions "Clash TUN 排障", "微信图片发不出去", "diagnose Clash TUN app connectivity".
 license: MIT
 compatibility: >
   Requires macOS with Clash Verge Rev (Mihomo core in sidecar or service mode)
@@ -15,8 +10,15 @@ compatibility: >
   and --socket values.
 metadata:
   author: contributors
-  version: "0.6.1"
-  tags: clash mihomo tun network diagnostics wechat macos
+  version: "0.6.2"
+  tags:
+    - clash
+    - mihomo
+    - tun
+    - network
+    - diagnostics
+    - wechat
+    - macos
 ---
 
 # Clash 网络医生 · Clash Network Doctor
@@ -24,8 +26,13 @@ metadata:
 Evidence-first diagnosis and reversible repair for application networking
 failures behind Clash Verge Rev TUN mode.
 
-## When to Use
+## Triggers
 
+### Activate when
+
+- “微信图片发不出去”“朋友圈图片加载慢”“修复微信 TUN 网络”“Clash TUN 排障”
+- "Help me diagnose Clash TUN app connectivity: the app works without TUN but
+  hangs with it."
 - An application works without TUN but fails, stalls, or loses media with TUN.
 - WeChat text works while image uploads or Moments images fail.
 - A rule change makes the symptom worse or the app remains stuck on Loading.
@@ -35,8 +42,19 @@ failures behind Clash Verge Rev TUN mode.
 - A blocked site such as `chatgpt.com` fails through one proxy node while other
   sites work through the same node.
 
-Do not use this skill for generic subscription acquisition, node purchasing,
-or bypassing organizational network policy.
+### Do not activate when
+
+- Generic subscription acquisition, node purchasing, or bypassing
+  organizational network policy.
+- Chaining an IPRoyal static residential exit behind RayLink: use
+  `lov-iproyal-raylink`.
+- A website URL blocked inside WeChat (a weixin110 appeal): that is a Tencent
+  policy decision, not TUN routing.
+
+## Skill Group Composition
+
+Read `references/skill-composition.md` before routing to or extending an
+adjacent Skill.
 
 ## Workflow (MANDATORY)
 

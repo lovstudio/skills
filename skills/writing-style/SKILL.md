@@ -10,7 +10,7 @@ depends_on:
   - lov-human-writing
 metadata:
   author: LovStudio
-  version: "2.6.4"
+  version: "2.6.5"
   card_standard: lovstudio/skill-card/v1
   content_class: authored-prose
   tags:
