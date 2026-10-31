@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Initialize and optionally install a portable local Skill Publisher Skill."""
+"""Initialize and optionally install a portable local Lovstudio.AI Skill."""
 
 from __future__ import annotations
 
@@ -28,7 +28,7 @@ description: >
 license: MIT
 compatibility: "Portable Agent Skills format. TODO: list runtime requirements."
 {branding_dependency}metadata:
-  author: skill-publisher
+  author: lovstudio
   version: "0.1.0"
   card_standard: lovstudio/skill-card/v1
   content_class: {content_class}
@@ -213,9 +213,9 @@ TODO：用一句话说明用户获得的结果。
 
 ```bash
 export SKILL_SOURCE_DIR="$(pwd)"
-mkdir -p "${{SKILL_SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}}"
+mkdir -p "${{LOVSTUDIO_SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}}"
 ln -s "$SKILL_SOURCE_DIR" \
-  "$SKILL_SKILLS_INSTALL_DIR/lov-{name}"
+  "$LOVSTUDIO_SKILLS_INSTALL_DIR/lov-{name}"
 ```
 
 {configuration_section}## 使用
@@ -532,7 +532,7 @@ dist/
 
 LICENSE_MD = """MIT License
 
-Copyright (c) 2026 Skill Publisher
+Copyright (c) 2026 LovStudio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -713,12 +713,12 @@ def resolve_base(cli_path: str) -> Path:
     if cli_path:
         return _expand_path(cli_path)
     _, profile = _load_profile()
-    if os.environ.get("SKILL_SKILL_CREATOR_REPOS_ROOT"):
-        return _expand_path(os.environ["SKILL_SKILL_CREATOR_REPOS_ROOT"])
+    if os.environ.get("LOVSTUDIO_SKILL_CREATOR_REPOS_ROOT"):
+        return _expand_path(os.environ["LOVSTUDIO_SKILL_CREATOR_REPOS_ROOT"])
     profile_value = _profile_first(
         profile,
         (
-            "skill-publisher.skill_repos_root",
+            "lovstudio.skill_repos_root",
             "skills.repos_root",
             "workspace.skill_repos_root",
             "workspace.skills_root",
@@ -730,14 +730,14 @@ def resolve_base(cli_path: str) -> Path:
 def resolve_install_dir(cli_path: str) -> Optional[Path]:
     if cli_path:
         return _expand_path(cli_path)
-    if os.environ.get("SKILL_SKILLS_INSTALL_DIR"):
-        return _expand_path(os.environ["SKILL_SKILLS_INSTALL_DIR"])
+    if os.environ.get("LOVSTUDIO_SKILLS_INSTALL_DIR"):
+        return _expand_path(os.environ["LOVSTUDIO_SKILLS_INSTALL_DIR"])
     _, profile = _load_profile()
     profile_value = _profile_first(
         profile,
         (
             "skills.install_dir",
-            "skill-publisher.skills_install_dir",
+            "lovstudio.skills_install_dir",
             "workspace.skills_install_dir",
         ),
     )

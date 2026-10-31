@@ -1,12 +1,12 @@
 # Skill 工坊 · Skill Studio
 
-![Version](https://img.shields.io/badge/version-4.6.7-CC785C)
+![Version](https://img.shields.io/badge/version-4.6.8-CC785C)
 
 ## Skill 群组原子组合
 
 每次生成或迭代 Skill 前，先分析已有 Skills 的实际输入/输出合同，记录上游、核心、下游、重叠与不组合决策。新源默认携带 `references/skill-composition.md`；外部 sibling Skill 只作为可选交接，硬依赖必须嵌入为自包含 Kit 模块。
 
-创建、验证并安装本地 Skill Publisher Skill 或自包含 Skill Kit。它会根据产品需求自动判断实现形态、Single/Kit 结构，并为每个新 Skill 自动绑定跨 session 的用户 Profile。
+创建、验证并安装本地 Lovstudio.AI Skill 或自包含 Skill Kit。它会根据产品需求自动判断实现形态、Single/Kit 结构，并为每个新 Skill 自动绑定跨 session 的用户 Profile。
 
 Creator 现在还会先区分 `authored-prose`、`microcopy`、`verbatim` 与
 `deterministic-output`。文章、报告、脚本等作者性文本会自动得到作者性账本、
@@ -24,7 +24,7 @@ npx skills add lov-skill-creator -g -y
 
 ```bash
 git clone https://github.com/lovstudio/skill-creator-skill.git \
-  "${SKILL_SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}/lov-skill-creator"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:?请设置本地 Skills 目录}/lov-skill-creator"
 ```
 
 ## 创建本地 Skill
@@ -46,7 +46,7 @@ python3 "$SKILL_DIR/scripts/migrate_command.py" prepare "$COMMAND_FILE" \
 ```bash
 python3 "$SKILL_DIR/scripts/init_skill.py" wcx \
   --content-class deterministic-output \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 作者性文本：
@@ -54,7 +54,7 @@ python3 "$SKILL_DIR/scripts/init_skill.py" wcx \
 ```bash
 python3 "$SKILL_DIR/scripts/init_skill.py" article-tool \
   --content-class authored-prose \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 包含可独立调用阶段时，由代理自动创建 Skill Kit：
@@ -65,7 +65,7 @@ python3 "$SKILL_DIR/scripts/init_skill.py" bp \
   --module bp-outline \
   --module bp-deck \
   --module bp-polish \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 混合 Kit 可以按模块覆盖，例如：
@@ -74,7 +74,7 @@ python3 "$SKILL_DIR/scripts/init_skill.py" bp \
 python3 "$SKILL_DIR/scripts/init_skill.py" publishing \
   --kit --module research --module draft \
   --module-content-class draft=authored-prose \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 每个创建结果都会生成 `skill.yaml`、`references/user-profile.md` 和
@@ -92,7 +92,7 @@ Creator 的完成标准是：
 4. 触发、非触发以及 Kit 流水线完成基本验收。
 5. 新 Skill 的用户案例、维度地图、定价依据和分发状态全部通过卡片校验。
 
-发布到 Skill Publisher、WorkBuddy 或其他平台时，使用 `lov-skill-publisher`。
+发布到 Lovstudio.AI、WorkBuddy 或其他平台时，使用 `lov-skill-publisher`。
 
 ## 依赖
 

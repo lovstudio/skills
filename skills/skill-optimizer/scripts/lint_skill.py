@@ -54,7 +54,7 @@ USER_CONFIG_CUES = (
 USER_PATH_PATTERN = r"/" + r"Users" + r"/[^/\s]+(?:/|\b)"
 LOCAL_PATH_PATTERNS = (
     ("LOCAL_USER_PATH", re.compile(USER_PATH_PATTERN), "user home path"),
-    ("LOCAL_SKILL_PATH", re.compile(r"(?<![A-Za-z0-9_])~/?skill-publisher(?:/|\b)|\$HOME/skill-publisher(?:/|\b)"), "~/skill-publisher"),
+    ("LOCAL_LOVSTUDIO_PATH", re.compile(r"(?<![A-Za-z0-9_])~/?lovstudio(?:/|\b)|\$HOME/lovstudio(?:/|\b)"), "~/lovstudio"),
     ("LOCAL_CLAUDE_PATH", re.compile(r"~/\.claude|/\.claude/skills|\$HOME/\.claude"), "~/.claude"),
     ("LOCAL_AGENTS_PATH", re.compile(r"~/\.agents|/\.agents/skills|\$HOME/\.agents"), "~/.agents"),
     ("CLIENT_PLUGIN_ENV", re.compile(r"CLAUDE_PLUGIN_ROOT"), "CLAUDE_PLUGIN_ROOT"),

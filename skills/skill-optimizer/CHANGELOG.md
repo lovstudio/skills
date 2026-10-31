@@ -3,6 +3,14 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.13.5] - 2026-10-31
+
+### Fixed
+
+- lint_skill.py 恢复 `LOCAL_LOVSTUDIO_PATH` 规则，重新检出 `~/lovstudio`、`$HOME/lovstudio` 私有工作区路径。2026-08-09 的批量去品牌化把它改成只匹配并不存在的 `~/skill-publisher`，220 个 Skill 仓库里有 7 个仓库共 10 处真实路径因此漏检。
+- CHANGELOG 0.3.0–0.6.1 中被同一次批量替换改写的 7 行历史条目按原文恢复。
+- 新增 tests/test_portability.py：检出 `~/lovstudio`，且不误报 `~/.lovstudio/skills/profile.json`。
+
 ## [0.13.4] - 2026-10-29
 
 ### Fixed
@@ -118,15 +126,15 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ### Fixed
 
-- recognize skill-publisher CLI install commands
-- treat npx skills add as the canonical README install surface
+- recognize lovstudio CLI install commands
+- treat npx lovstudio skills add as the canonical README install surface
 
 ## [0.6.0] - 2026-05-07
 
 ### Added
 
-- recognize SKILL_SKILLS config namespace
-- recognize SKILL_MAINTAIN_PARTNERS skill-specific config cues
+- recognize LOVSTUDIO_SKILLS config namespace
+- recognize LOVSTUDIO_MAINTAIN_PARTNERS skill-specific config cues
 - treat AGENT_SKILL and PARTNERS env names as legacy migration cues
 
 ## [0.5.0] - 2026-05-07
@@ -134,7 +142,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 ### Added
 
 - recognize generic AGENT_SKILL config cues
-- keep SKILL_* only as legacy compatibility cues
+- keep LOVSTUDIO_* only as legacy compatibility cues
 
 ## [0.4.0] - 2026-05-06
 
@@ -143,7 +151,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 - add repo-wide portability audit
 - flag hard-coded local paths and legacy skill names
 - support --all --root scans across skill directories
-- ignore negative examples such as "do not hard-code ${SKILL_USER_ROOT}" when checking required local paths
+- ignore negative examples such as "do not hard-code /Users/mark" when checking required local paths
 
 ## [0.3.0] - 2026-04-16
 
@@ -151,7 +159,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 - Add multi-repo sync in Step 7: source → pro-skills → ~/.claude/skills
 - Document 3-location topology (source, symlink, distribution)
-- Step 7b: auto-sync skill-publisher/pro-skills via skills-upstream remote
+- Step 7b: auto-sync lovstudio/pro-skills via skills-upstream remote
 - Fail-loud on partial sync instead of silent skip
 
 ## [0.2.0] - 2026-04-14

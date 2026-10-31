@@ -20,7 +20,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.13.4"
+  version: "0.13.5"
   tags: meta skill-maintenance versioning changelog lint portability sync
 ---
 

@@ -20,15 +20,77 @@ INIT = ROOT / "scripts" / "init_skill.py"
 
 
 class ProfileContractTests(unittest.TestCase):
-    def run_command(self, command: list[str], env: dict[str, str]) -> subprocess.CompletedProcess[str]:
+    def run_command(
+        self, command: list[str], env: dict[str, str], cwd: Path = ROOT
+    ) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
             command,
-            cwd=ROOT,
+            cwd=cwd,
             env=env,
             text=True,
             capture_output=True,
             check=False,
         )
+
+    def isolated_environment(self, profile: Path) -> dict[str, str]:
+        environment = dict(os.environ)
+        for name in ("LOVSTUDIO_SKILL_CREATOR_REPOS_ROOT", "LOVSTUDIO_SKILLS_INSTALL_DIR"):
+            environment.pop(name, None)
+        environment["SKILL_PROFILE_PATH"] = str(profile)
+        return environment
+
+    def test_scaffold_author_and_license_name_lovstudio(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary)
+            result = self.run_command(
+                [sys.executable, str(INIT), "demo", "--path", str(workspace)],
+                self.isolated_environment(workspace / "missing-profile.json"),
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            skill = workspace / "demo-skill"
+            skill_data = yaml.safe_load(
+                (skill / "SKILL.md").read_text(encoding="utf-8").split("---", 2)[1]
+            )
+            self.assertEqual(skill_data["metadata"]["author"], "lovstudio")
+            self.assertIn(
+                "Copyright (c) 2026 LovStudio",
+                (skill / "LICENSE").read_text(encoding="utf-8"),
+            )
+
+    def test_lovstudio_profile_keys_and_env_vars_locate_roots(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary)
+            profile = workspace / "profile.json"
+            profile.write_text(
+                json.dumps(
+                    {
+                        "lovstudio": {
+                            "skill_repos_root": str(workspace / "profile-sources"),
+                            "skills_install_dir": str(workspace / "profile-installed"),
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            environment = self.isolated_environment(profile)
+            command = [sys.executable, str(INIT), "demo"]
+            result = self.run_command(command, environment, cwd=workspace)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            source = workspace / "profile-sources" / "demo-skill"
+            self.assertTrue((source / "SKILL.md").is_file(), result.stdout)
+            self.assertEqual(
+                (workspace / "profile-installed" / "lov-demo").resolve(),
+                source.resolve(),
+            )
+
+            environment["LOVSTUDIO_SKILL_CREATOR_REPOS_ROOT"] = str(workspace / "env-sources")
+            environment["LOVSTUDIO_SKILLS_INSTALL_DIR"] = str(workspace / "env-installed")
+            result = self.run_command(command, environment, cwd=workspace)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(
+                (workspace / "env-installed" / "lov-demo").resolve(),
+                (workspace / "env-sources" / "demo-skill").resolve(),
+            )
 
     def test_creator_always_generates_profile_contract_and_store(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

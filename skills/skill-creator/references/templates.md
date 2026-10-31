@@ -16,7 +16,7 @@ compatibility: "Portable Agent Skills format. List runtime requirements."
 depends_on:
   - lov-branding-consistency # required for audience-visible text output
 metadata:
-  author: skill-publisher
+  author: lovstudio
   version: "0.1.0"
   content_class: authored-prose # or microcopy, verbatim, deterministic-output
   tags:
@@ -32,7 +32,7 @@ phrases, explicit non-triggers, ordered workflow, dependencies, and validation.
 Every generated Skill includes the Profile contract:
 
 ```bash
-python3 scripts/init_skill.py <name> --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+python3 scripts/init_skill.py <name> --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 Choose the normal output class explicitly:
@@ -40,7 +40,7 @@ Choose the normal output class explicitly:
 ```bash
 python3 scripts/init_skill.py <name> \
   --content-class authored-prose \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 `authored-prose` generates `references/authorship-integrity.md` and, like
@@ -55,7 +55,7 @@ python3 scripts/init_skill.py <name> \
   --kit \
   --module <module-a> \
   --module <module-b> \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 Modules inherit the controller's class unless overridden with

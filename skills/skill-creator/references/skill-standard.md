@@ -1,4 +1,4 @@
-# Skill Publisher Local Skill Source Standard
+# Lovstudio.AI Local Skill Source Standard
 
 This standard covers creation, validation, and local installation. Publication
 and channel packaging belong to `lov-skill-publisher`.

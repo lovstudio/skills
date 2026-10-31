@@ -7,8 +7,8 @@ compatibility: "Python 3.8+ and PyYAML. Git is optional for local source history
 depends_on:
   - lov-branding-consistency
 metadata:
-  author: contributors
-  version: "4.6.7"
+  author: lovstudio
+  version: "4.6.8"
   content_class: deterministic-output
   tags:
     - skill-creator
@@ -77,7 +77,7 @@ Key rules:
 - Every new Skill carries a real user case, a dimension map, a pricing basis,
   and explicit paid/free distribution states. A scaffold is incomplete until
   those records are filled and validated.
-- Skill Publisher is a possible profile value, never a separate implementation mode.
+- Lovstudio.AI is a possible profile value, never a separate implementation mode.
 - Do not create remotes, releases, catalogs, platform packages, or uploads here.
 - If the Skill generates, edits, reviews, renders, packages, or publishes text
   visible to an end user or reader, declare `lov-branding-consistency` in its
@@ -207,7 +207,7 @@ generated `scripts/profile_store.py record ... --confirm` command and report the
 canonical saved path. Inferred values stay in the current request context.
 
 Every generated Skill remains portable. Never introduce an author-only or
-Skill Publisher-only branch; different users supply different profile values.
+Lovstudio.AI-only branch; different users supply different profile values.
 
 ### Step 4: Plan contents
 
@@ -236,7 +236,7 @@ Single Skill:
 ```bash
 python3 "$SKILL_DIR/scripts/init_skill.py" <name> \
   --content-class deterministic-output \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 For articles, reports, scripts, letters, or other authored prose:
@@ -244,7 +244,7 @@ For articles, reports, scripts, letters, or other authored prose:
 ```bash
 python3 "$SKILL_DIR/scripts/init_skill.py" <name> \
   --content-class authored-prose \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 Use `microcopy` for short audience-visible text, `verbatim` when source fidelity
@@ -259,7 +259,7 @@ python3 "$SKILL_DIR/scripts/init_skill.py" <name> \
   --kit \
   --module <module-a> \
   --module <module-b> \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 When embedded stages produce different kinds of output, classify them at the
@@ -269,7 +269,7 @@ module boundary instead of forcing one rule across the Kit:
 python3 "$SKILL_DIR/scripts/init_skill.py" publishing \
   --kit --module research --module draft \
   --module-content-class draft=authored-prose \
-  --install-dir "$SKILL_SKILLS_INSTALL_DIR"
+  --install-dir "$LOVSTUDIO_SKILLS_INSTALL_DIR"
 ```
 
 Resolve the install directory from an explicit flag, environment variable,
