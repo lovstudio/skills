@@ -2690,14 +2690,14 @@ skills:
   - media-publisher
   - motion-media-creator
   - motivational-media-creator
-  updated_at: '2026-09-07T15:04:06Z'
+  updated_at: 2026-10-31 12:26:08+00:00
   display_name: Video Studio
   repo: lovstudio/media-creator-skill
   name_zh: 天才剪辑师
   paid: true
   price_credits: 1394
   category: Video Creation
-  version: 0.22.0
+  version: 0.33.0
   description: Turn screen recordings into review-first video deliveries with editable-subtitle
     MKV, approved platform files, rendered covers for every required slot, protected
     source audio, and QC evidence.
