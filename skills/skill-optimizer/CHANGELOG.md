@@ -3,6 +3,15 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.13.6] - 2026-10-31
+
+### Fixed
+
+- lint_skill.py 的 MISSING_BRANDING_DEP 不再被共享样板触发：取样前剔除「通用反馈闭环」、User Profile/Runtime context/Execution boundary/Composition 模板段与「Do not activate when」负向触发段，并屏蔽代码块、行内代码和 kebab 形式的 Skill ID。此前每个 LovStudio Skill 都带的反馈闭环里那个「发布」让动作词恒成立，全量 830 个目录命中 158 处；改后 29 处（顶层源仓库 48 → 6）。
+- 产物词表去掉裸 report/报告、document/文档、copy（多指状态输出、文档链接或文件副本），只保留研究/分析报告、marketing copy 等限定写法；英文名词支持复数（posters、articles），补齐 SKILL-18 的审校、打包、typeset 与写成、润色、论文等内容词；告警消息写出命中的动作词与产物词。
+- BODY_NO_ASKUSER 认可 skill.yaml 的 context.interaction（ask_missing/max_questions，Kit 模块沿用 Kit 根清单）与中文「非交互」「无需交互」「全自动」「不主动提问」等声明；全量命中 548 → 15（顶层源仓库 145 → 2）。
+- 新增 tests/test_heuristics.py：反馈闭环、负向触发、Skill ID 与状态报告四类样板不再触发品牌告警，文章、海报、文案 Skill 仍被报出；交互契约、中文声明与 Kit 模块豁免 BODY_NO_ASKUSER，未声明时仍报。
+
 ## [0.13.5] - 2026-10-31
 
 ### Fixed

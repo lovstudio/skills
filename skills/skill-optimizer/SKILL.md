@@ -20,7 +20,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.13.5"
+  version: "0.13.6"
   tags: meta skill-maintenance versioning changelog lint portability sync
 ---
 
@@ -187,7 +187,9 @@ The linter checks both root `SKILL.md` repositories and paid/encrypted
 - TODO placeholders and oversized instruction bodies;
 - personal paths, fixed runtime paths, and missing user configuration;
 - source/install/catalog layout evidence.
-- missing `lov-branding-consistency` dependency for audience-visible text Skills.
+- missing `lov-branding-consistency` dependency for audience-visible text Skills;
+  the shared feedback/runtime template sections, negative triggers, code and
+  Skill IDs are not evidence, and the finding names the matched words.
 
 ### Step 4: Bump semver and changelog
 

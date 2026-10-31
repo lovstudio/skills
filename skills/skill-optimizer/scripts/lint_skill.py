@@ -26,8 +26,46 @@ FRONTMATTER_REQUIRED = ["name", "description", "license", "compatibility", "meta
 METADATA_REQUIRED = ["author", "version", "tags"]
 STANDARD_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
-AUDIENCE_ACTION_RE = re.compile(r"\b(create|generate|write|edit|render|publish|package)\b|创建|生成|撰写|编辑|渲染|发布|排版", re.I)
-AUDIENCE_ARTIFACT_RE = re.compile(r"\b(poster|article|document|pdf|deck|copy|proposal|report|flyer)\b|海报|文章|文案|文档|报告|策划案", re.I)
+AUDIENCE_ACTION_RE = re.compile(
+    r"\b(?:create|generate|write|edit|polish|proofread|typeset|render|publish|package)\b|"
+    r"创建|生成|撰写|写成|编辑|润色|审校|排版|渲染|发布|打包|制作|创作",
+    re.I,
+)
+# Bare report/document/copy (报告/文档) mostly name status output, documentation
+# links or file copies, so only their authored-content forms count.
+AUDIENCE_ARTIFACT_RE = re.compile(
+    r"\b(?:posters?|articles?|flyers?|decks?|slides|copywriting|(?:marketing|ad|sales|brand) copy|proposals?|"
+    r"(?:research|analysis) reports?|pdfs?|infographics?|business cards?|blog posts?|landing pages?|"
+    r"newsletters?|press releases?|thesis|theses|dissertations?)\b|海报|文章|文案|策划案|(?:研究|调研|分析|行业)报告|"
+    r"幻灯片|演示文稿|信息图|名片|推文|博客|落地页|新闻稿|通稿|口播稿|讲稿|论文",
+    re.I,
+)
+# Sections that never describe this Skill's own output: the shared feedback
+# gate, runtime/profile plumbing copied from the Skill template, and negative
+# triggers. Every LovStudio Skill carries the feedback gate, so its "发布" would
+# otherwise satisfy the action half of the branding heuristic for any Skill.
+NON_OUTPUT_SECTION_RE = re.compile(
+    r"^(#{2,6})\s+(?:通用反馈闭环|Do not activate when|User Profile(?: \(cross-session\))?|"
+    r"Runtime context(?: \(shared\))?|Runtime Context and Profile|User Configuration|Execution boundary|"
+    r"(?:Skill Group )?Composition)\s*$",
+    re.I | re.M,
+)
+FENCED_CODE_RE = re.compile(r"```.*?```", re.S)
+INLINE_CODE_RE = re.compile(r"`[^`\n]*`")
+# Skill IDs such as lov-publish-wechat-article name a neighbour, not this output.
+KEBAB_IDENTIFIER_RE = re.compile(r"\b[a-z0-9]+(?:-[a-z0-9]+)+\b")
+NON_INTERACTIVE_PHRASES = (
+    "fully automatic",
+    "no interactive",
+    "non-interactive",
+    "do not ask the user",
+    "非交互",
+    "无需交互",
+    "全自动",
+    "不询问用户",
+    "不向用户提问",
+    "不主动提问",
+)
 USER_CONFIG_CUES = (
     "## User Configuration",
     "## 用户配置",
@@ -169,6 +207,67 @@ def read_manifest_fields(path: Path) -> dict[str, str]:
             continue
         fields[match.group(1)] = match.group(2).strip().strip('"').strip("'")
     return fields
+
+
+def runtime_manifest(skill_dir: Path) -> Path:
+    """Return the skill.yaml governing skill_dir; embedded Kit modules run under their Kit's."""
+    own = skill_dir / "skill.yaml"
+    kit = skill_dir.parent.parent
+    if (
+        not own.exists()
+        and skill_dir.parent.name == "skills"
+        and (kit / "skill.yaml").exists()
+        and canonical_skill_md(kit).exists()
+    ):
+        return kit / "skill.yaml"
+    return own
+
+
+def read_interaction_policy(path: Path) -> dict[str, str]:
+    """Return the skill-runtime/v1 `interaction` scalars declared in skill.yaml."""
+    if not path.exists():
+        return {}
+    policy: dict[str, str] = {}
+    indent = None
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        if indent is None:
+            match = re.match(r"^(\s*)interaction:\s*$", line)
+            if match:
+                indent = len(match.group(1))
+            continue
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        child = re.match(r"^(\s*)([A-Za-z_][\w-]*):\s*(.*?)\s*$", line)
+        if not child or len(child.group(1)) <= indent:
+            break
+        if child.group(2) in ("ask_missing", "max_questions"):
+            policy[child.group(2)] = child.group(3)
+    return policy
+
+
+def strip_sections(text: str, heading_re: re.Pattern) -> str:
+    """Drop each section whose heading matches, up to the next heading of the same or higher level."""
+    kept: list[str] = []
+    pos = 0
+    for match in heading_re.finditer(text):
+        if match.start() < pos:
+            continue
+        kept.append(text[pos : match.start()])
+        next_heading = re.compile(r"^#{1,%d}\s" % len(match.group(1)), re.M).search(text, match.end())
+        pos = next_heading.start() if next_heading else len(text)
+    kept.append(text[pos:])
+    return "".join(kept)
+
+
+def audience_output_evidence(description: str, body: str) -> tuple[str, str] | None:
+    """Return the action and artifact words suggesting audience-visible authored output."""
+    body = strip_sections(FENCED_CODE_RE.sub(" ", body), NON_OUTPUT_SECTION_RE)
+    sample = KEBAB_IDENTIFIER_RE.sub(" ", INLINE_CODE_RE.sub(" ", f"{description}\n{body[:4000]}"))
+    action = AUDIENCE_ACTION_RE.search(sample)
+    artifact = AUDIENCE_ARTIFACT_RE.search(sample)
+    if action and artifact:
+        return action.group(0), artifact.group(0)
+    return None
 
 
 def parse_frontmatter(text: str) -> tuple[dict, str]:
@@ -341,13 +440,14 @@ class Linter:
 
         self.check_version_sources(fm, rel)
 
-        audience_sample = f"{fm.get('description', '')}\n{body[:4000]}"
-        audience_visible = AUDIENCE_ACTION_RE.search(audience_sample) and AUDIENCE_ARTIFACT_RE.search(audience_sample)
-        if audience_visible and "lov-branding-consistency" not in frontmatter:
+        audience_evidence = audience_output_evidence(str(fm.get("description", "") or ""), body)
+        if audience_evidence and "lov-branding-consistency" not in frontmatter:
+            action, artifact = audience_evidence
             self.add(
                 "warn",
                 "MISSING_BRANDING_DEP",
-                "audience-visible authored output lacks the lov-branding-consistency dependency",
+                f"audience-visible authored output (matched '{action}' + '{artifact}') "
+                "lacks the lov-branding-consistency dependency",
                 "Add lov-branding-consistency to top-level depends_on; preserve quoted/source text verbatim",
                 file=rel,
             )
@@ -361,20 +461,23 @@ class Linter:
                 "Replace all TODOs with real content",
                 file=rel,
             )
-        non_interactive = any(
-            phrase in body.lower()
-            for phrase in ("fully automatic", "no interactive", "non-interactive", "do not ask the user")
-        )
+        declared_text = f"{fm.get('description', '')}\n{body}".lower()
+        non_interactive = any(phrase in declared_text for phrase in NON_INTERACTIVE_PHRASES)
+        # skill-runtime/v1 hosts ask for missing declared context within
+        # interaction.max_questions, so the body need not name a host tool.
+        interaction_declared = bool(read_interaction_policy(runtime_manifest(self.dir)))
         if (
             "AskUserQuestion" not in body
             and "## Workflow" in body
             and not non_interactive
+            and not interaction_declared
         ):
             self.add(
                 "info",
                 "BODY_NO_ASKUSER",
                 "Workflow does not mention AskUserQuestion — interactive skills should collect options before running",
-                "Add an 'Ask the user' step using AskUserQuestion",
+                "Add an 'Ask the user' step (e.g. AskUserQuestion), declare context.interaction in skill.yaml, "
+                "or state that the workflow is non-interactive",
                 file=rel,
             )
         if len(body.splitlines()) > 500:
