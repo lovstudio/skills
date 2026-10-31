@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2 — 2026-10-31
+
+- CI now syncs each free entry's `version` from its mirrored `SKILL.md` (`metadata.version`) in the same `sync-runtime-names.py --write` step that syncs `runtime_name`, and stamps `updated_at` with the sync time (UTC) only when the version changes. The check mode reports version drift. Paid and internal entries keep hand-maintained versions.
+- Catch up 11 entries whose versions had fallen behind their mirrors: fill-web-form 1.2.2, any2pdf 1.5.3, any2deck 1.1.2, writing-style 2.6.5, deep-research 2.6.1, skill-creator 4.6.7, skill-add-case 0.5.1, skill-optimizer 0.13.4, finder-action 0.4.4, skill-publisher 0.8.1, check-balance 0.1.2. Their `updated_at` is the time of the catalog commit that first mirrored that version.
+
 ## 1.1.1 — 2026-10-29
 
 - CI mirrors `skills.yaml` to the Aliyun OSS object lovstudio.cn reads (`lovstudio-downloads/catalogs/skills.yaml`) after every catalog push and nightly. The new `mirror-cn` job assumes a RAM role through GitHub OIDC that may only put that object, validates the catalog against the site's rules first, and fails unless the anonymous public copy matches `skills.yaml` by SHA-256. Each run re-uploads so the object's Last-Modified doubles as a heartbeat; the site reads GitHub first once the copy is more than 48 hours old.

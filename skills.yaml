@@ -439,7 +439,7 @@ skills:
     card_path: pricing-cards/fill-form.md
 - name: fill-web-form
   runtime_name: lov-fill-web-form
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-31 11:19:40+00:00
   display_name: Web Form Assistant
   repo: lovstudio/fill-web-form-skill
   name_zh: 网页填表助手
@@ -451,7 +451,7 @@ skills:
   tagline_zh: 用你本地的知识库来应答网页表单，一轮检索一轮生成，草稿即交付。
   skillpay_product_id: P0806000200843458
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsd
-  version: 1.2.1
+  version: 1.2.2
   pricing:
     model: free_entry
     visibility: public
@@ -483,10 +483,10 @@ skills:
     card_path: pricing-cards/fill-web-form.md
 - name: any2pdf
   runtime_name: lov-any2pdf
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-31 11:19:40+00:00
   display_name: PDF Master
   repo: lovstudio/any2pdf-skill
-  version: 1.5.2
+  version: 1.5.3
   name_zh: PDF大师
   paid: false
   featured: true
@@ -581,7 +581,7 @@ skills:
     card_path: pricing-cards/any2docx.md
 - name: any2deck
   runtime_name: lov-any2deck
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-31 11:19:40+00:00
   display_name: PPT Master
   repo: lovstudio/any2deck-skill
   name_zh: PPT 大师
@@ -598,7 +598,7 @@ skills:
   - any2docx
   skillpay_product_id: P0806000200844930
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-u
-  version: 1.1.1
+  version: 1.1.2
   pricing:
     model: free_entry
     visibility: public
@@ -1387,13 +1387,13 @@ skills:
     card_path: pricing-cards/human-writing.md
 - name: writing-style
   runtime_name: lov-writing-style
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-31 09:47:40+00:00
   display_name: My Writing Voice
   repo: lovstudio/writing-style-skill
   name_zh: 我的文风
   paid: false
   category: Content Creation
-  version: 2.6.2
+  version: 2.6.5
   description: Turn verified facts, notes, and drafts into first-person Chinese content
     using a personal voice calibrated from 19 real samples, with fact-preserving rewrite
     and diagnosis.
@@ -1593,13 +1593,13 @@ skills:
     card_path: pricing-cards/document-illustrator.md
 - name: deep-research
   runtime_name: deep-research
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-01 10:18:08+00:00
   display_name: Deep Research
   repo: lovstudio/deep-research-skill
   name_zh: 深度研究
   paid: false
   category: Content Creation
-  version: 2.5.3
+  version: 2.6.1
   description: Use when the user needs multi-source research with citation tracking,
     evidence persistence, structured reports, or verified open-source solution landscapes
     across GitHub and other relevant forges.
@@ -2999,14 +2999,14 @@ skills:
 - name: skill-creator
   runtime_name: lov-skill-creator
   display_name: Skill Studio
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-29 09:23:34+00:00
   skillpay_product_id: P0806000200846064
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-w
   repo: lovstudio/skill-creator-skill
   name_zh: Skill 工坊
   paid: false
   category: Meta
-  version: 4.6.4
+  version: 4.6.7
   description: Create, migrate, validate and install portable Agent Skills
   tagline_en: Create, migrate, validate and install portable Agent Skills
   tagline_zh: 创建、迁移、验证并安装通用 Skill 与自包含 Skill Kit
@@ -3037,12 +3037,12 @@ skills:
 - name: skill-add-case
   runtime_name: lov-skill-add-case
   display_name: Skill Showcase
-  updated_at: 2026-09-08 04:53:59.784141+00:00
+  updated_at: 2026-09-27 09:23:45+00:00
   repo: lovstudio/skill-add-case-skill
   name_zh: Skill 案例馆
   paid: false
   category: Meta
-  version: 0.5.0
+  version: 0.5.1
   description: Prepare accepted Skill results for website import or signed-in Agent
     submission, with consent, final images, safe retries and public verification.
   tagline_en: Share an accepted Skill result through your LovStudio account, manually
@@ -3084,14 +3084,14 @@ skills:
 - name: skill-optimizer
   runtime_name: lov-skill-optimizer
   display_name: Skill Refiner
-  updated_at: 2026-09-25 14:27:23+00:00
+  updated_at: 2026-10-29 09:23:34+00:00
   skillpay_product_id: P0806000200846065
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsb
   repo: lovstudio/skill-optimizer-skill
   name_zh: Skill 精修师
   paid: false
   category: Meta
-  version: 0.13.3
+  version: 0.13.4
   description: Audit + auto-fix an existing skill, bump semver, and append a CHANGELOG
     entry.
   tagline_en: Audit an existing skill, auto-fix issues, and bump its version in one
@@ -3267,14 +3267,14 @@ skills:
 - name: finder-action
   runtime_name: lov-finder-action
   display_name: Finder Actions
-  updated_at: 2026-09-25 14:27:23+00:00
+  updated_at: 2026-10-31 08:47:47+00:00
   skillpay_product_id: P0806000200847223
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP0
   repo: lovstudio/finder-action-skill
   name_zh: Finder 快捷动作
   paid: false
   category: Dev Tools
-  version: 0.4.3
+  version: 0.4.4
   description: Create a Finder context menu action
   tagline_en: Create a Finder context menu action
   tagline_zh: 创建 macOS Finder 文件快捷操作或目录背景菜单扩展
@@ -3897,14 +3897,14 @@ skills:
 - name: skill-publisher
   runtime_name: lov-skill-publisher
   display_name: Skill Publisher
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-29 09:23:34+00:00
   skillpay_product_id: P0806000200863857
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqavG
   repo: lovstudio/skill-publisher-skill
   name_zh: Skill 发布助手
   paid: false
   category: Dev Tools
-  version: 0.7.6
+  version: 0.8.1
   description: Publish or submit a validated Skill, defaulting to the LovStudio official
     website with automatic pricing and using other channels only when explicitly requested.
   tagline_en: Auto-price every release, publish to the LovStudio website by default,
@@ -7322,8 +7322,8 @@ skills:
   name_zh: 额度体检
   paid: false
   category: Dev Tools
-  version: 0.1.1
-  updated_at: '2026-09-10T03:05:00Z'
+  version: 0.1.2
+  updated_at: 2026-10-31 11:19:40+00:00
   description: See how much quota your accounts across multiple platforms (Claude Code, Codex, DeepSeek and more) have left, and when each limit resets.
   tagline_en: See how much quota your accounts across multiple platforms (cc, codex, ds and more) have left, and when each limit resets.
   tagline_zh: 这个 skill 可以看到你多个平台（例如 cc、codex、ds 等）的账号的用量，以及什么时候重置。

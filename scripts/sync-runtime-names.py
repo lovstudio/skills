@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Keep catalog slugs and installable Skill runtime names explicitly aligned.
+"""Keep catalog entries aligned with their mirrored SKILL.md frontmatter.
 
 `skills.yaml` uses short product/catalog slugs such as `write-professional-book`,
 while Agent runtimes select the `name` declared by each mirrored SKILL.md, such
 as `lov-write-professional-book`. These values are not always derivable from a
 prefix convention, so the catalog records both.
+
+Free entries also take `version` from the mirror's `metadata.version`. When it
+changes, `updated_at` is stamped with the sync time, because lovstudio.ai dates
+Skill updates by that field. Paid and internal entries are not mirrored and keep
+a hand-maintained `version`.
 
 Usage:
     python3 scripts/sync-runtime-names.py          # validate only
@@ -15,6 +20,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import yaml
@@ -29,22 +35,41 @@ ENTRY_RE = re.compile(
     r"(?ms)^- name: (?P<name>[^\n]+)\n(?P<body>.*?)(?=^- name: |\Z)"
 )
 RUNTIME_FIELD_RE = re.compile(r"(?m)^  runtime_name:[^\n]*(?:\n|$)")
+VERSION_FIELD_RE = re.compile(r"(?m)^  version:(?P<value>[^\n]*)(?:\n|$)")
+UPDATED_AT_FIELD_RE = re.compile(r"(?m)^  updated_at:[^\n]*(?:\n|$)")
 
 
-def read_runtime_name(skill_md: Path) -> str:
+def read_frontmatter(skill_md: Path) -> dict:
     text = skill_md.read_text(encoding="utf-8")
     if not text.startswith("---"):
         raise ValueError("SKILL.md has no YAML frontmatter")
     parts = text.split("---", 2)
     if len(parts) < 3:
         raise ValueError("SKILL.md frontmatter is not closed")
-    frontmatter = yaml.safe_load(parts[1]) or {}
-    runtime_name = str(frontmatter.get("name") or "").strip()
+    return yaml.safe_load(parts[1]) or {}
+
+
+def read_runtime_name(skill_md: Path) -> str:
+    runtime_name = str(read_frontmatter(skill_md).get("name") or "").strip()
     if not runtime_name:
         raise ValueError("SKILL.md frontmatter has no name")
     if not re.fullmatch(r"[A-Za-z0-9._:-]+", runtime_name):
         raise ValueError(f"unsafe runtime name {runtime_name!r}")
     return runtime_name
+
+
+def read_version(skill_md: Path) -> str | None:
+    frontmatter = read_frontmatter(skill_md)
+    metadata = frontmatter.get("metadata")
+    value = metadata.get("version") if isinstance(metadata, dict) else None
+    if value is None:
+        value = frontmatter.get("version")
+    version = str(value or "").strip()
+    if not version:
+        return None
+    if not re.fullmatch(r"[A-Za-z0-9._+-]+", version):
+        raise ValueError(f"unsafe version {version!r}")
+    return version
 
 
 def load_catalog() -> tuple[str, dict[str, dict]]:
@@ -68,6 +93,24 @@ def expected_runtime_names(catalog: dict[str, dict]) -> tuple[dict[str, str], li
         except (OSError, ValueError, yaml.YAMLError) as error:
             errors.append(f"{name}: {error}")
     return runtime_names, errors
+
+
+def expected_versions(catalog: dict[str, dict]) -> tuple[dict[str, str], list[str]]:
+    versions: dict[str, str] = {}
+    errors: list[str] = []
+    for name, skill in catalog.items():
+        skill_md = MIRROR_ROOT / name / "SKILL.md"
+        # A paid version selects the private repo's download tag; never take it from a stray mirror.
+        if not is_installable(skill) or not skill_md.exists():
+            continue
+        try:
+            version = read_version(skill_md)
+        except (OSError, ValueError, yaml.YAMLError) as error:
+            errors.append(f"{name}: {error}")
+            continue
+        if version is not None:
+            versions[name] = version
+    return versions, errors
 
 
 def rewrite(text: str, runtime_names: dict[str, str]) -> str:
@@ -101,6 +144,46 @@ def rewrite(text: str, runtime_names: dict[str, str]) -> str:
     return result
 
 
+def sync_version(body: str, version: str, updated_at: str) -> str:
+    field = VERSION_FIELD_RE.search(body)
+    raw = field.group("value").strip() if field else ""
+    if field and str(yaml.safe_load(raw)) == version:
+        return body
+    quote = raw[0] if raw[:1] in ("'", '"') else ""
+    # Plain `1.10` would load as the float 1.1.
+    if not quote and yaml.safe_load(version) != version:
+        quote = "'"
+    version_line = f"  version: {quote}{version}{quote}\n"
+    updated_line = f"  updated_at: {updated_at}\n"
+    if UPDATED_AT_FIELD_RE.search(body):
+        body = UPDATED_AT_FIELD_RE.sub(lambda _: updated_line, body, count=1)
+        updated_line = ""
+    if field:
+        return VERSION_FIELD_RE.sub(lambda _: version_line + updated_line, body, count=1)
+    return version_line + updated_line + body
+
+
+def rewrite_versions(text: str, versions: dict[str, str], synced_at: datetime | None = None) -> str:
+    moment = (synced_at or datetime.now(timezone.utc)).astimezone(timezone.utc)
+    updated_at = moment.strftime("%Y-%m-%d %H:%M:%S+00:00")
+    seen: set[str] = set()
+
+    def replace(match: re.Match[str]) -> str:
+        name = match.group("name").strip()
+        version = versions.get(name)
+        if version is None:
+            return match.group(0)
+        seen.add(name)
+        head = match.group(0)[: match.start("body") - match.start()]
+        return head + sync_version(match.group("body"), version, updated_at)
+
+    result = ENTRY_RE.sub(replace, text)
+    missing = sorted(set(versions) - seen)
+    if missing:
+        raise ValueError(f"catalog entries not found in source text: {', '.join(missing)}")
+    return result
+
+
 def validate(catalog: dict[str, dict], runtime_names: dict[str, str]) -> list[str]:
     errors: list[str] = []
     seen_runtime_names: dict[str, str] = {}
@@ -113,6 +196,16 @@ def validate(catalog: dict[str, dict], runtime_names: dict[str, str]) -> list[st
             errors.append(f"duplicate runtime_name {expected!r}: {previous}, {name}")
         else:
             seen_runtime_names[expected] = name
+    return errors
+
+
+def validate_versions(catalog: dict[str, dict], versions: dict[str, str]) -> list[str]:
+    errors: list[str] = []
+    for name, expected in versions.items():
+        declared = catalog[name].get("version")
+        declared = "" if declared is None else str(declared).strip()
+        if declared != expected:
+            errors.append(f"{name}.version: declared {declared!r}, mirrored SKILL.md uses {expected!r}")
     return errors
 
 
@@ -131,27 +224,36 @@ def main() -> int:
 
     text, catalog = load_catalog()
     runtime_names, errors = expected_runtime_names(catalog)
+    versions, version_errors = expected_versions(catalog)
+    errors += version_errors
     if errors:
-        print("Runtime name discovery failed:", file=sys.stderr)
+        print("SKILL.md frontmatter discovery failed:", file=sys.stderr)
         for error in errors:
             print(f"  - {error}", file=sys.stderr)
         return 1
 
     if args.write:
-        next_text = rewrite(text, runtime_names)
+        drift = validate_versions(catalog, versions)
+        next_text = rewrite_versions(rewrite(text, runtime_names), versions)
         if next_text != text:
             YAML_PATH.write_text(next_text, encoding="utf-8")
-            print(f"Updated runtime_name for {len(runtime_names)} catalog entries.")
+            print(f"Updated skills.yaml from {len(runtime_names)} mirrored SKILL.md files.")
+            for change in drift:
+                print(f"  - {change}")
         text, catalog = load_catalog()
 
-    errors = validate(catalog, runtime_names) + duplicate_runtime_fields(text)
+    errors = (
+        validate(catalog, runtime_names)
+        + validate_versions(catalog, versions)
+        + duplicate_runtime_fields(text)
+    )
     if errors:
-        print("Runtime name validation failed:", file=sys.stderr)
+        print("Runtime name and version validation failed:", file=sys.stderr)
         for error in errors:
             print(f"  - {error}", file=sys.stderr)
         return 1
 
-    print(f"Runtime name validation passed for {len(runtime_names)} installable Skills.")
+    print(f"Runtime name and version validation passed for {len(runtime_names)} installable Skills.")
     return 0
 
 

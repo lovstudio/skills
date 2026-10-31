@@ -70,7 +70,7 @@ jobs:
           SKILLS_SOURCE_TOKEN: ${{ secrets.SKILLS_SOURCE_TOKEN }}
         run: python3 scripts/sync-skills.py
 
-      - name: Sync runtime Skill names
+      - name: Sync runtime names and versions
         run: python3 scripts/sync-runtime-names.py --write
 
       - name: Render marketplace.json

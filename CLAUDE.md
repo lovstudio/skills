@@ -22,7 +22,7 @@ For a free skill with a private source, the mirror is therefore its only public 
 ├── skills/<name>/                    # Free mirrors (generated distribution content)
 ├── .claude-plugin/marketplace.json   # Claude Code marketplace manifest (auto-rendered)
 ├── scripts/sync-skills.py            # Mirrors each free repo into ./skills/<name>/ (shallow clone + rsync)
-├── scripts/sync-runtime-names.py      # Syncs runtime_name from mirrored SKILL.md frontmatter
+├── scripts/sync-runtime-names.py      # Syncs runtime_name and free-entry version from mirrored SKILL.md frontmatter
 ├── scripts/render-marketplace.py     # Regenerates marketplace.json from skills.yaml
 ├── scripts/render-readme.py          # Regenerates README skill table from skills.yaml
 ├── scripts/mirror-catalog-cn.py      # CI-only: uploads skills.yaml to the lovstudio.cn OSS mirror
@@ -73,7 +73,8 @@ skills:
     repo: lovstudio/any2pdf-skill       # GitHub repo (always lovstudio/{name}-skill)
     paid: false                         # true = purchase-gated download from lovstudio.ai, never mirrored here
     category: "Document Conversion"     # display category
-    version: "0.7.1"                    # from SKILL.md (optional, CI-synced)
+    version: "0.7.1"                    # free: CI-synced from the mirror's SKILL.md metadata.version; paid/internal: hand-maintained
+    updated_at: 2026-10-31 11:19:40+00:00  # last catalog update (UTC); CI restamps it when it syncs a new free version
     description: "Markdown → …"         # Agent-facing trigger copy (English, terse). CI-synced from GitHub repo description.
     tagline_en: "Typeset Markdown …"    # Human-facing English one-liner for README. Hand-maintained.
     tagline_zh: "把 Markdown 排成 …"    # Human-facing Chinese one-liner for README. Hand-maintained.
@@ -99,6 +100,12 @@ skills:
 - **`runtime_name`** — exact `name` from the mirrored `SKILL.md` frontmatter. The
   catalog slug and runtime identifier are separate contracts; CI synchronizes and
   validates this field instead of guessing a prefix.
+- **`version` / `updated_at`** — for free entries, CI copies `version` from the mirrored
+  `SKILL.md` (`metadata.version`, else a top-level `version`) and, only when the value
+  changes, stamps `updated_at` with the sync time as `YYYY-MM-DD HH:MM:SS+00:00`.
+  lovstudio.ai dates and ranks Skill updates by `updated_at` and skips GitHub history for
+  entries that have one, so a version bump without a fresh stamp never shows up as an update.
+  Paid and internal entries are not mirrored: bump both fields by hand when releasing.
 - **Paid skills**: `tagline_*` must not leak implementation specifics (no library names,
   no auth/token mechanics, no internal endpoints) — they sit in a public index.
 
