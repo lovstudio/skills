@@ -483,10 +483,10 @@ skills:
     card_path: pricing-cards/fill-web-form.md
 - name: any2pdf
   runtime_name: lov-any2pdf
-  updated_at: 2026-10-31 11:19:40+00:00
+  updated_at: 2026-10-31 12:23:48+00:00
   display_name: PDF Master
   repo: lovstudio/any2pdf-skill
-  version: 1.5.3
+  version: 1.5.4
   name_zh: PDF大师
   paid: false
   featured: true
@@ -2024,7 +2024,7 @@ skills:
     card_path: pricing-cards/fact-check.md
 - name: professional-portrait
   runtime_name: lov-professional-portrait
-  updated_at: 2026-10-31 10:41:57+00:00
+  updated_at: 2026-10-31 12:23:48+00:00
   skillpay_product_id: P0806000200846060
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQC
   display_name: Professional Portrait
@@ -2032,7 +2032,7 @@ skills:
   name_zh: 职业形象照
   paid: false
   category: Design
-  version: 0.2.2
+  version: 0.2.3
   description: Turn one photo into a polished professional portrait while preserving
     identity, natural skin texture, and believable photographic detail.
   tagline_en: Turn one photo into a clean, identity-preserving professional portrait.
@@ -2838,7 +2838,7 @@ skills:
       change in the platform UI or review flow.
 - name: mobile-adapt
   runtime_name: lov-mobile-adapt
-  updated_at: 2026-10-31 10:38:53+00:00
+  updated_at: 2026-10-31 12:23:48+00:00
   skillpay_product_id: P0806000200843454
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-k
   display_name: Mobile Fit
@@ -2846,7 +2846,7 @@ skills:
   name_zh: 移动适配师
   paid: false
   category: Dev Tools
-  version: 0.2.2
+  version: 0.2.3
   description: 'Scan and fix mobile adaptation issues — overflow, safe area, 100vh,
     responsive layout, multi-level navigation, touch targets. Trigger on: "mobile
     adapt", "移动端适配", "手机适配", "responsive optimization", "fix mobile overflow".
@@ -3442,14 +3442,14 @@ skills:
 - name: install-tanstack-query
   runtime_name: lov-install-tanstack-query
   display_name: TanStack Query Setup
-  updated_at: 2026-10-31 10:38:53+00:00
+  updated_at: 2026-10-31 12:23:48+00:00
   skillpay_product_id: P0806000200846063
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsV
   repo: lovstudio/install-tanstack-query-skill
   name_zh: TanStack Query 接入
   paid: false
   category: Dev Tools
-  version: 0.2.2
+  version: 0.2.3
   description: Initialize or refactor a frontend project to use TanStack Query as
     the unified server-state layer.
   tagline_en: Initialize TanStack Query and migrate request state into shared query
@@ -3526,14 +3526,14 @@ skills:
 - name: optimize-tauri-backend
   runtime_name: lov-optimize-tauri-backend
   display_name: Tauri Backend Tuner
-  updated_at: 2026-10-31 10:38:53+00:00
+  updated_at: 2026-10-31 12:23:48+00:00
   skillpay_product_id: P0806000200847224
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsX
   repo: lovstudio/optimize-tauri-backend-skill
   name_zh: Tauri 后端调优
   paid: false
   category: Dev Tools
-  version: 0.2.2
+  version: 0.2.3
   description: Optimize Tauri backend architecture, command surfaces, IPC streams,
     and Rust development ergonomics.
   tagline_en: Reduce Tauri Rust restart pain by modularizing the backend, shrinking
@@ -3572,14 +3572,14 @@ skills:
 - name: app-generator
   runtime_name: lov-app-generator
   display_name: App Studio
-  updated_at: 2026-10-31 10:38:53+00:00
+  updated_at: 2026-10-31 12:23:48+00:00
   skillpay_product_id: P0806000200843451
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP-
   repo: lovstudio/app-generator-skill
   name_zh: 应用工坊
   paid: false
   category: Dev Tools
-  version: 0.5.4
+  version: 0.5.5
   description: Generate or standardize Lovstudio apps, choosing web-only, PWA, or
     Tauri desktop case-by-case with React/Vite or Next.js, brand, UI, data, deploy/release,
     and lovinsp.
