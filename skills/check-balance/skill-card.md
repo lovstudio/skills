@@ -46,7 +46,7 @@ LiteLLM 请求日志。无第三方依赖。
 
 ## Skill Version
 
-0.1.1
+0.1.2
 
 ## Ethical Considerations
 

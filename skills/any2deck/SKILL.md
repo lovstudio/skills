@@ -17,7 +17,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.1.1"
+  version: "1.1.2"
   tags: slide deck presentation pptx pdf image generation
 ---
 
@@ -226,6 +226,14 @@ Partial workflows (`--outline-only`, `--prompts-only`, `--images-only`,
 ## Extension Support
 
 Custom configurations via EXTEND.md. See **Step 1.1** for paths and supported options.
+
+## 维护备注
+
+- `apply-branding.py` 的 `deck_dir` 相对当前 shell cwd 解析；在 `slide-deck/{slug}/` 子目录内调用会拼错路径，统一从仓库根调用（2026-08-21, 4aeebdb）
+- branding 合成 2752×1536×20 张大图耗时长（>3 分钟），用后台运行避免超时；PNG 白底二维码需先转 alpha，否则白方块与图纸底色冲突（2026-08-21, 4aeebdb）
+- `build-batch.ts` 只识别 `## Illustration N` 标题；自定义大纲用 `## Slide N of M` 时它一张都解析不出，自己写脚本产出 `batch.json` 更快（2026-09-05, f9babe0）
+- 讲课版 deck 必须把讲稿写进 `notes/<stem>.md`，画面指令留在 `prompts/`；`merge-to-pptx.ts` 已改为优先取 `notes/` 作演讲者备注，`prompts/` 仅为兜底（2026-09-05, f9babe0）
+- 满幅波普/漫画风 deck 不要再叠 logo：`apply-branding.py` 的白底 logo 会与粗描边和网点底冲突，品牌信息直接写进封面画面（2026-09-05, f9babe0）
 
 ## Runtime context (shared)
 

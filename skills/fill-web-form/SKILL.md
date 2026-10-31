@@ -18,7 +18,7 @@ compatibility: >
   Grep, Glob, Read, Write. Requires internet access for URL fetching.
 metadata:
   author: contributors
-  version: "1.2.1"
+  version: "1.2.2"
   tags: form web fill knowledge-base conference speaker application
 ---
 
@@ -171,6 +171,23 @@ After writing the file, show:
 - 只使用 Manifest 声明的字段；Profile 保存公开品牌事实，Preferences 保存个人工作偏好。
 - `required: true` 字段缺失时，按 Manifest 的问题配置向用户提出一个聚焦问题；用户明确同意后再保存回答。
 - 报错提供可复制的 `context_id`、字段路径与来源，诊断内容避开秘密、完整私人路径和原始配置。
+
+## 维护备注
+
+- 飞书分享表单（`feishu.cn/share/base/form/...`）用内部滚动容器 `.base-form-layout__scroll-container`，`Page.getLayoutMetrics` 的 cssContentSize 恒等于视口高；整页 clip 截图只会拍到当前滚动位置，必须逐段设 `scrollTop` 再截（2026-09-03, e38086f）
+- 同一页面里元素在视口外时，ego-browser `click(selector)` 会报成功但实际没点中（选中态不变）；必须先 `scrollIntoView({block:'center'})`、在同一轮重新取 `getBoundingClientRect` 再按坐标点击，并逐项回读校验（2026-09-03, e38086f）
+- 飞书表单选项的选中判据是 `.base-component-select-list-editor-icon` 的 class 是否含 `no-checked`；按 `checked/selected/active` 正则匹配 outerHTML 一律判不出来（2026-09-03, e38086f）
+- 飞书表单有条件题：选中某选项会插入新的必填题并让后续题号整体后移（实测选「已有部分队友」多出「队伍信息」「对队友的期望」两道必填）；填完后必须重新 dump 全量题目再校验，不能沿用第一次快照的题号（2026-09-03, e38086f）
+- 飞书表单的文本题是 `[contenteditable="true"].adit-container` 富文本编辑器，不是 input/textarea；`fillInput` 不适用，用真实点击聚焦 + `typeText`，回读 `innerText` 时结尾会带一个零宽字符 `​`（2026-09-03, e38086f）
+- 「查看提交记录」需要飞书手机号/邮箱登录并走验证码，不要为了核验而去登录；以提交成功页为验收证据（2026-09-03, e38086f）
+- 判断登录：右上角是灰色默认头像（`.ud__avatar-neutral`，页面里没有 `.share-user-avatar-container`）即未登录；表单要求飞书登录时先登录再填：点头像弹出页内登录框，右上角 `.switch-icon` 切到扫码，交给用户扫码，不代填账号（2026-10-31）
+- 未登录时文本题的 `[contenteditable]` 编辑器要首次点击题目后才渲染（初始 0 个），按选择器找不到编辑器不能判定题目不可填（2026-10-31）
+- 文本题可用 JS `focus()` 编辑器并把选区折叠到末尾，再用 `keyboard.insertText` 或宿主 `type` 输入；多行逐行插入、行间按 Enter（宿主 `type` 里的 `\n` 也会换行），「1. 」开头不会被转成自动列表，回读 `innerText` 去掉零宽字符后与原文逐字一致（2026-10-31）
+- 附件题的 `input[type=file]` 可直接 `setInputFiles`，一次可传多个，再次设置是追加，不会替换已上传的附件（2026-10-31）
+- 附件上传没有进度条，视频卡片只显示通用图标；判断传完要读 `.bitable-attach-editor` 的 React props：键名是 `__reactInternalInstance$*`（React 16，不是 `__reactFiber$*`），向上 1 层 `memoizedProps.value[i]` 的 `state === "loaded"`、有 `attachmentToken` 且 `size` 与本地文件一致才算完成；键名用错会让等待条件永远不成立，一直等到超时（2026-10-31）
+- 表单本地草稿（`localStorage` 里以分享 token 开头的键）只存文本题，不存附件，不能拿来核验附件是否传完（2026-10-31）
+- 页面 resource timing 缓冲默认 250 条，停留久了上传请求不会再出现在 `performance.getEntries()`；观察上传要用 CDP `Network.*` 事件：分块请求是 `internal-api-drive-stream.feishu.cn/space/api/box/stream/upload/merge_block/`，单个文件完成是 `/space/api/box/upload/finish/` 返回 `code: 0` 和 `file_token`（2026-10-31）
+- Claude 桌面内置浏览器会拦截外部页面访问 localhost（`net::ERR_BLOCKED_BY_CLIENT`），也没有文件上传工具，本地照片和视频传不进飞书表单；需要上传附件时改用 ego-browser 的 `setInputFiles`（2026-10-31）
 
 ## 通用反馈闭环
 

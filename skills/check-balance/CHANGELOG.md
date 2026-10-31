@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+- README 与 Skill Card 标题统一为展示名「额度体检 · Check Balance」，与 SKILL.md 及目录 `name_zh` / `display_name` 一致（补回只在未接入真源的安装副本里的改动）。
+- `skill.yaml` 版本与其余版本面对齐（此前停在 0.1.0）。
+- 探测逻辑、输出 schema 与触发语均无改动。
+
 ## 0.1.1
 
 - 明确两层文案：frontmatter description 只服务 AI 路由，人看的 PR 文案改由 catalog tagline_zh / tagline_en 承载。

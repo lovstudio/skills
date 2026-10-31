@@ -7,6 +7,7 @@ interface SlideInfo {
   path: string;
   index: number;
   promptPath?: string;
+  isSpeakerNotes?: boolean;
 }
 
 function parseArgs(): { dir: string; output?: string } {
@@ -38,21 +39,28 @@ function findSlideImages(dir: string): SlideInfo[] {
 
   const files = readdirSync(dir);
   const slidePattern = /^(\d+)-slide-.*\.(png|jpg|jpeg)$/i;
+  const notesDir = join(dir, "notes");
   const promptsDir = join(dir, "prompts");
-  const hasPrompts = existsSync(promptsDir);
 
   const slides: SlideInfo[] = files
     .filter((f) => slidePattern.test(f))
     .map((f) => {
       const match = f.match(slidePattern);
       const baseName = f.replace(/\.(png|jpg|jpeg)$/i, "");
-      const promptPath = hasPrompts ? join(promptsDir, `${baseName}.md`) : undefined;
+      const speakerNotes = join(notesDir, `${baseName}.md`);
+      const prompt = join(promptsDir, `${baseName}.md`);
+      const notesPath = existsSync(speakerNotes)
+        ? speakerNotes
+        : existsSync(prompt)
+          ? prompt
+          : undefined;
 
       return {
         filename: f,
         path: join(dir, f),
         index: parseInt(match![1], 10),
-        promptPath: promptPath && existsSync(promptPath) ? promptPath : undefined,
+        promptPath: notesPath,
+        isSpeakerNotes: notesPath === speakerNotes,
       };
     })
     .sort((a, b) => a.index - b.index);
@@ -102,20 +110,24 @@ async function createPptx(slides: SlideInfo[], outputPath: string) {
     });
 
     if (slide.promptPath) {
-      const slidePrompt = readFileSync(slide.promptPath, "utf-8");
-      const fullNotes = basePrompt ? `${basePrompt}\n\n---\n\n${slidePrompt}` : slidePrompt;
-      s.addNotes(fullNotes);
+      const content = readFileSync(slide.promptPath, "utf-8");
+      // notes/ holds speaker notes meant for the presenter; prompts/ is only a fallback,
+      // and there the image-generation base prompt is useful context.
+      s.addNotes(
+        slide.isSpeakerNotes || !basePrompt ? content : `${basePrompt}\n\n---\n\n${content}`,
+      );
       notesCount++;
     }
 
-    console.log(`Added: ${slide.filename}${slide.promptPath ? " (with notes)" : ""}`);
+    const label = slide.isSpeakerNotes ? " (speaker notes)" : slide.promptPath ? " (prompt as notes)" : "";
+    console.log(`Added: ${slide.filename}${label}`);
   }
 
   await pptx.writeFile({ fileName: outputPath });
   console.log(`\nCreated: ${outputPath}`);
   console.log(`Total slides: ${slides.length}`);
   if (notesCount > 0) {
-    console.log(`Slides with notes: ${notesCount}${basePrompt ? " (includes base prompt)" : ""}`);
+    console.log(`Slides with notes: ${notesCount}`);
   }
 }
 

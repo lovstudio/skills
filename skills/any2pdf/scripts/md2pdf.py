@@ -951,19 +951,19 @@ class PDFBuilder:
         bs, bl = L["body_size"], L["body_leading"]
         heading_font = L.get("heading_font", "Serif")
         h_align = TA_CENTER if L["heading_align"] == "center" else TA_LEFT
-        s['part'] = ParagraphStyle('Part', fontName=heading_font, fontSize=L["h1_size"],
+        s['part'] = ParagraphStyle('Part', keepWithNext=1, spaceAfter=1*mm, fontName=heading_font, fontSize=L["h1_size"],
             leading=L["h1_size"]+10, textColor=T["ink"], alignment=h_align,
-            spaceBefore=0, spaceAfter=0)
-        s['chapter'] = ParagraphStyle('Ch', fontName=heading_font, fontSize=L["h2_size"],
+            spaceBefore=0)
+        s['chapter'] = ParagraphStyle('Ch', keepWithNext=1, spaceAfter=1*mm, fontName=heading_font, fontSize=L["h2_size"],
             leading=L["h2_size"]+8, textColor=T["ink"], alignment=h_align,
-            spaceBefore=0, spaceAfter=0)
-        s['h3'] = ParagraphStyle('H3', fontName="SansBold", fontSize=L["h3_size"],
+            spaceBefore=0)
+        s['h3'] = ParagraphStyle('H3', keepWithNext=1, fontName="SansBold", fontSize=L["h3_size"],
             leading=L["h3_size"]+5, textColor=T["accent"], alignment=TA_LEFT,
             spaceBefore=10, spaceAfter=4)
-        s['h4'] = ParagraphStyle('H4', fontName="SansBold", fontSize=max(L["h3_size"] - 1, 9),
+        s['h4'] = ParagraphStyle('H4', keepWithNext=1, fontName="SansBold", fontSize=max(L["h3_size"] - 1, 9),
             leading=max(L["h3_size"] + 3, 12), textColor=T["ink"], alignment=TA_LEFT,
             spaceBefore=8, spaceAfter=3)
-        s['h5'] = ParagraphStyle('H5', fontName="SansBold", fontSize=max(L["h3_size"] - 2, 8.5),
+        s['h5'] = ParagraphStyle('H5', keepWithNext=1, fontName="SansBold", fontSize=max(L["h3_size"] - 2, 8.5),
             leading=max(L["h3_size"] + 2, 11), textColor=T["ink_faded"], alignment=TA_LEFT,
             spaceBefore=6, spaceAfter=2)
         s['body'] = ParagraphStyle('Body', fontName=bf, fontSize=bs, leading=bl,
@@ -1851,7 +1851,7 @@ class PDFBuilder:
                         cm = ChapterMark(title, level=0); story.append(cm)
                         story.append(Spacer(1, 3*mm))
                         story.append(Paragraph(md_inline(title, ah, force_cjk_bold=True), ST['part']))
-                        story.append(Spacer(1, 1*mm))
+                        # keepWithNext binds the heading to the body paragraph only when nothing sits between them
                         toc.append(('part', title, cm.key))
                         i += 1; continue
                     story.append(PageBreak())
@@ -1893,7 +1893,7 @@ class PDFBuilder:
                 if self.L.get("continuous_headings", False):
                     story.append(Spacer(1, 3*mm))
                     story.append(Paragraph(md_inline(title, ah, force_cjk_bold=True), ST['chapter']))
-                    story.append(Spacer(1, 1*mm))
+                    # keepWithNext binds the heading to the body paragraph only when nothing sits between them
                     toc.append(('chapter', title, cm.key))
                     i += 1; continue
                 story.append(PageBreak())

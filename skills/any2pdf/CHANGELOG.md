@@ -3,6 +3,16 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [1.5.3] - 2026-10-31
+
+### Fixed
+
+- 标题不再孤悬页底：part/chapter/h3–h5 样式设置 `keepWithNext`，连续标题路径去掉标题与正文之间的 Spacer，改由样式的 `spaceAfter` 承担（补回 2026-09-04 只在未接入真源的安装副本里的修复）
+
+### Added
+
+- 维护备注：补回 2026-09-05 的 4 条经验，涵盖 `warm-academic` 主题的 accent 实际取值、默认 H2 强制分页与 `continuous_headings`、ASCII 流程图换行，以及 SKILL.md 示例中的脚本路径
+
 ## [1.5.2] - 2026-09-25
 
 ### Added
