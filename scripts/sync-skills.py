@@ -22,8 +22,12 @@ Three classes of skill:
 Env:
     SKIP_CLONE=1   # reuse existing ./skills/<name>/ without re-cloning
                    # (useful for local iteration; CI always clones fresh)
-    SKILLS_SOURCE_TOKEN=...     # read token for private per-skill source repos (CI secret)
+    SKILLS_SOURCE_TOKEN=...     # read token for private per-skill source repos (CI secret, required in CI)
     SKILLS_CLONE_PROTOCOL=ssh   # local runs: clone private sources with the user's SSH key
+
+An entry whose source cannot be refreshed keeps its last mirror, but never
+silently: every entry is still attempted, each failure is reported (as an error
+annotation under GitHub Actions), and the script exits 1 at the end.
 """
 from __future__ import annotations
 
@@ -88,11 +92,50 @@ def clone_url(repo: str) -> str:
 
 
 def clone_shallow(repo: str, dest: Path) -> None:
-    subprocess.check_call(
-        ["git", "clone", "--depth=1", clone_url(repo), str(dest)],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.STDOUT,
+    subprocess.run(
+        ["git", "clone", "--quiet", "--depth=1", clone_url(repo), str(dest)],
+        check=True,
+        capture_output=True,
+        text=True,
+        errors="replace",
+        # Without a usable credential git would otherwise wait at a username prompt.
+        env={**os.environ, "GIT_TERMINAL_PROMPT": "0"},
     )
+
+
+def git_error(stderr: str) -> str:
+    """git's last error lines, with credentials removed before they reach a log."""
+    token = os.environ.get("SKILLS_SOURCE_TOKEN")
+    if token:
+        stderr = stderr.replace(token, "***")
+    stderr = re.sub(r"://[^/@\s]+@", "://", stderr)
+    lines = [line.strip() for line in stderr.splitlines() if line.strip()]
+    return " | ".join(lines[-3:]) or "git printed no error"
+
+
+def workflow_value(value: str, *, prop: bool = False) -> str:
+    """Escape a value for a GitHub Actions workflow command."""
+    value = value.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+    return value.replace(":", "%3A").replace(",", "%2C") if prop else value
+
+
+def report_error(title: str, message: str) -> None:
+    """Print an error; under GitHub Actions it also becomes a run annotation."""
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        print(f"::error title={workflow_value(title, prop=True)}::{workflow_value(message)}", flush=True)
+    else:
+        print(f"  ✗ {title}: {message}", file=sys.stderr)
+
+
+def report_stale(failures: dict[str, str], total: int) -> None:
+    """List every stale entry: a CI step shows only its first 10 annotations."""
+    headline = f"{len(failures)} of {total} free skills kept their last mirror"
+    print(f"{headline}: {', '.join(failures)}")
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        with open(summary, "a", encoding="utf-8") as f:
+            f.write(f"### {headline}\n\n")
+            f.writelines(f"- `{name}` {reason}\n" for name, reason in failures.items())
 
 
 def rsync_mirror(src: Path, dst: Path) -> None:
@@ -270,7 +313,8 @@ def prune_stale(installable_names: set[str]) -> None:
             shutil.rmtree(child)
 
 
-def mirror_one(skill: dict, skip_clone: bool) -> None:
+def mirror_one(skill: dict, skip_clone: bool) -> str | None:
+    """Refresh one free skill's mirror; return why it kept its last one, if it did."""
     name = skill["name"]
     repo = skill["repo"]
     dest = MIRROR_ROOT / name
@@ -282,20 +326,21 @@ def mirror_one(skill: dict, skip_clone: bool) -> None:
             print(f"  update {name} (SKIP_CLONE=1)")
         else:
             print(f"  skip {name} (SKIP_CLONE=1)")
-        return
+        return None
 
     with tempfile.TemporaryDirectory() as tmp:
         clone_dir = Path(tmp) / "clone"
         try:
             clone_shallow(repo, clone_dir)
-        except subprocess.CalledProcessError:
-            print(f"  ✗ {name}: clone failed (no read access to private source? renamed?), keeping existing mirror", file=sys.stderr)
-            return
+        except subprocess.CalledProcessError as exc:
+            return f"clone failed: {git_error(exc.stderr)}"
         skill_root = clone_dir / skill.get("skill_path", "")
         if not (skill_root / "SKILL.md").exists():
-            print(f"  ⚠ {name}: SKILL.md not found at {skill_root.relative_to(clone_dir) or '.'}, skipping", file=sys.stderr)
-            return
-        rsync_mirror(skill_root, dest)
+            return f"SKILL.md not found at {skill_root.relative_to(clone_dir) or '.'}"
+        try:
+            rsync_mirror(skill_root, dest)
+        except subprocess.CalledProcessError as exc:
+            return f"rsync exited with status {exc.returncode}"
         touched = harden_npx_commands(dest)
         rewritten = rewrite_archived_catalog_refs(dest)
         changes = []
@@ -305,22 +350,38 @@ def mirror_one(skill: dict, skip_clone: bool) -> None:
             changes.append(f"updated {rewritten} archived-catalog reference{'s' if rewritten != 1 else ''}")
         suffix = f" ({'; '.join(changes)})" if changes else ""
         print(f"  ✓ {name}{suffix}")
+    return None
 
 
 def main() -> int:
     skip_clone = os.environ.get("SKIP_CLONE") == "1"
+    if os.environ.get("GITHUB_ACTIONS") == "true" and not skip_clone and not os.environ.get("SKILLS_SOURCE_TOKEN"):
+        # Anonymous clones of the private sources would fail one by one; say why once.
+        report_error(
+            "SKILLS_SOURCE_TOKEN is empty",
+            "Private skill sources cannot be cloned without it, so no mirror was refreshed. "
+            "Set the repository secret to a fine-grained token with Contents: read-only.",
+        )
+        return 1
     all_skills = load_skills()
     frees = free_skills(all_skills)
     print(f"Syncing {len(frees)} free skills into {MIRROR_ROOT.relative_to(ROOT)}/")
     MIRROR_ROOT.mkdir(exist_ok=True)
     prune_stale(installable_skill_names(all_skills))
+    failures = {}
     for s in frees:
-        mirror_one(s, skip_clone)
+        error = mirror_one(s, skip_clone)
+        if error:
+            failures[s["name"]] = f"{s['repo']}: {error}"
+            report_error(f"{s['name']} kept its last mirror", failures[s["name"]])
     # Display metadata belongs to this catalog and must survive upstream re-sync.
     module_path = ROOT / 'module-display-names.yaml'
     module_names = yaml.safe_load(module_path.read_text()) if module_path.exists() else {}
     renamed = apply_catalog_names(MIRROR_ROOT, all_skills, module_names or {})
     print(f'  Applied catalog display names to {renamed} files')
+    if failures:
+        report_stale(failures, len(frees))
+        return 1
     return 0
 
 

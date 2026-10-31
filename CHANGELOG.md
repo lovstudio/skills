@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.3 — 2026-10-31
+
+- A stale mirror now fails `Render index` instead of passing silently. `SKILLS_SOURCE_TOKEN` had never been set, so from 2026-09-25 every private source failed to clone anonymously and kept its last mirror while runs stayed green (97 entries by 2026-10-31).
+- `sync-skills.py` still attempts every free entry and keeps the last mirror of any it cannot refresh (clone failure, no `SKILL.md`, rsync error), but reports each one as a GitHub Actions error annotation with git's own error lines, credentials removed, lists them all in the job summary, and exits 1. In CI an empty `SKILLS_SOURCE_TOKEN` is an error before any clone, not an anonymous fallback. Clones set `GIT_TERMINAL_PROMPT=0`, so a missing credential fails instead of waiting at a prompt.
+- The mirror step continues on error: version sync, rendering, the bot commit and `mirror-cn` still publish the other entries, then the new `Fail on stale mirrors` step fails the run.
+
 ## 1.1.2 — 2026-10-31
 
 - CI now syncs each free entry's `version` from its mirrored `SKILL.md` (`metadata.version`) in the same `sync-runtime-names.py --write` step that syncs `runtime_name`, and stamps `updated_at` with the sync time (UTC) only when the version changes. The check mode reports version drift. Paid and internal entries keep hand-maintained versions.

@@ -57,6 +57,7 @@ jobs:
         run: python3 -m unittest discover -s scripts -p 'test_*.py'
 
       - name: Mirror free skill repos
+        id: mirror
         # Runs on schedule/dispatch (to pull upstream changes) and on push
         # (cheap: shallow clones, < 1 MB total today). The commit step below
         # no-ops if nothing actually changed.
@@ -64,9 +65,12 @@ jobs:
           github.event_name == 'schedule' ||
           github.event_name == 'push' ||
           inputs.mirror == 'true'
+        # An entry that cannot be refreshed keeps its last mirror. Let the other
+        # entries sync and publish; "Fail on stale mirrors" then fails the run.
+        continue-on-error: true
         env:
           # Fine-grained token with read access to the private lovstudio/*-skill repos.
-          # Without it private sources fail to clone and keep their last mirror.
+          # sync-skills.py fails in CI when it is empty instead of cloning anonymously.
           SKILLS_SOURCE_TOKEN: ${{ secrets.SKILLS_SOURCE_TOKEN }}
         run: python3 scripts/sync-skills.py
 
@@ -93,6 +97,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: auto-sync skills mirror + re-render index"
           git push
+
+      - name: Fail on stale mirrors
+        if: steps.mirror.outcome == 'failure'
+        run: |
+          echo "::error title=Stale skill mirrors::Mirror free skill repos reported errors, so some free skill mirrors were not refreshed. See that step's annotations and the job summary."
+          exit 1
 
   mirror-cn:
     # lovstudio.cn reads skills.yaml from Aliyun OSS. Upload main's copy after every
