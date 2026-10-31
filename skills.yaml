@@ -1438,14 +1438,14 @@ skills:
     card_path: pricing-cards/writing-style.md
 - name: article-creator
   runtime_name: lov-article-creator
-  updated_at: 2026-09-11T10:50:00Z
+  updated_at: 2026-10-31T12:29:42Z
   display_name: Genius Writer
   repo: lovstudio/article-creator-skill
   name_zh: 天才写手
   paid: true
   price_credits: 280
   category: Content Creation
-  version: 0.8.1
+  version: 0.10.0
   description: Create, rewrite, brand, or faithfully repost complete WeChat article
     packages with body-figure decisions, branded dual-ratio covers, and traceable
     quality evidence.
