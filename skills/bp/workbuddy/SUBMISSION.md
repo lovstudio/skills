@@ -37,8 +37,8 @@ Skill Publisher BP Skill Kit 是一套免费、开源、可组合的商业计划
 - MCP Server：不需要
 - CLI：不需要
 - License：MIT
-- 项目主页：https://example.com/skills/bp
-- 源代码：https://example.com/skills/bp-skill
+- 项目主页：https://lovstudio.ai/skills/bp
+- 源代码：https://github.com/lovstudio/bp-skill
 
 ## 隐私与安全
 

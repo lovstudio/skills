@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.3] - 2026-10-31
+
+### Fixed
+
+- 恢复 2026-08-09 去品牌化误改的共享 profile 路径：`media_config.py` 默认读写 `~/.lovstudio/skills/profile.json`（替换前原值见 d74b1e9^）
+- 切换前已核对：~/.skill-publisher/skills/profile.json 的 media_fetch 多出的 7 个键都等于代码默认值，两份解析结果相同；该文件保留不动
+- 新增 scripts/test_media_config.py，覆盖默认路径与 init --write 只改 media_fetch 段
+
 ## [0.4.2] - 2026-09-07
 
 ### Added

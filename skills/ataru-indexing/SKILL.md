@@ -4,16 +4,16 @@ description: >
   检查并构建本地 Ataru 会话记忆索引，让无界面调用方在检索前拿到 searchable 状态。
   Use when asked to build, rebuild, repair, or check the Ataru memory index.
 license: MIT
+compatibility: "Portable Agent Skills format. Requires Python 3.8+ and a locally installed Ataru binary at 0.41.3 or newer."
 metadata:
   author: lovstudio
-  version: "0.2.2"
+  version: "0.2.3"
   card_standard: lovstudio/skill-card/v1
   tags:
     - ataru
     - indexing
     - local-first
     - memory
-  compatibility: "Portable Agent Skills format. Requires Python 3.8+ and a locally installed Ataru binary at 0.41.3 or newer."
   dependencies: []
 ---
 

@@ -1,6 +1,6 @@
 # 汉字镜 · Hanzi Lens
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-24324A)
 
 把一个汉字做成有来源、有边界、看得懂也记得住的专业视觉解释。
@@ -57,14 +57,14 @@ Unicode 与字体覆盖
 
 ```bash
 git clone https://example.com/skills/professional-infographic-skill \
-  "${SKILL_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-professional-infographic"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-professional-infographic"
 ```
 
 再安装 Hanzi Lens：
 
 ```bash
 git clone https://example.com/skills/hanzi-lens-skill \
-  "${SKILL_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-hanzi-lens"
+  "${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-hanzi-lens"
 ```
 
 Python 依赖：
@@ -90,7 +90,7 @@ Create a Chinese character infographic for 曌
 也可以直接使用 CLI：
 
 ```bash
-SKILL_DIR="${SKILL_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-hanzi-lens"
+SKILL_DIR="${LOVSTUDIO_SKILLS_INSTALL_DIR:-$HOME/.agents/skills}/lov-hanzi-lens"
 
 python3 "$SKILL_DIR/scripts/hanzi_lens.py" inspect "翕"
 
@@ -159,8 +159,8 @@ hanzi-project/
 
 1. CLI 参数；
 2. `SKILL_HANZI_LENS_*` 环境变量；
-3. `SKILL_SKILLS_*` 环境变量；
-4. `${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`；
+3. `LOVSTUDIO_SKILLS_*` 环境变量；
+4. `${SKILL_PROFILE_PATH:-$HOME/.lovstudio/skills/profile.json}`；
 5. `$HOME/Documents` 下的安全默认目录。
 
 详见 [`references/user-config.md`](references/user-config.md)。

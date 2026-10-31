@@ -533,8 +533,8 @@ skills:
     card_path: pricing-cards/any2pdf.md
 - name: any2docx
   runtime_name: lov-any2docx
-  version: 0.4.1
-  updated_at: 2026-09-25 16:54:46+00:00
+  version: 0.4.2
+  updated_at: 2026-10-31 13:46:14+00:00
   display_name: Word Master
   repo: lovstudio/any2docx-skill
   name_zh: Word 大师
@@ -721,14 +721,14 @@ skills:
     card_path: pricing-cards/png2svg.md
 - name: bp
   runtime_name: lov-bp
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-31 13:46:14+00:00
   display_name: BP Studio
   repo: lovstudio/bp-skill
   name_zh: BP 工坊
   paid: false
   featured: true
   category: Business
-  version: 0.3.1
+  version: 0.3.2
   description: Orchestrate a complete investor BP workflow or combine only the modules
     needed for outline, PPTX/PDF production, and professional polishing.
   tagline_en: A composable BP skill kit — use outline, deck, and polish alone or run
@@ -1921,7 +1921,7 @@ skills:
     card_path: pricing-cards/style-clone.md
 - name: hanzi-lens
   runtime_name: lov-hanzi-lens
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-10-31 13:46:14+00:00
   skillpay_product_id: P0806000200847226
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQo
   display_name: Hanzi Lens
@@ -1929,7 +1929,7 @@ skills:
   name_zh: 汉字镜
   paid: false
   category: General
-  version: 0.2.1
+  version: 0.2.2
   description: Explain one Chinese character through verified readings, form analysis,
     historical lexicography, classical usage, semantic modeling, and an audited professional
     infographic.
@@ -4232,8 +4232,8 @@ skills:
   name_zh: 影视寻宝
   paid: false
   category: General
-  version: 0.4.2
-  updated_at: 2026-09-25 16:54:46+00:00
+  version: 0.4.3
+  updated_at: 2026-10-31 13:46:14+00:00
   description: Find, compare, and download long-form media with edition evidence,
     capacity preflight, qBittorrent and aria2 failover, and ffprobe verification.
   tagline_en: Find the right edition, resume through the faster transport, and verify
@@ -4367,8 +4367,8 @@ skills:
   name_zh: Ataru 索引
   paid: false
   category: Dev Tools
-  version: 0.2.2
-  updated_at: 2026-10-31 13:07:25+00:00
+  version: 0.2.3
+  updated_at: 2026-10-31 13:46:14+00:00
   description: 'Check and build the local Ataru session-memory index before retrieval:
     status gating, idempotent incremental catch-up, concurrent-build waiting, and
     semantic-index cost preview.'
@@ -4412,8 +4412,8 @@ skills:
   name_zh: 会话寻踪
   paid: false
   category: Dev Tools
-  version: 0.2.3
-  updated_at: 2026-10-31 13:07:25+00:00
+  version: 0.2.4
+  updated_at: 2026-10-31 13:46:14+00:00
   description: 'Recall past AI session context from the local Ataru memory index:
     keyword search with locatable Turn/Session hits and source-window read-back by
     stable ID.'
@@ -8085,12 +8085,12 @@ skills:
 - name: dev-blog
   runtime_name: lov-dev-blog
   display_name: Dev Journal
-  updated_at: '2026-09-25 16:28:27+00:00'
+  updated_at: 2026-10-31 13:46:14+00:00
   repo: lovstudio/dev-blog-skill
   name_zh: 研发手记
   paid: false
   category: Content Creation
-  version: 0.5.1
+  version: 0.5.2
   description: Summarize the current development context and its visuals into a Chinese blog
     post and publish it to the website blog.
   tagline_en: Summarize the current development context and its visuals into a Chinese blog

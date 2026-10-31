@@ -19,7 +19,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.5.1"
+  version: "0.5.2"
   tags: dev blog supabase writing publishing
 ---
 
@@ -278,7 +278,7 @@ python3 scripts/publish_blog_post.py \
   --title "<title>" \
   --slug "<slug>" \
   --excerpt "<excerpt>" \
-  --tags "dev,skill-publisher" \
+  --tags "dev,lovstudio" \
   --cover "<public-cover-url>" \
   --env-file "$WEB_ROOT/.env.local" \
   --require-inline-image \
@@ -303,7 +303,7 @@ python3 scripts/publish_blog_post.py \
   --title "<title>" \
   --slug "<slug>" \
   --excerpt "<excerpt>" \
-  --tags "dev,skill-publisher" \
+  --tags "dev,lovstudio" \
   --cover "<public-cover-url>" \
   --env-file "$WEB_ROOT/.env.local" \
   --require-inline-image
@@ -336,7 +336,7 @@ complete verification.
 | `--title` | (required) | Blog post title. |
 | `--slug` | generated from title | URL slug. Use ASCII kebab-case. |
 | `--excerpt` | first paragraph | Blog card summary. |
-| `--tags` | `dev,skill-publisher` | Comma-separated tags. |
+| `--tags` | `dev,lovstudio` | Comma-separated tags. |
 | `--author` | `Mark` | Author name. |
 | `--cover` | (required by this workflow) | Public cover image URL. Generate and upload before publishing. |
 | `--require-inline-image` | false | Fail when a visually sourced article contains no inline image. |

@@ -4,12 +4,13 @@ import sys
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest import mock
 
 
 SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
 sys.path.insert(0, str(SCRIPTS_DIR))
 
-from publish_blog_post import build_payload, inline_image_sources  # noqa: E402
+from publish_blog_post import build_payload, inline_image_sources, parse_args  # noqa: E402
 
 
 def publishing_args(**overrides: object) -> SimpleNamespace:
@@ -58,6 +59,12 @@ class PublishBlogPostMediaTests(unittest.TestCase):
         content = "![Published screenshot](https://example.com/screenshot.webp)"
         payload = build_payload(publishing_args(require_inline_image=True), content)
         self.assertEqual(payload["content_mdx"], content)
+
+    def test_default_tags_mark_posts_as_lovstudio(self) -> None:
+        payload = build_payload(publishing_args(tags=""), "# Post\n\nText only.")
+        self.assertEqual(payload["tags"], ["dev", "lovstudio"])
+        with mock.patch("sys.argv", ["publish_blog_post.py", "--input", "post.md", "--title", "Post"]):
+            self.assertEqual(parse_args().tags, "dev,lovstudio")
 
 
 if __name__ == "__main__":

@@ -105,7 +105,7 @@ def main() -> int:
     profile_path = expand_path(
         args.profile
         or os.environ.get("SKILL_PROFILE_PATH")
-        or "$HOME/.skill-publisher/skills/profile.json"
+        or "$HOME/.lovstudio/skills/profile.json"
     )
     profile = load_profile(profile_path)
     output = resolve_output(args, profile)

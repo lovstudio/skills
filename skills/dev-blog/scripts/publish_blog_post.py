@@ -140,7 +140,7 @@ def build_payload(args: argparse.Namespace, content: str) -> Dict[str, Any]:
 
     slug = args.slug.strip() if args.slug else slugify(title)
     excerpt = args.excerpt.strip() if args.excerpt else first_paragraph(content)
-    tags = split_tags(args.tags) if args.tags else ["dev", "skill-publisher"]
+    tags = split_tags(args.tags) if args.tags else ["dev", "lovstudio"]
     published_at = args.published_at or dt.datetime.now(dt.timezone.utc).isoformat()
     source_path = args.source_path or f"dev-blog:{slug}"
 
@@ -203,7 +203,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--title", required=True, help="Blog post title.")
     parser.add_argument("--slug", default="", help="URL slug. Defaults to a slug generated from --title.")
     parser.add_argument("--excerpt", default="", help="Short summary. Defaults to the first paragraph.")
-    parser.add_argument("--tags", default="dev,skill-publisher", help="Comma-separated tags.")
+    parser.add_argument("--tags", default="dev,lovstudio", help="Comma-separated tags.")
     parser.add_argument("--author", default=DEFAULT_AUTHOR, help="Author name.")
     parser.add_argument("--cover", default="", help="Public cover image URL. Required unless --draft is set.")
     parser.add_argument(

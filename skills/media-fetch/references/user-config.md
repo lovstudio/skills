@@ -14,7 +14,7 @@ tokens outside the profile.
 Shared profile:
 
 ```bash
-${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}
+${SKILL_PROFILE_PATH:-$HOME/.lovstudio/skills/profile.json}
 ```
 
 ## Defaults

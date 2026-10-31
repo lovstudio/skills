@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.4] - 2026-10-31
+
+### Fixed
+
+- compatibility 按 Agent Skills 规范从 metadata 移到 SKILL.md frontmatter 顶层；scripts/validate_skill.py 的 frontmatter 白名单同步加入 compatibility，否则顶层字段会被拒绝
+
 ## [0.2.3] - 2026-10-31
 
 ### Fixed

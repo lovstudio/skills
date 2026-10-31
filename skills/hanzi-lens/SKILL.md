@@ -17,7 +17,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.1"
+  version: "0.2.2"
   tags: hanzi chinese-character etymology lexicography infographic cjk unicode
 ---
 
@@ -242,8 +242,8 @@ Resolution order:
 
 1. explicit CLI flags;
 2. `SKILL_HANZI_LENS_*` environment variables;
-3. shared `SKILL_SKILLS_*` environment variables;
-4. `${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`;
+3. shared `LOVSTUDIO_SKILLS_*` environment variables;
+4. `${SKILL_PROFILE_PATH:-$HOME/.lovstudio/skills/profile.json}`;
 5. safe defaults under `$HOME/Documents`.
 
 Relevant variables:
@@ -253,7 +253,7 @@ Relevant variables:
 | `SKILL_HANZI_LENS_OUTPUT_DIR` | Hanzi Lens output root |
 | `SKILL_HANZI_LENS_INFOGRAPHIC_SKILL_DIR` | Dependency skill directory |
 | `SKILL_OUTPUT_DIR` | Shared output root |
-| `SKILL_SKILLS_INSTALL_DIR` | Shared skill installation directory |
+| `LOVSTUDIO_SKILLS_INSTALL_DIR` | Shared skill installation directory |
 | `SKILL_PROFILE_PATH` | Shared profile JSON |
 | `SKILL_PROFILE_PATH` | Shared brand profile |
 

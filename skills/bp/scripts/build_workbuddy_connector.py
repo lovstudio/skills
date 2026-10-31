@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WORKBUDDY_DIR = ROOT / "workbuddy"
-GIT_URL = "https://example.com/skills/bp-skill"
+GIT_URL = "https://github.com/lovstudio/bp-skill"
 
 SKILLS = {
     "lov-bp": {
@@ -122,7 +122,7 @@ def workbuddy_skill_text(
         f"name: {name}\n"
         f"description: {json.dumps(description, ensure_ascii=False)}\n"
         f'version: "{version}"\n'
-        "author: Skill Publisher\n"
+        "author: Lovstudio.AI\n"
         "source_type: git\n"
         f"git_url: {GIT_URL}\n"
         "---\n"
@@ -298,7 +298,7 @@ def validate_package(output_dir: Path) -> None:
         for path in output_dir.rglob("*")
         if path.is_file() and path.suffix.lower() in {".md", ".json", ".yaml", ".yml", ".svg"}
     )
-    if "${SKILL_USER_ROOT}" in all_text:
+    if "/Users/mark" in all_text:
         errors.append("package contains a private absolute path")
     deck_text = (
         output_dir / "skills" / "lov-bp-deck" / "SKILL.md"

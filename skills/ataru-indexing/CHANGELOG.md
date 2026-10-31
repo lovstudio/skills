@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3] - 2026-10-31
+
+### Fixed
+
+- compatibility 按 Agent Skills 规范从 metadata 移到 SKILL.md frontmatter 顶层；scripts/validate_skill.py 的 frontmatter 白名单同步加入 compatibility，否则顶层字段会被拒绝
+- README 补上 npx skills add lov-ataru-indexing -g -y 安装命令，源码软链接安装保留为备选
+
 ## [0.2.2] - 2026-10-31
 
 ### Fixed

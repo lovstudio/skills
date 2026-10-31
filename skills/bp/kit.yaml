@@ -7,7 +7,7 @@ profile:
   manifest: skill.yaml
 workspace: business-plan
 source_type: git
-git_url: https://example.com/skills/bp-skill
+git_url: https://github.com/lovstudio/bp-skill
 modules:
   - id: bp-outline
     skill: lov-bp-outline

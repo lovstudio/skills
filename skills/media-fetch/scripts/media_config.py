@@ -64,7 +64,7 @@ ENV_MAP = {
 
 def profile_path() -> Path:
     value = os.environ.get(
-        "SKILL_PROFILE_PATH", str(Path.home() / ".skill-publisher/skills/profile.json")
+        "SKILL_PROFILE_PATH", str(Path.home() / ".lovstudio/skills/profile.json")
     )
     return Path(os.path.expandvars(value)).expanduser()
 

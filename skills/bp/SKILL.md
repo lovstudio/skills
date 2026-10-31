@@ -12,7 +12,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.1"
+  version: "0.3.2"
   tags: skill-kit business-plan pitch-deck fundraising outline slides polish audit
 ---
 

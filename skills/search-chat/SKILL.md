@@ -4,16 +4,16 @@ description: >
   从本机 Ataru 记忆索引里召回过去的 AI 会话上下文，返回可定位的命中与原文片段。
   Use when asked what was discussed, decided, or fixed in an earlier session.
 license: MIT
+compatibility: "Portable Agent Skills format. Requires Python 3.8+ and a locally installed Ataru binary at 0.41.3 or newer."
 metadata:
   author: lovstudio
-  version: "0.2.3"
+  version: "0.2.4"
   card_standard: lovstudio/skill-card/v1
   tags:
     - ataru
     - search
     - recall
     - local-first
-  compatibility: "Portable Agent Skills format. Requires Python 3.8+ and a locally installed Ataru binary at 0.41.3 or newer."
   dependencies: []
 ---
 

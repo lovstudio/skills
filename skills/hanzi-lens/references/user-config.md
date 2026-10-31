@@ -16,7 +16,7 @@ assume a private workspace, personal absolute paths, or private brand assets.
 Default profile path:
 
 ```bash
-${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}
+${SKILL_PROFILE_PATH:-$HOME/.lovstudio/skills/profile.json}
 ```
 
 Example:
@@ -35,8 +35,8 @@ Example:
   "brand": {
     "name": "Your Brand",
     "site": "https://example.com",
-    "profile": "$HOME/.skill-publisher/skills/brand.json",
-    "design_guide": "$HOME/.skill-publisher/skills/design-guide.md"
+    "profile": "$HOME/.lovstudio/skills/brand.json",
+    "design_guide": "$HOME/.lovstudio/skills/design-guide.md"
   }
 }
 ```
@@ -58,7 +58,7 @@ Skill-specific overrides:
 |----------|---------|
 | `SKILL_HANZI_LENS_OUTPUT_DIR` | Hanzi Lens output root |
 | `SKILL_HANZI_LENS_INFOGRAPHIC_SKILL_DIR` | Installed `lov-professional-infographic` directory |
-| `SKILL_SKILLS_INSTALL_DIR` | Shared Agent Skills installation directory |
+| `LOVSTUDIO_SKILLS_INSTALL_DIR` | Shared Agent Skills installation directory |
 
 ## Implementation Notes
 

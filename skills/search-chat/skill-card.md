@@ -59,7 +59,7 @@ stdout 上的单个 UTF-8 JSON 对象。`search` 返回 `query`、`level`、`mod
 
 ## Skill Version
 
-0.2.3
+0.2.4
 
 ## Ethical Considerations
 

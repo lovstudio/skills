@@ -58,7 +58,7 @@ stdout 上的单个 UTF-8 JSON 对象，含 `state`、`searchAvailable`、`needs
 
 ## Skill Version
 
-0.2.2
+0.2.3
 
 ## Ethical Considerations
 

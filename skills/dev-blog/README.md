@@ -1,6 +1,6 @@
 # 研发手记 · Dev Journal
 
-![Version](https://img.shields.io/badge/version-0.5.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.2-CC785C)
 
 Canonical publishing contract for Skill Publisher's Supabase-backed website blog
 feed. It can write and publish a development blog post directly, and it defines
@@ -61,7 +61,7 @@ python3 scripts/publish_blog_post.py \
   --title "一次开发上下文如何变成可复用博客" \
   --slug "dev-context-to-blog" \
   --excerpt "把开发过程沉淀成网站博客，关键在于先结构化上下文，再用 Supabase 作为发布源。" \
-  --tags "dev,skill-publisher,blog" \
+  --tags "dev,lovstudio,blog" \
   --cover "https://example.com/blog-cover.webp" \
   --env-file "$WEB_ROOT/.env.local"
 ```
@@ -89,7 +89,7 @@ pass `--require-inline-image` to the publisher.
 | `--title` | (required) | Blog post title. |
 | `--slug` | generated from title | URL slug. |
 | `--excerpt` | first paragraph | Blog card summary. |
-| `--tags` | `dev,skill-publisher` | Comma-separated tags. |
+| `--tags` | `dev,lovstudio` | Comma-separated tags. |
 | `--author` | `Mark` | Author name. |
 | `--cover` | empty | Required for published posts. Use `--draft` to skip cover while saving a hidden draft. |
 | `--require-inline-image` | false | Fail when the post is expected to contain inline visual evidence but has no embedded image. |

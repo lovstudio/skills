@@ -3,6 +3,13 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.5.2] - 2026-10-31
+
+### Fixed
+
+- 恢复 2026-08-09 去品牌化误改的默认博客标签：未传 `--tags` 时发布为 `dev,lovstudio`，SKILL.md 与 README 的发布命令示例、参数表同步恢复（替换前原值见 dda8749^）
+- 测试覆盖 build_payload 与 CLI 的默认标签
+
 ## [0.5.1] - 2026-09-07
 
 ### Added

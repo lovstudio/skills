@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.2.2"
+version: "0.2.3"
 description: >
   在无界面环境下把本机 Ataru 会话记忆索引带到可检索状态。解析并版本门控本地
   Ataru 可执行文件，读取索引状态并与磁盘上的会话文件比对漂移，只在不可检索或已

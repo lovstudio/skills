@@ -3,6 +3,13 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.4.2] - 2026-10-31
+
+### Fixed
+
+- 恢复 2026-08-09 去品牌化误改的 `warm-academic` 强调色：`md2docx.py` 主题与未知主题回退色回到 `#CC785C`，与 any2pdf 保持同一调色板（替换前原值见 c01c67a^）
+- 新增 tests/test_warm_academic_accent.py
+
 ## [0.4.1] - 2026-09-25
 
 ### Added

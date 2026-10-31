@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.2] - 2026-10-31
+
+### Fixed
+
+- 恢复 2026-08-09 去品牌化误改的默认 profile：`init_bp.py`（含 bp-outline 副本）默认读取 `~/.lovstudio/skills/profile.json`，各 user-config.md 的路径同步恢复（替换前原值见 02044aa^）
+- WorkBuddy 打包：`git_url` 在脚本、connector-meta.json、kit.yaml 与 SUBMISSION.md 恢复为 `https://github.com/lovstudio/bp-skill`；生成包 `author` 按 BRAND-08 写作 `Lovstudio.AI`；图标填充色恢复 `#D97757`
+- 包校验的私有路径检查恢复为原值 `/Users/mark`（替换后检查的是永不出现的 `${SKILL_USER_ROOT}`）
+- 新增 tests/test_sanitizer_regressions.py
+
 ## [0.3.1] - 2026-09-25
 
 ### Added

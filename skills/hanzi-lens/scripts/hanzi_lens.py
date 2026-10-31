@@ -17,7 +17,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_PROFILE = Path("${SKILLS_CONFIG_DIR}/profile.json")
+DEFAULT_PROFILE = Path("~/.lovstudio/skills/profile.json")
 PLACEHOLDER = re.compile(r"\b(?:TODO|TBD|FIXME)\b|请替换|占位|Lorem ipsum", re.I)
 PERSON_INFERENCE = re.compile(r"姓名|性格|命理|姻缘|缘分|女生|男生|女孩|男孩")
 FONT_SUFFIXES = {".ttf", ".otf", ".ttc", ".otc"}
@@ -168,7 +168,7 @@ def resolve_infographic_cli(explicit: Optional[str]) -> Path:
         candidates.append(
             expand_path(env_dir) / "scripts" / "infographic_cli.py"
         )
-    install_dir = os.environ.get("SKILL_SKILLS_INSTALL_DIR")
+    install_dir = os.environ.get("LOVSTUDIO_SKILLS_INSTALL_DIR")
     if install_dir:
         candidates.append(
             expand_path(install_dir)
