@@ -11,7 +11,7 @@ depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 0.4.3
+  version: 0.4.4
   tags:
   - macos
   - finder
@@ -68,7 +68,11 @@ metadata:
 
 `document.wflow` 模板只含一个 Run Shell Script action：`inputMethod=1`、`shell=/bin/bash`，
 输入 `com.apple.Automator.fileSystemObject`，`workflowTypeIdentifier=com.apple.Automator.servicesMenu`，
-`presentationMode=15`，输出 `com.apple.Automator.nothing`。脚本占位 `SHELL_SCRIPT`、菜单名占位
+`presentationMode=15`，输出 `com.apple.Automator.nothing`，服务应用为 Finder。`Info.plist` 模板保留
+`NSRequiredContext`（`NSApplicationIdentifier=com.apple.finder`），这是 Apple 对服务自动显示的要求。但它不够：
+macOS 26.6 实测，新装的服务即使带该键，也只有在用户于右键「快速操作 → 自定…」勾选、`pbs` 偏好
+`NSServicesStatus` 记下 `ContextMenu = 1` 后，才会出现在 Finder 右键「快速操作」中。该偏好属于系统设置，
+Agent 不代写，按下文「启用」引导用户一步完成。脚本占位 `SHELL_SCRIPT`、菜单名占位
 `ACTION_NAME` 一律用 `plutil` 写入（自动处理 XML 转义），不手工拼接 XML。`SKILL_DIR` 指本 Skill 根目录。
 
 ```bash
@@ -83,15 +87,35 @@ plutil -replace actions.0.action.ActionParameters.COMMAND_STRING -string "$(cat 
 plutil -replace NSServices.0.NSMenuItem.default -string "$NAME" "$STAGE/Contents/Info.plist"
 plutil -replace NSServices.0.NSSendFileTypes -json '["com.adobe.pdf"]' "$STAGE/Contents/Info.plist"  # 按目标 UTI；文件与文件夹通用保留 public.item
 plutil -lint "$STAGE/Contents/document.wflow" "$STAGE/Contents/Info.plist"
+plutil -extract NSServices.0.NSRequiredContext json -o - "$STAGE/Contents/Info.plist"  # 应为 com.apple.finder
 diff <(plutil -extract actions.0.action.ActionParameters.COMMAND_STRING raw -o - "$STAGE/Contents/document.wflow") action.sh
 mv -n "$STAGE" "$DEST"
 /System/Library/CoreServices/pbs -update
 ```
 
 - 同名 workflow 已存在时停止，换名或询问用户；不覆盖、不合并。lint 或 diff 失败时只丢弃 staging 目录。
-- 不执行 `killall Finder`，不自动打开 Automator。菜单未出现时，按当前系统版本核实后请用户在系统设置中检查该服务的启用状态，或由用户自行在 Automator 打开并保存一次。
+- 不执行 `killall Finder`，不自动打开 Automator。
 - 回退路径：把 `$DEST` 移到废纸篓（`mv "$DEST" ~/.Trash/`）后再次运行 `pbs -update`。
 - 报告安装路径与回退命令；实际右键触发经观察后才标记已验证。
+
+### 启用
+
+安装后立即只读检查是否已进右键菜单（`defaults export` 经 cfprefsd 读取，PlistBuddy 不受中文转义影响）：
+
+```bash
+P="$(mktemp)"; defaults export pbs "$P"
+/usr/libexec/PlistBuddy -c "Print ':NSServicesStatus:(null) - $NAME - runWorkflowAsService:presentation_modes:ContextMenu'" "$P" 2>/dev/null || echo "未启用"
+rm -f "$P"
+```
+
+- 输出 `true`：已启用，直接报告。
+- 未启用：在安装结果的同一条回复里只给用户一步——勾选该动作（一次装多个时列出全部名称，一次勾完），并附上直达设置页的命令。这是 Finder「快速操作 → 自定…」打开的同一页面；用户同意后可代为执行，不自行改写 `pbs` 偏好：
+
+```bash
+open "x-apple.systempreferences:com.apple.ExtensionsPreferences?extensionPointIdentifier=com.apple.finder-quick-actions"
+```
+
+- 用户回复已勾选后重跑检查，输出 `true` 才报告已启用。
 
 ## Composition
 

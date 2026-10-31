@@ -38,7 +38,7 @@ MIT
 
 ## Skill Version
 
-0.4.3
+0.4.4
 
 ## Ethical Considerations
 

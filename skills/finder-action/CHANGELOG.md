@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.4] - 2026-10-26
+
+### Added
+
+- 新增「启用」步骤：安装后用 `defaults export pbs` + PlistBuddy 只读检查 `ContextMenu`；未启用时在同一条回复里给用户一步勾选和直达命令（`x-apple.systempreferences:…?extensionPointIdentifier=com.apple.finder-quick-actions`，即 Finder「自定…」所开页面），用户勾选后复查。
+
+### Fixed
+
+- `automator-info-template.xml` 补上 Apple 要求的 `NSRequiredContext`（`NSApplicationIdentifier=com.apple.finder`）；`automator-template.xml` 同步写入 `serviceApplicationBundleID` / `serviceApplicationPath`，Automator 里打开时显示为「位于 访达」。
+- 更正安装说明：macOS 26.6 实测，新装的 Quick Action 默认不出现在 Finder 右键「快速操作」，即使带 `NSRequiredContext` 也是如此；要等用户在「快速操作 → 自定…」勾选、`pbs` 偏好 `NSServicesStatus` 记下 `ContextMenu = 1` 后才显示。Agent 不代写该系统偏好，安装后明确请用户勾选，并用 `defaults read pbs NSServicesStatus` 只读核验。
+
 ## [0.4.3] - 2026-09-25
 
 ### Fixed
