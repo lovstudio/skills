@@ -1146,14 +1146,14 @@ skills:
     card_path: pricing-cards/expense-report.md
 - name: event-poster
   runtime_name: lov-event-poster
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-10-31 12:15:52+00:00
   display_name: Professional Poster
   repo: lovstudio/event-poster-skill
   skill_path: src
   name_zh: 专业海报
   paid: true
   category: Design
-  version: 0.6.3
+  version: 0.6.4
   description: Generate event and exhibition posters via HTML + Playwright / 活动与展览海报生成
   tagline_en: Turn an event brief into a polished poster, ready to share or print
     for exhibitions.
