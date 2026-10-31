@@ -1,13 +1,8 @@
 ---
 name: lov-optimize-tauri-backend
 description: >
-  Optimize Tauri backend architecture and development ergonomics for Tauri 2
-  apps, especially Rust restart pain, oversized src-tauri/src/lib.rs files,
-  excessive #[tauri::command] surfaces, stringly invoke APIs, long IPC streams,
-  and dev-state recovery. Use when the user asks about Tauri hot reload,
-  Rust-side restarts, "lib.rs 太大", "commands 太多", "降低到 100 个以内",
-  "Tauri 后端优化", "optimize-tauri-backend", "Tauri backend refactor",
-  or "Tauri dev reload".
+  优化 Tauri 2 后端：拆分过大的 lib.rs、收敛 command 数量、集中 invoke、处理长 IPC 与开发期重启。Use when
+  the user mentions "lib.rs 太大", "commands 太多", "Tauri 后端优化", "Tauri dev reload".
 license: MIT
 compatibility: >
   Instruction-only skill for Tauri 2 + Rust backends with React/Vite or similar
@@ -15,8 +10,16 @@ compatibility: >
   manager and honor local AGENTS.md / CLAUDE.md constraints.
 metadata:
   author: contributors
-  version: "0.2.1"
-  tags: tauri rust backend ipc commands hot-reload modularization dev-experience
+  version: "0.2.2"
+  tags:
+    - tauri
+    - rust
+    - backend
+    - ipc
+    - commands
+    - hot-reload
+    - modularization
+    - dev-experience
 ---
 
 # Tauri 后端调优 · Tauri Backend Tuner
@@ -26,8 +29,13 @@ more pleasant development surface. The goal is not magical Rust HMR. The goal
 is to reduce how often Rust changes are needed, make Rust restarts less
 disruptive, and keep the Tauri command boundary small, typed, and auditable.
 
-## When to Use
+## Triggers
 
+### Activate when
+
+- “lib.rs 太大”“commands 太多”“降低到 100 个以内”“Tauri 后端优化”
+- "optimize-tauri-backend", "Tauri backend refactor", "Tauri dev reload", or a
+  question about Tauri hot reload and Rust-side restarts.
 - The user is developing with `pnpm tauri dev` / `npm run tauri dev` and Rust
   file changes keep closing and reopening the app.
 - `src-tauri/src/lib.rs` has become a God file.
@@ -38,6 +46,21 @@ disruptive, and keep the Tauri command boundary small, typed, and auditable.
   reload or HMR.
 - The user wants backend modularization, command consolidation, better dev
   scripts, or restart-state recovery.
+
+### Do not activate when
+
+- The issue is frontend-only Vite/React HMR with no Rust or Tauri backend change.
+- A running app is slow, drains battery, or grows memory: use
+  `lov-app-optimizer`.
+- The request is only to move frontend reads onto a shared query cache: use
+  `lov-install-tanstack-query`.
+- Release builds, signing, or auto update: use `lov-app-release` or
+  `lov-app-delta-updater`.
+
+## Skill Group Composition
+
+Read `references/skill-composition.md` before routing to or extending an
+adjacent Skill.
 
 ## Core Position
 

@@ -1,12 +1,12 @@
 # 职业形象照 · Professional Portrait
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 
 把一张普通人像修成干净、自然、仍然像本人的职业形象照。
 
 它把“磨皮、提亮、去帽、补发型、职业化”拆成尽量少的编辑步骤，并用身份一致性、皮肤质感、发际线和光影完整性做最终质检。
 
-Part of [skill-publisher general skills](https://example.com/skills/general-skills) — by [example.com](https://example.com)
+Independent source repository, also distributed through [lovstudio/skills](https://github.com/lovstudio/skills) — by [Lovstudio.AI](https://lovstudio.ai)
 
 ## 能做什么
 
@@ -20,13 +20,20 @@ Part of [skill-publisher general skills](https://example.com/skills/general-skil
 ## 安装
 
 ```bash
-npx skills add professional-portrait
+npx skills add lov-professional-portrait -g -y
+```
+
+或使用 Claude Code 插件市场：
+
+```text
+/plugin marketplace add lovstudio/skills
+/plugin install design@lovstudio
 ```
 
 也可以直接从源码安装：
 
 ```bash
-git clone https://example.com/skills/professional-portrait-skill \
+git clone https://github.com/lovstudio/professional-portrait-skill \
   "${SKILL_SKILLS_INSTALL_DIR:?Set SKILL_SKILLS_INSTALL_DIR}/lov-professional-portrait"
 ```
 

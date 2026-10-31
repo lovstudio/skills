@@ -1,28 +1,22 @@
 # 移动适配师 · Mobile Fit
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 
 Scan and fix mobile adaptation issues in web projects: viewport, overflow, safe area, responsive layouts, 100vh pitfalls, touch targets, and multi-level page navigation.
 
-Independent source repository, also distributed through [skill-publisher dev-skills](https://example.com/skills/dev-skills) — by [example.com](https://example.com)
+Independent source repository, also distributed through [lovstudio/skills](https://github.com/lovstudio/skills) — by [Lovstudio.AI](https://lovstudio.ai)
 
 ## Install
 
 ```bash
-npx skills add skill-publisher/mobile-adapt-skill --all -g
-```
-
-The aggregate bundle remains available:
-
-```bash
-npx skills add skill-publisher/dev-skills --all -g
+npx skills add lov-mobile-adapt -g -y
 ```
 
 Or through Claude Code plugin marketplace:
 
 ```text
-/plugin marketplace add skill-publisher/dev-skills
-/plugin install dev-tools@lov-dev
+/plugin marketplace add lovstudio/skills
+/plugin install dev-tools@lovstudio
 ```
 
 Requires: Python 3.8+ (no external dependencies)

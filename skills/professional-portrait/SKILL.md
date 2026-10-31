@@ -1,16 +1,8 @@
 ---
 name: lov-professional-portrait
-category: Design
-tagline: "Turn one photo into a clean, identity-preserving professional portrait."
 description: >
-  Turn a single-person photo into a polished professional portrait while
-  preserving the person's identity. Use restrained skin retouching, exposure
-  cleanup, optional hat removal and hairstyle reconstruction, background
-  polish, and an explicit quality gate. Trigger when the user asks for a
-  professional headshot, business portrait, profile photo, skin retouch,
-  brighter face, hat removal, or hairstyle cleanup. Also trigger on "职业照",
-  "形象照", "证件形象照", "精修人像", "磨皮提亮", "去掉帽子", "换发型",
-  "professional portrait", "headshot", "portrait retouch", and "remove hat".
+  把单人照片修成仍像本人的职业形象照：克制磨皮、面部提亮、去帽补发型、背景整理并做身份质检。Use when
+  the user mentions "职业照", "形象照", "精修人像", "professional headshot", "remove hat".
 license: MIT
 compatibility: >
   Portable Agent Skills format. Requires an agent runtime with image viewing
@@ -18,8 +10,13 @@ compatibility: >
   built-in image tool. No Python dependency is required.
 metadata:
   author: contributors
-  version: "0.2.1"
-  tags: portrait headshot retouch identity-preserve photo-editing
+  version: "0.2.2"
+  tags:
+    - portrait
+    - headshot
+    - retouch
+    - identity-preserve
+    - photo-editing
 ---
 
 # 职业形象照 · Professional Portrait
@@ -28,8 +25,14 @@ Turn one source photo into a polished, believable professional portrait. The
 face should still look unmistakably like the same person; "more professional"
 must not become "a different, AI-perfect person."
 
-## When to Use
+## Triggers
 
+### Activate when
+
+- “职业照”“形象照”“证件形象照”“精修人像”“磨皮提亮”“去掉帽子”“换发型”
+- "professional portrait", "headshot", "portrait retouch", "remove hat", or a
+  request for a business portrait, profile photo, skin retouch, brighter face,
+  or hairstyle cleanup.
 - A casual photo needs to become a professional headshot or profile image.
 - The user wants cleaner skin, brighter facial exposure, or a more polished
   overall look without changing identity.
@@ -37,6 +40,22 @@ must not become "a different, AI-perfect person."
 - The user is iterating with feedback such as "变化不明显", "更干净帅气一点",
   or "只提亮面部".
 - The user wants a before/after or progressive comparison after the edits.
+
+### Do not activate when
+
+- The photo shows several people, or the goal is a different identity (face
+  swap, a fictional person).
+- The user wants a stylized portrait: a Riso print avatar goes to
+  `lov-riso-portrait`; a cinematic environmental portrait from a travel or
+  outdoor photo goes to `lov-spectacular-ps`.
+- A new image is generated from scratch: use `lov-image-creator`.
+- A caption bar or brand logo is added to an existing image: use
+  `lov-image-decorator`.
+
+## Skill Group Composition
+
+Read `references/skill-composition.md` before routing to or extending an
+adjacent Skill.
 
 ## Core Principle
 

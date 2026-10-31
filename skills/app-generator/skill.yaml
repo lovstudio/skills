@@ -1,9 +1,22 @@
 schema: skill-manifest/v1
 id: lov-app-generator
-version: "0.5.3"
+version: "0.5.4"
 runtime: skill-runtime/v1
 context:
   profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+    - user
+    - brand
+    - preferences
+    - skills.lov-app-generator
+    persist:
+      enabled: true
+      namespace: skills.lov-app-generator
+      records_path: skills.lov-app-generator.records
+      write_policy: direct-user-statement
+      atomic: true
     fields:
     - path: identity.name
       required: true

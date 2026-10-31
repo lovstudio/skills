@@ -1,6 +1,6 @@
 # 应用工坊 · App Studio
 
-![Version](https://img.shields.io/badge/version-0.5.3-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.4-CC785C)
 
 Generate or standardize Skill Publisher apps, choosing web-only, PWA, Tauri,
 or native macOS case-by-case. It supports Finder Quick Actions as signed Action
@@ -9,25 +9,19 @@ Publisher branding, CI/CD/deploy, optional auto update, and lovinsp. Every gener
 or standardized frontend app runs the idempotent `lov-integrate-lovinsp` workflow by
 default.
 
-Independent source repository, also distributed through [skill-publisher dev-skills](https://example.com/skills/dev-skills) — by [example.com](https://example.com)
+Independent source repository, also distributed through [lovstudio/skills](https://github.com/lovstudio/skills) — by [Lovstudio.AI](https://lovstudio.ai)
 
 ## Install
 
 ```bash
-npx skills add skill-publisher/app-generator-skill --all -g
-```
-
-The aggregate bundle remains available:
-
-```bash
-npx skills add skill-publisher/dev-skills --all -g
+npx skills add lov-app-generator -g -y
 ```
 
 Or through Claude Code plugin marketplace:
 
 ```text
-/plugin marketplace add skill-publisher/dev-skills
-/plugin install dev-tools@lov-dev
+/plugin marketplace add lovstudio/skills
+/plugin install dev-tools@lovstudio
 ```
 
 Requires: Python 3.8+ for the audit helper. No Python packages are required.

@@ -1,12 +1,8 @@
 ---
 name: lov-mobile-adapt
 description: >
-  Adapt an existing web project for mobile devices: fix overflow, add responsive
-  layouts, convert to multi-level page navigation with back support, handle
-  notch/Dynamic Island safe areas, fix 100vh browser chrome issues, and optimize
-  touch targets. Trigger when user says "mobile adapt", "移动端适配",
-  "responsive optimization", "手机适配", "fix mobile overflow", "add safe area",
-  "多级页面", "移动端布局", or mentions adapting a site for phones/tablets.
+  扫描并修复 Web 项目的移动端问题：溢出、安全区、100vh、触控尺寸、响应式布局与多级页面导航。Use when
+  the user mentions "移动端适配", "手机适配", "mobile adapt", "fix mobile overflow".
 license: MIT
 compatibility: >
   Requires Python 3.8+ (no external dependencies).
@@ -15,8 +11,13 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.1"
-  tags: mobile, responsive, safe-area, overflow, navigation
+  version: "0.2.2"
+  tags:
+    - mobile
+    - responsive
+    - safe-area
+    - overflow
+    - navigation
 ---
 
 # 移动适配师 · Mobile Fit
@@ -25,13 +26,32 @@ Scan and fix mobile adaptation issues in an existing web project: viewport
 configuration, overflow prevention, safe area handling, responsive breakpoints,
 100vh pitfalls, touch targets, and multi-level page navigation.
 
-## When to Use
+## Triggers
 
+### Activate when
+
+- “移动端适配”“手机适配”“多级页面”“移动端布局”
+- "mobile adapt", "responsive optimization", "fix mobile overflow", "add safe
+  area", or a request to adapt a site for phones or tablets.
 - Converting a desktop-first site to work well on mobile
 - User reports overflow, cut-off content, or notch overlap on phones
 - Adding mobile navigation (back button, page stack) to a sidebar-based layout
 - Fixing 100vh issues on iOS/Android browsers
 - General "make it mobile friendly" requests
+
+### Do not activate when
+
+- The target is a native iOS/Android app (Swift, Kotlin, React Native, Flutter)
+  rather than a web project.
+- The user wants a new interface or a visual redesign: use `lov-frontend-design`.
+- A new app is being generated: use `lov-app-generator`.
+- The complaint is runtime jank, battery, or memory growth on phones: use
+  `lov-app-optimizer`.
+
+## Skill Group Composition
+
+Read `references/skill-composition.md` before routing to or extending an
+adjacent Skill.
 
 ## Workflow (MANDATORY)
 

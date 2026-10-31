@@ -1,29 +1,23 @@
 # Tauri 后端调优 · Tauri Backend Tuner
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 
 Optimize Tauri 2 backend architecture, command surfaces, IPC streams, and Rust
 development ergonomics.
 
-Independent source repository, also distributed through [skill-publisher dev-skills](https://example.com/skills/dev-skills) — by [example.com](https://example.com)
+Independent source repository, also distributed through [lovstudio/skills](https://github.com/lovstudio/skills) — by [Lovstudio.AI](https://lovstudio.ai)
 
 ## Install
 
 ```bash
-npx skills add skill-publisher/optimize-tauri-backend-skill --all -g
-```
-
-The aggregate bundle remains available:
-
-```bash
-npx skills add skill-publisher/dev-skills --all -g
+npx skills add lov-optimize-tauri-backend -g -y
 ```
 
 Or through Claude Code plugin marketplace:
 
 ```text
-/plugin marketplace add skill-publisher/dev-skills
-/plugin install dev-tools@lov-dev
+/plugin marketplace add lovstudio/skills
+/plugin install dev-tools@lovstudio
 ```
 
 ## What It Covers

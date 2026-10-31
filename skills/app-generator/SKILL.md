@@ -3,7 +3,7 @@ name: lov-app-generator
 description: >
   Use when the user asks for "App生成器", "生成 Web App", "生成 Tauri App",
   "生成原生 macOS App", "Finder Quick Action", "只创建 web", or to standardize
-  an existing app with branding, CI/CD, native integration, and Lovinsp where applicable.
+  an existing app (branding, CI/CD, Lovinsp).
 license: MIT
 compatibility: >
   Requires Python 3.8+ for the project audit helper. Designed for React,
@@ -21,7 +21,7 @@ depends_on:
   - lov-install-tauri-logo
 metadata:
   author: contributors
-  version: "0.5.3"
+  version: "0.5.4"
   tags:
     - skill-publisher
     - app-generator
@@ -67,6 +67,7 @@ and therefore falls outside the app-generation paths described below.
 
 ### Activate when
 
+- “App生成器”“生成一个 Tauri App”“只创建 web”“把这个项目按应用标准补齐品牌、CI/CD 和 Lovinsp”
 - The user asks to generate a new Skill Publisher app, web app, PWA, desktop app, or
   cross-platform app.
 - The user asks for a native macOS app, Finder right-click action, Finder Quick
@@ -87,6 +88,11 @@ and therefore falls outside the app-generation paths described below.
   or standardizing its app architecture.
 - The deliverable is a backend-only service, CLI, library, or Skill package with no
   browser-rendered application UI.
+
+## Skill Group Composition
+
+Read `references/skill-composition.md` before routing to or extending an
+adjacent Skill.
 
 ## Workflow (MANDATORY)
 
@@ -371,33 +377,10 @@ Only for Tauri desktop apps, check these areas:
 
 ### Step 7: CI/CD, Deploy, and Auto Update
 
-Default GitHub Actions surface for web-only apps:
-
-- `check.yml`: install, typecheck, lint/build if present.
-- Deploy wiring for the selected target: Vercel, Netlify, Cloudflare Pages,
-  GitHub Pages, self-hosted static output, or a clearly documented manual
-  deploy path.
-- Environment variable placeholders only when the app actually needs them.
-
-Default GitHub Actions surface for Tauri apps:
-
-- `check.yml`: install, typecheck, lint/build if present.
-- `release.yml`: Tauri build for target platforms, draft or publish GitHub
-  Release, attach artifacts.
-- Tauri updater wiring: plugin dependency, updater config, signing key env
-  placeholders, and documented release process.
-- For Tauri v2, `plugins.updater.pubkey` is required at runtime. Do not leave
-  it out even during early scaffolding: a missing `pubkey` causes the app to
-  panic during updater plugin initialization. Use a clear placeholder such as
-  `PLACEHOLDER_REPLACE_WITH_TAURI_SIGNER_PUBLIC_KEY` until the real public key
-  is generated with `pnpm tauri signer generate`.
-
-Do not invent secrets. Use placeholder names and document where the user must
-set them:
-
-- `TAURI_SIGNING_PRIVATE_KEY`
-- `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`
-- platform signing/notarization secrets as required by the target app
+Read `references/cicd-deploy-updater.md` completely before adding or changing
+workflows, deploy wiring, or the Tauri updater. Never invent secrets; use the
+placeholder names it lists. For Tauri v2, never omit `plugins.updater.pubkey`:
+a missing key makes the app panic at startup.
 
 ### Step 8: Lovinsp
 
@@ -460,14 +443,8 @@ and runtime acceptance check in `references/macos-finder-quick-actions.md`.
 
 ## User Configuration
 
-If local paths differ, prefer these environment variables rather than
-hard-coding personal paths:
-
-| Variable | Default / Usage |
-|---|---|
-| `SKILL_APP_GENERATOR_SKILL_DIR` | Installed `lov-app-generator` skill directory |
-| `SKILL_DESIGN_GUIDE` | Configurable Academic design guide path |
-| `SKILL_PROFILE_PATH` | Skill Publisher brand asset root or profile |
+Prefer environment variables over hard-coded personal paths; the variables and
+their resolution order are in `references/user-config.md`.
 
 ## CLI Reference
 
@@ -481,10 +458,6 @@ branch applies: Lovinsp for browser-rendered UI, logo generation for new apps or
 missing logos, shadcn/ui when selected, TanStack Query for server state, and Tauri
 icons for Tauri apps. Declaration does not make every branch mandatory. The
 preferred `lov-project-port` handoff remains optional.
-
-```bash
-python3 "$SKILL_DIR/scripts/audit_app_project.py" --help
-```
 
 No Python packages are required.
 

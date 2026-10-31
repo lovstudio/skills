@@ -3,6 +3,18 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.5.4] - 2026-10-31
+
+### Fixed
+
+- CI 自 48d1455 起每次失败且 0 个 job（7 次运行）：validate.yml 调用的 skill-publisher/dev-skills 可复用工作流并不存在，同一工作流里的 audit 单测也随之未执行。改为在本仓库内运行 lov-skill-creator 的 validate_skill.py（固定到 976fb61），再跑 audit 单测
+- README 安装命令改为 npx skills add lov-app-generator -g -y，插件市场改为 lovstudio/skills 的 dev-tools@lovstudio，移除已归档的 dev-skills 聚合包与 example.com 占位链接
+
+### Changed
+
+- 补齐 validate_skill.py 要求的 Skill 结构：description 精简到 200 字符内；Triggers 加中文触发语；新增 references/skill-composition.md；skill.yaml 的 context.profile 补全 schema、source、read、persist
+- SKILL.md 压到 500 行以内：Step 7 的 CI/CD、部署与自动更新细节移到 references/cicd-deploy-updater.md（Tauri v2 updater pubkey 与不编造密钥两条规则仍留在正文）；User Configuration 改为指向 references/user-config.md；删去 Dependencies 里与 CLI Reference 重复的 --help 命令
+
 ## [0.5.3] - 2026-09-12
 
 ### Added

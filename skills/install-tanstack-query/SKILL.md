@@ -1,21 +1,22 @@
 ---
 name: lov-install-tanstack-query
 description: >
-  Initialize or refactor a frontend project to use TanStack Query as the
-  unified server-state layer. Use when the user asks to install TanStack Query,
-  initialize query infrastructure, migrate ad hoc fetch/invoke/useEffect request
-  state, standardize query keys, or make app network requests share one cache
-  model. Also trigger when the user mentions "初始化 TanStack Query",
-  "重构网络请求", "统一请求缓存", "install-tanstack-query",
-  "TanStack Query refactor", or "useInvokeQuery".
+  为前端项目接入 TanStack Query 作为统一服务端状态层，迁移零散的 fetch/invoke 请求。Use when
+  the user mentions "初始化 TanStack Query", "重构网络请求", "统一请求缓存", "useInvokeQuery".
 license: MIT
 compatibility: >
   React / TypeScript / JavaScript frontend projects, including Vite, Next.js,
   Tauri, Electron, and SPA apps. Requires the project's package manager.
 metadata:
   author: contributors
-  version: "0.2.1"
-  tags: tanstack-query react-query frontend refactor tauri network
+  version: "0.2.2"
+  tags:
+    - tanstack-query
+    - react-query
+    - frontend
+    - refactor
+    - tauri
+    - network
 ---
 
 # TanStack Query 接入 · TanStack Query Setup
@@ -23,15 +24,37 @@ metadata:
 Use this skill to add TanStack Query to a project or refactor existing request
 state into a shared query/mutation layer.
 
-## When to Use
+## Triggers
 
-- The user asks to install or initialize TanStack Query / React Query.
+### Activate when
+
+- “初始化 TanStack Query”“重构网络请求”“统一请求缓存”“把 useEffect 里的请求迁到 React Query”
+- "install-tanstack-query", "TanStack Query refactor", or a request for
+  `useInvokeQuery`-style wrappers.
+- The user asks to install or initialize TanStack Query / React Query, set up
+  query infrastructure, or standardize query keys.
 - The project has repeated `useEffect + useState + fetch/invoke` request code.
 - The user wants all network-backed reads to share cache, refetch, invalidation,
   and loading/error behavior.
 - A Tauri app uses many `invoke()` reads that should be treated as server state.
 - The user mentions RTK Query but the project already uses, or prefers,
   TanStack Query.
+
+### Do not activate when
+
+- The project deliberately uses RTK Query, SWR, or Apollo and the user does not
+  ask to migrate.
+- The work is only imperative side effects (terminal I/O, file open, clipboard,
+  relaunch, installer progress); they stay command-driven.
+- A whole app is being generated or standardized: use `lov-app-generator`, which
+  calls this Skill when the app has server state.
+- The Tauri Rust command surface or the frontend invoke adapter is being
+  restructured: use `lov-optimize-tauri-backend`.
+
+## Skill Group Composition
+
+Read `references/skill-composition.md` before routing to or extending an
+adjacent Skill.
 
 ## Workflow
 
