@@ -47,13 +47,31 @@
 heredoc 按 **ES module** 解析：`require` 报 "Cannot determine intended module format"，
 要读本地文件用 `const { readFileSync } = await import('node:fs')`。
 
-跨 heredoc 轮次统一用 `task.id`（数字）复用同一空间：`useOrCreateTaskSpace(5)`。
+同一次 Ego Lite 运行内，跨 heredoc 轮次用 `task.id`（数字）复用同一空间：`useOrCreateTaskSpace(5)`。编号不跨重启，
+停下等过用户回话之后先按下节核对。
 `handOffTaskSpace` / `completeTaskSpace` 都要检查返回的 `done`——`{ done: false, skipped: ... }`
 说明目标空间不是你的，此时报「已交出」是错的。
 
+### 编号不跨重启：等过之后先按名称找当前编号（2026-10-30 实测）
+
+2026-10-30 经作者同意升级 Ego Lite（0.6.1.13 → 0.6.2.5，日志「Update installed. Restarting ego lite to apply it.」）。
+升级前 `listTaskSpaces()` 里是 `{ id: 5, name: "media publish bilibili", ownership: "user", … }`；重启后变成
+`[{ id: 0, name: "", ownership: "user" }, { id: 1, name: "media publish bilibili", ownership: "user" }]`，同名空间从 5 变成了 1。
+这次是升级带的重启，单纯重启会不会也重新编号没有分开试过，按会处理。重启后拿旧编号调 `useOrCreateTaskSpace(5)`、
+`taskSpace(5)` 或 `claimTaskSpace(5)` 会报错、指到别的空间还是新建一个，也没有验证过；不要为了验证去跑会新建或接手空间的命令。
+
+所以停下等过用户回话之后（等终稿确认、等用户归还控制权、按要求保留页面待 review 等），或者 Ego Lite 重启、升级过之后，
+复用、`takeOverTaskSpace()` 或 claim 之前先核对编号：
+
+1. 创建空间时把名称和编号一起记下来（任务启动那段已打印 `task.id`）；
+2. `listTaskSpaces()` 按名称找空间，读它现在的 `id`；
+3. 用 `recentTabTitles` 核对是不是原来那个页面；
+4. 只有一个同名空间、编号与记下的一致、标签页标题对得上，才复用、takeOver 或 claim。编号对不上，或者有多个同名空间，
+   停下问作者，不要自己挑一个。
+
 ## 控制权
 
-交出控制权后不得自行收回。`handOffTaskSpace(task.id)` 之后，只能通过 `waitForAgentControl(task.id)` 等待用户主动归还；在用户仍持有控制权时调用 `takeOverTaskSpace()` 属于抢夺，即使看起来页面已经就绪、即使只是想读一次快照，也不允许。用户在对话里明确说「已登录」「好了」「继续」之后，才用 `takeOverTaskSpace(task.id)` 接手。
+交出控制权后不得自行收回。`handOffTaskSpace(task.id)` 之后，只能通过 `waitForAgentControl(task.id)` 等待用户主动归还；在用户仍持有控制权时调用 `takeOverTaskSpace()` 属于抢夺，即使看起来页面已经就绪、即使只是想读一次快照，也不允许。用户在对话里明确说「已登录」「好了」「继续」之后，才用 `takeOverTaskSpace(task.id)` 接手，接手前按上文「编号不跨重启」核对编号。
 
 判断依据是控制权状态本身，不是页面长什么样。用户可能正在同一标签页里手工检查封面或核对文案，此时代理的任何点击都会落在用户的操作中途。
 
@@ -76,6 +94,151 @@ controls this task space` 并自动交出控制权。告诉用户按隐私优先
 2. 系统通知只写一个具体动作，不用「请处理一下」之类模糊说法；
 3. `notify_user.py --tts-provider auto` 优先用火山 TTS 播报同一条指令，并说清是否可点发布；
 4. 后台轮询等待归还，不停下要求用户回话。轮询只读控制权状态，不读页面、不点击。
+
+## 等待终稿确认时任务空间被结束（2026-10-30 实测）
+
+终稿确认要等用户真的回话，可能隔很久。其间任务空间可能被结束、归还给用户，要到用户回复后第一次动这个空间才暴露。
+这和用户接管不是一回事：接管报 `The user has taken control of this task space`，任务还在，归还后 `takeOverTaskSpace()`
+就能续上；任务结束后 `takeOverTaskSpace()` 接不回来，只能 `claimTaskSpace(id)`，而 ego-browser 使用指南（v2.1.0，升级后的 v2.2.0 未变）规定
+user-owned 或 inactive 的空间只在用户明确要求时才能 claim。
+
+观测（《易七猫对话手工川》B 站投稿）：10-30 04:50 前后填完表，停在「立即投稿」前等终稿确认（B 站 Profile 是 `auto`，
+因标题、简介、标签改自用户写的视频号文本而退回确认）。约 16 小时后用户回「确认投稿」，接着那一轮 `useOrCreateTaskSpace(5)`
+没报错，随后第一条读页的 `js()` 报：
+
+```text
+Error: listTabs: This task space is no longer assigned to the agent: its task has ended, either through task.finish() or by the user, so browser commands are paused.
+This is a hard stop, not an obstacle to route around — do not retry and do not take ownership back on your own. takeOverTaskSpace() cannot resume an ended task.
+Wait until the user explicitly asks you to continue in this space, then claim it and resume:
+  const task = await claimTaskSpace(spaceId)
+
+Offer the user choices like "Continue" or "Done" if your harness supports it; otherwise tell them: "This task has ended and the space is yours. Reply 'continue' if you want me to resume in it."
+```
+
+前缀 `listTabs:` 是出错的那个内部调用，换个命令会变，按 `no longer assigned to the agent` 认。代理上一轮没有调用
+`finish` / `handOff`；空间是用户结束的、闲置被回收的还是 Ego Lite 重启所致，这次没有证据区分。原问句只问了
+「按这张字段表投 B 站吗？」，用户答确认时不知道空间已经结束，所以又问了一轮，用户回「继续」才接手。接手后整表重读与
+确认过的字段表一致，创作中心 `archives` 接口里也没有同标题稿件，只点了一次「立即投稿」；同样没弹「封面制作」确认框，
+48 秒后开放浏览。
+
+### 处理步骤
+
+1. 硬停：不重试，不 `takeOverTaskSpace()`，不新建任务空间重传重填，也不换别的浏览器或工具去提交。
+2. 只读确认归属：按上文「编号不跨重启」，`listTaskSpaces()` 按创建时的名称找原空间、读它现在的 `id`，记下 `ownership`、
+   `recentTabTitles`。条目里只有最近标签页的标题，没有 URL；投稿页还在不在，接手后用 `task.tabs()` 才读得准。这次读到
+   `"id": 5`、`"name": "media publish bilibili"`、`"ownership": "user"`，`recentTabTitles` 为
+   `["创作中心 - 哔哩哔哩弹幕视频网 - ( ゜- ゜)つロ 乾杯~"]`。编号与记下的不一致，或者有多个同名空间：停下问作者。按名称找不到时
+   表单可能已经没了：停下报告，重新上传要用户另行同意。
+3. 终稿确认那一问已经写明接手、用户直接答了确认，且满足下节「确认那一问顺带授权接手」的全部条件：直接到第 5 步。
+4. 否则只问一次，一问说全：任务空间（名称和现在的编号；编号变了写明从几变成几，同名有多个就列出各自的编号和
+   `recentTabTitles` 请作者指认）已被结束、归还给用户（附报错关键句）；投稿页标签页看起来是否还在；接手后只做
+   第 6 步那几件事；另一个选择是用户自己在浏览器里点、agent 之后只做回读。宿主支持按钮时给「继续」「我自己点」两个。
+   照常跑 `notify_user.py` 发通知与播报，然后停下等答复。这一问只问接手，不重新征求终稿确认：终稿已经确认过，
+   第 6 步的重读就是用来证明表单没变的。
+5. 有了用户的明确同意（确认那一问的直接确认，或这一问回「继续」）才 `claimTaskSpace(id)`，`id` 用第 2 步核对过、作者认可的
+   当前编号；这次接手后 `task.ownership` 读到 `agent`。
+6. 接手后先只读，再决定提交：
+   - `task.tabs()` 按 URL 找原投稿页。这次只有一个标签页，`label: null`、`openedBy: "unknown"`，`task.adopt(tab.page)` 后
+     拿到 `p1` 才能操作。找不到或不止一个就停下；
+   - 一次读完整个字段表，逐项对照用户确认过的那张，连同上传状态、可见校验错误和账号；
+   - 查有没有同标题稿件：B 站用创作中心 `archives` 接口，写法见 [B 站投稿页结构](bilibili/page-anatomy.md)「审核期间的回读」；
+     视频号、小红书在另开的标签页查内容列表，投稿页不要导航走（表单会丢），这两个平台还没遇到过这种情况；
+   - 都一致且没有同标题稿件，才按平台规则点一次主提交，之后照常回读列表。有任何出入就不写字段、不提交，停下把差异报给
+     用户；要用户在浏览器里处理时 `task.handOff()`，不要 `finish()`。
+7. 接手之后的轮次照这次跑通的 Page API 写（见下文）：`taskSpace(id)` + `task.page('p1')`，收尾 `task.finish({ keep: [] })`，
+   用户要求保留页面时改成 `keep: ['p1']`。旧写法（`useOrCreateTaskSpace(id)` + 全局 `js()`）在 claim 之后没有试过；
+   升级到 0.6.2.5 后新旧 helper 都还在。接手的投稿页是 `openedBy: "unknown"`，指南 v2.2.0 写明 unknown-origin 标签页受保护、
+   `keep: []` 关不掉整个空间：这次 finish 之后空间还在、归用户（重启后编号成了 1）。这是正常结果，`finish()` 只调一次，
+   不要再 finish，也不要逐个关标签页。
+8. 发布后的报告写明：等待期间空间被结束，凭哪句答复接手，接手后重读与查重的结果。
+
+别的长时间等待之后（交接登录、按要求保留页面待 review 等）遇到同一报错，也按这几步处理，只是没有第 3 步的现成授权。
+
+### 确认那一问顺带授权接手
+
+可以，问法见 SKILL.md「提交前由用户确认终稿」。ego-browser 要的是用户明确要求才 claim，报错原文也是让 agent 等用户
+明确让它在这个空间继续。问句里写明了「任务空间 N 若已被结束，确认也算让我接手它」，用户对这一问直接答确认，就是明确
+要求接手，接手出自用户，不是 agent 自己收回；这次空间也正是在等确认期间结束的，用户的答复在那之后。2026-10-30 要再问
+一轮，只是因为原问句里没有这一层。
+
+下面四条都满足才算授权，缺一条就回到第 4 步只问一次：
+
+- 触发：报的是 `no longer assigned to the agent`（不是用户接管），而且是用户回复后第一次动原空间就报。回复后已经有命令
+  在这个空间里成功、后来才报这个错，说明空间是在 agent 干活时被结束的，当作用户叫停，单独问；
+- 目标：问句里写了空间编号，名称也已记下；`listTaskSpaces()` 按名称只找到一个，编号与问句一致，`ownership` 是 `user`，
+  `recentTabTitles` 对得上该平台的投稿页。等待期间 Ego Lite 升级或重启过、编号变了，就不算；
+- 答复：用户对这一问直接答确认（点确认按钮，或回「确认」「确认投稿」这类只表示同意的话），没有附带改字段或别的条件；
+- 范围：只做第 6 步的只读核对和一次提交，表单一个字不改；只管这一个平台的这一次提交，不写进 Profile，不延到队列里的
+  下一个平台，换平台要在那个平台的确认问句里另写。
+
+授权省掉的只是那一问，第 6 步的重读、查重、单次提交一样不少。
+
+### Page API 写法（2026-10-30 跑通）
+
+第 1 轮只读，还没接手：按名称找当前编号。
+
+```bash
+ego-browser nodejs <<'EOF'
+const spaces = await listTaskSpaces()
+const same = spaces.filter((s) => s.name === 'media publish bilibili')
+console.log(JSON.stringify(same.map((s) => ({ id: s.id, ownership: s.ownership, recentTabTitles: s.recentTabTitles }))))
+EOF
+```
+
+第 2 轮在用户明确同意之后：接手，认领原投稿页，只读核对并截图。下面的 5 是第 1 轮按名称查到、与记下的一致的编号。
+
+```bash
+ego-browser nodejs <<'EOF'
+const task = await claimTaskSpace(5)
+const tabs = await task.tabs()
+const hits = tabs.filter((t) => t.url.startsWith('https://member.bilibili.com/platform/upload/video/frame'))
+if (hits.length !== 1) throw new Error('原投稿页不在或不唯一，停下问用户: ' + JSON.stringify(tabs.map((t) => t.url)))
+const page = hits[0].label ? task.page(hits[0].label) : await task.adopt(hits[0].page)
+console.log({ ownership: task.ownership, page: page.label, openedBy: hits[0].openedBy })
+// 回调在页面里运行，读不到外层变量；字段读法与终稿确认时那次整表读取相同，照 page-anatomy 写全
+const form = await page.evaluate(() => ({
+  title: document.querySelector('input[placeholder="请输入稿件标题"]')?.value ?? null,
+  desc: document.querySelector('.ql-container')?.__quill?.getText() ?? null,
+  submitted: document.body.innerText.includes('稿件投递成功'),
+}))
+const archives = await page.evaluate(async () => {
+  const d = await fetch('https://member.bilibili.com/x/web/archives?status=is_pubing%2Cpubed%2Cnot_pubed&pn=1&ps=10&coop=1',
+    { credentials: 'include' }).then((r) => r.json())
+  return { code: d.code, titles: ((d.data && d.data.arc_audits) || []).map((a) => a.Archive.title) }
+})
+await page.screenshot({ path: '/absolute/path/pre-submit.png' })
+console.log(JSON.stringify({ form, archives }))
+EOF
+```
+
+之后的轮次不再 claim，按 id 和 label 续上。主提交按钮用 CDP 真鼠标点，坐标取本轮读到的 rect，先断言 `elementFromPoint`
+命中（这次命中的是 `SPAN.submit-add`）；不在视口内就先按下文「视口外的按钮」滚进来，下一轮再读：
+
+```bash
+ego-browser nodejs <<'EOF'
+const task = await taskSpace(5)
+const page = task.page('p1')
+const p = await page.evaluate((text) => {
+  const el = [...document.querySelectorAll('span')]
+    .find((e) => !e.children.length && e.offsetParent && e.textContent.trim() === text)
+  if (!el) return { ok: false, reason: 'missing' }
+  const r = el.getBoundingClientRect()
+  if (r.top < 0 || r.bottom > innerHeight) return { ok: false, reason: 'outside viewport' }
+  const x = Math.round(r.left + r.width / 2), y = Math.round(r.top + r.height / 2)
+  const hit = document.elementFromPoint(x, y)
+  return { ok: !!hit && (hit === el || el.contains(hit)), x, y }
+}, '立即投稿')
+if (!p.ok) throw new Error('不点: ' + JSON.stringify(p))
+await page.cdp('Input.dispatchMouseEvent', { type: 'mousePressed', x: p.x, y: p.y, button: 'left', clickCount: 1 })
+await page.cdp('Input.dispatchMouseEvent', { type: 'mouseReleased', x: p.x, y: p.y, button: 'left', clickCount: 1 })
+EOF
+```
+
+列表回读完的最后一轮里收尾，`finish()` 之后不再操作任何 Page：
+
+```js
+await task.finish({ keep: [] })
+```
 
 ## 任务启动
 
