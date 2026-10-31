@@ -15,7 +15,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.5.3"
+  version: "1.5.4"
   tags:
     - markdown
     - pdf

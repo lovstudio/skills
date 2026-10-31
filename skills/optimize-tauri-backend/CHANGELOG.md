@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3] - 2026-10-31
+
+### Fixed
+
+- 署名恢复为 lovstudio：43873cd 的去品牌化批量替换把 LICENSE 版权方改成 skill-publisher、metadata.author 改成 contributors，按替换前的原值改回
+- 0.1.0 条目里被同一次替换改写的 skill-publisher/dev-skills 改回原文 lovstudio/dev-skills
+
 ## [0.2.2] - 2026-10-31
 
 ### Fixed
@@ -27,4 +34,4 @@
 ## 0.1.0 - 2026-07-13
 
 - Extracted into an independent source repository.
-- Kept compatible with the `skill-publisher/dev-skills` aggregate bundle.
+- Kept compatible with the `lovstudio/dev-skills` aggregate bundle.

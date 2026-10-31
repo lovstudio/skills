@@ -3,6 +3,12 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [1.5.4] - 2026-10-31
+
+### Added
+
+- 附带 `assets/fonts/NotoSansSC-SemiBold.ttf`（Noto Sans SC 2.004，SIL OFL 1.1，许可证见同目录 `OFL.txt`）：`md2pdf.py` 自 1.4.0 起把它列为 CJK 无衬线粗体首选，但字体此前只在未接入真源的安装副本里，仓库里缺失时会回退到系统字体
+
 ## [1.5.3] - 2026-10-31
 
 ### Fixed

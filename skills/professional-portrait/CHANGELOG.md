@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.3] - 2026-10-31
+
+### Fixed
+
+- 署名恢复为原值：a015a32 的去品牌化批量替换把 LICENSE 版权方 LovStudio 改成 Skill Publisher、metadata.author 由 lovstudio 改成 contributors，按替换前的原值改回
+
 ## [0.2.2] - 2026-10-31
 
 ### Fixed

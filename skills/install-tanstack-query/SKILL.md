@@ -8,8 +8,8 @@ compatibility: >
   React / TypeScript / JavaScript frontend projects, including Vite, Next.js,
   Tauri, Electron, and SPA apps. Requires the project's package manager.
 metadata:
-  author: contributors
-  version: "0.2.2"
+  author: lovstudio
+  version: "0.2.3"
   tags:
     - tanstack-query
     - react-query

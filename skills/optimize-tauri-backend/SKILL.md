@@ -9,8 +9,8 @@ compatibility: >
   frontends. No runtime dependencies. Use the target repository's package
   manager and honor local AGENTS.md / CLAUDE.md constraints.
 metadata:
-  author: contributors
-  version: "0.2.2"
+  author: lovstudio
+  version: "0.2.3"
   tags:
     - tauri
     - rust

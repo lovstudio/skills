@@ -8,8 +8,8 @@ license: MIT
 compatibility: >
   Requires Python 3.8+ for the project audit helper. Designed for React,
   TypeScript, Vite, Next.js, optional Tauri, native macOS apps and Action Extensions,
-  shadcn/ui, TanStack Query, GitHub Actions, web deploys, and Skill Publisher
-  Configurable Academic branded apps. Every generated or standardized frontend app
+  shadcn/ui, TanStack Query, GitHub Actions, web deploys, and Lovstudio.AI
+  Warm Academic branded apps. Every generated or standardized frontend app
   must run `lov-integrate-lovinsp`. New apps must generate a target-specific logo
   through `lov-gen-logo`; Tauri apps must run the Tauri icon pipeline from that logo.
 depends_on:
@@ -20,10 +20,10 @@ depends_on:
   - lov-install-tanstack-query
   - lov-install-tauri-logo
 metadata:
-  author: contributors
-  version: "0.5.4"
+  author: lovstudio
+  version: "0.5.5"
   tags:
-    - skill-publisher
+    - lovstudio
     - app-generator
     - web
     - vite
@@ -39,12 +39,12 @@ metadata:
 
 # 应用工坊 · App Studio
 
-Use this skill to create or upgrade a Skill Publisher-grade app. Choose the app type
+Use this skill to create or upgrade a Lovstudio.AI-grade app. Choose the app type
 from the brief instead of forcing desktop packaging: use web-only when the
 workflow is browser-native, use Tauri for a web-rendered desktop product, and use a
 native macOS host when an App Extension is the product's primary capability. Common
 stacks are React + TypeScript + Vite, Next.js, Tauri + React, or Swift/SwiftUI +
-AppKit extensions, with Skill Publisher brand assets, CI/CD or deploy wiring, and
+AppKit extensions, with Lovstudio.AI brand assets, CI/CD or deploy wiring, and
 lovinsp click-to-code support for browser-rendered UI.
 
 ## Default Integration Invariant
@@ -68,16 +68,16 @@ and therefore falls outside the app-generation paths described below.
 ### Activate when
 
 - “App生成器”“生成一个 Tauri App”“只创建 web”“把这个项目按应用标准补齐品牌、CI/CD 和 Lovinsp”
-- The user asks to generate a new Skill Publisher app, web app, PWA, desktop app, or
+- The user asks to generate a new Lovstudio.AI app, web app, PWA, desktop app, or
   cross-platform app.
 - The user asks for a native macOS app, Finder right-click action, Finder Quick
   Action, Action Extension, or another packaged macOS integration.
 - The user has an existing frontend/Tauri project and wants it brought up to
-  Skill Publisher app standards.
+  Lovstudio.AI app standards.
 - The user mentions web-only, Vite, Next.js, PWA, Tauri, shadcn, React Query /
-  TanStack Query, deploy, auto update, CI/CD, app logo, Skill Publisher logo, Warm
+  TanStack Query, deploy, auto update, CI/CD, app logo, Lovstudio.AI logo, Warm
   Academic UI, or lovinsp as part of app setup.
-- The project is a Skill Publisher, Lovpen, Lovcode, Lovmind, Lovshot, Lovsider,
+- The project is a Lovstudio.AI, Lovpen, Lovcode, Lovmind, Lovshot, Lovsider,
   Lovsigil, or Lovtarot app.
 
 ### Do not activate when
@@ -113,7 +113,7 @@ Required fields:
 |---|---|---|
 | App name | Ask user | Product/display name, e.g. `Lovshot` |
 | Project slug | Derived from app name | Lowercase kebab-case |
-| Brand scope | `Skill Publisher` | Ask if ambiguous between Skill Publisher / brand-logo / personal brand |
+| Brand scope | `Lovstudio.AI` | Ask if ambiguous between Lovstudio.AI / LovPen / personal brand |
 | Target mode | `new app` | `new app` or `upgrade existing app` |
 | App type | Case-by-case | `web-only`, `PWA`, `Tauri desktop`, or another fit from the brief |
 | Platforms | Case-by-case | Web browser/mobile responsive unless native desktop is justified |
@@ -131,8 +131,8 @@ Suggested options to collect interactively:
 |---|---|
 | Target mode | `New app` |
 | App type | `Decide from requirements` |
-| Brand scope | `Skill Publisher` |
-| UI baseline | `Configurable Academic + shadcn/ui` |
+| Brand scope | `Lovstudio.AI` |
+| UI baseline | `Warm Academic + shadcn/ui` |
 | Data layer | `TanStack Query when server state exists` |
 | Release channel | `Web deploy or GitHub Releases based on app type` |
 
@@ -151,7 +151,7 @@ find . -maxdepth 2 -type f \( -name package.json -o -name vite.config.ts -o -nam
 Honor any project-level instructions. If the target lives under a symlinked
 workspace, follow that project's own AGENTS.md / CLAUDE.md.
 
-### Step 3: Run the Skill Publisher App Audit
+### Step 3: Run the Lovstudio.AI App Audit
 
 Run the helper from the target project root:
 
@@ -218,7 +218,7 @@ pnpm add -D typescript
 ```
 
 For SEO-heavy, public, content-routed, or SSR/API-route requirements, use
-Next.js instead and keep the same Skill Publisher layers:
+Next.js instead and keep the same Lovstudio.AI layers:
 
 ```bash
 pnpm create next-app@latest <project-slug> --ts --tailwind --eslint --app --src-dir
@@ -226,11 +226,11 @@ cd <project-slug>
 pnpm add @tanstack/react-query lucide-react
 ```
 
-Then apply the Skill Publisher layers in this order:
+Then apply the Lovstudio.AI layers in this order:
 
 1. Project identity: package name, app title, README, and app-specific
    CLAUDE.md / AGENTS.md.
-2. Configurable Academic UI: shadcn/ui, semantic tokens, typography, and layout.
+2. Warm Academic UI: shadcn/ui, semantic tokens, typography, and layout.
 3. Server state: TanStack Query provider and query/mutation helpers when the
    app has server state; avoid unnecessary TanStack Query for purely local
    static tools.
@@ -256,11 +256,11 @@ pnpm add -D @tauri-apps/cli typescript
 pnpm tauri init
 ```
 
-Then apply the Skill Publisher layers in this order:
+Then apply the Lovstudio.AI layers in this order:
 
 1. Project identity: package name, app title, bundle identifier, README, and
    app-specific CLAUDE.md.
-2. Configurable Academic UI: shadcn/ui, semantic tokens, typography, and layout.
+2. Warm Academic UI: shadcn/ui, semantic tokens, typography, and layout.
 3. Server state: TanStack Query provider, query keys, and Tauri invoke wrappers.
 4. Brand assets: generate a target-specific app logo with
    `lov-gen-logo`, publish the chosen version into `assets/` and
@@ -289,8 +289,8 @@ Do not rebuild the project from scratch. Patch the smallest surface needed:
 1. Determine whether the existing app should remain web-only, become a PWA, or
    stay/become Tauri before applying the audit checklist.
 2. Keep the existing package manager, router, folder layout, aliases, and style
-   conventions unless they conflict with Skill Publisher requirements.
-3. Add missing Skill Publisher layers from the audit; do not add Tauri to a web-only
+   conventions unless they conflict with Lovstudio.AI requirements.
+3. Add missing Lovstudio.AI layers from the audit; do not add Tauri to a web-only
    app unless the brief requires native desktop capabilities.
 4. Preserve the requested native surface. A Quick Action remains a Quick Action after
    an upgrade; do not silently replace it with a Service because that path is easier.
@@ -301,7 +301,7 @@ Do not rebuild the project from scratch. Patch the smallest surface needed:
 
 ### Step 5: Apply Brand and UI Standards
 
-New apps must not use the canonical Skill Publisher logo as the app/product icon.
+New apps must not use the canonical Lovstudio.AI logo as the app/product icon.
 After the project identity and README describe the target clearly, invoke the
 `lov-gen-logo` workflow from the new app root:
 
@@ -327,14 +327,14 @@ Resolve canonical assets without assuming a private machine layout:
 
 1. Explicit paths supplied by the user.
 2. `SKILL_PROFILE_PATH` and `SKILL_DESIGN_GUIDE`.
-3. `${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`.
+3. `${SKILL_PROFILE_PATH:-$HOME/.lovstudio/skills/profile.json}`.
 4. Ask once when a required asset is still missing.
 
 See `references/user-config.md` for the portable configuration contract.
 
 Rules:
 
-- Treat the canonical Skill Publisher logo as brand reference or fallback only, not as
+- Treat the canonical Lovstudio.AI logo as brand reference or fallback only, not as
   the default app icon for new apps.
 - For Tauri/macOS icons, verify the generated app icon is visually aligned with
   normal macOS app icons. If ImageMagick is available, a quick sanity check is:
@@ -468,7 +468,7 @@ Report:
 - App path and stack chosen.
 - App type decision: web-only / PWA / Tauri, and why that fit the brief.
 - Native surface decision and evidence, including Quick Actions versus Services when relevant.
-- Skill Publisher layers added or confirmed: brand, UI, data layer, lovinsp, CI/CD,
+- Lovstudio.AI layers added or confirmed: brand, UI, data layer, lovinsp, CI/CD,
   deploy/release, and updater only when applicable.
 - `lov-integrate-lovinsp` result, including installation/update/migration status and
   runtime readback evidence.

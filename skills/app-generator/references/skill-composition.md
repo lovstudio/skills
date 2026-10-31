@@ -22,7 +22,7 @@ lov-app-generator
   input: app brief (name, app type, platforms, screens, backend, distribution)
          or an existing frontend/Tauri/macOS project
   owns:  app-type decision, scaffold or upgrade, audit_app_project.py checklist,
-         Configurable Academic UI rules, CI/CD and updater wiring, final checks
+         Warm Academic UI rules, CI/CD and updater wiring, final checks
      |
      +--> lov-gen-logo ---------------> lov-install-tauri-logo (Tauri only)
      +--> lov-install-shadcn-ui        (when shadcn/ui is selected)

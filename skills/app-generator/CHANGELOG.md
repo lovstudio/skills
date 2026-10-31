@@ -3,6 +3,14 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.5.5] - 2026-10-31
+
+### Fixed
+
+- audit 的品牌检测关键词恢复为 lovstudio：48d1455 的去品牌化批量替换把它改成 skill-publisher，AGENTS.md / CLAUDE.md 里写着 Lovstudio 的项目不再被判为已接入 Warm Academic（行为回归）；补回归测试 test_detects_lovstudio_brand_in_local_instructions
+- 默认共享 profile 路径恢复为 $HOME/.lovstudio/skills/profile.json（SKILL.md、README、references/user-config.md）：本机实际在用的共享 profile 就在这里，lov-skill-creator 的 profile_store.py 也优先解析它；环境变量名 SKILL_PROFILE_PATH 不变
+- 同一次替换留下的品牌措辞按替换前原值恢复：品牌名按 BRAND-08 写作 Lovstudio.AI（含经确认的 Triggers 4 处），Configurable Academic 改回 Warm Academic，Brand scope 选项 brand-logo 改回 LovPen，metadata.tags 与 metadata.author 改回 lovstudio，LICENSE 版权方改回 lovstudio
+
 ## [0.5.4] - 2026-10-31
 
 ### Fixed

@@ -69,6 +69,18 @@ class LovinspAuditTests(unittest.TestCase):
         self.assertIn("legacy_remains=True", check["detail"])
 
 
+class WarmAcademicAuditTests(unittest.TestCase):
+    def test_detects_lovstudio_brand_in_local_instructions(self) -> None:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        (root / "CLAUDE.md").write_text("Brand scope: Lovstudio.AI\n", encoding="utf-8")
+
+        report = audit(root, "web")
+        check = next(check for check in report["checks"] if check["id"] == "warm-academic")
+        self.assertEqual(check["status"], "ok")
+
+
 class FinderQuickActionAuditTests(unittest.TestCase):
     def create_native_project(self, *, quick_action: bool) -> Path:
         temporary = tempfile.TemporaryDirectory()

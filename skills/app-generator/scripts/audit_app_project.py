@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit a project against the Skill Publisher app baseline."""
+"""Audit a project against the Lovstudio.AI app baseline."""
 
 from __future__ import annotations
 
@@ -354,7 +354,7 @@ def audit(root: Path, app_type: str = "auto", native_integration: str = "auto") 
         "--primary" in read_text(path)
         and ("--background" in read_text(path) or "bg-background" in read_text(path))
         for path in css_files
-    ) or contains_text(local_instruction_files, ["warm academic", "cc785c", "skill-publisher"])
+    ) or contains_text(local_instruction_files, ["warm academic", "cc785c", "lovstudio"])
 
     checks: list[Check] = []
     if include_frontend:
@@ -387,21 +387,21 @@ def audit(root: Path, app_type: str = "auto", native_integration: str = "auto") 
                     status(has_shadcn),
                     "components.json found" if has_shadcn else "components.json missing",
                     (
-                        "Initialize shadcn/ui and map tokens to the Skill Publisher "
-                        "Configurable Academic theme."
+                        "Initialize shadcn/ui and map tokens to the Lovstudio.AI "
+                        "Warm Academic theme."
                     ),
                 ),
                 Check(
                     "warm-academic",
-                    "Skill Publisher Configurable Academic UI",
+                    "Lovstudio.AI Warm Academic UI",
                     status(has_warm_academic),
                     (
-                        "theme tokens or Skill Publisher references detected"
+                        "theme tokens or Lovstudio.AI references detected"
                         if has_warm_academic
                         else "theme tokens not detected"
                     ),
                     (
-                        "Read the Configurable Academic design guide from local workspace "
+                        "Read the Warm Academic design guide from local workspace "
                         "config and use semantic Tailwind classes."
                     ),
                 ),
@@ -585,7 +585,7 @@ def audit(root: Path, app_type: str = "auto", native_integration: str = "auto") 
 
 def render_markdown(report: dict) -> str:
     lines = [
-        "# Skill Publisher App Audit",
+        "# Lovstudio.AI App Audit",
         "",
         f"Root: `{report['root']}`",
         f"App type: `{report['app_type']}` (requested: `{report['requested_app_type']}`)",
@@ -614,7 +614,7 @@ def render_markdown(report: dict) -> str:
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Audit a project against the Skill Publisher app baseline.")
+    parser = argparse.ArgumentParser(description="Audit a project against the Lovstudio.AI app baseline.")
     parser.add_argument("--root", default=".", help="Target app root to inspect.")
     parser.add_argument(
         "--app-type",

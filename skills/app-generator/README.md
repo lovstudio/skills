@@ -1,11 +1,11 @@
 # 应用工坊 · App Studio
 
-![Version](https://img.shields.io/badge/version-0.5.4-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.5-CC785C)
 
-Generate or standardize Skill Publisher apps, choosing web-only, PWA, Tauri,
+Generate or standardize Lovstudio.AI apps, choosing web-only, PWA, Tauri,
 or native macOS case-by-case. It supports Finder Quick Actions as signed Action
-Extensions, React/Vite or Next.js, shadcn/ui, TanStack Query when useful, Skill
-Publisher branding, CI/CD/deploy, optional auto update, and lovinsp. Every generated
+Extensions, React/Vite or Next.js, shadcn/ui, TanStack Query when useful,
+Lovstudio.AI branding, CI/CD/deploy, optional auto update, and lovinsp. Every generated
 or standardized frontend app runs the idempotent `lov-integrate-lovinsp` workflow by
 default.
 
@@ -30,10 +30,10 @@ Requires: Python 3.8+ for the audit helper. No Python packages are required.
 
 ```bash
 # Ask the assistant:
-生成一个 Skill Publisher Tauri App，品牌用 Skill Publisher，包含 shadcn、TanStack Query、CI/CD、自动更新和 lovinsp
+生成一个 Lovstudio.AI Tauri App，品牌用 Lovstudio.AI，包含 shadcn、TanStack Query、CI/CD、自动更新和 lovinsp
 
 # Or create web-only when desktop packaging is not needed:
-生成一个只创建 web 的 Skill Publisher App，按需求判断用 Vite 还是 Next.js，包含 Configurable Academic、shadcn 和 lovinsp
+生成一个只创建 web 的 Lovstudio.AI App，按需求判断用 Vite 还是 Next.js，包含 Warm Academic、shadcn 和 lovinsp
 
 # Or require a real Finder Quick Action rather than a Services fallback:
 生成一个原生 macOS App，对 Finder 选中的图片执行压缩；必须显示在 Quick Actions 和预览面板，不要做成 Services
@@ -45,13 +45,13 @@ python3 "$SKILL_APP_GENERATOR_SKILL_DIR/scripts/audit_app_project.py" --root . -
 ## What It Does
 
 1. Collects the app brief: name, slug, app type, platform, screens, backend, and release/deploy channel.
-2. Audits the target project for Skill Publisher app requirements.
+2. Audits the target project for Lovstudio.AI app requirements.
 3. Chooses web-only, PWA, Tauri desktop, or native macOS from the brief instead of forcing one shell.
 4. Guides new app scaffolding or incremental upgrade.
-5. Applies the Configurable Academic UI system and Skill Publisher brand asset paths.
+5. Applies the Warm Academic UI system and Lovstudio.AI brand asset paths.
 6. Always invokes `lov-integrate-lovinsp` for frontend apps, including version
    updates and migration from supported `code-inspector` integrations.
-7. Coordinates other related Skill Publisher skills:
+7. Coordinates other related Lovstudio.AI skills:
    `install-shadcn-ui`, `install-tanstack-query`, `install-tauri-logo`,
    and `project-port`.
 8. Adds or checks CI/CD, web deploy wiring, and Tauri updater wiring when applicable.
@@ -76,15 +76,15 @@ Prefer environment variables when local paths differ:
 | Variable | Usage |
 |---|---|
 | `SKILL_APP_GENERATOR_SKILL_DIR` | Installed `lov-app-generator` skill directory |
-| `SKILL_DESIGN_GUIDE` | Configurable Academic design guide path |
-| `SKILL_PROFILE_PATH` | Skill Publisher brand asset root or profile |
+| `SKILL_DESIGN_GUIDE` | Warm Academic design guide path |
+| `SKILL_PROFILE_PATH` | Lovstudio.AI brand asset root or profile |
 
 ## Brand Configuration
 
 No personal path is built into this repository. Resolve brand assets through
 explicit paths, `SKILL_PROFILE_PATH`,
 `SKILL_DESIGN_GUIDE`, or the shared profile at
-`${SKILL_PROFILE_PATH:-$HOME/.skill-publisher/skills/profile.json}`.
+`${SKILL_PROFILE_PATH:-$HOME/.lovstudio/skills/profile.json}`.
 
 See `references/user-config.md` for the complete resolution order.
 

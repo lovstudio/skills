@@ -10,8 +10,8 @@ compatibility: >
 depends_on:
   - lov-branding-consistency
 metadata:
-  author: contributors
-  version: "0.2.2"
+  author: lovstudio
+  version: "0.2.3"
   tags:
     - mobile
     - responsive
