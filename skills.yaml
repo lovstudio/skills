@@ -1677,14 +1677,14 @@ skills:
     card_path: pricing-cards/write-professional-book.md
 - name: wxmp-cracker
   runtime_name: lov-wxmp-cracker
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-01 17:08:54+00:00
   display_name: WeChat Archiver
   repo: lovstudio/wxmp-cracker-skill
   skill_path: src
   name_zh: 公众号神器
   paid: true
   category: Content Creation
-  version: 0.4.1
+  version: 0.4.2
   description: 微信公众号文章抓取
   tagline_en: Archive WeChat Official Account articles into clean, reusable text.
   tagline_zh: 把微信公众号的文章批量归档成可再利用的整洁文本。
