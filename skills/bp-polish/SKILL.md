@@ -11,7 +11,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: business-plan review polish audit evidence charts visual-quality pitch-deck
 ---
 
@@ -103,6 +103,8 @@ presentation size. Check:
 - no clipped text or broken CJK;
 - QR codes decoded from final rendered pages;
 - clean cover and one-action final page;
+- an editable PPTX: native text on every page and zero full-page pictures
+  (`lov-bp-deck` ships `scripts/check_pptx_editable.py` for this check);
 - matching PPTX/PDF page counts and normalized filenames.
 
 ### Step 5: Apply targeted fixes
@@ -122,7 +124,9 @@ Lead with verdict and score, then blockers, page-level findings, evidence gaps,
 visual QA, and delivery status. Use `assets/templates/bp-review.md`.
 
 Target: 85+ with no blocker. A high numeric score never overrides fabricated data,
-missing financing ask, broken source, unreadable slide, or invalid QR code.
+missing financing ask, broken source, unreadable slide, or invalid QR code. Score every
+dimension out of its full weight: a module the deck omits scores 0, even when the
+founder chose to omit it (see `references/review-rubric.md`).
 
 ## Runtime context (shared)
 

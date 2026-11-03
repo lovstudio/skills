@@ -721,14 +721,14 @@ skills:
     card_path: pricing-cards/png2svg.md
 - name: bp
   runtime_name: lov-bp
-  updated_at: 2026-10-31 13:46:14+00:00
+  updated_at: 2026-11-03 11:00:44+00:00
   display_name: BP Studio
   repo: lovstudio/bp-skill
   name_zh: BP 工坊
   paid: false
   featured: true
   category: Business
-  version: 0.3.2
+  version: 0.3.4
   description: Orchestrate a complete investor BP workflow or combine only the modules
     needed for outline, PPTX/PDF production, and professional polishing.
   tagline_en: A composable BP skill kit — use outline, deck, and polish alone or run
@@ -819,14 +819,14 @@ skills:
     card_path: pricing-cards/bp-outline.md
 - name: bp-deck
   runtime_name: lov-bp-deck
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-03 11:00:44+00:00
   display_name: BP Master
   repo: lovstudio/bp-skill
   skill_path: skills/bp-deck
   name_zh: BP 大师
   paid: false
   category: Business
-  version: 0.2.0
+  version: 0.2.2
   description: Turn an approved investor BP outline into a styled slide deck with
     professional charts, branding, PPTX/PDF export, and a full-deck preview.
   tagline_en: Turn an approved BP outline into a professional PPTX, PDF, and full-deck
@@ -868,14 +868,14 @@ skills:
     card_path: pricing-cards/bp-deck.md
 - name: bp-polish
   runtime_name: lov-bp-polish
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-03 11:00:44+00:00
   display_name: BP Polish
   repo: lovstudio/bp-skill
   skill_path: skills/bp-polish
   name_zh: BP 精修
   paid: false
   category: Business
-  version: 0.2.0
+  version: 0.2.1
   description: Audit and improve an existing BP outline, PPTX, PDF, or slide set across
     investment logic, evidence, copy, charts, and visual quality.
   tagline_en: Audit and polish an existing BP with a scored report and page-level
@@ -1587,13 +1587,13 @@ skills:
     card_path: pricing-cards/document-illustrator.md
 - name: deep-research
   runtime_name: deep-research
-  updated_at: 2026-10-01 10:18:08+00:00
+  updated_at: 2026-11-03 11:00:44+00:00
   display_name: Deep Research
   repo: lovstudio/deep-research-skill
   name_zh: 深度研究
   paid: false
   category: Content Creation
-  version: 2.6.1
+  version: 2.6.2
   description: Use when the user needs multi-source research with citation tracking,
     evidence persistence, structured reports, or verified open-source solution landscapes
     across GitHub and other relevant forges.
@@ -2121,13 +2121,13 @@ skills:
     card_path: pricing-cards/riso-portrait.md
 - name: rich-export
   runtime_name: lov-rich-export
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-03 11:00:44+00:00
   display_name: Rich Export
   repo: lovstudio/rich-export-skill
   name_zh: 富文档导出
   paid: false
   category: Office Automation
-  version: 0.2.2
+  version: 0.2.3
   description: Export rich content to self-contained HTML, HTML folders, Markdown,
     DOCX, PDF, and ZIP packages with format-aware media handling.
   tagline_en: Export one rich-media source into web, editable document, print, and

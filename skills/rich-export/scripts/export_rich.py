@@ -182,11 +182,15 @@ def pandoc_docx(pandoc: str, source: Path, output: Path, resource_root: Path, ti
     run(command)
 
 
-def render_pdf(html_path: Path, output: Path, paper: str) -> None:
+def render_pdf(html_path: Path, output: Path, paper: str) -> int:
+    """打印 PDF 并修复文字层，返回仍残留的部首码位数。"""
     try:
         from playwright.sync_api import sync_playwright
+        from fix_pdf_tounicode import fix
     except ImportError as exc:
-        raise RuntimeError("PDF 需要 Playwright：python3 -m pip install playwright && playwright install chromium") from exc
+        raise RuntimeError(
+            "PDF 需要 Playwright、pypdf 与 fontTools：python3 -m pip install playwright pypdf fonttools && playwright install chromium"
+        ) from exc
     output.parent.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as browser_api:
         browser = browser_api.chromium.launch()
@@ -195,6 +199,8 @@ def render_pdf(html_path: Path, output: Path, paper: str) -> None:
         page.emulate_media(media="print")
         page.pdf(path=str(output), format=paper, print_background=True, prefer_css_page_size=True)
         browser.close()
+    # Chrome 把与部首共用字形的汉字写成部首码位（「手工」复制出来是「⼿⼯」），导出后改回
+    return fix(str(output))[1]
 
 
 def sha256(path: Path) -> str:
@@ -257,7 +263,9 @@ def export(args: argparse.Namespace) -> list[Path]:
         pdf_html = output_root / ".pdf-source.html"
         pandoc_html(pandoc, static_path, pdf_html, resource_root, embedded=True, title=title)
         pdf_path = output_root / "pdf" / f"{bundle_name}.pdf"
-        render_pdf(pdf_html, pdf_path, args.pdf_format)
+        radicals = render_pdf(pdf_html, pdf_path, args.pdf_format)
+        if radicals:
+            warnings.append(f"PDF 文字层仍有 {radicals} 个部首码位，复制或搜索会得到「⼿⼯」这类字符。")
         generated.append(pdf_path)
 
     static_path.unlink(missing_ok=True)
@@ -284,7 +292,9 @@ def self_test() -> None:
     with tempfile.TemporaryDirectory(prefix="lov-rich-export-") as temporary:
         root = Path(temporary)
         source = root / "sample.md"
-        source.write_text("# 验收样稿\n\n你好，世界。\n\n<video controls src=\"demo.mp4\">演示</video>\n", encoding="utf-8")
+        source.write_text(
+            "# 验收样稿\n\n你好，世界。手工川：大、一、人、口、户。\n\n<video controls src=\"demo.mp4\">演示</video>\n", encoding="utf-8"
+        )
         args = argparse.Namespace(
             input=source, out=root / "out", formats="html-single,html-dir,md,docx,pdf", zip=True,
             docx_reference=None, pdf_format="A4", title=None,
@@ -295,6 +305,12 @@ def self_test() -> None:
         missing = required - names
         if missing:
             raise RuntimeError("自检缺少：" + ", ".join(sorted(missing)) + "；实际：" + ", ".join(sorted(names)))
+        from pypdf import PdfReader
+
+        pdf = next(path for path in exported if path.suffix == ".pdf")
+        pdf_text = "".join(page.extract_text() or "" for page in PdfReader(pdf).pages)
+        if "手工川：大、一、人、口、户" not in pdf_text:
+            raise RuntimeError("PDF 文字层没有还原原文汉字：" + pdf_text[:80])
         manifest = root / "rich-export.json"
         manifest.write_text(json.dumps({
             "version": 1,

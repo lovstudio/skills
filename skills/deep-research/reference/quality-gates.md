@@ -67,6 +67,7 @@ Every standard+ report must carry figures (quick ≥1, standard ≥3, deep ≥5,
 - [ ] Every figure has alt text and a numbered caption with a source line (citation numbers, capture date, or licence)
 - [ ] Photos are EXIF-stripped and privacy-checked; third-party images are licensed for reuse or replaced by links
 - [ ] The rendered HTML/PDF was inspected once: images present, captions aligned, CJK glyphs intact
+- [ ] PDF text layer repaired: `fix_pdf_tounicode.py` from `lov-rich-export` reports `radicals left in text 0`, and a Chinese paragraph copied from the PDF matches the report text
 
 See [rich-media.md](./rich-media.md).
 

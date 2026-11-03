@@ -2,13 +2,14 @@
 name: deep-research
 description: Multi-source deep research with citations, evidence and reports. Use for comprehensive analysis, X vs Y, trends, state of the art, open-source solutions or 开源方案; not simple lookups or debugging.
 license: MIT
-compatibility: Requires Python 3.8+ for bundled scripts. search-cli and forge APIs are optional; use available web search and public repository metadata as fallbacks. The public name remains deep-research for compatibility with existing installations and dependency IDs.
+compatibility: Requires Python 3.8+ for bundled scripts. search-cli and forge APIs are optional; use available web search and public repository metadata as fallbacks. PDF text-layer repair runs lov-rich-export's fix_pdf_tounicode.py (pypdf, fontTools). The public name remains deep-research for compatibility with existing installations and dependency IDs.
 depends_on:
   - lov-branding-consistency
   - lov-dev-blog
+  - lov-rich-export
 metadata:
   author: lovstudio
-  version: "2.6.1"
+  version: "2.6.2"
   tags:
     - deep-research
     - citations

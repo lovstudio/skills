@@ -1,6 +1,6 @@
 # 深度研究 · Deep Research
 
-![Version](https://img.shields.io/badge/version-2.6.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.6.2-CC785C)
 
 Enterprise-grade research engine for Claude Code. Produces citation-backed reports with source credibility scoring, multi-provider search, and automated validation.
 
@@ -122,6 +122,7 @@ deep-research/
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.6.2 | 2026-11-03 | Repair the PDF text layer after printing with `lov-rich-export`'s `fix_pdf_tounicode.py`, so copied or searched Chinese text is not radical code points; `lov-rich-export` added to `depends_on` |
 | 2.6.1 | 2026-10-01 | Pass the shared Skill validator: concise description with explicit Triggers, tag list, `lov-dev-blog` in `depends_on`, shared `user-profile/v1` Profile contract, composition record |
 | 2.6.0 | 2026-10-01 | Rich media contract: required figures by mode, `rich-media.md`, figure rendering with `--embed-images`, Figures validation check |
 | 2.5.3 | 2026-09-07 | Unified display name 「深度研究」 |

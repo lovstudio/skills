@@ -57,7 +57,7 @@ Never present AI-generated imagery as documentary evidence. A generated illustra
 ## Rendering and delivery
 
 - HTML: `python scripts/md_to_html.py report.md --embed-images` inlines local figures as data URIs so the HTML is self-contained. Style `figure.report-figure` with a max width of 100%, centred, and a muted caption.
-- PDF: print the self-contained HTML (headless Chrome or WeasyPrint). Keep figures from splitting across pages (`break-inside: avoid`).
+- PDF: print the self-contained HTML (headless Chrome or WeasyPrint). Keep figures from splitting across pages (`break-inside: avoid`). Then run `lov-rich-export`'s `scripts/fix_pdf_tounicode.py` on the PDF and require `radicals left in text 0`; otherwise Chrome leaves 「手工川」 in the text layer as 「⼿⼯川」 (see [html-generation.md](./html-generation.md#pdf-generation)).
 - Size budget: keep the self-contained HTML under about 25 MB and the PDF under 30 MB. Compress photos (JPEG) and keep line art as PNG or SVG.
 - Look at the rendered HTML or PDF once before delivery: figures present, captions under the right images, no broken glyphs.
 

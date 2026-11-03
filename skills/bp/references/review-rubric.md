@@ -12,6 +12,12 @@
 
 Target: 85+. A high score does not override a blocker.
 
+Score every dimension against its full weight and report the total out of 100. A
+module the deck leaves out scores 0 on its dimension — including one the founder
+chose to omit, such as the financing page. Never drop that dimension and rescale the
+rest (for example, reporting 83 / 90 as “about 92 / 100”); record the founder's
+decision as a note beside the 0, not as “n/a”.
+
 ## Blockers
 
 - Invented or untraceable core metrics.
@@ -21,6 +27,7 @@ Target: 85+. A high score does not override a blocker.
 - No financing amount, use, or validation milestones.
 - Placeholder/TODO text.
 - Broken source, broken QR code, unreadable slide, or incorrect filename.
+- PPTX pages exported as pictures instead of native, editable text.
 
 ## Adversarial review lenses
 
@@ -48,6 +55,7 @@ For every issue, report page, severity, why it matters, and exact revision.
 - [ ] Product screenshots are genuine and legible.
 - [ ] QR codes decode from the final slide image.
 - [ ] Cover and final page are visually calm.
+- [ ] PPTX is editable: native text on every slide, zero full-page pictures.
 - [ ] PPTX and PDF page counts match.
 - [ ] File names contain project, document type, and date/version.
 

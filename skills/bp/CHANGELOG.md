@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.3.4] - 2026-11-03
+
+### Fixed
+
+- bp-deck 导出核验新增 PDF 文字层门槛：Chrome/Playwright 打印的 BP 复制或搜索会得到「⼿⼯川」这类部首码位（本机 8 份 BP 与讲义共 3,065 处）。导出后运行 `lov-rich-export` 的 `scripts/fix_pdf_tounicode.py`，`radicals left in text 0` 才算通过；bp-deck 的 `depends_on` 加入 `lov-rich-export`
+- 总控视觉门增加「PDF 文字层复制出来是原字：部首码位为 0」
+
+## [0.3.3] - 2026-11-03
+
+### Fixed
+
+- `audit_bp.py`（根目录与 bp-polish 两份）只统计 `## Slide NN — …` 小节：前言里的版本变更说明不再计分；故事节点按页标题判定，正文里「不设融资页」这类提及不再算作覆盖
+- Financing delivery 只在融资页内计分，且须写明具体金额；没有融资页记 0 并报「No clear financing ask.」阻断项（一份没有融资页的真实 BP 曾因前言里的「融资 / 资金用途 / 里程碑」得 10/10）
+- 补页标题同义词：「为什么是现在」「运营数据」「增长与路线」「产品：…」等；英文词按整词匹配（`sam` 不再命中 `same`，`market` 不再命中 `go-to-market`）
+- 审稿 rubric 与报告模板写明：省略的模块（含创始人决定不设的融资页）记 0 分，不得剔除后折算
+- 总控视觉门与 bp-polish 视觉 QA 增加「PPTX 可编辑：原生文本、整页图片为 0」
+
+### Added
+
+- bp-deck `scripts/check_pptx_editable.py`：逐页检查原生文本与整页图片，不合格退出 1
+- 新增 tests/test_audit_regressions.py、tests/test_pptx_editable.py 与脱敏回归样本 `tests/fixtures/`
+
 ## [0.3.2] - 2026-10-31
 
 ### Fixed

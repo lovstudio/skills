@@ -102,3 +102,13 @@ open [html_path]
 **Option B: generating-pdf Skill**
 
 Use Task tool with general-purpose agent, invoke generating-pdf skill.
+
+**After printing (required, before opening or delivering)**
+
+Headless Chrome / Playwright writes every ideograph that shares a glyph with a CJK radical as the radical code point (U+2F00–U+2FD5, U+2E80–U+2EF3): the pages look right, but copying or searching 「手工川」 returns 「⼿⼯川」. Run the fixer shipped by the `lov-rich-export` dependency (resolve its directory through the active Agent Skills environment) on every PDF you deliver:
+
+```bash
+python3 "<lov-rich-export>/scripts/fix_pdf_tounicode.py" [pdf_path]
+```
+
+It rewrites only the text layer, so the pages render unchanged. Pass only when it prints `radicals left in text 0` (exit 0); a clean WeasyPrint PDF is left untouched.

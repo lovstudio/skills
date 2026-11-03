@@ -6,7 +6,7 @@ Version: {{VERSION}}
 
 ## Verdict
 
-- Score: __ / 100
+- Score: __ / 100 (an omitted module scores 0; never rescale to a smaller total)
 - Decision: not ready / conditional / investor-ready
 - One-line verdict: __
 
@@ -46,6 +46,7 @@ Version: {{VERSION}}
 - [ ] Product screenshots are genuine and legible.
 - [ ] Logos are optically balanced.
 - [ ] QR codes decode from final images.
+- [ ] PPTX is editable (native text, zero full-page pictures).
 - [ ] PPTX/PDF page counts match.
 - [ ] Filenames are normalized.
 

@@ -3,6 +3,16 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [2.6.2] - 2026-11-03
+
+### Fixed
+
+- PDF 文字层修复成为交付门禁：headless Chrome / Playwright 把与部首共用字形的汉字写成部首码位（U+2F00–U+2FD5、U+2E80–U+2EF3），页面显示正常，复制或搜索「手工川」却得到「⼿⼯川」。本机 34 份 Chrome 打印的旧报告共 47,819 处。`reference/html-generation.md` 与 `reference/rich-media.md` 要求打印后运行 `lov-rich-export` 的 `scripts/fix_pdf_tounicode.py`，输出 `radicals left in text 0` 才算通过；`reference/quality-gates.md` 增加对应检查项。
+
+### Changed
+
+- 顶层 `depends_on` 加入 `lov-rich-export`；`references/skill-composition.md` 记录只复用它的文字层修复脚本，报告仍走自己的 Markdown → HTML → PDF 管线。
+
 ## [2.6.1] - 2026-10-01
 
 ### Changed

@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | `lov-dev-blog` | required downstream atom (`depends_on`) | Owns the website blog publishing contract. `deep-research` runs its research-artifact sync as the Phase 8 completion gate and never redefines publishing semantics. |
 | `lov-branding-consistency` | required dependency (`depends_on`) | Branding contract for authored, reader-visible report prose. Quotes, citations, source data, repository identifiers, and code stay untouched. |
+| `lov-rich-export` | required dependency (`depends_on`) | Supplies `scripts/fix_pdf_tounicode.py`, run on every delivered PDF to repair the radical code points headless Chrome writes into the text layer. Its multi-format export pipeline is not used; reports keep their own Markdown → HTML → PDF path. |
 | `lov-dev-research` | adjacent atom | Turns a software requirement into reuse strategy, technology choices, and a development plan. `deep-research` produces general citation-tracked reports and does not replace that planning outcome. |
 | `lov-solution-architect` | optional downstream atom | Builds product or technical solution plans and can consume a finished research report as evidence. It is not invoked from this pipeline. |
 | `lov-fact-check` | adjacent atom | Verifies one user-supplied claim. `deep-research` keeps its own claim ledger and claim-support verification across a whole report. |
@@ -19,6 +20,7 @@
 deep-research   (authored prose follows lov-branding-consistency)
   Markdown report + sources.jsonl + evidence.jsonl + claims.jsonl
   + run_manifest.json + figures/ + HTML + PDF
+  (PDF text layer repaired by lov-rich-export's fix_pdf_tounicode.py)
                 |
                 v
 required gate: lov-dev-blog
@@ -45,6 +47,6 @@ running research.
 
 `deep-research` remains a **Single Skill**. Its reference files, templates,
 validators, and converters are implementation support for one outcome: a
-citation-tracked, validated research report package. Publishing and brand review
-are declared in `depends_on`; downstream planning and exhibit Skills remain
-optional atoms.
+citation-tracked, validated research report package. Publishing, brand review and
+PDF text-layer repair are declared in `depends_on`; downstream planning and
+exhibit Skills remain optional atoms.

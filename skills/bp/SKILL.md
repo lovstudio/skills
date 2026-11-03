@@ -12,7 +12,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.2"
+  version: "0.3.4"
   tags: skill-kit business-plan pitch-deck fundraising outline slides polish audit
 ---
 
@@ -168,6 +168,8 @@ user already requested a complete deck or autonomous execution.
 **Visual gate — after `bp-deck`:**
 
 - PPTX/PDF/preview exist and page counts match;
+- the PPTX is editable: native text on every page, zero full-page pictures;
+- the PDF text layer copies as the original characters: radicals left in text 0;
 - every page has one conclusion and a legible proof;
 - logos, images, sources, and QR codes survive final rendering.
 

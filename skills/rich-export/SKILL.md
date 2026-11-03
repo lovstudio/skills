@@ -2,11 +2,12 @@
 name: lov-rich-export
 description: 将一份面向用户的内容稳定导出为单文件 HTML、带 assets 的 HTML 文件夹、Markdown、DOCX 与 PDF，并按格式正确处理图片、音频、视频和嵌入式交互内容。用于“富媒体导出”“一键导出”“导出 html/pdf/docx/md”“离线网页”“交付包”“给产品接导出能力”等需求，以及需要为产品建立可复用内容导出管线时。
 license: MIT
+compatibility: Requires Python 3.9+ and Pandoc 3.x. PDF export also needs Playwright Chromium, pypdf and fontTools.
 depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.2"
+  version: "0.2.3"
   tags:
     - export
     - html
@@ -60,9 +61,21 @@ python3 "$SKILL_DIR/scripts/export_rich.py" \
 | HTML 文件夹 | Pandoc + `assets/` | 保持交互与独立资源，适合实际分发 |
 | Markdown | Pandoc 规范化 | 保留图片和链接；媒体使用显式链接 |
 | DOCX | Pandoc + 可选 reference.docx | 图片嵌入；视频/音频/iframe 投影为封面、说明与链接 |
-| PDF | Chromium/Playwright 打印静态 HTML | 图片和版式保留；媒体投影为封面、说明与链接 |
+| PDF | Chromium/Playwright 打印静态 HTML，再修复文字层 | 图片和版式保留；媒体投影为封面、说明与链接 |
 
 不要把单文件 HTML 当作大型视频的默认交付。媒体总量超过约 20 MB 时默认同时交付 `html-dir`；若用户必须只收一个文件，交付 ZIP，其中包含 HTML 文件夹和 `export-manifest.json`。
+
+### PDF 文字层修复
+
+Chrome（Skia）给每个字形只写一个 Unicode，取字体 cmap 里最小的码位。PingFang、Songti、Hiragino、Noto Sans SC 等中文字体让部首（U+2F00–U+2FD5、U+2E80–U+2EF3）与常用汉字共用字形，于是页面显示正常，复制或搜索「手工川」却得到「⼿⼯川」。`export_rich.py` 打印 PDF 后自动运行 `scripts/fix_pdf_tounicode.py`：按 PDF 里嵌入的字体名找到本机字体文件，用它自己的 cmap 推部首到汉字的对照表，只改写 ToUnicode，页面渲染不变；仍有残留时写入 manifest 的 `warnings`。
+
+其他 Skill 用 Chrome/Playwright 打印中文 PDF 后，也调用这个脚本（依赖 pypdf 与 fontTools）：
+
+```bash
+python3 "$SKILL_DIR/scripts/fix_pdf_tounicode.py" ./report.pdf
+```
+
+输出 `radicals left in text 0` 才算通过；仍有部首码位时退出码为 1。找不到字体文件（如网页字体）时退回 PingFang 对照表，输出里会列出这些字体。
 
 ## 验收
 
@@ -71,7 +84,7 @@ python3 "$SKILL_DIR/scripts/export_rich.py" \
 1. 打开单文件 HTML 并断网刷新；检查字体、图片、音视频控件、目录和链接。
 2. 解压/打开 HTML 文件夹；检查 `index.html` 的所有资源均来自包内，且没有绝对本机路径。
 3. 用 Word/LibreOffice 打开 DOCX；检查中文字体、表格、图片、分页及每个媒体链接。
-4. 渲染 PDF 首页、含图片页、含媒体投影页和末页；检查裁切、溢出、乱码、链接和页码。
+4. 渲染 PDF 首页、含图片页、含媒体投影页和末页；检查裁切、溢出、乱码、链接和页码。复制一段中文正文，核对文字层是原字而不是部首码位。
 5. 检查 `export-manifest.json` 的 `warnings`；不得把内部元数据或提示词当作正文导出。
 
 ## 选择与限制
