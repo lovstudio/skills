@@ -26,6 +26,8 @@ For a free skill with a private source, the mirror is therefore its only public 
 ├── scripts/render-marketplace.py     # Regenerates marketplace.json from skills.yaml
 ├── scripts/render-readme.py          # Regenerates README skill table from skills.yaml
 ├── scripts/mirror-catalog-cn.py      # CI-only: uploads skills.yaml to the lovstudio.cn OSS mirror
+├── scripts/validate_runs_on.py       # Rejects `runs_on` claims with no real run behind them
+├── evidence/runs-on/<skill>/<id>.md  # Prompt, fixture hashes and independent checks for each recorded run
 ├── CHANGELOG.md                      # Index repo history (not per-skill)
 ├── LICENSE                           # MIT (for this index; each skill has its own LICENSE)
 └── .github/workflows/                # render-readme.yml runs sync → render-marketplace → render-readme → mirror-cn
@@ -80,6 +82,72 @@ skills:
     tagline_zh: "把 Markdown 排成 …"    # Human-facing Chinese one-liner for README. Hand-maintained.
     skill_path: "skill/lov-xxx"         # OPTIONAL. Use only when SKILL.md is not at repo root.
 ```
+
+### `runs_on`: can it run on my machine with my tools
+
+Optional per-entry record that answers one question for a reader: "can I run this on my machine, with the tools I have?" lovstudio.ai leads the Skill page with it and falls back to `compatibility` and `skill-card.yaml` when an entry has none.
+
+**The rule: a claim that something works needs a real run behind it.** Anything nobody ran stays `unverified`. Do not infer portability from the code, and do not copy a claim from a README. `scripts/validate_runs_on.py` enforces this in CI (through `scripts/test_validate_runs_on.py`), and the website enforces it again when it parses the record.
+
+```yaml
+  runs_on:
+    checked_at: '2026-11-06'           # when this record was last checked
+    skill_version: 0.33.0              # the version it was checked against; the page flags a newer one
+    verdict_zh: 有 Apple 芯片的 Mac 能跑完……  # the per-Skill answer the page leads with
+    verdict_en: ...
+    systems:                           # all four, exactly once: macos-arm64, macos-intel, windows, linux
+    - id: macos-arm64
+      status: verified
+      evidence: [messi-film]
+    - id: windows
+      status: unverified
+      note_zh: 转写脚本只调用 mlx-whisper……   # known obstacles are facts from the source, not a verdict
+      note_en: ...
+    agents:                            # only what was actually tried
+    - label: WorkBuddy
+      model: kimi-k2.7
+      domestic: true                   # no overseas model account needed
+      status: partial
+      evidence: [wb-kimi-review]
+      gap_zh: 只跑了审校版……              # required for partial and blocked: say what is missing
+      gap_en: ...
+    requires:                          # [] means no extra account or key
+    - name: OpenRouter API Key
+      required: false
+      for_zh: AI 配乐
+      for_en: AI music
+    alternatives:                      # optional: what stands in for a dependency, and what it costs you
+    - replaces_zh: OpenRouter AI 配乐
+      replaces_en: OpenRouter AI music
+      with_zh: 自备无人声音乐
+      with_en: Your own instrumental track
+      status: verified
+      evidence: [wb-kimi-review]
+      gap_zh: ...
+      gap_en: ...
+    evidence:
+    - id: wb-kimi-review
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy CLI 2.115.0 · kimi-k2.7   # where it ran
+      skill_version: 0.33.0
+      result: passed                   # passed | partial | failed
+      kind: run                        # run (default) | source (quotes the Skill's declaration; can only record a failure)
+      scope_zh: 58 秒合成口播 → 审校版……   # what actually ran, and how it was checked
+      scope_en: ...
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-creator/wb-kimi-review.md
+```
+
+| Status | Meaning | Needs |
+| --- | --- | --- |
+| `verified` | Ran through and passed | A cited `run` with `result: passed` |
+| `partial` | Part of it ran; `gap_*` or `note_*` says what did not | A cited `run` with `result: passed` or `partial` |
+| `blocked` | Does not run here | Cited evidence with `result: failed`, plus the reason |
+| `unverified` | Nobody has run it | No evidence |
+
+- **A run counts only when the Skill really ran and something other than the model checked it.** An agent can finish with a correct-looking file while skipping the Skill (one run downloaded a file with bare `curl`, another hand-rolled `ffmpeg` after failing to find the scripts). Check that the Skill was invoked, then verify the output independently: `ffprobe`, the Skill's own validator, a known transcript.
+- **Evidence text is public, paid Skills included.** No local paths, no secrets, no names from private material, no script names of a paid Skill. `evidence/runs-on/<skill>/<id>.md` holds the prompt, fixture hashes and check results for a run; never commit raw transcripts.
+- **Only name a model you saw in the run's own log.** When a case does not record its agent or model, it can back a `systems` row but not an `agents` row.
+- Bumping a Skill does not invalidate its record: the page shows that the evidence comes from an older version. Re-run when a dependency or a gated step changes.
 
 ### Field responsibilities
 
