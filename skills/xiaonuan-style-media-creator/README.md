@@ -32,7 +32,7 @@ ln -s ../../.agents/skills/lov-xiaonuan-style-media-creator "$HOME/.claude/skill
 ln -s ../../.agents/skills/lov-xiaonuan-style-media-creator "$HOME/.codex/skills/lov-xiaonuan-style-media-creator"
 ```
 
-发布后可用 `npx skills add lov-xiaonuan-style-media-creator -g -y` 安装；当前版本尚未发布。
+也可以从 LovStudio 官网目录安装：`npx skills add lov-xiaonuan-style-media-creator -g -y`。
 
 ## 验证
 

@@ -100,10 +100,11 @@ pricing:
   confidence: internal
 distribution:
   paid: []
-  free: []
+  free:
+  - lovstudio
   channels:
-    github: not_requested
-    lovstudio: not_requested
+    github: private source repository; public copy is the lovstudio/skills mirror
+    lovstudio: published as a free catalog entry (0 Credits)
     workbuddy: not_requested
     skillpay: not_requested
   local: installed after verification

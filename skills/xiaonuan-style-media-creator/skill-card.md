@@ -62,4 +62,4 @@ Local-first，在兼容 Skills 的本地 AI 宿主中使用。
 
 ## Distribution
 
-源码托管在 lovstudio 组织的私有仓库，仅供维护；没有对外分发。GitHub 公开分发、LovStudio 官网与聚合目录、WorkBuddy、SkillPay 均未发布。
+LovStudio 官网目录：免费条目（0 Credits），公开副本为 lovstudio/skills 中的目录镜像。源码托管在 lovstudio 组织的私有仓库，仅供维护。WorkBuddy、SkillPay 未发布。
