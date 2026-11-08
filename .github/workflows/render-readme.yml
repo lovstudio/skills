@@ -135,5 +135,5 @@ jobs:
           role-session-name: skills-catalog-mirror
           role-session-expiration: 900
 
-      - name: Upload skills.yaml and verify the public copy
+      - name: Upload skills.yaml and Skill documents, verify the public copies
         run: python3 scripts/mirror-catalog-cn.py --apply
