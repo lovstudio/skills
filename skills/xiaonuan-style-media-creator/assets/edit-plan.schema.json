@@ -1,0 +1,388 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "xiaonuan edit-plan.schema.json",
+ "type": "object",
+ "properties": {
+  "schema_version": {
+   "const": "0.1.0"
+  },
+  "style_id": {
+   "const": "lov-xiaonuan-style-media-creator"
+  },
+  "profile_version": {
+   "type": "string"
+  },
+  "topic": {
+   "type": "string"
+  },
+  "format": {
+   "enum": [
+    "call_in",
+    "solo_numbered",
+    "solo_mechanism"
+   ]
+  },
+  "duration_seconds": {
+   "type": "number"
+  },
+  "aspect_ratio": {
+   "const": "9:16"
+  },
+  "fps": {
+   "type": "number"
+  },
+  "host_identity": {
+   "enum": [
+    "own",
+    "authorized"
+   ]
+  },
+  "render_status": {
+   "enum": [
+    "not_requested",
+    "awaiting_assets",
+    "rendered_review"
+   ]
+  },
+  "title": {
+   "type": "object",
+   "properties": {
+    "lines": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "text": {
+        "type": "string"
+       },
+       "fill": {
+        "enum": [
+         "yellow",
+         "red",
+         "white"
+        ]
+       },
+       "red_words": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "text",
+       "fill"
+      ],
+      "additionalProperties": false
+     },
+     "minItems": 2,
+     "maxItems": 2
+    },
+    "start_seconds": {
+     "const": 0
+    },
+    "end_seconds": {
+     "type": "number"
+    },
+    "fact_ids": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "lines",
+    "start_seconds",
+    "end_seconds",
+    "fact_ids"
+   ],
+   "additionalProperties": false
+  },
+  "card": {
+   "oneOf": [
+    {
+     "type": "null"
+    },
+    {
+     "type": "object",
+     "properties": {
+      "header": {
+       "type": "string"
+      },
+      "lines": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "minItems": 3,
+       "maxItems": 9
+      },
+      "start_seconds": {
+       "type": "number"
+      },
+      "end_seconds": {
+       "type": "number"
+      },
+      "fact_ids": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "minItems": 1
+      }
+     },
+     "required": [
+      "header",
+      "lines",
+      "start_seconds",
+      "end_seconds",
+      "fact_ids"
+     ],
+     "additionalProperties": false
+    }
+   ]
+  },
+  "call_in_window": {
+   "type": "object",
+   "properties": {
+    "enabled": {
+     "type": "boolean"
+    },
+    "avatar": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "enabled",
+    "avatar"
+   ],
+   "additionalProperties": false
+  },
+  "sections": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "start_seconds": {
+      "type": "number"
+     },
+     "end_seconds": {
+      "type": "number"
+     },
+     "role": {
+      "enum": [
+       "cold_open",
+       "separator",
+       "ask",
+       "intake",
+       "probing",
+       "restate",
+       "reframe",
+       "profile",
+       "pushback",
+       "close",
+       "post_call",
+       "question",
+       "points",
+       "mechanism",
+       "exception",
+       "conclusion",
+       "service_cta"
+      ]
+     },
+     "speaker": {
+      "enum": [
+       "host",
+       "guest",
+       "both",
+       "none"
+      ]
+     },
+     "purpose": {
+      "type": "string"
+     },
+     "dialogue": {
+      "type": "string"
+     },
+     "fact_ids": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "style_rule_ids": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "minItems": 1
+     },
+     "source": {
+      "type": "object",
+      "properties": {
+       "type": {
+        "enum": [
+         "recording",
+         "to_shoot",
+         "generated"
+        ]
+       },
+       "ref": {
+        "type": "string"
+       },
+       "in_seconds": {
+        "type": "number"
+       },
+       "out_seconds": {
+        "type": "number"
+       }
+      },
+      "required": [
+       "type"
+      ],
+      "additionalProperties": false
+     },
+     "subtitles": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "start_seconds": {
+         "type": "number"
+        },
+        "end_seconds": {
+         "type": "number"
+        },
+        "text": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "start_seconds",
+        "end_seconds",
+        "text"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "audio": {
+      "type": "object",
+      "properties": {
+       "bgm": {
+        "const": "none"
+       },
+       "note": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "bgm",
+       "note"
+      ],
+      "additionalProperties": false
+     },
+     "visual_trigger": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "start_seconds",
+     "end_seconds",
+     "role",
+     "speaker",
+     "purpose",
+     "dialogue",
+     "fact_ids",
+     "style_rule_ids",
+     "source",
+     "subtitles",
+     "audio",
+     "visual_trigger"
+    ],
+    "additionalProperties": false
+   },
+   "minItems": 3
+  },
+  "loudness": {
+   "type": "object",
+   "properties": {
+    "integrated_lufs": {
+     "type": "number"
+    },
+    "true_peak_dbtp": {
+     "type": "number"
+    },
+    "separator_tone_db_over_speech": {
+     "type": "number"
+    }
+   },
+   "required": [
+    "integrated_lufs",
+    "true_peak_dbtp",
+    "separator_tone_db_over_speech"
+   ],
+   "additionalProperties": false
+  },
+  "safe_area": {
+   "type": "object",
+   "properties": {
+    "top_px": {
+     "type": "number"
+    },
+    "bottom_px": {
+     "type": "number"
+    }
+   },
+   "required": [
+    "top_px",
+    "bottom_px"
+   ],
+   "additionalProperties": false
+  },
+  "asset_requirements": {
+   "type": "array",
+   "items": {
+    "type": "object"
+   }
+  },
+  "intentional_deviations": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "unresolved": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  }
+ },
+ "required": [
+  "schema_version",
+  "style_id",
+  "profile_version",
+  "topic",
+  "format",
+  "duration_seconds",
+  "aspect_ratio",
+  "fps",
+  "host_identity",
+  "render_status",
+  "title",
+  "card",
+  "call_in_window",
+  "sections",
+  "loudness",
+  "safe_area",
+  "asset_requirements",
+  "intentional_deviations",
+  "unresolved"
+ ],
+ "additionalProperties": false
+}

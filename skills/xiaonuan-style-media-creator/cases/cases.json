@@ -1,0 +1,42 @@
+[
+  {
+    "type": "case",
+    "title": "12 条参考视频到可执行风格包",
+    "description": "从博主主页当前格式期分层抽取 12 条公开视频，经全文转写、全片测量与每 2 秒一帧 OCR，分析前冻结 10/2 拆分，输出 32 条带证据规则与留出报告。",
+    "input": {
+      "items": [
+        "assets/xiaonuan-v0.1/style-profile.json 中 12 个真实源 URL 与 SHA-256"
+      ]
+    },
+    "prompt": "复刻一下小红书博主的这个视频风格，然后他的 ID 是「晓暖（清醒择偶）说媒」。之后补充：用 ego；封装成 Skill。",
+    "output": {
+      "items": [
+        "assets/xiaonuan-v0.1/style-profile.json",
+        "assets/xiaonuan-v0.1/evidence.jsonl",
+        "assets/xiaonuan-v0.1/holdout-report.json"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "用自己的对话录像重剪 72.5 秒演示",
+    "description": "把《易七猫对话手工川》已锁定的中间片与人声分轨，套上前置高光、彩条加 1 kHz 分隔、双行标题、资料卡、单行宋体字幕与连麦窗；计划校验通过并已渲染，仅作内部预览。",
+    "input": {
+      "items": [
+        "cases/yiqimao-demo/brief.json"
+      ]
+    },
+    "prompt": "内部 brief（非用户原话）：用内置风格包和模板，把这段远程对话的前 72 秒按连麦切片的包装重剪；资料卡只写事实台账里已核实的信息，不加服务 CTA。",
+    "output": {
+      "items": [
+        "cases/yiqimao-demo/edit-plan.json",
+        "cases/yiqimao-demo/style-review.json",
+        "templates/remotion/src/data/render-plan.json"
+      ]
+    },
+    "cover": "cases/yiqimao-demo/cover-3x4.jpg",
+    "gallery": [
+      "cases/yiqimao-demo/stills.jpg"
+    ]
+  }
+]

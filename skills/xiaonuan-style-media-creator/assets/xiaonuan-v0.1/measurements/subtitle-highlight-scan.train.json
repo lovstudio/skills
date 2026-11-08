@@ -1,0 +1,63 @@
+{
+ "method": "subtitle-zone OCR boxes; yellow R>200,G>170,B<120 or red R>190,G<80,B<80 pixel share > 4%",
+ "training_only": true,
+ "results": {
+  "02": {
+   "subtitle_boxes": 35,
+   "colored_boxes": 0,
+   "examples": []
+  },
+  "04": {
+   "subtitle_boxes": 84,
+   "colored_boxes": 0,
+   "examples": []
+  },
+  "05": {
+   "subtitle_boxes": 197,
+   "colored_boxes": 0,
+   "examples": []
+  },
+  "09": {
+   "subtitle_boxes": 159,
+   "colored_boxes": 0,
+   "examples": []
+  },
+  "11": {
+   "subtitle_boxes": 199,
+   "colored_boxes": 0,
+   "examples": []
+  },
+  "12": {
+   "subtitle_boxes": 228,
+   "colored_boxes": 0,
+   "examples": []
+  },
+  "38": {
+   "subtitle_boxes": 174,
+   "colored_boxes": 0,
+   "examples": []
+  },
+  "45": {
+   "subtitle_boxes": 142,
+   "colored_boxes": 1,
+   "examples": [
+    [
+     180,
+     "的条伴上的短板的",
+     0.0,
+     0.175
+    ]
+   ]
+  },
+  "46": {
+   "subtitle_boxes": 149,
+   "colored_boxes": 0,
+   "examples": []
+  },
+  "52": {
+   "subtitle_boxes": 103,
+   "colored_boxes": 0,
+   "examples": []
+  }
+ }
+}

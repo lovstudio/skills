@@ -1,0 +1,121 @@
+{
+ "method": "OCR every 2 s; wall sign = 1-4 chars of 择偶定位 in the right-upper area; guest intake windows annotated by host",
+ "results": {
+  "2": {
+   "sign_frames": 0,
+   "frames": 51,
+   "sign_frac": 0.0,
+   "guest_window_subs": null
+  },
+  "4": {
+   "sign_frames": 26,
+   "frames": 87,
+   "sign_frac": 0.299,
+   "guest_window_subs": null
+  },
+  "5": {
+   "sign_frames": 1,
+   "frames": 209,
+   "sign_frac": 0.005,
+   "guest_window_subs": [
+    16,
+    17,
+    [
+     "年龄是26岁",
+     "上海的女生身高169",
+     "体重是53千克"
+    ]
+   ]
+  },
+  "9": {
+   "sign_frames": 90,
+   "frames": 168,
+   "sign_frac": 0.536,
+   "guest_window_subs": [
+    13,
+    13,
+    [
+     "我是土生士长的本地上海人",
+     "你之前跟我连过",
+     "我说你那三个女生"
+    ]
+   ]
+  },
+  "11": {
+   "sign_frames": 105,
+   "frames": 220,
+   "sign_frac": 0.477,
+   "guest_window_subs": [
+    5,
+    6,
+    [
+     "身高是175",
+     "体重是65",
+     "自己的资产有个1,000"
+    ]
+   ]
+  },
+  "12": {
+   "sign_frames": 82,
+   "frames": 265,
+   "sign_frac": 0.309,
+   "guest_window_subs": [
+    20,
+    22,
+    [
+     "因为我现在是异地",
+     "你在哪个地方",
+     "喦"
+    ]
+   ]
+  },
+  "38": {
+   "sign_frames": 0,
+   "frames": 190,
+   "sign_frac": 0.0,
+   "guest_window_subs": [
+    6,
+    8,
+    [
+     "可能有点年齡焦虑",
+     "我是在甘肃这边一个普通的地级市",
+     "我工作是体制内"
+    ]
+   ]
+  },
+  "45": {
+   "sign_frames": 0,
+   "frames": 151,
+   "sign_frac": 0.0,
+   "guest_window_subs": [
+    5,
+    7,
+    [
+     "我想找个90后",
+     "哥",
+     "长相还可以的"
+    ]
+   ]
+  },
+  "46": {
+   "sign_frames": 0,
+   "frames": 164,
+   "sign_frac": 0.0,
+   "guest_window_subs": [
+    7,
+    9,
+    [
+     "我的年纪是27岁",
+     "身高是一米65",
+     "体重是94左右"
+    ]
+   ]
+  },
+  "52": {
+   "sign_frames": 0,
+   "frames": 104,
+   "sign_frac": 0.0,
+   "guest_window_subs": null
+  }
+ }
+}

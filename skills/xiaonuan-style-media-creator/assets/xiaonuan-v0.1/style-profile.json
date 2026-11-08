@@ -1,0 +1,1750 @@
+{
+ "schema_version": "0.1.0",
+ "style_id": "lov-xiaonuan-style-media-creator",
+ "display_name": "晓暖说媒风格短视频",
+ "version": "0.1.0",
+ "status": "ready_with_limits",
+ "training_sample_ids": [
+  "6904a6db0000000003010bb2",
+  "6aec42f600000000030021b1",
+  "6aed8b4e000000000901019f",
+  "6aeaea070000000003004b42",
+  "6ae99fad000000000e02f645",
+  "6addae590000000024036d20",
+  "6ac8b5ce0000000018012b56",
+  "6abf841f00000000140384ea",
+  "6ab60910000000000a027390",
+  "6ab0c32b0000000031015bb3"
+ ],
+ "holdout_sample_ids": [
+  "6ad98a1a000000002403ad6b",
+  "6ac8b4030000000014038d49"
+ ],
+ "samples": [
+  {
+   "sample_id": "6904a6db0000000003010bb2",
+   "rank": 2,
+   "title": "来看看你的择偶定位是否合理",
+   "source_url": "https://www.xiaohongshu.com/explore/6904a6db0000000003010bb2",
+   "sha256": "f9fa84849a3563081e88cf228fca83b2478663341d5b549e33f66bf6e0623c93",
+   "duration_seconds": 102.8,
+   "partition": "train"
+  },
+  {
+   "sample_id": "6aec42f600000000030021b1",
+   "rank": 4,
+   "title": "高收入男性为什么 不会娶低学历女生",
+   "source_url": "https://www.xiaohongshu.com/explore/6aec42f600000000030021b1",
+   "sha256": "796cc54b0db5c41824259d4bca818dc392efa91f46961cec2531200af5ce4e46",
+   "duration_seconds": 173.082,
+   "partition": "train"
+  },
+  {
+   "sample_id": "6aed8b4e000000000901019f",
+   "rank": 5,
+   "title": "结婚能放弃生理性喜欢吗",
+   "source_url": "https://www.xiaohongshu.com/explore/6aed8b4e000000000901019f",
+   "sha256": "d1b539ea58c3f7556c07ccd8a1a3f03398f7700e13876879b918de28e3764a09",
+   "duration_seconds": 417.215,
+   "partition": "train"
+  },
+  {
+   "sample_id": "6aeaea070000000003004b42",
+   "rank": 9,
+   "title": "上海38岁500万存款，2套房男生为啥找不到",
+   "source_url": "https://www.xiaohongshu.com/explore/6aeaea070000000003004b42",
+   "sha256": "b9d7195a2a5a2c858edf32fee28e9d33384b9037854bb7b1b8d41f8154552cf5",
+   "duration_seconds": 335.736,
+   "partition": "train"
+  },
+  {
+   "sample_id": "6ae99fad000000000e02f645",
+   "rank": 11,
+   "title": "年薪50万很优秀吗 深圳30岁创业男生择偶",
+   "source_url": "https://www.xiaohongshu.com/explore/6ae99fad000000000e02f645",
+   "sha256": "6d4fc3b32358c4e7aea8f40e95c3c31ba6b60ae0ddb5bd08699967faa377b353",
+   "duration_seconds": 439.25,
+   "partition": "train"
+  },
+  {
+   "sample_id": "6addae590000000024036d20",
+   "rank": 12,
+   "title": "条件一般的姑娘，反而更容易找到好对象",
+   "source_url": "https://www.xiaohongshu.com/explore/6addae590000000024036d20",
+   "sha256": "ca1815436efdce815a2668ccfb9cd5dd9a7458b44970cdef5ebeebb0c4770b97",
+   "duration_seconds": 529.483,
+   "partition": "train"
+  },
+  {
+   "sample_id": "6ad98a1a000000002403ad6b",
+   "rank": 23,
+   "title": "为什么男生留在上海的代价很高",
+   "source_url": "https://www.xiaohongshu.com/explore/6ad98a1a000000002403ad6b",
+   "sha256": "54de9cae7d91fd9963e2cbfb8e5c3aaf722bc00390c98e4fff22fd4bc4db61c3",
+   "duration_seconds": 192.608,
+   "partition": "holdout"
+  },
+  {
+   "sample_id": "6ac8b5ce0000000018012b56",
+   "rank": 38,
+   "title": "30岁体制内女生择偶困境，甲方心态太重",
+   "source_url": "https://www.xiaohongshu.com/explore/6ac8b5ce0000000018012b56",
+   "sha256": "b793bcca52ef1e63d51d0d87e626a827203183c379b75de319ac2907a849dd00",
+   "duration_seconds": 379.855,
+   "partition": "train"
+  },
+  {
+   "sample_id": "6ac8b4030000000014038d49",
+   "rank": 40,
+   "title": "170/160斤A9男生想找小美，我爸给我老婆50",
+   "source_url": "https://www.xiaohongshu.com/explore/6ac8b4030000000014038d49",
+   "sha256": "0f76d581905008f5b4f0043b83d6f251566cace38c1ee88b9dec443a7fa297ae",
+   "duration_seconds": 358.468,
+   "partition": "holdout"
+  },
+  {
+   "sample_id": "6abf841f00000000140384ea",
+   "rank": 45,
+   "title": "83年离异年薪200万男生，想找高颜值90后女生",
+   "source_url": "https://www.xiaohongshu.com/explore/6abf841f00000000140384ea",
+   "sha256": "6aba5e79324aad713dda3cee3169d73e95ab30cdca7eda0af0b85819b48b201d",
+   "duration_seconds": 301.185,
+   "partition": "train"
+  },
+  {
+   "sample_id": "6ab60910000000000a027390",
+   "rank": 46,
+   "title": "无锡27岁护士女生，找创一代几率有多大？",
+   "source_url": "https://www.xiaohongshu.com/explore/6ab60910000000000a027390",
+   "sha256": "4c48cd43322c9f33992ddecba5f5cb09213cc3e27528898ac0ffba8d27eef71a",
+   "duration_seconds": 328.493,
+   "partition": "train"
+  },
+  {
+   "sample_id": "6ab0c32b0000000031015bb3",
+   "rank": 52,
+   "title": "谈一段正常的恋爱，需要具备那3点",
+   "source_url": "https://www.xiaohongshu.com/explore/6ab0c32b0000000031015bb3",
+   "sha256": "105296df581c10257fc141df2eb9f732edbc6986862841306380be8fab3d69a8",
+   "duration_seconds": 207.331,
+   "partition": "train"
+  }
+ ],
+ "dimensions": [
+  {
+   "id": "thinking",
+   "summary": "把人放进市场坐标定位：改写真问题、侧面探动机、落到可执行画像"
+  },
+  {
+   "id": "narrative",
+   "summary": "前置高光→彩条→求定位→报条件→追问→诊断→画像→挂断→泛化；另有单人与服务介绍变体"
+  },
+  {
+   "id": "language",
+   "summary": "短促追问要数字、市场行话、直说判词加缓冲、编号与确认式反问"
+  },
+  {
+   "id": "delivery",
+   "summary": "直播连麦的真实对话密度，约 380 字/分钟（两人合计）"
+  },
+  {
+   "id": "visual",
+   "summary": "直播竖屏胸部以上 + 右下连麦窗；顶部双行黄白粗斜标题；可选资料卡；封面胸口标题"
+  },
+  {
+   "id": "subtitles",
+   "summary": "单行白色粗宋体深色描边，约 76.6% 高度，中位 10 字，无彩色强调"
+  },
+  {
+   "id": "editing_audio",
+   "summary": "长镜头删减式跳剪；彩条 + 1 kHz 提示音分隔；无 BGM；原片未做响度标准化"
+  },
+  {
+   "id": "coupling",
+   "summary": "标题取自对话；字幕覆盖双方；标题/高光/彩条/资料卡按固定顺序同轴编排"
+  }
+ ],
+ "rules": [
+  {
+   "id": "thinking.market_position",
+   "dimension": "thinking",
+   "observation": "连麦个案一律被放进“婚恋/相亲市场”的坐标：用年龄、城市、收入、资产位数（A8/A9）、学历、家庭和外形分数定位，判断以“市场怎么看你”而不是“我怎么看你”表述。",
+   "instruction": "先把对象放进一个明确的市场和可比属性里，再下判断；判断落在市场规则（行情、流通、含金量、概率）上，不做人格定性。",
+   "strength": "required",
+   "evidence_ids": [
+    "E001",
+    "E002",
+    "E003",
+    "E004",
+    "E005",
+    "E006",
+    "E007",
+    "E008"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 7,
+   "eligible_sample_count": 7,
+   "confidence": "high",
+   "scope": "连麦个案；迁移到其他领域时市场与属性须换成该领域可核查的维度",
+   "exceptions": [
+    "单人讲述 #4 用“社会身份/门当户对”而非显式“市场”",
+    "置顶服务介绍 #2 不适用"
+   ],
+   "validation": {
+    "method": "semantic review of full transcripts",
+    "criterion": "每条连麦个案至少一处把对象放进市场/行情/资产位数框架"
+   }
+  },
+  {
+   "id": "thinking.reframe_problem",
+   "dimension": "thinking",
+   "observation": "来访者带来的问题（选哪个、缺渠道、收入门槛）被改写成真正的约束：动机、心态或条件错配，常用“你最大的问题不是A，而是B”。",
+   "instruction": "复述完对方的问题后，指出被忽略的真实约束；用一句“不是A，而是B”式判断收束，并给出依据。",
+   "strength": "required",
+   "evidence_ids": [
+    "E009",
+    "E010",
+    "E011",
+    "E012",
+    "E013",
+    "E014",
+    "E015"
+   ],
+   "support_sample_ids": [
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 6,
+   "eligible_sample_count": 7,
+   "confidence": "high",
+   "scope": "连麦个案",
+   "exceptions": [
+    "#46 以市场流通性分析代替显式改写"
+   ],
+   "validation": {
+    "method": "semantic review",
+    "criterion": "诊断段存在对原问题的改写及理由"
+   }
+  },
+  {
+   "id": "thinking.motive_probe",
+   "dimension": "thinking",
+   "observation": "用一个侧面问题探出真实需求或动机（月消费、为什么现在要结婚、考研为了啥、愿意接受哪些短板），再据此判断。",
+   "instruction": "设计一个间接追问，从行为数据推出需求；不直接问“你想要什么”。",
+   "strength": "preferred",
+   "evidence_ids": [
+    "E016",
+    "E017",
+    "E018",
+    "E019",
+    "E020",
+    "E021"
+   ],
+   "support_sample_ids": [
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 6,
+   "eligible_sample_count": 7,
+   "confidence": "high",
+   "scope": "连麦个案",
+   "exceptions": [
+    "#46 主要问过往关系与分手原因"
+   ],
+   "validation": {
+    "method": "semantic review",
+    "criterion": "诊断前存在至少一个指向动机或真实需求的追问"
+   }
+  },
+  {
+   "id": "thinking.attainable_profile",
+   "dimension": "thinking",
+   "observation": "建议最后落到一个可执行的“画像”：出生年份或年龄区间、城市、职业类型、学历、家庭、收入区间，并说明要接受的短板。",
+   "instruction": "给出带区间的目标画像和必须接受的取舍，不停在“提升自己”这类空泛建议。",
+   "strength": "required",
+   "evidence_ids": [
+    "E022",
+    "E023",
+    "E024",
+    "E025",
+    "E026",
+    "E027",
+    "E028"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 6,
+   "eligible_sample_count": 7,
+   "confidence": "high",
+   "scope": "连麦个案",
+   "exceptions": [
+    "#9 以“难改变的”“别人帮不了你”作结，不给画像"
+   ],
+   "validation": {
+    "method": "semantic review",
+    "criterion": "处方段包含至少三个带取值或区间的属性"
+   }
+  },
+  {
+   "id": "thinking.perspective_simulation",
+   "dimension": "thinking",
+   "observation": "用第一人称替对方或市场推演一遍感受与选择（“打比方我一个30岁的女孩子…”），把抽象规则变成可感的过程。",
+   "instruction": "在解释市场反应时，可插入一段换位推演；推演对象是典型的另一方，不读心具体真人。",
+   "strength": "optional",
+   "evidence_ids": [
+    "E029",
+    "E030",
+    "E031"
+   ],
+   "support_sample_ids": [
+    "6abf841f00000000140384ea",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 3,
+   "eligible_sample_count": 10,
+   "confidence": "medium",
+   "scope": "任意子类型",
+   "exceptions": [],
+   "validation": {
+    "method": "semantic review",
+    "criterion": "如使用，须标明是推演而非事实"
+   }
+  },
+  {
+   "id": "narrative.cold_open",
+   "dimension": "narrative",
+   "observation": "现行模板以 7–18 秒前置高光开场：从后文截取冲突最尖锐的判词、最反差的自述或核心金句，原样重放，随后接彩条分隔，再回到时间顺序的正片。",
+   "instruction": "先从完整对话里挑一个“判词或反差”片段（7–18 秒，完整句首句尾）放在最前，再接分隔符；高光内容必须在正片原位置再次出现。",
+   "strength": "required",
+   "evidence_ids": [
+    "E032",
+    "E033",
+    "E034",
+    "E035",
+    "E036",
+    "E037",
+    "E038",
+    "E039",
+    "E040",
+    "E041",
+    "E042",
+    "E043",
+    "E044",
+    "E045",
+    "E046",
+    "E047"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 8,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "9 月下旬以后的现行模板",
+   "exceptions": [
+    "#2 置顶服务介绍（2025-10）与 #52（2026-09-21）没有前置高光"
+   ],
+   "validation": {
+    "method": "transcript duplicate check + beep scan",
+    "criterion": "开头片段在正片中有原位重复，且分隔符位于 7–18 秒"
+   }
+  },
+  {
+   "id": "narrative.call_in_arc",
+   "dimension": "narrative",
+   "observation": "连麦个案的主线是：提问/求定位 → 报条件（年龄、城市、身高体重、学历、职业、收入、资产、家庭）→ 连续追问 → 复述与诊断 → 画像与取舍 →（挂断）→ 对直播间泛化。",
+   "instruction": "按“求定位—报条件—追问—诊断—画像—收束”组织；报条件阶段用固定字段，让观众能自行比较。",
+   "strength": "required",
+   "evidence_ids": [
+    "E048",
+    "E049",
+    "E050",
+    "E051",
+    "E052",
+    "E053",
+    "E054",
+    "E055",
+    "E056"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 7,
+   "eligible_sample_count": 7,
+   "confidence": "high",
+   "scope": "连麦个案",
+   "exceptions": [
+    "#11 #45 #46 在诊断或处方中途结束，没有挂断与泛化"
+   ],
+   "validation": {
+    "method": "stage annotation of full transcripts",
+    "criterion": "六个阶段中至少出现前五个且顺序一致"
+   }
+  },
+  {
+   "id": "narrative.restatement",
+   "dimension": "narrative",
+   "observation": "诊断前用一句“我给你总结一下 / 我现在帮你说一说”，把对方条件压缩成一串标签复述。",
+   "instruction": "诊断前先用一口气的标签复述对方条件（年份、地点、家庭、学历、收入、存款），再下判断。",
+   "strength": "preferred",
+   "evidence_ids": [
+    "E057",
+    "E058",
+    "E059"
+   ],
+   "support_sample_ids": [
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20"
+   ],
+   "support_count": 2,
+   "eligible_sample_count": 7,
+   "confidence": "medium",
+   "scope": "连麦个案",
+   "exceptions": [
+    "其余个案直接进入追问或判断"
+   ],
+   "validation": {
+    "method": "semantic review",
+    "criterion": "如使用，复述只含对方已说出的事实"
+   }
+  },
+  {
+   "id": "narrative.post_call_generalization",
+   "dimension": "narrative",
+   "observation": "挂断后主播对直播间观众说一段泛化结论，常是标题的来源（“你们能不能听出来…”“我刚刚说的这么一通…”）。",
+   "instruction": "个案结束后可加 15–55 秒面向观众的泛化总结，把个案上升为一条可复用的判断。",
+   "strength": "preferred",
+   "evidence_ids": [
+    "E060",
+    "E061",
+    "E062",
+    "E063"
+   ],
+   "support_sample_ids": [
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6aeaea070000000003004b42",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 4,
+   "eligible_sample_count": 7,
+   "confidence": "medium",
+   "scope": "连麦个案",
+   "exceptions": [
+    "#11 #45 #46 无挂断段"
+   ],
+   "validation": {
+    "method": "semantic review",
+    "criterion": "泛化段不新增个案中没有的事实"
+   }
+  },
+  {
+   "id": "narrative.solo_variants",
+   "dimension": "narrative",
+   "observation": "没有连麦时有两种单人结构：念观众问题后编号作答（#52），或用一个具体场景引出机制、例外与结论（#4）。",
+   "instruction": "单人题先抛具体问题或场景，再按“第一/第二/第三”或“机制—例外—结论”推进。",
+   "strength": "optional",
+   "evidence_ids": [
+    "E064",
+    "E065",
+    "E066",
+    "E067"
+   ],
+   "support_sample_ids": [
+    "6ab0c32b0000000031015bb3",
+    "6aec42f600000000030021b1"
+   ],
+   "support_count": 2,
+   "eligible_sample_count": 2,
+   "confidence": "medium",
+   "scope": "单人讲述",
+   "exceptions": [],
+   "validation": {
+    "method": "semantic review",
+    "criterion": "结构与所选变体一致"
+   }
+  },
+  {
+   "id": "narrative.service_intro_variant",
+   "dimension": "narrative",
+   "observation": "置顶的服务介绍片：比例式钩子 → 身份 → 与传统机构对比 → 编号列出可解决的问题 → 软性 CTA。身份、案例数与服务属于原作者，不可迁移。",
+   "instruction": "仅当用户提供自己经核实的身份、服务与合规承诺时，才借用这一结构；数字必须有来源。",
+   "strength": "optional",
+   "evidence_ids": [
+    "E068",
+    "E069"
+   ],
+   "support_sample_ids": [
+    "6904a6db0000000003010bb2"
+   ],
+   "support_count": 1,
+   "eligible_sample_count": 1,
+   "confidence": "medium",
+   "scope": "置顶/引流",
+   "exceptions": [
+    "不得复用原作者的身份、案例数量与服务承诺"
+   ],
+   "validation": {
+    "method": "fact ledger check",
+    "criterion": "所有身份与数字都有用户来源"
+   }
+  },
+  {
+   "id": "language.rapid_probing",
+   "dimension": "language",
+   "observation": "追问短、快、要数字：“在哪个城市？做什么工作？年收入多少？稳定了多久？个人资产有多少？”，一问一答推进。",
+   "instruction": "追问句控制在 3–10 字，优先索取可量化信息；连续追问之间不插入评价。",
+   "strength": "required",
+   "evidence_ids": [
+    "E070",
+    "E071",
+    "E072",
+    "E073",
+    "E074",
+    "E075",
+    "E076",
+    "E077"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 7,
+   "eligible_sample_count": 7,
+   "confidence": "high",
+   "scope": "连麦个案",
+   "exceptions": [],
+   "validation": {
+    "method": "transcript question count",
+    "criterion": "追问段中多数问句不超过 10 字"
+   }
+  },
+  {
+   "id": "language.market_lexicon",
+   "dimension": "language",
+   "observation": "高频行话把关系问题市场化：画像、婚恋/相亲市场、A8/A9（资产位数）、行情、流通、性价比、情绪价值、生理性喜欢、短板/优势、推进、上嫁/向下兼容。",
+   "instruction": "使用目标领域的一套行话（3–6 个核心词）并在首次出现时用对方的条件举例，不堆砌术语。",
+   "strength": "preferred",
+   "evidence_ids": [
+    "E078",
+    "E079",
+    "E080",
+    "E081",
+    "E082",
+    "E083",
+    "E084",
+    "E085"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 8,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "全部子类型",
+   "exceptions": [
+    "#2 #52 很少使用资产位数"
+   ],
+   "validation": {
+    "method": "regex counts on Whisper text (training-metrics.json lexicon)",
+    "criterion": "核心行话在稿中出现但每段不超过两次"
+   }
+  },
+  {
+   "id": "language.blunt_then_soften",
+   "dimension": "language",
+   "observation": "判词直接甚至刺耳（“选你的性价比比较低”“你能问出这个问题，我大概就知道你没有思考过”），随后用“我说实话/我可能帮不到你太多/人各有命”或一句玩笑缓冲。",
+   "instruction": "判断要直说，但落在选择与市场上；每个重判后跟一句缓冲或角色说明，避免对人格下诊断。",
+   "strength": "preferred",
+   "evidence_ids": [
+    "E086",
+    "E087",
+    "E088",
+    "E089",
+    "E090"
+   ],
+   "support_sample_ids": [
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6aeaea070000000003004b42"
+   ],
+   "support_count": 4,
+   "eligible_sample_count": 7,
+   "confidence": "medium",
+   "scope": "连麦个案",
+   "exceptions": [
+    "#9 出现“表演型的人”式人格评价，新作不迁移"
+   ],
+   "validation": {
+    "method": "semantic review",
+    "criterion": "重判后 2 句内出现缓冲或依据"
+   }
+  },
+  {
+   "id": "language.check_ins",
+   "dimension": "language",
+   "observation": "频繁用“对不对 / 你知道吧 / 能意识到我在说什么吗 / 是吧”向对方和观众确认。",
+   "instruction": "在论证转折处加入一句确认式反问，保持对话感。",
+   "strength": "optional",
+   "evidence_ids": [
+    "E091",
+    "E092",
+    "E093",
+    "E094"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20"
+   ],
+   "support_count": 4,
+   "eligible_sample_count": 10,
+   "confidence": "medium",
+   "scope": "全部子类型",
+   "exceptions": [],
+   "validation": {
+    "method": "regex counts",
+    "criterion": "每分钟不超过两次"
+   }
+  },
+  {
+   "id": "language.enumeration",
+   "dimension": "language",
+   "observation": "论证用“首先/其次”“第一/第二”切分，口头列条目。",
+   "instruction": "诊断和处方用编号或“首先/其次”分条，单条一句话说完。",
+   "strength": "preferred",
+   "evidence_ids": [
+    "E095",
+    "E096",
+    "E097",
+    "E098",
+    "E099",
+    "E100",
+    "E101",
+    "E102",
+    "E103"
+   ],
+   "support_sample_ids": [
+    "6904a6db0000000003010bb2",
+    "6ab0c32b0000000031015bb3",
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 9,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "全部子类型",
+   "exceptions": [],
+   "validation": {
+    "method": "regex counts",
+    "criterion": "诊断或处方中至少一次编号"
+   }
+  },
+  {
+   "id": "language.address_terms",
+   "dimension": "language",
+   "observation": "称呼平视亲昵：“兄弟”“姐妹”“姑娘/小姑娘”，来访者称她“老师/主播”。",
+   "instruction": "对来访者用平辈称呼；不使用原作者的昵称或品牌称谓。",
+   "strength": "optional",
+   "evidence_ids": [
+    "E104",
+    "E105",
+    "E106",
+    "E107"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6addae590000000024036d20",
+    "6aeaea070000000003004b42"
+   ],
+   "support_count": 4,
+   "eligible_sample_count": 7,
+   "confidence": "medium",
+   "scope": "连麦个案",
+   "exceptions": [],
+   "validation": {
+    "method": "regex counts",
+    "criterion": "称呼与来访者性别和关系匹配"
+   }
+  },
+  {
+   "id": "language.everyday_analogy",
+   "dimension": "language",
+   "observation": "偶尔用生活类比解释渠道或规则（相亲机构像去餐厅多试几家；中英夹杂是在筛选人）。",
+   "instruction": "抽象的渠道或规则问题，用一个日常类比一句话讲清。",
+   "strength": "optional",
+   "evidence_ids": [
+    "E108",
+    "E109"
+   ],
+   "support_sample_ids": [
+    "6ac8b5ce0000000018012b56",
+    "6aec42f600000000030021b1"
+   ],
+   "support_count": 2,
+   "eligible_sample_count": 10,
+   "confidence": "low",
+   "scope": "任意",
+   "exceptions": [],
+   "validation": {
+    "method": "semantic review",
+    "criterion": "类比不超过两句"
+   }
+  },
+  {
+   "id": "delivery.live_density",
+   "dimension": "delivery",
+   "observation": "直播连麦的自然对话密度：两人合计约 367–438 字/分钟（中位 380），不念稿、有打断和接话。",
+   "instruction": "保持真实对话节奏，规划口播容量按 360–440 字/分钟（两人合计）；不要把对话改写成朗读稿。",
+   "strength": "required",
+   "evidence_ids": [
+    "E110",
+    "E111",
+    "E112",
+    "E113",
+    "E114",
+    "E115",
+    "E116",
+    "E117",
+    "E118",
+    "E119"
+   ],
+   "support_sample_ids": [
+    "6904a6db0000000003010bb2",
+    "6ab0c32b0000000031015bb3",
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 10,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "全部子类型",
+   "exceptions": [
+    "数字含双方与停顿；ASR 漏字会低估"
+   ],
+   "validation": {
+    "method": "Whisper text / duration",
+    "criterion": "新稿容量落在 360–440 字/分钟"
+   }
+  },
+  {
+   "id": "visual.live_frame",
+   "dimension": "visual",
+   "observation": "画面就是直播间录屏：9:16 前置镜头，主播胸部以上居中，暖光室内、沙发或书架背景，固定机位。",
+   "instruction": "用自己的直播或连麦录像，固定机位胸部以上，面光清楚；不另拍 B-roll。",
+   "strength": "required",
+   "evidence_ids": [
+    "E120",
+    "E121",
+    "E122",
+    "E123",
+    "E124",
+    "E125",
+    "E126",
+    "E127",
+    "E128"
+   ],
+   "support_sample_ids": [
+    "6ab0c32b0000000031015bb3",
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 9,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "除 #2",
+   "exceptions": [
+    "#2 为单人自拍大近景，带推拉缩放"
+   ],
+   "validation": {
+    "method": "frame inspection (local)",
+    "criterion": "主画面为单人固定机位胸部以上"
+   }
+  },
+  {
+   "id": "visual.call_in_window",
+   "dimension": "visual",
+   "observation": "连麦时右下角一个深灰圆角小窗显示来访者头像（约 17% 宽、15% 高，下沿约在 90% 高度），标题彩条之上始终保留。",
+   "instruction": "来访者只以头像小窗出现（自选卡通头像或默认图），不露脸；小窗按平台底部安全区上移。",
+   "strength": "preferred",
+   "evidence_ids": [
+    "E129",
+    "E130",
+    "E131",
+    "E132",
+    "E133"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 5,
+   "eligible_sample_count": 7,
+   "confidence": "medium",
+   "scope": "连麦个案",
+   "exceptions": [
+    "#9 #38 连麦但画面中没有小窗"
+   ],
+   "validation": {
+    "method": "frame inspection (local)",
+    "criterion": "连麦段右下有头像窗"
+   }
+  },
+  {
+   "id": "visual.brand_prop",
+   "dimension": "visual",
+   "observation": "部分场次墙上贴一张手写“择偶定位”A4 纸，作为账号定位的实物标识（OCR 在 30–54% 的帧可读）。",
+   "instruction": "可在背景放一个写着自己定位关键词的实物标识；不得复用原作者的字样。",
+   "strength": "optional",
+   "evidence_ids": [
+    "E134",
+    "E135",
+    "E136",
+    "E137"
+   ],
+   "support_sample_ids": [
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1"
+   ],
+   "support_count": 4,
+   "eligible_sample_count": 10,
+   "confidence": "medium",
+   "scope": "任意",
+   "exceptions": [
+    "#5 #38 #45 #46 #52 #2 背景中没有纸牌"
+   ],
+   "validation": {
+    "method": "OCR",
+    "criterion": "如使用，字样为用户自己的定位词"
+   }
+  },
+  {
+   "id": "visual.top_title",
+   "dimension": "visual",
+   "observation": "顶部常驻两行大标题（顶边 2.7–7.3%，单行字高约 4.9–7.8%）：粗斜黑体，一行浅黄 #FAFA92 / 亮黄 #F6E714（偶用正红 #DB0006），另一行白 #FCFCFB，均为近黑粗描边；从第 0 秒起至少保留到 24 秒，中位 106 秒。",
+   "instruction": "片头即出现两行标题：强调行黄（或红），另一行白，粗描边；至少保留过开场与报条件阶段。按发布平台安全区下移，不贴顶。",
+   "strength": "required",
+   "evidence_ids": [
+    "E138",
+    "E139",
+    "E140",
+    "E141",
+    "E142",
+    "E143",
+    "E144",
+    "E145",
+    "E146"
+   ],
+   "support_sample_ids": [
+    "6ab0c32b0000000031015bb3",
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 9,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "9 条有片内标题",
+   "exceptions": [
+    "#2 片内无标题"
+   ],
+   "validation": {
+    "method": "OCR every 2 s + pixel clusters",
+    "criterion": "t=0 起顶部可读到两行标题，颜色与描边符合"
+   }
+  },
+  {
+   "id": "visual.guest_card",
+   "dimension": "visual",
+   "observation": "可选资料卡：报完条件后在左上弹出“男生情况”，黄色标题 + 白色宋体逐行列出年龄身高、户籍、工作、存款、房产、资产位数、学历经历，约 10 秒，期间顶部标题让位。",
+   "instruction": "个案信息多于 5 项时，可在报条件结束后弹出 8–12 秒的资料卡，每行一个属性，只写对方本人说过的信息。",
+   "strength": "optional",
+   "evidence_ids": [
+    "E147",
+    "E148"
+   ],
+   "support_sample_ids": [
+    "6aeaea070000000003004b42"
+   ],
+   "support_count": 1,
+   "eligible_sample_count": 7,
+   "confidence": "medium",
+   "scope": "连麦个案",
+   "exceptions": [
+    "其余 6 条连麦个案未用资料卡"
+   ],
+   "validation": {
+    "method": "OCR",
+    "criterion": "卡片内容全部能在对话里找到出处"
+   }
+  },
+  {
+   "id": "visual.cover",
+   "dimension": "visual",
+   "observation": "封面取一帧说话中的直播画面，把同一组双行标题放大压在胸口（约 55–65% 高度），保留右下连麦窗；黄色行里可单独把一个词改红（如“护士”）。",
+   "instruction": "封面复用片内标题文字，放大到胸口位置；只突出一个关键词；在 3:4 缩略图下检查可读性。",
+   "strength": "preferred",
+   "evidence_ids": [
+    "E149",
+    "E150",
+    "E151",
+    "E152",
+    "E153",
+    "E154",
+    "E155",
+    "E156",
+    "E157"
+   ],
+   "support_sample_ids": [
+    "6ab0c32b0000000031015bb3",
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 9,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "现行模板",
+   "exceptions": [
+    "#2 封面为单行绿色“择偶定位咨询”"
+   ],
+   "validation": {
+    "method": "cover inspection (local)",
+    "criterion": "缩略图尺寸下两行标题可读"
+   }
+  },
+  {
+   "id": "subtitles.single_serif_line",
+   "dimension": "subtitles",
+   "observation": "字幕是单行白色粗宋体 + 深色描边，水平居中，顶边固定在画面高度约 76.6%，字框高约 2.9%；每行中位 10 字（p90 约 14）；覆盖约 92% 时长；没有彩色关键词强调。",
+   "instruction": "全程单行字幕，白色粗宋体加深色描边，居中放在约 76–77% 高度；每行 6–14 字；不做彩色高亮。",
+   "strength": "required",
+   "evidence_ids": [
+    "E158",
+    "E159",
+    "E160",
+    "E161",
+    "E162",
+    "E163",
+    "E164",
+    "E165",
+    "E166",
+    "E167",
+    "E168"
+   ],
+   "support_sample_ids": [
+    "6904a6db0000000003010bb2",
+    "6ab0c32b0000000031015bb3",
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 10,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "全部子类型",
+   "exceptions": [],
+   "validation": {
+    "method": "OCR every 2 s + pixel scan",
+    "criterion": "每帧最多一行字幕；无黄/红像素块"
+   }
+  },
+  {
+   "id": "editing_audio.color_bar_separator",
+   "dimension": "editing_audio",
+   "observation": "前置高光结束处插入约 0.75–1 秒的全屏电视彩条，同时响 1 kHz 测试音（RMS 约 -5 dBFS，比人声响约 16 dB）；标题与连麦窗压在彩条上方。彩条也用来拼接另一场录像。",
+   "instruction": "前置高光后放 0.75–1 秒彩条 + 1 kHz 提示音作为分隔；提示音比人声高约 8–10 dB 即可，True Peak 不高于 -1 dBTP。",
+   "strength": "required",
+   "evidence_ids": [
+    "E169",
+    "E170",
+    "E171",
+    "E172",
+    "E173",
+    "E174",
+    "E175",
+    "E176",
+    "E177"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 8,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "现行模板",
+   "exceptions": [
+    "#2 #52 无彩条"
+   ],
+   "validation": {
+    "method": "spectral beep scan + frames",
+    "criterion": "分隔处 980–1020 Hz 能量占主导且画面为彩条"
+   }
+  },
+  {
+   "id": "editing_audio.long_takes",
+   "dimension": "editing_audio",
+   "observation": "基本是直播长镜头：硬切中位 1.76 次/分钟，检测片段中位 11.9 秒；剪辑只用来跳过无关段，不加 B-roll、不做推拉。",
+   "instruction": "保留连麦的连续性，只做删减式跳剪；不插入素材、不做缩放特效。",
+   "strength": "required",
+   "evidence_ids": [
+    "E178",
+    "E179",
+    "E180",
+    "E181",
+    "E182",
+    "E183",
+    "E184",
+    "E185",
+    "E186"
+   ],
+   "support_sample_ids": [
+    "6ab0c32b0000000031015bb3",
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 9,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "现行模板",
+   "exceptions": [
+    "#2 引流片有推拉缩放与打字机字幕（23 个切点）"
+   ],
+   "validation": {
+    "method": "FFmpeg scene detection",
+    "criterion": "硬切 ≤ 4 次/分钟，无 B-roll"
+   }
+  },
+  {
+   "id": "editing_audio.no_bgm_raw_level",
+   "dimension": "editing_audio",
+   "observation": "主体没有连续配乐（静音窗占 3.6–20%），响度未做标准化（中位 -22.7 LUFS，True Peak 最高 +3.3 dBTP）。",
+   "instruction": "正片不加 BGM；成片按平台标准做响度（默认 -16 LUFS、True Peak ≤ -1 dBTP），这是对原片的有意偏离。",
+   "strength": "required",
+   "evidence_ids": [
+    "E187",
+    "E188",
+    "E189",
+    "E190",
+    "E191",
+    "E192",
+    "E193",
+    "E194",
+    "E195"
+   ],
+   "support_sample_ids": [
+    "6ab0c32b0000000031015bb3",
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 9,
+   "eligible_sample_count": 10,
+   "confidence": "high",
+   "scope": "除 #2",
+   "exceptions": [
+    "#2 静音为 0，疑似全程配乐（未经听审确认）"
+   ],
+   "validation": {
+    "method": "FFmpeg silencedetect/loudnorm",
+    "criterion": "正片无持续音乐床；母带达到目标响度"
+   }
+  },
+  {
+   "id": "coupling.title_from_dialogue",
+   "dimension": "coupling",
+   "observation": "标题直接取自对话：个案题用来访者的条件与诉求，判词题用“主播：…”，观点题用挂断后的泛化结论；措辞几乎原样。",
+   "instruction": "先完成对话，再从“条件+诉求”或泛化结论里摘标题，不写对话里没有的判断。",
+   "strength": "required",
+   "evidence_ids": [
+    "E196",
+    "E197",
+    "E198",
+    "E199",
+    "E200",
+    "E201",
+    "E202",
+    "E203",
+    "E204"
+   ],
+   "support_sample_ids": [
+    "6ab0c32b0000000031015bb3",
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 9,
+   "eligible_sample_count": 9,
+   "confidence": "high",
+   "scope": "除 #2 服务介绍",
+   "exceptions": [],
+   "validation": {
+    "method": "title vs transcript match",
+    "criterion": "标题核心词能在对话中找到"
+   }
+  },
+  {
+   "id": "coupling.subtitles_cover_both_voices",
+   "dimension": "coupling",
+   "observation": "字幕同时覆盖主播与连麦来访者，不分颜色、不标说话人；来访者的自述也逐句上字。",
+   "instruction": "两个声音用同一套字幕样式；靠画面（主播是否开口）与内容区分说话人。",
+   "strength": "required",
+   "evidence_ids": [
+    "E205",
+    "E206",
+    "E207",
+    "E208",
+    "E209",
+    "E210",
+    "E211"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 7,
+   "eligible_sample_count": 7,
+   "confidence": "high",
+   "scope": "连麦个案",
+   "exceptions": [],
+   "validation": {
+    "method": "OCR",
+    "criterion": "来访者发言时段字幕覆盖率与主播相当"
+   }
+  },
+  {
+   "id": "coupling.overlay_sequence",
+   "dimension": "coupling",
+   "observation": "包装元素按固定顺序：0 秒标题 + 连麦窗 → 前置高光 → 彩条与提示音（标题不撤）→ 来访者开口 →（可选）资料卡替换标题 → 标题在中段某个剪口撤下。",
+   "instruction": "同一时间线上安排：标题与高光同起，分隔符压在高光尾，资料卡跟在报条件之后，标题在报条件结束后的剪口撤下。",
+   "strength": "preferred",
+   "evidence_ids": [
+    "E212",
+    "E213",
+    "E214",
+    "E215",
+    "E216",
+    "E217",
+    "E218",
+    "E219"
+   ],
+   "support_sample_ids": [
+    "6ab60910000000000a027390",
+    "6abf841f00000000140384ea",
+    "6ac8b5ce0000000018012b56",
+    "6addae590000000024036d20",
+    "6ae99fad000000000e02f645",
+    "6aeaea070000000003004b42",
+    "6aec42f600000000030021b1",
+    "6aed8b4e000000000901019f"
+   ],
+   "support_count": 8,
+   "eligible_sample_count": 8,
+   "confidence": "medium",
+   "scope": "现行模板",
+   "exceptions": [
+    "标题撤下时间差异大（24–210 s）"
+   ],
+   "validation": {
+    "method": "OCR timeline",
+    "criterion": "同一时间线文件生成所有叠加元素"
+   }
+  }
+ ],
+ "metrics": {
+  "duration_seconds": {
+   "units": "seconds",
+   "sample_count": 10,
+   "p10": 166.052,
+   "median": 332.115,
+   "p90": 448.273,
+   "min": 102.8,
+   "max": 529.48,
+   "method": "FFprobe, 10 training files"
+  },
+  "speech_density_han_per_min": {
+   "units": "Han characters per minute",
+   "sample_count": 10,
+   "p10": 371.863,
+   "median": 379.626,
+   "p90": 408.419,
+   "min": 367.264,
+   "max": 437.844,
+   "method": "Whisper large-v3 full text / full duration; includes both speakers and pauses; ASR omissions undercount"
+  },
+  "cold_open_seconds": {
+   "units": "seconds",
+   "sample_count": 8,
+   "p10": 7.525,
+   "median": 10.875,
+   "p90": 16.7,
+   "min": 7.0,
+   "max": 17.75,
+   "method": "1 kHz separator onset (beep scan), samples that have the device (8/10)"
+  },
+  "title_visible_until_seconds": {
+   "units": "seconds",
+   "sample_count": 9,
+   "p10": 28.8,
+   "median": 106.0,
+   "p90": 179.6,
+   "min": 24,
+   "max": 210,
+   "method": "OCR every 2 s, top zone, continuous presence from t=0 (9/10 with in-video title)"
+  },
+  "title_visible_fraction": {
+   "units": "fraction of duration",
+   "sample_count": 9,
+   "p10": 0.077,
+   "median": 0.254,
+   "p90": 0.656,
+   "min": 0.071,
+   "max": 0.994,
+   "method": "same as above"
+  },
+  "subtitle_chars_per_line_median": {
+   "units": "characters",
+   "sample_count": 10,
+   "p10": 9.9,
+   "median": 10.0,
+   "p90": 11.0,
+   "min": 9,
+   "max": 11.0,
+   "method": "OCR subtitle-zone boxes, per-sample median"
+  },
+  "subtitle_frame_coverage": {
+   "units": "fraction of 2 s frames with a subtitle",
+   "sample_count": 10,
+   "p10": 0.843,
+   "median": 0.921,
+   "p90": 0.966,
+   "min": 0.686,
+   "max": 0.971,
+   "method": "OCR subtitle zone"
+  },
+  "subtitle_box_height_frac": {
+   "units": "fraction of frame height",
+   "sample_count": 10,
+   "p10": 0.028,
+   "median": 0.029,
+   "p90": 0.033,
+   "min": 0.028,
+   "max": 0.033,
+   "method": "Vision OCR bounding boxes (glyph box incl. outline)"
+  },
+  "subtitle_box_top_frac": {
+   "units": "fraction of frame height from top",
+   "sample_count": 10,
+   "p10": 0.764,
+   "median": 0.766,
+   "p90": 0.767,
+   "min": 0.764,
+   "max": 0.767,
+   "method": "Vision OCR bounding boxes"
+  },
+  "integrated_lufs": {
+   "units": "LUFS",
+   "sample_count": 10,
+   "p10": -25.359,
+   "median": -22.65,
+   "p90": -17.055,
+   "min": -28.32,
+   "max": -11.7,
+   "method": "FFmpeg loudnorm analysis, whole file"
+  },
+  "true_peak_dbtp": {
+   "units": "dBTP",
+   "sample_count": 10,
+   "p10": -4.008,
+   "median": -1.435,
+   "p90": 1.086,
+   "min": -9.12,
+   "max": 3.3,
+   "method": "FFmpeg loudnorm analysis, whole file"
+  },
+  "silence_fraction": {
+   "units": "fraction of duration below -35 dB for >=0.2 s",
+   "sample_count": 10,
+   "p10": 0.036,
+   "median": 0.159,
+   "p90": 0.198,
+   "min": 0.0,
+   "max": 0.202,
+   "method": "FFmpeg silencedetect on mixed track; not VAD"
+  },
+  "detected_segment_median_seconds": {
+   "units": "seconds",
+   "sample_count": 10,
+   "p10": 7.168,
+   "median": 11.933,
+   "p90": 40.293,
+   "min": 3.283,
+   "max": 51.633,
+   "method": "FFmpeg scene>0.23 at 320 px; misses soft jump cuts"
+  },
+  "hard_cuts_per_minute": {
+   "units": "cuts per minute",
+   "sample_count": 10,
+   "p10": 1.087,
+   "median": 1.76,
+   "p90": 4.211,
+   "min": 0.453,
+   "max": 13.424,
+   "method": "same as above"
+  }
+ },
+ "narrative_templates": [
+  {
+   "id": "call_in_positioning",
+   "applies_to": "连麦个案（求定位）",
+   "source_ranks": [
+    5,
+    9,
+    11,
+    12,
+    38,
+    45,
+    46
+   ],
+   "stages": [
+    {
+     "role": "cold_open",
+     "share": 0.03,
+     "seconds": "7–18"
+    },
+    {
+     "role": "separator",
+     "seconds": "0.75–1.0"
+    },
+    {
+     "role": "ask_and_intake",
+     "share": 0.12
+    },
+    {
+     "role": "rapid_probing",
+     "share": 0.2
+    },
+    {
+     "role": "restate_and_reframe",
+     "share": 0.28
+    },
+    {
+     "role": "attainable_profile_and_tradeoff",
+     "share": 0.22
+    },
+    {
+     "role": "close",
+     "share": 0.03
+    },
+    {
+     "role": "post_call_generalization",
+     "share": 0.1,
+     "optional": true
+    }
+   ],
+   "note": "比例来自 7 条个案的人工阶段标注（per-video-analysis.json），是编辑建议，不是每条原片的精确比例。"
+  },
+  {
+   "id": "case_to_viewpoint",
+   "applies_to": "用个案的泛化结论做标题的观点题",
+   "source_ranks": [
+    5,
+    12
+   ],
+   "stages": [
+    {
+     "role": "cold_open",
+     "share": 0.03
+    },
+    {
+     "role": "call_in_positioning_body",
+     "share": 0.82
+    },
+    {
+     "role": "post_call_generalization",
+     "share": 0.15
+    }
+   ]
+  },
+  {
+   "id": "solo_numbered_answer",
+   "applies_to": "念观众提问后编号作答",
+   "source_ranks": [
+    52
+   ],
+   "stages": [
+    {
+     "role": "question",
+     "share": 0.02
+    },
+    {
+     "role": "numbered_points",
+     "share": 0.9
+    },
+    {
+     "role": "reflective_close",
+     "share": 0.08
+    }
+   ]
+  },
+  {
+   "id": "solo_mechanism",
+   "applies_to": "单人讲机制",
+   "source_ranks": [
+    4
+   ],
+   "stages": [
+    {
+     "role": "cold_open",
+     "share": 0.07
+    },
+    {
+     "role": "rhetorical_question",
+     "share": 0.03
+    },
+    {
+     "role": "mechanism",
+     "share": 0.6
+    },
+    {
+     "role": "exception",
+     "share": 0.1
+    },
+    {
+     "role": "conclusion",
+     "share": 0.2
+    }
+   ]
+  },
+  {
+   "id": "service_intro",
+   "applies_to": "置顶服务介绍（仅结构）",
+   "source_ranks": [
+    2
+   ],
+   "stages": [
+    {
+     "role": "ratio_hook",
+     "share": 0.06
+    },
+    {
+     "role": "identity",
+     "share": 0.12
+    },
+    {
+     "role": "contrast",
+     "share": 0.1
+    },
+    {
+     "role": "numbered_problems",
+     "share": 0.62
+    },
+    {
+     "role": "soft_cta",
+     "share": 0.1
+    }
+   ],
+   "note": "身份、服务、案例数属于原作者，只能换成用户自己的已核实信息。"
+  }
+ ],
+ "layout_templates": [
+  {
+   "id": "live_callin_9x16",
+   "aspect_ratio": "9:16",
+   "source_ranks": [
+    4,
+    5,
+    9,
+    11,
+    12,
+    38,
+    45,
+    46
+   ],
+   "coordinates": "top-left normalized; source pixel positions, before platform safe-area adjustment",
+   "host": "胸部以上居中，脸在 0.25–0.45 高度",
+   "call_in_window": {
+    "x": 0.8,
+    "y": 0.752,
+    "w": 0.174,
+    "h": 0.148,
+    "fill": "#3A3F47",
+    "radius": "约 2% 宽"
+   },
+   "title": {
+    "top": 0.027,
+    "line_height": 0.063,
+    "lines": 2,
+    "font": "heavy italic sans (exact font unknown)",
+    "emphasis_fill": [
+     "#FAFA92",
+     "#F6E714",
+     "#DB0006"
+    ],
+    "plain_fill": "#FCFCFB",
+    "stroke": "#0A0602"
+   },
+   "subtitle": {
+    "top": 0.766,
+    "box_height": 0.029,
+    "font": "bold serif / Song-style (exact font unknown)",
+    "fill": "#F5F3F1",
+    "stroke": "#0D0807",
+    "max_lines": 1
+   },
+   "card": {
+    "x": 0.05,
+    "y": 0.03,
+    "header_fill": "#FFE33A",
+    "body_fill": "#FFFFFF",
+    "font": "serif",
+    "optional": true
+   },
+   "separator": {
+    "type": "SMPTE-like color bars",
+    "seconds": "0.75–1.0",
+    "tone_hz": 1000
+   }
+  },
+  {
+   "id": "solo_live_9x16",
+   "aspect_ratio": "9:16",
+   "source_ranks": [
+    4,
+    52
+   ],
+   "host": "同 live_callin_9x16",
+   "call_in_window": null,
+   "title": "同 live_callin_9x16（#52 早期版本标题只保留约 36 s）",
+   "subtitle": "同 live_callin_9x16"
+  },
+  {
+   "id": "selfie_intro_9x16",
+   "aspect_ratio": "9:16",
+   "source_ranks": [
+    2
+   ],
+   "host": "自拍大近景，带推拉缩放（黑边缩小）",
+   "subtitle": "居中单行白色宋体，打字机逐字出现",
+   "title": null,
+   "note": "仅服务介绍片使用"
+  },
+  {
+   "id": "cover_3x4",
+   "aspect_ratio": "3:4",
+   "source_ranks": [
+    45,
+    9,
+    11,
+    46,
+    12,
+    38,
+    4,
+    5,
+    52
+   ],
+   "title": {
+    "center_y": 0.6,
+    "lines": 2
+   },
+   "keeps_call_in_window": true
+  }
+ ],
+ "audio_visual_triggers": [
+  {
+   "trigger": "前置高光的最后一个完整句结束",
+   "action": "彩条 + 1 kHz 提示音 0.75–1 秒，标题与连麦窗保持在上层",
+   "rule_id": "editing_audio.color_bar_separator"
+  },
+  {
+   "trigger": "来访者报完 5 项以上条件",
+   "action": "（可选）左上资料卡 8–12 秒，顶部标题让位",
+   "rule_id": "visual.guest_card"
+  },
+  {
+   "trigger": "任一说话人开口",
+   "action": "同一样式的单行字幕",
+   "rule_id": "coupling.subtitles_cover_both_voices"
+  },
+  {
+   "trigger": "主播下判词或给出画像",
+   "action": "保持主播近景，不切素材、不加花字",
+   "rule_id": "editing_audio.long_takes"
+  }
+ ],
+ "guardrails": [
+  "No impersonation of 晓暖 or her brand: no name, avatar, “择偶定位”纸牌, “晓暖定位” tag, service claims or case counts",
+  "No reuse of source footage, face, voice, subtitles or covers in new work",
+  "Real call-in guests need recorded consent for publication; show avatar only, no full name, employer or traceable details",
+  "Sensitive facts (income, assets, divorce, deaths in family, health) only with the guest’s explicit consent",
+  "Fictional demos must be labeled; never present a constructed caller as real",
+  "Do not carry over gender/occupation stereotypes from the source as facts; market claims need data or must be framed as opinion",
+  "Blunt verdicts target choices and market fit, not personality diagnoses (“表演型的人” is not transferred)",
+  "Source loudness and +3 dBTP overs are not a mastering target; the 1 kHz tone is kept below -1 dBTP"
+ ],
+ "limits": [
+  {
+   "id": "asr",
+   "dimension": "language/delivery",
+   "detail": "Whisper large-v3 local ASR (Tingwu offline script unavailable on this machine on 2026-11-08); proper nouns and some words are misheard (e.g. 择偶定位→左右定位, 婚恋市场→互联市场, 上嫁→上架). Quotes are kept verbatim from ASR."
+  },
+  {
+   "id": "speaker_attribution",
+   "dimension": "narrative/delivery",
+   "detail": "No diarization. Speaker roles were assigned by reading; an acoustic 4–7.5 kHz energy heuristic is only a hint (separation 9–23 dB)."
+  },
+  {
+   "id": "visual_sampling",
+   "dimension": "visual/subtitles",
+   "detail": "OCR on one frame every 2 s; 12 frames per sample plus targeted frames were inspected. Exact fonts, editing software and project settings are unknown."
+  },
+  {
+   "id": "audio_perception",
+   "dimension": "editing_audio",
+   "detail": "No human listening review. BGM absence is inferred from silence windows; the promo #2 music is suspected, not confirmed."
+  },
+  {
+   "id": "era",
+   "dimension": "all",
+   "detail": "Profile covers the current format (2026-09-18 → 2026-11-06). Earlier “清醒择偶锐评：江浙沪” packaging is out of scope."
+  },
+  {
+   "id": "engagement",
+   "dimension": "coupling",
+   "detail": "Call-in case titles drew more comments (47–350) than viewpoint titles (1–11) in this sample; correlation only, 12 posts."
+  },
+  {
+   "id": "human_acceptance",
+   "dimension": "all",
+   "detail": "No human blind test; automated checks and host review are reported separately."
+  }
+ ],
+ "provenance": {
+  "sample_date": "2026-11-08",
+  "training_count": 10,
+  "holdout_count": 2,
+  "download": "lov-media-crawler direct-URL path, 12 verified reports (research/download-reports)",
+  "asr_provider": "mlx-whisper large-v3, local",
+  "text_annotation": "host read all 10 training transcripts in full; stage boundaries in per-video-analysis.json",
+  "visual_annotation": "Vision OCR every 2 s on all samples; host inspected contact sheets, cut-pair frames, covers",
+  "numerical_measurements": "FFprobe; FFmpeg scene/silence/loudnorm; 1 kHz beep scan; OCR geometry and pixel colours",
+  "holdout_contamination": "Holdout numbers appeared in batch logs (beep times, OCR stats) before the freeze; holdout transcripts and frames were not read. The separator rule therefore cannot be independently validated on holdout.",
+  "models": "No external model API was called for analysis."
+ }
+}

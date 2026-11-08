@@ -1,0 +1,132 @@
+{
+ "case": "yiqimao-demo",
+ "profile_version": "0.1.0",
+ "status": "rendered_review",
+ "deliverables": {
+  "video": "deliverables/手工川-晓暖风格复刻演示-2026-11-08-v0.1.mp4",
+  "video_sha256": "fceb64ba9282d262e20d7e8fcff2539287bda23fd76190385e9f541cf4ada9ae",
+  "cover_3x4": "deliverables/手工川-晓暖风格复刻演示封面3x4-2026-11-08-v0.1.png"
+ },
+ "deterministic_validation": {
+  "status": "passed",
+  "duration_seconds": 72.5,
+  "sections": 5,
+  "spoken_units": 376,
+  "dialogue_units_per_min": 314.5,
+  "checks": [
+   {
+    "section": "S1",
+    "role": "cold_open",
+    "units": 70,
+    "seconds": 10.3
+   },
+   {
+    "section": "S2",
+    "role": "separator",
+    "units": 0,
+    "seconds": 0.767
+   },
+   {
+    "section": "S3",
+    "role": "ask",
+    "units": 32,
+    "seconds": 6.4
+   },
+   {
+    "section": "S4",
+    "role": "intake",
+    "units": 141,
+    "seconds": 31.5
+   },
+   {
+    "section": "S5",
+    "role": "reframe",
+    "units": 133,
+    "seconds": 23.533
+   }
+  ],
+  "render_status": "rendered_review",
+  "guest_consent": "pending",
+  "human_style_review": "not implied by deterministic validation"
+ },
+ "render_qc": {
+  "streams": "H.264 1080x1920 30fps + AAC 48 kHz stereo; container 72.55 s (video 72.5 s)",
+  "loudness": {
+   "integrated_lufs": -15.7,
+   "true_peak_dbtp": -4.4,
+   "lra_lu": 2.5,
+   "target": "-16 LUFS / ≤ -1 dBTP"
+  },
+  "separator_tone": {
+   "window_s": [
+    10.35,
+    11.0
+   ],
+   "peak_hz": 1000,
+   "rms_dbfs": -6.9,
+   "speech_rms_dbfs": -15.9
+  },
+  "black_frames_over_0_3s": 0,
+  "silences_over_1s_below_-45dB": 0,
+  "retranscription": {
+   "model": "mlx-whisper large-v3 (local)",
+   "file": "work/qc/final/retranscribe.json",
+   "cold_open_tail": "“我这是真躺平”在 10.14 s 结束，彩条 10.30 s 开始（ASR 把“躺平”听成“谈品”，与原工程台账记录一致）",
+   "after_separator": "11.10 s 起“最近比较热门的一个话题”，完整",
+   "ending": "“你会失去所有的钱”在 72.36 s 结束"
+  },
+  "frames": [
+   "work/qc/demo-stills-v0.1.jpg",
+   "work/qc/title-fix.jpg",
+   "work/qc/card-cover.jpg",
+   "work/qc/final/contact-every6s.jpg"
+  ]
+ },
+ "semantic_review": [
+  {
+   "check": "标题能在对话里找到",
+   "result": "pass",
+   "note": "“考研还考了五次”“见了那么多投资人”“我这是真躺平”均为原话"
+  },
+  {
+   "check": "资料卡只写事实台账里已核实的信息",
+   "result": "pass",
+   "note": "F1–F4、F6，来源见 brief.json"
+  },
+  {
+   "check": "前置高光在正片中有原位",
+   "result": "not_applicable",
+   "note": "演示只截取前 72.5 s，高光原位在原片 27–28 分钟处，未进入本片"
+  },
+  {
+   "check": "未冒充原作者、未使用她的素材与品牌",
+   "result": "pass",
+   "note": "通用卡通头像；无“择偶定位”字样"
+  },
+  {
+   "check": "格式与晓暖连麦切片的差异",
+   "result": "noted",
+   "note": "本片出镜者是被提问方而非咨询者，内容不是定位咨询；它只演示包装模板"
+  }
+ ],
+ "intentional_deviations": [
+  "标题顶边放在 y=170 px（原作约 3%≈58 px），避开视频号顶部 160 px 禁入区",
+  "连麦窗下沿抬到 1660 px 以上（原作约 90%≈1728 px），避开底部 260 px",
+  "响度标准化到 -16 LUFS、True Peak ≤ -1.5 dBTP（原作中位 -22.7 LUFS 且有 +3.3 dBTP 过载）",
+  "提示音只比人声高约 9 dB（原作约 16 dB）",
+  "角色对调：出镜的是被提问的一方，资料卡写的是出镜者本人",
+  "字体为近似替代：标题得意黑 Smiley Sans Oblique，字幕与资料卡为系统宋体 Songti SC",
+  "提问段画面沿用原剪辑的虚化主播画面"
+ ],
+ "known_issues": [
+  "开头约 1.5 s 与提问段为原片虚化画面",
+  "17.4 s 处音频含原片剪口残留的半句“那时候”，字幕未包含",
+  "对话密度 315 字/分钟，低于样本 367–438（原素材语速与剪辑节奏决定）"
+ ],
+ "not_verified": [
+  "人工听审",
+  "人工风格盲评",
+  "视频号/小红书真机安全区预览",
+  "易七猫对重剪版的发布同意"
+ ]
+}

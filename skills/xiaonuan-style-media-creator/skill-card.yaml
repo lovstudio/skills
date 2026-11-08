@@ -1,0 +1,109 @@
+schema: lovstudio/skill-card/v1
+version: 0.1.0
+description: 晓暖说媒风格短视频：带时间证据的直播连麦切片风格协议、剪辑计划校验与可渲染的包装模板。
+owner:
+  team: Local skill contributors
+  contact: 本地维护者，通过宿主会话反馈；未创建公开支持渠道
+license:
+  name: MIT
+  terms: 代码、原创协议与模板 MIT；原视频、人像、声音、台词、截图、封面与品牌标识权利不转授，包内不含这些素材。
+  url: LICENSE
+use_case:
+  audience: 想用连麦定位切片形式做内容、且拥有自己录像与来访者授权的创作者及 AI 工作流
+  scenario: 从参考风格到新选题或连麦录像的剪辑计划与包装成片，保留证据与授权边界
+  tasks:
+  - 提取并维护八维风格画像
+  - 选择叙事变体并写剪辑计划
+  - 校验时间线、字幕、事实与授权
+  - 用模板渲染切片与 3:4 封面
+deployment:
+  geography: local-first
+  environments:
+  - 兼容 AGENTS/Skills 的本地 AI 宿主
+requirements:
+  credentials: 日常生成不需固定云账号；重分析服务的凭据只从进程环境读取
+  dependencies:
+  - lov-branding-consistency
+  runtime:
+  - Python 3.9+ with jsonschema and PyYAML
+  - FFmpeg and numpy for audio
+  - Node.js and Remotion 4.0.517 for rendering
+  - optional OpenCV, Pillow, librosa, swiftc for reanalysis
+risks:
+- risk: 冒充原作者或挪用她的素材、品牌与服务话术
+  mitigation: 包内不含原素材；禁止使用她的名字、头像、纸牌字样与案例数；来访者只用自己的头像
+- risk: 把原作中的市场判断与性别、职业刻板说法当事实迁移
+  mitigation: 规则只记修辞与结构；新稿的市场断言需数据或标明是个人判断，判断落在选择而非人格
+- risk: 公开真实来访者的敏感信息
+  mitigation: brief 记录书面同意状态；收入、资产、婚育、家庭变故只在明确同意下上屏，不写入 Profile
+- risk: 把自动校验或单片演示当成风格认可或已发布
+  mitigation: 区分 prepared、validated、rendered_review、human_approved、published；不编造相似度分数
+references:
+- title: Skill instructions
+  path: SKILL.md
+- title: Style profile
+  path: assets/xiaonuan-v0.1/style-profile.json
+- title: Holdout report
+  path: assets/xiaonuan-v0.1/holdout-report.json
+output:
+  types:
+  - style profile
+  - script
+  - edit plan
+  - render data
+  - rendered clip and cover
+  - review
+  formats:
+  - JSON
+  - JSONL
+  - Markdown
+  - MP4
+  - PNG
+  parameters:
+  - 选题或连麦录像
+  - 事实来源与来访者授权状态
+  - 目标时长与平台
+  validation:
+  - Schema 与交叉引用
+  - 时间线、分隔、字幕、标题与资料卡顺序
+  - 成片重转写、响度、提示音与抽帧质检
+  description: 剪辑计划与模板不等于已发布成片；演示片为内部预览。
+ethical_considerations: 不冒充作者，不复用她的素材与品牌，不捏造来访者或亲历，不把刻板印象与市场臆断当事实，未经同意不公开来访者信息，不自动发布。
+dimensions:
+- id: traceability
+  label: 证据可追溯
+  description: 规则引用训练样本的真实时间码与测量文件，支持数与分母可重算
+  evidence: assets/xiaonuan-v0.1/evidence.jsonl
+  score: null
+- id: executability
+  label: 计划可执行
+  description: 剪辑计划可被校验并转成渲染数据，模板能复现演示画面
+  evidence: cases/yiqimao-demo/style-review.json
+  score: null
+- id: generalization
+  label: 留出与例外
+  description: 2 条留出样本在画像冻结后检验，记录未中项与 v0.2 候选
+  evidence: assets/xiaonuan-v0.1/holdout-report.json
+  score: null
+- id: production
+  label: 出片质检
+  description: 演示成片的响度、峰值、提示音、黑场静音与重转写剪口检查
+  evidence: cases/yiqimao-demo/style-review.json
+  score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 本地交付可移植的风格协议、校验脚本与包装模板，不收取 Skill 使用费。
+  boundary: 外部模型、ASR、拍摄、来访者授权、字体授权、渲染算力及发布费用不包含。
+  review_trigger: 改变交付范围或提供商业服务时重新评估，当前不做付费发布。
+  confidence: internal
+distribution:
+  paid: []
+  free: []
+  channels:
+    github: not_requested
+    lovstudio: not_requested
+    workbuddy: not_requested
+    skillpay: not_requested
+  local: installed after verification

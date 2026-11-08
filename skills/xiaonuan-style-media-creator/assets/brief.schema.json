@@ -1,0 +1,143 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "xiaonuan brief.schema.json",
+ "type": "object",
+ "properties": {
+  "topic": {
+   "type": "string"
+  },
+  "audience": {
+   "type": "string"
+  },
+  "format": {
+   "enum": [
+    "call_in",
+    "solo_numbered",
+    "solo_mechanism"
+   ]
+  },
+  "duration_seconds": {
+   "type": "number",
+   "minimum": 15,
+   "maximum": 3600
+  },
+  "scenario_type": {
+   "enum": [
+    "factual",
+    "fictional_demo",
+    "reframed_recording"
+   ]
+  },
+  "facts": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "text": {
+      "type": "string"
+     },
+     "source": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "text",
+     "source"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "host_identity": {
+   "enum": [
+    "own",
+    "authorized"
+   ]
+  },
+  "guest": {
+   "type": "object",
+   "properties": {
+    "role": {
+     "type": "string"
+    },
+    "consent": {
+     "enum": [
+      "recorded",
+      "pending",
+      "not_applicable"
+     ]
+    },
+    "display": {
+     "enum": [
+      "avatar",
+      "none"
+     ]
+    }
+   },
+   "required": [
+    "role",
+    "consent",
+    "display"
+   ],
+   "additionalProperties": false
+  },
+  "available_assets": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "type": {
+      "type": "string"
+     },
+     "path": {
+      "type": "string"
+     },
+     "rights": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "type",
+     "path",
+     "rights"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "platforms": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "cta": {
+   "enum": [
+    "none",
+    "followup",
+    "service"
+   ]
+  }
+ },
+ "required": [
+  "topic",
+  "audience",
+  "format",
+  "duration_seconds",
+  "scenario_type",
+  "facts",
+  "host_identity",
+  "guest",
+  "available_assets",
+  "platforms",
+  "cta"
+ ],
+ "additionalProperties": false
+}

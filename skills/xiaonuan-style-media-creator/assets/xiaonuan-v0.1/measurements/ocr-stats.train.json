@@ -1,0 +1,275 @@
+{
+ "6904a6db0000000003010bb2": {
+  "rank": 2,
+  "duration": 102.8,
+  "frames": 51,
+  "title_lines": [],
+  "title_height_frac": null,
+  "title_top_y": null,
+  "title_visible_until_s": 0,
+  "title_visible_frac_of_duration": 0,
+  "subtitle_frame_ratio": 0.686,
+  "subtitle_chars_median": 10,
+  "subtitle_chars_p90": 15,
+  "subtitle_height_frac_median": 0.0281,
+  "subtitle_y_median": 0.7672,
+  "subtitle_lines_per_frame_max": 1,
+  "card_times": [],
+  "card_text_example": []
+ },
+ "6aec42f600000000030021b1": {
+  "rank": 4,
+  "duration": 173.1,
+  "frames": 87,
+  "title_lines": [
+   "亭收入男性为什么",
+   "不会娶低学历女生"
+  ],
+  "title_height_frac": [
+   0.0719
+  ],
+  "title_top_y": [
+   0.0734
+  ],
+  "title_visible_until_s": 172,
+  "title_visible_frac_of_duration": 1.005,
+  "subtitle_frame_ratio": 0.966,
+  "subtitle_chars_median": 11.0,
+  "subtitle_chars_p90": 14,
+  "subtitle_height_frac_median": 0.0281,
+  "subtitle_y_median": 0.7672,
+  "subtitle_lines_per_frame_max": 1,
+  "card_times": [],
+  "card_text_example": []
+ },
+ "6aed8b4e000000000901019f": {
+  "rank": 5,
+  "duration": 417.2,
+  "frames": 209,
+  "title_lines": [
+   "结姆能赦弃",
+   "生理性喜欢吗"
+  ],
+  "title_height_frac": [
+   0.0779
+  ],
+  "title_top_y": [
+   0.0471
+  ],
+  "title_visible_until_s": 106,
+  "title_visible_frac_of_duration": 0.259,
+  "subtitle_frame_ratio": 0.938,
+  "subtitle_chars_median": 10,
+  "subtitle_chars_p90": 14,
+  "subtitle_height_frac_median": 0.0281,
+  "subtitle_y_median": 0.7672,
+  "subtitle_lines_per_frame_max": 2,
+  "card_times": [],
+  "card_text_example": []
+ },
+ "6aeaea070000000003004b42": {
+  "rank": 9,
+  "duration": 335.7,
+  "frames": 168,
+  "title_lines": [
+   "38岁上海男2套屏500万",
+   "主播：性价此极低偶"
+  ],
+  "title_height_frac": [
+   0.0531
+  ],
+  "title_top_y": [
+   0.0328
+  ],
+  "title_visible_until_s": 24,
+  "title_visible_frac_of_duration": 0.077,
+  "subtitle_frame_ratio": 0.946,
+  "subtitle_chars_median": 10,
+  "subtitle_chars_p90": 13,
+  "subtitle_height_frac_median": 0.0312,
+  "subtitle_y_median": 0.7656,
+  "subtitle_lines_per_frame_max": 1,
+  "card_times": [
+   26,
+   28,
+   30,
+   32,
+   34,
+   36,
+   38,
+   40,
+   42,
+   44,
+   46,
+   48,
+   50,
+   52,
+   54,
+   56,
+   58,
+   148,
+   150
+  ],
+  "card_text_example": [
+   "男生情況",
+   "38岁 175/125斤",
+   "上海本地人",
+   "无业4年存款500万",
+   "其中父母给400万",
+   "2套静安房产",
+   "A8.2",
+   "学历985央企11年管理层",
+   "（后裸辞）"
+  ]
+ },
+ "6ae99fad000000000e02f645": {
+  "rank": 11,
+  "duration": 439.3,
+  "frames": 220,
+  "title_lines": [
+   "年薪50万很优秀吗",
+   "深圳30岁创业男生择偶"
+  ],
+  "title_height_frac": [
+   0.0485
+  ],
+  "title_top_y": [
+   0.0359
+  ],
+  "title_visible_until_s": 210,
+  "title_visible_frac_of_duration": 0.483,
+  "subtitle_frame_ratio": 0.9,
+  "subtitle_chars_median": 10,
+  "subtitle_chars_p90": 14,
+  "subtitle_height_frac_median": 0.0328,
+  "subtitle_y_median": 0.7641,
+  "subtitle_lines_per_frame_max": 2,
+  "card_times": [],
+  "card_text_example": []
+ },
+ "6addae590000000024036d20": {
+  "rank": 12,
+  "duration": 529.5,
+  "frames": 265,
+  "title_lines": [
+   "条件一般的姑娘",
+   "反而更容易找到好功象？"
+  ],
+  "title_height_frac": [
+   0.0686
+  ],
+  "title_top_y": [
+   0.0275
+  ],
+  "title_visible_until_s": 154,
+  "title_visible_frac_of_duration": 0.295,
+  "subtitle_frame_ratio": 0.86,
+  "subtitle_chars_median": 10.0,
+  "subtitle_chars_p90": 14,
+  "subtitle_height_frac_median": 0.0328,
+  "subtitle_y_median": 0.7641,
+  "subtitle_lines_per_frame_max": 1,
+  "card_times": [],
+  "card_text_example": []
+ },
+ "6ac8b5ce0000000018012b56": {
+  "rank": 38,
+  "duration": 379.9,
+  "frames": 190,
+  "title_lines": [
+   "30岁体制内女生择偶困境",
+   "甲方也态太重"
+  ],
+  "title_height_frac": [
+   0.0547
+  ],
+  "title_top_y": [
+   0.0297
+  ],
+  "title_visible_until_s": 30,
+  "title_visible_frac_of_duration": 0.084,
+  "subtitle_frame_ratio": 0.916,
+  "subtitle_chars_median": 10.0,
+  "subtitle_chars_p90": 14,
+  "subtitle_height_frac_median": 0.0312,
+  "subtitle_y_median": 0.7656,
+  "subtitle_lines_per_frame_max": 1,
+  "card_times": [],
+  "card_text_example": []
+ },
+ "6abf841f00000000140384ea": {
+  "rank": 45,
+  "duration": 301.2,
+  "frames": 151,
+  "title_lines": [
+   "83年高导年人200万男士",
+   "想找高颜 90后女生能找到吗"
+  ],
+  "title_height_frac": [
+   0.0537
+  ],
+  "title_top_y": [
+   0.0266
+  ],
+  "title_visible_until_s": 172,
+  "title_visible_frac_of_duration": 0.578,
+  "subtitle_frame_ratio": 0.927,
+  "subtitle_chars_median": 10.0,
+  "subtitle_chars_p90": 14,
+  "subtitle_height_frac_median": 0.0281,
+  "subtitle_y_median": 0.7672,
+  "subtitle_lines_per_frame_max": 2,
+  "card_times": [],
+  "card_text_example": []
+ },
+ "6ab60910000000000a027390": {
+  "rank": 46,
+  "duration": 328.5,
+  "frames": 164,
+  "title_lines": [
+   "无錫27岁外地护士女生",
+   "想找创二代几率有多大"
+  ],
+  "title_height_frac": [
+   0.0633
+  ],
+  "title_top_y": [
+   0.0359
+  ],
+  "title_visible_until_s": 34,
+  "title_visible_frac_of_duration": 0.11,
+  "subtitle_frame_ratio": 0.909,
+  "subtitle_chars_median": 9,
+  "subtitle_chars_p90": 12,
+  "subtitle_height_frac_median": 0.0297,
+  "subtitle_y_median": 0.7656,
+  "subtitle_lines_per_frame_max": 1,
+  "card_times": [],
+  "card_text_example": []
+ },
+ "6ab0c32b0000000031015bb3": {
+  "rank": 52,
+  "duration": 207.3,
+  "frames": 104,
+  "title_lines": [
+   "谈一段正常的应爱",
+   "需要具备那3点"
+  ],
+  "title_height_frac": [
+   0.0679
+  ],
+  "title_top_y": [
+   0.0297
+  ],
+  "title_visible_until_s": 36,
+  "title_visible_frac_of_duration": 0.183,
+  "subtitle_frame_ratio": 0.971,
+  "subtitle_chars_median": 11,
+  "subtitle_chars_p90": 15,
+  "subtitle_height_frac_median": 0.0281,
+  "subtitle_y_median": 0.7672,
+  "subtitle_lines_per_frame_max": 2,
+  "card_times": [],
+  "card_text_example": []
+ }
+}

@@ -1,0 +1,479 @@
+{
+ "schema_version": "0.1.0",
+ "style_id": "lov-xiaonuan-style-media-creator",
+ "profile_version": "0.1.0",
+ "topic": "易七猫对话手工川：用晓暖连麦切片的包装重剪前 72 秒",
+ "format": "call_in",
+ "duration_seconds": 72.5,
+ "aspect_ratio": "9:16",
+ "fps": 30,
+ "host_identity": "own",
+ "render_status": "rendered_review",
+ "title": {
+  "lines": [
+   {
+    "text": "考研五次 见了那么多投资人",
+    "fill": "yellow",
+    "red_words": []
+   },
+   {
+    "text": "“我这是真躺平”",
+    "fill": "white",
+    "red_words": []
+   }
+  ],
+  "start_seconds": 0,
+  "end_seconds": 17.467,
+  "fact_ids": [
+   "F1",
+   "F2",
+   "F4"
+  ]
+ },
+ "card": {
+  "header": "嘉宾情况",
+  "lines": [
+   "手工川（南川）",
+   "Lovstudio.AI 创始人",
+   "独立开发者",
+   "考研考了五次",
+   "见了那么多投资人",
+   "劝人“别创业”",
+   "自称“真躺平”"
+  ],
+  "start_seconds": 17.467,
+  "end_seconds": 28.467,
+  "fact_ids": [
+   "F1",
+   "F2",
+   "F3",
+   "F4",
+   "F6"
+  ]
+ },
+ "call_in_window": {
+  "enabled": true,
+  "avatar": "img/avatar.svg（通用卡通头像，不用提问者照片）"
+ },
+ "sections": [
+  {
+   "id": "S1",
+   "start_seconds": 0.0,
+   "end_seconds": 10.3,
+   "role": "cold_open",
+   "speaker": "host",
+   "purpose": "前置高光：反差自述（考研五次、见过投资人、劝人别创业、真躺平）",
+   "fact_ids": [
+    "F1",
+    "F2",
+    "F3",
+    "F4"
+   ],
+   "style_rule_ids": [
+    "narrative.cold_open",
+    "visual.top_title",
+    "coupling.overlay_sequence"
+   ],
+   "source": {
+    "type": "recording",
+    "ref": "mezz",
+    "in_seconds": 0.0,
+    "out_seconds": 10.1667
+   },
+   "subtitles": [
+    {
+     "start_seconds": 0.0,
+     "end_seconds": 0.97,
+     "text": "考研还考了五次"
+    },
+    {
+     "start_seconds": 0.97,
+     "end_seconds": 1.467,
+     "text": "对不对"
+    },
+    {
+     "start_seconds": 1.467,
+     "end_seconds": 2.833,
+     "text": "见了那么多投资人 对吧"
+    },
+    {
+     "start_seconds": 2.833,
+     "end_seconds": 4.363,
+     "text": "所以我对很多人说"
+    },
+    {
+     "start_seconds": 4.363,
+     "end_seconds": 5.543,
+     "text": "我说你别创业对吧"
+    },
+    {
+     "start_seconds": 5.543,
+     "end_seconds": 7.0,
+     "text": "我觉得创业确实不是人创的"
+    },
+    {
+     "start_seconds": 7.0,
+     "end_seconds": 8.1,
+     "text": "就是我放过我的人生了"
+    },
+    {
+     "start_seconds": 8.1,
+     "end_seconds": 9.39,
+     "text": "所以我也在躺"
+    },
+    {
+     "start_seconds": 9.39,
+     "end_seconds": 10.287,
+     "text": "我这是真躺平"
+    }
+   ],
+   "audio": {
+    "bgm": "none",
+    "note": "人声；最后 4 帧冻结画面让“真躺平”说完"
+   },
+   "visual_trigger": "0 s 起标题与连麦窗同时出现",
+   "dialogue": "考研还考了五次对不对？见了那么多投资人，对吧？所以我对很多人说我说你别创业对吧？我觉得创业确实不是人创的就是我放过我的人生了所以我也在躺我这是真躺平"
+  },
+  {
+   "id": "S2",
+   "start_seconds": 10.3,
+   "end_seconds": 11.0667,
+   "role": "separator",
+   "speaker": "none",
+   "purpose": "彩条 + 1 kHz 提示音，切回正片",
+   "fact_ids": [],
+   "style_rule_ids": [
+    "editing_audio.color_bar_separator"
+   ],
+   "source": {
+    "type": "generated"
+   },
+   "subtitles": [],
+   "audio": {
+    "bgm": "none",
+    "note": "1 kHz 正弦，比人声 RMS 高约 9 dB"
+   },
+   "visual_trigger": "全屏彩条，标题与连麦窗保持在上层",
+   "dialogue": ""
+  },
+  {
+   "id": "S3",
+   "start_seconds": 11.0667,
+   "end_seconds": 17.467,
+   "role": "ask",
+   "speaker": "guest",
+   "purpose": "远程提问者抛出问题",
+   "fact_ids": [
+    "F8"
+   ],
+   "style_rule_ids": [
+    "coupling.subtitles_cover_both_voices",
+    "visual.call_in_window"
+   ],
+   "source": {
+    "type": "recording",
+    "ref": "mezz",
+    "in_seconds": 12.6667,
+    "out_seconds": 19.067
+   },
+   "subtitles": [
+    {
+     "start_seconds": 11.067,
+     "end_seconds": 12.867,
+     "text": "最近比较热门的一个话题"
+    },
+    {
+     "start_seconds": 12.867,
+     "end_seconds": 15.057,
+     "text": "人生是一个巨大的事与愿违"
+    },
+    {
+     "start_seconds": 15.057,
+     "end_seconds": 17.467,
+     "text": "你对这个主题怎么看"
+    }
+   ],
+   "audio": {
+    "bgm": "none",
+    "note": "提问者原声"
+   },
+   "visual_trigger": "主播画面为原片的虚化帧（原剪辑不露提问者的脸）",
+   "dialogue": "最近比较热门的一个话题人生是一个巨大的事与愿违你对这个主题怎么看？"
+  },
+  {
+   "id": "S4",
+   "start_seconds": 17.467,
+   "end_seconds": 48.967,
+   "role": "intake",
+   "speaker": "host",
+   "purpose": "自述来历：让 AI 规划成长路线、奥德赛之旅、找到自我",
+   "fact_ids": [
+    "F5",
+    "F6"
+   ],
+   "style_rule_ids": [
+    "visual.guest_card",
+    "subtitles.single_serif_line",
+    "delivery.live_density"
+   ],
+   "source": {
+    "type": "recording",
+    "ref": "mezz",
+    "in_seconds": 19.067,
+    "out_seconds": 50.567
+   },
+   "subtitles": [
+    {
+     "start_seconds": 17.467,
+     "end_seconds": 19.217,
+     "text": "我跟我的AI聊天"
+    },
+    {
+     "start_seconds": 19.217,
+     "end_seconds": 20.817,
+     "text": "然后我让他给我规划"
+    },
+    {
+     "start_seconds": 20.817,
+     "end_seconds": 22.533,
+     "text": "一条我的成长路线"
+    },
+    {
+     "start_seconds": 22.533,
+     "end_seconds": 24.543,
+     "text": "后来AI理解之后"
+    },
+    {
+     "start_seconds": 24.543,
+     "end_seconds": 26.663,
+     "text": "给了我的策略"
+    },
+    {
+     "start_seconds": 26.663,
+     "end_seconds": 29.043,
+     "text": "然后它整体的命名"
+    },
+    {
+     "start_seconds": 29.043,
+     "end_seconds": 30.643,
+     "text": "就是叫奥德赛之旅"
+    },
+    {
+     "start_seconds": 31.383,
+     "end_seconds": 32.833,
+     "text": "手工川的奥德赛之旅"
+    },
+    {
+     "start_seconds": 32.833,
+     "end_seconds": 35.663,
+     "text": "而且我确实觉得每个人这辈子"
+    },
+    {
+     "start_seconds": 35.663,
+     "end_seconds": 37.733,
+     "text": "就是他的唯一的使命"
+    },
+    {
+     "start_seconds": 37.733,
+     "end_seconds": 40.003,
+     "text": "其实就是找到自我嘛对吧"
+    },
+    {
+     "start_seconds": 40.003,
+     "end_seconds": 40.423,
+     "text": "见天地"
+    },
+    {
+     "start_seconds": 40.423,
+     "end_seconds": 40.883,
+     "text": "见众生"
+    },
+    {
+     "start_seconds": 40.883,
+     "end_seconds": 41.533,
+     "text": "见自我"
+    },
+    {
+     "start_seconds": 41.533,
+     "end_seconds": 42.583,
+     "text": "我觉得我们所有人的"
+    },
+    {
+     "start_seconds": 42.583,
+     "end_seconds": 43.983,
+     "text": "宿命最终都是一样的"
+    },
+    {
+     "start_seconds": 43.983,
+     "end_seconds": 46.363,
+     "text": "只不过途径不一样"
+    },
+    {
+     "start_seconds": 46.363,
+     "end_seconds": 47.423,
+     "text": "路径不一样"
+    },
+    {
+     "start_seconds": 48.043,
+     "end_seconds": 48.967,
+     "text": "终点是一样的"
+    }
+   ],
+   "audio": {
+    "bgm": "none",
+    "note": "人声"
+   },
+   "visual_trigger": "开口即弹出资料卡，顶部标题让位",
+   "dialogue": "我跟我的AI聊天然后我让他给我规划一条我的成长路线后来AI理解之后给了我的策略然后它整体的命名就是叫奥德赛之旅手工川的奥德赛之旅而且我确实觉得每个人这辈子就是他的唯一的使命其实就是找到自我嘛对吧？见天地见众生见自我我觉得我们所有人的宿命最终都是一样的只不过途径不一样路径不一样终点是一样的"
+  },
+  {
+   "id": "S5",
+   "start_seconds": 48.967,
+   "end_seconds": 72.5,
+   "role": "reframe",
+   "speaker": "host",
+   "purpose": "改写“成功”：不能为了成为谁而成为谁，只为赚钱会失去所有的钱",
+   "fact_ids": [
+    "F7"
+   ],
+   "style_rule_ids": [
+    "editing_audio.long_takes",
+    "thinking.reframe_problem"
+   ],
+   "source": {
+    "type": "recording",
+    "ref": "mezz",
+    "in_seconds": 50.567,
+    "out_seconds": 74.1
+   },
+   "subtitles": [
+    {
+     "start_seconds": 48.967,
+     "end_seconds": 50.197,
+     "text": "我以前挺想成为谁的"
+    },
+    {
+     "start_seconds": 50.197,
+     "end_seconds": 51.057,
+     "text": "比如说成为乔布斯"
+    },
+    {
+     "start_seconds": 51.057,
+     "end_seconds": 52.117,
+     "text": "下一个乔布斯"
+    },
+    {
+     "start_seconds": 52.117,
+     "end_seconds": 53.297,
+     "text": "下一个张一鸣"
+    },
+    {
+     "start_seconds": 53.297,
+     "end_seconds": 54.517,
+     "text": "下一个马斯克"
+    },
+    {
+     "start_seconds": 54.517,
+     "end_seconds": 55.977,
+     "text": "我都有想过"
+    },
+    {
+     "start_seconds": 55.977,
+     "end_seconds": 56.733,
+     "text": "真的都有想过"
+    },
+    {
+     "start_seconds": 56.733,
+     "end_seconds": 58.267,
+     "text": "因为以前太想成功了嘛"
+    },
+    {
+     "start_seconds": 58.267,
+     "end_seconds": 59.633,
+     "text": "你就会想有没有什么捷径"
+    },
+    {
+     "start_seconds": 59.633,
+     "end_seconds": 61.8,
+     "text": "希望有一个样本可以抄"
+    },
+    {
+     "start_seconds": 61.8,
+     "end_seconds": 63.51,
+     "text": "但是我后来有意识到"
+    },
+    {
+     "start_seconds": 63.51,
+     "end_seconds": 66.2,
+     "text": "一个更深层次的问题"
+    },
+    {
+     "start_seconds": 66.2,
+     "end_seconds": 66.77,
+     "text": "你想赚钱"
+    },
+    {
+     "start_seconds": 66.77,
+     "end_seconds": 67.73,
+     "text": "每个人都想赚钱"
+    },
+    {
+     "start_seconds": 67.73,
+     "end_seconds": 69.99,
+     "text": "但是你不能只为了赚钱去赚钱"
+    },
+    {
+     "start_seconds": 69.99,
+     "end_seconds": 70.79,
+     "text": "你只为了赚钱"
+    },
+    {
+     "start_seconds": 70.79,
+     "end_seconds": 72.467,
+     "text": "你会失去所有的钱"
+    }
+   ],
+   "audio": {
+    "bgm": "none",
+    "note": "人声，停在“你会失去所有的钱”"
+   },
+   "visual_trigger": "保持近景，不切素材",
+   "dialogue": "我以前挺想成为谁的比如说成为乔布斯下一个乔布斯下一个张一鸣下一个马斯克我都有想过真的都有想过因为以前太想成功了嘛你就会想有没有什么捷径希望有一个样本可以抄但是我后来有意识到一个更深层次的问题你想赚钱每个人都想赚钱但是你不能只为了赚钱去赚钱你只为了赚钱你会失去所有的钱"
+  }
+ ],
+ "loudness": {
+  "integrated_lufs": -16,
+  "true_peak_dbtp": -1.5,
+  "separator_tone_db_over_speech": 9
+ },
+ "safe_area": {
+  "top_px": 160,
+  "bottom_px": 260
+ },
+ "asset_requirements": [
+  {
+   "id": "mezz",
+   "status": "available"
+  },
+  {
+   "id": "voice",
+   "status": "available"
+  },
+  {
+   "id": "avatar",
+   "status": "generated in template"
+  }
+ ],
+ "intentional_deviations": [
+  "标题顶边放在 y=170 px（原作约 3%≈58 px），避开视频号顶部 160 px 禁入区",
+  "连麦窗下沿抬到 1660 px 以上（原作约 90%≈1728 px），避开底部 260 px",
+  "响度标准化到 -16 LUFS、True Peak ≤ -1.5 dBTP（原作中位 -22.7 LUFS 且有 +3.3 dBTP 过载）",
+  "提示音只比人声高约 9 dB（原作约 16 dB）",
+  "角色对调：出镜的是被提问的一方，资料卡写的是出镜者本人",
+  "字体为近似替代：标题得意黑 Smiley Sans Oblique，字幕与资料卡为系统宋体 Songti SC",
+  "提问段画面沿用原剪辑的虚化主播画面"
+ ],
+ "unresolved": [
+  "易七猫对重剪版（新标题、新包装）的发布同意尚未确认，本片只作内部预览"
+ ]
+}
