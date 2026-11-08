@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **229 skills** — 208 Free + 21 Paid.
+> **230 skills** — 209 Free + 21 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -277,6 +277,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Chapters](https://github.com/lovstudio/video-chapter-skill) (`video-chapter`) | Plan chapters, tune the progress bar in React Studio, then export an overlay, final video, or editor package. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Stills](https://github.com/lovstudio/video-moments-skill) (`video-moments`) | Select real moments from event videos, restore color, and deliver consistently bright photos with source timecodes. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Voice to Subtitles](https://github.com/lovstudio/voice2srt-skill) (`voice2srt`) | Transcribe recordings, podcasts or videos into editable SRT, JSON and text with vocabulary boosting and cost preview. — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Xiaonuan Matchmaker Style Video](https://github.com/lovstudio/xiaonuan-style-media-creator-skill) (`xiaonuan-style-media-creator`) | Turn your own call-in recordings or new topics into edit plans and packaged clips in a traceable livestream style, without copying the author's identity. — requires: `branding-consistency` |
 | **Meta** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [Feedback Flywheel](https://github.com/lovstudio/feedback-loop-skill) (`feedback-loop`) | Turn satisfaction and complaints into tracked feedback that tunes your prompts and skills. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Showcase](https://github.com/lovstudio/skill-add-case-skill) (`skill-add-case`) | Share an accepted Skill result through your LovStudio account, manually or with an Agent. — requires: `branding-consistency` |

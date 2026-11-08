@@ -1,0 +1,80 @@
+{
+ "topic": "易七猫对话手工川：用晓暖连麦切片的包装重剪前 72 秒",
+ "audience": "关注 AI 创业、一人公司与个人选择的视频号/小红书观众",
+ "format": "call_in",
+ "duration_seconds": 72.5,
+ "scenario_type": "reframed_recording",
+ "facts": [
+  {
+   "id": "F1",
+   "text": "手工川考研考了五次",
+   "source": "yiqimao-dialogue facts.md：原声 1651.9–1653.4；profile/experience.md 考研经历（5次）"
+  },
+  {
+   "id": "F2",
+   "text": "手工川见了很多投资人（片中只用原话“那么多”，不写数字）",
+   "source": "yiqimao-dialogue facts.md：原声 1654.5–1657.0"
+  },
+  {
+   "id": "F3",
+   "text": "手工川对很多人说“你别创业”",
+   "source": "yiqimao-dialogue facts.md：原声 1838.5–1843.0"
+  },
+  {
+   "id": "F4",
+   "text": "手工川说“我放过我的人生了……我这是真躺平”",
+   "source": "yiqimao-dialogue facts.md：原声 1665.8–1687.4（以飞书妙记“躺平”为准）"
+  },
+  {
+   "id": "F5",
+   "text": "手工川让 AI 规划成长路线，AI 命名为“手工川的奥德赛之旅”",
+   "source": "yiqimao-dialogue facts.md：原声 255.6–287.2"
+  },
+  {
+   "id": "F6",
+   "text": "手工川（南川），Lovstudio.AI 创始人，独立开发者",
+   "source": "yiqimao-dialogue facts.md：profile user.public_bio；原声 2183.5–2186.2"
+  },
+  {
+   "id": "F7",
+   "text": "手工川说以前想成为下一个乔布斯、张一鸣、马斯克；只为赚钱会失去所有的钱",
+   "source": "yiqimao-dialogue facts.md：原声 592.6–601.0；subs 2b–2e"
+  },
+  {
+   "id": "F8",
+   "text": "易七猫提问：人生是一个巨大的事与愿违，你对这个主题怎么看",
+   "source": "yiqimao-dialogue subs.json 1q（原声 210.86 起）"
+  }
+ ],
+ "host_identity": "own",
+ "guest": {
+  "role": "远程提问者易七猫（只以头像小窗和声音出现）",
+  "consent": "pending",
+  "display": "avatar"
+ },
+ "available_assets": [
+  {
+   "id": "mezz",
+   "type": "video",
+   "path": "projects/yiqimao-dialogue/work/remotion/public/media/mezz-v0.1.mp4",
+   "rights": "手工川本人出镜；原片已发布，重剪版对外发布需易七猫再次确认"
+  },
+  {
+   "id": "voice",
+   "type": "audio",
+   "path": "projects/yiqimao-dialogue/work/audio/mix-v0.1/stem-voice.wav",
+   "rights": "同上"
+  },
+  {
+   "id": "title_font",
+   "type": "font",
+   "path": "user-installed font: SmileySans-Oblique.ttf",
+   "rights": "得意黑 Smiley Sans，SIL OFL 1.1"
+  }
+ ],
+ "platforms": [
+  "视频号",
+  "小红书"
+ ],
+ "cta": "none"
+}

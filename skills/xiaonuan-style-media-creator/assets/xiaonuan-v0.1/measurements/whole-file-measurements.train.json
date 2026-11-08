@@ -1,0 +1,414 @@
+[
+ {
+  "sample_id": "6904a6db0000000003010bb2",
+  "rank": 2,
+  "title": "来看看你的择偶定位是否合理",
+  "duration_seconds": 102.8,
+  "width": 1080,
+  "height": 1920,
+  "video_codec": "hevc",
+  "frame_rate": "30/1",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    3.566667,
+    5.433333,
+    24.733333,
+    24.766667,
+    24.833333,
+    26.966667,
+    31.4,
+    35.733333,
+    44.366667,
+    46.4,
+    55.933333,
+    60.633333,
+    65.966667,
+    66.766667,
+    67.933333,
+    69.133333,
+    69.466667,
+    72.366667,
+    79.233333,
+    83.133333,
+    91.9,
+    94.9,
+    102.7
+   ],
+   "cut_count": 23,
+   "detected_segment_duration_percentiles": {
+    "10": 0.17,
+    "50": 3.2833,
+    "90": 8.7267
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-11.70",
+   "true_peak_dbtp": "0.84",
+   "loudness_range_lu": "2.50",
+   "silence_threshold_db": -35,
+   "silence_seconds": 0,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ },
+ {
+  "sample_id": "6aec42f600000000030021b1",
+  "rank": 4,
+  "title": "高收入男性为什么 不会娶低学历女生",
+  "duration_seconds": 173.081542,
+  "width": 1080,
+  "height": 1920,
+  "video_codec": "h264",
+  "frame_rate": "30/1",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    11.466667,
+    12.466667,
+    51.466667,
+    60.433333,
+    168.4
+   ],
+   "cut_count": 5,
+   "detected_segment_duration_percentiles": {
+    "10": 2.8408,
+    "50": 10.2167,
+    "90": 73.4833
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-22.83",
+   "true_peak_dbtp": "-3.44",
+   "loudness_range_lu": "4.60",
+   "silence_threshold_db": -35,
+   "silence_seconds": 33.8227,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ },
+ {
+  "sample_id": "6aed8b4e000000000901019f",
+  "rank": 5,
+  "title": "结婚能放弃生理性喜欢吗",
+  "duration_seconds": 417.214694,
+  "width": 1080,
+  "height": 1920,
+  "video_codec": "h264",
+  "frame_rate": "30/1",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    0.266667,
+    8.433333,
+    9.433333,
+    44.466667,
+    98.233333,
+    98.733333,
+    171.166667,
+    321.5,
+    364.533333
+   ],
+   "cut_count": 9,
+   "detected_segment_duration_percentiles": {
+    "10": 0.4767,
+    "50": 39.0333,
+    "90": 80.2233
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-17.65",
+   "true_peak_dbtp": "3.30",
+   "loudness_range_lu": "12.20",
+   "silence_threshold_db": -35,
+   "silence_seconds": 56.4846,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ },
+ {
+  "sample_id": "6aeaea070000000003004b42",
+  "rank": 9,
+  "title": "上海38岁500万存款，2套房男生为啥找不到",
+  "duration_seconds": 335.735873,
+  "width": 1080,
+  "height": 1920,
+  "video_codec": "h264",
+  "frame_rate": "30/1",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    7.533333,
+    8.533333,
+    24.3,
+    74.366667,
+    74.8,
+    138.433333,
+    147.233333,
+    159.666667,
+    160.666667,
+    317.766667
+   ],
+   "cut_count": 10,
+   "detected_segment_duration_percentiles": {
+    "10": 1.0,
+    "50": 12.4333,
+    "90": 63.6333
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-22.47",
+   "true_peak_dbtp": "-3.41",
+   "loudness_range_lu": "6.30",
+   "silence_threshold_db": -35,
+   "silence_seconds": 22.8404,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ },
+ {
+  "sample_id": "6ae99fad000000000e02f645",
+  "rank": 11,
+  "title": "年薪50万很优秀吗 深圳30岁创业男生择偶",
+  "duration_seconds": 439.250431,
+  "width": 1080,
+  "height": 1920,
+  "video_codec": "h264",
+  "frame_rate": "30/1",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    14.033333,
+    15.033333,
+    21.333333,
+    32.766667,
+    39.033333,
+    117.6,
+    118.166667,
+    131.366667,
+    132.666667,
+    134.333333,
+    144.4,
+    145.566667,
+    163.8,
+    216.1,
+    232.066667,
+    235.6,
+    277.033333,
+    279.233333,
+    391.766667,
+    414.866667
+   ],
+   "cut_count": 20,
+   "detected_segment_duration_percentiles": {
+    "10": 1.1667,
+    "50": 11.4333,
+    "90": 52.3
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-25.03",
+   "true_peak_dbtp": "-0.67",
+   "loudness_range_lu": "6.00",
+   "silence_threshold_db": -35,
+   "silence_seconds": 80.4753,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ },
+ {
+  "sample_id": "6addae590000000024036d20",
+  "rank": 12,
+  "title": "条件一般的姑娘，反而更容易找到好对象",
+  "duration_seconds": 529.483175,
+  "width": 1080,
+  "height": 1920,
+  "video_codec": "h264",
+  "frame_rate": "30/1",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    16.166667,
+    17.166667,
+    425.166667,
+    476.8
+   ],
+   "cut_count": 4,
+   "detected_segment_duration_percentiles": {
+    "10": 7.0667,
+    "50": 51.6333,
+    "90": 265.8733
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-24.14",
+   "true_peak_dbtp": "-2.67",
+   "loudness_range_lu": "9.20",
+   "silence_threshold_db": -35,
+   "silence_seconds": 107.0879,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ },
+ {
+  "sample_id": "6ac8b5ce0000000018012b56",
+  "rank": 38,
+  "title": "30岁体制内女生择偶困境，甲方心态太重",
+  "duration_seconds": 379.855238,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "17082000/569701",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    9.833333,
+    10.833333,
+    22.966667,
+    32.133333,
+    63.6,
+    102.4,
+    231.467333,
+    295.233667,
+    361.200667,
+    379.767333
+   ],
+   "cut_count": 10,
+   "detected_segment_duration_percentiles": {
+    "10": 1.0,
+    "50": 18.5667,
+    "90": 65.967
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-21.60",
+   "true_peak_dbtp": "-0.52",
+   "loudness_range_lu": "6.10",
+   "silence_threshold_db": -35,
+   "silence_seconds": 53.6316,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ },
+ {
+  "sample_id": "6abf841f00000000140384ea",
+  "rank": 45,
+  "title": "83年离异年薪200万男生，想找高颜值90后女生",
+  "duration_seconds": 301.18458,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "135450/4517",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    6.7,
+    7.7,
+    45.233333,
+    61.299667,
+    63.433,
+    71.033,
+    77.099667,
+    77.566333,
+    79.533,
+    98.999667,
+    188.466,
+    191.432667,
+    218.466,
+    245.799667,
+    281.166333,
+    286.466333
+   ],
+   "cut_count": 16,
+   "detected_segment_duration_percentiles": {
+    "10": 1.58,
+    "50": 7.6,
+    "90": 36.2333
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-21.06",
+   "true_peak_dbtp": "-0.84",
+   "loudness_range_lu": "5.20",
+   "silence_threshold_db": -35,
+   "silence_seconds": 53.1103,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ },
+ {
+  "sample_id": "6ab60910000000000a027390",
+  "rank": 46,
+  "title": "无锡27岁护士女生，找创一代几率有多大？",
+  "duration_seconds": 328.492698,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "24620/821",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    10.866667,
+    13.0,
+    17.433333,
+    18.433333,
+    49.4,
+    138.3,
+    144.633333,
+    207.933667,
+    210.067,
+    252.566667,
+    322.966667
+   ],
+   "cut_count": 11,
+   "detected_segment_duration_percentiles": {
+    "10": 2.1333,
+    "50": 8.6,
+    "90": 69.69
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-24.10",
+   "true_peak_dbtp": "-2.03",
+   "loudness_range_lu": "6.80",
+   "silence_threshold_db": -35,
+   "silence_seconds": 64.7399,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ },
+ {
+  "sample_id": "6ab0c32b0000000031015bb3",
+  "rank": 52,
+  "title": "谈一段正常的恋爱，需要具备那3点",
+  "duration_seconds": 207.330975,
+  "width": 720,
+  "height": 1280,
+  "video_codec": "h264",
+  "frame_rate": "18648000/621799",
+  "scene_detection": {
+   "method": "FFmpeg full decode, downscale 320px, scene threshold 0.23",
+   "limitation": "hard visual transitions, not exhaustive semantic or subtle jump cuts",
+   "cut_times_seconds": [
+    33.433333,
+    82.133,
+    198.799667,
+    206.499667
+   ],
+   "cut_count": 4,
+   "detected_segment_duration_percentiles": {
+    "10": 3.5788,
+    "50": 33.4333,
+    "90": 89.4799
+   }
+  },
+  "audio": {
+   "integrated_lufs": "-28.32",
+   "true_peak_dbtp": "-9.12",
+   "loudness_range_lu": "3.20",
+   "silence_threshold_db": -35,
+   "silence_seconds": 8.3752,
+   "limitation": "mixed-track silence is not a VAD or a music-separated speech pause metric"
+  }
+ }
+]

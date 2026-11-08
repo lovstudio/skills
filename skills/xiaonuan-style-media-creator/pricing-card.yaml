@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: 0.1.0
+model: free
+currency: CNY
+list_price_cny: 0
+basis: 本地交付可移植的风格协议、校验脚本与包装模板，不收取 Skill 使用费。
+boundary: 外部模型、ASR、拍摄、来访者授权、字体授权、渲染算力及发布费用不包含。
+review_trigger: 改变交付范围或提供商业服务时重新评估，当前不做付费发布。
+confidence: internal
+value_anchor: 可核查的风格资产、可校验的剪辑计划与可复现的包装模板

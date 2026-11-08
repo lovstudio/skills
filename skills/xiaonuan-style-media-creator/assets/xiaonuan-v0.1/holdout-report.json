@@ -1,0 +1,254 @@
+{
+ "profile_sha256": "d9ce0bbee2e18584aa06c5b41f03c453dc98b63132767258226ccb5553170a00",
+ "checked_at": "2026-11-08",
+ "method": "host read full holdout transcripts and inspected 12 frames each AFTER freezing the profile; rules applied as written; quantitative ranges are diagnostics only",
+ "samples": {
+  "6ad98a1a000000002403ad6b": {
+   "rank": 23,
+   "title": "为什么男生留在上海的代价很高",
+   "subtype_observed": "call_in → case_to_viewpoint",
+   "results": {
+    "thinking.market_position": {
+     "result": "hit",
+     "note": "“能留下的男生，基本上都是有入场券的”“超一线城市的男女比例”"
+    },
+    "thinking.reframe_problem": {
+     "result": "partial",
+     "note": "无求定位问题；主播把“回老家”改写为“不代表他是失败者”"
+    },
+    "thinking.motive_probe": {
+     "result": "miss",
+     "note": "只有年龄、停留时长等事实追问"
+    },
+    "thinking.attainable_profile": {
+     "result": "not_applicable",
+     "note": "来访者已做出选择，没有求画像"
+    },
+    "narrative.cold_open": {
+     "result": "hit",
+     "note": "开头 0–12.5 s 来访者“三代人全部继续砸进去”，正片 0:52 原位重复"
+    },
+    "narrative.call_in_arc": {
+     "result": "partial",
+     "note": "有报条件与追问，无诊断与画像，挂断后泛化占约 73 s（38%）"
+    },
+    "narrative.post_call_generalization": {
+     "result": "hit",
+     "note": "泛化段长于规则建议的 15–55 s",
+     "deviation": "post-call ≈ 73 s"
+    },
+    "language.rapid_probing": {
+     "result": "hit",
+     "note": "“你多大”“那你去上海待了多久”“回老家多久了”"
+    },
+    "language.market_lexicon": {
+     "result": "partial",
+     "note": "用“入场券、男女比例、结构性的问题”，未用画像/A8"
+    },
+    "language.blunt_then_soften": {
+     "result": "miss",
+     "note": "语气以认同为主，没有重判"
+    },
+    "language.enumeration": {
+     "result": "miss",
+     "note": "未见首先/其次或编号"
+    },
+    "language.address_terms": {
+     "result": "hit",
+     "note": "“像刚刚那个兄弟一样”"
+    },
+    "delivery.live_density": {
+     "result": "hit",
+     "note": "376.0 字/分钟"
+    },
+    "visual.live_frame": {
+     "result": "hit",
+     "note": "胸部以上居中、暖光室内"
+    },
+    "visual.call_in_window": {
+     "result": "hit",
+     "note": "连麦期间右下头像窗，挂断后消失"
+    },
+    "visual.top_title": {
+     "result": "hit",
+     "note": "黄白双行，可见到约 77–92 s",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "subtitles.single_serif_line": {
+     "result": "hit",
+     "note": "单行白色宋体，中位 9 字",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "editing_audio.color_bar_separator": {
+     "result": "hit",
+     "note": "12.5–13.25 s",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "editing_audio.long_takes": {
+     "result": "hit",
+     "note": "8 个硬切 / 192.6 s",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "editing_audio.no_bgm_raw_level": {
+     "result": "hit",
+     "note": "-19.4 LUFS，静音占 20%",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "coupling.title_from_dialogue": {
+     "result": "partial",
+     "note": "标题意思取自泛化段“生活成本、沉重感”，“代价”一词未原样出现"
+    },
+    "coupling.subtitles_cover_both_voices": {
+     "result": "hit",
+     "note": "来访者的“半年在医院上班”等有字幕"
+    },
+    "coupling.overlay_sequence": {
+     "result": "hit",
+     "note": "标题 0 s 起，彩条压在高光尾"
+    }
+   }
+  },
+  "6ac8b4030000000014038d49": {
+   "rank": 40,
+   "title": "170/160斤A9男生想找小美，我爸给我老婆50",
+   "subtype_observed": "call_in",
+   "results": {
+    "thinking.market_position": {
+     "result": "hit",
+     "note": "“你真实到市场上去择偶，你的真实行情就是一个月收入8000”"
+    },
+    "thinking.reframe_problem": {
+     "result": "hit",
+     "note": "“兄弟我这样跟你讲，你的重点是在于，你的劣势短板太明显”"
+    },
+    "thinking.motive_probe": {
+     "result": "hit",
+     "note": "“你要去想他为什么渴望花钱”"
+    },
+    "thinking.attainable_profile": {
+     "result": "hit",
+     "note": "“年龄在28岁左右，长相清秀……就是你的上限了”，并用“括号”讲取舍"
+    },
+    "thinking.perspective_simulation": {
+     "result": "hit",
+     "note": "“没有生理性的喜欢……是一个快乐的事，还是折磨的事呢”"
+    },
+    "narrative.cold_open": {
+     "result": "hit",
+     "note": "0–9.75 s“我爸每年给你老婆50万”，正片 2:58 原位重复"
+    },
+    "narrative.call_in_arc": {
+     "result": "hit",
+     "note": "求判断→报条件→追问→行情→画像与取舍→推演，未挂断即结束"
+    },
+    "narrative.post_call_generalization": {
+     "result": "not_applicable",
+     "note": "片段在对话中结束（与 #11 #45 #46 同类）"
+    },
+    "language.rapid_probing": {
+     "result": "hit",
+     "note": "“你的外在形象怎么样”“身体重多少”“你现在的收入是多少”"
+    },
+    "language.market_lexicon": {
+     "result": "hit",
+     "note": "行情、A9、生理性喜欢、短板/长板"
+    },
+    "language.blunt_then_soften": {
+     "result": "hit",
+     "note": "“你想象的这个人不存在”，随后“我只是一个……不太好的一个揣测”"
+    },
+    "language.check_ins": {
+     "result": "hit",
+     "note": "“对不对”"
+    },
+    "language.address_terms": {
+     "result": "hit",
+     "note": "“兄弟”"
+    },
+    "delivery.live_density": {
+     "result": "hit",
+     "note": "376.6 字/分钟"
+    },
+    "visual.live_frame": {
+     "result": "hit",
+     "note": "胸部以上居中"
+    },
+    "visual.call_in_window": {
+     "result": "miss",
+     "note": "连麦但无小窗（与 #9 #38 相同的例外）"
+    },
+    "visual.top_title": {
+     "result": "hit",
+     "note": "第一行浅黄、第二行白色引号原话；标题可见到约 10 s 后让位资料卡",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "visual.guest_card": {
+     "result": "hit",
+     "note": "“男生情况”逐行列出年龄身高、婚姻、父母、资产、收入",
+     "deviation": "资料卡在 20 s、36 s、90 s 的抽帧中都在，远长于规则建议的 8–12 s",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "subtitles.single_serif_line": {
+     "result": "hit",
+     "note": "单行白色宋体",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "editing_audio.color_bar_separator": {
+     "result": "hit",
+     "note": "9.75–10.5 s，标题压在彩条上",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "editing_audio.long_takes": {
+     "result": "partial",
+     "note": "21 个硬切 / 358.5 s（3.5 次/分钟，仍低于 4）",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "editing_audio.no_bgm_raw_level": {
+     "result": "hit",
+     "note": "-20.4 LUFS，静音占 17%",
+     "contaminated": true,
+     "contamination": "value appeared in batch measurement logs before the freeze"
+    },
+    "coupling.title_from_dialogue": {
+     "result": "hit",
+     "note": "第二行即来访者原意“我爸给我未来的老婆一年50万”"
+    },
+    "coupling.subtitles_cover_both_voices": {
+     "result": "hit",
+     "note": "来访者自述有字幕"
+    },
+    "coupling.overlay_sequence": {
+     "result": "hit",
+     "note": "标题→彩条→资料卡替换标题"
+    }
+   }
+  }
+ },
+ "summary": {
+  "hit": 37,
+  "partial": 5,
+  "miss": 4,
+  "not_applicable": 2
+ },
+ "suggested_v0_2_revisions": [
+  "visual.guest_card：资料卡时长改为“8 秒至整段对话”，以 #40 为例可常驻 70 s 以上",
+  "narrative.post_call_generalization：泛化段上限放宽到约 40% 时长（#23 约 73 s）",
+  "thinking.motive_probe / language.blunt_then_soften：在“个案转观点”子类型中改为可选",
+  "subtitles.single_serif_line：补充“字幕不带标点”（训练集 OCR 1435 个字幕框中仅 1 个含标点；冻结后才统计，属于训练集证据，留待 v0.2 连同新的留出样本一起确认）"
+ ],
+ "not_claimed": [
+  "human blind test",
+  "listening review",
+  "style similarity score"
+ ]
+}

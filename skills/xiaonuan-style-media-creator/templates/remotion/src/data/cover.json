@@ -1,0 +1,10 @@
+{
+  "src": "media/mezz.mp4",
+  "frame": 900,
+  "centerY": 0.6,
+  "size": 104,
+  "lines": [
+    { "text": "考研五次 见了那么多投资人", "fill": "yellow", "red_words": ["五次"] },
+    { "text": "“我这是真躺平”", "fill": "white" }
+  ]
+}
