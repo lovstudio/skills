@@ -1,0 +1,10 @@
+{
+  "fps": 30, "width": 1080, "height": 1920, "frames": 120, "background": "#1F2329",
+  "video": [],
+  "separators": [{"fromF": 45, "frames": 24, "kind": "bars"}],
+  "audio": null,
+  "titles": [{"fromF": 0, "toF": 69, "lines": [{"text": "示例标题第一行", "fill": "emphasis", "accent_words": ["示例"]}, {"text": "“第二行写原话”", "fill": "plain"}]}],
+  "cards": [{"fromF": 69, "toF": 120, "header": "资料卡", "lines": ["只写已核实的事实", "每行一条"]}],
+  "pips": [{"fromF": 0, "toF": 120}],
+  "subtitles": [{"fromF": 0, "toF": 45, "text": "前置高光取一句完整原话"}, {"fromF": 69, "toF": 120, "text": "换成你自己的渲染计划"}]
+}

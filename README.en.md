@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **231 skills** — 209 Free + 22 Paid.
+> **232 skills** — 210 Free + 22 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -267,6 +267,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Interview Short](https://github.com/lovstudio/interview-media-creator-skill) (`interview-media-creator`) | Turn one phone interview into a 2–4 minute vertical short that opens on the guest's own words, with chapters, question cards, captions, music and A/B covers. — requires: `branding-consistency`, `media-creator`; related: `koubo-media-creator`, `media-creator`, `media-publisher`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Talking-head Short](https://github.com/lovstudio/koubo-media-creator-skill) (`koubo-media-creator`) | Give it a topic and get the script, teleprompter, on-screen evidence and covers for a vertical talking-head short; record one take and it cuts the film for you. — requires: `branding-consistency`; related: `interview-media-creator`, `media-publisher` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Laozhang Psychology Style Video](https://github.com/lovstudio/laozhang-style-media-creator-skill) (`laozhang-style-media-creator`) | Turn a new topic into original narration, storyboards and an edit plan using a traceable reference style, without copying the author's identity. — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Video Style Cloner](https://github.com/lovstudio/media-cloner-skill) (`media-cloner`) | Turn a creator's public videos into a traceable eight-dimension style pack, a holdout report, a style guide and a Remotion packaging template, without copying the creator's identity. — requires: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Video Studio](https://github.com/lovstudio/media-creator-skill) (`media-creator`) | Turn recordings and Screen Studio projects into reviewable video, then deliver approved horizontal and vertical videos, covers, and quality reports. — requires: `branding-consistency`; related: `interview-media-creator`, `media-publisher`, `motion-media-creator`, `motivational-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Prep](https://github.com/lovstudio/media-preprocessor-skill) (`media-preprocessor`) | Enhance long recordings and organize useful segments with verified source timecodes. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Publisher](https://github.com/lovstudio/media-publisher-skill) (`media-publisher`) | Preserve the user's final copy while publishing to WeChat Channels, Bilibili, or Xiaohongshu with cover, confirmation, and status gates. — requires: `branding-consistency`; related: `interview-media-creator`, `koubo-media-creator`, `media-creator`, `motion-media-creator`, `motivational-media-creator` |

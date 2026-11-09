@@ -1,0 +1,134 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "style-pack evidence line",
+ "type": "object",
+ "required": [
+  "id",
+  "kind",
+  "sample_id",
+  "start_seconds",
+  "end_seconds"
+ ],
+ "properties": {
+  "id": {
+   "type": "string",
+   "pattern": "^E[0-9]{3,}$"
+  },
+  "kind": {
+   "enum": [
+    "quote",
+    "measurement",
+    "visual",
+    "transcript",
+    "frame",
+    "perception"
+   ]
+  },
+  "sample_id": {
+   "type": "string"
+  },
+  "rank": {
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "start_seconds": {
+   "type": "number",
+   "minimum": 0
+  },
+  "end_seconds": {
+   "type": "number",
+   "minimum": 0
+  },
+  "quote": {
+   "type": "string",
+   "minLength": 1
+  },
+  "source_excerpt": {
+   "type": "string",
+   "minLength": 1
+  },
+  "transcript_source": {
+   "type": "string"
+  },
+  "file": {
+   "type": "string"
+  },
+  "field": {
+   "type": "string"
+  },
+  "description": {
+   "type": "string"
+  },
+  "local_reference": {
+   "type": "string"
+  },
+  "rights": {
+   "type": "string"
+  },
+  "note": {
+   "type": "string"
+  },
+  "observation": {
+   "type": "string"
+  },
+  "timing_precision": {
+   "type": "string"
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "kind": {
+      "enum": [
+       "quote",
+       "transcript"
+      ]
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "quote",
+     "source_excerpt"
+    ]
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "kind": {
+      "enum": [
+       "measurement",
+       "frame",
+       "perception"
+      ]
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "file"
+    ]
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "kind": {
+      "const": "visual"
+     }
+    }
+   },
+   "then": {
+    "required": [
+     "description",
+     "local_reference"
+    ]
+   }
+  }
+ ],
+ "description": "New packs use quote, measurement and visual. transcript, frame and perception are accepted so packs built before media-cloner (lov-laozhang-style-media-creator v0.1) can be verified."
+}

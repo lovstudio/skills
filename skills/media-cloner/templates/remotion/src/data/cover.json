@@ -1,0 +1,4 @@
+{
+  "width": 1080, "height": 1440, "background": "#1F2329", "centerY": 0.6, "size": 104, "pip": true,
+  "lines": [{"text": "示例标题第一行", "fill": "emphasis", "accent_words": ["示例"]}, {"text": "“第二行写原话”", "fill": "plain"}]
+}

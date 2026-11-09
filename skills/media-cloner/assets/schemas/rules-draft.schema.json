@@ -1,0 +1,367 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "media-cloner-draft/v1",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schema",
+  "style_id",
+  "display_name",
+  "version",
+  "status",
+  "dimensions",
+  "rules",
+  "guardrails",
+  "limits",
+  "provenance"
+ ],
+ "properties": {
+  "schema": {
+   "const": "media-cloner-draft/v1"
+  },
+  "style_id": {
+   "type": "string",
+   "pattern": "^lov-[a-z0-9]+(?:-[a-z0-9]+)*$"
+  },
+  "display_name": {
+   "type": "string",
+   "minLength": 1
+  },
+  "version": {
+   "type": "string",
+   "pattern": "^0\\.[0-9]+\\.[0-9]+$"
+  },
+  "status": {
+   "enum": [
+    "ready",
+    "ready_with_limits"
+   ]
+  },
+  "transcript_source": {
+   "type": "string"
+  },
+  "dimensions": {
+   "type": "array",
+   "minItems": 8,
+   "maxItems": 8,
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "summary"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "enum": [
+       "thinking",
+       "narrative",
+       "language",
+       "delivery",
+       "visual",
+       "subtitles",
+       "editing_audio",
+       "coupling"
+      ]
+     },
+     "summary": {
+      "type": "string",
+      "minLength": 1
+     }
+    }
+   }
+  },
+  "rules": {
+   "type": "array",
+   "minItems": 8,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "id",
+     "dimension",
+     "observation",
+     "instruction",
+     "strength",
+     "eligible_sample_count",
+     "confidence",
+     "scope",
+     "exceptions",
+     "validation",
+     "evidence"
+    ],
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z_]+\\.[a-z0-9_]+$"
+     },
+     "dimension": {
+      "enum": [
+       "thinking",
+       "narrative",
+       "language",
+       "delivery",
+       "visual",
+       "subtitles",
+       "editing_audio",
+       "coupling"
+      ]
+     },
+     "observation": {
+      "type": "string",
+      "minLength": 1
+     },
+     "instruction": {
+      "type": "string",
+      "minLength": 1
+     },
+     "strength": {
+      "enum": [
+       "required",
+       "preferred",
+       "optional"
+      ]
+     },
+     "eligible_sample_count": {
+      "type": "integer",
+      "minimum": 1
+     },
+     "confidence": {
+      "enum": [
+       "high",
+       "medium",
+       "low"
+      ]
+     },
+     "scope": {
+      "type": "string"
+     },
+     "exceptions": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "validation": {
+      "type": "object",
+      "required": [
+       "method",
+       "criterion"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "method": {
+        "type": "string"
+       },
+       "criterion": {
+        "type": "string"
+       }
+      }
+     },
+     "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+       "$ref": "#/$defs/evidence"
+      }
+     }
+    }
+   }
+  },
+  "extra_evidence": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/evidence"
+   }
+  },
+  "measurement_files": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "from",
+     "to"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "from": {
+      "type": "string"
+     },
+     "to": {
+      "type": "string",
+      "pattern": "^measurements/[^/].*\\.json$"
+     }
+    }
+   }
+  },
+  "metrics": {
+   "type": "object"
+  },
+  "narrative_templates": {
+   "type": "array",
+   "items": {
+    "type": "object"
+   }
+  },
+  "layout_templates": {
+   "type": "array",
+   "items": {
+    "type": "object"
+   }
+  },
+  "audio_visual_triggers": {
+   "type": "array",
+   "items": {
+    "type": "object"
+   }
+  },
+  "guardrails": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "minItems": 3
+  },
+  "limits": {
+   "type": "array",
+   "items": {
+    "type": "object"
+   }
+  },
+  "provenance": {
+   "type": "object"
+  }
+ },
+ "$defs": {
+  "evidence": {
+   "oneOf": [
+    {
+     "type": "object",
+     "required": [
+      "use"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "use": {
+       "type": "string"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "required": [
+      "kind",
+      "sample_id",
+      "t",
+      "q"
+     ],
+     "properties": {
+      "kind": {
+       "const": "quote"
+      },
+      "sample_id": {
+       "type": "string"
+      },
+      "t": {
+       "type": "number",
+       "minimum": 0
+      },
+      "q": {
+       "type": "string",
+       "minLength": 2
+      },
+      "key": {
+       "type": "string"
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "required": [
+      "kind",
+      "sample_id",
+      "file",
+      "field"
+     ],
+     "properties": {
+      "kind": {
+       "const": "measurement"
+      },
+      "sample_id": {
+       "type": "string"
+      },
+      "file": {
+       "type": "string",
+       "pattern": "^measurements/"
+      },
+      "field": {
+       "type": "string"
+      },
+      "start": {
+       "type": "number",
+       "minimum": 0
+      },
+      "end": {
+       "type": [
+        "number",
+        "null"
+       ]
+      },
+      "key": {
+       "type": "string"
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    },
+    {
+     "type": "object",
+     "required": [
+      "kind",
+      "sample_id",
+      "start",
+      "end",
+      "description",
+      "local_reference"
+     ],
+     "properties": {
+      "kind": {
+       "const": "visual"
+      },
+      "sample_id": {
+       "type": "string"
+      },
+      "start": {
+       "type": "number",
+       "minimum": 0
+      },
+      "end": {
+       "type": "number",
+       "minimum": 0
+      },
+      "description": {
+       "type": "string",
+       "minLength": 1
+      },
+      "local_reference": {
+       "type": "string"
+      },
+      "rights": {
+       "type": "string"
+      },
+      "key": {
+       "type": "string"
+      },
+      "note": {
+       "type": "string"
+      }
+     }
+    }
+   ]
+  }
+ }
+}

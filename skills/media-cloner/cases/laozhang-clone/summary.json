@@ -1,0 +1,32 @@
+{
+ "creator": "老张心理",
+ "platform": "xiaohongshu",
+ "request": "全搞定，并封装；命名为lov-laozhang-style-media-creator，中文名老张心理风格短视频。",
+ "request_note": "封装阶段的用户原话，取自该 Skill 的案例记录；更早的复刻请求未留存",
+ "samples": {
+  "total": 10,
+  "train": 8,
+  "holdout": 2,
+  "selection": "主页顺序 1–8 训练、9–10 留出，分析前冻结"
+ },
+ "pack": {
+  "version": "0.1.0",
+  "rules": 23,
+  "evidence": 157,
+  "evidence_by_kind": {
+   "transcript": 70,
+   "measurement": 31,
+   "perception": 24,
+   "frame": 32
+  }
+ },
+ "holdout": {
+  "status": "completed_with_exceptions",
+  "profile_changed_after_holdout": false,
+  "human_blind_test": false,
+  "format": "按样本列语义观察，不是 media-cloner 的逐条“规则 × 样本”格式"
+ },
+ "verified_by_media_cloner": "cloner.py verify 通过（23 条规则、157 条证据），旧证据类型按兼容格式读取",
+ "live_url": "https://lovstudio.ai/skills/laozhang-style-media-creator",
+ "live_checked": "2026-11-09 HTTP 200"
+}

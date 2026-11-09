@@ -1,0 +1,57 @@
+[
+  {
+    "type": "case",
+    "title": "小红书「晓暖（清醒择偶）说媒」：12 条作品到冻结风格包",
+    "description": "从主页当前格式期分层抽 12 条，分析前冻结 10/2 拆分；经全片测量、每 2 秒一帧 OCR 与 Whisper 转写，写出 32 条规则、219 条证据；留出检验记录 48 项，命中 37。随后封装为 lov-xiaonuan-style-media-creator 并上线官网。这次的手工流程就是本 Skill 的来源。",
+    "input": {
+      "items": [
+        "小红书主页链接与博主 ID「晓暖（清醒择偶）说媒」",
+        "cases/xiaonuan-clone/summary.json 中的样本框与拆分"
+      ]
+    },
+    "prompt": "复刻一下小红书博主的这个视频风格，然后他的 ID 是「晓暖（清醒择偶）说媒」。之后补充：用 ego。",
+    "output": {
+      "items": [
+        "cases/xiaonuan-clone/summary.json",
+        "https://lovstudio.ai/skills/xiaonuan-style-media-creator"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "小红书「老张心理」：10 条作品到风格包",
+    "description": "8/2 拆分，23 条规则、157 条证据，其中包括对三段听感片段的模型解释；留出检验完成，但有例外。封装为 lov-laozhang-style-media-creator。本 Skill 的校验器可以直接复查这份旧格式风格包。",
+    "input": {
+      "items": [
+        "cases/laozhang-clone/summary.json 中的 10 条公开作品"
+      ]
+    },
+    "prompt": "全搞定，并封装；命名为lov-laozhang-style-media-creator，中文名老张心理风格短视频。（封装阶段原话；更早的复刻请求未留存）",
+    "output": {
+      "items": [
+        "cases/laozhang-clone/summary.json",
+        "https://lovstudio.ai/skills/laozhang-style-media-creator"
+      ]
+    }
+  },
+  {
+    "type": "case",
+    "title": "通用工具在晓暖数据上的复现",
+    "description": "把晓暖 v0.1 冻结包转成规则草稿，用 cloner.py 在原转写上重建：画像与证据文件逐字节一致；测量、OCR、提示音和训练集分布与原值一致；模板填入晓暖参数后与专用模板逐像素一致；音轨构建复现了演示音轨。这是内部验证，不是新博主的端到端案例。预览图是模板自带的无素材示例。",
+    "input": {
+      "items": [
+        "晓暖复刻工程的本地研究数据：样本清单与哈希、Whisper 转写、全片测量与 OCR 统计"
+      ]
+    },
+    "prompt": "内部验证（非用户原话）：用通用工具重建晓暖 v0.1 风格包，并逐项对比原结果。",
+    "output": {
+      "items": [
+        "cases/regression-xiaonuan/report.json",
+        "cases/template-preview/preview.png"
+      ]
+    },
+    "gallery": [
+      "cases/template-preview/preview.png"
+    ]
+  }
+]

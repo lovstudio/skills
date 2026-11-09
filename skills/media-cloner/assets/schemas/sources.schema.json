@@ -1,0 +1,124 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "media-cloner-sources/v1",
+ "type": "object",
+ "required": [
+  "schema",
+  "creator",
+  "era_scope",
+  "selection",
+  "rights",
+  "samples"
+ ],
+ "properties": {
+  "schema": {
+   "const": "media-cloner-sources/v1"
+  },
+  "creator": {
+   "type": "object",
+   "required": [
+    "display_name",
+    "platform"
+   ],
+   "properties": {
+    "display_name": {
+     "type": "string",
+     "minLength": 1
+    },
+    "platform": {
+     "type": "string"
+    },
+    "profile_url": {
+     "type": "string"
+    },
+    "handle": {
+     "type": "string"
+    }
+   }
+  },
+  "era_scope": {
+   "type": "string",
+   "description": "the format period the samples come from"
+  },
+  "selection": {
+   "type": "string",
+   "description": "how samples and the holdout were chosen"
+  },
+  "rights": {
+   "type": "string"
+  },
+  "split": {
+   "type": "object",
+   "required": [
+    "frozen_at",
+    "train",
+    "holdout",
+    "sha256"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "frozen_at": {
+     "type": "string"
+    },
+    "train": {
+     "type": "integer",
+     "minimum": 3
+    },
+    "holdout": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "sha256": {
+     "type": "string",
+     "pattern": "^[a-f0-9]{64}$"
+    }
+   }
+  },
+  "samples": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "sample_id"
+    ],
+    "properties": {
+     "sample_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$"
+     },
+     "rank": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "partition": {
+      "enum": [
+       "train",
+       "holdout"
+      ]
+     },
+     "title": {
+      "type": "string"
+     },
+     "subtype": {
+      "type": "string"
+     },
+     "source_url": {
+      "type": "string"
+     },
+     "path": {
+      "type": "string",
+      "description": "media path, relative to this manifest or absolute"
+     },
+     "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+     },
+     "duration_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+     }
+    }
+   }
+  }
+ }
+}
