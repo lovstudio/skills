@@ -9450,7 +9450,7 @@ skills:
   - branding-consistency
 - name: wdb-cowork
   runtime_name: lov-wdb-cowork
-  updated_at: 2026-11-09 09:25:51+00:00
+  updated_at: 2026-11-09 16:52:15+00:00
   display_name: WeChat Cowork
   repo: lovstudio/wdb-cowork-skill
   name_zh: 微信工作搭子
@@ -9458,7 +9458,7 @@ skills:
   price_credits: 268
   category: General
   skill_path: ''
-  version: 0.1.0
+  version: 0.2.0
   description: Read one local WeChat conversation via lov-wdb-cli to draft replies,
     catch-ups and requested work; drafts only, never sends.
   tagline_en: Name a WeChat contact or group and get replies in your own voice, a
