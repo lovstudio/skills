@@ -1,0 +1,48 @@
+{
+ "creator": "晓暖（清醒择偶）说媒",
+ "platform": "xiaohongshu",
+ "date": "2026-11-08",
+ "request": "复刻一下小红书博主的这个视频风格，然后他的 ID 是「晓暖（清醒择偶）说媒」（随后：用 ego）",
+ "era_scope": "主页第 3–53 条，2026-09-18 至 2026-11-06 的直播连麦切片格式",
+ "samples": {
+  "total": 12,
+  "train": 10,
+  "holdout": 2,
+  "selection": "按互动量与子类型（连麦个案 / 观点口播 / 置顶引流）分层，分析前冻结拆分"
+ },
+ "pack": {
+  "version": "0.1.0",
+  "rules": 32,
+  "evidence": 219,
+  "evidence_by_kind": {
+   "quote": 101,
+   "measurement": 93,
+   "visual": 25
+  },
+  "profile_sha256": "d9ce0bbee2e18584aa06c5b41f03c453dc98b63132767258226ccb5553170a00"
+ },
+ "holdout": {
+  "recorded_pairs": 48,
+  "expected_pairs": 64,
+  "hit": 37,
+  "partial": 5,
+  "miss": 4,
+  "not_applicable": 2,
+  "contaminated": 11,
+  "independent": {
+   "hit": 27,
+   "partial": 4,
+   "miss": 4,
+   "not_applicable": 2
+  },
+  "note": "冻结前批量测量日志里出现过留出数值，相关 11 项标为受污染；48/64 的覆盖率由本 Skill 的 holdout-check 复查得出"
+ },
+ "outputs": [
+  "风格说明书 v0.1（本地交付）",
+  "Remotion 包装模板",
+  "用《易七猫对话手工川》素材重剪的 72.5 秒内部演示（重剪版发布同意未确认）",
+  "封装为 lov-xiaonuan-style-media-creator 并以免费条目上线"
+ ],
+ "live_url": "https://lovstudio.ai/skills/xiaonuan-style-media-creator",
+ "live_checked": "2026-11-09 HTTP 200"
+}

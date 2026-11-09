@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 把一次需要数小时、容易在留出纪律上出错的博主风格复刻，变成有门禁、可复现、可中断续做的流程；产物可直接封装成专属风格 Skill。
+basis: LovStudio 官网目录免费条目（0 Credits），本地使用同样免费；lov-skill-pricing 评估六维加权 3.1/5，但证据来自内部复现、尚无新博主端到端案例，先以免费入口积累使用证据。
+boundary: 包含取样与冻结、测量、转写运行与导入、规则构建与校验、留出检验、说明书结构、参数化模板与音轨构建；不含外部 ASR 或模型费用、下载、登录、拍摄、出镜授权、字体授权、渲染算力与发布。
+review_trigger: 第一个新博主端到端案例、累计 10 次外部完整使用、人工风格评审，或交付范围、依赖、支持成本变化时，由 lov-skill-pricing 复评。
+confidence: case-backed

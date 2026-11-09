@@ -1,0 +1,9 @@
+{
+  "name": "vertical-talking-head-9x16",
+  "note": "Starting zones for 9:16 talking-head clips: a top title block, a lower subtitle band and a top-left info card. Boxes use top-left normalised coordinates; y and x test the box's top-left corner. Run measure.py layout --discover first and redefine zones per creator.",
+  "zones": [
+    {"name": "title", "kind": "title", "y": [0.0, 0.17], "center_x_max_offset": 0.2, "min_height": 0.018},
+    {"name": "subtitle", "kind": "subtitle", "y": [0.66, 0.88], "center_x_max_offset": 0.17, "max_height": 0.04},
+    {"name": "card", "kind": "card", "y": [0.0, 0.42], "x": [0.0, 0.45], "center_x_max": 0.4, "min_boxes": 3}
+  ]
+}

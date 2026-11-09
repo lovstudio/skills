@@ -1,0 +1,81 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "media-cloner-transcript/v1",
+ "type": "object",
+ "required": [
+  "schema",
+  "sample_id",
+  "provider",
+  "source_format",
+  "segments"
+ ],
+ "properties": {
+  "schema": {
+   "const": "media-cloner-transcript/v1"
+  },
+  "sample_id": {
+   "type": "string"
+  },
+  "provider": {
+   "type": "string"
+  },
+  "source_format": {
+   "enum": [
+    "whisper",
+    "tingwu",
+    "srt"
+   ]
+  },
+  "source_file": {
+   "type": "string"
+  },
+  "media_sha256": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "language": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "word_timestamps": {
+   "type": "boolean"
+  },
+  "note": {
+   "type": "string"
+  },
+  "segments": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "start",
+     "end",
+     "text"
+    ],
+    "properties": {
+     "start": {
+      "type": "number",
+      "minimum": 0
+     },
+     "end": {
+      "type": "number",
+      "minimum": 0
+     },
+     "text": {
+      "type": "string"
+     },
+     "speaker": {
+      "type": "string"
+     },
+     "words": {
+      "type": "array"
+     }
+    }
+   }
+  }
+ }
+}

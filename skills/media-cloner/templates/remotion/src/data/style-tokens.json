@@ -1,0 +1,27 @@
+{
+  "canvas": {"width": 1080, "height": 1920, "fps": 30},
+  "safe": {"top": 160, "bottom": 260},
+  "colors": {
+    "emphasis": "#FFE14D", "accent": "#E5322D", "plain": "#FFFFFF", "stroke": "#111111",
+    "subtitle": "#FFFFFF", "subtitleStroke": "#111111", "cardHeader": "#FFE14D", "cardStroke": "#2A1A00",
+    "cardBody": "#FFFFFF", "pip": "#3A3F47", "background": "#1F2329"
+  },
+  "fonts": {
+    "titleFace": "StyleTitle",
+    "titleFile": "fonts/title.ttf",
+    "title": "\"StyleTitle\", \"PingFang SC\", \"Heiti SC\", \"Noto Sans SC\", sans-serif",
+    "body": "\"PingFang SC\", \"Heiti SC\", \"Noto Sans SC\", sans-serif",
+    "preload": ["700 50px \"PingFang SC\"", "400 38px \"PingFang SC\""]
+  },
+  "title": {"top": 170, "maxSize": 100, "widthFrac": 0.9, "advanceEm": 1.0, "gap": 6, "stroke": 16, "strokeColor": "stroke",
+            "weight": 800, "lineHeight": 1.12, "letterSpacing": 1},
+  "subtitle": {"top": 1471, "size": 50, "maxWidth": 780, "advanceEm": 1.0, "stroke": 7, "strokeColor": "subtitleStroke",
+               "fill": "subtitle", "weight": 700, "lineHeight": 1.2, "letterSpacing": 1, "shadow": "drop-shadow(0 2px 2px rgba(0,0,0,0.55))"},
+  "card": {"left": 54, "top": 170, "headerSize": 52, "bodySize": 38, "lineHeight": 1.28, "headerFill": "cardHeader",
+           "headerStroke": "cardStroke", "bodyFill": "cardBody"},
+  "pip": {"w": 188, "h": 284, "right": 24, "bottom": 0, "radius": 18, "fill": "pip", "avatar": "img/avatar.svg"},
+  "separator": {"bars": {
+    "top": ["#EAC80C", "#2EE8C4", "#22D63A", "#B813C6", "#D2122E"],
+    "mid": ["#000000", "#B813C6", "#000000", "#2EE8C4", "#000000"],
+    "bottom": ["#E8DDF0", "#4B0E8C", "#000000"]}}
+}

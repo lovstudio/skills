@@ -9767,3 +9767,59 @@ skills:
     review_trigger_en: Review after ten completed external uses, the first real call-in
       clip, a human style evaluation, or material scope, dependency or support-cost changes.
     card_path: pricing-cards/xiaonuan-style-media-creator.md
+- name: media-cloner
+  runtime_name: lov-media-cloner
+  display_name: Video Style Cloner
+  name_zh: 视频风格复刻
+  repo: lovstudio/media-cloner-skill
+  paid: false
+  category: Video Creation
+  version: 0.1.0
+  updated_at: '2026-11-09T16:51:53Z'
+  depends_on:
+  - branding-consistency
+  description: Clone a creator's video style into a frozen, evidence-grounded style
+    pack with holdout checks, a style guide and a packaging template.
+  tagline_en: Turn a creator's public videos into a traceable eight-dimension style
+    pack, a holdout report, a style guide and a Remotion packaging template, without
+    copying the creator's identity.
+  tagline_zh: 把任一博主的公开作品变成可追溯的八维风格包、留出检验、风格说明书与 Remotion 包装模板，不复制原作者身份。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本 Skill：取样与冻结台账、测量与转写工具、规则构建与校验、留出检验、六份 Schema、Remotion 包装模板与音轨构建
+    delivery_unit_en: Current Skill with the sampling and freeze ledger, measurement
+      and transcription tools, rule build and verification, holdout checks, six schemas,
+      a Remotion packaging template and an audio builder
+    value_zh: 把一位博主的公开作品变成冻结的八维风格包：原话可在转写里逐字找到，数字可回读测量文件，冻结后再用留出样本检验，并给出风格说明书与参数化包装模板。
+    value_en: Turn a creator's public videos into a frozen eight-dimension style pack
+      whose quotes match the transcripts word for word and whose numbers trace back
+      to measurement files, check it on held-out videos, and get a style guide plus
+      a parameterised packaging template.
+    anchor_zh: 由晓暖说媒、老张心理两次手工复刻提炼；在晓暖原始数据上逐字节复现 v0.1 冻结包，模板逐像素一致；尚无新博主端到端案例与用户省时对照。
+    anchor_en: Distilled from two manual clones; rebuilt the Xiaonuan v0.1 frozen pack
+      byte for byte from its original data with a pixel-identical template; no new-creator
+      end-to-end case or measured time savings yet.
+    basis_zh: 六维加权3.1/5，但证据来自单一博主数据上的内部复现，尚无新博主端到端案例，沿用同类免费入口积累使用证据；自动校验不等于人工风格认可。
+    basis_en: Six-dimension score 3.1/5, but the evidence is an internal regression
+      on one creator's data with no new-creator end-to-end case, so it keeps the sibling
+      free entry to collect usage evidence; automated checks are not human style approval.
+    boundary_zh: 不含下载与登录、外部转写或模型额度、拍摄、出镜授权、字体授权、渲染算力与代发布；不冒充被分析的博主，不复用其素材、声音与品牌，不做换脸或声纹克隆。
+    boundary_en: Excludes downloading and logins, external ASR or model credits, filming,
+      on-camera consent, font licences, rendering compute and posting; no impersonation
+      of analysed creators, no reuse of their media, voice or branding, and no face
+      or voice cloning.
+    maintenance_zh: 随宿主、FFmpeg、OCR、转写、Remotion 依赖与平台取样方式变化复评，无托管服务或更新时限承诺。
+    maintenance_en: Review when hosts, FFmpeg, OCR, transcription or Remotion dependencies,
+      or platform sampling change; no hosted service or update SLA is included.
+    confidence: case-backed
+    review_trigger_zh: 第一个新博主端到端案例、累计10次外部完整使用、人工风格评审，或交付范围、依赖、支持成本变化时复评。
+    review_trigger_en: Review after the first new-creator end-to-end case, ten completed
+      external uses, a human style evaluation, or material scope, dependency or support-cost
+      changes.
+    card_path: pricing-cards/media-cloner.md

@@ -1,0 +1,6 @@
+node_modules
+public/media
+public/audio
+public/fonts/*.ttf
+public/fonts/*.otf
+out

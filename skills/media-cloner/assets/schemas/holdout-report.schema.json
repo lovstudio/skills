@@ -1,0 +1,104 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "style-pack holdout report",
+ "type": "object",
+ "required": [
+  "profile_sha256",
+  "checked_at",
+  "method",
+  "samples",
+  "not_claimed"
+ ],
+ "properties": {
+  "profile_sha256": {
+   "type": "string",
+   "pattern": "^[a-f0-9]{64}$"
+  },
+  "checked_at": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "method": {
+   "type": "string"
+  },
+  "samples": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "required": [
+     "results"
+    ],
+    "properties": {
+     "rank": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "title": {
+      "type": "string"
+     },
+     "subtype_observed": {
+      "type": "string"
+     },
+     "results": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "object",
+       "required": [
+        "result"
+       ],
+       "properties": {
+        "result": {
+         "enum": [
+          "hit",
+          "partial",
+          "miss",
+          "not_applicable",
+          null
+         ]
+        },
+        "note": {
+         "type": "string"
+        },
+        "contaminated": {
+         "type": "boolean"
+        },
+        "contamination": {
+         "type": "string"
+        },
+        "deviation": {
+         "type": "string"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "summary": {
+   "type": "object"
+  },
+  "suggested_revisions": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "suggested_v0_2_revisions": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "legacy name used by the v0.1 packs"
+  },
+  "not_claimed": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  }
+ }
+}

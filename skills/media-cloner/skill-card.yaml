@@ -1,0 +1,116 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: 视频风格复刻：从任一博主的公开作品得到冻结的、带时间证据的八维风格包、留出检验、风格说明书与参数化包装模板，可再封装成该博主的专属风格 Skill。
+owner:
+  team: Local skill contributors
+  contact: 本地维护者，通过宿主会话反馈；未创建公开支持渠道
+license:
+  name: MIT
+  terms: 代码、协议、Schema 与模板采用 MIT。被分析作品的原片、人像、声音、台词、截图、封面与品牌标识的权利不因分析而转授，包内不含这些素材。
+  url: LICENSE
+use_case:
+  audience: 想学习某位博主的视频手法、再用自己的素材出片的创作者与 AI 工作流
+  scenario: 从博主主页或作品链接，到冻结风格包、说明书和模板预览；可选演示与专属 Skill
+  tasks:
+    - 选样，并在分析前冻结训练与留出拆分
+    - 全片测量、OCR 版式扫描、提示音扫描与转写
+    - 写带时间证据的八维规则并冻结
+    - 冻结后做留出检验，写风格说明书
+    - 用参数化 Remotion 模板预览，或用自己的素材出演示
+deployment:
+  geography: local-first
+  environments:
+    - 兼容 AGENTS/Skills 的本地 AI 宿主
+requirements:
+  credentials: 不需要固定云账号；需要登录的平台由用户自己的浏览器会话读取，凭据不进入包
+  dependencies:
+    - lov-branding-consistency
+  runtime:
+    - Python 3.9+ with jsonschema and PyYAML
+    - FFmpeg/FFprobe, numpy, OpenCV and Pillow for measurement
+    - macOS swiftc (Vision) for OCR
+    - mlx-whisper or openai-whisper for local ASR, or imported transcripts
+    - Node.js and Remotion 4.0.517 for the template
+risks:
+  - risk: 冒充被分析的博主，或把其素材、头像、声音、品牌带进新作品
+    mitigation: 风格包只记手法，guardrails 写明不可迁移的身份与品牌；原片、截图与完整转写只留在本地 research/；演示只用用户自己的素材
+  - risk: 规则过拟合到爆款或个别样本
+    mitigation: 分层选样；冻结拆分；分母只计适用的训练样本；冻结后逐条留出检验，并报告覆盖率与受污染项
+  - risk: 把原作的观点、市场判断或刻板说法当成事实迁移
+    mitigation: 规则只记修辞与结构；说明书遵守作者性契约，原作观点标为原作者的修辞
+  - risk: 把自动校验或演示当成风格认可或已发布
+    mitigation: 状态分级（verified、frozen、holdout_checked、demo_rendered、published）；不编造相似度分数、盲评或听审
+  - risk: 访问需要登录的平台时越权
+    mitigation: 只读公开作品；不替用户登录或输入密码；不绕过付费、私密或已删除内容；不收集评论区个人信息
+references:
+  - title: Skill instructions
+    path: SKILL.md
+  - title: Analysis protocol
+    path: references/analysis-protocol.md
+  - title: Rules and evidence
+    path: references/rules-and-evidence.md
+  - title: Regression on the 晓暖 v0.1 data
+    path: cases/regression-xiaonuan/report.json
+output:
+  types:
+    - sample manifest with a frozen split
+    - measurements and transcripts (local only)
+    - style pack (profile, evidence, freeze record, holdout report)
+    - style guide
+    - template tokens, preview stills, optional demo
+  formats:
+    - JSON
+    - JSONL
+    - Markdown
+    - PNG
+    - MP4
+  parameters:
+    - 博主主页或作品链接
+    - 格式期与样本数
+    - 可选：用户自己的演示素材与出镜者同意
+  validation:
+    - Schema、拆分摘要与冻结 SHA-256
+    - 引文是转写原文的精确子串，支持数由证据推出
+    - 留出逐条覆盖，受污染项单列
+    - 模板预览与演示的响度、真峰值和抽帧质检
+  description: 风格包冻结、留出检验通过都不等于风格认可；演示与专属 Skill 是可选产物。
+ethical_considerations: 不冒充被分析的博主，不复用其素材、头像、声音与品牌；不绕过平台访问限制，不收集评论区个人信息；不把原作观点和刻板说法当事实迁移；演示只用用户自己的素材并取得出镜者同意；不自动发布。
+dimensions:
+  - id: traceability
+    label: 证据可追溯
+    description: 每句原话可在转写里逐字找到，每个数字可回读测量文件，支持数由证据推出
+    evidence: cases/regression-xiaonuan/report.json
+    score: null
+  - id: holdout_discipline
+    label: 留出纪律
+    description: 冻结前由工具封存留出样本；冻结后要求每个“规则 × 留出样本”都有结果，受污染项单列
+    evidence: cases/regression-xiaonuan/report.json
+    score: null
+  - id: reproducibility
+    label: 可复现
+    description: 通用工具在晓暖真实数据上复现了 v0.1 冻结包与各项测量，画像与证据文件逐字节一致
+    evidence: cases/regression-xiaonuan/report.json
+    score: null
+  - id: production
+    label: 出片衔接
+    description: 参数化模板填入晓暖参数后与其专用模板逐像素一致；音轨构建复现了演示音轨的响度与对齐
+    evidence: cases/template-preview/preview.png
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: LovStudio 官网目录免费条目（0 Credits），本地使用同样免费；证据来自内部复现，尚无新博主端到端案例，先以免费入口积累使用证据。
+  boundary: 外部 ASR 或模型、下载、拍摄、出镜授权、字体授权、渲染算力与发布费用不包含。
+  review_trigger: 第一个新博主端到端案例、累计 10 次外部完整使用、人工风格评审，或交付范围、依赖、支持成本变化时，由 lov-skill-pricing 复评。
+  confidence: case-backed
+distribution:
+  paid: []
+  free:
+    - lovstudio
+  channels:
+    github: private source repository; public copy is the lovstudio/skills mirror
+    lovstudio: published as a free catalog entry (0 Credits)
+    workbuddy: not_requested
+    skillpay: not_requested
+  local: installed after verification

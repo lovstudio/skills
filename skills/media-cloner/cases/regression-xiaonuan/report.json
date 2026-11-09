@@ -1,0 +1,50 @@
+{
+ "purpose": "确认通用工具与晓暖 v0.1 的手写流程等价，再交付给新的博主使用",
+ "date": "2026-11-09",
+ "inputs": "晓暖复刻工程的本地研究数据：12 条样本清单与哈希、Whisper 转写、全片测量与 OCR 统计；原片与转写不随本 Skill 分发",
+ "pack_rebuild": {
+  "method": "把冻结包的 32 条规则与 219 条证据转成 media-cloner-draft/v1 草稿，用 cloner.py build 在原转写上重新定位全部引文",
+  "style_profile_sha256": {
+   "rebuilt": "d9ce0bbee2e18584aa06c5b41f03c453dc98b63132767258226ccb5553170a00",
+   "frozen_v0_1": "d9ce0bbee2e18584aa06c5b41f03c453dc98b63132767258226ccb5553170a00"
+  },
+  "evidence_jsonl_sha256": {
+   "rebuilt": "0109cc6c6ecb592e8cb11315a06a87e94cffac6967ac423e29aec886f650f54f",
+   "frozen_v0_1": "0109cc6c6ecb592e8cb11315a06a87e94cffac6967ac423e29aec886f650f54f"
+  },
+  "verify_with_transcripts": "passed: every excerpt found in the preserved transcript, every start time on a segment boundary"
+ },
+ "gates": {
+  "holdout_import_before_freeze": "refused",
+  "holdout_import_after_freeze": "allowed (2 samples)",
+  "profile_edited_after_freeze": "verify failed and holdout re-sealed",
+  "restored_profile": "passed"
+ },
+ "measurements": {
+  "media_two_train_samples": "integrated LUFS, true peak, hard cuts, silence seconds and median segment identical to the original metrics",
+  "tone_scan": "1 kHz separator events identical for 10 of 10 training samples; holdout not scanned",
+  "layout_ocr_two_samples": "title lines (including OCR misreads), title persistence, subtitle coverage, characters per line and subtitle top identical",
+  "text_colours": "clusters #ECE792 / #F9F891 (title yellow), #FCFCFC (white), #0B0805 (stroke) against the hand-picked #FAFA92 / #FCFCFB / #0A0602",
+  "training_metrics": "8 distributions within 0.01 of the original (duration, Han chars per minute, first tone, LUFS, true peak, silence fraction, cuts per minute, median segment)"
+ },
+ "holdout_check_on_v0_1_report": {
+  "recorded_pairs": 48,
+  "expected_pairs": 64,
+  "contaminated": 11,
+  "status": "incomplete"
+ },
+ "template": {
+  "method": "generic template with the 晓暖 tokens versus her dedicated template, same timeline, frames 100 / 320 / 600 / 1500",
+  "pixel_difference": "mean 0, max 0 on all four frames"
+ },
+ "audio": {
+  "method": "build_audio.py with the demo structure: voice 0–10.3 s, 0.77 s 1 kHz tone, voice 12.67–74.1 s",
+  "result": "-15.71 LUFS, -4.28 dBTP; original -15.7 LUFS, -4.5 dBTP; correlation 0.9998 at zero lag"
+ },
+ "also_verified": "lov-laozhang-style-media-creator v0.1 pack passes cloner.py verify (23 rules, 157 evidence)",
+ "not_claimed": [
+  "a new creator analysed end to end with this Skill",
+  "human style review",
+  "style similarity score"
+ ]
+}
