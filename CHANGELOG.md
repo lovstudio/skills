@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 — 2026-11-06
+
+- New optional `runs_on` field on `skills.yaml` entries answers "can I run this on my machine with the tools I have": supported systems, required accounts and keys, agents and models actually run, and alternatives with their measured gap. lovstudio.ai leads the Skill page with it and falls back to `compatibility` and `skill-card.yaml` without it.
+- `scripts/validate_runs_on.py` enforces the rule behind the field in CI: a status of `verified` needs a cited run that passed, `partial` and `blocked` must say what is missing, and anything nobody ran stays `unverified`.
+- 16 of the heaviest Skills now have a record, video first. `evidence/runs-on/` holds the prompt, fixture hashes and independent checks for each recorded run.
+
 ## 1.1.3 — 2026-10-31
 
 - A stale mirror now fails `Render index` instead of passing silently. `SKILLS_SOURCE_TOKEN` had never been set, so from 2026-09-25 every private source failed to clone anonymously and kept its last mirror while runs stayed green (97 entries by 2026-10-31).

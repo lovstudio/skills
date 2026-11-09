@@ -2561,6 +2561,80 @@ skills:
     review_trigger_en: Review after 30 launch days, 10 real uses, a major version change,
       or a material change in per-buyer support cost.
     card_path: pricing-cards/motion-media-creator.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.10.1
+    verdict_zh: Apple 芯片的 Mac 能跑完。只有国产工具也能出片：WorkBuddy + Kimi K2.7 渲染出了 30 秒成片和三比例封面，但第一屏片名溢出了画面，要自己看片把关。没有 OpenRouter 和豆包的 Key 也能做，只是没有旁白和按章生成的配乐。其他系统未验证。
+    verdict_en: 'Runs through on an Apple silicon Mac. Domestic tools alone can also produce a film: WorkBuddy with Kimi K2.7 rendered a 30-second film and covers in three ratios, but the opening title overflowed the frame, so review it yourself. It works without OpenRouter or Doubao keys, just without narration and per-chapter music. Other systems are not verified.'
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-tesla
+      - wb-kimi
+    - id: macos-intel
+      status: unverified
+      note_zh: 配乐人声扫描用 mlx-whisper（Apple 芯片）。没有在 Intel 上跑过。
+      note_en: The music vocal scan uses mlx-whisper (Apple silicon). Not run on an Intel Mac.
+    - id: windows
+      status: unverified
+      note_zh: 源码写的是 macOS 系统中文字体或同等授权字体，没有在 Windows 上跑过。
+      note_en: The source expects macOS system CJK fonts or licensed equivalents. Not run on Windows.
+    - id: linux
+      status: unverified
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-opus-5-5
+      evidence:
+      - cc-tesla
+    - label: WorkBuddy
+      domestic: true
+      status: partial
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 成片和封面都渲染出来了，但第一屏片名溢出左缘；分章节拍质检和旁白没跑，真实资料台账也没测。
+      gap_en: The film and covers rendered, but the opening title overflows the left edge. Beat-phase QC and narration were not run, and a real fact ledger was not tested.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: OpenRouter API Key
+      required: false
+      for_zh: AI 配乐和封面底图，出图要求余额不低于 1 美元
+      for_en: AI music and cover backgrounds; image generation needs a balance of at least US$1
+    - name: VOICENGINE_API_KEY
+      required: false
+      for_zh: 豆包 Seed-TTS 旁白；可以自己录或不要旁白
+      for_en: Doubao Seed-TTS narration; record your own or skip narration
+    alternatives:
+    - replaces_zh: OpenRouter AI 配乐和封面底图
+      replaces_en: OpenRouter AI music and cover backgrounds
+      with_zh: 自备无人声音乐 + 程序生成的封面
+      with_en: Your own instrumental track and generated cover art
+      status: partial
+      evidence:
+      - wb-kimi
+      gap_zh: 能出片。整片一条配乐，没有分章卡点；封面是章节色带，没有 AI 底图的质感。
+      gap_en: It still produces a film, with one track across the whole film and no per-chapter beat matching. Covers use chapter colour bands rather than AI backgrounds.
+    evidence:
+    - id: cc-tesla
+      date: '2026-10-12'
+      env: macOS arm64 · Claude Code 2.1.295 · claude-opus-5-5
+      result: passed
+      scope_zh: 《如何打造一款特斯拉》：15 章 173.7 秒，含旁白、双语字幕和分章配乐，全片解码无错，−16.1 LUFS。YouTube 已公开，视频号和 B 站提交审核。
+      scope_en: 'How to Build a Tesla: 15 chapters and 173.7 seconds with narration, bilingual subtitles and per-chapter music, clean full decode, −16.1 LUFS. Public on YouTube and submitted for review on WeChat Channels and Bilibili.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/motion-media-creator/cc-tesla.md
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: partial
+      skill_version: 0.10.1
+      scope_zh: 按 3 章主题渲染出 30 秒 1920×1080 成片和 16:9、4:3、3:4 封面，完整解码，−16.0 LUFS。每章画面都按主题画了，但第一屏片名溢出画面左缘。
+      scope_en: Rendered a 30-second 1920×1080 film in 3 chapters with 16:9, 4:3 and 3:4 covers, clean full decode, −16.0 LUFS. Each chapter's visuals followed the topic, but the opening title overflows the left edge.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/motion-media-creator/wb-kimi.md
 - name: interview-media-creator
   runtime_name: lov-interview-media-creator
   depends_on:
@@ -2615,6 +2689,88 @@ skills:
     review_trigger_en: Review when membership scope changes, after 10 real uses, a
       major version change, or a change in the dependency contract.
     card_path: pricing-cards/interview-media-creator.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.7.2
+    verdict_zh: 只在 Apple 芯片的 Mac 上跑通过。转写离不开 mlx-whisper：Debian 容器里实测装得上但加载失败，所以 Linux 现在跑不了，Windows 未验证。只有国产工具可以：WorkBuddy + Kimi K2.7 把一段 45 秒合成采访做到了审片版，门禁全过，但耗时 54 分钟。
+    verdict_en: 'Only verified on an Apple silicon Mac. Transcription depends on mlx-whisper, which installs but fails to load in a Debian container, so Linux does not run today and Windows is not verified. Domestic tools alone do work: WorkBuddy with Kimi K2.7 took a 45-second synthetic interview to a review cut with every gate passing, in 54 minutes.'
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-ricky
+      - wb-kimi
+    - id: macos-intel
+      status: unverified
+      note_zh: 转写脚本只调用 mlx-whisper，它面向 Apple 芯片。没有在 Intel 上跑过。
+      note_en: The transcription script only calls mlx-whisper, which targets Apple silicon. Not run on an Intel Mac.
+    - id: windows
+      status: unverified
+      note_zh: 转写要 mlx-whisper，配乐人声检查要 macOS 的 swiftc，杜比视界素材要 macOS 的 avconvert。没有在 Windows 上跑过。
+      note_en: Transcription needs mlx-whisper, the music vocal check needs macOS swiftc, and Dolby Vision footage needs macOS avconvert. Not run on Windows.
+    - id: linux
+      status: blocked
+      evidence:
+      - linux-mlx
+      note_zh: 转写步骤过不去：mlx-whisper 能安装但加载失败（缺 libmlx.so）。容器里也没有 swiftc 和 avconvert。
+      note_en: 'Transcription cannot run: mlx-whisper installs but fails to load (libmlx.so is missing). swiftc and avconvert are not available either.'
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-opus-5-5
+      evidence:
+      - cc-ricky
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 只测了 45 秒合成素材，杜比视界、美颜对比、横版派生和发布没测。单次用了 54 分钟、约 1370 万输入 token（大部分命中缓存）。
+      gap_en: Tested on 45 seconds of synthetic footage only; Dolby Vision, beauty comparisons, the landscape version and publishing were not. One run took 54 minutes and about 13.7M input tokens, mostly cached.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: OpenRouter API Key
+      required: false
+      for_zh: AI 配乐，约 0.08 美元一条；用自备音乐可以不要
+      for_en: AI music, about US$0.08 a track; not needed with your own music
+    alternatives:
+    - replaces_zh: OpenRouter AI 配乐
+      replaces_en: OpenRouter AI music
+      with_zh: 自备无人声音乐
+      with_en: Your own instrumental track
+      status: verified
+      evidence:
+      - wb-kimi
+      gap_zh: 门禁全过，少了按内容生成配乐这一步；配乐门禁有 3 条提醒（单轨、片尾截断、章节卡偏短）。
+      gap_en: 'All gates passed, minus the step that generates music for the content. The music gate raised 3 warnings: single track, cut-off ending, short chapter card.'
+    evidence:
+    - id: cc-ricky
+      date: '2026-10-27'
+      env: macOS arm64 · Claude Code 2.1.308 · claude-opus-5-5
+      result: passed
+      scope_zh: 酒馆里横拍的 67 分钟双人对谈，剪成 3 分 42 秒视频号竖版，再派生 B 站横版，作者审了四版后发布。
+      scope_en: A 67-minute landscape conversation shot in a bar became a 3:42 vertical cut for WeChat Channels and a landscape version for Bilibili, published after the author reviewed four versions.
+      url: https://lovstudio.ai/cases/interview-short-ricky-2026-10
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: passed
+      skill_version: 0.7.2
+      scope_zh: 45 秒合成采访做成 1080×1920 审片版：冷开场、章节、人名条、地点条、数据卡、A/B 封面都有。被访者拒答的一段整段删了，两个转写模型都听错的名字按背景资料改对了。Skill 自带门禁全过，完整解码，−16.0 LUFS。
+      scope_en: A 45-second synthetic interview became a 1080×1920 review cut with a cold open, chapters, name and location tags, a data card and A/B covers. The refused question was removed in full, and a name both transcription models misheard was corrected from the background notes. All of the Skill's gates passed, clean full decode, −16.0 LUFS.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/interview-media-creator/wb-kimi.md
+    - id: linux-mlx
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: failed
+      skill_version: 0.7.2
+      scope_zh: 转写依赖 mlx-whisper 在 Debian 容器里能安装，但加载时报缺 libmlx.so；swiftc 和 avconvert 也不存在。其余脚本能加载。
+      scope_en: mlx-whisper installs in a Debian container but fails on load because libmlx.so is missing; swiftc and avconvert do not exist there. The other scripts load.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/interview-media-creator/linux-mlx.md
 - name: koubo-media-creator
   runtime_name: lov-koubo-media-creator
   depends_on:
@@ -2676,6 +2832,117 @@ skills:
     review_trigger_en: No paid-tier review is planned; revisit on a major version change
       or a clear rise in maintenance cost.
     card_path: pricing-cards/koubo-media-creator.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.3.1
+    verdict_zh: Apple 芯片的 Mac 能从主题做到成片。只有国产工具也行：WorkBuddy + Kimi K2.7 写完脚本，录音回来后自动挑出每句最后念对的一遍，剪成了竖版成片；但它自己生成的上屏证据卡字太小，这部分要换成你的真实素材。Windows 和 Intel Mac 未验证，Linux 只有脚本门禁能跑。
+    verdict_en: 'Goes from topic to finished film on an Apple silicon Mac. Domestic tools alone also work: WorkBuddy with Kimi K2.7 wrote the script, kept the last good take of each line from the recording, and cut a vertical film. The on-screen evidence cards it generated were too small to read, so replace them with your own material. Windows and Intel Macs are not verified, and on Linux only the script gate runs.'
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-sample
+      - wb-kimi-film
+    - id: macos-intel
+      status: unverified
+      note_zh: 本机转写用 mlx-whisper（Apple 芯片）。源码支持改用云端转写的结果，没有实测。
+      note_en: Local transcription uses mlx-whisper (Apple silicon). The source can take cloud transcripts instead, which has not been tested.
+    - id: windows
+      status: unverified
+      note_zh: 封面抠图要 macOS 的 swiftc + Vision，本机转写要 mlx-whisper。没有在 Windows 上跑过。
+      note_en: The cover cut-out needs macOS swiftc and Vision, and local transcription needs mlx-whisper. Not run on Windows.
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 脚本门禁和主要脚本能跑。mlx-whisper 加载失败，也没有 swiftc，转写和封面抠图跑不了。
+      note_en: The script gate and main scripts run. mlx-whisper fails to load and swiftc is missing, so transcription and the cover cut-out do not run.
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-opus-5-5
+      evidence:
+      - cc-sample
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi-package
+      - wb-kimi-film
+      gap_zh: 成片技术门禁全过，但上半屏的证据卡是它自己生成的占位图，字小到看不清。Logo 和形象照也是占位。
+      gap_en: All technical gates passed, but the top-half evidence cards are placeholders it generated, with text too small to read. The logo and portrait are placeholders too.
+    - label: WorkBuddy
+      domestic: true
+      status: partial
+      model: deepseek-v4-pro
+      evidence:
+      - wb-deepseek-package
+      gap_zh: 只跑了脚本和提词器，没有进入录后剪辑。
+      gap_en: Ran the script and teleprompter only, not the post-recording edit.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: VOICENGINE_API_KEY
+      required: false
+      for_zh: Seed-TTS 占位配音；自己录音可以不要
+      for_en: Seed-TTS stand-in narration; not needed if you record yourself
+    - name: OpenRouter API Key
+      required: false
+      for_zh: AI 配乐；用自备音乐可以不要
+      for_en: AI music; not needed with your own music
+    alternatives:
+    - replaces_zh: OpenRouter AI 配乐
+      replaces_en: OpenRouter AI music
+      with_zh: 自备无人声音乐
+      with_en: Your own instrumental track
+      status: verified
+      evidence:
+      - wb-kimi-film
+      gap_zh: 混音门禁通过，配乐不再按内容生成。
+      gap_en: The mix gates passed; the music is no longer generated for the content.
+    evidence:
+    - id: cc-sample
+      date: '2026-10-29'
+      env: macOS arm64 · Claude Code 2.1.308 · claude-opus-5-5
+      result: passed
+      scope_zh: 一个主题跑通口播样片：质检全部通过（−16.0 LUFS，吃字率 0%），在含两处故意念错重读的合成录音上都选中了后一遍。出镜和配音是占位，作者确认收录为案例。
+      scope_en: 'One topic through to a talking-head sample: QC passed in full (−16.0 LUFS, 0% dropped words), and it kept the later take at both deliberate retakes in a synthetic recording. Presenter and voice are placeholders; the author approved it as a case.'
+      url: https://lovstudio.ai/cases/koubo-short-topic-to-short-2026-10
+    - id: wb-kimi-package
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: passed
+      skill_version: 0.3.1
+      scope_zh: 按给定事实写出脚本、提词器和录制清单，脚本门禁 0 错误 0 警告，没有补事实以外的数字。
+      scope_en: Wrote the script, teleprompter and shot list from the given facts. The script gate reported 0 errors and 0 warnings, with no numbers beyond the facts given.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/koubo-media-creator/wb-kimi-package.md
+    - id: wb-kimi-film
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: passed
+      skill_version: 0.3.1
+      scope_zh: 65 秒竖拍合成录音（含重读）剪成 54 秒 1080×1920 成片，配字幕和 3:4、16:9 封面。质检全过：−16.1 LUFS，吃字率 0.4%。
+      scope_en: 'A 65-second vertical synthetic recording with retakes became a 54-second 1080×1920 film with subtitles and 3:4 and 16:9 covers. QC passed in full: −16.1 LUFS, 0.4% dropped words.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/koubo-media-creator/wb-kimi-film.md
+    - id: wb-deepseek-package
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · deepseek-v4-pro
+      result: passed
+      skill_version: 0.3.1
+      scope_zh: 按给定事实写出脚本、提词器和录制清单，脚本门禁 0 错误 0 警告。
+      scope_en: Wrote the script, teleprompter and shot list from the given facts. The script gate reported 0 errors and 0 warnings.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/koubo-media-creator/wb-deepseek-package.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.3.1
+      scope_zh: 脚本门禁通过，对齐、构建、混音、质检等脚本能加载；没有 swiftc，mlx-whisper 加载失败。
+      scope_en: The script gate passes and the align, build, mix and QC scripts load; swiftc is missing and mlx-whisper fails to load.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/koubo-media-creator/linux-scripts.md
 - name: media-creator
   runtime_name: lov-media-creator
   depends_on:
@@ -2732,6 +2999,127 @@ skills:
     review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
       change, or a material change in platform requirements or per-buyer support cost.
     card_path: pricing-cards/media-creator.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.33.0
+    verdict_zh: Apple 芯片的 Mac 能跑完。不用 Claude 账号也行：Claude Code 接 DeepSeek V4 Pro 做过真实成片并发布；纯国产的 WorkBuddy 上，DeepSeek V4 Pro 做到了带封面的竖版成片，Kimi K2.7 做到了审校版，用的都是合成素材。Windows 和 Intel Mac 没人跑过，Linux 只验证了部分脚本。
+    verdict_en: 'Runs through on an Apple silicon Mac. No Claude account is needed: Claude Code pointed at DeepSeek V4 Pro has produced and published a real film. On WorkBuddy, fully domestic, DeepSeek V4 Pro reached a vertical film with a cover and Kimi K2.7 reached a review cut, both on synthetic footage. Nobody has run it on Windows or an Intel Mac, and on Linux only some scripts were checked.'
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-messi-film
+      - wb-deepseek-full
+      - wb-kimi-review
+    - id: macos-intel
+      status: unverified
+      note_zh: 可懂度门禁优先用 mlx-whisper（Apple 芯片），源码也接受 openai-whisper，但没有在 Intel 上跑过。
+      note_en: The intelligibility gate prefers mlx-whisper (Apple silicon). The source also accepts openai-whisper, but that has not been run on an Intel Mac.
+    - id: windows
+      status: unverified
+      note_zh: Screen Studio 官网写的是 macOS 录屏工具，Windows 只能走普通 MP4 路线。这条路线要的 Python 和 FFmpeg 没在 Windows 上跑过。
+      note_en: Screen Studio's site describes a macOS screen recorder, so Windows means the plain MP4 route. Its Python and FFmpeg steps have not been run on Windows.
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 媒体探测和音频质检脚本在 Debian 容器里通过。完整流程没跑，mlx-whisper 在容器里加载失败。
+      note_en: The media probe and audio QC scripts pass in a Debian container. The full flow has not been run, and mlx-whisper fails to load there.
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-opus-5-5
+      evidence:
+      - cc-messi-film
+    - label: Claude Code
+      domestic: true
+      status: verified
+      model: deepseek-v4-pro
+      evidence:
+      - cc-deepseek-ep05
+      gap_zh: 不需要 Claude 账号，要把 Claude Code 接到 DeepSeek 的接口。这是 2026-08 的真实生产，当时的 Skill 版本更早。
+      gap_en: No Claude account, but Claude Code has to be pointed at DeepSeek's API. This was real production in 2026-08, on an earlier version of the Skill.
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: deepseek-v4-pro
+      evidence:
+      - wb-deepseek-full
+      gap_zh: 只测了 58 秒合成素材，走 FFmpeg 路线，没用 Screen Studio 和 Remotion；竖版只是把横版幻灯片放进画面。逐帧隐私检测和字幕审校流程没跑。CLI 最后一轮报 aborted，续跑一轮才拿到总结。
+      gap_en: Tested on 58 seconds of synthetic footage only, by the FFmpeg route without Screen Studio or Remotion; the vertical cut just places the landscape slides in the frame. The frame-by-frame privacy scan and subtitle review flow were not run. The CLI's last turn aborted, and one resumed turn was needed to get the summary.
+    - label: WorkBuddy
+      domestic: true
+      status: partial
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi-review
+      gap_zh: 只做到审校版：切口、字幕和响度都对，没有竖版成片和封面。长路径偶尔抄错，产物可能落到错误目录。
+      gap_en: 'Reached the review cut only: cuts, subtitles and loudness were right, with no vertical film or cover. It sometimes mis-copies long paths, so files can land in the wrong folder.'
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: 视频号、B 站创作者账号
+      required: false
+      for_zh: 只有接着发布时才需要，只剪辑不用
+      for_en: Only to publish afterwards; editing alone does not need it
+    alternatives:
+    - replaces_zh: Screen Studio 源工程
+      replaces_en: A Screen Studio source project
+      with_zh: 普通 MP4 录屏
+      with_en: A plain MP4 recording
+      status: verified
+      evidence:
+      - wb-deepseek-full
+      - wb-kimi-review
+      gap_zh: 能出审校版，没有源工程的分层可调。两种路线的成片效果没有做过对比。
+      gap_en: It still produces a review cut, without the source project's editable layers. The two routes' finished results have not been compared.
+    - replaces_zh: mlx-whisper
+      replaces_en: mlx-whisper
+      with_zh: openai-whisper
+      with_en: openai-whisper
+      status: unverified
+    evidence:
+    - id: cc-messi-film
+      date: '2026-10-28'
+      env: macOS arm64 · Claude Code 2.1.308 · claude-opus-5-5
+      result: passed
+      skill_version: 0.31.0
+      scope_zh: 纪录短片《何以梅西》：迭代 20 版，成片解码和响度质检通过，作者确认后发布到视频号和 B 站。
+      scope_en: 'The documentary short He Yi Mei Xi: 20 iterations, decode and loudness QC passed, published to WeChat Channels and Bilibili after the author approved it.'
+      url: https://lovstudio.ai/cases/he-yi-mei-xi-messi-film
+    - id: cc-deepseek-ep05
+      date: '2026-08-19'
+      env: macOS arm64 · Claude Code 2.1.233 · deepseek-v4-pro
+      result: passed
+      scope_zh: 真实录屏做成 18 分钟成片《如何发布 DSH 插件》，带封面，发布到视频号和 B 站，作者确认。整场会话的模型都是 DeepSeek V4 Pro。
+      scope_en: A real screen recording became the 18-minute film How to Publish a DSH Plugin, with a cover, published to WeChat Channels and Bilibili after the author approved it. Every turn in the session ran on DeepSeek V4 Pro.
+      url: https://www.bilibili.com/video/BV1pybo66EUx
+    - id: wb-deepseek-full
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · deepseek-v4-pro
+      result: passed
+      skill_version: 0.33.0
+      scope_zh: 58 秒合成口播做成 46 秒 1080×1920 竖版成片：切掉重说和空档，烧录字幕并按幻灯片原文校正，混入自备配乐，配 3:4 封面。字幕和保留的语音逐字一致，−16.0 LUFS，完整解码。
+      scope_en: '58 seconds of synthetic talk became a 46-second 1080×1920 vertical film: the retake and dead air were cut, subtitles were burned in and corrected against the slides, your own music was mixed in, and a 3:4 cover was added. Subtitles matched the kept speech exactly, −16.0 LUFS, clean full decode.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-creator/wb-deepseek-full.md
+    - id: wb-kimi-review
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: partial
+      skill_version: 0.33.0
+      scope_zh: 58 秒合成口播做成审校版：切掉说错重来的一句和喝水空档（少 12.2 秒），字幕和保留的语音逐字一致，响度 −16.0 LUFS，完整解码。
+      scope_en: '58 seconds of synthetic talk became a review cut: the retake and the dead air were removed (12.2 s shorter), subtitles matched the kept speech exactly, loudness −16.0 LUFS, clean full decode.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-creator/wb-kimi-review.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.33.0
+      scope_zh: 媒体探测和音频质检脚本在 Debian 容器里通过；mlx-whisper 能安装但加载失败（缺 libmlx.so）。
+      scope_en: The media probe and audio QC scripts pass in a Debian container; mlx-whisper installs but fails to load (libmlx.so is missing).
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-creator/linux-scripts.md
 - name: media-publisher
   runtime_name: lov-media-publisher
   updated_at: 2026-10-31 12:43:59+00:00
@@ -2787,6 +3175,100 @@ skills:
     review_trigger_en: Review after a version change, 10 complete publications verified
       on the platforms, or a material change in platform UI or support cost.
     card_path: pricing-cards/media-publisher.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.16.0
+    verdict_zh: 要你自己的创作者账号和 ego-browser。Claude Code 上的 Opus 5.5 和 DeepSeek V4 Pro 都真实发布过视频号和 B 站，所以不一定要 Claude 模型。WorkBuddy + Kimi K2.7 只测了不上传的预检，还把静态幻灯片的低码率误判成问题。Windows 和 Linux 上的发布流程未验证。
+    verdict_en: Needs your own creator accounts and ego-browser. Opus 5.5 and DeepSeek V4 Pro on Claude Code have both really published to WeChat Channels and Bilibili, so a Claude model is not required. WorkBuddy with Kimi K2.7 was only tested on the no-upload precheck, where it wrongly flagged the low bitrate of static slides as a problem. Publishing on Windows and Linux is not verified.
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-opus
+      - cc-deepseek-ep05
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: unverified
+      note_zh: 全部网页操作走 ego-browser，没有在 Windows 上跑过。交接语音没配火山 TTS 时会降级到 macOS 的 say。
+      note_en: All web steps go through ego-browser, which has not been run on Windows. Without Volcengine TTS, handoff audio falls back to macOS say.
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 只读预检脚本在 Debian 容器里通过，发布流程没跑。
+      note_en: The read-only precheck script passes in a Debian container. The publishing flow was not run.
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-opus-5-5
+      evidence:
+      - cc-opus
+    - label: Claude Code
+      domestic: true
+      status: verified
+      model: deepseek-v4-pro
+      evidence:
+      - cc-deepseek-ep05
+      gap_zh: 不需要 Claude 账号，要把 Claude Code 接到 DeepSeek 的接口。这是 2026-08 的真实发布，当时的 Skill 版本更早。
+      gap_en: No Claude account, but Claude Code has to be pointed at DeepSeek's API. This was a real publish in 2026-08, on an earlier version of the Skill.
+    - label: WorkBuddy
+      domestic: true
+      status: partial
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 只测了不上传的预检，没碰浏览器和账号。它把静态幻灯片的低码率当成严重问题，这个判断不对。
+      gap_en: Only the no-upload precheck was tested, with no browser or account. It treated the low bitrate of static slides as a serious problem, which is wrong.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: 视频号、B 站或小红书的创作者账号
+      required: true
+      for_zh: 发布时要已登录，用你自己的浏览器登录态
+      for_en: You must be signed in, using your own browser session
+    - name: ego-browser
+      required: true
+      for_zh: 所有网页操作都走它
+      for_en: All web steps go through it
+    - name: 火山引擎 TTS（VOLC_APPID、VOLC_TOKEN）
+      required: false
+      for_zh: 交接语音；没有时降级到 macOS 的 say
+      for_en: Handoff audio; falls back to macOS say without it
+    alternatives: []
+    evidence:
+    - id: cc-opus
+      date: '2026-10-27'
+      env: macOS arm64 · Claude Code 2.1.308 · claude-opus-5-5
+      result: passed
+      scope_zh: 一条采访短片的竖版和横版分别发到视频号和 B 站：视频号逐项回读字段后提交，内容列表显示原创审核中；B 站从创作中心、标签接口和公开页三处回读。
+      scope_en: An interview short's vertical and landscape cuts went to WeChat Channels and Bilibili. WeChat Channels fields were read back one by one before submitting and the content list showed its originality review; Bilibili was read back from the creator centre, the tags API and the public page.
+      url: https://lovstudio.ai/cases/interview-short-ricky-2026-10
+    - id: cc-deepseek-ep05
+      date: '2026-08-19'
+      env: macOS arm64 · Claude Code 2.1.233 · deepseek-v4-pro
+      result: passed
+      scope_zh: 18 分钟成片《如何发布 DSH 插件》发布到视频号和 B 站，作者确认，整场会话的模型都是 DeepSeek V4 Pro。
+      scope_en: The 18-minute film How to Publish a DSH Plugin published to WeChat Channels and Bilibili after the author approved it. Every turn in the session ran on DeepSeek V4 Pro.
+      url: https://www.bilibili.com/video/BV1pybo66EUx
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: partial
+      skill_version: 0.16.0
+      scope_zh: 只读预检：调用 Skill 的检查脚本读出文件参数并给出结论，没有打开浏览器，没有上传。
+      scope_en: 'Read-only precheck: it ran the Skill''s check script, read the file parameters and gave a conclusion, without opening a browser or uploading.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-publisher/wb-kimi.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.16.0
+      scope_zh: 只读预检脚本在 Debian 容器里通过。
+      scope_en: The read-only precheck script passes in a Debian container.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-publisher/linux-scripts.md
 - name: publish-wechat-channels
   runtime_name: lov-publish-wechat-channels
   display_name: WeChat Channels Publisher
@@ -2992,6 +3474,79 @@ skills:
     card_path: pricing-cards/wdb-cli.md
   depends_on:
   - branding-consistency
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.6.5
+    verdict_zh: 只支持 macOS，读的是这台 Mac 上的微信数据，Windows 和 Linux 用不了。不一定要 Claude：Claude Code 接 DeepSeek V4 Flash 也完整导出过一个群全年的聊天记录。WorkBuddy 没有测，因为测试要把真实聊天记录发给第三方模型。
+    verdict_en: 'macOS only: it reads WeChat data on this Mac, so Windows and Linux are out. Claude is not required: Claude Code pointed at DeepSeek V4 Flash has exported a full year of a group''s chat history. WorkBuddy was not tested, because a test would send real chat history to a third-party model.'
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-opus
+      - cc-deepseek
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: blocked
+      evidence:
+      - src-macos
+      note_zh: Skill 声明只支持 macOS。
+      note_en: The Skill declares macOS only.
+    - id: linux
+      status: blocked
+      evidence:
+      - src-macos
+      note_zh: Skill 声明只支持 macOS。
+      note_en: The Skill declares macOS only.
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-opus-5-5
+      evidence:
+      - cc-opus
+    - label: Claude Code
+      domestic: true
+      status: verified
+      model: deepseek-v4-flash
+      evidence:
+      - cc-deepseek
+      gap_zh: 不需要 Claude 账号，要把 Claude Code 接到 DeepSeek 的接口。聊天内容会发给你选的模型服务，先想清楚能不能发。
+      gap_en: No Claude account, but Claude Code has to be pointed at DeepSeek's API. Chat content goes to the model service you choose, so decide first whether that is acceptable.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: 本机登录的微信
+      required: true
+      for_zh: 读取和解密这台 Mac 上的微信数据
+      for_en: Reading and decrypting WeChat data on this Mac
+    alternatives: []
+    evidence:
+    - id: cc-opus
+      date: '2026-09-26'
+      env: macOS arm64 · Claude Code 2.1.281 · claude-opus-5-5
+      result: passed
+      scope_zh: 万人通讯录的微信人脉网络分析，用户在浏览器里回读报告的 14 个章节和 8 张图表后确认。
+      scope_en: A WeChat network analysis of 10,000 contacts, confirmed after the user reviewed the report's 14 sections and 8 charts in a browser.
+      url: https://lovstudio.ai/cases/wechat-network-analysis-10k-contacts
+    - id: cc-deepseek
+      date: '2026-08-21'
+      env: macOS arm64 · Claude Code 2.1.233 · deepseek-v4-flash
+      result: passed
+      scope_zh: 把一个微信群全年的聊天记录导出成 md：2 万多条消息未截断，并建了发言者昵称映射。
+      scope_en: 'Exported a full year of a WeChat group''s chat history to Markdown: more than 20,000 messages with no truncation, plus a mapping of speakers to nicknames.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/wdb-cli/cc-deepseek.md
+    - id: src-macos
+      date: '2026-11-06'
+      env: SKILL.md 的 compatibility 声明
+      kind: source
+      result: failed
+      skill_version: 0.6.5
+      scope_zh: Skill 声明运行环境为 macOS，没有其他系统的支持路径。
+      scope_en: The Skill declares macOS as its runtime, with no support path for other systems.
+      url: https://lovstudio.ai/skills/wdb-cli
 - name: skill-creator
   runtime_name: lov-skill-creator
   display_name: Skill Studio
@@ -3890,6 +4445,82 @@ skills:
     review_trigger_en: Review after a new platform, a resolution regression, 10 real
       uses, or a material support-cost change.
     card_path: pricing-cards/media-crawler.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.3.1
+    verdict_zh: 直链下载在 Mac 和 Linux 上都跑通了，不用账号。视频号要你自己的元宝登录，受限内容还得在 Mac 上走微信客户端，要管理员权限。只有国产工具时，WorkBuddy + Kimi K2.7 只验证了直链，而且要点名这个 Skill，否则它会直接用 curl。Windows 未验证。
+    verdict_en: Direct-link downloads ran on a Mac and on Linux with no account. WeChat Channels needs your own Yuanbao login, and restricted videos need the WeChat client on a Mac with admin rights. With domestic tools alone, WorkBuddy with Kimi K2.7 was only verified on direct links, and only when asked for this Skill by name; otherwise it just used curl. Windows is not verified.
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-channels
+      - wb-kimi
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: unverified
+      note_zh: 微信客户端取流只支持 macOS。其他路线没有在 Windows 上跑过。
+      note_en: WeChat client capture is macOS only. The other routes have not been run on Windows.
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 环境检查和直链下载在 Debian 容器里通过。平台登录态路线没测，Agent 流程也没跑。
+      note_en: The environment check and direct-link download pass in a Debian container. Routes needing a platform login and the agent flow were not run.
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-fable-5-1
+      evidence:
+      - cc-channels
+    - label: WorkBuddy
+      domestic: true
+      status: partial
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 只测了直链下载。第一次没有点名时，它直接用 curl 下载，没走 Skill，所以没有校验报告。视频号和其他平台没测。
+      gap_en: Only direct-link download was tested. Without naming the Skill the first time, it just used curl and skipped the Skill, so there was no verification report. WeChat Channels and other platforms were not tested.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: 腾讯元宝登录
+      required: false
+      for_zh: 解析视频号链接
+      for_en: Resolving WeChat Channels links
+    - name: 各平台自己的登录态
+      required: false
+      for_zh: 小红书、抖音、B 站等需要登录的内容
+      for_en: Login-only content on Xiaohongshu, Douyin, Bilibili and others
+    alternatives: []
+    evidence:
+    - id: cc-channels
+      date: '2026-09-12'
+      env: macOS arm64 · Claude Code 2.1.266 · claude-fable-5-1
+      result: passed
+      skill_version: 0.3.1
+      scope_zh: 元宝解析不了的视频号长视频，改走本机微信客户端取流，19 秒落盘；下载报告含流信息，片段首尾重新转写确认完整，用户确认。
+      scope_en: A long WeChat Channels video that Yuanbao could not resolve was captured through the local WeChat client in 19 seconds. The report includes stream details, the clip's start and end were re-transcribed to confirm it was complete, and the user confirmed the result.
+      url: https://lovstudio.ai/cases/wechat-channels-restricted-long-video-client-capture
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: partial
+      skill_version: 0.3.1
+      scope_zh: 点名 Skill 后走完直链路线：10 MB 文件下载、校验并写出 JSON 报告，状态 verified，完整解码。
+      scope_en: 'Once the Skill was named, it completed the direct-link route: a 10 MB file downloaded and verified, a JSON report written with status verified, and a clean full decode.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-crawler/wb-kimi.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.3.1
+      scope_zh: 环境检查和直链下载在 Debian 容器里通过，下载 5 秒，报告状态正常。
+      scope_en: 'The environment check and direct-link download pass in a Debian container: the download took 5 seconds and the report status is fine.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-crawler/linux-scripts.md
 - name: skill-publisher
   runtime_name: lov-skill-publisher
   display_name: Skill Publisher
@@ -4175,6 +4806,99 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material
       increase in renderer-compatibility support.
     card_path: pricing-cards/subtitle-freedom.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 1.4.0
+    verdict_zh: 给一个 SRT 就能跑，不需要账号，对电脑要求很低。WorkBuddy 上 Kimi K2.7、DeepSeek V4 Pro 和 GLM-5.2 都跑通了，埋的 13 个难点短语全部标对了位置，时间轴一条没动。脚本在 Linux 也通过，Windows 未验证。视频输入和人物卡只在真实案例里用过。
+    verdict_en: Give it an SRT and it runs, with no account and little demand on your computer. Kimi K2.7, DeepSeek V4 Pro and GLM-5.2 on WorkBuddy all finished, annotating all 13 planted phrases and leaving every timestamp unchanged. The scripts also pass on Linux and Windows is not verified. Video input and character cards have only been used in a real case.
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - case-lotr
+      - wb-kimi
+      - wb-deepseek
+      - wb-glm
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: unverified
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 套用词表、字幕解析和 Skill 自带测试在 Debian 容器里通过。选词要 Agent，没跑。
+      note_en: Applying a glossary, parsing the subtitles and the Skill's own tests pass in a Debian container. Choosing terms needs an agent and was not run.
+    agents:
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 12 条短对白上和另外两个模型没有差距。长片和人物卡没测。
+      gap_en: No difference from the other two models on 12 short lines. Feature-length input and character cards were not tested.
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: deepseek-v4-pro
+      evidence:
+      - wb-deepseek
+      gap_zh: 12 条短对白上和另外两个模型没有差距。长片和人物卡没测。
+      gap_en: No difference from the other two models on 12 short lines. Feature-length input and character cards were not tested.
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: glm-5.2
+      evidence:
+      - wb-glm
+      gap_zh: 12 条短对白上和另外两个模型没有差距。长片和人物卡没测。
+      gap_en: No difference from the other two models on 12 short lines. Feature-length input and character cards were not tested.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires: []
+    alternatives: []
+    evidence:
+    - id: case-lotr
+      date: '2026-08-10'
+      env: macOS arm64（案例没有记录 Agent 和模型）
+      result: passed
+      scope_zh: 《指环王》英文 SRT 做成 CET4 学习字幕，时间轴不变，真实素材。
+      scope_en: A Lord of the Rings English SRT became CET4 learning subtitles with timing unchanged, on real material.
+      url: https://lovstudio.ai/cases/case-eaf23513f2448109b5a6
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: passed
+      skill_version: 1.4.0
+      scope_zh: 12 条原创英文对白做成 CET4 字幕和带水印的 ASS，时间轴完全一致，埋的 13 个难点短语全部标注，字幕解析通过。
+      scope_en: 12 original English lines became CET4 subtitles and a watermarked ASS file with identical timing. All 13 planted phrases were annotated and both files parse.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/subtitle-freedom/wb-kimi.md
+    - id: wb-deepseek
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · deepseek-v4-pro
+      result: passed
+      skill_version: 1.4.0
+      scope_zh: 同样的素材，时间轴完全一致，13/13 个难点短语标注，字幕解析通过。
+      scope_en: 'Same input: identical timing, 13/13 planted phrases annotated, and both files parse.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/subtitle-freedom/wb-deepseek.md
+    - id: wb-glm
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · glm-5.2
+      result: passed
+      skill_version: 1.4.0
+      scope_zh: 同样的素材，时间轴完全一致，13/13 个难点短语标注，字幕解析通过。
+      scope_en: 'Same input: identical timing, 13/13 planted phrases annotated, and both files parse.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/subtitle-freedom/wb-glm.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 1.4.0
+      scope_zh: 套用词表、字幕解析和 Skill 自带测试在 Debian 容器里全部通过。
+      scope_en: Applying a glossary, parsing the subtitles and the Skill's own tests all pass in a Debian container.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/subtitle-freedom/linux-scripts.md
 - name: clean-mac
   runtime_name: lov-clean-mac
   display_name: Mac Cleaner
@@ -5135,6 +5859,108 @@ skills:
     review_trigger_en: Review after 10 cross-device cases or the addition of hosted
       inference, managed delivery, or ongoing support.
     card_path: pricing-cards/video-moments.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.3.1
+    verdict_zh: Apple 芯片的 Mac 能跑完，不需要额外账号。只有国产工具也行：WorkBuddy 上 Kimi K2.7、DeepSeek V4 Pro 和混元 hy3 都跑通了，都读对了画面里埋的随机口令，说明确实看了图。Linux 上脚本层通过，Windows 未验证。这些只验证了流程，修图的审美效果没有对比过。
+    verdict_en: 'Runs through on an Apple silicon Mac with no extra account. Domestic tools alone also work: Kimi K2.7, DeepSeek V4 Pro and Hunyuan hy3 on WorkBuddy all finished and all read random codes hidden in the footage, so they really looked at the frames. The scripts pass on Linux and Windows is not verified. This proves the flow; the look of the edited photos has not been compared.'
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - case-course
+      - wb-kimi
+      - wb-deepseek
+      - wb-hy3
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: unverified
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 探测、索引、抽帧、摄影调色和 Skill 自带测试都在 Debian 容器里通过。选片要 Agent 看图，没跑。
+      note_en: Probe, indexing, frame extraction, photographic grading and the Skill's own tests pass in a Debian container. Choosing frames needs an agent with vision and was not run.
+    agents:
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 合成素材只能验证流程，修图审美没有和 Claude 对比。
+      gap_en: Synthetic footage only proves the flow; the look has not been compared with Claude.
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: deepseek-v4-pro
+      evidence:
+      - wb-deepseek
+      gap_zh: 合成素材只能验证流程，修图审美没有和 Claude 对比。
+      gap_en: Synthetic footage only proves the flow; the look has not been compared with Claude.
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: hy3
+      evidence:
+      - wb-hy3
+      gap_zh: 跑通了，但一次单独的看图探测里它答「看不到图」，之后 3 次都读对了，结果不算稳定。
+      gap_en: It finished, but in one separate vision probe it answered that it could not see the image. The next 3 probes were correct, so this is not fully stable.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires: []
+    alternatives:
+    - replaces_zh: AI 重绘美化
+      replaces_en: AI image editing
+      with_zh: 包内摄影调色
+      with_en: The bundled photographic grading
+      status: verified
+      evidence:
+      - wb-kimi
+      gap_zh: 不依赖任何图像模型或 Key，人物和文字不会被改。调色效果要自己看。
+      gap_en: Needs no image model or key, and leaves people and text unchanged. Judge the look yourself.
+    evidence:
+    - id: case-course
+      date: '2026-09-06'
+      env: macOS arm64（案例没有记录 Agent 和模型）
+      result: passed
+      scope_zh: 四小时线下课程的朋友圈照片筛选与明亮美化，真实素材。
+      scope_en: Picking and brightening social photos from a real four-hour course recording.
+      url: https://lovstudio.ai/cases/case-376ecb6174de94e71c2f
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: passed
+      skill_version: 0.3.1
+      scope_zh: 50 秒合成课程录像挑出 3 张图，摄影调色后打包。Skill 的 verify 通过，读对 3/3 个画面口令。
+      scope_en: Picked 3 frames from a 50-second synthetic course recording, graded and packaged them. The Skill's verify passed and it read 3/3 on-screen codes.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/video-moments/wb-kimi.md
+    - id: wb-deepseek
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · deepseek-v4-pro
+      result: passed
+      skill_version: 0.3.1
+      scope_zh: 同样的素材和要求，Skill 的 verify 通过，读对 3/3 个画面口令，并如实列出音轨没有核对。
+      scope_en: Same footage and brief. The Skill's verify passed, it read 3/3 on-screen codes, and it reported that the audio track was not checked.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/video-moments/wb-deepseek.md
+    - id: wb-hy3
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · hy3
+      result: passed
+      skill_version: 0.3.1
+      scope_zh: 同样的素材和要求，Skill 的 verify 通过，读对 3/3 个画面口令。单独的看图探测 4 次里有 1 次答看不到图。
+      scope_en: Same footage and brief. The Skill's verify passed and it read 3/3 on-screen codes. In separate vision probes it said it could not see the image once in 4 tries.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/video-moments/wb-hy3.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.3.1
+      scope_zh: 探测、索引、抽帧、摄影调色和 Skill 自带测试在 Debian 容器里全部通过。
+      scope_en: Probe, indexing, frame extraction, photographic grading and the Skill's own tests all pass in a Debian container.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/video-moments/linux-scripts.md
 - name: better-css
   runtime_name: lov-better-css
   display_name: CSS Polish
@@ -7145,6 +7971,92 @@ skills:
     boundary_zh: 运行模型与存储成本由使用环境承担；不包含视频发布。
     confidence: existing-free-contract
     review_trigger_zh: 商业模式变化或取得跨素材实测账单后复评。
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.2.0
+    verdict_zh: Apple 芯片的 Mac 跑过 4 小时真实课程。只有国产工具也行：WorkBuddy + DeepSeek V4 Pro 走完了提亮、转写、取舍和校验；Kimi K2.7 没装上转写，所有片段只能标待复核。不需要账号。Linux 上脚本层通过，Windows 未验证。
+    verdict_en: 'An Apple silicon Mac has handled a real four-hour course. Domestic tools alone also work: WorkBuddy with DeepSeek V4 Pro went through brightening, transcription, keep-or-cut decisions and verification, while Kimi K2.7 failed to set up transcription and could only mark every segment for review. No account is needed. The scripts pass on Linux and Windows is not verified.'
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - case-course
+      - wb-deepseek
+    - id: macos-intel
+      status: unverified
+      note_zh: 本机转写的 mlx 后端只能在 Apple 芯片上用，源码也支持 whisper-cli。没有在 Intel 上跑过。
+      note_en: The mlx transcription backend is Apple silicon only; the source also supports whisper-cli. Not run on an Intel Mac.
+    - id: windows
+      status: unverified
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 探测、分析、技术计划、预览渲染和解码校验都在 Debian 容器里通过。语义分段要 Agent，没跑。
+      note_en: Probe, analysis, the technical plan, preview rendering and decode checks all pass in a Debian container. Semantic segmentation needs an agent and was not run.
+    agents:
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: deepseek-v4-pro
+      evidence:
+      - wb-deepseek
+      gap_zh: 只测了 50 秒合成素材，长片的性能和断点续跑没测。它把 whisper 在静音段幻听出的文字识别了出来，没有写进取舍依据。
+      gap_en: Tested on 50 seconds of synthetic footage only; long-film performance and resuming were not. It caught text whisper hallucinated over silence and kept it out of its decisions.
+    - label: WorkBuddy
+      domestic: true
+      status: partial
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 提亮、分段、渲染和校验都走完了，但没装上转写，所有片段都标待复核，没有删除任何段落。第一次还因为抄错路径没找到脚本，改用手写 ffmpeg，那次不算数。
+      gap_en: Brightening, segmentation, rendering and verification all finished, but transcription was not set up, so every segment is marked for review and nothing was cut. An earlier attempt mis-copied a path, missed the scripts and hand-rolled ffmpeg; that attempt does not count.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires: []
+    alternatives:
+    - replaces_zh: Metal 渲染（macOS）
+      replaces_en: Metal rendering (macOS)
+      with_zh: 默认的 CPU H.264
+      with_en: The default CPU H.264
+      status: verified
+      evidence:
+      - wb-deepseek
+      gap_zh: 默认档就是这条路线，不依赖 macOS 的硬件编码。代价是编码更慢。
+      gap_en: The default already takes this route and does not use macOS hardware encoding. The cost is slower encoding.
+    evidence:
+    - id: case-course
+      date: '2026-09-06'
+      env: macOS arm64（案例没有记录 Agent 和模型）
+      result: passed
+      scope_zh: 四小时线下课程的全片增强与分段，真实素材。
+      scope_en: Whole-film enhancement and segmentation of a real four-hour course recording.
+      url: https://lovstudio.ai/cases/case-7281e7a8c8d9a1b5070c
+    - id: wb-deepseek
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · deepseek-v4-pro
+      result: passed
+      skill_version: 0.2.0
+      scope_zh: 50 秒合成课程录像全片提亮，本机转写后按内容分段，保留 34 秒、剔除 16 秒静音，每处取舍有依据。Skill 的 verify --decode 通过，读对 3/3 个画面口令。
+      scope_en: A 50-second synthetic course recording was brightened, transcribed locally and segmented by content, keeping 34 s and cutting 16 s of silence with a reason for each decision. The Skill's verify --decode passed and it read 3/3 on-screen codes.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-preprocessor/wb-deepseek.md
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: partial
+      skill_version: 0.2.0
+      scope_zh: 同样的素材，提亮、分段、渲染和 verify --decode 都通过，读对 3/3 个口令。没有转写，5 段都标待复核，没有删除段落。
+      scope_en: Same footage. Brightening, segmentation, rendering and verify --decode all passed and it read 3/3 codes. Without transcription, all 5 segments were marked for review and nothing was cut.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-preprocessor/wb-kimi.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.2.0
+      scope_zh: 探测、分析、技术计划、预览渲染和解码校验在 Debian 容器里全部通过。
+      scope_en: Probe, analysis, the technical plan, preview rendering and decode checks all pass in a Debian container.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/media-preprocessor/linux-scripts.md
 - name: wxmp-cli
   runtime_name: lov-wxmp-cli
   display_name: Weitan CLI
@@ -7189,6 +8101,57 @@ skills:
     review_trigger_en: Review after 20 buyers, 100 successful workflows, support exceeding
       30 minutes on average, or six months.
     card_path: pricing-cards/wxmp-cli.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.1.1
+    verdict_zh: 只支持 macOS，还要装好微探 app，文章工作流要它的缓存或登录。Windows 和 Linux 用不了。只有案例记录过真实缓存读取和导出，没记下用的是哪个 Agent 和模型，所以国产工具和模型都算未验证。
+    verdict_en: macOS only, with the Weitan app installed; article workflows need its cache or login. Windows and Linux are out. A case records real cache reads and exports without noting the agent or model, so domestic tools and models count as not verified.
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - case-cli
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: blocked
+      evidence:
+      - src-macos
+      note_zh: Skill 声明只支持 macOS。
+      note_en: The Skill declares macOS only.
+    - id: linux
+      status: blocked
+      evidence:
+      - src-macos
+      note_zh: Skill 声明只支持 macOS。
+      note_en: The Skill declares macOS only.
+    agents:
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: 微探 app
+      required: true
+      for_zh: 缓存读取和在线采集都靠它
+      for_en: Cache reads and online collection both depend on it
+    alternatives: []
+    evidence:
+    - id: case-cli
+      date: '2026-09-08'
+      env: macOS arm64（案例没有记录 Agent 和模型）
+      result: passed
+      scope_zh: 把微探 app 转成可调用的 CLI，完成真实缓存读取和四种格式导出。
+      scope_en: Turned the Weitan app into a callable CLI, with real cache reads and exports in four formats.
+      url: https://lovstudio.ai/skills/wxmp-cli
+    - id: src-macos
+      date: '2026-11-06'
+      env: SKILL.md 的 compatibility 声明
+      kind: source
+      result: failed
+      skill_version: 0.1.1
+      scope_zh: Skill 声明运行环境为 macOS，没有其他系统的支持路径。
+      scope_en: The Skill declares macOS as its runtime, with no support path for other systems.
+      url: https://lovstudio.ai/skills/wxmp-cli
 - name: read-wechat-article
   runtime_name: lov-read-wechat-article
   display_name: WeChat Article Reader
@@ -8083,6 +9046,96 @@ skills:
     confidence: entry
     review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
     review_trigger_en: Review after ten business uses or a material maintenance change.
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.1.0
+    verdict_zh: 不需要任何账号。Mac 上 Claude、Kimi K2.7 和 DeepSeek V4 Pro 都跑通了，默认压缩脚本在 Linux 也通过。只有 --fast 和替换进废纸篓要 macOS。Windows 未验证。
+    verdict_en: Needs no account. On a Mac it ran on Claude, Kimi K2.7 and DeepSeek V4 Pro, and the default compression script also passes on Linux. Only --fast and moving replaced files to the Trash need macOS. Windows is not verified.
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-fable
+      - wb-kimi
+      - wb-deepseek
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: unverified
+      note_zh: --fast 和替换进废纸篓只支持 macOS。其余步骤只要 Python 和带 libx265 的 FFmpeg，没有在 Windows 上跑过。
+      note_en: --fast and moving replaced files to the Trash are macOS only. The rest needs only Python and FFmpeg with libx265, but has not been run on Windows.
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 默认压缩和解码校验在 Debian 容器里通过，--fast 如文档所说报错。Agent 流程没在 Linux 上跑。
+      note_en: Default compression and a decode check pass in a Debian container, and --fast errors as documented. The agent flow was not run on Linux.
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-fable-5-1
+      evidence:
+      - cc-fable
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: deepseek-v4-pro
+      evidence:
+      - wb-deepseek
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires: []
+    alternatives:
+    - replaces_zh: --fast 硬件编码（VideoToolbox）
+      replaces_en: --fast hardware encoding (VideoToolbox)
+      with_zh: 默认的 libx265 软件编码
+      with_en: The default libx265 software encoding
+      status: verified
+      evidence:
+      - wb-kimi
+      - wb-deepseek
+      gap_zh: 默认档本身就是这条路线，不依赖 VideoToolbox。代价是编码更慢。
+      gap_en: The default profile already takes this route and does not use VideoToolbox. The cost is slower encoding.
+    evidence:
+    - id: cc-fable
+      date: '2026-09-12'
+      env: macOS arm64 · Claude Code 2.1.266 · claude-fable-5-1
+      result: passed
+      scope_zh: 一段真实 1080p HEVC 片段用默认档压缩并做 VMAF 门禁，同时和硬件编码对照。
+      scope_en: A real 1080p HEVC clip compressed with the default profile and a VMAF gate, compared against hardware encoding.
+      url: https://github.com/lovstudio/skills/blob/main/skills/compress-video/README.md
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: passed
+      skill_version: 0.1.0
+      scope_zh: 58 秒 1080p 合成视频压缩后体积减小 23%，分辨率和时长不变，完整解码，原文件未动。
+      scope_en: A 58-second 1080p synthetic video shrank by 23% with the same resolution and duration, a clean full decode, and the source untouched.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/compress-video/wb-kimi.md
+    - id: wb-deepseek
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · deepseek-v4-pro
+      result: passed
+      skill_version: 0.1.0
+      scope_zh: 同样的素材，结果一致：体积减小 23%，完整解码，原文件未动。
+      scope_en: 'Same footage and the same result: 23% smaller, clean full decode, source untouched.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/compress-video/wb-deepseek.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.1.0
+      scope_zh: 默认压缩和解码校验在 Debian 容器里通过；--fast 按文档报错 requires macOS。
+      scope_en: Default compression and a decode check pass in a Debian container; --fast errors with requires macOS, as documented.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/compress-video/linux-scripts.md
 - name: dev-blog
   runtime_name: lov-dev-blog
   display_name: Dev Journal
@@ -9229,6 +10282,95 @@ skills:
     confidence: entry
     review_trigger_zh: 十次真实业务使用或维护成本明显变化后复评。
     review_trigger_en: Review after ten business uses or a material maintenance change.
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.1.1
+    verdict_zh: 完全不用账号也能转：WorkBuddy 上 Kimi K2.7 和 DeepSeek V4 Pro 都用本机 whisper.cpp 跑通了，只是小模型输出繁体，还有错字。Skill 自带案例记录过 DashScope 云端转写，今天没能复测，测试用的 Key 已失效。Linux 上自带测试通过，真实转写和 Windows 未验证。
+    verdict_en: 'It works with no account at all: Kimi K2.7 and DeepSeek V4 Pro on WorkBuddy both finished with local whisper.cpp, though the small model outputs Traditional Chinese and makes some errors. The Skill''s own case records DashScope cloud transcription, which could not be re-tested today because the test key has expired. The Skill''s tests pass on Linux; real transcription there and Windows are not verified.'
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - wb-kimi
+      - wb-deepseek
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: unverified
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: Skill 自带测试在 Debian 容器里通过。容器里没有 whisper-cli 和模型，云端 Key 也没有，所以真实转写没跑。
+      note_en: The Skill's own tests pass in a Debian container. Without whisper-cli, a model or a cloud key there, real transcription was not run.
+    agents:
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 本机 whisper.cpp 路线，模型用的是 base。
+      gap_en: The local whisper.cpp route, with the base model.
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: deepseek-v4-pro
+      evidence:
+      - wb-deepseek
+      gap_zh: 本机 whisper.cpp 路线，模型用的是 base。
+      gap_en: The local whisper.cpp route, with the base model.
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: DashScope 或火山引擎的 Key
+      required: false
+      for_zh: 云端转写；本机 whisper.cpp 可以不要
+      for_en: Cloud transcription; not needed with local whisper.cpp
+    alternatives:
+    - replaces_zh: 云端转写（DashScope、火山引擎）
+      replaces_en: Cloud transcription (DashScope, Volcengine)
+      with_zh: 本机 whisper.cpp
+      with_en: Local whisper.cpp
+      status: verified
+      evidence:
+      - asr-compare
+      gap_zh: 同一段 58 秒合成语音：whisper.cpp base 字错率 3.5%，输出繁体，把「未验证」听成了「为验证」；Mac 上的 mlx-whisper 是 0%。云端没能比，Key 已失效。
+      gap_en: On the same 58 seconds of synthetic speech, whisper.cpp base had a 3.5% character error rate, output Traditional Chinese and misheard a key word; mlx-whisper on a Mac scored 0%. Cloud could not be compared because the key has expired.
+    evidence:
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: passed
+      skill_version: 0.1.1
+      scope_zh: 58 秒合成语音用本机 whisper.cpp 转成 SRT、JSON 和纯文本，时间戳合法，字错率 3.5%（繁转简后）。
+      scope_en: 58 seconds of synthetic speech became SRT, JSON and plain text with local whisper.cpp. Timestamps are valid, with a 3.5% character error rate after converting Traditional to Simplified.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/voice2srt/wb-kimi.md
+    - id: wb-deepseek
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · deepseek-v4-pro
+      result: passed
+      skill_version: 0.1.1
+      scope_zh: 同样的素材，结果一致：时间戳合法，字错率 3.5%（繁转简后）。
+      scope_en: 'Same audio and the same result: valid timestamps and a 3.5% character error rate after converting Traditional to Simplified.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/voice2srt/wb-deepseek.md
+    - id: asr-compare
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · 无 Agent，直接跑引擎
+      result: passed
+      skill_version: 0.1.1
+      scope_zh: 同一段 58 秒合成语音比较字错率：mlx-whisper turbo 0%（12.9 秒），large-v3 0%（18.4 秒），whisper.cpp base 3.5%（繁转简后）。DashScope 返回 Key 已被封，没能比。
+      scope_en: 'Character error rate on the same 58 seconds of synthetic speech: mlx-whisper turbo 0% (12.9 s), large-v3 0% (18.4 s), whisper.cpp base 3.5% after converting Traditional to Simplified. DashScope rejected the key as blocked, so it could not be compared.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/voice2srt/asr-compare.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.1.1
+      scope_zh: Skill 自带测试在 Debian 容器里通过；没有 whisper 模型时明确报错退出。
+      scope_en: The Skill's own tests pass in a Debian container; without a whisper model it exits with a clear error.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/voice2srt/linux-scripts.md
 - name: wechat-article-branding
   runtime_name: lov-wechat-article-branding-skill
   display_name: Article Branding (Legacy)
@@ -9566,6 +10708,80 @@ skills:
     boundary_zh: 包含三维起步层、场景工具库、风格语法、渲染与授权规则；不含 GPU、第三方服务费用或人工代制作。
     boundary_en: Includes the 3D starter layer, scene kit, style, rendering and licensing rules; excludes
       GPU, third-party service fees and managed production.
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.4.1
+    verdict_zh: Apple 芯片的 Mac 能跑完，要先装动态图志 Skill，还要能跑 WebGL 的 GPU。只有国产工具时，WorkBuddy + Kimi K2.7 打通了三维渲染，但成片很粗糙：豆子颜色不对，还被大字压住，离能用还有距离。其他系统未验证。
+    verdict_en: 'Runs through on an Apple silicon Mac, with the motion atlas Skill installed and a GPU that can run WebGL. With domestic tools alone, WorkBuddy with Kimi K2.7 got the 3D rendering working, but the film was rough: the bean was the wrong colour and hidden behind the title, so it is not usable yet. Other systems are not verified.'
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-tesla
+      - wb-kimi
+    - id: macos-intel
+      status: unverified
+      note_zh: 继承动态图志的依赖，配乐人声扫描用 mlx-whisper（Apple 芯片）。没有在 Intel 上跑过。
+      note_en: It inherits the motion atlas dependencies, whose music vocal scan uses mlx-whisper (Apple silicon). Not run on an Intel Mac.
+    - id: windows
+      status: unverified
+      note_zh: Skill 只记录了 macOS 上 --gl=angle 的结果，默认后端会落到软件渲染。没有在 Windows 上跑过。
+      note_en: The Skill only records --gl=angle on macOS, and the default backend falls back to software rendering. Not run on Windows.
+    - id: linux
+      status: unverified
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-opus-5-5
+      evidence:
+      - cc-tesla
+    - label: WorkBuddy
+      domestic: true
+      status: partial
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 10 秒单章三维片渲染成功、技术质检通过，但画面粗糙：豆子颜色不对，被大字压住。贴图、资料并置、多章转场和确定性对比都没测。输入约 2190 万 token。
+      gap_en: 'A 10-second single-chapter 3D film rendered and passed technical QC, but it looks rough: the bean is the wrong colour and hidden behind the title. Textures, reference footage, chapter transitions and determinism checks were not tested. About 21.9M input tokens.'
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires:
+    - name: OpenRouter API Key
+      required: false
+      for_zh: AI 配乐和封面底图，沿用动态图志
+      for_en: AI music and cover backgrounds, inherited from the motion atlas Skill
+    - name: VOICENGINE_API_KEY
+      required: false
+      for_zh: 旁白，沿用动态图志
+      for_en: Narration, inherited from the motion atlas Skill
+    alternatives:
+    - replaces_zh: 下载的贴图和 AI 底图
+      replaces_en: Downloaded textures and AI backgrounds
+      with_zh: 程序生成的几何体和材质
+      with_en: Generated geometry and materials
+      status: partial
+      evidence:
+      - wb-kimi
+      gap_zh: 不用联网和 Key 也能出片，但这次的画面质量明显不够。
+      gap_en: It produces a film with no network or key, but the quality this time clearly falls short.
+    evidence:
+    - id: cc-tesla
+      date: '2026-10-12'
+      env: macOS arm64 · Claude Code 2.1.295 · claude-opus-5-5
+      result: passed
+      scope_zh: 《如何打造一款特斯拉》三维重制：15 章全部做成三维场景，173.7 秒，横竖两版转场无空帧，全片解码无错，−16.0 LUFS。作者回复「感觉不错」。
+      scope_en: 'How to Build a Tesla, rebuilt in 3D: all 15 chapters as 3D scenes, 173.7 seconds, no empty frames at transitions in either the landscape or vertical cut, clean full decode, −16.0 LUFS. The author replied that it felt good.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/3d-motion-media-creator/cc-tesla.md
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: partial
+      skill_version: 0.4.1
+      scope_zh: 10 秒 1920×1080 单章三维片，用 angle 后端渲染成功，Skill 的交付质检通过：完整解码，−16.0 LUFS。人工看片发现画面粗糙。
+      scope_en: 'A 10-second 1920×1080 single-chapter 3D film rendered with the angle backend and passed the Skill''s delivery QC: clean full decode, −16.0 LUFS. Watching it showed the visuals are rough.'
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/3d-motion-media-creator/wb-kimi.md
 - name: motivational-media-creator
   runtime_name: lov-motivational-media-creator
   display_name: Motivational Film
@@ -9615,6 +10831,71 @@ skills:
     review_trigger_en: Review on 2026-11-21 or after five independent users finish production packages;
       any paid price or support-scope change requires a separate decision.
     card_path: pricing-cards/motivational-media-creator.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.2.1
+    verdict_zh: 这个 Skill 交付制作包，不是成片，所以对电脑要求很低。WorkBuddy + Kimi K2.7 在 Mac 上产出的制作包通过了校验，校验脚本在 Linux 也能跑。要出片还得另外拍摄和渲染。Windows 未验证。
+    verdict_en: This Skill delivers a production package, not a finished film, so it asks little of your computer. WorkBuddy with Kimi K2.7 produced a package on a Mac that passed validation, and the validator also runs on Linux. A finished film still needs separate shooting and rendering. Windows is not verified.
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - cc-messi-film
+      - wb-kimi
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: unverified
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 制作包校验脚本在 Debian 容器里通过。写作部分要 Agent，没跑。
+      note_en: The package validator passes in a Debian container. The writing needs an agent and was not run.
+    agents:
+    - label: Claude Code
+      domestic: false
+      status: verified
+      model: claude-opus-5-5
+      evidence:
+      - cc-messi-film
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 只验证到制作包草稿：结构校验通过，没有编造事实。文案好不好要自己判断，没有和 Claude 对比。
+      gap_en: 'Verified up to a draft package: it passes structural validation and invents no facts. Judge the writing yourself; it has not been compared with Claude.'
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires: []
+    alternatives: []
+    evidence:
+    - id: cc-messi-film
+      date: '2026-10-28'
+      env: macOS arm64 · Claude Code 2.1.308 · claude-opus-5-5
+      result: passed
+      scope_zh: 纪录短片《何以梅西》的命题、结构和制作包，后续成片经作者确认发布。
+      scope_en: The thesis, structure and production package for the documentary short He Yi Mei Xi; the resulting film was published after the author approved it.
+      url: https://lovstudio.ai/cases/he-yi-mei-xi-messi-film
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: passed
+      skill_version: 0.2.1
+      scope_zh: 按两条给定事实写出 60 秒制作包草稿，Skill 的校验通过，状态如实标为未拍摄、未渲染，没有编造经历。
+      scope_en: Wrote a 60-second draft package from two given facts. The Skill's validator passed, the status correctly says not shot and not rendered, and no experience was invented.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/motivational-media-creator/wb-kimi.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.2.1
+      scope_zh: 制作包校验脚本在 Debian 容器里通过。
+      scope_en: The package validator passes in a Debian container.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/motivational-media-creator/linux-scripts.md
 - name: laozhang-style-media-creator
   runtime_name: lov-laozhang-style-media-creator
   display_name: Laozhang Psychology Style Video
@@ -9665,6 +10946,60 @@ skills:
     review_trigger_en: Review after ten completed external uses, a human style evaluation,
       or material scope, dependency or support-cost changes.
     card_path: pricing-cards/laozhang-style-media-creator.md
+  runs_on:
+    checked_at: '2026-11-06'
+    skill_version: 0.1.0
+    verdict_zh: 交付脚本、分镜和时间线，不做成片，对电脑要求很低。WorkBuddy + Kimi K2.7 在 Mac 上跑通并过了校验，校验脚本在 Linux 也能跑。Windows 未验证，Claude 和 GPT 上也还没有实测记录。
+    verdict_en: Delivers a script, storyboard and timeline, not a finished film, so it asks little of your computer. WorkBuddy with Kimi K2.7 finished on a Mac and passed validation, and the validator also runs on Linux. Windows is not verified, and there is no test record yet on Claude or GPT.
+    systems:
+    - id: macos-arm64
+      status: verified
+      evidence:
+      - wb-kimi
+    - id: macos-intel
+      status: unverified
+    - id: windows
+      status: unverified
+    - id: linux
+      status: partial
+      evidence:
+      - linux-scripts
+      note_zh: 风格包和时间线校验脚本在 Debian 容器里通过。写作部分要 Agent，没跑。
+      note_en: The style pack and timeline validators pass in a Debian container. The writing needs an agent and was not run.
+    agents:
+    - label: WorkBuddy
+      domestic: true
+      status: verified
+      model: kimi-k2.7
+      evidence:
+      - wb-kimi
+      gap_zh: 结构校验通过，没有虚构案例和疗效。风格像不像要自己判断，没有和其他模型对比。
+      gap_en: Structural validation passed and no cases or treatment claims were invented. Judge the style yourself; it has not been compared with other models.
+    - label: Claude Code
+      domestic: false
+      status: unverified
+    - label: Codex (GPT)
+      domestic: false
+      status: unverified
+    requires: []
+    alternatives: []
+    evidence:
+    - id: wb-kimi
+      date: '2026-11-06'
+      env: macOS 26.6 arm64 · WorkBuddy 内置 CodeBuddy CLI 2.115.0 · kimi-k2.7
+      result: passed
+      skill_version: 0.1.0
+      scope_zh: 新选题写成 60 秒脚本、分镜、时间线和事实台账，Skill 的风格包和时间线校验都通过，只用了给定的一条事实。
+      scope_en: A new topic became a 60-second script, storyboard, timeline and fact ledger. The Skill's style pack and timeline validators passed, using only the one fact provided.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/laozhang-style-media-creator/wb-kimi.md
+    - id: linux-scripts
+      date: '2026-11-06'
+      env: Debian 12 arm64（Docker）· Python 3.12 · FFmpeg 5.1 · 无 Agent，只跑脚本
+      result: partial
+      skill_version: 0.1.0
+      scope_zh: 风格包和时间线校验脚本在 Debian 容器里通过。
+      scope_en: The style pack and timeline validators pass in a Debian container.
+      url: https://github.com/lovstudio/skills/blob/main/evidence/runs-on/laozhang-style-media-creator/linux-scripts.md
 - name: motivational-media-creator-claude-version
   runtime_name: lov-motivational-media-creator-claude-version
   display_name: Motivational Film (Claude edition)
