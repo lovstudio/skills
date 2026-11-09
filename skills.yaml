@@ -2953,6 +2953,7 @@ skills:
   tagline_zh: 先为本机微信准备密钥，再通过隔离副本读取数据并保留精确记录身份。
   related:
   - wdb-networkx-analysis
+  - wdb-cowork
   distribution:
     workbuddy: review
     skillpay: review
@@ -9445,6 +9446,61 @@ skills:
     review_trigger_en: Review at the first 20 buyers or 2026-12-31, or when WeChat schemas
       or the analysis library major version change.
     card_path: pricing-cards/wdb-networkx-analysis.md
+  depends_on:
+  - branding-consistency
+- name: wdb-cowork
+  runtime_name: lov-wdb-cowork
+  updated_at: 2026-11-09 09:25:51+00:00
+  display_name: WeChat Cowork
+  repo: lovstudio/wdb-cowork-skill
+  name_zh: 微信工作搭子
+  paid: true
+  price_credits: 268
+  category: General
+  skill_path: ''
+  version: 0.1.0
+  description: Read one local WeChat conversation via lov-wdb-cli to draft replies,
+    catch-ups and requested work; drafts only, never sends.
+  tagline_en: Name a WeChat contact or group and get replies in your own voice, a
+    catch-up on what needs you, and the work they asked for — drafted, never sent.
+  tagline_zh: 说出一个微信联系人或群，帮你按自己的语气起草回复、补上要你接的话、把对方要的活做出来；只起草，不发送。
+  related:
+  - wdb-cli
+  pricing:
+    model: one_time
+    visibility: public
+    list_price_credits: 268
+    launch_price_credits: 268
+    price_range_credits:
+    - 268
+    - 549
+    delivery_unit_zh: 单个 Skill：会话上下文构建器、四种协作模式（回复、补进度、干活、待回清单）与回归测试
+    delivery_unit_en: Single Skill with a conversation context builder, four cowork
+      modes (reply, catch-up, work, inbox), and regression tests
+    value_zh: 不用再翻聊天记录找上下文：谁在等你、@你说了什么、对方发的文件在哪，一次理清，再按你在这段聊天里的说话方式起草回复或直接交付成果。
+    value_en: Stop scrolling for context. See who is waiting on you, what mentions
+      you, and where their files are, then get replies in the way you talk in that
+      chat or the finished work itself.
+    anchor_zh: 替代每次手动翻记录、找文件、整理需求、斟酌措辞的 10–30 分钟；节省时间因使用频率而异，尚无买家统计。
+    anchor_en: Replaces the 10–30 minutes of scrolling, file hunting, requirement
+      gathering, and wording each time; savings vary with usage and buyer measurements
+      are not yet available.
+    basis_zh: 在真实账号的私聊与 254 人群聊上验证，含一个客户咨询的完整案例；与同系列微信人脉网络分析一致的入口价。
+    basis_en: Verified on a real account's private chat and a 254-member group, including
+      a complete client consulting case; entry price matches the sibling WeChat Network
+      Analysis.
+    boundary_zh: 需 macOS 本机微信 4.x、已完成密钥准备的万能微信秘钥与 Python 3.9+；只起草不发送，不含语音转写、图片识别或人工代回复。
+    boundary_en: Requires macOS WeChat 4.x, Universal WeChat Key with keys prepared,
+      and Python 3.9+; drafts only and never sends, with no voice transcription, image
+      recognition, or human reply service.
+    maintenance_zh: 随微信本地库结构、万能微信秘钥输出契约和真实支持成本变化复评。
+    maintenance_en: Review when WeChat schemas, the Universal WeChat Key output contract,
+      or observed support costs change.
+    confidence: medium-low
+    review_trigger_zh: 首批 20 位买家或 2026-12-31；微信库结构或万能微信秘钥输出契约变化时复评。
+    review_trigger_en: Review at the first 20 buyers or 2026-12-31, or when WeChat schemas
+      or the Universal WeChat Key output contract change.
+    card_path: pricing-cards/wdb-cowork.md
   depends_on:
   - branding-consistency
 - name: claude-account-migrate
