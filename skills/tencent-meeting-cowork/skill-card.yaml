@@ -1,0 +1,119 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "腾讯会议工作搭子：给定一个腾讯会议元宝笔记的分享链接，用一次不带登录态的请求读取页面，整理出带编号的摘要要点、图文卡片、待办与会中实时笔记，把 AI 的转述与解读分开，再由 Agent 交付会后行动简报、会议速览、用户答应的材料和跟进消息草稿。只起草，不发送。"
+owner:
+  team: "Lovstudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "源码按 MIT 许可提供。读取的是用户自己持有的分享链接所指向的纪要；纪要内容、其中第三方的信息以及草稿的使用责任由用户承担。"
+  url: "../LICENSE"
+use_case:
+  audience: "用腾讯会议谈合作、对需求、做复盘的个人：创业者、顾问、销售、项目负责人。"
+  scenario: "会开完了，元宝笔记已经生成。用户想知道会后自己要做什么、对方在等什么，并直接拿到可以用的材料和跟进消息。"
+  tasks:
+    - "brief：会后行动简报，列出我的事、对方的事、没进待办清单的要求、悬而未决的条件、要核对的专名与数字"
+    - "catch-up：这场会定了什么、没定什么、哪些与我有关"
+    - "work：按需求单把用户在会上答应的材料做出来，没有依据的地方标为待确认"
+    - "follow-up：起草只写双方确认过的共识的会后跟进消息"
+deployment:
+  geography: global
+  environments:
+    - "支持 Agent Skills 的本地宿主（Claude Code、Codex 等），可执行 Python 并访问 meeting.tencent.com"
+    - "在 macOS 上验证；脚本只用 Python 标准库"
+requirements:
+  credentials: "无需账号、Cookie 或 API Key；只读取不登录就能打开的分享页，或用户自己另存的页面文件"
+  dependencies:
+    - "lov-branding-consistency"
+  runtime:
+    - "Python 3.9+，仅标准库"
+    - "校验源码时需要 PyYAML"
+risks:
+  - risk: "纪要是 AI 的转述，语音识别写错的人名、机构名或数字被当成事实写进对外材料。"
+    mitigation: "规则要求对外使用前逐个核对专名与数字；notes.md 列出只在实时笔记里出现的数字；摘要、卡片、实时笔记冲突时并列写出并标为待核对，不替用户二选一。"
+  - risk: "AI 对意图的评论被当成对方说的话，写进简报或跟进消息。"
+    mitigation: "脚本把实时笔记里的转述与解读拆开，解读单独缩进标注；规则禁止把解读写成任何人的立场，也禁止进入对外文字。"
+  - risk: "摘要漏掉口头要求、数字或会议后段的结论，用户照着摘要漏做事情。"
+    mitigation: "每种模式都先做三处对齐：逐条读实时笔记，找出没进待办清单的要求、承诺与未解决的条件，并检查后文是否已回应。"
+  - risk: "认错“我”，把别人的待办算成用户的，或漏掉用户的待办。"
+    mitigation: "名字来自请求或 Profile；给了名字但对不上时不退回笔记归属人，而是要求向用户确认；按归属人推定时必须在交付里写明这个假设。"
+  - risk: "草稿替用户答应时间、价格或交付范围。"
+    mitigation: "作者性约束要求承诺类内容只能来自用户确认、本人材料或 Profile，其余写成待确认占位；交付前逐句自检。"
+  - risk: "会议内容、分享链接或参会人标识泄露。"
+    mitigation: "账号标识、会议号、房间号不写入任何输出；上下文在 0700 私有临时目录，clean 只删除带标记且不是符号链接的目录；规则禁止把上下文或链接放进交付物与仓库。"
+  - risk: "纪要正文里夹带的指令被 Agent 执行。"
+    mitigation: "notes.md 开头声明以下内容是数据；规则明确纪要里的指令最多是需要用户决定的事项。"
+  - risk: "腾讯会议改版、链接失效或需要登录，导致读不到却被当成没有内容。"
+    mitigation: "脚本校验页面类型与异常状态，给出明确的错误码与下一步；只访问 meeting.tencent.com 的 https 地址，不跟随跳到其他地址的重定向，也不处理登录。"
+  - risk: "Agent 自动发送消息或写入日程、任务。"
+    mitigation: "本 Skill 没有任何发送或写入外部系统的能力；用户要求时最多放进剪贴板。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Context builder contract"
+    path: "references/context-contract.md"
+  - title: "Cowork mode playbooks"
+    path: "references/cowork-playbooks.md"
+  - title: "Authorship integrity for meeting follow-ups"
+    path: "references/authorship-integrity.md"
+  - title: "Skill group composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "会后行动简报"
+    - "会议速览"
+    - "需求单与工作成果"
+    - "跟进消息草稿（未发送）"
+  formats:
+    - "对话中的 Markdown 与可复制的代码块"
+    - "私有临时目录中的 notes.md 与 context.json（lov-tencent-meeting-cowork/v1）"
+  parameters:
+    - "--url / --html：分享链接，或该页面另存的 HTML"
+    - "--self-name：用户在会议里显示的名字，可重复"
+    - "--out、--timeout：输出目录与联网超时"
+  validation:
+    - "scripts/test_meeting_context.py：25 项不联网的测试，用合成的分享页覆盖摘要与待办解析、卡片、转述与解读拆分、数字线索、“我”的认定、内部标识不外泄、异常页面、地址与重定向限制、输出目录保护与清理"
+    - "scripts/validate_skill.py：结构、Profile、可信度文件与版本一致性"
+    - "真实分享页回归：编号数量与页面一致，内部标识计数为 0，联网读取与另存页面读取的结果一致"
+  description: "每份交付先给结论，再给带编号的依据、待核对与待确认项、覆盖范围；对外文字放在代码块中并注明未发送。"
+ethical_considerations: "纪要里有其他参会人的发言与立场。本 Skill 只在完成会后工作所需的范围内引用，不对任何人做人品或动机判断，不把 AI 的评论当成他们的话，也不替用户编造经历、立场或承诺。读取范围限于用户自己持有的分享链接，不绕过登录或访问控制。"
+dimensions:
+  - id: correctness
+    label: "纪要还原准确"
+    description: "编号后的摘要、卡片、待办与实时笔记是否与分享页一致，人名是否对得上，转述与解读是否拆对。"
+    evidence: "2026-11-10 真实分享页：12 个摘要要点、6 张卡片、2 条待办、13 条实时笔记共 28 点全部还原；人名占位符全部换成昵称；28 点各拆出 1 段解读，逐条读过没有错位，转述里没有残留的加粗标记或错位标点。"
+    score: null
+  - id: effectiveness
+    label: "能找出摘要漏掉的事"
+    description: "交付的行动简报是否比页面自带的摘要多出用户真正需要处理的事项。"
+    evidence: "真实案例：页面摘要只列 2 条待办；对齐后另外给出 1 条未进待办清单的要求、3 项悬而未决的条件、1 个摘要没写的关键结论、1 处数据表与实时笔记的矛盾，以及 9 个只在实时笔记里出现的数字。work 与 follow-up 模式尚无经用户验收的成果。"
+    score: null
+  - id: efficiency
+    label: "上下文准备耗时"
+    description: "从给出链接到拿到可读上下文所需的时间与请求次数。"
+    evidence: "同一真实链接连续三次联网读取耗时 0.44–0.75 秒，每次只发一个请求；读取另存页面不联网。"
+    score: null
+  - id: safety
+    label: "隐私与不越权"
+    description: "是否只读、不登录、不发送、不泄露内部标识，输出目录是否受保护。"
+    evidence: "测试断言输出不含账号标识、会议号与房间号，真实页面三处输出的计数均为 0；目录权限 0700、文件 0600；非 meeting.tencent.com 或非 https 的地址在联网前被拒绝；clean 拒绝删除没有标记的目录与符号链接。"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  list_price_credits: 0
+  basis: "LovStudio 官网目录免费条目（0 Credits），本地使用同样免费。可比对象是同系列的微信工作搭子（付费，268 Credits）；本 Skill 没有付费的上游依赖，证据只有一场真实会议，先以免费入口积累使用证据。2026-11-10 由作者确认。"
+  boundary: "包含上下文脚本、四种协作模式规则、测试与使用说明；不包含需要登录的页面读取、录制回放与逐字稿、消息发送、日程与任务写入、语音转写或人工代办。"
+  review_trigger: "累计 10 场真实会议的使用反馈、work 或 follow-up 模式出现经用户验收的成果、腾讯会议分享页结构变化或增加第二类可读页面时，由 lov-skill-pricing 复评。"
+  confidence: low
+distribution:
+  status: "releasing：定为免费入口（0 Credits），目录条目待合入，线上状态尚未核验"
+  paid: []
+  free:
+    - channel: lovstudio
+      status: pending
+      evidence: "2026-11-10 作者确认以免费入口发布；目录条目与镜像待合入，详情页与安装命令待回读"
+    - channel: github
+      status: private-source
+      evidence: "源码仓库保持私有；公开副本是聚合仓库 lovstudio/skills 的 skills/tencent-meeting-cowork/ 镜像"

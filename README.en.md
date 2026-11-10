@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **233 skills** — 211 Free + 22 Paid.
+> **234 skills** — 212 Free + 22 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -78,11 +78,12 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [X Post Recovery](https://github.com/lovstudio/search-twitter-skill) (`search-twitter`) | Recover verbatim X/Twitter posts, screenshot evidence, and the gaps that still cannot be proven. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Session Sharing](https://github.com/lovstudio/share-session-skill) (`share-session`) | Turn an agent session into a free or Credits-unlocked LovStudio web page. — requires: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Subtitle Freedom](https://github.com/lovstudio/subtitle-freedom-skill) (`subtitle-freedom`) | Make learner subtitles that keep the selected level and harder expressions, with spoiler-safe ASS cards and optional no-burn watermark sidecars. |
+| ![Free](https://img.shields.io/badge/Free-green) | [Tencent Meeting Cowork](https://github.com/lovstudio/tencent-meeting-cowork-skill) (`tencent-meeting-cowork`) | Paste a Tencent Meeting AI notes link and get your action items, the other side's commitments, the requests and numbers the summary left out, the materials you promised, and a follow-up message — drafted, never sent. — requires: `branding-consistency`; related: `wdb-cowork` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Deep Thinking](https://github.com/lovstudio/think-skill) (`think`) | Analyze a complex decision and its tradeoffs — requires: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Dictation Editor](https://github.com/lovstudio/typeless-prompt-skill) (`typeless-prompt`) | Turn rough dictation into concise, structured, send-ready text without answering or executing it. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Uploader](https://github.com/lovstudio/upload-image-skill) (`upload-image`) | Upload local images with the user's existing PicGo setup and optionally rewrite Markdown image links. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Universal WeChat Key](https://github.com/lovstudio/wdb-cli-skill) (`wdb-cli`) | Prepare local WeChat keys, then read isolated database copies with exact record identity. — requires: `branding-consistency`; related: `wdb-networkx-analysis`, `wdb-cowork` |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [WeChat Cowork](https://github.com/lovstudio/wdb-cowork-skill) (`wdb-cowork`) | Name a WeChat contact or group and get replies in your own voice, a catch-up on what needs you, and the work they asked for — drafted, never sent. — requires: `branding-consistency`; related: `wdb-cli` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [WeChat Cowork](https://github.com/lovstudio/wdb-cowork-skill) (`wdb-cowork`) | Name a WeChat contact or group and get replies in your own voice, a catch-up on what needs you, and the work they asked for — drafted, never sent. — requires: `branding-consistency`; related: `wdb-cli`, `tencent-meeting-cowork` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [WeChat Network Analysis](https://github.com/lovstudio/wdb-networkx-analysis-skill) (`wdb-networkx-analysis`) | See your WeChat friends and groups as one network — hubs, bridges, core circle and single-thread ties in a local report. — requires: `branding-consistency`; related: `wdb-cli` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Weitan CLI](https://github.com/lovstudio/wxmp-cli-skill) (`wxmp-cli`) | Find cached WeChat articles and export them in four formats, with a complete CLI runtime included. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [XBTI Studio](https://github.com/lovstudio/xbti-creator-skill) (`xbti-creator`) | Create a complete custom BTI personality test based on the XBTI architecture. — requires: `branding-consistency` |
