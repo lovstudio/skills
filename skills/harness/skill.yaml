@@ -1,0 +1,44 @@
+schema: skill-manifest/v1
+id: lov-harness
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - brand
+      - workspace
+      - skills.lov-harness
+    persist:
+      enabled: true
+      namespace: skills.lov-harness
+      records_path: skills.lov-harness.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: workspace.skill_repos_root
+        aliases:
+          - lovstudio.skill_repos_root
+          - skills.repos_root
+          - workspace.skills_root
+        required: false
+        question: Skill 源码放在哪个目录？每个子目录是一个 Skill 仓库。
+      - path: brand.name
+        required: false
+        question: 驾驶舱标题下要显示哪个工作室或品牌名？
+      - path: skills.lov-harness.records.source_root
+        required: false
+        question: 只给驾驶舱使用的 Skill 源码根目录是哪个？
+      - path: skills.lov-harness.records.catalog_path
+        required: false
+        question: 目录文件 skills.yaml 在哪里？
+      - path: skills.lov-harness.records.agents_home
+        required: false
+        question: 共享 Agent 配置目录不在默认位置时，它在哪里？
+  preferences:
+    namespace: lov_harness
+    fields: []
+  interaction:
+    ask_missing: false
+    max_questions: 1

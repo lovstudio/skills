@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="lov-token" content="__LOV_TOKEN__">
+<title>Harness 驾驶舱</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+<div class="shell">
+  <header class="topbar">
+    <div>
+      <h1>Harness 驾驶舱</h1>
+      <p id="brand-line" class="muted"></p>
+    </div>
+    <div class="topbar-actions">
+      <span id="mode-badge" class="badge"></span>
+      <span id="scan-time" class="muted"></span>
+      <button id="rescan" class="button" type="button">重新扫描</button>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="驾驶舱分区">
+    <button type="button" role="tab" id="tab-overview" aria-controls="panel-overview" data-tab="overview">总览</button>
+    <button type="button" role="tab" id="tab-prompt" aria-controls="panel-prompt" data-tab="prompt">System Prompt</button>
+    <button type="button" role="tab" id="tab-skills" aria-controls="panel-skills" data-tab="skills">Skills</button>
+    <button type="button" role="tab" id="tab-studio" aria-controls="panel-studio" data-tab="studio">工作室</button>
+    <button type="button" role="tab" id="tab-tidy" aria-controls="panel-tidy" data-tab="tidy">整理</button>
+  </div>
+
+  <main id="main" tabindex="-1">
+    <p id="notice" class="notice" role="status" aria-live="polite" hidden></p>
+    <section id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0"></section>
+    <section id="panel-prompt" role="tabpanel" aria-labelledby="tab-prompt" tabindex="0" hidden></section>
+    <section id="panel-skills" role="tabpanel" aria-labelledby="tab-skills" tabindex="0" hidden></section>
+    <section id="panel-studio" role="tabpanel" aria-labelledby="tab-studio" tabindex="0" hidden></section>
+    <section id="panel-tidy" role="tabpanel" aria-labelledby="tab-tidy" tabindex="0" hidden></section>
+  </main>
+</div>
+
+<dialog id="dialog" aria-labelledby="dialog-title">
+  <div class="dialog-box">
+    <h2 id="dialog-title"></h2>
+    <div id="dialog-body" class="dialog-body"></div>
+    <div id="dialog-actions" class="dialog-actions"></div>
+  </div>
+</dialog>
+<p id="toast" class="toast" role="status" aria-live="polite" hidden></p>
+<script src="dashboard.js" defer></script>
+</body>
+</html>

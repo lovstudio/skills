@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **232 个技能** — 210 个免费 + 22 个付费。
+> **233 个技能** — 211 个免费 + 22 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -281,6 +281,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Xiaonuan Matchmaker Style Video](https://github.com/lovstudio/xiaonuan-style-media-creator-skill) (`xiaonuan-style-media-creator`) | [晓暖说媒风格短视频](https://github.com/lovstudio/xiaonuan-style-media-creator-skill) | 用可追溯的直播连麦切片风格，把你自己的连麦录像或新选题做成剪辑计划与包装成片，不复制原作者身份。 — 依赖: `branding-consistency` |
 | **Meta** | | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [Feedback Flywheel](https://github.com/lovstudio/feedback-loop-skill) (`feedback-loop`) | [反馈飞轮](https://github.com/lovstudio/feedback-loop-skill) | 把用户的满意与不满变成可统计的反馈，并让 Prompt 与 Skill 随之迭代。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [Harness Cockpit](https://github.com/lovstudio/harness-skill) (`harness`) | [Harness 驾驶舱](https://github.com/lovstudio/harness-skill) | 一屏看清根 Prompt 怎样分发到各宿主、每个宿主装了哪些 Skill、自己的 Skill 源码处在什么状态，再把断链和重复可撤销地整理掉。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Showcase](https://github.com/lovstudio/skill-add-case-skill) (`skill-add-case`) | [Skill 案例馆](https://github.com/lovstudio/skill-add-case-skill) | 登录即可把满意的 Skill 结果分享成案例，支持手动导入或 Agent 投稿。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Studio](https://github.com/lovstudio/skill-creator-skill) (`skill-creator`) | [Skill 工坊](https://github.com/lovstudio/skill-creator-skill) | 创建、迁移、验证并安装通用 Skill 与自包含 Skill Kit — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Naming Master](https://github.com/lovstudio/skill-namer-skill) (`skill-namer`) | [Skill 命名大师](https://github.com/lovstudio/skill-namer-skill) | 为单个或整组Skill起名、改名与审名；从真实能力和已认可范例出发，给出准确、简短、优雅、一致的中英文名称与命名清单 — 依赖: `branding-consistency` |

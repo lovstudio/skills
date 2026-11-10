@@ -9823,3 +9823,60 @@ skills:
       external uses, a human style evaluation, or material scope, dependency or support-cost
       changes.
     card_path: pricing-cards/media-cloner.md
+- name: harness
+  runtime_name: lov-harness
+  display_name: Harness Cockpit
+  name_zh: Harness 驾驶舱
+  repo: lovstudio/harness-skill
+  paid: false
+  category: Meta
+  version: 0.1.0
+  updated_at: 2026-11-10 07:56:06+00:00
+  description: 'Inspect and tidy a local agent harness: system prompt bindings, installed
+    skills across hosts, and skill source repos, with a local dashboard.'
+  tagline_en: See how your system prompt reaches every agent host, which skills each
+    host actually has, and where your own skill sources stand, then tidy broken links
+    with a plan you can undo.
+  tagline_zh: 一屏看清根 Prompt 怎样分发到各宿主、每个宿主装了哪些 Skill、自己的 Skill 源码处在什么状态，再把断链和重复可撤销地整理掉。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本 Skill：扫描与报告命令、本地驾驶舱、单文件只读导出、整理引擎与整理记录、自检命令和检查项说明
+    delivery_unit_en: Current Skill with the scan and report commands, the local dashboard,
+      a single-file read-only export, the tidy engine with its journal, a self test
+      and the check reference
+    value_zh: 一次扫描看清三件事：根 Prompt 怎样分发到各宿主、每个宿主装了哪些 Skill、自己维护的 Skill 源码处在什么状态；发现的问题先看计划、确认后整理，执行过的可以撤销。
+    value_en: One scan shows how the root prompt reaches each host, which skills every
+      host has installed, and the state of the skill sources you maintain; problems
+      are fixed from a previewed plan and every batch can be undone.
+    anchor_zh: 把手工排查几十个宿主目录、规则文件和源码仓库的时间压到一次几秒的扫描；依据是维护者本机的一次只读验收，尚无跨机器样本与省时测量，不承诺固定节省时间。
+    anchor_en: Replaces a manual walk through dozens of host folders, rule files and
+      source repos with a scan that takes seconds; based on one read-only acceptance
+      run on the maintainer's machine, with no cross-machine sample or measured time
+      savings.
+    basis_zh: 六维加权 2.7/5；证据只有一次维护者本机验收和 71 项自检，同类检查有宿主自带命令与手写脚本可替代，先以免费入口积累使用证据。
+    basis_en: Six-dimension score 2.7/5; the evidence is one acceptance run on the
+      maintainer's machine plus 71 self-test checks, and host built-in commands or
+      ad-hoc scripts cover part of the same ground, so it starts as a free entry to
+      collect usage evidence.
+    boundary_zh: 不含对单个 Skill 的内容优化、发布与目录同步、规则正文的改写、提交与推送，也没有托管服务；整理只增删符号链接或移动条目，不删除实体文件。已在
+      macOS 上验证，Linux 尚未实测。
+    boundary_en: Excludes rewriting an individual skill, publishing and catalog sync,
+      editing rule text, commits and pushes, and any hosted service; tidying only
+      adds or removes symlinks or moves entries and never deletes real files. Verified
+      on macOS; Linux is untested.
+    maintenance_zh: 随各宿主的目录与指令文件约定、Skill 规范和目录格式变化维护，不承诺更新时限或付费支持。
+    maintenance_en: Maintained as host folder and instruction-file conventions, the
+      skill format and the catalog format change; no update schedule or paid support
+      is promised.
+    confidence: case-backed
+    review_trigger_zh: 累计 10 次外部完整使用、出现 3 台以上不同机器的结果、完成 Linux 实测，或加入改写规则文件、托管服务等新交付范围时复评。
+    review_trigger_en: Review after ten completed external uses, results from three
+      or more different machines, a Linux run, or new delivery scope such as rewriting
+      rule files or a hosted service.
+    card_path: pricing-cards/harness.md
