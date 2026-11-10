@@ -2219,13 +2219,13 @@ skills:
     card_path: pricing-cards/professional-infographic.md
 - name: mobile-infographic
   runtime_name: lov-mobile-infographic
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-10 13:30:14+00:00
   display_name: "Mobile Infographic"
   repo: lovstudio/mobile-infographic-skill
   name_zh: "手机信息图"
   paid: false
   category: Design
-  version: 0.18.0
+  version: 0.18.2
   description: "Turn conclusions into one long 1080px mobile infographic with a thesis title, ranked bars, readable type floors, an appendix of sources, and audited HTML/PNG output."
   tagline_en: Turn an existing conclusion into vertical infographics a phone can actually read, with type floors, safe areas, and an audit report.
   tagline_zh: 把已有结论重排成手机上真能读完的竖版信息图，自带字号下限、安全区与可复核审计报告。

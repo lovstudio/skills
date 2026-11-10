@@ -480,27 +480,50 @@ MEASURE_JS = r"""
     return (hi + 0.05) / (lo + 0.05);
   };
 
-  const lineUnits = (node) => {
+  // A rendered line belongs to its nearest block container, so text inside inline
+  // children (<b>, <span>) counts toward the same line as the text around it.
+  const lineBlockOf = (node) => {
+    let element = node.parentElement;
+    while (element && element !== card) {
+      const display = getComputedStyle(element).display;
+      if (!display.startsWith('inline') && display !== 'contents') { break; }
+      element = element.parentElement;
+    }
+    return element || card;
+  };
+  const linesByBlock = new Map();
+  let lineCount = 0;
+  const linesOfNode = (node) => {
+    const block = lineBlockOf(node);
+    if (!linesByBlock.has(block)) { linesByBlock.set(block, []); }
+    const lines = linesByBlock.get(block);
+    const touched = new Set();
     const text = node.textContent || '';
     const range = document.createRange();
-    const tops = [];
-    const units = [];
     for (let i = 0; i < text.length; i += 1) {
       range.setStart(node, i);
       range.setEnd(node, i + 1);
       const rects = range.getClientRects();
       if (!rects.length) { continue; }
-      const top = Math.round(rects[0].top);
+      const rect = rects[0];
+      // Same line = the glyph boxes overlap by more than half of the shorter one; comparing
+      // tops would split mixed font sizes that share a baseline.
+      let line = lines.find((candidate) => {
+        const overlap = Math.min(candidate.bottom, rect.bottom) - Math.max(candidate.top, rect.top);
+        return overlap > Math.min(candidate.bottom - candidate.top, rect.height) / 2;
+      });
+      if (!line) {
+        line = { id: lineCount, top: rect.top, bottom: rect.bottom, units: 0 };
+        lineCount += 1;
+        lines.push(line);
+      }
       const ch = text[i];
       let unit = 0.55;
       if (CJK.test(ch)) { unit = 1; } else if (!ch.trim()) { unit = 0.5; }
-      if (!tops.length || Math.abs(tops[tops.length - 1] - top) > 2) {
-        tops.push(top);
-        units.push(0);
-      }
-      units[units.length - 1] += unit;
+      line.units += unit;
+      touched.add(line);
     }
-    return units.map((u) => Math.round(u * 10) / 10);
+    return touched;
   };
 
   const roleOf = (element) => {
@@ -509,6 +532,7 @@ MEASURE_JS = r"""
   };
 
   const textEntries = [];
+  const entryLines = [];
   card.querySelectorAll('*').forEach((element) => {
     const own = Array.from(element.childNodes).filter(
       (n) => n.nodeType === 3 && n.textContent.trim().length > 0
@@ -518,8 +542,9 @@ MEASURE_JS = r"""
     if (style.visibility === 'hidden' || style.display === 'none') { return; }
     const rect = element.getBoundingClientRect();
     if (rect.width < 1 || rect.height < 1) { return; }
-    let units = [];
-    own.forEach((node) => { units = units.concat(lineUnits(node)); });
+    const touched = new Set();
+    own.forEach((node) => { linesOfNode(node).forEach((line) => touched.add(line)); });
+    entryLines.push(touched);
     const background = effectiveBackground(element);
     const color = parseColor(style.color) || { r: 0, g: 0, b: 0, a: 1 };
     const opaque = blend(color, background);
@@ -529,10 +554,17 @@ MEASURE_JS = r"""
       font_size: parseFloat(style.fontSize),
       font_weight: style.fontWeight,
       contrast: Math.round(contrast(opaque, background) * 100) / 100,
-      lines: units,
-      max_units: units.length ? Math.max.apply(null, units) : 0,
+      lines: [],
+      max_units: 0,
       rect: { x: rect.x - cardRect.x, y: rect.y - cardRect.y, w: rect.width, h: rect.height },
     });
+  });
+  // A line total is final only once every element sharing that line has been measured.
+  textEntries.forEach((entry, index) => {
+    const touched = Array.from(entryLines[index]);
+    entry.lines = touched.map((line) => Math.round(line.units * 10) / 10);
+    entry.line_ids = touched.map((line) => line.id);
+    entry.max_units = entry.lines.length ? Math.max.apply(null, entry.lines) : 0;
   });
 
   const overflow = [];
@@ -809,10 +841,19 @@ def audit_measurements(m: dict[str, Any], ratio_expected: tuple[int, int] | None
                   for entry in tiny[:4]
               ))
 
-    too_long = [
-        entry for entry in m["text_entries"]
-        if entry["max_units"] > LINE_LIMIT.get(entry["role"] or "", DEFAULT_LINE_LIMIT) + 0.5
-    ]
+    # Inline children share their parent's rendered line, so list each over-long line once.
+    too_long = []
+    listed = set()
+    for entry in m["text_entries"]:
+        limit = LINE_LIMIT.get(entry["role"] or "", DEFAULT_LINE_LIMIT) + 0.5
+        if entry["max_units"] <= limit:
+            continue
+        over = {line_id for line_id, units in zip(entry.get("line_ids", []), entry["lines"])
+                if units > limit}
+        if over and over <= listed:
+            continue
+        listed |= over
+        too_long.append(entry)
     add_issue(checks, "line_length", "error", not too_long,
               "每行字数在手机可读范围内" if not too_long else
               "行宽超限：" + "; ".join(
