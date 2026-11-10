@@ -298,7 +298,7 @@
     {
       "name": "meta",
       "source": "./",
-      "description": "Meta — 7 free skills bundled together.",
+      "description": "Meta — 8 free skills bundled together.",
       "category": "Meta",
       "skills": [
         "./skills/skill-creator",
@@ -308,7 +308,8 @@
         "./skills/feedback-loop",
         "./skills/skill-namer",
         "./skills/skill-visualizer",
-        "./skills/yolo-mode"
+        "./skills/yolo-mode",
+        "./skills/harness"
       ],
       "strict": false
     }

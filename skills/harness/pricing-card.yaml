@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把手工排查几十个宿主目录、规则文件和源码仓库的时间，压到一次几秒的扫描；尚无跨机器的省时测量，不承诺固定数字。"
+basis: "官网目录免费条目（0 Credits），本地使用同样免费。lov-skill-pricing 评估六维加权 2.7/5：证据只有一次维护者本机验收，同类检查有宿主自带命令和手写脚本可替代，先以免费入口积累使用证据。"
+boundary: "包含扫描、驾驶舱、报告、导出与整理引擎；不含对单个 Skill 的内容优化、发布与目录同步、规则正文的改写，也不含任何托管服务。"
+review_trigger: "累计 10 次外部完整使用、出现 3 台以上不同机器的结果、完成 Linux 实测，或加入改写规则文件、托管服务等新交付范围时，由 lov-skill-pricing 复评。"
+confidence: case-backed

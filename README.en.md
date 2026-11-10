@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **232 skills** — 210 Free + 22 Paid.
+> **233 skills** — 211 Free + 22 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -282,6 +282,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Xiaonuan Matchmaker Style Video](https://github.com/lovstudio/xiaonuan-style-media-creator-skill) (`xiaonuan-style-media-creator`) | Turn your own call-in recordings or new topics into edit plans and packaged clips in a traceable livestream style, without copying the author's identity. — requires: `branding-consistency` |
 | **Meta** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [Feedback Flywheel](https://github.com/lovstudio/feedback-loop-skill) (`feedback-loop`) | Turn satisfaction and complaints into tracked feedback that tunes your prompts and skills. |
+| ![Free](https://img.shields.io/badge/Free-green) | [Harness Cockpit](https://github.com/lovstudio/harness-skill) (`harness`) | See how your system prompt reaches every agent host, which skills each host actually has, and where your own skill sources stand, then tidy broken links with a plan you can undo. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Showcase](https://github.com/lovstudio/skill-add-case-skill) (`skill-add-case`) | Share an accepted Skill result through your LovStudio account, manually or with an Agent. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Studio](https://github.com/lovstudio/skill-creator-skill) (`skill-creator`) | Create, migrate, validate and install portable Agent Skills — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Skill Naming Master](https://github.com/lovstudio/skill-namer-skill) (`skill-namer`) | Name, rename and review one Skill or a whole set, producing accurate, short and consistent Chinese and English names. — requires: `branding-consistency` |
