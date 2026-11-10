@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.8.4] - 2026-11-10
+
+### Changed
+
+- publishing.md: the catalog's `Refresh website` workflow (lovstudio/skills#66) now refreshes lovstudio.ai after each catalog push and checks `catalog_commits`. It skips the per-Skill tags and only warns without its secret, so the Revalidate request stays part of every publication.
+- AGENTS.md: notes that workflow, its `LOVSTUDIO_REVALIDATE_SECRET` secret, and that Cloudflare answers Python's default User-Agent on lovstudio.ai with `403 error code: 1010`.
+
+## [0.8.3] - 2026-11-10
+
+### Changed
+
+- publishing.md: revalidate right after the catalog merge. lovstudio.ai now reads the catalog and the free Skill documents mirrored into it at the commit `main` points to (lovstudio/lovstudio-home#148), and `/api/revalidate` answers with `catalog_commits`; the call worked when that commit is the one `main` points to. The 5-minute wait remains only for a response without the catalog's commit, when the site fell back to raw's cached `main`. The entry-count step is gone: the commit replaces it.
+- AGENTS.md: the revalidate note follows the same rule.
+
+## [0.8.2] - 2026-11-10
+
+### Fixed
+
+- publishing.md: a free Skill passes a public-copy gate before its content is first pushed to a public repository (read every case, case-citing paragraph, reference example and test fixture; keep structure and counts only). A commit on a public pull request cannot be recalled: fix on the branch, squash-merge and tell the user which commit stays visible. SKILL.md Step 5 points to the gate.
+- publishing.md: revalidate at least 5 minutes after the catalog reaches `main` (raw CDN `max-age=300`), then confirm the site read the new catalog through `pricing_sync.catalog_skills` or the public `/api/skills/catalog`; lovstudio.cn is fed from OSS and is not refreshed by this call.
+- publishing.md: while catalog CI cannot clone a private source, the free mirror travels with the pull request (`SKIP_CLONE=1` for a new entry, `git archive` plus the script's excludes for an existing mirror). Distribution state is written `pending` then `live`, the tag follows `live`, and the second, mirror-only pull request does not trigger CI.
+- publishing.md: measure existing `tagline_zh` / `tagline_en` lengths before drafting and stay within the current maximum.
+- AGENTS.md: one cross-session note per rule above; the tip to rsync a mirror straight from the working directory is replaced by the export-based refresh.
+
 ## [0.8.1] - 2026-10-29
 
 ### Fixed

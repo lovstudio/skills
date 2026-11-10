@@ -14,7 +14,7 @@ depends_on:
   - lov-skill-pricing
 metadata:
   author: contributors
-  version: "0.8.1"
+  version: "0.8.4"
   tags:
     - skill-publisher
     - release
@@ -159,7 +159,10 @@ successful multi-channel release.
 ### Step 5: Publish Skill Publisher
 
 Read `references/publishing.md` completely. Execute the source repository,
-release, catalog, cache refresh, and live verification workflow. Publication is
+release, catalog, cache refresh, and live verification workflow. For a free
+Skill, pass that reference's public-copy gate before any of its content is
+pushed to a public repository: the `lovstudio/skills` mirror is public even when
+the source is private. Publication is
 complete only when the expected version and release-specific content are visible
 on the live detail page and the catalog's exact install command succeeds. Paid
 Skills are not encrypted: paying only controls who can download them, so a paid

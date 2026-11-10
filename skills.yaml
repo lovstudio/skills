@@ -3893,14 +3893,14 @@ skills:
 - name: skill-publisher
   runtime_name: lov-skill-publisher
   display_name: Skill Publisher
-  updated_at: 2026-10-29 09:23:34+00:00
+  updated_at: 2026-11-10 13:39:04+00:00
   skillpay_product_id: P0806000200863857
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqavG
   repo: lovstudio/skill-publisher-skill
   name_zh: Skill 发布助手
   paid: false
   category: Dev Tools
-  version: 0.8.1
+  version: 0.8.4
   description: Publish or submit a validated Skill, defaulting to the LovStudio official
     website with automatic pricing and using other channels only when explicitly requested.
   tagline_en: Auto-price every release, publish to the LovStudio website by default,
