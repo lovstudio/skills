@@ -108,12 +108,12 @@ pricing:
   review_trigger: "累计 10 场真实会议的使用反馈、work 或 follow-up 模式出现经用户验收的成果、腾讯会议分享页结构变化或增加第二类可读页面时，由 lov-skill-pricing 复评。"
   confidence: low
 distribution:
-  status: "releasing：定为免费入口（0 Credits），目录条目待合入，线上状态尚未核验"
+  status: "lovstudio-free：已作为免费条目（0 Credits）上架 LovStudio 官网目录"
   paid: []
   free:
     - channel: lovstudio
-      status: pending
-      evidence: "2026-11-10 作者确认以免费入口发布；目录条目与镜像待合入，详情页与安装命令待回读"
+      status: live
+      evidence: "2026-11-10 目录条目合入 lovstudio/skills 的 main；详情页 HTTP 200，显示 v0.1.0、免费标识与 npx lovstudio 安装命令；在空目录按目录命令安装通过，随包的 25 项测试通过"
     - channel: github
       status: private-source
       evidence: "源码仓库保持私有；公开副本是聚合仓库 lovstudio/skills 的 skills/tencent-meeting-cowork/ 镜像"

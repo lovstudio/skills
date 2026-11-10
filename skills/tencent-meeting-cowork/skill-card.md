@@ -101,7 +101,7 @@ See [`pricing-card.yaml`](pricing-card.yaml)：免费入口，0 Credits，2026-1
 | 渠道 | 类型 | 状态 |
 | --- | --- | --- |
 | 本地安装 | local | 已安装并校验 |
-| lovstudio | free | pending（定为免费入口，目录条目待合入，线上状态尚未核验） |
+| lovstudio | free | live（0.1.0；2026-11-10 详情页、免费标识、安装命令与空目录安装已核验） |
 | github | source | private-source（公开副本是聚合仓库 `lovstudio/skills` 的镜像） |
 | workbuddy | — | 未发布，未选择 |
 | skillpay | — | 未发布，未选择 |
