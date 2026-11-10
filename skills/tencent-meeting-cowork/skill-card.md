@@ -83,7 +83,7 @@ Lovstudio（https://lovstudio.ai）。
 
 ### User Cases
 
-See [`cases/cases.json`](cases/cases.json)：从一场合作洽谈的元宝笔记里理出会后要做的事（已脱敏）。
+See [`cases/cases.json`](cases/cases.json)：从一场商务会议的元宝笔记里理出会后要做的事（已脱敏）。
 
 ### Dimension Map
 

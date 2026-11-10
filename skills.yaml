@@ -9893,8 +9893,8 @@ skills:
   depends_on:
   - branding-consistency
   description: "Read a Tencent Meeting 元宝笔记 share link to brief action items, catch up, build promised deliverables and draft follow-ups; drafts only, never sends."
-  tagline_en: "Paste a Tencent Meeting AI notes link and get your action items, the other side's commitments, the requests and numbers the summary left out, the materials you promised, and a follow-up message — drafted, never sent."
-  tagline_zh: 给一个腾讯会议元宝笔记的分享链接，帮你列出会后要办的事和对方的承诺、找回摘要漏掉的要求与数字、把你答应的材料做出来，并起草跟进消息；只起草，不发送。
+  tagline_en: "Paste a Tencent Meeting AI notes link and get your action items, what the summary left out, the materials you promised, and a follow-up — drafted, never sent."
+  tagline_zh: 给一个腾讯会议元宝笔记链接，帮你列出会后要办的事、找回摘要漏掉的要求和数字、做出答应的材料并起草跟进；只起草，不发送。
   related:
   - wdb-cowork
   pricing:
