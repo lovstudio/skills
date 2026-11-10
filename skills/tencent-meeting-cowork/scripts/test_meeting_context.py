@@ -30,34 +30,34 @@ MEETING_ID, ROOM_ID = "777000111", "555000"
 
 SUMMARY = "\n".join(
     [
-        "**会议主题**：样例课程合作沟通",
+        "**会议主题**：样例团建活动筹备沟通",
         f"**发言人**：@@({LIN})@@、@@({ZHOU})@@",
-        "**会议摘要**：双方讨论了课程合作方式与后续安排。",
-        "**会议类型**：商务洽谈",
+        "**会议摘要**：双方讨论了团建活动的安排与后续分工。",
+        "**会议类型**：筹备沟通",
         "",
         "---",
         "",
         "### 一、过往情况",
-        "#### 1. 规模与定价",
-        "- **已办三期**：早期每期 30 人，定价 800元。",
+        "#### 1. 规模与费用",
+        "- **已办三场**：早期每场 30 人，人均 800元。",
         "- 没有标签的一行说明。",
         "这一行不是列表项，也要保留。",
         "",
-        "### 二、合作方式",
-        f"- **联合招生**：@@({ZHOU})@@一方提供渠道。",
+        "### 二、分工方式",
+        f"- **物料准备**：@@({ZHOU})@@一方负责采购。",
         "",
         "---",
         "",
         "### 三、待办事项",
-        f"- 整理过往数据并发给对方。 @@({ZHOU})@@",
-        f"- 发送课程大纲供评估。 @@({LIN})@@",
+        f"- 整理往期反馈并发给对方。 @@({ZHOU})@@",
+        f"- 发送活动方案供确认。 @@({LIN})@@",
         "- 确认场地档期。",
     ]
 )
 
 GRAPHIC = {
-    "theme": "样例课程合作沟通",
-    "description": "双方讨论了课程合作方式与后续安排。",
+    "theme": "样例团建活动筹备沟通",
+    "description": "双方讨论了团建活动的安排与后续分工。",
     "speaker": "林晓、周衡",
     "components": [
         {
@@ -66,18 +66,18 @@ GRAPHIC = {
             "title": "待办事项",
             "color": "purple",
             "items": [
-                {"task": "整理过往数据并发给对方", "owners": ["周衡"]},
-                {"task": "发送课程大纲供评估", "owners": ["林晓"]},
+                {"task": "整理往期反馈并发给对方", "owners": ["周衡"]},
+                {"task": "发送活动方案供确认", "owners": ["林晓"]},
                 {"task": "确认场地档期", "owners": []},
             ],
         },
-        {"type": "highlight", "position_id": 1, "title": "核心共识", "color": "red", "content": ["先做一期试点。"]},
+        {"type": "highlight", "position_id": 1, "title": "核心共识", "color": "red", "content": ["先办一场小型活动。"]},
         {
             "type": "table",
             "position_id": 2,
-            "title": "历史数据",
-            "columns": ["期数", "人数"],
-            "rows": [{"人数": "30人", "期数": "第一期"}],
+            "title": "往期情况",
+            "columns": ["场次", "人数"],
+            "rows": [{"人数": "30人", "场次": "第一场"}],
         },
         {
             "type": "columns",
@@ -85,11 +85,11 @@ GRAPHIC = {
             "title": "分工",
             "columns_count": 2,
             "columns": [
-                {"sub_title": "甲方", "items": ["提供讲师"], "icon": "cube", "color": "red"},
+                {"sub_title": "甲方", "items": ["提供主持人"], "icon": "cube", "color": "red"},
                 {"sub_title": "乙方", "items": ["提供场地"]},
             ],
         },
-        {"type": "timeline", "position_id": 5, "title": "节奏", "steps": [{"when": "下周", "what": "交大纲"}]},
+        {"type": "timeline", "position_id": 5, "title": "节奏", "steps": [{"when": "下周", "what": "交方案"}]},
     ],
 }
 
@@ -100,9 +100,9 @@ DIALOGUES = [
         "note_timestamp": "02:10",
         "status": 1,
         "note_info": (
-            f"- @@({LIN})@@介绍了过往三期的情况，每期 30 人，**意在证明自己有稳定的招生能力**。\n"
-            f"- @@({ZHOU})@@询问单期成本，@@({LIN})@@表示约 5000 元，**对方借此判断合作的利润空间**。"
-            f"随后，@@({ZHOU})@@要求补充退款数据。"
+            f"- @@({LIN})@@介绍了过往三场活动的情况，每场 30 人，**意在说明自己有组织经验**。\n"
+            f"- @@({ZHOU})@@询问单场费用，@@({LIN})@@表示约 5000 元，**对方借此估算整体预算**。"
+            f"随后，@@({ZHOU})@@要求补充往期照片。"
         ),
     },
     {
@@ -110,9 +110,9 @@ DIALOGUES = [
         "note_timestamp": "05:40",
         "status": 1,
         "note_info": (
-            "- 双方确认先做 **试点** 一期，定价 1200元。\n"
-            f"- **结论**：由@@({LIN})@@出大纲。\n"
-            f"- @@({ZHOU})@@提出需要讲师简历**这是为了走内部审批流程。**"
+            "- 双方确认先办 **小型** 活动一场，人均 1200元。\n"
+            f"- **结论**：由@@({LIN})@@出方案。\n"
+            f"- @@({ZHOU})@@提出需要主持人资料**这是为了走内部报销流程。**"
         ),
     },
     {"note_type": 7, "note_timestamp": "06:00", "status": 1, "note_info": "一条未知类型的记录，提到 @@(999999)@@。"},
@@ -242,29 +242,29 @@ class SummaryAndTodos(Base):
         self.build()
         context = self.context()
         meeting = context["meeting"]
-        self.assertEqual(meeting["title"], "样例课程合作沟通")
-        self.assertEqual(meeting["abstract"], "双方讨论了课程合作方式与后续安排。")
+        self.assertEqual(meeting["title"], "样例团建活动筹备沟通")
+        self.assertEqual(meeting["abstract"], "双方讨论了团建活动的安排与后续分工。")
         self.assertEqual(meeting["speakers"], ["林晓", "周衡"])
         self.assertIsNone(meeting["date"])
-        self.assertEqual(meeting["meta"], {"会议类型": "商务洽谈"})
+        self.assertEqual(meeting["meta"], {"会议类型": "筹备沟通"})
 
         first, second, third = context["summary"]["sections"]
         self.assertEqual(first["heading"], "一、过往情况")
         points = first["subsections"][0]["points"]
-        self.assertEqual(first["subsections"][0]["heading"], "1. 规模与定价")
+        self.assertEqual(first["subsections"][0]["heading"], "1. 规模与费用")
         self.assertEqual(
             points,
             [
-                {"id": "s1", "label": "已办三期", "text": "早期每期 30 人，定价 800元。"},
+                {"id": "s1", "label": "已办三场", "text": "早期每场 30 人，人均 800元。"},
                 {"id": "s2", "label": None, "text": "没有标签的一行说明。"},
                 {"id": "s3", "label": None, "text": "这一行不是列表项，也要保留。"},
             ],
         )
-        self.assertEqual(second["points"], [{"id": "s4", "label": "联合招生", "text": "周衡一方提供渠道。"}])
+        self.assertEqual(second["points"], [{"id": "s4", "label": "物料准备", "text": "周衡一方负责采购。"}])
         self.assertTrue(third["isTodo"])
         self.assertEqual(third["points"], [])
         notes = self.notes()
-        self.assertIn("- s1 **已办三期**：早期每期 30 人，定价 800元。", notes)
+        self.assertIn("- s1 **已办三场**：早期每场 30 人，人均 800元。", notes)
         self.assertNotIn("### 三、待办事项", notes)
         self.assertEqual(notes.count("- 发言人："), 1)
 
@@ -274,8 +274,8 @@ class SummaryAndTodos(Base):
         self.assertEqual(
             result["todos"],
             [
-                {"id": "t1", "task": "整理过往数据并发给对方。", "owners": ["周衡"], "mine": False, "source": "summary"},
-                {"id": "t2", "task": "发送课程大纲供评估。", "owners": ["林晓"], "mine": True, "source": "summary"},
+                {"id": "t1", "task": "整理往期反馈并发给对方。", "owners": ["周衡"], "mine": False, "source": "summary"},
+                {"id": "t2", "task": "发送活动方案供确认。", "owners": ["林晓"], "mine": True, "source": "summary"},
                 {"id": "t3", "task": "确认场地档期。", "owners": [], "mine": False, "source": "summary"},
             ],
         )
@@ -285,7 +285,7 @@ class SummaryAndTodos(Base):
         )
         self.assertTrue(any("按笔记归属人" in hint for hint in result["hints"]))
         notes = self.notes()
-        self.assertIn("- t2 ★我 发送课程大纲供评估。 — 负责人：林晓", notes)
+        self.assertIn("- t2 ★我 发送活动方案供确认。 — 负责人：林晓", notes)
         self.assertIn("- t3 确认场地档期。 — 负责人：未指定", notes)
         self.assertIn("林晓（我）、周衡", notes)
 
@@ -321,7 +321,7 @@ class SummaryAndTodos(Base):
         summary = SUMMARY.split("### 三、待办事项")[0]
         _, result = self.build(minutesSummary={"note_type": 2, "note_info": summary, "status": 1})
         self.assertEqual([todo["source"] for todo in result["todos"]], ["card"] * 3)
-        self.assertEqual(result["todos"][1]["task"], "发送课程大纲供评估")
+        self.assertEqual(result["todos"][1]["task"], "发送活动方案供确认")
         self.assertTrue(result["todos"][1]["mine"])
         self.assertEqual(result["warnings"], [w for w in result["warnings"] if "两处都要对照" not in w])
 
@@ -345,16 +345,16 @@ class CardsAndLiveNotes(Base):
         cards = self.context()["cards"]
         self.assertEqual([card["type"] for card in cards], ["highlight", "table", "todos", "columns", "timeline"])
         self.assertEqual([card["id"] for card in cards], ["c1", "c2", "c3", "c4", "c5"])
-        self.assertEqual(cards[0]["items"], ["先做一期试点。"])
-        self.assertEqual(cards[1]["table"], {"columns": ["期数", "人数"], "rows": [["第一期", "30人"]]})
-        self.assertEqual(cards[2]["todos"][0], {"task": "整理过往数据并发给对方", "owners": ["周衡"]})
+        self.assertEqual(cards[0]["items"], ["先办一场小型活动。"])
+        self.assertEqual(cards[1]["table"], {"columns": ["场次", "人数"], "rows": [["第一场", "30人"]]})
+        self.assertEqual(cards[2]["todos"][0], {"task": "整理往期反馈并发给对方", "owners": ["周衡"]})
         self.assertEqual(
             cards[3]["groups"],
-            [{"title": "甲方", "items": ["提供讲师"]}, {"title": "乙方", "items": ["提供场地"]}],
+            [{"title": "甲方", "items": ["提供主持人"]}, {"title": "乙方", "items": ["提供场地"]}],
         )
-        self.assertEqual(cards[4]["items"], ["下周", "交大纲"])
+        self.assertEqual(cards[4]["items"], ["下周", "交方案"])
         notes = self.notes()
-        self.assertIn("| 期数 | 人数 |\n| --- | --- |\n| 第一期 | 30人 |", notes)
+        self.assertIn("| 场次 | 人数 |\n| --- | --- |\n| 第一场 | 30人 |", notes)
         self.assertIn("### c5 节奏（timeline）", notes)
 
     def test_live_notes_split_narration_from_commentary(self) -> None:
@@ -365,11 +365,11 @@ class CardsAndLiveNotes(Base):
         self.assertEqual(
             [(bullet["id"], bullet["text"], bullet["commentary"]) for bullet in first["bullets"]],
             [
-                ("n1.1", "林晓介绍了过往三期的情况，每期 30 人。", ["意在证明自己有稳定的招生能力"]),
+                ("n1.1", "林晓介绍了过往三场活动的情况，每场 30 人。", ["意在说明自己有组织经验"]),
                 (
                     "n1.2",
-                    "周衡询问单期成本，林晓表示约 5000 元。随后，周衡要求补充退款数据。",
-                    ["对方借此判断合作的利润空间"],
+                    "周衡询问单场费用，林晓表示约 5000 元。随后，周衡要求补充往期照片。",
+                    ["对方借此估算整体预算"],
                 ),
             ],
         )
@@ -377,9 +377,9 @@ class CardsAndLiveNotes(Base):
         self.assertEqual(
             [(bullet["text"], bullet["commentary"]) for bullet in second["bullets"]],
             [
-                ("双方确认先做 试点 一期，定价 1200元。", []),
-                ("结论：由林晓出大纲。", []),
-                ("周衡提出需要讲师简历。", ["这是为了走内部审批流程"]),
+                ("双方确认先办 小型 活动一场，人均 1200元。", []),
+                ("结论：由林晓出方案。", []),
+                ("周衡提出需要主持人资料。", ["这是为了走内部报销流程"]),
             ],
         )
         self.assertEqual(third["kind"], "type-7")
@@ -388,7 +388,7 @@ class CardsAndLiveNotes(Base):
         self.assertEqual(result["signals"]["unresolvedMentions"], 1)
         self.assertTrue(any("没能对上发言人" in warning for warning in result["warnings"]))
         notes = self.notes()
-        self.assertIn("- n1.1 林晓介绍了过往三期的情况，每期 30 人。\n  - 解读：意在证明自己有稳定的招生能力", notes)
+        self.assertIn("- n1.1 林晓介绍了过往三场活动的情况，每场 30 人。\n  - 解读：意在说明自己有组织经验", notes)
         self.assertIn("### n3 · 06:00 · 类型 type-7", notes)
         self.assertNotIn("会议助手。", notes)
 
