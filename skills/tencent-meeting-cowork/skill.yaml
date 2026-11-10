@@ -1,0 +1,53 @@
+schema: skill-manifest/v1
+id: lov-tencent-meeting-cowork
+display_name: "腾讯会议工作搭子"
+display_name_en: "Tencent Meeting Cowork"
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-tencent-meeting-cowork
+    persist:
+      enabled: true
+      namespace: skills.lov-tencent-meeting-cowork
+      records_path: skills.lov-tencent-meeting-cowork.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+          - user.public_name
+        required: false
+        question: 你在腾讯会议里显示的名字是什么？
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: skills.lov-tencent-meeting-cowork.records.self_names
+        required: false
+        question: 你在腾讯会议里显示的名字是什么？有多个可以都告诉我。
+      - path: skills.lov-tencent-meeting-cowork.records.followup_style
+        required: false
+        question: 会后跟进消息你习惯什么风格？例如短句分条、对合作方用“您”。
+  preferences:
+    namespace: lov_tencent_meeting_cowork
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

@@ -9466,6 +9466,7 @@ skills:
   tagline_zh: 说出一个微信联系人或群，帮你按自己的语气起草回复、补上要你接的话、把对方要的活做出来；只起草，不发送。
   related:
   - wdb-cli
+  - tencent-meeting-cowork
   pricing:
     model: one_time
     visibility: public
@@ -9880,3 +9881,43 @@ skills:
       or more different machines, a Linux run, or new delivery scope such as rewriting
       rule files or a hosted service.
     card_path: pricing-cards/harness.md
+- name: tencent-meeting-cowork
+  runtime_name: lov-tencent-meeting-cowork
+  display_name: Tencent Meeting Cowork
+  name_zh: 腾讯会议工作搭子
+  repo: lovstudio/tencent-meeting-cowork-skill
+  paid: false
+  category: General
+  version: 0.1.0
+  updated_at: 2026-11-10 08:23:44+00:00
+  depends_on:
+  - branding-consistency
+  description: "Read a Tencent Meeting 元宝笔记 share link to brief action items, catch up, build promised deliverables and draft follow-ups; drafts only, never sends."
+  tagline_en: "Paste a Tencent Meeting AI notes link and get your action items, what the summary left out, the materials you promised, and a follow-up — drafted, never sent."
+  tagline_zh: 给一个腾讯会议元宝笔记链接，帮你列出会后要办的事、找回摘要漏掉的要求和数字、做出答应的材料并起草跟进；只起草，不发送。
+  related:
+  - wdb-cowork
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本 Skill：会议上下文构建器、四种协作模式（会后简报、会议速览、干活、跟进）与回归测试
+    delivery_unit_en: "Current Skill with a meeting context builder, four cowork modes (brief, catch-up, work, follow-up), and regression tests"
+    value_zh: 会后不用再重读纪要：哪些是你的事、对方答应了什么、哪些要求和数字没进摘要，一次理清，再把你答应的材料和跟进消息起草好。
+    value_en: "Stop rereading the notes after a meeting. See what is yours, what the other side promised, and which requests and numbers the summary left out, then get the materials you promised and a follow-up message drafted."
+    anchor_zh: 在一场真实的双人会议上，页面摘要只列了 2 条待办；对齐摘要、图文卡片与实时笔记后，另外找出 1 条没进待办的要求、3 项悬而未决的条件、1 个摘要没写的关键结论和 9 个只在实时笔记里出现的数字。还没有省时对照和其他用户的数据。
+    anchor_en: "On one real two-person meeting the page summary listed 2 to-dos; aligning the summary, cards and live notes surfaced 1 request missing from the to-do list, 3 open conditions, 1 key decision the summary left out, and 9 numbers found only in the live notes. No time-saving comparison or data from other users yet."
+    basis_zh: 六维加权 2.9/5。证据只有一场真实会议，干活与跟进两种模式还没有经用户验收的成果；分享页不登录就能打开，也没有必须先购买的其他 Skill，先以免费入口积累使用证据。
+    basis_en: "Six-dimension score 2.9/5. The evidence is a single real meeting, and the work and follow-up modes have no user-accepted result yet; the share page opens without login and no other purchase is required, so it launches as a free entry to collect usage evidence."
+    boundary_zh: 需要一个不登录就能打开的腾讯会议元宝笔记分享链接（或该页面另存的 HTML）和 Python 3.9+；只起草不发送，读不到录制回放、逐字稿、会议聊天与屏幕共享，不建日程、不派任务，不含语音转写或人工代办。纪要是 AI 的转述，人名和数字在对外使用前需要核对。
+    boundary_en: "Requires a Tencent Meeting AI notes (元宝笔记) share link that opens without login, or that page saved as HTML, and Python 3.9+; drafts only and never sends, cannot read recordings, transcripts, meeting chat or screen shares, creates no calendar events or tasks, and includes no voice transcription or human service. The notes are an AI paraphrase, so check names and numbers before external use."
+    maintenance_zh: 随腾讯会议分享页结构与真实支持成本变化复评，无托管服务或更新时限承诺。
+    maintenance_en: "Review when the Tencent Meeting share page or observed support costs change; no hosted service or update SLA is included."
+    confidence: low
+    review_trigger_zh: 累计 10 场真实会议的使用反馈、干活或跟进模式出现经用户验收的成果，或分享页结构变化、新增第二类可读页面时复评。
+    review_trigger_en: "Review after feedback from 10 real meetings, a user-accepted result from the work or follow-up mode, a change in the share page, or a second readable page type."
+    card_path: pricing-cards/tencent-meeting-cowork.md
