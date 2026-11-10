@@ -26,14 +26,17 @@ For a free skill with a private source, the mirror is therefore its only public 
 ├── scripts/render-marketplace.py     # Regenerates marketplace.json from skills.yaml
 ├── scripts/render-readme.py          # Regenerates README skill table from skills.yaml
 ├── scripts/mirror-catalog-cn.py      # CI-only: uploads skills.yaml and free Skills' docs to the lovstudio.cn OSS mirror
+├── scripts/refresh-website.py        # CI-only: refreshes lovstudio.ai and checks it read main's commit
 ├── CHANGELOG.md                      # Index repo history (not per-skill)
 ├── LICENSE                           # MIT (for this index; each skill has its own LICENSE)
-└── .github/workflows/                # render-readme.yml runs sync → render-marketplace → render-readme → mirror-cn
+└── .github/workflows/                # render-readme.yml runs sync → render-marketplace → render-readme → mirror-cn; refresh-website.yml refreshes lovstudio.ai
 ```
 
 **Edit `skills.yaml`, not the README table or marketplace.json.** Free mirrors under `skills/` are distribution outputs. CI regenerates the catalog and free mirrors on push and nightly. You can preview locally with `SKILLS_CLONE_PROTOCOL=ssh python3 scripts/sync-skills.py && python3 scripts/render-marketplace.py && python3 scripts/render-readme.py` (SSH lets the sync clone private sources with your own key).
 
 **lovstudio.cn reads the catalog and free Skill docs from Aliyun OSS, not GitHub.** The `mirror-cn` job uploads `main`'s `skills.yaml` to `lovstudio-downloads/catalogs/skills.yaml` after every render (push and nightly) and checks the anonymous copy's SHA-256. Before that it publishes `SKILL.md`, `README.md` and `skill-card.yaml` of every installable entry from `skills/<name>/` to `catalogs/skills/<name>/`, deletes the keys of files the mirror no longer has, and checks every anonymous copy; a document failure still uploads the catalog, then fails the run. It assumes an Aliyun RAM role through GitHub OIDC, so no AccessKey is stored here; the role only trusts this repo's `main` and may only put `catalogs/skills.yaml` and put or delete under `catalogs/skills/`. It needs the repo variables `ALIYUN_CATALOG_MIRROR_ROLE_ARN` and `ALIYUN_GITHUB_OIDC_PROVIDER_ARN` and is skipped without them. Every run re-uploads on purpose: the site treats a mirror whose Last-Modified is older than 48 hours as stale and reads GitHub first. If the job fails at the credentials step after GitHub changes its OIDC certificate chain, add the new fingerprint to the Aliyun OIDC provider (runbook: lovstudio-home `docs/deploy-lovstudio-cn.md`).
+
+**lovstudio.ai is refreshed by `Refresh website`.** The site caches the catalog and the mirrored Skill documents for 10 minutes, reads both at the commit `main` points to, and its `/api/revalidate` answers with that commit. The workflow calls it after every push to `main` that touches `skills.yaml` or `skills/`, and again when `Render index` finishes, because the bot commit is pushed with `GITHUB_TOKEN` and starts no other workflow. It fails unless the site read `main`'s commit; when the site names no commit it read raw `main`, which can lag a push by up to 5 minutes, so the job waits that out, refreshes once more and warns. It needs the `LOVSTUDIO_REVALIDATE_SECRET` repository secret, equal to the site's `REVALIDATE_SECRET`, and only warns without it. It refreshes the catalog, not per-Skill caches (`skill:<name>`, `skill-cases:<name>`), and never lovstudio.cn, which reads the OSS copy.
 
 ## Source Visibility and the Mirror
 
