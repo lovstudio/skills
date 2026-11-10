@@ -3,7 +3,8 @@
 
 These cover template assembly, brand resolution, canvas math, and the audit
 scoring rules. Browser-dependent checks stay in the Skill workflow because they
-need Playwright and a real render.
+need Playwright and a real render; the one exception is rendered-line
+measurement, which is skipped when Playwright or Chromium is unavailable.
 """
 
 from __future__ import annotations
@@ -19,6 +20,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import infographic_cli as cli  # noqa: E402
+
+try:
+    from playwright.sync_api import sync_playwright
+except ImportError:  # pragma: no cover - environment dependent
+    sync_playwright = None
 
 
 def good_measurement(**overrides):
@@ -373,6 +379,77 @@ class AuditScoringTests(unittest.TestCase):
         measurement["counts"]["skeletons"] = 2
         checks = self.audit(measurement)
         self.assertEqual(checks["skeleton_replaced"]["status"], "fail")
+
+
+@unittest.skipUnless(sync_playwright, "Playwright is not installed")
+class LineMeasurementTests(unittest.TestCase):
+    """`line_length` is a property of the rendered line, so it needs a real layout."""
+
+    @classmethod
+    def setUpClass(cls):
+        try:
+            cls.playwright = sync_playwright().start()
+            cls.browser = cls.playwright.chromium.launch()
+        except Exception as exc:  # pragma: no cover - environment dependent
+            raise unittest.SkipTest(f"Chromium is not available: {exc}") from exc
+        cls.page = cls.browser.new_page(viewport={"width": 1080, "height": 1600})
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.browser.close()
+        cls.playwright.stop()
+
+    def measure(self, body: str) -> dict:
+        # nowrap keeps every paragraph on one rendered line unless it breaks explicitly
+        self.page.set_content(
+            '<article data-card style="width:1080px;font-size:20px;white-space:nowrap">'
+            f"{body}</article>"
+        )
+        return self.page.evaluate(cli.MEASURE_JS)
+
+    @staticmethod
+    def entry(measured: dict, prefix: str) -> dict:
+        return next(item for item in measured["text_entries"] if item["text"].startswith(prefix))
+
+    def line_length(self, measured: dict) -> dict:
+        checks, _ = cli.audit_measurements(measured, None, None, 2)
+        return {check["id"]: check for check in checks}["line_length"]
+
+    def test_inline_children_count_toward_the_same_line(self):
+        # 10 + 10 + 10 characters on one line: each piece is short, the line is not
+        measured = self.measure(
+            '<p data-role="body">前半句十个字前半句十<b>加粗的十个字加粗的十</b>后半句十个字后半句十</p>'
+        )
+        self.assertEqual(self.entry(measured, "前半句")["max_units"], 30)
+        self.assertEqual(self.entry(measured, "加粗的")["max_units"], 30)
+        check = self.line_length(measured)
+        self.assertEqual(check["status"], "fail")
+        # the paragraph and its <b> share one line: it is listed once, not twice
+        self.assertEqual(check["detail"].count("最长"), 1)
+
+    def test_explicit_break_keeps_lines_apart(self):
+        measured = self.measure(
+            '<p data-role="body">第一行十个字第一行十<br><b>第二行十个字第二行十</b></p>'
+        )
+        self.assertEqual(self.entry(measured, "第一行")["max_units"], 10)
+        self.assertEqual(self.entry(measured, "第二行")["max_units"], 10)
+        self.assertEqual(self.line_length(measured)["status"], "pass")
+
+    def test_mixed_font_sizes_share_one_line(self):
+        measured = self.measure(
+            '<p data-role="label"><span style="font-size:54px">大字十个大字十个大字</span>小字五个字</p>'
+        )
+        self.assertEqual(self.entry(measured, "大字十个")["max_units"], 15)
+        self.assertEqual(self.entry(measured, "小字五个")["max_units"], 15)
+
+    def test_flex_items_keep_their_own_lines(self):
+        measured = self.measure(
+            '<p style="display:flex">'
+            '<span data-role="label">左栏十个字左栏十个字</span>'
+            '<span data-role="note">右栏十个字右栏十个字</span></p>'
+        )
+        self.assertEqual(self.entry(measured, "左栏")["max_units"], 10)
+        self.assertEqual(self.entry(measured, "右栏")["max_units"], 10)
 
 
 class CliParserTests(unittest.TestCase):

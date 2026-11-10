@@ -11,7 +11,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: skill-publisher
-  version: "0.18.0"
+  version: "0.18.2"
   card_standard: lovstudio/skill-card/v1
   content_class: microcopy
   tags:

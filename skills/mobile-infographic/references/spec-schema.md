@@ -43,7 +43,7 @@
 | `ratio` | error | 实际宽度符合声明的比例基准 |
 | `image_size` | error | PNG 像素等于画布 × scale |
 | `font_floor` | critical | 所有文本达到角色字号下限 |
-| `line_length` | error | 每行字符当量在上限内 |
+| `line_length` | error | 每个渲染行的字符当量在上限内；行内的加粗、链接与正文合并计数 |
 | `contrast` | error | 正文 4.5:1、大字 3:1 |
 | `overflow` | critical | 无裁切与滚动溢出 |
 | `truncation` | warning | 无省略号截断 |

@@ -1,6 +1,6 @@
 # 手机信息图 · Mobile Infographic
 
-![Version](https://img.shields.io/badge/version-0.18.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.18.2-CC785C)
 
 把一段已经有结论的内容，重排成手机上真的读得下去的证据型信息卡：竖版画布、单列阅读路径、
 字号下限与行宽上限、可核查的口径与来源。**输出永远是一张 1080 宽、高度自适应的卡片**
