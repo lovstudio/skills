@@ -1,0 +1,43 @@
+name: Refresh website
+
+# lovstudio.ai caches skills.yaml and the mirrored Skill documents for ten minutes.
+# Refresh it once main's copy changes and confirm it read main's commit.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "skills.yaml"
+      - "skills/**"
+      - "scripts/refresh-website.py"
+      - ".github/workflows/refresh-website.yml"
+  # Render index pushes its bot commit with GITHUB_TOKEN, which starts no push
+  # workflow, so refresh again once it finishes.
+  workflow_run:
+    workflows: ["Render index"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refresh-website
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/refresh-website.py
+          sparse-checkout-cone-mode: false
+
+      - name: Refresh lovstudio.ai and confirm it read main
+        env:
+          # lovstudio.ai's REVALIDATE_SECRET. Without it the job only warns.
+          REVALIDATE_SECRET: ${{ secrets.LOVSTUDIO_REVALIDATE_SECRET }}
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/refresh-website.py

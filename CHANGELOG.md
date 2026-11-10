@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.5 — 2026-11-10
+
+- New `Refresh website` workflow: after every push to `main` that touches `skills.yaml` or `skills/`, and after each `Render index` run, it calls lovstudio.ai's `/api/revalidate` and checks the returned `catalog_commits` against `main`. A publish no longer waits for someone to refresh the site, and a refresh that read an older commit fails the run. It needs the `LOVSTUDIO_REVALIDATE_SECRET` repository secret and warns without it.
+
 ## 1.1.4 — 2026-11-08
 
 - `mirror-cn` also publishes every installable entry's `SKILL.md`, `README.md` and `skill-card.yaml` to `lovstudio-downloads/catalogs/skills/<name>/`, so lovstudio.cn can render free Skill pages when its server cannot reach GitHub (on 2026-11-06 it reached raw.githubusercontent.com in 8 of 32 tries). A file the mirror no longer has is deleted. Every anonymous copy is checked against the commit, and dropped connections are retried.
