@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 把“A 是不是基于 B 做的”“这个项目值多少”这类问题，变成有 Git 历史与公开数据支撑、可复核的结论。
+basis: 方法论与一个只读取证脚本，依赖宿主检索与用户自己的 gh 登录，没有独占数据或托管成本；首版免费以积累案例。
+boundary: 交付调研报告与取证 JSON；不包含市场规模测算、付费数据库、需要登录的平台抓取、法律意见或投资建议。
+review_trigger: 积累三个以上已验收案例，或加入付费数据源、托管取证服务时复评定价。
+confidence: internal

@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **234 个技能** — 212 个免费 + 22 个付费。
+> **235 个技能** — 213 个免费 + 22 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -54,7 +54,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Dev Diary](https://github.com/lovstudio/daily-post-skill) (`daily-post`) | [开发日记](https://github.com/lovstudio/daily-post-skill) | 将近期真实项目更新写成面向读者的简短日更文案 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Narrator](https://github.com/lovstudio/describe-image-skill) (`describe-image`) | [看图说话](https://github.com/lovstudio/describe-image-skill) | 给纯文本模型"看图"：用免费视觉模型把任意图片转成文字描述。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Love Index Analysis](https://github.com/lovstudio/do-they-love-me-skill) (`do-they-love-me`) | [恋爱指数分析](https://github.com/lovstudio/do-they-love-me-skill) | 把两个人的聊天记录变成一份带口径与误差的关系结构分析，而不是一句安慰。 — 依赖: `branding-consistency` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Fact Checker](https://github.com/lovstudio/fact-check-skill) (`fact-check`) | [事实核查员](https://github.com/lovstudio/fact-check-skill) | 用尽调思路确认事实：查一手资料、找反例、标证据等级，给出置信度和下一步。 — 相关: `image-translation-errata` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Fact Checker](https://github.com/lovstudio/fact-check-skill) (`fact-check`) | [事实核查员](https://github.com/lovstudio/fact-check-skill) | 用尽调思路确认事实：查一手资料、找反例、标证据等级，给出置信度和下一步。 — 相关: `image-translation-errata`, `competitor-research` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Ebook Finder](https://github.com/lovstudio/find-ebook-skill) (`find-ebook`) | [电子书寻宝](https://github.com/lovstudio/find-ebook-skill) | 用尽调式检索寻找指定书籍的合法授权电子书资源和获取路径，优先确认中文译本、非扫描电子版、GitHub/GitBook明确授权仓库、PDF、EPUB、MOBI、K |
 | ![Free](https://img.shields.io/badge/Free-green) | [Five-Unit Replies](https://github.com/lovstudio/five-skill) (`five`) | [五字答](https://github.com/lovstudio/five-skill) | 在明确要求时使用五单位以内的简短回复，并支持随时恢复正常 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Hanzi Lens](https://github.com/lovstudio/hanzi-lens-skill) (`hanzi-lens`) | [汉字镜](https://github.com/lovstudio/hanzi-lens-skill) | 用证据看懂一个汉字：读音、字形、字书、经典语境与专业信息图。 — 依赖: `professional-infographic` |
@@ -92,6 +92,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [BP Master](https://github.com/lovstudio/bp-skill) (`bp-deck`) | [BP 大师](https://github.com/lovstudio/bp-skill) | 把已经确认的 BP 大纲做成风格统一、图表专业的 PPTX、PDF 和全稿预览。 — 依赖: `any2deck` |
 | ![Free](https://img.shields.io/badge/Free-green) | [BP Blueprint](https://github.com/lovstudio/bp-skill) (`bp-outline`) | [BP 蓝图](https://github.com/lovstudio/bp-skill) | 先把项目材料变成证据账本和投资人看得懂的 12–15 页大纲，再决定是否制作 PPT。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [BP Polish](https://github.com/lovstudio/bp-skill) (`bp-polish`) | [BP 精修](https://github.com/lovstudio/bp-skill) | 给已有 BP 做投资逻辑、证据、文字、图表和视觉体检，输出评分报告与逐页修改，不为好看改事实。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [Competitor Research](https://github.com/lovstudio/competitor-research-skill) (`competitor-research`) | [竞品调研](https://github.com/lovstudio/competitor-research-skill) | 对点名的产品或开源仓库做竞品调研：查清区别、是不是二次开发、含金量与投资价值，结论带可复核证据。 — 依赖: `branding-consistency`; 相关: `deep-research`, `fact-check`, `dev-research` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Contract Reviewer](https://github.com/lovstudio/contract-review-pro-skill) (`contract-review-pro`) | [合同批注专家](https://github.com/lovstudio/contract-review-pro-skill) | 专业级合同审阅 — 四层方法论（主体核验 + 基础 + 业务 + 法务），结构化批注含风险等级，附合同摘要、综合意见与业务流程图。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Event Planner](https://github.com/lovstudio/event-curator-skill) (`event-curator`) | [活动策划师](https://github.com/lovstudio/event-curator-skill) | 从嘉宾履历一键生成可交付的活动策划案 — 主题文案、分钟级 rundown、主持人问题卡、伴手礼。 — 相关: `publish-event-onto-hdx` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Expense Assistant](https://github.com/lovstudio/expense-report-skill) (`expense-report`) | [报销管家](https://github.com/lovstudio/expense-report-skill) | 发票图片或文字一键整理成分类报销 Excel，业务招待、差旅、办公自动归类。 |
@@ -139,7 +140,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Writing Pattern Scan (Legacy)](https://github.com/lovstudio/anti-wechat-ai-check-skill) (`anti-wechat-ai-check`) | [文风扫描（旧入口）](https://github.com/lovstudio/anti-wechat-ai-check-skill) | 兼容旧命令的中文表层模式扫描器，只定位套话、句段均匀和过渡词等可观察特征，不判断作者身份或平台风险 — 依赖: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Genius Writer](https://github.com/lovstudio/article-creator-skill) (`article-creator`) | [天才写手](https://github.com/lovstudio/article-creator-skill) | 从材料、旧稿或来源文章生成完整公众号文章包，并完成写作、品牌、双比例视觉、正文配图、转载保真与质量验收。 — 依赖: `branding-consistency`, `writing-style`, `illustrate` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Brand Editor](https://github.com/lovstudio/branding-consistency-skill) (`branding-consistency`) | [品牌审校官](https://github.com/lovstudio/branding-consistency-skill) | 从受众、品牌角色、组件惯例和真实发布语境审校可见文案，并允许删除多余文字。 |
-| ![Free](https://img.shields.io/badge/Free-green) | [Deep Research](https://github.com/lovstudio/deep-research-skill) (`deep-research`) | [深度研究](https://github.com/lovstudio/deep-research-skill) | 生成带引用、证据和主张校验的深度研究报告，并收集分享 GitHub 等平台的已核验开源方案。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [Deep Research](https://github.com/lovstudio/deep-research-skill) (`deep-research`) | [深度研究](https://github.com/lovstudio/deep-research-skill) | 生成带引用、证据和主张校验的深度研究报告，并收集分享 GitHub 等平台的已核验开源方案。 — 相关: `competitor-research` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Dev Journal](https://github.com/lovstudio/dev-blog-skill) (`dev-blog`) | [研发手记](https://github.com/lovstudio/dev-blog-skill) | OwntheSkillPublisherwebsiteblogpublishingcontract.Summarizethecurrentdevelopment — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Document Illustrator](https://github.com/lovstudio/document-illustrator-skill) (`document-illustrator`) | [文档插画师](https://github.com/lovstudio/document-illustrator-skill) | 给长文原地配图，先规划插入点再并行出图，最后自动插回原文。 — 依赖: `image-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Text Editor](https://github.com/lovstudio/human-writing-skill) (`human-writing`) | [文稿润色师](https://github.com/lovstudio/human-writing-skill) | 先保住作者真实判断，再修篇章结构，最后用 30 项中文指标定位并复测表层问题。 — 依赖: `branding-consistency` |
@@ -189,7 +190,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Codeex Plugin Studio](https://github.com/lovstudio/codeex-creator-skill) (`codeex-creator`) | [Codeex 插件工坊](https://github.com/lovstudio/codeex-creator-skill) | 为Codeex创建、验证和迭代本地运行时插件，覆盖renderer、launch、controlhooks、原生UI复用、分层重载与原子安装卸载 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Codex Usage Ledger](https://github.com/lovstudio/codex-thread-usage-skill) (`codex-thread-usage`) | [Codex 用量账本](https://github.com/lovstudio/codex-thread-usage-skill) | 从本地Codexdeeplink或threadUUID核算整个线程与最新快照的tokenusage |
 | ![Free](https://img.shields.io/badge/Free-green) | [Vercel Deployer](https://github.com/lovstudio/deploy-to-vercel-skill) (`deploy-to-vercel`) | [Vercel 部署助手](https://github.com/lovstudio/deploy-to-vercel-skill) | 一键把前端部署到 Vercel，自动配好 Cloudflare DNS 和自定义域名。 |
-| ![Free](https://img.shields.io/badge/Free-green) | [Tech Selection Advisor](https://github.com/lovstudio/dev-research-skill) (`dev-research`) | [技术选型顾问](https://github.com/lovstudio/dev-research-skill) | 根据软件需求比较复用策略并输出有来源的技术选型与研发计划 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Tech Selection Advisor](https://github.com/lovstudio/dev-research-skill) (`dev-research`) | [技术选型顾问](https://github.com/lovstudio/dev-research-skill) | 根据软件需求比较复用策略并输出有来源的技术选型与研发计划 — 依赖: `branding-consistency`; 相关: `competitor-research` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Production Readiness](https://github.com/lovstudio/dev-to-prod-skill) (`dev-to-prod`) | [生产就绪助手](https://github.com/lovstudio/dev-to-prod-skill) | 将开发态项目收敛为可验证的生产构建与本地安装成果： |
 | ![Free](https://img.shields.io/badge/Free-green) | [Lesson Distiller](https://github.com/lovstudio/distill-skill) (`distill`) | [经验萃取](https://github.com/lovstudio/distill-skill) | 将真实解决过程整理为可复用经验文档并维护知识索引 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Lessons to Rules](https://github.com/lovstudio/distill-to-system-skill) (`distill-to-system`) | [经验入规](https://github.com/lovstudio/distill-to-system-skill) | 把有证据的可复用经验写入最合适的项目或共享 Agent 规范 — 依赖: `branding-consistency` |
