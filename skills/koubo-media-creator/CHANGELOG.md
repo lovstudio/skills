@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.1 — 2026-11-15
+
+- `tts.py` 写 `<out>.words.json` 时不再取句内最长的 N−1 个停顿当分句点：按字重（中文 1、拉丁字母与数字 0.5）算期望分句点，只在 ±max(0.3 s, 句长 12%) 内吸附 ≥ 60 ms 的停顿，按「停顿长 ×（1 − 距离/窗口）」取最高分，窗口内没有就落在期望点，且不早于上一个分句点。Seed-TTS 在英文词前后、句中强调处的停顿常比逗号长，旧算法会把字幕与 b-roll `at` 切偏 1–2 秒。
+- 回归（同一集改稿后的 41 句样片，全缓存、0 请求）：wav 与真值 JSON 字节不变；91 个短语与本集已验证的修法逐条一致；38 个多分句句子里同句分句语速差超过 2 倍的由 8 句降到 3 句，最差由 7.8 倍降到 2.5 倍。
+- `references/pitfalls.md`：补「TTS 句中停顿长于逗号停顿，最长停顿法会切错」。
+
+## 0.4.0 — 2026-11-15
+
+来自 2026-11-15 样片（37 句见闻类口播）的回归修复；同一工程用 0.4.0 重跑 tts → align → build → mix → finish，时间线、字幕、人声与成片画面逐帧一致，质检全过。
+
+- 样片对齐改走 TTS 真值：`tts.py` 同时写出 `<out>.words.json`（每句按标点分短语、边界取句内最长停顿），pipeline 与 SKILL 第 4 步默认 `align.py --words recording/tts-take.words.json`，不调用任何 ASR。
+- 起步工程 `Short.tsx`：占位出镜在 `face` 布局下改为顶对齐（`paddingTop: 560`），头像不再压住胸口大标注（`CALLOUT_Y.face = 1050`）。
+- `align.py` / `finish.py`：Whisper 模型已在 Hugging Face 缓存时直接从本地快照目录加载，环境有 SOCKS `all_proxy` 且缺 `socksio` 时不再报 ImportError（`HF_HUB_OFFLINE=1` 也绕不过）。
+- 吃字率去误报：标点表补「」『』〈〉〔〕；`finish.py` 复用 `align.py` 的归一化（繁转简、全角转半角），口语数字转换补〇、千与逐位读法（二〇二六 → 2026）；2026-11-15 样片同一份转写由 2.1% 降到 1.1%。
+- `references/pitfalls.md`：补 TTS 真值对齐、引号误报、转写漏听要先核切点再归因、SOCKS 与本地快照、经代理 `uv run --with` 卡住改用持久 venv、Seed-TTS 默认语速约 7.7 字/秒高于片型上限、占位头像压标注。
+
 ## 0.3.1 — 2026-10-30
 
 - README 安装命令改回官方的 `npx lovstudio skills add koubo-media-creator`（免费直接安装）。

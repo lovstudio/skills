@@ -1,7 +1,7 @@
 # 流水线：命令、产物与门禁
 
-`S=$SKILL_DIR/scripts`，`EP` = 集目录，`$PY` = 装好 numpy、pillow、mlx-whisper、opencc-python-reimplemented、jieba 的 Python
-（或 `uv run -q --python 3.12 --with … python -I`）。所有命令在 `EP` 下运行。
+`S=$SKILL_DIR/scripts`，`EP` = 集目录，`$PY` = 装好 numpy、pillow、mlx-whisper、opencc-python-reimplemented、jieba 的持久 venv
+Python（优先；经代理访问 PyPI 慢时 `uv run -q --python 3.12 --with … python -I` 会长时间卡在解析依赖）。所有命令在 `EP` 下运行。
 
 ## 目录
 
@@ -11,7 +11,7 @@ EP/
 ├── work/           script.json、takes.json、asr/ 缓存、remotion/ 工程
 ├── broll/          上屏素材（截图、录屏、数据卡 PNG、封面抠图）
 ├── broll-src/      数据卡、对比卡的 HTML 源
-├── recording/      作者原片（只读）；样片的 tts-take.wav
+├── recording/      作者原片（只读）；样片的 tts-take.wav、.json（每句真实起止）、.words.json（对齐输入）
 ├── music/          配乐候选与元数据
 ├── deliverables/   teleprompter.html、script.md、shotlist.md；<版本>/ 成片与封面
 ├── qc/             门禁报告、联系表、缩略图
@@ -25,8 +25,8 @@ EP/
 | 1 | 脚本 | 写 `work/script.json` → `python3 $S/check_script.py work/script.json --json qc/script-check.json` | 过门禁的脚本 | 0 ERROR |
 | 2 | 证据 | `python3 $S/capture.py url URL --out broll/x.png` · `capture.py term out.txt --out broll/y.png` · `capture.py script work/script.json` | `broll/*` | `check_script.py --strict` 0 ERROR |
 | 3 | 录制包 | `python3 $S/teleprompter.py work/script.json --out deliverables` | 提词器、脚本稿、素材清单 | 素材清单无「缺」或已安排补拍 |
-| 4 | 样片（可选） | `python3 $S/tts.py work/script.json --out recording/tts-take.wav --dry-run`，再去掉 `--dry-run` 加 `--ledger ledger/costs.jsonl` | 占位配音 | 先报字数与单价 |
-| 5 | 对齐 | `$PY $S/align.py work/script.json recording/<原片> --out work/takes.json [--words asr.json]` | 每句选中的一遍与切点 | `review` 为空或逐条确认 |
+| 4 | 样片（可选） | `python3 $S/tts.py work/script.json --out recording/tts-take.wav --dry-run`，再去掉 `--dry-run` 加 `--ledger ledger/costs.jsonl` | 占位配音、每句真值 `tts-take.json`、对齐输入 `tts-take.words.json` | 先报字数与单价 |
+| 5 | 对齐 | 样片：`$PY $S/align.py work/script.json recording/tts-take.wav --out work/takes.json --words recording/tts-take.words.json`（TTS 真值，不经 ASR）；成片：`$PY $S/align.py work/script.json recording/<原片> --out work/takes.json [--words asr.json]` | 每句选中的一遍与切点 | 样片每句 1.00；`review` 为空或逐条确认 |
 | 6 | 工程 | `python3 $S/setup_project.py EP`（首次；模板更新时 `--force`，不动 `public/data`） | `work/remotion` | `pnpm check` 通过 |
 | 7 | 构建 | `$PY $S/build.py work/script.json work/takes.json --recording recording/<原片> --public work/remotion/public --logo brand/logo-white.png [--face-y 0.33]`；样片加 `--still brand/portrait.jpg --placeholder --animatic` | 连续人像/人声中间轨、`timeline.json`、`cover.json` | 中间轨帧数 = 时间线（脚本自检） |
 | 8 | 封面人像 | `swiftc -O $SKILL_DIR/assets/tools/cutout.swift -o work/bin/cutout`；`ffmpeg -ss 1.2 -i recording/<原片> -frames:v 1 broll/pose.jpg`；`work/bin/cutout broll/pose.jpg broll/cover-cutout.png` | 透明底人像 | 头发边缘看过；放大不超过 1.1× |
@@ -39,6 +39,7 @@ EP/
 | --- | --- | --- |
 | 声音 | Seed-TTS 占位配音 | 作者原声 |
 | 出镜 | 形象照按原尺寸放在占位框 | 作者竖拍画面 |
+| 对齐 | TTS 真值（`--words recording/tts-take.words.json`），不调用 ASR | Profile 默认 ASR 的逐字时间戳，通道不可用才回退本机 Whisper |
 | 角标 | 画面底部「样片 · 配音与出镜为占位」 | 无 |
 | 用途 | 预审节奏、镜头、包装、封面 | 审片、发布 |
 

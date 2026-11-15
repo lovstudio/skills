@@ -34,10 +34,12 @@ const Presenter: React.FC<{ tl: Timeline; layout: Layout; lineIndex: number }> =
   const punch = layout === 'face' && lineIndex % 2 === 1 ? 1.08 : 1.0;
   const drift = p.kind === 'image' ? 1 + 0.04 * ((frame % 300) / 300) : 1;
   if (p.placeholder) {
+    // face: pin the portrait and its label to y 560–1000, above the chest callout (CALLOUT_Y.face = 1050);
+    // vertically centred they sat right under the callout
     return (
       <div style={{ position: 'absolute', left: 0, top, width: W, height: boxH, overflow: 'hidden',
         background: `radial-gradient(circle at 50% 45%, #2A1408 0%, ${C.ink} 70%)`, display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: layout === 'split' ? 'flex-start' : 'center', paddingTop: layout === 'split' ? 210 : 0, gap: 22 }}>
+        alignItems: 'center', justifyContent: 'flex-start', paddingTop: layout === 'split' ? 210 : 560, gap: 22 }}>
         <Img src={staticFile(p.src)} style={{ width: 360, height: 360, borderRadius: '50%', objectFit: 'cover',
           border: `8px solid ${C.amber}`, transform: `scale(${punch})` }} />
         <div style={{ fontFamily: FONT.sans, fontWeight: 800, fontSize: 30, color: 'rgba(255,255,255,0.55)' }}>出镜位 · 录制后替换为口播画面</div>

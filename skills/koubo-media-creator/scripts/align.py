@@ -14,12 +14,16 @@ checklist). This script:
    cuts silences longer than --max-gap inside a take down to that gap (the jump-cut rhythm of the genre).
 Output takes.json: per line `spans` in source seconds, `score`, `status`, `heard` (ASR text of the take)
 and `chars` (normalized char → source time) for caption timing; plus `discarded` re-read windows.
+An animatic needs no ASR: pass `--words recording/tts-take.words.json` (tts.py's ground truth).
+A model already in the Hugging Face cache is loaded from its local snapshot directory, so no network
+request (and no SOCKS proxy dependency) is involved.
 Run with the persistent venv Python that has mlx-whisper (and opencc for traditional → simplified).
 """
 import argparse
 import difflib
 import hashlib
 import json
+import os
 import re
 import subprocess
 from pathlib import Path
@@ -27,7 +31,9 @@ from pathlib import Path
 import numpy as np
 
 MODELS = {"turbo": "mlx-community/whisper-large-v3-turbo", "large-v3": "mlx-community/whisper-large-v3-mlx"}
-PUNCT = re.compile(r"[\s，。！？、：；“”‘’（）《》【】,.!?:;\"'()\[\]<>…—\-~·]")
+# ASR never writes quotation marks: 「」『』 left in the script count as missing characters
+PUNCT = re.compile(r"[\s，。！？、：；“”‘’（）《》【】「」『』〈〉〔〕,.!?:;\"'()\[\]<>…—\-~·]")
+FULLWIDTH = {c: c - 0xFEE0 for c in range(ord("０"), ord("ｚ") + 1) if chr(c).isalnum()}
 try:
     import opencc
     _T2S = opencc.OpenCC("t2s")
@@ -35,10 +41,37 @@ except Exception:  # opencc is optional; Whisper with a simplified prompt mostly
     _T2S = None
 
 
+def simplify(text: str) -> str:
+    """Traditional → simplified, full-width letters and digits → ASCII; punctuation kept."""
+    return (_T2S.convert(text) if _T2S else text).translate(FULLWIDTH)
+
+
 def norm(text: str) -> str:
-    t = _T2S.convert(text) if _T2S else text
-    t = t.translate({ord(c): ord(c) - 0xFEE0 for c in "０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"})
-    return PUNCT.sub("", t).lower()
+    return PUNCT.sub("", simplify(text)).lower()
+
+
+def resolve_model(model: str) -> str:
+    """Alias, HF repo or directory → a local snapshot directory when the repo is already cached.
+
+    mlx_whisper skips huggingface_hub only for an existing path; given a repo id it calls
+    snapshot_download, whose httpx client fails on a SOCKS all_proxy without socksio even under
+    HF_HUB_OFFLINE=1.
+    """
+    repo = MODELS.get(model, model)
+    if Path(repo).expanduser().is_dir():
+        return str(Path(repo).expanduser())
+    hub = os.environ.get("HF_HUB_CACHE") or os.environ.get("HUGGINGFACE_HUB_CACHE")
+    if not hub:
+        home = os.environ.get("HF_HOME") or Path(os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache") / "huggingface"
+        hub = Path(home) / "hub"
+    root = Path(hub).expanduser() / ("models--" + repo.replace("/", "--"))
+    ref = root / "refs" / "main"
+    snaps = [root / "snapshots" / ref.read_text().strip()] if ref.is_file() else []
+    snaps += sorted((root / "snapshots").glob("*"), key=lambda p: p.stat().st_mtime, reverse=True)
+    for snap in snaps:
+        if (snap / "config.json").exists() and any((snap / w).exists() for w in ("weights.safetensors", "weights.npz")):
+            return str(snap)
+    return repo
 
 
 def transcribe(media: Path, model: str, prompt: str, cache_dir: Path):
@@ -48,7 +81,7 @@ def transcribe(media: Path, model: str, prompt: str, cache_dir: Path):
     if cache.exists():
         return json.loads(cache.read_text())
     import mlx_whisper
-    r = mlx_whisper.transcribe(str(media), path_or_hf_repo=MODELS.get(model, model), language="zh",
+    r = mlx_whisper.transcribe(str(media), path_or_hf_repo=resolve_model(model), language="zh",
                                word_timestamps=True, initial_prompt=prompt, condition_on_previous_text=False)
     words = [{"w": w["word"], "s": round(w["start"], 3), "e": round(w["end"], 3)}
              for seg in r["segments"] for w in seg.get("words", [])]

@@ -14,7 +14,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.3.1"
+  version: "0.4.1"
   card_standard: lovstudio/skill-card/v1
   content_class: authored-prose
   suite: lov-film
@@ -105,8 +105,9 @@ python3 "$SKILL_DIR/scripts/profile_store.py" record --skill-id lov-koubo-media-
 ### Step 0: 解析运行环境
 
 - `SKILL_DIR` = 本 Skill 目录。确认 `scripts/*.py`、`assets/starter`、`assets/tools/cutout.swift`、`assets/templates/script.example.json` 都在。
-- 持久虚拟环境 `$PY`：numpy、pillow、mlx-whisper、opencc-python-reimplemented、jieba（也可每次 `uv run --with …`）。
-  Whisper 模型（`mlx-community/whisper-large-v3-turbo`，约 1.6 GB）已缓存时设 `HF_HUB_OFFLINE=1`；经 SOCKS 代理下载需 `socksio`。
+- 持久虚拟环境 `$PY`：numpy、pillow、mlx-whisper、opencc-python-reimplemented、jieba（优先用已有的；经代理访问 PyPI 慢时
+  `uv run --with …` 会长时间卡住）。Whisper 模型（`mlx-community/whisper-large-v3-turbo`，约 1.6 GB）已在 Hugging Face 缓存时，
+  `align.py` / `finish.py` 直接从本地快照目录加载，不联网；首次下载且环境有 SOCKS `all_proxy` 时需 `socksio`。
 - ASR：先读 Profile 的默认 ASR。作者的默认是云端服务（如通义听悟）时，先用它出逐字时间戳 JSON（`[{w, s, e}]`），
   交给 `align.py --words`；那条通道实际不可用时才回退本机 Whisper，并告诉作者专名要人工核对。
 - 一集一个目录（`EPISODE/`）：`work/ brand/ broll/ broll-src/ recording/ music/ deliverables/ qc/ ledger/`。
@@ -137,8 +138,9 @@ python3 "$SKILL_DIR/scripts/profile_store.py" record --skill-id lov-koubo-media-
 ### Step 4: 录制包与样片
 
 - `teleprompter.py` → `deliverables/teleprompter.html`（空格开始、←→ 换句、↑↓ 语速、M 镜像）、`script.md`、`shotlist.md`。
-- 建议先出 animatic 给作者预审：`tts.py`（占位配音，先 `--dry-run` 报字数）→ `align.py` → `setup_project.py` →
-  `build.py --still <形象照> --placeholder --animatic` → `mix.py` → `finish.py`。小尺寸形象照只按原尺寸放在占位框里，不拉伸。
+- 建议先出 animatic 给作者预审：`tts.py`（占位配音，先 `--dry-run` 报字数）→ `align.py --words recording/tts-take.words.json`
+  （TTS 每句真实起止，样片对齐不调用任何 ASR）→ `setup_project.py` → `build.py --still <形象照> --placeholder --animatic` →
+  `mix.py` → `finish.py`。小尺寸形象照只按原尺寸放在占位框里，不拉伸。TTS 语速比真人快（见 pitfalls），样片时长偏短。
 - 交付录制包与 animatic，状态 `awaiting-recording`，**停下等作者的录像**。
 
 ### Step 5: 录后对齐
@@ -158,6 +160,7 @@ python3 "$SKILL_DIR/scripts/profile_store.py" record --skill-id lov-koubo-media-
 ### Step 7: 渲染与质检
 
 - `finish.py EPISODE --name <命名规则> --version v0.x`：渲染成片与 3:4、16:9 封面，写 `qc/report-<版本>.json`。
+- `dropped_spans` 逐条对照 `takes.json` 的切点核实，再下「吃字」或「转写漏听」的结论，不凭猜测归因。
 - 逐页看 `qc/sheet-*.jpg`（布局切换、红框位置、字幕不压脸、标注不撞字幕）和封面缩略图；有问题改数据或模板后重渲。
 - 需要时 `npx remotion studio` 实播检查一段含多个切点的区间。
 

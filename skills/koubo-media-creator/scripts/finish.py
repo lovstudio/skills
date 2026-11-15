@@ -11,6 +11,8 @@ usage: finish.py EPISODE_DIR [--name 作者-主题-YYYY-MM-DD] [--version v0.1] 
    loudness and true peak of the encoded file, a re-transcription against the script (needs mlx-whisper;
    --no-cer to skip): the gate is the DROPPED ratio (script chars with no counterpart, i.e. swallowed words
    from a bad cut) ≤ 3 %; CER is reported for reference only because homophones and numerals are ASR noise.
+   Script and transcript share one normalization (align.py: simplified, no punctuation or 「」『』 quotes,
+   spoken numerals as digits), and a cached model loads from its local snapshot (no network, no proxy).
    No initial prompt is used: Whisper echoes prompt text into the transcript. Then a 1 fps contact sheet
    (qc/sheet-<version>-NN.jpg) and cover
    thumbnails at platform size (270×360, 480×270) for the read-at-a-glance check.
@@ -20,40 +22,41 @@ import argparse
 import json
 import re
 import subprocess
+import sys
 from pathlib import Path
-
-PUNCT = re.compile(r"[\s，。！？、：；“”‘’（）《》【】,.!?:;\"'()\[\]<>…—\-~·]")
 
 
 def run(cmd, cwd=None):
     subprocess.run(cmd, cwd=cwd, check=True)
 
 
-DIGIT = {"零": 0, "一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+DIGIT = {"零": 0, "〇": 0, "一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+UNIT = {"十": 10, "百": 100, "千": 1000}
 
 
 def cn_numbers(s):
-    """七 → 7, 三十 → 30, 二十五 → 25, 一百二十 → 120 (enough for spoken counts); 他/她/它 → 他."""
+    """Spoken numerals → digits, applied to script and transcript alike (ASR writes 十五/15, 一会儿/1会儿
+    at will): 七 → 7, 二十五 → 25, 一百零五 → 105, 二〇二六 → 2026; 他/她/它 → 他."""
     def conv(m):
-        txt, total, cur = m.group(0), 0, 0
+        txt = m.group(0)
+        if not any(ch in UNIT for ch in txt):
+            return "".join(str(DIGIT[ch]) for ch in txt)
+        total, cur = 0, 0
         for ch in txt:
             if ch in DIGIT:
                 cur = DIGIT[ch]
-            elif ch == "十":
-                total += (cur or 1) * 10
-                cur = 0
-            elif ch == "百":
-                total += (cur or 1) * 100
+            else:
+                total += (cur or 1) * UNIT[ch]
                 cur = 0
         return str(total + cur)
-    s = re.sub(r"[零一二两三四五六七八九十百]+", conv, s)
+    s = re.sub(r"[零〇一二两三四五六七八九十百千]+", conv, s)
     return re.sub(r"[她它]", "他", s)
 
 
 def compare(ref, hyp):
-    """CER for reference, and the chars of the script that have no counterpart (swallowed by a cut)."""
+    """CER for reference, and the chars of the script that have no counterpart (swallowed by a cut).
+    Both strings are already canonical (simplified, numerals as digits, no punctuation or quotes)."""
     import difflib
-    ref, hyp = cn_numbers(ref), cn_numbers(hyp)
     sm = difflib.SequenceMatcher(None, ref, hyp, autojunk=False)
     errors, dropped, spans = 0, 0, []
     for tag, a0, a1, b0, b1 in sm.get_opcodes():
@@ -125,19 +128,18 @@ def main():
               "mbps": round(mbps, 2), "lufs_i": lufs, "true_peak_dbfs": tp, "animatic": bool(tl.get("animatic"))}
 
     if not a.no_cer:
-        script = json.loads((ep / "work" / "script.json").read_text())
-        ref = PUNCT.sub("", "".join(ln["text"] for ln in script["lines"])).lower()
+        # align.py holds the shared normalization and the cached-model lookup; `python -I` drops the script dir
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from align import norm, resolve_model, simplify
         import mlx_whisper
-        models = {"turbo": "mlx-community/whisper-large-v3-turbo", "large-v3": "mlx-community/whisper-large-v3-mlx"}
-        r = mlx_whisper.transcribe(str(final), path_or_hf_repo=models.get(a.model, a.model), language="zh")
-        hyp = r["text"]
-        try:
-            import opencc
-            hyp = opencc.OpenCC("t2s").convert(hyp)
-        except Exception:
-            pass
-        hyp = PUNCT.sub("", hyp).lower()
-        c, d, spans = compare(ref, hyp)
+
+        def canon(t):
+            return norm(cn_numbers(simplify(t)))
+
+        script = json.loads((ep / "work" / "script.json").read_text())
+        ref = canon("\n".join(ln["text"] for ln in script["lines"]))
+        r = mlx_whisper.transcribe(str(final), path_or_hf_repo=resolve_model(a.model), language="zh")
+        c, d, spans = compare(ref, canon(r["text"]))
         report["cer_reference"] = round(c, 3)
         report["dropped_ratio"] = round(d, 3)
         report["dropped_spans"] = spans[:30]
