@@ -222,6 +222,62 @@ class ShareSessionTests(unittest.TestCase):
         self.assertEqual(blocks[4]["agentPhase"], "final")
         self.assertNotIn("private", json.dumps(blocks, ensure_ascii=False))
 
+    def test_claude_first_message_keeps_user_text_after_injected_part(self) -> None:
+        records = [
+            {
+                "type": "user",
+                "message": {
+                    "content": [
+                        {"type": "text", "text": "<system-reminder>\nscratch workspace notes\n</system-reminder>\n\n"},
+                        {"type": "text", "text": "Base directory for this skill: /x\n# SKILL body"},
+                        {"type": "text", "text": "调研这两个仓库的区别"},
+                    ]
+                },
+            }
+        ]
+        blocks = share_session.normalize_transcript(records, "concise")
+        self.assertEqual([b["content"] for b in blocks], ["调研这两个仓库的区别"])
+
+    def test_host_flagged_claude_records_are_not_shared(self) -> None:
+        records = [
+            {"type": "user", "message": {"content": "真实问题"}},
+            {
+                "type": "user",
+                "isMeta": True,
+                "message": {"content": "Another Claude session sent a message: <cross-session-message from=\"x\">hi</cross-session-message>"},
+            },
+            {"type": "user", "isMeta": True, "message": {"content": [{"type": "text", "text": "[Image: source: /tmp/a.png]"}]}},
+            {
+                "type": "user",
+                "isCompactSummary": True,
+                "message": {"content": "This session is being continued from a previous conversation. Summary: private"},
+            },
+        ]
+        blocks = share_session.normalize_transcript(records, "verbose")
+        self.assertEqual([b["content"] for b in blocks], ["真实问题"])
+
+    def test_desktop_host_events_are_dropped(self) -> None:
+        records = [
+            {"type": "user", "message": {"content": "<ci-monitor-event>\"Auto-fix\" CI failed</ci-monitor-event>"}},
+            {
+                "type": "user",
+                "message": {
+                    "content": [
+                        {"type": "text", "text": "<system-reminder>note</system-reminder>"},
+                        {"type": "text", "text": "<side-sessions-event>session finished</side-sessions-event>"},
+                    ]
+                },
+            },
+            {"type": "user", "message": {"content": "继续"}},
+        ]
+        blocks = share_session.normalize_transcript(records, "concise")
+        self.assertEqual([b["content"] for b in blocks], ["继续"])
+
+    def test_fails_closed_on_desktop_event_residue_in_user_text(self) -> None:
+        records = [{"type": "user", "message": {"content": "真实问题\n<side-sessions-event>unterminated"}}]
+        with self.assertRaisesRegex(share_session.ShareError, "已阻止上传"):
+            share_session.normalize_transcript(records, "concise")
+
     def test_tool_output_with_unstrippable_host_context_is_dropped_not_fatal(self) -> None:
         records = [
             {"type": "user", "message": {"content": "hi"}},

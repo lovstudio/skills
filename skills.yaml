@@ -8985,12 +8985,12 @@ skills:
 - name: share-session
   runtime_name: lov-share-session
   display_name: Session Sharing
-  updated_at: '2026-09-25 16:28:27+00:00'
+  updated_at: 2026-11-15 08:39:43+00:00
   repo: lovstudio/share-session-skill
   name_zh: 会话分享
   paid: false
   category: General
-  version: 0.5.0
+  version: 0.5.1
   description: Turn an agent session into a free or Credits-unlocked LovStudio web page.
   tagline_en: Turn an agent session into a free or Credits-unlocked LovStudio web page.
   tagline_zh: 把Agent会话转成免费公开或按Credits解锁的LovStudio在线页

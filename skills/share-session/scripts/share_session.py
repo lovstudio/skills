@@ -88,7 +88,10 @@ HOST_BLOCK_DROP_RE = re.compile(
     r"Base directory for this skill:|"
     r"\[SYSTEM NOTIFICATION - NOT USER INPUT\]|"
     r"<task-notification\b|"
-    r"<system-reminder\b"
+    r"<system-reminder\b|"
+    r"<side-sessions-event\b|"
+    r"<cross-session-message\b|"
+    r"<ci-monitor-event\b"
     r")"
 )
 
@@ -108,7 +111,7 @@ INTERNAL_CONTEXT_RESIDUE_RE = re.compile(
     r"<(?:in-app-browser-context|recommended_plugins|environment_context|skill|"
     r"app-context|skills_instructions|collaboration_mode|apps_instructions|"
     r"plugins_instructions|instructions|system-reminder|task-notification|"
-    r"command-message)\b|"
+    r"command-message|side-sessions-event|cross-session-message|ci-monitor-event)\b|"
     r"<permissions instructions\b"
     r")"
 )
@@ -595,8 +598,18 @@ def record_blocks(record: dict[str, Any]) -> list[dict[str, Any]]:
     timestamp = record_timestamp or message.get("timestamp")
     content = message.get("content")
     phase = claude_agent_phase(message) if role == "assistant" else None
+    # Claude Code flags host-generated user turns (skill bodies, image notes,
+    # peer-session messages, compaction summaries); none of it is user speech.
+    host_text = role == "user" and (record.get("isMeta") is True or record.get("isCompactSummary") is True)
+
+    def keep_text(text: str) -> bool:
+        # Judge each user part alone: the host injects context as a sibling
+        # part of the real prompt, so a check on the joined text drops both.
+        return not (role == "user" and (host_text or HOST_BLOCK_DROP_RE.match(text)))
 
     if not isinstance(content, list):
+        if host_text:
+            return out
         block = text_block(role, extract_text(content), timestamp, message.get("title"))
         if block:
             if phase:
@@ -618,13 +631,15 @@ def record_blocks(record: dict[str, Any]) -> list[dict[str, Any]]:
 
     for item in content:
         if isinstance(item, str):
-            text_parts.append(item)
+            if keep_text(item):
+                text_parts.append(item)
             continue
         if not isinstance(item, dict):
             continue
         itype = item.get("type")
         if itype in {"text", "input_text", "output_text"} and isinstance(item.get("text"), str):
-            text_parts.append(item["text"])
+            if keep_text(item["text"]):
+                text_parts.append(item["text"])
         elif itype == "thinking":
             narration = item.get("thinking")
             if isinstance(narration, str) and narration.strip() and is_narration_signature(item.get("signature")):
