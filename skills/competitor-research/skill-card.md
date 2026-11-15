@@ -95,7 +95,7 @@ global。在支持 Agent Skills、具备网页检索能力的宿主中运行；�
 | 渠道 | 类型 | 状态 |
 | --- | --- | --- |
 | 本地安装 | local | 已安装并校验 |
-| lovstudio | free | pending（2026-11-16 准备登记为 0 Credits 免费条目；目录合并、详情页与安装均未核验） |
+| lovstudio | free | live（0.1.0；2026-11-16 详情页、免费标识、安装命令与空目录安装已核验） |
 | github | source | private-source（公开副本是聚合仓库 `lovstudio/skills` 的镜像） |
 | workbuddy | — | 未发布，未选择 |
 | skillpay | — | 未发布，未选择 |

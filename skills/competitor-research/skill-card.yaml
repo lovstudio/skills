@@ -106,12 +106,12 @@ pricing:
   review_trigger: 积累三个以上已验收案例，或加入付费数据源、托管取证服务时复评定价。
   confidence: internal
 distribution:
-  status: "lovstudio-free：发布中，尚未上线（2026-11-16）"
+  status: "lovstudio-free：已作为免费条目（0 Credits）上架 LovStudio 官网目录"
   paid: []
   free:
     - channel: lovstudio
-      status: pending
-      evidence: 2026-11-16 准备登记为免费条目（0 Credits）；目录合并、详情页、显示版本与空目录安装均未核验
+      status: live
+      evidence: 2026-11-16 目录条目合入 lovstudio/skills 的 main（27d7997），官网刷新后读到该提交；详情页 HTTP 200，显示 v0.1.0、免费标识与安装命令；在空目录按目录命令以项目模式安装通过，交付文件与镜像一致，取证脚本可启动
     - channel: github
       status: private-source
       evidence: 源码仓库保持私有；公开副本是聚合仓库 lovstudio/skills 的 skills/competitor-research/ 镜像
