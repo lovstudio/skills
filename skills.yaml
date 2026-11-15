@@ -1387,13 +1387,13 @@ skills:
     card_path: pricing-cards/human-writing.md
 - name: writing-style
   runtime_name: lov-writing-style
-  updated_at: 2026-10-31 09:47:40+00:00
+  updated_at: 2026-11-15 08:49:19+00:00
   display_name: My Writing Voice
   repo: lovstudio/writing-style-skill
   name_zh: 我的文风
   paid: false
   category: Content Creation
-  version: 2.6.5
+  version: 2.6.6
   description: Turn verified facts, notes, and drafts into first-person Chinese content
     using a personal voice calibrated from 19 real samples, with fact-preserving rewrite
     and diagnosis.

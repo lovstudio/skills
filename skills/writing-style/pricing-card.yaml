@@ -1,5 +1,5 @@
 schema: lovstudio/pricing-card/v1
-version: "2.6.5"
+version: "2.6.6"
 model: free
 currency: CNY
 list_price_cny: 0
