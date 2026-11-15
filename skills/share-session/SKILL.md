@@ -9,7 +9,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: skill-publisher
-  version: "0.5.0"
+  version: "0.5.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - session-share
@@ -135,8 +135,10 @@ access token（本轮请求 > 环境/本地凭据文件 > refresh token > device
 Claude Code 与 Codex JSONL 都会导出三类块：用户与助手可见正文、`role=tool` 的工具调用
 （shell 命令渲染为 `$ cmd`，其余为 JSON）与工具输出（单块截断 16 KB）。Claude Code 的过程说明存放在签名带 `narration`
 标记的 `thinking` 块里，按签名区分后导出为 `commentary`；开发者消息、
-真实推理（签名为 `thinking`）、状态事件和自动注入的 AGENTS/浏览器/环境/Skill/权限/Plugin 上下文不进入
-公开主体。助手正文按 `stop_reason` 标注 `agentPhase`：站点 `concise` 只显示 `final`
+真实推理（签名为 `thinking`）、状态事件和自动注入的 AGENTS/浏览器/环境/Skill/权限/Plugin 上下文、
+桌面端宿主事件（`side-sessions-event` / `cross-session-message` / `ci-monitor-event`），以及带
+`isMeta` 或 `isCompactSummary` 标记的用户记录不进入公开主体。用户消息按段判断注入，与注入段同条的
+真实提问保留。助手正文按 `stop_reason` 标注 `agentPhase`：站点 `concise` 只显示 `final`
 回复，`detailed` 加上过程说明，`verbose` 加上工具块。若用户或助手正文里发现无法完整
 剥离的已知宿主上下文标记，脚本在上传前失败并阻止公开；工具块出现残留则只丢弃该块。
 若缓存 access token 返回 401，脚本用 refresh token 更新后只重试一次；显式传入的
@@ -169,6 +171,8 @@ refresh token（后续运行自动复用）。
 
 - Claude Code 桌面端显示的中间进度说明不是 `text` 而是签名 protobuf 含 `narration` 的 `thinking` 块，真实推理块签名含 `thinking` 且正文为空；按签名区分导出，不能按“非空即导出”（2026-09-12）
 - Claude 模式此前只导出 user/assistant 正文，「完整」档等于「详细」档、看不到任何工具调用；工具块需与 Yoda 桌面端一致导出 role=tool 并标注 agentPhase，分档才生效（2026-09-12）
+- 桌面端首条用户消息是「`<system-reminder>` 段 + 真实提问段」，按拼接后的整条判断注入会把提问一起丢掉；注入必须逐段判断。dry-run 要核对首条提问在场（2026-11-15）
+- 字符串形式的用户消息剥掉 reminder 后，剩下的多是宿主事件、会话交接背景或 `isMeta` 的 CLAUDE.md 注入，不能为“保留正文”改成先剥后判；宿主记录按 `isMeta` / `isCompactSummary` 字段跳过，桌面端事件按标签前缀丢弃（2026-11-15）
 
 ## Dependencies
 

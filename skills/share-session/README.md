@@ -1,6 +1,6 @@
 # 会话分享 · Session Sharing
 
-![Version](https://img.shields.io/badge/version-0.5.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.1-CC785C)
 
 把一个 Agent 会话（Claude Code / Yoda / 任意 JSONL transcript）转成免费公开或
 按 Credits 解锁的 LovStudio 在线页 URL。
