@@ -1603,6 +1603,8 @@ skills:
   skillpay_product_id: P0806000200846057
   distribution:
     skillpay: rejected
+  related:
+  - competitor-research
   pricing:
     model: free_entry
     visibility: public
@@ -1981,6 +1983,7 @@ skills:
   version: 0.2.1
   related:
   - image-translation-errata
+  - competitor-research
   description: Verify factual claims through due-diligence style research, primary-source
     checking, source labels, and confidence-aware conclusions.
   tagline_en: Verify claims like a careful researcher, with primary sources, counterexamples,
@@ -5545,6 +5548,8 @@ skills:
   tagline_zh: 根据软件需求比较复用策略并输出有来源的技术选型与研发计划
   depends_on:
   - branding-consistency
+  related:
+  - competitor-research
   pricing:
     model: free_entry
     visibility: public
@@ -9921,3 +9926,45 @@ skills:
     review_trigger_zh: 累计 10 场真实会议的使用反馈、干活或跟进模式出现经用户验收的成果，或分享页结构变化、新增第二类可读页面时复评。
     review_trigger_en: "Review after feedback from 10 real meetings, a user-accepted result from the work or follow-up mode, a change in the share page, or a second readable page type."
     card_path: pricing-cards/tencent-meeting-cowork.md
+- name: competitor-research
+  runtime_name: lov-competitor-research
+  display_name: Competitor Research
+  name_zh: 竞品调研
+  repo: lovstudio/competitor-research-skill
+  paid: false
+  category: Business
+  version: 0.1.0
+  updated_at: 2026-11-15 16:03:48+00:00
+  depends_on:
+  - branding-consistency
+  description: "Research named products, companies or open-source repositories: comparison, provenance (fork, copy or rewrite), real worth and an investment view, backed by an evidence ledger."
+  tagline_en: "Compare named products or repos, check whether one is built on another, and judge real worth and investment value with evidence you can check."
+  tagline_zh: 对点名的产品或开源仓库做竞品调研：查清区别、是不是二次开发、含金量与投资价值，结论带可复核证据。
+  related:
+  - deep-research
+  - fact-check
+  - dev-research
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本 Skill：四个调研模块（差异对比、血缘溯源、含金量、投资视角）、调研方法手册与只读取证脚本
+    delivery_unit_en: "Current Skill with four research modules (comparison, provenance, real worth, investment view), a research playbook, and a read-only evidence script"
+    value_zh: 点名几个产品或开源仓库，拿到结论先行的竞品调研：区别在哪、是不是基于某个项目二次开发、含金量与投资价值，每个结论都能回溯到证据。
+    value_en: "Name a few products or repositories and get competitor research that leads with the answer: how they differ, whether one is built on another, and what it is really worth, with every conclusion traceable to evidence."
+    anchor_zh: 在一个真实案例里，同一个取证脚本对已知无关的项目给出 0/308 个文件重叠，对目标起源提交点名的项目找出 19/709 个逐字节相同的文件和 2 个命中特有函数名的提交。还没有省时对照和其他用户的数据。
+    anchor_en: "In one real case the same evidence script found 0 of 308 files shared with an unrelated project, and 19 of 709 byte-identical files plus 2 commits matching distinctive function names in the project the target's first commit named. No time-saving comparison or data from other users yet."
+    basis_zh: 六维加权 2.9/5。证据只有一个开源仓库案例，取证脚本还没有自动化测试，带联网检索的通用助手也能做一般性对比，先以免费入口积累使用证据。
+    basis_en: "Six-dimension score 2.9/5. The evidence is a single open-source case, the evidence script has no automated tests yet, and general assistants with web search can produce a basic comparison, so it launches as a free entry to collect usage evidence."
+    boundary_zh: 需要宿主的网页检索能力；开源取证需要 git 与 Python 3.8+，GitHub 数据需要已登录的 gh。热度指标只作参考，不能证明刷星；投资视角不构成投资建议。不含市场规模测算、付费数据库、需要登录的平台抓取、法律意见或人工代调研。
+    boundary_en: "Requires the host's web search; open-source evidence needs git and Python 3.8+, and GitHub data needs a signed-in gh CLI. Popularity ratios are indicators, not proof of fake stars, and the investment view is not investment advice. Excludes market sizing, paid databases, scraping behind logins, legal opinions, and human research services."
+    maintenance_zh: 随 GitHub 接口、git 行为与真实支持成本变化复评，无托管服务或更新时限承诺。
+    maintenance_en: "Review when GitHub APIs, git behaviour, or observed support costs change; no hosted service or update SLA is included."
+    confidence: low
+    review_trigger_zh: 积累三个经用户验收的案例（其中至少一个是产品或公司对象）、十次真实使用，或为取证脚本补上自动化测试时复评。
+    review_trigger_en: "Review after three user-accepted cases (at least one on a product or company), ten real uses, or automated tests for the evidence script."
+    card_path: pricing-cards/competitor-research.md

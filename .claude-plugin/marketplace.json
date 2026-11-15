@@ -214,7 +214,7 @@
     {
       "name": "business",
       "source": "./",
-      "description": "Business — 11 free skills bundled together.",
+      "description": "Business — 12 free skills bundled together.",
       "category": "Business",
       "skills": [
         "./skills/bp",
@@ -229,7 +229,8 @@
         "./skills/publish-event-onto-hdx",
         "./skills/harness-issue",
         "./skills/branding-consistency",
-        "./skills/product-onepage"
+        "./skills/product-onepage",
+        "./skills/competitor-research"
       ],
       "strict": false
     },

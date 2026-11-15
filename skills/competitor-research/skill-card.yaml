@@ -1,0 +1,117 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: >
+  竞品调研：对用户点名的产品、公司或开源仓库，交付结论先行、每个判断都能回溯到证据的
+  调研报告，覆盖差异对比、血缘溯源（是否 fork、拷贝或改写）、含金量与投资视角四个模块。
+  开源对象用随包 repo_evidence.py 从 GitHub 数据与全量 Git 历史取证。
+owner:
+  team: Lovstudio
+  contact: https://lovstudio.ai
+license:
+  name: MIT
+  terms: 可自由使用与分发。调研只使用公开资料；用户需自行遵守被调研平台的服务条款。
+  url: ../LICENSE
+use_case:
+  audience: 需要判断竞品、开源项目来源与价值的产品负责人、开发者、投资与研究人员。
+  scenario: 用户点名两到五个对象，问它们的区别、谁派生自谁、技术与热度的成色，或在此基础上追问投资价值。
+  tasks:
+    - 建立证据账本并采集 GitHub 元数据、社区指标与全量提交历史
+    - 用 blob、特有标识符与名称检索判断血缘，并做正反对照
+    - 拆分能力来源与自研部分，评估工程质量、热度成色与可持续性
+    - 在声明非投资建议的前提下，给出业务与技术尽调视角的投资分析
+deployment:
+  geography: global
+  environments:
+    - 支持 Agent Skills 的宿主，具备网页检索能力
+    - 本地 shell，含 git 与 Python 3.8+；GitHub 数据需要已登录的 gh CLI
+requirements:
+  credentials: 读取公开 GitHub 数据时使用用户已登录的 gh CLI；本 Skill 不存储任何凭据。
+  dependencies:
+    - lov-branding-consistency
+  runtime:
+    - Python 3.8+，仅标准库
+    - git
+    - gh CLI（facts 子命令）
+risks:
+  - risk: 把 star、fork、issue 比例等启发式指标写成“刷星”之类的事实断言。
+    mitigation: Playbook 规定这些指标只作相对比较；star 抽样不可用时记为无法核实，结论里不得出现无样本支撑的断言。
+  - risk: 血缘检测在某个仓库上失效（部分克隆、源项目已演进），把“没查到”误写成“无关系”。
+    mitigation: 脚本拒绝部分或浅克隆；提供 --source-all-history；Playbook 要求至少一个反向对照，证据不足时结论写“无法判断”。
+  - risk: 同名包或山寨站点被当成调研对象，数据张冠李戴。
+    mitigation: Step 1 要求先确认对象的唯一标识并排除同名对象，核对包的维护者与仓库链接。
+  - risk: 投资视角被读成个性化投资建议。
+    mitigation: D 模块开头固定写免责声明，只做业务与技术尽调，不给买卖、仓位、估值目标或收益预期。
+  - risk: 维护者分析泄露个人信息。
+    mitigation: 脚本只输出 Git 作者名与公开账号，不输出邮箱；Playbook 禁止追查个人身份信息。
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Research playbook"
+    path: "references/research-playbook.md"
+  - title: "Skill group composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - 竞品调研报告（对话内交付或 Markdown 文件）
+    - repo_evidence.py 的 JSON 证据（facts、history、loc、lineage）
+  formats:
+    - markdown
+    - json
+  parameters:
+    - 模块选择 A 差异对比 / B 血缘溯源 / C 含金量 / D 投资视角
+    - facts --star-sample 抽样 star 账号数
+    - history --alias 合并同一作者的多个身份
+    - lineage --source-all-history、--term、--identifier 控制血缘检索范围
+  validation:
+    - 报告里每个数字都能在证据账本里找到来源与绝对日期
+    - 血缘结论与证据等级一致，且做过反向对照
+    - 没能核实的项单独列出并保留原始错误
+    - D 模块包含非投资建议声明
+  description: 第一段直接回答用户的问题，随后按模块给出表格与证据，单列没能核实的项并附来源链接。
+ethical_considerations: >
+  只使用公开资料与用户授权访问的页面，不绕过登录、付费墙或反爬措施。不断言无证据支撑的
+  造假行为，不输出维护者邮箱或追查个人身份。投资视角只做业务与技术尽调，不构成投资建议。
+dimensions:
+  - id: provenance-accuracy
+    label: 血缘判定准确
+    description: 能区分派生、部分借鉴、独立实现与无法判断，并经得起正反对照。
+    evidence: 2026-11-15 对案例目标仓库重跑 lineage：源为疑似来源仓库时 0/308 文件、0 个标识符提交、0 次提及；源为其起源提交点名的仓库时 19/709 文件逐字节相同、2 个提交命中特有函数名。
+    score: verified
+  - id: metric-correctness
+    label: 指标可复现
+    description: 脚本给出的指标与人工调研一致，并能发现人工统计的遗漏。
+    evidence: facts 复现了人工调研的 fork/star 比例、每千 star issue 数和两个仓库的贡献者数；history 合并作者别名后的维护集中度与人工结果一致，并补出人工统计遗漏的一个零提交月份。
+    score: verified
+  - id: evidence-honesty
+    label: 证据诚实
+    description: 取不到的数据如实标为无法核实，不换口径硬推。
+    evidence: 案例中 stargazer 接口 REST 404、GraphQL edges 为空、第三方 star 统计接口 500、包仓库里的同名包不属于该项目，均在报告里单列；脚本对 star 抽样不可用时输出 available false 与原因。
+    score: verified
+  - id: effectiveness
+    label: 回答可用
+    description: 三轮逐级追问都直接回答了用户的问题，并能复用同一证据账本。
+    evidence: 案例三轮回答均结论先行，用户没有纠正，但也没有给出明确的验收评价，因此记为部分验证。
+    score: partial
+  - id: efficiency
+    label: 取证效率
+    description: 把十余条手工命令收敛为四个子命令。
+    evidence: facts 两个仓库约 48 秒（含 search API 限速等待）；lineage 在数百个提交的仓库上约 3 到 4 秒完成；history 与 loc 均在数秒内完成。
+    score: verified
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 方法论与一个只读取证脚本，依赖宿主检索与用户自己的 gh 登录，没有独占数据或托管成本；首版免费以积累案例。
+  boundary: 交付调研报告与取证 JSON；不包含市场规模测算、付费数据库、需要登录的平台抓取、法律意见或投资建议。
+  review_trigger: 积累三个以上已验收案例，或加入付费数据源、托管取证服务时复评定价。
+  confidence: internal
+distribution:
+  status: "lovstudio-free：发布中，尚未上线（2026-11-16）"
+  paid: []
+  free:
+    - channel: lovstudio
+      status: pending
+      evidence: 2026-11-16 准备登记为免费条目（0 Credits）；目录合并、详情页、显示版本与空目录安装均未核验
+    - channel: github
+      status: private-source
+      evidence: 源码仓库保持私有；公开副本是聚合仓库 lovstudio/skills 的 skills/competitor-research/ 镜像
