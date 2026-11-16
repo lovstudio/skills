@@ -1,0 +1,106 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "Redraws an authorized single-person photo as an identity-preserving black-and-white studio avatar with gpt-image-2, defaulting to a bright editorial look on a light-gray backdrop, then checks face, teeth, accessories and small-size legibility before delivery."
+owner:
+  team: "Lovstudio.AI"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "The Skill source may be used and modified under MIT. Users remain responsible for image rights, consent, provider terms, model charges and the final use of generated portraits."
+  url: "LICENSE"
+use_case:
+  audience: "People and agents who need a premium monochrome profile avatar from an authorized single-person photo."
+  scenario: "Turn a selfie, event photo or already stylised portrait into a re-lit black-and-white studio photograph while keeping the person's identity, eyewear, headwear and clothing."
+  tasks:
+    - "Inspect the source and prepare an upload-ready reference, including crop and mirror-selfie flip."
+    - "Check the provider balance before any generation."
+    - "Compose an identity-locked prompt from a style preset, a framing choice and observed facts."
+    - "Review the result at full, face and avatar scale against the source."
+    - "Correct one fact at a time and verify the change with a before and after comparison."
+deployment:
+  geography: global
+  environments:
+    - "Agent runtime with image viewing, Python 3.8 or newer and outbound access to an OpenRouter-compatible endpoint."
+    - "Agent runtime with a native gpt-image-2 image-editing tool, using the prompts printed by the bundled CLI."
+requirements:
+  credentials: "An OpenRouter API key in the OPENROUTER_API_KEY environment variable with access to GPT Image 2, or equivalent access through the host's own image tool."
+  dependencies:
+    - "ImageMagick 7 for crop, flip, comparison and thumbnails; macOS sips is enough for plain preparation and export."
+    - "PyYAML for the bundled profile and validation scripts."
+  runtime:
+    - "Image viewing"
+    - "Python 3.8 or newer"
+    - "gpt-image-2 generative raster-image editing"
+risks:
+  - risk: "The model may alter identity, age, eyewear shape, headwear pattern, teeth, fingers or clothing prints."
+    mitigation: "Lock observed facts in the prompt, review at three scales against the source, correct one fact at a time, and report every remaining difference instead of presenting the result as the original pixels."
+  - risk: "A face photo is uploaded to a third-party model provider."
+    mitigation: "State the upload before generating, ask first when the user did not request AI generation, limit consent to the current photo and task, and keep photos out of the shared Profile."
+  - risk: "A grayscale filter may be passed off as a studio portrait when no model is available."
+    mitigation: "Stop and name the missing key, balance or model access; local filters are explicitly rejected as substitutes."
+  - risk: "Generation fails midway because the provider balance is below its minimum."
+    mitigation: "Run the read-only balance check before starting and tell the user when a top-up is needed; lowering token limits does not help."
+  - risk: "A correction pass silently redraws parts that were already accepted."
+    mitigation: "Compare before and after with a zoomed crop and an overall difference value, and fall back to the earlier version when accepted details are lost."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Art direction and prompt structure"
+    path: "references/art-direction.md"
+  - title: "Quality gate"
+    path: "references/quality-gate.md"
+  - title: "Provider notes"
+    path: "references/provider.md"
+  - title: "Skill composition record"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "Black-and-white portrait image"
+    - "optional before and after comparison"
+    - "optional avatar-size preview strip"
+  formats:
+    - "PNG"
+    - "JPEG"
+  parameters:
+    - "authorized single-person source image, style preset, framing, optional expression change and creator note"
+  validation:
+    - "identity match at full, face and avatar scale"
+    - "teeth, hands, eyewear, headwear, accessories and clothing fact check"
+    - "re-lit monochrome studio look rather than a desaturated photo"
+    - "difference check after each correction pass"
+  description: "A non-destructive square portrait plus an honest list of differences from the source and the model cost of the run."
+ethical_considerations: "Use only photos the user is authorized to process. Tell the user that the photo is uploaded to a model provider. Do not infer identity or sensitive traits, publish or set a portrait as an account avatar without separate permission, or describe a model-redrawn face as an unaltered photograph."
+dimensions:
+  - id: identity_fidelity
+    label: "Identity fidelity"
+    description: "The result stays recognizable as the person in the source, including eyewear, facial hair and headwear."
+    evidence: "In the recorded case the rectangular glasses, beard, bandana and speaking expression carried over to both outputs and the owner accepted both. In an earlier selfie series on the same person the eyewear frame drifted rounder than the real one even with a face close-up reference."
+    score: 0.8
+  - id: studio_look
+    label: "Monochrome studio look"
+    description: "The image reads as a re-lit black-and-white studio photograph rather than a filtered snapshot."
+    evidence: "Seven locally filtered candidates were rejected before any model output; the owner then chose the bright light-gray variant over the dark studio variant and asked for a second photo in the same look."
+    score: 0.9
+  - id: factual_integrity
+    label: "Factual integrity"
+    description: "Teeth, hands, accessories, clothing and prints match the source or are reported as differences."
+    evidence: "The first pass had gapped and uneven teeth that a single-fact correction fixed. The close-up lost the bandana pattern and the full-composition version carries an approximate redraw of the shirt print; both were reported at delivery."
+    score: 0.7
+  - id: avatar_readiness
+    label: "Avatar readiness"
+    description: "The square output stays recognizable and safely framed when shown at avatar size."
+    evidence: "The accepted close-up was checked at 132 pixels with the bundled thumbnail command and remains readable with the full headwear and chin inside the frame; the full-composition version shows a much smaller face at that size."
+    score: 0.85
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "The Skill is an instruction, prompt and review layer with a small local CLI; users bring their own model access and pay their own generation charges."
+  boundary: "Includes reference preparation, balance check, prompt composition, generation call, three-scale review and single-fact correction. Excludes model credits, hosted generation, rights clearance, account avatar changes and publication."
+  review_trigger: "Review after 100 verified external uses, five verified cases on different people, or when hosted generation, batch processing or bundled credits are added."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio

@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **237 skills** — 213 Free + 24 Paid.
+> **238 skills** — 214 Free + 24 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -59,7 +59,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Ebook Finder](https://github.com/lovstudio/find-ebook-skill) (`find-ebook`) | Find legally licensed ebook sources and access paths for a given book through due-diligence search. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Five-Unit Replies](https://github.com/lovstudio/five-skill) (`five`) | Use a five-unit concise reply mode — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Hanzi Lens](https://github.com/lovstudio/hanzi-lens-skill) (`hanzi-lens`) | See one Chinese character through evidence — readings, form, history, classical context, meaning, and a professional visual. — requires: `professional-infographic` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Image Maker](https://github.com/lovstudio/image-creator-skill) (`image-creator`) | Create an image, designed graphic, or image prompt — requires: `branding-consistency`; related: `professional-infographic`, `professional-portrait`, `riso-portrait`, `image-translation-errata` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Image Maker](https://github.com/lovstudio/image-creator-skill) (`image-creator`) | Create an image, designed graphic, or image prompt — requires: `branding-consistency`; related: `professional-infographic`, `professional-portrait`, `riso-portrait`, `image-translation-errata`, `bw-portrait` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Translation Review](https://github.com/lovstudio/image-translation-errata-skill) (`image-translation-errata`) | Expose bad machine translation, show the correction, and preserve the original image. — related: `translation-review`, `image-creator`, `fact-check` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Knowledge Organizer](https://github.com/lovstudio/kb-organize-skill) (`kb-organize`) | Organize a knowledge base and its references — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Inventory](https://github.com/lovstudio/list-videos-skill) (`list-videos`) | List every video file in a folder or across volumes in seconds with an incremental cache and optional ffprobe details. |
@@ -106,6 +106,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Solution Architect](https://github.com/lovstudio/solution-architect-skill) (`solution-architect`) | Turn a product or technical requirement into a researched, open-source-first implementation plan. |
 | **Design** | | |
 | ![Free](https://img.shields.io/badge/Free-green) | [Business Card Studio](https://github.com/lovstudio/business-card-skill) (`business-card`) | Turn anyone's name, roles and tagline into a polished editorial business card — high-res PNG plus a click-to-download HTML. |
+| ![Free](https://img.shields.io/badge/Free-green) | [B&W Portrait](https://github.com/lovstudio/bw-portrait-skill) (`bw-portrait`) | Turn one photo into a recognizable black-and-white studio avatar, then check the face, teeth, accessories, and small-size clarity. — related: `riso-portrait`, `professional-portrait`, `image-creator` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Professional Poster](https://github.com/lovstudio/event-poster-skill) (`event-poster`) | Turn an event brief into a polished poster, ready to share or print for exhibitions. — related: `publish-event-onto-hdx` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Logo Radar](https://github.com/lovstudio/find-logo-skill) (`find-logo`) | Collect brand logos from public sources — wide and transparent preferred, archived for website/PPT/poster lineups. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Interface Designer](https://github.com/lovstudio/frontend-design-skill) (`frontend-design`) | Turn real content and existing code into distinctive, usable interfaces with verified interactions and media. — requires: `branding-consistency` |
@@ -115,8 +116,8 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Mobile Infographic](https://github.com/lovstudio/mobile-infographic-skill) (`mobile-infographic`) | Turn an existing conclusion into vertical infographics a phone can actually read, with type floors, safe areas, and an audit report. — requires: `branding-consistency`; related: `professional-infographic` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Website Whiz](https://github.com/lovstudio/oh-my-landingpage-skill) (`oh-my-landingpage`) | Turn product truth into a distinctive landing page, with brand, story, visual direction, implementation, and production review working as one system. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Professional Infographic](https://github.com/lovstudio/professional-infographic-skill) (`professional-infographic`) | Turn dense material or an investment path into one sourced visual argument, from entry and staged exits to the decision that follows. — related: `image-creator`, `mobile-infographic` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Professional Portrait](https://github.com/lovstudio/professional-portrait-skill) (`professional-portrait`) | Turn one photo into a clean, identity-preserving professional portrait. — related: `image-creator`, `riso-portrait` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Riso Portrait](https://github.com/lovstudio/riso-portrait-skill) (`riso-portrait`) | Turn one photo into a recognizable Riso avatar, then check the face, hands, objects, and circular crop. — related: `image-creator`, `professional-portrait` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Professional Portrait](https://github.com/lovstudio/professional-portrait-skill) (`professional-portrait`) | Turn one photo into a clean, identity-preserving professional portrait. — related: `image-creator`, `riso-portrait`, `bw-portrait` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Riso Portrait](https://github.com/lovstudio/riso-portrait-skill) (`riso-portrait`) | Turn one photo into a recognizable Riso avatar, then check the face, hands, objects, and circular crop. — related: `image-creator`, `professional-portrait`, `bw-portrait` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Spectacular Portraits](https://github.com/lovstudio/spectacular-ps-skill) (`spectacular-ps`) | Retouch travel or outdoor photos into striking environmental portraits that keep the person's features. — requires: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Style Sampler](https://github.com/lovstudio/visual-clone-skill) (`visual-clone`) | Extract the design DNA of a reference image so you can recreate the look. |
 | **Academic** | | |
