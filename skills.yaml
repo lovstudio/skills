@@ -2685,8 +2685,8 @@ skills:
   name_zh: 口播短片
   paid: false
   category: Video Creation
-  version: 0.4.1
-  updated_at: 2026-11-15 16:07:23+00:00
+  version: 0.4.2
+  updated_at: 2026-11-16 23:47:52+00:00
   description: "Talking-head Short: turn a topic into a vertical AI-tools talking-head
     short — sourced facts, gated script, teleprompter, on-screen evidence and covers;
     after the author records one take, auto-pick the last good read of each line and

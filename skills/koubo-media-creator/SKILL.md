@@ -14,7 +14,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.4.1"
+  version: "0.4.2"
   card_standard: lovstudio/skill-card/v1
   content_class: authored-prose
   suite: lov-film

@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.4.1"
+version: "0.4.2"
 description: "口播短片：输入一个主题，产出 AI 工具类竖版口播的带出处事实、过门禁的脚本、提词器、上屏证据与封面；作者竖拍一条口播后，自动挑出每句最后念对的一遍、剪掉停顿，排成上半屏证据、下半屏作者的竖版成片，并交配乐、封面与质检报告。"
 owner:
   team: "Lovstudio.AI"
