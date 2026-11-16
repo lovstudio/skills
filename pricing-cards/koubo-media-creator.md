@@ -1,6 +1,6 @@
 # 口播短片 · Pricing Card
 
-版本：0.3.1（目录 ID `koubo-media-creator`、调用 ID `lov-koubo-media-creator`）。价格：0 Credits，免费入口。
+版本：0.4.2（目录 ID `koubo-media-creator`、调用 ID `lov-koubo-media-creator`）。价格：0 Credits，免费入口。
 自 2026-10-30 起以 MIT 协议开源，源码公开，直接安装即可使用；0.2.x 曾以一次性付费发布，0.3.0 起停止收费。
 
 输入一个主题，得到带出处的事实表、按片型（清单、技巧、实测、锐评、案例）写好并过门禁的口播脚本、提词器与录制清单、上屏证据截图、

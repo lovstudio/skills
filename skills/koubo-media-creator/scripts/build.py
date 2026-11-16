@@ -27,6 +27,8 @@ from pathlib import Path
 PUNCT = re.compile(r"[\s，。！？、：；“”‘’（）《》【】,.!?:;\"'()\[\]<>…—\-~·]")
 BREAK = re.compile(r"[，。！？；：,.!?;:]")
 STRIP = "，。！？、：；,.!?;: "
+# a , . : between two digits belongs to the number (3.0, 1,000, 10:30): captions never break or blank it
+NUMBER = re.compile(r"[0-9]+(?:[,.:][0-9]+)+")
 VIDEO_EXT = {".mp4", ".mov", ".m4v", ".webm"}
 try:
     import opencc
@@ -54,8 +56,9 @@ def probe(path):
 
 
 def split_caption(text, emphasis, limit):
-    """Phrases at punctuation, then balanced word-boundary splits; emphasis words stay whole."""
-    pieces = [p for p in re.split(r"(?<=[，。！？；：,.!?;:])", text) if p.strip(STRIP)]
+    """Phrases at punctuation, then balanced word-boundary splits; emphasis words and numbers stay whole."""
+    pieces = [p for p in re.split(r"(?<=[，。！？；：!?;])|(?<=[,.:])(?![0-9])|(?<![0-9][,.:])(?<=[,.:])", text)
+              if p.strip(STRIP)]
     out = []
     for p in pieces:
         disp = p.strip(STRIP + "　")
@@ -88,11 +91,19 @@ def split_caption(text, emphasis, limit):
             else:
                 merged.append(tokens[i])
                 i += 1
+        inside = {k for m in NUMBER.finditer(disp) for k in range(m.start() + 1, m.end())}
+        whole, at = [], 0  # jieba splits 1,000 and 10:30 into three tokens; glue them back
+        for t in merged:
+            if whole and at in inside:
+                whole[-1] += t
+            else:
+                whole.append(t)
+            at += len(t)
         n = len(PUNCT.sub("", disp))
         parts = -(-n // limit)
         target = n / parts
         cur, acc = "", 0
-        for t in merged:
+        for t in whole:
             tl = len(PUNCT.sub("", t))
             if cur and acc + tl > target * 1.15 and len(out) < 99:
                 out.append(cur.strip())
@@ -102,7 +113,7 @@ def split_caption(text, emphasis, limit):
         if cur.strip():
             out.append(cur.strip())
     # the genre's captions carry no punctuation: inner commas become a space, ?/! and periods drop
-    clean = [re.sub(r"\s*[，、；：,;:]\s*", " ", c.strip(STRIP)).strip() for c in out]
+    clean = [re.sub(r"\s*(?:[，、；：;]|(?<![0-9])[,:]|[,:](?![0-9]))\s*", " ", c.strip(STRIP)).strip() for c in out]
     return [re.sub(r"[。！？!?]", "", c).strip() for c in clean if c]
 
 
