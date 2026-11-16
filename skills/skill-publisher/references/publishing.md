@@ -7,8 +7,9 @@ catalog entry, and verified live detail page.
 
 - Local Skill source path.
 - GitHub organization and desired repository visibility.
-- The current `lov-skill-pricing` Pricing Card, including free/paid status,
-  public CNY price or free-entry decision, confidence, and review trigger.
+- The current `lov-skill-pricing` Pricing Card, including the free or member
+  decision, confidence, and review trigger. A website Skill has no price of its
+  own: see "Paid delivery contract".
 - Unified `lovstudio/skills` catalog checkout.
 - Expected version and a release-specific visible marker.
 - Revalidation secret resolved as `LOVSTUDIO_REVALIDATE_SECRET` without printing it.
@@ -78,18 +79,24 @@ fails this gate has already been pushed:
 
 ## Paid delivery contract
 
-Paid Skills are not encrypted. Paying only controls who can download a Skill:
+On lovstudio.ai a non-free Skill is a member Skill: it is included in VIP
+membership, is not sold separately and is not redeemed with Credits (since
+2026-10-21). Member Skills are not encrypted; membership only controls who can
+download a Skill:
 
-- Keep the paid source repository private and tag the release as `v{version}`.
-  The website download prefers that tag and falls back to the default branch.
+- Keep the source repository private and tag the release as `v{version}`. Push
+  the tag before the catalog change that names the version is merged: the
+  website download prefers that tag and serves the default branch only while
+  the tag is missing (lovstudio/lovstudio-home#165; before it, a missing tag
+  made the install fail with HTTP 404).
 - Set `skill_path` in the catalog when SKILL.md is not at the repository root.
 - Commit everything the Skill needs at runtime. The installed copy is the
   repository content at that ref; there is no build or packing step.
 - Never mirror a paid Skill into `lovstudio/skills/skills/`, and do not add
   `encrypted_bundle` or `public_source` (the catalog validator rejects them).
 - `POST https://lovstudio.ai/api/skills/download` returns a short-lived archive
-  URL only to accounts that own the Skill (Credits redemption or a license bound
-  to the account); `npx lovstudio skills add <name>` installs it as plain files.
+  URL only to accounts with an active VIP membership or an earlier licence bound
+  to the account; `npx lovstudio skills add <name>` installs it as plain files.
 
 ## License entitlement contract
 
@@ -104,8 +111,8 @@ Paid Skills are not encrypted. Paying only controls who can download a Skill:
   the entitlement resolver reads.
 - Publication verification for a new paid Skill must cover three paths: a
   dynamic global license installs without Credits, an explicit owner installs
-  without duplicate Credits, and an unentitled account reaches the purchase
-  confirmation before source download.
+  without duplicate Credits, and an account with neither is directed to VIP
+  membership before any source download.
 
 ## Catalog registration
 
@@ -140,8 +147,15 @@ EOF
 - Reference on 2026-11-10: `tagline_zh` median 39 and maximum 80 characters,
   `tagline_en` median 89 and maximum 204; one sibling entry measured 51 and 146.
 
-For a paid Skill, add only metadata: `repo`, `version`, `skill_path` when needed,
-and the pricing block. Paid entries never get a `skills/<name>/` mirror.
+For a member (paid) Skill, add only metadata: `repo`, `version`, `skill_path`
+when needed, and the pricing block. Paid entries never get a `skills/<name>/`
+mirror. The pricing block uses `model: vip_membership` and carries no
+`price_credits`, list, launch or range price. Copy the shape of a current member
+entry (for example `interview-media-creator`), not of an older `one_time` entry,
+and write the card under `pricing-cards/` the same way: included in VIP
+membership, no price. Before registering, read the site back once (the detail
+page label of a paid Skill, or `npx lovstudio skills add --help`) and follow
+what it says if the model has changed.
 
 For generated aggregate catalogs, update metadata and run their official sync
 and render scripts. Do not hand-edit generated mirror directories.

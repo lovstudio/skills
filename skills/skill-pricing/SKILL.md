@@ -7,7 +7,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.2"
+  version: "0.3.0"
   tags:
     - pricing
     - skill-commerce
@@ -41,6 +41,7 @@ metadata:
 - **成本底线：** 计入需求分析、开发、测试、文档、发布、维护、支持和直接费用；创作者时间按可解释的时薪或工资基准折算。
 - **价值锚点：** 以用户节省的时间、减少的外包支出、交付质量、收入机会和风险降低为证据；结果描述优先于功能清单。
 - **价值修正：** 评价稀缺性、购买信心、实际价值和数据/生态飞轮，并记录维护负担与复制风险。
+- **官网会员制：** LovStudio 官网的非免费 Skill 一律包含在 VIP 会员全套权益中，不设单项价格、不兑换 Credits（2026-10-21 起）。为官网渠道定价时只判断“免费”还是“计入会员”：卡片保留价值锚点、六维评分、边界与复评条件，不给建议价、首发价和价格带。目录里早于会员制的 `one_time` 条目不作模板。
 - **展示单位：** LovStudio 的产品卡、详情页、套餐、订阅和购买入口只显示 Credits；人民币、美元、港币等法币金额只允许出现在 Credits 充值界面。
 - **核算与展示分离：** 成本底线与价值锚点可以在内部使用法币核算，再按当前已核验的 Credits 兑换规则生成产品价格；内部法币估值不得回流到产品展示。
 - **渠道边界：** 区分标价、首发价、订阅价、按次价、套餐价和服务报价；外部市场强制要求的法币价格只记录在对应渠道执行信息中，不作为 LovStudio 产品价格展示。
@@ -115,13 +116,14 @@ LovStudio 渠道把法币成本与价值范围保留在内部证据层，只把�
 
 根据交付方式和使用频率选择：
 
+- 计入会员：LovStudio 官网上非免费 Skill 的唯一形态。官网不单卖 Skill，写 `vip_membership`，不产出 Credits 数字；动手前回读一次官网当前的规则（详情页的会员标注、安装工具的说明或下载接口），规则有变以回读为准；
 - 一次性购买：结果清晰、边界稳定、支持负担有限；
 - 订阅或额度：持续维护、持续生成或基础设施成本显著；
 - 按次/按量：单次价值容易计量，用户使用频率差异大；
 - 免费入口 + 付费组合：渠道缺少付费能力、购买心智尚在形成，或需要先积累结果证据；
 - Skill 套餐 + 服务：多个阶段互相增强，或买家需要落地、迁移和定制支持。
 
-输出单项建议价、首发测试价、稳定价格带和套餐关系。LovStudio 渠道的所有面向买家数字都以 Credits 表示，并附带周期、渠道和依据；法币只保留为内部核算证据，或用于 Credits 充值界面。外部市场若强制使用法币，单独记录该渠道的执行价，不得回流到 LovStudio 产品页。
+LovStudio 官网的会员 Skill 不输出单项价格，只写“计入 VIP 会员，不单独定价”和依据。其余情形输出单项建议价、首发测试价、稳定价格带和套餐关系。LovStudio 渠道的所有面向买家数字都以 Credits 表示，并附带周期、渠道和依据；法币只保留为内部核算证据，或用于 Credits 充值界面。外部市场若强制使用法币，单独记录该渠道的执行价，不得回流到 LovStudio 产品页。
 
 ### Step 6: Match the channel and promotion
 
@@ -139,7 +141,7 @@ LovStudio 渠道把法币成本与价值范围保留在内部证据层，只把�
 
 按模板输出，顺序固定：
 
-1. 一句话结果与建议 Credits 价格；
+1. 一句话结果与建议 Credits 价格（官网会员 Skill 写“计入 VIP 会员，不单独定价”）；
 2. 价格区间、计费形态、渠道和首发测试方案；
 3. 成本底线与价值锚点；
 4. 六维评分表及每项证据；
@@ -155,6 +157,7 @@ LovStudio 产品卡、详情页、套餐和购买入口中的建议价、价格�
 
 交付前逐项检查：
 
+- 官网会员 Skill 的卡片与目录字段里没有单项价格、首发价或价格带，也没有“一次性购买”之类的说法；
 - 建议价位于成本底线和价值范围之间，或明确说明越界原因；
 - 每个关键数字都有输入、假设或来源；
 - LovStudio 的公开产品价格、套餐与购买入口只显示 Credits，法币只出现在 Credits 充值界面；
@@ -168,7 +171,7 @@ LovStudio 产品卡、详情页、套餐和购买入口中的建议价、价格�
 
 ## Output contract
 
-默认输出 Markdown Pricing Card；用户指定时可同时输出 JSON 摘要。LovStudio JSON 字段至少包含：`skill_id`、`version`、`display_unit: "credits"`、`billing_model`、`recommended_price_credits`、`price_range_credits`、`cost_floor`、`value_anchor`、`valuation_currency`、`weighted_score`、`channel`、`assumptions`、`evidence_gaps`、`confidence`、`review_trigger`。`valuation_currency` 只用于内部核算；仅充值界面或外部市场执行记录可以额外包含法币展示字段。
+默认输出 Markdown Pricing Card；用户指定时可同时输出 JSON 摘要。LovStudio JSON 字段至少包含：`skill_id`、`version`、`display_unit: "credits"`、`billing_model`、`recommended_price_credits`、`price_range_credits`、`cost_floor`、`value_anchor`、`valuation_currency`、`weighted_score`、`channel`、`assumptions`、`evidence_gaps`、`confidence`、`review_trigger`。官网会员 Skill 的 `billing_model` 为 `"vip_membership"`，`recommended_price_credits` 与 `price_range_credits` 为 `null`。`valuation_currency` 只用于内部核算；仅充值界面或外部市场执行记录可以额外包含法币展示字段。
 
 ## Dependencies
 

@@ -3812,12 +3812,12 @@ skills:
 - name: skill-pricing
   runtime_name: lov-skill-pricing
   display_name: Skill Pricer
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-16 15:59:54+00:00
   repo: lovstudio/skill-pricing-skill
   name_zh: Skill 定价师
   paid: false
   category: Dev Tools
-  version: 0.2.2
+  version: 0.3.0
   description: Generate an evidence-backed Skill Pricing Card with a recommended price,
     range, channel strategy, and evidence gaps.
   tagline_en: Turn Skill pricing into an explainable decision backed by cost, value,
@@ -3904,14 +3904,14 @@ skills:
 - name: skill-publisher
   runtime_name: lov-skill-publisher
   display_name: Skill Publisher
-  updated_at: 2026-11-10 13:39:04+00:00
+  updated_at: 2026-11-16 15:59:54+00:00
   skillpay_product_id: P0806000200863857
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqavG
   repo: lovstudio/skill-publisher-skill
   name_zh: Skill 发布助手
   paid: false
   category: Dev Tools
-  version: 0.8.4
+  version: 0.9.0
   description: Publish or submit a validated Skill, defaulting to the LovStudio official
     website with automatic pricing and using other channels only when explicitly requested.
   tagline_en: Auto-price every release, publish to the LovStudio website by default,

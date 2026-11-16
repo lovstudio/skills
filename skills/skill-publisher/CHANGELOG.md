@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.0] - 2026-11-16
+
+### Changed
+
+- Website Skills are member Skills. On lovstudio.ai a non-free Skill is included in VIP membership, has no price of its own and is not redeemed with Credits (since 2026-10-21). SKILL.md and publishing.md now say so, and paid catalog entries are registered with `pricing.model: vip_membership` and no price fields. Older `one_time` entries are not a template.
+- Cause: on 2026-11-16 a new Skill was registered as `one_time` at 139 Credits by following the previous wording ("Credits redemption"), although the site has no per-Skill purchase. It was corrected in lovstudio/skills#74.
+- publishing.md: push the `v{version}` tag before the catalog change merges. The website now serves the default branch while a tag is missing (lovstudio/lovstudio-home#165); before that fix the install failed with HTTP 404.
+
 ## [0.8.4] - 2026-11-10
 
 ### Changed

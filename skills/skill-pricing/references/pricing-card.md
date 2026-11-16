@@ -103,6 +103,8 @@ recommended_price = price_floor + capture_ratio × (price_ceiling - price_floor)
 
 ### LovStudio 展示契约
 
+官网会员制（2026-10-21 起）：LovStudio 官网不单卖 Skill。非免费 Skill 一律包含在 VIP 会员全套权益中，不设单项价格、不兑换 Credits，下载只对会员或账号已绑定旧授权的用户开放。给官网渠道出卡时，“建议价格”“稳定价格带”“首发测试价”三行换成一行“计入 VIP 会员全套权益，不单独定价、不兑换 Credits；会员价格以当前会员方案为准”，目录条目用 `model: vip_membership`、不写价格字段。成本底线与价值锚点仍可在内部核算，用来判断“免费还是计入会员”和写价值依据，不换算成公开数字。下面的 Credits 换算只适用于仍按单项计价的情形。
+
 成本底线和价值锚点可以使用明确的内部估值币种，但 LovStudio 的产品卡、详情页、套餐、订阅和购买入口只显示 Credits：
 
 ```text
@@ -119,7 +121,8 @@ price_range_credits = convert_with_verified_rule(price_range)
 
 | 渠道形态 | Pricing Card 应强调 | 常见承接 |
 | --- | --- | --- |
-| LovStudio 产品界面 | Credits 价格、周期、权益与兑换结果 | Credits 单项购买、订阅或套餐 |
+| LovStudio 官网的 Skill | 计入 VIP 会员；结果、边界与证据 | 会员权益，不单卖、不兑换 Credits |
+| LovStudio 其他按单项计价的产品 | Credits 价格、周期、权益与兑换结果 | Credits 单项购买、订阅或套餐 |
 | 安装优先 | 免费结果样例、安装摩擦、使用边界 | 付费套餐、持续更新或落地服务 |
 | 内容绑定 | 内容即时收益、复刻路径、Skill 额外交付 | 内容转化、订阅或创作者分成 |
 | 强制标价/Agent 支付 | 机器可读价格、版本、安装与支付后交付 | 单项购买、额度或组合调用 |

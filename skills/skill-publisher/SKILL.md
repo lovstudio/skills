@@ -14,7 +14,7 @@ depends_on:
   - lov-skill-pricing
 metadata:
   author: contributors
-  version: "0.8.4"
+  version: "0.9.0"
   tags:
     - skill-publisher
     - release
@@ -53,6 +53,11 @@ report evidence per selected channel.
 - Run every supported adapter only when the user explicitly says “全部渠道”,
   “多平台”, “all channels”, or names every intended channel.
 - A request may select multiple channels in one run.
+- On the LovStudio website a non-free Skill is a member Skill: it is included in
+  VIP membership, has no price of its own and is not redeemed with Credits
+  (since 2026-10-21). Register it with `pricing.model: vip_membership` and no
+  price fields. Older `one_time` catalog entries predate this and are not a
+  template.
 - Pricing, visibility, protection, licensing, and target accounts are publishing
   inputs. Reuse context when known and ask only for values required by a target.
 - A license scope named `global` or `all` is a dynamic entitlement to every
@@ -141,8 +146,9 @@ all-channel or multi-platform request.
 For each selected channel, resolve only required fields:
 
 - public/private visibility and free/paid catalog status where supported;
-- for paid Skills: a private source repo, the `v{version}` tag, and `skill_path`
-  when SKILL.md is not at the repository root;
+- for member (paid) Skills: a private source repo, the `v{version}` tag pushed
+  before the catalog change merges, and `skill_path` when SKILL.md is not at the
+  repository root;
 - organization, account, catalog, or output location;
 - platform metadata, icon, examples, and source locator;
 - requested version versus current source version.
@@ -164,10 +170,10 @@ Skill, pass that reference's public-copy gate before any of its content is
 pushed to a public repository: the `lovstudio/skills` mirror is public even when
 the source is private. Publication is
 complete only when the expected version and release-specific content are visible
-on the live detail page and the catalog's exact install command succeeds. Paid
-Skills are not encrypted: paying only controls who can download them, so a paid
-entry is published when its private repo carries the catalog version's tag and an
-owning account can install it as plain files.
+on the live detail page and the catalog's exact install command succeeds. Member
+Skills are not encrypted: membership only controls who can download them, so a
+member entry is published when its private repo carries the catalog version's tag
+and a member account can install it as plain files.
 When a catalog refresh adds or delists a Skill, verify that dynamic `global`/`all`
 licenses immediately gain or lose catalog access without granting or spending
 Credits. This entitlement check is part of publication, not a later migration.
