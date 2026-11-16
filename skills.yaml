@@ -2345,7 +2345,7 @@ skills:
     equations, page flow, and navigation.
   tagline_en: Translate English papers into Chinese while preserving figures, equations,
     pages, and navigation.
-  tagline_zh: 将英文论文译为中文，优先保留图表、公式、页码对应与目录跳转。 — 售价 70 Credits
+  tagline_zh: 将英文论文译为中文，优先保留图表、公式、页码对应与目录跳转。
   pricing:
     model: vip_membership
     visibility: public
@@ -2387,7 +2387,7 @@ skills:
     page correspondence, bilingual layouts, figures, and formulas.
   tagline_en: Translate academic PDFs into Chinese with matched pages, bilingual layouts,
     figures, and formulas.
-  tagline_zh: 将英文论文译为中文 PDF，支持同页数、对照页与段落双语，并在保版式路线中保留图表和公式。 — 售价 70 Credits
+  tagline_zh: 将英文论文译为中文 PDF，支持同页数、对照页与段落双语，并在保版式路线中保留图表和公式。
   pricing:
     model: vip_membership
     visibility: public
