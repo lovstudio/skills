@@ -2570,6 +2570,7 @@ skills:
   - branding-consistency
   - media-creator
   related:
+  - group-interview-media-creator
   - koubo-media-creator
   - media-creator
   - media-publisher
@@ -2618,6 +2619,63 @@ skills:
     review_trigger_en: Review when membership scope changes, after 10 real uses, a
       major version change, or a change in the dependency contract.
     card_path: pricing-cards/interview-media-creator.md
+- name: group-interview-media-creator
+  runtime_name: lov-group-interview-media-creator
+  depends_on:
+  - branding-consistency
+  - media-creator
+  - interview-media-creator
+  related:
+  - interview-media-creator
+  - media-creator
+  - media-publisher
+  display_name: Group Interview Short
+  repo: lovstudio/group-interview-media-creator-skill
+  name_zh: 群访短片
+  paid: true
+  category: Video Creation
+  version: 0.4.3
+  updated_at: 2026-11-16 06:27:04+00:00
+  description: 'Group Interview Short: turn a phone recording of a group dinner or
+    salon into one vertical film where every guest appears, plus a solo short per
+    guest; per-guest no-show and word-removal requests become build gates, with captions,
+    score, sign covers, QC and delivery report.'
+  tagline_en: Turn a phone recording of a group dinner or salon into a vertical film
+    where every guest appears, plus a solo short per guest, honoring each person's
+    privacy requests.
+  tagline_zh: 把一场饭局或沙龙的多人手机实录按人组织：一条全员出场的竖版主片，每位嘉宾可再各出一条单人短片，逐人落实不露出与删词要求。
+  pricing:
+    model: vip_membership
+    visibility: public
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的片型语法、流水线门禁、可直接起步的工程模板与真实案例
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with the current
+      film grammar, pipeline gates, a ready-to-run starter project, and a real case
+    value_zh: 把一场多人实录按人组织成一条全员出场的竖版主片，每位嘉宾可再各出一条单人短片，逐人约束、字幕、配乐、封面与质检一次交付。
+    value_en: Turn one multi-person recording into a vertical film where every guest
+      appears, plus a solo short per guest, with per-guest constraints, captions,
+      music, covers and QC.
+    anchor_zh: 一场多人实录当天出可看的主片：省去全员普查、逐人隐私门禁、帧级剪辑构建和配乐对位的摸索，并避开首个案例里已知的返工。
+    anchor_en: A watchable main film on the day of the recording, without working
+      out the full-cast survey, per-guest privacy gates, frame-level cut builds and
+      music alignment from scratch, or repeating the rework found in the first case.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits；必需依赖天才剪辑师与采访短片同在会员权益中。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Its required
+      dependencies, Video Studio and Interview Short, are included in the same membership.
+      Membership pricing follows the current plan.
+    boundary_zh: 覆盖素材普查与全员表、逐人约束与隐私门禁、帧级剪辑与切点核验、字幕与包装、配乐与混音门禁、招牌封面与交付质检；AI 配乐等第三方服务费用、字体商用授权、人工代剪与代发布另计。
+    boundary_en: Covers the footage survey and cast table, per-guest constraints and
+      privacy gates, frame-level cuts and cut checks, captions and packaging, music
+      and mix gates, sign covers, and delivery QC; third-party AI music fees, font
+      licensing, manual editing, and publishing are separate.
+    maintenance_zh: 随 Remotion 主版本、天才剪辑师与采访短片的共享契约、平台交付规范与真实使用反馈复评。
+    maintenance_en: Review when Remotion major versions, the shared contracts with
+      Video Studio and Interview Short, platform delivery rules, or real-use feedback
+      change.
+    confidence: low
+    review_trigger_zh: 会员权益范围调整、10 次真实使用、版本大改或依赖契约变化时复评。
+    review_trigger_en: Review when membership scope changes, after 10 real uses, a
+      major version change, or a change in the dependency contracts.
+    card_path: pricing-cards/group-interview-media-creator.md
 - name: koubo-media-creator
   runtime_name: lov-koubo-media-creator
   depends_on:
@@ -2685,18 +2743,19 @@ skills:
   depends_on:
   - branding-consistency
   related:
+  - group-interview-media-creator
   - interview-media-creator
   - media-publisher
   - motion-media-creator
   - motivational-media-creator
-  updated_at: 2026-10-31 12:26:08+00:00
+  updated_at: 2026-11-16 06:27:04+00:00
   display_name: Video Studio
   repo: lovstudio/media-creator-skill
   name_zh: 天才剪辑师
   paid: true
   price_credits: 1394
   category: Video Creation
-  version: 0.33.0
+  version: 0.34.1
   description: Turn screen recordings into review-first video deliveries with editable-subtitle
     MKV, approved platform files, rendered covers for every required slot, protected
     source audio, and QC evidence.
@@ -2747,6 +2806,7 @@ skills:
   depends_on:
   - branding-consistency
   related:
+  - group-interview-media-creator
   - interview-media-creator
   - koubo-media-creator
   - media-creator
