@@ -3018,6 +3018,7 @@ skills:
   related:
   - wdb-networkx-analysis
   - wdb-cowork
+  - wdb-export
   distribution:
     workbuddy: review
     skillpay: review
@@ -9532,6 +9533,7 @@ skills:
   tagline_zh: 说出一个微信联系人或群，帮你按自己的语气起草回复、补上要你接的话、把对方要的活做出来；只起草，不发送。
   related:
   - wdb-cli
+  - wdb-export
   - tencent-meeting-cowork
   pricing:
     model: one_time
@@ -9568,6 +9570,65 @@ skills:
     review_trigger_en: Review at the first 20 buyers or 2026-12-31, or when WeChat schemas
       or the Universal WeChat Key output contract change.
     card_path: pricing-cards/wdb-cowork.md
+  depends_on:
+  - branding-consistency
+- name: wdb-export
+  runtime_name: lov-wdb-export
+  updated_at: 2026-11-16 08:37:00+00:00
+  display_name: WeChat Chat Export
+  repo: lovstudio/wdb-export-skill
+  name_zh: 微信聊天导出
+  paid: true
+  price_credits: 139
+  category: General
+  skill_path: ''
+  version: 0.1.3
+  description: Export a WeChat chat-record card (nested forwards included) via lov-wdb-cli
+    into a self-contained, verified HTML page with embedded images, clickable links
+    and a sidebar outline.
+  tagline_en: 'Turn a forwarded WeChat chat-record card into one self-contained page:
+    every message verbatim, pictures embedded, links clickable, with a sidebar outline.'
+  tagline_zh: 把别人转发来的微信聊天记录卡片导成一个网页：原文逐条保留、图片内嵌、链接可点、侧边目录，导出后自动与源数据核对。
+  related:
+  - wdb-cli
+  - wdb-cowork
+  pricing:
+    model: one_time
+    visibility: public
+    list_price_credits: 139
+    launch_price_credits: 139
+    price_range_credits:
+    - 139
+    - 268
+    delivery_unit_zh: 单个 Skill：导出脚本（列出、导出、核对）、数据格式与页面约定说明、28 项测试
+    delivery_unit_en: Single Skill with an export script (list, export, verify), record-format
+      and page notes, and 28 tests
+    value_zh: 一张很长的嵌套聊天记录卡片，在微信里只能一层层点开；导出后是一个可离线打开的网页，发送人、时间、原文逐条保留，点开过的图片内嵌，链接可点，左侧目录随滚动高亮。
+    value_en: A long nested chat-record card can only be opened layer by layer in
+      WeChat; the export is one offline page that keeps every sender, time and message,
+      embeds the pictures you have opened, keeps links clickable and adds a scroll-aware
+      outline.
+    anchor_zh: 替代手动逐层点开、复制和截图整理，卡片越长省得越多；尚无买家统计，不承诺具体节省时间。
+    anchor_en: Replaces opening, copying and screenshotting layer by layer; the longer
+      the card, the more it saves. Buyer measurements are not yet available and no
+      specific saving is promised.
+    basis_zh: 在一张外层 7 项、共 535 条消息的真实卡片上验证：逐条回读一致，60 个本机图片文件全部对上；范围比同系列窄，定在同系列入口价的下一档。
+    basis_en: 'Verified on a real card with 7 top-level items and 535 messages: every
+      message read back identical and all 60 local picture files matched; narrower
+      in scope than its siblings, so it sits one tier below their entry price.'
+    boundary_zh: 需 macOS 本机微信 4.x、已完成密钥准备的万能微信秘钥与 Python 3.9+；只处理聊天记录卡片，不导出整段会话；视频号视频与分享卡片的完整内容导不出；发布成分享链接目前仅站点所有者可用。
+    boundary_en: Requires macOS WeChat 4.x, Universal WeChat Key with keys prepared,
+      and Python 3.9+; handles chat-record cards only, not whole conversations; Channels
+      videos and the full content behind share cards are not exported; publishing
+      a share link is currently available to the site owner only.
+    maintenance_zh: 随微信本地库结构、万能微信秘钥输出契约和真实支持成本变化复评。
+    maintenance_en: Review when WeChat schemas, the Universal WeChat Key output contract,
+      or observed support costs change.
+    confidence: medium-low
+    review_trigger_zh: 首批 20 位买家或 2027-02-28；出现第 3 个真实案例、微信库结构或万能微信秘钥输出契约变化时复评。
+    review_trigger_en: Review at the first 20 buyers or 2027-02-28, at a third real
+      case, or when WeChat schemas or the Universal WeChat Key output contract change.
+    card_path: pricing-cards/wdb-export.md
   depends_on:
   - branding-consistency
 - name: claude-account-migrate
