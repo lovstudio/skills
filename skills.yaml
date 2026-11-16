@@ -915,7 +915,7 @@ skills:
     card_path: pricing-cards/bp-polish.md
 - name: proposal
   runtime_name: lov-proposal
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Proposal Expert
   repo: lovstudio/proposal-skill
   skill_path: src
@@ -928,26 +928,21 @@ skills:
   version: 1.1.1
   skillpay_product_id: P0806000200844922
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-Z
-  price_credits: 703
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 703
-    launch_price_credits: 703
-    price_range_credits:
-    - 703
-    - 1394
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the
-      current version
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的安装与使用说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with installation
+      and usage notes for the current version
     value_zh: 把项目简述一键变成可交付的商业提案，方案、报价、排版全配齐。
     value_en: Turn a project brief into a complete, client-ready business proposal.
     anchor_zh: 一次交付可替代数小时至一天的资料整理、初稿编排或逐项审阅。
     anchor_en: A run can replace several hours to a day of research collation, drafting,
       or item-by-item review.
-    basis_zh: 按可直接进入沟通、评审或执行的商务产物定价，不按提示词长度计价。
-    basis_en: Priced around a business deliverable ready for discussion, review, or
-      execution—not prompt length.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是可直接进入沟通、评审或执行的商务产物。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      a business deliverable ready for discussion, review, or execution. Membership
+      pricing follows the current plan.
     boundary_zh: 交付的是结构化初稿与审阅框架；最终法律、财务或商业决策仍需由专业人员确认。
     boundary_en: The deliverable is a structured draft and review framework; final
       legal, financial, or business decisions still need professional confirmation.
@@ -1146,7 +1141,7 @@ skills:
     card_path: pricing-cards/expense-report.md
 - name: event-poster
   runtime_name: lov-event-poster
-  updated_at: 2026-10-31 12:15:52+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Professional Poster
   repo: lovstudio/event-poster-skill
   skill_path: src
@@ -1162,27 +1157,22 @@ skills:
   - publish-event-onto-hdx
   skillpay_product_id: P0806000200844925
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQK
-  price_credits: 703
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 703
-    launch_price_credits: 703
-    price_range_credits:
-    - 703
-    - 1394
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the
-      current version
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的安装与使用说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with installation
+      and usage notes for the current version
     value_zh: 把活动信息一键变成高质感海报，可直接分享或用于线下展览。
     value_en: Turn an event brief into a polished poster, ready to share or print
       for exhibitions.
     anchor_zh: 一次结果通常可减少 1–6 小时的试稿、排版或资产整理。
     anchor_en: A result typically removes 1–6 hours of drafting, layout, or asset
       organization.
-    basis_zh: 按可预览、可导出、可继续编辑的视觉结果定价，价值来自减少反复试稿。
-    basis_en: Priced around a previewable, exportable, and reusable visual result,
-      with value coming from fewer draft iterations.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是可预览、可导出、可继续编辑的视觉结果，价值来自减少反复试稿。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      a previewable, exportable, and reusable visual result, with value coming from
+      fewer draft iterations. Membership pricing follows the current plan.
     boundary_zh: 结果依赖输入素材、品牌约束和外部模型；复杂定制、素材采购与线下制作另计。
     boundary_en: Results depend on source assets, brand constraints, and external
       models; complex customization, asset sourcing, and physical production are separate.
@@ -1196,7 +1186,7 @@ skills:
     card_path: pricing-cards/event-poster.md
 - name: visual-clone
   runtime_name: lov-visual-clone
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Style Sampler
   repo: lovstudio/visual-clone-skill
   name_zh: 风格采样
@@ -1210,27 +1200,22 @@ skills:
   tagline_zh: 从参考图中提取设计要素，生成可复刻同款风格的指令。
   skillpay_product_id: P0806000200847220
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQA
-  price_credits: 703
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 703
-    launch_price_credits: 703
-    price_range_credits:
-    - 703
-    - 1394
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the
-      current version
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的安装与使用说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with installation
+      and usage notes for the current version
     value_zh: 从参考图中提取设计要素，生成可复刻同款风格的指令。
     value_en: Extract the design DNA of a reference image so you can recreate the
       look.
     anchor_zh: 一次结果通常可减少 1–6 小时的试稿、排版或资产整理。
     anchor_en: A result typically removes 1–6 hours of drafting, layout, or asset
       organization.
-    basis_zh: 按可预览、可导出、可继续编辑的视觉结果定价，价值来自减少反复试稿。
-    basis_en: Priced around a previewable, exportable, and reusable visual result,
-      with value coming from fewer draft iterations.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是可预览、可导出、可继续编辑的视觉结果，价值来自减少反复试稿。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      a previewable, exportable, and reusable visual result, with value coming from
+      fewer draft iterations. Membership pricing follows the current plan.
     boundary_zh: 结果依赖输入素材、品牌约束和外部模型；复杂定制、素材采购与线下制作另计。
     boundary_en: Results depend on source assets, brand constraints, and external
       models; complex customization, asset sourcing, and physical production are separate.
@@ -1438,12 +1423,11 @@ skills:
     card_path: pricing-cards/writing-style.md
 - name: article-creator
   runtime_name: lov-article-creator
-  updated_at: 2026-10-31T17:40:56Z
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Genius Writer
   repo: lovstudio/article-creator-skill
   name_zh: 天才写手
   paid: true
-  price_credits: 280
   category: Content Creation
   version: 0.10.1
   description: Create, rewrite, brand, or faithfully repost complete WeChat article
@@ -1457,15 +1441,13 @@ skills:
   - writing-style
   - illustrate
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 280
-    launch_price_credits: 280
-    price_range_credits:
-    - 280
-    - 280
-    delivery_unit_zh: 私有仓库中对应版本的完整 Skill 源码（购买后下载）、公众号文章包工作流、回归测试与当前版本说明
-    delivery_unit_en: Full Skill source from the private repository at the released version (downloaded after purchase), WeChat article-package workflows, regression tests, and current-version notes
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中：私有仓库中对应版本的完整 Skill 源码（会员账号下载）、公众号文章包工作流、回归测试与当前版本说明
+    delivery_unit_en: 'Included in the full Lovstudio.AI VIP Membership: full Skill
+      source from the private repository at the released version (downloaded by member
+      accounts), WeChat article-package workflows, regression tests, and current-version
+      notes'
     value_zh: 把正文写作、模板装配、正文配图、品牌封面、4:3 正文首图、转载保真与发布前验收连接成一个可复测的文章包。
     value_en: Connect writing, template assembly, body figures, branded covers, a
       4:3 hero image, repost fidelity, and pre-publication acceptance into one reproducible
@@ -1473,8 +1455,12 @@ skills:
     anchor_zh: 一次完整任务可替代公众号创作、品牌包装、配图整理、转载整理和发布前验收中的多轮手工拼接。
     anchor_en: One complete task can replace several manual passes across writing,
       branding, figure preparation, repost preparation, and pre-publication review.
-    basis_zh: 以 280 Credits 一次性解锁完整文章包工作流，价格用于验证真实付费意愿；相比免费入口增加正文配图决策、文风散列绑定与更严格质量门；源码保存在私有仓库，购买后按版本下载。
-    basis_en: The complete article-package workflow unlocks once for 280 Credits to validate paid demand; compared with the free entry it adds body-figure decisions, style-review hash binding, and a stricter quality gate; the source stays in a private repository and is downloaded at the released version after purchase.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。相比免费入口增加正文配图决策、文风散列绑定与更严格质量门；源码保存在私有仓库，会员账号按版本下载。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Compared
+      with the free entry it adds body-figure decisions, style-review hash binding,
+      and a stricter quality gate; the source stays in a private repository and members
+      download it at the released version. Membership pricing follows the current
+      plan.
     boundary_zh: 包含本地文章包创建、改写、品牌化、忠实转载、正文配图、双比例视觉与质量报告；不含托管模型调用、素材授权、公众号凭据、代运营或远程发布。
     boundary_en: Includes local package creation, rewriting, branding, faithful reposting,
       body figures, dual-ratio visuals, and quality reports; excludes hosted inference,
@@ -1483,8 +1469,9 @@ skills:
     maintenance_en: Review against WeChat formats, dependency Skills, visual rules,
       benchmarks, and real article-package feedback.
     confidence: medium
-    review_trigger_zh: 首发 30 天、100 次付费兑换、下一次版本变化、支持成本明显变化，或交付方式变化时复评。
-    review_trigger_en: Review after 30 launch days, 100 paid redemptions, the next version change, a material support-cost change, or a delivery-mode change.
+    review_trigger_zh: 首发 30 天、100 次会员安装、下一次版本变化、支持成本明显变化，或交付方式变化时复评。
+    review_trigger_en: Review after 30 launch days, 100 member installs, the next
+      version change, a material support-cost change, or a delivery-mode change.
     card_path: pricing-cards/article-creator.md
 - name: publish-wechat-article
   runtime_name: lov-publish-wechat-article
@@ -1638,7 +1625,7 @@ skills:
     card_path: pricing-cards/deep-research.md
 - name: write-professional-book
   runtime_name: lov-write-professional-book
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Book Writing Expert
   repo: lovstudio/write-professional-book-skill
   skill_path: src
@@ -1652,34 +1639,37 @@ skills:
   version: 0.6.0
   skillpay_product_id: P0806000200846058
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQQ
-  price_credits: 703
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 703
-    launch_price_credits: 703
-    price_range_credits:
-    - 703
-    - 1394
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的排版脚本、模板与使用说明
-    delivery_unit_en: "One complete Skill with the current version's build scripts, templates, and usage notes"
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的排版脚本、模板与使用说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with the current
+      version's build scripts, templates, and usage notes
     value_zh: 从大纲开始逐章写完一本书，并排出 PDF 定稿与可编辑的 DOCX 书稿。
-    value_en: Write a full multi-chapter book from an outline and deliver a typeset PDF plus an editable DOCX manuscript.
+    value_en: Write a full multi-chapter book from an outline and deliver a typeset
+      PDF plus an editable DOCX manuscript.
     anchor_zh: 省下自己搭建中文书籍排版管线、反复对齐长书前后文的时间；一本 327 页的成书从大纲到 PDF 与 DOCX 定稿约 18 小时。
-    anchor_en: Saves building a Chinese book typesetting pipeline and re-aligning a long manuscript; a 327-page book went from outline to final PDF and DOCX in about 18 hours.
-    basis_zh: 按能直接交付的整本书稿与排版结果定价，排版规则来自真实成书的逐页验收。
-    basis_en: Priced on a finished, typeset manuscript; the typesetting rules come from page-by-page review of a real book.
+    anchor_en: Saves building a Chinese book typesetting pipeline and re-aligning
+      a long manuscript; a 327-page book went from outline to final PDF and DOCX in
+      about 18 hours.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是能直接使用的整本书稿与排版结果，排版规则来自真实成书的逐页验收。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      a finished, typeset manuscript; the typesetting rules come from page-by-page
+      review of a real book. Membership pricing follows the current plan.
     boundary_zh: 书的质量取决于选题、素材与事实核验；构建需要 pandoc、xelatex 和 Python 依赖，默认使用 macOS 自带字体。
-    boundary_en: Book quality depends on the topic, sources, and fact-checking; builds need pandoc, xelatex, and Python packages, with macOS system fonts by default.
+    boundary_en: Book quality depends on the topic, sources, and fact-checking; builds
+      need pandoc, xelatex, and Python packages, with macOS system fonts by default.
     maintenance_zh: 随 pandoc、TeX、Word 格式变化和新书验收中发现的排版问题更新。
-    maintenance_en: Updated as pandoc, TeX, and Word formats change and as new books surface typesetting issues.
+    maintenance_en: Updated as pandoc, TeX, and Word formats change and as new books
+      surface typesetting issues.
     confidence: medium
-    review_trigger_zh: 其他用户完成 3 本书、10 次付费安装、0.7.0 版本、平均支持超过 30 分钟或到 2027-04-20 时复评。
-    review_trigger_en: Review after 3 books finished by other users, 10 paid installs, version 0.7.0, average support above 30 minutes, or 2027-04-20.
+    review_trigger_zh: 其他用户完成 3 本书、10 次会员安装、0.7.0 版本、平均支持超过 30 分钟或到 2027-04-20 时复评。
+    review_trigger_en: Review after 3 books finished by other users, 10 member installs,
+      version 0.7.0, average support above 30 minutes, or 2027-04-20.
     card_path: pricing-cards/write-professional-book.md
 - name: wxmp-cracker
   runtime_name: lov-wxmp-cracker
-  updated_at: 2026-11-01 17:08:54+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: WeChat Archiver
   repo: lovstudio/wxmp-cracker-skill
   skill_path: src
@@ -1692,26 +1682,21 @@ skills:
   tagline_zh: 把微信公众号的文章批量归档成可再利用的整洁文本。
   skillpay_product_id: P0806000200847217
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQO
-  price_credits: 703
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 703
-    launch_price_credits: 703
-    price_range_credits:
-    - 703
-    - 1394
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the
-      current version
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的安装与使用说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with installation
+      and usage notes for the current version
     value_zh: 把微信公众号的文章批量归档成可再利用的整洁文本。
     value_en: Archive WeChat Official Account articles into clean, reusable text.
     anchor_zh: 一次交付通常可省下 1 小时至一天的研究、编排、配图或发布准备。
     anchor_en: A run typically saves one hour to a day of research, editing, illustration,
       or publishing preparation.
-    basis_zh: 按能继续编辑、发布或复用的内容成品定价，重点是流程完整和证据可追溯。
-    basis_en: Priced around content that can be edited, published, or reused, with
-      emphasis on a complete workflow and traceable evidence.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是能继续编辑、发布或复用的内容成品，重点是流程完整和证据可追溯。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      content that can be edited, published, or reused, with emphasis on a complete
+      workflow and traceable evidence. Membership pricing follows the current plan.
     boundary_zh: 结果质量取决于素材、事实和品牌约束；平台账号、第三方模型和发布操作按实际条件处理。
     boundary_en: Quality depends on source material, facts, and brand constraints;
       platform accounts, third-party models, and publishing operations follow actual
@@ -1726,7 +1711,7 @@ skills:
     card_path: pricing-cards/wxmp-cracker.md
 - name: event-curator
   runtime_name: lov-event-curator
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Event Planner
   repo: lovstudio/event-curator-skill
   skill_path: src
@@ -1748,27 +1733,22 @@ skills:
   - publish-event-onto-hdx
   skillpay_product_id: P0806000200846056
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQc
-  price_credits: 703
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 703
-    launch_price_credits: 703
-    price_range_credits:
-    - 703
-    - 1394
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the
-      current version
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的安装与使用说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with installation
+      and usage notes for the current version
     value_zh: 从嘉宾履历一键生成可交付的活动策划案 — 主题文案、分钟级 rundown、主持人问题卡、伴手礼。
     value_en: Turn a guest bio into a ready-to-run event plan — title, rundown, host
       questions, and gifts.
     anchor_zh: 一次交付可替代数小时至一天的资料整理、初稿编排或逐项审阅。
     anchor_en: A run can replace several hours to a day of research collation, drafting,
       or item-by-item review.
-    basis_zh: 按可直接进入沟通、评审或执行的商务产物定价，不按提示词长度计价。
-    basis_en: Priced around a business deliverable ready for discussion, review, or
-      execution—not prompt length.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是可直接进入沟通、评审或执行的商务产物。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      a business deliverable ready for discussion, review, or execution. Membership
+      pricing follows the current plan.
     boundary_zh: 交付的是结构化初稿与审阅框架；最终法律、财务或商业决策仍需由专业人员确认。
     boundary_en: The deliverable is a structured draft and review framework; final
       legal, financial, or business decisions still need professional confirmation.
@@ -2168,14 +2148,13 @@ skills:
     card_path: pricing-cards/rich-export.md
 - name: professional-infographic
   runtime_name: lov-professional-infographic
-  updated_at: 2026-08-28 20:36:58+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   skillpay_product_id: P0806000200843450
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQE
   display_name: Professional Infographic
   repo: lovstudio/professional-infographic-skill
   name_zh: 专业信息图
   paid: true
-  price_credits: 139
   featured: true
   category: Design
   version: 0.5.3
@@ -2189,26 +2168,20 @@ skills:
   - image-creator
   - mobile-infographic
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 139
-    launch_price_credits: 139
-    price_range_credits:
-    - 139
-    - 139
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的加密安装包、使用说明与模板
-    delivery_unit_en: One complete Skill with its encrypted bundle, current-version
-      guide, and templates
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的使用说明与模板
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with the current-version guide and templates
     value_zh: 将证据、估值、进入与分阶段退出编成一张可编辑、可导出、可审计的专业信息图。
     value_en: Turn evidence, valuations, entry, and staged exits into one editable,
       exportable, and auditable professional infographic.
     anchor_zh: 一次结果通常可减少 1–6 小时的试稿、排版或资产整理。
     anchor_en: A result typically removes 1–6 hours of drafting, layout, or asset
       organization.
-    basis_zh: 139 Credits 是完整加密 Skill 的一次性价格，以已验收案例验证付费意愿；重点价值来自可编辑、可导出、可审计的视觉结果与更少的反复试稿。
-    basis_en: 139 Credits is the one-time price for the complete encrypted Skill,
-      using accepted cases to validate paid demand; value comes from editable, exportable,
-      auditable visuals and fewer draft iterations.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。已有验收过的案例；重点价值来自可编辑、可导出、可审计的视觉结果与更少的反复试稿。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Backed
+      by accepted cases; value comes from editable, exportable, auditable visuals
+      and fewer draft iterations. Membership pricing follows the current plan.
     boundary_zh: 结果依赖输入素材、品牌约束和外部模型；复杂定制、素材采购与线下制作另计。
     boundary_en: Results depend on source assets, brand constraints, and external
       models; complex customization, asset sourcing, and physical production are separate.
@@ -2216,8 +2189,8 @@ skills:
     maintenance_en: Review against rendering tools, fonts, models, and brand assets;
       output structure matters more than chasing a single style.
     confidence: case-backed
-    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化或支持成本明显变化时复评。
-    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
+    review_trigger_zh: 首发 30 天、100 次会员安装、版本变化或支持成本明显变化时复评。
+    review_trigger_en: Review after 30 launch days, 100 member installs, a version
       change, or a material change in support cost.
     card_path: pricing-cards/professional-infographic.md
 - name: mobile-infographic
@@ -2262,14 +2235,13 @@ skills:
     card_path: pricing-cards/mobile-infographic.md
 - name: oh-my-landingpage
   runtime_name: lov-oh-my-landingpage
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   skillpay_product_id: P0806000200858608
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqYNF
   display_name: Website Whiz
   repo: lovstudio/oh-my-landingpage-skill
   name_zh: 官网小能手
   paid: true
-  price_credits: 14
   category: Design
   skill_path: ''
   version: 0.4.1
@@ -2282,16 +2254,11 @@ skills:
     workbuddy: adapted
     skillpay: live
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 14
-    launch_price_credits: 14
-    price_range_credits:
-    - 14
-    - 14
-    delivery_unit_zh: 单项 Skill Kit 完整交付，包含 5 个协作模块、加密安装包与当前版本说明
-    delivery_unit_en: One complete encrypted Skill Kit with five collaborating modules
-      and current-version guidance
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，包含 5 个协作模块与当前版本说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with five
+      collaborating modules and current-version guidance
     value_zh: 从产品与品牌事实出发，统一完成定位、叙事、产品适配视觉、实现、响应式和生产回读。
     value_en: Turn product and brand truth into one coherent landing page across positioning,
       narrative, product-fit visuals, implementation, responsive behavior, and production
@@ -2300,9 +2267,9 @@ skills:
     anchor_en: A complete landing-page build or rebuild can conservatively remove
       4–16 hours of positioning, content, visual exploration, implementation, and
       rework.
-    basis_zh: 模型建议价为 280–703 Credits；本次 14 Credits 是用户明确指定的官网付费验证价，不是成本回收价。
-    basis_en: The model-supported range is 280–703 Credits; 14 Credits is the user-specified
-      website validation price rather than a cost-recovery price.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Membership
+      pricing follows the current plan.
     boundary_zh: 结果依赖真实产品证据、品牌资产、目标仓库和运行时工具；复杂品牌研究、素材采购、定制拍摄与长期代运营另计。
     boundary_en: Results depend on product evidence, brand assets, the target repository,
       and runtime tools; extensive brand research, asset sourcing, custom shoots,
@@ -2312,9 +2279,9 @@ skills:
       change; derive style fit independently for every product instead of inheriting
       the prior project's look.
     confidence: medium
-    review_trigger_zh: 首发 30 天、100 次官网付费兑换、版本变化或平均单买家支持超过 30 分钟时复评。
-    review_trigger_en: Review after 30 launch days, 100 paid website redemptions,
-      a version change, or average support exceeding 30 minutes per buyer.
+    review_trigger_zh: 首发 30 天、100 次会员安装、版本变化或平均每位用户支持超过 30 分钟时复评。
+    review_trigger_en: Review after 30 launch days, 100 member installs, a version
+      change, or average support exceeding 30 minutes per member.
     card_path: pricing-cards/oh-my-landingpage.md
 - name: business-card
   runtime_name: lov-business-card
@@ -2364,14 +2331,13 @@ skills:
     card_path: pricing-cards/business-card.md
 - name: academic-translator
   runtime_name: lov-academic-translator
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   skillpay_product_id: P0806000200858607
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqYND
   display_name: Academic Translator
   repo: lovstudio/academic-translator-skill
   name_zh: 学术译者
   paid: true
-  price_credits: 70
   category: Academic
   skill_path: ''
   version: 0.2.1
@@ -2381,25 +2347,22 @@ skills:
     pages, and navigation.
   tagline_zh: 将英文论文译为中文，优先保留图表、公式、页码对应与目录跳转。 — 售价 70 Credits
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 70
-    launch_price_credits: 70
-    price_range_credits:
-    - 70
-    - 141
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the
-      current version
-    value_zh: 将英文论文译为中文，优先保留图表、公式、页码对应与目录跳转。 — 售价 70 Credits
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的安装与使用说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with installation
+      and usage notes for the current version
+    value_zh: 将英文论文译为中文，优先保留图表、公式、页码对应与目录跳转。
     value_en: Translate English papers into Chinese while preserving figures, equations,
       pages, and navigation.
     anchor_zh: 一次处理通常可省下 1–8 小时的逐段对照、格式修整或返修整理。
     anchor_en: A run typically saves 1–8 hours of paragraph comparison, formatting,
       or revision work.
-    basis_zh: 按可核对的论文或译文质量改进定价，重点是逐项证据、结构一致性和返修减少。
-    basis_en: Priced around verifiable improvement to an academic document or translation,
-      with emphasis on evidence, consistency, and fewer revisions.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是可核对的论文或译文质量改进，重点是逐项证据、结构一致性和返修减少。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      verifiable improvement to an academic document or translation, with emphasis
+      on evidence, consistency, and fewer revisions. Membership pricing follows the
+      current plan.
     boundary_zh: 提供审校与结构建议，不替代作者署名、学术判断、事实核验或投稿机构要求。
     boundary_en: Provides review and structure suggestions; it does not replace authorship,
       academic judgment, fact checking, or venue requirements.
@@ -2412,12 +2375,11 @@ skills:
       change in support cost.
     card_path: pricing-cards/academic-translator.md
 - name: paper-translator
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Paper Translator
   repo: lovstudio/paper-translator-skill
   name_zh: 论文翻译官
   paid: true
-  price_credits: 70
   category: Academic
   skill_path: ''
   version: 0.2.1
@@ -2427,25 +2389,21 @@ skills:
     figures, and formulas.
   tagline_zh: 将英文论文译为中文 PDF，支持同页数、对照页与段落双语，并在保版式路线中保留图表和公式。 — 售价 70 Credits
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 70
-    launch_price_credits: 70
-    price_range_credits:
-    - 70
-    - 141
-    delivery_unit_zh: 单项 Skill、源码仓库与当前版本使用说明
-    delivery_unit_en: One Skill, its source repository, and current-version usage
-      notes
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中：Skill、源码仓库与当前版本使用说明
+    delivery_unit_en: 'Included in the full Lovstudio.AI VIP Membership: one Skill,
+      its source repository, and current-version usage notes'
     value_zh: 将英文论文译为中文 PDF，支持同页数、逐页对照和段落双语，并提供保图保公式的版式路线。
     value_en: Translate academic PDFs into Chinese with matched pages, facing pages,
       paragraph bilingual output, and a layout-preserving route.
     anchor_zh: 一次处理通常可减少约 1–8 小时逐页对照、重排和返修工作。
     anchor_en: A run typically saves roughly 1–8 hours of page comparison, reflow,
       and revision work.
-    basis_zh: 先以 70 Credits 验证复杂论文成功率与支持成本；达到真实交付门槛后再评估 141 Credits 稳定档。
-    basis_en: Start at 70 Credits to validate complex-paper success and support cost,
-      then review a 141 Credits stable tier.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。复杂论文的成功率与支持成本仍在验证中。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Success
+      on complex papers and the support cost are still being validated. Membership
+      pricing follows the current plan.
     boundary_zh: 扫描件需先 OCR；图片内文字、模型 API、第三方工具与复杂人工排版服务另行处理。
     boundary_en: Scanned PDFs need OCR; image text, model APIs, third-party tools,
       and complex manual layout work are separate.
@@ -2508,6 +2466,7 @@ skills:
     card_path: pricing-cards/video-chapter.md
 - name: motion-media-creator
   runtime_name: lov-motion-media-creator
+  updated_at: 2026-11-16 15:55:49+00:00
   depends_on:
   - branding-consistency
   related:
@@ -2519,50 +2478,45 @@ skills:
   repo: lovstudio/motion-media-creator-skill
   name_zh: 动态图志
   paid: true
-  price_credits: 1394
   category: Video Creation
   version: 0.9.1
-  description: "Motion Atlas: no-footage motion-design films told chapter by chapter
+  description: 'Motion Atlas: no-footage motion-design films told chapter by chapter
     along one axis (time, map, catalogue, process, scale), with chapter cards and
     progress HUD, TTS or own-voice narration with large (optionally bilingual) subtitles,
-    beat-synced per-chapter music, fact checks, 16:9 delivery and three-ratio covers."
+    beat-synced per-chapter music, fact checks, 16:9 delivery and three-ratio covers.'
   tagline_en: Turn a topic into a narrated, no-footage motion-design film, one visual
     language per chapter, delivered as a 16:9 film with three-ratio covers and QC.
   tagline_zh: 无实拍，把一个主题沿时间、地图、图鉴、工序或尺度分章，做成每章一种视觉、带旁白与大字幕的动态设计短片，16:9 成片、三比例封面与质检一次交付。
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 1394
-    launch_price_credits: 1394
-    price_range_credits:
-    - 1394
-    - 2099
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的片型语法、流水线门禁、可直接起步的工程模板与真实案例
-    delivery_unit_en: One complete Skill with the current film grammar, pipeline gates,
-      a ready-to-run starter project, and a real case
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的片型语法、流水线门禁、可直接起步的工程模板与真实案例
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with the current
+      film grammar, pipeline gates, a ready-to-run starter project, and a real case
     value_zh: 无实拍，把一个主题做成每章一种视觉、带旁白与大字幕的动态设计短片，16:9 成片、三比例封面与质检一次交付。
-    value_en: Turn a topic into a narrated, no-footage motion-design film with one visual
-      language per chapter, delivered as a 16:9 film with three-ratio covers and QC.
+    value_en: Turn a topic into a narrated, no-footage motion-design film with one
+      visual language per chapter, delivered as a 16:9 film with three-ratio covers
+      and QC.
     anchor_zh: 第一条片子保守可省 1–3 天的工程搭建、时间轴与字体、配乐卡点和交付质检摸索；外包同类片通常按天计价。
     anchor_en: A first film can conservatively save 1–3 days of project setup, timeline
       and font work, beat syncing, and delivery QC; comparable outsourced films are
       usually priced by the day.
-    basis_zh: 1,394 Credits 是完整片型方法与起步工程的一次性价格，与同系列视频制作 Skill 一致；不是定制设计或代制作报价。
-    basis_en: 1,394 Credits is the one-time price for the complete film method and
-      starter project, matching the video-creation series; it is not a custom design
-      or production quote.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是完整片型方法与起步工程，不含定制设计或代制作。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      the complete film method and starter project, not custom design or production.
+      Membership pricing follows the current plan.
     boundary_zh: 覆盖结构方案、事实台账、旁白与字幕、配乐卡点、Remotion 场景与 HUD、三比例封面与交付质检；AI 配乐、语音合成与封面生图等第三方服务费用、字体商用授权、人工设计与代发布另计。
-    boundary_en: Covers structure planning, fact ledger, narration and subtitles, beat
-      syncing, Remotion scenes and HUD, three cover ratios, and delivery QC; third-party
-      AI music, speech and cover-image fees, font licensing, manual design, and publishing
-      are separate.
+    boundary_en: Covers structure planning, fact ledger, narration and subtitles,
+      beat syncing, Remotion scenes and HUD, three cover ratios, and delivery QC;
+      third-party AI music, speech and cover-image fees, font licensing, manual design,
+      and publishing are separate.
     maintenance_zh: 随 Remotion 主版本、平台交付规范、字体与配乐服务变化，以及真实使用反馈复评。
-    maintenance_en: Review when Remotion major versions, platform delivery rules, font
-      or music services, or real-use feedback change.
+    maintenance_en: Review when Remotion major versions, platform delivery rules,
+      font or music services, or real-use feedback change.
     confidence: medium
-    review_trigger_zh: 首发 30 天、10 次真实使用、版本大改或单买家支持成本明显变化时复评。
-    review_trigger_en: Review after 30 launch days, 10 real uses, a major version change,
-      or a material change in per-buyer support cost.
+    review_trigger_zh: 首发 30 天、10 次真实使用、版本大改或单用户支持成本明显变化时复评。
+    review_trigger_en: Review after 30 launch days, 10 real uses, a major version
+      change, or a material change in per-member support cost.
     card_path: pricing-cards/motion-media-creator.md
 - name: interview-media-creator
   runtime_name: lov-interview-media-creator
@@ -2748,12 +2702,11 @@ skills:
   - media-publisher
   - motion-media-creator
   - motivational-media-creator
-  updated_at: 2026-11-16 06:27:04+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Video Studio
   repo: lovstudio/media-creator-skill
   name_zh: 天才剪辑师
   paid: true
-  price_credits: 1394
   category: Video Creation
   version: 0.34.1
   description: Turn screen recordings into review-first video deliveries with editable-subtitle
@@ -2763,26 +2716,21 @@ skills:
     deliver approved horizontal and vertical videos, covers, and quality reports.
   tagline_zh: 把录屏和 Screen Studio 源工程整理为可审校视频，以批准字幕生成横竖版成片、封面和质检报告。
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 1394
-    launch_price_credits: 1394
-    price_range_credits:
-    - 1394
-    - 1394
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的工作流、脚本、模板与使用说明
-    delivery_unit_en: One complete Skill with the current workflow, scripts, templates,
-      and usage notes
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的工作流、脚本、模板与使用说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with the current
+      workflow, scripts, templates, and usage notes
     value_zh: 把录屏和 Screen Studio 源工程整理为可审校视频，以批准字幕生成横竖版成片、封面和质检报告。
     value_en: Turn recordings and Screen Studio projects into reviewable video, then
       deliver approved horizontal and vertical videos, covers, and quality reports.
     anchor_zh: 一次长录屏到成片任务保守可省 2–8 小时的剪辑、字幕回灌、封面返工和交付排错。
     anchor_en: A long-recording workflow can conservatively save 2–8 hours of editing,
       subtitle rework, cover iteration, and delivery debugging.
-    basis_zh: 1,394 Credits 是完整本地媒体制作工作流的一次性价格，用于验证付费转化；它不是定制剪辑、托管执行或成本回收价。
-    basis_en: 1,394 Credits is the one-time price for the complete local media workflow
-      and paid-conversion validation, not a custom-editing, managed-execution, or
-      cost-recovery price.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是完整本地媒体制作工作流，不含定制剪辑或托管执行。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      the complete local media workflow, not custom editing or managed execution.
+      Membership pricing follows the current plan.
     boundary_zh: 覆盖素材扫描、剪辑规划、字幕审校、FFmpeg 渲染、原声与 BGM 混音、各槽位正式封面和交付质检；云端渲染、版权素材、账号和代发布按实际条件处理。
     boundary_en: Covers media inspection, edit planning, subtitle review, FFmpeg rendering,
       source/BGM mixing, rendered covers for every required slot, and delivery QC;
@@ -2791,9 +2739,10 @@ skills:
     maintenance_en: Review when FFmpeg, platform encoding requirements, player compatibility,
       or real-use feedback changes.
     confidence: medium
-    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化，或平台交付规范与单买家支持成本明显变化时复评。
-    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
-      change, or a material change in platform requirements or per-buyer support cost.
+    review_trigger_zh: 首发 30 天、100 次会员安装、版本变化，或平台交付规范与单用户支持成本明显变化时复评。
+    review_trigger_en: Review after 30 launch days, 100 member installs, a version
+      change, or a material change in platform requirements or per-member support
+      cost.
     card_path: pricing-cards/media-creator.md
 - name: media-publisher
   runtime_name: lov-media-publisher
@@ -2997,7 +2946,7 @@ skills:
     card_path: pricing-cards/repo2docs.md
 - name: wdb-cli
   runtime_name: lov-wdb-cli
-  updated_at: '2026-11-09T18:55:31Z'
+  updated_at: 2026-11-16 15:55:49+00:00
   skillpay_product_id: P0806000201803813
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2Lt_Qi
   skillpay_review_product_id: P0806000201871143
@@ -3005,7 +2954,6 @@ skills:
   repo: lovstudio/wdb-cli-skill
   name_zh: 万能微信秘钥
   paid: true
-  price_credits: 280
   category: General
   skill_path: ''
   version: 0.6.7
@@ -3023,26 +2971,24 @@ skills:
     workbuddy: review
     skillpay: review
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 280
-    launch_price_credits: 280
-    price_range_credits:
-    - 280
-    - 703
-    delivery_unit_zh: 完整 Skill Kit，含密钥准备、查询、图片解码、使用说明和原生 scanner 组件
-    delivery_unit_en: Complete Skill Kit with key preparation, querying, image decoding,
-      usage notes, and native scanner components
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中：完整 Skill Kit，含密钥准备、查询、图片解码、使用说明和原生
+      scanner 组件
+    delivery_unit_en: 'Included in the full Lovstudio.AI VIP Membership: complete
+      Skill Kit with key preparation, querying, image decoding, usage notes, and native
+      scanner components'
     value_zh: 先扫描或捕获本地微信密钥，再按日期、联系人、关键词、朋友圈动态或稳定记录身份读取数据。
     value_en: Scan or capture local WeChat keys, then query by date, contact, keyword,
       Moment, or exact record identity.
-    anchor_zh: 自动化替代手工查表和精确定位；节省时间因数据和任务而异，尚无买家统计。
+    anchor_zh: 自动化替代手工查表和精确定位；节省时间因数据和任务而异，尚无用户统计。
     anchor_en: Automates table inspection and exact record lookup; time savings vary
-      and buyer measurements are not yet available.
-    basis_zh: 0.5.x 在真实机器上完成登录捕获与查询，新增引用回复识别和聊天图片解码；23 项测试通过，买家数据待补，维持现价。
-    basis_en: Version 0.5.x completes real-machine login capture and querying, and adds
-      quoted-reply parsing and chat image decoding; 23 tests pass and buyer data is still
-      pending, so the price holds.
+      and user measurements are not yet available.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。0.5.x 在真实机器上完成登录捕获与查询，新增引用回复识别和聊天图片解码；23 项测试通过，其他用户的数据待补。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Version
+      0.5.x completes real-machine login capture and querying, and adds quoted-reply
+      parsing and chat image decoding; 23 tests pass and data from other users is
+      still pending. Membership pricing follows the current plan.
     boundary_zh: 支持 macOS 微信 4.1.10+ 登录捕获与旧版扫描；需 SQLCipher、临时磁盘空间；不跨设备导出。
     boundary_en: Supports macOS WeChat 4.1.10+ login capture and older scans; requires
       SQLCipher and temporary disk space; no cross-device export.
@@ -3050,8 +2996,8 @@ skills:
     maintenance_en: Review when WeChat schemas, SQLCipher environments, or observed
       support costs change.
     confidence: medium
-    review_trigger_zh: 20 名付费用户、100 次成功流程、支持超过 30 分钟、微信图片或数据库格式变化、0.6.0 或 2027-02-22；优先补齐跨机器成功率。
-    review_trigger_en: Review at 20 buyers, 100 successful workflows, support over
+    review_trigger_zh: 20 名会员用户、100 次成功流程、支持超过 30 分钟、微信图片或数据库格式变化、0.6.0 或 2027-02-22；优先补齐跨机器成功率。
+    review_trigger_en: Review at 20 members, 100 successful workflows, support over
       30 minutes, WeChat image or schema changes, 0.6.0, or 2027-02-22; prioritize
       cross-machine success rates.
     card_path: pricing-cards/wdb-cli.md
@@ -4194,10 +4140,9 @@ skills:
   repo: lovstudio/subtitle-freedom-skill
   name_zh: 人人字幕
   paid: true
-  price_credits: 14
   category: General
   version: 1.3.1
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   description: Create learner-friendly English subtitles using the selected profile
     as a minimum difficulty floor, with higher-level glosses, evidence-based ASS art
     cards, and optional renderer-compatible ASS/PGS sidecars without re-encoding the
@@ -4210,25 +4155,21 @@ skills:
     skillpay: review
   skill_path: ''
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 14
-    launch_price_credits: 14
-    price_range_credits:
-    - 14
-    - 14
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本的安装与使用说明
-    delivery_unit_en: One complete Skill with installation and usage notes for the
-      current version
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的安装与使用说明
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with installation
+      and usage notes for the current version
     value_zh: 只解释真正影响理解的词汇，同时保留原字幕时间轴，并可选生成叙事安全的 ASS 人物卡片。
     value_en: Explain only vocabulary that blocks comprehension, preserve timing,
       and optionally add narrative-safe ASS character cards.
     anchor_zh: 一次电影字幕加工通常可省下 30 分钟至数小时的筛选、查词、校验和排版时间。
     anchor_en: A run typically saves 30 minutes to several hours of vocabulary selection,
       lookup, validation, and subtitle styling.
-    basis_zh: 按一次可复用的学习字幕成品定价，重点是减少筛词、定位、证据核对和样式返工。
-    basis_en: Priced around a reusable learner-subtitle result, reducing word selection,
-      evidence checks, and styling rework.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。交付的是可复用的学习字幕成品，重点是减少筛词、定位、证据核对和样式返工。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. It delivers
+      a reusable learner-subtitle result, reducing word selection, evidence checks,
+      and styling rework. Membership pricing follows the current plan.
     boundary_zh: 结果依赖输入字幕、学习者 Profile、影片上下文和可用字体；联网检索与视频证据按实际条件处理。
     boundary_en: Results depend on source subtitles, learner profile, film context,
       and available fonts; web research and video evidence follow actual conditions.
@@ -4246,50 +4187,46 @@ skills:
   repo: lovstudio/macos-disk-optimizer-skill
   name_zh: Mac 清理助手
   paid: true
-  price_credits: 139
   category: General
   version: 0.6.0
-  updated_at: 2026-09-14 03:23:02+00:00
-  description: Guarded macOS disk cleanup with protected app workspaces, referenced build directories
-    left intact, rollback-aware staging, archive migration, and real-capacity verification.
-  tagline_en: Clean up Mac storage without touching protected app workspaces or build directories
-    that installed plugins and extensions still load from, with guarded migration, rollback,
-    and real-capacity verification.
+  updated_at: 2026-11-16 15:55:49+00:00
+  description: Guarded macOS disk cleanup with protected app workspaces, referenced
+    build directories left intact, rollback-aware staging, archive migration, and
+    real-capacity verification.
+  tagline_en: Clean up Mac storage without touching protected app workspaces or build
+    directories that installed plugins and extensions still load from, with guarded
+    migration, rollback, and real-capacity verification.
   tagline_zh: 按目标容量整理 Mac 磁盘，保护应用工作区，跳过仍被已装插件与扩展加载的构建目录，并以可回滚操作和真实可用空间完成验收。
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 139
-    launch_price_credits: 139
-    price_range_credits:
-    - 139
-    - 139
-    delivery_unit_zh: 公开 Skill 源码与当前版本说明
-    delivery_unit_en: Public Skill source and current-version notes
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中：Skill 源码与当前版本说明
+    delivery_unit_en: 'Included in the full Lovstudio.AI VIP Membership: Skill source and current-version notes'
     value_zh: 按目标容量整理 Mac 磁盘，保护应用工作区与被其它应用加载的构建目录，支持归档迁移、精确回收回滚项，并以真实可用空间完成验收。
-    value_en: Clean up Mac storage while protecting application-managed workspaces and build
-      directories other apps load from, with guarded migration, exact rollback-item purging,
-      and real-capacity verification.
+    value_en: Clean up Mac storage while protecting application-managed workspaces
+      and build directories other apps load from, with guarded migration, exact rollback-item
+      purging, and real-capacity verification.
     anchor_zh: 一次处理通常可省下 30 分钟至半天的排查、整理和回滚往返；避免一次误删已装集成再省下 0.5 至 2 小时的重建与排查。
-    anchor_en: A run typically saves 30 minutes to half a day of storage diagnosis, cleanup,
-      and rollback work, and avoiding one wrongly removed integration saves another 0.5 to 2
-      hours of rebuild and diagnosis.
-    basis_zh: 以 139 Credits 一次性解锁完整公开源码交付，价格用于验证真实付费意愿，重点价值是可回读的空间改善、应用工作区保护、已装插件与扩展不被静默卸载，以及回滚可靠性。
-    basis_en: The complete public-source delivery is unlocked once for 139 Credits to validate
-      paid demand, with value centered on verifiable capacity gains, app-workspace protection,
-      installed integrations that are never silently uninstalled, and reliable rollback.
+    anchor_en: A run typically saves 30 minutes to half a day of storage diagnosis,
+      cleanup, and rollback work, and avoiding one wrongly removed integration saves
+      another 0.5 to 2 hours of rebuild and diagnosis.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。重点价值是可回读的空间改善、应用工作区保护、已装插件与扩展不被静默卸载，以及回滚可靠性。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Value
+      is centered on verifiable capacity gains, app-workspace protection, installed
+      integrations that are never silently uninstalled, and reliable rollback. Membership
+      pricing follows the current plan.
     boundary_zh: 默认只处理明确的可重建产物和用户确认的低频资料；照片、消息、邮件、Git 历史、Screen Studio 录制工作区、被其它应用加载的目录及其他受保护路径不进入自动清理或迁移。访问时间只作参考信号。
-    boundary_en: Handles explicit rebuildable artifacts and user-confirmed cold data; photos,
-      messages, mail, Git history, Screen Studio recordings, directories other apps load from,
-      and other protected paths stay out of cleanup and migration. Access time is a reference
-      signal only.
+    boundary_en: Handles explicit rebuildable artifacts and user-confirmed cold data;
+      photos, messages, mail, Git history, Screen Studio recordings, directories other
+      apps load from, and other protected paths stay out of cleanup and migration.
+      Access time is a reference signal only.
     maintenance_zh: 随 macOS、文件系统、归档卷挂载方式、插件宿主与浏览器 profile 结构以及真实使用反馈变化复评。
-    maintenance_en: Review when macOS, filesystem behavior, archive-volume mounting, plugin-host
-      or browser profile layouts, or real-use feedback change.
+    maintenance_en: Review when macOS, filesystem behavior, archive-volume mounting,
+      plugin-host or browser profile layouts, or real-use feedback change.
     confidence: case-backed
-    review_trigger_zh: 0.5.0 发布满 30 天、累计 100 次付费兑换、版本变化，或支持成本明显变化时复评。
-    review_trigger_en: Review after 30 days from the 0.5.0 launch, 100 paid redemptions, a version
-      change, or a material change in support cost.
+    review_trigger_zh: 0.5.0 发布满 30 天、累计 100 次会员安装、版本变化，或支持成本明显变化时复评。
+    review_trigger_en: Review after 30 days from the 0.5.0 launch, 100 member installs,
+      a version change, or a material change in support cost.
     card_path: pricing-cards/clean-mac.md
 - name: media-fetch
   runtime_name: lov-media-fetch
@@ -4823,13 +4760,12 @@ skills:
       or the Skill adds a hosted control plane, managed secrets, or paid support.
 - name: typeless-prompt
   runtime_name: lov-typeless-prompt
-  updated_at: 2026-08-23 17:04:16+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Dictation Editor
   repo: lovstudio/typeless-prompt-skill
   name_zh: 口述成文
   paid: true
   skill_path: ''
-  price_credits: 14
   category: General
   version: 0.2.2
   description: Clean dictated or ASR text into concise, logically structured, send-ready
@@ -4842,26 +4778,20 @@ skills:
     workbuddy: planned
     skillpay: planned
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 14
-    launch_price_credits: 14
-    price_range_credits:
-    - 14
-    - 14
-    delivery_unit_zh: 单项 Skill 完整交付，含当前版本指令、参考契约、真实案例和 Profile 工具
-    delivery_unit_en: One complete Skill with current instructions, reference contracts,
-      real cases, and the Profile helper
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本指令、参考契约、真实案例和 Profile 工具
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with current
+      instructions, reference contracts, real cases, and the Profile helper
     value_zh: 把口述转写中的最终意图消解、信息保留、逻辑重建和清爽排版收敛成一次可复用整理。
     value_en: Turn rough dictation into reusable, send-ready text through final-intent
       resolution, information preservation, logical reconstruction, and clean layout.
     anchor_zh: 每次可减少约 5–15 分钟的删口癖、处理改口、重排层级和 Prompt 返工。
     anchor_en: Each use may remove roughly 5–15 minutes of filler cleanup, correction
       resolution, restructuring, and prompt rework.
-    basis_zh: 模型建议稳定价为 70–141 Credits；14 Credits 是用户明确指定的全平台首发验证价，不是成本回收价。
-    basis_en: The model-supported stable range is 70–141 Credits; 14 Credits is the
-      user-specified all-channel launch validation price rather than a cost-recovery
-      price.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Membership
+      pricing follows the current plan.
     boundary_zh: 包含已有 ASR 文本的清理、改口消解、逻辑重建和排版；不包含音频识别、词库同步、事实研究、任务执行、托管模型、API 额度或商业
       SLA。
     boundary_en: Covers cleanup, correction resolution, logical reconstruction, and
@@ -4871,9 +4801,9 @@ skills:
     maintenance_en: Instruction-only with no hard external API dependency; review
       against model behavior, user feedback, versions, and support cost.
     confidence: low
-    review_trigger_zh: 首发 30 天、100 次付费兑换、版本变化或平均单买家支持超过 15 分钟时复评。
-    review_trigger_en: Review after 30 launch days, 100 paid redemptions, a version
-      change, or average support above 15 minutes per buyer.
+    review_trigger_zh: 首发 30 天、100 次会员安装、版本变化或平均每位用户支持超过 15 分钟时复评。
+    review_trigger_en: Review after 30 launch days, 100 member installs, a version
+      change, or average support above 15 minutes per member.
     card_path: pricing-cards/typeless-prompt.md
 - name: cli2anything
   runtime_name: lov-cli2anything
@@ -7214,11 +7144,11 @@ skills:
     review_trigger_zh: 商业模式变化或取得跨素材实测账单后复评。
 - name: wxmp-cli
   runtime_name: lov-wxmp-cli
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: Weitan CLI
   repo: lovstudio/wxmp-cli-skill
   name_zh: 微探命令行
   paid: true
-  price_credits: 690
   category: General
   version: 0.1.2
   description: Search, read and export cached WeChat official-account articles with
@@ -7229,21 +7159,18 @@ skills:
   depends_on:
   - branding-consistency
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 690
-    launch_price_credits: 690
-    price_range_credits:
-    - 550
-    - 970
-    delivery_unit_zh: 完整命令行运行包与 Agent Skill，一次性购买
-    delivery_unit_en: Complete CLI runtime and Agent Skill, one-time purchase
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中：完整命令行运行包与 Agent Skill
+    delivery_unit_en: 'Included in the full Lovstudio.AI VIP Membership: complete
+      CLI runtime and Agent Skill'
     value_zh: 按公众号与关键词检索本机文章，并导出 Markdown、HTML、JSON 或 CSV。
     value_en: Search local articles by account and keyword; export Markdown, HTML,
       JSON or CSV.
-    basis_zh: 真实缓存读取及四种格式导出已验证；六维评分 3.2/5，外部买家证据仍待积累。
-    basis_en: Real cache reads and four export formats verified; scored 3.2/5, with
-      external buyer evidence pending.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。真实缓存读取及四种格式导出已验证；六维评分 3.2/5，其他用户的证据仍待积累。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Real cache
+      reads and four export formats verified; scored 3.2/5, with evidence from other
+      users pending. Membership pricing follows the current plan.
     boundary_zh: 需要 macOS、uv 和本机缓存；在线操作需要有效登录，成功在线采集尚未现场验证。不含账号服务、人工代采集和文章发布。
     boundary_en: Requires macOS, uv and local cache; online actions require a valid
       login and have not been field-verified. Accounts, managed collection and publishing
@@ -7252,9 +7179,9 @@ skills:
     maintenance_en: Versioned delivery; upstream login and collection changes may
       require later adaptation.
     confidence: medium
-    review_trigger_zh: 20 名买家、100 次成功流程、平均支持超过 30 分钟或六个月后复评。
-    review_trigger_en: Review after 20 buyers, 100 successful workflows, support exceeding
-      30 minutes on average, or six months.
+    review_trigger_zh: 20 名会员用户、100 次成功流程、平均支持超过 30 分钟或六个月后复评。
+    review_trigger_en: Review after 20 members, 100 successful workflows, support
+      exceeding 30 minutes on average, or six months.
     card_path: pricing-cards/wxmp-cli.md
 - name: read-wechat-article
   runtime_name: lov-read-wechat-article
@@ -9466,12 +9393,11 @@ skills:
     review_trigger_en: Review after ten business uses or a material maintenance change.
 - name: wdb-networkx-analysis
   runtime_name: lov-wdb-networkx-analysis
-  updated_at: '2026-09-26T12:00:00Z'
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: WeChat Network Analysis
   repo: lovstudio/wdb-networkx-analysis-skill
   name_zh: 微信人脉网络分析
   paid: true
-  price_credits: 268
   category: General
   skill_path: ''
   version: 0.1.0
@@ -9483,25 +9409,21 @@ skills:
   related:
   - wdb-cli
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 268
-    launch_price_credits: 268
-    price_range_credits:
-    - 268
-    - 423
-    delivery_unit_zh: 单个 Skill：只读导出、17 类网络分析、8 张图表、本地 HTML 报告与演示网络
-    delivery_unit_en: Single Skill with read-only export, 17 network analyses, 8 charts,
-      a local HTML report, and a demo network
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中：只读导出、17 类网络分析、8 张图表、本地 HTML 报告与演示网络
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with read-only
+      export, 17 network analyses, 8 charts, a local HTML report, and a demo network
     value_zh: 看清谁是枢纽和桥、哪些人处在核心圈、关系网能切出哪些结构社区、哪些关系只挂在一个群上。
     value_en: See who the hubs and bridges are, who sits in your core circle, which
       structural communities exist, and which ties hang on a single group.
-    anchor_zh: 替代数小时到数天的数据导出、建模与编码；节省时间因数据与经验而异，尚无买家统计。
+    anchor_zh: 替代数小时到数天的数据导出、建模与编码；节省时间因数据与经验而异，尚无用户统计。
     anchor_en: Replaces hours to days of data export, modeling, and coding; time savings
-      vary and buyer measurements are not yet available.
-    basis_zh: 在 8,663 位好友、2,944 个群的真实通讯录上完成全流程，结果可复现；作者定价，首发入口价。
-    basis_en: Completed end to end on a real address book with 8,663 friends and 2,944
-      groups with reproducible results; creator-set entry price.
+      vary and user measurements are not yet available.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。在 8,663 位好友、2,944 个群的真实通讯录上完成全流程，结果可复现。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Completed
+      end to end on a real address book with 8,663 friends and 2,944 groups with reproducible
+      results. Membership pricing follows the current plan.
     boundary_zh: 需 macOS 本机微信 4.x、已完成密钥准备的万能微信秘钥与 Python 3.10+；报告只在本机生成，不含云端运行或人工解读。
     boundary_en: Requires macOS WeChat 4.x, Universal WeChat Key with keys prepared,
       and Python 3.10+; reports stay local, with no cloud runs or human interpretation.
@@ -9509,20 +9431,19 @@ skills:
     maintenance_en: Review when WeChat schemas, analysis library versions, or observed
       support costs change.
     confidence: medium-low
-    review_trigger_zh: 首批 20 位买家或 2026-12-31；微信库结构变化或分析库主版本升级时复评。
-    review_trigger_en: Review at the first 20 buyers or 2026-12-31, or when WeChat schemas
-      or the analysis library major version change.
+    review_trigger_zh: 首批 20 位会员用户或 2026-12-31；微信库结构变化或分析库主版本升级时复评。
+    review_trigger_en: Review at the first 20 members or 2026-12-31, or when WeChat
+      schemas or the analysis library major version change.
     card_path: pricing-cards/wdb-networkx-analysis.md
   depends_on:
   - branding-consistency
 - name: wdb-cowork
   runtime_name: lov-wdb-cowork
-  updated_at: 2026-11-09 16:52:15+00:00
+  updated_at: 2026-11-16 15:55:49+00:00
   display_name: WeChat Cowork
   repo: lovstudio/wdb-cowork-skill
   name_zh: 微信工作搭子
   paid: true
-  price_credits: 268
   category: General
   skill_path: ''
   version: 0.2.0
@@ -9536,28 +9457,24 @@ skills:
   - wdb-export
   - tencent-meeting-cowork
   pricing:
-    model: one_time
+    model: vip_membership
     visibility: public
-    list_price_credits: 268
-    launch_price_credits: 268
-    price_range_credits:
-    - 268
-    - 549
-    delivery_unit_zh: 单个 Skill：会话上下文构建器、四种协作模式（回复、补进度、干活、待回清单）与回归测试
-    delivery_unit_en: Single Skill with a conversation context builder, four cowork
-      modes (reply, catch-up, work, inbox), and regression tests
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中：会话上下文构建器、四种协作模式（回复、补进度、干活、待回清单）与回归测试
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with a conversation
+      context builder, four cowork modes (reply, catch-up, work, inbox), and regression
+      tests
     value_zh: 不用再翻聊天记录找上下文：谁在等你、@你说了什么、对方发的文件在哪，一次理清，再按你在这段聊天里的说话方式起草回复或直接交付成果。
     value_en: Stop scrolling for context. See who is waiting on you, what mentions
       you, and where their files are, then get replies in the way you talk in that
       chat or the finished work itself.
-    anchor_zh: 替代每次手动翻记录、找文件、整理需求、斟酌措辞的 10–30 分钟；节省时间因使用频率而异，尚无买家统计。
+    anchor_zh: 替代每次手动翻记录、找文件、整理需求、斟酌措辞的 10–30 分钟；节省时间因使用频率而异，尚无用户统计。
     anchor_en: Replaces the 10–30 minutes of scrolling, file hunting, requirement
-      gathering, and wording each time; savings vary with usage and buyer measurements
+      gathering, and wording each time; savings vary with usage and user measurements
       are not yet available.
-    basis_zh: 在真实账号的私聊与 254 人群聊上验证，含一个客户咨询的完整案例；与同系列微信人脉网络分析一致的入口价。
-    basis_en: Verified on a real account's private chat and a 254-member group, including
-      a complete client consulting case; entry price matches the sibling WeChat Network
-      Analysis.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。在真实账号的私聊与 254 人群聊上验证，含一个客户咨询的完整案例。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Verified
+      on a real account's private chat and a 254-member group, including a complete
+      client consulting case. Membership pricing follows the current plan.
     boundary_zh: 需 macOS 本机微信 4.x、已完成密钥准备的万能微信秘钥与 Python 3.9+；只起草不发送，不含语音转写、图片识别或人工代回复。
     boundary_en: Requires macOS WeChat 4.x, Universal WeChat Key with keys prepared,
       and Python 3.9+; drafts only and never sends, with no voice transcription, image
@@ -9566,9 +9483,9 @@ skills:
     maintenance_en: Review when WeChat schemas, the Universal WeChat Key output contract,
       or observed support costs change.
     confidence: medium-low
-    review_trigger_zh: 首批 20 位买家或 2026-12-31；微信库结构或万能微信秘钥输出契约变化时复评。
-    review_trigger_en: Review at the first 20 buyers or 2026-12-31, or when WeChat schemas
-      or the Universal WeChat Key output contract change.
+    review_trigger_zh: 首批 20 位会员用户或 2026-12-31；微信库结构或万能微信秘钥输出契约变化时复评。
+    review_trigger_en: Review at the first 20 members or 2026-12-31, or when WeChat
+      schemas or the Universal WeChat Key output contract change.
     card_path: pricing-cards/wdb-cowork.md
   depends_on:
   - branding-consistency
