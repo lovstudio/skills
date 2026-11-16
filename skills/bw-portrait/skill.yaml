@@ -1,0 +1,42 @@
+schema: skill-manifest/v1
+id: lov-bw-portrait
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-bw-portrait
+    persist:
+      enabled: true
+      namespace: skills.lov-bw-portrait
+      records_path: skills.lov-bw-portrait.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言交付结果？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区记录生成时间？
+  preferences:
+    namespace: lov_bw_portrait
+    fields:
+      - path: skills.lov-bw-portrait.records.default_style
+        required: false
+        question: 长期默认使用浅灰背景的明亮风格，还是深色背景的棚拍风格？
+      - path: skills.lov-bw-portrait.records.default_framing
+        required: false
+        question: 长期默认出头肩特写，还是保持原构图？
+      - path: skills.lov-bw-portrait.records.output_dir
+        required: false
+        question: 成品长期默认保存到哪个目录？
+  interaction:
+    ask_missing: true
+    max_questions: 1

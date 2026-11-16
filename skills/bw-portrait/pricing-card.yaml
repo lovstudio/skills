@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "A reusable identity-preserving monochrome portrait workflow: two proven style presets, an identity-locked prompt structure, a balance precheck, a three-scale review gate and a single-fact correction contract with a measured comparison."
+basis: "The Skill is an installable instruction and quality-gate layer with a small local CLI. Users supply their own image-generation access and pay their own usage, observed at roughly a quarter of a US dollar per image. The pre-publication pricing pass scored it 2.6 out of 5 on six weighted dimensions and kept it as a free entry, in line with the two sibling portrait Skills."
+boundary: "Includes source inspection, reference preparation, balance check, prompt composition, the generation call, identity and fact review, avatar-size review and single-fact correction. Excludes model credits, hosted generation, photo rights clearance, changing any account avatar, public upload, text or Logo design and guaranteed deterministic output."
+review_trigger: "Reassess after 100 verified external uses, after five verified cases on different people, or when hosted generation, proprietary presets, batch processing, team review or material support cost is added."
+confidence: internal
