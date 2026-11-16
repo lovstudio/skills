@@ -107,8 +107,8 @@ to copy. The pre-publication pricing pass scored it 2.6 out of 5 on six weighted
 
 | Channel | State | As of | Evidence |
 | --- | --- | --- | --- |
-| `github` | pending | 2026-11-17 | Private source repository created and pushed; no version tag or Release yet. |
-| `lovstudio` | pending | 2026-11-17 | Catalog entry prepared as a free entry; the detail page, visible version and install command are not verified yet. |
+| `github` | live | 2026-11-17 | Private source repository `lovstudio/bw-portrait-skill`; tag `v0.1.0` and its Release sit on the commit that records this state. |
+| `lovstudio` | live | 2026-11-17 | Free entry merged in `lovstudio/skills#77`; lovstudio.ai read that commit, the detail page returned HTTP 200 showing version 0.1.0, and `npx lovstudio skills add bw-portrait --project` installed 0.1.0 into a clean directory. lovstudio.cn was not verified. |
 | `workbuddy` | not planned | 2026-11-17 | No package built or submitted. |
 | `skillpay` | not planned | 2026-11-17 | No product submitted. |
 
