@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **236 个技能** — 213 个免费 + 23 个付费。
+> **237 个技能** — 213 个免费 + 24 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -81,8 +81,9 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Deep Thinking](https://github.com/lovstudio/think-skill) (`think`) | [深度思考](https://github.com/lovstudio/think-skill) | 围绕复杂问题比较方案、验证假设并给出有依据的决策建议 — 依赖: `branding-consistency` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Dictation Editor](https://github.com/lovstudio/typeless-prompt-skill) (`typeless-prompt`) | [口述成文](https://github.com/lovstudio/typeless-prompt-skill) | 消解口癖、重复和改口，把口述草稿整理成逻辑清楚、排版舒展、可直接发送的正文。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Uploader](https://github.com/lovstudio/upload-image-skill) (`upload-image`) | [图片上云](https://github.com/lovstudio/upload-image-skill) | 复用用户现有PicGo配置上传一张或多张本地图片并返回网址，也可批量把Markdown内的本地图片引用改成在线地址 |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Universal WeChat Key](https://github.com/lovstudio/wdb-cli-skill) (`wdb-cli`) | [万能微信秘钥](https://github.com/lovstudio/wdb-cli-skill) | 先为本机微信准备密钥，再通过隔离副本读取数据并保留精确记录身份。 — 依赖: `branding-consistency`; 相关: `wdb-networkx-analysis`, `wdb-cowork` |
-| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [WeChat Cowork](https://github.com/lovstudio/wdb-cowork-skill) (`wdb-cowork`) | [微信工作搭子](https://github.com/lovstudio/wdb-cowork-skill) | 说出一个微信联系人或群，帮你按自己的语气起草回复、补上要你接的话、把对方要的活做出来；只起草，不发送。 — 依赖: `branding-consistency`; 相关: `wdb-cli`, `tencent-meeting-cowork` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Universal WeChat Key](https://github.com/lovstudio/wdb-cli-skill) (`wdb-cli`) | [万能微信秘钥](https://github.com/lovstudio/wdb-cli-skill) | 先为本机微信准备密钥，再通过隔离副本读取数据并保留精确记录身份。 — 依赖: `branding-consistency`; 相关: `wdb-networkx-analysis`, `wdb-cowork`, `wdb-export` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [WeChat Cowork](https://github.com/lovstudio/wdb-cowork-skill) (`wdb-cowork`) | [微信工作搭子](https://github.com/lovstudio/wdb-cowork-skill) | 说出一个微信联系人或群，帮你按自己的语气起草回复、补上要你接的话、把对方要的活做出来；只起草，不发送。 — 依赖: `branding-consistency`; 相关: `wdb-cli`, `wdb-export`, `tencent-meeting-cowork` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [WeChat Chat Export](https://github.com/lovstudio/wdb-export-skill) (`wdb-export`) | [微信聊天导出](https://github.com/lovstudio/wdb-export-skill) | 把别人转发来的微信聊天记录卡片导成一个网页：原文逐条保留、图片内嵌、链接可点、侧边目录，导出后自动与源数据核对。 — 依赖: `branding-consistency`; 相关: `wdb-cli`, `wdb-cowork` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [WeChat Network Analysis](https://github.com/lovstudio/wdb-networkx-analysis-skill) (`wdb-networkx-analysis`) | [微信人脉网络分析](https://github.com/lovstudio/wdb-networkx-analysis-skill) | 把微信好友和群聊看成一张网：枢纽、桥、核心圈与单线关系，一份本地报告讲清楚。 — 依赖: `branding-consistency`; 相关: `wdb-cli` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Weitan CLI](https://github.com/lovstudio/wxmp-cli-skill) (`wxmp-cli`) | [微探命令行](https://github.com/lovstudio/wxmp-cli-skill) | 检索公众号文章缓存，导出四种格式，内含完整命令行运行包 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [XBTI Studio](https://github.com/lovstudio/xbti-creator-skill) (`xbti-creator`) | [XBTI 工坊](https://github.com/lovstudio/xbti-creator-skill) | CreateacompletecustomBTIpersonalitytest(likeLBTI,FBTI,etc.)basedontheXBTIarchite — 依赖: `branding-consistency` |
