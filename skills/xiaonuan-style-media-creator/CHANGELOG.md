@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0 — 2026-11-17
+
+- 出片时默认接所有视频 Skill 共用的作者品牌片尾（`lov-logo-sting` 0.2.0 的 media end，配置在共享 Profile `preferences.video_outro`；作者 2026-11-17 定为统一模板），`<LogoSting>` 接在 `XiaonuanClip` 最后，音效按 `outro.json` 的增益并进最终混音；作者明确不要片尾时才省略。
+- Dependencies 加入 `lov-logo-sting`。
+
 ## 0.1.0 — 2026-11-08
 
 - 从 12 条已验证的公开作品建立 8 维风格协议，分析前冻结 10/2 训练与留出拆分。

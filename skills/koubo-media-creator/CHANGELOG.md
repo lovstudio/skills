@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.5.1 — 2026-11-17
+
+- 文档：CHANGELOG 与 pitfalls 里的实测说明改为不点名具体项目；脚本与起步工程没有变化。
+
+## 0.5.0 — 2026-11-17
+
+- 片尾默认改为所有视频 Skill 共用的作者品牌片尾（`lov-logo-sting` 0.2.0 的 media end，配置在共享 Profile `preferences.video_outro`）：作者 2026-11-17 要求用采访片结尾的 Logo 片段替换原来的关注卡。
+- `build.py --outro work/sting`：读 `media_end.py make` 的产物，片尾时长取 `timing.json` 帧数，`spec`/`timing`/`intro` 写进 `timeline.end.sting`；帧率不一致时拒绝。不传 `--outro` 时保留旧关注卡。
+- `mix.py --sting work/sting/sting.wav [--sting-gain 0.40]`：配乐在片尾起点前 1.2 秒淡出，音效按增益在 `end.from` 并进母带前混音；带片尾时限幅默认 −3 dBTP（0.95 增益曾让 AAC 编码成片真峰到 −0.0 dBFS）。
+- 起步工程新增与 `lov-logo-sting` 0.2.0 同版的 `LogoSting.tsx`；`Short.tsx` 有 `end.sting` 时挂 `<LogoSting>`，否则画旧关注卡；`types.ts` 增加 `end.sting`。
+- 文档：SKILL.md Step 6 与硬门禁 5、pipeline 新增 6b 片尾阶段、style-grammar §8、skill-composition、user-profile、script-format、pitfalls 同步；frontmatter `dependencies` 登记 `lov-logo-sting`。
+- 实测：一条约 2 分钟的竖版口播样片用本版脚本端到端重建（setup_project --force → media_end make → build --outro → mix --sting），时间线 3771 帧（口播 3627 + 片尾 144），−16.1 LUFS / −2.9 dBTP，与手工接入结果一致。
+
 ## 0.4.3 — 2026-11-17
 
 - 字幕不再拆开带点号的英文名：0.4.2 只保护数字，「Node.js 和 claude.ai」仍被切成「Node」「js 和 claude」「ai…」，「build.py」「e.g.」同理。`build.py` 改用一个 `JOINED` 规则：英文 `.` 两侧都是字母或数字（3.0、Node.js、v0.4.2），或英文 `,` `:` 两侧都是数字（1,000、10:30），都算同一个词，断句和超长句均分都不从中间切。后面跟空格或中文的英文句号照旧断句，所以句号后漏了空格的英文（works.Then）会连成一个词。

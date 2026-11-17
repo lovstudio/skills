@@ -7,12 +7,12 @@ compatibility: "Instruction-first. Python 3.8+ for production checks; PyYAML for
 depends_on:
   - lov-branding-consistency
 dependencies:
-  - name: "lov-logo-sting（可选：片尾品牌 Logo 收尾动画与音效；不装或不要时照常收尾）"
+  - name: "lov-logo-sting（默认片尾：所有视频 Skill 共用的作者品牌片尾 media end，读共享 Profile preferences.video_outro；作者明确不要片尾时才省略）"
     check: 'test -f "$HOME/.agents/skills/lov-logo-sting/SKILL.md"'
     install: "npx -y lovstudio@latest skills add logo-sting -y"
 metadata:
   author: contributors
-  version: "0.2.1"
+  version: "0.3.0"
   card_standard: lovstudio/skill-card/v1
   content_class: authored-prose
   tags:
@@ -127,10 +127,11 @@ python3 "$SKILL_DIR/scripts/profile_store.py" read --skill-id lov-motivational-m
 本工作室面向观众的品牌视觉预览和成片必须有清晰官方手工川Logo；素材由运行时Profile/项目提供，
 不以文字或生成图替代。制作包约定官方素材ID为 `brand-logo`、origin为 `brand-provided`，
 必须实际列入时间线。缺少时只能保留内部文字计划draft，不能删引用后升为ready或rendered-reviewed。
-片尾归属可选交 `lov-logo-sting`：只在面向观众的品牌成片、情绪落稳后提议；草稿、切片或未要求时不加，
-未安装或不要时照常收尾。交批准的官方Logo SVG（Profile `brand.logo` 或项目品牌素材）、成片fps和
-配乐节拍网格（笔画落拍），取回Remotion Sequence或sting.mp4，登记进时间线、素材账本和声音cue。
-加片尾后整条编码母带须重测响度与真峰值，目标由本片交付要求和实测决定，不套参考片经验常量。
+片尾默认接所有视频 Skill 共用的作者品牌片尾（`lov-logo-sting` 的 media end，配置在共享 Profile `preferences.video_outro`；
+作者 2026-11-17 定为统一模板），放在情绪落稳之后；只有作者明确说本片不要片尾时才省略，未安装时报出安装命令。
+`python3 "$HOME/.agents/skills/lov-logo-sting/scripts/media_end.py" make --out work/sting --fps <成片fps>` 生成规格、帧表、音效与`outro.json`，有配乐时加节拍网格（`--beats`，笔画落拍）；
+取回Remotion Sequence（`intro`取`outro.json`）或`render_sting.py`的clip，登记进时间线、素材账本和声音cue，配乐在片尾起点前收住。
+加片尾后整条编码母带须重测响度与真峰值：默认按`outro.json`的增益0.40、真峰值上限−3 dBTP，本片交付要求更严时从严。
 
 ### 5. 权利与内容双门禁
 
@@ -166,5 +167,5 @@ QC结果/待办、A/B方案。读者文案与内部制作说明分文件保存�
 - `lov-branding-consistency`：必需语义审校；缺失须报告，不假称已执行。
 - Python 3.8+：Profile、制作包检查用标准库；PyYAML用于Skill源校验。
 - 可选yt-dlp、FFmpeg/ffprobe：仅用于授权的研究获取、媒体核验。
-- 媒体制作、通用视频、片尾Logo（`lov-logo-sting`）、发布器为可选制品交接，不是隐藏外部运行依赖。
+- 片尾Logo（`lov-logo-sting`）是默认片尾依赖；媒体制作、通用视频、发布器为可选制品交接，不是隐藏外部运行依赖。
 - 真实练习：[Original demo](cases/original-demo/README.md)。

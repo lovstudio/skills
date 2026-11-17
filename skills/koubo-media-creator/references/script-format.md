@@ -15,7 +15,7 @@
 | `cover` | 是 | 见下 |
 | `facts` | 有数字时必填 | `[{id, claim, source, checked}]`；`source` 是 URL 或本机证据路径 |
 | `lines` | 是 | 逐句台词与镜头，见下 |
-| `end` | 否 | `line`（片尾一句话）、`covers`（作者往期封面，片尾网格） |
+| `end` | 否 | `line`（片尾一句话）、`covers`（作者往期封面，片尾网格）；只用于旧关注卡，默认的共享品牌片尾（`build.py --outro`）不显示它们 |
 
 ## lines[]
 

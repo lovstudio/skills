@@ -12,9 +12,13 @@ compatibility: >
   per track observed 2026-10).
 depends_on:
   - lov-branding-consistency
+dependencies:
+  - name: "lov-logo-sting（默认片尾：所有视频 Skill 共用的作者品牌片尾 media end，读共享 Profile preferences.video_outro；作者明确不要片尾时才省略）"
+    check: 'test -f "$HOME/.agents/skills/lov-logo-sting/scripts/media_end.py"'
+    install: "npx -y lovstudio@latest skills add logo-sting -y"
 metadata:
   author: lovstudio
-  version: "0.4.3"
+  version: "0.5.1"
   card_standard: lovstudio/skill-card/v1
   content_class: authored-prose
   suite: lov-film
@@ -89,7 +93,8 @@ python3 "$SKILL_DIR/scripts/profile_store.py" record --skill-id lov-koubo-media-
 3. **证据是真的。** 上屏素材只来自作者自己的屏幕与操作、公开网页（截图注明来源）、本片按事实生成的数据卡；
    `capture.py term` 只渲染命令的真实输出，不手写终端内容。
 4. **切点经过核验。** `align.py` 的 `review` 列表为空或逐条人工确认；句首句尾落在静音缝里，不吃字。
-5. **声音过门禁。** 一条按本片内容生成或选定的音乐床，最后挂载、只挂一次；母带 −16 ±1 LUFS-I、≤ −1 dBTP。
+5. **声音过门禁。** 一条按本片内容生成或选定的音乐床，最后挂载、只挂一次；母带 −16 ±1 LUFS-I、≤ −1 dBTP；
+   接共享片尾时配乐在片尾起点前收住，片尾音效按 0.40 增益并进母带前混音，限幅 −3 dBTP。
 6. **成片过质检。** `finish.py` 全部检查通过（1080×1920、30 fps、帧数 = 时间线、bt709、≤ 10 Mbps、
    重转写吃字率 ≤ 3%，CER 只作参考）；1 fps 联系表逐页看过。数字通过不等于验收。
 7. **封面可读。** 3:4 在 270×360、16:9 在 480×270 下一眼读完主标题；有官方 Logo；标题不压脸。
@@ -151,11 +156,15 @@ python3 "$SKILL_DIR/scripts/profile_store.py" record --skill-id lov-koubo-media-
 
 ### Step 6: 构建、封面与配乐
 
-- `setup_project.py EPISODE`（首次）→ `build.py … --recording recording/<原片> --logo <浅色官方 Logo>`；
-  缺素材时可先 `--allow-missing` 预览。
+- 片尾默认用所有视频 Skill 共用的作者品牌片尾（`lov-logo-sting` 的 media end，配置在共享 Profile `preferences.video_outro`；
+  作者 2026-11-17 定为统一模板，替换原来的关注卡）：`python3 "$HOME/.agents/skills/lov-logo-sting/scripts/media_end.py" make --out work/sting --fps 30`。
+  只有作者明确说本片不要片尾时才省略（不传 `--outro` / `--sting` 时退回旧的关注卡）。
+- `setup_project.py EPISODE`（首次）→ `build.py … --recording recording/<原片> --logo <浅色官方 Logo> --outro work/sting`；
+  缺素材时可先 `--allow-missing` 预览。片尾时长取 `timing.json` 的帧数，`<LogoSting>` 由起步工程挂在最后。
 - 封面人像：从开头 3 秒封面表情里挑一帧（`ffmpeg -ss … -frames:v 1`），`cutout` 抠成透明 PNG，写进 `cover.cutout`；
   `cover.cards` 选 1–2 张本片证据截图。
-- 配乐：写一句音乐简报，`gen_bgm.py` 生成 1–2 个候选（先报价）；选一条，`mix.py --bgm …`。
+- 配乐：写一句音乐简报，`gen_bgm.py` 生成 1–2 个候选（先报价）；选一条，`mix.py --bgm … --sting work/sting/sting.wav`
+  （配乐在片尾起点前 1.2 秒淡出，片尾音效并进母带前混音）。
 
 ### Step 7: 渲染与质检
 
@@ -178,6 +187,7 @@ python3 "$SKILL_DIR/scripts/profile_store.py" record --skill-id lov-koubo-media-
 - FFmpeg / FFprobe；Node 20+、pnpm、Remotion 4.0.517（`assets/starter`，`pnpm-workspace.yaml` 已放行 esbuild 构建）。
 - macOS `swiftc` + Vision（`assets/tools/cutout.swift`，封面人像抠图）。
 - 字体：一款支持 900 字重的中文无衬线（如 Noto Sans SC 可变字体），可选展示字体（如 Smiley Sans）。
+- `lov-logo-sting` 0.2.0+（默认片尾，`media_end.py`；起步工程自带同版 `LogoSting.tsx`）。
 - 可选：`VOICENGINE_API_KEY`（Seed-TTS 2.0 占位配音）、`OPENROUTER_API_KEY`（Lyria 配乐），只从环境变量读。
 
 ## Validation

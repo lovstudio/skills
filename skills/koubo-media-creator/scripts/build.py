@@ -3,7 +3,7 @@
 
 usage: build.py work/script.json work/takes.json --recording recording/take.mov --public work/remotion/public
                 [--root EPISODE_DIR] [--still brand/portrait.jpg] [--face-y 0.33] [--speed 1.0] [--fps 30]
-                [--end-seconds 2.5] [--max-caption 14] [--animatic]
+                [--outro work/sting] [--end-seconds 2.5] [--max-caption 14] [--animatic]
 
 - presenter: the recording's video, trimmed to the takes' spans, scaled/cropped to 1080×1920 (bt709, 30 fps)
   as ONE continuous file public/media/presenter.mp4; with --still (audio-only stand-in take) the presenter is
@@ -13,7 +13,9 @@ usage: build.py work/script.json work/takes.json --recording recording/take.mov 
   ASR char times; ≤ --max-caption chars per caption, emphasis words never split, no trailing punctuation.
 - shots: one or more b-roll per line, split at a b-roll's `at` substring or evenly; images are copied to
   public/broll/ with their pixel size recorded so boxes and focus land on the right pixels.
-- end card: --end-seconds after the last line, voice silent, music continues.
+- outro: with --outro (a lov-logo-sting `media_end.py make` folder) the shared brand outro follows the last line for its
+  timing's frame count and its spec/timing go into timeline.end.sting; mix.py --sting then sums its sound. Without
+  --outro the legacy follow card is drawn for --end-seconds, voice silent, music continues.
 Writes public/data/timeline.json; mix.py later adds public/audio/mix.m4a and points the timeline at it.
 """
 import argparse
@@ -178,7 +180,8 @@ def main():
     ap.add_argument("--face-y", type=float, default=0.33, help="face centre as a fraction of presenter height")
     ap.add_argument("--speed", type=float, default=1.0)
     ap.add_argument("--fps", type=int, default=30)
-    ap.add_argument("--end-seconds", type=float, default=2.5)
+    ap.add_argument("--outro", help="lov-logo-sting media_end.py make folder (outro.json, spec.json, timing.json)")
+    ap.add_argument("--end-seconds", type=float, default=2.5, help="legacy follow card length, ignored with --outro")
     ap.add_argument("--max-caption", type=int, default=14)
     ap.add_argument("--animatic", action="store_true", help="mark the film as a stand-in preview")
     ap.add_argument("--placeholder", action="store_true",
@@ -355,9 +358,20 @@ def main():
     (pub / "data" / "cover.json").write_text(json.dumps(spec, ensure_ascii=False, indent=1))
 
     end_frames = round(a.end_seconds * fps)
+    sting = None
+    if a.outro:
+        od = Path(a.outro)
+        oj = json.loads((od / "outro.json").read_text())
+        timing = json.loads((od / "timing.json").read_text())
+        if int(timing["fps"]) != fps:
+            raise SystemExit(f"build: outro timing is {timing['fps']} fps but the film is {fps}; rerun media_end.py make --fps {fps}")
+        sting = {"spec": json.loads((od / "spec.json").read_text()), "timing": timing, "intro": oj.get("intro", "black")}
+        end_frames = int(timing["dur"])
     author = s.get("author") or {}
     end = {"from": total_speech, "frames": end_frames, "name": author.get("name", ""), "handle": author.get("handle", ""),
            "line": (s.get("end") or {}).get("line", ""), "avatar": None, "covers": []}
+    if sting:
+        end["sting"] = sting
     if author.get("avatar") and (root / author["avatar"]).exists():
         dst = pub / "img" / ("avatar" + Path(author["avatar"]).suffix.lower())
         shutil.copy2(root / author["avatar"], dst)

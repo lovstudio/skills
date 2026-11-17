@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: 0.2.1
+version: 0.3.0
 display_name: 励志视频 · Motivational Film
 description: 从品牌brief与可信事实生成原创励志视频制作包，包括完整口播、逐段分镜、声音设计、权利账本和结构验收；不等同已渲染视频。
 owner:

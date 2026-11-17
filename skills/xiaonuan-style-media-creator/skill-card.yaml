@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: 0.1.0
+version: 0.2.0
 description: 晓暖说媒风格短视频：带时间证据的直播连麦切片风格协议、剪辑计划校验与可渲染的包装模板。
 owner:
   team: Local skill contributors

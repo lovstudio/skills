@@ -38,7 +38,7 @@ Local-first，在兼容 Skills 的本地 AI 宿主中使用。
 
 ## Skill Version
 
-0.1.0，2026-11-08。
+0.2.0，2026-11-17。
 
 ## Ethical Considerations
 

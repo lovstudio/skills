@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.1.0"
+  version: "0.2.0"
   card_standard: lovstudio/skill-card/v1
   content_class: authored-prose
   tags: [video-style, call-in-clip, livestream, short-video, remotion, evidence]
@@ -101,7 +101,7 @@ python3 "$SKILL_DIR/scripts/build_audio.py" --plan EDIT_PLAN --voice REF=VOICE_W
 python3 "$SKILL_DIR/scripts/build_render_plan.py" --plan EDIT_PLAN --media REF=media/FILE.mp4 --audio audio/mix.m4a --output WORK/src/data/render-plan.json
 ```
 
-把 `templates/remotion` 复制到工作目录，按其 README 放入依赖、录像、音轨与标题字体后渲染 `XiaonuanClip` 与 `XiaonuanCover34`。验收：成片重新转写核对剪口、实测响度与峰值、`separator_scan.py` 复查提示音、扫描黑场与长静音、抽帧检查叠加元素、在 3:4 缩略尺寸检查封面。prepared、validated、rendered_review、human_approved、published 是不同状态；对外发布前确认来访者对这一版的同意。
+把 `templates/remotion` 复制到工作目录，按其 README 放入依赖、录像、音轨与标题字体后渲染 `XiaonuanClip` 与 `XiaonuanCover34`。片尾默认接所有视频 Skill 共用的作者品牌片尾（`lov-logo-sting` 的 media end，配置在共享 Profile `preferences.video_outro`；作者 2026-11-17 定为统一模板）：`python3 "$HOME/.agents/skills/lov-logo-sting/scripts/media_end.py" make --out work/sting --fps <成片 fps>` 生成，`<LogoSting>` 接在 `XiaonuanClip` 最后（`intro` 取 `outro.json`，不传 `audioSrc`），`sting.wav` 按 `outro.json` 的增益（默认 0.40）在起点帧并进最终混音、片尾下不垫配乐；只有作者明确说本片不要片尾时才省略。验收：成片重新转写核对剪口、实测响度与峰值、`separator_scan.py` 复查提示音、扫描黑场与长静音、抽帧检查叠加元素、在 3:4 缩略尺寸检查封面。prepared、validated、rendered_review、human_approved、published 是不同状态；对外发布前确认来访者对这一版的同意。
 
 ## Refreshing references
 
@@ -118,4 +118,4 @@ v0.2 候选修订记录在 `assets/xiaonuan-v0.1/holdout-report.json`。外部�
 
 ## Dependencies
 
-生成与审阅使用宿主 AI 与内置画像，不依赖固定云账号。校验需 Python 3.9+、jsonschema、PyYAML。出片需 FFmpeg、numpy、Node.js 与 Remotion 4.0.517。重分析需 OpenCV、Pillow、librosa、swiftc（macOS Vision OCR）与一个带时间戳的 ASR。下载、转写、拍摄、来访者授权、发布不是默认已完成的步骤。
+生成与审阅使用宿主 AI 与内置画像，不依赖固定云账号。校验需 Python 3.9+、jsonschema、PyYAML。出片需 FFmpeg、numpy、Node.js 与 Remotion 4.0.517；片尾需 `lov-logo-sting`（默认片尾，共享 media end）。重分析需 OpenCV、Pillow、librosa、swiftc（macOS Vision OCR）与一个带时间戳的 ASR。下载、转写、拍摄、来访者授权、发布不是默认已完成的步骤。

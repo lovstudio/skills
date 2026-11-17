@@ -1,6 +1,6 @@
 # 动态图志 · Pricing Card
 
-版本：0.9.1（目录 ID `motion-media-creator`、调用 ID `lov-motion-media-creator`）。包含在 Lovstudio.AI VIP 会员全套权益中，不单独定价、不兑换 Credits；会员价格以当前会员方案为准。源码私有，会员账号按版本下载完整文件。
+版本：0.11.0（目录 ID `motion-media-creator`、调用 ID `lov-motion-media-creator`）。包含在 Lovstudio.AI VIP 会员全套权益中，不单独定价、不兑换 Credits；会员价格以当前会员方案为准。源码私有，会员账号按版本下载完整文件。
 
 无实拍，把一个主题做成每章一种视觉、带旁白与大字幕的动态设计短片，16:9 成片、三比例封面与质检一次交付。
 

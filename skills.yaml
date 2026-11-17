@@ -2522,7 +2522,7 @@ skills:
   name_zh: 动态图志
   paid: true
   category: Video Creation
-  version: 0.9.1
+  version: 0.11.0
   description: 'Motion Atlas: no-footage motion-design films told chapter by chapter
     along one axis (time, map, catalogue, process, scale), with chapter cards and
     progress HUD, TTS or own-voice narration with large (optionally bilingual) subtitles,
@@ -2577,7 +2577,7 @@ skills:
   name_zh: 采访短片
   paid: true
   category: Video Creation
-  version: 0.9.1
+  version: 0.10.0
   updated_at: 2026-11-16 08:26:42+00:00
   description: "Interview Short: edit a phone interview into a 2–4 min vertical WeChat
     Channels short with a cold open from the interviewee's own words, ~5 chapters,
@@ -2631,7 +2631,7 @@ skills:
   name_zh: 群访短片
   paid: true
   category: Video Creation
-  version: 0.4.3
+  version: 0.5.0
   updated_at: 2026-11-16 06:27:04+00:00
   description: 'Group Interview Short: turn a phone recording of a group dinner or
     salon into one vertical film where every guest appears, plus a solo short per
@@ -2685,7 +2685,7 @@ skills:
   name_zh: 口播短片
   paid: false
   category: Video Creation
-  version: 0.4.3
+  version: 0.5.1
   updated_at: 2026-11-17 00:29:20+00:00
   description: "Talking-head Short: turn a topic into a vertical AI-tools talking-head
     short — sourced facts, gated script, teleprompter, on-screen evidence and covers;
@@ -2751,7 +2751,7 @@ skills:
   name_zh: 天才剪辑师
   paid: true
   category: Video Creation
-  version: 0.34.1
+  version: 0.35.0
   description: Turn screen recordings into review-first video deliveries with editable-subtitle
     MKV, approved platform files, rendered covers for every required slot, protected
     source audio, and QC evidence.
@@ -9657,7 +9657,7 @@ skills:
   repo: lovstudio/motivational-media-creator-skill
   paid: false
   category: Video Creation
-  version: 0.2.1
+  version: 0.3.0
   updated_at: '2026-10-22T07:02:10.829565Z'
   description: Create original motivational-video production packages from brand briefs and verified evidence,
     with narration, storyboards, sound design and rights checks.
@@ -9807,7 +9807,7 @@ skills:
   repo: lovstudio/xiaonuan-style-media-creator-skill
   paid: false
   category: Video Creation
-  version: 0.1.0
+  version: 0.2.0
   updated_at: '2026-11-08T13:11:53Z'
   depends_on:
   - branding-consistency

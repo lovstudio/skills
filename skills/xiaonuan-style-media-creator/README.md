@@ -1,6 +1,6 @@
 # 晓暖说媒风格短视频
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
 
 `lov-xiaonuan-style-media-creator`：把小红书博主「晓暖（清醒择偶）说媒」直播连麦切片的推理方式、叙事结构、口语招式和包装模板，转成有证据的创作协议与可渲染模板，再用于你自己的连麦录像或新选题。
 

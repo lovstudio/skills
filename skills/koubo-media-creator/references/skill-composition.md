@@ -15,6 +15,7 @@
 | `lov-voice2srt` | 录音转字幕 | **not composed**：本 Skill 的字幕从脚本出字、从对齐出时间；作者默认的云端 ASR 结果经 `align.py --words` 接入 |
 | `lov-media-publisher` | 发视频号 / B 站 / 小红书 | **downstream**：交付已批准的成片、3:4 与 16:9 封面、标题；发布与回读归它 |
 | `lov-branding-consistency` | 读者可见文本的品牌门禁 | **依赖**：标题、封面字、片尾一句话、标注都过它 |
+| `lov-logo-sting` | 所有视频 Skill 共用的作者品牌片尾（media end） | **依赖**：`media_end.py make` 生成 `work/sting`，`build.py --outro` 挂画面，`mix.py --sting` 并声音；片尾配置只读共享 Profile `preferences.video_outro` |
 
 ## Atomic Handoffs
 
