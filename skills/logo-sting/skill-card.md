@@ -124,6 +124,6 @@ brand consistency across films rather than a stand-alone sale.
 | --- | --- |
 | local install | installed: `~/.claude/skills/lov-logo-sting` → `~/.agents/skills/lov-logo-sting` → source directory (verified 2026-10-22) |
 | github (free) | private source repository `lovstudio/logo-sting-skill`; the public copy is the `lovstudio/skills` catalog mirror (2026-11-17) |
-| lovstudio (free) | pending: catalog entry and mirror submitted; detail page, version and install not yet read back (2026-11-17) |
+| lovstudio (free) | live on lovstudio.ai: lovstudio/skills#82 merged, detail page 200 showing 0.2.0, isolated `npx lovstudio skills add logo-sting --project` installs 0.2.0 (2026-11-17); lovstudio.cn waits for the CN mirror job |
 | workbuddy (paid) | not published |
 | skillpay (paid) | not published |
