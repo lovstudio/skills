@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把一次性做好的品牌片尾变成可复用能力：换一条片子只需官方 SVG、fps 和拍点，几十秒内得到与原片同一套动画与音效的片尾，而不必为每条片子重新设计和调音。"
+basis: "免费。它是 LovStudio 所有视频类 Skill 的默认片尾依赖（其中口播、励志、晓暖风格为免费 Skill），免费才能让公开用户装上这些 Skill 时片尾也能用；价值体现在多条成片之间的品牌一致性，不单独售卖。真实用例是作者本人的成片（参考片、三部采访片与一条口播样片），尚无外部用户数据。加权评分约 2.68 / 5，属轻量入口；免费是作者的决定，不由评分推导。"
+boundary: "包含：Logo 规格、帧表、合成音效、Remotion 组件、四种画幅的独立片段渲染、关键帧与响度质检说明。不包含：Logo 设计或重画、位图转矢量、其它动画风格的定制、整片剪辑与混音、平台发布，以及任何 Logo 素材本身。"
+review_trigger: "出现外部用户或付费 Skill 把它当作卖点引用时；新增第二种动画风格或可调参数时；Remotion 升级导致维护成本明显上升时。"
+confidence: internal

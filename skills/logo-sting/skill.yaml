@@ -1,0 +1,50 @@
+schema: skill-manifest/v1
+id: lov-logo-sting
+version: "0.2.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-logo-sting
+    persist:
+      enabled: true
+      namespace: skills.lov-logo-sting
+      records_path: skills.lov-logo-sting.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 这条片子以哪个品牌署名？（母品牌、个人品牌或某个产品）
+      - path: brand.logo
+        required: false
+        question: 品牌官方 Logo 的 SVG 文件在哪里？需要单色、路径已转曲的横版或图标版。
+      - path: skills.lov-logo-sting.records.logo_svg
+        required: false
+        question: 片尾默认用哪个官方 Logo SVG？（与 brand.logo 不同时填写，例如个人品牌的白色横版）
+      - path: skills.lov-logo-sting.records.accent
+        required: false
+        question: 片尾光效用哪个品牌强调色？（#RRGGBB；SVG 里没有彩色填充时必须提供）
+      - path: skills.lov-logo-sting.records.hot
+        required: false
+        question: 最亮处的高光色是哪个？（#RRGGBB；不填则由强调色向白混 60 % 推出）
+      - path: skills.lov-logo-sting.records.final
+        required: false
+        question: Logo 最终停留在什么颜色？（#RRGGBB；默认白色 #FFFFFF）
+  preferences:
+    namespace: lov_logo_sting
+    fields:
+      - path: user.language
+        required: false
+        question: 交付报告用哪种语言？
+  interaction:
+    ask_missing: true
+    max_questions: 1

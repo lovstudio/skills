@@ -2572,6 +2572,7 @@ skills:
   - media-creator
   - media-publisher
   - motion-media-creator
+  - logo-sting
   display_name: Interview Short
   repo: lovstudio/interview-media-creator-skill
   name_zh: 采访短片
@@ -2680,6 +2681,7 @@ skills:
   related:
   - interview-media-creator
   - media-publisher
+  - logo-sting
   display_name: Talking-head Short
   repo: lovstudio/koubo-media-creator-skill
   name_zh: 口播短片
@@ -2735,6 +2737,67 @@ skills:
     review_trigger_en: No paid-tier review is planned; revisit on a major version change
       or a clear rise in maintenance cost.
     card_path: pricing-cards/koubo-media-creator.md
+- name: logo-sting
+  runtime_name: lov-logo-sting
+  related:
+  - koubo-media-creator
+  - interview-media-creator
+  - media-creator
+  display_name: Logo Sting
+  repo: lovstudio/logo-sting-skill
+  name_zh: 品牌片尾
+  paid: false
+  category: Video Creation
+  version: 0.2.0
+  updated_at: 2026-11-17 01:44:25+00:00
+  description: "Logo Sting: turn an official logo SVG into a beat-locked brand outro
+    with matching synthesized sound (strokes slam in on the beat, the wordmark lands
+    on the bar line) and use it as the shared media end of every video Skill: one command
+    builds it from the profile, one command mixes its sound into the film."
+  tagline_en: Turn your official logo SVG into a beat-locked brand outro with matching
+    sound, and give every video Skill the same ending with one command.
+  tagline_zh: 把官方 Logo 做成卡拍的片尾动画与同帧音效：笔画逐拍砸入、字标落在小节线，所有视频 Skill 共用这一段片尾。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 免费的完整 Skill（MIT 许可），含 Logo 规格、卡拍帧表、确定性合成音效、Remotion 组件、四种画幅的独立片段渲染、共享片尾的一键生成与混音脚本和质检说明
+    delivery_unit_en: The full Skill, free under MIT, with the logo spec, beat-locked
+      timing, deterministic synthesized sound, a Remotion component, stand-alone clip
+      rendering in four aspect ratios, one-command media-end build and mix scripts,
+      and QC notes
+    value_zh: 只要官方 Logo SVG、本片帧率与拍点，就得到与画面同帧的片尾动画和音效；登记一次后，所有视频 Skill 的成片都用同一段片尾。
+    value_en: From an official logo SVG, the film's frame rate and its beat grid, get
+      an outro whose sound lands on the same frames as the picture; record it once and
+      every video Skill ends its films the same way.
+    anchor_zh: 一段卡拍的品牌片尾通常要动效与声音分别制作，换一条片子还要重新对拍和调音；这里同一份配置生成的结果逐字节一致，每条成片的片尾都保持统一。
+    anchor_en: A beat-locked brand outro usually needs separate motion and sound work,
+      redone for every film; here the same record yields byte-identical results, so
+      every film ends with the same brand moment.
+    basis_zh: 免费是作者的决定：它是所有视频 Skill 的默认片尾依赖，其中多个视频 Skill 免费提供，片尾也必须能被公开用户装上。六维加权约 2.68/5，属轻量入口；真实用例均为作者本人的成片，尚无外部用户数据。
+    basis_en: Free by the author's decision. It is the default outro dependency of every
+      video Skill, several of which are free, so public users must be able to install
+      it too. The six-dimension judgment is about 2.68/5, a light entry; all real cases
+      are the author's own films, with no external-user data yet.
+    boundary_zh: 覆盖官方 SVG 解析与分组、卡拍帧表、合成音效、Remotion 组件、独立片段渲染、共享片尾生成与并入混音及质检说明；不含 Logo 设计或重画、位图转矢量、其它动画风格的定制、整片剪辑与混音、平台发布，以及任何 Logo 素材本身。
+    boundary_en: Covers official SVG parsing and grouping, beat-locked timing, synthesized
+      sound, the Remotion component, stand-alone clip rendering, building the shared
+      media end and mixing its sound, and QC notes. Logo design or redrawing, bitmap
+      tracing, other animation styles, whole-film editing and mixing, publishing and
+      any logo artwork itself are not included.
+    maintenance_zh: 随 Remotion 主版本、视频 Skill 的接入方式与真实使用反馈维护，不承诺付费支持时效。
+    maintenance_en: Maintained against Remotion major versions, how the video Skills
+      integrate it, and real-use feedback, without a paid support SLA.
+    confidence: low
+    review_trigger_zh: 出现外部用户或付费 Skill 把它当作卖点引用时、新增第二种动画风格或可调参数时、Remotion 升级导致维护成本明显上升时复评。
+    review_trigger_en: Revisit when external users appear or a paid Skill cites it as
+      a selling point, when a second animation style or tunable parameters are added,
+      or when a Remotion upgrade clearly raises maintenance cost.
+    card_path: pricing-cards/logo-sting.md
 - name: media-creator
   runtime_name: lov-media-creator
   depends_on:
@@ -2745,6 +2808,7 @@ skills:
   - media-publisher
   - motion-media-creator
   - motivational-media-creator
+  - logo-sting
   updated_at: 2026-11-16 15:55:49+00:00
   display_name: Video Studio
   repo: lovstudio/media-creator-skill

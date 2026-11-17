@@ -1,0 +1,136 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.0"
+description: "品牌片尾 · Logo Sting：把品牌的官方 Logo SVG 做成卡拍的片尾动画与同帧合成音效（光点内爆、笔画逐拍砸入、负片、字标落定扫光、硬切黑场），交付 Remotion Sequence 或独立 H.264/AAC 片段，并附关键帧、品牌安全与响度质检。"
+owner:
+  team: "LovStudio"
+  contact: "lovstudio.ai"
+license:
+  name: MIT
+  terms: "MIT 许可，可自由使用、修改与分发。Skill 本身不附带任何 Logo：使用者只能输入自己有权使用的官方 Logo 文件，生成的片尾归 Logo 权利人的品牌使用规范约束。"
+  url: "LICENSE"
+use_case:
+  audience: "为自己或所服务品牌发布视频的创作者与团队，以及在定片尾时调用它的视频类 Skill（lov-media-creator、lov-motion-media-creator、lov-interview-media-creator 等）"
+  scenario: "成片需要一段有态度的品牌收尾：用官方 Logo 做 4–5 秒的片尾动画与音效，卡在配乐的拍点和小节线上，接在 Remotion 工程或任意剪辑管线的末尾。"
+  tasks:
+    - "从官方 Logo SVG 生成 Logo 规格，核对笔画分组与顺序"
+    - "按本片 fps 与配乐拍点生成帧表"
+    - "合成与帧表同帧的片尾音效"
+    - "挂进 Remotion 工程，或渲染 9:16、16:9、1:1、4:3 独立片段并接到成片末尾"
+    - "做关键帧联系表、品牌安全检查和整片响度复测"
+deployment:
+  geography: global
+  environments:
+    - "macOS、Linux 或 Windows 上的本地 Agent Skills 环境（已验证 macOS / Apple Silicon）"
+    - "宿主可以是 Remotion 4 工程，也可以是 FFmpeg、剪映等任意剪辑管线"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "Python 3.9+；sting_audio.py 需要 numpy"
+    - "Node.js 24+、npm/npx；Remotion 4.0.534、React 19.1.0（锁在模板 package.json）"
+    - "ffmpeg 与 ffprobe"
+    - "查看分组预览：rsvg-convert、qlmanage 或浏览器"
+  runtime:
+    - "品牌官方 Logo SVG（单色、路径已转曲）"
+    - "宿主项目里的工作目录，生成文件不写进 Skill 目录"
+    - "首次渲染独立片段需联网 npm install 一次，或用 --node-modules 复用已有 Remotion 4.0.534 安装"
+risks:
+  - risk: "用错 Logo：Profile 的 brand.logo 指向母品牌、个人品牌或产品中的另一个，或是方形图标版。"
+    mitigation: "片子署名品牌与 brand.name 不一致或文件为方形图标时先问一次；交付报告写明所用文件与 sha256。"
+  - risk: "Logo 被重画或改形：手改路径、描摹位图、用相近字体重排字标。"
+    mitigation: "只接受官方 SVG，路径逐字节拷贝，只做整体平移与等比缩放；质检核对 sha256，并用相同参数重跑 logo_spec.py 逐字节比对 spec。"
+  - risk: "笔画分组或顺序错误，例如纯图标 Logo 被内部空隙误切成笔画加字标。"
+    mitigation: "每次输出分组预览 SVG 并目视确认，用 --mark 或 --order 改参数重跑，不改文件。"
+  - risk: "出现「圆盘 + 放射线」构图，面向中国大陆受众时有旭日旗联想风险。"
+    mitigation: "组件只用水平向光条、火花和闪光，圆形元素只有细冲击波环；关键帧联系表逐张检查，宿主交接场景同样适用。"
+  - risk: "响度跳变或真峰值溢出：片尾瞬态在母带与 AAC 编码后变大。"
+    mitigation: "加入片尾后在最终编码文件上复测整片响度与真峰值；参考成片据此把母带目标降到 −2.5 dBTP、限制器 0.70 后达标（−16.0 LUFS / −2.8 dBTP）。"
+  - risk: "片尾的击打与本片配乐拍点错位。"
+    mitigation: "用 --beats 传入宿主配乐的拍点网格；推荐配乐结束在片尾起点的小节线上，片尾底下不垫配乐。"
+  - risk: "16:9 画面里笔画砸入的一两帧碰到画面上下边缘。"
+    mitigation: "与参考成片一致、属设计内的瞬间溢出；最终锁定画面留有充足边距，联系表中确认静置帧完整。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Data contract"
+    path: "references/spec-contract.md"
+  - title: "Integration"
+    path: "references/integration.md"
+  - title: "Quality checks"
+    path: "references/qc.md"
+  - title: "Skill group composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "Logo 规格 spec.json（logo-sting-spec/v1）与分组预览 SVG"
+    - "帧表 timing.json（logo-sting-timing/v1）"
+    - "片尾音效 sting.wav"
+    - "Remotion 组件 LogoSting.tsx 挂成的 Sequence，或独立片段 logo-sting-9x16.mp4 等"
+    - "关键帧联系表与质检数值"
+  formats:
+    - "JSON"
+    - "SVG"
+    - "WAV 48 kHz 立体声 16-bit"
+    - "MP4（H.264 CRF 16 yuv420p，AAC 320 kb/s 48 kHz，bt709）"
+    - "PNG 联系表"
+  parameters:
+    - "fps、bpm 或宿主拍点网格、总长 dur"
+    - "画幅 9x16、16x9、1x1、4x3"
+    - "颜色 final、accent、hot、background"
+    - "开场 intro：point 或 black；音量 gain（默认 0.95）"
+  validation:
+    - "ffprobe：编码、尺寸、帧数、时长、AAC 48 kHz、bt709 标记"
+    - "spec 的 sha256 等于官方文件，相同参数重跑逐字节一致"
+    - "关键帧联系表目检，含反「圆盘 + 放射线」检查"
+    - "整片 ebur128 响度与真峰值复测"
+  description: "画面与声音读同一份帧表，每一击落在同一帧；动画、音效与帧表归本 Skill，片尾在成片中的位置、整片混音与响度验收归宿主视频 Skill。"
+ethical_considerations: "只处理使用者有权使用的品牌 Logo，不重画、不改形，不制作冒充他人品牌的片尾；不在画面中加入未经同意的文字或信息。避免旭日旗式「圆盘 + 放射线」构图。Skill 不收集个人数据，Profile 只保存用户直接说出的品牌偏好，不保存凭据。"
+dimensions:
+  - id: correctness
+    label: "与参考片尾一致"
+    description: "用同一官方 SVG 与参考参数，生成的规格、帧表、音效和画面是否与已发布成片的片尾一致。"
+    evidence: "音效与原片 logo-sting.wav 逐字节一致（含文件头，cmp 通过），两次运行结果相同；6 条路径数据与 SVG 逐字节一致，sha256 相符；9:16 与 16:9 画面逐帧对照成片平均 Y-PSNR 53.6 / 53.3 dB（黑场前 140 帧），最低 40.8 / 40.0 dB 出现在负片帧 72，原因是成片母版的色彩标记重标未转换，对照母版该帧为 44.4 dB。"
+    score: "evidence-backed"
+  - id: effectiveness
+    label: "成片中的实际效果"
+    description: "片尾是否满足作者对品牌收尾的要求，并在真实发布的成片中使用。"
+    evidence: "作者要求「结尾要使用品牌标识酷炫的收尾动画与音效（怎么酷炫怎么来，展示态度）」；v0.2 成片 4:11 起 4.8 秒使用该片尾，B 站 BV16gnz6hEgE 已发布（2026-10-21 交付报告记录开放浏览）；作者随后评价「感觉这个视频结尾的品牌动画挺好的」并要求抽成独立 Skill。"
+    score: "evidence-backed"
+  - id: efficiency
+    label: "生成速度"
+    description: "从官方 SVG 到可交付片段的耗时。"
+    evidence: "音效合成约 0.8 秒；复用已有 Remotion 安装时渲染 9:16 与 16:9 两个片段共约 17 秒（Apple Silicon Mac，2026-10-22 实测 16.5 秒）。首次 npm install 的耗时未测量。"
+    score: "evidence-backed"
+  - id: brand-safety
+    label: "品牌安全"
+    description: "是否只用官方 Logo、不改形，并避开敏感构图。"
+    evidence: "logo_spec.py 拒绝活字、徽章/反白锁定、旋转等变换并说明原因（四个官方品牌 SVG 实测：两个可用，两个按原因拒绝）；分组预览当场发现方形图标版被误切并可用 --mark 3 纠正；参考成片片尾 5 fps 联系表逐张目检无「圆盘 + 放射线」构图。"
+    score: "evidence-backed"
+  - id: portability
+    label: "可移植性"
+    description: "换 Logo、帧率、画幅和宿主后是否仍然可用。"
+    evidence: "LovPen 白色横版、只有图形的 Logo、两笔 even-odd 测试 Logo，30 与 60 fps，9:16、16:9、1:1、4:3 均已渲染并看过联系表（25 fps 只生成并检查了帧表与音效）；Remotion 宿主直接 import JSON 通过 tsc 严格检查并渲染；FFmpeg concat 拼接与外部混音（样本级精确）已实测。"
+    score: "evidence-backed"
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "免费：作为视频类 Skill 的可选片尾能力，免费降低接入门槛；价值体现在成片的品牌一致性，而不是单独售卖。"
+  boundary: "包含 Logo 规格、帧表、音效、Remotion 组件、独立片段渲染与质检说明；不含 Logo 设计或重画、位图转矢量、整片剪辑与混音、平台发布，以及其它动画风格的定制。"
+  review_trigger: "出现外部用户、新增第二种动画风格或可调参数、被付费 Skill 作为卖点引用，或 Remotion 升级带来明显维护成本时复评。"
+  confidence: internal
+distribution:
+  local:
+    status: installed
+    evidence: "2026-10-22：~/.claude/skills/lov-logo-sting -> ../../.agents/skills/lov-logo-sting -> 本地源码目录 logo-sting-skill，readlink -f 解析到源码。"
+  paid:
+    - channel: workbuddy
+      status: not-published
+    - channel: skillpay
+      status: not-published
+  free:
+    - channel: github
+      status: private-source
+      evidence: "2026-11-17：源码独立为私有仓库 lovstudio/logo-sting-skill；免费 Skill 的公开副本由 lovstudio/skills 目录镜像提供。"
+    - channel: lovstudio
+      status: pending
+      evidence: "2026-11-17：目录条目与镜像已提交待合并；详情页、版本显示与安装命令尚未回读。"

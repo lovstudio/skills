@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.venv/
+venv/
+node_modules/
+.env
+.env.local
+dist/
+
+# generated outputs: they belong in the host project's work dir, never here
+# (render_sting.py refuses an output inside the skill dir; these guard manual runs)
+*.mp4
+*.mov
+*.wav
+work/
+out/
+clips/
+spec-preview.*
+.lov-logo-sting-work
+.lov-logo-sting-shadow
+.remotion/
