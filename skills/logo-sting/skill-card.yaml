@@ -132,5 +132,5 @@ distribution:
       status: private-source
       evidence: "2026-11-17：源码独立为私有仓库 lovstudio/logo-sting-skill；免费 Skill 的公开副本由 lovstudio/skills 目录镜像提供。"
     - channel: lovstudio
-      status: pending
-      evidence: "2026-11-17：目录条目与镜像已提交待合并；详情页、版本显示与安装命令尚未回读。"
+      status: live
+      evidence: "2026-11-17：lovstudio/skills#82 合并（90100ea），站点读到该提交；lovstudio.ai/skills/logo-sting 返回 200 并显示 0.2.0；隔离目录 npx lovstudio skills add logo-sting --project 装上 0.2.0，装好的副本 media_end.py make 生成的 sting.wav 与参考逐字节一致。lovstudio.cn 待国内镜像任务同步。"
