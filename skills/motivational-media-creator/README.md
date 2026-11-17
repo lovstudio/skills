@@ -1,6 +1,6 @@
 # 励志视频 · Motivational Film
 
-![version](https://img.shields.io/badge/version-0.2.1-blue)
+![version](https://img.shields.io/badge/version-0.3.0-blue)
 
 把一个真实困境变成一个有理由的选择：原创口播、分镜、情绪和声音设计、素材权利账本，
 以及能检查的制作包。不是他人电影/演讲混剪器，不承诺爆款，不把制作包冒充成片。

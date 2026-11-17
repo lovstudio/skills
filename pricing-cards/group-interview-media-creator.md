@@ -1,6 +1,6 @@
 # 群访短片 · Pricing Card
 
-版本：0.4.3（目录 ID `group-interview-media-creator`、调用 ID `lov-group-interview-media-creator`）。包含在 Lovstudio.AI VIP 会员全套权益中，不单独定价、不兑换 Credits；会员价格以当前会员方案为准。源码私有，会员账号按版本下载完整文件。
+版本：0.5.0（目录 ID `group-interview-media-creator`、调用 ID `lov-group-interview-media-creator`）。包含在 Lovstudio.AI VIP 会员全套权益中，不单独定价、不兑换 Credits；会员价格以当前会员方案为准。源码私有，会员账号按版本下载完整文件。
 
 把一场多人轮流发言的手机实录（饭局、沙龙，可加聊天记录与现场照片）按人组织：一条串起全员的视频号竖版主片，每位嘉宾可再各出一条单人短片。每个人提过的不露出、删词要求写成构建时报错的门禁；审阅版、字幕、招牌封面、耳听清单、嘉宾确认清单与交付报告一次交付。适合办饭局、沙龙、多人对谈类栏目的创作者与品牌工作室。
 

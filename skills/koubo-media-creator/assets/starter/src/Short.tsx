@@ -5,6 +5,7 @@ import {
 import { BADGE_Y, BROLL_FULL, C, CALLOUT_Y, CAPTION_Y, FONT, H, SAFE, SPLIT, W, outlined } from './layout';
 import { useFonts } from './fonts';
 import type { Caption, Layout, Shot, Timeline } from './types';
+import { LogoSting } from './LogoSting';
 
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
@@ -242,7 +243,14 @@ export const Short: React.FC<{ tl: Timeline }> = ({ tl }) => {
           样片 · 配音与出镜为占位
         </div>
       ) : null}
-      <EndCard tl={tl} />
+      {tl.end.sting ? (
+        // the shared brand outro of every video Skill; its sound is summed into the mix by mix.py --sting
+        <Sequence from={tl.end.from} durationInFrames={tl.end.sting.timing.dur}>
+          <LogoSting spec={tl.end.sting.spec} timing={tl.end.sting.timing} intro={tl.end.sting.intro} />
+        </Sequence>
+      ) : (
+        <EndCard tl={tl} />
+      )}
       <Audio src={staticFile(tl.audio)} />
     </AbsoluteFill>
   );

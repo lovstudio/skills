@@ -1,6 +1,6 @@
 # 天才剪辑师 · Pricing Card
 
-版本：0.34.1（目录 ID `media-creator`、调用 ID `lov-media-creator`）。包含在 Lovstudio.AI VIP 会员全套权益中，不单独定价、不兑换 Credits；会员价格以当前会员方案为准。源码私有，会员账号按版本下载完整文件。
+版本：0.35.0（目录 ID `media-creator`、调用 ID `lov-media-creator`）。包含在 Lovstudio.AI VIP 会员全套权益中，不单独定价、不兑换 Credits；会员价格以当前会员方案为准。源码私有，会员账号按版本下载完整文件。
 
 把录屏和 Screen Studio 源工程整理为可审校视频，以批准字幕生成横竖版成片、封面和质检报告。
 

@@ -1,3 +1,5 @@
+import type { LogoStingSpec, LogoStingTiming } from './LogoSting';
+
 export type Layout = 'split' | 'face' | 'broll';
 
 export type Caption = { from: number; to: number; text: string; line: string; hl: string[] };
@@ -34,7 +36,11 @@ export type Timeline = {
   watermark: string;
   captions: Caption[];
   shots: Shot[];
-  end: { from: number; frames: number; name: string; handle: string; line: string; avatar: string | null; covers: string[] };
+  end: {
+    from: number; frames: number; name: string; handle: string; line: string; avatar: string | null; covers: string[];
+    // the shared brand outro (lov-logo-sting media end, build.py --outro); without it the legacy follow card is drawn
+    sting?: { spec: LogoStingSpec; timing: LogoStingTiming; intro: 'point' | 'black' };
+  };
   title: string;
 };
 

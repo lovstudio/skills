@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 — 2026-11-17
+
+- 片尾改为默认接所有视频 Skill 共用的作者品牌片尾（`lov-logo-sting` 0.2.0 的 media end，配置在共享 Profile `preferences.video_outro`；作者 2026-11-17 定为统一模板），放在情绪落稳之后；作者明确不要片尾时才省略。
+- 生成改用 `media_end.py make`；混音默认增益 0.40、真峰上限 −3 dBTP，本片交付要求更严时从严。
+- `lov-logo-sting` 从可选制品交接改为默认片尾依赖。
+
 ## 0.2.1 — 2026-10-22
 
 - 按用户指定将调用ID改为 `lov-motivational-media-creator`，同步Manifest、本地源目录和宿主入口。

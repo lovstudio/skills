@@ -28,9 +28,10 @@ EP/
 | 4 | 样片（可选） | `python3 $S/tts.py work/script.json --out recording/tts-take.wav --dry-run`，再去掉 `--dry-run` 加 `--ledger ledger/costs.jsonl` | 占位配音、每句真值 `tts-take.json`、对齐输入 `tts-take.words.json` | 先报字数与单价 |
 | 5 | 对齐 | 样片：`$PY $S/align.py work/script.json recording/tts-take.wav --out work/takes.json --words recording/tts-take.words.json`（TTS 真值，不经 ASR）；成片：`$PY $S/align.py work/script.json recording/<原片> --out work/takes.json [--words asr.json]` | 每句选中的一遍与切点 | 样片每句 1.00；`review` 为空或逐条确认 |
 | 6 | 工程 | `python3 $S/setup_project.py EP`（首次；模板更新时 `--force`，不动 `public/data`） | `work/remotion` | `pnpm check` 通过 |
-| 7 | 构建 | `$PY $S/build.py work/script.json work/takes.json --recording recording/<原片> --public work/remotion/public --logo brand/logo-white.png [--face-y 0.33]`；样片加 `--still brand/portrait.jpg --placeholder --animatic` | 连续人像/人声中间轨、`timeline.json`、`cover.json` | 中间轨帧数 = 时间线（脚本自检） |
+| 6b | 片尾 | `python3 "$HOME/.agents/skills/lov-logo-sting/scripts/media_end.py" make --out work/sting --fps 30`（读共享 Profile `preferences.video_outro`） | `work/sting/{outro,spec,timing}.json`、`sting.wav` | SVG sha256 与记录一致 |
+| 7 | 构建 | `$PY $S/build.py work/script.json work/takes.json --recording recording/<原片> --public work/remotion/public --logo brand/logo-white.png --outro work/sting [--face-y 0.33]`；样片加 `--still brand/portrait.jpg --placeholder --animatic` | 连续人像/人声中间轨、`timeline.json`、`cover.json` | 中间轨帧数 = 时间线（脚本自检） |
 | 8 | 封面人像 | `swiftc -O $SKILL_DIR/assets/tools/cutout.swift -o work/bin/cutout`；`ffmpeg -ss 1.2 -i recording/<原片> -frames:v 1 broll/pose.jpg`；`work/bin/cutout broll/pose.jpg broll/cover-cutout.png` | 透明底人像 | 头发边缘看过；放大不超过 1.1× |
-| 9 | 配乐 | `python3 $S/gen_bgm.py --name a --prompt "…" --out music/bed-a --ledger ledger/costs.jsonl` → `python3 $S/mix.py --public work/remotion/public --bgm music/bed-a.mp3` | `public/audio/mix.m4a` | −16 ±1 LUFS-I、≤ −1 dBTP |
+| 9 | 配乐 | `python3 $S/gen_bgm.py --name a --prompt "…" --out music/bed-a --ledger ledger/costs.jsonl` → `python3 $S/mix.py --public work/remotion/public --bgm music/bed-a.mp3 --sting work/sting/sting.wav` | `public/audio/mix.m4a` | −16 ±1 LUFS-I、≤ −1 dBTP（接片尾时限幅 −3 dBTP） |
 | 10 | 成片 | `$PY $S/finish.py EP --name <命名规则> --version v0.x` | 成片、3:4 与 16:9 封面、`qc/report-<版本>.json`、联系表、缩略图 | `ok: true` 且联系表与缩略图看过 |
 
 ## 样片与成片的区别

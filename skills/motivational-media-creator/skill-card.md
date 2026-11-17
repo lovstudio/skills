@@ -19,7 +19,7 @@ Python 3.8+；PyYAML仅用于源校验；lov-branding-consistency语义审校。
 ## Skill Output
 Markdown及production JSON；附检查结果，未拍未录未授权项保留在草稿待办。
 ## Skill Version
-0.2.1
+0.3.0
 ## Ethical Considerations
 不羞辱、不鼓励过劳、不承诺成功，不公开私生活，不搬运参考片、台词、声纹或音乐。
 ## User Cases

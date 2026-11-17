@@ -76,7 +76,8 @@ an initialization mode.
 | --- | --- |
 | `user.name`、`skills.lov-koubo-media-creator.records.handle` | 水印（无 Logo 时）、片尾名字 |
 | `brand.logo` | 浅色官方 Logo：水印、片尾、封面；有 Logo 时优先于文字水印 |
-| `brand.avatar` | 片尾关注卡头像 |
+| `preferences.video_outro` | 共享品牌片尾（所有视频 Skill 共用）：官方 SVG、sha256、颜色、fps、bpm、intro、增益、真峰上限；由 `lov-logo-sting` 的 `media_end.py` 读取 |
+| `brand.avatar` | 旧关注卡头像（只在作者不要品牌片尾时用） |
 | `brand.portrait` | 样片占位形象照（按原尺寸显示，放大不超过 1.1×） |
 | `records.end_line` | 片尾一句话 |
 | `records.default_format` | 没说片型时的默认值 |
