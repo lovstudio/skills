@@ -27,8 +27,9 @@ from pathlib import Path
 PUNCT = re.compile(r"[\s，。！？、：；“”‘’（）《》【】,.!?:;\"'()\[\]<>…—\-~·]")
 BREAK = re.compile(r"[，。！？；：,.!?;:]")
 STRIP = "，。！？、：；,.!?;: "
-# a , . : between two digits belongs to the number (3.0, 1,000, 10:30): captions never break or blank it
-NUMBER = re.compile(r"[0-9]+(?:[,.:][0-9]+)+")
+# a . between two letters or digits (3.0, Node.js, build.py) and a , or : between two digits (1,000, 10:30)
+# belong to the token: captions never break, blank or split it there. tts.py keeps the same pattern.
+JOINED = re.compile(r"[0-9A-Za-z]+(?:(?:\.|(?<=[0-9])[,:](?=[0-9]))[0-9A-Za-z]+)+")
 VIDEO_EXT = {".mp4", ".mov", ".m4v", ".webm"}
 try:
     import opencc
@@ -55,10 +56,16 @@ def probe(path):
     return v, float(out["format"]["duration"])
 
 
+def joined_inside(text):
+    """Positions inside a JOINED token, where no caption may break."""
+    return {k for m in JOINED.finditer(text) for k in range(m.start() + 1, m.end())}
+
+
 def split_caption(text, emphasis, limit):
-    """Phrases at punctuation, then balanced word-boundary splits; emphasis words and numbers stay whole."""
-    pieces = [p for p in re.split(r"(?<=[，。！？；：!?;])|(?<=[,.:])(?![0-9])|(?<![0-9][,.:])(?<=[,.:])", text)
-              if p.strip(STRIP)]
+    """Phrases at punctuation, then balanced word-boundary splits; emphasis words and JOINED tokens stay whole."""
+    inside = joined_inside(text)
+    cuts = [m.end() for m in BREAK.finditer(text) if m.end() not in inside]
+    pieces = [p for p in (text[a:b] for a, b in zip([0] + cuts, cuts + [len(text)])) if p.strip(STRIP)]
     out = []
     for p in pieces:
         disp = p.strip(STRIP + "　")
@@ -91,7 +98,7 @@ def split_caption(text, emphasis, limit):
             else:
                 merged.append(tokens[i])
                 i += 1
-        inside = {k for m in NUMBER.finditer(disp) for k in range(m.start() + 1, m.end())}
+        inside = joined_inside(disp)
         whole, at = [], 0  # jieba splits 1,000 and 10:30 into three tokens; glue them back
         for t in merged:
             if whole and at in inside:
@@ -102,16 +109,20 @@ def split_caption(text, emphasis, limit):
         n = len(PUNCT.sub("", disp))
         parts = -(-n // limit)
         target = n / parts
-        cur, acc = "", 0
+        seg, cur, acc = [], "", 0
         for t in whole:
             tl = len(PUNCT.sub("", t))
-            if cur and acc + tl > target * 1.15 and len(out) < 99:
-                out.append(cur.strip())
+            if cur and acc + tl > target * 1.15 and len(out) + len(seg) < 99:
+                seg.append(cur)
                 cur, acc = "", 0
             cur += t
             acc += tl
         if cur.strip():
-            out.append(cur.strip())
+            seg.append(cur)
+        # a long glued token (claude.ai) can push the greedy pass past `parts`, leaving a one-word tail: fold it back
+        if inside and len(seg) > parts and len(PUNCT.sub("", seg[-2] + seg[-1])) <= limit:
+            seg[-2:] = [seg[-2] + seg[-1]]
+        out += [c.strip() for c in seg]
     # the genre's captions carry no punctuation: inner commas become a space, ?/! and periods drop
     clean = [re.sub(r"\s*(?:[，、；：;]|(?<![0-9])[,:]|[,:](?![0-9]))\s*", " ", c.strip(STRIP)).strip() for c in out]
     return [re.sub(r"[。！？!?]", "", c).strip() for c in clean if c]

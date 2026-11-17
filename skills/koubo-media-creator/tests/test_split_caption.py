@@ -50,6 +50,38 @@ class NumbersStayWhole(unittest.TestCase):
                     self.assertEqual("".join(chunks).replace(" ", ""), text)
 
 
+class DottedNamesStayWhole(unittest.TestCase):
+    def test_short_phrases(self):
+        cases = {
+            "把 build.py 跑一遍。然后看结果": ["把 build.py 跑一遍", "然后看结果"],
+            "升级到 v0.4.2 就好": ["升级到 v0.4.2 就好"],
+            "Node.js 和 claude.ai 都能用。": ["Node.js 和", "claude.ai 都能用"],
+        }
+        for mode in MODES:
+            for text, want in cases.items():
+                with self.subTest(mode=mode, text=text):
+                    self.assertEqual(split(text, mode), want)
+
+    def test_long_line_balanced_cut(self):
+        cases = {
+            "今天大家都在讨论的框架是Next.js明天正式开放下载使用": "Next.js",
+            "这次我们把整个后端都迁到了Node.js上面效果还不错": "Node.js",
+        }
+        for mode in MODES:
+            for text, name in cases.items():
+                with self.subTest(mode=mode, text=text):
+                    chunks = split(text, mode)
+                    self.assertGreater(len(chunks), 1)
+                    self.assertEqual(sum(name in c for c in chunks), 1, chunks)
+                    self.assertEqual("".join(chunks).replace(" ", ""), text)
+
+    def test_period_before_cjk_or_space_still_breaks(self):
+        for mode in MODES:
+            with self.subTest(mode=mode):
+                self.assertEqual(split("我用的是GPT.然后呢", mode), ["我用的是GPT", "然后呢"])
+                self.assertEqual(split("It works. Then stop.", mode), ["It works", "Then stop"])
+
+
 class OrdinaryBreaksUnchanged(unittest.TestCase):
     def test_punctuation_still_breaks(self):
         cases = {

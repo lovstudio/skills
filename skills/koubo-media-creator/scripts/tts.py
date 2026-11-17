@@ -9,8 +9,8 @@ The animatic lets the author judge pacing, shots and packaging before recording;
 filler) so align.py's "last good take" choice can be regression-tested; the ground truth goes to
 <out>.json. --lead adds silence where the author would hold the cover pose.
 The same truth is also written as <out>.words.json, the `[{w, s, e}]` input of `align.py --words`: one
-entry per phrase (split at punctuation) inside the line's known window, each break snapped to a pause near
-where the phrase weights put it, so an animatic is aligned without any ASR (every line scores 1.00, cuts
+entry per phrase (split at punctuation, never inside 3.0, 1,000, 10:30 or Node.js) inside the line's known
+window, each break snapped to a pause near where the phrase weights put it, so an animatic is aligned without any ASR (every line scores 1.00, cuts
 land on the real line edges).
 Per-line audio is cached by text+speaker+rate under <out dir>/tts/; a rerun with the same arguments costs
 nothing and rebuilds the take and both JSON files. Needs VOICENGINE_API_KEY (env only, never printed);
@@ -37,6 +37,20 @@ URL = "https://openspeech.bytedance.com/api/v3/tts/unidirectional"
 SR = 48000
 HOP = 0.01
 PHRASE = re.compile(r"[，。！？、：；,.!?:;…]+")
+# same as build.py JOINED: 3.0, Node.js, 1,000 and 10:30 are one phrase, not a break
+JOINED = re.compile(r"[0-9A-Za-z]+(?:(?:\.|(?<=[0-9])[,:](?=[0-9]))[0-9A-Za-z]+)+")
+
+
+def phrases_of(text):
+    """Split a line at punctuation runs, except inside a JOINED token."""
+    inside = {k for m in JOINED.finditer(text) for k in range(m.start() + 1, m.end())}
+    out, start = [], 0
+    for m in PHRASE.finditer(text):
+        if m.start() not in inside:
+            out.append(text[start:m.start()])
+            start = m.end()
+    out.append(text[start:])
+    return [p for p in out if p.strip()]
 
 
 def synth(text, speaker, rate):
@@ -121,7 +135,7 @@ def truth_words(db, truth):
     thr = percentile([v for v in db if v > -120], 20) + 6
     words = []
     for t in truth:
-        phrases = [p for p in PHRASE.split(t["text"]) if p.strip()]
+        phrases = phrases_of(t["text"])
         lo, hi = int(t["from"] / HOP), int(t["to"] / HOP)
         runs = quiet_runs(db, lo + 5, hi - 5, thr) if len(phrases) > 1 else []
         wts = [weight(p) for p in phrases]
