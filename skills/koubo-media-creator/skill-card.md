@@ -1,6 +1,6 @@
 # 口播短片 · Talking-head Short · Skill Card
 
-> 版本 0.4.2 · MIT · Lovstudio.AI
+> 版本 0.4.3 · MIT · Lovstudio.AI
 
 ## Description
 
@@ -55,7 +55,7 @@ MIT。生成物著作权归作者；片中第三方网页截图须注明来源�
 
 ## Skill Version
 
-0.4.2（2026-11-17）
+0.4.3（2026-11-17）
 
 ## Ethical Considerations
 
