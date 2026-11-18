@@ -1,0 +1,64 @@
+{
+  "status": "pass",
+  "image": "手工川-名片蒸馏-正反-2026-11-18-v0.1.png",
+  "failed_scales": [],
+  "scales": [
+    {
+      "scale": 1.0,
+      "pixels": [
+        3240,
+        3888
+      ],
+      "decoded": 1,
+      "codes": [
+        {
+          "host": "u.wechat.com",
+          "sha256": "c1dc03bdc8e4"
+        }
+      ]
+    },
+    {
+      "scale": 0.66,
+      "pixels": [
+        2138,
+        2566
+      ],
+      "decoded": 1,
+      "codes": [
+        {
+          "host": "u.wechat.com",
+          "sha256": "c1dc03bdc8e4"
+        }
+      ]
+    },
+    {
+      "scale": 0.5,
+      "pixels": [
+        1620,
+        1944
+      ],
+      "decoded": 1,
+      "codes": [
+        {
+          "host": "u.wechat.com",
+          "sha256": "c1dc03bdc8e4"
+        }
+      ]
+    },
+    {
+      "scale": 0.33,
+      "pixels": [
+        1069,
+        1283
+      ],
+      "decoded": 1,
+      "codes": [
+        {
+          "host": "u.wechat.com",
+          "sha256": "c1dc03bdc8e4"
+        }
+      ]
+    }
+  ],
+  "note": "Measured on the delivered card with the original personal WeChat QR (payload hidden; host and hash prefix only). The public cover uses a non-decodable placeholder QR."
+}

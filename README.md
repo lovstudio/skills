@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **239 个技能** — 215 个免费 + 24 个付费。
+> **240 个技能** — 216 个免费 + 24 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -111,6 +111,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Interface Designer](https://github.com/lovstudio/frontend-design-skill) (`frontend-design`) | [界面设计师](https://github.com/lovstudio/frontend-design-skill) | 把真实内容和现有代码落实为有辨识度、交互一致、媒体可用的界面，并留下验收证据。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Knowledge Card Studio](https://github.com/lovstudio/gen-card-skill) (`gen-card`) | [知识卡片工坊](https://github.com/lovstudio/gen-card-skill) | 把结构化内容与独立示意图排成可复制、可下载的高清知识卡片，输出自包含HTML和2×PNG — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Finishing](https://github.com/lovstudio/image-decorator-skill) (`image-decorator`) | [图片装帧](https://github.com/lovstudio/image-decorator-skill) | 为现有PNG、JPEG或WebP增加底部caption与右下品牌Logo，并按艺术图片或软件截图选择带框、无框版式 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Jessy Card Design](https://github.com/lovstudio/jessy-style-card-design-skill) (`jessy-style-card-design`) | [Jessy 名片设计](https://github.com/lovstudio/jessy-style-card-design-skill) | 照 Jessy 名片的横版版式，换上你的品牌与真实资料，输出双面 PNG 与 HTML。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Partner Directory](https://github.com/lovstudio/maintain-partners-skill) (`maintain-partners`) | [伙伴名录](https://github.com/lovstudio/maintain-partners-skill) | 一键抓取品牌 logo、标准化处理并接入官网 partners 区块，多语言全覆盖。 — 依赖: `find-logo` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Mobile Infographic](https://github.com/lovstudio/mobile-infographic-skill) (`mobile-infographic`) | [手机信息图](https://github.com/lovstudio/mobile-infographic-skill) | 把已有结论重排成手机上真能读完的竖版信息图，自带字号下限、安全区与可复核审计报告。 — 依赖: `branding-consistency`; 相关: `professional-infographic` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Website Whiz](https://github.com/lovstudio/oh-my-landingpage-skill) (`oh-my-landingpage`) | [官网小能手](https://github.com/lovstudio/oh-my-landingpage-skill) | 从产品与品牌事实出发，独立推导适合当前产品的叙事与视觉，并完成实现、响应式和生产回读。 |

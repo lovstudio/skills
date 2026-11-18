@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.2.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: 把“按 Jessy 那张名片的样式给我做一张”变成可复现流程：固定版式模板、按来源映射真实资料、渲染双面名片并回读二维码。
+basis: 本地工作流、版式模板与渲染器免费；线稿生成费用由使用者自己的 API 承担。
+boundary: 包含说明、版式模板、渲染与检查脚本、示例与真实案例；不含定制设计服务、字体授权、图像 API 费用、印刷文件与发布。
+review_trigger: 增加印刷出血与 CMYK 输出、批量名片或托管服务后重新评估。
+confidence: internal; no market pricing study

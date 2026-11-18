@@ -2372,6 +2372,63 @@ skills:
     review_trigger_en: Review after a version change, 10 real uses, or a material
       change in support cost.
     card_path: pricing-cards/business-card.md
+- name: jessy-style-card-design
+  runtime_name: lov-jessy-style-card-design
+  depends_on:
+  - branding-consistency
+  display_name: Jessy Card Design
+  repo: lovstudio/jessy-style-card-design-skill
+  name_zh: Jessy 名片设计
+  paid: false
+  category: Design
+  version: 0.2.0
+  updated_at: 2026-11-18 15:45:35+00:00
+  description: 'Jessy Card Design: clone the Jessy horizontal card layout (accent name
+    with bilingual titles, logo top right, tile-icon contacts, landmark line art behind
+    the QR, solid accent back with a centered logo) for your own brand and verified
+    details; outputs front, back and stacked PNGs plus a self-contained HTML, with layout
+    checks and multi-scale QR verification.'
+  tagline_en: Make your card in the Jessy layout with your own brand and real details
+    — a double-sided PNG and a self-contained HTML.
+  tagline_zh: 照 Jessy 名片的横版版式，换上你的品牌与真实资料，输出双面 PNG 与 HTML。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 免费的完整 Skill（MIT 许可），含 Jessy 版式说明、可直接渲染的模板与中性示例素材、块级名片渲染器、版式检查、二维码多尺度回读、线稿生成与转墨线脚本，以及一个真实案例
+    delivery_unit_en: The full Skill, free under MIT, with the Jessy layout notes, a
+      ready-to-render template with neutral sample assets, a block-based card renderer,
+      layout checks, multi-scale QR verification, line-art generation and ink conversion
+      scripts, and one real case
+    value_zh: 给出姓名、职务、联系方式、Logo 和二维码，就得到 Jessy 版式的双面名片：正面、背面、正反拼图 PNG 与内嵌全部素材的 HTML，每一行文字都能对上来源。
+    value_en: From a name, titles, contacts, a logo and a QR code, get a double-sided
+      card in the Jessy layout — front, back and stacked PNGs plus a self-contained
+      HTML, with every line traceable to its source.
+    anchor_zh: 照一张喜欢的名片手工排一版通常要 1–3 小时的对齐、配色和二维码试扫；这里坐标与字级已经定好，换资料后重渲染即可。
+    anchor_en: Laying out a card after one you like usually takes 1–3 hours of alignment,
+      color and QR test scans; here the grid and type scale are fixed, so new details
+      only need a re-render.
+    basis_zh: 六维加权约 2.3/5，属验证入口：证据只有作者本人一张名片，版式模板容易复制；同为名片的「名片工坊」也是免费入口。先免费积累使用案例。
+    basis_en: The six-dimension judgment is about 2.3/5, an entry level. The only evidence
+      is the author's own card and a layout template is easy to copy; the related Business
+      Card Studio is also a free entry. Free first, to collect real cases.
+    boundary_zh: 覆盖版式说明、模板、渲染与版式检查、二维码回读、线稿生成与转墨线；只出屏幕用 RGB，不含印刷出血与 CMYK、Logo 设计、字体授权、图像 API 费用和任何品牌素材本身。
+    boundary_en: Covers the layout notes, template, rendering with layout checks, QR
+      verification, and line-art generation and conversion. Screen RGB only; print bleed
+      and CMYK, logo design, font licences, image API costs and any brand artwork are
+      not included.
+    maintenance_zh: 随 Chrome 无头截图行为与真实使用反馈维护，不承诺付费支持时效。
+    maintenance_en: Maintained against headless Chrome behavior and real-use feedback,
+      without a paid support SLA.
+    confidence: low
+    review_trigger_zh: 出现外部用户案例时、增加印刷出血与 CMYK 输出或批量名片时、同族版式超过三套时复评。
+    review_trigger_en: Revisit when external user cases appear, when print bleed, CMYK
+      output or batch cards are added, or when the same family grows beyond three layouts.
+    card_path: pricing-cards/jessy-style-card-design.md
 - name: academic-translator
   runtime_name: lov-academic-translator
   updated_at: 2026-11-16 15:55:49+00:00

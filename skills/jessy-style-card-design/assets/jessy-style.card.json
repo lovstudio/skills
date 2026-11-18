@@ -1,0 +1,51 @@
+{
+  "title": "Jessy 式名片模板",
+  "lang": "zh-CN",
+  "canvas": { "width": 1080, "height": 648, "scale": 3, "mm": [90, 54] },
+  "theme": {
+    "accent": "#3F5B73",
+    "paper": "#FCFBF8",
+    "ink2": "#4F4D48",
+    "ink3": "#7B7870"
+  },
+  "stack_gap": 0,
+  "output": { "stem": "jessy-style-card" },
+  "front": {
+    "background": "paper",
+    "blocks": [
+      { "type": "name", "id": "name", "text": "示例姓名", "latin": "Sample Name",
+        "left": 120, "top": 98, "size": 54, "weight": 600, "color": "accent", "tracking": 0.06,
+        "gap": 22, "latin_size": 30, "latin_color": "ink3" },
+      { "type": "text", "id": "title-cn", "text": "示例工作室 创始人 / 产品设计师",
+        "left": 120, "top": 186, "size": 25, "color": "ink2", "tracking": 0.02 },
+      { "type": "text", "id": "title-en", "text": "Founder of Example Studio / Product Designer",
+        "left": 120, "top": 230, "size": 19.5, "color": "ink3", "tracking": 0.005 },
+      { "type": "image", "id": "brand-logo", "src": "jessy-style/brand-mark.svg", "alt": "Example Studio",
+        "right": 112, "top": 116, "height": 34 },
+      { "type": "contacts", "id": "contacts", "left": 120, "top": 318,
+        "icon_style": "tile", "tile_size": 32, "tile_radius": 4, "icon_size": 18, "stroke": 1.9,
+        "icon_gap": 20, "row_gap": 26, "size": 20, "color": "ink2", "tracking": 0.01,
+        "label_gap": 10, "prefix_gap": 14,
+        "items": [
+          { "icon": "globe", "text": "example.com" },
+          { "icon": "mail", "text": "hello@example.com" },
+          { "icon": "map-pin", "lines": [["城市", "办公地址"], ["City", "Office address"]] }
+        ] },
+      { "type": "qr", "id": "qr", "src": "jessy-style/sample-qr.png", "alt": "示例二维码",
+        "right": 112, "top": 388, "size": 156, "pad": 8, "caption": "扫码",
+        "caption_size": 13, "caption_color": "ink3", "caption_tracking": 0.3, "caption_gap": 8 }
+    ]
+  },
+  "back": {
+    "background": "accent",
+    "blocks": [
+      { "type": "image", "id": "back-logo", "src": "jessy-style/logo-white.svg", "alt": "Example Studio",
+        "left": "50%", "top": "43%", "center": "xy", "width": 340 },
+      { "type": "text", "id": "tagline", "text": "一句主体已有的品牌主张",
+        "left": 0, "right": 0, "top": 384, "align": "center", "color": "rgba(255,255,255,.9)",
+        "font": "serif", "size": 21, "tracking": 0.12 },
+      { "type": "text", "id": "url", "text": "example.com",
+        "left": 0, "right": 0, "bottom": 64, "align": "center", "color": "on_accent", "size": 17, "tracking": 0.08 }
+    ]
+  }
+}

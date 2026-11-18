@@ -1,0 +1,29 @@
+{
+  "spec": "card.json",
+  "renderer": "scripts/render_card.py 0.1.0",
+  "command": "render_card.py cases/shougongchuan-2026-11-18/card.json --out-dir OUT --version v0.1 --date 2026-11-18",
+  "outputs": {
+    "front": [
+      3240,
+      1944
+    ],
+    "back": [
+      3240,
+      1944
+    ],
+    "stack": [
+      3240,
+      3888
+    ]
+  },
+  "layout_issues": [],
+  "compared_with": "the v0.1 PNGs delivered by the hand-written prototype on 2026-11-18",
+  "comparison": {
+    "metric": "ImageMagick RMSE and AE (fuzz 2%)",
+    "front": 0,
+    "back": 0,
+    "stack": 0
+  },
+  "result": "pixel-identical replay",
+  "note": "Measured on the author's machine with the original personal WeChat QR. The public copy replaces assets/wechat-qr.png with assets/qr-placeholder.png, so replaying the public card.json differs from the delivered PNGs in the QR area only."
+}
