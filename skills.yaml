@@ -9603,19 +9603,21 @@ skills:
   - branding-consistency
 - name: wdb-cowork
   runtime_name: lov-wdb-cowork
-  updated_at: 2026-11-16 15:55:49+00:00
+  updated_at: 2026-11-18 16:55:28+00:00
   display_name: WeChat Cowork
   repo: lovstudio/wdb-cowork-skill
   name_zh: 微信工作搭子
   paid: true
   category: General
   skill_path: ''
-  version: 0.2.0
+  version: 0.4.0
   description: Read one local WeChat conversation via lov-wdb-cli to draft replies,
-    catch-ups and requested work; drafts only, never sends.
+    catch-ups and requested work, with voice messages transcribed locally; drafts
+    only, never sends.
   tagline_en: Name a WeChat contact or group and get replies in your own voice, a
-    catch-up on what needs you, and the work they asked for — drafted, never sent.
-  tagline_zh: 说出一个微信联系人或群，帮你按自己的语气起草回复、补上要你接的话、把对方要的活做出来；只起草，不发送。
+    catch-up on what needs you, and the work they asked for, even from voice messages
+    — drafted, never sent.
+  tagline_zh: 说出一个微信联系人或群，帮你按自己的语气起草回复、补上要你接的话、把对方要的活做出来，语音也在本机转成文字；只起草，不发送。
   related:
   - wdb-cli
   - wdb-export
@@ -9623,29 +9625,30 @@ skills:
   pricing:
     model: vip_membership
     visibility: public
-    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中：会话上下文构建器、四种协作模式（回复、补进度、干活、待回清单）与回归测试
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中：会话上下文构建器、本机语音转写、四种协作模式（回复、补进度、干活、待回清单）与回归测试
     delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with a conversation
-      context builder, four cowork modes (reply, catch-up, work, inbox), and regression
-      tests
-    value_zh: 不用再翻聊天记录找上下文：谁在等你、@你说了什么、对方发的文件在哪，一次理清，再按你在这段聊天里的说话方式起草回复或直接交付成果。
+      context builder, local voice transcription, four cowork modes (reply, catch-up,
+      work, inbox), and regression tests
+    value_zh: 不用再翻聊天记录找上下文：谁在等你、@你说了什么、对方发的文件和语音讲了什么，一次理清，再按你在这段聊天里的说话方式起草回复或直接交付成果。
     value_en: Stop scrolling for context. See who is waiting on you, what mentions
-      you, and where their files are, then get replies in the way you talk in that
-      chat or the finished work itself.
+      you, where their files are and what their voice messages said, then get replies
+      in the way you talk in that chat or the finished work itself.
     anchor_zh: 替代每次手动翻记录、找文件、整理需求、斟酌措辞的 10–30 分钟；节省时间因使用频率而异，尚无用户统计。
     anchor_en: Replaces the 10–30 minutes of scrolling, file hunting, requirement
       gathering, and wording each time; savings vary with usage and user measurements
       are not yet available.
-    basis_zh: 会员专享，不单独定价、不兑换 Credits。在真实账号的私聊与 254 人群聊上验证，含一个客户咨询的完整案例。会员价格以当前会员方案为准。
+    basis_zh: 会员专享，不单独定价、不兑换 Credits。在真实账号的私聊与 254 人群聊上验证，含一个客户咨询的完整案例；语音转写在一个私聊的 11 条语音上验证。会员价格以当前会员方案为准。
     basis_en: Members only; not sold separately or redeemable with Credits. Verified
       on a real account's private chat and a 254-member group, including a complete
-      client consulting case. Membership pricing follows the current plan.
-    boundary_zh: 需 macOS 本机微信 4.x、已完成密钥准备的万能微信秘钥与 Python 3.9+；只起草不发送，不含语音转写、图片识别或人工代回复。
+      client consulting case; voice transcription verified on 11 voice messages in
+      a private chat. Membership pricing follows the current plan.
+    boundary_zh: 需 macOS 本机微信 4.x、已完成密钥准备的万能微信秘钥与 Python 3.9+；语音转文字另需本机 whisper.cpp 与模型；只起草不发送，不含图片识别或人工代回复。
     boundary_en: Requires macOS WeChat 4.x, Universal WeChat Key with keys prepared,
-      and Python 3.9+; drafts only and never sends, with no voice transcription, image
-      recognition, or human reply service.
-    maintenance_zh: 随微信本地库结构、万能微信秘钥输出契约和真实支持成本变化复评。
-    maintenance_en: Review when WeChat schemas, the Universal WeChat Key output contract,
-      or observed support costs change.
+      and Python 3.9+; voice transcription also needs a local whisper.cpp and model;
+      drafts only and never sends, with no image recognition or human reply service.
+    maintenance_zh: 随微信本地库结构与语音格式、万能微信秘钥输出契约和真实支持成本变化复评。
+    maintenance_en: Review when WeChat schemas or voice formats, the Universal WeChat
+      Key output contract, or observed support costs change.
     confidence: medium-low
     review_trigger_zh: 首批 20 位会员用户或 2026-12-31；微信库结构或万能微信秘钥输出契约变化时复评。
     review_trigger_en: Review at the first 20 members or 2026-12-31, or when WeChat
