@@ -29,4 +29,4 @@ Jessy 身份残留：版式与身份逐项分开，主色换成主体 Logo 色�
 ## Pricing Basis
 免费本地复用；图像 API、字体授权、印刷与定制设计不包含在内。增加印刷输出或托管服务后重评。
 ## Distribution
-本机共享入口与宿主链接已建立；源码在 GitHub 私有仓库，公开副本由 lovstudio/skills 镜像提供。lovstudio 官网：pending（2026-11-18，目录条目待合并，详情页与安装未回读）。
+本机共享入口与宿主链接已建立；源码在 GitHub 私有仓库，公开副本由 lovstudio/skills 镜像提供。lovstudio 官网：live（2026-11-18：lovstudio/skills#84 合并（e2946ab），站点读到该提交；lovstudio.ai/skills/jessy-style-card-design 返回 200 并显示 0.2.0；隔离目录 npx lovstudio skills add jessy-style-card-design --project 装上 0.2.0（含依赖 lov-branding-consistency），装好的副本渲染模板无版式问题。lovstudio.cn 待国内镜像任务同步。）
