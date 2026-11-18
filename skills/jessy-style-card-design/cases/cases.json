@@ -1,0 +1,41 @@
+[
+  {
+    "type": "case",
+    "id": "shougongchuan-2026-11-18",
+    "title": "按 Jessy 名片版式做手工川名片",
+    "description": "按 Jessy 版式做作者本人的名片：正面左上主色姓名配双语职务、中段方块图标联络行、右上品牌标、右下线稿压二维码，背面主色铺底居中 Logo。身份全部换成手工川：Logo 主色、官方 Lovstudio.AI 与手工川 Logo、陆家嘴天际线线稿。公开副本里的个人微信二维码换成了扫不出内容的占位图。",
+    "input": {
+      "items": [
+        "参考名片图片（第三方，不随案例保存）",
+        "cases/shougongchuan-2026-11-18/assets/lovstudio-brand.svg",
+        "cases/shougongchuan-2026-11-18/assets/shougongchuan-logo-white.svg",
+        "cases/shougongchuan-2026-11-18/assets/qr-placeholder.png（公开副本的占位图；交付时用的是作者的个人微信二维码）",
+        "cases/shougongchuan-2026-11-18/assets/lujiazui-lineart.png"
+      ],
+      "source": "作者本人的品牌目录；参考名片由用户提供，用完已删除"
+    },
+    "prompt": "蒸馏一版（照 Jessy 那张名片的设计做我的名片）",
+    "output": {
+      "items": [
+        "cases/shougongchuan-2026-11-18/card.json",
+        "cases/shougongchuan-2026-11-18/output-stack.png",
+        "cases/shougongchuan-2026-11-18/replay-report.json",
+        "cases/shougongchuan-2026-11-18/qr-verification.json"
+      ],
+      "pixels": [
+        3240,
+        3888
+      ],
+      "qr_verified_scales": [
+        1.0,
+        0.66,
+        0.5,
+        0.33
+      ]
+    },
+    "cover": "cases/shougongchuan-2026-11-18/output-stack.png",
+    "evidence_status": "用户看过成品回复“挺好的”。作者本机用原始二维码按 card.json 回放，三张图与当日交付的 v0.1 逐像素一致；交付图的二维码在四个尺度均解码到同一载荷。公开副本换成占位二维码后，封面按同一份 card.json 重新渲染，二维码区域与交付图不同。",
+    "user_rating": null,
+    "rights": "手工川与 Lovstudio.AI 的标识只作本案例证据，不是其他用户的默认素材；参考名片与个人微信二维码不随案例公开。"
+  }
+]

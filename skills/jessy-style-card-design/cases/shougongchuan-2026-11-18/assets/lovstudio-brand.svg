@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+	 viewBox="0 0 3400 560" xml:space="preserve">
+<g fill="#D97757">
+	<!-- Logo Mark (3 shapes) -->
+	<path d="M0,0L0,0v269.62c0,68.71,55.7,124.45,124.45,124.45l0,0V124.45C124.45,55.73,68.74,0,0,0z"/>
+	<path d="M155.55,82.96L155.55,82.96v269.62c0,68.71,55.7,124.45,124.45,124.45l0,0V207.41C280,138.67,224.29,82.96,155.55,82.96z"/>
+	<path d="M311.1,40.27v248.86c68.71,0,124.45-55.7,124.45-124.45S379.84,40.27,311.1,40.27z"/>
+	<!-- "Lovstudio" text -->
+	<text x="560" y="450" font-family="Arial, Helvetica, sans-serif" font-size="560" font-weight="bold" fill="#D97757">Lovstudio</text>
+</g>
+</svg>

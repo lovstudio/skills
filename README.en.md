@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **239 skills** — 215 Free + 24 Paid.
+> **240 skills** — 216 Free + 24 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -112,6 +112,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Interface Designer](https://github.com/lovstudio/frontend-design-skill) (`frontend-design`) | Turn real content and existing code into distinctive, usable interfaces with verified interactions and media. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Knowledge Card Studio](https://github.com/lovstudio/gen-card-skill) (`gen-card`) | Lay out structured content and diagrams as copyable, downloadable knowledge cards in HTML and 2x PNG. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Finishing](https://github.com/lovstudio/image-decorator-skill) (`image-decorator`) | Add a caption bar and brand logo to PNG, JPEG or WebP images with framed or frameless layouts. — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Jessy Card Design](https://github.com/lovstudio/jessy-style-card-design-skill) (`jessy-style-card-design`) | Make your card in the Jessy layout with your own brand and real details — a double-sided PNG and a self-contained HTML. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Partner Directory](https://github.com/lovstudio/maintain-partners-skill) (`maintain-partners`) | Scrape, normalize, and wire brand logos into the partners section across 4 locales in one shot. — requires: `find-logo` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Mobile Infographic](https://github.com/lovstudio/mobile-infographic-skill) (`mobile-infographic`) | Turn an existing conclusion into vertical infographics a phone can actually read, with type floors, safe areas, and an audit report. — requires: `branding-consistency`; related: `professional-infographic` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Website Whiz](https://github.com/lovstudio/oh-my-landingpage-skill) (`oh-my-landingpage`) | Turn product truth into a distinctive landing page, with brand, story, visual direction, implementation, and production review working as one system. |

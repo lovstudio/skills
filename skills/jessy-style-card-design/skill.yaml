@@ -1,0 +1,71 @@
+schema: skill-manifest/v1
+id: lov-jessy-style-card-design
+version: "0.2.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-jessy-style-card-design
+    persist:
+      enabled: true
+      namespace: skills.lov-jessy-style-card-design
+      records_path: skills.lov-jessy-style-card-design.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+          - user.public_name
+        required: true
+        question: 名片上印哪个名字？
+      - path: user.latin_name
+        required: false
+        question: 名字旁要不要放英文名或拼音？给出写法。
+      - path: user.title
+        required: false
+        question: 名片上的职务或身份怎么写？
+      - path: user.contacts
+        required: false
+        question: 哪些联系方式可以印在名片上（电话、邮箱、地址等，只列你确认公开的）？
+      - path: user.qr
+        required: false
+        question: 名片上放哪个二维码？给出官方二维码图片路径。
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 名片代表哪个品牌或机构？
+      - path: brand.site
+        required: false
+        question: 名片上印哪个网址？
+      - path: brand.logo
+        required: false
+        question: 品牌 Logo 的官方文件在哪里（优先 SVG；深色底需要白色版）？
+      - path: brand.color
+        required: false
+        question: 品牌主色是什么（例如 Logo 的色值）？
+      - path: workspace.output_dir
+        required: false
+        question: 名片成品输出到哪个目录？
+      - path: skills.lov-jessy-style-card-design.records.file_stem
+        required: false
+        question: 成品文件名用什么前缀（例如“品牌名-名片”）？
+      - path: skills.lov-jessy-style-card-design.records.never_print
+        required: false
+        question: 有没有永远不要印在名片上的信息（例如私人手机号）？
+  preferences:
+    namespace: lov_jessy_style_card_design
+    fields:
+      - path: user.language
+        required: false
+        question: 名片文字用哪种语言（中文、英文或中英双语）？
+  interaction:
+    ask_missing: true
+    max_questions: 1

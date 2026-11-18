@@ -1,0 +1,124 @@
+schema: lovstudio/skill-card/v1
+version: "0.2.0"
+display_name: Jessy 名片设计 · Jessy Card Design
+description: 克隆 Jessy 那张横版机构名片的版式与信息层级，换成当前主体的品牌色、官方 Logo、确认过的联系方式与据点线稿，输出双面 PNG、正反拼图与自包含 HTML，并回读二维码。
+owner:
+  team: lovstudio
+  contact: Maintainer through the local Skill source; no support SLA declared.
+license:
+  name: MIT
+  terms: 代码与说明 MIT。案例中的手工川、Lovstudio.AI 标识与二维码只作本地证据，不授予他人使用权；Jessy 的原名片不随源码保存，其机构标识与主色不属于本版式。
+  url: LICENSE
+use_case:
+  audience: 想用 Jessy 那张名片的横版结构做自己或团队名片的个人与小团队
+  scenario: 主体的身份资料与品牌资产已在本地，按固定的 Jessy 版式出一张屏幕用双面名片
+  tasks:
+    - 按 Jessy 版式的槽位映射主体的姓名、职务、联系方式、Logo、二维码与线稿，并登记来源
+    - 从版式模板写 spec，渲染双面名片并检查越界、重叠与溢出
+    - 生成主体据点的地标线稿并转成透明墨线
+    - 多尺度回读二维码并交付随附消息草稿
+deployment:
+  geography: global
+  environments:
+    - Local agent runtime
+    - Python 3.9+ with headless Chrome, Chromium or Edge
+requirements:
+  credentials: none for supplied assets; optional OPENROUTER_API_KEY for generated landmark line art
+  dependencies:
+    - lov-branding-consistency
+  runtime:
+    - Python 3.9+ standard library
+    - Headless Chrome, Chromium or Edge
+    - Optional ImageMagick 7, opencv-python
+risks:
+  - risk: 把 Jessy 名片上的机构标识、机构主色或建筑插画带进成品，看起来像冒用对方身份
+    mitigation: 版式说明逐项区分版式与身份；主色换成主体 Logo 主色；模板只带中性示例素材。
+  - risk: 编造主体的职务译文、电话、邮箱或账号名
+    mitigation: 每个槽位登记来源，没有就删行；推断内容在交付时列为待确认。
+  - risk: Jessy 原图里的手机号与邮箱泄露
+    mitigation: Skill 不需要原图；用户为比对再给时只放私有临时目录，用完删除，不进案例、提交或上传。
+  - risk: 二维码过小或被线稿压住导致扫不出
+    mitigation: 二维码不小于 140 px 并留白边；verify_qr.py 在 1 到 1/3 四个尺度解码并比对源载荷。
+  - risk: 生成的线稿带文字、水印或伪造标识
+    mitigation: 只生成无字线稿并人工看图；Logo 与二维码只用官方文件。
+references:
+  - title: Instructions
+    path: SKILL.md
+  - title: Jessy layout
+    path: references/jessy-style.md
+  - title: Layout spec
+    path: references/layout-spec.md
+  - title: Real case
+    path: cases/cases.json
+output:
+  types:
+    - business-card pair
+    - stacked front and back preview
+    - self-contained HTML
+  formats:
+    - PNG
+    - HTML
+    - JSON report
+  parameters:
+    - layout spec JSON started from assets/jessy-style.card.json
+    - official local brand assets
+    - scale 1 to 4
+    - explicit output directory and version
+  validation:
+    - in-browser layout check for out-of-bounds, overlap and overflow
+    - visual review against the Jessy layout skeleton
+    - multi-scale QR decode compared with the source QR
+    - private path and account id scan of the HTML
+  description: 正面、背面各一张（默认 3240×1944），正反上下拼接一张，另有内嵌全部素材的 HTML；屏幕用 RGB，不含印刷出血。
+ethical_considerations: 只为用户本人或其授权的主体做名片，不用 Jessy 或其机构的身份；不保存第三方名片；不编造履历与联系方式；不自动发送或发布。
+dimensions:
+  - id: layout-fidelity
+    label: 版式还原
+    description: 遮住文字后仍能认出 Jessy 版式的两面分工、两条对齐线、主色的三个位置与右下线稿压二维码的构成。
+    evidence: cases/shougongchuan-2026-11-18/output-stack.png and references/jessy-style.md
+    score: null
+    status: one real case reviewed by the user; no independent aesthetic score
+  - id: identity-integrity
+    label: 身份与事实
+    description: 成品里每段文字、每个标识都来自主体的真实资料或官方资产，没有 Jessy 或其机构的身份残留。
+    evidence: cases/shougongchuan-2026-11-18/card.json with the slot sources described in cases/cases.json
+    score: null
+    status: manual review in the recorded case
+  - id: qr-integrity
+    label: 二维码可用
+    description: 最终 PNG 在多个缩放尺度都能解码到与源二维码相同的载荷。
+    evidence: cases/shougongchuan-2026-11-18/qr-verification.json
+    score: null
+    status: measured pass at scales 1, 0.66, 0.5 and 0.33 on the delivered card; the public cover uses a placeholder QR
+  - id: reproducibility
+    label: 可复现渲染
+    description: 同一份 spec 在同一台机器上渲染结果稳定，可以按版本迭代。
+    evidence: cases/shougongchuan-2026-11-18/replay-report.json
+    score: null
+    status: replay pixel-identical to the delivered v0.1 on the authoring machine with the original QR asset
+  - id: subject-portability
+    label: 主体可替换
+    description: 模板只带中性示例素材，换任何主体的主色、Logo、资料与二维码都能直接渲染，不绑定案例主体。
+    evidence: assets/jessy-style.card.json and assets/jessy-style
+    score: null
+    status: local smoke render of the template with no layout issues; other operating systems not claimed
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: 本地工作流、版式模板与渲染器免费；线稿生成费用由使用者自己的 API 承担。
+  boundary: 包含说明、版式模板、渲染与检查脚本、示例与真实案例；不含定制设计服务、字体授权、图像 API 费用、印刷文件与发布。
+  review_trigger: 增加印刷出血与 CMYK 输出、批量名片或托管服务后重新评估。
+  confidence: internal; no market pricing study
+distribution:
+  paid: []
+  free:
+    - channel: github
+      status: private-source
+      evidence: "2026-11-18：源码为私有仓库 lovstudio/jessy-style-card-design-skill；免费 Skill 的公开副本由 lovstudio/skills 目录镜像提供。"
+    - channel: lovstudio
+      status: pending
+      evidence: "2026-11-18：目录条目与镜像待合并；详情页、版本与隔离安装尚未回读。"
+  local:
+    status: installed-shared-and-host-links
+    version: "0.2.0"
