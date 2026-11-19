@@ -1,0 +1,107 @@
+{
+  "target": "dshfind.com",
+  "apiBase": "https://api.dshfind.com",
+  "discoveredAt": "2026-08-27T00:16:38.000Z",
+  "authority": "Public unauthenticated endpoints only",
+  "sourcePage": "https://dshfind.com/zh/plugins",
+  "normalizedEndpoints": [
+    "GET /v1/plugins",
+    "GET /v1/suggest?q={value}",
+    "GET /graphql?query={value}",
+    "POST /graphql",
+    "GET /graphql/schema",
+    "GET /v1/plugins/{owner}/{repo}?snapshot_days={value}",
+    "GET /v1/catalog?data_version={value}",
+    "GET /market/manifest.json",
+    "GET /market/v1/plugins",
+    "GET /healthz"
+  ],
+  "observations": [
+    {
+      "endpoint": "GET /healthz",
+      "url": "https://api.dshfind.com/healthz",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "sample": { "status": "ok", "plugins_loaded": 11633 }
+    },
+    {
+      "endpoint": "GET /v1/suggest?q={value}",
+      "url": "https://api.dshfind.com/v1/suggest?q=memory",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "sample": { "items": [{ "type": "plugin", "id": "omdsh-dev/dsh-mnemon", "label": "dsh-mnemon", "href": "/plugins/omdsh-dev/dsh-mnemon", "stars": 226, "featured": true }] }
+    },
+    {
+      "endpoint": "GET /graphql?query={value}",
+      "url": "https://api.dshfind.com/graphql?query=query%20DshFindCategories%20%7B%20pluginFacets%20%7B%20categories%20%7B%20value%20count%20%7D%20%7D%20%7D",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "sample": {
+        "data": {
+          "pluginFacets": {
+            "categories": [
+              { "value": "tools", "count": 1594 },
+              { "value": "agent", "count": 1296 },
+              { "value": "ui", "count": 1094 },
+              { "value": "client", "count": 750 },
+              { "value": "memory", "count": 468 },
+              { "value": "skin", "count": 467 },
+              { "value": "channel", "count": 345 },
+              { "value": "resource", "count": 223 },
+              { "value": "fun", "count": 204 }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "POST /graphql",
+      "url": "https://api.dshfind.com/graphql",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "sample": {
+        "data": {
+          "dataset": {
+            "dataVersion": "sha256:21c899b830e706de3fdde0763a392f78dcc9d172dbce9587f08685bb05ade7a1",
+            "asOf": "2026-08-26T09:14:47Z"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "GET /graphql/schema",
+      "url": "https://api.dshfind.com/graphql/schema",
+      "status": 200,
+      "contentType": "application/graphql; charset=utf-8",
+      "sample": "schema { query: Query } type Query { dataset: Dataset! plugin(fullName: ID!): Plugin plugins(first: Int = 20, after: String, filter: PluginFilter, sort: PluginSort = DEFAULT, order: SortOrder = DESC): PluginConnection! pluginFacets: PluginFacets! }"
+    },
+    {
+      "endpoint": "GET /v1/plugins",
+      "url": "https://api.dshfind.com/v1/plugins?page=1&per_page=2",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "sample": { "data": [{ "full_name": "deepseek-ai/deepseek-harness", "name": "deepseek-harness", "owner": "deepseek-ai", "stars": 193616 }], "page": 1, "per_page": 2, "total": 11336, "data_version": "sha256:40737aa648314fda85e3be3ac4c24f681b2478be29ca043af1369a54fc0d68f0" }
+    },
+    {
+      "endpoint": "GET /v1/plugins/{owner}/{repo}?snapshot_days={value}",
+      "url": "https://api.dshfind.com/v1/plugins/deepseek-ai/deepseek-harness?snapshot_days=7",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "sample": { "full_name": "deepseek-ai/deepseek-harness", "growth": { "window_days": 7, "stars": 35020, "contributors": 4 } }
+    },
+    {
+      "endpoint": "GET /market/manifest.json",
+      "url": "https://api.dshfind.com/market/manifest.json",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "sample": { "manifestVersion": "1.0.0", "providerId": "com.dshfind.catalog", "transport": { "kind": "https-json", "endpoint": "https://api.dshfind.com/market/v1/plugins", "method": "GET" } }
+    },
+    {
+      "endpoint": "GET /market/v1/plugins",
+      "url": "https://api.dshfind.com/market/v1/plugins?limit=2",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "sample": { "schemaVersion": "1.0.0", "items": [{ "id": "01Virex/dsh-status-rotator", "name": "dsh-status-rotator", "displayName": "dsh-status-rotator", "summary": "A DeepSeek Harness plugin." }], "page": { "total": 4977 } }
+    }
+  ]
+}

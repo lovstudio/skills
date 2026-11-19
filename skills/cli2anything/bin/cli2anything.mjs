@@ -11,11 +11,18 @@ import { createDrilldownHtml } from "../src/drilldown-html.mjs";
 import { ZenMuxClient } from "../src/zenmux-client.mjs";
 import { BrowserPageSession } from "../src/browser-cdp.mjs";
 import { ZenMuxBrowserClient } from "../src/zenmux-browser-client.mjs";
+import { createDshFindOpenapi } from "../src/dshfind-openapi.mjs";
+import { createDshFindApiGraph, createDshFindPackage, discoverDshFindData } from "../src/dshfind-target.mjs";
+import { createApifoxOpenapi, createApifoxReadme } from "../src/apifox-openapi.mjs";
+import { generatePlaneBundle } from "../src/plane-target.mjs";
+import { SUANLI_HOSTS, generateSuanliBundle } from "../src/suanli-target.mjs";
 
 const ZENMUX_HOME = "https://zenmux.ai/";
 const ZENMUX_LOGS_URL = "https://zenmux.ai/platform/logs";
 const EXTENSION_BRIDGE_VERSION = "0.1.9";
 const CDN_BASE = "https://cdn.marmot-cloud.com/page/tbox-router-home/";
+// 自托管 Plane 实例：默认本机 compose 部署，也接受用户自建域名。
+const PLANE_HOSTS = new Set(["localhost", "127.0.0.1", "plane.local"]);
 
 async function main() {
   const [command, ...args] = process.argv.slice(2);
@@ -59,6 +66,12 @@ Commands:
   browser:logs:list [--days 7]     Call ZenMux log list inside an attached logged-in browser.
   browser:logs:detail <requestId>  Call ZenMux detail APIs inside an attached logged-in browser.
 
+Built-in targets:
+  zenmux.ai                        Dashboard logs and adjacent observed APIs.
+  dshfind.com                      Public read-only plugin directory and market feed.
+  localhost                        Self-hosted Plane REST API v1 bundle or CLI (requires discovery).
+  suanli.cn                        共绩算力 Open API + LLM bundle, Swagger proxy or CLI (requires discovery).
+
 Examples:
   cli2anything zenmux.ai --output swagger
   cli2anything zenmux.ai --output swagger --depth 0
@@ -68,6 +81,8 @@ Examples:
   cli2anything zenmux.ai --filter-keyword log --output swagger --browser-profile isolated
   cli2anything zenmux.ai --filter-keyword log --output cli
   node ./bin/cli2anything.mjs zenmux.ai --filter-keyword log
+  node ./bin/cli2anything.mjs https://dshfind.com/zh/plugins --output cli --no-link --no-open
+  cli2anything localhost --output cli --discovery ./artifacts/plane-discovered.json
   node ./bin/cli2anything.mjs discover-zenmux --out ./artifacts/zenmux-discovered.json
   node ./bin/cli2anything.mjs generate-zenmux --out ./openapi/zenmux.openapi.json
   ZENMUX_COOKIE='...' ZENMUX_XSRF_TOKEN='...' node ./bin/cli2anything.mjs logs:list --days 1
@@ -77,15 +92,17 @@ Examples:
 
 async function cli2Anything(target, args) {
   const host = normalizeTargetHost(target);
+  if (PLANE_HOSTS.has(host)) return generatePlaneBundle(args);
+  if (SUANLI_HOSTS.has(host)) return generateSuanliBundle(args);
   const filterKeyword = normalizeOptionalKeyword(getArg(args, "--filter-keyword"));
   const depth = parseDepth(getArg(args, "--depth") ?? "0");
   const hasExplicitDepth = args.includes("--depth");
   const outputMode = getArg(args, "--output") || "bundle";
   if (!["bundle", "swagger", "cli"].includes(outputMode)) {
-    throw new Error("--output must be one of: swagger, cli");
+    throw new Error("--output must be one of: bundle, swagger, cli");
   }
-  if (host !== "zenmux.ai") {
-    throw new Error(`No built-in target plugin for ${host}. Current MVP supports zenmux.ai.`);
+  if (!["zenmux.ai", "dshfind.com", "api.dshfind.com"].includes(host)) {
+    throw new Error(`No built-in target plugin for ${host}. Supported targets: zenmux.ai, dshfind.com.`);
   }
 
   const outDir = getArg(args, "--out") || (
@@ -95,19 +112,32 @@ async function cli2Anything(target, args) {
         ? `generated/${slugify(host)}-${slugify(filterKeyword)}`
         : `generated/${slugify(host)}`
   );
-  const discovery = getArg(args, "--discovery")
+  const suppliedDiscovery = getArg(args, "--discovery")
     ? JSON.parse(await readFile(resolve(getArg(args, "--discovery")), "utf8"))
-    : await discoverZenmuxData({ filterKeyword, depth, forceAllRoutes: !filterKeyword || hasExplicitDepth });
-  const apiPackage = createZenmuxFilteredPackage({ target: host, filterKeyword, discovery, depth });
-  const openapi = createZenmuxOpenapiForPackage({ apiPackage });
-  const apiGraph = createZenmuxApiGraph({ target: host, filterKeyword: apiPackage.manifest.filterKeyword, manifest: apiPackage.manifest });
+    : null;
+  const isDshFind = host === "dshfind.com" || host === "api.dshfind.com";
+  const discovery = suppliedDiscovery || (isDshFind
+    ? await discoverDshFindData()
+    : await discoverZenmuxData({ filterKeyword, depth, forceAllRoutes: !filterKeyword || hasExplicitDepth }));
+  const apiPackage = isDshFind
+    ? createDshFindPackage({ discovery, filterKeyword: filterKeyword || "plugins" })
+    : createZenmuxFilteredPackage({ target: host, filterKeyword, discovery, depth });
+  const openapi = isDshFind ? createDshFindOpenapi() : createZenmuxOpenapiForPackage({ apiPackage });
+  const apiGraph = isDshFind
+    ? createDshFindApiGraph()
+    : createZenmuxApiGraph({ target: host, filterKeyword: apiPackage.manifest.filterKeyword, manifest: apiPackage.manifest });
 
   await writeJson(`${outDir}/manifest.json`, apiPackage.manifest);
   await writeJson(`${outDir}/discovery.filtered.json`, apiPackage.filteredDiscovery);
   await writeJson(`${outDir}/openapi.json`, openapi);
   await writeJson(`${outDir}/api-graph.json`, apiGraph);
   await writeText(`${outDir}/README.md`, createGeneratedReadme(apiPackage.manifest));
-  await writeSdkBundle(`${outDir}/sdk`);
+  await writeSdkBundle(`${outDir}/sdk`, apiPackage.manifest);
+  if (apiPackage.manifest.adapter === "dshfind") {
+    await writeJson(`${outDir}/apifox/openapi.json`, createApifoxOpenapi(openapi));
+    await writeText(`${outDir}/apifox/README.md`, createApifoxReadme());
+    await writeText(`${outDir}/apifox/graphql.schema.graphql`, await readFile(new URL("../artifacts/dshfind-schema.graphql", import.meta.url), "utf8"));
+  }
 
   if (outputMode === "swagger") {
     const swaggerPath = `${outDir}/swagger/index.html`;
@@ -732,7 +762,19 @@ function isLogEvidence(evidence) {
   ].some((needle) => text.includes(needle));
 }
 
-async function writeSdkBundle(outDir) {
+async function writeSdkBundle(outDir, manifest) {
+  if (manifest?.adapter === "dshfind") {
+    for (const file of ["dshfind-client.mjs", "dshfind-client.d.ts"]) {
+      const text = await readFile(new URL(`../src/${file}`, import.meta.url), "utf8");
+      await writeText(`${outDir}/${file}`, text);
+    }
+    await writeText(`${outDir}/index.mjs`, [
+      'export { DshFindClient, DshFindApiError, DSHFIND_DATASET_QUERY, DSHFIND_FACETS_QUERY, DSHFIND_GRAPHQL_PLUGINS_QUERY, DSHFIND_GRAPHQL_PLUGIN_QUERY } from "./dshfind-client.mjs";',
+      ""
+    ].join("\n"));
+    return;
+  }
+
   const files = [
     "zenmux-client.mjs",
     "zenmux-client.d.ts",
@@ -757,6 +799,7 @@ async function writeSdkBundle(outDir) {
 }
 
 function createGeneratedReadme(manifest) {
+  if (manifest.adapter === "dshfind") return createDshFindGeneratedReadme(manifest);
   return `# cli2anything++ Generated SDK
 
 Target: ${manifest.target}
@@ -799,6 +842,55 @@ const client = new ZenMuxBrowserClient(session);
 const logs = await client.listLogs({ pageNo: 1, pageSize: 20 });
 const detail = await client.getLogDetail(logs.data?.[0]?.requestId);
 session.close();
+\`\`\`
+`;
+}
+
+function createDshFindGeneratedReadme(manifest) {
+  return `# cli2anything++ Generated dshfind SDK
+
+Target: ${manifest.target}
+Scope: ${manifest.scope}
+API base: ${manifest.apiBase}
+
+This bundle contains only public, unauthenticated, read-only plugin directory operations.
+
+## Apifox
+
+Import \`apifox/openapi.json\` as OpenAPI. Enable “导入 Servers 为环境” and
+“自动生成接口用例”; then select the imported production environment and send
+requests directly. See \`apifox/README.md\` for the exact steps.
+
+## Included APIs
+
+Primary:
+${manifest.primaryEndpoints.map((item) => `- ${item.endpoint}: ${item.reason}`).join("\n")}
+
+Dependencies:
+${manifest.dependencyEndpoints.map((item) => `- ${item.endpoint}: ${item.reason}`).join("\n")}
+
+## SDK usage
+
+\`\`\`js
+import { DshFindClient } from "./sdk/index.mjs";
+
+const client = new DshFindClient();
+const page = await client.listPlugins({ q: "memory", perPage: 10, sort: "stars" });
+const detail = await client.getPlugin(page.data[0].owner, page.data[0].name, { snapshotDays: 7 });
+const graphqlPage = await client.listGraphqlPlugins({ first: 5, category: "memory", sort: "STARS" });
+console.log({ page, detail, graphqlPage });
+\`\`\`
+
+## CLI usage
+
+\`\`\`bash
+node ./bin/cli-dshfind-com.mjs plugins:list --q memory --per-page 10 --sort stars
+node ./bin/cli-dshfind-com.mjs plugins:categories
+node ./bin/cli-dshfind-com.mjs plugins:get deepseek-ai/deepseek-harness --snapshot-days 7
+node ./bin/cli-dshfind-com.mjs graphql:facets
+node ./bin/cli-dshfind-com.mjs graphql:list --first 5 --category memory --sort STARS
+node ./bin/cli-dshfind-com.mjs graphql:get deepseek-ai/deepseek-harness --locale zh --snapshot-days 7
+node ./bin/cli-dshfind-com.mjs market:list --limit 10
 \`\`\`
 `;
 }
@@ -1545,7 +1637,7 @@ async function writeCliPackage(outDir, manifest) {
   const binName = `cli-${slugify(manifest.target)}`;
   const packageJson = {
     name: binName,
-    version: "0.1.0",
+    version: manifest.adapter === "dshfind" ? "0.5.0" : "0.1.0",
     private: true,
     type: "module",
     description: `Generated CLI for ${manifest.target} ${manifest.filterKeyword} APIs.`,
@@ -1559,7 +1651,9 @@ async function writeCliPackage(outDir, manifest) {
 
   await writeJson(`${outDir}/package.json`, packageJson);
   const binPath = `${outDir}/bin/${binName}.mjs`;
-  await writeText(binPath, createGeneratedCliBin({ binName, manifest }));
+  await writeText(binPath, manifest.adapter === "dshfind"
+    ? createGeneratedDshFindCliBin({ binName, manifest })
+    : createGeneratedCliBin({ binName, manifest }));
   await chmod(resolve(binPath), 0o755);
 }
 
@@ -1865,6 +1959,212 @@ Install once in your existing Chrome:
 
 The extension has broad host permissions so it can serve all targets generated by cli2anything++. It only receives jobs from local cli2anything++ proxy servers on \`127.0.0.1\`.
 `);
+}
+
+function createGeneratedDshFindCliBin({ binName, manifest }) {
+  return `#!/usr/bin/env node
+import { DshFindClient } from "../sdk/index.mjs";
+
+const client = new DshFindClient({ baseUrl: process.env.DSHFIND_API_BASE || ${JSON.stringify(manifest.apiBase)} });
+
+async function main() {
+  const [command, ...args] = process.argv.slice(2);
+  try {
+    if (command === "plugins:list") return print(await client.listPlugins(listParams(args)));
+    if (command === "plugins:categories") return print(await client.listCategories());
+    if (command === "graphql:dataset") return print(await client.getDataset());
+    if (command === "graphql:facets") return print(await client.listFacets());
+    if (command === "graphql:list") return print(await client.listGraphqlPlugins(graphqlListParams(args)));
+    if (command === "graphql:get") {
+      const pluginRef = firstPositional(args);
+      return print(await client.getGraphqlPlugin(pluginRef, {
+        locale: getArg(args, "--locale"),
+        snapshotDays: maybeNumber(getArg(args, "--snapshot-days"))
+      }));
+    }
+    if (command === "graphql:query") {
+      const query = getArg(args, "--query");
+      if (!query) throw new Error("graphql:query requires --query <GraphQL>");
+      return print(await client.graphql(query, parseJson(getArg(args, "--variables") || "{}"), {
+        operationName: getArg(args, "--operation-name")
+      }));
+    }
+    if (command === "graphql:schema") return printText(await client.getGraphqlSchema());
+    if (command === "plugins:search") {
+      const query = firstPositional(args);
+      if (!query) throw new Error("plugins:search requires <query>");
+      return print(await client.listPlugins({ ...listParams(args), q: query }));
+    }
+    if (command === "plugins:suggest") {
+      const query = firstPositional(args);
+      if (!query) throw new Error("plugins:suggest requires <query>");
+      return print(await client.suggest(query));
+    }
+    if (command === "plugins:get") {
+      const pluginRef = firstPositional(args);
+      const [owner, repo] = splitPluginRef(pluginRef);
+      return print(await client.getPlugin(owner, repo, { snapshotDays: maybeNumber(getArg(args, "--snapshot-days")) }));
+    }
+    if (command === "catalog") return print(await client.getCatalog({ dataVersion: getArg(args, "--data-version") }));
+    if (command === "market:manifest") return print(await client.getMarketManifest());
+    if (command === "market:list") return print(await client.listMarketPlugins({
+      q: getArg(args, "--q"),
+      category: getArg(args, "--category"),
+      limit: maybeNumber(getArg(args, "--limit")),
+      cursor: getArg(args, "--cursor")
+    }));
+    if (command === "health") return print(await client.health());
+    usage();
+    process.exit(command ? 1 : 0);
+  } catch (error) {
+    if (error?.body !== undefined) console.error(JSON.stringify(error.body, null, 2));
+    console.error(error?.stack || error?.message || String(error));
+    process.exit(1);
+  }
+}
+
+function listParams(args) {
+  return {
+    q: getArg(args, "--q"),
+    page: maybeNumber(getArg(args, "--page")),
+    perPage: maybeNumber(getArg(args, "--per-page")),
+    category: getArg(args, "--category"),
+    language: getArg(args, "--language"),
+    grade: getArg(args, "--grade"),
+    owner: getArg(args, "--owner"),
+    tag: getArg(args, "--tag"),
+    minScore: maybeNumber(getArg(args, "--min-score")),
+    featured: getArg(args, "--featured"),
+    official: getArg(args, "--official"),
+    archived: getArg(args, "--archived"),
+    insider: getArg(args, "--insider"),
+    hasInstall: getArg(args, "--has-install"),
+    isPlugin: getArg(args, "--is-plugin"),
+    sort: getArg(args, "--sort"),
+    order: getArg(args, "--order"),
+    dataVersion: getArg(args, "--data-version")
+  };
+}
+
+function graphqlListParams(args) {
+  return {
+    first: maybeNumber(getArg(args, "--first")),
+    after: getArg(args, "--after"),
+    q: getArg(args, "--q"),
+    category: getArg(args, "--category"),
+    language: getArg(args, "--language"),
+    grade: getArg(args, "--grade"),
+    owner: getArg(args, "--owner"),
+    tag: getArg(args, "--tag"),
+    minScore: maybeNumber(getArg(args, "--min-score")),
+    featured: maybeBoolean(getArg(args, "--featured")),
+    official: maybeBoolean(getArg(args, "--official")),
+    archived: maybeBoolean(getArg(args, "--archived")),
+    insider: maybeBoolean(getArg(args, "--insider")),
+    risky: maybeBoolean(getArg(args, "--risky")),
+    hasInstall: maybeBoolean(getArg(args, "--has-install")),
+    isPlugin: maybeBoolean(getArg(args, "--is-plugin")),
+    sort: getArg(args, "--sort")?.toUpperCase(),
+    order: getArg(args, "--order")?.toUpperCase()
+  };
+}
+
+function splitPluginRef(value) {
+  const parts = String(value || "").split("/").filter(Boolean);
+  if (parts.length !== 2) throw new Error("plugins:get requires <owner/repo>");
+  return parts;
+}
+
+function firstPositional(args) {
+  const valueFlags = new Set([
+    "--q", "--page", "--per-page", "--category", "--language", "--grade", "--owner", "--tag",
+    "--min-score", "--featured", "--official", "--archived", "--insider", "--has-install",
+    "--is-plugin", "--risky", "--sort", "--order", "--data-version", "--snapshot-days", "--limit", "--cursor",
+    "--first", "--after", "--locale", "--query", "--variables", "--operation-name"
+  ]);
+  for (let index = 0; index < args.length; index += 1) {
+    if (valueFlags.has(args[index])) {
+      index += 1;
+      continue;
+    }
+    if (!args[index].startsWith("--")) return args[index];
+  }
+}
+
+function maybeNumber(value) {
+  if (value === undefined) return undefined;
+  const number = Number(value);
+  if (!Number.isFinite(number)) throw new Error("Expected a numeric option, got: " + value);
+  return number;
+}
+
+function maybeBoolean(value) {
+  if (value === undefined) return undefined;
+  if (value === "true") return true;
+  if (value === "false") return false;
+  throw new Error("Expected true or false, got: " + value);
+}
+
+function parseJson(value) {
+  try {
+    const parsed = JSON.parse(value);
+    if (!parsed || Array.isArray(parsed) || typeof parsed !== "object") throw new Error("not an object");
+    return parsed;
+  } catch {
+    throw new Error("--variables must be a JSON object");
+  }
+}
+
+function getArg(args, name) {
+  const index = args.indexOf(name);
+  return index === -1 ? undefined : args[index + 1];
+}
+
+function print(value) {
+  console.log(JSON.stringify(value, null, 2));
+}
+
+function printText(value) {
+  console.log(String(value));
+}
+
+function usage() {
+  console.log(${JSON.stringify(`${binName}
+
+Generated from cli2anything++ for the public dshfind plugin directory.
+
+Commands:
+  plugins:list [--q keyword] [--page 1] [--per-page 20] [filters]
+  plugins:categories
+  plugins:search <query> [--per-page 20] [filters]
+  plugins:suggest <query>
+  plugins:get <owner/repo> [--snapshot-days 30]
+  graphql:dataset
+  graphql:facets
+  graphql:list [--first 20] [--after cursor] [filters]
+  graphql:get <owner/repo> [--locale zh] [--snapshot-days 30]
+  graphql:query --query <GraphQL> [--variables JSON] [--operation-name name]
+  graphql:schema
+  catalog [--data-version sha256:...]
+  market:manifest
+  market:list [--q keyword] [--category memory] [--limit 50] [--cursor value]
+  health
+
+List filters:
+  --category --language --grade --owner --tag --min-score
+  --featured --official --archived --insider --has-install --is-plugin
+  --sort stars|updated|score|name --order asc|desc --data-version
+
+GraphQL filters:
+  --category --language --grade --q --owner --tag --min-score
+  --featured --official --archived --insider --risky --has-install --is-plugin
+  --sort DEFAULT|STARS|UPDATED|SCORE|NAME --order ASC|DESC
+
+No credentials are required. All commands are read-only.`)});
+}
+
+main();
+`;
 }
 
 function createGeneratedCliBin({ binName, manifest }) {
@@ -2185,6 +2485,8 @@ function normalizePath(path) {
 function isTarget(value) {
   if (!value || value.startsWith("-")) return false;
   if (value.includes("://")) return true;
+  // 自托管实例常用无点主机名（localhost），单独放行。
+  if (PLANE_HOSTS.has(value.toLowerCase().split(":")[0])) return true;
   return /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(value);
 }
 

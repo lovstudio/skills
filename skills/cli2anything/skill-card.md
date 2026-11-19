@@ -20,8 +20,9 @@ bundled license.
 ## Use Case
 
 For developers and agents converting APIs they are authorized to inspect into
-reproducible local contracts and callable tools. The current built-in target is
-ZenMux.
+reproducible local contracts and callable tools. The current built-in targets are
+ZenMux, the public read-only dshfind plugin directory, a self-hosted Plane
+instance, and the 共绩算力 (suanli.cn) Open API and LLM service.
 
 ## Deployment Geography
 
@@ -39,7 +40,7 @@ credentials. Live browser workflows require an authorized account session.
   offline evidence and never persist cookies, tokens, or captured payloads in the
   Skill or shared Profile.
 - Unsupported hosts can produce misleading expectations. The Skill stops when no
-  verified target adapter exists; version 0.1.0 has a ZenMux adapter.
+  verified target adapter exists; version 0.5.0 has ZenMux and dshfind adapters.
 
 ## References
 
@@ -55,7 +56,7 @@ project regression suite, JSON parse checks, and JavaScript syntax checks.
 
 ## Skill Version
 
-0.1.0
+0.5.0
 
 ## Ethical Considerations
 
@@ -66,8 +67,8 @@ inspect. Do not export cookies, tokens, secrets, or unrelated private payloads.
 
 ### User Cases
 
-[`cases/cases.json`](cases/cases.json) records the real ZenMux log API generation
-case and its checked outputs.
+[`cases/cases.json`](cases/cases.json) records the real ZenMux log and dshfind
+plugin-directory API generation cases and their checked outputs.
 
 ### Dimension Map
 
@@ -82,5 +83,9 @@ scope boundary, and the conditions for reconsidering access or pricing.
 
 ### Distribution
 
-The Skill is locally installed and verified. GitHub, LovStudio catalog,
-WorkBuddy, and SkillPay publication have not been performed.
+Free channels: `github`, `lovstudio`. No paid channel.
+
+| Channel | State |
+| --- | --- |
+| github | public source `lovstudio/cli2anything-skill` |
+| lovstudio | pending (2026-11-19): catalog entry update to 0.7.1 not yet merged; detail page version and isolated install unverified |

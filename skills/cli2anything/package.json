@@ -1,6 +1,6 @@
 {
   "name": "cli2anything-plus-plus",
-  "version": "0.1.0",
+  "version": "0.7.1",
   "description": "Turn authorized observed API behavior into OpenAPI, SDK, Swagger, and task-focused CLI bundles.",
   "type": "module",
   "bin": {
@@ -27,6 +27,7 @@
   "scripts": {
     "discover:zenmux": "node ./bin/cli2anything.mjs discover-zenmux --out ./artifacts/zenmux-discovered.json",
     "generate:zenmux": "node ./bin/cli2anything.mjs generate-zenmux --out ./openapi/zenmux.openapi.json",
+    "generate:dshfind": "node ./bin/cli2anything.mjs dshfind.com --filter-keyword plugins --output cli --no-link --no-open --discovery ./artifacts/dshfind-discovered.json --out ./generated/cli-dshfind-com",
     "test": "node --test"
   },
   "engines": {

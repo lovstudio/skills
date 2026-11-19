@@ -20,5 +20,30 @@
         "Project regression suite with 17 passing tests"
       ]
     }
+  },
+  {
+    "type": "case",
+    "title": "Generate a dshfind public plugin directory CLI",
+    "description": "The public dshfind plugin page, source contract, and unauthenticated API samples were converted into a read-only OpenAPI, SDK, API graph, and standalone CLI without collecting browser credentials.",
+    "input": {
+      "items": [
+        "https://dshfind.com/zh/plugins",
+        "artifacts/dshfind-discovered.json",
+        "Target dshfind.com",
+        "Filter keyword plugins"
+      ]
+    },
+    "prompt": "把 dshfind 插件超市的公开 API 做成 CLI、SDK 和 OpenAPI。",
+    "output": {
+      "items": [
+        "manifest.json with dshfind.com plugins scope",
+        "OpenAPI 3.1 with ten read-only operations including category discovery and generic GraphQL POST",
+        "API graph covering list-to-detail and market cursor pagination",
+        "Generated cli-dshfind-com package",
+        "Apifox-ready OpenAPI with imported server, four GraphQL examples, and published SDL",
+        "Project regression suite covering REST, GraphQL, Apifox, SDK, and CLI generation",
+        "Live CLI verification for GraphQL dataset, facets, filtered cursor listing, detail, and schema"
+      ]
+    }
   }
 ]

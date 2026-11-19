@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.7.1"
 description: "Turns authorized observed API evidence into a validated OpenAPI contract, API graph, JavaScript SDK, Swagger UI, or task-focused local CLI."
 owner:
   team: "LovStudio"
@@ -15,6 +15,8 @@ use_case:
     - "Generate a filtered OpenAPI and SDK bundle from discovery evidence."
     - "Generate a same-origin browser-session Swagger UI without copying cookies into the output."
     - "Generate a task-focused local CLI package for the selected API scope."
+    - "Generate an Apifox-ready OpenAPI with imported environment and safe run examples."
+    - "Expose the published dshfind GraphQL SDL and field-selectable read-only query examples."
 deployment:
   geography: global
   environments:
@@ -41,10 +43,12 @@ output:
     - "API contract bundle"
     - "Swagger UI"
     - "Generated CLI package"
+    - "Apifox-ready OpenAPI"
   formats:
     - "JSON"
     - "JavaScript modules"
     - "HTML"
+    - "GraphQL SDL"
   parameters:
     - "Target host"
     - "Filter keyword and depth"
@@ -69,17 +73,19 @@ dimensions:
   - id: reproducibility
     label: "Local reproducibility"
     description: "A saved discovery artifact deterministically produces a parseable bundle without live account access."
-    evidence: "The ZenMux case uses the shipped discovery JSON and validates generated files locally."
+    evidence: "The ZenMux and dshfind cases use shipped discovery JSON and validate generated files locally."
     score: null
 pricing:
   model: free
   currency: CNY
   list_price_cny: 0
-  basis: "The current Skill is an internal local interface to an early open-source project runtime."
+  basis: "Free entry while the Skill builds outside usage evidence; four built-in target adapters (ZenMux, dshfind, self-hosted Plane, suanli.cn) are covered by 33 regression tests."
   boundary: "Includes local offline generation and validation; target adapter development, account access, publishing, and hosted operation are excluded."
-  review_trigger: "Review when more target adapters, hosted execution, or supported commercial distribution are added."
+  review_trigger: "Review after 10 external real uses, a credentialed live verification of any target, hosted execution, or a material support-cost change."
   confidence: internal
 distribution:
   paid: []
   free:
-    - "local-installed-and-verified"
+    - github
+    - lovstudio
+  lovstudio_state: "pending (2026-11-19): catalog entry update to 0.7.1 not yet merged; detail page version and isolated install unverified"
