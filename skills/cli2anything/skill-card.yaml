@@ -88,4 +88,4 @@ distribution:
   free:
     - github
     - lovstudio
-  lovstudio_state: "live (2026-11-19): lovstudio/skills#94 merged as 4048c08 and read by the site; /skills/cli2anything HTTP 200 showing 0.7.2 and Free; isolated --project install delivered 0.7.2 and its 33 tests pass"
+  lovstudio_state: "live (2026-11-19): lovstudio/skills#96 merged as 63a9442 and read by the site; /skills/cli2anything HTTP 200 showing 0.7.3 and Free; isolated --project install delivered 0.7.3 and its 35 tests pass"
