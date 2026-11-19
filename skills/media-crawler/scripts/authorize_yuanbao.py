@@ -28,6 +28,9 @@ from media_crawler import (  # noqa: E402
 )
 
 
+DEFAULT_TIMEOUT_SECONDS = 600
+
+
 def yuanbao_authenticated(url: str, cookie: str) -> bool:
     """Return True when the parse API accepts the Cookie, even if it cannot parse this URL."""
     try:
@@ -81,7 +84,12 @@ def save_keychain(cookie: str) -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--test-url", required=True, help="A WeChat Channels sph share URL")
-    parser.add_argument("--timeout", type=int, default=300)
+    parser.add_argument(
+        "--timeout",
+        type=int,
+        default=DEFAULT_TIMEOUT_SECONDS,
+        help=f"等待扫码登录的秒数（默认 {DEFAULT_TIMEOUT_SECONDS}，最少 30）",
+    )
     return parser.parse_args()
 
 
@@ -95,11 +103,19 @@ def main() -> int:
             "缺少 Playwright。可用 uv 临时运行：\n"
             "uv run --with playwright python scripts/authorize_yuanbao.py --test-url URL",
             file=sys.stderr,
+            flush=True,
         )
         return 2
 
-    print("将打开独立 Chrome 窗口。请登录腾讯元宝；检测成功后窗口会自动关闭。")
-    deadline = time.monotonic() + max(30, args.timeout)
+    timeout = max(30, args.timeout)
+    # flush: stdout is block-buffered when the script runs in the background, and
+    # this prompt is the only cue for the user to go and scan the QR code.
+    print(
+        f"将打开独立 Chrome 窗口。请在 {timeout} 秒内登录腾讯元宝；检测成功后窗口会自动关闭。"
+        "需要更久可用 --timeout 秒数 重新运行。",
+        flush=True,
+    )
+    deadline = time.monotonic() + timeout
     with tempfile.TemporaryDirectory(prefix="lov-media-crawler-yuanbao-") as profile:
         with sync_playwright() as playwright:
             try:
@@ -124,7 +140,10 @@ def main() -> int:
                                 or feed.get("h265VideoInfo")
                             ):
                                 save_keychain(header)
-                                print(f"授权成功，已保存到 macOS Keychain service={KEYCHAIN_SERVICE}")
+                                print(
+                                    f"授权成功，已保存到 macOS Keychain service={KEYCHAIN_SERVICE}",
+                                    flush=True,
+                                )
                                 return 0
                         except JobError as exc:
                             last_error = exc.code
@@ -133,13 +152,17 @@ def main() -> int:
                                 print(
                                     f"授权成功，已保存到 macOS Keychain service={KEYCHAIN_SERVICE}\n"
                                     "注意：登录态有效，但元宝无法解析这条测试链接（发布方限制或链接受限）；"
-                                    "请换一条公开视频号链接验证下载。"
+                                    "请换一条公开视频号链接验证下载。",
+                                    flush=True,
                                 )
                                 return 0
                     page.wait_for_timeout(2000)
                 print(
-                    f"授权超时，未保存凭据。last_status={last_error or 'login_not_detected'}",
+                    f"授权超时（{timeout} 秒），未保存凭据。"
+                    f"last_status={last_error or 'login_not_detected'}；"
+                    "可用 --timeout 秒数 延长等待后重试。",
                     file=sys.stderr,
+                    flush=True,
                 )
                 return 2
             finally:

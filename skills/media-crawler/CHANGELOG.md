@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.2] - 2026-11-19
+
+### Fixed
+
+- 视频号解析：本机元宝凭据被拒（HTTP 401/403）且本次显式传了 `--worker-url` 或 `--allow-public-resolver` 时，回退到该解析服务，成功的报告带 `fallback_from: authorization_failed`；未传这两个参数时仍报 `authorization_failed` 并提示重新授权。回退不删除、不改写钥匙串条目，也不把 Cookie 发给解析服务。
+- 解析服务自身返回 401/403 时改报新错误码 `resolver_unauthorized`，文案说明是解析服务拒绝访问，`next_action` 不再指向重新授权元宝；`--via auto` 在该错误下同样可回退到微信客户端取流。
+- `authorize_yuanbao.py`：提示改为立即输出（后台运行时不再等到进程退出才出现），默认等待从 300 秒调到 600 秒，提示与超时信息写明可用 `--timeout` 调整。
+
+### Changed
+
+- 文档按 2026-11-19 实测更新：公共解析服务 `sph.litao.workers.dev` 返回 `401 {"error":"unauthorized"}`，上游 Worker 要求部署者配置的访问凭证，不再把它描述成可用路径。
+- 新增 `tests/test_resolver_fallback.py`：13 个离线用例，用假的 `urlopen` 覆盖凭据回退与解析服务拒绝访问，不访问网络、不读钥匙串。
+
 ## [0.3.1] - 2026-09-12
 
 ### Fixed
