@@ -1,0 +1,30 @@
+# Skill Group Composition
+
+## Nearby Skills Inspected
+
+| Skill | Classification | Decision |
+| --- | --- | --- |
+| `lov-blogger-cloner` | upstream atom | 产出并冻结本 Skill 使用的风格包；更新风格包要回到它开新版本，本 Skill 不改包。 |
+| `lov-writing-style` | not composed | 使用者本人的文风；与本 Skill 参考的作者不同，二者不混用。 |
+| `lov-style-clone` | not composed | 粘贴样本即时改写的轻量能力；本 Skill 使用经留出检验的冻结包。 |
+| `lov-human-writing` | optional downstream atom | 可对成稿做作者性与表层审计；不是必需依赖。 |
+| `lov-article-creator` | optional downstream atom | 把正文做成带封面与品牌的公众号文章包。 |
+| `lov-publish-wechat-article` | optional downstream atom | 草稿同步与发布，只在使用者要求时调用。 |
+
+## Atomic Handoffs
+
+```text
+lov-blogger-cloner  → assets/style-pack（冻结风格包）
+<<STYLE_ID>>        → Markdown 草稿 + 审计结果
+optional: lov-article-creator / lov-publish-wechat-article → 排版、封面与发布
+```
+
+本 Skill 对“按该风格写出的草稿”和它的审计结果负责；排版、封面和发布的验收归下游能力。
+
+## Overlap Decisions
+
+不重复实现取样、度量和规则构建，这些属于 `lov-blogger-cloner`。不复制 `lov-human-writing` 的审计规则。
+
+## Composition Decision
+
+Single Skill：一个结果（按冻结风格包写作并审计），一个风格包，一个审计脚本。相邻能力都通过文件交接，不是隐藏依赖。

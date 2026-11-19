@@ -1,0 +1,94 @@
+schema: lovstudio/skill-card/v1
+version: "<<VERSION>>"
+description: "按冻结、带证据的风格包（参考 <<CREATOR>> 的公开文章），把使用者自己的事实写成接近该写法的文章，并用自带审计检查度量带、原文重合与身份标识。"
+owner:
+  team: "Local skill contributors"
+  contact: "本地维护者，通过宿主会话反馈；未创建公开支持渠道"
+license:
+  name: MIT
+  terms: "脚本、协议与模板采用 MIT。风格包只含规则、度量与短证据摘录，不含原文；被参考作者的文章、身份、品牌与观点的权利不因参考而转授。"
+  url: "LICENSE"
+use_case:
+  audience: "想借鉴这种写法、用自己的素材写作的作者与 AI 工作流"
+  scenario: "使用者提供事实、笔记或草稿，得到该风格的 Markdown 草稿与审计结果"
+  tasks:
+    - "新写：从使用者的事实写成完整正文"
+    - "改写：保留事实与立场，重建结构与语言"
+    - "诊断：按规则与度量带指出偏离并直接改好"
+deployment:
+  geography: local-first
+  environments:
+    - "兼容 AGENTS/Skills 的本地 AI 宿主"
+requirements:
+  credentials: "none"
+  dependencies:
+    - lov-branding-consistency
+  runtime:
+    - "Python 3.9+ standard library for scripts/stylometry.py"
+    - "PyYAML for the Profile helper and validator"
+risks:
+  - risk: "冒充被参考的作者或借用其品牌"
+    mitigation: "审计把作者身份标识列为失败项；品牌位只用使用者 Profile；卡片与正文声明参考不表示授权"
+  - risk: "复制原文句子"
+    mitigation: "风格包只带哈希化的语料片段指纹；与语料连续重合 20 字以上审计即失败"
+  - risk: "为了像而编造亲历、测试或数字"
+    mitigation: "作者性契约要求所有第一人称事实来自使用者材料；缺失时先问或改用判断句"
+  - risk: "把度量带吻合当成质量或相似度分"
+    mitigation: "交付说明写明带内比例只是表层度量；附留出检验结果与盲评入口"
+references:
+  - title: "Skill instructions"
+    path: "SKILL.md"
+  - title: "Style profile"
+    path: "references/style-profile.md"
+  - title: "Writing protocol"
+    path: "references/writing-protocol.md"
+output:
+  types:
+    - "Markdown 草稿"
+    - "审计 JSON"
+  formats:
+    - Markdown
+    - JSON
+  parameters:
+    - "使用者的事实、笔记或草稿"
+    - "文章类型与目标读者"
+    - "使用者 Profile 中的品牌字段"
+  validation:
+    - "required 规则逐条满足或说明原因"
+    - "审计无失败项：无 20 字以上原文重合、无作者身份标识"
+    - "度量带偏离逐项解释或修正"
+  description: "交付状态为草稿；发布由使用者决定。"
+ethical_considerations: "不冒充被参考的作者，不复制其文章，不迁移其身份事实、商业关系与观点；所有事实来自使用者。"
+dimensions:
+  - id: holdout_fidelity
+    label: "留出检验"
+    description: "风格包冻结后在未读过的留出文章上逐条检验规则"
+    evidence: "<<HOLDOUT_LINE>>"
+    score: null
+  - id: originality_guard
+    label: "原文与身份防护"
+    description: "审计检查与语料的连续重合和作者身份标识"
+    evidence: "assets/style-pack/corpus-shingles.json 与 brand.json；<<OVERLAP_LINE>>"
+    score: null
+  - id: traceability
+    label: "证据可追溯"
+    description: "每条规则的原话都能在训练原文中逐字找到，支持数由证据推出"
+    evidence: "assets/style-pack/evidence.jsonl 与 FROZEN.json"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "由 lov-blogger-cloner 生成的单一作者风格包，尚无外部使用证据，先作免费本地能力。"
+  boundary: "包含规则、度量带、审计脚本与写作协议；不含原文、配图、发布与人工评审。"
+  review_trigger: "完成人工盲评、累计 10 次外部使用，或风格包升级到新版本时复评。"
+  confidence: internal
+distribution:
+  paid: []
+  free: []
+  channels:
+    github: not_requested
+    lovstudio: not_requested
+    workbuddy: not_requested
+    skillpay: not_requested
+  local: "generated; install only when the user asks"

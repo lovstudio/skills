@@ -1,0 +1,113 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "博主克隆：从一个博主的公开文章（先支持公众号）得到冻结的、带逐字证据的八维风格包、盲测与留出检验、风格说明书，并可封装成按该风格写作的专属 Skill。"
+owner:
+  team: "Local skill contributors"
+  contact: "本地维护者，通过宿主会话反馈；未创建公开支持渠道"
+license:
+  name: MIT
+  terms: "代码、协议与模板采用 MIT。被分析作品的文字、作者身份、品牌与观点的权利不因分析而转授；风格包只含规则、度量、短引文与哈希指纹，不含原文。"
+  url: "LICENSE"
+use_case:
+  audience: "想系统学习某位博主的写法、再用自己的素材写作的创作者与 AI 工作流"
+  scenario: "从公众号名称或文章目录，到冻结风格包、留出检验、说明书；可选封装为专属写作 Skill"
+  tasks:
+    - "导入公众号导出或 Markdown 目录，并导入同赛道基线语料"
+    - "阅读前选样并冻结训练与留出拆分"
+    - "度量训练集并逐篇通读，写出带逐字证据的八维规则并冻结"
+    - "冻结后盲写试稿，再解封留出逐条检验"
+    - "渲染风格说明书，按需封装成专属写作 Skill"
+deployment:
+  geography: local-first
+  environments:
+    - "兼容 AGENTS/Skills 的本地 AI 宿主"
+requirements:
+  credentials: "不需要固定云账号；公众号文章由 lov-wxmp-cli 在用户授权下读取本地缓存"
+  dependencies:
+    - lov-branding-consistency
+  runtime:
+    - "Python 3.9+ standard library for scripts/cloner.py and scripts/stylometry.py"
+    - "PyYAML for the Profile helper and validator"
+    - "lov-wxmp-cli for WeChat exports; lov-skill-creator for packaging"
+risks:
+  - risk: "冒充被分析的博主，或把其身份、产品、签名语与联系方式带进新文章"
+    mitigation: "身份标识进入 brand.identity_tokens 与 guardrails，审计命中即失败；品牌位只迁移形态，内容由使用者 Profile 填；封装时对联系方式脱敏"
+  - risk: "复制或洗稿原文"
+    mitigation: "风格包不含原文，只含 4–60 字短引文与哈希指纹；与语料连续重合 20 字以上审计即失败"
+  - risk: "规则过拟合到个别爆款或被留出信息污染"
+    mitigation: "阅读前冻结拆分；留出在冻结前被工具封存；支持数与分母由证据推出；解封后构建的新版本自动标记受污染"
+  - risk: "把度量带吻合或校验通过当成风格认可"
+    mitigation: "状态分级报告；对照稿给出基线；质量结论只来自人工盲评，Agent 不替读者作答"
+  - risk: "把原作者的观点、商业立场或笔误当作风格迁移"
+    mitigation: "作者性契约区分 style、identity、opinion、noise 四类，只有 style 进入规则"
+references:
+  - title: "Skill instructions"
+    path: "SKILL.md"
+  - title: "Rules and evidence"
+    path: "references/rules-and-evidence.md"
+  - title: "Holdout and blind trials"
+    path: "references/holdout-and-trials.md"
+  - title: "Case summary"
+    path: "cases/kazike-clone/summary.json"
+output:
+  types:
+    - "冻结拆分与样本台账"
+    - "训练集度量"
+    - "风格包（画像、证据、度量、品牌、指纹、冻结记录、留出报告）"
+    - "风格说明书"
+    - "可选：专属写作 Skill 源码"
+  formats:
+    - JSON
+    - JSONL
+    - Markdown
+  parameters:
+    - "公众号名称或文章目录"
+    - "格式期、排除项与留出样本"
+    - "基线账号"
+  validation:
+    - "拆分摘要与冻结 SHA-256"
+    - "引文是训练原文段落的精确子串，支持数由证据推出，八维齐全"
+    - "留出逐条覆盖，命中附留出原文引文，受污染项单列"
+    - "封装产物通过 creator 校验，审计结果与冻结包一致"
+  description: "风格包冻结与留出检验通过都不等于风格认可；专属 Skill 默认只生成源码、不安装。"
+ethical_considerations: "不冒充被分析的博主，不复制其文章，不迁移其身份事实、商业关系与观点；不绕过平台访问限制，不收集评论区与读者信息；原文只留在本地工作区；不自动发布。"
+dimensions:
+  - id: traceability
+    label: "证据可追溯"
+    description: "每句原话都能在训练原文中逐字找到，每个数字能回读到度量文件，支持数由证据推出"
+    evidence: "cases/kazike-clone/summary.json：39 条规则、257 条证据，verify 无错误"
+    score: null
+  - id: holdout_discipline
+    label: "留出纪律"
+    description: "阅读前冻结拆分，冻结前封存留出；盲测稿在解封前登记；每个规则乘留出样本都有结果"
+    evidence: "cases/kazike-clone/summary.json：117/117 覆盖，87 个独立命中，6 篇试稿均为盲测"
+    score: null
+  - id: transfer_signal
+    label: "迁移信号"
+    description: "同题条件下，画像稿与对照稿相对作者本人留出原文的度量带吻合"
+    evidence: "cases/kazike-clone/summary.json：留出原文 0.70，画像稿 0.71，对照稿 0.34；人工盲评未做"
+    score: null
+  - id: originality_guard
+    label: "原文与身份防护"
+    description: "审计检测与语料的连续重合和作者身份标识，封装时对联系方式脱敏"
+    evidence: "cases/kazike-clone/summary.json：画像稿重合最长 0 字；身份探针稿审计失败；封装包无邮箱与头像"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "首个版本只有一个真实案例、尚无人工盲评与外部使用证据，先以免费入口积累案例。"
+  boundary: "包含取样到封装的完整流水线；不含采集账号、模型费用、人工盲评与发布。"
+  review_trigger: "第一次人工盲评、第二个平台的端到端案例或累计 10 次外部完整使用时复评。"
+  confidence: case-backed
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio
+  channels:
+    github: "private source repository lovstudio/blogger-cloner-skill; public copy is the lovstudio/skills mirror (pending, 2026-11-19)"
+    lovstudio: "pending (2026-11-19): free catalog entry (0 Credits) submitted; detail page and install not yet verified"
+    workbuddy: not_requested
+    skillpay: not_requested
+  local: "installed at ~/.agents/skills/lov-blogger-cloner after validation"

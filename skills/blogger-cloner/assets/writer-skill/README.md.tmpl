@@ -1,0 +1,43 @@
+# <<DISPLAY_NAME>> · <<ENGLISH_NAME>>
+
+![version](https://img.shields.io/badge/version-<<VERSION>>-blue)
+
+按冻结、带证据的风格包，把你自己的事实写成接近「<<CREATOR>>」写法的文章，并自动审计原文重合与身份标识。参考来源不表示合作或授权。
+
+## 安装
+
+本地生成的 Skill，按需链接到你的 Agent skills 目录，例如：
+
+```bash
+ln -s "$(pwd)" ~/.agents/skills/<<STYLE_ID>>
+```
+
+## 使用
+
+- “用<<DISPLAY_NAME>>写一篇公众号文章，素材在这。”
+- “把这篇稿子改成这个风格，事实不要动。”
+
+审计单独运行：
+
+```bash
+python3 scripts/stylometry.py audit --pack assets/style-pack --draft draft.md
+```
+
+## Profile
+
+读取共享 `user-profile/v1`；文末 CTA、署名、联系方式和口号只用你的 `brand.*` 字段。
+
+## 风格包
+
+- 训练 <<TRAIN_N>> 篇、留出 <<HOLDOUT_N>> 篇，<<RULE_N>> 条规则、<<EVIDENCE_N>> 条证据。
+- <<HOLDOUT_LINE>>。
+
+## 依赖
+
+Python 3.9+；PyYAML（Profile 与校验）；`lov-branding-consistency`。
+
+## 质量门禁
+
+```bash
+python3 scripts/validate_skill.py .
+```

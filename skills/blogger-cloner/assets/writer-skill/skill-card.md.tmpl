@@ -1,0 +1,68 @@
+# Skill Card — <<STYLE_ID>>
+
+## Description
+
+按冻结、带证据的风格包，把使用者自己的事实写成接近「<<CREATOR>>」写法的文章，并用自带审计检查度量带、原文重合与身份标识。
+
+## Owner
+
+Local skill contributors；通过宿主会话反馈。
+
+## License / Terms
+
+MIT。风格包只含规则、度量与短证据摘录；被参考作者的文章、身份、品牌与观点的权利不因参考而转授。参考来源不表示合作或授权。
+
+## Use Case
+
+使用者提供事实、笔记或草稿，得到该风格的 Markdown 草稿和审计结果；支持新写、改写和诊断。
+
+## Deployment Geography
+
+本地优先，兼容 AGENTS/Skills 的 AI 宿主。
+
+## Requirements / Dependencies
+
+Python 3.9+ 标准库；PyYAML（Profile 与校验）；依赖 `lov-branding-consistency`。
+
+## Known Risks and Mitigations
+
+- 冒充作者：审计把身份标识列为失败项，品牌位只用使用者 Profile。
+- 复制原文：与语料连续重合 20 字以上即失败。
+- 编造亲历：作者性契约要求第一人称事实来自使用者。
+- 误读指标：度量带吻合只是表层度量，不是质量分。
+
+## References
+
+- [Machine-readable card](skill-card.yaml)
+- [Skill instructions](SKILL.md)
+- [Style profile](references/style-profile.md)
+
+## Skill Output
+
+Markdown 草稿与审计 JSON；状态为草稿。
+
+## Skill Version
+
+<<VERSION>>（风格包 v<<PACK_VERSION>>）
+
+## Ethical Considerations
+
+不冒充被参考的作者，不复制其文章，不迁移其身份事实、商业关系与观点。
+
+## LovStudio Evidence
+
+### User Cases
+
+见 [`cases/cases.json`](cases/cases.json)。
+
+### Dimension Map
+
+留出检验、原文与身份防护、证据可追溯，详见机器可读卡片。<<HOLDOUT_LINE>>。
+
+### Pricing Basis
+
+免费本地能力，见 [`pricing-card.yaml`](pricing-card.yaml)。
+
+### Distribution
+
+仅本地生成；未请求 GitHub、官网、WorkBuddy 或 SkillPay 分发。

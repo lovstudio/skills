@@ -1,0 +1,481 @@
+{
+  "schema": "blogger-cloner-case/v1",
+  "creator": "数字生命卡兹克",
+  "platform": "wechat",
+  "corpus": {
+    "source": "lov-wxmp-cli export of the local Weitan cache",
+    "cached_articles": 20,
+    "with_body": 18,
+    "baseline": {
+      "accounts": [
+        "GitHubDaily",
+        "十字路口Crossing",
+        "少数派",
+        "新智元",
+        "晚点LatePost",
+        "通往AGI之路"
+      ],
+      "articles": 79
+    }
+  },
+  "era_scope": {
+    "from": "2026-04-20",
+    "to": "2026-05-26",
+    "note": "微探缓存的最近 20 篇（2026-04-20 至 05-26，约 5 周）；更早格式期未检查"
+  },
+  "selection": {
+    "method": "explicit holdout ids",
+    "note": "按标题初判子类型分层：新闻快评、产品实测、观点方法论各留出 1 篇；教程与自家产品发布全部进入训练集。选择只看标题、日期与篇幅，未读正文。",
+    "excluded": [],
+    "selected_at": "2026-11-19T09:29:44+08:00"
+  },
+  "split": {
+    "digest": "0fbd5b147746497c02d0aa7b89f6d158a17ad97474af01cb8a11843ce59f615a",
+    "frozen_at": "2026-11-19T09:29:44+08:00",
+    "items": [
+      {
+        "sample_id": "2647681650_1",
+        "date": "2026-04-20",
+        "title": "从0开始，在国内用上Claude Code的终极保姆教程来了。",
+        "units": 4838,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647681743_1",
+        "date": "2026-04-23",
+        "title": "因为GPT-image-2，整个互联网都变成了巨大的黑暗森林。",
+        "units": 2681,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647681810_1",
+        "date": "2026-04-24",
+        "title": "实测小米MiMo-V2.5-Pro，这可能是目前国内最适合Claude Code的新模型。",
+        "units": 3313,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647681944_1",
+        "date": "2026-04-28",
+        "title": "这个51K星标的开源神器，让任何Agent都能一键切换所有模型。",
+        "units": 2804,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647681967_1",
+        "date": "2026-04-29",
+        "title": "开源「洁癖.skill」，让你的Agent越用越聪明。",
+        "units": 2930,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647681988_1",
+        "date": "2026-05-06",
+        "title": "ChatGPT正式上线广告主平台，AI产品从今天开始走向分裂。",
+        "units": 3536,
+        "partition": "holdout"
+      },
+      {
+        "sample_id": "2647682019_1",
+        "date": "2026-05-07",
+        "title": "这个封装了我3年自媒体经验的AI热点网站，今天向所有人免费开放。",
+        "units": 4152,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647682046_1",
+        "date": "2026-05-08",
+        "title": "装了这个AI热点Skill之后，你再也不需要自己去刷AI新闻了。",
+        "units": 2372,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647682080_1",
+        "date": "2026-05-11",
+        "title": "观察了三年，我把所有人用AI的水平分成了10个等级。",
+        "units": 5521,
+        "partition": "holdout"
+      },
+      {
+        "sample_id": "2647682189_1",
+        "date": "2026-05-12",
+        "title": "分享5个Claude Code + 飞书的超实用Agent办公玩法。",
+        "units": 3838,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647682201_1",
+        "date": "2026-05-13",
+        "title": "豆包输入法Mac版正式上线，所有人都该试试AI语音输入了。",
+        "units": 3654,
+        "partition": "holdout"
+      },
+      {
+        "sample_id": "2647682286_1",
+        "date": "2026-05-15",
+        "title": "Codex更新远程控制，你也终于可以在手机上随时随地Vibe Coding了。",
+        "units": 2620,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647682309_1",
+        "date": "2026-05-18",
+        "title": "上周做了场内部分享，关于我做AI这三年来总结的内容创作方法论。",
+        "units": 6209,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647682452_1",
+        "date": "2026-05-20",
+        "title": "帮大家总结了一下凌晨的Google I/O 2026开发者大会。",
+        "units": 6267,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647682482_1",
+        "date": "2026-05-21",
+        "title": "OpenAI和Google联手，要让每一张AI图片都无所遁形。",
+        "units": 3145,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647682522_1",
+        "date": "2026-05-22",
+        "title": "分享一个很实用的寓言故事prompt，5分钟帮你理解任何新概念。",
+        "units": 3439,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647682539_1",
+        "date": "2026-05-25",
+        "title": "AI时代的人才，我觉得最重要的是这6点特质。",
+        "units": 5379,
+        "partition": "train"
+      },
+      {
+        "sample_id": "2647682618_1",
+        "date": "2026-05-26",
+        "title": "我折腾了好久的Skills团队共享，终于有产品替我做出来了。",
+        "units": 2084,
+        "partition": "train"
+      }
+    ]
+  },
+  "pack": {
+    "version": "0.1.0",
+    "rules": 39,
+    "evidence": 257,
+    "rules_by_strength": {
+      "required": 13,
+      "preferred": 22,
+      "optional": 4
+    },
+    "frozen_at": "2026-11-19T09:43:27+08:00",
+    "essence": "一个亲自上手的 AI 实践者，用一句一段的口播节奏，把当天的发布、自己的实测和翻车讲成故事；先亮判断再给证据，术语马上翻译成人话，结尾把一句话拆成几段轻轻收住。",
+    "top_distinctive_phrases": [
+      "非常的",
+      "啥的",
+      "的讲",
+      "很多很多",
+      "周一",
+      "比如你",
+      "给大家看",
+      "大概就是这",
+      "其实就是",
+      "然后他",
+      "实是我",
+      "是真的"
+    ]
+  },
+  "holdout": {
+    "total": 117,
+    "filled": 117,
+    "coverage": 1.0,
+    "results": {
+      "hit": 87,
+      "partial": 17,
+      "miss": 4,
+      "not_applicable": 9
+    },
+    "independent_hits": 87,
+    "contaminated_pack": false,
+    "holdout_band_fit": {
+      "2647681988_1": {
+        "ratio": 0.774,
+        "out_of_band": [
+          "one_sentence_para_ratio",
+          "short_para_ratio",
+          "sent_units_median",
+          "short_sent_ratio",
+          "pron_wo_per1k",
+          "pron_women_per1k",
+          "pron_dajia_per1k"
+        ]
+      },
+      "2647682080_1": {
+        "ratio": 0.742,
+        "out_of_band": [
+          "question_sent_ratio",
+          "punct_question_per1k",
+          "punct_ellipsis_per1k",
+          "pron_wo_per1k",
+          "pron_ni_per1k",
+          "bold_per1k",
+          "images_per1k",
+          "headings_per1k"
+        ]
+      },
+      "2647682201_1": {
+        "ratio": 0.581,
+        "out_of_band": [
+          "para_units_median",
+          "para_units_p90",
+          "short_para_ratio",
+          "sent_units_median",
+          "short_sent_ratio",
+          "long_sent_ratio",
+          "punct_comma_per1k",
+          "punct_period_per1k",
+          "punct_ellipsis_per1k",
+          "pron_wo_per1k",
+          "pron_women_per1k",
+          "pron_ni_per1k",
+          "images_per1k"
+        ]
+      }
+    },
+    "mean_band_fit": {
+      "holdout_real": 0.699,
+      "pack_trials": 0.709,
+      "control_trials": 0.344
+    }
+  },
+  "trials": [
+    {
+      "sample_id": "2647681988_1",
+      "label": "pack",
+      "blind": true,
+      "audit": {
+        "status": "pass",
+        "band_fit": {
+          "checked": 31,
+          "in_band": 24,
+          "ratio": 0.774
+        },
+        "out_of_band": [
+          "one_sentence_para_ratio",
+          "long_sent_ratio",
+          "pron_wo_per1k",
+          "latin_per1k",
+          "digit_per1k",
+          "images_per1k",
+          "units_total"
+        ],
+        "overlap_longest": 0,
+        "overlap_runs": 0,
+        "identity_hits": [],
+        "overuse": []
+      }
+    },
+    {
+      "sample_id": "2647681988_1",
+      "label": "control",
+      "blind": true,
+      "audit": {
+        "status": "warn",
+        "band_fit": {
+          "checked": 31,
+          "in_band": 10,
+          "ratio": 0.323
+        },
+        "out_of_band": [
+          "para_units_median",
+          "para_units_p90",
+          "one_sentence_para_ratio",
+          "short_para_ratio",
+          "sent_units_p90",
+          "short_sent_ratio",
+          "question_sent_ratio",
+          "exclaim_sent_ratio",
+          "punct_comma_per1k",
+          "punct_exclaim_per1k",
+          "punct_question_per1k",
+          "punct_colon_per1k",
+          "pron_wo_per1k",
+          "pron_ni_per1k",
+          "pron_dajia_per1k",
+          "digit_per1k",
+          "bold_per1k",
+          "images_per1k",
+          "headings_per1k",
+          "list_block_ratio",
+          "units_total"
+        ],
+        "overlap_longest": 0,
+        "overlap_runs": 0,
+        "identity_hits": [],
+        "overuse": []
+      }
+    },
+    {
+      "sample_id": "2647682080_1",
+      "label": "pack",
+      "blind": true,
+      "audit": {
+        "status": "pass",
+        "band_fit": {
+          "checked": 31,
+          "in_band": 21,
+          "ratio": 0.677
+        },
+        "out_of_band": [
+          "one_sentence_para_ratio",
+          "short_para_ratio",
+          "punct_colon_per1k",
+          "pron_wo_per1k",
+          "pron_women_per1k",
+          "pron_ni_per1k",
+          "bold_per1k",
+          "images_per1k",
+          "headings_per1k",
+          "units_total"
+        ],
+        "overlap_longest": 0,
+        "overlap_runs": 0,
+        "identity_hits": [],
+        "overuse": []
+      }
+    },
+    {
+      "sample_id": "2647682080_1",
+      "label": "control",
+      "blind": true,
+      "audit": {
+        "status": "warn",
+        "band_fit": {
+          "checked": 31,
+          "in_band": 8,
+          "ratio": 0.258
+        },
+        "out_of_band": [
+          "para_units_median",
+          "one_sentence_para_ratio",
+          "short_para_ratio",
+          "sent_units_median",
+          "sent_units_p90",
+          "short_sent_ratio",
+          "long_sent_ratio",
+          "question_sent_ratio",
+          "exclaim_sent_ratio",
+          "punct_comma_per1k",
+          "punct_period_per1k",
+          "punct_exclaim_per1k",
+          "punct_question_per1k",
+          "punct_colon_per1k",
+          "pron_wo_per1k",
+          "pron_women_per1k",
+          "pron_dajia_per1k",
+          "digit_per1k",
+          "bold_per1k",
+          "images_per1k",
+          "headings_per1k",
+          "list_block_ratio",
+          "units_total"
+        ],
+        "overlap_longest": 13,
+        "overlap_runs": 0,
+        "identity_hits": [],
+        "overuse": []
+      }
+    },
+    {
+      "sample_id": "2647682201_1",
+      "label": "pack",
+      "blind": true,
+      "audit": {
+        "status": "pass",
+        "band_fit": {
+          "checked": 31,
+          "in_band": 21,
+          "ratio": 0.677
+        },
+        "out_of_band": [
+          "one_sentence_para_ratio",
+          "short_para_ratio",
+          "sent_units_median",
+          "punct_comma_per1k",
+          "punct_colon_per1k",
+          "pron_wo_per1k",
+          "pron_ni_per1k",
+          "digit_per1k",
+          "images_per1k",
+          "units_total"
+        ],
+        "overlap_longest": 0,
+        "overlap_runs": 0,
+        "identity_hits": [],
+        "overuse": []
+      }
+    },
+    {
+      "sample_id": "2647682201_1",
+      "label": "control",
+      "blind": true,
+      "audit": {
+        "status": "warn",
+        "band_fit": {
+          "checked": 31,
+          "in_band": 14,
+          "ratio": 0.452
+        },
+        "out_of_band": [
+          "para_units_p90",
+          "one_sentence_para_ratio",
+          "sent_units_p90",
+          "short_sent_ratio",
+          "long_sent_ratio",
+          "question_sent_ratio",
+          "exclaim_sent_ratio",
+          "punct_comma_per1k",
+          "punct_exclaim_per1k",
+          "punct_question_per1k",
+          "punct_colon_per1k",
+          "pron_wo_per1k",
+          "bold_per1k",
+          "images_per1k",
+          "headings_per1k",
+          "list_block_ratio",
+          "units_total"
+        ],
+        "overlap_longest": 13,
+        "overlap_runs": 0,
+        "identity_hits": [],
+        "overuse": []
+      }
+    }
+  ],
+  "suggested_revisions": [
+    "rhythm.one_sentence_paragraph：写明“一句一段不等于短句”。盲测首稿句长中位 19（训练 26），审计后才把解释句补到 35–60 字。",
+    "voice.practitioner_first_person：盲测稿“我”只有 4.9–7.3/千字（训练中位 14.5，留出豆包篇 24.5），因为禁止编造亲历；正式写作必须先收集使用者的亲历素材，否则会系统性偏离。",
+    "新增约束：不要过度呼叫读者。盲测稿“你”17.9–21.6/千字，高于训练 P90 16.3。",
+    "structure.numbered_sections：留出清单文用 Lv.0–Lv.10 等级标签分节，规则应放宽为“加粗编号或等级标签 + 写在最后”。",
+    "argument.counterpoint_balance：留出豆包篇对推荐对象没有缺点段，强推荐文章里反方可能只落在竞品上，规则加例外或降为 optional。",
+    "voice.reader_continuity：留出新闻快评篇没有读者追问与旧文引用，新闻子类型里应为可选。",
+    "argument.concrete_numbers：补一条指令“数字后紧跟对标换算”（CPM 是 Meta 的 3 倍、语音是打字的 3–5 倍），训练与留出都出现。",
+    "argument.cross_domain_lever：游戏母题（养服大佬、升阶、抽卡、存档）在训练和留出里反复出现，可列为首选类比来源。",
+    "packaging.motto_wish：三篇留出都没有口号式祝愿，收尾更常是行动号召，强度维持 optional 并补充“行动号召”变体。",
+    "测量证据的 note 是在剔除固定品牌位之前写的（如“我”中位写 14.5，实际 value 14.1）；v0.2 以 value 为准重写 note，并在最后一次 metrics 之后再写备注。"
+  ],
+  "packaged_skill": {
+    "id": "lov-kazike-style-writer",
+    "validator": "PASSED",
+    "installed": false,
+    "checks": [
+      "no creator email or avatar URL in package",
+      "audit parity with the frozen pack",
+      "identity probe draft fails audit"
+    ]
+  },
+  "human_blind_review": "pairs generated, not yet scored",
+  "note": "Article bodies, the baseline corpus and the rendered style guide stay in the local workspace; this case keeps metadata, counts and the two trial drafts written for the blind test."
+}

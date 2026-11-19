@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "把一个博主的公开文章变成有逐字证据、经过盲测与留出检验的风格包，并能封装成专属写作 Skill"
+basis: "首个版本只有一个真实案例、尚无人工盲评与外部使用证据，先以免费入口积累案例；方法与 lov-media-cloner 一致。"
+boundary: "包含取样、度量、规则构建、冻结、盲测、留出检验、说明书与封装；不含文章采集账号、模型调用费用、人工盲评与发布。"
+review_trigger: "完成第一次人工盲评、出现第二个平台的端到端案例、累计 10 次外部完整使用，或交付范围与支持成本变化时，由 lov-skill-pricing 复评。"
+confidence: case-backed
