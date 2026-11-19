@@ -88,4 +88,4 @@ Free channels: `github`, `lovstudio`. No paid channel.
 | Channel | State |
 | --- | --- |
 | github | public source `lovstudio/cli2anything-skill` |
-| lovstudio | pending (2026-11-19): catalog entry update to 0.7.2 not yet merged; detail page version and isolated install unverified |
+| lovstudio | live (2026-11-19): lovstudio/skills#94 merged as 4048c08 and read by the site; /skills/cli2anything HTTP 200 showing 0.7.2 and Free; isolated `--project` install delivered 0.7.2 and its 33 tests pass |
