@@ -1,0 +1,105 @@
+---
+name: <<STYLE_ID>>
+description: >
+  <<DESCRIPTION>>
+license: MIT
+compatibility: "Portable Agent Skills format. Python 3.9+ (standard library) runs the bundled style audit; PyYAML is used by the Profile helper and validator."
+depends_on:
+  - lov-branding-consistency
+metadata:
+  author: lovstudio
+  version: "<<VERSION>>"
+  card_standard: lovstudio/skill-card/v1
+  content_class: authored-prose
+  style_pack: "<<PACK_VERSION>>"
+  tags:
+    - chinese-writing
+    - creator-style
+    - style-pack
+    - wechat
+---
+
+# <<DISPLAY_NAME>> · <<ENGLISH_NAME>>
+
+按一份冻结、带证据的风格包，把使用者自己的事实、笔记和草稿写成接近「<<CREATOR>>」写法的文章。迁移的是结构、节奏、论证和修辞，不是作者的身份、原文句子或观点。
+
+> 风格来源：<<CREATOR>>（<<PLATFORM>>）的公开文章，训练 <<TRAIN_N>> 篇、留出 <<HOLDOUT_N>> 篇，<<ERA_FROM>> 至 <<ERA_TO>>。参考来源不表示合作或授权。
+
+## Triggers
+
+### Activate when
+
+- “用<<DISPLAY_NAME>>写一篇公众号文章，素材都在这。”
+- “把这篇稿子改成这个风格，事实和数字不要动。”
+- “看看这篇像不像这个风格，直接改好并给我审计结果。”
+- “Write this article in the <<ENGLISH_NAME>> style from my notes.”
+
+### Do not activate when
+
+- 要克隆另一个博主或更新这份风格包：交给 `lov-blogger-cloner`。
+- 要以<<CREATOR>>本人的名义发文、署名或冒充：不做。
+- 只要封面、排版或发布：交给对应的下游能力。
+- 没有任何使用者事实，却要写亲历、实测或数据：先收集素材，不编造。
+
+## User Profile (cross-session)
+
+每次运行读取 `skill.yaml` 声明的 `user-profile/v1`。优先级：当前请求、项目上下文、本 Skill records、共享 preferences、共享 user/brand Profile、安全默认值。
+
+文末品牌位（CTA、署名、联系方式、口号）只用使用者的 `brand.*` 字段；缺失时用中性 CTA，并在交付时说明。使用者明确要求长期沿用的值，用 `scripts/profile_store.py record --confirm` 保存并报告路径。详见 `references/user-profile.md`。
+
+## Skill Group Composition
+
+先读 `references/skill-composition.md`。风格包由 `lov-blogger-cloner` 产出并冻结；本 Skill 只消费，不改包。
+
+## Authorship Integrity
+
+写作前读 `references/authorship-integrity.md`。所有第一人称经历、测试、数字和判断都必须来自使用者材料；风格包里的原话只是写法证据，不是可复用的句子。
+
+## Workflow (MANDATORY)
+
+### Step 0: Load the pack
+
+1. 完整读取 `references/style-profile.md`（规则、模板、度量带、品牌位、禁用清单、留出结果与待修订项）。
+2. 读取 `references/writing-protocol.md`。
+3. 确认审计可运行：
+
+```bash
+python3 "$SKILL_DIR/scripts/stylometry.py" audit --pack "$SKILL_DIR/assets/style-pack" --draft DRAFT.md
+```
+
+### Step 1: Fix the outcome
+
+确定交付物：新写、改写、诊断或局部（标题、开头、结尾）。从风格画像的文章模板里选一个最贴近的类型；材料不支撑时不硬套。
+
+### Step 2: Build the fact ledger
+
+按作者性契约列出：可用的事实与数字、可以写成第一人称的亲历、使用者明确的判断与情绪、需要来源的外部说法、缺失项。缺失的关键事实只问一个问题；不补造。
+
+### Step 3: Draft
+
+按 `references/writing-protocol.md` 的顺序：先满足全部 `required` 规则，再按材料选用 `preferred`，`optional` 只在适用时用。标志短语和口语按训练密度使用。
+
+### Step 4: Fill brand slots
+
+文末品牌位与口号用使用者 Profile；正文不出现原作者的名字、账号、产品、签名语和联系方式。
+
+### Step 5: Audit and revise
+
+运行 Step 0 的审计命令：
+
+- `fail`：与语料有 20 字以上连续重合，或出现原作者身份标识。必须改到通过。
+- `warn`：度量带吻合低于 60% 或口头禅过量。只修真实偏离（如句子过短、过度呼叫读者），不为指标硬凑；作者本人的留出文章平均也只有约七成指标落在训练带内。
+
+### Step 6: Deliver
+
+交付正文，并附：所用模板、审计状态与带内比例、仍缺的事实、截图位清单。状态写“草稿”；发布与否由使用者决定。
+
+## Pack facts
+
+- <<RULE_N>> 条规则、<<EVIDENCE_N>> 条证据，冻结记录见 `assets/style-pack/FROZEN.json`。
+- <<HOLDOUT_LINE>>。
+- 度量带吻合不是质量分或相似度分；风格是否像，最终由读者判断。
+
+## Dependencies
+
+审计只用 Python 3.9+ 标准库；`scripts/profile_store.py` 与 `scripts/validate_skill.py` 需要 PyYAML。无网络依赖。

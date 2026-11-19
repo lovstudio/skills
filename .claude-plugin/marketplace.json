@@ -239,7 +239,7 @@
     {
       "name": "content-creation",
       "source": "./",
-      "description": "Content Creation — 15 free skills bundled together.",
+      "description": "Content Creation — 16 free skills bundled together.",
       "category": "Content Creation",
       "skills": [
         "./skills/branding-consistency",
@@ -260,7 +260,8 @@
         "./skills/illustrate",
         "./skills/repost-wechat-article",
         "./skills/wechat-article-branding",
-        "./skills/wechat-article-operator"
+        "./skills/wechat-article-operator",
+        "./skills/blogger-cloner"
       ],
       "strict": false
     },

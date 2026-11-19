@@ -1,0 +1,22 @@
+[
+  {
+    "type": "case",
+    "title": "公众号「数字生命卡兹克」：20 篇缓存到冻结风格包与专属写作 Skill",
+    "description": "从微探缓存导出 20 篇（18 篇有正文），只看标题与日期按子类型分层，阅读前冻结 15/3 拆分，并以 6 个 AI 科技账号的 79 篇为基线。逐篇通读 15 篇训练样本，写出 39 条规则、257 条逐字证据并冻结。冻结后只凭标题和摘要写了 3 篇画像稿和 3 篇对照稿，登记后才解封留出：117 项标注命中 87、部分 17、未中 4、不适用 9；度量带吻合均值为留出原文 0.70、画像稿 0.71、对照稿 0.34。随后封装为 lov-kazike-style-writer，通过 creator 校验，未安装；人工盲评尚未进行。",
+    "input": {
+      "items": [
+        "用户请求：创建一个克隆博主的 Skill，先做公众号",
+        "本机微探缓存中的公众号「数字生命卡兹克」，经 lov-wxmp-cli 导出",
+        "cases/kazike-clone/summary.json 中的样本框、拆分与基线账号"
+      ]
+    },
+    "prompt": "创建一个克隆博主的 skill。……可以先做公众号，提取他怎么遣词造句、怎么阐述观点、文风，以及他的一些简单品牌信息等等，去蒸馏它。克隆之后就可以复刻他的 skill，写出跟他风格很接近、质量很接近的文章了。",
+    "output": {
+      "items": [
+        "cases/kazike-clone/summary.json",
+        "cases/kazike-clone/trial-pack-chatgpt-ads.md",
+        "cases/kazike-clone/trial-control-chatgpt-ads.md"
+      ]
+    }
+  }
+]

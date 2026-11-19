@@ -1871,6 +1871,8 @@ skills:
   tagline_zh: 从样本文章中提取文风画像，再把任意内容改写成该文风。
   skillpay_product_id: P0806000200843449
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQS
+  related:
+  - blogger-cloner
   pricing:
     model: free_entry
     visibility: public
@@ -10076,6 +10078,8 @@ skills:
     pack, a holdout report, a style guide and a Remotion packaging template, without
     copying the creator's identity.
   tagline_zh: 把任一博主的公开作品变成可追溯的八维风格包、留出检验、风格说明书与 Remotion 包装模板，不复制原作者身份。
+  related:
+  - blogger-cloner
   pricing:
     model: free_entry
     visibility: public
@@ -10254,3 +10258,44 @@ skills:
     review_trigger_zh: 积累三个经用户验收的案例（其中至少一个是产品或公司对象）、十次真实使用，或为取证脚本补上自动化测试时复评。
     review_trigger_en: "Review after three user-accepted cases (at least one on a product or company), ten real uses, or automated tests for the evidence script."
     card_path: pricing-cards/competitor-research.md
+- name: blogger-cloner
+  runtime_name: lov-blogger-cloner
+  display_name: Creator Clone
+  name_zh: 博主克隆
+  repo: lovstudio/blogger-cloner-skill
+  paid: false
+  category: Content Creation
+  version: 0.1.0
+  updated_at: 2026-11-19 03:09:47+00:00
+  depends_on:
+  - branding-consistency
+  description: "Clone a blogger's writing voice, WeChat first: a frozen, evidence-backed eight-dimension style pack with blind holdout checks, a style guide and a packaged writing Skill."
+  tagline_en: "Turn a blogger's public articles into an evidence-backed eight-dimension style pack, test it blind on held-out articles, and package it as a writing Skill without copying the author."
+  tagline_zh: 把任一博主的公开文章变成带逐字证据、经过盲测与留出检验的八维风格包，并封装成能写同风格文章的专属 Skill，不复制原作者身份。
+  related:
+  - media-cloner
+  - style-clone
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本 Skill：语料导入与基线、冻结拆分台账、中文文风度量、逐字证据的规则构建与校验、盲测与留出检验、风格说明书渲染、专属写作 Skill 封装模板
+    delivery_unit_en: "Current Skill with corpus and baseline import, a frozen split ledger, Chinese stylometry, rule build and verification with verbatim evidence, blind trials and holdout checks, style-guide rendering, and templates for packaging a writing Skill"
+    value_zh: 把一位博主的公开文章变成冻结的八维风格包：每句原话能在原文里逐字找到，冻结后先盲写试稿再用留出文章逐条检验，并可封装成能写同风格文章的专属 Skill。
+    value_en: "Turn a blogger's public articles into a frozen eight-dimension style pack whose quotes match the source word for word, check it with blind trials and held-out articles, and package it as a writing Skill."
+    anchor_zh: 在一个公众号的 18 篇文章上端到端跑通：15/3 拆分、39 条规则、257 条证据，留出 117 项命中 87；度量带吻合为原作 0.70、画像稿 0.71、对照稿 0.34。尚无人工盲评和用户省时对照。
+    anchor_en: "Run end to end on 18 articles from one WeChat account: a 15/3 split, 39 rules, 257 evidence items, and 87 hits across 117 holdout items; metric-band fit 0.70 for the author, 0.71 for pack trials and 0.34 for controls. No human blind review or time-saving comparison yet."
+    basis_zh: 六维加权 3.2/5，但只有一个博主的端到端案例，没有人工盲评和外部用户结果，沿用同类免费入口积累证据；度量带吻合不是质量分。
+    basis_en: "Six-dimension score 3.2/5, but there is a single end-to-end case with no human blind review or external results, so it keeps the sibling free entry to collect evidence; metric-band fit is not a quality score."
+    boundary_zh: 公众号文章需经 lov-wxmp-cli 导出，其他平台需先整理成 Markdown 目录；不含采集账号、模型额度、人工盲评与发布。不冒充被分析的博主，不复制其文章，不迁移其身份、商业关系与观点。
+    boundary_en: "WeChat articles come from a lov-wxmp-cli export and other platforms from a Markdown directory; excludes collection accounts, model credits, human review and publishing. No impersonation of the analysed blogger, no copying of their text, identity, business ties or opinions."
+    maintenance_zh: 随导出格式、宿主与平台取样方式变化复评，无托管服务或更新时限承诺。
+    maintenance_en: "Review when export formats, hosts or platform sampling change; no hosted service or update SLA is included."
+    confidence: case-backed
+    review_trigger_zh: 第一次人工盲评、第二个平台的端到端案例、累计 10 次外部完整使用，或交付范围、依赖、支持成本变化时复评。
+    review_trigger_en: "Review after the first human blind review, an end-to-end case on a second platform, ten completed external uses, or material scope, dependency or support-cost changes."
+    card_path: pricing-cards/blogger-cloner.md
