@@ -5012,13 +5012,13 @@ skills:
     card_path: pricing-cards/typeless-prompt.md
 - name: cli2anything
   runtime_name: lov-cli2anything
-  updated_at: 2026-11-19 02:42:32+00:00
+  updated_at: 2026-11-19 02:47:49+00:00
   display_name: API Studio
   repo: lovstudio/cli2anything-skill
   name_zh: 接口工坊
   paid: false
   category: Dev Tools
-  version: 0.7.2
+  version: 0.7.3
   description: Turn authorized observed APIs into verified OpenAPI, API graph, JavaScript
     SDK, Swagger, or task-focused CLI bundles.
   tagline_en: Turn authorized observed APIs into verified contracts, SDKs, Swagger,

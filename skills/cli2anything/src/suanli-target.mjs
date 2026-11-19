@@ -18,8 +18,11 @@ const APIFOX_UI_KEYS = new Set(["x-apifox-orders", "x-apifox-refs", "x-apifox-ig
 const AUTH_HEADERS = ["version", "timestamp", "sign_str"];
 const OVERVIEW_AUTH = "https://docs.suanli.cn/api-key/overview";
 const GATEWAY_NOTE = "未实测：网关先校验凭据再路由，无凭据探测无法确认单个接口。";
+const LIVE_NOTE = "已用真实密钥只读实测通过；字段结构仍以官方文档为准。";
+// 平台 API 密钥的形态（UUID 加 14 位时间戳），实测证据里出现即视为泄漏。
+const TOKEN_LIKE = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}-\d{14}/i;
 
-export function createSuanliOpenapi(discovery, fragments) {
+export function createSuanliOpenapi(discovery, fragments, liveChecks = null) {
   if (discovery?.target !== TARGET || discovery?.scope !== SCOPE || discovery?.authorized !== true) {
     throw new Error("suanli adapter requires authorized suanli.cn openapi-and-llm discovery evidence");
   }
@@ -76,6 +79,7 @@ export function createSuanliOpenapi(discovery, fragments) {
     };
   }
   if (discovery.llmOperations.length) tagNames.push(LLM_TAG);
+  const live = applyLiveChecks(paths, liveChecks);
 
   const spec = {
     openapi: "3.1.0",
@@ -84,7 +88,9 @@ export function createSuanliOpenapi(discovery, fragments) {
       version: "1.0.0",
       description: [
         "由 cli2anything++ 从共绩算力公开官方文档生成：Open API 部分逐接口取自官方 Apifox 公开分享中导出的 OpenAPI 片段，未改写路径与字段；",
-        "大模型云服务部分取自 docs.suanli.cn 的示例。所有接口都没有带凭据实测，写操作没有执行。",
+        live
+          ? `大模型云服务部分取自 docs.suanli.cn 的示例。其中 ${live.count} 个只读接口已用真实密钥实测（x-observation 为 live-verified-*），其余未实测；写操作没有执行。`
+          : "大模型云服务部分取自 docs.suanli.cn 的示例。所有接口都没有带凭据实测，写操作没有执行。",
         `Open API 鉴权：请求头 token、version、timestamp；RSA 模式另加 sign_str。详见 ${OVERVIEW_AUTH} 与 https://docs.suanli.cn/api-key/rsa 。`,
         "凭据不包含在本文件内。",
       ].join("\n"),
@@ -127,10 +133,44 @@ export function createSuanliOpenapi(discovery, fragments) {
     ],
     docConflicts: discovery.docConflicts || [],
     gatewayProbes: discovery.gatewayProbes || [],
+    ...(live ? { liveChecks: live.summary } : {}),
     llmErrors: discovery.llmErrors,
     limitations: discovery.limitations || [],
   };
   return { spec, apifoxToOperation };
+}
+
+// 把真实密钥的只读实测结果合入对应操作；只接受成功的只读调用，避免把文档推断冒充实测。
+function applyLiveChecks(paths, liveChecks) {
+  if (!liveChecks) return null;
+  if (liveChecks.schema !== "suanli-live-checks/v1" || liveChecks.target !== TARGET || liveChecks.readOnly !== true || !Array.isArray(liveChecks.checks) || !liveChecks.checks.length) {
+    throw new Error("suanli live checks must be a read-only suanli-live-checks/v1 file for suanli.cn");
+  }
+  if (!["token", "rsa"].includes(liveChecks.mode) || !liveChecks.observedAt) throw new Error("suanli live checks need mode (token|rsa) and observedAt");
+  if (TOKEN_LIKE.test(JSON.stringify(liveChecks))) throw new Error("suanli live checks contain a credential-looking value; remove it before generating");
+  const observation = `live-verified-${liveChecks.mode}-mode`;
+  const verified = [];
+  for (const check of liveChecks.checks) {
+    const [method, path] = String(check.endpoint || "").split(" ");
+    const op = paths[path]?.[method?.toLowerCase()];
+    if (!op) throw new Error(`live check ${check.endpoint} does not match any generated operation`);
+    if (op["x-write-operation"]) throw new Error(`live check ${check.endpoint} is a write operation; only read-only checks are accepted`);
+    const expected = op.tags[0] === LLM_TAG ? check.result?.httpOk === true : check.result?.httpOk === true && check.result?.code === "0000";
+    if (!expected) throw new Error(`live check ${check.endpoint} did not succeed; record only successful calls`);
+    op["x-observation"] = observation;
+    op["x-evidence"] = {
+      ...op["x-evidence"],
+      basis: "实测",
+      live: true,
+      liveCheck: { observedAt: liveChecks.observedAt, mode: liveChecks.mode, request: check.request, result: check.result, ...(check.note ? { note: check.note } : {}) },
+      note: LIVE_NOTE,
+    };
+    verified.push(check.endpoint);
+  }
+  return {
+    count: verified.length,
+    summary: { observedAt: liveChecks.observedAt, mode: liveChecks.mode, authorization: liveChecks.authorization, client: liveChecks.client, note: liveChecks.note, verified },
+  };
 }
 
 function normalizeOperation({ method, path, variants, usedIds }) {
@@ -373,7 +413,9 @@ export async function generateSuanliBundle(args) {
   const discovery = JSON.parse(await readFile(discoveryPath, "utf8"));
   const fragmentsPath = get("--schema") ? resolve(get("--schema")) : resolve(dirname(discoveryPath), discovery.evidenceFiles?.apifoxFragments || "suanli-apifox-fragments.json");
   const fragments = JSON.parse(await readFile(fragmentsPath, "utf8"));
-  const { spec, apifoxToOperation } = createSuanliOpenapi(discovery, fragments);
+  const livePath = get("--live-checks") ? resolve(get("--live-checks")) : discovery.evidenceFiles?.liveChecks ? resolve(dirname(discoveryPath), discovery.evidenceFiles.liveChecks) : null;
+  const liveChecks = livePath ? JSON.parse(await readFile(livePath, "utf8")) : null;
+  const { spec, apifoxToOperation } = createSuanliOpenapi(discovery, fragments, liveChecks);
   const graph = createSuanliApiGraph({ spec, discovery, fragments, apifoxToOperation });
   const operations = graph.nodes;
   const out = resolve(get("--out") || "generated/suanli-cn-openapi");
@@ -394,7 +436,8 @@ export async function generateSuanliBundle(args) {
     byObservation: operations.reduce((acc, op) => ({ ...acc, [op.observation]: (acc[op.observation] || 0) + 1 }), {}),
     authHeadersInferred: operations.filter(op => op.authHeaders === "inferred-from-overview").map(op => op.includedEndpoint),
     byTag,
-    liveVerified: 0,
+    liveVerified: count(op => op.observation.startsWith("live-verified")),
+    liveVerifiedEndpoints: operations.filter(op => op.observation.startsWith("live-verified")).map(op => op.includedEndpoint),
     servers: { openapi: discovery.auth.openapi.baseUrl, llm: discovery.auth.llm.baseUrl },
     endpoints: operations.map(({ operationId, includedEndpoint, tag, observation, write, encryption }) => ({ operationId, includedEndpoint, tag, observation, write, encryption })),
     outputs: {
@@ -441,7 +484,7 @@ export async function generateSuanliBundle(args) {
   }
 
   console.log(`generated ${out}`);
-  console.log(`operations: ${operations.length} (read: ${manifest.readOperations}, write: ${manifest.writeOperations}, live-verified: 0)`);
+  console.log(`operations: ${operations.length} (read: ${manifest.readOperations}, write: ${manifest.writeOperations}, live-verified: ${manifest.liveVerified})`);
   console.log("no credentials exported");
   return { out, manifest, spec, graph };
 }
@@ -479,8 +522,11 @@ node swagger/server.mjs --port 4790      # 只监听 127.0.0.1
 
 - \`documented-apifox-openapi\`：官方 Apifox 公开分享中逐接口导出的 OpenAPI 片段，路径与字段未改写。来源 ${spec["x-discovery"].apifox.shareUrl}，抓取于 ${spec["x-discovery"].apifox.fetchedAt}。
 - \`documented-docs-example\`：docs.suanli.cn 文档中的调用示例。
-
-所有接口都没有带凭据实测（liveVerified = 0）。两个网关都先校验凭据再路由，无凭据探测只证明了鉴权头名称与错误格式，记录在 \`openapi.json\` 的 \`x-discovery.gatewayProbes\`。每个操作的 \`x-evidence.sources\` 给出接口页地址与 sha256。
+${manifest.liveVerified ? `- \`${spec["x-discovery"].liveChecks.mode === "rsa" ? "live-verified-rsa-mode" : "live-verified-token-mode"}\`：在上面任一文档等级之上，又用真实密钥做了只读实测并返回成功，实测时间与请求、结果摘要写在该操作的 \`x-evidence.liveCheck\`。
+` : ""}
+${manifest.liveVerified
+    ? `已实测 ${manifest.liveVerified} 个只读接口（${spec["x-discovery"].liveChecks.observedAt}，${spec["x-discovery"].liveChecks.mode} 模式）：${manifest.liveVerifiedEndpoints.join("、")}。其余接口仍只有文档证据，写操作都没有执行。`
+    : "所有接口都没有带凭据实测（liveVerified = 0）。"}两个网关都先校验凭据再路由，无凭据探测只证明了鉴权头名称与错误格式，记录在 \`openapi.json\` 的 \`x-discovery.gatewayProbes\`。每个操作的 \`x-evidence.sources\` 给出接口页地址与 sha256。
 
 ## 推断与未验证
 
@@ -583,7 +629,7 @@ ${graph.nodes.filter(op => op.tag === tag).map(op => `<tr><td>${op.method}</td><
   </head>
   <body>
     <h1>共绩算力 API：${manifest.operationCount} 个操作</h1>
-    <p>只读 ${manifest.readOperations}，写操作 ${manifest.writeOperations}，均未带凭据实测。<a href="/">返回 Swagger</a></p>
+    <p>只读 ${manifest.readOperations}，写操作 ${manifest.writeOperations}；已只读实测 ${manifest.liveVerified}，写操作均未执行。<a href="/">返回 Swagger</a></p>
     <h2>调用顺序（${graph.edges.length} 条）</h2>
     <ul>${edges}</ul>
     ${sections}

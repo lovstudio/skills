@@ -5,7 +5,7 @@ description: >
 license: MIT
 metadata:
   author: LovStudio
-  version: "0.7.2"
+  version: "0.7.3"
   card_standard: lovstudio/skill-card/v1
   tags:
     - api-discovery
@@ -168,8 +168,14 @@ python3 "$SKILL_DIR/scripts/cli2anything.py" suanli.cn \
 The discovery script needs PyYAML and, as a precaution, clears example values of
 credential headers (`token`, `sign_str`) before writing evidence. Every operation is graded `documented-apifox-openapi` or
 `documented-docs-example`; both gateways authenticate before routing, so
-unauthenticated probes cannot confirm individual endpoints and `liveVerified`
-stays 0 until a real key is used. The SDK signs `{path}\n{version}\n{timestamp}\n{token}\n{body}`
+unauthenticated probes cannot confirm individual endpoints. After the user runs
+read-only calls with their own key, record each successful call in a
+`suanli-live-checks/v1` file (endpoint, request summary, `code`, data shape; never
+the key) referenced as `evidenceFiles.liveChecks` in the discovery file or passed
+with `--live-checks`; those operations become `live-verified-token-mode` (or
+`-rsa-mode`) and count toward the manifest `liveVerified`. The adapter rejects
+write operations, failed results, unknown endpoints, and credential-looking values
+in that file. The SDK signs `{path}\n{version}\n{timestamp}\n{token}\n{body}`
 (GET signs `path?query`), encrypts flagged bodies with the platform public key in
 244-byte chunks before signing, and treats any envelope `code` other than `"0000"`
 as an error. The generated CLI refuses write operations without `--confirm-write`,
