@@ -17,7 +17,7 @@
 
 1. `LOV_MEDIA_CRAWLER_YUANBAO_COOKIE` for the current process.
 2. macOS Keychain service `lov-media-crawler-yuanbao`.
-3. Explicit custom `--worker-url`: used when no credential exists, or when the credential from 1–2 is rejected with HTTP 401/403.
+3. Explicit custom `--worker-url`: used when no credential exists, or when the credential from 1–2 is rejected with HTTP 401/403. A Worker that requires an access credential gets it from `LOV_MEDIA_CRAWLER_WORKER_CREDENTIAL`.
 4. `--allow-public-resolver`: same conditions as 3. The public instance currently refuses requests; see "Resolver service status".
 5. Public preview metadata probe and an `authorization_required` result.
 6. Local WeChat client capture (`--via auto` fallback or `--via wxclient`) when the paths above fail and `wx_channels_download` is online at `127.0.0.1:2022`.
@@ -28,7 +28,18 @@ Never print or persist a Cookie in the Profile or JSON report. A stale credentia
 
 Measured on 2026-11-19: `POST https://sph.litao.workers.dev/api/fetch_video_profile` with `{"url": "..."}` returns `401 {"error":"unauthorized"}`. The upstream Worker source (`internal/workers/sph/worker.js` in `ltaoo/wx_channels_download`) requires an `ACCESS_CREDENTIAL` chosen by the deployer, supplied as `Authorization: Bearer <credential>` or HTTP Basic, and its deploy guide tells deployers to keep the Worker for their own use. The public instance is therefore not an open path, and a self-hosted Worker deployed from current upstream needs that credential too.
 
-This Skill sends no credential to a resolver service. A 401/403 from one is reported as `resolver_unauthorized`, which is unrelated to the local Yuanbao session; the working routes remain the local Yuanbao authorization and local WeChat client capture.
+A 401/403 from a resolver service is reported as `resolver_unauthorized`, which is unrelated to the local Yuanbao session. The routes that need no third party remain the local Yuanbao authorization and local WeChat client capture.
+
+## Self-hosted Worker credential
+
+Set `LOV_MEDIA_CRAWLER_WORKER_CREDENTIAL` in the current process to the access credential chosen when the Worker was deployed (`sphCredential` / `ACCESS_CREDENTIAL` upstream), then pass `--worker-url`:
+
+- It is sent as `Authorization: Bearer <credential>`, and only to the `--worker-url` endpoint. `--allow-public-resolver` alone never sends it.
+- The endpoint must be HTTPS; plain HTTP is accepted only for `localhost`, `127.0.0.1` and `::1`. Anything else stops with `invalid_url` before a request is made.
+- It is not replayed to a redirect target, and it never appears in the Profile, the JSON report, error messages or logs. There is no command-line flag for it, so it stays out of shell history and process listings.
+- `doctor --json` reports `environment_worker_credential` as a boolean only.
+
+The header format follows the upstream Worker source and deploy guide, and was exercised against a local stub that applies the same rule; it has not been run against a deployed Worker.
 
 ## Performance policy
 

@@ -14,6 +14,7 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -31,6 +32,7 @@ import media_crawler as mc  # noqa: E402
 SPH_URL = "https://weixin.qq.com/sph/EXAMPLE123"
 CUSTOM_WORKER = "https://resolver.example.invalid/api/fetch_video_profile"
 STALE_COOKIE = "hy_user=offline-test; hy_token=stale-test-value"
+WORKER_CREDENTIAL = "offline-worker-credential"
 VIDEO_URL = "https://finder.video.qq.com/stream/sample.mp4?token=signed"
 FEED = {
     "feedInfo": {"description": "测试标题\n第二行", "videoUrl": VIDEO_URL},
@@ -95,8 +97,14 @@ class FakeNetwork:
 
 
 class OfflineCase(unittest.TestCase):
-    def offline(self, routes: dict[str, Any], *, cookie: str) -> FakeNetwork:
+    def offline(
+        self, routes: dict[str, Any], *, cookie: str, worker_credential: str = ""
+    ) -> FakeNetwork:
         network = FakeNetwork(routes)
+        # Pin the resolver credential so a value in the developer's shell cannot leak in.
+        environment = mock.patch.dict(os.environ, {mc.WORKER_CREDENTIAL_ENV: worker_credential})
+        environment.start()
+        self.addCleanup(environment.stop)
         forbidden = AssertionError("tests must not read the Keychain or spawn processes")
         for target, replacement in (
             ("urllib.request.urlopen", network.urlopen),
@@ -212,6 +220,75 @@ class ResolverServiceErrorTest(OfflineCase):
         self.assertEqual(caught.exception.code, "resolver_failed")
 
 
+class WorkerCredentialTest(OfflineCase):
+    def test_custom_worker_receives_the_bearer_credential_but_never_the_cookie(self) -> None:
+        network = self.offline(
+            {mc.YUANBAO_PARSE_URL: 401, CUSTOM_WORKER: FEED},
+            cookie=STALE_COOKIE,
+            worker_credential=WORKER_CREDENTIAL,
+        )
+        media_url, _, resolver, fallback_from = mc.resolve_wechat(
+            SPH_URL, worker_url=CUSTOM_WORKER, allow_public_resolver=False
+        )
+        self.assertEqual((media_url, resolver), (VIDEO_URL, "custom_worker"))
+        self.assertEqual(fallback_from, "authorization_failed")
+        headers = network.headers_for(CUSTOM_WORKER)
+        self.assertEqual(headers["authorization"], f"Bearer {WORKER_CREDENTIAL}")
+        self.assertNotIn("cookie", headers)
+        # A redirect must not carry the credential to another host.
+        request = network.requests[-1]
+        self.assertIn("Authorization", request.unredirected_hdrs)
+        self.assertNotIn("Authorization", request.headers)
+
+    def test_public_resolver_never_receives_the_credential(self) -> None:
+        network = self.offline(
+            {mc.PUBLIC_WORKER_URL: FEED}, cookie="", worker_credential=WORKER_CREDENTIAL
+        )
+        _, _, resolver, _ = mc.resolve_wechat(SPH_URL, worker_url="", allow_public_resolver=True)
+        self.assertEqual(resolver, "public_worker")
+        self.assertNotIn("authorization", network.headers_for(mc.PUBLIC_WORKER_URL))
+
+    def test_no_credential_means_no_authorization_header(self) -> None:
+        network = self.offline({CUSTOM_WORKER: FEED}, cookie="")
+        mc.resolve_wechat(SPH_URL, worker_url=CUSTOM_WORKER, allow_public_resolver=False)
+        self.assertNotIn("authorization", network.headers_for(CUSTOM_WORKER))
+
+    def test_rejected_credential_is_reported_without_echoing_it(self) -> None:
+        self.offline({CUSTOM_WORKER: 401}, cookie="", worker_credential=WORKER_CREDENTIAL)
+        with self.assertRaises(mc.JobError) as caught:
+            mc.resolve_wechat(SPH_URL, worker_url=CUSTOM_WORKER, allow_public_resolver=False)
+        error = caught.exception
+        self.assertEqual(error.code, "resolver_unauthorized")
+        self.assertIn("拒绝了提供的访问凭证", error.message)
+        self.assertIn(mc.WORKER_CREDENTIAL_ENV, error.next_action)
+        self.assertNotIn("authorize_yuanbao", error.next_action)
+        self.assertNotIn(WORKER_CREDENTIAL, error.message + error.next_action)
+
+    def test_missing_credential_points_at_the_environment_variable(self) -> None:
+        self.offline({CUSTOM_WORKER: 401}, cookie="")
+        with self.assertRaises(mc.JobError) as caught:
+            mc.resolve_wechat(SPH_URL, worker_url=CUSTOM_WORKER, allow_public_resolver=False)
+        self.assertEqual(caught.exception.code, "resolver_unauthorized")
+        self.assertIn(mc.WORKER_CREDENTIAL_ENV, caught.exception.next_action)
+
+    def test_credential_is_refused_over_plain_http(self) -> None:
+        insecure = "http://resolver.example.invalid/api/fetch_video_profile"
+        network = self.offline({insecure: FEED}, cookie="", worker_credential=WORKER_CREDENTIAL)
+        with self.assertRaises(mc.JobError) as caught:
+            mc.resolve_wechat(SPH_URL, worker_url=insecure, allow_public_resolver=False)
+        self.assertEqual(caught.exception.code, "invalid_url")
+        self.assertEqual(network.urls, [])
+        self.assertNotIn(WORKER_CREDENTIAL, caught.exception.message + caught.exception.next_action)
+
+    def test_credential_is_allowed_on_loopback_http(self) -> None:
+        loopback = "http://127.0.0.1:8787/api/fetch_video_profile"
+        network = self.offline({loopback: FEED}, cookie="", worker_credential=WORKER_CREDENTIAL)
+        mc.resolve_wechat(SPH_URL, worker_url=loopback, allow_public_resolver=False)
+        self.assertEqual(
+            network.headers_for(loopback)["authorization"], f"Bearer {WORKER_CREDENTIAL}"
+        )
+
+
 class DownloadCommandTest(OfflineCase):
     def run_main(self, argv: list[str]) -> tuple[int, dict[str, Any], str]:
         stdout, stderr = io.StringIO(), io.StringIO()
@@ -232,6 +309,33 @@ class DownloadCommandTest(OfflineCase):
         self.assertNotIn("authorize_yuanbao", report["next_action"])
         self.assertIn("wxclient.sh", report["next_action"])
         self.assertNotIn("stale-test-value", output)
+
+    def test_rejected_worker_credential_never_reaches_the_output(self) -> None:
+        self.offline(
+            {CUSTOM_WORKER: 403, mc.WXCLIENT_API: WXCLIENT_DOWN},
+            cookie="",
+            worker_credential=WORKER_CREDENTIAL,
+        )
+        with tempfile.TemporaryDirectory() as temp:
+            report_path = Path(temp) / "result.json"
+            code, report, output = self.run_main(
+                [
+                    "download",
+                    SPH_URL,
+                    "--output-dir",
+                    temp,
+                    "--worker-url",
+                    CUSTOM_WORKER,
+                    "--json-report",
+                    str(report_path),
+                    "--json",
+                ]
+            )
+            saved = report_path.read_text(encoding="utf-8")
+        self.assertEqual(code, 2)
+        self.assertEqual(report["code"], "resolver_unauthorized")
+        self.assertIn(mc.WORKER_CREDENTIAL_ENV, report["next_action"])
+        self.assertNotIn(WORKER_CREDENTIAL, output + saved)
 
     def test_download_marks_the_fallback_in_the_report(self) -> None:
         self.offline({mc.YUANBAO_PARSE_URL: 401, mc.PUBLIC_WORKER_URL: FEED}, cookie=STALE_COOKIE)
