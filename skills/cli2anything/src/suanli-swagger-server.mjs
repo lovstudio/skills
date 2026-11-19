@@ -5,7 +5,7 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SuanliClient } from "../sdk/index.mjs";
+import { KEYCHAIN_SERVICES, SuanliClient, readKeychainSecret } from "../sdk/index.mjs";
 
 const DIR = dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
@@ -68,17 +68,20 @@ const server = createServer(async (req, res) => {
       return send(res, 403, { error: `${req.method} ${path} 是写操作，代理默认拒绝。确需调试时用 --allow-write 重启代理。` });
     }
 
-    const client = new SuanliClient();
+    const client = new SuanliClient({
+      token: process.env.SUANLI_TOKEN || readKeychainSecret(KEYCHAIN_SERVICES.token),
+      llmApiKey: process.env.SUANLI_LLM_API_KEY || readKeychainSecret(KEYCHAIN_SERVICES.llmApiKey),
+    });
     const body = await readRequestBody(req);
     if (entry.llm) {
-      if (!client.llmApiKey) return send(res, 401, { error: "代理进程未设置 SUANLI_LLM_API_KEY" });
+      if (!client.llmApiKey) return send(res, 401, { error: `代理进程没有大模型 API Key：设置 SUANLI_LLM_API_KEY 或钥匙串条目 ${KEYCHAIN_SERVICES.llmApiKey}` });
       const prepared = client.prepareLlm(req.method, path, { body });
       const upstream = await fetch(prepared.url, prepared.init);
       res.writeHead(upstream.status, { "Content-Type": upstream.headers.get("content-type") || "application/json" });
       for await (const chunk of upstream.body || []) res.write(chunk);
       return res.end();
     }
-    if (!client.token) return send(res, 401, { error: "代理进程未设置 SUANLI_TOKEN" });
+    if (!client.token) return send(res, 401, { error: `代理进程没有 API 密钥：设置 SUANLI_TOKEN 或钥匙串条目 ${KEYCHAIN_SERVICES.token}` });
     // Swagger UI 会把 version、timestamp 等声明过的头一起发来；这里统一由 SDK 重新生成，忽略浏览器传值。
     const query = Object.fromEntries(url.searchParams);
     const prepared = client.prepare(req.method, path, { query, body, encryption: Boolean(entry.op["x-suanli-auth"]?.encryption) });

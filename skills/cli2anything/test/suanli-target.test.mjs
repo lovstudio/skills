@@ -14,6 +14,7 @@ const run = promisify(execFile);
 const ROOT = resolve(fileURLToPath(new URL("../", import.meta.url)));
 // 测试用的占位凭据；生成物与 dry-run 输出里都不得出现它。
 const PLACEHOLDER_TOKEN = "placeholder-token-for-tests";
+const KEYCHAIN_TOKEN = "keychain-placeholder-for-tests";
 const header = (name, schema = { type: "string" }, extra = {}) => ({ name, in: "header", required: true, schema, ...extra });
 const table = (encrypt = "否") => `| 当前版本 | 旧版本 | 是否需要加密 | 是否需要加签 |\n| --- | --- | --- | --- |\n| v1.0.0 | - | ${encrypt} | 是 |`;
 const authHeaders = [header("token", { type: "string" }, { example: "" }), header("timestamp", { type: "number" }), header("version", { type: "number" }, { example: "1.0.0" })];
@@ -223,7 +224,8 @@ test("suanli wrapper dispatch produces bundle, Swagger and a schema-driven CLI w
     for (const file of ["swagger/index.html", "swagger/drilldown.html", "README.md", "openapi.json"]) assert.ok((await readFile(join(out, file), "utf8")).length > 0);
     assert.match(await readFile(join(out, "sdk/index.mjs"), "utf8"), /"deploymentTaskCreate": \{/, "SDK 内嵌完整操作表");
 
-    const env = { PATH: process.env.PATH };
+    // SUANLI_KEYCHAIN=0：不让本机钥匙串里的真实密钥进入测试。
+    const env = { PATH: process.env.PATH, SUANLI_KEYCHAIN: "0" };
     const cli = join(out, "bin/lov-suanli-cli.mjs");
     const help = await run(process.execPath, [cli, "help"], { env });
     const commands = help.stdout.split("\n").filter(line => /^ {4}[a-z0-9-]+ +(GET|POST|PUT|PATCH|DELETE) /.test(line));
@@ -237,6 +239,24 @@ test("suanli wrapper dispatch produces bundle, Swagger and a schema-driven CLI w
     const refused = spawnSync(process.execPath, [cli, "deployment-task-create", "--data", '{"task_name":"x"}'], { env: { ...env, SUANLI_TOKEN: PLACEHOLDER_TOKEN }, encoding: "utf8" });
     assert.equal(refused.status, 3, "写操作没有 --confirm-write 必须拒绝");
     await assert.rejects(() => run(process.execPath, [cli, "deployment-resource-search", "--nope", "1", "--dry-run"], { env }), error => /未知参数/.test(error.stderr));
+
+    if (process.platform === "darwin") {
+      // 用假的 security 命令模拟钥匙串：只对 suanli-token 返回占位密钥。
+      const fakeBin = join(dir, "fake-bin");
+      await mkdir(fakeBin);
+      await writeFile(join(fakeBin, "security"), `#!/bin/sh\n[ "$3" = "suanli-token" ] && echo ${KEYCHAIN_TOKEN} && exit 0\nexit 44\n`, { mode: 0o755 });
+      const kcEnv = { PATH: `${fakeBin}:${process.env.PATH}` };
+      const fromKeychain = JSON.parse((await run(process.execPath, [cli, "deployment-resource-search", "--dry-run"], { env: kcEnv })).stdout);
+      assert.equal(fromKeychain.credentialSource, "keychain");
+      assert.equal(fromKeychain.headers.token, "<已提供>");
+      assert.equal(JSON.stringify(fromKeychain).includes(KEYCHAIN_TOKEN), false, "dry-run 不得回显钥匙串里的密钥");
+      const envWins = JSON.parse((await run(process.execPath, [cli, "deployment-resource-search", "--dry-run"], { env: { ...kcEnv, SUANLI_TOKEN: PLACEHOLDER_TOKEN } })).stdout);
+      assert.equal(envWins.credentialSource, "env", "环境变量优先于钥匙串");
+      const disabled = JSON.parse((await run(process.execPath, [cli, "deployment-resource-search", "--dry-run"], { env: { ...kcEnv, SUANLI_KEYCHAIN: "0" } })).stdout);
+      assert.equal(disabled.hasCredential, false);
+      const llmMissing = JSON.parse((await run(process.execPath, [cli, "llm-list-models", "--dry-run"], { env: kcEnv })).stdout);
+      assert.equal(llmMissing.hasCredential, false, "大模型 Key 用单独的钥匙串条目");
+    }
 
     const files = await listFiles(out);
     for (const file of files) assert.equal((await readFile(file, "utf8")).includes(PLACEHOLDER_TOKEN), false, `${file} 不得包含凭据`);
