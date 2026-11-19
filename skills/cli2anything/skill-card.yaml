@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.7.2"
+version: "0.7.3"
 description: "Turns authorized observed API evidence into a validated OpenAPI contract, API graph, JavaScript SDK, Swagger UI, or task-focused local CLI."
 owner:
   team: "LovStudio"

@@ -151,6 +151,40 @@ test("suanli adapter normalizes vendor fragments to OpenAPI 3.1 without inventin
   assert.equal(spec.components.securitySchemes.ApiKeyAuth.type, "apiKey");
 });
 
+const liveChecks = {
+  schema: "suanli-live-checks/v1",
+  target: "suanli.cn",
+  observedAt: "2026-11-19T02:39:10Z",
+  authorization: "user-provided key",
+  mode: "token",
+  readOnly: true,
+  checks: [
+    { endpoint: "GET /api/deployment/resource/search", request: { query: { device_type: "GpuDevice" } }, result: { httpOk: true, code: "0000", count: 32 } },
+    { endpoint: "POST /api/output/v2/device_order/get_order_list_v2", request: { body: { page: 1 } }, result: { httpOk: true, code: "0000", count: 0 } },
+  ],
+};
+
+test("suanli live checks upgrade only successful read-only operations to live-verified", () => {
+  const { spec } = createSuanliOpenapi(discovery, fragments, liveChecks);
+  const search = spec.paths["/api/deployment/resource/search"].get;
+  assert.equal(search["x-observation"], "live-verified-token-mode");
+  assert.equal(search["x-evidence"].basis, "实测");
+  assert.equal(search["x-evidence"].live, true);
+  assert.equal(search["x-evidence"].liveCheck.result.count, 32);
+  assert.equal(search["x-evidence"].sources[0].apifoxId, "api-1", "实测不覆盖原有文档来源");
+  assert.equal(spec.paths["/api/output/v2/device_order/get_order_list_v2"].post["x-observation"], "live-verified-token-mode");
+  assert.equal(spec.paths["/api/storage/encrypt/check"].post["x-observation"], "documented-apifox-openapi", "未实测的接口保持文档等级");
+  assert.deepEqual(spec["x-discovery"].liveChecks.verified, liveChecks.checks.map(c => c.endpoint));
+
+  const withCheck = check => ({ ...liveChecks, checks: [check] });
+  assert.throws(() => createSuanliOpenapi(discovery, fragments, withCheck({ endpoint: "POST /api/deployment/task/create", result: { httpOk: true, code: "0000" } })), /write operation/);
+  assert.throws(() => createSuanliOpenapi(discovery, fragments, withCheck({ endpoint: "GET /api/deployment/resource/search", result: { httpOk: true, code: "A003" } })), /did not succeed/);
+  assert.throws(() => createSuanliOpenapi(discovery, fragments, withCheck({ endpoint: "GET /api/not/generated", result: { httpOk: true, code: "0000" } })), /does not match/);
+  assert.throws(() => createSuanliOpenapi(discovery, fragments, { ...liveChecks, readOnly: false }), /read-only/);
+  const leaked = `${"ab12cd34"}-${"ab12"}-${"ab12"}-${"ab12"}-${"ab12cd34ef56"}-20261119103721`;
+  assert.throws(() => createSuanliOpenapi(discovery, fragments, { ...liveChecks, note: leaked }), /credential-looking/);
+});
+
 test("suanli operation helpers derive stable ids and classify writes", () => {
   assert.equal(deriveOperationId("/api/storage/nas/v1/pre-create"), "storageNasV1PreCreate");
   assert.equal(isWriteOperation("post", "/api/storage/s3/bucket/list"), false);
@@ -260,6 +294,26 @@ test("suanli wrapper dispatch produces bundle, Swagger and a schema-driven CLI w
 
     const files = await listFiles(out);
     for (const file of files) assert.equal((await readFile(file, "utf8")).includes(PLACEHOLDER_TOKEN), false, `${file} 不得包含凭据`);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("suanli bundle picks up live checks referenced by the discovery file", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "suanli-live-"));
+  try {
+    await writeFile(join(dir, "fragments.json"), JSON.stringify(fragments));
+    await writeFile(join(dir, "live.json"), JSON.stringify(liveChecks));
+    await writeFile(join(dir, "discovery.json"), JSON.stringify({ ...discovery, evidenceFiles: { apifoxFragments: "fragments.json", liveChecks: "live.json" } }));
+    const out = join(dir, "bundle");
+    await run(process.execPath, ["bin/cli2anything.mjs", "suanli.cn", "--output", "cli", "--no-link", "--no-open", "--discovery", join(dir, "discovery.json"), "--out", out], { cwd: ROOT });
+    const manifest = JSON.parse(await readFile(join(out, "manifest.json"), "utf8"));
+    assert.equal(manifest.liveVerified, 2);
+    assert.deepEqual(manifest.liveVerifiedEndpoints.sort(), liveChecks.checks.map(c => c.endpoint).sort());
+    assert.equal(manifest.byObservation["live-verified-token-mode"], 2);
+    assert.match(await readFile(join(out, "README.md"), "utf8"), /已实测 2 个只读接口/);
+    const help = await run(process.execPath, [join(out, "bin/lov-suanli-cli.mjs"), "deployment-resource-search", "--help"], { env: { PATH: process.env.PATH, SUANLI_KEYCHAIN: "0" } });
+    assert.match(help.stdout, /live-verified-token-mode（已用真实密钥只读实测）/);
   } finally {
     await rm(dir, { recursive: true, force: true });
   }

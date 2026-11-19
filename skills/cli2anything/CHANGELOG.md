@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.3
+
+- The suanli adapter accepts a `suanli-live-checks/v1` evidence file (`evidenceFiles.liveChecks` or `--live-checks`) and upgrades the matching operations from documentation-only to `live-verified-token-mode` / `live-verified-rsa-mode`, keeping the original documentation sources and adding the check under `x-evidence.liveCheck`.
+- Only successful read-only checks are accepted: write operations, non-`"0000"` results, endpoints missing from the generated contract, and credential-looking values in the file stop generation.
+- The manifest reports `liveVerified` and `liveVerifiedEndpoints`; the bundle README, drilldown page, and per-command CLI help show which operations were verified live.
+
 ## 0.7.2
 
 - The generated suanli CLI and Swagger proxy read the macOS Keychain items `suanli-token` and `suanli-llm-key` when `SUANLI_TOKEN` or `SUANLI_LLM_API_KEY` is missing, so commands work from shells that do not inherit the variables; `SUANLI_KEYCHAIN=0` turns this off.

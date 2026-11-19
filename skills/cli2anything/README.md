@@ -1,6 +1,6 @@
 # 接口工坊 · API Studio
 
-![Version](https://img.shields.io/badge/version-0.7.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.7.3-CC785C)
 
 cli2anything++ is an authorization-first CLI for turning observed API behavior into:
 

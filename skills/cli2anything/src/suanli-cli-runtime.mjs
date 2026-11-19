@@ -145,7 +145,7 @@ function commandHelp(command) {
     lines.push("");
   }
   if (command.hasBody) lines.push(`请求体: --data '<json>' 或 --data @file.json${command.bodyRequired ? "（必填）" : ""}`, "");
-  lines.push(`证据: ${command.observation}（未带凭据实测）`);
+  lines.push(`证据: ${command.observation}（${String(command.observation).startsWith("live-verified") ? "已用真实密钥只读实测" : "未带凭据实测"}）`);
   return lines.join("\n");
 }
 
