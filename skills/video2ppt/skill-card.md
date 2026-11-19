@@ -93,4 +93,4 @@ Free channels: `github`, `lovstudio`. No paid channel.
 
 | Channel | State |
 | --- | --- |
-| lovstudio | pending (2026-11-19): catalog entry not merged yet; detail page and install not verified |
+| lovstudio | live (2026-11-19): lovstudio/skills#90 merged as de7fe08 and read by the site; /skills/video2ppt HTTP 200 showing 0.1.0 and Free; isolated `--project` install delivered 0.1.0 |
