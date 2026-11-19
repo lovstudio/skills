@@ -97,4 +97,4 @@ distribution:
   free:
     - github
     - lovstudio
-  lovstudio_state: "pending (2026-11-19): catalog entry not merged yet; detail page and install not verified"
+  lovstudio_state: "live (2026-11-19): lovstudio/skills#90 merged as de7fe08 and read by the site; /skills/video2ppt HTTP 200 showing 0.1.0 and Free; isolated --project install delivered 0.1.0"
