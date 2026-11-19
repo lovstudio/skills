@@ -1,5 +1,6 @@
 // SuanliClient — 共绩算力 Open API 与大模型云服务的 SDK。
 // 签名与加密规则来自 https://docs.suanli.cn/api-key/rsa；凭据只经构造参数或环境变量在内存中传入。
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { constants, createPrivateKey, createPublicKey, publicEncrypt, sign } from "node:crypto";
 
@@ -8,6 +9,25 @@ export const LLM_BASE_URL = "https://api.suanli.cn/v1";
 export const DEFAULT_API_VERSION = "1.0.0";
 // 文档规定：2048 位密钥每段最多 244 字节明文。
 export const ENCRYPT_CHUNK_BYTES = 244;
+
+// macOS 钥匙串条目名：security add-generic-password -a "$USER" -s <service> -w
+export const KEYCHAIN_SERVICES = { token: "suanli-token", llmApiKey: "suanli-llm-key" };
+
+// 环境变量缺失时由 CLI 与 Swagger 代理调用；SUANLI_KEYCHAIN=0 关闭，非 macOS 或条目不存在时返回 undefined。
+export function readKeychainSecret(service, env = process.env) {
+  if (process.platform !== "darwin" || env.SUANLI_KEYCHAIN === "0") return undefined;
+  try {
+    const value = execFileSync("security", ["find-generic-password", "-s", service, "-w"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+      timeout: 10000,
+      env,
+    }).trim();
+    return value || undefined;
+  } catch {
+    return undefined;
+  }
+}
 
 // 生成时由适配器替换为 operationId → { method, path, base, encryption, write } 的完整表。
 export const OPERATIONS = /*__SUANLI_OPERATIONS__*/ {};

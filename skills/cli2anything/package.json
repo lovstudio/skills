@@ -1,6 +1,6 @@
 {
   "name": "cli2anything-plus-plus",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Turn authorized observed API behavior into OpenAPI, SDK, Swagger, and task-focused CLI bundles.",
   "type": "module",
   "bin": {

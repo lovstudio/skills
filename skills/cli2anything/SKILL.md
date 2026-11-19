@@ -5,7 +5,7 @@ description: >
 license: MIT
 metadata:
   author: LovStudio
-  version: "0.7.1"
+  version: "0.7.2"
   card_standard: lovstudio/skill-card/v1
   tags:
     - api-discovery
@@ -173,7 +173,9 @@ stays 0 until a real key is used. The SDK signs `{path}\n{version}\n{timestamp}\
 (GET signs `path?query`), encrypts flagged bodies with the platform public key in
 244-byte chunks before signing, and treats any envelope `code` other than `"0000"`
 as an error. The generated CLI refuses write operations without `--confirm-write`,
-and the Swagger proxy refuses them unless started with `--allow-write`.
+and the Swagger proxy refuses them unless started with `--allow-write`. When
+`SUANLI_TOKEN` or `SUANLI_LLM_API_KEY` is missing, both read the macOS Keychain items
+`suanli-token` and `suanli-llm-key`; `SUANLI_KEYCHAIN=0` turns this off.
 
 Use `--output cli` only when a task-focused generated CLI is requested. Do not
 run `npm link` unless local installation is part of the current request; pass

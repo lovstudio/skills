@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.2
+
+- The generated suanli CLI and Swagger proxy read the macOS Keychain items `suanli-token` and `suanli-llm-key` when `SUANLI_TOKEN` or `SUANLI_LLM_API_KEY` is missing, so commands work from shells that do not inherit the variables; `SUANLI_KEYCHAIN=0` turns this off.
+- `--dry-run` reports where the credential came from (`flag`, `env`, `keychain`) without echoing it.
+
 ## 0.7.1
 
 - Synced `pricing-card.yaml` to the Skill version and refreshed its basis and review trigger for four built-in targets.

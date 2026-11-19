@@ -4,7 +4,7 @@
 import { readFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SuanliClient } from "../sdk/index.mjs";
+import { KEYCHAIN_SERVICES, SuanliClient, readKeychainSecret } from "../sdk/index.mjs";
 
 const PKG_DIR = dirname(dirname(fileURLToPath(import.meta.url)));
 const CLI = "lov-suanli-cli";
@@ -111,11 +111,17 @@ function usage(commands, spec) {
     "  --api-version <v>  请求头 version，默认 1.0.0",
     "  --help             查看某个命令的参数",
     "",
-    "凭据（只从环境变量读取，不落盘）:",
+    "凭据（环境变量优先，缺失时读 macOS 钥匙串；都不落盘）:",
     "  SUANLI_TOKEN                      Open API 密钥（console.suanli.cn/settings/key）",
+    `                                    或钥匙串条目 ${KEYCHAIN_SERVICES.token}`,
     "  SUANLI_PRIVATE_KEY_FILE           可选：设置后按 RSA 模式生成 sign_str",
     "  SUANLI_PLATFORM_PUBLIC_KEY_FILE   加密接口需要：平台返回的公钥",
     "  SUANLI_LLM_API_KEY                大模型云服务 API Key（console.suanli.cn/models）",
+    `                                    或钥匙串条目 ${KEYCHAIN_SERVICES.llmApiKey}`,
+    "  SUANLI_KEYCHAIN=0                 不读钥匙串",
+    "",
+    "存入钥匙串（会提示输入两次，不回显）:",
+    `  security add-generic-password -a "$USER" -s ${KEYCHAIN_SERVICES.token} -w`,
     "",
     "命令（W = 写操作，E = 请求体需加密）:",
   ];
@@ -141,6 +147,18 @@ function commandHelp(command) {
   if (command.hasBody) lines.push(`请求体: --data '<json>' 或 --data @file.json${command.bodyRequired ? "（必填）" : ""}`, "");
   lines.push(`证据: ${command.observation}（未带凭据实测）`);
   return lines.join("\n");
+}
+
+// 取值顺序：命令行参数 → 环境变量 → macOS 钥匙串；空字符串视为未提供。
+function resolveCredential(command, flags) {
+  const [flag, envName, service] = command.llm
+    ? ["llm_api_key", "SUANLI_LLM_API_KEY", KEYCHAIN_SERVICES.llmApiKey]
+    : ["token", "SUANLI_TOKEN", KEYCHAIN_SERVICES.token];
+  const fromFlag = flags.get(flag);
+  if (typeof fromFlag === "string" && fromFlag) return { value: fromFlag, source: "flag" };
+  if (process.env[envName]) return { value: process.env[envName], source: "env" };
+  const fromKeychain = readKeychainSecret(service);
+  return fromKeychain ? { value: fromKeychain, source: "keychain" } : { value: undefined, source: null };
 }
 
 function redactHeaders(headers) {
@@ -180,10 +198,11 @@ async function main() {
   const query = buildQuery(command, flags);
   const body = await readBody(flags.get("data"));
   if (command.bodyRequired && body === undefined && !flags.get("dry_run")) throw new Error(`${command.name} 需要请求体：--data '<json>' 或 --data @file.json`);
+  const credential = resolveCredential(command, flags);
   const client = new SuanliClient({
-    token: typeof flags.get("token") === "string" ? flags.get("token") : undefined,
+    token: command.llm ? undefined : credential.value,
     version: typeof flags.get("api_version") === "string" ? flags.get("api_version") : undefined,
-    llmApiKey: typeof flags.get("llm_api_key") === "string" ? flags.get("llm_api_key") : undefined,
+    llmApiKey: command.llm ? credential.value : undefined,
     privateKey: typeof flags.get("private_key_file") === "string" ? await readFile(resolve(flags.get("private_key_file")), "utf8") : undefined,
     platformPublicKey: typeof flags.get("platform_public_key_file") === "string" ? await readFile(resolve(flags.get("platform_public_key_file")), "utf8") : undefined,
   });
@@ -191,7 +210,7 @@ async function main() {
   if (flags.get("dry_run")) {
     if (command.llm) {
       const prepared = client.prepareLlm(command.method, command.path, { body });
-      console.log(JSON.stringify({ operationId: command.operationId, method: prepared.init.method, url: prepared.url, headers: redactHeaders(prepared.init.headers), hasCredential: Boolean(client.llmApiKey), body: body ?? null }, null, 2));
+      console.log(JSON.stringify({ operationId: command.operationId, method: prepared.init.method, url: prepared.url, headers: redactHeaders(prepared.init.headers), hasCredential: Boolean(client.llmApiKey), credentialSource: credential.source, body: body ?? null }, null, 2));
       return;
     }
     const prepared = client.prepare(command.method, command.path, { query, body, encryption: command.encryption && Boolean(client.privateKey && client.platformPublicKey) });
@@ -202,6 +221,7 @@ async function main() {
       mode: prepared.mode,
       headers: redactHeaders(prepared.init.headers),
       hasCredential: Boolean(client.token),
+      credentialSource: credential.source,
       signed: prepared.signed,
       encrypted: prepared.encrypted,
       encryptionRequired: command.encryption,
@@ -218,7 +238,7 @@ async function main() {
 
   if (command.llm) {
     if (!client.llmApiKey) {
-      console.error("缺少大模型 API Key：设置 SUANLI_LLM_API_KEY（console.suanli.cn/models 的 API 密钥页创建）。");
+      console.error(`缺少大模型 API Key：设置 SUANLI_LLM_API_KEY，或存入钥匙串：security add-generic-password -a "$USER" -s ${KEYCHAIN_SERVICES.llmApiKey} -w（Key 在 console.suanli.cn/models 的 API 密钥页创建）。`);
       process.exit(2);
     }
     const result = await client.llmRequest(command.method, command.path, { body });
@@ -230,7 +250,8 @@ async function main() {
     return;
   }
   if (!client.token) {
-    console.error("缺少 API 密钥：设置 SUANLI_TOKEN。密钥在 console.suanli.cn/settings/key 创建；团队账号下开发者角色不能创建，需向主账号或管理员索取。");
+    console.error(`缺少 API 密钥：设置 SUANLI_TOKEN，或存入钥匙串：security add-generic-password -a "$USER" -s ${KEYCHAIN_SERVICES.token} -w`);
+    console.error("密钥在 console.suanli.cn/settings/key 创建；团队账号下开发者角色不能创建，需向主账号或管理员索取。");
     process.exit(2);
   }
   const result = await client.request(command.method, command.path, { query, body, encryption: command.encryption, envelope: Boolean(flags.get("envelope") || flags.get("raw")) });

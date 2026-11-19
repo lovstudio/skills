@@ -503,6 +503,13 @@ export SUANLI_PLATFORM_PUBLIC_KEY_FILE=./platform_pub.pem # 加密接口需要�
 export SUANLI_LLM_API_KEY=<大模型云服务 API Key>
 \`\`\`
 
+在 macOS 上也可以只存一次钥匙串，之后 CLI 与 Swagger 代理在环境变量缺失时自动读取（\`SUANLI_KEYCHAIN=0\` 可关闭）：
+
+\`\`\`bash
+security add-generic-password -a "$USER" -s suanli-token -w     # Open API 密钥，提示输入两次，不回显
+security add-generic-password -a "$USER" -s suanli-llm-key -w   # 大模型云服务 API Key
+\`\`\`
+
 获取 Open API 密钥：${discovery.auth.openapi.howToObtain}
 
 获取大模型 API Key：${discovery.auth.llm.howToObtain}
