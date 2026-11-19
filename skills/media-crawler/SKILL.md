@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.2"
+  version: "0.4.0"
   card_standard: lovstudio/skill-card/v1
   tags:
     - media-crawler
@@ -91,7 +91,7 @@ python3 "$SKILL_DIR/scripts/media_crawler.py" probe URL --json
 
   本机凭据被拒（HTTP 401/403，`authorization_failed`）时：没有传解析服务参数就停下并提示重新授权；只有本次显式传了 `--worker-url` 或 `--allow-public-resolver`，才回退到该解析服务，成功的报告带 `fallback_from: authorization_failed`，事后仍应重新授权。回退不删除、不改写钥匙串条目，Cookie 也不会发给解析服务。
 
-  解析服务默认禁用，且不是可靠路径。公共解析服务 `sph.litao.workers.dev` 实测（2026-11-19）对请求返回 `401 {"error":"unauthorized"}`：上游 Worker 现在要求部署者配置的访问凭证（`Authorization: Bearer`），该实例不对外开放，`--allow-public-resolver` 目前只会得到 `resolver_unauthorized`。自建 `--worker-url` 仅在该服务不要求访问凭证时可用，本 Skill 不向解析服务发送任何凭证。`resolver_unauthorized` 是解析服务自己的访问控制，与元宝登录态无关，不要据此让用户重新授权元宝。确需用户决定时（是否把链接交给第三方解析服务、是否下载第三方取流程序），用宿主的 AskUserQuestion 提一个聚焦问题，不在对话里猜测同意。
+  解析服务默认禁用，且不是可靠路径。公共解析服务 `sph.litao.workers.dev` 实测（2026-11-19）对请求返回 `401 {"error":"unauthorized"}`：上游 Worker 现在要求部署者配置的访问凭证（`Authorization: Bearer`），该实例不对外开放，`--allow-public-resolver` 目前只会得到 `resolver_unauthorized`。自建 `--worker-url` 要求访问凭证时，由用户在当前进程设置 `LOV_MEDIA_CRAWLER_WORKER_CREDENTIAL`（部署 Worker 时设置的访问凭证），Skill 以 `Authorization: Bearer` 只发给 `--worker-url`：地址必须是 HTTPS（本机回环除外），公共实例收不到它，重定向不会带上它，它也不进入 Profile、报告或日志。不要让用户把凭证贴进对话或命令行参数。`resolver_unauthorized` 是解析服务自己的访问控制，与元宝登录态无关，不要据此让用户重新授权元宝。确需用户决定时（是否把链接交给第三方解析服务、是否下载第三方取流程序），用宿主的 AskUserQuestion 提一个聚焦问题，不在对话里猜测同意。
 
   元宝鉴权通过但返回空 `wx_export_id`（`resolver_failed`）说明发布方限制了微信外解析，重新授权无效。此时走**微信客户端取流**：`download` 默认 `--via auto`，在元宝失败且本机 `wx_channels_download` 在线时自动回退；`--via wxclient` 强制走此路径。准备步骤：
 

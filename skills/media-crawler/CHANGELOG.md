@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0] - 2026-11-19
+
+### Added
+
+- 自建解析服务访问凭证：在当前进程设置 `LOV_MEDIA_CRAWLER_WORKER_CREDENTIAL` 后，`--worker-url` 的请求带 `Authorization: Bearer`（上游 `ltaoo/wx_channels_download` Worker 的约定）。凭证只发给 `--worker-url`，`--allow-public-resolver` 不会带上它；地址必须是 HTTPS（本机回环除外），否则报 `invalid_url` 且不发请求；重定向不重放凭证；凭证不进入 Profile、报告、错误信息或日志，也没有命令行参数。
+- `doctor --json` 新增布尔字段 `environment_worker_credential`。
+
+### Changed
+
+- `resolver_unauthorized` 区分两种情况：未带凭证时提示设置 `LOV_MEDIA_CRAWLER_WORKER_CREDENTIAL`，已带凭证仍被拒时提示核对凭证。
+- 离线用例增至 21 个，覆盖凭证只发给自建服务、不随重定向转发、不出现在任何输出里。
+
 ## [0.3.2] - 2026-11-19
 
 ### Fixed

@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 
-VERSION = "0.3.2"
+VERSION = "0.4.0"
 WXCLIENT_REPOSITORY = "ltaoo/wx_channels_download"
 WXCLIENT_VERSION = "v260907"
 WXCLIENT_API = "http://127.0.0.1:2022"
@@ -33,6 +33,7 @@ MEDIACRAWLER_COMMIT = "5665a271ef15e0ec82b1f48a951b66760e054db9"
 DEFAULT_CACHE_ROOT = Path.home() / ".cache" / "lov-media-crawler"
 KEYCHAIN_SERVICE = "lov-media-crawler-yuanbao"
 COOKIE_ENV = "LOV_MEDIA_CRAWLER_YUANBAO_COOKIE"
+WORKER_CREDENTIAL_ENV = "LOV_MEDIA_CRAWLER_WORKER_CREDENTIAL"
 PUBLIC_WORKER_URL = "https://sph.litao.workers.dev/api/fetch_video_profile"
 YUANBAO_PARSE_URL = "https://yuanbao.tencent.com/api/weixin/get_parse_result"
 WECHAT_FEED_URL = "https://channels.weixin.qq.com/finder-preview/api/feed/get_feed_info"
@@ -160,18 +161,30 @@ def request_json(
     body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
     request = urllib.request.Request(url, data=body, method="POST")
     for key, value in headers.items():
-        request.add_header(key, value)
+        if key.lower() == "authorization":
+            # Never replay the resolver credential to a redirect target.
+            request.add_unredirected_header(key, value)
+        else:
+            request.add_header(key, value)
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             return json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         if exc.code in (401, 403) and resolver_service:
             # The resolver's own access control: re-authorizing Yuanbao cannot fix it.
+            if any(key.lower() == "authorization" for key in headers):
+                raise JobError(
+                    "resolver_unauthorized",
+                    f"解析服务拒绝了提供的访问凭证（HTTP {exc.code}），与本机元宝登录态无关。",
+                    f"核对 {WORKER_CREDENTIAL_ENV} 是否为该解析服务部署时设置的访问凭证；"
+                    "或去掉 --worker-url 重试，改走本机路径（本机授权或微信客户端取流）。",
+                ) from exc
             raise JobError(
                 "resolver_unauthorized",
                 f"解析服务拒绝访问（HTTP {exc.code}）：它要求访问凭证或未对外开放，"
                 "与本机元宝登录态无关。",
-                "去掉 --allow-public-resolver / --worker-url 重试同一条 download 命令，"
+                f"自建解析服务先设置 {WORKER_CREDENTIAL_ENV} 再带 --worker-url 重试；"
+                "否则去掉 --allow-public-resolver / --worker-url 重试同一条 download 命令，"
                 "改走本机路径（本机授权或微信客户端取流）。",
             ) from exc
         if exc.code in (401, 403):
@@ -322,15 +335,33 @@ def resolve_wechat_direct(url: str, cookie: str) -> dict[str, Any]:
     return data
 
 
-def resolve_wechat_worker(url: str, worker_url: str) -> dict[str, Any]:
+def worker_credential(worker_url: str) -> str:
+    """Access credential for a self-hosted resolver service, from the environment only."""
+    credential = os.environ.get(WORKER_CREDENTIAL_ENV, "").strip()
+    if not credential:
+        return ""
+    parsed = urllib.parse.urlparse(worker_url)
+    if parsed.scheme != "https" and parsed.hostname not in {"localhost", "127.0.0.1", "::1"}:
+        raise JobError(
+            "invalid_url",
+            "带访问凭证的 --worker-url 必须使用 HTTPS（本机回环地址除外），否则凭证会明文传输。",
+            f"改用 https:// 的 --worker-url，或取消 {WORKER_CREDENTIAL_ENV} 后重试。",
+        )
+    return credential
+
+
+def resolve_wechat_worker(url: str, worker_url: str, credential: str = "") -> dict[str, Any]:
+    headers = {
+        "Accept": "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+        "User-Agent": USER_AGENT,
+    }
+    if credential:
+        headers["Authorization"] = f"Bearer {credential}"
     result = request_json(
         worker_url,
         payload={"url": url},
-        headers={
-            "Accept": "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-            "User-Agent": USER_AGENT,
-        },
+        headers=headers,
         timeout=60,
         resolver_service=True,
     )
@@ -593,8 +624,10 @@ def resolve_wechat(
                 )
             return media_url, feed_metadata(data), "yuanbao_direct", ""
     if use_resolver_service:
+        # The credential belongs to the user's own endpoint: the public instance never gets it.
+        credential = worker_credential(worker_url) if worker_url else ""
         try:
-            data = resolve_wechat_worker(url, worker_url or PUBLIC_WORKER_URL)
+            data = resolve_wechat_worker(url, worker_url or PUBLIC_WORKER_URL, credential)
             media_url = feed_video_url(data)
             if not media_url:
                 raise JobError(
@@ -1136,6 +1169,7 @@ def doctor_command(args: argparse.Namespace) -> dict[str, Any]:
         "tools": tools,
         "keychain_authorization": bool(read_keychain_cookie()),
         "environment_authorization": bool(os.environ.get(COOKIE_ENV, "").strip()),
+        "environment_worker_credential": bool(os.environ.get(WORKER_CREDENTIAL_ENV, "").strip()),
         "mediacrawler": {
             "path": str(root),
             "ready": (root / "main.py").is_file(),

@@ -1,6 +1,6 @@
 # 万能视频下载 · Universal Video Grabber
 
-![Version](https://img.shields.io/badge/version-0.3.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
 
 给一个公开且有权保存的社交媒体链接，得到经过验证的本地媒体文件和 JSON 报告。
 
@@ -56,6 +56,17 @@ python3 scripts/media_crawler.py download \
 授权脚本默认等待扫码 600 秒，需要更久时加 `--timeout 秒数`。如果不希望保存授权，也可仅在当前进程设置 `LOV_MEDIA_CRAWLER_YUANBAO_COOKIE`。
 
 第三方解析服务默认关闭。本机凭据过期（`authorization_failed`）时，只有显式传了 `--worker-url` 或 `--allow-public-resolver` 才会回退到解析服务。公共解析服务在 2026-11-19 实测返回 `401 unauthorized`，目前不是可用路径；解析服务拒绝访问时错误码为 `resolver_unauthorized`，详见 [`references/platform-matrix.md`](references/platform-matrix.md)。
+
+自建解析服务需要访问凭证时，在当前进程设置 `LOV_MEDIA_CRAWLER_WORKER_CREDENTIAL` 再传 `--worker-url`：
+
+```bash
+export LOV_MEDIA_CRAWLER_WORKER_CREDENTIAL='部署 Worker 时设置的访问凭证'
+python3 scripts/media_crawler.py download 'https://weixin.qq.com/sph/AUlZ10EgtS' \
+  --worker-url 'https://your-worker.example.workers.dev/api/fetch_video_profile' \
+  --output-dir ./downloads
+```
+
+凭证以 `Authorization: Bearer` 只发给 `--worker-url`（必须是 HTTPS，本机回环除外），不发给公共实例，也不进入报告和日志。
 
 ### 视频号受限链接：微信客户端取流
 

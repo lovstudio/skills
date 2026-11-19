@@ -46,7 +46,7 @@ LovStudio Skills · `maintainers@lovstudio.com`
 
 ## Skill Version
 
-0.3.2
+0.4.0
 
 ## Ethical Considerations
 
