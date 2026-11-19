@@ -1,6 +1,6 @@
 # 万能视频下载 · Universal Video Grabber
 
-![Version](https://img.shields.io/badge/version-0.3.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.2-CC785C)
 
 给一个公开且有权保存的社交媒体链接，得到经过验证的本地媒体文件和 JSON 报告。
 
@@ -53,7 +53,9 @@ python3 scripts/media_crawler.py download \
   --output-dir ./downloads
 ```
 
-如果不希望保存授权，也可仅在当前进程设置 `LOV_MEDIA_CRAWLER_YUANBAO_COOKIE`。公共第三方解析默认关闭。
+授权脚本默认等待扫码 600 秒，需要更久时加 `--timeout 秒数`。如果不希望保存授权，也可仅在当前进程设置 `LOV_MEDIA_CRAWLER_YUANBAO_COOKIE`。
+
+第三方解析服务默认关闭。本机凭据过期（`authorization_failed`）时，只有显式传了 `--worker-url` 或 `--allow-public-resolver` 才会回退到解析服务。公共解析服务在 2026-11-19 实测返回 `401 unauthorized`，目前不是可用路径；解析服务拒绝访问时错误码为 `resolver_unauthorized`，详见 [`references/platform-matrix.md`](references/platform-matrix.md)。
 
 ### 视频号受限链接：微信客户端取流
 
@@ -106,6 +108,7 @@ python3 scripts/media_crawler.py doctor --json
 
 ```bash
 python3 scripts/media_crawler.py self-test --json
+python3 -B -m unittest discover -s tests -v   # 离线：不访问网络、不读钥匙串
 python3 scripts/validate_skill.py .
 ```
 

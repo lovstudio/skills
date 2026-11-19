@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 
-VERSION = "0.3.1"
+VERSION = "0.3.2"
 WXCLIENT_REPOSITORY = "ltaoo/wx_channels_download"
 WXCLIENT_VERSION = "v260907"
 WXCLIENT_API = "http://127.0.0.1:2022"
@@ -155,6 +155,7 @@ def request_json(
     payload: dict[str, Any],
     headers: dict[str, str],
     timeout: int = 30,
+    resolver_service: bool = False,
 ) -> dict[str, Any]:
     body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
     request = urllib.request.Request(url, data=body, method="POST")
@@ -164,10 +165,19 @@ def request_json(
         with urllib.request.urlopen(request, timeout=timeout) as response:
             return json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
+        if exc.code in (401, 403) and resolver_service:
+            # The resolver's own access control: re-authorizing Yuanbao cannot fix it.
+            raise JobError(
+                "resolver_unauthorized",
+                f"解析服务拒绝访问（HTTP {exc.code}）：它要求访问凭证或未对外开放，"
+                "与本机元宝登录态无关。",
+                "去掉 --allow-public-resolver / --worker-url 重试同一条 download 命令，"
+                "改走本机路径（本机授权或微信客户端取流）。",
+            ) from exc
         if exc.code in (401, 403):
             raise JobError(
                 "authorization_failed",
-                f"解析接口返回 HTTP {exc.code}，登录态失效或未授权。",
+                f"元宝或视频号接口返回 HTTP {exc.code}，本机登录态失效或未授权。",
                 "python3 scripts/authorize_yuanbao.py --test-url URL",
             ) from exc
         raise JobError(
@@ -322,6 +332,7 @@ def resolve_wechat_worker(url: str, worker_url: str) -> dict[str, Any]:
             "User-Agent": USER_AGENT,
         },
         timeout=60,
+        resolver_service=True,
     )
     data = normalize_feed_data(result)
     if not data:
@@ -557,30 +568,56 @@ def resolve_wechat(
     *,
     worker_url: str,
     allow_public_resolver: bool,
-) -> tuple[str, dict[str, Any], str]:
+) -> tuple[str, dict[str, Any], str, str]:
+    """Return (media_url, metadata, resolver, fallback_from)."""
     cookie = resolve_cookie()
+    use_resolver_service = bool(worker_url or allow_public_resolver)
+    rejected: Optional[JobError] = None
     if cookie:
-        data = resolve_wechat_direct(url, cookie)
-        media_url = feed_video_url(data)
-        if not media_url:
+        try:
+            data = resolve_wechat_direct(url, cookie)
+        except JobError as exc:
+            # Only a rejected credential (401/403) may fall back, and only to a
+            # resolver service the user explicitly opted into for this run.
+            if exc.code != "authorization_failed" or not use_resolver_service:
+                raise
+            rejected = exc
+        else:
+            media_url = feed_video_url(data)
+            if not media_url:
+                raise JobError(
+                    "resolver_failed",
+                    "授权解析成功，但响应中没有视频流。",
+                    "重新授权后重试；如果内容是图文，请检查返回的元数据。",
+                    metadata=feed_metadata(data),
+                )
+            return media_url, feed_metadata(data), "yuanbao_direct", ""
+    if use_resolver_service:
+        try:
+            data = resolve_wechat_worker(url, worker_url or PUBLIC_WORKER_URL)
+            media_url = feed_video_url(data)
+            if not media_url:
+                raise JobError(
+                    "resolver_failed",
+                    "解析服务返回了元数据，但没有视频流。",
+                    metadata=feed_metadata(data),
+                )
+        except JobError as exc:
+            if rejected is None:
+                raise
+            # Both paths failed: the stale credential is the actionable cause.
             raise JobError(
-                "resolver_failed",
-                "授权解析成功，但响应中没有视频流。",
-                "重新授权后重试；如果内容是图文，请检查返回的元数据。",
-                metadata=feed_metadata(data),
-            )
-        return media_url, feed_metadata(data), "yuanbao_direct"
-    if worker_url or allow_public_resolver:
-        selected = worker_url or PUBLIC_WORKER_URL
-        data = resolve_wechat_worker(url, selected)
-        media_url = feed_video_url(data)
-        if not media_url:
-            raise JobError(
-                "resolver_failed",
-                "解析服务返回了元数据，但没有视频流。",
-                metadata=feed_metadata(data),
-            )
-        return media_url, feed_metadata(data), "custom_worker" if worker_url else "public_worker"
+                rejected.code,
+                f"{rejected.message}已按参数回退到解析服务，但同样失败（{exc.code}）：{exc.message}",
+                rejected.next_action,
+                metadata=exc.metadata,
+            ) from exc
+        return (
+            media_url,
+            feed_metadata(data),
+            "custom_worker" if worker_url else "public_worker",
+            rejected.code if rejected else "",
+        )
     metadata: dict[str, Any] = {}
     try:
         metadata = feed_metadata(public_wechat_probe(url))
@@ -985,6 +1022,7 @@ def download_command(args: argparse.Namespace) -> dict[str, Any]:
     metadata: dict[str, Any] = {}
     resolver = "direct_url"
     media_url = url
+    fallback: dict[str, str] = {}
     if kind == "wechat":
         via = getattr(args, "via", "auto")
         if via == "wxclient":
@@ -993,7 +1031,7 @@ def download_command(args: argparse.Namespace) -> dict[str, Any]:
             return result
         eprint("正在解析视频号分享链接…", args.json)
         try:
-            media_url, metadata, resolver = resolve_wechat(
+            media_url, metadata, resolver, fallback_from = resolve_wechat(
                 url,
                 worker_url=args.worker_url,
                 allow_public_resolver=args.allow_public_resolver,
@@ -1001,6 +1039,7 @@ def download_command(args: argparse.Namespace) -> dict[str, Any]:
         except JobError as exc:
             if via != "auto" or exc.code not in {
                 "resolver_failed",
+                "resolver_unauthorized",
                 "authorization_required",
                 "authorization_failed",
             }:
@@ -1014,6 +1053,9 @@ def download_command(args: argparse.Namespace) -> dict[str, Any]:
             result["context_id"] = context_id()
             result["fallback_from"] = exc.code
             return result
+        if fallback_from:
+            fallback = {"fallback_from": fallback_from}
+            eprint("本机元宝凭据已被拒绝，已按参数改用解析服务；重新授权后可恢复本机直连。", args.json)
         eprint("已取得媒体地址，开始传输…", args.json)
     title = args.filename or metadata.get("title") or Path(urllib.parse.urlparse(media_url).path).stem or "media"
     target, reused = choose_target(destination_path(output_dir, title, media_url), args.overwrite)
@@ -1034,6 +1076,7 @@ def download_command(args: argparse.Namespace) -> dict[str, Any]:
             "reused": True,
             "metadata": metadata,
             "verification": verification,
+            **fallback,
         }
     expected, engine = run_downloader(
         media_url,
@@ -1066,6 +1109,7 @@ def download_command(args: argparse.Namespace) -> dict[str, Any]:
         "reused": False,
         "metadata": metadata,
         "verification": verification,
+        **fallback,
     }
 
 
