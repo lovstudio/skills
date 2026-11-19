@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **241 skills** — 216 Free + 25 Paid.
+> **242 skills** — 217 Free + 25 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -286,6 +286,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Channels Publisher](https://github.com/lovstudio/publish-wechat-channels-skill) (`publish-wechat-channels`) | Publish WeChat Channels videos with preflight, field readback, and status verification. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Chapters](https://github.com/lovstudio/video-chapter-skill) (`video-chapter`) | Plan chapters, tune the progress bar in React Studio, then export an overlay, final video, or editor package. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Stills](https://github.com/lovstudio/video-moments-skill) (`video-moments`) | Select real moments from event videos, restore color, and deliver consistently bright photos with source timecodes. — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Video2PPT](https://github.com/lovstudio/video2ppt-skill) (`video2ppt`) | Turn talk, lecture and screen-recording videos into deduplicated slides, cropped clear of speakers and subtitles, as timestamped PPTX and PDF. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Voice to Subtitles](https://github.com/lovstudio/voice2srt-skill) (`voice2srt`) | Transcribe recordings, podcasts or videos into editable SRT, JSON and text with vocabulary boosting and cost preview. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Xiaonuan Matchmaker Style Video](https://github.com/lovstudio/xiaonuan-style-media-creator-skill) (`xiaonuan-style-media-creator`) | Turn your own call-in recordings or new topics into edit plans and packaged clips in a traceable livestream style, without copying the author's identity. — requires: `branding-consistency` |
 | **Meta** | | |

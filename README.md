@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **241 个技能** — 216 个免费 + 25 个付费。
+> **242 个技能** — 217 个免费 + 25 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -285,6 +285,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Channels Publisher](https://github.com/lovstudio/publish-wechat-channels-skill) (`publish-wechat-channels`) | [视频号发布助手](https://github.com/lovstudio/publish-wechat-channels-skill) | 通过视频号助手发布视频，逐项回读文案、话题、封面与原创状态，并核验最终结果。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Chapters](https://github.com/lovstudio/video-chapter-skill) (`video-chapter`) | [视频章节师](https://github.com/lovstudio/video-chapter-skill) | 从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Stills](https://github.com/lovstudio/video-moments-skill) (`video-moments`) | [精彩定格](https://github.com/lovstudio/video-moments-skill) | 从课程和活动视频挑选真实瞬间，完成色彩还原与统一提亮，交付可回溯的照片组。 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Video2PPT](https://github.com/lovstudio/video2ppt-skill) (`video2ppt`) | [视频转 PPT](https://github.com/lovstudio/video2ppt-skill) | 把演讲、网课和录屏视频还原成去重后的幻灯片，裁掉讲者与字幕，导出带时间点的 PPTX 和 PDF。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Voice to Subtitles](https://github.com/lovstudio/voice2srt-skill) (`voice2srt`) | [语音成字幕](https://github.com/lovstudio/voice2srt-skill) | 把录音、播客或视频转成可剪辑的SRT、JSON与纯文本，复用OpenLess或lov-personal-vocabulary词库增强专有名词，并在付费云端ASR — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Xiaonuan Matchmaker Style Video](https://github.com/lovstudio/xiaonuan-style-media-creator-skill) (`xiaonuan-style-media-creator`) | [晓暖说媒风格短视频](https://github.com/lovstudio/xiaonuan-style-media-creator-skill) | 用可追溯的直播连麦切片风格，把你自己的连麦录像或新选题做成剪辑计划与包装成片，不复制原作者身份。 — 依赖: `branding-consistency` |
 | **Meta** | | | |
