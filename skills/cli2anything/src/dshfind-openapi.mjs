@@ -1,17 +1,26 @@
+export const DSHFIND_CATEGORIES_QUERY = "query DshFindCategories { pluginFacets { categories { value count } } }";
+export const DSHFIND_DATASET_QUERY = "query DshFindDataset { dataset { dataVersion asOf } }";
+export const DSHFIND_FACETS_QUERY = "query DshFindFacets { pluginFacets { categories { value count } languages { value count } tags { value count } grades { value count } } }";
+export const DSHFIND_GRAPHQL_PLUGINS_QUERY = "query DshFindPlugins($first: Int = 20, $after: String, $filter: PluginFilter, $sort: PluginSort = DEFAULT, $order: SortOrder = DESC) { plugins(first: $first, after: $after, filter: $filter, sort: $sort, order: $order) { totalCount dataVersion asOf nodes { id fullName name owner repositoryUrl description tags language stars contributors pushedAt archived category score grade isFeatured isOfficial isInsider isRisky riskNote isPlugin install { cmd source kind pkgName npmPublished releaseTgzUrl releaseTag probedAt } } pageInfo { hasNextPage endCursor } } }";
+export const DSHFIND_GRAPHQL_PLUGIN_QUERY = "query DshFindPlugin($fullName: ID!, $locale: String, $days: Int = 30) { plugin(fullName: $fullName) { id fullName name owner repositoryUrl description tags language stars contributors pushedAt archived category score grade rating { score grade calculatedAt version } isFeatured isOfficial isInsider isRisky riskNote isPlugin install { cmd source kind pkgName npmPublished releaseTgzUrl releaseTag probedAt } firstSeenAt lastSyncedAt i18n(locale: $locale) { locale description intro highlights updatedAt } snapshots(days: $days) { date stars contributors pushedAt } growth { windowDays stars contributors } } }";
+
 export function createDshFindOpenapi() {
   return {
     openapi: "3.1.0",
     info: {
       title: "dshfind Public Plugin Directory API",
-      version: "0.1.0",
+      version: "0.5.0",
       description:
         "Observed read-only contract for the public dshfind plugin directory and its standard DSH market feed. Built from the public /zh/plugins page, the public source contract, and live unauthenticated response samples."
     },
     servers: [{ url: "https://api.dshfind.com" }],
+    security: [],
     tags: [
-      { name: "Plugins" },
-      { name: "Market" },
-      { name: "Service" }
+      { name: "Plugins", description: "Public plugin search, listing, detail, and bulk catalog endpoints." },
+      { name: "Categories", description: "Public plugin category facets used by directory filters." },
+      { name: "GraphQL", description: "Public read-only field-selectable GraphQL endpoint and published SDL." },
+      { name: "Market", description: "Standard DSH catalog-source manifest and cursor-paginated market feed." },
+      { name: "Service", description: "Public service health and loaded-catalog status." }
     ],
     paths: {
       "/v1/suggest": {
@@ -21,6 +30,64 @@ export function createDshFindOpenapi() {
           summary: "Suggest plugins by keyword",
           parameters: [query("q", string({ maxLength: 64, example: "memory" }), false, "At least two trimmed characters are needed for results.")],
           responses: jsonResponses("Plugin suggestions", ref("SuggestionResponse"))
+        }
+      },
+      "/graphql": {
+        get: {
+          tags: ["Categories"],
+          operationId: "listPluginCategories",
+          summary: "Get available plugin categories and counts",
+          description: "Read the public GraphQL pluginFacets category dimension used to populate category filters.",
+          parameters: [
+            query("query", string({ example: DSHFIND_CATEGORIES_QUERY }), true, "Fixed read-only GraphQL category-facet query.")
+          ],
+          responses: jsonResponses("Plugin category facets", ref("GraphQLCategoriesResponse"))
+        },
+        post: {
+          tags: ["GraphQL"],
+          operationId: "executeGraphQLQuery",
+          summary: "Execute a public read-only GraphQL query",
+          description: "Run any query allowed by the published SDL. Mutations, subscriptions, directives, introspection, and private fields are not supported.",
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: ref("GraphQLRequest"),
+                examples: {
+                  dataset: graphqlExample("Dataset metadata", DSHFIND_DATASET_QUERY, {}, "DshFindDataset"),
+                  facets: graphqlExample("All filter facets", DSHFIND_FACETS_QUERY, {}, "DshFindFacets"),
+                  plugins: graphqlExample("Filtered cursor page", DSHFIND_GRAPHQL_PLUGINS_QUERY, {
+                    first: 5,
+                    after: null,
+                    filter: { category: "memory", hasInstall: true },
+                    sort: "STARS",
+                    order: "DESC"
+                  }, "DshFindPlugins"),
+                  plugin: graphqlExample("Rich plugin detail", DSHFIND_GRAPHQL_PLUGIN_QUERY, {
+                    fullName: "deepseek-ai/deepseek-harness",
+                    locale: "zh",
+                    days: 7
+                  }, "DshFindPlugin")
+                }
+              }
+            }
+          },
+          responses: jsonResponses("GraphQL result", ref("GraphQLResponse"))
+        }
+      },
+      "/graphql/schema": {
+        get: {
+          tags: ["GraphQL"],
+          operationId: "getGraphQLSchema",
+          summary: "Download the published GraphQL SDL",
+          description: "The service intentionally disables introspection and publishes its current read-only schema at this endpoint instead.",
+          responses: {
+            "200": {
+              description: "GraphQL SDL",
+              content: { "application/graphql": { schema: string() } }
+            },
+            default: jsonResponse("API error", ref("Error"))
+          }
         }
       },
       "/v1/plugins": {
@@ -177,6 +244,26 @@ export function createDshFindOpenapi() {
           featured: bool()
         }, ["type", "id", "label", "href", "stars", "featured"]),
         SuggestionResponse: object({ items: array(ref("Suggestion"), { maxItems: 10 }) }, ["items"]),
+        PluginFacet: object({
+          value: string({ example: "memory" }),
+          count: integer({ minimum: 0, example: 468 })
+        }, ["value", "count"]),
+        GraphQLError: object({ message: string() }, ["message"]),
+        GraphQLRequest: object({
+          query: string({ description: "A read-only operation accepted by the published SDL." }),
+          variables: { type: "object", additionalProperties: true },
+          operationName: nullable(string())
+        }, ["query"]),
+        GraphQLResponse: object({
+          data: nullable({ type: "object", additionalProperties: true }),
+          errors: array(ref("GraphQLError"))
+        }),
+        GraphQLCategoriesResponse: object({
+          data: nullable(object({
+            pluginFacets: object({ categories: array(ref("PluginFacet")) }, ["categories"])
+          }, ["pluginFacets"])),
+          errors: array(ref("GraphQLError"))
+        }),
         LocalizedPluginCopy: object({
           description: nullable(string()),
           intro: nullable(string()),
@@ -330,4 +417,8 @@ function jsonResponses(description, schema) {
     "200": jsonResponse(description, schema),
     default: jsonResponse("API error", ref("Error"))
   };
+}
+
+function graphqlExample(summary, queryText, variables, operationName) {
+  return { summary, value: { query: queryText, variables, operationName } };
 }

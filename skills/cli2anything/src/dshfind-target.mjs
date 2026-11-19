@@ -1,3 +1,5 @@
+import { DSHFIND_CATEGORIES_QUERY, DSHFIND_DATASET_QUERY } from "./dshfind-openapi.mjs";
+
 const API_BASE = "https://api.dshfind.com";
 const PAGE_URL = "https://dshfind.com/zh/plugins";
 
@@ -13,6 +15,24 @@ const ENDPOINTS = [
     role: "primary:search-suggestions",
     capability: "plugins.suggest",
     reason: "Return up to ten lightweight plugin search suggestions."
+  },
+  {
+    endpoint: "GET /graphql?query={value}",
+    role: "primary:categories",
+    capability: "plugins.categories",
+    reason: "Return all available plugin categories and their current counts from the public pluginFacets query."
+  },
+  {
+    endpoint: "POST /graphql",
+    role: "primary:graphql-query",
+    capability: "graphql.query",
+    reason: "Execute field-selectable public queries for dataset metadata, facets, cursor pages, and rich plugin details."
+  },
+  {
+    endpoint: "GET /graphql/schema",
+    role: "dependency:graphql-schema",
+    capability: "graphql.schema",
+    reason: "Download the published SDL used instead of GraphQL introspection."
   },
   {
     endpoint: "GET /v1/plugins/{owner}/{repo}?snapshot_days={value}",
@@ -49,17 +69,29 @@ const ENDPOINTS = [
 export async function discoverDshFindData({ fetchImpl = globalThis.fetch } = {}) {
   if (!fetchImpl) throw new TypeError("A fetch implementation is required");
   const probes = [
-    ["GET /healthz", `${API_BASE}/healthz`],
-    ["GET /v1/suggest?q={value}", `${API_BASE}/v1/suggest?q=memory`],
-    ["GET /v1/plugins", `${API_BASE}/v1/plugins?page=1&per_page=2`],
-    ["GET /v1/plugins/{owner}/{repo}?snapshot_days={value}", `${API_BASE}/v1/plugins/deepseek-ai/deepseek-harness?snapshot_days=7`],
-    ["GET /market/manifest.json", `${API_BASE}/market/manifest.json`],
-    ["GET /market/v1/plugins", `${API_BASE}/market/v1/plugins?limit=2`]
+    { endpoint: "GET /healthz", url: `${API_BASE}/healthz` },
+    { endpoint: "GET /v1/suggest?q={value}", url: `${API_BASE}/v1/suggest?q=memory` },
+    { endpoint: "GET /graphql?query={value}", url: `${API_BASE}/graphql?query=${encodeURIComponent(DSHFIND_CATEGORIES_QUERY)}` },
+    {
+      endpoint: "POST /graphql",
+      url: `${API_BASE}/graphql`,
+      options: {
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ query: DSHFIND_DATASET_QUERY, operationName: "DshFindDataset" })
+      }
+    },
+    { endpoint: "GET /graphql/schema", url: `${API_BASE}/graphql/schema`, responseType: "text" },
+    { endpoint: "GET /v1/plugins", url: `${API_BASE}/v1/plugins?page=1&per_page=2` },
+    { endpoint: "GET /v1/plugins/{owner}/{repo}?snapshot_days={value}", url: `${API_BASE}/v1/plugins/deepseek-ai/deepseek-harness?snapshot_days=7` },
+    { endpoint: "GET /market/manifest.json", url: `${API_BASE}/market/manifest.json` },
+    { endpoint: "GET /market/v1/plugins", url: `${API_BASE}/market/v1/plugins?limit=2` }
   ];
   const observations = [];
-  for (const [endpoint, url] of probes) {
-    const response = await fetchImpl(url, { headers: { Accept: "application/json" } });
-    const body = await response.json().catch(() => null);
+  for (const probe of probes) {
+    const { endpoint, url } = probe;
+    const response = await fetchImpl(url, probe.options || { headers: { Accept: probe.responseType === "text" ? "application/graphql" : "application/json" } });
+    const body = probe.responseType === "text" ? await response.text() : await response.json().catch(() => null);
     if (!response.ok) throw new Error(`dshfind discovery probe failed for ${url}: HTTP ${response.status}`);
     observations.push({
       endpoint,
@@ -98,6 +130,8 @@ export function createDshFindPackage({ discovery, filterKeyword = "plugins" } = 
       strategy: "public page evidence + public source contract + live unauthenticated probes",
       outputs: {
         openapi: "openapi.json",
+        apifox: "apifox/openapi.json",
+        graphqlSchema: "apifox/graphql.schema.graphql",
         apiGraph: "api-graph.json",
         discovery: "discovery.filtered.json",
         sdk: "sdk/index.mjs"
@@ -134,14 +168,39 @@ export function createDshFindApiGraph() {
     defaultWorkflowId: "dshfind-plugin-discovery",
     nodes: [
       node("listPlugins", "List plugins", "GET", "/v1/plugins", "root-list", 40, 90),
-      node("suggestPlugins", "Suggest plugins", "GET", "/v1/suggest", "search", 40, 220),
+      node("listPluginCategories", "Plugin categories", "GET", "/graphql", "filter-source", 40, 220),
+      node("executeGraphQLQuery", "GraphQL query", "POST", "/graphql", "field-selectable", 330, 280),
+      node("getGraphQLSchema", "GraphQL schema", "GET", "/graphql/schema", "schema", 620, 280),
+      node("suggestPlugins", "Suggest plugins", "GET", "/v1/suggest", "search", 40, 350),
       node("getPlugin", "Plugin detail", "GET", "/v1/plugins/{owner}/{repo}", "detail", 330, 40),
       node("getCatalog", "Bulk catalog", "GET", "/v1/catalog", "bulk", 330, 160),
-      node("getMarketManifest", "Market manifest", "GET", "/market/manifest.json", "manifest", 40, 350),
-      node("listMarketPlugins", "Market page", "GET", "/market/v1/plugins", "catalog-page", 330, 350),
+      node("getMarketManifest", "Market manifest", "GET", "/market/manifest.json", "manifest", 40, 480),
+      node("listMarketPlugins", "Market page", "GET", "/market/v1/plugins", "catalog-page", 330, 480),
       node("getHealth", "API health", "GET", "/healthz", "health", 620, 220)
     ],
     edges: [
+      {
+        id: "getGraphQLSchema-to-executeGraphQLQuery",
+        from: "getGraphQLSchema",
+        to: "executeGraphQLQuery",
+        relation: "schema-contract",
+        sourceSelector: "$",
+        parameterMap: {},
+        confidence: 1,
+        safe: true,
+        reason: "The published SDL defines the fields and arguments accepted by the read-only GraphQL endpoint."
+      },
+      {
+        id: "listPluginCategories-to-listPlugins",
+        from: "listPluginCategories",
+        to: "listPlugins",
+        relation: "filter-discovery",
+        sourceSelector: "$.data.pluginFacets.categories[*].value",
+        parameterMap: { category: "$selection" },
+        confidence: 1,
+        safe: true,
+        reason: "pluginFacets categories are the supported category values for the REST list filter."
+      },
       {
         id: "listPlugins-to-getPlugin",
         from: "listPlugins",
@@ -212,8 +271,8 @@ export function createDshFindApiGraph() {
     ],
     safety: {
       defaultAutoRunPolicy: "read-only",
-      autoRunMethods: ["GET"],
-      queryPostAllowList: [],
+      autoRunMethods: ["GET", "POST"],
+      queryPostAllowList: ["executeGraphQLQuery"],
       mutationBlockWords: ["create", "update", "delete", "remove", "save", "submit", "vote", "comment"]
     }
   };
@@ -224,6 +283,7 @@ function node(id, label, method, path, role, x, y) {
 }
 
 function trimSample(body) {
+  if (typeof body === "string") return body.slice(0, 1000);
   if (!body || typeof body !== "object") return body;
   if (Array.isArray(body)) return body.slice(0, 2);
   const copy = { ...body };

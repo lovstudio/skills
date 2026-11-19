@@ -1,0 +1,1255 @@
+{
+  "target": "localhost",
+  "scope": "plane-rest-api-v1",
+  "authorized": true,
+  "authorization": "user-owned self-hosted Plane instance on the local machine",
+  "observedAt": "2026-09-08T17:57:07.075786Z",
+  "instance": {
+    "product": "Plane",
+    "release": "v1.4.2",
+    "deployment": "docker compose selfhost (deployments/cli/community)",
+    "publicBaseUrl": "http://localhost",
+    "apiPrefix": "/api/v1",
+    "containerServerUrl": "http://localhost:8000"
+  },
+  "sources": [
+    {
+      "kind": "vendor-generated-schema",
+      "how": "docker exec -e ENABLE_DRF_SPECTACULAR=1 plane-api-1 python manage.py spectacular --format openapi-json",
+      "file": "artifacts/plane-schema.raw.json",
+      "sha256": "8af7af2f740075b65229fdbae6f3c5cb3c13e7e0b23596921997ca5fed4000b6",
+      "bytes": 1007371,
+      "note": "drf-spectacular 由 Plane 自身内置，导出为一次性进程，未改变运行中的实例配置。"
+    },
+    {
+      "kind": "live-probe",
+      "how": "curl 对每个 tag 的代表 GET 端点各发两次请求（无认证 / 无效 X-API-Key）",
+      "endpointsProbed": 17,
+      "result": "17/17 无认证=401、无效 key=403",
+      "note": "证明端点真实存在且 API key 认证链路生效；未使用任何真实凭据。"
+    },
+    {
+      "kind": "live-endpoint",
+      "how": "curl http://localhost/api/instances/",
+      "result": "200 is_self_managed=true"
+    }
+  ],
+  "auth": {
+    "scheme": "ApiKeyAuthentication",
+    "in": "header",
+    "name": "X-API-Key",
+    "howToObtain": "登录 Plane → 右上角头像 → Settings → API tokens → Add API token",
+    "note": "凭据不写入任何生成文件；运行时通过环境变量提供。"
+  },
+  "schemaSummary": {
+    "openapi": "3.0.3",
+    "paths": 69,
+    "operations": 130,
+    "schemas": 94,
+    "tags": [
+      "Assets",
+      "Cycles",
+      "Intake",
+      "Labels",
+      "Members",
+      "Modules",
+      "Projects",
+      "States",
+      "Stickies",
+      "Users",
+      "Work Item Activity",
+      "Work Item Attachments",
+      "Work Item Comments",
+      "Work Item Links",
+      "Work Item Relations",
+      "Work Items",
+      "workspaces"
+    ]
+  },
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/api/v1/assets/user-assets/",
+      "operationId": "create_user_asset_upload",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/assets/user-assets/{asset_id}/",
+      "operationId": "update_user_asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/assets/user-assets/{asset_id}/",
+      "operationId": "delete_user_asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/users/me/",
+      "operationId": "get_current_user",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/assets/",
+      "operationId": "create_generic_asset_upload",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/assets/{asset_id}/",
+      "operationId": "get_generic_asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/assets/{asset_id}/",
+      "operationId": "update_generic_asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/invitations/",
+      "operationId": "workspaces_invitations_list",
+      "tags": [
+        "workspaces"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/invitations/",
+      "operationId": "workspaces_invitations_create",
+      "tags": [
+        "workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/invitations/{pk}/",
+      "operationId": "workspaces_invitations_retrieve",
+      "tags": [
+        "workspaces"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/invitations/{pk}/",
+      "operationId": "workspaces_invitations_partial_update",
+      "tags": [
+        "workspaces"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/invitations/{pk}/",
+      "operationId": "workspaces_invitations_destroy",
+      "tags": [
+        "workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/issues/{project_identifier}-{issue_identifier}/",
+      "operationId": "get_workspace_work_item",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/issues/search/",
+      "operationId": "search_work_items",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/members/",
+      "operationId": "get_workspace_members",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/members-lite/",
+      "operationId": "get_workspace_members_lite",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/",
+      "operationId": "list_projects",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/",
+      "operationId": "create_project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects-lite/",
+      "operationId": "list_projects_lite",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{pk}/",
+      "operationId": "retrieve_project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{pk}/",
+      "operationId": "update_project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{pk}/",
+      "operationId": "delete_project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/archive/",
+      "operationId": "archive_project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/archive/",
+      "operationId": "unarchive_project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/archived-cycles/",
+      "operationId": "list_archived_cycles",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/archived-cycles/{cycle_id}/unarchive/",
+      "operationId": "unarchive_cycle",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/archived-modules/",
+      "operationId": "list_archived_modules",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/archived-modules/{pk}/unarchive/",
+      "operationId": "unarchive_module",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/",
+      "operationId": "list_cycles",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/",
+      "operationId": "create_cycle",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles-lite/",
+      "operationId": "list_cycles_lite",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/archive/",
+      "operationId": "archive_cycle",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/cycle-issues/",
+      "operationId": "list_cycle_work_items",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/cycle-issues/",
+      "operationId": "add_cycle_work_items",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/cycle-issues/{issue_id}/",
+      "operationId": "retrieve_cycle_work_item",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/cycle-issues/{issue_id}/",
+      "operationId": "delete_cycle_work_item",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/{cycle_id}/transfer-issues/",
+      "operationId": "transfer_cycle_work_items",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/{pk}/",
+      "operationId": "retrieve_cycle",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/{pk}/",
+      "operationId": "update_cycle",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/cycles/{pk}/",
+      "operationId": "delete_cycle",
+      "tags": [
+        "Cycles"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/",
+      "operationId": "get_intake_work_items_list",
+      "tags": [
+        "Intake"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/",
+      "operationId": "create_intake_work_item",
+      "tags": [
+        "Intake"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/{issue_id}/",
+      "operationId": "retrieve_intake_work_item",
+      "tags": [
+        "Intake"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/{issue_id}/",
+      "operationId": "update_intake_work_item",
+      "tags": [
+        "Intake"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/{issue_id}/",
+      "operationId": "delete_intake_work_item",
+      "tags": [
+        "Intake"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/",
+      "operationId": "list_work_items",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/",
+      "operationId": "create_work_item",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/activities/",
+      "operationId": "list_work_item_activities",
+      "tags": [
+        "Work Item Activity"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/activities/{pk}/",
+      "operationId": "retrieve_work_item_activity",
+      "tags": [
+        "Work Item Activity"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/",
+      "operationId": "list_work_item_comments",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/",
+      "operationId": "create_work_item_comment",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/{pk}/",
+      "operationId": "retrieve_work_item_comment",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/{pk}/",
+      "operationId": "update_work_item_comment",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/{pk}/",
+      "operationId": "delete_work_item_comment",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/",
+      "operationId": "list_work_item_attachments",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/",
+      "operationId": "create_work_item_attachment",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/{pk}/",
+      "operationId": "retrieve_work_item_attachment",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/{pk}/",
+      "operationId": "upload_work_item_attachment",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/{pk}/",
+      "operationId": "delete_work_item_attachment",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/",
+      "operationId": "list_work_item_links",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/",
+      "operationId": "create_work_item_link",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/{pk}/",
+      "operationId": "retrieve_work_item_link",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/{pk}/",
+      "operationId": "update_issue_link",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/{pk}/",
+      "operationId": "delete_work_item_link",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{pk}/",
+      "operationId": "retrieve_work_item",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{pk}/",
+      "operationId": "update_work_item",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{pk}/",
+      "operationId": "delete_work_item",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/labels/",
+      "operationId": "list_labels",
+      "tags": [
+        "Labels"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/labels/",
+      "operationId": "create_label",
+      "tags": [
+        "Labels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/labels/{pk}/",
+      "operationId": "get_labels",
+      "tags": [
+        "Labels"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/labels/{pk}/",
+      "operationId": "update_label",
+      "tags": [
+        "Labels"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/labels/{pk}/",
+      "operationId": "delete_label",
+      "tags": [
+        "Labels"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/members/",
+      "operationId": "get_project_members",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/members/",
+      "operationId": "create_project_member",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/members/{pk}/",
+      "operationId": "get_project_member",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/members/{pk}/",
+      "operationId": "update_project_member",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/members/{pk}/",
+      "operationId": "delete_project_member",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules/",
+      "operationId": "list_modules",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules/",
+      "operationId": "create_module",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules-lite/",
+      "operationId": "list_modules_lite",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules/{module_id}/module-issues/",
+      "operationId": "list_module_work_items",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules/{module_id}/module-issues/",
+      "operationId": "add_module_work_items",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules/{module_id}/module-issues/{issue_id}/",
+      "operationId": "delete_module_work_item",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules/{pk}/",
+      "operationId": "retrieve_module",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules/{pk}/",
+      "operationId": "update_module",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules/{pk}/",
+      "operationId": "delete_module",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/modules/{pk}/archive/",
+      "operationId": "archive_module",
+      "tags": [
+        "Modules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/project-members/",
+      "operationId": "get_project_members_2",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/project-members/",
+      "operationId": "create_project_member_2",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/project-members-lite/",
+      "operationId": "get_project_members_lite",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/project-members/{pk}/",
+      "operationId": "get_project_member_2",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/project-members/{pk}/",
+      "operationId": "update_project_member_2",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/project-members/{pk}/",
+      "operationId": "delete_project_member_2",
+      "tags": [
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/states/",
+      "operationId": "list_states",
+      "tags": [
+        "States"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/states/",
+      "operationId": "create_state",
+      "tags": [
+        "States"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/states/{state_id}/",
+      "operationId": "retrieve_state",
+      "tags": [
+        "States"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/states/{state_id}/",
+      "operationId": "update_state",
+      "tags": [
+        "States"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/states/{state_id}/",
+      "operationId": "delete_state",
+      "tags": [
+        "States"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/summary/",
+      "operationId": "workspaces_projects_summary_retrieve",
+      "tags": [
+        "workspaces"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/",
+      "operationId": "list_work_items_2",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/",
+      "operationId": "create_work_item_2",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/activities/",
+      "operationId": "list_work_item_activities_2",
+      "tags": [
+        "Work Item Activity"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/activities/{pk}/",
+      "operationId": "retrieve_work_item_activity_2",
+      "tags": [
+        "Work Item Activity"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/",
+      "operationId": "list_work_item_attachments_2",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/",
+      "operationId": "create_work_item_attachment_2",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/{pk}/",
+      "operationId": "retrieve_work_item_attachment_2",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/{pk}/",
+      "operationId": "upload_work_item_attachment_2",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/attachments/{pk}/",
+      "operationId": "delete_work_item_attachment_2",
+      "tags": [
+        "Work Item Attachments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/",
+      "operationId": "list_work_item_comments_2",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/",
+      "operationId": "create_work_item_comment_2",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/{pk}/",
+      "operationId": "retrieve_work_item_comment_2",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/{pk}/",
+      "operationId": "update_work_item_comment_2",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/comments/{pk}/",
+      "operationId": "delete_work_item_comment_2",
+      "tags": [
+        "Work Item Comments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/",
+      "operationId": "list_work_item_links_2",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/",
+      "operationId": "create_work_item_link_2",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/{pk}/",
+      "operationId": "retrieve_work_item_link_2",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/{pk}/",
+      "operationId": "update_issue_link_2",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/links/{pk}/",
+      "operationId": "delete_work_item_link_2",
+      "tags": [
+        "Work Item Links"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/relations/",
+      "operationId": "list_work_item_relations",
+      "tags": [
+        "Work Item Relations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/relations/",
+      "operationId": "create_work_item_relation",
+      "tags": [
+        "Work Item Relations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{pk}/",
+      "operationId": "retrieve_work_item_2",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{pk}/",
+      "operationId": "update_work_item_2",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{pk}/",
+      "operationId": "delete_work_item_2",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/stickies/",
+      "operationId": "list_stickies",
+      "tags": [
+        "Stickies"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/workspaces/{slug}/stickies/",
+      "operationId": "create_sticky",
+      "tags": [
+        "Stickies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/stickies/{pk}/",
+      "operationId": "retrieve_sticky",
+      "tags": [
+        "Stickies"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{slug}/stickies/{pk}/",
+      "operationId": "update_sticky",
+      "tags": [
+        "Stickies"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{slug}/stickies/{pk}/",
+      "operationId": "delete_sticky",
+      "tags": [
+        "Stickies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/work-items/{project_identifier}-{issue_identifier}/",
+      "operationId": "get_workspace_work_item_2",
+      "tags": [
+        "Work Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/workspaces/{slug}/work-items/search/",
+      "operationId": "search_work_items_2",
+      "tags": [
+        "Work Items"
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "tag": "Assets",
+      "operationId": "get_generic_asset",
+      "path": "/api/v1/workspaces/{slug}/assets/{asset_id}/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/assets/00000000-0000-0000-0000-000000000000/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Cycles",
+      "operationId": "list_archived_cycles",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/archived-cycles/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/archived-cycles/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Intake",
+      "operationId": "get_intake_work_items_list",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/intake-issues/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/intake-issues/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Labels",
+      "operationId": "list_labels",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/labels/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/labels/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Members",
+      "operationId": "get_workspace_members",
+      "path": "/api/v1/workspaces/{slug}/members/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/members/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Modules",
+      "operationId": "list_archived_modules",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/archived-modules/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/archived-modules/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Projects",
+      "operationId": "list_projects",
+      "path": "/api/v1/workspaces/{slug}/projects/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "States",
+      "operationId": "list_states",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/states/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/states/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Stickies",
+      "operationId": "list_stickies",
+      "path": "/api/v1/workspaces/{slug}/stickies/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/stickies/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Users",
+      "operationId": "get_current_user",
+      "path": "/api/v1/users/me/",
+      "probedPath": "/api/v1/users/me/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Work Item Activity",
+      "operationId": "list_work_item_activities",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/activities/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/issues/00000000-0000-0000-0000-000000000000/activities/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Work Item Attachments",
+      "operationId": "list_work_item_attachments",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/issue-attachments/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/issues/00000000-0000-0000-0000-000000000000/issue-attachments/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Work Item Comments",
+      "operationId": "list_work_item_comments",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/comments/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/issues/00000000-0000-0000-0000-000000000000/comments/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Work Item Links",
+      "operationId": "list_work_item_links",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/links/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/issues/00000000-0000-0000-0000-000000000000/links/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Work Item Relations",
+      "operationId": "list_work_item_relations",
+      "path": "/api/v1/workspaces/{slug}/projects/{project_id}/work-items/{issue_id}/relations/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/projects/00000000-0000-0000-0000-000000000000/work-items/00000000-0000-0000-0000-000000000000/relations/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "Work Items",
+      "operationId": "get_workspace_work_item",
+      "path": "/api/v1/workspaces/{slug}/issues/{project_identifier}-{issue_identifier}/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/issues/00000000-0000-0000-0000-000000000000-00000000-0000-0000-0000-000000000000/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    },
+    {
+      "tag": "workspaces",
+      "operationId": "workspaces_invitations_list",
+      "path": "/api/v1/workspaces/{slug}/invitations/",
+      "probedPath": "/api/v1/workspaces/00000000-0000-0000-0000-000000000000/invitations/",
+      "statusNoAuth": "401",
+      "statusInvalidKey": "403"
+    }
+  ],
+  "limitations": [
+    "未执行任何写操作（POST/PATCH/DELETE 仅来自 schema 定义，未在线验证）。",
+    "实例尚未创建管理员与工作区，因此未用真实 API key 验证 200 响应体。",
+    "schema 中 servers 的 http://localhost:8000 是容器内地址；对外经 proxy 为 http://localhost。",
+    "drf-spectacular 导出时报告 35 warnings / 4 errors（operationId 冲突，已由数字后缀消解）。"
+  ]
+}

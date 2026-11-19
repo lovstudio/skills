@@ -1,6 +1,6 @@
 # 接口工坊 · API Studio
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.7.1-CC785C)
 
 cli2anything++ is an authorization-first CLI for turning observed API behavior into:
 
@@ -19,6 +19,12 @@ npx lovstudio skills add cli2anything -g -y
 ```
 
 The installed Skill is invoked as `lov-cli2anything`.
+
+Built-in target adapters:
+
+- `zenmux.ai`: authorized dashboard log discovery, OpenAPI, Swagger, SDK, and CLI.
+- `dshfind.com`: public read-only plugin search, detail, bulk catalog, standard market feed, SDK, and CLI.
+- `suanli.cn`: 共绩算力 Open API (from the vendor's public Apifox share) and its OpenAI-compatible LLM service; OpenAPI 3.1, RSA-signing SDK, local Swagger signing proxy, and CLI. Evidence comes from `scripts/suanli_discover.py` plus a curated discovery file.
 
 The ZenMux target validates the requested workflow:
 
@@ -40,6 +46,8 @@ npm test
 npm run discover:zenmux
 npm run generate:zenmux
 node ./bin/cli2anything.mjs zenmux.ai --filter-keyword log
+node ./bin/cli2anything.mjs dshfind.com --filter-keyword plugins --output cli --no-link --no-open \
+  --discovery ./artifacts/dshfind-discovered.json
 ```
 
 The generated OpenAPI file is written to:
@@ -52,6 +60,7 @@ Discovery evidence is written to:
 
 ```text
 artifacts/zenmux-discovered.json
+artifacts/dshfind-discovered.json
 ```
 
 The `cli2anything` entrypoint generates a focused SDK/OpenAPI bundle:
@@ -60,7 +69,22 @@ The `cli2anything` entrypoint generates a focused SDK/OpenAPI bundle:
 cli2anything zenmux.ai --filter-keyword log
 cli2anything zenmux.ai --filter-keyword log --output swagger
 cli2anything zenmux.ai --filter-keyword log --output cli
+cli2anything dshfind.com --filter-keyword plugins --output cli --no-link --no-open
 ```
+
+### Apifox
+
+Every generated dshfind bundle includes `apifox/openapi.json`. Import that file
+as OpenAPI, enable “导入 Servers 为环境” and “自动生成接口用例”, select the imported
+production environment, and send requests directly. The contract is explicitly
+no-auth and includes non-conflicting examples for search, list, detail, and
+market pagination; volatile `data_version` and `cursor` values are intentionally
+left unset. “获取插件分类” wraps the public GraphQL
+`pluginFacets.categories { value count }` query, so the valid REST category
+filter values can be discovered before calling the plugin list. Version 0.5.0
+also exposes the real read-only `POST /graphql` contract, four runnable query
+examples, and the published SDL from `GET /graphql/schema`; it does not invent
+REST aliases for GraphQL operations.
 
 Local equivalent before installing/linking the package:
 
