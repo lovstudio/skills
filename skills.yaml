@@ -2739,6 +2739,7 @@ skills:
   - interview-media-creator
   - media-publisher
   - logo-sting
+  - promo-media-creator
   display_name: Talking-head Short
   repo: lovstudio/koubo-media-creator-skill
   name_zh: 口播短片
@@ -2800,6 +2801,7 @@ skills:
   - koubo-media-creator
   - interview-media-creator
   - media-creator
+  - promo-media-creator
   display_name: Logo Sting
   repo: lovstudio/logo-sting-skill
   name_zh: 品牌片尾
@@ -2855,6 +2857,44 @@ skills:
       a selling point, when a second animation style or tunable parameters are added,
       or when a Remotion upgrade clearly raises maintenance cost.
     card_path: pricing-cards/logo-sting.md
+- name: promo-media-creator
+  runtime_name: lov-promo-media-creator
+  depends_on:
+  - branding-consistency
+  - koubo-media-creator
+  related:
+  - koubo-media-creator
+  - logo-sting
+  - media-publisher
+  display_name: Product Promo
+  repo: lovstudio/promo-media-creator-skill
+  name_zh: 产品宣传片
+  paid: true
+  category: Video Creation
+  version: 0.1.1
+  updated_at: 2026-11-19 00:20:26+00:00
+  description: "Product Promo: give a finished talking-head script the product's own visual language: tokens read from its site, real product media with 2.5D camera moves and shot-card motion, honest placeholders for results not measured yet, cue-pinned CC0 sound, music and no-music mixes, and an independent final review."
+  tagline_en: Turn a product's site, docs and your final script into a vertical promo in its own colours, with real product shots, honest placeholders and an independent review.
+  tagline_zh: 给产品官网、文档和一份定稿口播稿，用产品自己的配色和真实素材做运镜镜头，没测过的结果诚实留空，配好音效、独立终检后交付竖版宣传片。
+  pricing:
+    model: vip_membership
+    visibility: public
+    delivery_unit_zh: 包含在 Lovstudio.AI VIP 会员全套权益中，含产品配色外壳、20 种参数化镜头、时间线与音频脚本、截图脱敏与独立终检工具和真实案例
+    delivery_unit_en: Included in the full Lovstudio.AI VIP Membership, with the product-palette shell, 20 parameterised scenes, timeline and audio scripts, screenshot redaction, an independent review loop and a real case
+    value_zh: 给定稿口播脚本配上产品自己的视觉语言：真实产品素材加运镜、没测过的结果诚实留空、按动作钉帧的音效、带配乐与无配乐两版，并经独立终检。
+    value_en: "Give a finished talking-head script the product's own visual language: real product shots with camera moves, honest placeholders for untested results, sound design, two mixes and an independent review."
+    anchor_zh: 一支商单的上屏镜头、音效与终检通常要动效设计与剪辑多轮返工；这里从官网 tokens、素材报批脱敏、逐句镜头到独立终检有一条现成流程。
+    anchor_en: On-screen shots, sound and review for a sponsored video usually take several rounds of motion design and editing; here the path from site tokens and cleared media to per-line shots and an independent review is ready-made.
+    basis_zh: 会员专享，不单独定价、不兑换 Credits；必需依赖口播短片与品牌片尾为免费 Skill。会员价格以当前会员方案为准。
+    basis_en: Members only; not sold separately or redeemable with Credits. Its required dependencies, Talking-head Short and Logo Sting, are free. Membership pricing follows the current plan.
+    boundary_zh: 覆盖产品 tokens、素材报批与脱敏、逐句镜头、音效钉帧与两版混音、封装复核与独立终检；产品素材、音效文件、控制台实录、口播录制与人工代剪不在内。
+    boundary_en: Covers product tokens, cleared and redacted media, per-line scenes, cue-pinned sound with two mixes, packaging checks and an independent review; product media, sound files, console recordings, the talking-head recording and manual editing are not included.
+    maintenance_zh: 随 Remotion 主版本、口播短片共享契约、平台交付规范与真实使用反馈复评。
+    maintenance_en: Review when Remotion major versions, the Talking-head Short shared contract, platform delivery rules or real-use feedback change.
+    confidence: low
+    review_trigger_zh: 会员权益范围调整、10 次真实使用、16:9 发布会片经真实交付验证或版本大改时复评。
+    review_trigger_en: Review when membership scope changes, after 10 real uses, once the 16:9 launch-film variant is proven in a real delivery, or on a major version change.
+    card_path: pricing-cards/promo-media-creator.md
 - name: media-creator
   runtime_name: lov-media-creator
   depends_on:
@@ -2925,6 +2965,7 @@ skills:
   - media-creator
   - motion-media-creator
   - motivational-media-creator
+  - promo-media-creator
   version: 0.16.0
   description: Publish videos to WeChat Channels, Bilibili, or Xiaohongshu with
     preflight, frozen user-edited copy, cover gates, final confirmation, and status
