@@ -67,4 +67,4 @@ Python 3.9+ 标准库；PyYAML（Profile 与校验）；依赖 `lov-branding-con
 
 ### Distribution
 
-本地已安装；源码在私有仓库 `lovstudio/blogger-cloner-skill`。LovStudio 官网免费目录条目（0 Credits）已提交，状态 pending（2026-11-19），详情页与安装尚未验证。未请求 WorkBuddy 与 SkillPay。
+本地已安装；源码在私有仓库 `lovstudio/blogger-cloner-skill`，公开副本为 `lovstudio/skills` 镜像。LovStudio 官网免费目录条目（0 Credits）已上线（2026-11-19）：详情页 `/skills/blogger-cloner` 返回 200 并显示 v0.1.0，`npx lovstudio skills add blogger-cloner --project` 安装出 v0.1.0。未请求 WorkBuddy 与 SkillPay。

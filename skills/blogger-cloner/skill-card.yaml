@@ -106,8 +106,8 @@ distribution:
     - github
     - lovstudio
   channels:
-    github: "private source repository lovstudio/blogger-cloner-skill; public copy is the lovstudio/skills mirror (pending, 2026-11-19)"
-    lovstudio: "pending (2026-11-19): free catalog entry (0 Credits) submitted; detail page and install not yet verified"
+    github: "private source repository lovstudio/blogger-cloner-skill; public copy is the lovstudio/skills mirror (lovstudio/skills#98)"
+    lovstudio: "live (2026-11-19): free catalog entry (0 Credits); /skills/blogger-cloner returned HTTP 200 showing v0.1.0, and npx lovstudio skills add blogger-cloner --project installed v0.1.0"
     workbuddy: not_requested
     skillpay: not_requested
   local: "installed at ~/.agents/skills/lov-blogger-cloner after validation"
