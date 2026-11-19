@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "Replaces manually scrubbing a talk and screenshotting each slide; a 13-minute talk became a reviewed 39-slide deck in minutes."
+basis: "Port of the MIT-licensed video2ppt desktop app; the Skill adds tuning guidance and a review loop, and stays free like the upstream project."
+boundary: "Includes sampling, deduplication, cropping, review (drop/add) and PNG/PDF/PPTX export. Excludes platform downloads, OCR, and editing slide text."
+review_trigger: "Revisit if OCR, editable slide text, or a hosted processing service is added."
+confidence: internal

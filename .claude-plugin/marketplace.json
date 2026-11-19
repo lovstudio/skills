@@ -278,7 +278,7 @@
     {
       "name": "video-creation",
       "source": "./",
-      "description": "Video Creation — 15 free skills bundled together.",
+      "description": "Video Creation — 16 free skills bundled together.",
       "category": "Video Creation",
       "skills": [
         "./skills/video-chapter",
@@ -289,6 +289,7 @@
         "./skills/publish-wechat-channels",
         "./skills/migrate-camera-media",
         "./skills/video-moments",
+        "./skills/video2ppt",
         "./skills/media-preprocessor",
         "./skills/compress-video",
         "./skills/voice2srt",

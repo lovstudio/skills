@@ -1,0 +1,22 @@
+[
+  {
+    "type": "case",
+    "title": "13-minute conference talk from a WeChat Channels link to a 39-slide PPTX",
+    "description": "A public conference talk republished on WeChat Channels with Chinese dubbing. The slides sit in the right part of the frame next to a speaker inset, with bilingual subtitles below, which defeats a whole-frame histogram comparison.",
+    "input": {
+      "items": [
+        "a WeChat Channels share link to a public talk",
+        "downloaded with lov-media-crawler: 26,043,476-byte MP4, H.264 1280x720, 781.75 s, status verified"
+      ]
+    },
+    "prompt": "Package my earlier video2ppt project as a Skill and use it on this WeChat Channels link.",
+    "output": {
+      "items": [
+        "desktop-default hist 0.6 on the whole frame: 6 slides, most of the talk missing",
+        "pixel 0.985 with crop 981:551:288:11, settle 3, min-duration 2: 44 slides from 782 samples in 10.7 s",
+        "contact-sheet review: dropped 6 (5 progressive-build intermediates, 1 zoomed duplicate), added 1 embedded-demo frame",
+        "final deck: 39-slide 16:9 PPTX (8.4 MB) and 39-page PDF (2.2 MB), timestamp in every slide's notes"
+      ]
+    }
+  }
+]

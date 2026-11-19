@@ -5335,6 +5335,51 @@ skills:
     review_trigger_en: Review after 10 cross-device cases or the addition of hosted
       inference, managed delivery, or ongoing support.
     card_path: pricing-cards/video-moments.md
+- name: video2ppt
+  runtime_name: lov-video2ppt
+  display_name: Video2PPT
+  name_zh: 视频转 PPT
+  repo: lovstudio/video2ppt-skill
+  paid: false
+  category: Video Creation
+  version: 0.1.0
+  updated_at: 2026-11-19 00:56:16+00:00
+  description: Extract deduplicated slides from talk, lecture and screen-recording
+    videos and export PNG, PDF and PPTX with timestamps.
+  tagline_en: Turn talk, lecture and screen-recording videos into deduplicated slides,
+    cropped clear of speakers and subtitles, as timestamped PPTX and PDF.
+  tagline_zh: 把演讲、网课和录屏视频还原成去重后的幻灯片，裁掉讲者与字幕，导出带时间点的 PPTX 和 PDF。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 公开 Skill 源码、抽帧去重脚本和复核打包流程
+    delivery_unit_en: Public Skill source, frame extraction and deduplication script,
+      and review-and-pack workflow
+    value_zh: 一次跑完采样、去重、裁剪与复核，把整场演讲变成可翻阅、可分享的幻灯片。
+    value_en: Sample, deduplicate, crop and review in one pass, turning a whole talk
+      into slides you can page through and share.
+    anchor_zh: 替代逐段拖进度条截图；尚无人工耗时对照，不承诺固定省时比例。
+    anchor_en: Replaces scrubbing the timeline and screenshotting each slide; no manual
+      baseline has been measured, so no fixed time saving is promised.
+    basis_zh: 六维加权得分 2.75/5；一场 13 分钟演讲的真实案例与合成视频回归提供初步证据，上游为 MIT 开源应用，保持免费积累案例。
+    basis_en: Weighted score 2.75/5; one real 13-minute talk and synthetic-video
+      regressions give initial evidence, and the MIT upstream app keeps it a free entry.
+    boundary_zh: 自备本地视频或先用下载工具获取；需要 Python、Pillow、python-pptx、FFmpeg/FFprobe，不含 OCR、改写幻灯片文字或代为下载。
+    boundary_en: Requires a local video (or a downloader first), Python, Pillow, python-pptx
+      and FFmpeg/FFprobe; excludes OCR, editing slide text, and downloading.
+    maintenance_zh: 随 FFmpeg、Pillow、python-pptx 版本和真实案例反馈复评。
+    maintenance_en: Review with FFmpeg, Pillow and python-pptx releases and real-case
+      feedback.
+    confidence: case-backed
+    review_trigger_zh: 真实案例达到 10 次，或新增 OCR、可编辑文字、托管处理时复评。
+    review_trigger_en: Review after 10 real cases or the addition of OCR, editable
+      slide text, or hosted processing.
+    card_path: pricing-cards/video2ppt.md
 - name: better-css
   runtime_name: lov-better-css
   display_name: CSS Polish

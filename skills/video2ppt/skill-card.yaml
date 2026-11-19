@@ -1,0 +1,100 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "Turns a talk, lecture or screen-recording video into a deduplicated slide deck (PNG frames, PDF and PPTX with timestamp notes), with optional slide-region cropping, crossfade skipping and a contact-sheet review loop to drop or add slides."
+owner:
+  team: "Lovstudio"
+  contact: "https://github.com/lovstudio"
+license:
+  name: MIT
+  terms: "MIT for the Skill source. Users are responsible for having the right to extract and reuse slides from the source video."
+  url: "../LICENSE"
+use_case:
+  audience: "People who watch talks, courses and product demos and want the slides as a document"
+  scenario: "A local video or a downloaded platform video whose slides should be read, annotated or shared without scrubbing the timeline"
+  tasks:
+    - "Extract one frame per distinct slide"
+    - "Crop slides embedded next to a speaker or above subtitles"
+    - "Review a contact sheet, drop duplicates and add missed slides"
+    - "Export PPTX and PDF with timestamps"
+deployment:
+  geography: global
+  environments:
+    - "Local agent runtime on macOS, Linux or Windows"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "Pillow"
+    - "python-pptx (PPTX output only)"
+  runtime:
+    - "Python 3.9+"
+    - "ffmpeg and ffprobe on PATH"
+risks:
+  - risk: "Histogram comparison misses changes between slides with the same colours."
+    mitigation: "Offer the layout-aware pixel method and document measured thresholds in references/tuning.md."
+  - risk: "Subtitles, speaker insets and crossfades create duplicate or half-blended slides."
+    mitigation: "Crop to the slide region, pick the steadiest frame per slide, drop sub-second segments, and require a contact-sheet review."
+  - risk: "Embedded demo videos are filtered out as unstable segments."
+    mitigation: "The review step looks for timeline gaps and pack --add grabs the missing moment from the source."
+  - risk: "Re-running could overwrite a curated deck."
+    mitigation: "extract refuses existing outputs without --overwrite; pack moves dropped frames to dropped/ instead of deleting them."
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Parameters and tuning evidence"
+    path: "references/tuning.md"
+  - title: "Upstream desktop app"
+    path: "https://github.com/MarkShawn2020/video2ppt"
+output:
+  types:
+    - "slide images"
+    - "presentation"
+    - "document"
+    - "review artefacts"
+  formats:
+    - "PNG"
+    - "PPTX"
+    - "PDF"
+    - "JPEG contact sheet"
+    - "JSON manifest"
+  parameters:
+    - "method: hist or pixel"
+    - "similarity threshold"
+    - "sampling fps"
+    - "crop W:H:X:Y"
+    - "settle and min-duration seconds"
+    - "start and end time"
+  validation:
+    - "manifest frames_kept equals PPTX slide count and PDF page count"
+    - "contact sheet reviewed for duplicates, intermediates, crossfades and gaps"
+  description: "One output directory containing frames/, NAME.pptx, NAME.pdf, contact-sheet.jpg and manifest.json; dropped/ appears after review."
+ethical_considerations: "Slides belong to their authors. The Skill only processes videos the user can legitimately access, keeps the source timestamp on every slide for attribution, and does not strip visible watermarks or credits."
+dimensions:
+  - id: correctness
+    label: "Slide coverage"
+    description: "Every distinct slide in the talk appears once in the final deck."
+    evidence: "Real case: 44 detected slides with pixel 0.985 vs 6 with the desktop default; after review 39 slides including a re-added embedded demo frame."
+    score: null
+  - id: effectiveness
+    label: "Clean deck"
+    description: "The deck has no subtitles, speaker inset, crossfade blends or near-duplicates."
+    evidence: "Cropping the slide region raised the median adjacent-frame similarity from 0.994 to 0.9999, removing subtitle-driven duplicates; settle 3 plus min-duration 2 removed blend frames."
+    score: null
+  - id: efficiency
+    label: "Turnaround"
+    description: "Extraction runs fast enough to iterate on parameters."
+    evidence: "782 samples from a 13-minute 720p video processed in 10.7 s; a repack after review takes a few seconds."
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "Free entry. Weighted score 2.75/5 (result value 3.5, scarcity 2, evidence 3, flywheel 2, maintenance 4, copy control 1.5); the MIT upstream app is free and easy to copy, so the Skill stays free while cases accumulate."
+  boundary: "Includes extraction, review and export. Excludes downloading from platforms (lov-media-crawler) and OCR or rewriting slide text."
+  review_trigger: "Revisit if OCR, slide-text editing or hosted processing is added."
+  confidence: internal
+distribution:
+  paid: []
+  free:
+    - github
+    - lovstudio
+  lovstudio_state: "pending (2026-11-19): catalog entry not merged yet; detail page and install not verified"
