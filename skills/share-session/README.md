@@ -16,7 +16,7 @@ Plugin 上下文。即使这些内容被 Codex 折叠进 `role=user` 消息，�
 标准安装：
 
 ```bash
-npx skills add lov-share-session -g -y
+npx lovstudio skills add share-session -g -y
 ```
 
 ## 用户 Profile（跨 session）

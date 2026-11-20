@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-daily-post -g -y
+npx lovstudio skills add daily-post -g -y
 ```
 
 ## 使用

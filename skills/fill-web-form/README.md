@@ -9,7 +9,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) — by [exam
 ## Install
 
 ```bash
-npx skills add fill-web-form -g -y
+npx lovstudio skills add fill-web-form -g -y
 ```
 
 No external dependencies — uses Claude's built-in tools only.

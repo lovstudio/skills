@@ -9,7 +9,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) — by [exam
 ## Install
 
 ```bash
-npx skills add translation-review -g -y
+npx lovstudio skills add translation-review -g -y
 ```
 
 Requires: `pandoc` for .docx support (`brew install pandoc`)

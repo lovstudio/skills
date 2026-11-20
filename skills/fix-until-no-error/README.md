@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-fix-until-no-error -g -y
+npx lovstudio skills add fix-until-no-error -g -y
 ```
 
 ## 使用

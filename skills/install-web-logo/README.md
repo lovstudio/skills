@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-install-web-logo -g -y
+npx lovstudio skills add install-web-logo -g -y
 ```
 
 ## 使用

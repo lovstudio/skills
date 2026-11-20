@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-fix-by-add-log -g -y
+npx lovstudio skills add fix-by-add-log -g -y
 ```
 
 ## 使用

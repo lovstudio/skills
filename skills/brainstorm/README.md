@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-brainstorm -g -y
+npx lovstudio skills add brainstorm -g -y
 ```
 
 ## 使用

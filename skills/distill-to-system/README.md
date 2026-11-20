@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-distill-to-system -g -y
+npx lovstudio skills add distill-to-system -g -y
 ```
 
 ## 使用

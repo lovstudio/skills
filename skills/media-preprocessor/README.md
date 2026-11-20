@@ -21,7 +21,7 @@ ln -s "$PWD" "$HOME/.agents/skills/lov-media-preprocessor"
 ln -s ../../.agents/skills/lov-media-preprocessor "$HOME/.codex/skills/lov-media-preprocessor"
 ```
 
-当前仅本地安装。统一分发安装命令是 `npx skills add lov-media-preprocessor -g -y`；远程渠道尚未发布，不能把该命令当作已上线验收。
+当前仅本地安装。统一分发安装命令是 `npx lovstudio skills add media-preprocessor -g -y`；远程渠道尚未发布，不能把该命令当作已上线验收。
 
 ## Profile 与依赖
 

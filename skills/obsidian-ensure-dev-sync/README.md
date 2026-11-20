@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-obsidian-ensure-dev-sync -g -y
+npx lovstudio skills add obsidian-ensure-dev-sync -g -y
 ```
 
 ## 使用

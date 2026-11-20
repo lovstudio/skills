@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-better-statusline -g -y
+npx lovstudio skills add better-statusline -g -y
 ```
 
 ## 使用

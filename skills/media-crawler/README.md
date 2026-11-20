@@ -15,7 +15,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-media-crawler -g -y
+npx lovstudio skills add media-crawler -g -y
 ```
 
 ### 从源码安装

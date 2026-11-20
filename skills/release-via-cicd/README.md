@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-release-via-cicd -g -y
+npx lovstudio skills add release-via-cicd -g -y
 ```
 
 ## 使用

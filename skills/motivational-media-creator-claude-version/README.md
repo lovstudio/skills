@@ -9,7 +9,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-motivational-media-creator-claude-version -g -y
+npx lovstudio skills add motivational-media-creator-claude-version -g -y
 ```
 
 本地源码安装（共享入口 + 宿主相对链接）：

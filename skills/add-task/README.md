@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-add-task -g -y
+npx lovstudio skills add add-task -g -y
 ```
 
 ## 使用

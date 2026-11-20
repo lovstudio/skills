@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-init-auth -g -y
+npx lovstudio skills add init-auth -g -y
 ```
 
 ## 使用

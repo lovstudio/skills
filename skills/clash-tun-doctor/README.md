@@ -17,7 +17,7 @@ Independent source repository, also distributed through [lovstudio/skills](https
 ## Install
 
 ```bash
-npx skills add lov-clash-tun-doctor -g -y
+npx lovstudio skills add clash-tun-doctor -g -y
 ```
 
 或使用 Claude Code 插件市场：

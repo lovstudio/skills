@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-install-design -g -y
+npx lovstudio skills add install-design -g -y
 ```
 
 ## 使用

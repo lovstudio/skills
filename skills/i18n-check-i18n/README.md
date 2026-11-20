@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-i18n-check-i18n -g -y
+npx lovstudio skills add i18n-check-i18n -g -y
 ```
 
 ## 使用

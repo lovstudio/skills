@@ -11,7 +11,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-jessy-style-card-design -g -y
+npx lovstudio skills add jessy-style-card-design -g -y
 ```
 
 本地源码安装：

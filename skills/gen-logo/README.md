@@ -9,7 +9,7 @@ The portable source keeps the iterative logo workflow and separates user-owned b
 ## 安装
 
 ```bash
-npx skills add lov-gen-logo -g -y
+npx lovstudio skills add gen-logo -g -y
 ```
 
 ## Invocation

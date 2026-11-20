@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-plane-cli -g -y
+npx lovstudio skills add plane-cli -g -y
 ```
 
 本地开发时也可直接 `npm link` 包内的 `cli/`。

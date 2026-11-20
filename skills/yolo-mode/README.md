@@ -40,7 +40,7 @@ ln -s ../../.agents/skills/lov-yolo-mode "$HOME/.codex/skills/lov-yolo-mode"
 当前交付为本地源码与安装，未发布到目录。目录发布后使用统一命令：
 
 ```bash
-npx skills add lov-yolo-mode -g -y
+npx lovstudio skills add yolo-mode -g -y
 ```
 
 ## 跨会话偏好

@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-finder-action -g -y
+npx lovstudio skills add finder-action -g -y
 ```
 
 ## 使用

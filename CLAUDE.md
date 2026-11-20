@@ -64,6 +64,8 @@ Both underlying CLIs still work and remain the actual implementation. **Do not a
 
 `-g -y` are non-negotiable in AI/CI/non-TTY contexts because the underlying CLI opens three `@clack/prompts` interactive selectors (skills → agents → confirm) and hangs without a TTY.
 
+**`npx skills add <name>` with a bare name installs nothing.** The underlying CLI reads an argument without a slash as a git source and fails with `repository '<name>' does not exist`, for a catalog name (`any2pdf`) and a runtime name (`lov-any2pdf`) alike. `sync-skills.py` therefore rewrites that command in mirrored `.md` files (every one except `CHANGELOG.md`) to `npx lovstudio skills add <short name> -g -y` when the name resolves to a catalog entry, using the same lookup as the `lovstudio` CLI. A mirror differs from its source on those lines until the source README uses the canonical form. lovstudio.ai shows a public source's own README, so for those Skills the command has to be fixed in the source.
+
 The native Claude Code marketplace path (`/plugin marketplace add lovstudio/skills` then `/plugin install <name>@lovstudio`) still works off `.claude-plugin/marketplace.json`, but treat it as a fallback — `npx lovstudio` is the path we promote.
 
 ## skills.yaml Schema

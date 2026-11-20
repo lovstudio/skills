@@ -36,7 +36,7 @@ ln -s ../../.agents/skills/lov-spectacular-ps "$HOME/.codex/skills/lov-spectacul
 python3 scripts/validate_skill.py .
 ```
 
-目录发布后的统一安装命令为 `npx skills add lov-spectacular-ps -g -y`；本版本仅完成本地
+目录发布后的统一安装命令为 `npx lovstudio skills add spectacular-ps -g -y`；本版本仅完成本地
 创建与安装，尚未验证该远程命令可用，不能将它当成本次安装证据。
 
 ## 运行环境与 Profile

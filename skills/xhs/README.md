@@ -11,7 +11,7 @@
 如果这个 Skill 已发布到 Skills 目录：
 
 ```bash
-npx skills add lov-xhs
+npx lovstudio skills add xhs -g -y
 ```
 
 本地源码安装：

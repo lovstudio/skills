@@ -15,7 +15,7 @@
 ## 本地安装
 
 ```bash
-npx skills add lov-blogger-cloner -g -y
+npx lovstudio skills add blogger-cloner -g -y
 ```
 
 或从源码链接：

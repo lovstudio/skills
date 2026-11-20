@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.6 — 2026-11-20
+
+- Mirrored docs no longer carry an install command that cannot work. 122 free Skills told readers to run `npx skills add <name>` with a bare catalog or runtime name (the form first reached the mirror on 2026-08-10, and Skills published later adopted it too); the installer reads that argument as a git source and fails with `repository '<name>' does not exist`. `sync-skills.py` now rewrites the command to `npx lovstudio skills add <short name> -g -y` wherever the name resolves to a catalog entry, with the `lovstudio` CLI's own lookup. Other sources (`owner/repo`, URLs, paths), names the catalog does not know, commands with other flags and `CHANGELOG.md` files stay as written.
+- Refresh the 124 mirrored files that carried the command (123 READMEs and one SKILL.md, 127 lines). The sources are unchanged, so each of these mirrors differs from its source on that line until the source README adopts the form. lovstudio.ai still shows the old command for the 54 of these Skills whose source repository is public, because it renders their own README.
+
 ## 1.1.5 — 2026-11-10
 
 - New `Refresh website` workflow: after every push to `main` that touches `skills.yaml` or `skills/`, and after each `Render index` run, it calls lovstudio.ai's `/api/revalidate` and checks the returned `catalog_commits` against `main`. A publish no longer waits for someone to refresh the site, and a refresh that read an older commit fails the run. It needs the `LOVSTUDIO_REVALIDATE_SECRET` repository secret and warns without it.

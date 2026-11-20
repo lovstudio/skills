@@ -18,7 +18,7 @@
 ## 本地安装
 
 ```bash
-npx skills add lov-mobile-infographic -g -y
+npx lovstudio skills add mobile-infographic -g -y
 ```
 
 源码安装：

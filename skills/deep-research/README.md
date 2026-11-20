@@ -9,7 +9,7 @@ Part of [LovStudio Skills](https://lovstudio.ai/skills) — by [LovStudio](https
 ## Installation
 
 ```bash
-npx skills add lov-deep-research -g -y
+npx lovstudio skills add deep-research -g -y
 ```
 
 No additional dependencies required for basic usage.

@@ -9,7 +9,7 @@ Actions OIDC（trusted publishing，CI 免长期 token）与本地 granular NPM_
 
 ## 本地安装
 
-推荐 `npx skills add lov-npm-publisher -g -y`，或使用中间层安装，让不同 Agent
+推荐 `npx lovstudio skills add npm-publisher -g -y`，或使用中间层安装，让不同 Agent
 运行时解析到同一份源代码：
 
 ```bash

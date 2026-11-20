@@ -42,7 +42,7 @@ git clone https://example.com/skills/video-chapter-skill \
 或使用 Skill Publisher 技能安装器：
 
 ```bash
-npx skills add video-chapter -g -y
+npx lovstudio skills add video-chapter -g -y
 ```
 
 基础分析只需要 Python 3.8+。渲染需要：

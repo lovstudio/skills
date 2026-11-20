@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-gen-project-name -g -y
+npx lovstudio skills add gen-project-name -g -y
 ```
 
 ## 使用

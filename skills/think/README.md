@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-think -g -y
+npx lovstudio skills add think -g -y
 ```
 
 ## 使用

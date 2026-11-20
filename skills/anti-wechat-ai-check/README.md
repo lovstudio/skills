@@ -13,7 +13,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) — by [exam
 ## Install
 
 ```bash
-npx skills add anti-wechat-ai-check -g -y
+npx lovstudio skills add anti-wechat-ai-check -g -y
 ```
 
 Requires: Python 3.8+ (no external dependencies)

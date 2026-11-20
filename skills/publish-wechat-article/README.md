@@ -25,7 +25,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-publish-wechat-article -g -y
+npx lovstudio skills add publish-wechat-article -g -y
 ```
 
 ## 必需的上游产物

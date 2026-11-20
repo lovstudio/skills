@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-nano-banana-pro -g -y
+npx lovstudio skills add nano-banana-pro -g -y
 ```
 
 ## 使用

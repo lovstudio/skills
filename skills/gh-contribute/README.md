@@ -10,7 +10,7 @@ Part of [skills](https://example.com/skills/skills) — by [example.com](https:/
 ## Install
 
 ```bash
-npx skills add gh-contribute -g -y
+npx lovstudio skills add gh-contribute -g -y
 ```
 
 Requires: [`gh` CLI](https://cli.github.com/) (authenticated via `gh auth login`) and `git`.

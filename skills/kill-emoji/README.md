@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-kill-emoji -g -y
+npx lovstudio skills add kill-emoji -g -y
 ```
 
 ## 使用
