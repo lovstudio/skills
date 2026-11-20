@@ -1,6 +1,6 @@
 # 文风扫描（旧入口） · Writing Pattern Scan (Legacy)
 
-![Version](https://img.shields.io/badge/version-1.1.2-CC785C)
+![Version](https://img.shields.io/badge/version-1.1.3-CC785C)
 
 兼容旧命令的中文表层模式扫描器。它只定位套话、过渡词和句段均匀等可观察特征，
 不判断作者身份，不预测平台审核，也不提供规避 AI 标识或检测的能力。

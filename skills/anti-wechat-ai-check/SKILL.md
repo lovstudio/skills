@@ -13,7 +13,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.1.2"
+  version: "1.1.3"
   content_class: deterministic-output
   tags:
     - legacy-compatibility

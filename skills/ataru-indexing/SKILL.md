@@ -7,7 +7,7 @@ license: MIT
 compatibility: "Portable Agent Skills format. Requires Python 3.8+ and a locally installed Ataru binary at 0.41.3 or newer."
 metadata:
   author: lovstudio
-  version: "0.2.3"
+  version: "0.2.4"
   card_standard: lovstudio/skill-card/v1
   tags:
     - ataru

@@ -3,6 +3,12 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [1.5.6] - 2026-11-20
+
+### Fixed
+
+- README 的安装命令改为 `npx lovstudio skills add any2pdf -g -y`：不带斜杠的名字会被 `npx skills add` 当作 git 源，报 repository does not exist，装不上。
+
 ## [1.5.5] - 2026-10-31
 
 ### Fixed

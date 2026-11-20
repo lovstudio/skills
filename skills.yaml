@@ -487,10 +487,10 @@ skills:
     card_path: pricing-cards/fill-web-form.md
 - name: any2pdf
   runtime_name: lov-any2pdf
-  updated_at: 2026-10-31 13:07:25+00:00
+  updated_at: 2026-11-20 12:35:41+00:00
   display_name: PDF Master
   repo: lovstudio/any2pdf-skill
-  version: 1.5.5
+  version: 1.5.6
   name_zh: PDF大师
   paid: false
   featured: true
@@ -539,8 +539,8 @@ skills:
     card_path: pricing-cards/any2pdf.md
 - name: any2docx
   runtime_name: lov-any2docx
-  version: 0.4.2
-  updated_at: 2026-10-31 13:46:14+00:00
+  version: 0.4.3
+  updated_at: 2026-11-20 12:35:41+00:00
   display_name: Word Master
   repo: lovstudio/any2docx-skill
   name_zh: Word 大师
@@ -589,7 +589,7 @@ skills:
     card_path: pricing-cards/any2docx.md
 - name: any2deck
   runtime_name: lov-any2deck
-  updated_at: 2026-10-31 11:19:40+00:00
+  updated_at: 2026-11-20 12:35:41+00:00
   display_name: PPT Master
   repo: lovstudio/any2deck-skill
   name_zh: PPT 大师
@@ -608,7 +608,7 @@ skills:
   - any2docx
   skillpay_product_id: P0806000200844930
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-u
-  version: 1.1.2
+  version: 1.1.3
   pricing:
     model: free_entry
     visibility: public
@@ -3843,14 +3843,14 @@ skills:
 - name: app-generator
   runtime_name: lov-app-generator
   display_name: App Studio
-  updated_at: 2026-10-31 12:28:42+00:00
+  updated_at: 2026-11-20 12:35:41+00:00
   skillpay_product_id: P0806000200843451
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP-
   repo: lovstudio/app-generator-skill
   name_zh: 应用工坊
   paid: false
   category: Dev Tools
-  version: 0.5.6
+  version: 0.5.7
   description: Generate or standardize Lovstudio apps, choosing web-only, PWA, or
     Tauri desktop case-by-case with React/Vite or Next.js, brand, UI, data, deploy/release,
     and lovinsp.
@@ -4648,8 +4648,8 @@ skills:
   name_zh: Ataru 索引
   paid: false
   category: Dev Tools
-  version: 0.2.3
-  updated_at: 2026-10-31 13:46:14+00:00
+  version: 0.2.4
+  updated_at: 2026-11-20 12:35:41+00:00
   description: 'Check and build the local Ataru session-memory index before retrieval:
     status gating, idempotent incremental catch-up, concurrent-build waiting, and
     semantic-index cost preview.'
@@ -8027,12 +8027,12 @@ skills:
 - name: anti-wechat-ai-check
   runtime_name: lov-anti-wechat-ai-check
   display_name: Writing Pattern Scan (Legacy)
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:35:41+00:00
   repo: lovstudio/anti-wechat-ai-check-skill
   name_zh: 文风扫描（旧入口）
   paid: false
   category: Content Creation
-  version: 1.1.2
+  version: 1.1.3
   description: Legacy entry that scans Chinese text for surface writing patterns; new work
     routes to lov-human-writing.
   tagline_en: Legacy entry that scans Chinese text for surface writing patterns; new work
