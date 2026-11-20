@@ -32,6 +32,14 @@ Version: {{VERSION}}
 |---:|---|---|---|
 | — | — | — | — |
 
+## Content triage
+
+| Item | Was on | Destination | Reason |
+|---|---|---|---|
+| — | — | main deck / appendix / data room / term sheet / spoken answer / cut | — |
+
+Founder inputs still missing: —
+
 ## Evidence gaps
 
 | Claim | Current status | Required source / action | Owner |

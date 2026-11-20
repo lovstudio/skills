@@ -12,7 +12,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.4"
+  version: "0.3.5"
   tags: skill-kit business-plan pitch-deck fundraising outline slides polish audit
 ---
 
@@ -159,6 +159,8 @@ For each module:
 - product definition is investor-readable;
 - all 12 investor questions are covered;
 - core numbers have sources or are labeled assumptions;
+- the main deck holds only what wins the next meeting; other material is routed by
+  `references/fa-content-triage.md`;
 - no fabricated traction, market, quote, or revenue.
 
 If the user only asked for an outline, stop here. In an interactive full workflow,
