@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.7] - 2026-11-20
+
+### Removed
+
+- WorkBuddy 平台元数据与仓库内打包脚本移出真源：删除 `workbuddy/`（connector 元数据、图标、发行说明、送审信件）、`scripts/build_workbuddy_connector.py` 和依赖它们的 6 项测试，README 去掉 WorkBuddy 小节。元数据改由发布方在仓库外保存，原文件见 tag `v0.3.6`
+- WorkBuddy 包改用发布助手的通用打包脚本生成。它不改写 bp-deck 正文，包里会保留 `lov-any2deck`、`lov-rich-export` 的依赖说明，`author` 与 description 取自源 SKILL.md
+
+### Fixed
+
+- 发布助手源校验 0 项；0.3.6 剩下的一项就是 `workbuddy/` 目录
+
 ## [0.3.6] - 2026-11-20
 
 ### Fixed

@@ -1,6 +1,6 @@
 # BP 工坊 · BP Studio
 
-![Version](https://img.shields.io/badge/version-0.3.6-CC785C)
+![Version](https://img.shields.io/badge/version-0.3.7-CC785C)
 ![License](https://img.shields.io/badge/license-MIT-173D2A)
 ![Free](https://img.shields.io/badge/Free-open--source-5DC98F)
 
@@ -32,21 +32,6 @@ npx lovstudio skills add bp-outline -g -y
 npx lovstudio skills add bp-deck -g -y
 npx lovstudio skills add bp-polish -g -y
 ```
-
-### WorkBuddy
-
-仓库内置腾讯 WorkBuddy `skill-only Connector` 发行配置，可生成一个运营审核包
-以及四个适合在 WorkBuddy“上传技能”页面逐个导入的 ZIP：
-
-```bash
-python3 scripts/build_workbuddy_connector.py \
-  --output-dir ./lov-bp-workbuddy-v0.3.6
-```
-
-其中 `lov-bp.zip` 是可独立审查和安装的自包含总控包，内部携带三个
-子模块；另外三个 ZIP 仍可作为独立 Skill 使用。
-
-接入说明和审核文案见 [`workbuddy/`](workbuddy/)。
 
 ## 四个入口
 

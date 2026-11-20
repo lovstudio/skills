@@ -10,7 +10,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.6"
+  version: "0.3.7"
   tags:
     - skill-kit
     - business-plan

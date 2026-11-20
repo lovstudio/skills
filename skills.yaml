@@ -722,14 +722,14 @@ skills:
     card_path: pricing-cards/png2svg.md
 - name: bp
   runtime_name: lov-bp
-  updated_at: 2026-11-20 09:37:32+00:00
+  updated_at: 2026-11-20 11:17:11+00:00
   display_name: BP Studio
   repo: lovstudio/bp-skill
   name_zh: BP 工坊
   paid: false
   featured: true
   category: Business
-  version: 0.3.6
+  version: 0.3.7
   description: Orchestrate a complete investor BP workflow or combine only the modules
     needed for outline, PPTX/PDF production, and professional polishing.
   tagline_en: A composable BP skill kit — use outline, deck, and polish alone or run
