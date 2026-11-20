@@ -11,7 +11,7 @@
 首选通过 Skills 目录安装：
 
 ```bash
-npx skills add lov-wechat-article-branding -g -y
+npx lovstudio skills add wechat-article-branding -g -y
 ```
 
 在源码开发环境中，也可从本仓库根目录链接：

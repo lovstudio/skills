@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-clone-rebrand -g -y
+npx lovstudio skills add clone-rebrand -g -y
 ```
 
 ## 使用

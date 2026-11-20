@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-repo-takeover -g -y
+npx lovstudio skills add repo-takeover -g -y
 ```
 
 ## 使用

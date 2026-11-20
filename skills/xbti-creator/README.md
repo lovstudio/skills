@@ -10,8 +10,8 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) — by [exam
 
 ```bash
 # Install xbti-creator + image-creator dependency together
-npx skills add xbti-creator -g -y
-npx skills add image-creator -g -y
+npx lovstudio skills add xbti-creator -g -y
+npx lovstudio skills add image-creator -g -y
 ```
 
 Requires: Node.js 18+, Python 3.8+, `ZENMUX_API_KEY` ([get one free](https://zenmux.ai/invite/K6KT2X))
@@ -56,7 +56,7 @@ Make a FBTI for founder personality types
 
 | Dependency | Install | Purpose |
 |-----------|---------|---------|
-| `lov-image-creator` | `npx skills add image-creator -g -y` | Avatar generation |
+| `lov-image-creator` | `npx lovstudio skills add image-creator -g -y` | Avatar generation |
 | `ZENMUX_API_KEY` | [zenmux.ai/invite/K6KT2X](https://zenmux.ai/invite/K6KT2X) | API access for image gen |
 | `google-genai` + `Pillow` | `pip install google-genai Pillow` | Python deps (auto-installed) |
 

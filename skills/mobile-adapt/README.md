@@ -9,7 +9,7 @@ Independent source repository, also distributed through [lovstudio/skills](https
 ## Install
 
 ```bash
-npx skills add lov-mobile-adapt -g -y
+npx lovstudio skills add mobile-adapt -g -y
 ```
 
 Or through Claude Code plugin marketplace:

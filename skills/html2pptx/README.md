@@ -13,7 +13,7 @@ Part of [skills](https://example.com/skills/skills) — by [example.com](https:/
 ## Install
 
 ```bash
-npx skills add html2pptx -g -y
+npx lovstudio skills add html2pptx -g -y
 pip install playwright python-pptx --break-system-packages
 python3 -m playwright install chromium
 ```

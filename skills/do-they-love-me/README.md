@@ -9,7 +9,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-do-they-love-me -g -y
+npx lovstudio skills add do-they-love-me -g -y
 ```
 
 ## 从源码安装（维护者）

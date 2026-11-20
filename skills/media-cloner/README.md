@@ -58,7 +58,7 @@ ln -s ../../.agents/skills/lov-media-cloner "$HOME/.claude/skills/lov-media-clon
 ln -s ../../.agents/skills/lov-media-cloner "$HOME/.codex/skills/lov-media-cloner"
 ```
 
-也可以从 LovStudio 官网目录安装：`npx skills add lov-media-cloner -g -y`。
+也可以从 LovStudio 官网目录安装：`npx lovstudio skills add media-cloner -g -y`。
 
 ## 验证
 

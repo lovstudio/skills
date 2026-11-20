@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-legal-pages -g -y
+npx lovstudio skills add legal-pages -g -y
 ```
 
 ## 使用

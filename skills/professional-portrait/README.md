@@ -20,7 +20,7 @@ Independent source repository, also distributed through [lovstudio/skills](https
 ## 安装
 
 ```bash
-npx skills add lov-professional-portrait -g -y
+npx lovstudio skills add professional-portrait -g -y
 ```
 
 或使用 Claude Code 插件市场：

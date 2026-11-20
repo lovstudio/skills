@@ -14,7 +14,7 @@ Part of [skills](https://example.com/skills/skills) — by [example.com](https:/
 ## Install
 
 ```bash
-npx skills add find-logo -g -y
+npx lovstudio skills add find-logo -g -y
 ```
 
 Stdlib only — no `pip install` needed.

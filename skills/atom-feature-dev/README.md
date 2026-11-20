@@ -8,7 +8,7 @@
 ## 本地安装
 
 ```bash
-npx skills add lov-atom-feature-dev -g -y
+npx lovstudio skills add atom-feature-dev -g -y
 ```
 
 本地真源开发时，`~/.agents/skills/lov-atom-feature-dev` 应指向本目录，各宿主入口再以

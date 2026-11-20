@@ -10,7 +10,7 @@
 目录发布后可使用统一安装命令：
 
 ```bash
-npx skills add lov-image-decorator -g -y
+npx lovstudio skills add image-decorator -g -y
 ```
 
 从本地真源安装：

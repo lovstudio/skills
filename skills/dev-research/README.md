@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-dev-research -g -y
+npx lovstudio skills add dev-research -g -y
 ```
 
 ## 使用

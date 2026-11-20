@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-version-management-manual -g -y
+npx lovstudio skills add version-management-manual -g -y
 ```
 
 ## 使用

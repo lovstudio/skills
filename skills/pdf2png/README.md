@@ -9,7 +9,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) — by [exam
 ## Install
 
 ```bash
-npx skills add pdf2png -g -y
+npx lovstudio skills add pdf2png -g -y
 ```
 
 Requires: macOS, `pip install pyobjc-framework-Quartz`

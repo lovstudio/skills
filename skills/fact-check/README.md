@@ -9,7 +9,7 @@ Part of [skill-publisher general skills](https://example.com/skills/general-skil
 ## Install
 
 ```bash
-npx skills add fact-check -g -y
+npx lovstudio skills add fact-check -g -y
 ```
 
 ## Dependencies

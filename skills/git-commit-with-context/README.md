@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-git-commit-with-context -g -y
+npx lovstudio skills add git-commit-with-context -g -y
 ```
 
 ## 使用

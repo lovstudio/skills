@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-better-seo -g -y
+npx lovstudio skills add better-seo -g -y
 ```
 
 ## 使用

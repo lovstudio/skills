@@ -8,7 +8,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-skill-add-case -g -y
+npx lovstudio skills add skill-add-case -g -y
 ```
 
 ## 使用

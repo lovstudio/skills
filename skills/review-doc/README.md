@@ -16,7 +16,7 @@
 ## 安装
 
 ```bash
-npx skills add review-doc -g -y
+npx lovstudio skills add review-doc -g -y
 python3 -m pip install "python-docx>=1.0" "lxml>=4.9"
 ```
 

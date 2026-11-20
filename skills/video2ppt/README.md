@@ -10,7 +10,7 @@
 ## 本地安装
 
 ```bash
-npx skills add lov-video2ppt -g -y
+npx lovstudio skills add video2ppt -g -y
 ```
 
 或在本仓库根目录手动链接：

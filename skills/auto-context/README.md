@@ -31,7 +31,7 @@ You (turn 80):  transcript size crosses threshold
 ## Install
 
 ```bash
-npx skills add auto-context -g -y
+npx lovstudio skills add auto-context -g -y
 ```
 
 Works standalone as a manual skill. Auto-trigger on long transcripts

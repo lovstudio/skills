@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-xbti-gallery -g -y
+npx lovstudio skills add xbti-gallery -g -y
 ```
 
 ## 使用

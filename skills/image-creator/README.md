@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-image-creator -g -y
+npx lovstudio skills add image-creator -g -y
 ```
 
 ## 使用

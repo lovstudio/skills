@@ -14,7 +14,7 @@ CC Switch 这类工具切换的是 API 供应商配置，不处理账号目录�
 ## 安装
 
 ```bash
-npx skills add lov-claude-account-migrate -g -y
+npx lovstudio skills add claude-account-migrate -g -y
 ```
 
 本地源码安装：

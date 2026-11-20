@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-code-review -g -y
+npx lovstudio skills add code-review -g -y
 ```
 
 ## 使用

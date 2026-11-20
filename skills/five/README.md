@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-five -g -y
+npx lovstudio skills add five -g -y
 ```
 
 ## 使用

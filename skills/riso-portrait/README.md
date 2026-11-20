@@ -8,7 +8,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-riso-portrait -g -y
+npx lovstudio skills add riso-portrait -g -y
 ```
 
 ## 使用

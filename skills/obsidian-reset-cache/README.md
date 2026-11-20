@@ -9,7 +9,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) — by [exam
 ## Install
 
 ```bash
-npx skills add obsidian-reset-cache -g -y
+npx lovstudio skills add obsidian-reset-cache -g -y
 ```
 
 No dependencies required (shell commands only).

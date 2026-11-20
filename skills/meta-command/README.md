@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-meta-command -g -y
+npx lovstudio skills add meta-command -g -y
 ```
 
 ## 使用

@@ -11,7 +11,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) &mdash; by [
 ## Install
 
 ```bash
-npx skills add any2deck -g -y
+npx lovstudio skills add any2deck -g -y
 ```
 
 Requires: Image generation skill + Node.js (for PPTX/PDF) + Python 3.8+ (for branding)

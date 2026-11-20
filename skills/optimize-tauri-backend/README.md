@@ -10,7 +10,7 @@ Independent source repository, also distributed through [lovstudio/skills](https
 ## Install
 
 ```bash
-npx skills add lov-optimize-tauri-backend -g -y
+npx lovstudio skills add optimize-tauri-backend -g -y
 ```
 
 Or through Claude Code plugin marketplace:

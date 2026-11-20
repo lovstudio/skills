@@ -9,7 +9,7 @@ Part of [skill-publisher dev skills](https://example.com/skills/dev-skills) — 
 ## Install
 
 ```bash
-npx skills add project-port -g -y
+npx lovstudio skills add project-port -g -y
 ```
 
 ## Usage

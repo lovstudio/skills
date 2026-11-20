@@ -9,7 +9,7 @@
 ## 本地安装
 
 ```bash
-npx skills add lov-create-qrcode -g -y
+npx lovstudio skills add create-qrcode -g -y
 ```
 
 本地开发时，共享安装位应指向本 Skill 真源，宿主安装位再用相对 symlink 指向共享入口。

@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-output -g -y
+npx lovstudio skills add output -g -y
 ```
 
 ## 使用

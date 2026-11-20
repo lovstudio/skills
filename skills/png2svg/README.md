@@ -9,7 +9,7 @@ Part of [skill-publisher general skills](https://example.com/skills/general-skil
 ## Install
 
 ```bash
-npx skills add png2svg -g -y
+npx lovstudio skills add png2svg -g -y
 ```
 
 ## Dependencies

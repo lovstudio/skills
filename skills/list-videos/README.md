@@ -15,7 +15,7 @@
 ## 本地安装
 
 ```bash
-npx skills add lov-list-videos -g -y
+npx lovstudio skills add list-videos -g -y
 ```
 
 或者在本仓库根目录手动链接：

@@ -18,7 +18,7 @@ git clone https://example.com/skills/style-clone-skill \
 Or via the skills CLI:
 
 ```bash
-npx skills add style-clone -g -y
+npx lovstudio skills add style-clone -g -y
 ```
 
 No external dependencies — pure Claude reasoning workflow.

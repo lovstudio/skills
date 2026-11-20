@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-architecture-documentation -g -y
+npx lovstudio skills add architecture-documentation -g -y
 ```
 
 ## 使用

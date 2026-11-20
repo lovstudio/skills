@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-better-project-structure -g -y
+npx lovstudio skills add better-project-structure -g -y
 ```
 
 ## 使用
