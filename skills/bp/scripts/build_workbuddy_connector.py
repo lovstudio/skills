@@ -19,7 +19,6 @@ GIT_URL = "https://github.com/lovstudio/bp-skill"
 SKILLS = {
     "lov-bp": {
         "source": ROOT,
-        "version": "0.2.1",
         "description": (
             "根据项目材料和用户目标，按需编排投资人商业计划书大纲、融资演示文稿、"
             "证据核验与专业审校流程；适用于完整 BP、融资 PPT、已有材料续作和逐页润色。"
@@ -27,7 +26,6 @@ SKILLS = {
     },
     "lov-bp-outline": {
         "source": ROOT / "skills" / "bp-outline",
-        "version": "0.1.0",
         "description": (
             "从项目材料提取事实和证据，形成投资人叙事、证据账本与商业计划书大纲；"
             "适用于首次融资梳理、已有材料重构、市场数据核验和投资人页序设计。"
@@ -35,7 +33,6 @@ SKILLS = {
     },
     "lov-bp-deck": {
         "source": ROOT / "skills" / "bp-deck",
-        "version": "0.1.0",
         "description": (
             "将已确认的商业计划书大纲制作成结构清晰、证据可信的专业融资演示文稿；"
             "覆盖视觉风格、图表、品牌素材、可编辑 PPTX、PDF 和全稿预览交付。"
@@ -43,7 +40,6 @@ SKILLS = {
     },
     "lov-bp-polish": {
         "source": ROOT / "skills" / "bp-polish",
-        "version": "0.1.0",
         "description": (
             "审查并润色已有商业计划书大纲、PPT 或 PDF，输出逐页修改与定向重做建议；"
             "覆盖事实证据、投资逻辑、文案、图表、版式和最终交付质量。"
@@ -88,6 +84,18 @@ def split_frontmatter(text: str) -> tuple[str, str]:
     if marker < 0:
         raise ValueError("SKILL.md frontmatter is not closed")
     return text[4:marker], text[marker + 5 :]
+
+
+def source_version(source_dir: Path) -> str:
+    """Return `metadata.version` of the source SKILL.md, so a package never carries a copied number."""
+    skill_file = source_dir / "SKILL.md"
+    frontmatter, _ = split_frontmatter(skill_file.read_text(encoding="utf-8"))
+    match = re.search(
+        r'(?m)^[ \t]+version:[ \t]*["\']?(\d+\.\d+\.\d+)["\']?[ \t]*$', frontmatter
+    )
+    if not match:
+        raise ValueError(f"{skill_file}: metadata.version is missing")
+    return match.group(1)
 
 
 def workbuddy_skill_text(
@@ -149,7 +157,7 @@ def write_skill(
     target_text = workbuddy_skill_text(
         name=name,
         description=str(config["description"]),
-        version=str(config["version"]),
+        version=source_version(source_dir),
         source_text=source_text,
     )
     (target_dir / "SKILL.md").write_text(target_text, encoding="utf-8")
@@ -266,6 +274,12 @@ def validate_package(output_dir: Path) -> None:
         errors.append('connector-meta.json: source_type must be "git"')
     if meta.get("git_url") != GIT_URL:
         errors.append(f"connector-meta.json: git_url must be {GIT_URL}")
+    kit_version = source_version(ROOT)
+    if meta.get("version") != kit_version:
+        errors.append(
+            f"connector-meta.json: version must equal lov-bp {kit_version}, "
+            f"found {meta.get('version')}"
+        )
     for field in ("examples_zh", "examples_en"):
         value = meta.get(field)
         if not isinstance(value, list) or not 2 <= len(value) <= 5:

@@ -1,13 +1,13 @@
 # BP 大师 · BP Master
 
-![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.3-CC785C)
 
 把已经确认的 BP 大纲做成专业 PPTX、PDF 和全稿预览。
 
 ## 安装
 
 ```bash
-npx skills add bp-deck -g -y
+npx lovstudio skills add bp-deck -g -y
 ```
 
 依赖免费的 `lov-any2deck`。

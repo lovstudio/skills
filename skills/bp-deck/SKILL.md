@@ -1,12 +1,9 @@
 ---
 name: lov-bp-deck
 description: >
-  Turn an approved investor BP outline into a clean, professional slide deck with
-  deliberate style selection, real product evidence, charts, branding, PPTX/PDF,
-  and a full-deck preview. Use when the narrative already exists and the user wants
-  PPT production, visual style exploration, slide regeneration, or export.
-  Trigger on "把 BP 大纲做成 PPT", "选择 BP 风格", "生成融资 PPT", "重做第几页",
-  "BP deck", "pitch deck design", "render investor slides", or "export BP PDF".
+  Turn an approved BP outline into a styled PPTX/PDF investor deck. Triggers:
+  "把 BP 大纲做成 PPT", "选择 BP 风格", "生成融资 PPT", "重做第几页", "BP deck",
+  "pitch deck design", "render investor slides", "export BP PDF".
 license: MIT
 compatibility: Requires Python 3.8+; scripts/check_pptx_editable.py uses the standard library only. The PDF text-layer gate runs lov-rich-export's fix_pdf_tounicode.py, which needs pypdf and fontTools.
 depends_on:
@@ -14,8 +11,16 @@ depends_on:
   - lov-rich-export
 metadata:
   author: contributors
-  version: "0.2.2"
-  tags: business-plan pitch-deck pptx pdf style charts branding slides
+  version: "0.2.3"
+  tags:
+    - business-plan
+    - pitch-deck
+    - pptx
+    - pdf
+    - style
+    - charts
+    - branding
+    - slides
 ---
 
 # BP 大师 · BP Master
@@ -23,6 +28,26 @@ metadata:
 Produce the presentation after the investment narrative is approved. This skill owns
 style selection, visual specification, rendering, export, and final-image QA; it does
 not invent missing business evidence.
+
+## Triggers
+
+### Activate when
+
+- The narrative already exists and the user wants PPT production, visual style
+  exploration, slide regeneration, or export.
+- Chinese: “把 BP 大纲做成 PPT”, “选择 BP 风格”, “生成融资 PPT”, or “重做第几页”.
+- English: “BP deck”, “pitch deck design”, “render investor slides”, or
+  “export BP PDF”.
+
+### Do not activate when
+
+- No approved outline or page-by-page narrative exists yet, or it lacks a clear
+  product definition, financing ask, or source-backed core numbers; use
+  `lov-bp-outline` first.
+- The user only wants an existing deck reviewed, scored, or polished; use
+  `lov-bp-polish`.
+- The presentation is not an investor BP, such as a company introduction, product
+  talk, or course slides.
 
 ## Input Gate
 

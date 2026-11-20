@@ -1,24 +1,49 @@
 ---
 name: lov-bp-polish
 description: >
-  Review and improve an existing BP outline, PPTX, PDF, or rendered slide set across
-  investment logic, evidence, copy, charts, and visual quality. Produces a scored
-  report, page-level revisions, and targeted regeneration instructions while keeping
-  facts separate from assumptions. Trigger on "润色 BP", "审稿商业计划书", "PPT 不专业",
-  "逐页检查", "改图表", "BP review", "polish pitch deck", or "audit investor deck".
+  Review and polish an existing BP outline, PPTX, or PDF: logic, evidence, copy,
+  visuals. Triggers: "润色 BP", "审稿商业计划书", "PPT 不专业", "逐页检查", "改图表",
+  "BP review", "polish pitch deck", "audit investor deck".
 license: MIT
+compatibility: Requires Python 3.8+; scripts/audit_bp.py uses the standard library only.
 depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.2"
-  tags: business-plan review polish audit evidence charts visual-quality pitch-deck
+  version: "0.2.3"
+  tags:
+    - business-plan
+    - review
+    - polish
+    - audit
+    - evidence
+    - charts
+    - visual-quality
+    - pitch-deck
 ---
 
 # BP 精修 · BP Polish
 
 Improve an existing BP without silently changing its business facts. This skill can
 be used before deck production, after rendering, or in a correction loop.
+
+## Triggers
+
+### Activate when
+
+- The user has a BP outline, PPTX, PDF, or rendered slide set and wants it reviewed,
+  scored, or improved, with facts kept separate from assumptions.
+- Chinese: “润色 BP”, “审稿商业计划书”, “PPT 不专业”, “逐页检查”, or “改图表”.
+- English: “BP review”, “polish pitch deck”, or “audit investor deck”.
+
+### Do not activate when
+
+- No BP material exists yet and the user wants one written from project materials;
+  use `lov-bp-outline` or `lov-bp`.
+- The user wants slides produced from an approved outline with no review; use
+  `lov-bp-deck`.
+- The task is generic proofreading or formatting of a document that is not an
+  investor-facing business plan.
 
 ## Modes
 

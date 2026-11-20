@@ -1,19 +1,25 @@
 ---
 name: lov-bp
 description: >
-  Orchestrate a complete investor BP workflow or route to one focused module:
-  source-backed outline, PPTX/PDF production, or evidence/content/visual polishing.
-  Use when the user wants to create a business plan end to end, combine BP stages,
-  continue from an existing BP workspace, or is unsure which BP skill to use.
-  Trigger on "做 BP", "完整商业计划书", "融资 PPT 全流程", "BP skill kit",
-  "business plan workflow", "pitch deck pipeline", or "continue my BP".
+  Build a full investor BP or route to one module: outline, deck, or polish.
+  Triggers: "做 BP", "完整商业计划书", "融资 PPT 全流程", "BP skill kit",
+  "business plan workflow", "pitch deck pipeline", "continue my BP".
 license: MIT
+compatibility: Requires Python 3.8+; scripts/init_bp.py and scripts/audit_bp.py use the standard library only. Slide production runs through lov-bp-deck with lov-any2deck and lov-rich-export.
 depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.3.5"
-  tags: skill-kit business-plan pitch-deck fundraising outline slides polish audit
+  version: "0.3.6"
+  tags:
+    - skill-kit
+    - business-plan
+    - pitch-deck
+    - fundraising
+    - outline
+    - slides
+    - polish
+    - audit
 ---
 
 # BP 工坊 · BP Studio
@@ -24,16 +30,22 @@ independently.
 
 ## Triggers
 
-Activate for requests containing or clearly implying:
+### Activate when
 
-- Chinese: “商业计划书”, “BP 大纲”, “融资 PPT”, “路演材料”, “投资人演示文稿”,
-  “BP 审稿”, “BP 润色”, or “从项目材料做完整 BP”;
-- English: “business plan”, “BP outline”, “pitch deck”, “investor deck”,
+- The user wants to create a business plan end to end, combine BP stages, continue
+  from an existing BP workspace, or is unsure which BP skill to use.
+- Chinese: “做 BP”, “完整商业计划书”, “融资 PPT 全流程”, “商业计划书”, “BP 大纲”,
+  “融资 PPT”, “路演材料”, “投资人演示文稿”, “BP 审稿”, “BP 润色”, or
+  “从项目材料做完整 BP”.
+- English: “BP skill kit”, “business plan workflow”, “pitch deck pipeline”,
+  “continue my BP”, “business plan”, “BP outline”, “pitch deck”, “investor deck”,
   “fundraising deck”, “review my BP”, or “polish this deck”.
 
-Do not activate for a generic company introduction, ordinary product presentation,
-annual report, marketing proposal, or document formatting request unless the user
-also needs an investor-facing business plan.
+### Do not activate when
+
+- The request is a generic company introduction, ordinary product presentation,
+  annual report, marketing proposal, or document formatting task, unless the user
+  also needs an investor-facing business plan.
 
 ## Runtime and portability
 

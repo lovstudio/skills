@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.6] - 2026-11-20
+
+### Fixed
+
+- 四个 SKILL.md 通过发布助手源校验：description 压到 200 字符以内（原 444 / 365 / 452 / 395），原有触发词全部保留在 description 与 `## Triggers` 中；三个子模块补 `## Triggers`，四个都写明不触发条件；`metadata.tags` 改为列表；根目录、bp-outline、bp-polish 补 `compatibility`
+- 版本面对齐：`kit.yaml` 与 `workbuddy/connector-meta.json` 的 `version` 跟随 lov-bp（自 0.3.0 起停在 0.2.1）；WorkBuddy 打包脚本改为从各源 SKILL.md 读取版本（原先写死 0.2.1 / 0.1.0），connector 版本与 lov-bp 不一致时拒绝打包；README 与 `workbuddy/README.md` 的示例目录名同步
+- 恢复 2026-08-09 去品牌化留下的占位：README 的品牌链接与 `lov-any2deck` 链接，`cases/cases.json` 的文章链接、来源与封面地址（替换前原值见 02044aa^，品牌名写作 `Lovstudio.AI`）
+- 四份 README 的安装命令恢复为 `npx lovstudio skills add <name> -g -y`：`npx skills add bp -g -y` 会把 `bp` 当作仓库地址，克隆失败
+- `tests/test_sanitizer_regressions.py` 的私有路径样本改为运行时拼接，写入包内的内容不变
+- 新增 tests/test_version_surfaces.py：`kit.yaml`、connector 元数据与文档示例目录名偏离 lov-bp 版本时测试失败
+
 ## [0.3.5] - 2026-11-20
 
 ### Added

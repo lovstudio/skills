@@ -15,7 +15,7 @@ Connector 提交包。
 ## 提交包内容
 
 ```text
-lov-bp-workbuddy-v0.2.1/
+lov-bp-workbuddy-v0.3.6/
 ├── connector-meta.json
 ├── icon.svg
 ├── README.md
@@ -37,12 +37,12 @@ lov-bp-workbuddy-v0.2.1/
 
 ```bash
 python3 scripts/build_workbuddy_connector.py \
-  --output-dir /path/to/lov-bp-workbuddy-v0.2.1
+  --output-dir /path/to/lov-bp-workbuddy-v0.3.6
 ```
 
 脚本会同时生成同名 ZIP，并执行结构、元信息、Frontmatter、私有路径和
 PPT 运行时适配检查。它还会生成
-`lov-bp-workbuddy-v0.2.1-individual/`，其中包含四个可在
+`lov-bp-workbuddy-v0.3.6-individual/`，其中包含四个可在
 WorkBuddy“上传技能”界面逐个导入的 ZIP。
 
 ## 维护

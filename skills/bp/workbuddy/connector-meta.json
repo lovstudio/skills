@@ -7,7 +7,7 @@
   "description_en": "Create investor-ready BP outlines, pitch decks, and evidence-based reviews from project materials.",
   "source": "lov-bp",
   "type": "skill-only",
-  "version": "0.2.1",
+  "version": "0.3.6",
   "source_type": "git",
   "git_url": "https://github.com/lovstudio/bp-skill",
   "minWorkbuddyVersion": "4.24.0",
