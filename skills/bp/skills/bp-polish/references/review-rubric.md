@@ -31,14 +31,31 @@ decision as a note beside the 0, not as “n/a”.
 
 ## Adversarial review lenses
 
-Review the deck as four people:
+Review the deck as five people:
 
 1. **Non-technical investor** — what remains unclear after ten seconds?
 2. **Category expert** — which claims are technically or competitively naive?
 3. **Skeptical partner** — what evidence is missing or overstated?
 4. **Design director** — where does layout reduce trust or distort meaning?
+5. **Senior FA** — what belongs in the appendix, data room, term sheet, or a spoken
+   answer instead of the main deck, and what is the ask still missing?
 
 For every issue, report page, severity, why it matters, and exact revision.
+
+## Content triage checklist
+
+Apply `fa-content-triage.md`.
+
+- [ ] The main deck holds only what wins the next meeting; registration data, the
+      round-by-round cap table, instrument mechanics, and methodology paragraphs sit
+      in the appendix, data room, or term sheet.
+- [ ] No valuation multiple or pricing history is printed as an investment highlight.
+- [ ] The product that earns today's revenue has its own proof page.
+- [ ] Material unfavourable facts are stated once, plainly; none was removed.
+- [ ] The ask reads money → use → measurable milestone, with pre- or post-money stated
+      when a price is given.
+- [ ] The report lists every item moved, cut, or added, and the founder inputs still
+      missing.
 
 ## Visual QA checklist
 

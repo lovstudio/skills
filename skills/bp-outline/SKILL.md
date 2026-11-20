@@ -11,7 +11,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.0"
+  version: "0.2.1"
   tags: business-plan outline investor narrative evidence market positioning
 ---
 
@@ -116,6 +116,12 @@ Use this 12-page base:
 
 Expand only when a product demo, moat, B2B deployment model, or financial model
 needs a dedicated page. Read `references/deck-architecture.md`.
+
+Before fixing the page map, triage the material with
+`references/fa-content-triage.md`: the main deck carries only what wins the next
+meeting, supporting detail goes to an appendix, and diligence records, deal
+mechanics, and valuation rationale stay out of the deck. List what was moved or left
+out at the end of `outline.md`.
 
 Each slide entry must contain:
 

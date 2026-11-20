@@ -11,7 +11,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.1"
+  version: "0.2.2"
   tags: business-plan review polish audit evidence charts visual-quality pitch-deck
 ---
 
@@ -53,8 +53,8 @@ If multiple review modes are plausible, prefill from the user's wording. Ask one
 compact question only when the choice materially changes the work. “不专业” defaults
 to `full`; “文字太技术” defaults to `content`; “图表不好看” defaults to `visual`.
 
-Read `references/review-rubric.md`, `references/charts-and-visuals.md`, and
-`references/user-config.md` as relevant.
+Read `references/review-rubric.md`, `references/fa-content-triage.md`,
+`references/charts-and-visuals.md`, and `references/user-config.md` as relevant.
 
 ### Step 1: Run deterministic outline audit
 
@@ -69,12 +69,15 @@ python3 "$SKILL_DIR/scripts/audit_bp.py" \
 Use `--strict` before final delivery. The script checks structure and evidence
 hygiene; it does not replace investor judgment or visual inspection.
 
-### Step 2: Review as four adversaries
+### Step 2: Review as five adversaries
 
 1. **Non-technical investor** — can the product be repeated after ten seconds?
 2. **Category expert** — which product/competition claims are naive or imprecise?
 3. **Skeptical partner** — which core claims lack proof or overstate traction?
 4. **Design director** — where does layout reduce trust or distort meaning?
+5. **Senior FA** — what belongs in the appendix, data room, term sheet, or a spoken
+   answer instead of the main deck, and what does the ask still lack? Follow
+   `references/fa-content-triage.md` and record the triage table in the report.
 
 For every issue record slide, severity, why it matters, and exact revision.
 
@@ -85,6 +88,8 @@ For every issue record slide, severity, why it matters, and exact revision.
 - Never invent a customer quote or testimonial.
 - Never widen TAM without a buyer and price bridge.
 - Never change a product boundary solely to improve the story.
+- Never drop a material unfavourable fact while triaging content; move the detail,
+  keep the statement.
 
 If a revision needs new evidence, mark an evidence blocker and return it to
 `lov-bp-outline`.

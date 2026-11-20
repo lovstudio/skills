@@ -3,6 +3,13 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.2.2] - 2026-11-20
+
+### Added
+
+- 新增 `references/fa-content-triage.md`：给每项内容定去处（主稿、附录、尽调资料、投资协议、口头回答或删去），并写明取舍不能删掉不利但重要的事实
+- 审稿增加第五个视角「Senior FA」；rubric 增加内容取舍清单；报告模板增加取舍表与「仍缺的创始人输入」
+
 ## [0.2.1] - 2026-11-03
 
 ### Fixed
