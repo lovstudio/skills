@@ -739,6 +739,7 @@ skills:
   - bp-outline
   - bp-deck
   - bp-polish
+  - branding-consistency
   skillpay_product_id: P0806000200846053
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQi
   pricing:
@@ -786,6 +787,8 @@ skills:
   tagline_en: Turn project evidence into an investor narrative and a source-backed
     12–15 slide outline before making PPT.
   tagline_zh: 先把项目材料变成证据账本和投资人看得懂的 12–15 页大纲，再决定是否制作 PPT。
+  depends_on:
+  - branding-consistency
   skillpay_product_id: P0806000200846054
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQg
   pricing:
@@ -835,6 +838,8 @@ skills:
   tagline_zh: 把已经确认的 BP 大纲做成风格统一、图表专业的 PPTX、PDF 和全稿预览。
   depends_on:
   - any2deck
+  - branding-consistency
+  - rich-export
   skillpay_product_id: P0806000200847214
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-R
   pricing:
@@ -882,6 +887,8 @@ skills:
   tagline_en: Audit and polish an existing BP with a scored report and page-level
     fixes—without changing the facts.
   tagline_zh: 给已有 BP 做投资逻辑、证据、文字、图表和视觉体检，输出评分报告与逐页修改，不为好看改事实。
+  depends_on:
+  - branding-consistency
   skillpay_product_id: P0806000200846055
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsM
   pricing:
