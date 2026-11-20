@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.1] - 2026-11-20
+
+### Fixed
+
+- publishing.md: the catalog sync also rewrites `npx skills add <name>` with a bare catalog or runtime name, which cannot install (the skills CLI reads it as a git repository), to `npx lovstudio skills add <short name> -g -y` (lovstudio/skills#101). Write that form in the source so the mirror comparison stays empty.
+- publishing.md: lovstudio.ai renders a public source's own `SKILL.md`, `README.md` and Skill Card and reads the mirror only for a private source, so a change that exists only in the mirror never reaches a public-source Skill's lovstudio.ai page.
+- README: install with `npx lovstudio skills add skill-publisher -g -y`.
+
 ## [0.9.0] - 2026-11-16
 
 ### Changed

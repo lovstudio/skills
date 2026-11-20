@@ -156,5 +156,63 @@ class AskUserTests(unittest.TestCase):
         self.assertEqual(codes(lint(spec), "BODY_NO_ASKUSER"), [])
 
 
+class ReadmeInstallTests(unittest.TestCase):
+    SPEC = skill_md(
+        "Rebuild the local cache and verify it. Use when the user mentions a stale cache.",
+        "## Workflow\n\n本流程非交互执行。\n",
+    )
+    INSTALL_CODES = ("README_INSTALL_BARE_NAME", "README_INSTALL_NOT_CANONICAL", "README_NO_INSTALL")
+
+    def lint_readme(self, readme):
+        with tempfile.TemporaryDirectory() as tmp:
+            skill = Path(tmp) / "demo-skill"
+            write_skill(skill, self.SPEC)
+            (skill / "README.md").write_text(readme, encoding="utf-8")
+            findings = run_lint(skill)
+        return {code: codes(findings, code) for code in self.INSTALL_CODES}
+
+    def test_bare_name_install_is_an_error(self):
+        # `npx skills add <name>` clones <name> as a repository and fails.
+        for readme in (
+            "## 安装\n\n```bash\nnpx skills add lov-demo -g -y\n```\n",
+            "推荐 `npx skills add demo -g -y` 安装。\n",
+        ):
+            with self.subTest(readme=readme):
+                found = self.lint_readme(readme)
+                self.assertEqual(len(found["README_INSTALL_BARE_NAME"]), 1, found)
+                self.assertEqual(found["README_INSTALL_BARE_NAME"][0]["severity"], "error")
+                self.assertIn("npx lovstudio skills add demo -g -y", found["README_INSTALL_BARE_NAME"][0]["fix_hint"])
+                self.assertEqual(found["README_INSTALL_NOT_CANONICAL"] + found["README_NO_INSTALL"], [])
+
+    def test_canonical_install_passes(self):
+        for readme in (
+            "```bash\nnpx lovstudio skills add demo -g -y\n```\n",
+            "```bash\nnpx lovstudio skills add demo -g -y\n# 开发时\nnpx skills add ./demo-skill --all -g\n```\n",
+        ):
+            with self.subTest(readme=readme):
+                self.assertEqual(self.lint_readme(readme), {code: [] for code in self.INSTALL_CODES})
+
+    def test_other_sources_alone_are_not_canonical(self):
+        for readme in (
+            "```bash\nnpx skills add lovstudio/skills --skill lov-demo -g -y\n```\n",
+            "```bash\nnpx skills add https://github.com/lovstudio/demo-skill\n```\n",
+            '```bash\nnpx skills add "$SKILL_SOURCE"\n```\n',
+            "```bash\ngit clone https://github.com/lovstudio/demo-skill\n```\n",
+            "模板：`npx skills add lov-<name> -g -y`\n",
+            # Prose is not a command to copy, so it is never read as a bare name.
+            "Run npx skills add to install it.\n",
+        ):
+            with self.subTest(readme=readme):
+                found = self.lint_readme(readme)
+                self.assertEqual(found["README_INSTALL_BARE_NAME"] + found["README_NO_INSTALL"], [])
+                self.assertEqual(len(found["README_INSTALL_NOT_CANONICAL"]), 1, found)
+                self.assertEqual(found["README_INSTALL_NOT_CANONICAL"][0]["severity"], "warn")
+
+    def test_missing_install_suggests_the_canonical_command(self):
+        found = self.lint_readme("# Demo\n")
+        self.assertEqual(len(found["README_NO_INSTALL"]), 1)
+        self.assertIn("npx lovstudio skills add demo -g -y", found["README_NO_INSTALL"][0]["fix_hint"])
+
+
 if __name__ == "__main__":
     unittest.main()

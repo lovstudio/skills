@@ -1,6 +1,6 @@
 # Skill 精修师 · Skill Refiner
 
-![Version](https://img.shields.io/badge/version-0.13.6-CC785C)
+![Version](https://img.shields.io/badge/version-0.13.7-CC785C)
 
 自动审计并优化 Agent Skill：按当前对话优先修复问题，统一 README、SKILL.md、
 `skill.yaml`、`skill-card.yaml`、`pricing-card.yaml` 与 CHANGELOG 版本（卡片只改
@@ -17,7 +17,7 @@
 ## 安装
 
 ```bash
-npx skills add lovstudio/skills --skill lov-skill-optimizer -y -g
+npx lovstudio skills add skill-optimizer -g -y
 ```
 
 Requires: Python 3.8+（仅标准库）；Git 用于源码提交/推送核验。

@@ -1,6 +1,6 @@
 # Skill 发布助手 · Skill Publisher
 
-![Version](https://img.shields.io/badge/version-0.9.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.9.1-CC785C)
 
 把已经验证并安装在本地的 Skill 发布到一个或多个独立渠道。发布前默认调用 `lov-skill-pricing` 自动生成或刷新可解释定价，再把同一价格契约适配到各渠道，同时保持平台元数据和发行产物不污染源代码。
 
@@ -15,10 +15,10 @@ ln -s "$SKILL_SOURCE_DIR" \
   "$SKILL_SKILLS_INSTALL_DIR/lov-skill-publisher"
 ```
 
-也可以通过 Skills CLI 安装：
+也可以从官网目录安装：
 
 ```bash
-npx skills add lovstudio/skill-publisher-skill -g -y
+npx lovstudio skills add skill-publisher -g -y
 ```
 
 ## 当前适配器

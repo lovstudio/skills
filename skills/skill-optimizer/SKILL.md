@@ -20,7 +20,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.13.6"
+  version: "0.13.7"
   tags: meta skill-maintenance versioning changelog lint portability sync
 ---
 
@@ -180,7 +180,9 @@ The linter checks both root `SKILL.md` repositories and paid/encrypted
 `src/SKILL.md` repositories:
 
 - Agent Skills-compatible frontmatter and trigger phrases;
-- README version badge and installation command;
+- README version badge and installation command: advertise
+  `npx lovstudio skills add <name> -g -y`; a bare `npx skills add <name>`
+  cannot install and is an error;
 - `metadata.version`, README badge, `skill.yaml`, `skill-card.yaml` and
   `pricing-card.yaml` version consistency;
 - CLI use of argparse and obvious script hygiene;

@@ -52,6 +52,14 @@ NON_OUTPUT_SECTION_RE = re.compile(
 )
 FENCED_CODE_RE = re.compile(r"```.*?```", re.S)
 INLINE_CODE_RE = re.compile(r"`[^`\n]*`")
+CANONICAL_INSTALL = "npx lovstudio skills add"
+# The skills CLI reads an `add` argument without a slash as a git source, so
+# `npx skills add any2pdf` fails with "repository 'any2pdf' does not exist".
+# The lookahead keeps owner/repo, URL, path and variable sources and
+# placeholders such as `lov-<name>` out.
+BARE_SKILLS_ADD_RE = re.compile(
+    r"npx[ \t]+skills[ \t]+add[ \t]+[A-Za-z0-9][A-Za-z0-9_.\-]*(?![A-Za-z0-9_.\-]*[/:@=+~$\\*%<{])"
+)
 # Skill IDs such as lov-publish-wechat-article name a neighbour, not this output.
 KEBAB_IDENTIFIER_RE = re.compile(r"\b[a-z0-9]+(?:-[a-z0-9]+)+\b")
 NON_INTERACTIVE_PHRASES = (
@@ -665,10 +673,23 @@ class Linter:
                 "Add ![Version](https://img.shields.io/badge/version-X.Y.Z-CC785C) near the top",
                 file="README.md",
             )
+        canonical = f"{CANONICAL_INSTALL} {self.name} -g -y"
+        # Only commands a reader would copy: fenced blocks and inline code.
+        code = "\n".join(FENCED_CODE_RE.findall(text) + INLINE_CODE_RE.findall(FENCED_CODE_RE.sub("\n", text)))
+        bare = sorted({m.group(0) for m in BARE_SKILLS_ADD_RE.finditer(code)})
+        if bare:
+            self.add(
+                "error",
+                "README_INSTALL_BARE_NAME",
+                f"README.md install command cannot work: {', '.join(f'`{c}`' for c in bare[:3])}; "
+                "the skills CLI reads an argument without a slash as a git repository",
+                f"Use `{canonical}` with the catalog short name",
+                file="README.md",
+            )
         has_install = any(
             token in text
             for token in (
-                "npx lovstudio skills add",
+                CANONICAL_INSTALL,
                 "npx skills add",
                 "git clone https://github.com/lovstudio",
                 "/plugin install",
@@ -679,7 +700,15 @@ class Linter:
                 "warn",
                 "README_NO_INSTALL",
                 "README.md missing install command",
-                "Add an install block using npx skills add or git clone into ${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/lov-<name>",
+                f"Add an install block with `{canonical}` (the catalog short name)",
+                file="README.md",
+            )
+        elif CANONICAL_INSTALL not in text and not bare:
+            self.add(
+                "warn",
+                "README_INSTALL_NOT_CANONICAL",
+                f"README.md installs without `{CANONICAL_INSTALL}`",
+                f"Advertise `{canonical}`; keep other sources only as secondary options",
                 file="README.md",
             )
 
