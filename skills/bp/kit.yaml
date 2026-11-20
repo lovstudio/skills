@@ -1,6 +1,6 @@
 name: bp
 display_name: BP Skill Kit
-version: 0.3.6
+version: 0.3.7
 entrypoint: lov-bp
 runtime: skill-runtime/v1
 profile:
