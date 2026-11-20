@@ -221,8 +221,10 @@
       "skills": [
         "./skills/bp",
         "./skills/bp-outline",
+        "./skills/branding-consistency",
         "./skills/bp-deck",
         "./skills/any2deck",
+        "./skills/rich-export",
         "./skills/bp-polish",
         "./skills/solution-architect",
         "./skills/review-doc",
@@ -230,7 +232,6 @@
         "./skills/expense-report",
         "./skills/publish-event-onto-hdx",
         "./skills/harness-issue",
-        "./skills/branding-consistency",
         "./skills/product-onepage",
         "./skills/competitor-research"
       ],
