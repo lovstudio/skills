@@ -230,14 +230,17 @@ diff -r -x .github "$tmp" skills/NAME   # no output: the mirror equals the sourc
 ```
 
 The comparison is empty only when the source already uses the forms the script
-writes from the catalog entry's `name_zh` and `display_name`. It sets the first
+writes. From the catalog entry's `name_zh` and `display_name` it sets the first
 H1 of `SKILL.md`, `README.md` and `README.zh-CN.md` to `{name_zh} · {display_name}`,
 of `README.en.md` to `{display_name}`, and of `skill-card.md` to
-`{name_zh} · {display_name} · Skill Card`; it rewrites `display_name` and
-`display_name_en` in `skill.yaml` as double-quoted strings; and it adds the
-missing non-interactive and scope flags to `npx skills add <owner>/<repo>`
-commands, so write those with `-g -y`. Put these forms in the source instead of
-accepting a mirror that differs from it.
+`{name_zh} · {display_name} · Skill Card`, and it rewrites `display_name` and
+`display_name_en` in `skill.yaml` as double-quoted strings. In every Markdown
+file except `CHANGELOG.md` it adds the missing non-interactive and scope flags
+to `npx skills add <owner>/<repo>` commands, and it replaces
+`npx skills add <name>` with a bare catalog or runtime name, which cannot
+install, by `npx lovstudio skills add <short name> -g -y`. Write install
+commands as `npx lovstudio skills add <name> -g -y`, and put the other forms in
+the source too, instead of accepting a mirror that differs from it.
 
 The `Render index` run on the merge stays red at `Fail on stale mirrors` for as
 long as other private sources cannot be cloned. Read its steps instead of its
@@ -366,6 +369,13 @@ return HTTP 200, the visible version plus marker to match the release, and the
 exact catalog install command to pass from a clean isolated directory. For a paid
 Skill, verify with an account that already owns it: the install must download the
 tagged source and put plain files on disk without a duplicate purchase.
+
+Know which copy the page shows. lovstudio.ai renders a free Skill's `SKILL.md`,
+`README.md` and Skill Card from its source repository when that repository is
+public, and from the catalog mirror only when it is private; lovstudio.cn reads
+the mirror's OSS copy. A change that exists only in the mirror, such as an
+install command the sync script rewrote, therefore never reaches the
+lovstudio.ai page of a public-source Skill: make it in the source.
 
 ### Install verification must not touch the maintainer's install root
 

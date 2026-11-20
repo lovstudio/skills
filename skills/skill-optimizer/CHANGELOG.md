@@ -3,6 +3,15 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.13.7] - 2026-11-20
+
+### Fixed
+
+- lint_skill.py 新增 README_INSTALL_BARE_NAME（error）：README 代码里用不带斜杠的名字写 `npx skills add <name>` 装不上，底层 skills CLI 把它当作 git 仓库地址，报 `repository '<name>' does not exist`（2026-11-20 实测 skills@1.9.0）；修复提示给出 `npx lovstudio skills add <name> -g -y`。
+- 新增 README_INSTALL_NOT_CANONICAL（warn）：README 有安装命令但没有 `npx lovstudio skills add`（只有 owner/repo、URL、路径、git clone 或 /plugin install）。README_NO_INSTALL 的修复提示改为同一条命令，不再建议 `npx skills add`。只检查代码块与行内代码，`lov-<name>` 这类占位写法不算裸名。
+- 全量回归：lovstudio/skills 目录镜像 218 个目录 0 处裸名（lovstudio/skills#101 已在同步时改写），各 Skill 源码仓库 236 个目录中 131 个命中，命中的名字全部是真实 Skill 名；tests/test_heuristics.py 新增 4 项，共 26 项。
+- README 安装命令改为 `npx lovstudio skills add skill-optimizer -g -y`，SKILL.md 的检查项说明同步。
+
 ## [0.13.6] - 2026-10-31
 
 ### Fixed
