@@ -11,6 +11,15 @@ changes, `updated_at` is stamped with the sync time, because lovstudio.ai dates
 Skill updates by that field. Paid and internal entries are not mirrored and keep
 a hand-maintained `version`.
 
+Free entries also list every dependency their mirror's top-level `depends_on`
+declares, because `npx lovstudio skills add` installs the catalog's closure, not
+the SKILL.md's. A declared runtime name maps to the entry with that
+`runtime_name` (or that short `name`). `--write` inserts what is missing in the
+declared order and never removes the entry's other dependencies. A declared name
+that free installs cannot take (no catalog entry, a paid or internal entry in its
+closure, or a cycle) is left out and reported as a warning: one Skill's
+declaration must not stop every other mirror from publishing.
+
 Usage:
     python3 scripts/sync-runtime-names.py          # validate only
     python3 scripts/sync-runtime-names.py --write  # update skills.yaml in place
@@ -18,6 +27,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -26,7 +36,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from catalog_entries import is_installable  # noqa: E402
+from catalog_entries import is_installable, is_internal  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 YAML_PATH = ROOT / "skills.yaml"
@@ -37,6 +47,10 @@ ENTRY_RE = re.compile(
 RUNTIME_FIELD_RE = re.compile(r"(?m)^  runtime_name:[^\n]*(?:\n|$)")
 VERSION_FIELD_RE = re.compile(r"(?m)^  version:(?P<value>[^\n]*)(?:\n|$)")
 UPDATED_AT_FIELD_RE = re.compile(r"(?m)^  updated_at:[^\n]*(?:\n|$)")
+# A block list (`  depends_on:` then `  - name` lines) or a one-line flow list.
+DEPENDS_FIELD_RE = re.compile(r"(?m)^  depends_on:[^\n]*\n(?:  - [^\n]*\n)*")
+# tagline_zh with its continuation lines: new depends_on blocks go right after it.
+TAGLINE_ZH_FIELD_RE = re.compile(r"(?m)^  tagline_zh:[^\n]*\n(?:(?!  [A-Za-z_][A-Za-z0-9_]*:)[^\n]*\n)*")
 
 
 def read_frontmatter(skill_md: Path) -> dict:
@@ -70,6 +84,15 @@ def read_version(skill_md: Path) -> str | None:
     if not re.fullmatch(r"[A-Za-z0-9._+-]+", version):
         raise ValueError(f"unsafe version {version!r}")
     return version
+
+
+def read_dependencies(skill_md: Path) -> list[str]:
+    value = read_frontmatter(skill_md).get("depends_on")
+    if value is None:
+        return []
+    if not isinstance(value, list) or not all(isinstance(item, str) and item.strip() for item in value):
+        raise ValueError("SKILL.md depends_on is not a list of Skill names")
+    return [item.strip() for item in value]
 
 
 def load_catalog() -> tuple[str, dict[str, dict]]:
@@ -111,6 +134,25 @@ def expected_versions(catalog: dict[str, dict]) -> tuple[dict[str, str], list[st
         if version is not None:
             versions[name] = version
     return versions, errors
+
+
+def declared_dependencies(catalog: dict[str, dict]) -> tuple[dict[str, list[str]], list[str]]:
+    """Each free mirror's declared depends_on, plus a warning per unreadable declaration."""
+    declared: dict[str, list[str]] = {}
+    warnings: list[str] = []
+    for name, skill in catalog.items():
+        skill_md = MIRROR_ROOT / name / "SKILL.md"
+        # Paid and internal entries keep hand-maintained dependencies, like their versions.
+        if not is_installable(skill) or not skill_md.exists():
+            continue
+        try:
+            dependencies = read_dependencies(skill_md)
+        except (OSError, ValueError, yaml.YAMLError) as error:
+            warnings.append(f"{name}: {error}")
+            continue
+        if dependencies:
+            declared[name] = dependencies
+    return declared, warnings
 
 
 def rewrite(text: str, runtime_names: dict[str, str]) -> str:
@@ -184,6 +226,131 @@ def rewrite_versions(text: str, versions: dict[str, str], synced_at: datetime | 
     return result
 
 
+def merge_dependencies(listed: list[str], declared: list[str]) -> list[str]:
+    """Keep the listed order; put each new item before the next declared item already listed."""
+    merged = list(listed)
+    for index, dependency in enumerate(declared):
+        if dependency in merged:
+            continue
+        anchor = next((item for item in declared[index + 1:] if item in merged), None)
+        merged.insert(merged.index(anchor) if anchor else len(merged), dependency)
+    return merged
+
+
+def reachable(graph: dict[str, list[str]], start: str) -> list[str]:
+    """`start` and everything it depends on, transitively, in depth-first order."""
+    order: list[str] = []
+    stack, seen = [start], set()
+    while stack:
+        name = stack.pop()
+        if name in seen:
+            continue
+        seen.add(name)
+        order.append(name)
+        stack.extend(reversed(graph.get(name, [])))
+    return order
+
+
+def plan_dependencies(
+    catalog: dict[str, dict], runtime_names: dict[str, str], declared: dict[str, list[str]]
+) -> tuple[dict[str, list[str]], list[str]]:
+    """Return the full depends_on of each entry that gains a declared dependency, and warnings.
+
+    A warning names every declared dependency the catalog lacks and cannot take:
+    one with no entry, one whose closure holds a paid or internal entry (free
+    installs would then need a membership, or fail), or one that closes a cycle.
+    """
+    by_runtime_name = {
+        str(skill["runtime_name"]).strip(): name for name, skill in catalog.items() if skill.get("runtime_name")
+    }
+    by_runtime_name.update({runtime_name: name for name, runtime_name in runtime_names.items()})
+    graph = {name: [str(item) for item in skill.get("depends_on") or []] for name, skill in catalog.items()}
+    lists: dict[str, list[str]] = {}
+    warnings: list[str] = []
+    for name, dependencies in declared.items():
+        listed = list(graph[name])
+        wanted: list[str] = []
+        for dependency in dependencies:
+            target = by_runtime_name.get(dependency) or (dependency if dependency in catalog else None)
+            if target is None:
+                warnings.append(f"{name}: SKILL.md declares {dependency}, which has no catalog entry")
+                continue
+            if target == name:
+                warnings.append(f"{name}: SKILL.md lists itself in depends_on")
+                continue
+            if target in graph[name]:
+                wanted.append(target)
+                continue
+            closure = reachable(graph, target)
+            blocked = next((item for item in closure if item in catalog and not is_installable(catalog[item])), None)
+            if name in closure:
+                warnings.append(
+                    f"{name}: SKILL.md declares {dependency}, but {target} already depends on {name}; "
+                    "listing it would close a cycle"
+                )
+            elif blocked is not None:
+                via = f"{dependency}," if blocked == target else f"{dependency}, which depends on"
+                if is_internal(catalog[blocked]):
+                    warnings.append(f"{name}: SKILL.md declares {via} the internal entry {blocked}; public installs cannot resolve it")
+                else:
+                    warnings.append(
+                        f"{name}: SKILL.md declares {via} the paid entry {blocked}; "
+                        f"listing it would make every install of {name} require a membership"
+                    )
+            else:
+                wanted.append(target)
+                graph[name].append(target)
+        merged = merge_dependencies(listed, wanted)
+        if merged != listed:
+            lists[name] = merged
+    return lists, warnings
+
+
+def added_dependencies(catalog: dict[str, dict], lists: dict[str, list[str]]) -> dict[str, list[str]]:
+    return {
+        name: [item for item in dependencies if item not in (catalog[name].get("depends_on") or [])]
+        for name, dependencies in lists.items()
+    }
+
+
+def rewrite_dependencies(text: str, lists: dict[str, list[str]]) -> str:
+    """Write each entry's depends_on as a block list, in place or right after tagline_zh."""
+    seen: set[str] = set()
+
+    def replace(match: re.Match[str]) -> str:
+        name = match.group("name").strip()
+        dependencies = lists.get(name)
+        if dependencies is None:
+            return match.group(0)
+        seen.add(name)
+        head = match.group(0)[: match.start("body") - match.start()]
+        body = match.group("body")
+        block = "  depends_on:\n" + "".join(f"  - {item}\n" for item in dependencies)
+        field = DEPENDS_FIELD_RE.search(body)
+        if field:
+            return head + body[: field.start()] + block + body[field.end():]
+        anchor = TAGLINE_ZH_FIELD_RE.search(body)
+        at = anchor.end() if anchor else len(body)
+        before, after = body[:at], body[at:]
+        if before and not before.endswith("\n"):
+            before += "\n"
+        return head + before + block + after
+
+    result = ENTRY_RE.sub(replace, text)
+    missing = sorted(set(lists) - seen)
+    if missing:
+        raise ValueError(f"catalog entries not found in source text: {', '.join(missing)}")
+    if lists:
+        # The edit is textual; refuse one that would touch anything but these lists.
+        expected = yaml.safe_load(text) or {}
+        for skill in expected.get("skills") or []:
+            if skill["name"] in lists:
+                skill["depends_on"] = lists[skill["name"]]
+        if yaml.safe_load(result) != expected:
+            raise ValueError("depends_on rewrite would change other catalog fields")
+    return result
+
+
 def validate(catalog: dict[str, dict], runtime_names: dict[str, str]) -> list[str]:
     errors: list[str] = []
     seen_runtime_names: dict[str, str] = {}
@@ -217,6 +384,25 @@ def duplicate_runtime_fields(text: str) -> list[str]:
     ]
 
 
+def report_warnings(warnings: list[str]) -> None:
+    """Warn without failing. A CI step shows only its first 10 annotations, so the summary lists all."""
+    if not warnings:
+        return
+    headline = f"{len(warnings)} declared {'dependency needs' if len(warnings) == 1 else 'dependencies need'} a fix by hand"
+    print(f"{headline}:", file=sys.stderr)
+    for warning in warnings:
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            message = warning.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+            print(f"::warning title=Declared dependency not listed::{message}", flush=True)
+        else:
+            print(f"  ! {warning}", file=sys.stderr)
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        with open(summary, "a", encoding="utf-8") as handle:
+            handle.write(f"### {headline}\n\n")
+            handle.writelines(f"- {warning}\n" for warning in warnings)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", action="store_true", help="update skills.yaml before validating")
@@ -225,6 +411,7 @@ def main() -> int:
     text, catalog = load_catalog()
     runtime_names, errors = expected_runtime_names(catalog)
     versions, version_errors = expected_versions(catalog)
+    declared, declaration_warnings = declared_dependencies(catalog)
     errors += version_errors
     if errors:
         print("SKILL.md frontmatter discovery failed:", file=sys.stderr)
@@ -234,26 +421,36 @@ def main() -> int:
 
     if args.write:
         drift = validate_versions(catalog, versions)
-        next_text = rewrite_versions(rewrite(text, runtime_names), versions)
+        dependency_lists, _ = plan_dependencies(catalog, runtime_names, declared)
+        added = added_dependencies(catalog, dependency_lists)
+        next_text = rewrite_dependencies(rewrite_versions(rewrite(text, runtime_names), versions), dependency_lists)
         if next_text != text:
             YAML_PATH.write_text(next_text, encoding="utf-8")
             print(f"Updated skills.yaml from {len(runtime_names)} mirrored SKILL.md files.")
             for change in drift:
                 print(f"  - {change}")
+            for name, items in added.items():
+                print(f"  - {name}.depends_on: added {', '.join(items)}")
         text, catalog = load_catalog()
 
+    dependency_lists, dependency_warnings = plan_dependencies(catalog, runtime_names, declared)
+    report_warnings(declaration_warnings + dependency_warnings)
     errors = (
         validate(catalog, runtime_names)
         + validate_versions(catalog, versions)
         + duplicate_runtime_fields(text)
+        + [
+            f"{name}.depends_on: lacks {', '.join(items)}, which its mirrored SKILL.md declares"
+            for name, items in added_dependencies(catalog, dependency_lists).items()
+        ]
     )
     if errors:
-        print("Runtime name and version validation failed:", file=sys.stderr)
+        print("Runtime name, version and dependency validation failed:", file=sys.stderr)
         for error in errors:
             print(f"  - {error}", file=sys.stderr)
         return 1
 
-    print(f"Runtime name and version validation passed for {len(runtime_names)} installable Skills.")
+    print(f"Runtime name, version and dependency validation passed for {len(runtime_names)} installable Skills.")
     return 0
 
 

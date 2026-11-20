@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.7 — 2026-11-20
+
+- CI now lists every dependency a free entry's mirrored `SKILL.md` declares. `npx lovstudio skills add <name>` installs the catalog's `depends_on` closure, and 37 entries had fallen behind their `SKILL.md` (36 of them without `branding-consistency`) until #103 and #104 caught them up by hand. `sync-runtime-names.py --write` maps each declared runtime name to its entry, inserts the missing ones in the declared order and never removes an entry's other dependencies; the check mode reports the gap. Run on the catalog as it was before #103, it reproduces #103 and #104 byte for byte.
+- A declared dependency CI cannot add stays out and becomes a warning annotation, listed in full in the job summary, instead of failing the run: a name with no catalog entry, one whose closure holds a paid or internal entry (a free install would then need a membership, or fail to resolve), or one that would close a cycle. Today that is only `publish-wechat-article`'s `lov-wechat-branding-cover-composition`, an embedded module of `wechat-article-branding`.
+
 ## 1.1.6 — 2026-11-20
 
 - Mirrored docs no longer carry an install command that cannot work. 122 free Skills told readers to run `npx skills add <name>` with a bare catalog or runtime name (the form first reached the mirror on 2026-08-10, and Skills published later adopted it too); the installer reads that argument as a git source and fails with `repository '<name>' does not exist`. `sync-skills.py` now rewrites the command to `npx lovstudio skills add <short name> -g -y` wherever the name resolves to a catalog entry, with the `lovstudio` CLI's own lookup. Other sources (`owner/repo`, URLs, paths), names the catalog does not know, commands with other flags and `CHANGELOG.md` files stay as written.
