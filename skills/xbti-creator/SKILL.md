@@ -17,7 +17,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.0.2"
+  version: "1.0.3"
   tags: bti personality-test generator xbti
 ---
 

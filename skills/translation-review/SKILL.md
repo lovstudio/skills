@@ -16,7 +16,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.1.1"
+  version: "1.1.2"
   tags: translation, review, chinese, english, proofreading
 ---
 

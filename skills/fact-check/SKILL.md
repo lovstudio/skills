@@ -16,7 +16,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.1"
+  version: "0.2.2"
   tags: fact-check verification research due-diligence source-check
 ---
 

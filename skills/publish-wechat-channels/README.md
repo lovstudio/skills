@@ -1,6 +1,6 @@
 # 视频号发布助手 · WeChat Channels Publisher
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 通过已登录的视频号助手网页预检、上传并发布视频，支持保存草稿、定时发布和发布状态回读。
 
@@ -20,7 +20,7 @@
 ## 安装
 
 ```bash
-npx skills add lovstudio/oneshot -g -y
+npx lovstudio skills add publish-wechat-channels -g -y
 ```
 
 ## 关键行为

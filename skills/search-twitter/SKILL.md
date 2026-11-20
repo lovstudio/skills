@@ -6,7 +6,7 @@ license: MIT
 compatibility: "Portable Agent Skills format. Python 3.9+; web search or browser access is required for discovery, while OCR is optional."
 metadata:
   author: lovstudio
-  version: "0.1.1"
+  version: "0.1.2"
   card_standard: lovstudio/skill-card/v1
   content_class: verbatim
   tags:

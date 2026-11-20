@@ -13,7 +13,7 @@ compatibility: >
   reporting uses lsof when available.
 metadata:
   author: contributors
-  version: "0.2.1"
+  version: "0.2.2"
   tags: dev-server ports project-setup
 ---
 

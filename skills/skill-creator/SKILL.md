@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "4.6.8"
+  version: "4.6.9"
   content_class: deterministic-output
   tags:
     - skill-creator

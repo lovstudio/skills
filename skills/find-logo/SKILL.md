@@ -14,7 +14,7 @@ compatibility: >
   Cross-platform: macOS, Windows, Linux.
 metadata:
   author: contributors
-  version: "0.3.2"
+  version: "0.3.3"
   tags: [branding, assets, logo, scraping]
 ---
 

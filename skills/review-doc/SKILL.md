@@ -7,7 +7,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.1.1"
+  version: "1.1.2"
   category: business
   tags: contract legal review annotate redline negotiation 合同 审阅 批注 修订
   compatibility: Python 3.8+、python-docx 1.0+、lxml 4.9+；支持 macOS、Windows 和 Linux

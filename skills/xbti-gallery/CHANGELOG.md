@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.6] - 2026-11-20
+
+### Fixed
+
+- README 的安装命令改为 `npx lovstudio skills add xbti-gallery -g -y`：不带斜杠的名字会被 `npx skills add` 当作 git 源，报 repository does not exist，装不上。
+
 ## [1.0.5] - 2026-09-25
 
 ### Added

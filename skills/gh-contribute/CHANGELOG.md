@@ -3,6 +3,12 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.2.2] - 2026-11-20
+
+### Fixed
+
+- README 的安装命令改为 `npx lovstudio skills add gh-contribute -g -y`：不带斜杠的名字会被 `npx skills add` 当作 git 源，报 repository does not exist，装不上。
+
 ## [0.2.1] - 2026-09-25
 
 ### Added

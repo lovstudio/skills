@@ -16,7 +16,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.1.1"
+  version: "1.1.2"
   tags: thesis academic writing MBA polish 论文 润色
 ---
 

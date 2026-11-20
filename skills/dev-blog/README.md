@@ -1,6 +1,6 @@
 # 研发手记 · Dev Journal
 
-![Version](https://img.shields.io/badge/version-0.5.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.5.3-CC785C)
 
 Canonical publishing contract for Skill Publisher's Supabase-backed website blog
 feed. It can write and publish a development blog post directly, and it defines

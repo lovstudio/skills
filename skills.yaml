@@ -157,14 +157,14 @@ skills:
     card_path: pricing-cards/image-translation-errata.md
 - name: image-creator
   runtime_name: lov-image-creator
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Image Maker
   repo: lovstudio/image-creator-skill
   name_zh: 造图师
   paid: false
   featured: true
   category: General
-  version: 0.3.3
+  version: 0.3.4
   description: Create an image, designed graphic, or image prompt
   tagline_en: Create an image, designed graphic, or image prompt
   tagline_zh: 按用途生成图像、制作可编辑图文布局或整理图像提示词
@@ -202,13 +202,13 @@ skills:
   - branding-consistency
 - name: create-qrcode
   runtime_name: lov-create-qrcode
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: QR Studio
   repo: lovstudio/create-qrcode-skill
   name_zh: 二维码工坊
   paid: false
   category: General
-  version: 0.1.2
+  version: 0.1.3
   description: Create scan-verified QR code PNGs with saved user preferences, privacy-safe
     receipts, and optional poster styling; default to the bare QR code with no header
     or footer unless explicitly requested.
@@ -399,7 +399,7 @@ skills:
     card_path: pricing-cards/maintain-partners.md
 - name: fill-form
   runtime_name: lov-fill-form
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Form Assistant
   repo: lovstudio/fill-form-skill
   name_zh: 表单小助手
@@ -411,7 +411,7 @@ skills:
   tagline_zh: 自动填写 Word 表单模板，字段识别 + 中英文排版一气呵成。
   skillpay_product_id: P0806000200847227
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQk
-  version: 1.2.1
+  version: 1.2.2
   pricing:
     model: free_entry
     visibility: public
@@ -443,7 +443,7 @@ skills:
     card_path: pricing-cards/fill-form.md
 - name: fill-web-form
   runtime_name: lov-fill-web-form
-  updated_at: 2026-10-31 11:19:40+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Web Form Assistant
   repo: lovstudio/fill-web-form-skill
   name_zh: 网页填表助手
@@ -455,7 +455,7 @@ skills:
   tagline_zh: 用你本地的知识库来应答网页表单，一轮检索一轮生成，草稿即交付。
   skillpay_product_id: P0806000200843458
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsd
-  version: 1.2.2
+  version: 1.2.3
   pricing:
     model: free_entry
     visibility: public
@@ -641,7 +641,7 @@ skills:
     card_path: pricing-cards/any2deck.md
 - name: pdf2png
   runtime_name: lov-pdf2png
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: PDF Scroll
   repo: lovstudio/pdf2png-skill
   name_zh: PDF 长图
@@ -654,7 +654,7 @@ skills:
   tagline_zh: 把 PDF 拼成一张长图 PNG，在 macOS 上快到几乎瞬间出图。
   skillpay_product_id: P0806000200843459
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqXdP
-  version: 0.2.1
+  version: 0.2.2
   pricing:
     model: free_entry
     visibility: public
@@ -687,7 +687,7 @@ skills:
     card_path: pricing-cards/pdf2png.md
 - name: png2svg
   runtime_name: lov-png2svg
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Vector Tracer
   repo: lovstudio/png2svg-skill
   name_zh: 矢量描摹
@@ -699,7 +699,7 @@ skills:
   tagline_zh: 把 PNG 矢量化为高质量 SVG，自动抠背景、曲线平滑。
   skillpay_product_id: P0806000200853494
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-0
-  version: 1.1.1
+  version: 1.1.2
   pricing:
     model: free_entry
     visibility: public
@@ -973,13 +973,13 @@ skills:
     card_path: pricing-cards/proposal.md
 - name: solution-architect
   runtime_name: lov-solution-architect
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Solution Architect
   repo: lovstudio/solution-architect-skill
   name_zh: 方案架构师
   paid: false
   category: Business
-  version: 0.2.2
+  version: 0.2.3
   description: Create research-backed product and technical solution plans from a
     user's requirement. Use for feasibility analysis, technology selection, architecture,
     implementation roadmap, library/vendor comparison, "解决方案", "技术方案", "产品方案", "选型",
@@ -1023,7 +1023,7 @@ skills:
     card_path: pricing-cards/solution-architect.md
 - name: review-doc
   runtime_name: lov-review-doc
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Contract Polish
   repo: lovstudio/review-doc-skill
   name_zh: 合同精修
@@ -1036,7 +1036,7 @@ skills:
   tagline_zh: 审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。
   depends_on:
   - branding-consistency
-  version: 1.1.1
+  version: 1.1.2
   skillpay_product_id: P0806000200854533
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQY
   pricing:
@@ -1252,14 +1252,14 @@ skills:
     card_path: pricing-cards/visual-clone.md
 - name: find-logo
   runtime_name: lov-find-logo
-  updated_at: 2026-10-31 13:07:25+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Logo Radar
   repo: lovstudio/find-logo-skill
   name_zh: Logo 雷达
   paid: false
   featured: true
   category: Design
-  version: 0.3.2
+  version: 0.3.3
   description: Fetch a brand/product logo from public sources (Clearbit, og:image,
     favicon), score candidates (prefer wide-aspect + transparent), and archive into
     ~/.lovstudio/logo-collection/.
@@ -1498,13 +1498,13 @@ skills:
     card_path: pricing-cards/article-creator.md
 - name: publish-wechat-article
   runtime_name: lov-publish-wechat-article
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: WeChat Publisher
   repo: lovstudio/publish-wechat-article-skill
   name_zh: 公众号发布助手
   paid: false
   category: Content Creation
-  version: 0.9.0
+  version: 0.9.1
   description: Read, minimally edit, create, verify, and publish WeChat Official Account
     drafts with branded-cover requirements, WeChat-copy HTML, remote readback, and
     explicit publication states.
@@ -1551,7 +1551,7 @@ skills:
     card_path: pricing-cards/publish-wechat-article.md
 - name: document-illustrator
   runtime_name: lov-document-illustrator
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Document Illustrator
   repo: lovstudio/document-illustrator-skill
   name_zh: 文档插画师
@@ -1566,7 +1566,7 @@ skills:
   - branding-consistency
   skillpay_product_id: P0806000200847216
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQU
-  version: 0.3.1
+  version: 0.3.2
   pricing:
     model: free_entry
     visibility: public
@@ -1600,13 +1600,13 @@ skills:
     card_path: pricing-cards/document-illustrator.md
 - name: deep-research
   runtime_name: deep-research
-  updated_at: 2026-11-03 11:00:44+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Deep Research
   repo: lovstudio/deep-research-skill
   name_zh: 深度研究
   paid: false
   category: Content Creation
-  version: 2.6.2
+  version: 2.6.3
   description: Use when the user needs multi-source research with citation tracking,
     evidence persistence, structured reports, or verified open-source solution landscapes
     across GitHub and other relevant forges.
@@ -1792,7 +1792,7 @@ skills:
     card_path: pricing-cards/event-curator.md
 - name: thesis-polish
   runtime_name: lov-thesis-polish
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Thesis Polish
   repo: lovstudio/thesis-polish-skill
   name_zh: 论文精修
@@ -1805,7 +1805,7 @@ skills:
   - branding-consistency
   skillpay_product_id: P0806000200853493
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-T
-  version: 1.1.1
+  version: 1.1.2
   pricing:
     model: free_entry
     visibility: public
@@ -1837,7 +1837,7 @@ skills:
     card_path: pricing-cards/thesis-polish.md
 - name: translation-review
   runtime_name: lov-translation-review
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Translation Review
   repo: lovstudio/translation-review-skill
   name_zh: 译文校对
@@ -1852,7 +1852,7 @@ skills:
   - branding-consistency
   skillpay_product_id: P0806000200844921
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsK
-  version: 1.1.1
+  version: 1.1.2
   related:
   - image-translation-errata
   pricing:
@@ -1887,13 +1887,13 @@ skills:
     card_path: pricing-cards/translation-review.md
 - name: style-clone
   runtime_name: lov-style-clone
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Voice Replica
   repo: lovstudio/style-clone-skill
   name_zh: 文风复刻
   paid: false
   category: Content Creation
-  version: 0.2.1
+  version: 0.2.2
   description: 'Analyzes sample articles to extract an 8-dimension writing style profile,
     then rewrites any target article in that exact style. Trigger on: "分析文风", "模仿文风",
     "克隆写作风格", "用XX的风格改写", "style clone", "rewrite in this style".
@@ -1991,7 +1991,7 @@ skills:
     card_path: pricing-cards/hanzi-lens.md
 - name: fact-check
   runtime_name: lov-fact-check
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200844928
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-s
   display_name: Fact Checker
@@ -1999,7 +1999,7 @@ skills:
   name_zh: 事实核查员
   paid: false
   category: General
-  version: 0.2.1
+  version: 0.2.2
   related:
   - image-translation-errata
   - competitor-research
@@ -2042,7 +2042,7 @@ skills:
     card_path: pricing-cards/fact-check.md
 - name: professional-portrait
   runtime_name: lov-professional-portrait
-  updated_at: 2026-10-31 12:23:48+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200846060
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQC
   display_name: Professional Portrait
@@ -2050,7 +2050,7 @@ skills:
   name_zh: 职业形象照
   paid: false
   category: Design
-  version: 0.2.3
+  version: 0.2.4
   description: Turn one photo into a polished professional portrait while preserving
     identity, natural skin texture, and believable photographic detail.
   tagline_en: Turn one photo into a clean, identity-preserving professional portrait.
@@ -2090,13 +2090,13 @@ skills:
     card_path: pricing-cards/professional-portrait.md
 - name: riso-portrait
   runtime_name: lov-riso-portrait
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: Riso Portrait
   repo: lovstudio/riso-portrait-skill
   name_zh: Riso 人像
   paid: false
   category: Design
-  version: 0.2.1
+  version: 0.2.2
   description: Redraw an authorized single-person photo as an identity-preserving
     Riso avatar with gpt-image-2, then verify facial identity, anatomy, accessories,
     scene facts, and circular cropping.
@@ -2284,13 +2284,13 @@ skills:
     card_path: pricing-cards/professional-infographic.md
 - name: mobile-infographic
   runtime_name: lov-mobile-infographic
-  updated_at: 2026-11-10 13:30:14+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: "Mobile Infographic"
   repo: lovstudio/mobile-infographic-skill
   name_zh: "手机信息图"
   paid: false
   category: Design
-  version: 0.18.2
+  version: 0.18.3
   description: "Turn conclusions into one long 1080px mobile infographic with a thesis title, ranked bars, readable type floors, an appendix of sources, and audited HTML/PNG output."
   tagline_en: Turn an existing conclusion into vertical infographics a phone can actually read, with type floors, safe areas, and an audit report.
   tagline_zh: 把已有结论重排成手机上真能读完的竖版信息图，自带字号下限、安全区与可复核审计报告。
@@ -2565,7 +2565,7 @@ skills:
     card_path: pricing-cards/paper-translator.md
 - name: video-chapter
   runtime_name: lov-video-chapter
-  updated_at: 2026-10-31 13:07:25+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200843460
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsf
   display_name: Video Chapters
@@ -2573,7 +2573,7 @@ skills:
   name_zh: 视频章节师
   paid: false
   category: Video Creation
-  version: 0.3.2
+  version: 0.3.3
   description: 'Plan semantic chapters from SRT/VTT subtitles, refine boundaries and
     styles in React Studio, render transparent ProRes overlays or burned MP4s, and
     export editor-ready packages.
@@ -3062,8 +3062,8 @@ skills:
   name_zh: 视频号发布助手
   paid: false
   category: Video Creation
-  version: 0.1.0
-  updated_at: 2026-08-23 17:04:16+00:00
+  version: 0.1.1
+  updated_at: 2026-11-20 12:49:26+00:00
   description: Publish WeChat Channels videos through the visible assistant web flow
     with preflight, field readback, and status verification.
   tagline_en: Publish WeChat Channels videos with preflight, field readback, and status
@@ -3101,7 +3101,7 @@ skills:
       change in the platform UI or review flow.
 - name: mobile-adapt
   runtime_name: lov-mobile-adapt
-  updated_at: 2026-10-31 12:23:48+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200843454
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-k
   display_name: Mobile Fit
@@ -3109,7 +3109,7 @@ skills:
   name_zh: 移动适配师
   paid: false
   category: Dev Tools
-  version: 0.2.3
+  version: 0.2.4
   description: 'Scan and fix mobile adaptation issues — overflow, safe area, 100vh,
     responsive layout, multi-level navigation, touch targets. Trigger on: "mobile
     adapt", "移动端适配", "手机适配", "responsive optimization", "fix mobile overflow".
@@ -3266,14 +3266,14 @@ skills:
 - name: skill-creator
   runtime_name: lov-skill-creator
   display_name: Skill Studio
-  updated_at: 2026-10-31 12:47:32+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200846064
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-w
   repo: lovstudio/skill-creator-skill
   name_zh: Skill 工坊
   paid: false
   category: Meta
-  version: 4.6.8
+  version: 4.6.9
   description: Create, migrate, validate and install portable Agent Skills
   tagline_en: Create, migrate, validate and install portable Agent Skills
   tagline_zh: 创建、迁移、验证并安装通用 Skill 与自包含 Skill Kit
@@ -3304,12 +3304,12 @@ skills:
 - name: skill-add-case
   runtime_name: lov-skill-add-case
   display_name: Skill Showcase
-  updated_at: 2026-09-27 09:23:45+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/skill-add-case-skill
   name_zh: Skill 案例馆
   paid: false
   category: Meta
-  version: 0.5.1
+  version: 0.5.2
   description: Prepare accepted Skill results for website import or signed-in Agent
     submission, with consent, final images, safe retries and public verification.
   tagline_en: Share an accepted Skill result through your LovStudio account, manually
@@ -3399,14 +3399,14 @@ skills:
 - name: auto-context
   runtime_name: lov-auto-context
   display_name: Context Sentinel
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200846061
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP8
   repo: lovstudio/auto-context-skill
   name_zh: 上下文哨兵
   paid: false
   category: Dev Tools
-  version: 0.4.2
+  version: 0.4.3
   description: Context hygiene checker. Suggests /fork or /btw when context is polluted.
   tagline_en: Watch your Claude Code context for pollution and suggest when to fork
     or reset.
@@ -3492,14 +3492,14 @@ skills:
 - name: deploy-to-vercel
   runtime_name: lov-deploy-to-vercel
   display_name: Vercel Deployer
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200847222
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP2
   repo: lovstudio/deploy-to-vercel-skill
   name_zh: Vercel 部署助手
   paid: false
   category: Dev Tools
-  version: 2.1.1
+  version: 2.1.2
   description: Deploy frontend to Vercel with auto Cloudflare DNS + custom domain
     setup.
   tagline_en: Ship a frontend to Vercel with custom domain and Cloudflare DNS wired
@@ -3538,14 +3538,14 @@ skills:
 - name: finder-action
   runtime_name: lov-finder-action
   display_name: Finder Actions
-  updated_at: 2026-10-31 08:47:47+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200847223
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP0
   repo: lovstudio/finder-action-skill
   name_zh: Finder 快捷动作
   paid: false
   category: Dev Tools
-  version: 0.4.4
+  version: 0.4.5
   description: Create a Finder context menu action
   tagline_en: Create a Finder context menu action
   tagline_zh: 创建 macOS Finder 文件快捷操作或目录背景菜单扩展
@@ -3576,14 +3576,14 @@ skills:
 - name: gh-access
   runtime_name: lov-gh-access
   display_name: GitHub Collaborator Manager
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200844926
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsh
   repo: lovstudio/gh-access-skill
   name_zh: GitHub 协作管家
   paid: false
   category: Dev Tools
-  version: 0.2.1
+  version: 0.2.2
   description: Grant / revoke / list collaborator access on private GitHub repos by
     username or email. Read-only by default.
   tagline_en: Grant, revoke, or audit collaborator access on private GitHub repos
@@ -3622,14 +3622,14 @@ skills:
 - name: gh-contribute
   runtime_name: lov-gh-contribute
   display_name: Open Source Contributor
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200843453
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-m
   repo: lovstudio/gh-contribute-skill
   name_zh: 开源贡献助手
   paid: false
   category: Dev Tools
-  version: 0.2.1
+  version: 0.2.2
   description: Contribute clean, professional PRs to upstream GitHub repos — fork,
     branch, commit, push, open PR, with smart splitting.
   tagline_en: Ship a clean PR to any upstream GitHub repo — fork, branch, push, and
@@ -3668,14 +3668,14 @@ skills:
 - name: gh-tidy
   runtime_name: lov-gh-tidy
   display_name: GitHub Organizer
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200846062
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-2
   repo: lovstudio/gh-tidy-skill
   name_zh: GitHub 整理师
   paid: false
   category: Dev Tools
-  version: 0.2.1
+  version: 0.2.2
   description: Triage & clean up GitHub issues, PRs, branches, and labels in one pass.
   tagline_en: Triage and clean up GitHub issues, PRs, branches, and labels in a single
     pass.
@@ -3713,14 +3713,14 @@ skills:
 - name: install-tanstack-query
   runtime_name: lov-install-tanstack-query
   display_name: TanStack Query Setup
-  updated_at: 2026-10-31 12:23:48+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200846063
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsV
   repo: lovstudio/install-tanstack-query-skill
   name_zh: TanStack Query 接入
   paid: false
   category: Dev Tools
-  version: 0.2.3
+  version: 0.2.4
   description: Initialize or refactor a frontend project to use TanStack Query as
     the unified server-state layer.
   tagline_en: Initialize TanStack Query and migrate request state into shared query
@@ -3759,14 +3759,14 @@ skills:
 - name: release-via-cicd
   runtime_name: lov-release-via-cicd
   display_name: Release Pilot
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200847225
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-4
   repo: lovstudio/release-via-cicd-skill
   name_zh: 自动发版
   paid: false
   category: Dev Tools
-  version: 8.7.3
+  version: 8.7.4
   description: Set up or run a verified CI/CD release
   tagline_en: Set up or run a verified CI/CD release
   tagline_zh: 配置或运行现有项目发布流水线，并回读产物与真实上线状态
@@ -3797,14 +3797,14 @@ skills:
 - name: optimize-tauri-backend
   runtime_name: lov-optimize-tauri-backend
   display_name: Tauri Backend Tuner
-  updated_at: 2026-10-31 12:23:48+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200847224
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsX
   repo: lovstudio/optimize-tauri-backend-skill
   name_zh: Tauri 后端调优
   paid: false
   category: Dev Tools
-  version: 0.2.3
+  version: 0.2.4
   description: Optimize Tauri backend architecture, command surfaces, IPC streams,
     and Rust development ergonomics.
   tagline_en: Reduce Tauri Rust restart pain by modularizing the backend, shrinking
@@ -4131,12 +4131,12 @@ skills:
 - name: media-crawler
   runtime_name: lov-media-crawler
   display_name: Universal Video Grabber
-  updated_at: 2026-11-19 00:55:52+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/media-crawler-skill
   name_zh: 万能视频下载
   paid: false
   category: General
-  version: 0.4.0
+  version: 0.4.1
   description: Resolve and download authorized media links from WeChat Channels and
     other supported social platforms with a verifiable report; restricted Channels
     videos fall back to local WeChat client capture.
@@ -4231,14 +4231,14 @@ skills:
 - name: obsidian-reset-cache
   runtime_name: lov-obsidian-reset-cache
   display_name: Obsidian Cache Reset
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200843455
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-q
   repo: lovstudio/obsidian-reset-cache-skill
   name_zh: Obsidian 缓存清理
   paid: false
   category: Dev Tools
-  version: 1.1.1
+  version: 1.1.2
   description: 重置 Obsidian 缓存，解决卡在 Loading cache 的问题。
   tagline_en: Reset Obsidian's cache when it gets stuck on "Loading cache".
   tagline_zh: Obsidian 卡在 Loading cache 时，一键重置缓存救场。
@@ -4274,14 +4274,14 @@ skills:
 - name: project-port
   runtime_name: lov-project-port
   display_name: Port Keeper
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200844927
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-o
   repo: lovstudio/project-port-skill
   name_zh: 端口管家
   paid: false
   category: Dev Tools
-  version: 0.2.1
+  version: 0.2.2
   description: Generate stable unique dev port (3000–8999) from project name.
   tagline_en: Assign each project a stable, unique dev port so services stop colliding.
   tagline_zh: 给每个项目分配一个稳定且唯一的开发端口，彻底告别端口撞车。
@@ -4317,14 +4317,14 @@ skills:
 - name: clash-tun-doctor
   runtime_name: lov-clash-tun-doctor
   display_name: Clash Network Doctor
-  updated_at: 2026-10-31 09:29:13+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   skillpay_product_id: P0806000200843452
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVP4
   repo: lovstudio/clash-tun-doctor-skill
   name_zh: Clash 网络医生
   paid: false
   category: Dev Tools
-  version: 0.6.2
+  version: 0.6.3
   description: Diagnose and reversibly repair application connectivity failures caused
     by Clash Verge Rev TUN rules, stale runtime state, proxy timeouts, or unusable
     IPv6 paths.
@@ -4993,13 +4993,13 @@ skills:
       vocabulary growth.
 - name: npm-publisher
   runtime_name: lov-npm-publisher
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: npm Publisher
   repo: lovstudio/lov-npm-publisher-skill
   name_zh: npm 发布助手
   paid: false
   category: Dev Tools
-  version: 0.3.1
+  version: 0.3.2
   description: Automate npm package publishing via GitHub Actions OIDC trusted publishing
     or a local granular NPM_TOKEN, without repeated login
   tagline_en: Publish npm packages without repeated login — OIDC trusted publishing
@@ -5131,14 +5131,14 @@ skills:
     card_path: pricing-cards/cli2anything.md
 - name: search-twitter
   runtime_name: lov-search-twitter
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: X Post Recovery
   repo: lovstudio/search-twitter-skill
   skill_path: ''
   name_zh: X 原帖寻回
   paid: false
   category: General
-  version: 0.1.1
+  version: 0.1.2
   description: Recover public X/Twitter posts from known IDs, web archives, embedded
     cards and screenshots while preserving verbatim text, provenance and unrecovered
     gaps.
@@ -6288,12 +6288,12 @@ skills:
 - name: illustrate
   runtime_name: lov-illustrate
   display_name: Document Visuals
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/illustrate-skill
   name_zh: 图解文档
   paid: false
   category: Dev Tools
-  version: 2.6.3
+  version: 2.6.4
   description: Illustrate a document with evidence and relevant images
   tagline_en: Illustrate a document with evidence and relevant images
   tagline_zh: 依据文档内容选择真实素材、图表或生成图并校验插入位置
@@ -7152,12 +7152,12 @@ skills:
 - name: xbti-gallery
   runtime_name: lov-xbti-gallery
   display_name: XBTI Gallery
-  updated_at: 2026-09-25 16:54:46+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/xbti-gallery-skill
   name_zh: XBTI 图鉴
   paid: false
   category: Dev Tools
-  version: 1.0.5
+  version: 1.0.6
   description: Browse a gallery of XBTI personality tests
   tagline_en: Browse a gallery of XBTI personality tests
   tagline_zh: 从已核实的社区地址或仓库列出可访问的 XBTI 人格测试案例
@@ -7445,7 +7445,7 @@ skills:
   paid: false
   price_credits: 0
   category: Video Creation
-  version: 0.2.0
+  version: 0.2.1
   description: Enhance long recordings and segment meaningful content with source
     timecodes and a verified creator handoff.
   tagline_zh: 把长实录提亮、按内容整理，交付可剪素材与源时间码。
@@ -7453,7 +7453,7 @@ skills:
     timecodes.
   depends_on:
   - branding-consistency
-  updated_at: '2026-09-08T04:53:59.784573Z'
+  updated_at: 2026-11-20 12:49:26+00:00
   pricing:
     model: free
     visibility: public
@@ -7554,7 +7554,8 @@ skills:
   name_zh: 小红书调研助手
   paid: false
   category: General
-  version: 0.2.0
+  version: 0.2.1
+  updated_at: 2026-11-20 12:49:26+00:00
   description: Turn a Xiaohongshu topic request into a source-backed research report,
     with note-body collection and explicit search-only export.
   tagline_en: Research a Xiaohongshu topic and get a source-backed report, not just
@@ -7830,13 +7831,13 @@ skills:
     card_path: pricing-cards/feedback-loop.md
 - name: do-they-love-me
   runtime_name: lov-do-they-love-me
-  updated_at: "2026-09-11T03:00:00Z"
+  updated_at: 2026-11-20 12:49:26+00:00
   display_name: "Love Index Analysis"
   repo: lovstudio/do-they-love-me-skill
   name_zh: "恋爱指数分析"
   paid: false
   category: "General"
-  version: "0.2.0"
+  version: "0.2.1"
   description: "Turn a two-person WeChat chat export into an evidence-based relationship analysis: interaction metrics, local work/affection/life semantic layering, disclosed error bounds, and an auditable mobile infographic card."
   tagline_en: "Turn a real chat export into an evidence-based relationship analysis with disclosed error bounds, instead of a comforting guess."
   tagline_zh: "把两个人的聊天记录变成一份带口径与误差的关系结构分析，而不是一句安慰。"
@@ -8407,12 +8408,12 @@ skills:
 - name: dev-blog
   runtime_name: lov-dev-blog
   display_name: Dev Journal
-  updated_at: 2026-10-31 13:46:14+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/dev-blog-skill
   name_zh: 研发手记
   paid: false
   category: Content Creation
-  version: 0.5.2
+  version: 0.5.3
   description: Summarize the current development context and its visuals into a Chinese blog
     post and publish it to the website blog.
   tagline_en: Summarize the current development context and its visuals into a Chinese blog
@@ -8716,12 +8717,12 @@ skills:
 - name: html2pptx
   runtime_name: lov-html2pptx
   display_name: HTML to Slides
-  updated_at: 2026-10-31 13:07:25+00:00
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/html2pptx-skill
   name_zh: 网页转幻灯
   paid: false
   category: Office Automation
-  version: 0.1.3
+  version: 0.1.4
   description: Convert HTML into a high-fidelity PPTX deck with a real browser engine.
   tagline_en: Convert HTML into a high-fidelity PPTX deck with a real browser engine.
   tagline_zh: ConvertHTMLintoahigh-fidelityPPTXdeckusingarealbrowserengine(Playwright/Chromium
@@ -8988,12 +8989,12 @@ skills:
 - name: lovpen-add-wechat-channel-comp
   runtime_name: lov-lovpen-add-wechat-channel-comp
   display_name: WeChat Channels Embed
-  updated_at: '2026-09-25 16:28:27+00:00'
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/lovpen-add-wechat-channel-comp-skill
   name_zh: 视频号组件
   paid: false
   category: Content Creation
-  version: 0.1.2
+  version: 0.1.3
   description: Normalize WeChat Channels DOM or Lovpen DSL into embeddable Markdown and native
     HTML components.
   tagline_en: Normalize WeChat Channels DOM or Lovpen DSL into embeddable Markdown and native
@@ -9236,12 +9237,12 @@ skills:
 - name: repost-wechat-article
   runtime_name: lov-repost-wechat-article
   display_name: Article Repost (Legacy)
-  updated_at: '2026-09-25 16:28:27+00:00'
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/repost-wechat-article-skill
   name_zh: 文章转载（旧入口）
   paid: false
   category: Content Creation
-  version: 0.2.1
+  version: 0.2.2
   description: Legacy entry for faithful WeChat article reposts; new work routes to the lov-article-creator
     repost pipeline.
   tagline_en: Legacy entry for faithful WeChat article reposts; new work routes to the lov-article-creator
@@ -9553,12 +9554,12 @@ skills:
 - name: wechat-article-branding
   runtime_name: lov-wechat-article-branding-skill
   display_name: Article Branding (Legacy)
-  updated_at: '2026-09-25 16:28:27+00:00'
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/wechat-article-branding-skill
   name_zh: 文章品牌化（旧入口）
   paid: false
   category: Content Creation
-  version: 0.11.1
+  version: 0.11.2
   description: Legacy entry for WeChat article branding; new work routes to the lov-article-creator
     brand pipeline.
   tagline_en: Legacy entry for WeChat article branding; new work routes to the lov-article-creator
@@ -9621,12 +9622,12 @@ skills:
 - name: xbti-creator
   runtime_name: lov-xbti-creator
   display_name: XBTI Studio
-  updated_at: '2026-09-25 16:28:27+00:00'
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/xbti-creator-skill
   name_zh: XBTI 工坊
   paid: false
   category: General
-  version: 1.0.2
+  version: 1.0.3
   description: Create a complete custom BTI personality test based on the XBTI architecture.
   tagline_en: Create a complete custom BTI personality test based on the XBTI architecture.
   tagline_zh: CreateacompletecustomBTIpersonalitytest(likeLBTI,FBTI,etc.)basedontheXBTIarchite
@@ -9690,12 +9691,12 @@ skills:
 - name: zsh-alias
   runtime_name: lov-zsh-alias
   display_name: Shell Shortcuts
-  updated_at: '2026-09-25 16:28:27+00:00'
+  updated_at: 2026-11-20 12:49:26+00:00
   repo: lovstudio/zsh-alias-skill
   name_zh: 终端快捷指令
   paid: false
   category: Dev Tools
-  version: 0.2.1
+  version: 0.2.2
   description: Add a zsh alias or function to ~/.zshrc idempotently and safely.
   tagline_en: Add a zsh alias or function to ~/.zshrc idempotently and safely.
   tagline_zh: Addazshalias/functiontotheuser's~/.zshrc,idempotentlyandsafely.SupportsbothASCII
@@ -9881,7 +9882,8 @@ skills:
   name_zh: Claude 换号搬家
   paid: false
   category: Dev Tools
-  version: 0.1.1
+  version: 0.1.2
+  updated_at: 2026-11-20 12:49:26+00:00
   description: "Move Claude desktop Code and Cowork sessions from a retired account to the current one, skip title-only orphans, and protect transcript retention."
   tagline_en: Switch Claude accounts and keep working in your old sessions.
   tagline_zh: 换了 Claude 账号，旧账号的会话照样能点开继续。

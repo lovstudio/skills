@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.11.2] - 2026-11-20
+
+### Fixed
+
+- README 与 skills/cover-composition/README.md 的安装命令改为 `npx lovstudio skills add <短名> -g -y`：不带斜杠的名字会被 `npx skills add` 当作 git 源，报 repository does not exist，装不上。
+
 ## [0.11.1] - 2026-09-07
 
 ### Added

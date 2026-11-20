@@ -10,7 +10,7 @@ compatibility: >
   and --socket values.
 metadata:
   author: contributors
-  version: "0.6.2"
+  version: "0.6.3"
   tags:
     - clash
     - mihomo

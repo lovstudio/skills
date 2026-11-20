@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.2.0"
+version: "0.2.1"
 description: 对实录做连续画质增强、内容取舍和语义分段，输出可回溯素材库。
 owner:
   team: Local skill contributors

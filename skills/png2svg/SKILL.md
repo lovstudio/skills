@@ -13,7 +13,7 @@ compatibility: >
   Works on macOS/Linux where those CLIs are installed.
 metadata:
   author: contributors
-  version: "1.1.1"
+  version: "1.1.2"
   tags: png svg vectorization imagemagick vtracer
 ---
 

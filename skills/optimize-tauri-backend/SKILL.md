@@ -10,7 +10,7 @@ compatibility: >
   manager and honor local AGENTS.md / CLAUDE.md constraints.
 metadata:
   author: lovstudio
-  version: "0.2.3"
+  version: "0.2.4"
   tags:
     - tauri
     - rust

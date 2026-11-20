@@ -11,7 +11,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.9.0"
+  version: "0.9.1"
   tags:
     - wechat-official-account
     - article-publishing

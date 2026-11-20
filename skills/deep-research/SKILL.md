@@ -9,7 +9,7 @@ depends_on:
   - lov-rich-export
 metadata:
   author: lovstudio
-  version: "2.6.2"
+  version: "2.6.3"
   tags:
     - deep-research
     - citations

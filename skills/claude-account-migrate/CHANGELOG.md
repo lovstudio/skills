@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 — 2026-11-20
+
+- README install command is now `npx lovstudio skills add claude-account-migrate -g -y`: `npx skills add` reads a name without a slash as a git source and fails with "repository does not exist".
+
 ## 0.1.1 — 2026-10-05
 
 - Fix: Step 0 now defines `CAM` as a shell function and Steps 1, 2, 3 and 5 call
