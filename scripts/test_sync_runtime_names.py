@@ -1,4 +1,6 @@
+import contextlib
 import importlib.util
+import io
 import tempfile
 import unittest
 from datetime import datetime, timezone
@@ -71,6 +73,116 @@ class VersionSyncTest(unittest.TestCase):
             catalog = {'free-tool': {'name': 'free-tool'}, 'paid-tool': {'name': 'paid-tool', 'paid': True}}
             with mock.patch.object(runtime, 'MIRROR_ROOT', Path(tmp)):
                 self.assertEqual(runtime.expected_versions(catalog), ({'free-tool': '1.2.3'}, []))
+
+
+def catalog_of(text):
+    return {skill['name']: skill for skill in yaml.safe_load(text)['skills']}
+
+
+class DependencySyncTest(unittest.TestCase):
+    def test_inserts_missing_items_in_declared_order_and_keeps_extras(self):
+        source = (
+            'skills:\n- name: foo\n  runtime_name: lov-foo\n  depends_on:\n  - extra\n  - b\n  pricing:\n    model: free_entry\n'
+            '- name: a\n  runtime_name: lov-a\n- name: b\n  runtime_name: lov-b\n- name: c\n  runtime_name: lov-c\n'
+            '- name: extra\n  runtime_name: lov-extra\n'
+        )
+        expected = source.replace('  - extra\n  - b\n', '  - extra\n  - a\n  - b\n  - c\n')
+        declared = {'foo': ['lov-a', 'lov-b', 'lov-c']}
+        lists, warnings = runtime.plan_dependencies(catalog_of(source), {}, declared)
+        self.assertEqual((lists, warnings), ({'foo': ['extra', 'a', 'b', 'c']}, []))
+        updated = runtime.rewrite_dependencies(source, lists)
+        self.assertEqual(updated, expected)
+        self.assertEqual(runtime.plan_dependencies(catalog_of(updated), {}, declared), ({}, []))
+
+    def test_new_block_follows_tagline_zh_and_replaces_a_flow_list(self):
+        source = (
+            'skills:\n- name: foo\n  tagline_en: Foo for\n    everyone.\n  tagline_zh: 第一行\n    第二行。\n  pricing:\n    model: free_entry\n'
+            '- name: bar\n  depends_on: []\n  tagline_zh: 栏\n- name: a\n'
+        )
+        expected = (
+            source.replace('    第二行。\n', '    第二行。\n  depends_on:\n  - a\n')
+            .replace('  depends_on: []\n', '  depends_on:\n  - a\n')
+        )
+        self.assertEqual(runtime.rewrite_dependencies(source, {'foo': ['a'], 'bar': ['a']}), expected)
+
+    def test_refuses_an_edit_that_would_change_other_fields(self):
+        source = 'skills:\n- name: foo\n  depends_on:\n    - a\n  version: 1.0.0\n- name: a\n- name: b\n'
+        with self.assertRaises((ValueError, yaml.YAMLError)):
+            runtime.rewrite_dependencies(source, {'foo': ['a', 'b']})
+
+    def test_leaves_out_what_free_installs_cannot_take(self):
+        source = (
+            'skills:\n- name: foo\n  depends_on:\n  - legacy-paid\n'
+            '- name: legacy-paid\n  paid: true\n- name: paid\n  paid: true\n'
+            '- name: secret\n  pricing:\n    visibility: internal\n'
+            '- name: wrapper\n  depends_on:\n  - paid\n- name: loop\n  depends_on:\n  - foo\n'
+        )
+        declared = {'foo': ['lov-missing', 'foo', 'legacy-paid', 'lov-paid', 'lov-secret', 'lov-wrapper', 'lov-loop']}
+        runtime_names = {name: f'lov-{name}' for name in ('foo', 'legacy-paid', 'paid', 'secret', 'wrapper', 'loop')}
+        lists, warnings = runtime.plan_dependencies(catalog_of(source), runtime_names, declared)
+        self.assertEqual(lists, {})
+        self.assertEqual(len(warnings), 6)
+        for fragment in ('lov-missing, which has no catalog entry', 'lists itself', 'the paid entry paid;',
+                         'the internal entry secret', 'lov-wrapper, which depends on the paid entry paid',
+                         'loop already depends on foo'):
+            self.assertTrue(any(fragment in warning for warning in warnings), fragment)
+        self.assertFalse(any('legacy-paid' in warning for warning in warnings))
+
+    def test_resolves_mirrored_runtime_names_before_catalog_ones(self):
+        source = 'skills:\n- name: foo\n- name: x\n  runtime_name: lov-x-old\n- name: y\n  runtime_name: lov-y\n'
+        lists, warnings = runtime.plan_dependencies(catalog_of(source), {'x': 'lov-x'}, {'foo': ['lov-x', 'y']})
+        self.assertEqual((lists, warnings), ({'foo': ['x', 'y']}, []))
+
+    def test_reads_declarations_from_free_mirrors_only(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for name, depends_on in (('free-tool', '[lov-a]'), ('paid-tool', '[lov-b]'), ('odd-tool', 'lov-a')):
+                (Path(tmp) / name).mkdir()
+                (Path(tmp) / name / 'SKILL.md').write_text(f'---\nname: lov-{name}\ndepends_on: {depends_on}\n---\n', encoding='utf-8')
+            catalog = {'free-tool': {}, 'paid-tool': {'paid': True}, 'odd-tool': {}}
+            with mock.patch.object(runtime, 'MIRROR_ROOT', Path(tmp)):
+                declared, warnings = runtime.declared_dependencies(catalog)
+        self.assertEqual(declared, {'free-tool': ['lov-a']})
+        self.assertEqual(warnings, ['odd-tool: SKILL.md depends_on is not a list of Skill names'])
+
+    def test_write_mode_fills_the_catalog_and_only_warns_about_the_rest(self):
+        source = (
+            'version: 1\nskills:\n- name: foo\n  runtime_name: lov-foo\n  version: 0.1.0\n  tagline_zh: 示例\n'
+            '- name: a\n  runtime_name: lov-a\n  version: 0.1.0\n'
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / 'skills.yaml').write_text(source, encoding='utf-8')
+            for name, depends_on in (('foo', '[lov-a, lov-missing]'), ('a', '[]')):
+                (root / 'skills' / name).mkdir(parents=True)
+                (root / 'skills' / name / 'SKILL.md').write_text(
+                    f'---\nname: lov-{name}\ndepends_on: {depends_on}\nmetadata:\n  version: 0.1.0\n---\n', encoding='utf-8'
+                )
+            summary = root / 'summary.md'
+
+            def run(*args):
+                out, err = io.StringIO(), io.StringIO()
+                env = {'GITHUB_ACTIONS': 'true', 'GITHUB_STEP_SUMMARY': str(summary)}
+                with mock.patch.object(runtime, 'YAML_PATH', root / 'skills.yaml'), \
+                        mock.patch.object(runtime, 'MIRROR_ROOT', root / 'skills'), \
+                        mock.patch.dict('os.environ', env), \
+                        mock.patch('sys.argv', ['sync-runtime-names.py', *args]), \
+                        contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                    code = runtime.main()
+                return code, out.getvalue(), err.getvalue()
+
+            code, _, err = run()
+            self.assertEqual(code, 1)
+            self.assertIn('foo.depends_on: lacks a, which its mirrored SKILL.md declares', err)
+            code, out, _ = run('--write')
+            self.assertEqual(code, 0)
+            self.assertIn('foo.depends_on: added a', out)
+            self.assertIn('::warning title=Declared dependency not listed::foo: SKILL.md declares lov-missing', out)
+            self.assertEqual(
+                (root / 'skills.yaml').read_text(encoding='utf-8'),
+                source.replace('  tagline_zh: 示例\n', '  tagline_zh: 示例\n  depends_on:\n  - a\n'),
+            )
+            self.assertIn('- foo: SKILL.md declares lov-missing, which has no catalog entry', summary.read_text(encoding='utf-8'))
+            self.assertEqual(run()[0], 0)
 
 
 if __name__ == '__main__':

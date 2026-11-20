@@ -22,7 +22,7 @@ For a free skill with a private source, the mirror is therefore its only public 
 ├── skills/<name>/                    # Free mirrors (generated distribution content)
 ├── .claude-plugin/marketplace.json   # Claude Code marketplace manifest (auto-rendered)
 ├── scripts/sync-skills.py            # Mirrors each free repo into ./skills/<name>/ (shallow clone + rsync)
-├── scripts/sync-runtime-names.py      # Syncs runtime_name and free-entry version from mirrored SKILL.md frontmatter
+├── scripts/sync-runtime-names.py      # Syncs runtime_name, free-entry version and depends_on from mirrored SKILL.md frontmatter
 ├── scripts/render-marketplace.py     # Regenerates marketplace.json from skills.yaml
 ├── scripts/render-readme.py          # Regenerates README skill table from skills.yaml
 ├── scripts/mirror-catalog-cn.py      # CI-only: uploads skills.yaml and free Skills' docs to the lovstudio.cn OSS mirror
@@ -111,6 +111,16 @@ skills:
   lovstudio.ai dates and ranks Skill updates by `updated_at` and skips GitHub history for
   entries that have one, so a version bump without a fresh stamp never shows up as an update.
   Paid and internal entries are not mirrored: bump both fields by hand when releasing.
+- **`depends_on`** — catalog short names that `npx lovstudio skills add <name>` installs
+  with the entry, transitively. For free entries, `sync-runtime-names.py --write` adds every
+  dependency the mirrored `SKILL.md` declares in its top-level `depends_on` (runtime names,
+  matched against `runtime_name`), in the declared order, and never removes the others, so
+  an entry may list more than its `SKILL.md` (`bp` lists its three modules). A declared name
+  CI cannot add stays out and shows up as a `Declared dependency not listed` warning in
+  `Render index` and its job summary: no catalog entry, a closure that holds a paid or
+  internal entry (a free install would then need a membership, or fail to resolve), or a
+  cycle. Fix those by hand, in the source or here. Paid and internal entries are maintained
+  by hand.
 - **Paid skills**: `tagline_*` must not leak implementation specifics (no library names,
   no auth/token mechanics, no internal endpoints) — they sit in a public index.
 
