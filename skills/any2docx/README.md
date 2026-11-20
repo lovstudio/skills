@@ -9,7 +9,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) &mdash; by [
 ## Install
 
 ```bash
-npx skills add any2docx -g -y
+npx lovstudio skills add any2docx -g -y
 ```
 
 Requires: Python 3.8+ and `pip install python-docx`

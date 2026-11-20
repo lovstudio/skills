@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-install-zenmux-api -g -y
+npx lovstudio skills add install-zenmux-api -g -y
 ```
 
 ## 使用

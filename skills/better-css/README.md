@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-better-css -g -y
+npx lovstudio skills add better-css -g -y
 ```
 
 ## 使用

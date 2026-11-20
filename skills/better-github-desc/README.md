@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-better-github-desc -g -y
+npx lovstudio skills add better-github-desc -g -y
 ```
 
 ## 使用

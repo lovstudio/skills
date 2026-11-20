@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-install-tauri-logo -g -y
+npx lovstudio skills add install-tauri-logo -g -y
 ```
 
 ## 使用

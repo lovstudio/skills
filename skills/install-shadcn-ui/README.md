@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-install-shadcn-ui -g -y
+npx lovstudio skills add install-shadcn-ui -g -y
 ```
 
 ## 使用

@@ -9,7 +9,7 @@
 通过 Agent Skills 统一入口全局安装：
 
 ```bash
-npx skills add lov-search-twitter -g -y
+npx lovstudio skills add search-twitter -g -y
 ```
 
 LovStudio 产品界面也可使用：

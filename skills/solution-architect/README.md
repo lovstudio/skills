@@ -9,7 +9,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) — by [exam
 ## Install
 
 ```bash
-npx skills add solution-architect -g -y
+npx lovstudio skills add solution-architect -g -y
 ```
 
 ## Use Cases

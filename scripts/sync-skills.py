@@ -178,15 +178,56 @@ def _rewrite_npx_command(match: re.Match) -> str:
     return f"{prefix}{flags} {' '.join(extra)}"
 
 
-def harden_npx_commands(root: Path) -> int:
-    """Rewrite `npx skills add …` occurrences under `root/` to always carry
-    non-interactive flags. Returns count of files modified."""
+# Matches `npx skills add <name>` where <name> has no slash, plus the flags that
+# directly follow it. The installer reads such an argument as a git source and
+# fails with "repository '<name>' does not exist"; only `lovstudio skills add`
+# resolves catalog names. The lookahead keeps owner/repo, URL and path sources
+# out, also when the engine backtracks into a shorter name.
+_NPX_BARE_RE = re.compile(
+    r"npx[ \t]+skills[ \t]+add[ \t]+([A-Za-z0-9][A-Za-z0-9_.\-]*)(?![A-Za-z0-9_.\-]*[/:@=+~$\\*%])"
+    r"((?:[ \t]+--?[A-Za-z][A-Za-z0-9\-]*)*)"
+)
+# The value-less flags `lovstudio skills add` shares with the installer. A command
+# carrying any other flag is left as written.
+_WRAPPER_FLAGS = {"-g", "--global", "--project", "-y", "--yes"}
+
+
+def install_names(skills: list[dict]) -> dict[str, str]:
+    """Map every argument `lovstudio skills add` resolves to a catalog entry onto
+    that entry's short name, with the CLI's own rules and precedence."""
+    names: dict[str, str] = {}
+    for skill in skills:
+        short = skill["name"]
+        for alias in (short, f"lov-{short}", f"lovstudio-{short}", skill.get("runtime_name")):
+            if alias:
+                names.setdefault(alias, short)
+    return names
+
+
+def _rewrite_bare_command(match: re.Match, names: dict[str, str]) -> str:
+    """Turn `npx skills add <catalog or runtime name>` into the command that
+    installs it: `npx lovstudio skills add <short name> -g -y`."""
+    short, flags = names.get(match.group(1)), match.group(2).split()
+    if short is None or set(flags) - _WRAPPER_FLAGS:
+        return match.group(0)
+    if not {"-g", "--global", "--project"} & set(flags):
+        flags.append("-g")
+    if not {"-y", "--yes"} & set(flags):
+        flags.append("-y")
+    return f"npx lovstudio skills add {short} {' '.join(flags)}"
+
+
+def harden_npx_commands(root: Path, names: dict[str, str]) -> int:
+    """Rewrite `npx skills add …` occurrences under `root/`: an <owner>/<repo>
+    source always carries non-interactive flags, and a bare catalog name from
+    `names` goes through `npx lovstudio`. Returns count of files modified."""
     modified = 0
     for path in root.rglob("*.md"):
         if path.name == "CHANGELOG.md":
             continue
         original = path.read_text()
         patched = _NPX_CMD_RE.sub(_rewrite_npx_command, original)
+        patched = _NPX_BARE_RE.sub(lambda match: _rewrite_bare_command(match, names), patched)
         if patched != original:
             path.write_text(patched)
             modified += 1
@@ -313,14 +354,14 @@ def prune_stale(installable_names: set[str]) -> None:
             shutil.rmtree(child)
 
 
-def mirror_one(skill: dict, skip_clone: bool) -> str | None:
+def mirror_one(skill: dict, skip_clone: bool, names: dict[str, str]) -> str | None:
     """Refresh one free skill's mirror; return why it kept its last one, if it did."""
     name = skill["name"]
     repo = skill["repo"]
     dest = MIRROR_ROOT / name
 
     if skip_clone and dest.exists():
-        touched = harden_npx_commands(dest)
+        touched = harden_npx_commands(dest, names)
         rewritten = rewrite_archived_catalog_refs(dest)
         if touched or rewritten:
             print(f"  update {name} (SKIP_CLONE=1)")
@@ -341,7 +382,7 @@ def mirror_one(skill: dict, skip_clone: bool) -> str | None:
             rsync_mirror(skill_root, dest)
         except subprocess.CalledProcessError as exc:
             return f"rsync exited with status {exc.returncode}"
-        touched = harden_npx_commands(dest)
+        touched = harden_npx_commands(dest, names)
         rewritten = rewrite_archived_catalog_refs(dest)
         changes = []
         if touched:
@@ -368,9 +409,10 @@ def main() -> int:
     print(f"Syncing {len(frees)} free skills into {MIRROR_ROOT.relative_to(ROOT)}/")
     MIRROR_ROOT.mkdir(exist_ok=True)
     prune_stale(installable_skill_names(all_skills))
+    names = install_names(all_skills)
     failures = {}
     for s in frees:
-        error = mirror_one(s, skip_clone)
+        error = mirror_one(s, skip_clone, names)
         if error:
             failures[s["name"]] = f"{s['repo']}: {error}"
             report_error(f"{s['name']} kept its last mirror", failures[s["name"]])

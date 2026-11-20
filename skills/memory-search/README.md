@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-memory-search -g -y
+npx lovstudio skills add memory-search -g -y
 ```
 
 ## 使用

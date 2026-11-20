@@ -17,7 +17,7 @@
 本模块随父 Skill 安装：
 
 ```bash
-npx skills add lov-wechat-article-branding -g -y
+npx lovstudio skills add wechat-article-branding -g -y
 ```
 
 本模块由 `lov-wechat-article-branding-skill` 的 `cover` 或 `full` 管线调用，也可以在需要修正公众号封面双比例 Logo 位置时单独读取。

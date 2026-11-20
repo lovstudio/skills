@@ -8,7 +8,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-competitor-research -g -y
+npx lovstudio skills add competitor-research -g -y
 ```
 
 本地源码安装：

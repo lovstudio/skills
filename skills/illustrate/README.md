@@ -11,7 +11,7 @@ fallback 回读门禁，避免缺字或混用字体被固化进 PNG/JPG。
 ## Installation
 
 ```bash
-npx skills add lov-illustrate -g -y
+npx lovstudio skills add illustrate -g -y
 ```
 
 ## Invocation

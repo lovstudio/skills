@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-output-wechat-moment -g -y
+npx lovstudio skills add output-wechat-moment -g -y
 ```
 
 ## 使用

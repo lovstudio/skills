@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-kb-organize -g -y
+npx lovstudio skills add kb-organize -g -y
 ```
 
 ## 使用

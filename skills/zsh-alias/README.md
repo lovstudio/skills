@@ -10,7 +10,7 @@ Part of [skills](https://example.com/skills/skills) — by [example.com](https:/
 ## Install
 
 ```bash
-npx skills add zsh-alias -g -y
+npx lovstudio skills add zsh-alias -g -y
 ```
 
 Requires: Python 3.8+ (stdlib only). zsh.

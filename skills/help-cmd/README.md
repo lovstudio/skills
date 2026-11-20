@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-help-cmd -g -y
+npx lovstudio skills add help-cmd -g -y
 ```
 
 ## 使用

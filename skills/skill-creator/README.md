@@ -17,7 +17,7 @@ Creator 现在还会先区分 `authored-prose`、`microcopy`、`verbatim` 与
 ## 安装
 
 ```bash
-npx skills add lov-skill-creator -g -y
+npx lovstudio skills add skill-creator -g -y
 ```
 
 本地真源安装：

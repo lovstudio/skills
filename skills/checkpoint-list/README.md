@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-checkpoint-list -g -y
+npx lovstudio skills add checkpoint-list -g -y
 ```
 
 ## 使用

@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-ataru-indexing -g -y
+npx lovstudio skills add ataru-indexing -g -y
 ```
 
 也可以在本仓库根目录把源码链接到本地 Skills 目录：

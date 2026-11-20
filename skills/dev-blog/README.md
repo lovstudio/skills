@@ -12,7 +12,7 @@ Part of [skills](https://example.com/skills/skills) — by [example.com](https:/
 ## Install
 
 ```bash
-npx skills add dev-blog -g -y
+npx lovstudio skills add dev-blog -g -y
 ```
 
 Requires Python 3.8+. No third-party Python packages are needed.

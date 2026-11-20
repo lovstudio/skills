@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-memory-add -g -y
+npx lovstudio skills add memory-add -g -y
 ```
 
 ## 使用

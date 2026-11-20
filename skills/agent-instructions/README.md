@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-agent-instructions -g -y
+npx lovstudio skills add agent-instructions -g -y
 ```
 
 ## 使用

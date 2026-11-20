@@ -9,7 +9,7 @@
 发布后的统一安装入口：
 
 ```bash
-npx skills add lov-lovpen-add-wechat-channel-comp -g -y
+npx lovstudio skills add lovpen-add-wechat-channel-comp -g -y
 ```
 
 当前本地真源安装：

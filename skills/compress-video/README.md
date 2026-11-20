@@ -16,7 +16,7 @@ AAC 96k，输出 `<原名>-compressed.mp4` 放在原文件旁边，原文件不�
 ## 本地安装
 
 ```bash
-npx skills add lov-compress-video -g -y
+npx lovstudio skills add compress-video -g -y
 ```
 
 或者在本仓库根目录手动链接：

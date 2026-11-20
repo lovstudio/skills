@@ -31,7 +31,7 @@ ln -s /path/to/repost-wechat-article-skill ~/.agents/skills/lov-repost-wechat-ar
 进入远端分发后，统一安装命令为：
 
 ```bash
-npx skills add lov-repost-wechat-article -g -y
+npx lovstudio skills add repost-wechat-article -g -y
 ```
 
 ## Profile

@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-init-port -g -y
+npx lovstudio skills add init-port -g -y
 ```
 
 ## 使用

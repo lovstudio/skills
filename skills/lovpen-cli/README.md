@@ -11,7 +11,7 @@ HTML，并返回 JSON 诊断、资源解析、文件大小和 SHA-256 回读证�
 发布到 Skills catalog 后的标准命令：
 
 ```bash
-npx skills add lovpen-cli -g -y
+npx lovstudio skills add lovpen-cli -g -y
 ```
 
 在 Skill 源目录执行：

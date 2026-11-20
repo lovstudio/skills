@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-fix-general -g -y
+npx lovstudio skills add fix-general -g -y
 ```
 
 ## 使用

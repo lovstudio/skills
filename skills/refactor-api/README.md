@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-refactor-api -g -y
+npx lovstudio skills add refactor-api -g -y
 ```
 
 ## 使用

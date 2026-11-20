@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-add-tool -g -y
+npx lovstudio skills add add-tool -g -y
 ```
 
 ## 使用

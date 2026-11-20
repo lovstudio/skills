@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-fix-broken-links -g -y
+npx lovstudio skills add fix-broken-links -g -y
 ```
 
 ## 使用

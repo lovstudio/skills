@@ -9,7 +9,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) — by [exam
 ## Install
 
 ```bash
-npx skills add thesis-polish -g -y
+npx lovstudio skills add thesis-polish -g -y
 ```
 
 No dependencies — pure AI instructions.

@@ -7,7 +7,7 @@
 ## 安装
 
 ```bash
-npx skills add lov-better-readme -g -y
+npx lovstudio skills add better-readme -g -y
 ```
 
 ## 使用
