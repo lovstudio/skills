@@ -116,6 +116,8 @@ skills:
   tagline_en: Expose bad machine translation, show the correction, and preserve the
     original image.
   tagline_zh: 保留错误机翻的证据，用校样式删改给出正确译文，同时尽量不动原图布局。
+  depends_on:
+  - branding-consistency
   related:
   - translation-review
   - image-creator
@@ -364,6 +366,7 @@ skills:
   version: 0.10.2
   depends_on:
   - find-logo
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -497,6 +500,8 @@ skills:
   tagline_en: Typeset Markdown into a publication-quality PDF with 16 themes, including
     Songti Reading.
   tagline_zh: 把 Markdown 排成出版级 PDF，支持中英混排、代码与表格；新增宋黑阅读，共 16 套主题。
+  depends_on:
+  - branding-consistency
   related:
   - any2docx
   - any2deck
@@ -546,6 +551,8 @@ skills:
     with python-docx.
   tagline_en: Convert Markdown into a clean, professionally styled Word document.
   tagline_zh: 把 Markdown 转成排版规范的 Word 文档，可以直接发给甲方。
+  depends_on:
+  - branding-consistency
   related:
   - any2pdf
   - any2deck
@@ -594,6 +601,8 @@ skills:
   tagline_en: Turn any content into a styled slide deck — 16 looks, export to PPTX
     or PDF.
   tagline_zh: 把任意内容变成带设计感的幻灯片，16 种风格可选，导出 PPTX / PDF。
+  depends_on:
+  - branding-consistency
   related:
   - any2pdf
   - any2docx
@@ -978,6 +987,8 @@ skills:
   tagline_en: Turn a product or technical requirement into a researched, open-source-first
     implementation plan.
   tagline_zh: 把产品或技术需求转成有调研依据、开源优先的可执行解决方案。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -1023,6 +1034,8 @@ skills:
     comments
   tagline_en: Review a document or contract and return it with inline comments.
   tagline_zh: 审阅文档或合同，输出带批注的 docx，直接拿给同事或客户。
+  depends_on:
+  - branding-consistency
   version: 1.1.1
   skillpay_product_id: P0806000200854533
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQY
@@ -1115,6 +1128,8 @@ skills:
   description: Invoice images/text → categorized Excel expense report
   tagline_en: Turn a pile of invoices into a categorized Excel expense report.
   tagline_zh: 发票图片或文字一键整理成分类报销 Excel，业务招待、差旅、办公自动归类。
+  depends_on:
+  - branding-consistency
   skillpay_product_id: P0806000200843448
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQa
   version: 0.2.1
@@ -1497,6 +1512,8 @@ skills:
     verification, and publication without confusing a saved draft with a live post.
   tagline_zh: 统一读取、局部编辑、创建、回读与发布公众号文章，并严格区分草稿、提交发布和正式上线。
   depends_on:
+  - image-decorator
+  - lovpen-cli
   - env-management
   - branding-consistency
   pricing:
@@ -1546,6 +1563,7 @@ skills:
   tagline_zh: 给长文原地配图，先规划插入点再并行出图，最后自动插回原文。
   depends_on:
   - image-creator
+  - branding-consistency
   skillpay_product_id: P0806000200847216
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQU
   version: 0.3.1
@@ -1595,6 +1613,10 @@ skills:
   tagline_en: Produce citation-tracked research reports with persistent evidence,
     claim verification, and shareable open-source solution catalogs.
   tagline_zh: 生成带引用、证据和主张校验的深度研究报告，并收集分享 GitHub 等平台的已核验开源方案。
+  depends_on:
+  - branding-consistency
+  - dev-blog
+  - rich-export
   skillpay_product_id: P0806000200846057
   distribution:
     skillpay: rejected
@@ -1779,6 +1801,8 @@ skills:
   description: MBA 论文全面润色，对标全国优秀论文标准。语言+结构+论证+创新四维提升。
   tagline_en: Polish an MBA thesis across language, structure, argument, and originality.
   tagline_zh: MBA 论文全维度润色，对标国优标准，打磨语言、结构、论证与创新四个面。
+  depends_on:
+  - branding-consistency
   skillpay_product_id: P0806000200853493
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-T
   version: 1.1.1
@@ -1824,6 +1848,8 @@ skills:
   tagline_en: Review a Chinese→English translation against the original across six
     quality dimensions.
   tagline_zh: 中译英译文审阅，从六个维度逐条对照原文，找出问题并给出改写建议。
+  depends_on:
+  - branding-consistency
   skillpay_product_id: P0806000200844921
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQsK
   version: 1.1.1
@@ -1876,6 +1902,8 @@ skills:
   tagline_en: Extract a writing style profile from sample articles, then rewrite any
     content in that style.
   tagline_zh: 从样本文章中提取文风画像，再把任意内容改写成该文风。
+  depends_on:
+  - branding-consistency
   skillpay_product_id: P0806000200843449
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqVQS
   related:
@@ -1930,6 +1958,7 @@ skills:
   tagline_zh: 用证据看懂一个汉字：读音、字形、字书、经典语境与专业信息图。
   depends_on:
   - professional-infographic
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -1979,6 +2008,8 @@ skills:
   tagline_en: Verify claims like a careful researcher, with primary sources, counterexamples,
     confidence, and next steps.
   tagline_zh: 用尽调思路确认事实：查一手资料、找反例、标证据等级，给出置信度和下一步。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -2072,6 +2103,8 @@ skills:
   tagline_en: Turn one photo into a recognizable Riso avatar, then check the face,
     hands, objects, and circular crop.
   tagline_zh: 把一张照片重绘成仍然像本人的 Riso 头像，并检查五官、手指、物件与圆形裁切。
+  depends_on:
+  - branding-consistency
   related:
   - image-creator
   - professional-portrait
@@ -2126,6 +2159,8 @@ skills:
   description: Redraw an authorized single-person photo as an identity-preserving black-and-white studio avatar with gpt-image-2, bright editorial look by default, then verify face, teeth, accessories and small-size legibility.
   tagline_en: Turn one photo into a recognizable black-and-white studio avatar, then check the face, teeth, accessories, and small-size clarity.
   tagline_zh: 把一张照片重绘成仍然像本人的黑白棚拍头像，并检查五官、牙齿、饰品与小尺寸辨识度。
+  depends_on:
+  - branding-consistency
   related:
   - riso-portrait
   - professional-portrait
@@ -2168,6 +2203,8 @@ skills:
   tagline_en: Export one rich-media source into web, editable document, print, and
     archive formats.
   tagline_zh: 一份富媒体内容，同时交付网页、可编辑文档、打印版和归档包。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -2351,6 +2388,8 @@ skills:
   tagline_en: Turn anyone's name, roles and tagline into a polished editorial business
     card — high-res PNG plus a click-to-download HTML.
   tagline_zh: 把任何人的姓名、头衔、金句一键变成精美的编辑式名片，输出高清 PNG 与可点击下载的 HTML。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -2543,6 +2582,8 @@ skills:
   tagline_en: Plan chapters, tune the progress bar in React Studio, then export an
     overlay, final video, or editor package.
   tagline_zh: 从字幕确定章节，在 React 工作台调整切点与样式，再导出透明章节条、烧录成片或剪辑软件素材包。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -3077,6 +3118,8 @@ skills:
   tagline_en: Scan a web project for mobile issues and fix them — overflow, safe area,
     viewport units, responsive layouts, and page navigation.
   tagline_zh: 扫描并修复 Web 项目的移动端适配问题——溢出、安全区、视口单位、响应式布局和多级导航。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -3128,6 +3171,9 @@ skills:
   tagline_en: Turn any folder — code, articles, images — into a polished Fumadocs
     site, built incrementally and shipped to {id}.lovstudio.ai/docs.
   tagline_zh: 把任意文件夹（代码、文章、图片）增量编纂成精美的 Fumadocs 文档站，并部署到 {id}.lovstudio.ai/docs。
+  depends_on:
+  - deploy-to-vercel
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -3318,6 +3364,8 @@ skills:
   tagline_en: Audit an existing skill, auto-fix issues, and bump its version in one
     pass.
   tagline_zh: 一键体检并修复现有技能，自动升版本号并追加 CHANGELOG。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -3363,6 +3411,8 @@ skills:
   tagline_en: Watch your Claude Code context for pollution and suggest when to fork
     or reset.
   tagline_zh: 监测 Claude Code 上下文是否被污染，适时提示你 /fork 或 /btw。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -3807,6 +3857,13 @@ skills:
   tagline_en: Generate Lovstudio-grade web, PWA, or Tauri apps with brand, UI, data,
     deploy/release, and developer tooling wired in.
   tagline_zh: 按需求生成 Lovstudio 级 web、PWA 或 Tauri App，内置品牌、UI、数据层、部署/发布和开发辅助。
+  depends_on:
+  - branding-consistency
+  - integrate-lovinsp
+  - gen-logo
+  - install-shadcn-ui
+  - install-tanstack-query
+  - install-tauri-logo
   pricing:
     model: free_entry
     visibility: public
@@ -3993,6 +4050,8 @@ skills:
   tagline_en: Turn delivery history into a clear, reusable Skill blueprint with boundaries
     and acceptance checks.
   tagline_zh: 将项目经验蒸馏为边界清晰、可创建且可验收的 Skill 蓝图。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -4037,6 +4096,8 @@ skills:
   tagline_en: Turn Skill pricing into an explainable decision backed by cost, value,
     confidence, and channel fit.
   tagline_zh: 从成本、价值、信心度与渠道适配出发，生成可解释的 Skill Pricing Card。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -4082,6 +4143,8 @@ skills:
   tagline_en: Turn an authorized social-media link into a verified local media file,
     with a WeChat client capture fallback for publisher-restricted Channels videos.
   tagline_zh: 将有权保存的视频号等社交媒体链接变成可验证的本地媒体文件；发布方限制微信外解析的视频号内容自动回退到本机微信客户端取流。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -4132,6 +4195,7 @@ skills:
     and expand only to explicitly requested channels.
   tagline_zh: 每次发布先自动定价，默认上架 LovStudio 官网，仅在明确要求时扩展到其他渠道。
   depends_on:
+  - branding-consistency
   - skill-pricing
   pricing:
     model: free_entry
@@ -4854,6 +4918,8 @@ skills:
     model (GLM-4V-Flash) and relay its description back as text.'
   tagline_en: Give text-only models sight — describe any image via a free vision model.
   tagline_zh: 给纯文本模型"看图"：用免费视觉模型把任意图片转成文字描述。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
@@ -5177,6 +5243,8 @@ skills:
   tagline_en: Find out why your Huodongxing event is missing from its category page,
     and what to change to get seen.
   tagline_zh: 一次看清活动行活动为什么在分类页找不到，以及改哪个字段、用哪种排序能被看见。
+  depends_on:
+  - branding-consistency
   related:
   - event-curator
   - event-poster
@@ -7725,6 +7793,8 @@ skills:
   tagline_en: Turn satisfaction and complaints into tracked feedback that tunes your
     prompts and skills.
   tagline_zh: 把用户的满意与不满变成可统计的反馈，并让 Prompt 与 Skill 随之迭代。
+  depends_on:
+  - branding-consistency
   pricing:
     model: free_entry
     visibility: public
