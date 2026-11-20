@@ -1,6 +1,6 @@
 # 网页转幻灯 · HTML to Slides
 
-![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.4-CC785C)
 
 Convert HTML to a high-fidelity PPTX deck via Playwright/Chromium.
 Each `.slide` element becomes one pptx page (rendered as a 1920×1080 retina

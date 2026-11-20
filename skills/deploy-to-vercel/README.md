@@ -1,6 +1,6 @@
 # Vercel 部署助手 · Vercel Deployer
 
-![Version](https://img.shields.io/badge/version-2.1.1-CC785C)
+![Version](https://img.shields.io/badge/version-2.1.2-CC785C)
 
 One-command frontend deployment to Vercel with automatic custom domain + Cloudflare DNS setup.
 
@@ -9,7 +9,7 @@ Part of [skill-publisher/skills](https://example.com/skills/skills) — by [exam
 ## Install
 
 ```bash
-npx skills add skill-publisher/skills --skill lov-deploy-to-vercel -y -g
+npx lovstudio skills add deploy-to-vercel -g -y
 ```
 
 Requires: `vercel` CLI, `curl`, `python3`

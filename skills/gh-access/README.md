@@ -1,6 +1,6 @@
 # GitHub 协作管家 · GitHub Collaborator Manager
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 
 Grant, revoke, and audit collaborator access on **private** GitHub repos — by
 GitHub username **or** email address — with read-only as the safe default.
@@ -11,7 +11,7 @@ without making the repo public.
 ## Install
 
 ```bash
-npx skills add skill-publisher/gh-access-skill --all -g
+npx lovstudio skills add gh-access -g -y
 ```
 
 Or clone directly:

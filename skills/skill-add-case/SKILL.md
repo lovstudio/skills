@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: LovStudio contributors
-  version: "0.5.1"
+  version: "0.5.2"
   card_standard: lovstudio/skill-card/v1
   tags:
     - skill-case

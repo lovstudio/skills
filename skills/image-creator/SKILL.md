@@ -12,7 +12,7 @@ depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 0.3.3
+  version: 0.3.4
   tags:
   - image-generation
   - design

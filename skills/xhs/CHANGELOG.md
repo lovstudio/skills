@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1] - 2026-11-20
+
+### Fixed
+
+- README install command is now `npx lovstudio skills add xhs -g -y`: `npx skills add` reads a name without a slash as a git source and fails with "repository does not exist".
+
 ## [0.2.0] - 2026-09-10
 
 ### Added

@@ -3,6 +3,12 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.1.1] - 2026-11-20
+
+### Fixed
+
+- README install command is now `npx lovstudio skills add publish-wechat-channels -g -y`: the former source lovstudio/oneshot is a private repository that anonymous users cannot clone.
+
 ## [0.1.0] - 2026-08-24
 
 ### Added

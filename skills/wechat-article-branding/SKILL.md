@@ -9,7 +9,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.11.1"
+  version: "0.11.2"
   tags:
     - deprecated
     - compatibility-route

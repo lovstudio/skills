@@ -1,6 +1,6 @@
 # 视频素材精整 · Video Prep
 
-![Version](https://img.shields.io/badge/version-0.2.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
 
 把原始课程或活动实录做成明亮、清楚、按内容组织的可剪辑素材库。保留有价值的讲解和演示，剔除已核验的无效区间；原片只读、待复核默认保留。
 

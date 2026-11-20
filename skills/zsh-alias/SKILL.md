@@ -14,7 +14,7 @@ compatibility: >
   other shells' rc.
 metadata:
   author: contributors
-  version: "0.2.1"
+  version: "0.2.2"
   tags: [zsh, alias, shell, productivity]
 ---
 

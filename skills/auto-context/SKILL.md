@@ -20,7 +20,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.4.2"
+  version: "0.4.3"
   tags: context memory claude-code
 ---
 

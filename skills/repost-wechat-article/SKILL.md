@@ -8,7 +8,7 @@ depends_on:
   - lov-article-creator
 metadata:
   author: contributors
-  version: "0.2.1"
+  version: "0.2.2"
   tags:
     - deprecated
     - compatibility-route

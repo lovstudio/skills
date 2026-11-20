@@ -9,7 +9,7 @@ compatibility: >
   Tauri, Electron, and SPA apps. Requires the project's package manager.
 metadata:
   author: lovstudio
-  version: "0.2.3"
+  version: "0.2.4"
   tags:
     - tanstack-query
     - react-query

@@ -8,7 +8,7 @@ depends_on:
 - lov-branding-consistency
 metadata:
   author: contributors
-  version: 1.0.5
+  version: 1.0.6
   tags:
   - bti
   - personality-test

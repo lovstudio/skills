@@ -1,6 +1,6 @@
 # 公众号发布助手 · WeChat Publisher
 
-![Version](https://img.shields.io/badge/version-0.9.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.9.1-CC785C)
 
 微信公众号远端操作的唯一入口：读取或局部编辑已有草稿，也可从 Markdown、HTML 或纯文本创建草稿并通过统一网关回读核验。正式发布与草稿创建使用不同状态，只有微信返回公开文章标识时才报告已发布。
 

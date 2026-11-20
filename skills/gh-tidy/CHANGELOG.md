@@ -3,6 +3,12 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.2.2] - 2026-11-20
+
+### Fixed
+
+- README 的安装命令改为 `npx lovstudio skills add gh-tidy -g -y`：原命令指向的 skill-publisher/skills 在 GitHub 上不存在，装不上。
+
 ## [0.2.1] - 2026-09-25
 
 ### Added

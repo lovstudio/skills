@@ -1,6 +1,6 @@
 # 终端快捷指令 · Shell Shortcuts
 
-![Version](https://img.shields.io/badge/version-0.2.1-CC785C)
+![Version](https://img.shields.io/badge/version-0.2.2-CC785C)
 
 Add a zsh alias / function to `~/.zshrc` idempotently. Supports ASCII
 names (`zxsd`, `gs`) and 中文 function names (`中信书店`).

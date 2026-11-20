@@ -1,6 +1,6 @@
 # 视频号组件 · WeChat Channels Embed
 
-![Version](https://img.shields.io/badge/version-0.1.2-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.3-CC785C)
 
 把一个微信视频号原生 DOM 或 Lovpen DSL 规范化，并安全写入 Markdown 或 HTML。
 

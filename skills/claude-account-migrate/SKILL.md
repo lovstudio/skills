@@ -7,7 +7,7 @@ license: MIT
 compatibility: "Python 3.9+ standard library. Verified with the Claude desktop app on macOS; other platforms need --data-dir."
 metadata:
   author: skill-publisher
-  version: "0.1.1"
+  version: "0.1.2"
   card_standard: lovstudio/skill-card/v1
   content_class: deterministic-output
   display_name_zh: "Claude 换号搬家"

@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: LovStudio
-  version: "0.2.1"
+  version: "0.2.2"
   card_standard: lovstudio/skill-card/v1
   content_class: deterministic-output
   tags:

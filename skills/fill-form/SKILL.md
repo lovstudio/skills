@@ -19,7 +19,7 @@ compatibility: >
   but table structure may be lost — use .docx when possible).
 metadata:
   author: contributors
-  version: "1.2.1"
+  version: "1.2.2"
   tags: form fill template docx word table cjk
 ---
 

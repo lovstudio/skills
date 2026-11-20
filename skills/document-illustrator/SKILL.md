@@ -20,7 +20,7 @@ model: claude-opus-4-5-20251101
 depends_on:
   - lov-branding-consistency
 metadata:
-  version: "0.3.1"
+  version: "0.3.2"
   author: contributors
   tags: document-illustration image-generation markdown
 license: MIT

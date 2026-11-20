@@ -19,7 +19,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.1.3"
+  version: "0.1.4"
   tags: html pptx slides presentation playwright deck
 ---
 

@@ -1,6 +1,6 @@
 # 万能视频下载 · Universal Video Grabber
 
-![Version](https://img.shields.io/badge/version-0.4.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.4.1-CC785C)
 
 给一个公开且有权保存的社交媒体链接，得到经过验证的本地媒体文件和 JSON 报告。
 

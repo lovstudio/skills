@@ -5,7 +5,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio-contributors
-  version: "0.3.2"
+  version: "0.3.3"
   tags: video chapters subtitle editing rendering
 ---
 

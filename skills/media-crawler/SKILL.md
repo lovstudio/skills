@@ -8,7 +8,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.4.0"
+  version: "0.4.1"
   card_standard: lovstudio/skill-card/v1
   tags:
     - media-crawler

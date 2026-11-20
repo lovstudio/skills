@@ -13,7 +13,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.1"
+  version: "0.2.2"
   tags: writing, style, rewrite, 文风, 改写
 ---
 

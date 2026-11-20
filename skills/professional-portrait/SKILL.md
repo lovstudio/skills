@@ -10,7 +10,7 @@ compatibility: >
   built-in image tool. No Python dependency is required.
 metadata:
   author: lovstudio
-  version: "0.2.3"
+  version: "0.2.4"
   tags:
     - portrait
     - headshot

@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.2.0"
+version: "0.2.1"
 description: >
   把两个人的微信私聊做成有证据的恋爱指数分析：量化互动节奏，用本地模型把消息分成
   工作／情感／生活三类，再产出一张手机竖版信息图，并给出每项结论的口径与误差。

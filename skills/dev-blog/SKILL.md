@@ -19,7 +19,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.5.2"
+  version: "0.5.3"
   tags: dev blog supabase writing publishing
 ---
 

@@ -1,6 +1,6 @@
 # XBTI 工坊 · XBTI Studio
 
-![Version](https://img.shields.io/badge/version-1.0.2-CC785C)
+![Version](https://img.shields.io/badge/version-1.0.3-CC785C)
 
 Create complete custom BTI personality test websites from a theme and preferences. Based on the [XBTI](https://example.com/skills/XBTI) engine.
 

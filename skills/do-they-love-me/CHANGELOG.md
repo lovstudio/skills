@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- README 的安装命令改为 `npx lovstudio skills add do-they-love-me -g -y`：不带斜杠的名字会被 `npx skills add` 当作 git 源，报 repository does not exist，装不上。
+
 ## 0.2.0
 
 - Skill ID 从 `lov-love-index` 改为 `lov-do-they-love-me`（英文单数 they，

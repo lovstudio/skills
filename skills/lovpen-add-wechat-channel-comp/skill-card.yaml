@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.2"
+version: "0.1.3"
 description: "Normalize one WeChat Channels DOM or Lovpen DSL and safely render it into Markdown or native component HTML."
 owner:
   team: "LovStudio contributors"
