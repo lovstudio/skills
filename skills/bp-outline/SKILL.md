@@ -1,24 +1,49 @@
 ---
 name: lov-bp-outline
 description: >
-  Turn existing project materials into a source-backed investor BP brief, evidence
-  ledger, and 12–15 slide outline. Use before making slides, when the product
-  positioning is unclear, or when an existing outline is too technical, generic,
-  or unsupported. Trigger on "写 BP 大纲", "融资叙事", "梳理商业计划书",
-  "先不要做 PPT", "BP outline", "investor narrative", or "pitch deck outline".
+  Turn project materials into a source-backed BP brief, evidence ledger, and slide
+  outline. Triggers: "写 BP 大纲", "融资叙事", "梳理商业计划书", "先不要做 PPT",
+  "BP outline", "investor narrative", "pitch deck outline".
 license: MIT
+compatibility: Requires Python 3.8+; scripts/init_bp.py uses the standard library only.
 depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "0.2.1"
-  tags: business-plan outline investor narrative evidence market positioning
+  version: "0.2.2"
+  tags:
+    - business-plan
+    - outline
+    - investor
+    - narrative
+    - evidence
+    - market
+    - positioning
 ---
 
 # BP 蓝图 · BP Blueprint
 
 Build the investment story before choosing a visual style. This skill stops at an
 approved, source-backed outline and does not generate PPTX/PDF.
+
+## Triggers
+
+### Activate when
+
+- The user wants the investment story settled before any slides are made, the product
+  positioning is unclear, or an existing outline is too technical, generic, or
+  unsupported.
+- Chinese: “写 BP 大纲”, “融资叙事”, “梳理商业计划书”, or “先不要做 PPT”.
+- English: “BP outline”, “investor narrative”, or “pitch deck outline”.
+
+### Do not activate when
+
+- An approved outline already exists and the user wants slides, a style choice, or
+  PPTX/PDF export; use `lov-bp-deck`.
+- The user wants an existing BP scored, reviewed, or polished rather than its
+  narrative rebuilt; use `lov-bp-polish`.
+- The document is not an investor-facing business plan, such as a company
+  introduction, product presentation, annual report, or marketing proposal.
 
 ## Input
 
