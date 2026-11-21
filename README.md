@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **245 个技能** — 220 个免费 + 25 个付费。
+> **245 个技能** — 219 个免费 + 26 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -270,7 +270,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | **Video Creation** | | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [3D Motion Atlas](https://github.com/lovstudio/3d-motion-media-creator-skill) (`3d-motion-media-creator`) | [三维图志](https://github.com/lovstudio/3d-motion-media-creator-skill) | 没有实拍也能把工序、产品构造与尺度做成三维分章短片，示意画面与真实资料清楚并置。 — 依赖: `branding-consistency`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Shrink](https://github.com/lovstudio/compress-video-skill) (`compress-video`) | [视频瘦身](https://github.com/lovstudio/compress-video-skill) | 把指定视频压到尽可能小且画质不明显下降：默认HEVCCRF28保留分辨率，可选质量档、目标体积、VMAF画质门禁与替换原文件模式 |
-| ![Free](https://img.shields.io/badge/Free-green) | [Fourier Portrait](https://github.com/lovstudio/fourier-portrait-skill) (`fourier-portrait`) | [傅里叶画像](https://github.com/lovstudio/fourier-portrait-skill) | 把一张人像照片做成竖版视频：一串旋转的圆逐级画出整张脸，并显示误差与级数公式。 — 依赖: `branding-consistency`; 相关: `media-creator` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Fourier Portrait](https://github.com/lovstudio/fourier-portrait-skill) (`fourier-portrait`) | [傅里叶画像](https://github.com/lovstudio/fourier-portrait-skill) | 把一张人像照片做成竖版短片：一串旋转的圆逐级画出整张脸，配乐、旁白与音效卡点，在重拍处揭晓。 — 依赖: `branding-consistency`; 相关: `media-creator` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Group Interview Short](https://github.com/lovstudio/group-interview-media-creator-skill) (`group-interview-media-creator`) | [群访短片](https://github.com/lovstudio/group-interview-media-creator-skill) | 把一场饭局或沙龙的多人手机实录按人组织：一条全员出场的竖版主片，每位嘉宾可再各出一条单人短片，逐人落实不露出与删词要求。 — 依赖: `branding-consistency`, `media-creator`, `interview-media-creator`; 相关: `interview-media-creator`, `media-creator`, `media-publisher` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Interview Short](https://github.com/lovstudio/interview-media-creator-skill) (`interview-media-creator`) | [采访短片](https://github.com/lovstudio/interview-media-creator-skill) | 把一场手机采访剪成 2–4 分钟的视频号竖版短片：被访者原话冷开场、5 章重排、提问卡与大字幕、人名条、配乐与封面 A/B 一次交付。 — 依赖: `branding-consistency`, `media-creator`; 相关: `group-interview-media-creator`, `koubo-media-creator`, `media-creator`, `media-publisher`, `motion-media-creator`, `logo-sting` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Talking-head Short](https://github.com/lovstudio/koubo-media-creator-skill) (`koubo-media-creator`) | [口播短片](https://github.com/lovstudio/koubo-media-creator-skill) | 给一个主题，口播稿、提词器、上屏证据与封面全备好；你照提词器录一条，它自动挑出念对的那一遍，剪成上素材下出镜的竖版成片。 — 依赖: `branding-consistency`; 相关: `interview-media-creator`, `media-publisher`, `logo-sting`, `promo-media-creator` |

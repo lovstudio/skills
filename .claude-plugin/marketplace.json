@@ -284,7 +284,7 @@
     {
       "name": "video-creation",
       "source": "./",
-      "description": "Video Creation — 17 free skills bundled together.",
+      "description": "Video Creation — 16 free skills bundled together.",
       "category": "Video Creation",
       "skills": [
         "./skills/video-chapter",
@@ -303,8 +303,7 @@
         "./skills/laozhang-style-media-creator",
         "./skills/motivational-media-creator-claude-version",
         "./skills/xiaonuan-style-media-creator",
-        "./skills/media-cloner",
-        "./skills/fourier-portrait"
+        "./skills/media-cloner"
       ],
       "strict": false
     },

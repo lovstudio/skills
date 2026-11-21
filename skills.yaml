@@ -10433,39 +10433,36 @@ skills:
     card_path: pricing-cards/blogger-cloner.md
 - name: fourier-portrait
   runtime_name: lov-fourier-portrait
-  updated_at: 2026-11-21 11:40:00+00:00
+  updated_at: 2026-11-21 15:10:00+00:00
   display_name: Fourier Portrait
   repo: lovstudio/fourier-portrait-skill
   name_zh: 傅里叶画像
-  paid: false
+  paid: true
   category: Video Creation
-  version: 0.1.0
-  description: "Turn a single-person photo into a vertical Fourier epicycle video: segmentation-aware line art, rotating circles that redraw the face as one line from N=1 to 1024, live error labels and the series formulas."
-  tagline_en: "Turn one portrait photo into a vertical video where rotating Fourier circles redraw the whole face, with errors and formulas."
-  tagline_zh: "把一张人像照片做成竖版视频：一串旋转的圆逐级画出整张脸，并显示误差与级数公式。"
+  version: 0.2.0
+  description: "Fourier Portrait: turn a single-person photo into a ready-to-post vertical short where rotating Fourier circles redraw the face from N=1 to 1024, with a slow-motion zoom, a reveal on the music drop, generated music, narration with captions, effects and an optional call-to-action card."
+  tagline_en: "Turn one portrait photo into a vertical short where rotating Fourier circles redraw the whole face, with music, narration and a reveal on the drop."
+  tagline_zh: "把一张人像照片做成竖版短片：一串旋转的圆逐级画出整张脸，配乐、旁白与音效卡点，在重拍处揭晓。"
   depends_on:
     - branding-consistency
   related:
     - media-creator
   pricing:
-    model: free_entry
+    model: vip_membership
     visibility: public
-    list_price_credits: 0
-    launch_price_credits: 0
-    price_range_credits: [0, 0]
-    delivery_unit_zh: "公开 Skill 源码、照片转线稿与傅里叶本轮渲染流水线、调参指南与一组真实案例"
-    delivery_unit_en: "Public Skill source, a photo-to-line-art and Fourier epicycle rendering pipeline, a tuning guide, and one real case"
-    value_zh: "一条命令把单人照片变成 1080×1920 竖版视频：线稿抠图去噪、最小生成树连成一笔、N 从 1 到 1024 的真实傅里叶重建与公式揭晓。"
-    value_en: "One command turns a single-person photo into a 1080x1920 vertical video: cleaned line art, one continuous path joined along a spanning tree, real Fourier reconstruction from N=1 to 1024, and a formula reveal."
-    anchor_zh: "一次使用可保守省下约 4–10 小时的开源实现摸索、线稿清理、连线处理与竖版渲染，或替代一条同类动效外包。"
-    anchor_en: "One use can conservatively save about 4–10 hours of finding implementations, cleaning line art, fixing connector strokes, and rendering vertically, or replace one outsourced motion clip."
-    basis_zh: "六维加权得分为 2.5/5；已有一组真实案例与逐级误差证据，但只验证过一个人，全本地运行无边际成本，公开源码易复制，因此官网先作为免费入口。"
-    basis_en: "The six-dimension score is 2.5/5, backed by one real case with per-stage error evidence; it has been verified on one person only, runs locally at no marginal cost, and the public source is easy to copy, so the website starts it as a free entry."
-    boundary_zh: "包含线稿、路径、傅里叶计算、无音轨竖版成片、质检静帧、联系表与误差报告；不含配乐、口播、封面、发布与照片授权。"
-    boundary_en: "Includes line art, path building, Fourier analysis, a silent vertical video, QC stills, contact sheets, and an error report; excludes music, voice-over, covers, publishing, and photo rights clearance."
-    maintenance_zh: "随 skia-python、OpenCV、macOS Vision 接口变化与不同人物的真实使用反馈复评。"
-    maintenance_en: "Review against skia-python, OpenCV, and macOS Vision changes and real feedback across different people."
-    confidence: case-backed
-    review_trigger_zh: "达到 100 次真实外部使用、五组不同人物的案例，或加入配乐、托管渲染、批处理与新视觉模板后复评。"
-    review_trigger_en: "Review after 100 verified external uses, five cases on different people, or the addition of music, hosted rendering, batch processing, or new visual templates."
+    delivery_unit_zh: "包含在 Lovstudio.AI VIP 会员全套权益中，含当前版本的线稿与傅里叶流水线、电影化渲染、配乐与旁白调用、音效与混音门禁和两组真实案例"
+    delivery_unit_en: "Included in the full Lovstudio.AI VIP Membership, with the current line-art and Fourier pipeline, cinematic renderer, music and narration callers, effects, mix gates and two real cases"
+    value_zh: "一张照片做成可直接发的傅里叶画像短片：扫描转线稿、1 到 1024 个圆逐级绘制、慢镜头推近笔尖、在音乐重拍处揭晓照片与线稿对照，配乐、旁白字幕、音效和片尾引流卡一次交付。"
+    value_en: "Turn one photo into a ready-to-post Fourier portrait short: scan into line art, staged passes from 1 to 1024 circles, a slow-motion zoom on the pen, a photo / line-art reveal on the music drop, with music, captioned narration, effects and an end card."
+    anchor_zh: "一条当天可发的数学动效短片：省去开源实现摸索、线稿清理、连线处理、镜头设计、配乐卡点与旁白混音；外包同类动效短片通常按条计价。"
+    anchor_en: "A same-day math-animation short without working out implementations, line-art cleanup, connector strokes, shot design, music sync and narration mixing; outsourced clips of this kind are usually priced per video."
+    basis_zh: "会员专享，不单独定价、不兑换 Credits；会员价格以当前会员方案为准。"
+    basis_en: "Members only; not sold separately or redeemable with Credits. Membership pricing follows the current plan."
+    boundary_zh: "覆盖线稿、傅里叶路径、电影化渲染、配乐生成调用、TTS 旁白与字幕、音效、混音与质检报告；OpenRouter 与火山引擎调用费用、字体与照片授权、封面设计与代发布另计。"
+    boundary_en: "Covers line art, the Fourier path, cinematic rendering, music generation calls, TTS narration with captions, effects, mixing and the QC report; OpenRouter and Volcengine usage, font and photo rights, cover design and publishing are separate."
+    maintenance_zh: "随 skia-python、OpenCV、macOS Vision、Lyria 与 Seed-TTS 接口变化及不同人物的真实使用反馈复评。"
+    maintenance_en: "Review when skia-python, OpenCV, macOS Vision, Lyria or Seed-TTS interfaces change, and against real use on different people."
+    confidence: low
+    review_trigger_zh: "会员权益范围调整、10 次真实外部使用、五组不同人物的案例或版本大改时复评。"
+    review_trigger_en: "Review when membership scope changes, after 10 real external uses, five cases on different people, or a major version change."
     card_path: pricing-cards/fourier-portrait.md
