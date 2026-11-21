@@ -3,6 +3,80 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.19.0] - 2026-11-22
+
+新增抖音（Douyin 创作者中心）。2026-11-21 发《傅里叶自画像》v0.3 竖版（54 秒）时逐个控件读页面、实测走通：上传 → 标题 / 简介 /
+5 个话题 → 竖横两个封面槽（中途按同期变化换过两轮封面）→ 终稿确认 → 点一次「发布」→ 作品管理重载读到「审核中」
+（`platform_pending`）。
+
+### Added
+
+- `references/douyin/page-anatomy.md`：入口与跳转（首页「发布视频」→ `/content/upload` → `/content/post/video`）、登录交接与首页引导弹窗、
+  上传后的定位权限硬停、标题 `input` 与 `n/30` 计数器、editor-kit 简介按 `.ace-line` 回读、话题「#添加话题」+ 按名称 span 全等点选
+  （按容器子元素找会点错成「#傅里叶级数计算」）、第 6 个话题只闪「最多可添加5个话题」的记录器写法、竖 3:4 / 横 4:3 两个封面槽的
+  两步式与单槽式编辑器、自主声明选项、发布设置、一次读完整个字段表、发布按钮与 `create_v2` 返回、作品管理回读与查重。
+- `references/douyin/platform-constraints.md`：上传页与「视频上传说明」原文（1 小时 / 16G，粉丝过万 3 小时 / 64G；推荐 mp4、webm；
+  H.264 / H.265；画质表；推荐画幅；「超过40秒的视频建议上传横版视频」）、文案上限、话题 5 个、标题与简介在预览里拼成一段、
+  跨平台继承的最小适配、可逆性未实测、列表状态映射。
+- `check_video.py --platform douyin`：14.9 GiB / 1 小时；推荐 MP4 / WebM；H.264 / H.265；三条抖音专属 warning
+  `long_vertical_video`、`aspect_ratio_not_recommended`、`frame_rate_above_playback_tier`；文件名标识 `douyin`、`抖音`。
+- `check_copy.py --platform douyin`：标题 30、简介 1000（话题计入）、话题 5 个（超了报 `topics_too_many`）、行内 `#` 报 warn。
+- 两份测试各加一个抖音测试类（共 81 个）。
+
+### Changed
+
+- SKILL.md：路由表加抖音一行；抖音和小红书一样不在默认队列里；平台差异、触发词、Profile 键名 `douyin`（未登记，按 `confirm-final`）、
+  封面槽、原创（网页端无此控件）、自主声明、执行流程第 1、2、5、7、8、9、11、12 步补抖音。
+- publish-gates 加抖音专有字段表、文案预检与封面槽位；browser-workflow、description-template、README 补抖音。
+- README 安装命令按目录规范改为 `npx lovstudio skills add media-publisher -g -y`。
+
+## [0.18.0] - 2026-11-10
+
+2026-11-10 发《对话阿早》视频号：等终稿确认期间任务空间 4 被归还给用户，作者回「确认发表」后 `claimTaskSpace(4)`，页面上的
+`Runtime.evaluate`、`Page.captureScreenshot` 全部超时，报错让 reload 或关页。发 `Page.handleJavaScriptDialog { accept: false }` 取消后恢复，
+整表重读 0 处差异，01:54 发表（原创审核中）。10-31 发《对话 Yoyo 姐》v0.4 时在空间 6 遇到过同样的情况、同样处理，当时只写进了交付报告。
+
+### Added
+
+- browser-workflow「等待终稿确认时任务空间被结束」新节「接手后页面被 JS 对话框卡住」：现象与报错原文，不 reload（表单会丢），先取消对话框、
+  带 `timeout` 读 `document.readyState` 确认恢复，再照第 6 步整表重读和查重；取消报错或仍超时就停下报告。附 Page API 写法，旧写法同样有效。
+  处理步骤第 6 步加一句指向。
+
+## [0.17.1] - 2026-11-06
+
+发某期饭局片时的观测。
+
+### Added
+
+- 视频号 page-anatomy：上传失败「网络出错，请重新上传。」的读法和重传步骤；话题前补空行不要 `insertText`；封面确认后缩略图会晚一两分钟更新。
+- browser-workflow：第二次观测 Ego Lite 重启丢掉 agent 的任务空间，作者知情后如何继续。
+
+## [0.17.0] - 2026-10-31
+
+2026-10-30/31 发《对话易七猫》：视频号投稿停在终稿确认期间，Ego Lite 升级重启，任务空间 7 连同填好的表单一起没了；作者恰好要换成嘉宾手修的
+视频，新开任务空间 2 重传重填，10-31 00:10 发表（原创审核中）。B 站横版 00:29 投稿，BV1ofxB6qEQu 约 30 秒后开放浏览。下面的读数都来自
+这次运行的会话记录与交付报告。
+
+### Added
+
+- 浏览器工作流「编号不跨重启」：同一次重启（10-30 22:49，升级到 0.6.2.5）里，归用户的空间 5 换成编号 1 留下，代理还占着的空间 7
+  （`createdBy: agent`、`ownership: agent`）整个消失，22:59 `listTaskSpaces()` 只剩用户自己 id 0 的空白页，表单丢失。只有这一组观测，
+  归属是不是原因没有验证。核对步骤加第 5 条：按名称找不到原空间就当表单已丢，停下报告，重传重填要用户另行同意，新开空间前先在内容列表查重，
+  填完从头走终稿确认。
+- 视频号创建页结构：
+  - 「原创权益」弹窗的确认路径（10-31 跑通）：弹窗只有一个复选框「我已阅读并同意《原创声明须知》和《使用条款》」，按钮「取消 / 声明原创」；
+    CDP 点复选框中心、读回 `checked=true`，再点一次「声明原创」，之后 `.ant-checkbox-checked` 与 `input.checked` 都为真。
+  - 封面编辑器「个人主页卡片」预览右下角叠着点赞数（示例「10万+」），主标题要避开；`publish-gates.md` 的槽位验收第 2 条加了指向。
+  - 话题前插的两个 `<br>` 会并进第一个文本节点成为 `\n\n`；之后只改首行要断言节点等于「旧问句 + `\n\n`」、只选中旧问句长度那一段再真键入，
+    附这次跑通的写法（第一版按整节点全等去找，报错停下）。
+  - 短标题允许空格：15 字含 2 个空格，没有校验提示（控件定位表）。
+- B 站投稿页结构：
+  - 写完标题后分区从 vlog 改猜成「小剧场」，推荐话题 chip 跟着换成搞笑短剧一类；
+  - 平台自动带出「学习 / 记录 / 原创」，其中「原创」就是原创 chip，清标签时保留（`SKILL.md` 与 `publish-gates.md` 的清标签规则同步加了这个例外）；
+  - 30 个一级分区原文（含「人工智能」「科技数码」）；选「科技数码」落库为 tid 122，与 10-12 选「知识」同一个 tid，验收看下拉显示的名字；
+  - 新节「定时发布开关：按类名全等判断」：`[class*=on]` 会命中 `switch-container` 自己（第一版探针把关着的开关读成开），改读可见开关的 `class`
+    恰好等于 `switch-container` 才算关，附写法。
+
 ## [0.16.0] - 2026-10-30
 
 2026-10-30 发《易七猫对话手工川》B 站横版：04:50 前后填完表，停在「立即投稿」前等终稿确认。约 16 小时后用户回「确认投稿」，

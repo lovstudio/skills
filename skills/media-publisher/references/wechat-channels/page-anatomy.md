@@ -75,7 +75,7 @@ sr.querySelectorAll('.weui-desktop-dialog__wrp').forEach(el => {
 | 描述 | `sr.querySelector('.input-editor[contenteditable]')` | `innerText` 全文逐字比对 |
 | 话题标签 | 描述内 `span.topic[data-type=topic]` | **节点个数与文本**，不是描述字符串里搜 `#` |
 | `#话题` 按钮 | `.tag-inner` 里自身文本为 `#话题` 的那个，取 `.closest('.finder-tag-wrap')` | 点击后出现 `#`，选区停在它紧后面；之后不要再挪 caret |
-| 短标题 | `sr.querySelector('input[placeholder*="短标题"]')` | `value`；`maxLength` 是 `-1`，长度靠动态校验：超 16 字报「标题超过16字限制」；不足 6 字报「标题至少6个字」（2026-10-12，从 `[class*=error]` 可见节点读到，所在 class 没记录） |
+| 短标题 | `sr.querySelector('input[placeholder*="短标题"]')` | `value`；`maxLength` 是 `-1`，长度靠动态校验：超 16 字报「标题超过16字限制」；不足 6 字报「标题至少6个字」（2026-10-12，从 `[class*=error]` 可见节点读到，所在 class 没记录）。空格可用：2026-10-31「据说是颜值最高的 AI 录音卡」15 字含 2 个空格，没有校验提示 |
 | 校验错误 | `sr.querySelectorAll('[class*=error]')` | `.error-title` 的文本 |
 | 位置 | `.location-name` / 容器 `.place` | 清空后 `.location-name` 变 `null` |
 | 位置选项 | `.location-item`，目标项文本 `不显示位置` | `.form-item` 文本变为「位置 不显示位置」 |
@@ -331,6 +331,11 @@ Array.from(sr.querySelectorAll('.cover-tips')).map(e => e.innerText.trim())
 
 读到几个就传几张并各自验安全区；确认只有一个时才在报告里写 4:3 无入口、留作备用件。
 
+### 个人主页卡片预览右下角叠着点赞数（2026-10-30 观测）
+
+封面编辑器的「个人主页卡片」预览右下角叠着点赞数（示例「10万+」）。预览模拟的是个人主页卡片，按线上同样会盖住处理：
+验安全区时把这一角算进去，主标题落在那里就退回封面环节改。《对话易七猫》人物版式封面第一稿被压住「卡」字，三行字整体上移 60 px 后避开。
+
 ### 4:3 槽的交互与 3:4 槽不同
 
 点 4:3 槽的 `.edit-btn` **不开弹窗**（可见弹窗读回 `[]`），而是弹一个浮层
@@ -350,6 +355,38 @@ const im = /* 浮层内的 img */; ({ nw: im.naturalWidth, nh: im.naturalHeight 
 - 话题标签前要留一个空行：正文设置完后，在第一个 `span.topic` 前 `insertBefore(document.createElement('br'), firstTopic)`，否则话题和上一行黏在一起（读 `innerText` 末尾几行确认有空行）。
 - 正文里的 `#` 会被平台识别成话题标签：模板里「#公众号：手工川、官网：https://…」整串会被当成一个 topic。模板的「#公众号」要写成纯文本「公众号」，真话题只用 `#话题` 按钮生成。
 - 加话题的 caret 收尾（`range.selectNodeContents(ed); collapse(false)` 后点 `#话题` 再 `typeText`）会把正文末尾的空行吞掉，所以「话题前空行」靠事后 insertBefore 补，别指望加话题流程自己留空行。（这是 2026-08 的旧顺序；2026-10-02 起点按钮后不再收 caret，见上文「描述与话题的写入顺序」。新顺序下末尾空行还会不会被吞 **未单独核对**，仍按事后 insertBefore 补并读 `innerText` 确认。）
+- 话题前插进去的两个 `<br>` 不会留成元素，编辑器把它们并进第一个文本节点，变成首行末尾的 `\n\n`（2026-10-30 读到子节点：
+  `"问句\n\n"`、`span.topic`、`" "`、`span.topic`……）。之后只改首行时，按「首个文本节点全等于旧问句」去找会落空（这次第一版脚本就这样报错停下）；
+  要断言它等于「旧问句 + `\n\n`」，只选中开头旧问句长度那一段，再真键入新句，空行和话题节点都不动：
+
+```js
+const s = await js(`(() => {
+  const Q = ${JSON.stringify(OLD_FIRST_LINE)}
+  const sr = document.querySelector('wujie-app').shadowRoot
+  const ed = sr.querySelector('.input-editor[contenteditable]')
+  const first = ed.firstChild
+  if (!first || first.nodeType !== 3 || first.textContent !== Q + '\\n\\n') return { ok: false, got: first ? JSON.stringify(first.textContent) : null }
+  ed.focus()
+  const sel = sr.getSelection ? sr.getSelection() : document.getSelection()
+  const r = document.createRange(); r.setStart(first, 0); r.setEnd(first, Q.length)
+  sel.removeAllRanges(); sel.addRange(r)
+  const s2 = sr.getSelection ? sr.getSelection() : document.getSelection()
+  return { ok: s2.anchorNode === first && s2.focusNode === first && s2.anchorOffset === 0 && s2.focusOffset === Q.length }
+})()`)
+if (!s.ok) throw new Error('选区不是旧首行: ' + JSON.stringify(s))
+await typeText(NEW_FIRST_LINE)
+```
+
+然后读 `innerText`（新句 + 空行 + 话题）、`span.topic` 个数与首个文本节点（应为「新句 + `\n\n`」）。这是真键入，左侧手机预览随之更新
+（2026-10-30 回读旧问句在页面上一处不剩），不用补上文「合成写入后，手机预览可能还是旧文案」那一步。
+
+## 上传失败与封面缩略图延迟（2026-11-06 实测）
+
+- 一条一百多 MiB 的成片第一次传到三分之一左右后，`[class*=error]` 读到 `.status-msg.error`「网络出错，请重新上传。」，进度条消失。
+  点视频下方「删除」→ popover「删除」→ 重新 `DOM.setFileInputFiles` 就能再传；描述、话题、短标题和位置都还在。盯进度时要同时读这个错误节点，只看进度消失会以为传完了。
+- 话题前补空行不要在首个文本节点末尾 `insertText("\n")`：换行落进了第一个 `span.topic`，话题文本变成 `"\n#某话题"`。
+  肉眼看不出来，按话题名全等比对字段表才抓到。修法：把话题节点文本改回去，给文本节点末尾补 `\n\n`，再把 caret 放到首行末尾真键入一次空格加 Backspace。
+- 封面弹窗按「确认」后 toast 已显示「封面已更新」，约 3 秒时缩略图还是视频首帧，隔一两分钟再截才是新封面。不要据此重传，也不要在缩略图换好之前判定封面合格。
 
 ## 合集下拉：列表自己会滚，`scrollIntoView` 会把下拉关掉（2026-09-09 EP.01 实测）
 
@@ -415,6 +452,13 @@ if (!orig || !(orig.cls && orig.prop)) throw new Error('原创未生效: ' + JSO
 - `cls` 为假、`prop` 为真就是本次的取消残留态，按未勾选处理。在这个状态下再点主复选框会怎样 **未单独核对**：
   点一次后先确认可见弹窗是「原创权益」再继续，没弹出来就停下截图，不连点。
 - 2026-08 起的「弹窗关闭后读主复选框 `checked=true`」仍是必要条件，只是不再充分。
+
+### 「原创权益」弹窗的确认路径（2026-10-31 跑通）
+
+点主复选框后弹出「原创权益」，弹窗里只有一个复选框「我已阅读并同意《原创声明须知》和《使用条款》」，按钮是「取消 / 声明原创」。
+走通的顺序：用可见性过滤找到这个弹窗 → CDP 真鼠标点复选框中心，读回 `checked=true` → 真鼠标点一次「声明原创」→ 再用可见性过滤确认
+弹窗已关。之后主复选框所在 `.form-item` 里 `.ant-checkbox-checked` 与 `input.checked` 都为真，也就是上面验收代码的 `cls`、`prop` 都成立。
+代勾这个复选框等于代用户接受平台条款：这次终稿确认的问句写明了「代勾原创条款」，作者回「发吧」之后才点。
 
 ## 「发表」按钮：滚动和读 rect 分两轮，命中断言后只点一次（2026-10-06 实测）
 

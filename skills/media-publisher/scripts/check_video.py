@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only ffprobe preflight for videos uploaded to WeChat Channels, Bilibili or Xiaohongshu.
+"""Read-only ffprobe preflight for videos uploaded to WeChat Channels, Bilibili, Xiaohongshu or Douyin.
 
 平台的硬限制差一个数量级，用错一边就会得到假结论：一条 491 MB / 18m45s 的片子
 在视频号接近上限，在 B 站是小件。所以文件大小、时长和最短时长都按 `--platform` 取。
@@ -7,13 +7,17 @@
     python3 check_video.py 片子.mp4 --platform wechat-channels --json
     python3 check_video.py 片子.mp4 --platform bilibili --expected-orientation horizontal --json
     python3 check_video.py 片子.mp4 --platform xiaohongshu --expected-orientation vertical --json
+    python3 check_video.py 片子.mp4 --platform douyin --expected-orientation vertical --json
 
 `--max-gb` / `--max-hours` 仍可覆盖，用于页面显示了灰度放宽时（视频号页面写「上传时长8小时内，大小不超过20GB」，
-按十进制折成 `--max-gb 18.6 --max-hours 8`）。
+按十进制折成 `--max-gb 18.6 --max-hours 8`；抖音粉丝过万写「3 小时以内、64G 以内」，折成 `--max-gb 59.6 --max-hours 3`）。
 建议项（编码、分辨率、帧率、音频）各平台共用，都只报 warning。容器和码率按平台取：
 视频号建议 MP4、≤ 10 Mbps；B 站投稿页推荐 MP4 / MOV / MKV，没有码率上限且会对每条投稿
 重新转码，码率只在 `notes` 里给一条 info 提示，不报 warning，不要为它重压；小红书上传页
-推荐 MP4 / MOV，同样没有码率上限，处理方式与 B 站相同。目标项目已经声明横竖版时，用
+推荐 MP4 / MOV，同样没有码率上限，处理方式与 B 站相同。抖音「视频上传说明」推荐 MP4 / WebM、
+支持 H.264 与 H.265，也没有码率上限；它另有三条只属于抖音的建议，都只报 warning：超过 40 秒的竖版
+（上传页「超过40秒的视频建议上传横版视频」）、不在推荐画幅里的宽高比、超过分辨率档位播放帧率的帧率。
+目标项目已经声明横竖版时，用
 `--expected-orientation` 把选错成片变成硬错误；文件名明确属于另一个平台时默认也会失败
 （长标识和中文标识按子串匹配，`mybilibili`、`B站` 都会命中；短标识 xhs / rednote / b站
 按 ASCII 字母边界匹配，`colorednotes` 不会被当成 rednote），只有用户明确要求
@@ -99,7 +103,37 @@ PLATFORMS: Dict[str, Dict[str, Any]] = {
         # 上传页没有写宽高比要求，与 B 站一样只走全局 MIN/MAX_ASPECT_RATIO（1:3 至 3:1）兜底。
         "source": "小红书创作服务平台上传页原文（2026-10-01 读取）",
     },
+    "douyin": {
+        "label": "抖音",
+        # 「视频上传说明」原文「视频时长 1 小时以内，文件大小 16G 以内」。与 B 站「16G」同一口径，
+        # 按十进制 16 GB = 14.90 GiB 取。粉丝过万放宽到「3 小时以内、64G 以内」，用 --max-gb / --max-hours 覆盖。
+        "max_gb": 14.9,
+        "max_hours": 1.0,
+        # 页面没有写最短时长，与 B 站一样取 1 秒作为「不是空文件」的下限，未实测。
+        "min_duration_seconds": 1.0,
+        # 说明页只写了平台会转码原片，没有码率上限（2026-11-21 读取）。
+        "max_video_bitrate": None,
+        "bitrate_note": (
+            "抖音 上传说明没有写码率上限，平台会把原片传到服务器转码，直接上传渲染母版，不要为码率重压；"
+            "只有体积或时长超限时才需要重新编码"
+        ),
+        # 原文「推荐上传 mp4、webm 格式视频」；mov、mkv 等在支持列表里，只报建议警告。
+        "containers": {".mp4": "mp4", ".webm": "webm"},
+        "container_issue": "container_not_recommended",
+        # 原文「支持 H.264、H.265 视频编码格式」。
+        "video_codecs": {"h264": "H.264", "hevc": "H.265"},
+        # 上传页原文「超过40秒的视频建议上传横版视频」。只是建议：项目已批准竖版时照传。
+        "vertical_advice_seconds": 40.0,
+        # 原文「推荐上传常见画幅比例的视频，如宽高比为 16:9、9:16、3:4、4:3 的视频」，
+        # 全面屏另推荐「9:19.5（剪映5.8寸）或 9:19」。页面同时写「支持上传任意宽高比」，所以只报 warning。
+        "recommended_aspect_ratios": ((16, 9), (9, 16), (3, 4), (4, 3), (9, 19.5), (9, 19)),
+        # 「视频画质」表：4k、2k 档最高 60 帧，1080p 及以下最高 30 帧。按短边分档：≥ 1440 为 60，否则 30。
+        "playback_fps_tiers": ((1440, 60.0), (0, 30.0)),
+        "source": "抖音创作者中心上传页与「视频上传说明」原文（2026-11-21 读取）",
+    },
 }
+
+ASPECT_RATIO_TOLERANCE = 0.01
 
 DEFAULT_PLATFORM = "wechat-channels"
 ORIENTATIONS = ("horizontal", "vertical", "square")
@@ -125,6 +159,10 @@ PLATFORM_FILENAME_TOKENS: Dict[str, Tuple[Tuple[str, bool], ...]] = {
         ("小红书", False),
         ("xhs", True),
         ("rednote", True),
+    ),
+    "douyin": (
+        ("douyin", False),
+        ("抖音", False),
     ),
 }
 
@@ -352,8 +390,29 @@ def validate_probe(
                 )
 
         video_codec = str(video.get("codec_name") or "").lower() or None
-        if video_codec != "h264":
-            warnings.append(_issue("video_codec_not_h264", "建议使用 H.264 视频编码"))
+        codecs = spec.get("video_codecs")
+        if codecs is None:
+            if video_codec != "h264":
+                warnings.append(_issue("video_codec_not_h264", "建议使用 H.264 视频编码"))
+        elif video_codec not in codecs:
+            warnings.append(
+                _issue(
+                    "video_codec_not_supported",
+                    f"{spec['label']} 支持 {' / '.join(codecs.values())} 视频编码，当前为 {video_codec or '未知'}",
+                )
+            )
+
+        ratios = spec.get("recommended_aspect_ratios")
+        if ratios and aspect_ratio is not None and not any(
+            abs(aspect_ratio / (w / h) - 1) <= ASPECT_RATIO_TOLERANCE for w, h in ratios
+        ):
+            names = "、".join(f"{w:g}:{h:g}" for w, h in ratios)
+            warnings.append(
+                _issue(
+                    "aspect_ratio_not_recommended",
+                    f"{spec['label']} 推荐宽高比 {names}，当前 {width}x{height}；平台会裁切或加背景播放",
+                )
+            )
 
         bitrate_number = _number(video.get("bit_rate"))
         if bitrate_number is not None:
@@ -387,6 +446,19 @@ def validate_probe(
             fps = None
         elif fps > RECOMMENDED_MAX_FPS:
             warnings.append(_issue("frame_rate_high", "建议帧率不超过 60 fps"))
+        else:
+            tiers = spec.get("playback_fps_tiers")
+            if tiers and width is not None and height is not None:
+                short_side = min(width, height)
+                tier_fps = next(cap for floor, cap in tiers if short_side >= floor)
+                if fps > tier_fps + 0.01:
+                    warnings.append(
+                        _issue(
+                            "frame_rate_above_playback_tier",
+                            f"{spec['label']} 短边 {short_side} 的画质档最高播放 {tier_fps:g} 帧，"
+                            f"当前 {fps:g} fps 多出的帧播放时用不上",
+                        )
+                    )
 
     format_name = str(format_info.get("format_name") or "").lower()
     containers = spec["containers"]
@@ -437,6 +509,20 @@ def validate_probe(
         "orientation": _orientation(width, height),
     }
     actual_orientation = media["orientation"]
+    vertical_advice = spec.get("vertical_advice_seconds")
+    if (
+        vertical_advice is not None
+        and actual_orientation == "vertical"
+        and duration is not None
+        and duration > vertical_advice
+    ):
+        warnings.append(
+            _issue(
+                "long_vertical_video",
+                f"{spec['label']} 上传页原文「超过{vertical_advice:g}秒的视频建议上传横版视频」，"
+                f"当前竖版 {duration:g} 秒；项目已批准竖版时照传，在终稿确认里列出这条建议",
+            )
+        )
     if (
         expected_orientation is not None
         and actual_orientation is not None
@@ -621,8 +707,8 @@ def format_human(result: Dict[str, Any]) -> str:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "只读检查待发布视频（视频号 / B 站 / 小红书）。"
-            "例：check_video.py 片子.mp4 --platform xiaohongshu --expected-orientation vertical --json"
+            "只读检查待发布视频（视频号 / B 站 / 小红书 / 抖音）。"
+            "例：check_video.py 片子.mp4 --platform douyin --expected-orientation vertical --json"
         )
     )
     parser.add_argument("video", type=Path, help="本地视频文件")

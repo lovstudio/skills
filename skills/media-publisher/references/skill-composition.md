@@ -1,6 +1,6 @@
 # 组合决策
 
-本 Skill 由 `lov-publish-wechat-channels` 升级而来，2026-08-18 扩成双平台，2026-10-01 加入小红书。这里记录它和
+本 Skill 由 `lov-publish-wechat-channels` 升级而来，2026-08-18 扩成双平台，2026-10-01 加入小红书，2026-11-21 加入抖音。这里记录它和
 相邻 Skill 的边界，以及为什么选了当前形态。
 
 ## Nearby Skills Inspected

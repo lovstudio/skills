@@ -1,9 +1,9 @@
 ---
 name: lov-media-publisher
 description: >-
-  通过已登录的创作者后台发布本地视频到微信视频号、Bilibili 或小红书，并以媒体预检、描述来源冻结、
+  通过已登录的创作者后台发布本地视频到微信视频号、Bilibili、小红书或抖音，并以媒体预检、描述来源冻结、
   字段回读、封面安全区、终稿确认与列表回读为门禁。Use when users ask to publish, draft,
-  schedule, or check a video post, including 发视频号、发 B 站、发小红书、投稿、上传成片。
+  schedule, or check a video post, including 发视频号、发 B 站、发小红书、发抖音、投稿、上传成片。
 license: MIT
 compatibility: >-
   只读预检需要 Python 3.8+ 与 ffprobe；全部网页交互走 ego-browser 的 task space
@@ -13,11 +13,12 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.16.0"
+  version: "0.19.0"
   tags:
     - wechat-channels
     - bilibili
     - xiaohongshu
+    - douyin
     - video-publishing
     - browser-automation
 ---
@@ -44,19 +45,23 @@ metadata:
   适配（标题 ≤20 字重派生、正文去掉行内 `#话题`、话题减到 10 个以内并走页面候选），改写处列入终稿确认（`auto` 平台列入发布后的报告；
   改动的是用户写的文本时按「按 Profile 偏好免终稿确认」的退回条件停下）；成片仍按
   下文「平台成片映射门禁」取小红书对应文件，用户明确同意复用别的平台文件才加 `--allow-cross-platform-name`。
+- **抖音也不在默认队列里**，规则与小红书相同：只说「发抖音」时队列为 `[douyin]`，「也发抖音」时接在队列后面。继承冻结终稿时的最小
+  适配是：两行钩子拆成「标题 = 第一行（≤30 字），简介 = 其余」（抖音预览把标题和简介拼成一段，两处写同一句会重复）、剥掉行内
+  `#话题`、话题减到 5 个以内并走「#添加话题」联想，改写处同样列入终稿确认。
 
 | 平台 | `--platform` | 入口 | 结构 | 页面细节 | 平台约束 |
 | --- | --- | --- | --- | --- | --- |
 | 微信视频号 | `wechat-channels` | `https://channels.weixin.qq.com/platform/post/create` | wujie 微前端 + shadow DOM | [创建页结构](references/wechat-channels/page-anatomy.md) | [视频号约束](references/wechat-channels/platform-constraints.md) |
 | Bilibili | `bilibili` | `https://member.bilibili.com/platform/upload/video/frame` | 普通 Vue 应用 | [投稿页结构](references/bilibili/page-anatomy.md) | [B 站约束](references/bilibili/platform-constraints.md) |
 | 小红书 | `xiaohongshu` | `https://creator.xiaohongshu.com/publish/publish?source=official` | Vue + tiptap 正文 + 封闭 shadow 的发布按钮 | [发布页结构](references/xiaohongshu/page-anatomy.md) | [小红书约束](references/xiaohongshu/platform-constraints.md) |
+| 抖音 | `douyin` | `https://creator.douyin.com/creator-micro/content/upload` | Semi Design + editor-kit 简介，普通 DOM | [发布页结构](references/douyin/page-anatomy.md) | [抖音约束](references/douyin/platform-constraints.md) |
 
 几条会反复咬人的平台差异，先记住再动手：
 
 - **可逆性不同**：视频号发布后视频本身换不了；2026-10-12 读到内容列表卡片上有
   「修改描述和封面」入口，但只观测到入口、没有实际操作过，能改到什么程度、改后是否重新审核都
-  未实测，所以报告与门禁仍按不可逆口径。B 站稿件投出后可 `?type=edit&bvid=` 改标题、
-  简介、标签、封面、合集，但**改完必须重新点「立即投稿」**。终稿确认门禁三个平台默认都走（Profile 可按平台
+  未实测，所以报告与门禁仍按不可逆口径；抖音作品管理里有「编辑作品」入口，同样未实测，按不可逆处理。B 站稿件投出后可 `?type=edit&bvid=` 改标题、
+  简介、标签、封面、合集，但**改完必须重新点「立即投稿」**。终稿确认门禁各平台默认都走（Profile 可按平台
   免掉，见「按 Profile 偏好免终稿确认」），
   只是报告口径要跟着变，不要把 B 站的错发渲染成灾难。小红书笔记发布后能否改视频、标题、
   正文**尚未实测**，在证实之前按视频号的不可逆口径处理与报告。
@@ -64,10 +69,13 @@ metadata:
   去卡另一边就会得到假结论，所以脚本一律显式传 `--platform`。码率和容器同理：≤ 10 Mbps、
   MP4 是视频号的建议；B 站没有码率上限，推荐 MP4 / MOV / MKV，且会重新转码每条投稿，
   直接传渲染母版。小红书上传页写的是「4 小时以内、最大 20GB、推荐 mp4、mov」，同样没有
-  码率要求，直接传已批准成片。
+  码率要求，直接传已批准成片。抖音是「1 小时以内、16G 以内」（粉丝过万 3 小时 / 64G），推荐 mp4、webm，
+  也没有码率要求；它的上传页另写「超过40秒的视频建议上传横版视频」，只是建议，已批准竖版照传。
 - **写值方式完全不同**：视频号的描述是 contenteditable、话题必须由平台按钮生成；
   B 站的输入框要用原生 setter，简介是 Quill 实例；小红书标题用真点击 + `Input.insertText`，
-  正文是 tiptap / ProseMirror，话题必须从 `#` 候选里**按名称全等**点选成 `a.tiptap-topic` 节点。
+  正文是 tiptap / ProseMirror，话题必须从 `#` 候选里**按名称全等**点选成 `a.tiptap-topic` 节点；
+  抖音标题是普通 `input`（真点击 + `insertText`），简介是 editor-kit，话题点「#添加话题」后按名称 span 全等点选成
+  `[data-mention="#"]` 节点，**最多 5 个**，第 6 个只闪一下「最多可添加5个话题」、不生成节点（2026-11-21）。
   不要互相套用。
 - **小红书的发布按钮读不到文字**：「暂存离开」「发布」都在封闭 shadow root 的自定义元素
   `XHS-PUBLISH-BTN` 里，按文字查找一律落空。点击前现拍截图并核对视口尺寸，断言
@@ -76,7 +84,7 @@ metadata:
   「最多支持添加10个话题」、不发请求，2026-10-29 前三次都被误判成没点上，第四次装上记录器才读到。点之前先装
   提示与请求记录器，见 [小红书发布页结构](references/xiaohongshu/page-anatomy.md)「点了「发布」没反应」。
 - **控件类名一律从 page-anatomy 抄，不许猜**：几个平台都是自研组件库（视频号 wujie +
-  shadow DOM，B 站 `data-v-*` scoped CSS，小红书 `d-*` 组件 + tiptap）。套 antd 或通用猜测（`.ant-select-*`、
+  shadow DOM，B 站 `data-v-*` scoped CSS，小红书 `d-*` 组件 + tiptap，抖音 Semi Design + 带构建哈希后缀的业务 class）。套 antd 或通用猜测（`.ant-select-*`、
   `[role="combobox"]`、`.choose-btn`、`.category-item`）一个都命中不了，而且**查不到
   不报错**，表现为「点了没反应」，极易被误读成时机未到而空等几轮。**填任何字段前
   先打开该平台的 page-anatomy 对一遍选择器表**——2026-08-18 EP.03 就是跳过这一步，
@@ -112,7 +120,7 @@ python3 $SKILL_DIR/scripts/check_video.py PLATFORM_MP4 \
 
 ### Activate when
 
-- 用户要求把本地视频发布到微信视频号、B 站或小红书（视频笔记），或保存成草稿。
+- 用户要求把本地视频发布到微信视频号、B 站、小红书（视频笔记）或抖音，或保存成草稿。
 - 用户要求安排定时发布、核验发布状态，或 publish a video to Bilibili / video channels。
 - 用户要求基于本会话上一版内容重发同一个本地视频。
 
@@ -218,10 +226,10 @@ gold reference，同时也是后续平台的表达策略来源：保留它的钩
 | `auto` | 字段表全项 `pass` 后直接提交，不停在 `awaiting_confirmation` |
 | `confirm-final` | 照常停下等终稿确认；没登记的平台、没有这条记录时都按它 |
 
-键名用 `wechat_channels` / `bilibili` / `xiaohongshu`。2026-10-12 的记录是 `bilibili: auto`、
-`xiaohongshu: auto`、`wechat_channels: confirm-final`，来源是用户原话「B 站的都自动发，以及小红书」。
+键名用 `wechat_channels` / `bilibili` / `xiaohongshu` / `douyin`。2026-10-12 的记录是 `bilibili: auto`、
+`xiaohongshu: auto`、`wechat_channels: confirm-final`，来源是用户原话「B 站的都自动发，以及小红书」；`douyin` 没有登记，按 `confirm-final`。
 
-- 是否自动只按这三个平台值判断；同一条记录里的 `source`（原话与日期）和 `rule`（说明）只作记录。
+- 是否自动只按各平台的值判断；同一条记录里的 `source`（原话与日期）和 `rule`（说明）只作记录。
 - 只有用户亲口说出的长期偏好才能写进这条记录。当次请求里的说法不写进 Profile，也不能据此免掉终稿确认
   （「发吧」「可以」只是启动授权，见上节）；agent 不能自行放宽。
 - 写入或撤销时三处一起改：平台值；`source` 追加原话和日期；`rule` 改写成与平台值一致。用户说撤销时把对应平台
@@ -285,7 +293,9 @@ gold reference，同时也是后续平台的表达策略来源：保留它的钩
 （4:3 首页推荐 / 16:9 个人空间），而列表、空间和信息流用的都是 16:9 那个——只传 4:3
 等于没传。小红书只有「设置封面」一处，默认第一帧；悬停缩略图挂出「编辑封面」后进编辑器上传批准 3:4
 封面、语义 `.click()`「完成」，**2026-10-02 实测走通**（步骤见 [小红书发布页结构](references/xiaohongshu/page-anatomy.md)「封面」）；
-入口点一次编辑器没开就停下，把封面绝对路径交给用户手动上传，不重试、不换点法。读到几个槽就传几张，
+入口点一次编辑器没开就停下，把封面绝对路径交给用户手动上传，不重试、不换点法。抖音 2026-11-21 读到两个**独立**槽
+（竖封面 3:4、横封面 4:3），默认都是视频首帧，「Ai智能推荐封面」是平台生成图，不能当批准封面（步骤见
+[抖音发布页结构](references/douyin/page-anatomy.md)「封面」）。读到几个槽就传几张，
 并在报告里说明未用到的备用件。
 
 **封面存在不等于合格。** 小红书以「封面效果评估通过」回读加「封面预览」现拍截图验收；视口约 900 宽时
@@ -313,7 +323,7 @@ gold reference，同时也是后续平台的表达策略来源：保留它的钩
 确认时把「原创：已勾选」列入字段表，让用户看到而不是默认隐藏。B 站没有独立原创控件，
 用推荐标签里的「原创」chip（推荐标签不一定有它，没有时在字段表记「未出现」：需要终稿确认时交用户决定，
 `auto` 时不加、发布后报告写明）；小红书是「原创声明」开关 + 须知弹窗两步（勾「我已阅读并同意」
-再点「声明原创」），同样默认开启并回读开关的 `checked` 状态。
+再点「声明原创」），同样默认开启并回读开关的 `checked` 状态。抖音网页端没有原创控件（2026-11-21），字段表记「网页端无此控件」。
 
 合集：先读取页面实际选中值与现有候选；创建新合集仍需用户明确同意，因为视频号合集创建后
 不可改名。用户已在接管期间选择合集，或明确说“合集已勾选并已发布”时，不再询问、不清空、
@@ -331,8 +341,8 @@ agent 展示了旧版描述，用户已自行改好。
 仍引用本地 `publish-copy.md` 或 agent 旧草稿。用户编辑后不要再调用描述区的清空、`fill`、
 `execCommand` 或 Quill `setText()`。
 
-**生成内容标注默认不勾。** 视频号「视频标注」、B 站「创作声明」、小红书「内容类型声明」
-里的「含AI生成内容」类选项，按作者 2026-10-01 的常驻要求原则上不选，保持「无需标注 /
+**生成内容标注默认不勾。** 视频号「视频标注」、B 站「创作声明」、小红书「内容类型声明」、抖音「自主声明」
+里的「含AI生成内容」类选项（抖音原文「内容由AI生成」），按作者 2026-10-01 的常驻要求原则上不选，保持「无需标注 /
 内容无需标注 / 未添加」，只有用户在当次任务里明确要求标注时才选。来源证据显示含生成素材
 （TTS 旁白、AI 配乐或封面等）时，需要终稿确认的平台在终稿确认里写明「含生成素材，按偏好未标注」，由用户当次决定；
 Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的报告写明同一句。平台自身强制添加的标识不得移除；话题与素材来源的分开判断、依据记录
@@ -374,6 +384,8 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
      --expected-orientation "$EXPECTED_ORIENTATION" --json
    python3 $SKILL_DIR/scripts/check_video.py <视频路径> --platform xiaohongshu \
      --expected-orientation "$EXPECTED_ORIENTATION" --json
+   python3 $SKILL_DIR/scripts/check_video.py <视频路径> --platform douyin \
+     --expected-orientation "$EXPECTED_ORIENTATION" --json
    ```
 
    `EXPECTED_ORIENTATION` 必须先从本期交付契约读取并设为 `horizontal` / `vertical` / `square`；
@@ -414,6 +426,11 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
    python3 $SKILL_DIR/scripts/check_copy.py --platform xiaohongshu \
      --title "国庆72小时 玩转南头古城" --description "$(cat 正文.txt)" \
      --topic 南头古城 --topic 深圳 --json
+
+   # 抖音：标题 30 / 简介 1000（话题计入）/ 话题 ≤5；标题和简介别写同一句
+   python3 $SKILL_DIR/scripts/check_copy.py --platform douyin \
+     --title "一张照片，能只用旋转的圆画出来吗？" --description "想用你自己的照片，也做一条同款吗？" \
+     --topic 傅里叶级数 --topic 数学之美 --json
    ```
 
    `status: fail` 时先改文案再开浏览器。它只覆盖能离线判定的部分，**通过不等于平台一定
@@ -444,8 +461,8 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
    `pageInfo().url` 可能还是创建页，随后才落到登录页（2026-10-12：返回时是创建页、快照只有 `svg_root`，约 20 秒后重读是
    `login.html`；是返回后才重定向还是读数滞后，没有区分）：`auth_data` 返回 `errCode: 300333` 或没有
    `wujie-app` 时，先重读 URL 再判断，见 [视频号创建页结构](references/wechat-channels/page-anatomy.md)「登录态失效」。
-   小红书只有短信验证码和扫码，
-   没有免扫路径，未登录时直接交接，绝不代填手机号或验证码。交出控制权后只能通过 `waitForAgentControl(task.id)` 等待归还，**任何情况
+   小红书只有短信验证码和扫码，抖音只有扫码、验证码和密码，
+   都没有免扫路径，未登录时直接交接，绝不代填手机号、验证码或密码。交出控制权后只能通过 `waitForAgentControl(task.id)` 等待归还，**任何情况
    下都不得自行 `takeOverTaskSpace()`**——包括只想读一次快照、或页面看起来已经就绪时。
    交出时先展示素材清单，再发系统通知并语音播报
    （`$SKILL_DIR/scripts/notify_user.py --tts-provider auto`），然后在后台轮询控制权状态，不要停下来
@@ -459,14 +476,15 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
    通用项：账号、标题、描述、话题/标签、封面（按页面实际槽位数逐槽一行）、合集、定时。
    视频号加：短标题、位置、原创、视频标注、评论、可见范围。B 站加：分区、创作声明、原创 chip、
    已核验章节的可点击时间轴、16:9 封面的 `pic` 回读结果。小红书加：原创声明、内容类型声明、
-   地点、可见范围、「封面预览」截图结论。字段表全文见
+   地点、可见范围、「封面预览」截图结论。抖音加：标题、竖 / 横两个封面槽、自主声明、标签（位置等）、
+   谁可以看、保存权限、发布时间、「发文助手」检测结论。字段表全文见
    [发布门禁清单](references/publish-gates.md)。
    账号、目标动作及所需输入均明确后，把状态记为 `prepared`。
 8. `status` 直接打开内容管理列表并跳到第 12 步。其他动作通过**主上传区**关联的文件输入
    提交原视频——B 站存在多个 `accept` 相同的 file input；视频号的视频与封面 input 按 `accept` 区分，
    封面 input 只在编辑器打开后出现（2026-10-12 打开前穿透遍历只读到 1 个）。都必须按平台文档里的判据
-   锚定，不能取第一个；小红书上传页只有一个 `input.upload-input`，仍要断言唯一后再提交。
-   小红书提交视频后可能立刻弹出浏览器定位权限请求（2026-10-01 弹过，2026-10-12 没弹），ego-browser 会自动把控制权交给用户：
+   锚定，不能取第一个；小红书上传页只有一个 `input.upload-input`，抖音上传页也只有一个视频 input，仍要断言唯一后再提交。
+   小红书、抖音提交视频后可能立刻弹出浏览器定位权限请求（小红书 2026-10-01 弹过、10-12 没弹；抖音 2026-11-21 弹过），ego-browser 会自动把控制权交给用户：
    这是硬停，请用户处理（默认建议拒绝，地点可以按名称搜索），等用户说继续再接手。观察到上传进度后记为 `uploading`；进度 100% 后仍等待转码、缩略图
    或素材解析，记为 `processing`。上传开始后，只要字段区已经挂载且连续两次回读稳定，就并行
    填写不依赖素材解析的标题、描述、话题、合集、原创和标注；不要为了等待上传完成把这些字段
@@ -487,7 +505,7 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
      `insertText` 后补一组 End / 空格 / Backspace 真按键再失焦，下一轮计数器 `n/80` **必须**等于
      `value.length`（2026-10-06：`value` 对了，计数器仍是文件名长度 `30/80`）；简介用
      Quill 用 `.ql-container.__quill.setText(text, 'user')` 后 `blur()`，下一轮从 `.ql-editor`
-     或 `getText()` 逐字回读；填标签前先清掉平台自动猜的那几个；`svg.close` 与
+     或 `getText()` 逐字回读；填标签前先清掉平台自动猜的那几个（自动带出的「原创」是原创 chip，保留）；`svg.close` 与
      `.hot-tag-item` 只吃 CDP 真鼠标，每次点前先 `scrollLeft = 0`（远右的 chip 用 `inline:'center'`）
      并断言 `elementFromPoint` 命中目标（窄视口下左侧固定导航 `.cc-nav-wrp` 会盖住表单）。项目存在已核验章节时，从最终成片时间轴生成完整的
      `MM:SS 章节名` 列表并写进简介；下一轮逐条回读全部时间码和标题，缺一条都不能提交。
@@ -503,6 +521,10 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
      最多 10 个、只点 `#` 候选里名称全等的项，按 `a.tiptap-topic[data-topic]` 的 name 集合验收，「新建话题」列为
      改写；原创声明走开关 + 须知弹窗两步；地点按名称搜索、只选全等项；只统计可见的错误节点；
      封面走悬停「编辑封面」上传。片段与边界条件见 [小红书发布页结构](references/xiaohongshu/page-anatomy.md)。
+   - **抖音**：标题真点击 + `insertText`，读 `value` 与后缀计数器 `n/30`；简介点编辑区后 `insertText`、换行用 `Enter`、
+     整段替换用 `ControlOrMeta+a` 再 `insertText`，按 `.ace-line` 逐行回读；话题点「#添加话题」→ 输入名称 → 等联想列表连续两次
+     读数一致 → 按 `span[class*=tag-hash-view-name]` 全等定位到行、断言命中后点一次，按 `[data-mention="#"]` 集合验收，
+     最多 5 个；竖 / 横两个封面槽各传一张批准封面；自主声明默认不添加。片段见 [抖音发布页结构](references/douyin/page-anatomy.md)。
    每个与描述无关的写操作后都要断言冻结描述逐字未变。任何必填字段未持久化、用户描述被改动
    或校验仍有警告时，停在提交前。
 10. **`publish` 在此停下等用户确认终稿**：一次 `js()` 读完整个字段表，跑 `notify_user.py`
@@ -518,7 +540,7 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
       「发布」同宿主且草稿位置未实测，按上文例外先确认终稿或交用户点。
     - `schedule`：启用定时发布，核对页面时区、日期和时间，确认提交后进入内容列表并重载。
     - `publish`：所有必填项 `pass`，且用户已确认终稿（或该平台按 Profile 为 `auto`）后，点主提交动作（视频号「发表」/
-      B 站「立即投稿」/ 小红书「发布」），**只提交一次**，再进入内容列表并重载。小红书的按钮在
+      B 站「立即投稿」/ 小红书「发布」/ 抖音「发布」），**只提交一次**，再进入内容列表并重载。小红书的按钮在
       封闭 shadow 的 `XHS-PUBLISH-BTN` 里，按最新截图坐标 + `elementFromPoint` 标签名断言后真鼠标点一次；
       截图之前先装提示与请求记录器，点完按记录判断结果（page-anatomy「点了「发布」没反应」）；
       跳到 `/publish/success` 只说明已尝试提交。需要确认而未得到确认时不要点击，
@@ -544,6 +566,8 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
     小红书在 `https://creator.xiaohongshu.com/new/note-manager` 重载后按标题、时长、发布时间找
     唯一条目：「审核中」→ `platform_pending`，「未通过」→ `publish_failed`，只有在「已发布」
     分页里出现才算 `published`。
+    抖音在 `https://creator.douyin.com/creator-micro/content/manage`（直链可用）重载后按标题、发布时间、时长找唯一条目，
+    读卡片状态原文：「审核中」→ `platform_pending`，「未通过」→ `publish_failed`，「已发布」→ `published`。
 
 ## 状态契约
 
@@ -604,6 +628,6 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
 - 最终回报平台、目标动作、账号、最后状态、平台状态原文、列表回读证据、警告和未完成项。
   只有满足状态契约时才使用 `draft_saved` / `scheduled` / `platform_pending` / `published` /
   `publish_failed`。B 站的报告要额外说明稿件仍可编辑；视频号不要这么说（列表卡片的「修改描述和封面」
-  入口未实测，最多照实写「有入口、未验证」）；小红书的可编辑性未实测，也不要这么说。
+  入口未实测，最多照实写「有入口、未验证」）；小红书、抖音的可编辑性未实测，也不要这么说（抖音列表有「编辑作品」入口，同样只写「有入口、未验证」）。
 
 与相邻 Skill 的分工与不做什么，见 [组合决策](references/skill-composition.md)。
