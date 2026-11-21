@@ -119,6 +119,10 @@ jobs:
         with:
           # Pick up the commit the render job may have just pushed.
           ref: main
+          # The script deletes the documents of Skills that left the catalog, found in
+          # the history of ./skills/; commits and trees are enough for that.
+          fetch-depth: 0
+          filter: blob:none
 
       - uses: actions/setup-python@v5
         with:
