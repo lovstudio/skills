@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "省去逐个读平台文档、拼签名与加密、分辨哪些接口会写入或扣费的工作；在对话里直接查任务、存储、账单与可购资源"
+basis: "作者 2026-11-21 决定免费上架官网。六维加权约 2.28 / 5（实际结果价值 2.5、稀缺性 2、质量证据 2.5、价值飞轮 2、维护与交付效率 3.5、复制与渠道可控性 1），属于轻量入口：单一平台、接口来自公开文档、可由 cli2anything 重新生成"
+boundary: "含随附 CLI、SDK、OpenAPI、本地 Swagger 代理、安全包装脚本与参考资料；不含平台账号、密钥与平台费用，写接口未经实测"
+review_trigger: "平台接口大版本变化、出现外部用户的重复使用、或需要随附付费能力时"
+confidence: low

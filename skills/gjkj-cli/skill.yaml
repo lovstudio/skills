@@ -1,0 +1,64 @@
+schema: skill-manifest/v1
+id: lov-gjkj-cli
+version: "0.1.0"
+runtime: skill-runtime/v1
+context:
+  profile:
+    schema: user-profile/v1
+    source: shared-profile
+    read:
+      - user
+      - brand
+      - workspace
+      - preferences
+      - skills.lov-gjkj-cli
+    persist:
+      enabled: true
+      namespace: skills.lov-gjkj-cli
+      records_path: skills.lov-gjkj-cli.records
+      write_policy: direct-user-statement
+      atomic: true
+    fields:
+      - path: user.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要用户身份，请提供名称。
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+      - path: brand.name
+        aliases:
+          - identity.name
+        required: false
+        question: 如果本次输出需要品牌身份，请提供品牌名称。
+      - path: brand.site
+        required: false
+        question: 如果需要品牌官网，请提供地址。
+      - path: brand.tone
+        required: false
+        question: 如果已有品牌语气或审美关键词，请提供它们。
+      - path: skills.lov-gjkj-cli.records.swagger_port
+        required: false
+        question: 本地 Swagger 代理默认用哪个端口（默认 4790）？
+      - path: skills.lov-gjkj-cli.records.output_envelope
+        required: false
+        question: 查询结果默认只看 data，还是输出完整的 code/message/data？
+      - path: skills.lov-gjkj-cli.records.default_regions
+        required: false
+        question: 常用的区域标识有哪些（用于存储与任务查询的默认筛选）？
+  preferences:
+    namespace: lov_gjkj_cli
+    fields:
+      - path: user.language
+        required: false
+        question: 希望使用哪种语言输出？
+      - path: user.timezone
+        required: false
+        question: 需要使用哪个时区处理日期和时间？
+  interaction:
+    ask_missing: true
+    max_questions: 1

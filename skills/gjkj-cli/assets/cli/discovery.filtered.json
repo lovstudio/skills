@@ -1,0 +1,527 @@
+{
+  "target": "suanli.cn",
+  "scope": "openapi-and-llm",
+  "authorized": true,
+  "authorization": "只用公开官方文档（docs.suanli.cn 与其链接的官方 Apifox 公开分享），离线处理；没有登录控制台，没有使用任何 API 密钥。网关探测只发了不带凭据的 GET 请求。",
+  "observedAt": "2026-11-19T00:07:14Z",
+  "product": {
+    "name": "共绩算力",
+    "vendor": "北京共绩科技有限公司",
+    "site": "https://www.suanli.cn",
+    "docs": "https://docs.suanli.cn",
+    "console": "https://console.suanli.cn"
+  },
+  "evidenceFiles": {
+    "apifoxFragments": "suanli-apifox-fragments.json",
+    "docsPages": "suanli-docs-pages.json",
+    "liveChecks": "suanli-live-checks.json"
+  },
+  "sources": [
+    {
+      "kind": "vendor-apifox-openapi",
+      "url": "https://s.apifox.cn/6aa360d3-d8f2-471e-b841-3a35c33a7b7c",
+      "how": "官方文档 /api-key/overview 指向的 Apifox 公开分享；读取其 llms.txt 列出 84 个接口页，每页内嵌官方导出的单接口 OpenAPI 3.0.1 片段，逐页原样解析。",
+      "result": "84 个接口页，81 个不重复的 method + path；组件 schema 在各页之间完全一致。",
+      "note": "header 凭据参数的示例值在采集时已清空，生成物不含任何密钥。"
+    },
+    {
+      "kind": "vendor-docs",
+      "url": "https://docs.suanli.cn/api-key/overview",
+      "how": "Open API 基础信息、Token 模式鉴权、统一响应格式。"
+    },
+    {
+      "kind": "vendor-docs",
+      "url": "https://docs.suanli.cn/api-key/rsa",
+      "how": "RSA 签名与请求体加密规则（待签名字符串、PKCS#1 v1.5、244 字节分段、先加密后签名）。"
+    },
+    {
+      "kind": "vendor-docs",
+      "url": "https://docs.suanli.cn/llm/quickstart",
+      "how": "大模型云服务的 Base URL、Bearer 鉴权、chat.completions 与 models.list 示例。"
+    },
+    {
+      "kind": "vendor-docs",
+      "url": "https://docs.suanli.cn/llm/status-codes",
+      "how": "大模型云服务 HTTP 状态码与错误对象格式。"
+    },
+    {
+      "kind": "vendor-docs",
+      "url": "https://docs.suanli.cn/job-batch/best-practices/api-job",
+      "how": "Job 任务通过 Open API 创建与查询的调用顺序。"
+    },
+    {
+      "kind": "vendor-docs",
+      "url": "https://docs.suanli.cn/serverless/best-practices/api-autoscaling",
+      "how": "弹性部署通过 change_points 扩缩容的调用方式。"
+    },
+    {
+      "kind": "vendor-docs",
+      "url": "https://docs.suanli.cn/serverless/best-practices/task-api-multi-container",
+      "how": "任务创建接口与多容器部署，resources.mark 来自资源列表接口。"
+    },
+    {
+      "kind": "gateway-probe",
+      "how": "curl 匿名 GET，不带任何凭据，见 gatewayProbes。",
+      "result": "两个网关都在路由前校验凭据：不存在的路径与真实路径返回同样的鉴权错误，所以无凭据探测只能证明鉴权头名称和错误格式，不能证明单个接口存在。"
+    }
+  ],
+  "auth": {
+    "openapi": {
+      "baseUrl": "https://openapi.suanli.cn",
+      "headers": {
+        "token": "API 密钥（Token 模式与 RSA 模式都必填）",
+        "version": "接口版本，字符串，通常为 1.0.0",
+        "timestamp": "毫秒级 Unix 时间戳（13 位）",
+        "sign_str": "RSA 模式必填：RSA-SHA256（PKCS#1 v1.5）签名的 Base64"
+      },
+      "signingString": "{path}\\n{version}\\n{timestamp}\\n{token}\\n{body}",
+      "signingNotes": [
+        "GET 带查询参数时，path 字段用实际请求的 path?query，顺序与编码与 URL 一致。",
+        "无请求体时 body 为空字符串，不用 null 或 {}。",
+        "需要加密的接口先用平台公钥加密请求体，再用加密后的 Base64 字符串参与签名。"
+      ],
+      "encryption": {
+        "key": "平台公钥（创建 RSA 密钥时平台返回），不是自己上传的公钥",
+        "algorithm": "RSA PKCS#1 v1.5",
+        "chunkBytes": 244,
+        "serialization": "紧凑 JSON（无多余空格）",
+        "output": "各段密文拼接后整体 Base64，作为 HTTP 请求体发送"
+      },
+      "modes": [
+        {
+          "name": "token",
+          "label": "Token 模式（快速模式）",
+          "use": "开发调试"
+        },
+        {
+          "name": "rsa",
+          "label": "RSA 签名模式",
+          "use": "生产环境"
+        }
+      ],
+      "howToObtain": "控制台 https://console.suanli.cn/settings/key 新建密钥。团队账号下只有主账号和团队管理员能创建或删除密钥，开发者角色只能使用已有密钥调用。",
+      "docs": [
+        "https://docs.suanli.cn/api-key/overview",
+        "https://docs.suanli.cn/api-key/rsa"
+      ]
+    },
+    "llm": {
+      "baseUrl": "https://api.suanli.cn/v1",
+      "scheme": "Authorization: Bearer <API Key>",
+      "howToObtain": "控制台 https://console.suanli.cn/models 的 API 密钥页新建（可设过期时间与额度）。",
+      "docs": [
+        "https://docs.suanli.cn/llm/quickstart",
+        "https://docs.suanli.cn/llm/api-key"
+      ]
+    }
+  },
+  "llmOperations": [
+    {
+      "method": "post",
+      "path": "/v1/chat/completions",
+      "operationId": "llmChatCompletions",
+      "summary": "对话补全（OpenAI 兼容）",
+      "description": "文档声明完全兼容 OpenAI Chat Completions，支持流式与非流式。下列字段只收录文档示例中出现过的；其余 OpenAI 参数是否支持以平台实际为准。示例模型 ID 来自文档，可用模型以 GET /v1/models 为准。",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "model",
+                "messages"
+              ],
+              "properties": {
+                "model": {
+                  "type": "string",
+                  "description": "完整模型 ID，如文档示例 deepseek/deepseek-v4-flash"
+                },
+                "messages": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "role",
+                      "content"
+                    ],
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "examples": [
+                          "system",
+                          "user"
+                        ]
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "max_tokens": {
+                  "type": "integer"
+                },
+                "temperature": {
+                  "type": "number"
+                },
+                "stream": {
+                  "type": "boolean",
+                  "description": "true 时以 SSE 流式返回 choices[].delta.content"
+                }
+              },
+              "additionalProperties": true
+            },
+            "example": {
+              "model": "deepseek/deepseek-v4-flash",
+              "messages": [
+                {
+                  "role": "user",
+                  "content": "你好"
+                }
+              ],
+              "max_tokens": 100,
+              "temperature": 0.7
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "非流式返回 OpenAI 格式的对话补全对象，文档示例读取 choices[0].message.content；stream=true 时为 text/event-stream。",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "choices": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": true
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "text/event-stream": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://docs.suanli.cn/llm/quickstart",
+          "detail": "cURL 示例 POST https://api.suanli.cn/v1/chat/completions，Authorization: Bearer；Python 示例 client.chat.completions.create(stream=True/False)"
+        }
+      ]
+    },
+    {
+      "method": "get",
+      "path": "/v1/models",
+      "operationId": "llmListModels",
+      "summary": "当前账户可用模型列表（OpenAI 兼容）",
+      "description": "文档用 OpenAI SDK 的 client.models.list() 列出可用模型，并读取 data[].id。",
+      "responses": {
+        "200": {
+          "description": "OpenAI 格式的模型列表。",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  }
+                },
+                "additionalProperties": true
+              }
+            }
+          }
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://docs.suanli.cn/llm/quickstart",
+          "detail": "第 5 节 models.list() 示例"
+        }
+      ]
+    }
+  ],
+  "llmErrors": {
+    "documented": {
+      "url": "https://docs.suanli.cn/llm/status-codes",
+      "format": {
+        "error": {
+          "type": "invalid_request_error",
+          "message": "Invalid request parameters"
+        }
+      },
+      "statusCodes": {
+        "200": "成功",
+        "301": "资源已移动，按 Location 跳转",
+        "302": "资源已移动，按 Location 跳转",
+        "400": "请求参数错误",
+        "401": "身份验证失败（Token 缺失、过期或格式错误）",
+        "402": "余额或配额不足",
+        "403": "权限不足",
+        "404": "资源不存在",
+        "410": "文件已过期或被删除",
+        "413": "请求体过大",
+        "422": "语义错误",
+        "429": "请求过于频繁",
+        "500": "服务器内部错误",
+        "502": "网关错误"
+      }
+    }
+  },
+  "gatewayProbes": [
+    {
+      "request": "GET https://openapi.suanli.cn/api/deployment/resource/search（无任何头）",
+      "status": 200,
+      "body": {
+        "code": "A001",
+        "message": "must need token,timestamp,version",
+        "data": null
+      }
+    },
+    {
+      "request": "GET https://openapi.suanli.cn/api/deployment/resource/search（version、timestamp 齐全，token 为无效占位）",
+      "status": 200,
+      "body": {
+        "code": "A003",
+        "message": "token expired",
+        "data": null
+      }
+    },
+    {
+      "request": "GET https://openapi.suanli.cn/api/deployment/resource/does-not-exist（同上，无效 token）",
+      "status": 200,
+      "body": {
+        "code": "A003",
+        "message": "token expired",
+        "data": null
+      },
+      "note": "与真实路径结果相同：网关先校验凭据再路由。"
+    },
+    {
+      "request": "GET https://api.suanli.cn/v1/models（无 Authorization）",
+      "status": 400,
+      "body": {
+        "code": 400,
+        "message": "缺少用户凭证",
+        "items": null
+      }
+    },
+    {
+      "request": "GET https://api.suanli.cn/v1/models（Bearer 无效占位 key）",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "invalid_api_key",
+          "message": "当前 API Key 不存在",
+          "type": "invalid_api_key"
+        }
+      }
+    },
+    {
+      "request": "GET https://api.suanli.cn/v1/does-not-exist-probe（Bearer 无效占位 key）",
+      "status": 401,
+      "body": {
+        "error": {
+          "code": "invalid_api_key",
+          "message": "当前 API Key 不存在",
+          "type": "invalid_api_key"
+        }
+      },
+      "note": "与 /v1/models 结果相同：同样先鉴权后路由。"
+    }
+  ],
+  "workflowEdges": [
+    {
+      "from": "GET /api/deployment/resource/search",
+      "to": "POST /api/deployment/task/create",
+      "sourceSelector": "$.data[*].mark → body.resources[].mark",
+      "basis": "docs",
+      "doc": "https://docs.suanli.cn/serverless/best-practices/task-api-multi-container"
+    },
+    {
+      "from": "GET /api/deployment/resource/search",
+      "to": "POST /api/task/job/create",
+      "sourceSelector": "$.data[*].mark → body.resources[].resource / mark",
+      "basis": "docs",
+      "doc": "https://docs.suanli.cn/job-batch/best-practices/api-job"
+    },
+    {
+      "from": "GET /api/deployment/task/search",
+      "to": "POST /api/deployment/task/change_points",
+      "sourceSelector": "任务 id → body.task_id",
+      "basis": "docs",
+      "doc": "https://docs.suanli.cn/serverless/best-practices/api-autoscaling"
+    },
+    {
+      "from": "GET /api/deployment/task/search",
+      "to": "GET /api/deployment/task/detail",
+      "sourceSelector": "任务 id → query.task_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/deployment/task/search",
+      "to": "GET /api/deployment/task/points",
+      "sourceSelector": "任务 id → query.task_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/deployment/task/search",
+      "to": "POST /api/deployment/task/pause",
+      "sourceSelector": "任务 id → body.task_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/deployment/task/search",
+      "to": "POST /api/deployment/task/recover",
+      "sourceSelector": "任务 id → body.task_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/deployment/task/search",
+      "to": "POST /api/deployment/task/stop",
+      "sourceSelector": "任务 id → body.task_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/deployment/task/points",
+      "to": "GET /api/deployment/task/point_log",
+      "sourceSelector": "节点 id → query.point_id（另需 task_id、service_id）",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/deployment/task/points",
+      "to": "GET /api/deployment/task/pod_event",
+      "sourceSelector": "节点 id → query.point_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/deployment/task/points",
+      "to": "POST /api/deployment/task/delete_pod",
+      "sourceSelector": "节点 id → body.point_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/task/deployment/search",
+      "to": "GET /api/task/deployment/detail",
+      "sourceSelector": "任务 id → query.task_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/task/job/search",
+      "to": "GET /api/task/job/detail",
+      "sourceSelector": "任务 id → query.task_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/task/job/search",
+      "to": "POST /api/task/job/stop",
+      "sourceSelector": "任务 id → body.task_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/job/queue/search",
+      "to": "GET /api/job/queue/detail",
+      "sourceSelector": "队列 id → query.queue_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/job/queue/search",
+      "to": "POST /api/job/queue/encrypt/push",
+      "sourceSelector": "队列 id → body.queue_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/job/queue/search",
+      "to": "GET /api/job/queue/group/search",
+      "sourceSelector": "队列 id → query.queue_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/job/queue/group/search",
+      "to": "GET /api/job/queue/group/detail",
+      "sourceSelector": "任务组 id → query.group_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/storage/nas/v1/pre-create",
+      "to": "POST /api/storage/nas/v1/create",
+      "sourceSelector": "可创建配置 → body.nas_config_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/storage/get_regions",
+      "to": "POST /api/storage/encrypt/create",
+      "sourceSelector": "加速区域 → body.juicefs_region_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /api/task/image_preheat/get_regions",
+      "to": "POST /api/task/image_preheat/create",
+      "sourceSelector": "可用集群 → body.regions",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "POST /api/output/v2/device-output/list_rent_device_single_v2",
+      "to": "POST /api/output/v2/device_order/get_device_details_v2",
+      "sourceSelector": "设备 id → body.device_id",
+      "basis": "parameter-name"
+    },
+    {
+      "from": "GET /v1/models",
+      "to": "POST /v1/chat/completions",
+      "sourceSelector": "$.data[*].id → body.model",
+      "basis": "docs",
+      "doc": "https://docs.suanli.cn/llm/quickstart"
+    }
+  ],
+  "docConflicts": [
+    "统一响应的提示字段：/api-key/overview 与 /api-key/rsa 写作 msg，官方 Apifox 的 IResponse 与网关实测都是 message。生成物以 message 为准，SDK 两者都读。",
+    "成功码：/api-key/overview 写 code 为 \"0000\"，/job-batch/best-practices/api-job 写 code=200。生成物以 Apifox 与 overview 的 \"0000\" 为准。",
+    "网关实测返回 A001（缺少鉴权头）、A003（token 无效或过期），这两个码不在 Apifox IResponse 的 code 枚举里。",
+    "/api-key/rsa 的请求示例用 POST /api/deployment/task/detail 带 JSON body，官方 Apifox 定义为 GET 加 query.task_id。生成物以 Apifox 为准。",
+    "Apifox 的 version 头在 1 个接口里类型写成 number，示例却是 1.0.0；文档说明为字符串。生成物统一为字符串。",
+    "/llm/status-codes 说 Token 缺失返回 401；实测不带 Authorization 时 /v1/models 返回 HTTP 400、message 为「缺少用户凭证」，无效 key 才返回 401。",
+    "/distributed-training/overview 说可以用 OpenAPI 创建和管理训练任务，但官方 Apifox 里没有分布式训练的创建或管理接口，只有 GET /api/deployment/task/points 在说明中接受 task_type=DistributedTraining。"
+  ],
+  "limitations": [
+    "没有任何接口经过带凭据的实测：两个网关都先鉴权后路由，无凭据探测只能证明鉴权头名称和错误格式。",
+    "所有写操作只按官方 Apifox 定义生成并标注 x-write-operation，没有在线执行。",
+    "裸金属 9 个接口与 GET /api/deployment/task/points 的官方片段没有声明 token、version、timestamp 头；生成物按 /api-key/overview「所有 API 请求均需在 HTTP Header 中携带鉴权参数」补上，属于推断。",
+    "GET /api/deployment/task/points 的官方参数含必填 tenant_id，文档没有说明它从哪里获取。",
+    "官方 Apifox 里 2 处 method + path 各有多份接口页（/api/storage/get_storage 3 份，/api/storage/billing/get_billing_record 2 份），生成物合并为一个操作并保留每份的说明。",
+    "任务修改接口的说明链接到 api-296882076，该页不在公开分享的接口清单里。",
+    "分布式训练没有独立接口；云主机（开发机）在公开 Open API 中没有接口，只有计费查询接口提到云主机。",
+    "大模型云服务只收录文档出现过的 2 个接口和示例字段，其余 OpenAI 兼容参数未逐一核对。"
+  ]
+}

@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **243 skills** — 218 Free + 25 Paid.
+> **244 skills** — 219 Free + 25 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -189,7 +189,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | Diagnose Clash TUN failures from runtime evidence, apply reversible fixes, and verify the real application path. — related: `env-management`, `iproyal-raylink` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Claude Account Mover](https://github.com/lovstudio/claude-account-migrate-skill) (`claude-account-migrate`) | Switch Claude accounts and keep working in your old sessions. |
 | ![Free](https://img.shields.io/badge/Free-green) | [CLI Studio](https://github.com/lovstudio/cli-creator-skill) (`cli-creator`) | Turn a local project into an installable, tested CLI with JSON output backed by the real backend. |
-| ![Free](https://img.shields.io/badge/Free-green) | [API Studio](https://github.com/lovstudio/cli2anything-skill) (`cli2anything`) | Turn authorized observed APIs into verified contracts, SDKs, Swagger, and task-focused CLIs. |
+| ![Free](https://img.shields.io/badge/Free-green) | [API Studio](https://github.com/lovstudio/cli2anything-skill) (`cli2anything`) | Turn authorized observed APIs into verified contracts, SDKs, Swagger, and task-focused CLIs. — related: `gjkj-cli` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Makeover](https://github.com/lovstudio/clone-rebrand-skill) (`clone-rebrand`) | Create a project from a template and rebrand it — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Code Reviewer](https://github.com/lovstudio/code-review-skill) (`code-review`) | Review a code change for actionable defects — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Codeex Plugin Studio](https://github.com/lovstudio/codeex-creator-skill) (`codeex-creator`) | Create, validate and iterate local runtime plugins for Codeex, including hooks, native UI reuse and atomic install. |
@@ -221,6 +221,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Open Source Contributor](https://github.com/lovstudio/gh-contribute-skill) (`gh-contribute`) | Ship a clean PR to any upstream GitHub repo — fork, branch, push, and open PR for you. |
 | ![Free](https://img.shields.io/badge/Free-green) | [GitHub Organizer](https://github.com/lovstudio/gh-tidy-skill) (`gh-tidy`) | Triage and clean up GitHub issues, PRs, branches, and labels in a single pass. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Context Commit](https://github.com/lovstudio/git-commit-with-context-skill) (`git-commit-with-context`) | Create a Git commit for the current task changes — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Suanli CLI](https://github.com/lovstudio/gjkj-cli-skill) (`gjkj-cli`) | Query tasks, storage and billing on the suanli.cn Open API from chat; writes and billed calls wait for your approval. — related: `cli2anything` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Command Helper](https://github.com/lovstudio/help-cmd-skill) (`help-cmd`) | Create a command line for a task — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [I18n Inspector](https://github.com/lovstudio/i18n-check-i18n-skill) (`i18n-check-i18n`) | Review and fix frontend internationalization — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Document Visuals](https://github.com/lovstudio/illustrate-skill) (`illustrate`) | Illustrate a document with evidence and relevant images — requires: `branding-consistency` |

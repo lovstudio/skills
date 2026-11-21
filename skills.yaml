@@ -5087,6 +5087,8 @@ skills:
     card_path: pricing-cards/typeless-prompt.md
 - name: cli2anything
   runtime_name: lov-cli2anything
+  related:
+  - gjkj-cli
   updated_at: 2026-11-19 02:47:49+00:00
   display_name: API Studio
   repo: lovstudio/cli2anything-skill
@@ -5129,6 +5131,56 @@ skills:
     review_trigger_zh: 累计 10 次外部真实使用、任一目标完成带凭据在线验证、托管执行上线、版本变化或支持成本明显变化时复评。
     review_trigger_en: Review after 10 external real uses, a credentialed live verification of any target, hosted execution, a version change, or a material support-cost change.
     card_path: pricing-cards/cli2anything.md
+- name: gjkj-cli
+  runtime_name: lov-gjkj-cli
+  related:
+  - cli2anything
+  updated_at: 2026-11-21 00:00:00+00:00
+  display_name: Suanli CLI
+  repo: lovstudio/gjkj-cli-skill
+  name_zh: 共绩算力 CLI
+  paid: false
+  category: Dev Tools
+  version: 0.1.0
+  description: 'Suanli CLI: query and operate the suanli.cn Open API and LLM service
+    from chat with the bundled lov-suanli-cli, SDK and local Swagger proxy (83 operations);
+    read-only by default, every write or billed call needs the user''s approval for
+    that call, and keys come only from the environment or the macOS Keychain.'
+  tagline_en: Query tasks, storage and billing on the suanli.cn Open API from chat;
+    writes and billed calls wait for your approval.
+  tagline_zh: 在对话里安全调用共绩算力 Open API：查任务、存储与账单，写操作和扣费调用先经你同意。
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 一个可安装 Skill，随附共绩算力 CLI、SDK、OpenAPI、本地 Swagger 代理与安全包装脚本
+    delivery_unit_en: One installable Skill bundling the suanli.cn CLI, SDK, OpenAPI,
+      a local Swagger proxy and a safety wrapper
+    value_zh: 在对话里直接查任务、存储、账单与可购资源；写操作与扣费调用先 dry-run 再经同意执行。
+    value_en: Query tasks, storage, billing and purchasable resources from chat; writes
+      and billed calls run only after a dry run and your approval.
+    anchor_zh: 省去逐个读平台文档、拼签名与加密、分辨哪些接口会写入或扣费的工作。
+    anchor_en: Saves reading each API page, assembling signatures and encryption, and
+      working out which calls write or cost money.
+    basis_zh: 单一平台、接口来自公开文档、可由 cli2anything 重新生成；14 个只读接口已用真实密钥实测，作为免费入口提供。
+    basis_en: Single platform, contract from public docs and regenerable with cli2anything;
+      14 read-only operations were verified with a real key, so it ships as a free entry.
+    boundary_zh: 含随附 CLI、SDK、OpenAPI、Swagger 代理、安全脚本与参考资料；不含平台账号、密钥与平台费用，写接口未经实测。
+    boundary_en: Includes the bundled CLI, SDK, OpenAPI, Swagger proxy, safety script
+      and references; excludes platform accounts, keys and platform fees; write operations
+      are not live-tested.
+    maintenance_zh: 随平台接口与文档变化，用 cli2anything 重新生成后复核。
+    maintenance_en: Regenerate with cli2anything and re-verify when the platform API
+      or docs change.
+    confidence: entry
+    review_trigger_zh: 平台接口大版本变化、出现外部用户的重复使用、或需要随附付费能力时复评。
+    review_trigger_en: Review on a major platform API change, repeat use by outside
+      users, or a need to bundle paid capabilities.
+    card_path: pricing-cards/gjkj-cli.md
 - name: search-twitter
   runtime_name: lov-search-twitter
   updated_at: 2026-11-20 12:49:26+00:00

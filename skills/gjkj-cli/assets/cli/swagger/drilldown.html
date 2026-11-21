@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>共绩算力 API 调用顺序</title>
+    <style>
+      :root { --fg: #18181b; --muted: #71717a; --line: #e4e4e7; --bg: #fff; }
+      @media (prefers-color-scheme: dark) { :root { --fg: #f4f4f5; --muted: #a1a1aa; --line: #3f3f46; --bg: #18181b; } }
+      body { margin: 0 auto; max-width: 1100px; padding: 16px; font: 14px/1.6 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+      table { width: 100%; border-collapse: collapse; margin-bottom: 24px; display: block; overflow-x: auto; }
+      th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+      th { color: var(--muted); font-weight: 500; }
+      code { font-size: 13px; }
+      a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <h1>共绩算力 API：83 个操作</h1>
+    <p>只读 44，写操作 39；已只读实测 14，写操作均未执行。<a href="/">返回 Swagger</a></p>
+    <h2>调用顺序（25 条）</h2>
+    <ul><li><code>deploymentResourceSearch</code> → <code>deploymentTaskCreate</code>：$.data[*].mark → body.resources[].mark（docs）</li>
+<li><code>deploymentResourceSearch</code> → <code>taskJobCreate</code>：$.data[*].mark → body.resources[].resource / mark（docs）</li>
+<li><code>deploymentTaskSearch</code> → <code>deploymentTaskChangePoints</code>：任务 id → body.task_id（docs）</li>
+<li><code>deploymentTaskSearch</code> → <code>deploymentTaskDetail</code>：任务 id → query.task_id（parameter-name）</li>
+<li><code>deploymentTaskSearch</code> → <code>deploymentTaskPoints</code>：任务 id → query.task_id（parameter-name）</li>
+<li><code>deploymentTaskSearch</code> → <code>deploymentTaskPause</code>：任务 id → body.task_id（parameter-name）</li>
+<li><code>deploymentTaskSearch</code> → <code>deploymentTaskRecover</code>：任务 id → body.task_id（parameter-name）</li>
+<li><code>deploymentTaskSearch</code> → <code>deploymentTaskStop</code>：任务 id → body.task_id（parameter-name）</li>
+<li><code>deploymentTaskPoints</code> → <code>deploymentTaskPointLog</code>：节点 id → query.point_id（另需 task_id、service_id）（parameter-name）</li>
+<li><code>deploymentTaskPoints</code> → <code>deploymentTaskPodEvent</code>：节点 id → query.point_id（parameter-name）</li>
+<li><code>deploymentTaskPoints</code> → <code>deploymentTaskDeletePod</code>：节点 id → body.point_id（parameter-name）</li>
+<li><code>taskDeploymentSearch</code> → <code>taskDeploymentDetail</code>：任务 id → query.task_id（parameter-name）</li>
+<li><code>taskJobSearch</code> → <code>taskJobDetail</code>：任务 id → query.task_id（parameter-name）</li>
+<li><code>taskJobSearch</code> → <code>taskJobStop</code>：任务 id → body.task_id（parameter-name）</li>
+<li><code>jobQueueSearch</code> → <code>jobQueueDetail</code>：队列 id → query.queue_id（parameter-name）</li>
+<li><code>jobQueueSearch</code> → <code>jobQueueEncryptPush</code>：队列 id → body.queue_id（parameter-name）</li>
+<li><code>jobQueueSearch</code> → <code>jobQueueGroupSearch</code>：队列 id → query.queue_id（parameter-name）</li>
+<li><code>jobQueueGroupSearch</code> → <code>jobQueueGroupDetail</code>：任务组 id → query.group_id（parameter-name）</li>
+<li><code>storageNasV1PreCreate</code> → <code>storageNasV1Create</code>：可创建配置 → body.nas_config_id（parameter-name）</li>
+<li><code>storageGetRegions</code> → <code>storageEncryptCreate</code>：加速区域 → body.juicefs_region_id（parameter-name）</li>
+<li><code>taskImagePreheatGetRegions</code> → <code>taskImagePreheatCreate</code>：可用集群 → body.regions（parameter-name）</li>
+<li><code>outputV2DeviceOutputListRentDeviceSingleV2</code> → <code>outputV2DeviceOrderGetDeviceDetailsV2</code>：设备 id → body.device_id（parameter-name）</li>
+<li><code>llmListModels</code> → <code>llmChatCompletions</code>：$.data[*].id → body.model（docs）</li>
+<li><code>deploymentResourceSearch</code> → <code>taskDeploymentCreate</code>：官方说明引用该接口的返回值（apifox-description-link）</li>
+<li><code>taskDeploymentDetail</code> → <code>taskDeploymentUpdate</code>：官方说明引用该接口的返回值（apifox-description-link）</li></ul>
+    <h2>资源</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/deployment/resource/search</code></td><td><a href="/#/%E8%B5%84%E6%BA%90/deploymentResourceSearch">deploymentResourceSearch</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/storage/get_storage</code></td><td><a href="/#/%E8%B5%84%E6%BA%90/storageGetStorage">storageGetStorage</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+</tbody></table>
+<h2>弹性部署服务任务</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/deployment/task/search</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/deploymentTaskSearch">deploymentTaskSearch</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/deployment/task/detail</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/deploymentTaskDetail">deploymentTaskDetail</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/deployment/task/create</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/deploymentTaskCreate">deploymentTaskCreate</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/deployment/task/update</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/deploymentTaskUpdate">deploymentTaskUpdate</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/deployment/task/recover</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/deploymentTaskRecover">deploymentTaskRecover</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/deployment/task/pause</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/deploymentTaskPause">deploymentTaskPause</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/deployment/task/stop</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/deploymentTaskStop">deploymentTaskStop</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/deployment/task/change_points</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/deploymentTaskChangePoints">deploymentTaskChangePoints</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>GET</td><td><code>/api/task/deployment/search</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/taskDeploymentSearch">taskDeploymentSearch</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/task/deployment/detail</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/taskDeploymentDetail">taskDeploymentDetail</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/task/deployment/create</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/taskDeploymentCreate">taskDeploymentCreate</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/task/deployment/update</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/taskDeploymentUpdate">taskDeploymentUpdate</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+</tbody></table>
+<h2>镜像预热任务(申请开通)</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/task/image_preheat/get_regions</code></td><td><a href="/#/%E9%95%9C%E5%83%8F%E9%A2%84%E7%83%AD%E4%BB%BB%E5%8A%A1(%E7%94%B3%E8%AF%B7%E5%BC%80%E9%80%9A)/taskImagePreheatGetRegions">taskImagePreheatGetRegions</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/task/image_preheat/search</code></td><td><a href="/#/%E9%95%9C%E5%83%8F%E9%A2%84%E7%83%AD%E4%BB%BB%E5%8A%A1(%E7%94%B3%E8%AF%B7%E5%BC%80%E9%80%9A)/taskImagePreheatSearch">taskImagePreheatSearch</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/task/image_preheat/detail</code></td><td><a href="/#/%E9%95%9C%E5%83%8F%E9%A2%84%E7%83%AD%E4%BB%BB%E5%8A%A1(%E7%94%B3%E8%AF%B7%E5%BC%80%E9%80%9A)/taskImagePreheatDetail">taskImagePreheatDetail</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/task/image_preheat/create</code></td><td><a href="/#/%E9%95%9C%E5%83%8F%E9%A2%84%E7%83%AD%E4%BB%BB%E5%8A%A1(%E7%94%B3%E8%AF%B7%E5%BC%80%E9%80%9A)/taskImagePreheatCreate">taskImagePreheatCreate</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/task/image_preheat/update</code></td><td><a href="/#/%E9%95%9C%E5%83%8F%E9%A2%84%E7%83%AD%E4%BB%BB%E5%8A%A1(%E7%94%B3%E8%AF%B7%E5%BC%80%E9%80%9A)/taskImagePreheatUpdate">taskImagePreheatUpdate</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/task/image_preheat/stop</code></td><td><a href="/#/%E9%95%9C%E5%83%8F%E9%A2%84%E7%83%AD%E4%BB%BB%E5%8A%A1(%E7%94%B3%E8%AF%B7%E5%BC%80%E9%80%9A)/taskImagePreheatStop">taskImagePreheatStop</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+</tbody></table>
+<h2>Job批处理任务</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/task/job/search</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/taskJobSearch">taskJobSearch</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/task/job/detail</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/taskJobDetail">taskJobDetail</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/task/job/create</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/taskJobCreate">taskJobCreate</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/task/job/stop</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/taskJobStop">taskJobStop</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+</tbody></table>
+<h2>Job批处理任务队列</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/job/queue/search</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/jobQueueSearch">jobQueueSearch</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/job/queue/detail</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/jobQueueDetail">jobQueueDetail</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/job/queue/create</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/jobQueueCreate">jobQueueCreate</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/job/queue/update</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/jobQueueUpdate">jobQueueUpdate</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/job/queue/stop</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/jobQueueStop">jobQueueStop</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/job/queue/encrypt/push</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/jobQueueEncryptPush">jobQueueEncryptPush</a></td><td>documented-apifox-openapi</td><td>是</td><td>是</td></tr>
+<tr><td>GET</td><td><code>/api/job/queue/group/search</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/jobQueueGroupSearch">jobQueueGroupSearch</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/job/queue/group/detail</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/jobQueueGroupDetail">jobQueueGroupDetail</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/job/queue/group/stops</code></td><td><a href="/#/Job%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/jobQueueGroupStops">jobQueueGroupStops</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+</tbody></table>
+<h2>弹性部署服务/Job批处理节点</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/deployment/task/points</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%2FJob%E6%89%B9%E5%A4%84%E7%90%86%E8%8A%82%E7%82%B9/deploymentTaskPoints">deploymentTaskPoints</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/deployment/task/point_log</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%2FJob%E6%89%B9%E5%A4%84%E7%90%86%E8%8A%82%E7%82%B9/deploymentTaskPointLog">deploymentTaskPointLog</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/deployment/task/pod_event</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%2FJob%E6%89%B9%E5%A4%84%E7%90%86%E8%8A%82%E7%82%B9/deploymentTaskPodEvent">deploymentTaskPodEvent</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/deployment/task/delete_pod</code></td><td><a href="/#/%E5%BC%B9%E6%80%A7%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%2FJob%E6%89%B9%E5%A4%84%E7%90%86%E8%8A%82%E7%82%B9/deploymentTaskDeletePod">deploymentTaskDeletePod</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+</tbody></table>
+<h2>费用</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/billing/get_billing_record</code></td><td><a href="/#/%E8%B4%B9%E7%94%A8/billingGetBillingRecord">billingGetBillingRecord</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/billing/get_task_billing_record</code></td><td><a href="/#/%E8%B4%B9%E7%94%A8/billingGetTaskBillingRecord">billingGetTaskBillingRecord</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/harbor/support/billing/get_billing_record</code></td><td><a href="/#/%E8%B4%B9%E7%94%A8/harborSupportBillingGetBillingRecord">harborSupportBillingGetBillingRecord</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/storage/billing/get_billing_record</code></td><td><a href="/#/%E8%B4%B9%E7%94%A8/storageBillingGetBillingRecord">storageBillingGetBillingRecord</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+</tbody></table>
+<h2>存储/对象存储</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/storage/get_k3s_regions</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageGetK3sRegions">storageGetK3sRegions</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/storage/get_regions</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageGetRegions">storageGetRegions</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/storage/get_storage_by_ids</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageGetStorageByIds">storageGetStorageByIds</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/storage/storage_info</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageStorageInfo">storageStorageInfo</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/encrypt/check</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageEncryptCheck">storageEncryptCheck</a></td><td>documented-apifox-openapi</td><td></td><td>是</td></tr>
+<tr><td>POST</td><td><code>/api/storage/encrypt/create</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageEncryptCreate">storageEncryptCreate</a></td><td>documented-apifox-openapi</td><td>是</td><td>是</td></tr>
+<tr><td>POST</td><td><code>/api/storage/encrypt/update</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageEncryptUpdate">storageEncryptUpdate</a></td><td>documented-apifox-openapi</td><td>是</td><td>是</td></tr>
+<tr><td>POST</td><td><code>/api/storage/s3/bucket/list</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageS3BucketList">storageS3BucketList</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/s3/bucket/preheat</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageS3BucketPreheat">storageS3BucketPreheat</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/s3/metadata/list</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageS3MetadataList">storageS3MetadataList</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/s3/metadata/delete</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageS3MetadataDelete">storageS3MetadataDelete</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/activate_v2</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageActivateV2">storageActivateV2</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/release</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageRelease">storageRelease</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/delete</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/storageDelete">storageDelete</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+</tbody></table>
+<h2>存储/集群存储/存储卷</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/storage/nas/v1/summary</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2F%E5%AD%98%E5%82%A8%E5%8D%B7/storageNasV1Summary">storageNasV1Summary</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/storage/nas/v1/dictionaries</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2F%E5%AD%98%E5%82%A8%E5%8D%B7/storageNasV1Dictionaries">storageNasV1Dictionaries</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/storage/nas/v1/pre-create</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2F%E5%AD%98%E5%82%A8%E5%8D%B7/storageNasV1PreCreate">storageNasV1PreCreate</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/storage/nas/v1/list</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2F%E5%AD%98%E5%82%A8%E5%8D%B7/storageNasV1List">storageNasV1List</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/create</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2F%E5%AD%98%E5%82%A8%E5%8D%B7/storageNasV1Create">storageNasV1Create</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/expand</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2F%E5%AD%98%E5%82%A8%E5%8D%B7/storageNasV1Expand">storageNasV1Expand</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/delete</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2F%E5%AD%98%E5%82%A8%E5%8D%B7/storageNasV1Delete">storageNasV1Delete</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/rename</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2F%E5%AD%98%E5%82%A8%E5%8D%B7/storageNasV1Rename">storageNasV1Rename</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+</tbody></table>
+<h2>存储/集群存储/S3互传</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/api/storage/nas/v1/s3/list</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2FS3%E4%BA%92%E4%BC%A0/storageNasV1S3List">storageNasV1S3List</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/api/storage/nas/v1/s3/detail</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2FS3%E4%BA%92%E4%BC%A0/storageNasV1S3Detail">storageNasV1S3Detail</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/encrypt/s3/create</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2FS3%E4%BA%92%E4%BC%A0/storageNasV1EncryptS3Create">storageNasV1EncryptS3Create</a></td><td>documented-apifox-openapi</td><td>是</td><td>是</td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/encrypt/s3/retry</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2FS3%E4%BA%92%E4%BC%A0/storageNasV1EncryptS3Retry">storageNasV1EncryptS3Retry</a></td><td>documented-apifox-openapi</td><td>是</td><td>是</td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/s3/delete</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2FS3%E4%BA%92%E4%BC%A0/storageNasV1S3Delete">storageNasV1S3Delete</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/s3/stop</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2FS3%E4%BA%92%E4%BC%A0/storageNasV1S3Stop">storageNasV1S3Stop</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/encrypt/s3/check</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2FS3%E4%BA%92%E4%BC%A0/storageNasV1EncryptS3Check">storageNasV1EncryptS3Check</a></td><td>documented-apifox-openapi</td><td></td><td>是</td></tr>
+</tbody></table>
+<h2>存储/集群存储/SFTP</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/sftp/obtain</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2FSFTP/storageNasV1SftpObtain">storageNasV1SftpObtain</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/storage/nas/v1/sftp/destroy</code></td><td><a href="/#/%E5%AD%98%E5%82%A8%2F%E9%9B%86%E7%BE%A4%E5%AD%98%E5%82%A8%2FSFTP/storageNasV1SftpDestroy">storageNasV1SftpDestroy</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+</tbody></table>
+<h2>裸金属/已购列表</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>POST</td><td><code>/api/output/v2/device-output/list_rent_device_single_v2</code></td><td><a href="/#/%E8%A3%B8%E9%87%91%E5%B1%9E%2F%E5%B7%B2%E8%B4%AD%E5%88%97%E8%A1%A8/outputV2DeviceOutputListRentDeviceSingleV2">outputV2DeviceOutputListRentDeviceSingleV2</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/output/v2/device-output/list_rent_device_network_v2</code></td><td><a href="/#/%E8%A3%B8%E9%87%91%E5%B1%9E%2F%E5%B7%B2%E8%B4%AD%E5%88%97%E8%A1%A8/outputV2DeviceOutputListRentDeviceNetworkV2">outputV2DeviceOutputListRentDeviceNetworkV2</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/output/v2/device_order/get_device_details_v2</code></td><td><a href="/#/%E8%A3%B8%E9%87%91%E5%B1%9E%2F%E5%B7%B2%E8%B4%AD%E5%88%97%E8%A1%A8/outputV2DeviceOrderGetDeviceDetailsV2">outputV2DeviceOrderGetDeviceDetailsV2</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+</tbody></table>
+<h2>裸金属/创建订单</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>POST</td><td><code>/api/output/v2/device_order/buy_v2</code></td><td><a href="/#/%E8%A3%B8%E9%87%91%E5%B1%9E%2F%E5%88%9B%E5%BB%BA%E8%AE%A2%E5%8D%95/outputV2DeviceOrderBuyV2">outputV2DeviceOrderBuyV2</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/output/v2/auto_renew_device_config/set_auto_renew_config</code></td><td><a href="/#/%E8%A3%B8%E9%87%91%E5%B1%9E%2F%E5%88%9B%E5%BB%BA%E8%AE%A2%E5%8D%95/outputV2AutoRenewDeviceConfigSetAutoRenewConfig">outputV2AutoRenewDeviceConfigSetAutoRenewConfig</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+<tr><td>POST</td><td><code>/api/output/v2/auto_renew_device_config/delete_auto_renew_config</code></td><td><a href="/#/%E8%A3%B8%E9%87%91%E5%B1%9E%2F%E5%88%9B%E5%BB%BA%E8%AE%A2%E5%8D%95/outputV2AutoRenewDeviceConfigDeleteAutoRenewConfig">outputV2AutoRenewDeviceConfigDeleteAutoRenewConfig</a></td><td>documented-apifox-openapi</td><td>是</td><td></td></tr>
+</tbody></table>
+<h2>裸金属/可购列表</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>POST</td><td><code>/api/output/v2/device-output/page_list_product_single_v2</code></td><td><a href="/#/%E8%A3%B8%E9%87%91%E5%B1%9E%2F%E5%8F%AF%E8%B4%AD%E5%88%97%E8%A1%A8/outputV2DeviceOutputPageListProductSingleV2">outputV2DeviceOutputPageListProductSingleV2</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+<tr><td>POST</td><td><code>/api/output/v2/device-output/page_list_product_network_v2</code></td><td><a href="/#/%E8%A3%B8%E9%87%91%E5%B1%9E%2F%E5%8F%AF%E8%B4%AD%E5%88%97%E8%A1%A8/outputV2DeviceOutputPageListProductNetworkV2">outputV2DeviceOutputPageListProductNetworkV2</a></td><td>documented-apifox-openapi</td><td></td><td></td></tr>
+</tbody></table>
+<h2>裸金属/订单列表</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>POST</td><td><code>/api/output/v2/device_order/get_order_list_v2</code></td><td><a href="/#/%E8%A3%B8%E9%87%91%E5%B1%9E%2F%E8%AE%A2%E5%8D%95%E5%88%97%E8%A1%A8/outputV2DeviceOrderGetOrderListV2">outputV2DeviceOrderGetOrderListV2</a></td><td>live-verified-token-mode</td><td></td><td></td></tr>
+</tbody></table>
+<h2>大模型云服务</h2>
+<table><thead><tr><th>方法</th><th>路径</th><th>operationId</th><th>证据</th><th>写操作</th><th>加密</th></tr></thead><tbody>
+<tr><td>POST</td><td><code>/v1/chat/completions</code></td><td><a href="/#/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E6%9C%8D%E5%8A%A1/llmChatCompletions">llmChatCompletions</a></td><td>documented-docs-example</td><td></td><td></td></tr>
+<tr><td>GET</td><td><code>/v1/models</code></td><td><a href="/#/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%BA%91%E6%9C%8D%E5%8A%A1/llmListModels">llmListModels</a></td><td>documented-docs-example</td><td></td><td></td></tr>
+</tbody></table>
+  </body>
+</html>
