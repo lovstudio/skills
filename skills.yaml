@@ -10433,13 +10433,13 @@ skills:
     card_path: pricing-cards/blogger-cloner.md
 - name: fourier-portrait
   runtime_name: lov-fourier-portrait
-  updated_at: 2026-11-21 15:10:00+00:00
+  updated_at: 2026-11-21 15:40:00+00:00
   display_name: Fourier Portrait
   repo: lovstudio/fourier-portrait-skill
   name_zh: 傅里叶画像
   paid: true
   category: Video Creation
-  version: 0.2.0
+  version: 0.2.1
   description: "Fourier Portrait: turn a single-person photo into a ready-to-post vertical short where rotating Fourier circles redraw the face from N=1 to 1024, with a slow-motion zoom, a reveal on the music drop, generated music, narration with captions, effects and an optional call-to-action card."
   tagline_en: "Turn one portrait photo into a vertical short where rotating Fourier circles redraw the whole face, with music, narration and a reveal on the drop."
   tagline_zh: "把一张人像照片做成竖版短片：一串旋转的圆逐级画出整张脸，配乐、旁白与音效卡点，在重拍处揭晓。"
