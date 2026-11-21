@@ -1,6 +1,6 @@
 # 手机信息图 · Mobile Infographic
 
-![Version](https://img.shields.io/badge/version-0.19.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.20.0-CC785C)
 
 把一段已经有结论的内容，重排成手机上真的读得下去的证据型信息卡：竖版画布、单列阅读路径、
 字号下限与行宽上限、可核查的口径。**输出永远是一张 1080 宽、高度自适应的卡片**
@@ -8,7 +8,8 @@
 
 两条硬规则：标题只写这张图的**作用或主题**（判断留给结论行，也不写「要点／速览／一图读完」这类
 放在哪张图上都成立的废话），主关系必须**图形化**
-（三项以上可比数据用 `bar-ranking` 的条形长度，不写流水账）。卡面不放来源列表：页面标题与网址
+（三项以上可比数据用 `bar-ranking` 的条形长度，不写流水账）。默认风格是深色 `stage`，主数字开场；
+`--style vivid` 换浅底撞色，`--style paper` 换安静的浅色纸面，`--accent` 按主题换强调色。卡面不放来源列表：页面标题与网址
 写进随卡交付的 `source.md`，卡面只留口径行；内部数据库/表名/路径由 `source_hygiene` 拦截，页脚署名可选。
 
 与 `lov-professional-infographic` 的分工很清楚：那个 Skill 做 16:9 桌面阅读的咨询 Exhibit，
@@ -48,7 +49,7 @@ LovStudio 三层链约定：`~/.agents/skills/lov-mobile-infographic` 绝对指�
 ```bash
 export SKILL_DIR="$(pwd)"
 python3 "$SKILL_DIR/scripts/infographic_cli.py" scaffold \
-  --template single-claim --filename card-01.html \
+  --template single-claim --style stage --filename card-01.html \
   --eyebrow "运营手册 · 01" --title "优化 harness 的三步" \
   --claim "模型是自变量，harness 是因变量" \
   --output-dir ./cards
@@ -74,8 +75,8 @@ python3 "$SKILL_DIR/scripts/infographic_cli.py" scaffold \
 只有用户明确要求多张时才做系列：按 `--series-index 1..N --series-size N` 逐张 `scaffold`、`render`、`audit`，再按
 [`references/series-and-export.md`](references/series-and-export.md) 写 `manifest.json`。
 
-真实案例见 [`cases/cases.json`](cases/cases.json)：一次“明确要求三张”的 `3:4` 系列，
-机器审计 3/3 通过、各 100/100。
+真实案例见 [`cases/cases.json`](cases/cases.json)：一张默认形态的 long 卡（同一内容的 stage、vivid、paper
+三种风格，各 100/100），以及一次“明确要求三张”的 `3:4` 系列（机器审计 3/3 通过、各 100/100）。
 
 ## 原子组合
 

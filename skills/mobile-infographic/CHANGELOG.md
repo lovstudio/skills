@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.20.0] - 2026-11-21
+
+### Added
+
+- 风格可选：`scaffold --style stage|vivid|paper`，默认 `stage`（深底、强调色、DIN 数字、右上角光晕）；`vivid` 是浅底撞色、主数字放进深强调色色块；`paper` 保留原来的浅色纸面。`--accent` 按主题换强调色，品牌配置可给 `logo_on_dark`
+- 配色按风格自动计算：文字强调色在纸色与 12% 强调色浅底上都达到 4.5:1，`vivid` 色块与白字至少 4.6:1
+- 五个表现力组件写进 `card-base.css`：`hero` 首屏主数字（240px）、`split` 分段色块、`columns` 竖柱、`section` 小节、`chips` 一行名单；骨架见新增的 `references/components.md`
+- `audit` 新增 `scale_integrity`（error）：柱高与色块宽度必须和数值成比例，偏差超过 5% 即报错
+- 新增随包案例「Anthropic 的两种市值」：同一内容的三种风格 long 卡，各 100/100
+- 新增 11 条测试：风格配色对比度、默认风格、强调色覆盖、深色 Logo、比例校验与 hero 模板
+
+### Changed
+
+- SKILL.md 新增「风格与表现力」：首屏视觉锚点、一个关系只画一次、按关系选编码（排位横条、时间竖柱、构成色块）、内容少就短
+- `metric-focus` 模板改用 `hero` 主数字
+- 审计里的颜色解析支持 `color(srgb …)`，`color-mix()` 背景上的文字对比度不再被跳过；因此 `paper` 风格的文字强调色由 #B0491A 微调到 #A74519，让打勾标记在浅强调底上达标
+- Step 7 复核清单第 6 条改为「标题写明主题了吗」，与标题规则一致；新增第 8 条「缩略图里有没有视觉锚点」
+
 ## [0.19.0] - 2026-11-21
 
 ### Changed

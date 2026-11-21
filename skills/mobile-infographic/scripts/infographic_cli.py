@@ -35,6 +35,12 @@ TEMPLATES = (
     "bar-ranking",
 )
 
+# Visual styles. `stage` is the default: a dark canvas reads as a finished piece in a feed.
+STYLES = ("stage", "vivid", "paper")
+DEFAULT_STYLE = "stage"
+STAGE_PALETTE = {"paper": "#15161A", "ink": "#F2EDE4", "muted": "#A9A498"}
+VIVID_PALETTE = {"paper": "#FBF6EE", "ink": "#16161A", "muted": "#55524C"}
+
 # Skeleton bars used when `scaffold --row` is not supplied for bar-ranking.
 # One row = two lines: (1) item + its one-line description, (2) bar + value + roster.
 DEFAULT_BAR_ROWS = """        <div class="bar-row" data-source-ref="{{SOURCE_ID}}" data-encoding="长度 = 数值">
@@ -192,6 +198,75 @@ def logo_data_url(profile: dict[str, Any]) -> str:
     return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode("ascii")
 
 
+def _hex_rgb(value: str) -> tuple[float, float, float]:
+    raw = str(value).strip().lstrip("#")
+    if len(raw) == 3:
+        raw = "".join(ch * 2 for ch in raw)
+    if not re.fullmatch(r"[0-9a-fA-F]{6}", raw):
+        raise SystemExit(f"expected a hex colour like #D97757, got {value!r}")
+    return tuple(int(raw[i:i + 2], 16) for i in (0, 2, 4))  # type: ignore[return-value]
+
+
+def _rgb_hex(rgb: tuple[float, float, float]) -> str:
+    return "#" + "".join(f"{max(0, min(255, round(c))):02X}" for c in rgb)
+
+
+def mix_hex(a: str, b: str, share_b: float) -> str:
+    ra, rb = _hex_rgb(a), _hex_rgb(b)
+    return _rgb_hex(tuple(x + (y - x) * share_b for x, y in zip(ra, rb)))
+
+
+def relative_luminance(value: str) -> float:
+    def channel(c: float) -> float:
+        c = c / 255
+        return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+    r, g, b = (channel(c) for c in _hex_rgb(value))
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def contrast_ratio(a: str, b: str) -> float:
+    la, lb = sorted((relative_luminance(a), relative_luminance(b)), reverse=True)
+    return (la + 0.05) / (lb + 0.05)
+
+
+def shift_until(color: str, target: str, against: str, minimum: float) -> str:
+    """Mix `color` toward `target` in 5% steps until it reaches `minimum` contrast with `against`."""
+    for step in range(0, 21):
+        candidate = mix_hex(color, target, step / 20)
+        if contrast_ratio(candidate, against) >= minimum:
+            return candidate
+    return target
+
+
+def style_palette(style: str, brand: dict[str, Any], accent: str | None = None) -> dict[str, str]:
+    """Resolve the colour tokens for one style. Text colours always clear 4.5:1 on their ground."""
+    if style not in STYLES:
+        raise SystemExit(f"unknown style '{style}'; expected one of {', '.join(STYLES)}")
+    accent_hex = _rgb_hex(_hex_rgb(accent or brand.get("accent", "#EB6637")))
+    if style == "paper":
+        palette = {
+            "primary": str(brand.get("primary", "#182033")),
+            "ink": str(brand.get("ink", "#172033")),
+            "muted": str(brand.get("muted", "#4A5468")),
+            "paper": str(brand.get("paper", "#F7F4EF")),
+        }
+    else:
+        base = STAGE_PALETTE if style == "stage" else VIVID_PALETTE
+        palette = {"primary": base["ink"], "ink": base["ink"], "muted": base["muted"], "paper": base["paper"]}
+    # Accent text sits on the paper and on the 12% accent tint (step numbers, check marks);
+    # the tint is the harder ground, so the accent ink is checked against it.
+    soft = mix_hex(palette["paper"], accent_hex, 0.12)
+    toward = "#FFFFFF" if style == "stage" else "#000000"
+    brand_ink = brand.get("accent_ink")
+    start = str(brand_ink) if (style == "paper" and brand_ink and not accent) else accent_hex
+    accent_ink = shift_until(start, toward, soft, 4.5)
+    palette["accent_soft"] = soft
+    palette["accent"] = accent_hex
+    palette["accent_ink"] = accent_ink
+    palette["accent_deep"] = shift_until(accent_hex, "#000000", "#FFFFFF", 4.6)
+    return palette
+
+
 # --------------------------------------------------------------------------
 # scaffold
 # --------------------------------------------------------------------------
@@ -283,7 +358,12 @@ def build_card_html(
     series_index: int,
     series_size: int,
     rows: list[str] | None = None,
+    style: str = DEFAULT_STYLE,
+    accent: str | None = None,
 ) -> str:
+    palette = style_palette(style, brand, accent)
+    if style == "stage" and brand.get("logo_on_dark"):
+        brand = {**brand, "logo": brand["logo_on_dark"]}
     template_path = TEMPLATE_DIR / f"{template}.html"
     if not template_path.is_file():
         raise SystemExit(f"unknown template '{template}'; expected one of {', '.join(TEMPLATES)}")
@@ -300,14 +380,14 @@ def build_card_html(
         "{{SAFE_TOP}}": str(SAFE_AREA["top"]),
         "{{SAFE_BOTTOM}}": str(SAFE_AREA["bottom"]),
         "{{BLOCK_GAP}}": str(SAFE_AREA["gap"]),
-        "{{BRAND_PRIMARY}}": str(brand.get("primary", "#182033")),
-        "{{BRAND_ACCENT}}": str(brand.get("accent", "#EB6637")),
-        "{{BRAND_ACCENT_INK}}": str(
-            brand.get("accent_ink") or brand.get("accent", "#B0491A")
-        ),
-        "{{BRAND_INK}}": str(brand.get("ink", "#172033")),
-        "{{BRAND_MUTED}}": str(brand.get("muted", "#4A5468")),
-        "{{BRAND_PAPER}}": str(brand.get("paper", "#F7F4EF")),
+        "{{BRAND_PRIMARY}}": palette["primary"],
+        "{{BRAND_ACCENT}}": palette["accent"],
+        "{{BRAND_ACCENT_INK}}": palette["accent_ink"],
+        "{{BRAND_INK}}": palette["ink"],
+        "{{BRAND_MUTED}}": palette["muted"],
+        "{{BRAND_PAPER}}": palette["paper"],
+        "{{ACCENT_DEEP}}": palette["accent_deep"],
+        "{{STYLE}}": style,
         "{{FONT_FAMILY}}": str(
             brand.get(
                 "font_family",
@@ -340,6 +420,7 @@ def build_card_html(
 BRIEF_TEMPLATE = """# 手机信息图 Brief
 
 - 模板：{template}
+- 风格：{style}
 - 比例：{ratio}（{width}×{height_css}）
 - 系列：第 {series_index} / {series_size} 张
 - 生成时间：{generated_at}
@@ -387,6 +468,8 @@ def cmd_scaffold(args: argparse.Namespace) -> int:
         series_index=args.series_index,
         series_size=args.series_size,
         rows=build_bar_rows(args.row or [], args.source_id),
+        style=args.style,
+        accent=args.accent,
     )
     target.write_text(html, encoding="utf-8")
 
@@ -395,6 +478,7 @@ def cmd_scaffold(args: argparse.Namespace) -> int:
     brief_path.write_text(
         BRIEF_TEMPLATE.format(
             template=args.template,
+            style=args.style,
             ratio=args.ratio,
             width=width,
             height_css="自动高度" if args.ratio == "long" else height,
@@ -411,6 +495,7 @@ def cmd_scaffold(args: argparse.Namespace) -> int:
         "card": str(target),
         "brief": str(brief_path),
         "template": args.template,
+        "style": args.style,
         "ratio": args.ratio,
         "series": f"{args.series_index}/{args.series_size}",
         "brand_origin": brand_origin,
@@ -443,6 +528,13 @@ MEASURE_JS = r"""
   const cardRect = card.getBoundingClientRect();
 
   const parseColor = (value) => {
+    const srgb = String(value || '').match(/color\(srgb\s+([\d.e-]+)\s+([\d.e-]+)\s+([\d.e-]+)(?:\s*\/\s*([\d.e-]+))?\)/);
+    if (srgb) {
+      return {
+        r: parseFloat(srgb[1]) * 255, g: parseFloat(srgb[2]) * 255, b: parseFloat(srgb[3]) * 255,
+        a: srgb[4] !== undefined ? parseFloat(srgb[4]) : 1,
+      };
+    }
     const m = String(value || '').match(/rgba?\(([^)]+)\)/);
     if (!m) { return null; }
     const parts = m[1].split(',').map((p) => parseFloat(p.trim()));
@@ -683,8 +775,28 @@ MEASURE_JS = r"""
         return s.display !== 'none' && s.visibility !== 'hidden';
       }).length,
       skeletons: skeletons.length,
-      blocks: card.querySelectorAll('.block, .step, .check, .compare-side, .metric').length,
+      blocks: card.querySelectorAll('.block, .step, .check, .compare-side, .metric, .hero').length,
     },
+    // Column heights and split widths must follow their printed values.
+    scales: [
+      ...Array.from(card.querySelectorAll('.columns')).map((group) => ({
+        kind: 'columns',
+        items: Array.from(group.querySelectorAll('.col')).map((col) => ({
+          label: ((col.querySelector('.col-name') || {}).textContent || '').trim().slice(0, 24),
+          value: parseFloat(((col.querySelector('.col-value') || {}).textContent || '').replace(/^[+＋]/, '')),
+          size: col.querySelector('.col-bar') ? col.querySelector('.col-bar').getBoundingClientRect().height : NaN,
+        })),
+      })),
+      ...Array.from(card.querySelectorAll('.split')).map((group) => {
+        const sizes = Array.from(group.querySelectorAll('.split-bar .seg')).map((seg) => seg.getBoundingClientRect().width);
+        const values = Array.from(group.querySelectorAll('.split-key .split-num'))
+          .map((num) => parseFloat((num.textContent || '').trim().replace(/^[+＋]/, '')));
+        return {
+          kind: 'split',
+          items: sizes.map((size, index) => ({ label: `segment ${index + 1}`, value: values[index], size })),
+        };
+      }),
+    ],
     logo: logo ? {
       present: Boolean(logo.getAttribute('src')),
       natural_w: logo.naturalWidth,
@@ -930,6 +1042,22 @@ def audit_measurements(m: dict[str, Any], ratio_expected: tuple[int, int] | None
               f"来源引用 {counts['sources']} 处，编码元素 {counts['encodings']} 个，"
               f"其中已挂来源 {counts['encodings_linked']} 个")
 
+    scale_issues = []
+    for group in m.get("scales", []) or []:
+        items = group.get("items") or []
+        unparsed = [item for item in items
+                    if not isinstance(item.get("value"), (int, float)) or item["value"] != item["value"]]
+        if unparsed:
+            scale_issues.append(f"{group.get('kind')}：数值无法解析（{', '.join(str(i.get('label')) for i in unparsed[:3])}）")
+            continue
+        ratios = [item["size"] / item["value"] for item in items
+                  if item.get("value", 0) > 0 and (item.get("size") or 0) > 0]
+        if len(ratios) >= 2 and max(ratios) / min(ratios) > 1.05:
+            scale_issues.append(f"{group.get('kind')}：尺寸与数值偏差 {max(ratios) / min(ratios) - 1:.0%}")
+    add_issue(checks, "scale_integrity", "error", not scale_issues,
+              "柱高与色块宽度和数值成比例" if not scale_issues else
+              "图形尺寸与数值不成比例：" + "; ".join(scale_issues[:3]) + "（允许偏差 5%）")
+
     source_blocks = int(counts.get("source_blocks", 0) or 0)
     add_issue(checks, "source_offcard", "warning", source_blocks == 0,
               "卡面不放来源列表，来源随 source.md 交付" if source_blocks == 0 else
@@ -1168,6 +1296,14 @@ def build_parser() -> argparse.ArgumentParser:
         choices=tuple(RATIOS),
         help="default 'long': one card whose height follows the content",
     )
+    scaffold.add_argument(
+        "--style",
+        default=DEFAULT_STYLE,
+        choices=STYLES,
+        help="visual style: stage (default, dark), vivid (light with an accent panel) or paper (quiet light)",
+    )
+    scaffold.add_argument("--accent", default=None,
+                          help="accent colour for this card, e.g. #D97757; defaults to the brand accent")
     scaffold.add_argument("--title", required=True)
     scaffold.add_argument("--claim", default="")
     scaffold.add_argument("--eyebrow", default="")

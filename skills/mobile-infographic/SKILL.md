@@ -11,7 +11,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: skill-publisher
-  version: "0.19.0"
+  version: "0.20.0"
   card_standard: lovstudio/skill-card/v1
   content_class: microcopy
   tags:
@@ -94,7 +94,8 @@ sibling Skill that is not shipped with this source.
    - **眉标（eyebrow）只放最少的定位信息**，不要塞生造缩写（「71 人可表态」这类没人看得懂）；
      样本量、分母、周期这类备注一律放到卡片末尾的口径行。副标题写不出一句人话时就删掉，不要凑。
 2. **主关系必须图形化，且按数值倒序。** 三个以上同类项要比大小，用 `bar-ranking` 的条形长度编码，
-   顺序从大到小（`audit` 的 `bar_order` 会拦截乱序）；构成关系用色块，流程用 `step-strip`。
+   顺序从大到小（`audit` 的 `bar_order` 会拦截乱序）；构成关系用分段色块（`split`），时间顺序用竖柱
+   （`columns`，按时间排），流程用 `step-strip`。
    纯文字罗列（一行一个城市、一人一行）属于流水账，不构成信息图。
 3. **排位项要展开“它是什么”。** 图表条目可能只有内部人认识时，必须给每条加一句它是什么、
    为什么值得选（例如每座城的一句话设定），再放名单。该展开的展开，不要只堆名字。
@@ -123,6 +124,27 @@ sibling Skill that is not shipped with this source.
     标题，不写「报告称／报告显示」这类来源提示，也不写「最该记住／值得关注」这类元话术——
     要么给事实，要么给编码说明（如「角度 = 案例数」）。
 
+## 风格与表现力
+
+默认交付要好看：读者在信息流里先被画面抓住，再去读数字。
+
+- **风格可选，默认 `stage`。** `scaffold --style` 三选一：
+  - `stage`（默认）：深色舞台。深底、强调色、DIN 数字、右上角一层强调色光晕；数字、市场、科技、发布类主题最出效果。
+  - `vivid`：浅底撞色。顶部一条强调色，主数字放进深强调色色块；适合活动、运营与消费类主题。
+  - `paper`：浅色纸面。安静的文档感，适合方法论、清单与长文摘要。
+
+  用户点名风格时从其指定；没点名就用 `stage`。主题明显需要安静或明亮的画面时可以换，并在 `brief.md`
+  写一句理由。强调色默认取品牌色，主题有更贴切的颜色时用 `--accent` 换；文字用的强调色由脚本按底色
+  自动提亮或压暗，保证 4.5:1。深色风格下 Logo 看不清时，在品牌配置里给 `logo_on_dark`。
+- **首屏要有视觉锚点。** 卡片回答「多少／最高／多大」时，用 `hero` 主数字（240px）开场，结论句可以省掉；
+  不要让读者在一段话里找答案。没有单一数字时，就让主图形（条形、柱、色块）出现在第一屏。
+- **一个关系只画一次。** 同一组数换算出来的两张图合成一张，例如市值与股数共用一条分段色块。
+- **按关系选编码。** 排位用横向条形（`bar-ranking`，按数值倒序）；时间顺序或阶段用竖柱（`columns`，按时间排）；
+  构成用分段色块（`split`）；流程用 `step-strip`。柱高与色块宽度必须和数值成比例，`audit` 以
+  `scale_integrity` 校验。
+- **内容少就短。** 不为凑小节把卡拉长；只回答一个问题的卡通常在两个 3:4 屏以内。
+- 组件的 HTML 骨架见 [`references/components.md`](references/components.md)。
+
 ## 对外可见红线（强制）
 
 - **卡面不放来源列表**：数据来源、页面标题、网址与「信息图呈现」署名一律写进 `source.md` 的
@@ -147,6 +169,7 @@ Read before authoring:
 1. `references/mobile-reading-standard.md` — 字号下限、行宽、对比度、安全区、比例与一屏信息量。
 2. `references/template-grammar.md` — 六个语义模板的适用关系与选择规则。
 3. `references/spec-schema.md` — HTML `data-*` 契约与 audit 字段。
+4. `references/components.md` — hero、split、columns、section、chips 五个表现力组件的骨架。
 
 Read `references/series-and-export.md` when the output is a series, a long image,
 or platform-specific delivery.
@@ -199,9 +222,10 @@ For every visible mark record the source and location, unit, denominator, period
 and whether it is fact, estimate, assumption, or interpretation. Never invent a
 proxy value or a score.
 
-### Step 3: Choose one template and the ratio
+### Step 3: Choose one template, the style and the ratio
 
-Pick exactly one template from `references/template-grammar.md`; when three or more comparable
+Pick the style first: `stage` unless the user names another or the topic clearly
+needs a quiet (`paper`) or bright (`vivid`) canvas; see 风格与表现力. Then pick exactly one template from `references/template-grammar.md`; when three or more comparable
 items have to be rank-ordered, use `bar-ranking` so the ordering is read as length, not as prose.
 Default ratio is
 `long`: one card at 1080 width whose height follows the content (at least 1.2× width,
@@ -214,6 +238,7 @@ story, `1:1` for grid tiles — and say which surface forced it.
 ```bash
 python3 "$SKILL_DIR/scripts/infographic_cli.py" scaffold \
   --template single-claim \
+  --style stage \
   --ratio long \
   --filename card-01.html \
   --series-index 1 --series-size 1 \
@@ -273,8 +298,9 @@ is enough). Answer:
 3. 有没有被省略号截断、被裁切或压线的文字？
 4. 每个数字是否带单位与口径？
 5. 有没有大片空白或被撑满到窒息的区块？
-6. 标题是可被反驳的观点吗？主关系是用图形（长度/颜色/顺序）表达的吗？
+6. 标题写明主题了吗？主关系是用图形（长度/高度/颜色/顺序）表达的吗？
 7. 卡面上有没有残留来源列表，或内部来源、数据库路径、表名与不该露出的真名？
+8. 缩略图里有没有一个视觉锚点（主数字或主图形），还是整屏均匀的文字？
 
 Record the reviewed image and the concrete finding, then run the release gate:
 
@@ -303,7 +329,7 @@ See `references/series-and-export.md`.
 
 Return clickable paths to the PNG, the editable HTML, `brief.md`, `source.md` and
 `audit.json` — plus `manifest.json` only for a series (a single card never needs one). State the
-template, ratio, evidence mode, proxy score, and human-review result. Disclose assumptions,
+template, style, ratio, evidence mode, proxy score, and human-review result. Disclose assumptions,
 omitted material, and any card that is still machine-only verified.
 
 ## Dependencies
