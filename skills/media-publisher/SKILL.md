@@ -13,7 +13,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.19.1"
+  version: "0.19.2"
   tags:
     - wechat-channels
     - bilibili
@@ -45,6 +45,9 @@ metadata:
   适配（标题 ≤20 字重派生、正文去掉行内 `#话题`、话题减到 10 个以内并走页面候选），改写处列入终稿确认（`auto` 平台列入发布后的报告；
   改动的是用户写的文本时按「按 Profile 偏好免终稿确认」的退回条件停下）；成片仍按
   下文「平台成片映射门禁」取小红书对应文件，用户明确同意复用别的平台文件才加 `--allow-cross-platform-name`。
+  小红书不许给其他平台导流（2026-11-22 用户确认）：文案同时删掉站外链接、域名和「去某平台搜」一类引导，成片必须是无导流版
+  （画面、字幕、口播里没有片尾卡、二维码、URL），否则记 `blocked-on-platform-variant` 交回产出方，不发原片；
+  门禁见 [小红书约束](references/xiaohongshu/platform-constraints.md)「禁止站外导流」。B 站、抖音的导流规则没确认过，发布前先查当前规则。
 - **抖音也不在默认队列里**，规则与小红书相同：只说「发抖音」时队列为 `[douyin]`，「也发抖音」时接在队列后面。继承冻结终稿时的最小
   适配是：两行钩子拆成「标题 = 第一行（≤30 字），简介 = 其余」（抖音预览把标题和简介拼成一段，两处写同一句会重复）、剥掉行内
   `#话题`、话题减到 5 个以内并走「#添加话题」联想，改写处同样列入终稿确认。
@@ -422,7 +425,8 @@ Profile 为 `auto` 的平台按偏好不标注、不因此退回，发布后的�
      --topic 架构设计 --topic 开源 \
      --collection "手工川与你一起学 DeepSeek Harness" --collection-stage edit --json
 
-   # 小红书：标题 20 / 正文 1000 / 话题 ≤10；话题能否命中已有话题只能在页面候选里看
+   # 小红书：标题 20 / 正文 1000 / 话题 ≤10；话题能否命中已有话题只能在页面候选里看；
+   # URL / 域名报 offsite_link、扫码与「去某平台搜」报 offsite_cta（画面、字幕、口播要按约束文档人工查）
    python3 $SKILL_DIR/scripts/check_copy.py --platform xiaohongshu \
      --title "国庆72小时 玩转南头古城" --description "$(cat 正文.txt)" \
      --topic 南头古城 --topic 深圳 --json

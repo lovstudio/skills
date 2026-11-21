@@ -174,6 +174,91 @@ class XiaohongshuCopyTests(unittest.TestCase):
         self.assertIn("联想列表", finding["message"])
 
 
+class XiaohongshuOffsiteDiversionTests(unittest.TestCase):
+    """2026-11-22 用户确认：小红书不能给其他平台导流。"""
+
+    def xhs(self, *argv: str):
+        return run("--platform", "xiaohongshu", *argv)
+
+    def test_url_in_description_fails(self):
+        code, report = self.xhs("--description", "完整版见 https://lovstudio.ai/skills/fourier，欢迎来玩")
+
+        self.assertEqual(code, 1)
+        self.assertEqual(codes(report), {"offsite_link"})
+        finding = report["findings"][0]
+        self.assertEqual(finding["field"], "description")
+        self.assertEqual(finding["samples"], ["https://lovstudio.ai/skills/fourier"])
+
+    def test_bare_domain_right_after_chinese_fails(self):
+        code, report = self.xhs("--description", "源码在官网lovstudio.ai上")
+
+        self.assertEqual(code, 1)
+        self.assertIn("offsite_link", codes(report))
+        link = next(f for f in report["findings"] if f["code"] == "offsite_link")
+        self.assertEqual(link["samples"], ["lovstudio.ai"])
+
+    def test_search_on_other_platform_fails(self):
+        code, report = self.xhs("--description", "想要同款，去B站搜手工川")
+
+        self.assertEqual(code, 1)
+        self.assertEqual(codes(report), {"offsite_cta"})
+        self.assertEqual(report["findings"][0]["samples"], ["去B站搜"])
+
+    def test_qr_and_private_channel_ctas_fail(self):
+        for text in ("扫码领取源码", "加我微信拿素材", "关注公众号「手工川」", "公众号同名"):
+            with self.subTest(text=text):
+                code, report = self.xhs("--description", text)
+                self.assertEqual(code, 1)
+                self.assertIn("offsite_cta", codes(report))
+
+    def test_title_and_topics_are_checked_too(self):
+        code, report = self.xhs("--title", "B站搜手工川看完整版", "--topic", "哔哩哔哩")
+
+        self.assertEqual(code, 1)
+        by_field = {(f["field"], f["code"]) for f in report["findings"]}
+        self.assertIn(("title", "offsite_cta"), by_field)
+        self.assertIn(("topics", "offsite_platform_mention"), by_field)
+
+    def test_plain_platform_mention_only_warns(self):
+        code, report = self.xhs("--description", "我在抖音看到一个视频，觉得很有意思")
+
+        self.assertEqual(code, 0)
+        self.assertEqual(codes(report), {"offsite_platform_mention"})
+        finding = report["findings"][0]
+        self.assertEqual(finding["level"], "warn")
+        self.assertEqual(finding["samples"], ["抖音"])
+
+    def test_cta_platform_is_not_reported_twice_as_mention(self):
+        code, report = self.xhs("--description", "去B站搜手工川")
+
+        self.assertNotIn("offsite_platform_mention", codes(report))
+
+    def test_own_platform_links_and_lookalikes_pass(self):
+        for text in (
+            "笔记链接 https://www.xiaohongshu.com/discovery/item/abc",
+            "版本 v0.19.2，用 Node.js 写的",
+            "想用你自己的照片，也做一条同款吗？",
+            "wxyz 和 QQQ 都不是平台名",
+        ):
+            with self.subTest(text=text):
+                code, report = self.xhs("--description", text)
+                self.assertEqual(code, 0)
+                self.assertEqual(codes(report), set())
+
+    def test_limits_report_the_rule(self):
+        _, report = self.xhs("--title", "傅里叶自画像")
+
+        self.assertIs(report["limits"]["no_offsite_diversion"], True)
+
+    def test_other_platforms_are_not_checked(self):
+        for platform, field in (("bilibili", "--description"), ("douyin", "--description"),
+                                ("wechat-channels", "--description")):
+            with self.subTest(platform=platform):
+                code, report = run("--platform", platform, field, "去B站搜手工川 https://lovstudio.ai")
+                self.assertFalse({c for c in codes(report) if c.startswith("offsite_")})
+                self.assertNotIn("no_offsite_diversion", report["limits"])
+
+
 class WechatChannelsShortTitleTests(unittest.TestCase):
     def test_four_char_short_title_fails_minimum(self):
         # 2026-10-12 页面原文「标题至少6个字」，触发值就是这个 4 字短标题。
