@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""发布文案的离线预检（微信视频号 / Bilibili / 小红书）。
+"""发布文案的离线预检（微信视频号 / Bilibili / 小红书 / 抖音）。
 
 存在的理由只有一个：这些限制全都能在本地算出来，但只有点下去才会被平台告知。
 观测到的代价是每撞一次就要一个页面往返（填入 → 失焦 → 读校验提示 → 改写）。
@@ -9,6 +9,11 @@
     python3 check_copy.py --platform wechat-channels --short-title "…" --json
     python3 check_copy.py --platform bilibili --title "…" --topic 架构设计 --json
     python3 check_copy.py --platform xiaohongshu --title "…" --description "…" --topic 南头古城 --json
+    python3 check_copy.py --platform douyin --title "…" --description "…" --topic 傅里叶级数 --json
+
+抖音（2026-11-21 一次实测）：标题计数器「0/30」、简介计数器「0 / 1000」，话题连同 `#` 计入简介计数器；
+第 6 个话题点了候选不生成节点、只闪一下「最多可添加5个话题」，按原文取 5，超了报 error `topics_too_many`。
+抖音的标题和简介在预览里拼成一段（「标题 + 空格 + 简介」），两处别写同一句。
 
 视频号的规则来自平台自己的报错原文，不是推断：
 
@@ -174,6 +179,41 @@ PLATFORMS: dict[str, dict[str, Any]] = {
             "话题请用 --topic 并在页面从 # 联想列表点选，正文去掉行内 #"
         ),
         "source": "小红书创作服务平台发布页计数器（正文 2026-10-01、标题 2026-10-12 读取）与发布时的提示原文（话题上限 2026-10-29）",
+    },
+    "douyin": {
+        "label": "抖音",
+        "short_title_max": None,
+        "short_title_min": None,
+        # 标题输入框后缀计数器「0/30」（2026-11-21）；输入框本身 maxLength 为 -1，没撞过线。
+        "title_max": 30,
+        "title_basis": "页面计数器「n/30」，未撞线实测",
+        # 简介计数器「0 / 1000」（2026-11-21）。
+        "description_max": 1000,
+        # 账号没有合集，「请选择合集」下拉里只有「不选择合集」，创建合集的表单没打开过。
+        "collection_max": {"create": None, "edit": None},
+        "collection_immutable": None,
+        "topic_label": "话题",
+        # 第 6 个话题点了不生成节点，只闪一下「最多可添加5个话题」（2026-11-21，记录器抓到的原文）。
+        "topic_max": 5,
+        "topic_max_note": (
+            "页面原文「最多可添加5个话题」。第 6 个点了候选也不生成节点、只闪一下提示，"
+            "输入的 #名称 会留成纯文本——先减到 5 个再填"
+        ),
+        "topic_soft_max": None,
+        "topic_refused": (),
+        "topic_notice": (
+            "抖音话题要点「#添加话题」后输入名称，从联想列表里点名称全等的一项；"
+            "离线判断不了联想里有没有这个名字，填完读一次 [data-mention=\"#\"] 节点"
+        ),
+        # 2026-11-21：输入后没点上候选的「#Agent」留在简介里是纯文本，不算话题。
+        "inline_hashtag_not_topic": True,
+        # 简介计数器把话题连同 `#` 算进去（17 字正文 + 换行 + 5 个话题读到 50 / 1000）。
+        "counter_includes_topics": True,
+        "inline_hashtag_message": (
+            "简介里的 {samples} 不会自动成为话题；"
+            "话题请用 --topic 并在页面点「#添加话题」从联想列表点选，简介去掉行内 #"
+        ),
+        "source": "抖音创作者中心发布页计数器与提示原文（2026-11-21 读取）",
     },
 }
 
@@ -547,8 +587,8 @@ def check_topics(topics: list[str], spec: dict[str, Any]) -> list[dict]:
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         description=(
-            "发布文案离线预检（视频号 / B 站 / 小红书）。"
-            "例：check_copy.py --platform xiaohongshu --title … --description … --topic 南头古城 --json"
+            "发布文案离线预检（视频号 / B 站 / 小红书 / 抖音）。"
+            "例：check_copy.py --platform douyin --title … --description … --topic 傅里叶级数 --json"
         ),
     )
     p.add_argument("--platform", choices=sorted(PLATFORMS), default=DEFAULT_PLATFORM,
@@ -556,11 +596,11 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--short-title", default=None,
                    help="视频号短标题，6–16 字且禁用逗号")
     p.add_argument("--title", default=None,
-                   help="稿件标题：B 站 ≤80 字，小红书 ≤20 字")
+                   help="稿件标题：B 站 ≤80 字，小红书 ≤20 字，抖音 ≤30 字")
     p.add_argument("--description", default=None,
-                   help="描述 / 简介 / 正文全文（B 站 ≤2000 字，小红书 ≤1000 字）")
+                   help="描述 / 简介 / 正文全文（B 站 ≤2000 字，小红书、抖音 ≤1000 字）")
     p.add_argument("--topic", action="append", default=[], dest="topics",
-                   help="一个话题（视频号 / 小红书）或标签（B 站），可重复传入；带不带 # 都可以")
+                   help="一个话题（视频号 / 小红书 / 抖音）或标签（B 站），可重复传入；带不带 # 都可以")
     p.add_argument("--collection", default=None, help="合集标题")
     p.add_argument("--collection-stage", choices=("create", "edit"), default="create",
                    help="合集标题要过哪个表单的上限（默认 create，更严）")

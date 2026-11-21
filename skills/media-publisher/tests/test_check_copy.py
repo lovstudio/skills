@@ -319,5 +319,66 @@ class RegressionTests(unittest.TestCase):
         self.assertIn("n/80", report["findings"][0]["message"])
 
 
+class DouyinCopyTests(unittest.TestCase):
+    FIVE = [arg for name in ("傅里叶级数", "傅里叶变换", "数学之美", "数学可视化", "AI创作")
+            for arg in ("--topic", name)]
+
+    def test_title_counter_is_30(self):
+        ok_code, ok = run("--platform", "douyin", "--title", "国" * 30)
+        bad_code, bad = run("--platform", "douyin", "--title", "国" * 31)
+
+        self.assertEqual((ok_code, codes(ok)), (0, {"title_ok"}))
+        self.assertEqual((bad_code, codes(bad)), (1, {"title_too_long"}))
+        self.assertIn("n/30", bad["findings"][0]["message"])
+
+    def test_description_counter_is_1000(self):
+        ok_code, _ = run("--platform", "douyin", "--description", "字" * 1000)
+        bad_code, bad = run("--platform", "douyin", "--description", "字" * 1001)
+
+        self.assertEqual(ok_code, 0)
+        self.assertEqual((bad_code, codes(bad)), (1, {"description_too_long"}))
+
+    def test_five_topics_pass(self):
+        code, report = run("--platform", "douyin", *self.FIVE)
+
+        self.assertEqual(code, 0)
+        self.assertEqual(codes(report), {"topic_pick_from_suggestions"})
+        self.assertEqual(report["limits"]["topic_max"], 5)
+
+    def test_sixth_topic_fails_with_page_wording(self):
+        # 2026-11-21：第 6 个「Agent」点了候选不生成节点，只闪出「最多可添加5个话题」。
+        code, report = run("--platform", "douyin", *self.FIVE, "--topic", "Agent")
+
+        self.assertEqual(code, 1)
+        finding = next(f for f in report["findings"] if f["code"] == "topics_too_many")
+        self.assertEqual((finding["actual"], finding["limit"]), (6, 5))
+        self.assertIn("最多可添加5个话题", finding["message"])
+
+    def test_inline_hashtag_in_description_warns(self):
+        code, report = run("--platform", "douyin", "--description", "想做一条同款吗？ #Agent")
+
+        self.assertEqual(code, 0)
+        self.assertEqual(codes(report), {"description_inline_hashtag"})
+        self.assertIn("#添加话题", report["findings"][0]["message"])
+
+    def test_counter_includes_topics(self):
+        code, report = run("--platform", "douyin", "--description", "字" * 990, *self.FIVE)
+
+        self.assertEqual(code, 0)
+        self.assertIn("description_with_topics_over_limit", codes(report))
+
+    def test_unknown_collection_limit_warns(self):
+        code, report = run("--platform", "douyin", "--collection", "傅里叶画像")
+
+        self.assertEqual(code, 0)
+        self.assertEqual(codes(report), {"collection_limit_unknown"})
+
+    def test_short_title_is_not_a_douyin_field(self):
+        code, report = run("--platform", "douyin", "--short-title", "傅里叶画像")
+
+        self.assertEqual(code, 1)
+        self.assertEqual(codes(report), {"field_not_on_platform"})
+
+
 if __name__ == "__main__":
     unittest.main()

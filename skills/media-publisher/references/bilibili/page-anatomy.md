@@ -121,7 +121,8 @@ q.blur()
 ## 标签：四个独立的坑
 
 1. **平台会按账号名自动猜标签**。账号「手工川」自动带出 `手工`/`生活记录`/`记录`。
-   填字段前先清空已有标签，不要在脏状态上追加。
+   填字段前先清空已有标签，不要在脏状态上追加。例外是原创 chip：2026-10-31 自动带出的是 `学习`/`记录`/`原创`，
+   其中 `原创` 就是下文「原创声明不是独立控件」说的原创 chip，保留它，只删另外两个。
 2. **部分标签是话题专用、禁止自定义添加**。toast 原文「当前tag为话题专用，不允许自定义添加」。
    2026-08-18 实测被拒：`DeepSeekHarness`、`独立开发者`、`插件开发`。
    2026-10-06 实测被拒：`vibecoding`，换成 `AI编程` 被接受。
@@ -196,6 +197,9 @@ skill 正文里「原创权益弹窗」那套写法是**视频号**的，B 站�
 算法 / 学习 / 全局 / 编程 / 数学。没有时不要自己敲一个「原创」普通标签，也不要拿授权声明顶替，
 在终稿字段表里写「原创 chip：未出现」，需要终稿确认时由用户当次决定；Profile 为 `auto` 时不加，发布后报告写明
 （见 SKILL.md「按 Profile 偏好免终稿确认」）。
+
+反过来，平台也会自己把 `原创` 放进正式标签（2026-10-31，和 `学习`、`记录` 一起自动带出，计入 7/10）。读到它已在
+`.tag-container` 里就保留，不用再点 chip，字段表写「原创：平台自动带出，已保留」。
 
 ## 上传页有两个视频 file input
 
@@ -371,10 +375,29 @@ wrapper active；再点击第二个 inactive wrapper / canvas，回读其 class 
 别的选项上。确认 `document.elementFromPoint(x, y)` 命中目标 `li` 的文字后再真鼠标点击，读回
 所属 `bcc-select` 内 `input.value`。
 
+## 定时发布开关：按类名全等判断（2026-10-31 实测）
+
+提交前要读到「定时发布」是关的。开关是 `.time-switch-wrp > .switch-container`（里面一个 `span.switch-roll`）；这次页面上有两个
+`.time-switch-wrp`，一个可见、一个隐藏，按 `getBoundingClientRect().width > 0` 过滤。第一版探针
+`.time-switch-wrp .switch-container[class*=on]` 把关着的开关读成了开：`switch-container` 自己就含子串 `on`（con-tainer）。
+改成读可见开关的 `class` 属性，恰好等于 `switch-container` 才算关：
+
+```js
+const sw = [...document.querySelectorAll('.time-switch-wrp')].filter((w) => w.getBoundingClientRect().width > 0)
+  .map((w) => w.querySelector('.switch-container').getAttribute('class'))
+const timerOff = sw.length > 0 && sw.every((c) => c === 'switch-container')
+```
+
+打开时多出什么类没有观测过；读到别的值就停下截图，不要按含不含某个子串去猜。
+
 ## 改标题后分区会被重新猜（2026-10-01 实测）
 
 上传后平台先按文件名猜分区（观测「游戏」），写完标题后又被改成「vlog」。分区要在标题写完之后
 选，并在提交前的全表回读里再读一次 `.video-human-type p.select-item-cont`。
+
+2026-10-31 又见一次：上传时按文件名猜成「vlog」，写完标题改猜成「小剧场」，标签下的推荐话题 chip（`.hot-tag-item`）也跟着换成
+搞笑短剧一类（搞笑小剧场、配音小剧场、UP主原创剧场等）。推荐 chip 跟着猜出的分区走，不能当作内容相关的证据去点；分区按用户的意思定
+（这次用户回「投，分区改科技数码」），改完再读一次标题和标签，确认没被带动。
 
 ## 分区下拉的列表自己会滚，被裁掉的项也有正常 rect（2026-10-12 实测）
 
@@ -407,6 +430,11 @@ if (!p.inside || p.hitText !== NAME) throw new Error('分区项未命中: ' + JS
 回读时注意：本次选「知识」，`p.select-item-cont` 读到「知识」；投稿后创作中心 `archives` 接口给的是
 `tid: 122`、`typename: 野生技能协会`，公开 `view` 的 `tid` 也是 122、`tname` 为空。下拉显示一级分区名，接口给的是
 落库分区，两者对不上不是选错，不要据此重选或重投。
+
+2026-10-31 读到的 30 个一级分区：影视、娱乐、音乐、舞蹈、动画、绘画、鬼畜、游戏、资讯、知识、人工智能、科技数码、汽车、时尚美妆、
+家装房产、户外潮流、健身、体育运动、手工、美食、小剧场、旅游出行、三农、动物、亲子、健康、情感、vlog、生活兴趣、生活经验。
+这次选「科技数码」，投稿后接口落库也是 `tid 122`、`tname` 为空，和上面选「知识」时同一个 tid：tid 区分不了这两个一级分区，
+验收以下拉显示的名字为准。
 
 ## 审核期间的回读（2026-10-01 实测）
 

@@ -529,5 +529,106 @@ class FilenameTokenTests(unittest.TestCase):
                 self.assertEqual(foreign_token(filename, platform), token)
 
 
+def douyin_probe(width=1080, height=1920, duration="54.246", fps="30/1"):
+    probe = valid_probe()
+    probe["format"]["duration"] = duration
+    probe["streams"][0].update(width=width, height=height, avg_frame_rate=fps)
+    return probe
+
+
+def douyin(path="fourier-v0.3.mp4", probe=None, size=32 * 1024 ** 2, **kwargs):
+    return check_video.validate_probe(
+        Path(path), probe or douyin_probe(), size_bytes=size, platform="douyin", **kwargs
+    )
+
+
+def issue_codes(items):
+    return {item["code"] for item in items}
+
+
+class DouyinTests(unittest.TestCase):
+    def test_limits_follow_upload_page(self):
+        # 「视频时长 1 小时以内，文件大小 16G 以内」，16G 与 B 站同口径按十进制 GB 取。
+        limits = check_video.PLATFORMS["douyin"]
+        self.assertEqual(limits["max_hours"], 1.0)
+        self.assertLess(limits["max_gb"] * 1024 ** 3, 16_000_000_000)
+        self.assertGreater(limits["max_gb"], 14.8)
+
+    def test_vertical_over_40_seconds_warns_but_passes(self):
+        # 上传页原文「超过40秒的视频建议上传横版视频」只是建议，不阻断已批准的竖版。
+        result = douyin(expected_orientation="vertical")
+
+        self.assertTrue(result["valid"])
+        self.assertEqual(issue_codes(result["warnings"]), {"long_vertical_video"})
+        self.assertIn("超过40秒的视频建议上传横版视频", result["warnings"][0]["message"])
+        self.assertEqual(issue_codes(result["notes"]), {"video_bitrate_no_platform_cap"})
+        self.assertEqual(result["platform_label"], "抖音")
+
+    def test_short_vertical_and_long_horizontal_do_not_warn(self):
+        for probe in (douyin_probe(duration="40.0"), douyin_probe(1920, 1080, "600")):
+            with self.subTest(probe=probe["streams"][0]["width"]):
+                self.assertEqual(douyin(probe=probe)["warnings"], [])
+
+    def test_rejects_over_one_hour_and_decimal_16gb(self):
+        result = douyin(probe=douyin_probe(1920, 1080, "3601"), size=16_000_000_000)
+
+        self.assertFalse(result["valid"])
+        self.assertEqual(
+            issue_codes(result["errors"]), {"duration_too_long", "file_too_large"}
+        )
+
+    def test_fan_relaxation_is_an_override(self):
+        # 粉丝过万「3 小时以内、64G 以内」：按页面原文覆盖后两小时片可以过。
+        result = douyin(probe=douyin_probe(1920, 1080, str(2 * 3600)), max_gb=59.6, max_hours=3)
+
+        self.assertTrue(result["valid"])
+
+    def test_accepts_hevc_and_webm_but_warns_on_mov(self):
+        hevc = douyin_probe(1920, 1080, "60")
+        hevc["streams"][0]["codec_name"] = "hevc"
+        webm = douyin_probe(1920, 1080, "60")
+        webm["format"]["format_name"] = "matroska,webm"
+        vp9 = douyin_probe(1920, 1080, "60")
+        vp9["streams"][0]["codec_name"] = "vp9"
+
+        self.assertEqual(douyin(probe=hevc)["warnings"], [])
+        self.assertEqual(douyin("master.webm", probe=webm)["warnings"], [])
+        mov = douyin("master.mov", probe=douyin_probe(1920, 1080, "60"))
+        self.assertEqual(issue_codes(mov["warnings"]), {"container_not_recommended"})
+        self.assertIn("MP4 / WEBM", mov["warnings"][0]["message"])
+        self.assertEqual(
+            issue_codes(douyin(probe=vp9)["warnings"]), {"video_codec_not_supported"}
+        )
+
+    def test_aspect_ratio_outside_recommended_list_warns(self):
+        square = douyin(probe=douyin_probe(1080, 1080, "30"))
+        tall = douyin(probe=douyin_probe(1080, 2340, "30"))  # 9:19.5
+
+        self.assertEqual(issue_codes(square["warnings"]), {"aspect_ratio_not_recommended"})
+        self.assertEqual(tall["warnings"], [])
+
+    def test_frame_rate_above_resolution_tier_warns(self):
+        # 「视频画质」表：1080p 及以下最高 30 帧，2k / 4k 最高 60 帧。
+        fhd60 = douyin(probe=douyin_probe(1080, 1920, "30", fps="60/1"))
+        uhd60 = douyin(probe=douyin_probe(2160, 3840, "30", fps="60/1"))
+
+        self.assertEqual(issue_codes(fhd60["warnings"]), {"frame_rate_above_playback_tier"})
+        self.assertEqual(uhd60["warnings"], [])
+
+    def test_other_platforms_keep_their_own_rules(self):
+        # 抖音的三条建议不能漏到别的平台：同一条 54 秒 60 帧竖版在小红书上不报这些。
+        probe = douyin_probe(1080, 1920, fps="60/1")
+        result = check_video.validate_probe(
+            Path("fourier.mp4"), probe, size_bytes=32 * 1024 ** 2, platform="xiaohongshu"
+        )
+
+        self.assertEqual(result["warnings"], [])
+
+    def test_douyin_files_are_foreign_to_other_platforms(self):
+        self.assertEqual(foreign_token("ep02-抖音-竖版.mp4", "bilibili"), "抖音")
+        self.assertEqual(foreign_token("ep02-douyin.mp4", "xiaohongshu"), "douyin")
+        self.assertEqual(foreign_token("ep02-视频号.mp4", "douyin"), "视频号")
+
+
 if __name__ == "__main__":
     unittest.main()

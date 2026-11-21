@@ -3,8 +3,9 @@
 本文只写**各平台都成立**的部分：helper 签名、控制权规则、任务空间生命周期、
 以及发布流程的六个阶段骨架。平台各自的 DOM 结构与写值方式在
 [视频号创建页结构](wechat-channels/page-anatomy.md)、
-[B 站投稿页结构](bilibili/page-anatomy.md) 和
-[小红书发布页结构](xiaohongshu/page-anatomy.md) 里，不要互相套用。
+[B 站投稿页结构](bilibili/page-anatomy.md)、
+[小红书发布页结构](xiaohongshu/page-anatomy.md) 和
+[抖音发布页结构](douyin/page-anatomy.md) 里，不要互相套用。
 
 ## 操作原则
 
@@ -60,6 +61,17 @@ heredoc 按 **ES module** 解析：`require` 报 "Cannot determine intended modu
 这次是升级带的重启，单纯重启会不会也重新编号没有分开试过，按会处理。重启后拿旧编号调 `useOrCreateTaskSpace(5)`、
 `taskSpace(5)` 或 `claimTaskSpace(5)` 会报错、指到别的空间还是新建一个，也没有验证过；不要为了验证去跑会新建或接手空间的命令。
 
+同一次重启还丢了一个空间。《对话易七猫》视频号投稿当时停在终稿确认，用的是任务空间 7（21:00 读到 `"name": "media publish"`、
+`"createdBy": "agent"`、`"ownership": "agent"`、`recentTabTitles` 为 `["视频号助手"]`）。22:49 升级重启，上面那份重启后的列表里只有 0 和 1，
+空间 7 整个没了，不是换了编号；22:59 这边再读 `listTaskSpaces()`，只剩
+`[{ "id": 0, "name": "", "ownership": "user", "recentTabTitles": ["New Tab"] }]`（用户自己的空白页，空间 1 这时也没了，原因不明），
+填好的表单跟着丢了。这次重启后留下的是已归还用户的空间，丢掉的是代理还占着的空间；只有这一组观测，归属是不是原因没有验证。
+那次作者恰好要换成嘉宾手修的视频，本来就得重新上传，才新开空间（`useOrCreateTaskSpace('media publish')` 拿到 2），先在内容列表查重，
+再按已确认的文案从头填表，填完重新走终稿确认。
+
+2026-11-06 又遇到一次：等作者选封面的约一小时里，Ego Lite 从 0.6.2.7 重启到 0.6.2.8（不是 agent 跑的 `upgrade`），agent 占着的 `media publish` 空间连同填好的表单消失，
+`taskSpace(1)` 报 `task space not found`。确认问句里写的“空间被结束也算接手”管不到这种情况。停下报告后，作者知情后回了“重传并发”：新开同名空间，查重，重传，字段表全等才点发表，有出入就停。
+
 所以停下等过用户回话之后（等终稿确认、等用户归还控制权、按要求保留页面待 review 等），或者 Ego Lite 重启、升级过之后，
 复用、`takeOverTaskSpace()` 或 claim 之前先核对编号：
 
@@ -68,6 +80,8 @@ heredoc 按 **ES module** 解析：`require` 报 "Cannot determine intended modu
 3. 用 `recentTabTitles` 核对是不是原来那个页面；
 4. 只有一个同名空间、编号与记下的一致、标签页标题对得上，才复用、takeOver 或 claim。编号对不上，或者有多个同名空间，
    停下问作者，不要自己挑一个。
+5. 按名称找不到原空间：当作表单已经丢了，停下报告，不要拿旧编号去试。重新上传、重填要用户另行同意；同意后新开空间，
+   先在内容列表查重，填完从头走终稿确认。
 
 ## 控制权
 
@@ -76,7 +90,7 @@ heredoc 按 **ES module** 解析：`require` 报 "Cannot determine intended modu
 判断依据是控制权状态本身，不是页面长什么样。用户可能正在同一标签页里手工检查封面或核对文案，此时代理的任何点击都会落在用户的操作中途。
 
 **代理侧的中断按同一规则处理**：任何命令报 `The user has taken control of this task space` 是硬停，
-不重试、不 `takeOverTaskSpace()`。浏览器权限请求同理：2026-10-01 小红书提交视频后弹出定位
+不重试、不 `takeOverTaskSpace()`。浏览器权限请求同理（2026-11-21 抖音提交视频后同样弹过）：2026-10-01 小红书提交视频后弹出定位
 权限，ego-browser 报 `A browser permission prompt for location access has appeared. The user now
 controls this task space` 并自动交出控制权。告诉用户按隐私优先处理（默认拒绝），等用户说继续再接手。
 
@@ -137,7 +151,7 @@ Offer the user choices like "Continue" or "Done" if your harness supports it; ot
    第 6 步的重读就是用来证明表单没变的。
 5. 有了用户的明确同意（确认那一问的直接确认，或这一问回「继续」）才 `claimTaskSpace(id)`，`id` 用第 2 步核对过、作者认可的
    当前编号；这次接手后 `task.ownership` 读到 `agent`。
-6. 接手后先只读，再决定提交：
+6. 接手后先只读，再决定提交（读页命令全部超时、报错让 reload 时，先按下文「接手后页面被 JS 对话框卡住」处理，不要 reload）：
    - `task.tabs()` 按 URL 找原投稿页。这次只有一个标签页，`label: null`、`openedBy: "unknown"`，`task.adopt(tab.page)` 后
      拿到 `p1` 才能操作。找不到或不止一个就停下；
    - 一次读完整个字段表，逐项对照用户确认过的那张，连同上传状态、可见校验错误和账号；
@@ -172,6 +186,42 @@ Offer the user choices like "Continue" or "Done" if your harness supports it; ot
   下一个平台，换平台要在那个平台的确认问句里另写。
 
 授权省掉的只是那一问，第 6 步的重读、查重、单次提交一样不少。
+
+### 接手后页面被 JS 对话框卡住（2026-10-31、2026-11-10 实测）
+
+现象：`claimTaskSpace(id)` 之后 `ownership` 已是 `agent`，`task.tabs()` 也读得到创建页，但对这个页面的命令全部超时：
+`Runtime.evaluate`、`Page.captureScreenshot` 报 `CDP request timed out`，`js()` / `page.evaluate()` 报
+
+```text
+PageEvaluationTimeoutError: page.evaluate timed out after 15000ms and the Page is still unresponsive. Execution could not be confirmed stopped; reload or close the Page before continuing.
+```
+
+原因是页面上挂着一个 JS 对话框，渲染进程在等它返回。两次都是视频号创建页，都在等终稿确认期间空间被归还给用户
+（`ownership: user`）、凭用户答复接手之后：《对话 Yoyo 姐》v0.4（10-31，空间 6）与《对话阿早》（11-10，空间 4）。
+对话框的文字两次都没读到，是哪一步弹出的也不知道。
+
+规则：
+
+1. 不照报错 reload，也不关页：创建页一刷新，填好的表单就没了。
+2. 先发一次 `Page.handleJavaScriptDialog`，`accept: false`（取消；如果是离开页面的确认，取消就是留在本页），等 1–2 秒，再用一条带
+   `timeout` 的 `Runtime.evaluate` 读 `location.href` 和 `document.readyState`。两次都返回 `{}`，随后 `document.readyState`
+   读到 `complete`（10-31 那次同时读了 URL，仍是 `https://channels.weixin.qq.com/platform/post/create`）。
+3. 页面恢复后照第 6 步从头整表重读、在另开的标签页查重，不沿用接手前的读数；与确认过的字段表一致才往下走（两次重读都与之前确认的一致）。
+4. `handleJavaScriptDialog` 本身报错（页面上没有对话框），或取消后仍然超时：卡住另有原因，停下报告，不 reload、不重填。
+
+```bash
+ego-browser nodejs <<'EOF'
+const task = await taskSpace(4)        // 接手时核对过的编号
+const page = task.page('p1')
+try { console.log('dialog dismissed ' + JSON.stringify(await page.cdp('Page.handleJavaScriptDialog', { accept: false }))) }
+catch (e) { console.log('handleDialog ERR ' + e.message.slice(0, 200)) }
+await new Promise((r) => setTimeout(r, 2000))
+const r = await page.cdp('Runtime.evaluate', { expression: 'JSON.stringify({ url: location.href, ready: document.readyState })', returnByValue: true, timeout: 5000 })
+console.log(r.result.value)
+EOF
+```
+
+旧写法（`useOrCreateTaskSpace(id)` + 全局 `cdp('Page.handleJavaScriptDialog', { accept: false })`）在 10-31 那次同样有效。
 
 ### Page API 写法（2026-10-30 跑通）
 
@@ -258,6 +308,7 @@ EOF
 | 微信视频号 | `https://channels.weixin.qq.com/platform/post/create` |
 | Bilibili | `https://member.bilibili.com/platform/upload/video/frame` |
 | 小红书 | `https://creator.xiaohongshu.com/publish/publish?source=official` |
+| 抖音 | `https://creator.douyin.com/creator-micro/content/upload` |
 
 ## 页面阶段
 
@@ -291,7 +342,8 @@ EOF
 
 - 按 [发布门禁清单](publish-gates.md) 逐项回读该平台字段表里的每一项。
 - 写值方式**按平台走**，各平台完全不同：视频号的描述是 contenteditable、话题必须由平台按钮生成；
-  B 站的输入框要用原生 setter，简介是 Quill；小红书正文是 tiptap，话题从 `#` 候选点选。照各自的 page-anatomy 写。
+  B 站的输入框要用原生 setter，简介是 Quill；小红书正文是 tiptap，话题从 `#` 候选点选；抖音简介是 editor-kit，
+  话题点「#添加话题」后从联想点选、最多 5 个。照各自的 page-anatomy 写。
 - 封面槽位数按页面实测，不写死；每个槽独立验安全区。B 站的 16:9 槽必须用公开接口的 `pic` 回读。
 - 原创/声明类复选框要读真实 `checked` 属性，不能合并成一次点击假设。
 
@@ -300,7 +352,7 @@ EOF
 - `draft`：定位「保存草稿」主语义动作，提交后进入草稿列表。小红书的「暂存离开」与「发布」同在封闭 shadow 宿主里，
   草稿流程未实测，先走终稿确认或交用户点。
 - `schedule`：打开定时区，读取页面时区与时间控件；确认完整年月日时分后提交。
-- `publish`：定位主提交动作（视频号「发表」/ B 站「立即投稿」/ 小红书「发布」，后者在封闭 shadow 的
+- `publish`：定位主提交动作（视频号「发表」/ B 站「立即投稿」/ 抖音「发布」/ 小红书「发布」，最后这个在封闭 shadow 的
   `XHS-PUBLISH-BTN` 里，只能按现拍截图坐标点，见小红书 page-anatomy），提交前输出完整字段表；全部必填项通过，且用户确认终稿（或该平台 Profile 为 `auto` 且没有触发退回条件，见 SKILL.md「按 Profile 偏好免终稿确认」）后仅提交一次。点击后按钮加载或页面跳转即记录为已尝试提交。
 - `status`：跳过上传/编辑，仅进入内容列表用于回读并刷新验证。
 
