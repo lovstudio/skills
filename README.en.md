@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **245 skills** — 220 Free + 25 Paid.
+> **245 skills** — 219 Free + 26 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -271,7 +271,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | **Video Creation** | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [3D Motion Atlas](https://github.com/lovstudio/3d-motion-media-creator-skill) (`3d-motion-media-creator`) | Create chapter-based 3D process, product breakdown and scale films alongside clearly labeled real-world references. — requires: `branding-consistency`, `motion-media-creator` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Video Shrink](https://github.com/lovstudio/compress-video-skill) (`compress-video`) | Shrink a video as far as possible without visible quality loss, with quality presets, size targets and VMAF gates. |
-| ![Free](https://img.shields.io/badge/Free-green) | [Fourier Portrait](https://github.com/lovstudio/fourier-portrait-skill) (`fourier-portrait`) | Turn one portrait photo into a vertical video where rotating Fourier circles redraw the whole face, with errors and formulas. — requires: `branding-consistency`; related: `media-creator` |
+| ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Fourier Portrait](https://github.com/lovstudio/fourier-portrait-skill) (`fourier-portrait`) | Turn one portrait photo into a vertical short where rotating Fourier circles redraw the whole face, with music, narration and a reveal on the drop. — requires: `branding-consistency`; related: `media-creator` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Group Interview Short](https://github.com/lovstudio/group-interview-media-creator-skill) (`group-interview-media-creator`) | Turn a phone recording of a group dinner or salon into a vertical film where every guest appears, plus a solo short per guest, honoring each person's privacy requests. — requires: `branding-consistency`, `media-creator`, `interview-media-creator`; related: `interview-media-creator`, `media-creator`, `media-publisher` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Interview Short](https://github.com/lovstudio/interview-media-creator-skill) (`interview-media-creator`) | Turn one phone interview into a 2–4 minute vertical short that opens on the guest's own words, with chapters, question cards, captions, music and A/B covers. — requires: `branding-consistency`, `media-creator`; related: `group-interview-media-creator`, `koubo-media-creator`, `media-creator`, `media-publisher`, `motion-media-creator`, `logo-sting` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Talking-head Short](https://github.com/lovstudio/koubo-media-creator-skill) (`koubo-media-creator`) | Give it a topic and get the script, teleprompter, on-screen evidence and covers for a vertical talking-head short; record one take and it cuts the film for you. — requires: `branding-consistency`; related: `interview-media-creator`, `media-publisher`, `logo-sting`, `promo-media-creator` |
