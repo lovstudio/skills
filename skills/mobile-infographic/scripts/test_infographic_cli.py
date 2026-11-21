@@ -9,12 +9,13 @@ measurement, which is skipped when Playwright or Chromium is unavailable.
 
 from __future__ import annotations
 
+import io
 import json
 import os
 import sys
 import tempfile
 import unittest
-from contextlib import redirect_stderr
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -112,6 +113,8 @@ class TemplateAssemblyTests(unittest.TestCase):
             self.assertRegex(html, r'class="claim"[^>]*data-claim')
             self.assertNotRegex(html, r'card-title[^>]*data-claim')
             self.assertIn("data:image/png;base64,", html)
+            self.assertNotIn('data-role="source"', html, template)
+            self.assertNotIn('class="appendix', html.split("</style>")[-1], template)
 
     def test_long_ratio_leaves_height_to_content(self):
         brand = json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8"))
@@ -152,7 +155,7 @@ class TemplateAssemblyTests(unittest.TestCase):
         self.assertNotIn("<a href", html)  # a PNG cannot be clicked
 
     def test_default_footer_is_logo_only(self):
-        # provenance lives in the appendix block, so the packaged footer stays empty
+        # provenance ships in source.md, so the packaged footer stays empty
         brand = dict(json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8")))
         html = self._build(brand)
         self.assertIn('<span class="attribution" data-attribution></span>', html)
@@ -372,6 +375,19 @@ class AuditScoringTests(unittest.TestCase):
         checks = self.audit(good_measurement(), image_px=(1080, 1440))
         self.assertEqual(checks["image_size"]["status"], "fail")
 
+    def test_sources_on_the_card_are_flagged(self):
+        measurement = good_measurement()
+        measurement["counts"]["source_blocks"] = 2
+        checks = self.audit(measurement)
+        self.assertEqual(checks["source_offcard"]["status"], "fail")
+        self.assertEqual(checks["source_offcard"]["level"], "warning")
+
+    def test_card_without_sources_passes_source_offcard(self):
+        measurement = good_measurement()
+        measurement["counts"]["source_blocks"] = 0
+        checks = self.audit(measurement)
+        self.assertEqual(checks["source_offcard"]["status"], "pass")
+
     def test_score_threshold_and_deductions(self):
         self.assertEqual(cli.SCORE_THRESHOLD, 85)
         self.assertEqual(cli.SCORE_DEDUCTION["critical"], 12)
@@ -465,6 +481,19 @@ class CliParserTests(unittest.TestCase):
                 }[command]
             )
             self.assertEqual(args.command, command)
+
+    def test_scaffold_keeps_source_in_brief_not_card(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            args = cli.build_parser().parse_args([
+                "scaffold", "--template", "single-claim", "--title", "主题示例",
+                "--source", "来源：示例报告", "--output-dir", tmp,
+            ])
+            with redirect_stdout(io.StringIO()):
+                cli.cmd_scaffold(args)
+            card = (Path(tmp) / "card.html").read_text(encoding="utf-8")
+            brief = (Path(tmp) / "card.brief.md").read_text(encoding="utf-8")
+            self.assertNotIn("来源：示例报告", card)
+            self.assertIn("来源：示例报告", brief)
 
     def test_scaffold_rejects_unknown_template(self):
         parser = cli.build_parser()

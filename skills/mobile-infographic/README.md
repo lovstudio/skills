@@ -1,15 +1,15 @@
 # 手机信息图 · Mobile Infographic
 
-![Version](https://img.shields.io/badge/version-0.18.3-CC785C)
+![Version](https://img.shields.io/badge/version-0.19.0-CC785C)
 
 把一段已经有结论的内容，重排成手机上真的读得下去的证据型信息卡：竖版画布、单列阅读路径、
-字号下限与行宽上限、可核查的口径与来源。**输出永远是一张 1080 宽、高度自适应的卡片**
+字号下限与行宽上限、可核查的口径。**输出永远是一张 1080 宽、高度自适应的卡片**
 （`--ratio long`）：内容多就把这张图加长、不拆卡；只有用户明确要求多张时才做系列。
 
 两条硬规则：标题只写这张图的**作用或主题**（判断留给结论行，也不写「要点／速览／一图读完」这类
 放在哪张图上都成立的废话），主关系必须**图形化**
-（三项以上可比数据用 `bar-ranking` 的条形长度，不写流水账）。卡面来源只写
-「来源：群聊记录」这类可披露来源，内部数据库/表名/路径由 `source_hygiene` 拦截；页脚署名可选。
+（三项以上可比数据用 `bar-ranking` 的条形长度，不写流水账）。卡面不放来源列表：页面标题与网址
+写进随卡交付的 `source.md`，卡面只留口径行；内部数据库/表名/路径由 `source_hygiene` 拦截，页脚署名可选。
 
 与 `lov-professional-infographic` 的分工很清楚：那个 Skill 做 16:9 桌面阅读的咨询 Exhibit，
 这个 Skill 做 1080 宽竖屏阅读的手机卡。文字、证据与排版全部由 DOM 生成，PNG 由浏览器精确栅格化，
@@ -51,7 +51,7 @@ python3 "$SKILL_DIR/scripts/infographic_cli.py" scaffold \
   --template single-claim --filename card-01.html \
   --eyebrow "运营手册 · 01" --title "优化 harness 的三步" \
   --claim "模型是自变量，harness 是因变量" \
-  --source "来源：一次真实项目复盘" --output-dir ./cards
+  --output-dir ./cards
 python3 "$SKILL_DIR/scripts/infographic_cli.py" render --input ./cards/card-01.html --output ./cards/card-01.png --scale 2
 python3 "$SKILL_DIR/scripts/infographic_cli.py" audit --input ./cards/card-01.html --image ./cards/card-01.png --report ./cards/card-01.audit.json --ratio long
 ```
@@ -68,7 +68,7 @@ python3 "$SKILL_DIR/scripts/infographic_cli.py" scaffold \
   --claim "前三类合计 41 人，占可判断成员的 58%" \
   --row "01 新海|25|New Harbor · AI 进入工作|早＊ · 南艺 89" \
   --row "04 新界|13|Nexus · 低税低监管|刘＊畅 · Cakinna" \
-  --source "来源：群聊记录" --output-dir ./cards
+  --output-dir ./cards
 ```
 
 只有用户明确要求多张时才做系列：按 `--series-index 1..N --series-size N` 逐张 `scaffold`、`render`、`audit`，再按
