@@ -2284,14 +2284,14 @@ skills:
     card_path: pricing-cards/professional-infographic.md
 - name: mobile-infographic
   runtime_name: lov-mobile-infographic
-  updated_at: 2026-11-21 09:20:51+00:00
+  updated_at: 2026-11-21 09:34:53+00:00
   display_name: "Mobile Infographic"
   repo: lovstudio/mobile-infographic-skill
   name_zh: "手机信息图"
   paid: false
   category: Design
-  version: 0.19.0
-  description: "Turn conclusions into one long 1080px mobile infographic with a thesis title, ranked bars, readable type floors, sources kept off the card in source.md, and audited HTML/PNG output."
+  version: 0.20.0
+  description: "Turn conclusions into one long 1080px mobile infographic: a dark stage style by default (or vivid/paper), a hero number up front, ranked bars and time columns, readable type floors, sources kept in source.md, and audited HTML/PNG output."
   tagline_en: Turn an existing conclusion into vertical infographics a phone can actually read, with type floors, safe areas, and an audit report.
   tagline_zh: 把已有结论重排成手机上真能读完的竖版信息图，自带字号下限、安全区与可复核审计报告。
   related:
@@ -2306,8 +2306,8 @@ skills:
     price_range_credits:
     - 0
     - 0
-    delivery_unit_zh: 公开 Skill 源码、七个语义模板（含排位条形图）、默认单张 long 自适应高度卡（仅 Logo 页脚，来源随 source.md 交付、不占卡面）、移动可读性门禁与一组真实案例
-    delivery_unit_en: Public Skill source, seven semantic templates (including a ranked bar chart), a long-card default with a logo-only footer and sources delivered in source.md rather than on the card, the mobile readability gate, and one real case
+    delivery_unit_zh: 公开 Skill 源码、七个语义模板（含排位条形图）、三种风格（默认深色 stage）与五个表现力组件、默认单张 long 自适应高度卡（仅 Logo 页脚，来源随 source.md 交付、不占卡面）、移动可读性门禁与两组真实案例
+    delivery_unit_en: Public Skill source, seven semantic templates (including a ranked bar chart), three styles (dark stage by default) with five expressive components, a long-card default with a logo-only footer and sources delivered in source.md rather than on the card, the mobile readability gate, and two real cases
     value_zh: 把结论、证据与来源重排成手机上读得完的竖版信息图：先立观点标题，再用条形长度编码排位，来源随 source.md 交付、不占卡面，并用字号下限、行宽上限、对比度与安全区把「能读」变成可判定结果。
     value_en: Re-lay-out a conclusion, its evidence and its sources into vertical infographics a phone can finish, turning readability into measurable type floors, line limits, contrast and safe areas.
     anchor_zh: 一次使用可保守减少约 1–3 小时的字号试错、版式返工与导出检查，并让单位、口径与来源成为交付的一部分。

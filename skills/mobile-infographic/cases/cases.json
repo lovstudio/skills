@@ -1,5 +1,47 @@
 [
   {
+    "id": "anthropic-market-cap-long",
+    "type": "case",
+    "title": "一个问题一张长卡：Anthropic 的两种市值",
+    "titleEn": "One question, one long card: Anthropic's two market caps",
+    "description": "默认形态的案例：把一轮问答（最高市值是多少、什么叫完全稀释）重排成一张 1080 宽的 long 卡。首屏 240px 主数字给出答案，一条分段色块同时说明两种口径与股数差，四根竖柱按时间排出私募估值到上市首日的变化；来源随 source.md 交付，卡面只留口径行。同一份内容分别用 stage（默认）、vivid、paper 三种风格渲染，机器审计各 100/100。",
+    "descriptionEn": "The default-form case: one Q&A round (what was the peak market cap, what does fully diluted mean) is re-laid out as one 1080px long card. A 240px hero number answers first, one split bar shows both share bases and their gap, and four columns trace private rounds to the listing day in time order. Sources ship in source.md; the card keeps only the caliber line. The same content is rendered in the stage (default), vivid and paper styles, each scoring 100/100 on the machine audit.",
+    "cover": "cases/assets/anthropic-market-cap-stage.png",
+    "gallery": [
+      "cases/assets/anthropic-market-cap-vivid.png",
+      "cases/assets/anthropic-market-cap-paper.png"
+    ],
+    "input": {
+      "label": "输入",
+      "items": [
+        "一轮问答的结论：上市首日开盘按完全稀释口径约 2.02 万亿美元，按基本股本约 1.47 万亿美元",
+        "公开报道中的开盘价、收盘市值与两轮私募投后估值，标题与网址记录在 source.md",
+        "反推股数：市值 ÷ 开盘价，约 181 亿股与 132 亿股"
+      ]
+    },
+    "prompt": "把上面的回答做成手机上能读的信息图。",
+    "output": {
+      "label": "交付",
+      "items": [
+        "一张 long 卡，约 2285px 高（1.6 个 3:4 屏），2× PNG",
+        "可编辑 card.html，只用 Skill 自带的 hero、split、columns、section、chips 组件",
+        "同一内容的 stage、vivid、paper 三种风格各一张",
+        "machine audit 3/3 通过，各 100/100；scale_integrity 核对柱高与色块宽度",
+        "来源与页面标题随 source.md 交付，卡面不放来源列表"
+      ]
+    },
+    "evidence": {
+      "machine": "3/3 风格版本机器审计 100/100 通过",
+      "visual": "原图分段与三风格并排缩略图由视觉模型回读，未见裁切、重叠、越界或比例失真",
+      "human": "人眼复核待补：本案例未以人工名义声明通过",
+      "assets": [
+        "cases/assets/anthropic-market-cap-stage.html",
+        "cases/assets/anthropic-market-cap-vivid.html",
+        "cases/assets/anthropic-market-cap-paper.html"
+      ]
+    }
+  },
+  {
     "id": "harness-action-guide-series",
     "type": "case",
     "title": "按要求做三张：harness 行动指南的手机信息图系列",

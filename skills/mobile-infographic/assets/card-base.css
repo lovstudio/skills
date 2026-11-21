@@ -371,3 +371,281 @@ body {
   color: var(--muted);
   white-space: nowrap;
 }
+
+
+/* ---------- style tokens ----------
+   `scaffold --style` fills the palette (stage is the default); these derived tokens follow it. */
+
+:root {
+  --num: "DIN Alternate", "Helvetica Neue", Inter, sans-serif;
+  --accent-deep: {{ACCENT_DEEP}};
+  --seg-base: color-mix(in srgb, var(--ink) 88%, var(--paper));
+  --col-muted: color-mix(in srgb, var(--muted) 55%, var(--paper));
+}
+
+/* stage: dark canvas with an accent glow in the top-right corner */
+.card[data-style="stage"] {
+  background-image: radial-gradient(900px 620px at 100% 0%,
+    color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+}
+
+.card[data-style="stage"] .rule {
+  opacity: 0.3;
+}
+
+/* vivid: warm light canvas, an accent band on top, the hero number on a deep accent panel */
+.card[data-style="vivid"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 18px;
+  background: var(--accent);
+}
+
+.card[data-style="vivid"] .hero {
+  padding: 40px 44px 44px;
+  border-radius: 28px;
+  background: var(--accent-deep);
+}
+
+.card[data-style="vivid"] .hero-label,
+.card[data-style="vivid"] .hero-value,
+.card[data-style="vivid"] .hero-unit,
+.card[data-style="vivid"] .hero-sub {
+  color: #ffffff;
+}
+
+/* ---------- hero: the first-screen anchor number ---------- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-label {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.hero-figure {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 22px;
+}
+
+.hero-value {
+  font-family: var(--num);
+  font-size: 240px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--accent-ink);
+}
+
+/* numbers longer than five characters */
+.hero-value.is-long {
+  font-size: 160px;
+}
+
+.hero-unit {
+  font-size: 48px;
+  line-height: 1.3;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.hero-sub {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ---------- sections inside one long card ---------- */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: 44px;
+  border-top: 2px solid var(--soft-line);
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 46px;
+  line-height: 1.36;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.section-sub {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---------- split: one bar, parts of a whole ---------- */
+
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.split-bar {
+  display: flex;
+  width: 100%;
+  height: 76px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.seg {
+  display: block;
+  height: 100%;
+}
+
+.seg-base {
+  background: var(--seg-base);
+}
+
+.seg-accent {
+  background: var(--accent);
+}
+
+.split-legend {
+  display: flex;
+  width: 100%;
+}
+
+.split-key {
+  display: flex;
+  flex-direction: column;
+  padding-left: 18px;
+  border-left: 4px solid var(--seg-base);
+}
+
+/* the accent part sits at the right end: its label grows leftwards from the edge */
+.split-key.is-accent {
+  align-items: flex-end;
+  text-align: right;
+  padding: 0 18px 0 0;
+  border-left: 0;
+  border-right: 4px solid var(--accent);
+}
+
+.split-num {
+  font-family: var(--num);
+  font-size: 48px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.split-key.is-accent .split-num {
+  color: var(--accent-ink);
+}
+
+.split-name {
+  font-size: 28px;
+  line-height: 1.45;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---------- columns: time order or stages, height = value ---------- */
+
+.columns {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 28px;
+  align-items: end;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.col-value {
+  margin-bottom: 8px;
+  font-family: var(--num);
+  font-size: 52px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.col-bar {
+  display: block;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  background: var(--col-muted);
+}
+
+.col.is-accent .col-bar {
+  background: var(--accent);
+}
+
+.col.is-accent .col-value {
+  color: var(--accent-ink);
+}
+
+.col.is-soft .col-bar {
+  background: color-mix(in srgb, var(--accent) 62%, var(--paper));
+}
+
+.col-name {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 2px solid var(--soft-line);
+  font-size: 30px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.col-date {
+  font-size: 26px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---------- chips: a short list on one line ---------- */
+
+.chips {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.chips-key {
+  display: inline-block;
+  margin-right: 16px;
+  padding: 2px 14px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 22%, var(--paper));
+  color: var(--ink);
+  font-weight: 650;
+}

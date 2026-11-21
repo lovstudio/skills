@@ -114,7 +114,31 @@ class TemplateAssemblyTests(unittest.TestCase):
             self.assertNotRegex(html, r'card-title[^>]*data-claim')
             self.assertIn("data:image/png;base64,", html)
             self.assertNotIn('data-role="source"', html, template)
+            self.assertIn('data-style="stage"', html, template)
+            self.assertNotIn("{{ACCENT_DEEP}}", html, template)
             self.assertNotIn('class="appendix', html.split("</style>")[-1], template)
+
+    def test_metric_focus_opens_with_a_hero_number(self):
+        brand = json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8"))
+        html = cli.build_card_html(
+            template="metric-focus", ratio="long", title="标题", claim="结论", eyebrow="标签",
+            source="来源", source_id="S1", brand=brand, series_index=1, series_size=1,
+        )
+        self.assertIn('class="hero"', html)
+        self.assertIn('class="hero-value"', html)
+
+    def test_paper_style_keeps_the_brand_palette(self):
+        brand = json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8"))
+        html = cli.build_card_html(
+            template="single-claim", ratio="long", title="标题", claim="结论", eyebrow="标签",
+            source="来源", source_id="S1", brand=brand, series_index=1, series_size=1, style="paper",
+        )
+        self.assertIn('data-style="paper"', html)
+        self.assertIn(f"--paper: {brand['paper']};", html)
+        palette = cli.style_palette("paper", brand)
+        self.assertIn(f"--accent-ink: {palette['accent_ink']};", html)
+        # the brand accent ink is kept when it already reads on the accent tint, else darkened just enough
+        self.assertGreaterEqual(cli.contrast_ratio(palette["accent_ink"], palette["accent_soft"]), 4.5)
 
     def test_long_ratio_leaves_height_to_content(self):
         brand = json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8"))
@@ -199,6 +223,46 @@ class TemplateAssemblyTests(unittest.TestCase):
         # three stacked full-width lines: head, metric, roster (no side-by-side columns)
         self.assertNotIn("bar-line", html)
         self.assertNotIn("data-source-ref=\"{{SOURCE_ID}}\"", html)
+
+
+class StylePaletteTests(unittest.TestCase):
+    def setUp(self):
+        self.brand = json.loads((cli.ASSETS_DIR / "brand-profile.json").read_text(encoding="utf-8"))
+
+    def test_default_style_is_stage(self):
+        self.assertEqual(cli.DEFAULT_STYLE, "stage")
+        self.assertEqual(cli.STYLES[0], "stage")
+
+    def test_every_style_keeps_text_contrast(self):
+        for style in cli.STYLES:
+            for accent in (None, "#D97757", "#2F6FEB", "#F5C518"):
+                palette = cli.style_palette(style, self.brand, accent)
+                self.assertGreaterEqual(cli.contrast_ratio(palette["ink"], palette["paper"]), 7, (style, accent))
+                self.assertGreaterEqual(cli.contrast_ratio(palette["muted"], palette["paper"]), 4.5, (style, accent))
+                self.assertGreaterEqual(cli.contrast_ratio(palette["accent_ink"], palette["paper"]), 4.5, (style, accent))
+                self.assertGreaterEqual(cli.contrast_ratio(palette["accent_ink"], palette["accent_soft"]), 4.5, (style, accent))
+                self.assertGreaterEqual(cli.contrast_ratio("#FFFFFF", palette["accent_deep"]), 4.5, (style, accent))
+
+    def test_stage_is_dark_and_vivid_is_light(self):
+        self.assertLess(cli.relative_luminance(cli.style_palette("stage", self.brand)["paper"]), 0.05)
+        self.assertGreater(cli.relative_luminance(cli.style_palette("vivid", self.brand)["paper"]), 0.8)
+
+    def test_accent_override_wins(self):
+        palette = cli.style_palette("stage", self.brand, "#2f6feb")
+        self.assertEqual(palette["accent"], "#2F6FEB")
+
+    def test_unknown_style_is_rejected(self):
+        with self.assertRaises(SystemExit):
+            cli.style_palette("neon", self.brand)
+
+    def test_stage_uses_logo_on_dark_when_given(self):
+        brand = dict(self.brand)
+        brand["logo_on_dark"] = "data:image/png;base64,REFSSw=="
+        html = cli.build_card_html(
+            template="single-claim", ratio="long", title="标题", claim="结论", eyebrow="标签",
+            source="来源", source_id="S1", brand=brand, series_index=1, series_size=1,
+        )
+        self.assertIn("data:image/png;base64,REFSSw==", html)
 
 
 class BrandResolutionTests(unittest.TestCase):
@@ -374,6 +438,29 @@ class AuditScoringTests(unittest.TestCase):
     def test_image_size_mismatch_fails(self):
         checks = self.audit(good_measurement(), image_px=(1080, 1440))
         self.assertEqual(checks["image_size"]["status"], "fail")
+
+    def test_proportional_columns_pass_scale_integrity(self):
+        measurement = good_measurement()
+        measurement["scales"] = [{"kind": "columns", "items": [
+            {"label": "a", "value": 0.38, "size": 68}, {"label": "b", "value": 2.02, "size": 360},
+        ]}]
+        self.assertEqual(self.audit(measurement)["scale_integrity"]["status"], "pass")
+
+    def test_disproportionate_split_fails_scale_integrity(self):
+        measurement = good_measurement()
+        measurement["scales"] = [{"kind": "split", "items": [
+            {"label": "segment 1", "value": 1.47, "size": 658}, {"label": "segment 2", "value": 0.55, "size": 400},
+        ]}]
+        checks = self.audit(measurement)
+        self.assertEqual(checks["scale_integrity"]["status"], "fail")
+        self.assertEqual(checks["scale_integrity"]["level"], "error")
+
+    def test_unparsed_column_value_fails_scale_integrity(self):
+        measurement = good_measurement()
+        measurement["scales"] = [{"kind": "columns", "items": [
+            {"label": "a", "value": float("nan"), "size": 68}, {"label": "b", "value": 2.0, "size": 360},
+        ]}]
+        self.assertEqual(self.audit(measurement)["scale_integrity"]["status"], "fail")
 
     def test_sources_on_the_card_are_flagged(self):
         measurement = good_measurement()
