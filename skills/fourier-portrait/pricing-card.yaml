@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "A one-command photo-to-video pipeline for the popular rotating-circles portrait: segmentation-aware line art, a connector-free single path, exact Fourier reconstruction in two visual modes, and a fast vertical-video renderer with QC sheets."
+basis: "Everything runs locally with open-source libraries and needs no paid model or API key. The pre-publication pricing pass scored it 2.5 out of 5 on six weighted dimensions: one real case on one person, no marginal cost and easily copied public source, so it starts as a free entry, in line with the sibling portrait Skills."
+boundary: "Includes line art, path building, Fourier analysis, the rendered silent video, QC stills, contact sheets and a metrics report. Excludes music, voice-over, cover design, publishing, photo rights clearance and guaranteed results for multi-person or faceless images."
+review_trigger: "Reassess after 100 verified external uses, five verified cases on different people, or when hosted rendering, music, batch processing or new visual templates are added."
+confidence: internal
