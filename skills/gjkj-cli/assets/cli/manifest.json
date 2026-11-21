@@ -1,0 +1,744 @@
+{
+  "name": "suanli.cn:openapi-and-llm",
+  "target": "suanli.cn",
+  "scope": "openapi-and-llm",
+  "adapter": "suanli",
+  "version": "0.1.0",
+  "cliName": "lov-suanli-cli",
+  "operationCount": 83,
+  "readOperations": 44,
+  "writeOperations": 39,
+  "encryptedOperations": 7,
+  "byObservation": {
+    "live-verified-token-mode": 14,
+    "documented-apifox-openapi": 67,
+    "documented-docs-example": 2
+  },
+  "authHeadersInferred": [
+    "GET /api/deployment/task/points",
+    "POST /api/output/v2/device-output/list_rent_device_single_v2",
+    "POST /api/output/v2/device-output/list_rent_device_network_v2",
+    "POST /api/output/v2/device_order/get_device_details_v2",
+    "POST /api/output/v2/device_order/buy_v2",
+    "POST /api/output/v2/auto_renew_device_config/set_auto_renew_config",
+    "POST /api/output/v2/auto_renew_device_config/delete_auto_renew_config",
+    "POST /api/output/v2/device-output/page_list_product_single_v2",
+    "POST /api/output/v2/device-output/page_list_product_network_v2",
+    "POST /api/output/v2/device_order/get_order_list_v2"
+  ],
+  "byTag": {
+    "资源": 2,
+    "弹性部署服务任务": 12,
+    "镜像预热任务(申请开通)": 6,
+    "Job批处理任务": 4,
+    "Job批处理任务队列": 9,
+    "弹性部署服务/Job批处理节点": 4,
+    "费用": 4,
+    "存储/对象存储": 14,
+    "存储/集群存储/存储卷": 8,
+    "存储/集群存储/S3互传": 7,
+    "存储/集群存储/SFTP": 2,
+    "裸金属/已购列表": 3,
+    "裸金属/创建订单": 3,
+    "裸金属/可购列表": 2,
+    "裸金属/订单列表": 1,
+    "大模型云服务": 2
+  },
+  "liveVerified": 14,
+  "liveVerifiedEndpoints": [
+    "GET /api/deployment/resource/search",
+    "GET /api/storage/get_storage",
+    "GET /api/deployment/task/search",
+    "GET /api/task/deployment/search",
+    "GET /api/task/image_preheat/get_regions",
+    "GET /api/task/job/search",
+    "GET /api/job/queue/search",
+    "GET /api/billing/get_billing_record",
+    "GET /api/storage/get_regions",
+    "GET /api/storage/nas/v1/summary",
+    "GET /api/storage/nas/v1/dictionaries",
+    "GET /api/storage/nas/v1/list",
+    "POST /api/output/v2/device-output/page_list_product_single_v2",
+    "POST /api/output/v2/device_order/get_order_list_v2"
+  ],
+  "servers": {
+    "openapi": "https://openapi.suanli.cn",
+    "llm": "https://api.suanli.cn/v1"
+  },
+  "endpoints": [
+    {
+      "operationId": "deploymentResourceSearch",
+      "includedEndpoint": "GET /api/deployment/resource/search",
+      "tag": "资源",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageGetStorage",
+      "includedEndpoint": "GET /api/storage/get_storage",
+      "tag": "资源",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskSearch",
+      "includedEndpoint": "GET /api/deployment/task/search",
+      "tag": "弹性部署服务任务",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskDetail",
+      "includedEndpoint": "GET /api/deployment/task/detail",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskCreate",
+      "includedEndpoint": "POST /api/deployment/task/create",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskUpdate",
+      "includedEndpoint": "POST /api/deployment/task/update",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskRecover",
+      "includedEndpoint": "POST /api/deployment/task/recover",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskPause",
+      "includedEndpoint": "POST /api/deployment/task/pause",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskStop",
+      "includedEndpoint": "POST /api/deployment/task/stop",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskChangePoints",
+      "includedEndpoint": "POST /api/deployment/task/change_points",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "taskDeploymentSearch",
+      "includedEndpoint": "GET /api/task/deployment/search",
+      "tag": "弹性部署服务任务",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "taskDeploymentDetail",
+      "includedEndpoint": "GET /api/task/deployment/detail",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "taskDeploymentCreate",
+      "includedEndpoint": "POST /api/task/deployment/create",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "taskDeploymentUpdate",
+      "includedEndpoint": "POST /api/task/deployment/update",
+      "tag": "弹性部署服务任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "taskImagePreheatGetRegions",
+      "includedEndpoint": "GET /api/task/image_preheat/get_regions",
+      "tag": "镜像预热任务(申请开通)",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "taskImagePreheatSearch",
+      "includedEndpoint": "GET /api/task/image_preheat/search",
+      "tag": "镜像预热任务(申请开通)",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "taskImagePreheatDetail",
+      "includedEndpoint": "GET /api/task/image_preheat/detail",
+      "tag": "镜像预热任务(申请开通)",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "taskImagePreheatCreate",
+      "includedEndpoint": "POST /api/task/image_preheat/create",
+      "tag": "镜像预热任务(申请开通)",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "taskImagePreheatUpdate",
+      "includedEndpoint": "POST /api/task/image_preheat/update",
+      "tag": "镜像预热任务(申请开通)",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "taskImagePreheatStop",
+      "includedEndpoint": "POST /api/task/image_preheat/stop",
+      "tag": "镜像预热任务(申请开通)",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "taskJobSearch",
+      "includedEndpoint": "GET /api/task/job/search",
+      "tag": "Job批处理任务",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "taskJobDetail",
+      "includedEndpoint": "GET /api/task/job/detail",
+      "tag": "Job批处理任务",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "taskJobCreate",
+      "includedEndpoint": "POST /api/task/job/create",
+      "tag": "Job批处理任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "taskJobStop",
+      "includedEndpoint": "POST /api/task/job/stop",
+      "tag": "Job批处理任务",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "jobQueueSearch",
+      "includedEndpoint": "GET /api/job/queue/search",
+      "tag": "Job批处理任务队列",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "jobQueueDetail",
+      "includedEndpoint": "GET /api/job/queue/detail",
+      "tag": "Job批处理任务队列",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "jobQueueCreate",
+      "includedEndpoint": "POST /api/job/queue/create",
+      "tag": "Job批处理任务队列",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "jobQueueUpdate",
+      "includedEndpoint": "POST /api/job/queue/update",
+      "tag": "Job批处理任务队列",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "jobQueueStop",
+      "includedEndpoint": "POST /api/job/queue/stop",
+      "tag": "Job批处理任务队列",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "jobQueueEncryptPush",
+      "includedEndpoint": "POST /api/job/queue/encrypt/push",
+      "tag": "Job批处理任务队列",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": true
+    },
+    {
+      "operationId": "jobQueueGroupSearch",
+      "includedEndpoint": "GET /api/job/queue/group/search",
+      "tag": "Job批处理任务队列",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "jobQueueGroupDetail",
+      "includedEndpoint": "GET /api/job/queue/group/detail",
+      "tag": "Job批处理任务队列",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "jobQueueGroupStops",
+      "includedEndpoint": "POST /api/job/queue/group/stops",
+      "tag": "Job批处理任务队列",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskPoints",
+      "includedEndpoint": "GET /api/deployment/task/points",
+      "tag": "弹性部署服务/Job批处理节点",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskPointLog",
+      "includedEndpoint": "GET /api/deployment/task/point_log",
+      "tag": "弹性部署服务/Job批处理节点",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskPodEvent",
+      "includedEndpoint": "GET /api/deployment/task/pod_event",
+      "tag": "弹性部署服务/Job批处理节点",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "deploymentTaskDeletePod",
+      "includedEndpoint": "POST /api/deployment/task/delete_pod",
+      "tag": "弹性部署服务/Job批处理节点",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "billingGetBillingRecord",
+      "includedEndpoint": "GET /api/billing/get_billing_record",
+      "tag": "费用",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "billingGetTaskBillingRecord",
+      "includedEndpoint": "GET /api/billing/get_task_billing_record",
+      "tag": "费用",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "harborSupportBillingGetBillingRecord",
+      "includedEndpoint": "GET /api/harbor/support/billing/get_billing_record",
+      "tag": "费用",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageBillingGetBillingRecord",
+      "includedEndpoint": "GET /api/storage/billing/get_billing_record",
+      "tag": "费用",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageGetK3sRegions",
+      "includedEndpoint": "GET /api/storage/get_k3s_regions",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageGetRegions",
+      "includedEndpoint": "GET /api/storage/get_regions",
+      "tag": "存储/对象存储",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageGetStorageByIds",
+      "includedEndpoint": "GET /api/storage/get_storage_by_ids",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageStorageInfo",
+      "includedEndpoint": "GET /api/storage/storage_info",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageEncryptCheck",
+      "includedEndpoint": "POST /api/storage/encrypt/check",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": true
+    },
+    {
+      "operationId": "storageEncryptCreate",
+      "includedEndpoint": "POST /api/storage/encrypt/create",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": true
+    },
+    {
+      "operationId": "storageEncryptUpdate",
+      "includedEndpoint": "POST /api/storage/encrypt/update",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": true
+    },
+    {
+      "operationId": "storageS3BucketList",
+      "includedEndpoint": "POST /api/storage/s3/bucket/list",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageS3BucketPreheat",
+      "includedEndpoint": "POST /api/storage/s3/bucket/preheat",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageS3MetadataList",
+      "includedEndpoint": "POST /api/storage/s3/metadata/list",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageS3MetadataDelete",
+      "includedEndpoint": "POST /api/storage/s3/metadata/delete",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageActivateV2",
+      "includedEndpoint": "POST /api/storage/activate_v2",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageRelease",
+      "includedEndpoint": "POST /api/storage/release",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageDelete",
+      "includedEndpoint": "POST /api/storage/delete",
+      "tag": "存储/对象存储",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1Summary",
+      "includedEndpoint": "GET /api/storage/nas/v1/summary",
+      "tag": "存储/集群存储/存储卷",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1Dictionaries",
+      "includedEndpoint": "GET /api/storage/nas/v1/dictionaries",
+      "tag": "存储/集群存储/存储卷",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1PreCreate",
+      "includedEndpoint": "GET /api/storage/nas/v1/pre-create",
+      "tag": "存储/集群存储/存储卷",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1List",
+      "includedEndpoint": "GET /api/storage/nas/v1/list",
+      "tag": "存储/集群存储/存储卷",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1Create",
+      "includedEndpoint": "POST /api/storage/nas/v1/create",
+      "tag": "存储/集群存储/存储卷",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1Expand",
+      "includedEndpoint": "POST /api/storage/nas/v1/expand",
+      "tag": "存储/集群存储/存储卷",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1Delete",
+      "includedEndpoint": "POST /api/storage/nas/v1/delete",
+      "tag": "存储/集群存储/存储卷",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1Rename",
+      "includedEndpoint": "POST /api/storage/nas/v1/rename",
+      "tag": "存储/集群存储/存储卷",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1S3List",
+      "includedEndpoint": "GET /api/storage/nas/v1/s3/list",
+      "tag": "存储/集群存储/S3互传",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1S3Detail",
+      "includedEndpoint": "GET /api/storage/nas/v1/s3/detail",
+      "tag": "存储/集群存储/S3互传",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1EncryptS3Create",
+      "includedEndpoint": "POST /api/storage/nas/v1/encrypt/s3/create",
+      "tag": "存储/集群存储/S3互传",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": true
+    },
+    {
+      "operationId": "storageNasV1EncryptS3Retry",
+      "includedEndpoint": "POST /api/storage/nas/v1/encrypt/s3/retry",
+      "tag": "存储/集群存储/S3互传",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": true
+    },
+    {
+      "operationId": "storageNasV1S3Delete",
+      "includedEndpoint": "POST /api/storage/nas/v1/s3/delete",
+      "tag": "存储/集群存储/S3互传",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1S3Stop",
+      "includedEndpoint": "POST /api/storage/nas/v1/s3/stop",
+      "tag": "存储/集群存储/S3互传",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1EncryptS3Check",
+      "includedEndpoint": "POST /api/storage/nas/v1/encrypt/s3/check",
+      "tag": "存储/集群存储/S3互传",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": true
+    },
+    {
+      "operationId": "storageNasV1SftpObtain",
+      "includedEndpoint": "POST /api/storage/nas/v1/sftp/obtain",
+      "tag": "存储/集群存储/SFTP",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "storageNasV1SftpDestroy",
+      "includedEndpoint": "POST /api/storage/nas/v1/sftp/destroy",
+      "tag": "存储/集群存储/SFTP",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "outputV2DeviceOutputListRentDeviceSingleV2",
+      "includedEndpoint": "POST /api/output/v2/device-output/list_rent_device_single_v2",
+      "tag": "裸金属/已购列表",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "outputV2DeviceOutputListRentDeviceNetworkV2",
+      "includedEndpoint": "POST /api/output/v2/device-output/list_rent_device_network_v2",
+      "tag": "裸金属/已购列表",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "outputV2DeviceOrderGetDeviceDetailsV2",
+      "includedEndpoint": "POST /api/output/v2/device_order/get_device_details_v2",
+      "tag": "裸金属/已购列表",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "outputV2DeviceOrderBuyV2",
+      "includedEndpoint": "POST /api/output/v2/device_order/buy_v2",
+      "tag": "裸金属/创建订单",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "outputV2AutoRenewDeviceConfigSetAutoRenewConfig",
+      "includedEndpoint": "POST /api/output/v2/auto_renew_device_config/set_auto_renew_config",
+      "tag": "裸金属/创建订单",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "outputV2AutoRenewDeviceConfigDeleteAutoRenewConfig",
+      "includedEndpoint": "POST /api/output/v2/auto_renew_device_config/delete_auto_renew_config",
+      "tag": "裸金属/创建订单",
+      "observation": "documented-apifox-openapi",
+      "write": true,
+      "encryption": false
+    },
+    {
+      "operationId": "outputV2DeviceOutputPageListProductSingleV2",
+      "includedEndpoint": "POST /api/output/v2/device-output/page_list_product_single_v2",
+      "tag": "裸金属/可购列表",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "outputV2DeviceOutputPageListProductNetworkV2",
+      "includedEndpoint": "POST /api/output/v2/device-output/page_list_product_network_v2",
+      "tag": "裸金属/可购列表",
+      "observation": "documented-apifox-openapi",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "outputV2DeviceOrderGetOrderListV2",
+      "includedEndpoint": "POST /api/output/v2/device_order/get_order_list_v2",
+      "tag": "裸金属/订单列表",
+      "observation": "live-verified-token-mode",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "llmChatCompletions",
+      "includedEndpoint": "POST /v1/chat/completions",
+      "tag": "大模型云服务",
+      "observation": "documented-docs-example",
+      "write": false,
+      "encryption": false
+    },
+    {
+      "operationId": "llmListModels",
+      "includedEndpoint": "GET /v1/models",
+      "tag": "大模型云服务",
+      "observation": "documented-docs-example",
+      "write": false,
+      "encryption": false
+    }
+  ],
+  "outputs": {
+    "openapi": "openapi.json",
+    "apiGraph": "api-graph.json",
+    "sdk": "sdk/index.mjs",
+    "swagger": "swagger/index.html",
+    "drilldown": "swagger/drilldown.html",
+    "swaggerServer": "swagger/server.mjs",
+    "cli": "bin/lov-suanli-cli.mjs"
+  },
+  "secretsIncluded": false
+}

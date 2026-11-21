@@ -1,0 +1,103 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "在对话里安全地查询与操作共绩算力（suanli.cn）的 Open API 与大模型云服务：随附由官方公开文档生成的 lov-suanli-cli、SDK 与本地 Swagger 代理，共 83 个接口；默认只读，写操作与计费调用逐次征得用户同意，密钥只从环境变量或钥匙串读取。"
+owner:
+  team: "LovStudio"
+  contact: "lovstudio.ai"
+license:
+  name: MIT
+  terms: "MIT。接口定义与字段说明来自共绩算力公开文档与官方 Apifox 公开分享，版权归平台方；调用平台接口受平台服务协议约束，费用由用户账户承担。"
+  url: "../LICENSE"
+use_case:
+  audience: "使用共绩算力 GPU 云的开发者与运营者"
+  scenario: "想在对话里直接查任务、存储、账单、可购资源，或在确认后执行创建、停止、扩缩、下单等操作"
+  tasks:
+    - "按分组查找命令与参数"
+    - "只读查询并摘要结果"
+    - "写操作与计费调用先 dry-run，再凭用户原话同意执行并回查"
+    - "启动本地 Swagger 代理供人工调试"
+deployment:
+  geography: global
+  environments:
+    - "本地 macOS / Linux（钥匙串回退仅 macOS）"
+requirements:
+  credentials: "用户本人的共绩算力 Open API 密钥；大模型接口另需大模型 API Key。只从环境变量或 macOS 钥匙串读取，不随 Skill 保存"
+  dependencies: []
+  runtime:
+    - "Node.js 20+"
+    - "Python 3.8+"
+risks:
+  - risk: "误执行写操作或产生费用"
+    mitigation: "gjkj_cli.py 在发出前拦截写操作与计费调用，必须带上用户对这一次调用的原话同意；先 dry-run 展示请求"
+  - risk: "密钥泄漏"
+    mitigation: "密钥只从环境变量或钥匙串读；doctor 只报长度；dry-run 只显示凭据是否提供；用户把密钥贴进对话时提示作废重建"
+  - risk: "接口与文档不一致"
+    mitigation: "每个操作标注证据等级（文档 / 实测）；未实测接口的返回如实报告，不猜补字段"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "常用命令"
+    path: "references/commands.md"
+  - title: "认证与密钥"
+    path: "references/auth.md"
+  - title: "返回码与常见错误"
+    path: "references/errors.md"
+  - title: "重新生成 CLI"
+    path: "references/regenerate.md"
+output:
+  types:
+    - "接口查询结果摘要"
+    - "写操作的 dry-run 请求与执行后回查结果"
+    - "本地 Swagger 页面"
+  formats:
+    - "JSON"
+    - "Markdown 摘要"
+  parameters:
+    - "命令名（operationId 的 kebab-case）"
+    - "查询参数与 --data 请求体"
+  validation:
+    - "doctor：Node 可用、命令数与 manifest 一致、凭据存在（只报长度）"
+    - "只读调用返回 code 0000"
+    - "写操作执行后用详情或列表接口回查"
+  description: "共绩算力 API 的调用结果；所有写操作都有用户的逐次同意记录在对话中。"
+ethical_considerations: "只用用户本人的账号与密钥；不代填、不保存、不复述密钥；不绕过鉴权或权限；产生费用的操作先说明并取得同意。"
+dimensions:
+  - id: correctness
+    label: "接口与调用正确"
+    description: "命令、参数与签名是否与平台一致"
+    evidence: "14 个只读接口用真实密钥在 Token 模式实测返回 0000；从本 Skill 随附的 CLI 再调 storage-get-regions 成功"
+    score: null
+  - id: safety
+    label: "写操作与费用可控"
+    description: "未经同意不执行写操作与计费调用"
+    evidence: "gjkj_cli.py 对 deployment-task-change-points 未带 --approved 时拒绝执行，dry-run 只打印请求；Swagger 代理默认拒绝写操作"
+    score: null
+  - id: diagnosability
+    label: "错误可诊断"
+    description: "鉴权、余额、密钥错误能否快速定位"
+    evidence: "A003 token expired 被定位为钥匙串里的密钥长度不对，重存完整密钥后恢复；大模型接口 insufficient_quota 定位为账户余额不足；均写入 references/errors.md"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "作者 2026-11-21 决定免费上架官网。六维加权约 2.28 / 5：单一平台、接口来自公开文档、可由 cli2anything 重新生成，适合作免费入口"
+  boundary: "含随附 CLI、SDK、Swagger 代理、安全包装脚本与参考资料；不含平台账号、密钥、平台费用"
+  review_trigger: "平台接口大版本变化、出现外部用户的重复使用、或需要随附付费能力时"
+  confidence: internal
+distribution:
+  local:
+    status: installed
+    evidence: "2026-11-21：~/.claude/skills/lov-gjkj-cli -> ../../.agents/skills/lov-gjkj-cli -> 本地源码目录 gjkj-cli-skill，readlink -f 解析到源码。"
+  paid:
+    - channel: workbuddy
+      status: not-published
+    - channel: skillpay
+      status: not-published
+  free:
+    - channel: github
+      status: private-source
+      evidence: "2026-11-21：源码为私有仓库 lovstudio/gjkj-cli-skill；免费 Skill 的公开副本由 lovstudio/skills 目录镜像提供。"
+    - channel: lovstudio
+      status: pending
+      evidence: "2026-11-21：免费上架进行中；目录条目、镜像与详情页尚未回读。"

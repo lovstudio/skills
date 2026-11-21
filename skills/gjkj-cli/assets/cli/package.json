@@ -1,0 +1,25 @@
+{
+  "name": "lov-suanli-cli",
+  "version": "0.1.0",
+  "description": "共绩算力 Open API 与大模型云服务命令行（83 个操作，schema 驱动）",
+  "type": "module",
+  "bin": {
+    "lov-suanli-cli": "./bin/lov-suanli-cli.mjs"
+  },
+  "exports": {
+    ".": "./sdk/index.mjs"
+  },
+  "files": [
+    "bin",
+    "sdk",
+    "swagger",
+    "openapi.json",
+    "manifest.json",
+    "api-graph.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "private": true
+}

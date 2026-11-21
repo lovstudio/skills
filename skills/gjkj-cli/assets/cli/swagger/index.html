@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>共绩算力 API</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui.css" />
+    <style>
+      body { margin: 0; background: #fff; }
+      #banner { padding: 10px 16px; font: 14px/1.5 system-ui, sans-serif; background: #f4f4f5; border-bottom: 1px solid #ddd; }
+      #banner a { margin-left: 12px; }
+    </style>
+  </head>
+  <body>
+    <div id="banner"><strong>cli2anything++</strong> suanli.cn / 83 个操作。请求经本机代理签名后发出，凭据来自代理进程的环境变量，页面不需要填写 token。<a href="/drilldown">调用顺序</a></div>
+    <div id="swagger-ui"></div>
+    <script src="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui-bundle.js"></script>
+    <script>
+      window.ui = SwaggerUIBundle({ url: "/openapi.json", dom_id: "#swagger-ui", deepLinking: true, docExpansion: "none", filter: true });
+    </script>
+  </body>
+</html>

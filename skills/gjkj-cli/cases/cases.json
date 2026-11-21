@@ -1,0 +1,21 @@
+[
+  {
+    "type": "case",
+    "title": "从公开文档生成共绩算力 CLI 并只读实测",
+    "description": "用户想在对话里调用共绩算力的 Open API。lov-cli2anything 的 suanli.cn 适配器从官方公开文档与 Apifox 公开分享生成 83 个操作；用户自己把密钥存进钥匙串后，14 个只读接口在 Token 模式实测返回成功，并在本地 Swagger 里调试。调试中遇到的两类错误（密钥存错导致 A003、大模型账户余额不足）整理进 references/errors.md。本 Skill 把生成物、安全规则与错误解释封装在一起。",
+    "input": {
+      "items": [
+        "共绩算力公开文档与官方 Apifox 公开分享",
+        "用户本人的 Open API 密钥与大模型 API Key（存于 macOS 钥匙串）"
+      ]
+    },
+    "prompt": "把共绩算力的 API 生成 CLI、SDK 与 Swagger，再封装成 Skill。",
+    "output": {
+      "items": [
+        "lov-suanli-cli 0.1.0：83 个命令（写操作 39、加密 7、计费 1、已实测 14），随附 SDK、OpenAPI 3.1、本地 Swagger 代理",
+        "只读接口返回 code 0000；写操作在未获同意时被拦截",
+        "两类真实错误的原因与处理写入 references/errors.md"
+      ]
+    }
+  }
+]

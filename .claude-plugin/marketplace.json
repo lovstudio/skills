@@ -33,7 +33,7 @@
     {
       "name": "dev-tools",
       "source": "./",
-      "description": "Dev Tools — 106 free skills bundled together.",
+      "description": "Dev Tools — 107 free skills bundled together.",
       "category": "Dev Tools",
       "skills": [
         "./skills/env-management",
@@ -72,6 +72,7 @@
         "./skills/dsh-plugin-publisher",
         "./skills/npm-publisher",
         "./skills/cli2anything",
+        "./skills/gjkj-cli",
         "./skills/better-css",
         "./skills/better-github-desc",
         "./skills/better-project-structure",

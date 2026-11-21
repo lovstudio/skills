@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **243 个技能** — 218 个免费 + 25 个付费。
+> **244 个技能** — 219 个免费 + 25 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -188,7 +188,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | [Clash 网络医生](https://github.com/lovstudio/clash-tun-doctor-skill) | 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。 — 相关: `env-management`, `iproyal-raylink` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Claude Account Mover](https://github.com/lovstudio/claude-account-migrate-skill) (`claude-account-migrate`) | [Claude 换号搬家](https://github.com/lovstudio/claude-account-migrate-skill) | 换了 Claude 账号，旧账号的会话照样能点开继续。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [CLI Studio](https://github.com/lovstudio/cli-creator-skill) (`cli-creator`) | [CLI 工坊](https://github.com/lovstudio/cli-creator-skill) | 把本地项目或当前目录转换为可安装、可测试、支持JSON的真实后端CLI；当用户说“给这个项目做CLI”“把应用变成命令行”或“buildaCLIforthisp |
-| ![Free](https://img.shields.io/badge/Free-green) | [API Studio](https://github.com/lovstudio/cli2anything-skill) (`cli2anything`) | [接口工坊](https://github.com/lovstudio/cli2anything-skill) | 把已授权观察到的网站 API 变成可验证的 OpenAPI、SDK、Swagger 与任务型 CLI。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [API Studio](https://github.com/lovstudio/cli2anything-skill) (`cli2anything`) | [接口工坊](https://github.com/lovstudio/cli2anything-skill) | 把已授权观察到的网站 API 变成可验证的 OpenAPI、SDK、Swagger 与任务型 CLI。 — 相关: `gjkj-cli` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Makeover](https://github.com/lovstudio/clone-rebrand-skill) (`clone-rebrand`) | [项目换装](https://github.com/lovstudio/clone-rebrand-skill) | 将模板或 fork 改造为新项目，按范围同步品牌、语言和部署设置 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Code Reviewer](https://github.com/lovstudio/code-review-skill) (`code-review`) | [代码审阅官](https://github.com/lovstudio/code-review-skill) | 审查实际差异中的正确性、安全和维护风险并给出可定位意见 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Codeex Plugin Studio](https://github.com/lovstudio/codeex-creator-skill) (`codeex-creator`) | [Codeex 插件工坊](https://github.com/lovstudio/codeex-creator-skill) | 为Codeex创建、验证和迭代本地运行时插件，覆盖renderer、launch、controlhooks、原生UI复用、分层重载与原子安装卸载 |
@@ -220,6 +220,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Open Source Contributor](https://github.com/lovstudio/gh-contribute-skill) (`gh-contribute`) | [开源贡献助手](https://github.com/lovstudio/gh-contribute-skill) | 给任意上游 GitHub 仓库提一份干净的 PR——fork、分支、推送、开 PR 一站搞定。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [GitHub Organizer](https://github.com/lovstudio/gh-tidy-skill) (`gh-tidy`) | [GitHub 整理师](https://github.com/lovstudio/gh-tidy-skill) | 一次过清理 GitHub 上的 issue、PR、分支和标签，让仓库重新整洁。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Context Commit](https://github.com/lovstudio/git-commit-with-context-skill) (`git-commit-with-context`) | [会话提交](https://github.com/lovstudio/git-commit-with-context-skill) | 结合会话意图与实际 Git 差异生成并执行范围准确的提交 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Suanli CLI](https://github.com/lovstudio/gjkj-cli-skill) (`gjkj-cli`) | [共绩算力 CLI](https://github.com/lovstudio/gjkj-cli-skill) | 在对话里安全调用共绩算力 Open API：查任务、存储与账单，写操作和扣费调用先经你同意。 — 相关: `cli2anything` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Command Helper](https://github.com/lovstudio/help-cmd-skill) (`help-cmd`) | [命令助手](https://github.com/lovstudio/help-cmd-skill) | 把操作目标转换为适合当前系统和 shell 的可执行命令说明 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [I18n Inspector](https://github.com/lovstudio/i18n-check-i18n-skill) (`i18n-check-i18n`) | [国际化巡检](https://github.com/lovstudio/i18n-check-i18n-skill) | 检查并修复用户可见文案硬编码、缺失翻译键及语言配置 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Document Visuals](https://github.com/lovstudio/illustrate-skill) (`illustrate`) | [图解文档](https://github.com/lovstudio/illustrate-skill) | 依据文档内容选择真实素材、图表或生成图并校验插入位置 — 依赖: `branding-consistency` |
