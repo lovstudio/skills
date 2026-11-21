@@ -352,7 +352,12 @@ BRIEF_TEMPLATE = """# 手机信息图 Brief
 
 | ID | 论点 / 判据 | 精确证据 | 编码方式 | 直接标注 |
 | --- | --- | --- | --- | --- |
-| S1 | {claim} | 待补充来源、口径与数字 | 位置 / 长度 / 颜色 | 待补充 |
+| S1 | {claim} | 待补充口径与数字 | 位置 / 长度 / 颜色 | 待补充 |
+
+## 来源（写进 source.md，不上卡）
+
+- {source}
+- 每条写成「网址对应页面的实际标题，完整网址」，标题先回读页面的 <title>/<h1>
 
 ## 口径与限定
 
@@ -397,6 +402,7 @@ def cmd_scaffold(args: argparse.Namespace) -> int:
             series_size=args.series_size,
             generated_at=now_iso(),
             claim=args.claim or args.title,
+            source=args.source,
         ),
         encoding="utf-8",
     )
@@ -408,7 +414,7 @@ def cmd_scaffold(args: argparse.Namespace) -> int:
         "ratio": args.ratio,
         "series": f"{args.series_index}/{args.series_size}",
         "brand_origin": brand_origin,
-        "next": "替换 data-skeleton 文案，补证据与来源，然后 render 与 audit",
+        "next": "替换 data-skeleton 文案，来源写进 source.md（不上卡），然后 render 与 audit",
     }, ensure_ascii=False, indent=1))
     return 0
 
@@ -671,6 +677,11 @@ MEASURE_JS = r"""
       encodings: encodings.length,
       encodings_linked: encodings.filter(linked).length,
       annotations: card.querySelectorAll('[data-annotation]').length,
+      // Sources ship in source.md; a visible appendix or source line on the card is flagged.
+      source_blocks: Array.from(card.querySelectorAll('.appendix, [data-role="source"]')).filter((el) => {
+        const s = getComputedStyle(el);
+        return s.display !== 'none' && s.visibility !== 'hidden';
+      }).length,
       skeletons: skeletons.length,
       blocks: card.querySelectorAll('.block, .step, .check, .compare-side, .metric').length,
     },
@@ -919,6 +930,12 @@ def audit_measurements(m: dict[str, Any], ratio_expected: tuple[int, int] | None
               f"来源引用 {counts['sources']} 处，编码元素 {counts['encodings']} 个，"
               f"其中已挂来源 {counts['encodings_linked']} 个")
 
+    source_blocks = int(counts.get("source_blocks", 0) or 0)
+    add_issue(checks, "source_offcard", "warning", source_blocks == 0,
+              "卡面不放来源列表，来源随 source.md 交付" if source_blocks == 0 else
+              f"卡面有 {source_blocks} 处来源列表或来源行：页面标题与网址写进 source.md；"
+              "只有用户明确要求时才在卡面留一行来源名")
+
     logo = m["logo"]
     # The logotype is required; the credit line is optional (a card about private
     # material may omit it, and the implementation tooling is never mandatory).
@@ -1154,7 +1171,8 @@ def build_parser() -> argparse.ArgumentParser:
     scaffold.add_argument("--title", required=True)
     scaffold.add_argument("--claim", default="")
     scaffold.add_argument("--eyebrow", default="")
-    scaffold.add_argument("--source", default="待补充来源")
+    scaffold.add_argument("--source", default="待补充来源",
+                          help="source note recorded in the brief; sources never render on the card")
     scaffold.add_argument(
         "--row",
         action="append",

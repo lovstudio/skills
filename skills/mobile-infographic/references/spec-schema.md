@@ -52,6 +52,7 @@
 | `safe_area` | critical | 内容位于安全区内 |
 | `single_claim` | critical | `data-claim` 最多一条；可以没有 |
 | `evidence_linkage` | error | 编码元素挂在来源上 |
+| `source_offcard` | warning | 卡面没有来源列表或来源行（`.appendix`、`data-role="source"`）；来源随 source.md 交付 |
 | `brand_footer` | critical | Logo 与署名完整 |
 | `series_page` | warning | 页码与系列声明一致 |
 | `skeleton_replaced` | critical | 骨架文案已全部替换 |

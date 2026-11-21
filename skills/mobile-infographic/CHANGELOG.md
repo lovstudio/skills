@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.19.0] - 2026-11-21
+
+### Changed
+
+- 卡面不再放来源列表：数据来源、页面标题、完整网址与「信息图呈现」署名一律写进随卡交付的 `source.md`（`## Sources`），卡面只保留口径行。起因：信息密集的手机卡上，附录来源列表可占去约四分之一版面，挤占主内容
+- 七个模板移除 `{{SOURCE}}` 来源行；`scaffold --source` 保留兼容，内容只写进 brief 的「来源」小节
+- 只有用户明确要求时才在卡面标注来源，且压成一行来源名，不贴网址列表
+- SKILL.md、`references/mobile-reading-standard.md`、`template-grammar.md`、`spec-schema.md`、README 与 Skill 卡片同步改写；金融、医疗与法律类卡片的要求改为「卡面保留口径，并随卡交付列明来源的 source.md」
+
+### Added
+
+- `audit` 新增 `source_offcard`（warning）：卡面上可见的 `.appendix` 或 `data-role="source"` 元素会被提示
+- 新增 3 条测试：来源上卡触发警告、无来源时通过、`scaffold --source` 只进 brief 不进卡面；模板测试断言卡面没有来源角色
+
+### Fixed
+
+- 随包案例三张卡去掉卡面来源行并重渲染，`audit` 各 100/100
+
 ## [0.18.3] - 2026-11-20
 
 ### Fixed

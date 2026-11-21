@@ -1,5 +1,5 @@
 schema: lovstudio/pricing-card/v1
-version: "0.18.3"
+version: "0.19.0"
 model: free
 currency: CNY
 list_price_cny: 0
@@ -12,7 +12,7 @@ basis: >
 boundary: >
   包含：默认单张 long 自适应高度卡、七个语义模板（含 bar-ranking 排位图）、精确像素渲染、
   移动可读性审计（字号下限、行宽、对比度、安全区、条形倒序、标题是否为观点、来源卫生）、
-  页脚品牌区与附录署名契约。
+  页脚品牌区，以及来源不上卡、随 source.md 交付的契约（source_offcard 审计）。
   不包含：内容写作、事实核查、生图或插图、翻译、发布到任何平台、云端存储与协作。
 delivery_unit: >
   一个可安装 Skill：SKILL.md 与 references（可读性标准、模板语法、系列与导出、Profile 契约）、

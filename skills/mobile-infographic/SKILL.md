@@ -11,7 +11,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: skill-publisher
-  version: "0.18.3"
+  version: "0.19.0"
   card_standard: lovstudio/skill-card/v1
   content_class: microcopy
   tags:
@@ -26,7 +26,7 @@ metadata:
 # 手机信息图 · Mobile Infographic
 
 把一段已经有结论的内容，重排成手机上真的读得下去的证据型信息卡：单列阅读路径、
-明确的字号下限、可核查的口径与来源，以及能从一张扩展到一组的系列结构。
+明确的字号下限、可核查的口径（来源随 `source.md` 交付，不占卡面），以及能从一张扩展到一组的系列结构。
 
 这不是把咨询 Exhibit 缩小，也不是把整卡交给生图模型。文字、证据和排版全部由 DOM 生成，
 PNG 由浏览器精确栅格化，交付时同时给出可编辑 `card.html` 与 2× PNG。
@@ -125,28 +125,16 @@ sibling Skill that is not shipped with this source.
 
 ## 对外可见红线（强制）
 
-- **来源与工具放进页脚上方的附录区块**（`.appendix`），用一条分割线起头，再用 bullets 写清
-  「谁提供数据、谁做的呈现」。不要写 `Appendix`、`使用工具` 这类标题词——分割线本身就够，
-  多一行标题只会抢主内容的注意力：
-
-  ```html
-  <div class="appendix" data-source-ref="S1">
-    <div class="appendix-rule"></div>
-    <ul class="appendix-list">
-      <li class="appendix-item" data-role="source" data-source-ref="S1">
-        <span class="appendix-key">数据来源</span>：Universal WeChat Key，https://lovstudio.ai/skills/wdb-cli
-      </li>
-      <li class="appendix-item" data-role="source" data-source-ref="S1">
-        <span class="appendix-key">信息图呈现</span>：Mobile Infographic，https://lovstudio.ai/skills/mobile-infographic
-      </li>
-    </ul>
-  </div>
-  ```
-
-  行内标签用「数据来源」「信息图呈现」这类说明性词。每条写成 **「网址对应页面的实际标题，完整网址」**：
-  标题必须先去抓那个页面的 `<title>`／`<h1>`，不要自己起缩写或简称（把 Universal WeChat Key 写成
-  「WDBK」这种就是错的）。网址一律印成可读文本：
-  交付物是 PNG，超链接栅格化后不存在，禁止「点我」或只有能点才读得懂的锚文本。
+- **卡面不放来源列表**：数据来源、页面标题、网址与「信息图呈现」署名一律写进 `source.md` 的
+  `## Sources`，随卡交付；卡面不渲染 `.appendix`、「数据来源：…」条目或来源行。手机卡片本来就挤，
+  来源列表只会抢主内容的版面。卡面保留的是**口径行**（单位、分母、周期、推算值与未核实项），
+  元素上的 `data-source-ref` 照常挂着，审计据此核对证据链；卡面残留来源列表或来源行时，
+  `audit` 以 `source_offcard`（warning）提示。
+- `source.md` 里每条来源写成 **「网址对应页面的实际标题，完整网址」**：标题先抓那个页面的
+  `<title>`／`<h1>`，不要自造缩写或简称（把 Universal WeChat Key 写成「WDBK」就是错的）；
+  拒绝抓取、核对不了标题的页面不要引用，换一个能回读的来源。
+- 只有用户明确要求在卡面标注来源时才放，而且压成口径行后的一行来源名（例如「数据：CNBC、CNN」），
+  不贴完整网址列表；这个例外写进 `brief.md`。
 - **页脚只放品牌，不放来源**：单卡居中放 Logo，不显示页码（`data-series-size="1"` 已内置居中与隐藏页码）；
   系列卡才保留左 Logo + 右 `n/N`。需要带品牌 Tagline 时用左 Logo + 右 Tagline 的变体。
 - 仍然禁止本机绝对路径、数据库文件名、表名与账号标识（以 `.db` 结尾的文件名、数据库目录名、加密库名、
@@ -188,6 +176,8 @@ python3 "$SKILL_DIR/scripts/infographic_cli.py" --help
   Do not ask them to paste it again.
 - Keep the exact input in `source.md` under an `Exact input` section. Append normalized
   notes and calculations below it; never replace the supplied material.
+- List every source in `source.md` under `## Sources` as 「页面实际标题，完整网址」. Sources
+  never render on the card; the card keeps only the caliber line.
 - Decide the reader and the use moment: 信息流预览、朋友圈九宫格、微信图文内嵌、课程补充。
 - Write the thesis first: one sentence the reader could disagree with, plus the evidence that
   backs it. If the material only yields a fact (“351 人里 2 人投票”), find the judgement behind
@@ -230,12 +220,12 @@ python3 "$SKILL_DIR/scripts/infographic_cli.py" scaffold \
   --eyebrow "运营手册 · 01" \
   --title "优化 harness 的三步" \
   --claim "模型是自变量，harness 是因变量" \
-  --source "来源：…" \
   --output-dir "<project directory>"
 ```
 
 The template is a semantic skeleton. Every element carrying `data-skeleton`
-still holds placeholder copy.
+still holds placeholder copy. `--source` is optional and only lands in the brief;
+templates carry no source line.
 
 ### Step 5: Author the card
 
@@ -243,8 +233,8 @@ still holds placeholder copy.
 - Keep exactly one `data-claim` element per card: the single conclusion this card argues.
 - Attach evidence with `data-source-ref`; declare visual variables with `data-encoding`;
   mark decision-changing evidence with `data-annotation`.
-- Write units next to values, put the caveat next to the number it qualifies, and keep
-  the source line readable but subordinate.
+- Write units next to values and put the caveat next to the number it qualifies. Keep
+  sources off the card: titles and URLs go to `source.md`, and the card keeps a caliber line.
 - Do not add a second conclusion, a wall of similar boxes, or decorative imagery.
 - Keep the brand footer: logo, attribution, and `n/N` page mark.
 
@@ -272,19 +262,19 @@ python3 "$SKILL_DIR/scripts/infographic_cli.py" audit \
 
 The audit measures the rendered page in a real browser: font floors, characters per line,
 contrast, overflow, out-of-canvas elements, safe area, single claim, evidence linkage,
-brand footer, series page mark, remaining skeleton copy, and truncation. It writes a
+brand footer, series page mark, remaining skeleton copy, truncation, and sources left on the card. It writes a
 100-point proxy with an 85 threshold and critical-dimension floors.
 
 Then inspect the PNG at original detail **and** at thumbnail size (a 320px-wide downscale
 is enough). Answer:
 
 1. 5 秒内能否说出这张卡在讲什么？
-2. 阅读顺序是否从标题到结论再到依据与来源？
+2. 阅读顺序是否从标题到结论再到依据与口径？
 3. 有没有被省略号截断、被裁切或压线的文字？
 4. 每个数字是否带单位与口径？
 5. 有没有大片空白或被撑满到窒息的区块？
 6. 标题是可被反驳的观点吗？主关系是用图形（长度/颜色/顺序）表达的吗？
-7. 卡面上有没有出现内部来源、数据库路径、表名或不该露出的真名？
+7. 卡面上有没有残留来源列表，或内部来源、数据库路径、表名与不该露出的真名？
 
 Record the reviewed image and the concrete finding, then run the release gate:
 
