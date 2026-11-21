@@ -3,6 +3,29 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.19.2] - 2026-11-22
+
+小红书不许给其他平台导流。来源是用户 2026-11-22 发《傅里叶自画像》时的原话「注意小红书平台不能给其他平台导流」；
+平台公开规则原文没在页面上核对。
+
+### Added
+
+- `references/xiaohongshu/platform-constraints.md` 新增「禁止站外导流（发布前门禁）」：二维码、URL / 域名、「去某平台搜」、
+  加微信 / 关注公众号一类引导都算导流，标题、正文、话题、画面、字幕、口播、封面都要查；给出片头片尾抽帧和字幕检索的命令；
+  选中的成片带片尾卡、二维码或 URL 时记 `blocked-on-platform-variant`，交回产出方做无导流版，不发原片，
+  `--allow-cross-platform-name` 只放行文件名、不放行导流内容；终稿确认加一行「站外导流」。Profile 的 `auto` 不免这道门禁。
+- `check_copy.py --platform xiaohongshu` 查标题、正文、话题、合集名：URL / 域名报 error `offsite_link`（小红书自己的域名除外），
+  二维码、扫码、「去某平台搜」、加微信 / 关注公众号一类报 error `offsite_cta`，只提到别的平台名报 warn `offsite_platform_mention`；
+  `limits` 多一项 `no_offsite_diversion: true`。只查小红书，其他平台不变。
+- 测试加一个小红书站外导流测试类（共 91 个）。
+
+### Changed
+
+- SKILL.md 平台路由里小红书的最小适配加一条：文案去掉站外链接和搜索引导，成片必须是无导流版；B 站、抖音的导流规则没确认过，
+  发布前先查当前规则。
+- 小红书「从其他平台继承文案」：正文的改动从一处变成两处（剥行内 `#话题`、删站外导流句），复用别的平台成片前照样过导流门禁。
+- publish-gates 的小红书字段表、README 同步这条规则。
+
 ## [0.19.1] - 2026-11-22
 
 ### Fixed

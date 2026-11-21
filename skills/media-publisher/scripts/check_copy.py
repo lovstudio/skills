@@ -54,6 +54,11 @@ B 站的标签有一类拒绝无法在本地判定：部分名字被划给话题
 `--description` 和 `--topic` 时，脚本按「正文（不算换行）+ 话题名（不含 `#`）」估一个下限，超过上限
 报 warn `description_with_topics_over_limit`。下限没超也可能在页面上超，接近上限时以页面为准。
 
+小红书不许给其他平台导流（2026-11-22 用户原话「注意小红书平台不能给其他平台导流」）。标题、正文、话题、
+合集名里的 URL / 域名报 error `offsite_link`；二维码、扫码、「去某平台搜」、加微信 / 关注公众号一类引导报 error
+`offsite_cta`；只提到别的平台名报 warn `offsite_platform_mention`，要人逐条判断。这是关键词检查，换个说法的导流
+挡不住，画面、字幕、口播也查不了，那部分按 references/xiaohongshu/platform-constraints.md「禁止站外导流」人工查。
+
 退出码 0 表示没有 error（warning 不阻断），1 表示存在 error，2 表示没给字段。
 """
 
@@ -99,6 +104,45 @@ CONFIRMED_REJECTED = {
 # B 站实测被拒的标签名（前三个 2026-08-18，vibecoding 2026-10-06，后者换 AI编程 被接受）。
 # 不是字符集问题也不是长度问题，是平台把这些名字划给了话题体系。名单必然不全，页面 toast 才是权威。
 BILIBILI_TOPIC_ONLY_TAGS = ("DeepSeekHarness", "独立开发者", "插件开发", "vibecoding")
+
+# ---------------------------------------------------------------------------
+# 站外导流（小红书）
+# ---------------------------------------------------------------------------
+
+# 别的平台、站点和私域入口的名字。拉丁字母的短名两侧不能紧贴字母，免得「wxyz」「QQQ」误报。
+_OFFSITE_PLATFORM = (
+    r"(?:微信|公众号|视频号|朋友圈|抖音|快手|[Bb]\s?站|哔哩哔哩|[Bb]ilibili|微博|知乎|淘宝|天猫|京东|拼多多|"
+    r"闲鱼|得物|油管|官网|(?<![A-Za-z])(?:YouTube|Youtube|youtube|TikTok|Tiktok|tiktok|GitHub|Github|github|"
+    r"QQ|qq|VX|vx|Vx|WX|wx|V信|v信)(?![A-Za-z]))"
+)
+OFFSITE_PLATFORM_RE = re.compile(_OFFSITE_PLATFORM)
+
+# 二维码、扫码，以及「去 / 到 / 上 某平台 搜 / 找 / 关注 / 看 / 下载」「在某平台搜 / 找 / 关注 / 下载」
+# （「在抖音看到」是叙述，不算）、「某平台搜 X / 同名 / 号」「关注 / 加 某平台」。
+OFFSITE_CTA_RE = re.compile(
+    r"二维码|扫码|扫一扫|搜一搜"
+    rf"|(?:去|到|上)\s*{_OFFSITE_PLATFORM}\s*(?:里|上)?\s*(?:搜|找|关注|看|下载)"
+    rf"|在\s*{_OFFSITE_PLATFORM}\s*(?:里|上)?\s*(?:搜|找|关注|下载)"
+    rf"|{_OFFSITE_PLATFORM}\s*(?:搜索|搜|同名|号)"
+    rf"|(?:关注|加|添加|私信)\s*(?:我的?|一下|下)?\s*{_OFFSITE_PLATFORM}"
+)
+
+# URL 与裸域名。只认 ASCII 的 URL 字符，免得把紧跟在后面的中文吃进样本；前面紧贴中文（「官网lovstudio.ai」）
+# 也要认出来，所以左边界只排除 ASCII 字母数字与 `.` `-`（Python 的 \w 含汉字，不能用）。
+# 小红书自己的域名不算站外。
+_URL_CHARS = r"[A-Za-z0-9\-._~:/?#\[\]@!$&'()*+,;=%]"
+OFFSITE_URL_RE = re.compile(
+    rf"https?://{_URL_CHARS}+|www\.{_URL_CHARS}+"
+    r"|(?<![A-Za-z0-9.\-])(?:[A-Za-z0-9-]+\.)+"
+    r"(?:com|cn|net|org|ai|io|co|me|app|dev|tv|cc|xyz|top|site|link|info|so|gg|ly)(?![A-Za-z0-9-])"
+    rf"(?:/{_URL_CHARS}*)?"
+)
+OWN_PLATFORM_DOMAINS = ("xiaohongshu.com", "xhslink.com", "xhscdn.com")
+
+
+def _own_domain(url: str) -> bool:
+    host = re.sub(r"^https?://", "", url).split("/", 1)[0].lower()
+    return any(host == d or host.endswith("." + d) for d in OWN_PLATFORM_DOMAINS)
 
 PLATFORMS: dict[str, dict[str, Any]] = {
     "wechat-channels": {
@@ -178,7 +222,9 @@ PLATFORMS: dict[str, dict[str, Any]] = {
             "正文里的 {samples} 不会自动成为话题；"
             "话题请用 --topic 并在页面从 # 联想列表点选，正文去掉行内 #"
         ),
-        "source": "小红书创作服务平台发布页计数器（正文 2026-10-01、标题 2026-10-12 读取）与发布时的提示原文（话题上限 2026-10-29）",
+        # 2026-11-22 用户原话「注意小红书平台不能给其他平台导流」；平台规则原文没在页面上核对。
+        "no_offsite_diversion": True,
+        "source": "小红书创作服务平台发布页计数器（正文 2026-10-01、标题 2026-10-12 读取）与发布时的提示原文（话题上限 2026-10-29）；禁止站外导流为 2026-11-22 用户确认",
     },
     "douyin": {
         "label": "抖音",
@@ -580,6 +626,66 @@ def check_topics(topics: list[str], spec: dict[str, Any]) -> list[dict]:
     return findings
 
 
+def check_offsite_diversion(text: str, spec: dict[str, Any]) -> list[dict]:
+    """小红书：文案里的站外链接、导流引导和别的平台名。
+
+    同一段文字只报最重的一类：已经算进 URL 或引导的平台名，不再重复报 mention。
+    """
+    if not spec.get("no_offsite_diversion") or not text:
+        return []
+
+    findings: list[dict] = []
+    covered: list[tuple[int, int]] = []
+
+    urls = [m for m in OFFSITE_URL_RE.finditer(text) if not _own_domain(m.group())]
+    if urls:
+        covered += [m.span() for m in urls]
+        samples = [m.group() for m in urls]
+        findings.append({
+            "level": "error",
+            "code": "offsite_link",
+            "message": (
+                f"{spec['label']}不许给其他平台导流，文案里有链接或域名：{'、'.join(samples[:3])}"
+                + (" 等" if len(samples) > 3 else "")
+                + "。删掉再发，官网也算站外"
+            ),
+            "samples": samples[:5],
+        })
+
+    def inside(span: tuple[int, int]) -> bool:
+        return any(a <= span[0] and span[1] <= b for a, b in covered)
+
+    ctas = [m for m in OFFSITE_CTA_RE.finditer(text) if not inside(m.span())]
+    if ctas:
+        covered += [m.span() for m in ctas]
+        samples = [m.group() for m in ctas]
+        findings.append({
+            "level": "error",
+            "code": "offsite_cta",
+            "message": (
+                f"{spec['label']}不许给其他平台导流，文案里有站外引导：{'、'.join(samples[:3])}"
+                + (" 等" if len(samples) > 3 else "")
+                + "。二维码、扫码、「去某平台搜」、加微信 / 关注公众号一类都要删掉"
+            ),
+            "samples": samples[:5],
+        })
+
+    mentions = [m for m in OFFSITE_PLATFORM_RE.finditer(text) if not inside(m.span())]
+    if mentions:
+        names = list(dict.fromkeys(m.group() for m in mentions))
+        findings.append({
+            "level": "warn",
+            "code": "offsite_platform_mention",
+            "message": (
+                f"文案提到了别的平台：{'、'.join(names)}。{spec['label']}不许导流，逐条判断："
+                "属于导流就删，属于必要叙述也优先改写，留下的列进终稿确认"
+            ),
+            "samples": names[:5],
+        })
+
+    return findings
+
+
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
@@ -635,6 +741,16 @@ def main(argv: list[str] | None = None) -> int:
             for f in check_description_with_topics(args.description, args.topics, spec)
         ]
 
+    # 站外导流按字段各查一遍，报告里能看出是哪个字段带的。
+    for field, value in (
+        ("title", args.title),
+        ("description", args.description),
+        ("topics", " ".join(args.topics) if args.topics else None),
+        ("collection", args.collection),
+    ):
+        if value is not None:
+            findings += [{**f, "field": field} for f in check_offsite_diversion(value, spec)]
+
     if not checked:
         print("未传入任何字段；至少给一个 --short-title / --title / "
               "--description / --topic / --collection",
@@ -661,6 +777,8 @@ def main(argv: list[str] | None = None) -> int:
     }
     if args.platform == "wechat-channels":
         limits["allowed_symbols"] = ALLOWED_SYMBOLS
+    if spec.get("no_offsite_diversion"):
+        limits["no_offsite_diversion"] = True
 
     report = {
         "status": status,
