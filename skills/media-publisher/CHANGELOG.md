@@ -3,6 +3,13 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.19.1] - 2026-11-22
+
+### Fixed
+
+- 抖音 platform-constraints 里「审核多久见 CHANGELOG」是断引用（0.19.0 的 CHANGELOG 没有这条）。补上这次的实测：00:01 重载读到「审核中」，
+  00:09 再重载同一张卡片读到「已发布」，在 9 分钟以内，只有一次样本；page-anatomy 的列表回读一节同步写明。
+
 ## [0.19.0] - 2026-11-22
 
 新增抖音（Douyin 创作者中心）。2026-11-21 发《傅里叶自画像》v0.3 竖版（54 秒）时逐个控件读页面、实测走通：上传 → 标题 / 简介 /
