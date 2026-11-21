@@ -72,29 +72,51 @@ def validate(text: str) -> int:
     return len(skills)
 
 
-def document_plan(catalog_text: str) -> tuple[list[tuple[str, bytes]], list[str]]:
-    """Objects to upload and keys to delete for every Skill mirrored under ./skills/.
+def document_plan(catalog_text: str, retired: tuple[str, ...] | list[str] = ()) -> tuple[list[tuple[str, bytes]], list[str]]:
+    """Objects to upload and keys to delete under catalogs/skills/.
 
-    These are the entries lovstudio.cn may read from OSS. A document the mirror no
-    longer has is deleted, so the site never serves a copy its source dropped.
+    Only free, public entries are published, from their mirror under ./skills/. Every
+    other key is deleted, so lovstudio.cn never serves a copy its source dropped: a file
+    the mirror no longer has, every file of an entry that turned paid, internal or test
+    (its free-era copy would otherwise stay public), and every file of a `retired` name.
     """
+    entries = [
+        (entry["name"], not entry.get("test") and is_installable(entry))
+        for entry in yaml.safe_load(catalog_text)["skills"]
+    ] + [(name, False) for name in retired]
     uploads, deletes = [], []
-    for entry in yaml.safe_load(catalog_text)["skills"]:
-        if entry.get("test") or not is_installable(entry):
-            continue
-        name = entry["name"]
+    for name, published in entries:
         if not SKILL_NAME.fullmatch(name):
             raise ValueError(f"skill name cannot be an object key: {name!r}")
         for file in DOC_TYPES:
             path = ROOT / "skills" / name / file
-            if path.is_symlink():
-                raise ValueError(f"refusing to publish a symlink: skills/{name}/{file}")
             key = f"{DOCS_PREFIX}/{name}/{file}"
-            if path.is_file():
+            if published and path.is_symlink():
+                raise ValueError(f"refusing to publish a symlink: skills/{name}/{file}")
+            if published and path.is_file():
                 uploads.append((key, path.read_bytes()))
             else:
                 deletes.append(key)
     return uploads, deletes
+
+
+def retired_names(catalog_text: str) -> list[str]:
+    """Names that once had a mirror under ./skills/ and are no longer in the catalog.
+
+    Their documents may still be on OSS from before they were removed. A shallow clone
+    would silently miss them, so it is refused.
+    """
+    def git(*args: str) -> str:
+        return subprocess.run(["git", *args], cwd=ROOT, check=True, capture_output=True, text=True).stdout
+
+    if git("rev-parse", "--is-shallow-repository").strip() == "true":
+        raise RuntimeError("shallow clone: fetch the full history to find retired Skills")
+    # --no-renames: rename detection would fetch blobs in CI's blob-less clone.
+    log = git("log", "--no-renames", "--format=", "--name-only", "--", "skills/*/SKILL.md")
+    mirrored = {parts[1] for parts in (line.split("/") for line in log.splitlines()) if len(parts) == 3}
+    listed = {entry["name"] for entry in yaml.safe_load(catalog_text)["skills"]}
+    # A name that is not a valid key was never uploaded.
+    return sorted(name for name in mirrored - listed if SKILL_NAME.fullmatch(name))
 
 
 def document_request_fields(key: str, body: bytes, commit: str) -> dict:
@@ -201,21 +223,30 @@ def main(argv: list[str]) -> int:
         print("Usage: mirror-catalog-cn.py [--apply]  (destination and source are fixed)", file=sys.stderr)
         return 2
     body = (ROOT / "skills.yaml").read_bytes()
+    text = body.decode("utf-8")
     digest = hashlib.sha256(body).hexdigest()
     summary = {
         "mode": "apply" if argv else "dry-run",
         "target": PUBLIC_URL,
-        "skills": validate(body.decode("utf-8")),
+        "skills": validate(text),
         "bytes": len(body),
         "sha256": digest,
         "commit": head_commit(),
     }
-    uploads, deletes = document_plan(body.decode("utf-8"))
-    summary.update(documents=len(uploads), deleted_documents=len(deletes))
+    # Without history the plan still covers every catalog entry; the run then fails after
+    # the catalog upload, like a document failure.
+    try:
+        retired, history_error = retired_names(text), None
+    except (OSError, subprocess.CalledProcessError, RuntimeError) as error:
+        retired, history_error = [], f"retired Skills unknown: {error!r}"
+    uploads, deletes = document_plan(text, retired)
+    summary.update(documents=len(uploads), deleted_documents=len(deletes), retired_skills=len(retired))
     if not argv:
         summary["mirror_sha256"] = public_sha256(digest)
         summary["documents_out_of_sync"] = len(public_document_mismatches(uploads, deletes, digest))
         print(json.dumps(summary))
+        if history_error:
+            print(history_error, file=sys.stderr)
         in_sync = summary["mirror_sha256"] == digest and not summary["documents_out_of_sync"]
         print("DRY RUN: in sync" if in_sync else "DRY RUN: mirror differs; no upload performed")
         return 0
@@ -228,6 +259,8 @@ def main(argv: list[str]) -> int:
         document_error = f"{len(mismatches)} public copies differ, e.g. {mismatches[:5]}" if mismatches else None
     except Exception as error:  # noqa: BLE001 - reported after the catalog upload below
         document_error = repr(error)
+    if history_error:
+        document_error = f"{document_error}; {history_error}" if document_error else history_error
     upload(body, digest, summary["commit"])
     catalog_verified = public_sha256(digest) == digest
     print(json.dumps(summary))

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.8 — 2026-11-21
+
+- `mirror-cn` now deletes the OSS documents of every catalog entry that is not published: paid, internal or test. It used to skip those entries entirely, so a free Skill that turned paid kept its free-era `SKILL.md`, `README.md` and `skill-card.yaml` public under `catalogs/skills/<name>/`. That happened to `fourier-portrait`: 0.1.0 (free, #112) was uploaded at 14:20 UTC, and after 0.2.0 and 0.2.1 went VIP (#113, #114) the 0.1.0 copy stayed downloadable, and lovstudio.cn rendered it until its cached catalog caught up.
+- It also deletes the documents of names that left the catalog, found in the history of `skills/*/SKILL.md`. The job checks out the full history without blobs for this; a shallow clone is refused, and then the catalog still uploads and the run fails, like a document failure. On today's catalog that adds 192 keys to the 78 the job already deletes; only fourier-portrait's three exist, the rest are no-ops. Uploads are unchanged (579 documents).
+
 ## 1.1.7 — 2026-11-20
 
 - CI now lists every dependency a free entry's mirrored `SKILL.md` declares. `npx lovstudio skills add <name>` installs the catalog's `depends_on` closure, and 37 entries had fallen behind their `SKILL.md` (36 of them without `branding-consistency`) until #103 and #104 caught them up by hand. `sync-runtime-names.py --write` maps each declared runtime name to its entry, inserts the missing ones in the declared order and never removes an entry's other dependencies; the check mode reports the gap. Run on the catalog as it was before #103, it reproduces #103 and #104 byte for byte.

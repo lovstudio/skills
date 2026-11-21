@@ -2,6 +2,7 @@ import hashlib
 import importlib.util
 import io
 import os
+import subprocess
 import sys
 import tempfile
 import types
@@ -43,7 +44,7 @@ class MainTest(unittest.TestCase):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
         Path(tmp.name, 'skills.yaml').write_text(CATALOG, encoding='utf-8')
-        for name, value in {'ROOT': Path(tmp.name), 'head_commit': lambda: 'abc123'}.items():
+        for name, value in {'ROOT': Path(tmp.name), 'head_commit': lambda: 'abc123', 'retired_names': lambda _: []}.items():
             patcher = mock.patch.object(mirror, name, value)
             patcher.start()
             self.addCleanup(patcher.stop)
@@ -107,6 +108,19 @@ class MainTest(unittest.TestCase):
                 self.assertEqual(code, 1)
                 self.assertEqual(len(uploads), 1)
                 self.assertIn('Skill documents are not verified', err)
+
+    def test_unknown_history_still_refreshes_the_catalog_and_fails_the_run(self):
+        uploads, plans = [], []
+        with mock.patch.object(mirror, 'retired_names', mock.Mock(side_effect=RuntimeError('shallow clone'))):
+            code, _, err = self.run_main(
+                ['--apply'], upload=lambda *args: uploads.append(args), readback=lambda _: DIGEST,
+                upload_documents=lambda uploads, deletes, commit: plans.append(len(deletes)),
+            )
+        self.assertEqual(code, 1)
+        self.assertEqual(len(uploads), 1)
+        # The catalog's own entries are still planned without the history.
+        self.assertEqual(plans, [3])
+        self.assertIn('retired Skills unknown', err)
 
     def test_dry_run_reports_documents_without_uploading_them(self):
         code, out, _ = self.run_main(
@@ -172,16 +186,23 @@ class DocumentPlanTest(unittest.TestCase):
         patcher.start()
         self.addCleanup(patcher.stop)
 
-    def test_only_free_public_skills_are_published_and_missing_files_are_deleted(self):
-        uploads, deletes = mirror.document_plan(PLAN_CATALOG)
+    def test_only_free_public_skills_are_published_and_everything_else_is_deleted(self):
+        uploads, deletes = mirror.document_plan(PLAN_CATALOG, ['retired'])
         self.assertEqual([key for key, _ in uploads], ['catalogs/skills/alpha/SKILL.md', 'catalogs/skills/alpha/README.md'])
         self.assertEqual(uploads[0][1], b'---\nname: alpha\n---\n')
-        self.assertEqual(deletes, [
-            'catalogs/skills/alpha/skill-card.yaml',
-            'catalogs/skills/epsilon/SKILL.md',
-            'catalogs/skills/epsilon/README.md',
-            'catalogs/skills/epsilon/skill-card.yaml',
+        # beta, gamma and delta still have mirrored files, e.g. from before beta turned paid
+        # (fourier-portrait, 2026-11-21): their free-era copies must not stay public.
+        self.assertEqual(deletes, ['catalogs/skills/alpha/skill-card.yaml'] + [
+            f'catalogs/skills/{name}/{file}'
+            for name in ('beta', 'gamma', 'delta', 'epsilon', 'retired')
+            for file in ('SKILL.md', 'README.md', 'skill-card.yaml')
         ])
+
+    def test_an_unpublished_entry_is_deleted_even_through_a_symlink(self):
+        (self.root / 'skills' / 'beta' / 'README.md').unlink()
+        (self.root / 'skills' / 'beta' / 'README.md').symlink_to(self.root / 'skills.yaml')
+        _, deletes = mirror.document_plan(PLAN_CATALOG)
+        self.assertIn('catalogs/skills/beta/README.md', deletes)
 
     def test_names_that_are_not_plain_keys_are_refused(self):
         for name in ('../evil', 'Upper', 'a/b', '-lead'):
@@ -193,6 +214,44 @@ class DocumentPlanTest(unittest.TestCase):
         (self.root / 'skills' / 'alpha' / 'README.md').symlink_to(self.root / 'skills.yaml')
         with self.assertRaises(ValueError):
             mirror.document_plan(PLAN_CATALOG)
+
+
+class RetiredNamesTest(unittest.TestCase):
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.root = Path(tmp.name, 'repo')
+        self.root.mkdir()
+        self.git('init', '-q')
+        for path in ('skills/alpha/SKILL.md', 'skills/old/SKILL.md', 'skills/Bad_Name/SKILL.md', 'skills/alpha/sub/SKILL.md'):
+            (self.root / path).parent.mkdir(parents=True, exist_ok=True)
+            (self.root / path).write_text('---\nname: x\n---\n', encoding='utf-8')
+        self.git('add', '-A')
+        self.git('commit', '-q', '-m', 'mirror')
+        self.git('rm', '-q', '-r', 'skills/old')
+        self.git('commit', '-q', '-m', 'retire old')
+
+    def git(self, *args, cwd=None):
+        env = {**os.environ, 'GIT_AUTHOR_NAME': 't', 'GIT_AUTHOR_EMAIL': 't@example.com',
+               'GIT_COMMITTER_NAME': 't', 'GIT_COMMITTER_EMAIL': 't@example.com'}
+        subprocess.run(['git', *args], cwd=cwd or self.root, check=True, capture_output=True, env=env)
+
+    def test_names_mirrored_in_history_but_no_longer_listed(self):
+        with mock.patch.object(mirror, 'ROOT', self.root):
+            self.assertEqual(mirror.retired_names('skills:\n- {name: alpha, repo: lovstudio/alpha-skill, description: d}\n'), ['old'])
+
+    def test_a_listed_name_is_not_retired_even_without_a_mirror(self):
+        with mock.patch.object(mirror, 'ROOT', self.root):
+            self.assertEqual(mirror.retired_names(
+                'skills:\n- {name: alpha, repo: lovstudio/alpha-skill, description: d}\n'
+                '- {name: old, repo: lovstudio/old-skill, description: d, paid: true}\n'
+            ), [])
+
+    def test_a_shallow_clone_is_refused(self):
+        shallow = self.root.parent / 'shallow'
+        self.git('clone', '-q', '--depth', '1', f'file://{self.root}', str(shallow), cwd=self.root.parent)
+        with mock.patch.object(mirror, 'ROOT', shallow), self.assertRaises(RuntimeError):
+            mirror.retired_names('skills: []\n')
 
 
 class UploadDocumentsTest(unittest.TestCase):
