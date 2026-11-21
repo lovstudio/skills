@@ -13,7 +13,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.19.2"
+  version: "0.19.3"
   tags:
     - wechat-channels
     - bilibili
@@ -24,6 +24,8 @@ metadata:
 ---
 
 # 视频分发助手 · Video Publisher
+
+把本地视频发布到微信视频号 / Bilibili / 小红书 / 抖音。
 
 只操作平台自己的创作者后台可见网页。把页面当作动态界面：每一步重新读取当前页面，
 按语义定位控件，不依赖历史 CSS 选择器、旧句柄或坐标。

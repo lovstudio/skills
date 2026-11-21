@@ -1,6 +1,8 @@
 # 视频分发助手 · Video Publisher
 
-![Version](https://img.shields.io/badge/version-0.19.2-CC785C)
+微信视频号 / Bilibili / 小红书 / 抖音
+
+![Version](https://img.shields.io/badge/version-0.19.3-CC785C)
 
 通过已登录的创作者后台网页预检、上传并发布本地视频，支持离线文案预检、上传与表单并行、完整元数据门禁、
 封面安全区验收、**提交前由用户确认终稿**（可按平台在 Profile 设为自动）、保存草稿、定时发布和发布状态回读。

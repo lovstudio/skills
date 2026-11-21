@@ -3,6 +3,14 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.19.3] - 2026-11-22
+
+### Changed
+
+- `SKILL.md`、`README.md` 的 H1 统一成目录显示名「视频分发助手 · Video Publisher」，原来的平台列表挪到 H1 下一行。
+  之前两个 H1 分别是「发布视频到微信视频号 / Bilibili / 小红书 / 抖音」「视频发布器（…）」，同步脚本会把镜像改成显示名，
+  而 lovstudio.ai 渲染的是源码标题，两边对不上；对齐后镜像与源码一致。只改标题，行为不变。
+
 ## [0.19.2] - 2026-11-22
 
 小红书不许给其他平台导流。来源是用户 2026-11-22 发《傅里叶自画像》时的原话「注意小红书平台不能给其他平台导流」；
