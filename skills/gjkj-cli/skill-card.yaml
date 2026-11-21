@@ -99,5 +99,5 @@ distribution:
       status: private-source
       evidence: "2026-11-21：源码为私有仓库 lovstudio/gjkj-cli-skill；免费 Skill 的公开副本由 lovstudio/skills 目录镜像提供。"
     - channel: lovstudio
-      status: pending
-      evidence: "2026-11-21：免费上架进行中；目录条目、镜像与详情页尚未回读。"
+      status: live
+      evidence: "2026-11-21：lovstudio/skills#108 合并（926d439），站点读到该提交；lovstudio.ai/skills/gjkj-cli 返回 200 并显示 0.1.0；隔离目录 npx lovstudio skills add gjkj-cli --project 装上 0.1.0，doctor 通过（83 个命令），只读调用 storage-get-regions 成功。lovstudio.cn 待国内镜像任务同步。"

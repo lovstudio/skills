@@ -71,7 +71,7 @@ Node.js 20+、Python 3.8+；用户本人的 Open API 密钥（大模型接口另
 
 - 本地：已安装（三层链接解析到源码目录）。
 - GitHub：私有仓库 lovstudio/gjkj-cli-skill。
-- LovStudio 官网：免费上架进行中（pending）。WorkBuddy、SkillPay：未发布。
+- LovStudio 官网：已上架（live，免费）。lovstudio.ai 详情页显示 0.1.0，隔离试装通过；lovstudio.cn 待国内镜像同步。WorkBuddy、SkillPay：未发布。
 
 ## LovStudio Evidence
 
