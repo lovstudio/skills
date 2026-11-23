@@ -108,8 +108,8 @@ distribution:
       status: not_selected
   free:
     - channel: github
-      status: pending
-      note: "2026-11-24 待目录合并后回读"
+      status: live
+      note: "2026-11-24 lovstudio/skills#121 已合并，目录与镜像在 main 84a327a"
     - channel: lovstudio
-      status: pending
-      note: "2026-11-24 待目录合并、刷新与详情页回读、隔离试装"
+      status: live
+      note: "2026-11-24 刷新后官网读到 84a327a；详情页 HTTP 200 显示 0.1.0；隔离目录项目模式试装成功，脚本可运行"
