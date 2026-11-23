@@ -77,4 +77,4 @@ MIT。交接包内的项目内容归原项目权利人，Skill 不改变其版�
 
 ### Distribution
 
-免费渠道 GitHub、Lovstudio：pending（2026-11-24，待目录合并、刷新、详情页回读与隔离试装）；付费渠道未选择。
+免费渠道 GitHub、Lovstudio：live（2026-11-24：目录 PR #121 合并于 main 84a327a；官网详情页 HTTP 200 显示 0.1.0；隔离目录试装成功）；付费渠道未选择。
