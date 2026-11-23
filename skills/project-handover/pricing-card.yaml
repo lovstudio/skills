@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free_entry
+currency: CNY
+list_price_cny: 0
+value_anchor: "一次中途移交通常要花半天到一天整理、反复确认缺什么；本 Skill 把盘点、脱敏、文档、打包和重建验收串成一条可复查的流程。"
+basis: "首个真实案例已验证完整流程，但只有一次交接、尚无接手方反馈；先以免费入口积累案例与接手方的使用结果。"
+boundary: "交付 Skill 源码、脚本与使用合同；不含接手后的制作与沟通、第三方生成服务或网络费用，也不代为发送交接包。"
+review_trigger: "十次真实交接、收到接手方反馈，或出现团队批量交接与托管验收需求时复评。"
+confidence: internal

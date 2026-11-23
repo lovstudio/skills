@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **245 skills** — 219 Free + 26 Paid.
+> **246 skills** — 220 Free + 26 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -73,6 +73,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Moments Copy](https://github.com/lovstudio/output-wechat-moment-skill) (`output-wechat-moment`) | Format and save a WeChat Moments post — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [My Vocabulary](https://github.com/lovstudio/personal-vocabulary-skill) (`personal-vocabulary`) | One personal vocabulary reused across speech-input apps. |
 | ![Free](https://img.shields.io/badge/Free-green) | [A Little Encouragement](https://github.com/lovstudio/praise-before-work-skill) (`praise-before-work`) | Start each task with specific encouragement, then get to work. |
+| ![Free](https://img.shields.io/badge/Free-green) | [Project Handover](https://github.com/lovstudio/project-handover-skill) (`project-handover`) | Hand an in-flight project to someone else: privacy-scanned package, handover doc and agent guide, verified by a rebuild from scratch. — requires: `branding-consistency`; related: `repo-takeover`, `checkpoint` |
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Article Reader](https://github.com/MarkShawn2020/read-wechat-article-skill) (`read-wechat-article`) | Turn a public WeChat article URL into offline Markdown with original images and metadata. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [File Finder](https://github.com/lovstudio/search-file-skill) (`search-file`) | Recover files from past AI chats with conversation evidence, existence checks, and durable-copy ranking. |
 | ![Free](https://img.shields.io/badge/Free-green) | [X Post Recovery](https://github.com/lovstudio/search-twitter-skill) (`search-twitter`) | Recover verbatim X/Twitter posts, screenshot evidence, and the gaps that still cannot be proven. |
@@ -184,7 +185,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Status Line Studio](https://github.com/lovstudio/better-statusline-skill) (`better-statusline`) | Update an agent status line with rollback — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Session Mover](https://github.com/lovstudio/cc-migrate-session) (`cc-migrate-session`) | Keep your Claude Code session history working after you move a project folder. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Check Balance](https://github.com/lovstudio/check-balance-skill) (`check-balance`) | See how much quota your accounts across multiple platforms (cc, codex, ds and more) have left, and when each limit resets. |
-| ![Free](https://img.shields.io/badge/Free-green) | [Project Checkpoint](https://github.com/lovstudio/checkpoint-skill) (`checkpoint`) | Create a project checkpoint — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Project Checkpoint](https://github.com/lovstudio/checkpoint-skill) (`checkpoint`) | Create a project checkpoint — requires: `branding-consistency`; related: `project-handover` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Checkpoint History](https://github.com/lovstudio/checkpoint-list-skill) (`checkpoint-list`) | List a project checkpoint history — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | Diagnose Clash TUN failures from runtime evidence, apply reversible fixes, and verify the real application path. — related: `env-management`, `iproyal-raylink` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Claude Account Mover](https://github.com/lovstudio/claude-account-migrate-skill) (`claude-account-migrate`) | Switch Claude accounts and keep working in your old sessions. |
@@ -256,7 +257,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Module Refactorer](https://github.com/lovstudio/refactor-modular-skill) (`refactor-modular`) | Refactor a large file into cohesive modules — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Release Pilot](https://github.com/lovstudio/release-via-cicd-skill) (`release-via-cicd`) | Set up or run a verified CI/CD release — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Renamer](https://github.com/lovstudio/rename-project-skill) (`rename-project`) | Rename a project and preserve compatibility — requires: `branding-consistency` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Repository Takeover](https://github.com/lovstudio/repo-takeover-skill) (`repo-takeover`) | Publish a cloned repository under your account — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Repository Takeover](https://github.com/lovstudio/repo-takeover-skill) (`repo-takeover`) | Publish a cloned repository under your account — requires: `branding-consistency`; related: `project-handover` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Docs Site Builder](https://github.com/lovstudio/repo2docs-skill) (`repo2docs`) | Turn any folder — code, articles, images — into a polished Fumadocs site, built incrementally and shipped to {id}.lovstudio.ai/docs. — requires: `deploy-to-vercel`, `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Chat Finder](https://github.com/lovstudio/search-chat-skill) (`search-chat`) | Find what you and your AI already worked out, and read it back in its original context. |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Finder](https://github.com/lovstudio/search-project-skill) (`search-project`) | Locate a project or source folder on this machine in layers and return candidate paths with evidence. |

@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **245 个技能** — 219 个免费 + 26 个付费。
+> **246 个技能** — 220 个免费 + 26 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -72,6 +72,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Moments Copy](https://github.com/lovstudio/output-wechat-moment-skill) (`output-wechat-moment`) | [朋友圈文案](https://github.com/lovstudio/output-wechat-moment-skill) | 把已有内容整理成适合朋友圈阅读的纯文本并保存文件 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [My Vocabulary](https://github.com/lovstudio/personal-vocabulary-skill) (`personal-vocabulary`) | [我的词库](https://github.com/lovstudio/personal-vocabulary-skill) | 一份可跨语音输入法复用的个人词汇表。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [A Little Encouragement](https://github.com/lovstudio/praise-before-work-skill) (`praise-before-work`) | [开工夸夸](https://github.com/lovstudio/praise-before-work-skill) | 开工前先收到一段具体的夸奖，再开始处理任务。 |
+| ![Free](https://img.shields.io/badge/Free-green) | [Project Handover](https://github.com/lovstudio/project-handover-skill) (`project-handover`) | [项目交接](https://github.com/lovstudio/project-handover-skill) | 把做到一半的项目交给别人继续：盘点脱敏、补读最新进展、写交接文档与接手约定，打包后在全新目录从零重建验收。 — 依赖: `branding-consistency`; 相关: `repo-takeover`, `checkpoint` |
 | ![Free](https://img.shields.io/badge/Free-green) | [WeChat Article Reader](https://github.com/MarkShawn2020/read-wechat-article-skill) (`read-wechat-article`) | [公众号文章读取器](https://github.com/MarkShawn2020/read-wechat-article-skill) | 把公开公众号文章整理为可离线 Markdown，保留正文、原图和来源。 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [File Finder](https://github.com/lovstudio/search-file-skill) (`search-file`) | [文件寻踪](https://github.com/lovstudio/search-file-skill) | 从历史 AI 对话找回仍然存在的文件，并用会话证据与存储耐久度排序。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [X Post Recovery](https://github.com/lovstudio/search-twitter-skill) (`search-twitter`) | [X 原帖寻回](https://github.com/lovstudio/search-twitter-skill) | 恢复 X/Twitter 逐字正文与截图证据，并明确列出仍无法证明的缺口。 |
@@ -183,7 +184,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Status Line Studio](https://github.com/lovstudio/better-statusline-skill) (`better-statusline`) | [状态栏工坊](https://github.com/lovstudio/better-statusline-skill) | 配置并备份 Agent 状态栏，支持列出历史版本和恢复 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Session Mover](https://github.com/lovstudio/cc-migrate-session) (`cc-migrate-session`) | [会话搬家](https://github.com/lovstudio/cc-migrate-session) | 项目目录搬家后，让 Claude Code 的历史会话还能正常 `--resume`。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Check Balance](https://github.com/lovstudio/check-balance-skill) (`check-balance`) | [额度体检](https://github.com/lovstudio/check-balance-skill) | 这个 skill 可以看到你多个平台（例如 cc、codex、ds 等）的账号的用量，以及什么时候重置。 |
-| ![Free](https://img.shields.io/badge/Free-green) | [Project Checkpoint](https://github.com/lovstudio/checkpoint-skill) (`checkpoint`) | [项目存档](https://github.com/lovstudio/checkpoint-skill) | 根据当前 Git 差异和历史记录保存项目里程碑及后续事项 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Project Checkpoint](https://github.com/lovstudio/checkpoint-skill) (`checkpoint`) | [项目存档](https://github.com/lovstudio/checkpoint-skill) | 根据当前 Git 差异和历史记录保存项目里程碑及后续事项 — 依赖: `branding-consistency`; 相关: `project-handover` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Checkpoint History](https://github.com/lovstudio/checkpoint-list-skill) (`checkpoint-list`) | [检查点回看](https://github.com/lovstudio/checkpoint-list-skill) | 汇总 Git 与项目日志中的检查点、时间范围和演进记录 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Clash Network Doctor](https://github.com/lovstudio/clash-tun-doctor-skill) (`clash-tun-doctor`) | [Clash 网络医生](https://github.com/lovstudio/clash-tun-doctor-skill) | 从最终运行态和日志诊断 Clash TUN 故障，执行可回滚修复并验证真实应用链路。 — 相关: `env-management`, `iproyal-raylink` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Claude Account Mover](https://github.com/lovstudio/claude-account-migrate-skill) (`claude-account-migrate`) | [Claude 换号搬家](https://github.com/lovstudio/claude-account-migrate-skill) | 换了 Claude 账号，旧账号的会话照样能点开继续。 |
@@ -255,7 +256,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Module Refactorer](https://github.com/lovstudio/refactor-modular-skill) (`refactor-modular`) | [模块拆分师](https://github.com/lovstudio/refactor-modular-skill) | 按职责拆分长文件并保持公共接口、依赖和行为一致 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Release Pilot](https://github.com/lovstudio/release-via-cicd-skill) (`release-via-cicd`) | [自动发版](https://github.com/lovstudio/release-via-cicd-skill) | 配置或运行现有项目发布流水线，并回读产物与真实上线状态 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Renamer](https://github.com/lovstudio/rename-project-skill) (`rename-project`) | [项目改名](https://github.com/lovstudio/rename-project-skill) | 在保留兼容键与运行连续性的前提下重命名项目、路径和仓库 — 依赖: `branding-consistency` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Repository Takeover](https://github.com/lovstudio/repo-takeover-skill) (`repo-takeover`) | [仓库接手](https://github.com/lovstudio/repo-takeover-skill) | 将已有 clone 连接到用户自己的 GitHub 仓库并保留来源与历史 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Repository Takeover](https://github.com/lovstudio/repo-takeover-skill) (`repo-takeover`) | [仓库接手](https://github.com/lovstudio/repo-takeover-skill) | 将已有 clone 连接到用户自己的 GitHub 仓库并保留来源与历史 — 依赖: `branding-consistency`; 相关: `project-handover` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Docs Site Builder](https://github.com/lovstudio/repo2docs-skill) (`repo2docs`) | [文档站工坊](https://github.com/lovstudio/repo2docs-skill) | 把任意文件夹（代码、文章、图片）增量编纂成精美的 Fumadocs 文档站，并部署到 {id}.lovstudio.ai/docs。 — 依赖: `deploy-to-vercel`, `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Chat Finder](https://github.com/lovstudio/search-chat-skill) (`search-chat`) | [会话寻踪](https://github.com/lovstudio/search-chat-skill) | 把你和 AI 已经想清楚的事找回来，并读回它原本的上下文。 |
 | ![Free](https://img.shields.io/badge/Free-green) | [Project Finder](https://github.com/lovstudio/search-project-skill) (`search-project`) | [项目寻踪](https://github.com/lovstudio/search-project-skill) | 分层定位本机项目/源码目录：项目根优先，其次当前文件夹、AI聊天记录，最后全盘兜底，返回候选路径与证据 |

@@ -1,0 +1,115 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "把进行中的项目整理成交给接手方的交接包：盘点体积与敏感信息、补读最新进展、按默认规则排除商务与私人信息、写交接文档和接手 Agent 的工作约定、生成文件清单与干净的 zip，并在全新目录从零安装、完整重建后与原产物比对验收。"
+owner:
+  team: "Lovstudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "源码按 MIT 使用；交接包内的项目内容归原项目权利人，Skill 不改变其版权与署名约定。"
+  url: "../LICENSE"
+use_case:
+  audience: "把客户项目、内容制作项目或工程项目转给同事、合作方或外包继续做的个人与小团队，接手方常常也用 Agent 工作。"
+  scenario: "项目做到一半需要换人：工程体积大、缓存多、混有合同与私人笔记、最新进展散落在群聊里，接手方需要一个解开就能继续的包。"
+  tasks:
+    - "盘点项目体积、可重新生成的目录、密钥、个人信息、本机路径与所需凭据"
+    - "补读沟通渠道里的最新进展并更正过时的项目状态"
+    - "按计划整理交接内容并遮盖生成物里的本机路径"
+    - "撰写交接文档、接手 Agent 约定与文件清单并打包"
+    - "在全新目录从零安装与重建，比对成品并把发现写回文档"
+deployment:
+  geography: global
+  environments:
+    - "本地 Agent 宿主（Claude Code、Codex 等）"
+    - "macOS 或 Linux；Windows 可解包，验收以项目工具链为准"
+requirements:
+  credentials: "none"
+  dependencies:
+    - "lov-branding-consistency"
+  runtime:
+    - "Python 3.9+（标准库）"
+    - "ffmpeg 与 ffprobe（比对音视频成品时）"
+    - "被交接项目自己的工具链（重建验收时）"
+risks:
+  - risk: "把合同、联系人或私人笔记带给接手方。"
+    mitigation: "默认排除商务与私人类别，扫描个人信息与密钥，汇报时列出被排除的内容由用户决定。"
+  - risk: "包里缺少运行所需文件或文档命令写错，接手方无法继续。"
+    mitigation: "文件清单逐项核对，文档路径逐项核对，在全新目录从零安装并完整重建后才交付。"
+  - risk: "遮盖路径时改坏运行时读取的文件。"
+    mitigation: "只改文本类生成物，疑似运行文件单独标出并要求回源工程修改，应用后与源工程比对。"
+  - risk: "交接文档写入未经证实的进度、态度或数字。"
+    mitigation: "事实带日期与来源，推断标明，读不到的渠道列入已知缺口。"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "Scope and privacy rules"
+    path: "references/scope-and-privacy.md"
+  - title: "Handover document template"
+    path: "references/handover-doc-template.md"
+  - title: "Fresh-directory acceptance"
+    path: "references/acceptance.md"
+  - title: "Skill group composition"
+    path: "references/skill-composition.md"
+output:
+  types:
+    - "交接包文件夹"
+    - "zip 归档"
+    - "交接文档与接手 Agent 约定"
+    - "验收记录"
+  formats:
+    - "Markdown"
+    - "TSV（文件清单）"
+    - "ZIP（UTF-8 文件名，ZIP64）"
+  parameters:
+    - "项目目录"
+    - "整理计划 JSON"
+    - "交出方称呼与输出目录（可来自 Profile）"
+  validation:
+    - "handover_manifest.py verify 无缺失、无改动、无多余"
+    - "handover_manifest.py check-refs 文档路径全部存在"
+    - "handover_pack.py 自检无平台垃圾文件"
+    - "全新目录重建成功并与原成品比对通过"
+  description: "交付一个对方解开就能继续工作的交接包，以及证明它可重建的验收记录；不代为发送。"
+ethical_considerations: "交接包只在本地生成，由用户决定发给谁；默认不带合同、付款、分成、联系人方式、私聊与账号；引用他人原话保留时间与提出人，不改写原意；不编造对方的确认或态度。"
+dimensions:
+  - id: completeness
+    label: "交接完整性"
+    description: "接手方需要的工程、素材、快照、说明都在包里，文档提到的路径都存在"
+    evidence: "真实案例：上千个文件的清单逐项校验零差异；交接文档的路径引用全部存在"
+    score: null
+  - id: privacy
+    label: "隐私与商务隔离"
+    description: "商务、个人信息、账号与本机路径不随包流出"
+    evidence: "真实案例：解包后扫描无邮箱、密钥与本机路径；合同类文件、私人总览、私聊未出包"
+    score: null
+  - id: reproducibility
+    label: "全新目录可重建"
+    description: "照文档在空白目录安装并完整重建，结果与原成品一致"
+    evidence: "真实案例：完整重建主要成品，声音逐位一致，画面每帧 PSNR 高于 40 dB"
+    score: null
+  - id: efficiency
+    label: "盘点与打包效率"
+    description: "大体积项目也能快速盘点和打包"
+    evidence: "真实案例：数十 GB、数万文件的项目盘点在十秒内完成；约 2 GB 的包打包不到一分钟"
+    score: null
+pricing:
+  model: free_entry
+  currency: CNY
+  list_price_cny: 0
+  basis: "pricing-card.yaml"
+  boundary: "Skill 源码与使用合同；不含接手后的制作、沟通与第三方服务费用。"
+  review_trigger: "十次真实交接或出现付费版本需求后复评。"
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not_selected
+    - channel: skillpay
+      status: not_selected
+  free:
+    - channel: github
+      status: pending
+      note: "2026-11-24 待目录合并后回读"
+    - channel: lovstudio
+      status: pending
+      note: "2026-11-24 待目录合并、刷新与详情页回读、隔离试装"

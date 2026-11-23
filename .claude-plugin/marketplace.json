@@ -150,7 +150,7 @@
     {
       "name": "general",
       "source": "./",
-      "description": "General — 33 free skills bundled together.",
+      "description": "General — 34 free skills bundled together.",
       "category": "General",
       "skills": [
         "./skills/image-translation-errata",
@@ -187,7 +187,8 @@
         "./skills/share-session",
         "./skills/upload-image",
         "./skills/xbti-creator",
-        "./skills/tencent-meeting-cowork"
+        "./skills/tencent-meeting-cowork",
+        "./skills/project-handover"
       ],
       "strict": false
     },
