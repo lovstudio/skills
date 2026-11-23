@@ -5810,6 +5810,8 @@ skills:
   tagline_zh: 根据当前 Git 差异和历史记录保存项目里程碑及后续事项
   depends_on:
   - branding-consistency
+  related:
+  - project-handover
   pricing:
     model: free_entry
     visibility: public
@@ -7108,6 +7110,8 @@ skills:
   tagline_zh: 将已有 clone 连接到用户自己的 GitHub 仓库并保留来源与历史
   depends_on:
   - branding-consistency
+  related:
+  - project-handover
   pricing:
     model: free_entry
     visibility: public
@@ -10466,3 +10470,44 @@ skills:
     review_trigger_zh: "会员权益范围调整、10 次真实外部使用、五组不同人物的案例或版本大改时复评。"
     review_trigger_en: "Review when membership scope changes, after 10 real external uses, five cases on different people, or a major version change."
     card_path: pricing-cards/fourier-portrait.md
+- name: project-handover
+  runtime_name: lov-project-handover
+  display_name: Project Handover
+  name_zh: 项目交接
+  repo: lovstudio/project-handover-skill
+  paid: false
+  category: General
+  version: 0.1.0
+  updated_at: 2026-11-23 18:18:19+00:00
+  depends_on:
+  - branding-consistency
+  description: "Package an in-flight project for the next owner: privacy-scanned handover package, handover doc and agent guide, verified by a rebuild from scratch."
+  tagline_en: "Hand an in-flight project to someone else: privacy-scanned package, handover doc and agent guide, verified by a rebuild from scratch."
+  tagline_zh: 把做到一半的项目交给别人继续：盘点脱敏、补读最新进展、写交接文档与接手约定，打包后在全新目录从零重建验收。
+  related:
+  - repo-takeover
+  - checkpoint
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本 Skill：盘点扫描、整理计划、路径遮盖、文件清单与文档路径核对、干净打包、成品比对 6 个标准库脚本，交接文档与接手 Agent 约定模板，全新目录验收流程
+    delivery_unit_en: "Current Skill with six stdlib scripts (inventory scan, staging plan, path masking, manifest and doc-path check, clean zip, render comparison), handover-doc and recipient agent-guide templates, and a fresh-directory acceptance procedure"
+    value_zh: 交出一个对方解开就能继续工作的包：商务与私人信息默认不出包，最新进展逐条写清，交付前在全新目录从零安装、完整重建并与原成品比对。
+    value_en: "Deliver a package the next owner can unpack and continue from: commercial and personal data stay out by default, the latest requests are listed one by one, and the package is installed and rebuilt from scratch and compared with the original before delivery."
+    anchor_zh: 在一个进行中的客户制作项目上端到端跑通：数十 GB 的工程整理成约 2 GB 的交接包，全新目录验收清单零差异、扫描无联系方式与密钥，完整重建后声音逐位一致、画面每帧 PSNR 高于 40 dB。尚无接手方反馈。
+    anchor_en: "Run end to end on one in-flight client production project: tens of GB packaged into about 2 GB; fresh-directory acceptance with a zero-difference manifest, no contacts or secrets found, and a full rebuild whose sound is bit-identical and every frame above 40 dB PSNR. No recipient feedback yet."
+    basis_zh: 六维加权 2.8/5，只有一个真实案例、尚无接手方结果，免费 Skill 公开镜像也易复制，沿用同类免费入口积累证据。
+    basis_en: "Six-dimension score 2.8/5 with a single real case and no recipient results yet, and a public mirror that is easy to copy, so it keeps the sibling free entry to collect evidence."
+    boundary_zh: 只在本地生成与验收，不代为发送；不含接手后的制作与沟通、第三方生成服务或网络费用。重建验收依赖被交接项目自己的工具链。
+    boundary_en: "Builds and verifies locally and never sends the package; excludes the work after the handover, third-party generation services and network costs. The rebuild check depends on the handed-over project's own toolchain."
+    maintenance_zh: 随常见包管理器、渲染与打包工具的变化及真实交接中发现的新坑复评，无托管服务或更新时限承诺。
+    maintenance_en: "Review as common package managers, render and packaging tools change and as real handovers surface new pitfalls; no hosted service or update SLA is included."
+    confidence: case-backed
+    review_trigger_zh: 十次真实交接、收到第一份接手方反馈，或出现团队批量交接与托管验收需求时复评。
+    review_trigger_en: "Review after ten real handovers, the first recipient feedback, or demand for team-wide batch handovers and hosted acceptance."
+    card_path: pricing-cards/project-handover.md

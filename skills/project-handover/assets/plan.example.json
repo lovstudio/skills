@@ -1,0 +1,18 @@
+{
+ "source": "../..",
+ "dest": "output/handover/sender-shop-app-handover-2026-03-02-v0.1",
+ "exclude_everywhere": [".DS_Store", "__pycache__", "*.pyc", "Thumbs.db"],
+ "items": [
+  {"path": "docs/requirements-notes.md"},
+  {"path": "design"},
+  {"path": "spec/api-v3.md"},
+  {"path": "releases", "only": ["*.md", "*-2.4.0.apk", "*-2.5.0-rc1.apk"]},
+  {"path": "releases/reports"},
+  {"path": "app", "exclude": ["node_modules", "android/build", "ios/Pods"]},
+  {"path": "assets/generated"},
+  {"path": "snapshots/config-2.4"},
+  {"path": "snapshots/config-2.5-trial"},
+  {"path": "qa", "only": ["*.md", "*.json", "*.txt"]},
+  {"path": "qa/screens/onboarding-2.5-rc1.mp4"}
+ ]
+}
