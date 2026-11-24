@@ -1,0 +1,10 @@
+schema: lovstudio/pricing-card/v1
+version: "0.1.0"
+model: free
+currency: CNY
+list_price_cny: 0
+value_anchor: "手工 P 一张同等网感的撞款图约需 30–60 分钟，本 Skill 约 3 分钟加一次约 USD 0.2 的生图费用"
+basis: "工作流轻量、生图费用由用户自己的 OpenRouter 额度承担，免费发布用于积累案例与口碑"
+boundary: "包含取帧裁剪、原创卡通生成、HTML 排版渲染与同意/版权/报价/记账门禁；不包含生图费用、字体分发和任何发布外发"
+review_trigger: "增加多版式模板、批量生成、托管生图额度或视频动图输出时复评"
+confidence: internal

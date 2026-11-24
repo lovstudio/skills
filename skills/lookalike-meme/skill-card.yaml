@@ -1,0 +1,108 @@
+schema: lovstudio/skill-card/v1
+version: "0.1.0"
+description: "把一位真人的现场照片和一张参考形象图做成网感撞款表情包：AI 以本人照片为参考画原创 Q 版卡通并模仿参考姿势，HTML 排版出亮色网点放射线背景、白边歪斜贴纸和单个大标题的 1080×1440 PNG，另附卡通 PNG。"
+owner:
+  team: "LovStudio"
+  contact: "https://lovstudio.ai"
+license:
+  name: MIT
+  terms: "源码 MIT。成品中的真人肖像归本人，参考角色版权归原权利人；含第三方版权角色的成品仅适合私下或群内使用。"
+  url: "../LICENSE"
+use_case:
+  audience: "需要给朋友、同事或团队成员做亲昵梗图的内容创作者与社群运营"
+  scenario: "活动、聚会或节目里有人和某个卡通角色撞款，想快速做一张可发群的像不像对比图"
+  tasks:
+    - "从视频帧或照片裁出真人贴纸"
+    - "以本人照片为参考生成原创 Q 版卡通"
+    - "排版输出 1080×1440 对比图与单独的卡通 PNG"
+deployment:
+  geography: global
+  environments:
+    - "本地 macOS / Linux / Windows Agent 宿主"
+requirements:
+  credentials: "OPENROUTER_API_KEY（仅卡通步骤，从环境变量读取）"
+  dependencies:
+    - lov-branding-consistency
+  runtime:
+    - "Python 3.9+ 与 Pillow"
+    - "Chrome、Chromium 或 Edge"
+    - "得意黑 SmileySans 字体"
+    - "ffmpeg（仅视频取帧）"
+risks:
+  - risk: "未经本人同意用真人肖像做梗图"
+    mitigation: "同意是第一道门禁，未确认不做"
+  - risk: "本人照片上传到第三方模型服务"
+    mitigation: "开工前告知，照片缩到长边 1024；用户拒绝上传时只做排版"
+  - risk: "生图模型复刻版权角色"
+    mitigation: "不上传参考角色图，姿势只用文字描述，提示词禁止模仿版权角色；交付时标注仅限私下或群内使用"
+  - risk: "费用失控或重复扣费"
+    mitigation: "生图前报价，每次调用写账本，网络失败不自动重试"
+  - risk: "生图模型画错中文字"
+    mitigation: "所有中文由 HTML 排版，提示词禁止图内文字"
+references:
+  - title: "Primary Skill instructions"
+    path: "SKILL.md"
+  - title: "版式规格"
+    path: "references/layout.md"
+output:
+  types:
+    - "表情包对比图"
+    - "原创 Q 版卡通形象"
+  formats:
+    - "PNG 1080×1440"
+    - "PNG 1024×1024"
+    - "可选可编辑 HTML"
+  parameters:
+    - "title"
+    - "sticker（1–3 张，可加 contain）"
+    - "palette"
+    - "pose / features"
+  validation:
+    - "PNG 尺寸 1080×1440"
+    - "标题与贴纸完整、无裁切"
+    - "卡通像本人、姿势对上、无文字水印"
+    - "账本有本次调用记录"
+  description: "一张可直接发群的竖版对比图和一张独立卡通图，附本次费用与版权提示。"
+ethical_considerations: "只在本人同意时制作；不用于嘲讽外貌、骚扰、冒充或商业广告；参考角色只用用户提供的原图且不交给生图模型；含版权角色的成品只适合私下或群内使用。"
+dimensions:
+  - id: correctness
+    label: "版式还原"
+    description: "成品是否复现作者认可的网点放射线背景、歪斜贴纸和单标题版式"
+    evidence: "用原素材重渲与认可成品逐像素比较，平均通道差 3.4 / 255，主要差在参考图内边距"
+    score: null
+  - id: effectiveness
+    label: "像不像"
+    description: "卡通是否保留本人辨识特征并对上参考姿势"
+    evidence: "首个真实案例中卡通保留了本人的撞款元素、发型和衣服配色，姿势与参考角色一致"
+    score: null
+  - id: efficiency
+    label: "成本与耗时"
+    description: "单张成品的付费调用次数与费用"
+    evidence: "首个真实案例 1 次成功调用 USD 0.2335，另 1 次网络中断记为未知费用；排版本地完成"
+    score: null
+  - id: safety
+    label: "同意与版权门禁"
+    description: "是否在生成前完成同意、上传告知、报价，并在交付时标注版权"
+    evidence: "门禁写入 SKILL.md 必经步骤；生图脚本只上传真人照片"
+    score: null
+pricing:
+  model: free
+  currency: CNY
+  list_price_cny: 0
+  basis: "工作流轻量、依赖用户自己的 OpenRouter 额度，适合作为免费 Skill 获客与积累案例"
+  boundary: "含取帧裁剪、卡通生成脚本、排版渲染和门禁流程；不含生图费用、字体分发和任何外发"
+  review_trigger: "新增多版式、批量生成或托管生图额度时复评"
+  confidence: internal
+distribution:
+  paid:
+    - channel: workbuddy
+      status: not_selected
+    - channel: skillpay
+      status: not_selected
+  free:
+    - channel: github
+      status: pending
+      note: "2026-11-24 目录 PR 准备中，尚未合并"
+    - channel: lovstudio
+      status: pending
+      note: "2026-11-24 尚未刷新官网，详情页与试装未验证"
