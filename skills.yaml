@@ -9482,6 +9482,8 @@ skills:
   tagline_zh: 将旅行或户外照片修成保留本人特征的环境人像大片，兼顾微信头像裁切，按需附真实对比图与复刻Prompt
   depends_on:
   - branding-consistency
+  related:
+  - lookalike-meme
   pricing:
     model: free_entry
     visibility: public
@@ -10511,3 +10513,43 @@ skills:
     review_trigger_zh: 十次真实交接、收到第一份接手方反馈，或出现团队批量交接与托管验收需求时复评。
     review_trigger_en: "Review after ten real handovers, the first recipient feedback, or demand for team-wide batch handovers and hosted acceptance."
     card_path: pricing-cards/project-handover.md
+- name: lookalike-meme
+  runtime_name: lov-lookalike-meme
+  display_name: Lookalike Meme
+  name_zh: 撞款表情包
+  repo: lovstudio/lookalike-meme-skill
+  paid: false
+  category: Design
+  version: 0.1.0
+  updated_at: 2026-11-24 08:00:00+00:00
+  depends_on:
+  - branding-consistency
+  description: "Turn a real person's photo and a reference character into a lookalike meme: an original AI chibi of the person plus a bold-title sticker layout, 1080x1440 PNG."
+  tagline_en: "Turn a friend's photo and the character they resemble into a punchy lookalike meme: original AI chibi, tilted stickers, one bold title."
+  tagline_zh: 把真人照片和“像谁”的参考形象做成网感撞款表情包：AI 画原创 Q 版，网点放射线背景配歪斜贴纸和一个大标题
+  related:
+  - spectacular-ps
+  pricing:
+    model: free_entry
+    visibility: public
+    list_price_credits: 0
+    launch_price_credits: 0
+    price_range_credits:
+    - 0
+    - 0
+    delivery_unit_zh: 当前版本 Skill：取帧裁剪、原创 Q 版生成、HTML 排版渲染 3 个脚本，6 套配色与 1–3 张贴纸版式，同意、版权、报价与记账门禁
+    delivery_unit_en: "Current Skill with three scripts (frame grab and crop, original chibi generation, HTML layout render), six palettes and 1-3 sticker layouts, plus consent, copyright, quote and cost-ledger gates"
+    value_zh: 几分钟内交出一张可直接发群的撞款对比图和一张独立的原创卡通形象；中文标题由排版生成不出错字，参考角色不交给生图模型。
+    value_en: "Deliver a share-ready lookalike comparison image and a standalone original cartoon in minutes; the Chinese title is typeset rather than drawn, and the reference character is never sent to the image model."
+    anchor_zh: 手工 P 一张同等网感的对比图约需 30–60 分钟；本 Skill 用一次约 0.2 美元的生图调用加本地排版完成，并在首个真实案例上复现了用户认可的版式。
+    anchor_en: "Hand-editing a comparable meme takes about 30-60 minutes; this Skill needs one image call of about USD 0.2 plus local layout, and reproduced the user-approved layout on its first real case."
+    basis_zh: 六维加权 2.6/5：只有一个真实案例，工作流轻量且依赖用户自己的生图额度，公开镜像易复制，作为免费入口积累案例。
+    basis_en: "Six-dimension score 2.6/5: a single real case, a light workflow that relies on the user's own image-generation credit, and an easily copied public mirror, so it ships as a free entry to collect cases."
+    boundary_zh: 只在本地生成，不代为发布或发送；不含生图费用与字体分发。含第三方版权角色的成品仅适合私下或群内使用。
+    boundary_en: "Generates locally and never posts or sends; excludes image-generation charges and font distribution. Results that include a third-party copyrighted character are for private or group-chat use only."
+    maintenance_zh: 随生图模型接口与价格变化复评，无托管服务或更新时限承诺。
+    maintenance_en: "Review as the image model's API and pricing change; no hosted service or update SLA is included."
+    confidence: case-backed
+    review_trigger_zh: 十次真实使用、新增版式模板或批量生成需求出现时复评。
+    review_trigger_en: "Review after ten real uses, a new layout template, or demand for batch generation."
+    card_path: pricing-cards/lookalike-meme.md

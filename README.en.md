@@ -41,7 +41,7 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 ## Skills
 
 <!-- COUNT:START -->
-> **246 skills** — 220 Free + 26 Paid.
+> **247 skills** — 221 Free + 26 Paid.
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -114,13 +114,14 @@ Skills marked ![Free](https://img.shields.io/badge/Free-green) install and run d
 | ![Free](https://img.shields.io/badge/Free-green) | [Knowledge Card Studio](https://github.com/lovstudio/gen-card-skill) (`gen-card`) | Lay out structured content and diagrams as copyable, downloadable knowledge cards in HTML and 2x PNG. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Finishing](https://github.com/lovstudio/image-decorator-skill) (`image-decorator`) | Add a caption bar and brand logo to PNG, JPEG or WebP images with framed or frameless layouts. — requires: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Jessy Card Design](https://github.com/lovstudio/jessy-style-card-design-skill) (`jessy-style-card-design`) | Make your card in the Jessy layout with your own brand and real details — a double-sided PNG and a self-contained HTML. — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Lookalike Meme](https://github.com/lovstudio/lookalike-meme-skill) (`lookalike-meme`) | Turn a friend's photo and the character they resemble into a punchy lookalike meme: original AI chibi, tilted stickers, one bold title. — requires: `branding-consistency`; related: `spectacular-ps` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Partner Directory](https://github.com/lovstudio/maintain-partners-skill) (`maintain-partners`) | Scrape, normalize, and wire brand logos into the partners section across 4 locales in one shot. — requires: `find-logo`, `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Mobile Infographic](https://github.com/lovstudio/mobile-infographic-skill) (`mobile-infographic`) | Turn an existing conclusion into vertical infographics a phone can actually read, with type floors, safe areas, and an audit report. — requires: `branding-consistency`; related: `professional-infographic` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Website Whiz](https://github.com/lovstudio/oh-my-landingpage-skill) (`oh-my-landingpage`) | Turn product truth into a distinctive landing page, with brand, story, visual direction, implementation, and production review working as one system. |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Professional Infographic](https://github.com/lovstudio/professional-infographic-skill) (`professional-infographic`) | Turn dense material or an investment path into one sourced visual argument, from entry and staged exits to the decision that follows. — related: `image-creator`, `mobile-infographic` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Professional Portrait](https://github.com/lovstudio/professional-portrait-skill) (`professional-portrait`) | Turn one photo into a clean, identity-preserving professional portrait. — related: `image-creator`, `riso-portrait`, `bw-portrait` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Riso Portrait](https://github.com/lovstudio/riso-portrait-skill) (`riso-portrait`) | Turn one photo into a recognizable Riso avatar, then check the face, hands, objects, and circular crop. — requires: `branding-consistency`; related: `image-creator`, `professional-portrait`, `bw-portrait` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Spectacular Portraits](https://github.com/lovstudio/spectacular-ps-skill) (`spectacular-ps`) | Retouch travel or outdoor photos into striking environmental portraits that keep the person's features. — requires: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Spectacular Portraits](https://github.com/lovstudio/spectacular-ps-skill) (`spectacular-ps`) | Retouch travel or outdoor photos into striking environmental portraits that keep the person's features. — requires: `branding-consistency`; related: `lookalike-meme` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Style Sampler](https://github.com/lovstudio/visual-clone-skill) (`visual-clone`) | Extract the design DNA of a reference image so you can recreate the look. |
 | **Academic** | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Academic Translator](https://github.com/lovstudio/academic-translator-skill) (`academic-translator`) | Translate English papers into Chinese while preserving figures, equations, pages, and navigation. |

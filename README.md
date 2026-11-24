@@ -40,7 +40,7 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 ## 技能列表
 
 <!-- COUNT:START -->
-> **246 个技能** — 220 个免费 + 26 个付费。
+> **247 个技能** — 221 个免费 + 26 个付费。
 <!-- COUNT:END -->
 
 <!-- SKILLS:START -->
@@ -113,13 +113,14 @@ Skill 的实际内容有两种组织方式：直接放在本仓库的 `skills/<n
 | ![Free](https://img.shields.io/badge/Free-green) | [Knowledge Card Studio](https://github.com/lovstudio/gen-card-skill) (`gen-card`) | [知识卡片工坊](https://github.com/lovstudio/gen-card-skill) | 把结构化内容与独立示意图排成可复制、可下载的高清知识卡片，输出自包含HTML和2×PNG — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Image Finishing](https://github.com/lovstudio/image-decorator-skill) (`image-decorator`) | [图片装帧](https://github.com/lovstudio/image-decorator-skill) | 为现有PNG、JPEG或WebP增加底部caption与右下品牌Logo，并按艺术图片或软件截图选择带框、无框版式 — 依赖: `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Jessy Card Design](https://github.com/lovstudio/jessy-style-card-design-skill) (`jessy-style-card-design`) | [Jessy 名片设计](https://github.com/lovstudio/jessy-style-card-design-skill) | 照 Jessy 名片的横版版式，换上你的品牌与真实资料，输出双面 PNG 与 HTML。 — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Lookalike Meme](https://github.com/lovstudio/lookalike-meme-skill) (`lookalike-meme`) | [撞款表情包](https://github.com/lovstudio/lookalike-meme-skill) | 把真人照片和“像谁”的参考形象做成网感撞款表情包：AI 画原创 Q 版，网点放射线背景配歪斜贴纸和一个大标题 — 依赖: `branding-consistency`; 相关: `spectacular-ps` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Partner Directory](https://github.com/lovstudio/maintain-partners-skill) (`maintain-partners`) | [伙伴名录](https://github.com/lovstudio/maintain-partners-skill) | 一键抓取品牌 logo、标准化处理并接入官网 partners 区块，多语言全覆盖。 — 依赖: `find-logo`, `branding-consistency` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Mobile Infographic](https://github.com/lovstudio/mobile-infographic-skill) (`mobile-infographic`) | [手机信息图](https://github.com/lovstudio/mobile-infographic-skill) | 把已有结论重排成手机上真能读完的竖版信息图，自带字号下限、安全区与可复核审计报告。 — 依赖: `branding-consistency`; 相关: `professional-infographic` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Website Whiz](https://github.com/lovstudio/oh-my-landingpage-skill) (`oh-my-landingpage`) | [官网小能手](https://github.com/lovstudio/oh-my-landingpage-skill) | 从产品与品牌事实出发，独立推导适合当前产品的叙事与视觉，并完成实现、响应式和生产回读。 |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Professional Infographic](https://github.com/lovstudio/professional-infographic-skill) (`professional-infographic`) | [专业信息图](https://github.com/lovstudio/professional-infographic-skill) | 把复杂材料或投资路径重构为一条可回溯的视觉论证，从进入、分阶段退出到最终判断。 — 相关: `image-creator`, `mobile-infographic` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Professional Portrait](https://github.com/lovstudio/professional-portrait-skill) (`professional-portrait`) | [职业形象照](https://github.com/lovstudio/professional-portrait-skill) | 把一张普通人像修成干净、自然、仍然像本人的职业形象照。 — 相关: `image-creator`, `riso-portrait`, `bw-portrait` |
 | ![Free](https://img.shields.io/badge/Free-green) | [Riso Portrait](https://github.com/lovstudio/riso-portrait-skill) (`riso-portrait`) | [Riso 人像](https://github.com/lovstudio/riso-portrait-skill) | 把一张照片重绘成仍然像本人的 Riso 头像，并检查五官、手指、物件与圆形裁切。 — 依赖: `branding-consistency`; 相关: `image-creator`, `professional-portrait`, `bw-portrait` |
-| ![Free](https://img.shields.io/badge/Free-green) | [Spectacular Portraits](https://github.com/lovstudio/spectacular-ps-skill) (`spectacular-ps`) | [人像大片](https://github.com/lovstudio/spectacular-ps-skill) | 将旅行或户外照片修成保留本人特征的环境人像大片，兼顾微信头像裁切，按需附真实对比图与复刻Prompt — 依赖: `branding-consistency` |
+| ![Free](https://img.shields.io/badge/Free-green) | [Spectacular Portraits](https://github.com/lovstudio/spectacular-ps-skill) (`spectacular-ps`) | [人像大片](https://github.com/lovstudio/spectacular-ps-skill) | 将旅行或户外照片修成保留本人特征的环境人像大片，兼顾微信头像裁切，按需附真实对比图与复刻Prompt — 依赖: `branding-consistency`; 相关: `lookalike-meme` |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Style Sampler](https://github.com/lovstudio/visual-clone-skill) (`visual-clone`) | [风格采样](https://github.com/lovstudio/visual-clone-skill) | 从参考图中提取设计要素，生成可复刻同款风格的指令。 |
 | **学术** | | | |
 | ![Paid](https://img.shields.io/badge/Paid-blueviolet) | [Academic Translator](https://github.com/lovstudio/academic-translator-skill) (`academic-translator`) | [学术译者](https://github.com/lovstudio/academic-translator-skill) | 将英文论文译为中文，优先保留图表、公式、页码对应与目录跳转。 |

@@ -11,7 +11,7 @@
     {
       "name": "design",
       "source": "./",
-      "description": "Design — 12 free skills bundled together.",
+      "description": "Design — 13 free skills bundled together.",
       "category": "Design",
       "skills": [
         "./skills/frontend-design",
@@ -26,7 +26,8 @@
         "./skills/jessy-style-card-design",
         "./skills/gen-card",
         "./skills/image-decorator",
-        "./skills/spectacular-ps"
+        "./skills/spectacular-ps",
+        "./skills/lookalike-meme"
       ],
       "strict": false
     },
