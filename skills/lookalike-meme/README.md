@@ -1,6 +1,6 @@
 # 撞款表情包 · Lookalike Meme
 
-![Version](https://img.shields.io/badge/version-0.1.0-CC785C)
+![Version](https://img.shields.io/badge/version-0.1.1-CC785C)
 
 给一位真人的照片和一张“像谁”的参考形象图，做出一张网感十足的撞款对比图：
 AI 以本人照片为参考画原创 Q 版卡通并模仿参考姿势，HTML 排出粉色网点放射线背景、

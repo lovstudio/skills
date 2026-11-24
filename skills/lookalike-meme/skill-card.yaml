@@ -1,5 +1,5 @@
 schema: lovstudio/skill-card/v1
-version: "0.1.0"
+version: "0.1.1"
 description: "把一位真人的现场照片和一张参考形象图做成网感撞款表情包：AI 以本人照片为参考画原创 Q 版卡通并模仿参考姿势，HTML 排版出亮色网点放射线背景、白边歪斜贴纸和单个大标题的 1080×1440 PNG，另附卡通 PNG。"
 owner:
   team: "LovStudio"
