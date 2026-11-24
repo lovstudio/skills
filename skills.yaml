@@ -10520,7 +10520,7 @@ skills:
   repo: lovstudio/lookalike-meme-skill
   paid: false
   category: Design
-  version: 0.1.0
+  version: 0.1.1
   updated_at: 2026-11-24 08:00:00+00:00
   depends_on:
   - branding-consistency
