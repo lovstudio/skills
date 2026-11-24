@@ -70,4 +70,4 @@ LovStudio（https://lovstudio.ai）。
 
 ### Distribution
 
-免费渠道 GitHub、Lovstudio：live（2026-11-24：目录 PR #123 合并于 main 69262bd；官网详情页 HTTP 200 显示 0.1.0；隔离目录试装成功）；付费渠道未选择。
+免费渠道 GitHub、Lovstudio：live（2026-11-24：0.1.1 经目录 PR #125 合并于 main 7233db7；官网详情页 HTTP 200 显示 0.1.1，带图共享案例只显示一次）；付费渠道未选择。
