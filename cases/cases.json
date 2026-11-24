@@ -4213,5 +4213,47 @@
       "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
       "submittedAt": "2026-10-29T07:24:12.648Z"
     }
+  },
+  {
+    "id": "lookalike-meme-red-hat-twin",
+    "type": "case",
+    "skillIds": [
+      "lookalike-meme"
+    ],
+    "title": "真人 × 小红帽卡通撞款表情包",
+    "description": "一位戴酒红毛线帽的嘉宾被朋友们叫作“小红帽”，本人同意做成撞款表情包并公开展示。第一版三格对比加小标题网感不够；改成粉色网点放射线背景、三张白边歪斜贴纸和一个大标题后被作者认可，本 Skill 即按这一版封装。",
+    "input": {
+      "items": [
+        "视频中截出的本人正面帧，方裁到脸和毛线帽（图 4）",
+        "作者提供的小红帽造型卡通角色原图（第三方版权角色，只作贴纸，不交给生图模型）（图 3）",
+        "标题：一个 5 字外号"
+      ]
+    },
+    "prompt": "把她和这张小红帽卡通做成撞款图：以她的照片为参考画一个原创 Q 版，模仿卡通的双臂平伸姿势；粉色网点加放射线背景，三张白边歪斜贴纸，只放一个大标题。",
+    "output": {
+      "items": [
+        "1080×1440 PNG 对比图：左上卡通角色原图、右上原创 Q 版、下方真人照片，黄字黑描边大标题（封面）",
+        "1024×1024 原创 Q 版卡通 PNG：酒红毛线帽、黑短发、淡紫毛衣、双臂平伸（图 2）",
+        "单次生图约 0.23 美元，记入项目费用账本"
+      ]
+    },
+    "cover": "cases/assets/lookalike-meme-red-hat-twin/1.png",
+    "gallery": [
+      "cases/assets/lookalike-meme-red-hat-twin/2.png",
+      "cases/assets/lookalike-meme-red-hat-twin/3.png",
+      "cases/assets/lookalike-meme-red-hat-twin/4.jpg"
+    ],
+    "evidence": {
+      "acceptance": "user-confirmed",
+      "verified_at": "2026-11-24",
+      "method": "作者看过成品后确认满意；之后用本 Skill 脚本以同一组素材复跑，重渲成品与认可版平均通道差 3.4/255。",
+      "privacy": "照片中本人同意制作并公开展示。参考图为第三方版权角色，仅作对比贴纸展示，不用于商业用途。",
+      "artifact_type": "visual"
+    },
+    "submission": {
+      "fingerprint": "151c1fe9505d70bae17e7b15c18d805c4e6fa9dca42033a275a8e63d28f64e2d",
+      "contributor": "6e9632f47b6763d38c3a0d9535aff38d7c54b6c638be46acb7dfeb7d3b5c927c",
+      "submittedAt": "2026-11-24T07:50:47.551Z"
+    }
   }
 ]
