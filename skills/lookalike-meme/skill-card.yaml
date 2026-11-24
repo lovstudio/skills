@@ -102,7 +102,7 @@ distribution:
   free:
     - channel: github
       status: live
-      note: "2026-11-24 lovstudio/skills#123 已合并，目录与镜像在 main 69262bd"
+      note: "2026-11-24 0.1.1 经 lovstudio/skills#125 合并，目录与镜像在 main 7233db7"
     - channel: lovstudio
       status: live
-      note: "2026-11-24 刷新后官网读到 69262bd；详情页 HTTP 200 显示 0.1.0；隔离目录项目模式试装成功，脚本可运行"
+      note: "2026-11-24 刷新后官网读到 7233db7；详情页 HTTP 200 显示 0.1.1，带图共享案例 lookalike-meme-red-hat-twin 只显示一次且 4 张图可访问"
