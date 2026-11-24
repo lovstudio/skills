@@ -101,8 +101,8 @@ distribution:
       status: not_selected
   free:
     - channel: github
-      status: pending
-      note: "2026-11-24 目录 PR 准备中，尚未合并"
+      status: live
+      note: "2026-11-24 lovstudio/skills#123 已合并，目录与镜像在 main 69262bd"
     - channel: lovstudio
-      status: pending
-      note: "2026-11-24 尚未刷新官网，详情页与试装未验证"
+      status: live
+      note: "2026-11-24 刷新后官网读到 69262bd；详情页 HTTP 200 显示 0.1.0；隔离目录项目模式试装成功，脚本可运行"
