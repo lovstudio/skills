@@ -511,3 +511,10 @@ await cdp('Input.dispatchMouseEvent', { type: 'mouseReleased', x: p.x, y: p.y, b
 `svg.close` 被命中时 `hit` 常是里面的 `path`，所以按 `el.contains(hit)` 判断。读 SVG 的类名用
 `getAttribute('class')`，`className` 是对象。代码按本次修正的步骤整理，没有原样跑过；断言失败时
 先看 `underNav`，不要换成语义 `.click()`，这些控件本来就不吃合成点击（见上文「标签：四个独立的坑」）。
+
+## 2026-11-25 补记（《文风蒸馏》BV19MyBz4EUQ）
+
+- 自定义标签 `Claude` 被拒：「当前tag为话题专用，不允许自定义添加」，换 `Claude AI` 被接受；`check_copy.py` 的话题专用名单应加入 `Claude`。
+- 上传按文件名猜分区，本次一次猜「音乐」、一次猜「vlog」，写完标题后又一次改猜「人工智能」；分区要在标题之后显式选，下拉一级分区「人工智能」可选。
+- 封面编辑器「完成」按钮在 1512×810 视口里落在 y=837（视口外），`scrollIntoView` 后再按命中断言点，编辑器才关。
+- `!document.body.innerText.includes('上传中')` 作为上传完成判据会超时（页面隐藏处仍有这几个字），以文件行「上传完成」+ 绿色进度条为准。

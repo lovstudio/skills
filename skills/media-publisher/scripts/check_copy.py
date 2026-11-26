@@ -103,7 +103,7 @@ CONFIRMED_REJECTED = {
 
 # B 站实测被拒的标签名（前三个 2026-08-18，vibecoding 2026-10-06，后者换 AI编程 被接受）。
 # 不是字符集问题也不是长度问题，是平台把这些名字划给了话题体系。名单必然不全，页面 toast 才是权威。
-BILIBILI_TOPIC_ONLY_TAGS = ("DeepSeekHarness", "独立开发者", "插件开发", "vibecoding")
+BILIBILI_TOPIC_ONLY_TAGS = ("DeepSeekHarness", "独立开发者", "插件开发", "vibecoding", "Claude")
 
 # ---------------------------------------------------------------------------
 # 站外导流（小红书）
