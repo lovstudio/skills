@@ -3,6 +3,20 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.20.0] - 2026-11-26
+
+按成片形态分平台。来源是作者 2026-11-26 原话「B 站、Youtube 发整篇，视频号、小红书、抖音发切片，已经发的不符合要求的删掉重发」。
+
+### Changed
+
+- 平台路由：同一期同时有整篇与切片时，整篇只发 B 站、YouTube，切片只发视频号、小红书、抖音；缺某一形态记 `blocked-on-platform-variant`，
+  不拿另一形态顶替；按旧口径发出的不符条目由作者决定删除重发，删除前列清单、删除后回读。
+
+### Added
+
+- `references/youtube/page-anatomy.md`：YouTube Studio 上传的三个坑（上传只在前台标签页推进、旧弹窗残留在 DOM、发布后等 `Saving...` 消失）与回读方法。
+- 并入 2026-11-25《文风蒸馏》发布时记下的补记：B 站 `Claude` 标签为话题专用、视频号合集名不支持日文假名、小红书横版封面选择器与编辑器改版。
+
 ## [0.19.3] - 2026-11-22
 
 ### Changed
