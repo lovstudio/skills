@@ -1,6 +1,6 @@
 # Preset → Dimension Mapping
 
-Maps 16 preset styles to their dimension combinations.
+Maps 17 preset styles to their dimension combinations.
 
 ## Mapping Table
 
@@ -22,6 +22,7 @@ Maps 16 preset styles to their dimension combinations.
 | scientific | clean | cool | technical | dense |
 | vector-illustration | clean | vibrant | humanist | balanced |
 | vintage | paper | warm | editorial | balanced |
+| mono | paper | warm | geometric | minimal |
 
 ## Preset Details
 
@@ -124,3 +125,9 @@ Total possible combinations: 5 × 6 × 5 × 3 = **450 unique styles**
 | warm-editorial | paper | warm | editorial | balanced | Heritage brands |
 | dark-technical | grid | dark | technical | dense | Security, DevOps |
 | playful-clean | clean | vibrant | humanist | balanced | Startups, apps |
+
+### mono
+- **Dimensions**: paper + warm + geometric + minimal
+- **Feel**: 单色油墨印刷品，纸面可见，克制而有质感
+- **Auto-select**: 中文讲座、分享、闭门会、会议室投屏、要现场改字
+- **Note**: 默认原生排版输出可编辑 PPTX，完整规范见 `references/styles/mono.md`
