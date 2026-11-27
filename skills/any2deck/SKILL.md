@@ -1,29 +1,43 @@
 ---
 name: lov-any2deck
-category: Document Conversion
-tagline: "Content → slide deck images with 16 visual styles, PPTX/PDF export, branding overlay."
 description: >
-  Generate professional slide deck images from content (Markdown, text, URLs).
-  Creates outlines with style instructions, then generates individual slide images.
-  Supports 16 visual styles, CJK/Latin mixed text, branding overlays, and
-  PPTX/PDF export. Use when the user asks to "create slides", "make a presentation",
-  "generate deck", "slide deck", "PPT", "做PPT", "生成幻灯片", "制作演示文稿",
-  or wants to turn content into a visual slide deck.
+  Turn Markdown, text or URLs into slide decks in 17 styles, as AI slide images
+  or an editable one-ink mono PPTX. Use when the user asks to "做PPT" or "生成幻灯片".
 license: MIT
 compatibility: >
   Requires an image generation skill (e.g. image-gen) and Node.js for PPTX/PDF merge.
-  Python 3.8+ for branding overlay. Cross-platform: macOS, Windows, Linux.
+  Python 3.8+ for branding overlay; the mono style needs python-pptx, Pillow and numpy.
+  Cross-platform: macOS, Windows, Linux.
 depends_on:
   - lov-branding-consistency
 metadata:
   author: contributors
-  version: "1.1.3"
-  tags: slide deck presentation pptx pdf image generation
+  version: "1.2.1"
+  tags:
+    - slide-deck
+    - presentation
+    - pptx
+    - pdf
+    - image-generation
 ---
 
 # PPT 大师 · PPT Master
 
 Transform content into professional slide deck images.
+
+## Triggers
+
+### Activate when
+
+- 用户说“做PPT”“生成幻灯片”“制作演示文稿”“把这篇文章做成 slides”，或给出内容要求出一份 deck。
+- The user asks to create slides, make a presentation, generate a deck, or restyle an existing deck.
+- 用户点名某个风格（如 `mono`、`sketch-notes`）或要求“可编辑的 PPTX”“会议室投屏用的中文 PPT”。
+
+### Do not activate when
+
+- 只要把 Markdown 转成 PDF 或 Word：交给 `lov-any2pdf` / `lov-any2docx`。
+- 只要一张海报、封面、信息图或单张卡片：交给对应的海报、封面或信息图 Skill。
+- 只改现有 PPTX 里的几处文字或数据，不涉及生成或重排版。
 
 ## Usage
 
@@ -47,6 +61,7 @@ Transform content into professional slide deck images.
 |--------|---------|
 | `scripts/merge-to-pptx.ts` | Merge slides into PowerPoint |
 | `scripts/merge-to-pdf.ts` | Merge slides into PDF |
+| `scripts/mono_pptx_kit.py` | mono 风格可编辑 PPTX 工具包（母版纸纹与 Logo、单色调图片、问题页、Q&A）；`--demo` 自检 |
 | `scripts/apply-branding.py` | Composite logo(s)/QR onto slides — dual logo, tight-crop, JPG white→alpha (opt-in) |
 
 ## Options
@@ -95,6 +110,7 @@ Transform content into professional slide deck images.
 | `scientific` | clean + cool + technical + dense | Biology, chemistry, medical |
 | `vector-illustration` | clean + vibrant + humanist + balanced | Creative, children's content |
 | `vintage` | paper + warm + editorial + balanced | Historical, heritage |
+| `mono` | paper + warm + geometric + minimal | 中文演讲投屏、可编辑 PPTX（原生排版，见 `references/styles/mono.md`） |
 
 ### Style Dimensions
 
@@ -127,6 +143,7 @@ Full specs: `references/dimensions/*.md`
 | biology, chemistry, medical, scientific | `scientific` |
 | history, heritage, vintage, expedition | `vintage` |
 | lifestyle, wellness, travel, artistic | `watercolor` |
+| 中文讲座/分享/闭门会、会议室投屏、要现场改字、单色印刷、mono | `mono` |
 | Default | `blueprint` |
 
 ## Design Philosophy
@@ -234,6 +251,10 @@ Custom configurations via EXTEND.md. See **Step 1.1** for paths and supported op
 - `build-batch.ts` 只识别 `## Illustration N` 标题；自定义大纲用 `## Slide N of M` 时它一张都解析不出，自己写脚本产出 `batch.json` 更快（2026-09-05, f9babe0）
 - 讲课版 deck 必须把讲稿写进 `notes/<stem>.md`，画面指令留在 `prompts/`；`merge-to-pptx.ts` 已改为优先取 `notes/` 作演讲者备注，`prompts/` 仅为兜底（2026-09-05, f9babe0）
 - 满幅波普/漫画风 deck 不要再叠 logo：`apply-branding.py` 的白底 logo 会与粗描边和网点底冲突，品牌信息直接写进封面画面（2026-09-05, f9babe0）
+
+- mono 风格默认走原生排版：生图只出无文字插画，文字用 python-pptx 排，图片本地转单色调，纸纹与 Logo 进母版；整页生图只在用户明确要求时用（2026-11-27）
+- 英文单词标题不要用 Impact（窄体显挤），改用 Arial Black；Georgia 是老式数字，不适合做大数字（2026-11-27）
+- AppleScript 让 Keynote 打开 PPTX 是异步的，`open` 返回空值，后台等待也会卡在弹窗上；实机检查交给用户，不抢前台（2026-11-27）
 
 ## Runtime context (shared)
 

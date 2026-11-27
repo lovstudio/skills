@@ -589,18 +589,18 @@ skills:
     card_path: pricing-cards/any2docx.md
 - name: any2deck
   runtime_name: lov-any2deck
-  updated_at: 2026-11-20 12:35:41+00:00
+  updated_at: 2026-11-27 09:30:00+00:00
   display_name: PPT Master
   repo: lovstudio/any2deck-skill
   name_zh: PPT 大师
   paid: false
   featured: true
   category: Office Automation
-  description: Content → slide deck images with 16 visual styles, PPTX/PDF export,
-    branding overlay.
-  tagline_en: Turn any content into a styled slide deck — 16 looks, export to PPTX
-    or PDF.
-  tagline_zh: 把任意内容变成带设计感的幻灯片，16 种风格可选，导出 PPTX / PDF。
+  description: Content → slide decks in 17 visual styles, incl. an editable one-ink mono
+    PPTX; PPTX/PDF export, branding overlay.
+  tagline_en: Turn any content into a styled slide deck — 17 looks incl. an editable
+    one-ink PPTX, export to PPTX or PDF.
+  tagline_zh: 把任意内容变成带设计感的幻灯片，17 种风格，含可编辑的单色 PPTX，导出 PPTX / PDF。
   depends_on:
   - branding-consistency
   related:
@@ -608,7 +608,7 @@ skills:
   - any2docx
   skillpay_product_id: P0806000200844930
   skillpay_purchase_url: https://aipayapi.alipay.com/skillpay/ct?c=BHayB9Om2xSC3Q2LqQ-u
-  version: 1.1.3
+  version: 1.2.1
   pricing:
     model: free_entry
     visibility: public
@@ -619,9 +619,9 @@ skills:
     - 0
     delivery_unit_zh: 公开 Skill 源码与当前版本说明
     delivery_unit_en: Public Skill source and current-version notes
-    value_zh: 把任意内容变成带设计感的幻灯片，16 种风格可选，导出 PPTX / PDF。
-    value_en: Turn any content into a styled slide deck — 16 looks, export to PPTX
-      or PDF.
+    value_zh: 把任意内容变成带设计感的幻灯片，17 种风格，含可编辑的单色 PPTX，导出 PPTX / PDF。
+    value_en: Turn any content into a styled slide deck — 17 looks incl. an editable
+      one-ink PPTX, export to PPTX or PDF.
     anchor_zh: 一次交付通常可省下 20 分钟至半天的整理、排版和格式返工。
     anchor_en: A run typically saves 20 minutes to half a day of organization, layout,
       and format rework.

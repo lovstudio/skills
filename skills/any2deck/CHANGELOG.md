@@ -3,6 +3,21 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [1.2.1] - 2026-11-27
+
+### Fixed
+
+- SKILL.md frontmatter 通过发布校验：去掉 `category`、`tagline`，描述压到 200 字以内，`metadata.tags` 改为列表
+- 新增 `## Triggers`，写明触发与不触发的条件
+
+## [1.2.0] - 2026-11-27
+
+### Added
+
+- 新增 `mono` 风格（单色印刷：暖灰纸纹 + 锈橙油墨 + 近黑），规范见 `references/styles/mono.md`；视觉参考 yanliudesign/mono-color-skill 的 reference-04
+- 新增 `scripts/mono_pptx_kit.py`：可编辑 PPTX 工具包，纸纹与 Logo 写进母版、图片与图标转单色调、问题页、结论句、Q&A 二维码页、按 `## Pxx` 写演讲者备注；`--demo` 生成 5 页样张并自检
+- 预设表、自动选风格表、维护备注补上 mono 及其踩坑
+
 ## [1.1.3] - 2026-11-20
 
 ### Fixed
