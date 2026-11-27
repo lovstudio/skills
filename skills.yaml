@@ -2963,7 +2963,7 @@ skills:
   name_zh: 天才剪辑师
   paid: true
   category: Video Creation
-  version: 0.37.0
+  version: 0.38.0
   description: Turn screen recordings into review-first video deliveries with editable-subtitle
     MKV, approved platform files, rendered covers for every required slot, protected
     source audio, and QC evidence.
@@ -3017,7 +3017,7 @@ skills:
   - motion-media-creator
   - motivational-media-creator
   - promo-media-creator
-  version: 0.20.0
+  version: 0.21.0
   description: Publish videos to WeChat Channels, Bilibili, Xiaohongshu, or Douyin
     with preflight, frozen user-edited copy, cover gates, final confirmation, and
     status readback.

@@ -3,6 +3,14 @@
 All notable changes to this skill are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: [SemVer](https://semver.org/)
 
+## [0.21.0] - 2026-11-27
+
+视频号改发整篇。来源是作者 2026-11-27 原话「我的视频号也是不做切片的，请换成整片」。
+
+### Changed
+
+- 平台路由：整篇发视频号、B 站、YouTube，切片只发小红书、抖音。视频号整篇用 3:4 封面槽，缺 3:4 封面时交回创作端补渲。
+
 ## [0.20.0] - 2026-11-26
 
 按成片形态分平台。来源是作者 2026-11-26 原话「B 站、Youtube 发整篇，视频号、小红书、抖音发切片，已经发的不符合要求的删掉重发」。
