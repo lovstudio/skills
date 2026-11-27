@@ -13,7 +13,7 @@ depends_on:
   - lov-branding-consistency
 metadata:
   author: lovstudio
-  version: "0.20.0"
+  version: "0.21.0"
   tags:
     - wechat-channels
     - bilibili
@@ -36,8 +36,9 @@ metadata:
 `[wechat-channels, bilibili]`。用户只说「发布」「发出去」且没有指定平台时，直接采用这份
 默认队列，不再泛问发布目的地。
 
-- **按成片形态分平台（作者 2026-11-26 定）**：同一期同时有整篇与切片时，**整篇只发 B 站、YouTube，切片只发视频号、小红书、抖音**，
-  不再把整篇同步到视频号、小红书，也不把切片发到 B 站、YouTube。作者原话「B 站、Youtube 发整篇，视频号、小红书、抖音发切片」。
+- **按成片形态分平台（作者 2026-11-26 定，2026-11-27 改）**：同一期同时有整篇与切片时，**整篇发视频号、B 站、YouTube，切片只发小红书、抖音**，
+  不把整篇同步到小红书、抖音，也不把切片发到视频号、B 站、YouTube。作者原话「B 站、Youtube 发整篇，视频号、小红书、抖音发切片」，
+  次日改「我的视频号也是不做切片的，请换成整片」。视频号整篇用 3:4 封面槽，缺 3:4 封面时交回 `lov-media-creator` 补渲。
   某一形态缺件时（只有切片、没有整篇，或反过来）记 `blocked-on-platform-variant` 交回 `lov-media-creator` 补做，不拿另一形态顶替；
   已按旧口径发出、形态不符的条目由作者决定删除重发，删除前列出平台、条目 ID 与播放数，删除后回读列表确认已消失再发新件。
   YouTube 不在下表的 `--platform` 里（`check_video.py` 未覆盖），走 YouTube Studio 网页上传，坑见 [YouTube Studio 结构](references/youtube/page-anatomy.md)。
